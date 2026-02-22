@@ -1,0 +1,71 @@
+## PURPOSE
+- "### STATE EFFECT"
+- "Skip to content"
+
+## HARD_FENCES
+- "- Thread A must act as a “human interface compiler”:"
+- "2) HARD GUARDS (NON-NEGOTIABLE)"
+- "Never say “ran/loaded/executed/passed/failed” unless output is a formal REPORT container"
+- "Therefore: Thread A must NEVER tell the user to paste a mixed message into B."
+- "Thread A must ALWAYS provide a dedicated COPY BOX for B."
+- "Every COPY_BOX must be self-contained and safe."
+- "Every COPY_BOX must include “PASTE EXACTLY THIS” warning."
+- "CONSTRAINTS: <what must be avoided>"
+- "but must label unknowns as UNKNOWN and request missing artifacts if required."
+- "- Never mix term namespaces with dependency namespaces:"
+- "REQUIRES must point to IDs, never bare terms."
+- "COPY BOX must be EXACTLY:"
+- "COPY BOX must contain ONLY SIM_EVIDENCE v1 blocks."
+- "If user pastes a rejection, Thread A must:"
+- "Teaching must assume “smart layman” level when LEVEL <= 3."
+- "Every Thread A response must end (inside its container) with:"
+- "D01_PROJECT_OS_INSTRUCTIONS_PRESENT (must already govern this Project thread)"
+- "D02_SINGLE_CONTAINER_OUTPUT_ENFORCED (platform/tooling must allow exactly-one-container replies)"
+- "D03_B_ACCEPTS_ONLY_REQUEST_OR_SINGLE_ARTIFACT (Thread B hygiene rule must hold)"
+- "Never claim executed/passed/failed unless a formal REPORT container with explicit PASS/FAIL exists AND evidence was provided by user."
+
+## CONTAINERS
+- BEGIN: BOOTPACK_THREAD_A v2.2, BOOTPACK_THREAD_B v3.5.2, EXPORT_BLOCK vN, SIM_EVIDENCE v1, THREAD_S_SAVE_SNAPSHOT v2, EXPORT_BLOCK v1, BOOTPACK_SIM_RUNNER v1.4
+- END: BOOTPACK_THREAD_A v2.2, EXPORT_BLOCK v1, EXPORT_BLOCK vN, SIM_EVIDENCE v1, THREAD_S_SAVE_SNAPSHOT v2, BOOTPACK_THREAD_B v3.5.2, CHART_PACK v1, EXPORT_BLOCK, STRUCTURE, BOOTPACK_SIM_RUNNER v1.4
+- REQUIRED_FIELDS: BOOT_ID, AUTHORITY, ROLE, STYLE, COMPAT, COPY_BOX RULE, INTENT, TOPIC, LEVEL, SCOPE, TARGET, CONSTRAINTS, INPUTS, BATCH_ID, SIM_IDS, RUN_STYLE, RUN_LENGTH, OUTPUT_TOKEN, PASTE, MAX PARALLEL POLICY, ID, SOURCE_INPUT, DEPENDENCIES, STATEMENT, PURPOSE, K01_THREAD_B_SCHEMA_CONFLICT, K02_CONTAINER_VIOLATION, K03_COMMAND_GRAMMAR_MISMATCH, K04_DEP_NAMESPACE_COLLISION, K05_NONCANON_LEAK
+
+## ALLOWED_SPEC_KINDS
+- TERM_DEF
+- LABEL_DEF
+- MATH_DEF
+- CANON_PERMIT
+- SIM_SPEC
+- REGISTRY_BIND
+- META
+
+## FORBIDDEN_PRIMITIVES
+- "(f) user used derived-only terms (equiv/equality/identity/coordinate) outside allowed contexts"
+- "- Count or construction words are forbidden in AXIOM_HYP IDs."
+- "2.5) DERIVED-ONLY TERM GUARD (v3.5.2)"
+- "- Set of TERM_LITERAL strings treated as “derived-only primitives”."
+- "- Not forbidden; forbidden as primitive use until CANONICAL_ALLOWED via term pipeline."
+- "If a derived-only literal t appears in any line outside the allowed contexts above:"
+- "No permanent forbidden words."
+- "G2: Provide safe copy/paste rituals that comply with MSG-001 and BR-0D* derived-only guard."
+- "O2: B will reject derived-only literals inside EXPORT_BLOCK content unless inside TERM/LABEL/FORMULA contexts, and additionally requires CANONICAL_ALLOWED permission for primitive use (BR-0D1/0D2)."
+- "equality"
+- "axis0_partition"
+- "="
+- "* derived-only primitive guard (no primitive equality/identity/time/metric/etc.)"
+- "* Avoid derived-only lexemes (time/cause/metric/etc.)."
+- "* FM2: Letting narrative terms (teleology/retrocausal/time/metric) leak as primitives (derived-only guard should block)."
+- "* avoid derived-only lexemes in PROBE_KIND/SPEC_KIND/DEF_FIELD free text"
+- "DESCRIPTION: Derived-only primitive guard is how you prevent “sneaking in” identity/time/metric/causality as primitives"
+- "Derived-only literals are blocked as primitives unless admitted via the term pipeline."
+- "DESCRIPTION: Complexity lane can be made ratchet-safe if you avoid derived-only lexemes and keep everything finite/operational"
+- "FM3: Letting derived-only lexemes leak into EXPORT_BLOCK free text (B will reject lines)."
+
+## ROLE_IN_SYSTEM
+- A2: "A2. DERIVED-ONLY GUARD"
+- A1: "ROLE: A1"
+- A0: "ROLE: A0"
+- B: "- B rejected inputs when:"
+- SIM: "- Keep each SIM “one thing” (one evidence token)."
+
+## OPEN_QUESTIONS
+- NONE_MARKED_OPEN

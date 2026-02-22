@@ -1,0 +1,13 @@
+# SOAK REPORT
+
+- cycle_count: 1
+- accepted_total: 0
+- parked_total: 0
+- rejected_total: 0
+- stop_reason: A1_NEEDS_EXTERNAL_STRATEGY
+
+## top_failure_tags
+- NONE
+
+## last_20_events
+- {"a0_to_a1_save_zip":"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/runs/TEST_A1_PACKET_EMPTY/zip_packets/000001_A0_TO_A1_SAVE_ZIP.zip","event":"a1_strategy_request_emitted","last_reject_tags":[],"source":"ZIP_PROTOCOL_v2","state_hash":"de0e5fe905c27b70960a8a41dadfe10ac8ab9beef13ea3a6724d7d7630d353cc","step":1}

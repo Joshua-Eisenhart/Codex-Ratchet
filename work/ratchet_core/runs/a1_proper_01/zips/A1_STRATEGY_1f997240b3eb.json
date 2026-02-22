@@ -1,0 +1,147 @@
+{
+  "kind": "A1_STRATEGY",
+  "manifest_sha256": "1f997240b3eb8a958f993239ac04a429be37148f6afc45c9962418ce827357eb",
+  "payload": {
+    "compounds_to_try": [],
+    "math_defs": [
+      {
+        "alternatives": [
+          {
+            "flaw": "density matrix requires Tr=1",
+            "objects": "density matrix operator",
+            "suffix": "NO_TRACE"
+          },
+          {
+            "flaw": "density matrix must be Hermitian",
+            "objects": "matrix trace operator",
+            "suffix": "NO_HERMITIAN"
+          }
+        ],
+        "id": "S_DM_001",
+        "objects": "density matrix trace operator"
+      },
+      {
+        "alternatives": [
+          {
+            "flaw": "unitary requires U\u2020U=I",
+            "objects": "operator hilbert space",
+            "suffix": "NOT_INVERTIBLE"
+          },
+          {
+            "flaw": "uses derived-only 'identity'",
+            "objects": "unitary operator identity",
+            "suffix": "USES_IDENTITY"
+          }
+        ],
+        "id": "S_UE_001",
+        "objects": "unitary operator hilbert space"
+      }
+    ],
+    "terms_to_admit": [
+      {
+        "alternatives": [
+          {
+            "flaw": "missing trace \u2014 entropy requires Tr",
+            "objects": "density operator",
+            "suffix": "NO_TRACE"
+          },
+          {
+            "flaw": "entropy is scalar not commutator",
+            "objects": "density matrix commutator",
+            "suffix": "COMMUTATIVE"
+          },
+          {
+            "flaw": "uses derived-only 'identity'",
+            "objects": "density matrix trace identity",
+            "suffix": "USES_IDENTITY"
+          }
+        ],
+        "term": "entropy",
+        "why": "von Neumann entropy S(rho) = -Tr(rho log rho)"
+      },
+      {
+        "alternatives": [
+          {
+            "flaw": "purity is on states not channels",
+            "objects": "channel operator",
+            "suffix": "WRONG_DOMAIN"
+          },
+          {
+            "flaw": "uses derived-only 'function'",
+            "objects": "density matrix function trace",
+            "suffix": "USES_FUNCTION"
+          }
+        ],
+        "term": "purity",
+        "why": "Tr(rho^2) \u2014 scalar measure of mixedness"
+      },
+      {
+        "alternatives": [
+          {
+            "flaw": "fidelity needs TWO states",
+            "objects": "density operator trace",
+            "suffix": "SINGLE_STATE"
+          },
+          {
+            "flaw": "uses derived-only 'equal'",
+            "objects": "density matrix trace equal operator",
+            "suffix": "USES_EQUAL"
+          }
+        ],
+        "term": "fidelity",
+        "why": "F(rho,sigma) \u2014 overlap between quantum states"
+      },
+      {
+        "alternatives": [
+          {
+            "flaw": "adjoint requires conjugation, not just transpose",
+            "objects": "matrix operator",
+            "suffix": "NO_CONJUGATE"
+          },
+          {
+            "flaw": "uses derived-only 'complex'",
+            "objects": "matrix operator complex",
+            "suffix": "USES_COMPLEX"
+          }
+        ],
+        "term": "adjoint",
+        "why": "(A\u2020)_ij = conj(A_ji) \u2014 conjugate transpose"
+      },
+      {
+        "alternatives": [
+          {
+            "flaw": "norm needs trace or inner product structure",
+            "objects": "operator",
+            "suffix": "UNBOUNDED"
+          },
+          {
+            "flaw": "uses derived-only 'distance'",
+            "objects": "operator density distance",
+            "suffix": "USES_DISTANCE"
+          }
+        ],
+        "term": "norm",
+        "why": "||A|| \u2014 non-negative scalar measuring operator size"
+      },
+      {
+        "alternatives": [
+          {
+            "flaw": "eigenvalue requires an operator",
+            "objects": "hilbert space",
+            "suffix": "NO_OPERATOR"
+          },
+          {
+            "flaw": "uses derived-only 'number'",
+            "objects": "operator hilbert number",
+            "suffix": "USES_NUMBER"
+          }
+        ],
+        "term": "eigenvalue",
+        "why": "lambda where A|v> = lambda|v>"
+      }
+    ]
+  },
+  "source": "A1_LLM",
+  "target": "A1_EXPANDER",
+  "timestamp_utc": "2026-02-18T21:11:53Z"
+}

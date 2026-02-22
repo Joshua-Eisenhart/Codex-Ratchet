@@ -1,0 +1,165 @@
+{
+  "expected_outcomes": [
+    {
+      "artifact_path": "fixtures/FIX_DEP_001_FORWARD_REFERENCE_PARK.txt",
+      "expected_status": "PARK",
+      "expected_tags": [
+        "FORWARD_DEPEND"
+      ],
+      "fixture_id": "FIX_DEP_001_FORWARD_REFERENCE_PARK",
+      "preconditions": {},
+      "rule_families": [
+        "DEPENDENCY_FORWARD_REF"
+      ]
+    },
+    {
+      "artifact_path": "fixtures/FIX_DERIVED_001_PRIMITIVE_USE_REJECT.txt",
+      "expected_status": "REJECT",
+      "expected_tags": [
+        "DERIVED_ONLY_PRIMITIVE_USE"
+      ],
+      "fixture_id": "FIX_DERIVED_001_PRIMITIVE_USE_REJECT",
+      "preconditions": {},
+      "rule_families": [
+        "DERIVED_ONLY_FENCE"
+      ]
+    },
+    {
+      "artifact_path": "fixtures/FIX_EVID_001_PASS_EXISTING_PENDING_TOKEN.txt",
+      "expected_status": "PASS",
+      "expected_tags": [],
+      "fixture_id": "FIX_EVID_001_PASS_EXISTING_PENDING_TOKEN",
+      "preconditions": {
+        "evidence_pending": [
+          {
+            "required_token": "E_ALPHA",
+            "spec_id": "S_SIM_ALPHA"
+          }
+        ],
+        "survivor_ledger_contains": [
+          "S_SIM_ALPHA"
+        ]
+      },
+      "rule_families": [
+        "EVIDENCE_INGEST"
+      ]
+    },
+    {
+      "artifact_path": "fixtures/FIX_EVID_002_REJECT_UNKNOWN_TARGET.txt",
+      "expected_status": "REJECT",
+      "expected_tags": [
+        "KERNEL_ERROR"
+      ],
+      "fixture_id": "FIX_EVID_002_REJECT_UNKNOWN_TARGET",
+      "preconditions": {},
+      "rule_families": [
+        "EVIDENCE_INGEST"
+      ]
+    },
+    {
+      "artifact_path": "fixtures/FIX_FORMULA_001_GLYPH_REJECT.txt",
+      "expected_status": "REJECT",
+      "expected_tags": [
+        "GLYPH_NOT_PERMITTED"
+      ],
+      "fixture_id": "FIX_FORMULA_001_GLYPH_REJECT",
+      "preconditions": {
+        "term_registry_missing": [
+          "plus_sign"
+        ]
+      },
+      "rule_families": [
+        "FORMULA_GLYPH_FENCE"
+      ]
+    },
+    {
+      "artifact_path": "fixtures/FIX_LEX_001_UNDEFINED_COMPONENT_PARK.txt",
+      "expected_status": "PARK",
+      "expected_tags": [
+        "UNDEFINED_LEXEME"
+      ],
+      "fixture_id": "FIX_LEX_001_UNDEFINED_COMPONENT_PARK",
+      "preconditions": {
+        "survivor_ledger_contains": [
+          "S_MATH_ALPHA"
+        ]
+      },
+      "rule_families": [
+        "LEXEME_FENCE"
+      ]
+    },
+    {
+      "artifact_path": "fixtures/FIX_MSG_001_PASS_COMMAND_REPORT_STATE.txt",
+      "expected_status": "PASS",
+      "expected_tags": [],
+      "fixture_id": "FIX_MSG_001_PASS_COMMAND_REPORT_STATE",
+      "preconditions": {},
+      "rule_families": [
+        "MESSAGE_DISCIPLINE"
+      ]
+    },
+    {
+      "artifact_path": "fixtures/FIX_MSG_002_REJECT_PROSE_PLUS_COMMAND.txt",
+      "expected_status": "REJECT",
+      "expected_tags": [
+        "MULTI_ARTIFACT_OR_PROSE"
+      ],
+      "fixture_id": "FIX_MSG_002_REJECT_PROSE_PLUS_COMMAND",
+      "preconditions": {},
+      "rule_families": [
+        "MESSAGE_DISCIPLINE"
+      ]
+    },
+    {
+      "artifact_path": "fixtures/FIX_NEAR_001_PARK_NEAR_DUPLICATE.txt",
+      "expected_status": "PARK",
+      "expected_tags": [
+        "NEAR_REDUNDANT"
+      ],
+      "fixture_id": "FIX_NEAR_001_PARK_NEAR_DUPLICATE",
+      "preconditions": {},
+      "rule_families": [
+        "NEAR_DUPLICATE_PARK"
+      ]
+    },
+    {
+      "artifact_path": "fixtures/FIX_PROBE_001_PRESSURE_PARK.txt",
+      "expected_status": "PARK",
+      "expected_tags": [
+        "PROBE_PRESSURE"
+      ],
+      "fixture_id": "FIX_PROBE_001_PRESSURE_PARK",
+      "preconditions": {
+        "near_duplicate_suppressed": true
+      },
+      "rule_families": [
+        "PROBE_PRESSURE"
+      ]
+    },
+    {
+      "artifact_path": "fixtures/FIX_SCHEMA_001_BAD_EXPORT_HEADER_REJECT.txt",
+      "expected_status": "REJECT",
+      "expected_tags": [
+        "SCHEMA_FAIL"
+      ],
+      "fixture_id": "FIX_SCHEMA_001_BAD_EXPORT_HEADER_REJECT",
+      "preconditions": {},
+      "rule_families": [
+        "SCHEMA_CHECK"
+      ]
+    },
+    {
+      "artifact_path": "fixtures/FIX_UNDEF_001_TERM_REJECT.txt",
+      "expected_status": "REJECT",
+      "expected_tags": [
+        "UNDEFINED_TERM_USE"
+      ],
+      "fixture_id": "FIX_UNDEF_001_TERM_REJECT",
+      "preconditions": {},
+      "rule_families": [
+        "UNDEFINED_TERM_FENCE"
+      ]
+    }
+  ],
+  "schema": "CONFORMANCE_EXPECTED_OUTCOMES_v1"
+}

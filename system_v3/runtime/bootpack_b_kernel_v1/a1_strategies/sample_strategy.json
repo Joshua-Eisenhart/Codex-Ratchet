@@ -1,0 +1,180 @@
+{
+  "schema": "A1_STRATEGY_v1",
+  "strategy_id": "STRAT_SAMPLE_0001",
+  "inputs": {
+    "state_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+    "fuel_slice_hashes": [
+      "1111111111111111111111111111111111111111111111111111111111111111"
+    ],
+    "bootpack_rules_hash": "2222222222222222222222222222222222222222222222222222222222222222",
+    "pinned_ruleset_sha256": null,
+    "pinned_megaboot_sha256": null
+  },
+  "budget": {
+    "max_items": 3,
+    "max_sims": 3
+  },
+  "policy": {
+    "forbid_fields": [
+      "confidence",
+      "probability",
+      "embedding",
+      "hidden_prompt",
+      "raw_text"
+    ],
+    "overlay_ban_terms": [],
+    "require_try_to_fail": true
+  },
+  "targets": [
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S_BIND_ALPHA",
+      "kind": "SIM_SPEC",
+      "requires": [
+        "P_BIND_ALPHA"
+      ],
+      "def_fields": [
+        {
+          "field_id": "F1",
+          "name": "REQUIRES_EVIDENCE",
+          "value_kind": "TOKEN",
+          "value": "E_BIND_ALPHA"
+        },
+        {
+          "field_id": "F2",
+          "name": "SIM_ID",
+          "value_kind": "TOKEN",
+          "value": "S_BIND_ALPHA"
+        },
+        {
+          "field_id": "F3",
+          "name": "TIER",
+          "value_kind": "TOKEN",
+          "value": "T0_ATOM"
+        },
+        {
+          "field_id": "F4",
+          "name": "FAMILY",
+          "value_kind": "TOKEN",
+          "value": "BASELINE"
+        },
+        {
+          "field_id": "F5",
+          "name": "TARGET_CLASS",
+          "value_kind": "TOKEN",
+          "value": "TC_BIND_ALPHA"
+        },
+        {
+          "field_id": "F6",
+          "name": "PROBE_KIND",
+          "value_kind": "TOKEN",
+          "value": "FULL16X4_ENGINE"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A1",
+          "token_class": "PROBE_TOKEN",
+          "token": "PT_P_BIND_ALPHA"
+        },
+        {
+          "assert_id": "A2",
+          "token_class": "EVIDENCE_TOKEN",
+          "token": "E_BIND_ALPHA"
+        }
+      ],
+      "operator_id": "OP_BIND_SIM"
+    }
+  ],
+  "alternatives": [
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S_BIND_ALPHA_ALT",
+      "kind": "SIM_SPEC",
+      "requires": [
+        "P_BIND_ALPHA_ALT"
+      ],
+      "def_fields": [
+        {
+          "field_id": "F1",
+          "name": "REQUIRES_EVIDENCE",
+          "value_kind": "TOKEN",
+          "value": "E_BIND_ALPHA_ALT"
+        },
+        {
+          "field_id": "F2",
+          "name": "SIM_ID",
+          "value_kind": "TOKEN",
+          "value": "S_BIND_ALPHA_ALT"
+        },
+        {
+          "field_id": "F3",
+          "name": "TIER",
+          "value_kind": "TOKEN",
+          "value": "T0_ATOM"
+        },
+        {
+          "field_id": "F4",
+          "name": "FAMILY",
+          "value_kind": "TOKEN",
+          "value": "ADVERSARIAL_NEG"
+        },
+        {
+          "field_id": "F5",
+          "name": "TARGET_CLASS",
+          "value_kind": "TOKEN",
+          "value": "TC_BIND_ALPHA"
+        },
+        {
+          "field_id": "F6",
+          "name": "NEGATIVE_CLASS",
+          "value_kind": "TOKEN",
+          "value": "NEG_BOUNDARY"
+        },
+        {
+          "field_id": "F7",
+          "name": "PROBE_KIND",
+          "value_kind": "TOKEN",
+          "value": "FULL16X4_ENGINE"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A1",
+          "token_class": "PROBE_TOKEN",
+          "token": "PT_P_BIND_ALPHA_ALT"
+        },
+        {
+          "assert_id": "A2",
+          "token_class": "EVIDENCE_TOKEN",
+          "token": "E_BIND_ALPHA_ALT"
+        }
+      ],
+      "operator_id": "OP_NEG_SIM_EXPAND"
+    }
+  ],
+  "sims": {
+    "positive": [
+      {
+        "sim_id": "SIM_POS_BIND_ALPHA",
+        "binds_to": "S_BIND_ALPHA"
+      }
+    ],
+    "negative": [
+      {
+        "sim_id": "SIM_NEG_BIND_ALPHA",
+        "binds_to": "S_BIND_ALPHA_ALT"
+      }
+    ]
+  },
+  "self_audit": {
+    "strategy_hash": "3333333333333333333333333333333333333333333333333333333333333333",
+    "compile_lane_digest": "4444444444444444444444444444444444444444444444444444444444444444",
+    "candidate_count": 1,
+    "alternative_count": 1,
+    "operator_ids_used": [
+      "OP_BIND_SIM",
+      "OP_NEG_SIM_EXPAND"
+    ]
+  }
+}

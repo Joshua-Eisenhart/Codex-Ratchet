@@ -1,0 +1,165 @@
+{
+  "kind": "A1_STRATEGY",
+  "manifest_sha256": "7fd75daf868d3bfac956a247dac2c73eb63270b0a94bc54742084ff8de9486c6",
+  "payload": {
+    "compounds_to_try": [
+      "trace_norm",
+      "density_purity",
+      "hilbert_basis",
+      "unitary_adjoint",
+      "operator_norm",
+      "operator_spectrum",
+      "density_entropy",
+      "channel_fidelity"
+    ],
+    "math_defs": [
+      {
+        "id": "S_VN_001",
+        "objects": "density matrix trace operator entropy"
+      },
+      {
+        "id": "S_QC_001",
+        "objects": "channel cptp kraus operator density"
+      },
+      {
+        "id": "S_ME_001",
+        "objects": "projector operator hilbert space measurement"
+      },
+      {
+        "id": "S_DC_001",
+        "objects": "channel density coherence decoherence operator"
+      },
+      {
+        "id": "S_EV_001",
+        "objects": "hamiltonian operator eigenvalue spectrum hilbert"
+      }
+    ],
+    "probes": [
+      {
+        "expect_fail": true,
+        "id": "S_P_100",
+        "objects": "imaginary density matrix operator"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_101",
+        "objects": "cartesian hilbert space operator"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_102",
+        "objects": "frame operator density matrix"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_103",
+        "objects": "center operator trace density"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_104",
+        "objects": "angle operator hilbert space"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_105",
+        "objects": "cause density matrix trace"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_106",
+        "objects": "application channel operator density"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_107",
+        "objects": "before density trace matrix"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_108",
+        "objects": "after channel density operator"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_109",
+        "objects": "future channel cptp density"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_110",
+        "objects": "counting finite operator space"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_111",
+        "objects": "applied operator channel density"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_112",
+        "objects": "because trace density matrix"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_113",
+        "objects": "applies density channel operator"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_114",
+        "objects": "four finite operator hilbert"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_115",
+        "objects": "five finite density operator"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_116",
+        "objects": "eight finite hilbert space"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_117",
+        "objects": "imaginary coordinate distance angle"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_118",
+        "objects": "cartesian frame center distance"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_119",
+        "objects": "counting number complex imaginary"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_120",
+        "objects": "cause future before after"
+      },
+      {
+        "expect_fail": true,
+        "id": "S_P_121",
+        "objects": "application applied applies because"
+      }
+    ],
+    "terms_to_admit": [
+      "identity",
+      "function",
+      "domain",
+      "codomain",
+      "complex",
+      "number",
+      "equal",
+      "equality",
+      "coordinate",
+      "distance"
+    ]
+  },
+  "source": "A1_LLM",
+  "target": "A1_EXPANDER",
+  "timestamp_utc": "2026-02-18T20:59:50Z"
+}

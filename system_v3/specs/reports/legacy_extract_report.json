@@ -1,0 +1,3125 @@
+{
+  "doc_count": 37,
+  "docs": [
+    {
+      "keyword_hit_count": 1,
+      "keyword_hits": [
+        {
+          "line": 8,
+          "text": "- Preserve contradictions: do not resolve bootpack/megaboot drift here."
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/00_MANIFEST.md",
+      "role_hit_count": 1,
+      "role_hits": [
+        {
+          "line": 6,
+          "text": "- Provide a **small, deterministic read spine** that describes the whole system (A2/A1/A0/B/SIM) structurally."
+        }
+      ],
+      "sha256": "86fbac4e25708484233493654f6dd0a88da15cbb8d9da0d6f348ddfb5f9b28e9",
+      "size_bytes": 2190,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 3,
+      "keyword_hits": [
+        {
+          "line": 19,
+          "text": "- Root constraints must be present and never negotiated:"
+        },
+        {
+          "line": 29,
+          "text": "- Doc surface must stay lean:"
+        },
+        {
+          "line": 33,
+          "text": "- never modify `core_docs/`"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/01_OVERVIEW.md",
+      "role_hit_count": 2,
+      "role_hits": [
+        {
+          "line": 6,
+          "text": "- A **specification-driven staged constraint engine** with deterministic adjudication (B) and deterministic execution evidence (SIM)."
+        },
+        {
+          "line": 16,
+          "text": "- explicit dynamic evidence (SIM_EVIDENCE)"
+        }
+      ],
+      "sha256": "5214ad0101ec415ae22f60d714aa93b9e29d582e1343f0a25a6a1c6328d07ebf",
+      "size_bytes": 1176,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 1,
+      "keyword_hits": [
+        {
+          "line": 36,
+          "text": "## Minimum Boot Spine (no ladder required)"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/02_THREADS_AND_BOOT.md",
+      "role_hit_count": 21,
+      "role_hits": [
+        {
+          "line": 6,
+          "text": "- `THREAD_B`"
+        },
+        {
+          "line": 9,
+          "text": "- accepts only B-grammar artifact containers"
+        },
+        {
+          "line": 11,
+          "text": "- `THREAD_A0`"
+        },
+        {
+          "line": 13,
+          "text": "- packages batches into B-acceptable `EXPORT_BLOCK`"
+        },
+        {
+          "line": 16,
+          "text": "- `THREAD_SIM`"
+        },
+        {
+          "line": 17,
+          "text": "- deterministic sim executor"
+        },
+        {
+          "line": 18,
+          "text": "- runs sims and emits `SIM_EVIDENCE` artifacts + run manifests"
+        },
+        {
+          "line": 20,
+          "text": "- `THREAD_A1`"
+        },
+        {
+          "line": 23,
+          "text": "- does not write canon directly; outputs are compiled by A0"
+        },
+        {
+          "line": 25,
+          "text": "- `THREAD_A2`"
+        },
+        {
+          "line": 30,
+          "text": "- A2: high entropy (drafting/mining)"
+        },
+        {
+          "line": 31,
+          "text": "- A1: medium entropy (exploration + proposal)"
+        },
+        {
+          "line": 32,
+          "text": "- A0: low entropy (deterministic packaging)"
+        },
+        {
+          "line": 33,
+          "text": "- B: ultra-low entropy (deterministic acceptance/rejection/parking)"
+        },
+        {
+          "line": 34,
+          "text": "- SIM: deterministic execution (evidence)"
+        },
+        {
+          "line": 46,
+          "text": "- A1 proposes strategy"
+        },
+        {
+          "line": 47,
+          "text": "- A0 compiles to `EXPORT_BLOCK`"
+        },
+        {
+          "line": 48,
+          "text": "- B evaluates (accept/reject/park)"
+        },
+        {
+          "line": 49,
+          "text": "- SIM runs pending sims and emits `SIM_EVIDENCE`"
+        },
+        {
+          "line": 50,
+          "text": "- B ingests evidence (updates pending + term states)"
+        },
+        {
+          "line": 51,
+          "text": "- A2 records overlays/feedback (noncanon)"
+        }
+      ],
+      "sha256": "15be55faf8fe69ee4844356c10779d67d9b3a7f8ff2b0dfe26cc703863ccfd13",
+      "size_bytes": 1861,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 2,
+      "keyword_hits": [
+        {
+          "line": 26,
+          "text": "- certain tokens are forbidden as primitives until admitted through the term pipeline and permitted"
+        },
+        {
+          "line": 36,
+          "text": "- Every rejection must be recorded with:"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/03_B_ARTIFACTS_AND_FENCES.md",
+      "role_hit_count": 6,
+      "role_hits": [
+        {
+          "line": 1,
+          "text": "# B Artifacts + Fences (System Spec Pack v2)"
+        },
+        {
+          "line": 8,
+          "text": "## Accepted B-Facing Artifact Containers"
+        },
+        {
+          "line": 9,
+          "text": "- `EXPORT_BLOCK vN`"
+        },
+        {
+          "line": 11,
+          "text": "- `SIM_EVIDENCE v1` (or pack, if allowed)"
+        },
+        {
+          "line": 12,
+          "text": "- `THREAD_S_SAVE_SNAPSHOT v2` (exported state snapshot)"
+        },
+        {
+          "line": 23,
+          "text": "- compounds like `a_b` require components (`a`, `b`) to exist first (or be in L0 lexeme set)"
+        }
+      ],
+      "sha256": "e3878628a0fba6183b35105f27e51c67e6ebe1854887b1a7e7fd5b351c5027c6",
+      "size_bytes": 1239,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 2,
+      "keyword_hits": [
+        {
+          "line": 22,
+          "text": "- `required_evidence` (token required to transition to CANONICAL_ALLOWED)"
+        },
+        {
+          "line": 37,
+          "text": "- map: `spec_id -> {token}` required by that spec"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/04_CANON_STATE_SCHEMA.md",
+      "role_hit_count": 3,
+      "role_hits": [
+        {
+          "line": 5,
+          "text": "## Canonical State (B-Owned)"
+        },
+        {
+          "line": 13,
+          "text": "- evidence tokens attached to specs (from SIM_EVIDENCE)"
+        },
+        {
+          "line": 47,
+          "text": "- SIM_EVIDENCE delivers that evidence token"
+        }
+      ],
+      "sha256": "f5a8aae6d6785be9e18a8a612c2ab16de01c7aea319e371dc48ddd7188c54f48",
+      "size_bytes": 1258,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 9,
+      "keyword_hits": [
+        {
+          "line": 5,
+          "text": "## Why Sims Are Mandatory (structural)"
+        },
+        {
+          "line": 6,
+          "text": "- B eliminates/adjudicates by staged fences, but cannot validate behavior."
+        },
+        {
+          "line": 11,
+          "text": "- declares a required evidence token"
+        },
+        {
+          "line": 30,
+          "text": "- must name a target survivor/spec id"
+        },
+        {
+          "line": 31,
+          "text": "- must name a failure mode id (what is being attacked/falsified)"
+        },
+        {
+          "line": 32,
+          "text": "- must emit deterministic evidence token(s) for the attempted falsification"
+        },
+        {
+          "line": 33,
+          "text": "- must state expected outcome class:"
+        },
+        {
+          "line": 35,
+          "text": "- `NEG_EXPECT_REJECT_ALTERNATIVE` (alternative should fail while target survives required invariants)"
+        },
+        {
+          "line": 45,
+          "text": "- both are required for \"meaningful survivor\" status"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/05_EVIDENCE_SIMS_NEGATIVE.md",
+      "role_hit_count": 9,
+      "role_hits": [
+        {
+          "line": 6,
+          "text": "- B eliminates/adjudicates by staged fences, but cannot validate behavior."
+        },
+        {
+          "line": 7,
+          "text": "- SIM provides dynamic execution evidence for admitted structures."
+        },
+        {
+          "line": 12,
+          "text": "- is admitted/parked/rejected by B like other specs"
+        },
+        {
+          "line": 15,
+          "text": "- `SIM_EVIDENCE v1` (artifact container)"
+        },
+        {
+          "line": 22,
+          "text": "- When SIM evidence arrives matching REQUIRED_EVIDENCE:"
+        },
+        {
+          "line": 26,
+          "text": "- Positive sim: validates intended behavior for a candidate."
+        },
+        {
+          "line": 27,
+          "text": "- Negative sim: an adversarial falsification test tied to a specific target and failure mode."
+        },
+        {
+          "line": 48,
+          "text": "- at least 1 positive sim that runs and produces evidence"
+        },
+        {
+          "line": 49,
+          "text": "- at least 1 negative sim that runs and produces evidence"
+        }
+      ],
+      "sha256": "8b3598a39e25180270e8ffc7f2e1849708bca856d7746468f3c5091fb28e985e",
+      "size_bytes": 2358,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 2,
+      "keyword_hits": [
+        {
+          "line": 13,
+          "text": "Every rejected item must carry:"
+        },
+        {
+          "line": 29,
+          "text": "Both are required:"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/06_GRAVEYARD_AND_ALTERNATIVES.md",
+      "role_hit_count": 3,
+      "role_hits": [
+        {
+          "line": 23,
+          "text": "## Graveyard vs Negative SIM (non-equivalence)"
+        },
+        {
+          "line": 26,
+          "text": "- Negative sim:"
+        },
+        {
+          "line": 31,
+          "text": "- negative sim alone is insufficient (no explicit rejected alternative record)"
+        }
+      ],
+      "sha256": "78245a9c0468bba1dddfa529bfeaa035735ca729d2379bb4a9624b66e0470f73",
+      "size_bytes": 1164,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 6,
+      "keyword_hits": [
+        {
+          "line": 5,
+          "text": "## Hard Policy"
+        },
+        {
+          "line": 6,
+          "text": "- Do not modify `core_docs/`."
+        },
+        {
+          "line": 8,
+          "text": "- Prefer append-only logs with size-based sharding."
+        },
+        {
+          "line": 14,
+          "text": "- `events.###.jsonl` (append-only; shard by bytes)"
+        },
+        {
+          "line": 15,
+          "text": "- `outbox/export_blocks.###.txt` (append-only; shard by bytes)"
+        },
+        {
+          "line": 22,
+          "text": "- Anything noisy or obsolete gets moved under `next_run/_archive/` (never deleted during iteration)."
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/07_DOC_SYSTEM_AND_SHARDING.md",
+      "role_hit_count": 0,
+      "role_hits": [],
+      "sha256": "4490fd0679615afcf929fb6af676e0f6f9dafdead6d05d3eb27695d19f655a1f",
+      "size_bytes": 769,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 5,
+      "keyword_hits": [
+        {
+          "line": 22,
+          "text": "## Hard Boundaries (operational)"
+        },
+        {
+          "line": 23,
+          "text": "- Never run long loops or heavy execution unless the request explicitly asks for it."
+        },
+        {
+          "line": 24,
+          "text": "- Never assume an 8-hour run is desired without an explicit command."
+        },
+        {
+          "line": 25,
+          "text": "- Any run must be sandbox-contained (writes only under an explicit run dir)."
+        },
+        {
+          "line": 29,
+          "text": "- A0/B/SIM must remain deterministic given fixed inputs."
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/08_MODEL_SWITCH_PROTOCOL.md",
+      "role_hit_count": 4,
+      "role_hits": [
+        {
+          "line": 14,
+          "text": "- building/running the A0/B/SIM pipeline"
+        },
+        {
+          "line": 27,
+          "text": "## A1 \"Wiggle Room\" Requirement"
+        },
+        {
+          "line": 28,
+          "text": "- A1 exploration is inherently nondeterministic and should be LLM-driven."
+        },
+        {
+          "line": 29,
+          "text": "- A0/B/SIM must remain deterministic given fixed inputs."
+        }
+      ],
+      "sha256": "d4578021e7488cc2f19b5e87561ecd83afdfe18b8702a3d82ea36bdb41acc698",
+      "size_bytes": 1060,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 18,
+      "keyword_hits": [
+        {
+          "line": 20,
+          "text": "- A0 must parse the strategy and re-serialize it into a deterministic canonical JSON form"
+        },
+        {
+          "line": 21,
+          "text": "- A0 must hash the canonical form and record that hash in run provenance"
+        },
+        {
+          "line": 24,
+          "text": "2) Required Fields (minimum)"
+        },
+        {
+          "line": 29,
+          "text": "- `schema`: must equal `A1_STRATEGY_v1`"
+        },
+        {
+          "line": 46,
+          "text": "- total must equal 1.0"
+        },
+        {
+          "line": 50,
+          "text": "- these tokens must not be admitted as canon-facing term literals"
+        },
+        {
+          "line": 51,
+          "text": "- these tokens must not appear unquoted in any B-facing DEF_FIELD that is scanned"
+        },
+        {
+          "line": 56,
+          "text": "- `min_negative_modes_per_target`: int (>=1 when negative sims are required)"
+        },
+        {
+          "line": 70,
+          "text": "Required keys:"
+        },
+        {
+          "line": 84,
+          "text": "Required keys:"
+        },
+        {
+          "line": 98,
+          "text": "Required keys:"
+        },
+        {
+          "line": 110,
+          "text": "- A0 must compile alternatives into B-grammar candidates that are \u201cnearby\u201d but structurally wrong."
+        },
+        {
+          "line": 128,
+          "text": "- `failure_mode_id`: string (required for `ADVERSARIAL_NEG`)"
+        },
+        {
+          "line": 132,
+          "text": "- A0 must not emit SIM_SPEC unless a sim exists (path exists or template resolvable)."
+        },
+        {
+          "line": 133,
+          "text": "- If `policy.require_negative_sim == true`, a TERM target without an available negative sim must be downgraded to \u201ctrial-only\u201d or skipped (policy decision; never silently admitted as ratcheted)."
+        },
+        {
+          "line": 134,
+          "text": "- If `policy.require_stress_suite == true`, each target class must include all required sim families before being reported as meaningful."
+        },
+        {
+          "line": 140,
+          "text": "A0 must:"
+        },
+        {
+          "line": 145,
+          "text": "- never emit free natural language into B-scanned fields"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/09_A1_STRATEGY_DECLARATION.md",
+      "role_hit_count": 18,
+      "role_hits": [
+        {
+          "line": 1,
+          "text": "# A1 Strategy Declaration (v1)"
+        },
+        {
+          "line": 8,
+          "text": "- This file is a harness/interface spec (A1/A0). It is not a Thread B bootpack."
+        },
+        {
+          "line": 9,
+          "text": "- B remains the only canon adjudicator."
+        },
+        {
+          "line": 20,
+          "text": "- A0 must parse the strategy and re-serialize it into a deterministic canonical JSON form"
+        },
+        {
+          "line": 21,
+          "text": "- A0 must hash the canonical form and record that hash in run provenance"
+        },
+        {
+          "line": 37,
+          "text": "- `max_items`: int (upper bound on compiled B items)"
+        },
+        {
+          "line": 51,
+          "text": "- these tokens must not appear unquoted in any B-facing DEF_FIELD that is scanned"
+        },
+        {
+          "line": 86,
+          "text": "- `spec_id`: string (B-facing SPEC_HYP id)"
+        },
+        {
+          "line": 110,
+          "text": "- A0 must compile alternatives into B-grammar candidates that are \u201cnearby\u201d but structurally wrong."
+        },
+        {
+          "line": 111,
+          "text": "- Alternatives should be designed to fail with informative B tags (derived-only, undefined-term, schema fail, etc.)."
+        },
+        {
+          "line": 116,
+          "text": "- `payload`: dict (A0-compile-time only; not B-facing directly)"
+        },
+        {
+          "line": 117,
+          "text": "- `expected_failure`: list[string] (B reject/park tags expected; non-binding)"
+        },
+        {
+          "line": 126,
+          "text": "- `evidence_token`: string (the token that SIM_EVIDENCE will provide)"
+        },
+        {
+          "line": 132,
+          "text": "- A0 must not emit SIM_SPEC unless a sim exists (path exists or template resolvable)."
+        },
+        {
+          "line": 133,
+          "text": "- If `policy.require_negative_sim == true`, a TERM target without an available negative sim must be downgraded to \u201ctrial-only\u201d or skipped (policy decision; never silently admitted as ratcheted)."
+        },
+        {
+          "line": 134,
+          "text": "- If `policy.require_stress_suite == true`, each target class must include all required sim families before being reported as meaningful."
+        },
+        {
+          "line": 143,
+          "text": "- compile targets + alternatives into B-grammar candidates"
+        },
+        {
+          "line": 145,
+          "text": "- never emit free natural language into B-scanned fields"
+        }
+      ],
+      "sha256": "9ff9799e0fb06d7dd861af2d78e3ca7c31a2031ff2efe3c39dead6a7f70cd0dd",
+      "size_bytes": 5252,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 7,
+      "keyword_hits": [
+        {
+          "line": 8,
+          "text": "1) Boundary Statement (hard cut)"
+        },
+        {
+          "line": 31,
+          "text": "- Raw natural language and confidence scores are never passed to B."
+        },
+        {
+          "line": 34,
+          "text": "- A0 must reject strategy inputs that cannot be canonicalized."
+        },
+        {
+          "line": 35,
+          "text": "- A0 must strip/discard these fields before compilation:"
+        },
+        {
+          "line": 47,
+          "text": "- A1 can propose, but cannot modify canon."
+        },
+        {
+          "line": 67,
+          "text": "- deny-by-default"
+        },
+        {
+          "line": 68,
+          "text": "- if policy cannot be evaluated: deny"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/10_TRANSLATOR_BOUNDARY_AND_POLICY.md",
+      "role_hit_count": 14,
+      "role_hits": [
+        {
+          "line": 12,
+          "text": "- A2 mining/drafting/indexing"
+        },
+        {
+          "line": 13,
+          "text": "- A1 exploration (\u201cwiggle room\u201d)"
+        },
+        {
+          "line": 16,
+          "text": "- A0 compilation + packaging"
+        },
+        {
+          "line": 17,
+          "text": "- B adjudication"
+        },
+        {
+          "line": 18,
+          "text": "- SIM execution + evidence emission"
+        },
+        {
+          "line": 21,
+          "text": "- `A1_STRATEGY_v1` (A1 output declaration)"
+        },
+        {
+          "line": 23,
+          "text": "-> deterministic compilation into B artifacts (`EXPORT_BLOCK`)"
+        },
+        {
+          "line": 30,
+          "text": "- Only canonical, validated artifacts are admissible for B."
+        },
+        {
+          "line": 31,
+          "text": "- Raw natural language and confidence scores are never passed to B."
+        },
+        {
+          "line": 34,
+          "text": "- A0 must reject strategy inputs that cannot be canonicalized."
+        },
+        {
+          "line": 35,
+          "text": "- A0 must strip/discard these fields before compilation:"
+        },
+        {
+          "line": 47,
+          "text": "- A1 can propose, but cannot modify canon."
+        },
+        {
+          "line": 48,
+          "text": "- A0 can write only inside the active run directory."
+        },
+        {
+          "line": 49,
+          "text": "- SIM can read code and write only to run-local outputs."
+        }
+      ],
+      "sha256": "b5dccb8e5303539af7243c82b1a7b15a97bb85d94ea590558bd3297244ee16ca",
+      "size_bytes": 2551,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 2,
+      "keyword_hits": [
+        {
+          "line": 13,
+          "text": "- append-only event log shards (`events.###.jsonl`)"
+        },
+        {
+          "line": 21,
+          "text": "Each event record must include:"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/11_PROVENANCE_CHAIN_AND_REPLAY.md",
+      "role_hit_count": 5,
+      "role_hits": [
+        {
+          "line": 15,
+          "text": "- sim manifests (`sim_manifests/*.json`)"
+        },
+        {
+          "line": 24,
+          "text": "- `stage`: enum (A2 | A1 | A0 | B | SIM | FEEDBACK)"
+        },
+        {
+          "line": 60,
+          "text": "- B bootpack id/hash (ruleset)"
+        },
+        {
+          "line": 61,
+          "text": "- sim code hash"
+        },
+        {
+          "line": 65,
+          "text": "- same inputs + same ruleset + same sim code => same accept/reject outcomes and same hashes"
+        }
+      ],
+      "sha256": "a4816a9a558574825a6dbf281e2a3c5603fb028c98664c6c2d0776c258d130ac",
+      "size_bytes": 2213,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 7,
+      "keyword_hits": [
+        {
+          "line": 5,
+          "text": "Goal: encode the project rule that **B ratchets every term**, and larger terms are **composed of ratcheted smaller terms**. Terms must be auditable via sims + negative sims + failed alternatives (graveyard)."
+        },
+        {
+          "line": 19,
+          "text": "- forbidden:"
+        },
+        {
+          "line": 32,
+          "text": "- each atom must be:"
+        },
+        {
+          "line": 102,
+          "text": "- do not necessarily unlock gates directly"
+        },
+        {
+          "line": 104,
+          "text": "- must be target-coupled and failure-mode-coupled (not generic failure artifacts)"
+        },
+        {
+          "line": 128,
+          "text": "If the bundle cannot be completed, A1 may still propose a TERM_DEF as exploratory,"
+        },
+        {
+          "line": 129,
+          "text": "but must not mark it as \u201cratcheted\u201d in any reporting layer."
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/12_TERM_COMPOSITION_AND_RATCHET_COMPLETENESS.md",
+      "role_hit_count": 15,
+      "role_hits": [
+        {
+          "line": 8,
+          "text": "- This is a system-level intent spec for A1/A0/B/SIM coordination."
+        },
+        {
+          "line": 9,
+          "text": "- Thread B bootpack remains the enforcement authority for container grammar + fences."
+        },
+        {
+          "line": 31,
+          "text": "- term `t = a_b_c_...` is a composition of atoms `{a,b,c,...}`"
+        },
+        {
+          "line": 33,
+          "text": "- an L0 lexeme (from B\u2019s lexeme set), OR"
+        },
+        {
+          "line": 60,
+          "text": "- If `<TERM_UPPER>` becomes too long for practical spec ids, A0 may use:"
+        },
+        {
+          "line": 63,
+          "text": "- and recording a mapping in A2 rosetta (noncanon overlay)"
+        },
+        {
+          "line": 72,
+          "text": "- Positive SIM evidence exists and is recorded:"
+        },
+        {
+          "line": 74,
+          "text": "- Negative SIM evidence exists and is recorded (at least one):"
+        },
+        {
+          "line": 76,
+          "text": "- each negative sim declares a concrete `failure_mode_id`"
+        },
+        {
+          "line": 77,
+          "text": "- each negative sim declares expected class:"
+        },
+        {
+          "line": 98,
+          "text": "- SIM emits evidence token `EV_<TERM>`"
+        },
+        {
+          "line": 99,
+          "text": "- B upgrades term state to `CANONICAL_ALLOWED`"
+        },
+        {
+          "line": 122,
+          "text": "- positive SIM_SPEC (if sim exists or can be authored)"
+        },
+        {
+          "line": 123,
+          "text": "- negative SIM_SPEC (if negative sim exists or can be authored)"
+        },
+        {
+          "line": 124,
+          "text": "- negative sim failure mode ids + expected outcomes"
+        }
+      ],
+      "sha256": "3cc50be387c4fbdb7058650696039a8dc6688f0642c13e512d3ae23de673b55f",
+      "size_bytes": 5097,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 5,
+      "keyword_hits": [
+        {
+          "line": 25,
+          "text": "- A0/A2 must canonicalize YAML into deterministic JSON before hashing or downstream use."
+        },
+        {
+          "line": 34,
+          "text": "- multi-line notes/excerpts that must be quarantined above B"
+        },
+        {
+          "line": 45,
+          "text": "Examples (single-file targets; do not explode docs):"
+        },
+        {
+          "line": 60,
+          "text": "- no implicit typing relied upon (A0 must coerce types explicitly)"
+        },
+        {
+          "line": 61,
+          "text": "- canonicalization step must:"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/13_A2_YAML_USAGE_AND_COMPACTION.md",
+      "role_hit_count": 10,
+      "role_hits": [
+        {
+          "line": 1,
+          "text": "# A2 YAML Usage + Entropy Compaction (v1)"
+        },
+        {
+          "line": 12,
+          "text": "- `memory.jsonl` remains the canonical A2 event log store."
+        },
+        {
+          "line": 13,
+          "text": "- canonical A2 registries remain JSON:"
+        },
+        {
+          "line": 20,
+          "text": "- A1 strategies (`A1_STRATEGY_v1`)"
+        },
+        {
+          "line": 21,
+          "text": "- A2 drafts/notes/manifests"
+        },
+        {
+          "line": 25,
+          "text": "- A0/A2 must canonicalize YAML into deterministic JSON before hashing or downstream use."
+        },
+        {
+          "line": 32,
+          "text": "- long structured objects (targets, alternatives, sim refs)"
+        },
+        {
+          "line": 34,
+          "text": "- multi-line notes/excerpts that must be quarantined above B"
+        },
+        {
+          "line": 50,
+          "text": "- derived compactions should live outside canonical A2 state if strict file sets are enforced,"
+        },
+        {
+          "line": 60,
+          "text": "- no implicit typing relied upon (A0 must coerce types explicitly)"
+        }
+      ],
+      "sha256": "cb667ebfeadf67e1ae838dadfb359fcbb566f32ec30b76bf81a072e22596d62b",
+      "size_bytes": 2103,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 38,
+      "keyword_hits": [
+        {
+          "line": 1,
+          "text": "# DO NOT DO + Forbidden Moves (v1)"
+        },
+        {
+          "line": 5,
+          "text": "Goal: enumerate explicit forbidden moves and misinterpretations that would break the system or contaminate canon."
+        },
+        {
+          "line": 8,
+          "text": "0) Root Constraint Violations (forbidden)"
+        },
+        {
+          "line": 11,
+          "text": "- Do NOT treat `F01_FINITUDE` or `N01_NONCOMMUTATION` as negotiable, optional, or \u201caxioms you can swap\u201d."
+        },
+        {
+          "line": 12,
+          "text": "- Do NOT introduce new \u201croot constraints\u201d as ontological peers of `F01_FINITUDE` and `N01_NONCOMMUTATION`."
+        },
+        {
+          "line": 16,
+          "text": "1) Noncommutation Misread (forbidden)"
+        },
+        {
+          "line": 19,
+          "text": "- Do NOT interpret `N01_NONCOMMUTATION` as \u201cdependency graph must be a DAG; no cycles\u201d."
+        },
+        {
+          "line": 21,
+          "text": "- The forbidden move is: assuming commutation or assuming order irrelevance."
+        },
+        {
+          "line": 24,
+          "text": "2) Canon Contamination (forbidden)"
+        },
+        {
+          "line": 27,
+          "text": "- Do NOT admit overlay/jargon terms into Thread B canon as primitives."
+        },
+        {
+          "line": 31,
+          "text": "- Do NOT allow free English to cross into B-scanned fields."
+        },
+        {
+          "line": 32,
+          "text": "- Any natural language notes must remain above the boundary (A1 strategy / A2 docs)."
+        },
+        {
+          "line": 33,
+          "text": "- B-facing artifacts must remain strictly in bootpack grammar."
+        },
+        {
+          "line": 36,
+          "text": "3) Artifact Boundary Violations (forbidden)"
+        },
+        {
+          "line": 39,
+          "text": "- Do NOT send YAML to B as a canon artifact."
+        },
+        {
+          "line": 43,
+          "text": "- Do NOT mix prose with artifacts."
+        },
+        {
+          "line": 44,
+          "text": "- B-facing messages must be single-artifact containers only."
+        },
+        {
+          "line": 47,
+          "text": "4) \u201cRatcheted\u201d Mislabeling (forbidden)"
+        },
+        {
+          "line": 50,
+          "text": "- Do NOT claim \u201cratcheted\u201d when only a TERM_DEF exists."
+        },
+        {
+          "line": 51,
+          "text": "- Do NOT treat \u201cadmitted\u201d as \u201cvalidated\u201d."
+        },
+        {
+          "line": 59,
+          "text": "5) Evidence / SIM Shortcuts (forbidden)"
+        },
+        {
+          "line": 62,
+          "text": "- Do NOT fabricate SIM_EVIDENCE without a real sim run + manifest trail."
+        },
+        {
+          "line": 63,
+          "text": "- Do NOT treat \u201csim exists on disk\u201d as evidence; evidence must be ingested as SIM_EVIDENCE and recorded in state."
+        },
+        {
+          "line": 64,
+          "text": "- Do NOT accept \u201cnegative sim missing\u201d as normal for meaningful survivors."
+        },
+        {
+          "line": 67,
+          "text": "6) Graveyard Shortcuts (forbidden)"
+        },
+        {
+          "line": 70,
+          "text": "- Do NOT create a \u201cgraveyard\u201d by padding with garbage probes or irrelevant junk."
+        },
+        {
+          "line": 71,
+          "text": "- Do NOT record graveyard entries without verbatim `raw_lines`."
+        },
+        {
+          "line": 72,
+          "text": "- Without raw lines, the graveyard is not replayable and cannot be mined for resurrection."
+        },
+        {
+          "line": 75,
+          "text": "7) Doc Explosion (forbidden)"
+        },
+        {
+          "line": 78,
+          "text": "- Do NOT create one file per batch by default."
+        },
+        {
+          "line": 81,
+          "text": "- Do NOT write unbounded new docs into the repo root."
+        },
+        {
+          "line": 82,
+          "text": "- All outputs must be contained under an explicit run directory or an archive/quarantine directory."
+        },
+        {
+          "line": 85,
+          "text": "8) Determinism Boundary Breach (forbidden)"
+        },
+        {
+          "line": 88,
+          "text": "- Do NOT let LLM behavior leak below the boundary:"
+        },
+        {
+          "line": 89,
+          "text": "- A0 compilation must be deterministic."
+        },
+        {
+          "line": 90,
+          "text": "- B evaluation must be deterministic."
+        },
+        {
+          "line": 91,
+          "text": "- SIM execution must be deterministic (given pinned code + pinned inputs)."
+        },
+        {
+          "line": 93,
+          "text": "- Do NOT let B or SIM depend on \u201cinterpretation\u201d of natural language."
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/14_DO_NOT_DO_AND_FORBIDDEN_MOVES.md",
+      "role_hit_count": 19,
+      "role_hits": [
+        {
+          "line": 20,
+          "text": "- Cycles/loops may exist as explicit objects and explicit sim-validated structures."
+        },
+        {
+          "line": 27,
+          "text": "- Do NOT admit overlay/jargon terms into Thread B canon as primitives."
+        },
+        {
+          "line": 29,
+          "text": "- These belong only in A2/A1 overlay and may map to canon terms via rosetta after canon terms exist."
+        },
+        {
+          "line": 31,
+          "text": "- Do NOT allow free English to cross into B-scanned fields."
+        },
+        {
+          "line": 32,
+          "text": "- Any natural language notes must remain above the boundary (A1 strategy / A2 docs)."
+        },
+        {
+          "line": 33,
+          "text": "- B-facing artifacts must remain strictly in bootpack grammar."
+        },
+        {
+          "line": 39,
+          "text": "- Do NOT send YAML to B as a canon artifact."
+        },
+        {
+          "line": 40,
+          "text": "- YAML is allowed above the boundary (A2/A1)."
+        },
+        {
+          "line": 41,
+          "text": "- B accepts only: `EXPORT_BLOCK`, `SIM_EVIDENCE`, `THREAD_S_SAVE_SNAPSHOT` (per bootpack)."
+        },
+        {
+          "line": 44,
+          "text": "- B-facing messages must be single-artifact containers only."
+        },
+        {
+          "line": 54,
+          "text": "- positive sim evidence exists"
+        },
+        {
+          "line": 55,
+          "text": "- negative sim evidence exists (at least one)"
+        },
+        {
+          "line": 62,
+          "text": "- Do NOT fabricate SIM_EVIDENCE without a real sim run + manifest trail."
+        },
+        {
+          "line": 63,
+          "text": "- Do NOT treat \u201csim exists on disk\u201d as evidence; evidence must be ingested as SIM_EVIDENCE and recorded in state."
+        },
+        {
+          "line": 64,
+          "text": "- Do NOT accept \u201cnegative sim missing\u201d as normal for meaningful survivors."
+        },
+        {
+          "line": 89,
+          "text": "- A0 compilation must be deterministic."
+        },
+        {
+          "line": 90,
+          "text": "- B evaluation must be deterministic."
+        },
+        {
+          "line": 91,
+          "text": "- SIM execution must be deterministic (given pinned code + pinned inputs)."
+        },
+        {
+          "line": 93,
+          "text": "- Do NOT let B or SIM depend on \u201cinterpretation\u201d of natural language."
+        }
+      ],
+      "sha256": "478e1cd0444ef51077986d2d13f540ec070506b23a282220091253ee669df39f",
+      "size_bytes": 4172,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 5,
+      "keyword_hits": [
+        {
+          "line": 81,
+          "text": "Required:"
+        },
+        {
+          "line": 87,
+          "text": "- evidence cannot be replayed (missing manifest / missing code hash / missing output hash)"
+        },
+        {
+          "line": 97,
+          "text": "- evidence pending grows without bound (sims not runnable / missing / never satisfied)"
+        },
+        {
+          "line": 119,
+          "text": "- admitting terms that are never used or never evidence-backed"
+        },
+        {
+          "line": 124,
+          "text": "- record the failure mode in A2 memory (append-only)"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/15_AUDIT_GATES_AND_SUCCESS_CRITERIA.md",
+      "role_hit_count": 15,
+      "role_hits": [
+        {
+          "line": 12,
+          "text": "- B accepted a candidate into canonical state (AXIOM_HYP or SPEC_HYP)."
+        },
+        {
+          "line": 22,
+          "text": "- positive sim evidence exists AND"
+        },
+        {
+          "line": 23,
+          "text": "- negative sim evidence exists (>= 1) AND"
+        },
+        {
+          "line": 37,
+          "text": "- TERM admitted but no possible positive sim path exists (per binding or sim builder)"
+        },
+        {
+          "line": 38,
+          "text": "- TERM admitted but negative sim path missing while term is used downstream as a primitive"
+        },
+        {
+          "line": 39,
+          "text": "- only one nominal \"happy-path\" sim exists with no boundary/perturbation/adversarial coverage"
+        },
+        {
+          "line": 46,
+          "text": "- baseline sim exists"
+        },
+        {
+          "line": 47,
+          "text": "- boundary sweep sim exists"
+        },
+        {
+          "line": 48,
+          "text": "- perturbation sim exists"
+        },
+        {
+          "line": 49,
+          "text": "- adversarial negative sim exists"
+        },
+        {
+          "line": 50,
+          "text": "- composition stress sim exists (where tier dependencies exist)"
+        },
+        {
+          "line": 75,
+          "text": "- overlay/jargon tokens appear unquoted in B-scanned fields"
+        },
+        {
+          "line": 84,
+          "text": "- sim manifests include input hash + output hash + code hash + manifest hash"
+        },
+        {
+          "line": 109,
+          "text": "- emergence of stable sim composition chains (small sims reused by larger sims)"
+        },
+        {
+          "line": 124,
+          "text": "- record the failure mode in A2 memory (append-only)"
+        }
+      ],
+      "sha256": "f6213efe9b0157e3d4ddc2b5ab64d40ce372a7a20b65571bdf74bc6e8620dd15",
+      "size_bytes": 4922,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 16,
+      "keyword_hits": [
+        {
+          "line": 11,
+          "text": "Required fixed file set under `work/a2_state/`:"
+        },
+        {
+          "line": 12,
+          "text": "- `memory.jsonl` (append-only event memory)"
+        },
+        {
+          "line": 20,
+          "text": "No additional files are required for canonical A2 state."
+        },
+        {
+          "line": 26,
+          "text": "Each line is a JSON object with required keys:"
+        },
+        {
+          "line": 37,
+          "text": "Hard rules:"
+        },
+        {
+          "line": 38,
+          "text": "- append-only (no in-place edits)"
+        },
+        {
+          "line": 54,
+          "text": "Hard rules:"
+        },
+        {
+          "line": 75,
+          "text": "Hard rules:"
+        },
+        {
+          "line": 77,
+          "text": "- no implicit dependencies; `concepts_needed` must be explicit"
+        },
+        {
+          "line": 93,
+          "text": "Hard rules:"
+        },
+        {
+          "line": 94,
+          "text": "- rosetta never overrides canon"
+        },
+        {
+          "line": 105,
+          "text": "- summaries must reference source memory/doc paths when making specific claims."
+        },
+        {
+          "line": 108,
+          "text": "7) Do Not Do (A2)"
+        },
+        {
+          "line": 111,
+          "text": "- Do NOT store canon decisions directly in A2 files without B evidence."
+        },
+        {
+          "line": 112,
+          "text": "- Do NOT replace `memory.jsonl` with YAML as canonical log."
+        },
+        {
+          "line": 113,
+          "text": "- Do NOT allow unbounded A2 file proliferation; keep fixed file set + deterministic updates."
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/16_A2_PERSISTENT_BRAIN_SCHEMA.md",
+      "role_hit_count": 5,
+      "role_hits": [
+        {
+          "line": 1,
+          "text": "# A2 Persistent Brain Schema (v1)"
+        },
+        {
+          "line": 14,
+          "text": "- `fuel_queue.json` (structured fuel candidates for A1)"
+        },
+        {
+          "line": 52,
+          "text": "- `layer` (`A2` | `A1` | `A0` | `B` | `SIM` | `LADDER` | `OTHER`)"
+        },
+        {
+          "line": 111,
+          "text": "- Do NOT store canon decisions directly in A2 files without B evidence."
+        },
+        {
+          "line": 113,
+          "text": "- Do NOT allow unbounded A2 file proliferation; keep fixed file set + deterministic updates."
+        }
+      ],
+      "sha256": "267c0d44b3367209004b7829ea6aa4d17ab20e65ba9fe5651e5683e4fa7345b8",
+      "size_bytes": 3474,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 10,
+      "keyword_hits": [
+        {
+          "line": 21,
+          "text": "A1 never writes directly to B state."
+        },
+        {
+          "line": 34,
+          "text": "- bypass overlay bans / forbidden terms"
+        },
+        {
+          "line": 89,
+          "text": "- Every proposed target must state dependencies explicitly."
+        },
+        {
+          "line": 90,
+          "text": "- Every alternative must include an explicit expected failure mode."
+        },
+        {
+          "line": 91,
+          "text": "- Every \"ratcheted meaningful\" claim must include evidence references (positive + negative + graveyard alt id)."
+        },
+        {
+          "line": 94,
+          "text": "7) Do Not Do (A1)"
+        },
+        {
+          "line": 97,
+          "text": "- Do NOT repeat identical failed candidates without structural mutation."
+        },
+        {
+          "line": 98,
+          "text": "- Do NOT optimize for admission count alone."
+        },
+        {
+          "line": 99,
+          "text": "- Do NOT submit targets with missing sim path for required evidence policy."
+        },
+        {
+          "line": 100,
+          "text": "- Do NOT treat parked items as accepted progress."
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/17_A1_REPAIR_LOOP_AND_WIGGLE_PROTOCOL.md",
+      "role_hit_count": 9,
+      "role_hits": [
+        {
+          "line": 1,
+          "text": "# A1 Repair Loop + Wiggle Protocol (v1)"
+        },
+        {
+          "line": 12,
+          "text": "- B canonical state (`state.json`)"
+        },
+        {
+          "line": 14,
+          "text": "- A2 fuel queue (`fuel_queue.json`)"
+        },
+        {
+          "line": 33,
+          "text": "- emit raw B artifacts directly"
+        },
+        {
+          "line": 47,
+          "text": "- sim evidence gaps"
+        },
+        {
+          "line": 53,
+          "text": "- `OP_SIM_ADD`: add missing positive/negative sim references"
+        },
+        {
+          "line": 79,
+          "text": "- max retries before park in A1 view: 5"
+        },
+        {
+          "line": 83,
+          "text": "- keep unresolved targets in A2 fuel queue with explicit reason tags"
+        },
+        {
+          "line": 99,
+          "text": "- Do NOT submit targets with missing sim path for required evidence policy."
+        }
+      ],
+      "sha256": "5ba8016791fbc6407dead6783b576031d8017a205e2fbd4c01069f4c3a6b0312",
+      "size_bytes": 3673,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 4,
+      "keyword_hits": [
+        {
+          "line": 19,
+          "text": "- `memory.jsonl` append-only format valid (one JSON object per line)"
+        },
+        {
+          "line": 26,
+          "text": "- no unsupported fields required by downstream compiler"
+        },
+        {
+          "line": 37,
+          "text": "- negative sim reference (>=1) when required"
+        },
+        {
+          "line": 71,
+          "text": "- whole-system negative sim + graveyard alternatives are required"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/18_A1_A2_CONFORMANCE_CHECKLIST.md",
+      "role_hit_count": 15,
+      "role_hits": [
+        {
+          "line": 1,
+          "text": "# A1/A2 Conformance Checklist (v1)"
+        },
+        {
+          "line": 29,
+          "text": "- no raw NL intended for B-scanned fields"
+        },
+        {
+          "line": 31,
+          "text": "- no direct YAML submission to B"
+        },
+        {
+          "line": 36,
+          "text": "- positive sim reference"
+        },
+        {
+          "line": 37,
+          "text": "- negative sim reference (>=1) when required"
+        },
+        {
+          "line": 42,
+          "text": "- sim references resolve to scripts or known templates"
+        },
+        {
+          "line": 44,
+          "text": "- each negative sim includes explicit `failure_mode_id` + expected outcome class"
+        },
+        {
+          "line": 49,
+          "text": "- graveyard entries include `raw_lines` after B rejection"
+        },
+        {
+          "line": 50,
+          "text": "- graveyard alternatives are not used as a substitute for negative sim evidence"
+        },
+        {
+          "line": 53,
+          "text": "- A0 canonicalization hash for strategy is recorded"
+        },
+        {
+          "line": 55,
+          "text": "- sim manifests include input/code/output hashes"
+        },
+        {
+          "line": 60,
+          "text": "- unresolved targets are written back to A2 fuel with reason tags"
+        },
+        {
+          "line": 63,
+          "text": "- each sim target has an explicit tier (`T0`..`T6`)"
+        },
+        {
+          "line": 69,
+          "text": "- whole-system sim target is defined but gated (no bypass)"
+        },
+        {
+          "line": 71,
+          "text": "- whole-system negative sim + graveyard alternatives are required"
+        }
+      ],
+      "sha256": "5397b123e66c6055448f1cba700863f4eb5e82d441e401eb7e7612e8e6c02c96",
+      "size_bytes": 2690,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 20,
+      "keyword_hits": [
+        {
+          "line": 20,
+          "text": "Every sim must declare exactly one tier."
+        },
+        {
+          "line": 26,
+          "text": "Higher-tier sims must reference lower-tier dependencies:"
+        },
+        {
+          "line": 27,
+          "text": "- each `Tn` sim (`n > 0`) must depend on at least one `Tn-1` sim"
+        },
+        {
+          "line": 28,
+          "text": "- dependencies must be explicit by sim id"
+        },
+        {
+          "line": 29,
+          "text": "- dependency graph must be acyclic at sim-spec level"
+        },
+        {
+          "line": 32,
+          "text": "- A `Tn` sim cannot be promoted if required lower-tier dependencies are absent or unvalidated."
+        },
+        {
+          "line": 38,
+          "text": "Each sim must emit deterministic evidence:"
+        },
+        {
+          "line": 47,
+          "text": "Each tier must include:"
+        },
+        {
+          "line": 56,
+          "text": "At least one negative sim class must be present per target class; both are preferred for closure."
+        },
+        {
+          "line": 63,
+          "text": "- all required targets for that tier have a positive sim result"
+        },
+        {
+          "line": 67,
+          "text": "Coverage is required before planning major expansion in the next tier."
+        },
+        {
+          "line": 73,
+          "text": "SIM work must include rich exploration around targets, not only one pass/fail check."
+        },
+        {
+          "line": 75,
+          "text": "Required sim families per target class:"
+        },
+        {
+          "line": 90,
+          "text": "`T6_WHOLE_SYSTEM` is mandatory long-term target:"
+        },
+        {
+          "line": 93,
+          "text": "- must satisfy same evidence and determinism rules as all other tiers"
+        },
+        {
+          "line": 98,
+          "text": "6) Forbidden Shortcuts"
+        },
+        {
+          "line": 101,
+          "text": "- Do not mark a tier as covered without negative sims."
+        },
+        {
+          "line": 102,
+          "text": "- Do not mark a tier as covered without graveyard alternatives."
+        },
+        {
+          "line": 103,
+          "text": "- Do not admit a whole-system sim without dependency coverage."
+        },
+        {
+          "line": 104,
+          "text": "- Do not treat unversioned or unhashed sim output as evidence."
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/19_SIM_TIER_ARCHITECTURE.md",
+      "role_hit_count": 11,
+      "role_hits": [
+        {
+          "line": 1,
+          "text": "# SIM Tier Architecture (v1)"
+        },
+        {
+          "line": 18,
+          "text": "- `T6_WHOLE_SYSTEM`: validates the full integrated model in one sim."
+        },
+        {
+          "line": 27,
+          "text": "- each `Tn` sim (`n > 0`) must depend on at least one `Tn-1` sim"
+        },
+        {
+          "line": 28,
+          "text": "- dependencies must be explicit by sim id"
+        },
+        {
+          "line": 29,
+          "text": "- dependency graph must be acyclic at sim-spec level"
+        },
+        {
+          "line": 32,
+          "text": "- A `Tn` sim cannot be promoted if required lower-tier dependencies are absent or unvalidated."
+        },
+        {
+          "line": 63,
+          "text": "- all required targets for that tier have a positive sim result"
+        },
+        {
+          "line": 64,
+          "text": "- at least one negative sim exists per target class"
+        },
+        {
+          "line": 91,
+          "text": "- one integrated sim that composes validated lower tiers"
+        },
+        {
+          "line": 103,
+          "text": "- Do not admit a whole-system sim without dependency coverage."
+        },
+        {
+          "line": 104,
+          "text": "- Do not treat unversioned or unhashed sim output as evidence."
+        }
+      ],
+      "sha256": "ab1ef7dcee61bbf008b72c4320ee43092936a81ebdf6805336428d1779ca1e12",
+      "size_bytes": 4153,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 11,
+      "keyword_hits": [
+        {
+          "line": 14,
+          "text": "- reason tags are mandatory on fail"
+        },
+        {
+          "line": 19,
+          "text": "2) Promotion Gates (all required)"
+        },
+        {
+          "line": 32,
+          "text": "- failed alternatives must contain replayable raw artifacts"
+        },
+        {
+          "line": 42,
+          "text": "- required stress families are present for target class (`BASELINE`, `BOUNDARY_SWEEP`, `PERTURBATION`, `ADVERSARIAL_NEG`, `COMPOSITION_STRESS`)"
+        },
+        {
+          "line": 67,
+          "text": "`SIM_MASTER_T6` cannot be treated as valid if any lower-tier coverage regresses."
+        },
+        {
+          "line": 73,
+          "text": "Each run must emit:"
+        },
+        {
+          "line": 80,
+          "text": "6) Forbidden Moves"
+        },
+        {
+          "line": 83,
+          "text": "- Do not promote from `Tn` to `Tn+1` without `G1`..`G6`."
+        },
+        {
+          "line": 84,
+          "text": "- Do not treat negative sims as optional for tier closure."
+        },
+        {
+          "line": 85,
+          "text": "- Do not claim whole-system validity without a whole-system negative sim."
+        },
+        {
+          "line": 86,
+          "text": "- Do not close graveyard coverage with trivial invalid junk."
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/20_SIM_PROMOTION_AND_MASTER_SIM.md",
+      "role_hit_count": 8,
+      "role_hits": [
+        {
+          "line": 1,
+          "text": "# SIM Promotion + Master Sim Gates (v1)"
+        },
+        {
+          "line": 27,
+          "text": "- target class has at least one negative sim with evidence"
+        },
+        {
+          "line": 28,
+          "text": "- negative sim includes explicit `failure_mode_id` and expected outcome class"
+        },
+        {
+          "line": 52,
+          "text": "- invalidate upward promotions that depended on the failing sim"
+        },
+        {
+          "line": 53,
+          "text": "- create repair target entries for A1 planning"
+        },
+        {
+          "line": 64,
+          "text": "- at least one whole-system negative sim exists (`SIM_MASTER_T6_NEG`)"
+        },
+        {
+          "line": 76,
+          "text": "- master sim status (`NOT_READY|PARKED|ACTIVE|DEMOTED`)"
+        },
+        {
+          "line": 85,
+          "text": "- Do not claim whole-system validity without a whole-system negative sim."
+        }
+      ],
+      "sha256": "f59c1176615aa4766f6e017da6c547b509a004e8ccf3fbc793d74cb723b862c4",
+      "size_bytes": 3040,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 46,
+      "keyword_hits": [
+        {
+          "line": 21,
+          "text": "- `RQ-001` (MUST): `F01_FINITUDE` and `N01_NONCOMMUTATION` are non-negotiable root constraints."
+        },
+        {
+          "line": 22,
+          "text": "- `RQ-002` (MUST): survivor order is canonical state; noncommutative order is never discarded."
+        },
+        {
+          "line": 23,
+          "text": "- `RQ-003` (MUST): only B admits/rejects canon; no other layer may claim canon."
+        },
+        {
+          "line": 24,
+          "text": "- `RQ-004` (MUST): A2/A1/A0/B/SIM role boundaries remain explicit and enforced."
+        },
+        {
+          "line": 30,
+          "text": "- `RQ-010` (MUST): A1 has nondeterministic exploration (\"wiggle\") and deterministic compile handoff."
+        },
+        {
+          "line": 31,
+          "text": "- `RQ-011` (MUST): A0 is deterministic packaging/compilation and not canon authority."
+        },
+        {
+          "line": 32,
+          "text": "- `RQ-012` (MUST): B is deterministic staged adjudication."
+        },
+        {
+          "line": 33,
+          "text": "- `RQ-013` (MUST): SIM is deterministic execution evidence producer."
+        },
+        {
+          "line": 34,
+          "text": "- `RQ-014` (MUST): high-entropy docs are mined by A2; they are not direct B input."
+        },
+        {
+          "line": 35,
+          "text": "- `RQ-015` (MUST): constraint ladder is fuel for A1 transformation, not direct canon dump."
+        },
+        {
+          "line": 41,
+          "text": "- `RQ-020` (MUST): batch policy is non-conservative exploration, not classical proof-only sequencing."
+        },
+        {
+          "line": 42,
+          "text": "- `RQ-021` (MUST): A1 must explore alternatives/branches and preserve failed branches as information."
+        },
+        {
+          "line": 43,
+          "text": "- `RQ-022` (MUST): when B rejects, rejection reasons feed deterministic repair operators."
+        },
+        {
+          "line": 44,
+          "text": "- `RQ-023` (MUST): proposals must stay B-grammar valid; free prose never enters B artifacts."
+        },
+        {
+          "line": 50,
+          "text": "- `RQ-030` (MUST): every admitted concept is represented by explicit ratcheted terms."
+        },
+        {
+          "line": 51,
+          "text": "- `RQ-031` (MUST): compound terms are built from ratcheted smaller terms; additions are incremental."
+        },
+        {
+          "line": 52,
+          "text": "- `RQ-032` (MUST): derived-only and lexeme fences are respected; no primitive smuggling."
+        },
+        {
+          "line": 53,
+          "text": "- `RQ-033` (MUST): symbol/glyph usage (including `=`) is gated by admitted term policy."
+        },
+        {
+          "line": 54,
+          "text": "- `RQ-034` (MUST): jargon labels (axis/Jung/IGT overlays) are noncanon overlays unless explicitly ratcheted as terms."
+        },
+        {
+          "line": 60,
+          "text": "- `RQ-040` (MUST): meaningful survivor status requires dynamic evidence, not static acceptance alone."
+        },
+        {
+          "line": 61,
+          "text": "- `RQ-041` (MUST): each meaningful target has positive sim evidence."
+        },
+        {
+          "line": 62,
+          "text": "- `RQ-042` (MUST): each meaningful target has negative sim evidence."
+        },
+        {
+          "line": 63,
+          "text": "- `RQ-043` (MUST): each meaningful target has plausible failed alternatives in graveyard."
+        },
+        {
+          "line": 64,
+          "text": "- `RQ-044` (MUST): SIM evidence is tokenized and ingested through B containers only."
+        },
+        {
+          "line": 65,
+          "text": "- `RQ-045` (MUST): sim manifests use deterministic hashes (input/code/output/manifest)."
+        },
+        {
+          "line": 66,
+          "text": "- `RQ-046` (MUST): sims are tiered and compositional from small units to whole-system."
+        },
+        {
+          "line": 67,
+          "text": "- `RQ-047` (MUST): a single whole-system sim target exists and is promotion-gated."
+        },
+        {
+          "line": 68,
+          "text": "- `RQ-048` (MUST): sims include breadth/stress families (baseline, boundary sweep, perturbation, adversarial negative, composition stress)."
+        },
+        {
+          "line": 74,
+          "text": "- `RQ-050` (MUST): graveyard is structural and dynamic (resurrection space), not trash."
+        },
+        {
+          "line": 75,
+          "text": "- `RQ-051` (MUST): graveyard entries are tied to real targets/alternatives, not ratio padding."
+        },
+        {
+          "line": 76,
+          "text": "- `RQ-052` (MUST): each graveyard entry keeps replayable `raw_lines` and failure reason tags."
+        },
+        {
+          "line": 77,
+          "text": "- `RQ-053` (MUST): both B-kills and SIM-kills are tracked for audit."
+        },
+        {
+          "line": 83,
+          "text": "- `RQ-060` (MUST): doc surface is controlled/lean; avoid uncontrolled file explosion."
+        },
+        {
+          "line": 84,
+          "text": "- `RQ-061` (MUST): canonical operational logs are append-only with deterministic sharding."
+        },
+        {
+          "line": 85,
+          "text": "- `RQ-062` (MUST): core source docs remain read-only; generated output is isolated to run/work areas."
+        },
+        {
+          "line": 86,
+          "text": "- `RQ-063` (MUST): provenance/replay chain is maintained across A2/A1/A0/B/SIM events."
+        },
+        {
+          "line": 87,
+          "text": "- `RQ-064` (MUST): A2 persistent brain keeps fixed-state files + append-only memory discipline."
+        },
+        {
+          "line": 88,
+          "text": "- `RQ-065` (MUST): thread context is sealed as artifacts; do not rely on volatile chat memory."
+        },
+        {
+          "line": 94,
+          "text": "- `RQ-070` (MUST): unknown/underdetermined facts are marked `UNKNOWN` instead of guessed."
+        },
+        {
+          "line": 95,
+          "text": "- `RQ-071` (MUST): contradictions are recorded; they are not smoothed away."
+        },
+        {
+          "line": 96,
+          "text": "- `RQ-072` (MUST): no direct policy bypass of B fences for convenience."
+        },
+        {
+          "line": 97,
+          "text": "- `RQ-073` (MUST): no \"paperclip\" metric gaming (e.g., fake graveyard inflation, fake evidence)."
+        },
+        {
+          "line": 98,
+          "text": "- `RQ-074` (MUST): model-switch boundary is explicit per task (thinking vs coding execution)."
+        },
+        {
+          "line": 104,
+          "text": "- `RQ-080` (MUST): ratchet defines legal structures; sims execute structures; evidence feeds ratchet state."
+        },
+        {
+          "line": 105,
+          "text": "- `RQ-081` (MUST): convergence is assessed via stable survivors, graveyard pressure, and tier promotion coverage."
+        },
+        {
+          "line": 106,
+          "text": "- `RQ-082` (MUST): attractor-basin claims require cumulative evidence across tiers, not narrative assertion."
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/21_SYSTEM_REQUIREMENTS_LEDGER.md",
+      "role_hit_count": 21,
+      "role_hits": [
+        {
+          "line": 13,
+          "text": "- `system_v2/work/system_specs/THREAD_BOUNDARIES.md`"
+        },
+        {
+          "line": 23,
+          "text": "- `RQ-003` (MUST): only B admits/rejects canon; no other layer may claim canon."
+        },
+        {
+          "line": 24,
+          "text": "- `RQ-004` (MUST): A2/A1/A0/B/SIM role boundaries remain explicit and enforced."
+        },
+        {
+          "line": 30,
+          "text": "- `RQ-010` (MUST): A1 has nondeterministic exploration (\"wiggle\") and deterministic compile handoff."
+        },
+        {
+          "line": 31,
+          "text": "- `RQ-011` (MUST): A0 is deterministic packaging/compilation and not canon authority."
+        },
+        {
+          "line": 32,
+          "text": "- `RQ-012` (MUST): B is deterministic staged adjudication."
+        },
+        {
+          "line": 33,
+          "text": "- `RQ-013` (MUST): SIM is deterministic execution evidence producer."
+        },
+        {
+          "line": 34,
+          "text": "- `RQ-014` (MUST): high-entropy docs are mined by A2; they are not direct B input."
+        },
+        {
+          "line": 35,
+          "text": "- `RQ-015` (MUST): constraint ladder is fuel for A1 transformation, not direct canon dump."
+        },
+        {
+          "line": 42,
+          "text": "- `RQ-021` (MUST): A1 must explore alternatives/branches and preserve failed branches as information."
+        },
+        {
+          "line": 43,
+          "text": "- `RQ-022` (MUST): when B rejects, rejection reasons feed deterministic repair operators."
+        },
+        {
+          "line": 44,
+          "text": "- `RQ-023` (MUST): proposals must stay B-grammar valid; free prose never enters B artifacts."
+        },
+        {
+          "line": 61,
+          "text": "- `RQ-041` (MUST): each meaningful target has positive sim evidence."
+        },
+        {
+          "line": 62,
+          "text": "- `RQ-042` (MUST): each meaningful target has negative sim evidence."
+        },
+        {
+          "line": 64,
+          "text": "- `RQ-044` (MUST): SIM evidence is tokenized and ingested through B containers only."
+        },
+        {
+          "line": 65,
+          "text": "- `RQ-045` (MUST): sim manifests use deterministic hashes (input/code/output/manifest)."
+        },
+        {
+          "line": 67,
+          "text": "- `RQ-047` (MUST): a single whole-system sim target exists and is promotion-gated."
+        },
+        {
+          "line": 77,
+          "text": "- `RQ-053` (MUST): both B-kills and SIM-kills are tracked for audit."
+        },
+        {
+          "line": 86,
+          "text": "- `RQ-063` (MUST): provenance/replay chain is maintained across A2/A1/A0/B/SIM events."
+        },
+        {
+          "line": 87,
+          "text": "- `RQ-064` (MUST): A2 persistent brain keeps fixed-state files + append-only memory discipline."
+        },
+        {
+          "line": 96,
+          "text": "- `RQ-072` (MUST): no direct policy bypass of B fences for convenience."
+        }
+      ],
+      "sha256": "da100aa734730b74302061f0f8ca71d5ad5d895bf28ea963c9bd26003add0b66",
+      "size_bytes": 6035,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 0,
+      "keyword_hits": [],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2/22_SPEC_COVERAGE_MATRIX.md",
+      "role_hit_count": 2,
+      "role_hits": [
+        {
+          "line": 42,
+          "text": "- Missing deterministic conformance tests for A1 planner outputs before A0 compilation."
+        },
+        {
+          "line": 48,
+          "text": "- Need fixed defaults for branch budget / repair budget / sim budget per cycle in one authoritative table."
+        }
+      ],
+      "sha256": "24c96517077669f46bc9cb7fe8a465e78d15ea2143a33f4c580e425235727182",
+      "size_bytes": 3940,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 10,
+      "keyword_hits": [
+        {
+          "line": 11,
+          "text": "## Output discipline (hard)"
+        },
+        {
+          "line": 16,
+          "text": "- A0 must use a fixed frame: `[ROUTE]`, `[OUTPUT]`, `[OPTIONS]`, `[CITES]`."
+        },
+        {
+          "line": 17,
+          "text": "- All user-copyable payloads must be real code-fenced `text` blocks preceded by `COPY TO: ...`."
+        },
+        {
+          "line": 20,
+          "text": "## Determinism boundary (hard, practical)"
+        },
+        {
+          "line": 25,
+          "text": "## Batch policy (Megaboot HARD)"
+        },
+        {
+          "line": 29,
+          "text": "- Batches must not be conservative. The system converges via massive exploration under finitude and noncommutation."
+        },
+        {
+          "line": 31,
+          "text": "- Any \"classical proof thinking\" behavior in A0/A1 outputs is treated as drift and must be corrected."
+        },
+        {
+          "line": 33,
+          "text": "Related mandatory structures:"
+        },
+        {
+          "line": 35,
+          "text": "- **Graveyard**: mandatory and never dead; must be larger than active canon; A0 must target >= 50% graveyard rescue share in batches when non-empty."
+        },
+        {
+          "line": 36,
+          "text": "- **Campaign tape**: mandatory; records proposal + B report pairs; used to reconstruct graveyard pressure."
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/work/system_specs/A0_CONTRACT.md",
+      "role_hit_count": 10,
+      "role_hits": [
+        {
+          "line": 1,
+          "text": "# A0 Contract (deterministic orchestrator)"
+        },
+        {
+          "line": 7,
+          "text": "## What A0 is (topology pointer)"
+        },
+        {
+          "line": 15,
+          "text": "- A0 default output is **phone-first** (short and skimmable)."
+        },
+        {
+          "line": 16,
+          "text": "- A0 must use a fixed frame: `[ROUTE]`, `[OUTPUT]`, `[OPTIONS]`, `[CITES]`."
+        },
+        {
+          "line": 18,
+          "text": "- Atomicity: each box is exactly one executable unit (request line, one EXPORT_BLOCK, one intent invocation, one terminal command)."
+        },
+        {
+          "line": 22,
+          "text": "- A0 is not the place to \u201cexplain physics\u201d or mine high-entropy sources."
+        },
+        {
+          "line": 23,
+          "text": "- A0 routes/packaging only; interpretation belongs upstream (A2/A1) and canon acceptance belongs downstream (B)."
+        },
+        {
+          "line": 31,
+          "text": "- Any \"classical proof thinking\" behavior in A0/A1 outputs is treated as drift and must be corrected."
+        },
+        {
+          "line": 35,
+          "text": "- **Graveyard**: mandatory and never dead; must be larger than active canon; A0 must target >= 50% graveyard rescue share in batches when non-empty."
+        },
+        {
+          "line": 36,
+          "text": "- **Campaign tape**: mandatory; records proposal + B report pairs; used to reconstruct graveyard pressure."
+        }
+      ],
+      "sha256": "0aafbea733e6e7a0eff30dd2e1b4e2e2faf9ca516efb43c4e41b61b1023a353e",
+      "size_bytes": 2351,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 9,
+      "keyword_hits": [
+        {
+          "line": 44,
+          "text": "- Compound term validation (all parts must be admitted or lexemes)"
+        },
+        {
+          "line": 55,
+          "text": "- **Derived-only** words (84 total: identity, function, equal, domain, etc.) CANNOT appear as primitives \u2014 they must enter via TERM_DEF first"
+        },
+        {
+          "line": 58,
+          "text": "This means A1 must plan multi-step admission chains."
+        },
+        {
+          "line": 69,
+          "text": "LLMs default to classical thinking. This system must resist that."
+        },
+        {
+          "line": 88,
+          "text": "- Each term must have 2-3 alternatives that die at B"
+        },
+        {
+          "line": 103,
+          "text": "- Never sends directly to B (only through A0/runner)"
+        },
+        {
+          "line": 104,
+          "text": "- Never emits EXPORT_BLOCKs (compile_batch wraps in containers.py format)"
+        },
+        {
+          "line": 105,
+          "text": "- Never runs sims"
+        },
+        {
+          "line": 106,
+          "text": "- Never decides canon"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/work/system_specs/A1_DESIGN.md",
+      "role_hit_count": 14,
+      "role_hits": [
+        {
+          "line": 1,
+          "text": "# A1 Design (strategy + expansion)"
+        },
+        {
+          "line": 17,
+          "text": "- Survivors (what passed B)"
+        },
+        {
+          "line": 21,
+          "text": "- Rosetta mappings (jargon \u2194 B-term)"
+        },
+        {
+          "line": 22,
+          "text": "- Fuel queue preview (what A2 has extracted)"
+        },
+        {
+          "line": 39,
+          "text": "- `compile_batch(items, state)` \u2192 EXPORT_BLOCK string for B"
+        },
+        {
+          "line": 60,
+          "text": "## A1 philosophy (CRITICAL \u2014 read memory.jsonl last 10 entries)"
+        },
+        {
+          "line": 65,
+          "text": "- Processes constraint ladder docs as FUEL (strips jargon, reformulates for B)"
+        },
+        {
+          "line": 67,
+          "text": "- Builds tiered sims: small \u2192 compound \u2192 master sim (the real proof)"
+        },
+        {
+          "line": 83,
+          "text": "- **B kills**: use derived-only words, undefined terms, or bad schema"
+        },
+        {
+          "line": 84,
+          "text": "- **SIM kills**: syntactically valid but mathematically wrong (sim exits 1 \u2192 SIM_FAIL)"
+        },
+        {
+          "line": 88,
+          "text": "- Each term must have 2-3 alternatives that die at B"
+        },
+        {
+          "line": 94,
+          "text": "- Constraint ladder is high-quality ore (E0-E1) \u2014 process it through A1, don't dump raw"
+        },
+        {
+          "line": 101,
+          "text": "## What A1 does NOT do"
+        },
+        {
+          "line": 103,
+          "text": "- Never sends directly to B (only through A0/runner)"
+        }
+      ],
+      "sha256": "637e64120f7b1f5e2123418972b3fcb112ef532774c7a77e5272d6485b4efc29",
+      "size_bytes": 4264,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 7,
+      "keyword_hits": [
+        {
+          "line": 54,
+          "text": "- FTL signaling claims (must separate from non-signaling correlations)"
+        },
+        {
+          "line": 74,
+          "text": "in `memory.jsonl` (append-only) and `SESSION_STATE.md` (rewritten per session)."
+        },
+        {
+          "line": 78,
+          "text": "- A2 never produces B-grammar (that's A1 \u2192 A0)"
+        },
+        {
+          "line": 79,
+          "text": "- A2 never runs sims"
+        },
+        {
+          "line": 80,
+          "text": "- A2 never decides what to propose (that's A1)"
+        },
+        {
+          "line": 81,
+          "text": "- A2 never smooths over contradictions between sources (report them, don't resolve)"
+        },
+        {
+          "line": 82,
+          "text": "- A2 never compresses working logs prematurely"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/work/system_specs/A2_DESIGN.md",
+      "role_hit_count": 8,
+      "role_hits": [
+        {
+          "line": 1,
+          "text": "# A2 Design (high-entropy processor)"
+        },
+        {
+          "line": 6,
+          "text": "## What A2 does"
+        },
+        {
+          "line": 76,
+          "text": "## What A2 does NOT do"
+        },
+        {
+          "line": 78,
+          "text": "- A2 never produces B-grammar (that's A1 \u2192 A0)"
+        },
+        {
+          "line": 79,
+          "text": "- A2 never runs sims"
+        },
+        {
+          "line": 80,
+          "text": "- A2 never decides what to propose (that's A1)"
+        },
+        {
+          "line": 81,
+          "text": "- A2 never smooths over contradictions between sources (report them, don't resolve)"
+        },
+        {
+          "line": 82,
+          "text": "- A2 never compresses working logs prematurely"
+        }
+      ],
+      "sha256": "adfbd3f25e9c56e16565fd3ce81a7301dca318757d1ef231a1f167ee6f2452c4",
+      "size_bytes": 3421,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 8,
+      "keyword_hits": [
+        {
+          "line": 6,
+          "text": "## A2 role (hard)"
+        },
+        {
+          "line": 13,
+          "text": "## A2 is NOT (hard)"
+        },
+        {
+          "line": 20,
+          "text": "## Authority boundaries (hard)"
+        },
+        {
+          "line": 25,
+          "text": "- B is deterministic canon kernel (A2 never claims B acceptance)."
+        },
+        {
+          "line": 28,
+          "text": "## A2 mode discipline (hard)"
+        },
+        {
+          "line": 30,
+          "text": "A2 must declare:"
+        },
+        {
+          "line": 39,
+          "text": "## State movement rule (hard)"
+        },
+        {
+          "line": 42,
+          "text": "- State must be externalized into artifacts."
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/work/system_specs/A2_PROTOCOL.md",
+      "role_hit_count": 9,
+      "role_hits": [
+        {
+          "line": 1,
+          "text": "# A2 Protocol (high-entropy processing layer)"
+        },
+        {
+          "line": 6,
+          "text": "## A2 role (hard)"
+        },
+        {
+          "line": 13,
+          "text": "## A2 is NOT (hard)"
+        },
+        {
+          "line": 22,
+          "text": "- A2 drafts specs/boots/templates only."
+        },
+        {
+          "line": 23,
+          "text": "- A1 is runtime boundary layer (only if explicitly requested)."
+        },
+        {
+          "line": 24,
+          "text": "- A0 is deterministic orchestrator (A2 does not control it directly)."
+        },
+        {
+          "line": 25,
+          "text": "- B is deterministic canon kernel (A2 never claims B acceptance)."
+        },
+        {
+          "line": 26,
+          "text": "- Terminal runs sims; A2 does not \u201crun\u201d."
+        },
+        {
+          "line": 28,
+          "text": "## A2 mode discipline (hard)"
+        }
+      ],
+      "sha256": "4d023acb58a9e0bd291d2f1280f6fa42fb69317fb8c9e8bd7161cd64f94636b2",
+      "size_bytes": 2210,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 2,
+      "keyword_hits": [
+        {
+          "line": 47,
+          "text": "This is intentionally a pointer map; do not infer behavior not stated in the bootpack."
+        },
+        {
+          "line": 63,
+          "text": "Observed-in-boot mismatch (do not resolve here):"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/work/system_specs/B_ACCEPTED_CONTAINERS.md",
+      "role_hit_count": 12,
+      "role_hits": [
+        {
+          "line": 1,
+          "text": "# B Accepted Containers (verbatim skeletons)"
+        },
+        {
+          "line": 10,
+          "text": "- **EXPORT_BLOCK vN**"
+        },
+        {
+          "line": 11,
+          "text": "- `BEGIN EXPORT_BLOCK vN`"
+        },
+        {
+          "line": 13,
+          "text": "- `TARGET: THREAD_B_ENFORCEMENT_KERNEL`"
+        },
+        {
+          "line": 18,
+          "text": "- `END EXPORT_BLOCK vN`"
+        },
+        {
+          "line": 20,
+          "text": "- **SIM_EVIDENCE v1**"
+        },
+        {
+          "line": 21,
+          "text": "- `BEGIN SIM_EVIDENCE v1`"
+        },
+        {
+          "line": 28,
+          "text": "- `END SIM_EVIDENCE v1`"
+        },
+        {
+          "line": 30,
+          "text": "- **THREAD_S_SAVE_SNAPSHOT v2**"
+        },
+        {
+          "line": 31,
+          "text": "- `BEGIN THREAD_S_SAVE_SNAPSHOT v2`"
+        },
+        {
+          "line": 43,
+          "text": "- `END THREAD_S_SAVE_SNAPSHOT v2`"
+        },
+        {
+          "line": 60,
+          "text": "- `KERNEL_ERROR`: evidence-pack verification section (`SIM_EVIDENCE v1` requirements)"
+        }
+      ],
+      "sha256": "ea11c433f26aec6287021431fa3697619f19d6db531d5034702686e89a289299",
+      "size_bytes": 2271,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 2,
+      "keyword_hits": [
+        {
+          "line": 8,
+          "text": "User message must be exactly one of:"
+        },
+        {
+          "line": 21,
+          "text": "Only the following rejection tags are permitted (anything else is forbidden and triggers `SCHEMA_FAIL`):"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/work/system_specs/B_FENCES.md",
+      "role_hit_count": 5,
+      "role_hits": [
+        {
+          "line": 1,
+          "text": "# B Fences (from BOOTPACK_THREAD_B_v3.9.13 only)"
+        },
+        {
+          "line": 13,
+          "text": "- EXPORT_BLOCK vN"
+        },
+        {
+          "line": 14,
+          "text": "- THREAD_S_SAVE_SNAPSHOT v2"
+        },
+        {
+          "line": 15,
+          "text": "- SIM_EVIDENCE_PACK (one or more SIM_EVIDENCE v1 blocks back-to-back)"
+        },
+        {
+          "line": 54,
+          "text": "- Content undefined-term fence (BR-0U1) for tokens in EXPORT_BLOCK content outside TERM/LABEL/FORMULA contexts."
+        }
+      ],
+      "sha256": "555452c956a5c20fa81850f40e8aba6b09ea25cda688775a3a1ebc748466efb3",
+      "size_bytes": 2059,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 3,
+      "keyword_hits": [
+        {
+          "line": 21,
+          "text": "| R-B-BOOT | `core_docs/BOOTPACK_THREAD_B_v3.9.13.md` | E0 | Canon fence + container + term pipeline law | Internal inconsistencies possible; never \u201csmooth\u201d them | `work/system_specs/B_FENCES.md`, `work/system_specs/B_ACCEPTED_CONTAINERS.md`, `work/system_specs/JARGON_GATE.md` |"
+        },
+        {
+          "line": 23,
+          "text": "| R-ZIP-INDEX | `core_docs/a2_runtime_state/ZIP_INDEX_v1.md` | E1 | Noncanon inventory of a ZIP snapshot contents | Not a schema; do not infer protocol fields | `work/system_specs/ZIP_JOB_SCHEMA.md` |"
+        },
+        {
+          "line": 24,
+          "text": "| R-SAVE-LEVELS | `core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md` | E0 | Save-level definitions | Conflation between B-required vs A-only overlays | `work/system_specs/SAVE_LEVELS.md` |"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/work/system_specs/DOC_ENTROPY_REGISTRY.md",
+      "role_hit_count": 9,
+      "role_hits": [
+        {
+          "line": 19,
+          "text": "| R-A1-BOOT | `core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md` | E0 | Canon thread topology + embedded bootpacks | High density; avoid synthesis drift | `work/rebaseline/BOOTPACK_THREAD_A1_v1.0__VERBATIM.md`, `work/rebaseline/BOUNDARY_QUOTES_A0_A1_A2.md` |"
+        },
+        {
+          "line": 20,
+          "text": "| R-A0-BOOT | `core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md` | E0 | Embedded A0 bootpack | Output-format rigidity; avoid \u201chelpful prose\u201d drift | `work/rebaseline/BOOTPACK_THREAD_A0_v2.62__VERBATIM.md`, `work/system_specs/A0_CONTRACT.md` |"
+        },
+        {
+          "line": 21,
+          "text": "| R-B-BOOT | `core_docs/BOOTPACK_THREAD_B_v3.9.13.md` | E0 | Canon fence + container + term pipeline law | Internal inconsistencies possible; never \u201csmooth\u201d them | `work/system_specs/B_FENCES.md`, `work/system_specs/B_ACCEPTED_CONTAINERS.md`, `work/system_specs/JARGON_GATE.md` |"
+        },
+        {
+          "line": 22,
+          "text": "| R-ZIP | `core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md` | E0 | ZIP protocol + text limits | Temptation to invent schema details | `work/system_specs/ZIP_JOB_SCHEMA.md` |"
+        },
+        {
+          "line": 24,
+          "text": "| R-SAVE-LEVELS | `core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md` | E0 | Save-level definitions | Conflation between B-required vs A-only overlays | `work/system_specs/SAVE_LEVELS.md` |"
+        },
+        {
+          "line": 25,
+          "text": "| R-A2-BOOT | `core_docs/a2 hand assembled docs/uploads/A2_EXPORT_PACK_SMALL_2026-02-12T043701Z/A2_JP_BEHAVIORAL_BOOT.md` | E0 | A2 behavior contract | High entropy if treated narratively | `work/system_specs/A2_PROTOCOL.md` |"
+        },
+        {
+          "line": 26,
+          "text": "| R-A2-CONTEXT | `core_docs/a2 hand assembled docs/uploads/A2_EXPORT_PACK_SMALL_2026-02-12T043701Z/A2_WORKING_UPGRADE_CONTEXT_v1.md` | E1 | Layering definition (A2/A1/A0/B/SIM) | Can conflict with megaboot wording; treat as working-layer | `work/rebaseline/BOUNDARY_QUOTES_A0_A1_A2.md` |"
+        },
+        {
+          "line": 27,
+          "text": "| R-A1-MATRIX | `work/rebaseline/BOOTPACK_THREAD_A1_v1.0__VERBATIM.md` | E1 | Basis for A1 mode matrix | None | `work/rebaseline/A1_ALLOWED_FORBIDDEN_MATRIX.md`, `work/system_specs/A1_CONTRACT.md` |"
+        },
+        {
+          "line": 29,
+          "text": "| R-TOE-FUEL | `core_docs/high entropy doc/x grok chat TOE.docx` | E2 | A2 fuel extract | Same as above (quarantined) | `work/rebaseline/A2_FUEL_EXTRACT_x_grok_chat_TOE.md` |"
+        }
+      ],
+      "sha256": "8d4f5e09b216898e5e8e2c3df3b156dbecd25d82158d348d36fdf81222b3755f",
+      "size_bytes": 2997,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 5,
+      "keyword_hits": [
+        {
+          "line": 23,
+          "text": "| E1 | Mechanically-derived tables citing E0 | Allowed/forbidden matrices |"
+        },
+        {
+          "line": 27,
+          "text": "Rule: Any upward move (E3\u2192E0) must reduce ambiguity and reduce size."
+        },
+        {
+          "line": 40,
+          "text": "- Every E1/E2 doc must contain pointers back to source"
+        },
+        {
+          "line": 45,
+          "text": "- Every spec must state: Status (NONCANON/CANON), Last updated date"
+        },
+        {
+          "line": 46,
+          "text": "- Every spec must point to its authority source (bootpack, code file, or design decision)"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/work/system_specs/GOVERNANCE.md",
+      "role_hit_count": 1,
+      "role_hits": [
+        {
+          "line": 24,
+          "text": "| E2 | A2 fuel extracts (snippets + quarantine) | Candidate rewrites |"
+        }
+      ],
+      "sha256": "dc1c9314cd58580a1a646cf02dfdc1eacaefde6e025fb18e1673e867b2b890b8",
+      "size_bytes": 1886,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 0,
+      "keyword_hits": [],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/work/system_specs/INDEX.md",
+      "role_hit_count": 5,
+      "role_hits": [
+        {
+          "line": 5,
+          "text": "- THREAD_BOUNDARIES.md \u2014 thread topology, entropy firewall, save levels"
+        },
+        {
+          "line": 13,
+          "text": "- A2_PROTOCOL.md \u2014 A2 mode discipline, artifact-first processing"
+        },
+        {
+          "line": 15,
+          "text": "## B layer"
+        },
+        {
+          "line": 17,
+          "text": "- B_ACCEPTED_CONTAINERS.md \u2014 EXPORT_BLOCK, SIM_EVIDENCE, THREAD_S_SAVE_SNAPSHOT"
+        },
+        {
+          "line": 21,
+          "text": "- JARGON_GATE.md \u2014 derived-only quarantine, A2 hazard words"
+        }
+      ],
+      "sha256": "dd49bfa69493c5d1b4ee5521053edc24733952a911a72731d3907d49cca4ff14",
+      "size_bytes": 1071,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 1,
+      "keyword_hits": [
+        {
+          "line": 38,
+          "text": "- FTL signaling claims (must separate from non-signaling correlations)"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/work/system_specs/JARGON_GATE.md",
+      "role_hit_count": 5,
+      "role_hits": [
+        {
+          "line": 6,
+          "text": "## Canon-gated (Thread B derived-only families)"
+        },
+        {
+          "line": 21,
+          "text": "- Derived-only scanning applies only to lines inside `EXPORT_BLOCK CONTENT`."
+        },
+        {
+          "line": 30,
+          "text": "## A2 quarantine vectors (high-entropy hazards)"
+        },
+        {
+          "line": 43,
+          "text": "- If a term is canon-gated: keep it out of B-facing artifacts unless admitted."
+        },
+        {
+          "line": 44,
+          "text": "- If a phrase is A2-hazard: keep it in A2 fuel extracts only, and rewrite to operator/observable candidates before any proposal attempt."
+        }
+      ],
+      "sha256": "ecf1cecde5b367386a8133559a18af660d865b319f418d3fff8a0b507e0a4d94",
+      "size_bytes": 1904,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 2,
+      "keyword_hits": [
+        {
+          "line": 106,
+          "text": "- Graveyard ratio must stay >= 50% (from real alternatives, not garbage probes)"
+        },
+        {
+          "line": 110,
+          "text": "- Each graveyard item must be structurally tied to a specific term"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/work/system_specs/PIPELINE_SPEC.md",
+      "role_hit_count": 9,
+      "role_hits": [
+        {
+          "line": 27,
+          "text": "| Flag | What it does | Uses A1? | Uses ZIPs? | Uses feedback? |"
+        },
+        {
+          "line": 30,
+          "text": "| `--run-once` | A0 hardcoded ladder \u2192 B evaluate | No | No | No |"
+        },
+        {
+          "line": 31,
+          "text": "| `--cycle` | A0 ladder \u2192 B \u2192 SIM | No | No | No |"
+        },
+        {
+          "line": 32,
+          "text": "| `--full-cycle` | A1 strategy \u2192 expand \u2192 B \u2192 SIM \u2192 feedback | **Yes** | **Yes** | **Yes** |"
+        },
+        {
+          "line": 51,
+          "text": "## CLI for the A1 workflow"
+        },
+        {
+          "line": 64,
+          "text": "--run-dir runs/my_run --sim-cap 5"
+        },
+        {
+          "line": 74,
+          "text": "| `--sim-cap` | 3 | Max sims to run per cycle |"
+        },
+        {
+          "line": 86,
+          "text": "- `FEEDBACK_<hash>.json` \u2014 what B accepted/rejected, rosetta changes"
+        },
+        {
+          "line": 111,
+          "text": "- Sims are tiered: small \u2192 compound \u2192 master sim (the endgame proof)"
+        }
+      ],
+      "sha256": "12ef231db6b1f66d28407a1e347bc3359c8e1a9daebc6eb18908f83636a832f1",
+      "size_bytes": 4330,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 1,
+      "keyword_hits": [
+        {
+          "line": 10,
+          "text": "## Gate (hard, project policy)"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/work/system_specs/PRO_GLOSSARY_OVERLAY.md",
+      "role_hit_count": 4,
+      "role_hits": [
+        {
+          "line": 14,
+          "text": "- A Thread B item ID present in `SURVIVOR_LEDGER`, and"
+        },
+        {
+          "line": 26,
+          "text": "- `CANON_POINTERS` (IDs / tokens in B that justify the mapping)"
+        },
+        {
+          "line": 32,
+          "text": "- No policy changes to B fences."
+        },
+        {
+          "line": 38,
+          "text": "- `core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md` (Section 0.2)"
+        }
+      ],
+      "sha256": "21046840c7e730fec48816ef8d00ecc0c2da3fc4ee8d2a42cf6f92e0f97d2b2a",
+      "size_bytes": 1184,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 2,
+      "keyword_hits": [
+        {
+          "line": 104,
+          "text": "Append-only A2 persistent memory. One JSON object per line."
+        },
+        {
+          "line": 116,
+          "text": "Updated at end of session. Never rewritten."
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/work/system_specs/STATE_SCHEMA.md",
+      "role_hit_count": 2,
+      "role_hits": [
+        {
+          "line": 32,
+          "text": "- `graveyard`: everything B rejected, with reason"
+        },
+        {
+          "line": 33,
+          "text": "- `evidence_pending`: specs waiting for SIM evidence"
+        }
+      ],
+      "sha256": "ac2460236b46a2aa585be112040b8d91064f27490987cec6d109890407543a41",
+      "size_bytes": 4343,
+      "table_role_hit_count": 0,
+      "table_role_hits": [],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    },
+    {
+      "keyword_hit_count": 7,
+      "keyword_hits": [
+        {
+          "line": 15,
+          "text": "## Hard boundary contracts"
+        },
+        {
+          "line": 26,
+          "text": "- A2: never produces B-grammar, never runs sims, never claims canon"
+        },
+        {
+          "line": 27,
+          "text": "- A1: never sends directly to B, never emits EXPORT_BLOCKs, never decides canon"
+        },
+        {
+          "line": 28,
+          "text": "- A0: never interprets, never explains, never ingests raw high-entropy docs"
+        },
+        {
+          "line": 29,
+          "text": "- B: never reads fuel, prose, overlays, or non-container content"
+        },
+        {
+          "line": 30,
+          "text": "- SIM: never uses LLM, never modifies state, returns evidence only"
+        },
+        {
+          "line": 45,
+          "text": "- **FULL+ ratchet step**: complete canon restore state (no rosetta required)"
+        }
+      ],
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/work/system_specs/THREAD_BOUNDARIES.md",
+      "role_hit_count": 20,
+      "role_hits": [
+        {
+          "line": 1,
+          "text": "# Thread Boundaries (A2/A1/A0/B/SIM)"
+        },
+        {
+          "line": 9,
+          "text": "| A2 | System upgrade / mining / fuel extraction | High | Nondeterministic (LLM + user) |"
+        },
+        {
+          "line": 10,
+          "text": "| A1 | Strategy + proposal generation | Medium | Split: LLM strategy \u2192 Python expansion |"
+        },
+        {
+          "line": 11,
+          "text": "| A0 | Deterministic compiler | Low | Fully deterministic |"
+        },
+        {
+          "line": 12,
+          "text": "| B | Canon enforcement kernel | None | Fully deterministic |"
+        },
+        {
+          "line": 13,
+          "text": "| SIM | Evidence execution | None | Fully deterministic (Python, no LLM) |"
+        },
+        {
+          "line": 17,
+          "text": "- **A2 \u2192 A1**: A2 produces fuel (structured entries). A1 reads fuel + B state and produces strategy JSON."
+        },
+        {
+          "line": 18,
+          "text": "- **A1 \u2192 A0**: A1 expander outputs B-grammar proposals wrapped in ZIP. A0 compiles into EXPORT_BLOCK."
+        },
+        {
+          "line": 19,
+          "text": "- **A0 \u2192 B**: A0 sends EXPORT_BLOCKs only. B accepts/rejects. No other communication."
+        },
+        {
+          "line": 20,
+          "text": "- **B \u2192 SIM**: B flags specs needing evidence. SIM executes sims, returns SIM_EVIDENCE containers."
+        },
+        {
+          "line": 21,
+          "text": "- **SIM \u2192 B**: SIM_EVIDENCE ingested by B. B resolves pending evidence."
+        },
+        {
+          "line": 22,
+          "text": "- **B \u2192 A1 (feedback)**: Feedback loop records what B accepted/rejected, updates rosetta and constraint surface."
+        },
+        {
+          "line": 26,
+          "text": "- A2: never produces B-grammar, never runs sims, never claims canon"
+        },
+        {
+          "line": 27,
+          "text": "- A1: never sends directly to B, never emits EXPORT_BLOCKs, never decides canon"
+        },
+        {
+          "line": 28,
+          "text": "- A0: never interprets, never explains, never ingests raw high-entropy docs"
+        },
+        {
+          "line": 29,
+          "text": "- B: never reads fuel, prose, overlays, or non-container content"
+        },
+        {
+          "line": 30,
+          "text": "- SIM: never uses LLM, never modifies state, returns evidence only"
+        },
+        {
+          "line": 50,
+          "text": "## A1 dual role"
+        },
+        {
+          "line": 61,
+          "text": "- A0 verbatim boot: `work/rebaseline/BOOTPACK_THREAD_A0_v2.62__VERBATIM.md`"
+        },
+        {
+          "line": 62,
+          "text": "- A1 verbatim boot: `work/rebaseline/BOOTPACK_THREAD_A1_v1.0__VERBATIM.md`"
+        }
+      ],
+      "sha256": "bd2e774b79b372de6011c31f0480b7eae6e30fa4ab188c98fed6054064df0b76",
+      "size_bytes": 2986,
+      "table_role_hit_count": 5,
+      "table_role_hits": [
+        {
+          "line": 9,
+          "text": "| A2 | System upgrade / mining / fuel extraction | High | Nondeterministic (LLM + user) |"
+        },
+        {
+          "line": 10,
+          "text": "| A1 | Strategy + proposal generation | Medium | Split: LLM strategy \u2192 Python expansion |"
+        },
+        {
+          "line": 11,
+          "text": "| A0 | Deterministic compiler | Low | Fully deterministic |"
+        },
+        {
+          "line": 12,
+          "text": "| B | Canon enforcement kernel | None | Fully deterministic |"
+        },
+        {
+          "line": 13,
+          "text": "| SIM | Evidence execution | None | Fully deterministic (Python, no LLM) |"
+        }
+      ],
+      "truncated": {
+        "keyword_hits": false,
+        "role_hits": false,
+        "table_role_hits": false
+      }
+    }
+  ],
+  "sources": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/specs/system_spec_pack_v2",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v2/work/system_specs"
+  ]
+}

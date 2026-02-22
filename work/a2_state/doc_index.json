@@ -1,0 +1,215 @@
+{
+  "version": 3,
+  "purpose": "Layered index of the full corpus. Read at boot to understand what exists without re-reading 200+ files.",
+  "last_updated": "2026-02-18",
+  "total_files": {"core_docs": 216, "work": 109},
+
+  "layer_0_folders": {
+    "core_docs/": "SOURCE OF TRUTH. Read-only fuel. Never modified by the system. 224 files total.",
+    "core_docs/BOOTPACK_THREAD_A_v2.60.md": "Standalone A0 bootpack (v2.60, older than embedded v2.62 in megaboot). 828 lines.",
+    "core_docs/BOOTPACK_THREAD_B_v3.9.13.md": "Standalone Thread B bootpack (same version as embedded in megaboot). 1955 lines. THE enforcement law.",
+    "core_docs/a2_runtime_state/": "4 structural indexes from a prior A2 session. Audit logs and memory maps.",
+    "core_docs/a2 hand assembled docs/A2_UPDATED_MEMORY/": "A2 brain: intent manifest, episode 01 working log, working upgrade context. 3 files.",
+    "core_docs/a2 hand assembled docs/uploads/constraint ladder/": "40 files. The admissibility stack: 18 CANON specs + 11 CANON contracts + rosettas + LEGACY + NONCANON notes. HIGH QUALITY ORE for A1.",
+    "core_docs/a2 hand assembled docs/uploads/upgrade docs/": "12 files. 9 extraction passes + 3 directed extractions from upgrade conversations.",
+    "core_docs/a2 hand assembled docs/uploads/sims/simpy/": "51 Python sim scripts. Prior sim evidence. Covers Axis 0, 3, 4, 5, 6, 12, terrain8, operator roles, ultra stacks.",
+    "core_docs/a2 hand assembled docs/uploads/sims/simson/": "62 JSON result files. Structured output from simpy runs. SIM_CATALOG indexes them.",
+    "core_docs/a2 hand assembled docs/uploads/": "10 top-level spec/fuel docs (MEGABOOT, AXES_MASTER, AXIS0 options, etc.)",
+    "core_docs/high entropy doc/": "8 raw docs. Apple notes, thread saves, Grok/Gemini digest, holodeck docs. QUARANTINE tier.",
+    "work/ratchet_core/": "THE MACHINE. 14 Python files + 25 sims + binding JSON. All verified.",
+    "work/a2_state/": "5 files. memory.jsonl (57 entries), fuel_queue.json (306 entries), rosetta.json, doc_index.json (this file), constraint_surface.json.",
+    "work/system_specs/": "14 design docs. All current, CI-verified, dated.",
+    "archive/": "Stale specs from prior sessions. Read-only."
+  },
+
+  "layer_1_a2_brain": {
+    "A2_INTENT_MANIFEST_v1.md": "Core principles. Constraint-driven ratchet validator. Induction primary. No implicit mode switching. No narrative smoothing. Append-only brain. Never canonize. Never simulate. Never rewrite history.",
+    "A2_EPISODE_01_WORKING_LOG.md": "CRITICAL DOC. Failure modes of the system itself. Core realization: declaration is not persistence, noncommutation makes compression dangerous, thickness > elegance early. L0/L1 structural graveyard: killed automata/boolean/group as substrates, density operators conditional survivor. Probe-induced equivalence (a=a iff a~b). 6 parallel tracks merged into super-convergence. 1032 lines.",
+    "A2_WORKING_UPGRADE_CONTEXT_v1.md": "Full working context. Core constraints (finitude + noncommutation as operational, not philosophical). Thread layering (A2/A1/A0/B/SIM). ZIP protocol. L0→L1 structural deepening. Artifact registry. Constraint ladder integration. 810 lines.",
+    "A2_LOW_ENTROPY_LIBRARY_v4.md": "Canon state snapshot. 15 entries. Only finitude + noncommutation installed in B. No algebra/topology/axes/engines in canon. Probe infrastructure exists. Equality not primitive. 215 lines."
+  },
+
+  "layer_1_megaboot": {
+    "MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md": "THE MEGABOOT. 3051 lines. CANON authority. Contains: Section 0 (definitions, sacred heart, thread topology, ZIP protocol, save levels, graveyard discipline, campaign tape, anti-classical leakage). Section 0.1 (reboot kit). Section 0.2 (readability/rosetta). Section 0.3 (mining artifacts). Section 0.4 (foundation roadmap: Track G/Q/A). Section 0.5 (migration/graveyard). Section 0.6 (massive batching). Section 0.7 (debug). Section 0.8 (axis semantics). Sections 1-8 (project/boot/restore/save/seal/introspection). Section 9 (embedded bootpacks: A1 v1.0, A0 v2.62, B v3.9.13 with full enforcement rules)."
+  },
+
+  "layer_1_axis_specs": {
+    "AXES_MASTER_SPEC_v0.2.md": "CANON. Axes 0-6 = functions on constraint manifold M(C). Build order 0→6→5→3→4→(1×2). Axis-3 is ONLY engine-family split. Guardrails: Axis-4 ≠ Axis-6. 66 lines.",
+    "CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md": "CANON. Geometry = constraint manifold M(C). Exists BEFORE axes. Axes are slices, not primitives.",
+    "AXIS_FOUNDATION_COMPANION_v1.4.md": "NONCANON overlay. Topology4 (open/closed × euler/lagrange). Terrain8 = Topology4 × Flux2. 8 operator roles (Jung mapping). QIT generators for 4 stages. Hopf/Bloch/S3 placement. Heavy math.",
+    "AXIS0_SPEC_OPTIONS_v0.1.md": "4 candidate Axis-0 definitions: MI spread, local/global ratio, coherent info, boundary bookkeeping. i-scalar clock.",
+    "AXIS0_SPEC_OPTIONS_v0.2.md": "Refined. Full QIT notation. Shell formalization. jk fuzz as Kraus-history expansion. Ratcheting order defined.",
+    "AXIS0_SPEC_OPTIONS_v0.3.md": "Most rigorous. Four option families with explicit derivative classifiers. Simulation recipe included.",
+    "AXIS0_PHYSICS_BRIDGE_v0.1.md": "NONCANON. Physics→QIT bridge. Shells as coarse-grainings. No primitive time. Path integral via Kraus histories."
+  },
+
+  "layer_2_constraint_ladder": {
+    "summary": "The admissibility stack. 18 CANON specs forming strict dependency chain + 11 CANON contracts + 3 rosettas + LEGACY + NONCANON. This is the HIGH QUALITY ORE for A1 — already structured with ASSUME/DERIVE/OPEN tags and constraint IDs. Still needs A1 processing (jargon stripping, B-grammar reformulation). Presumed to have errors.",
+    "dependency_chain": "CAS → SAA → RTA → OBA → CMD → (GEA → MTA → COA → DMA) + (AFA → ASA → ORA, CPA) + (CCA, DCA, YCA) → DAB → CP",
+    "canon_admissibility_specs": {
+      "CAS (COSMOLOGICALLY_CONSTRAINT_ADMISSIBLE_STRUCTURES)": "ROOT. CAS01-CAS20. Finitude, noncommutation, no primitive identity/equality. The absolute foundation.",
+      "SAA (STATE_ABSTRACTION_ADMISSIBILITY)": "State as admissible abstraction. Generation contract template.",
+      "RTA (RELATIONAL_TRANSPORT_ADMISSIBILITY)": "RTA01-RTA22. Transport as explicit binary relation. Partial, non-reflexive, non-symmetric, non-transitive by default.",
+      "OBA (OBSTRUCTION_ADMISSIBILITY)": "OBA01-OBA22. Obstruction = failure of transport trivialization. Finite witnessed claims.",
+      "CMD (CONSTRAINT_MANIFOLD_DERIVATION)": "CMD01-CMD20. Derives global carrier M from transport + obstruction. Path tokens, compatibility.",
+      "GEA (GEOMETRY_ADMISSIBILITY)": "GEA01-GEA17. No metric primitives. No coordinates. No dimension assertions.",
+      "MTA (METRIC_ADMISSIBILITY)": "MTA01-MTA18. Nonnumeric value tokens. No triangle inequality, no symmetry, no reflexivity.",
+      "COA (COORDINATE_ADMISSIBILITY)": "COA01-COA16. Coordinates are removable representation layers only.",
+      "DMA (DIMENSIONALITY_ADMISSIBILITY)": "DMA01-DMA16. Nonnumeric dimension tokens. No primitive rank or basis.",
+      "AFA (AXIS_FUNCTION_ADMISSIBILITY)": "AFA01-AFA15. Functions as explicit F(x,v). Partial by default. No axes/coordinates/ordering.",
+      "ASA (AXIS_SET_ADMISSIBILITY)": "ASA01-ASA16. No coordinate system, frame, basis, global parameterization.",
+      "ORA (ORTHOGONALITY_ADMISSIBILITY)": "ORA01-ORA16. No metric/norm/inner product. No symmetry/reflexivity/transitivity.",
+      "CPA (COMPLETENESS_ADMISSIBILITY)": "CPA01-CPA16. Completeness ≠ basis ≠ coordinate frame.",
+      "CCA (COMPOSITION_CLASS_ADMISSIBILITY)": "CCA01-CCA18. No algebraic structure by default. No closure/totality/associativity/identity/invertibility.",
+      "DCA (DUALITY_CLASS_ADMISSIBILITY)": "DCA01-DCA16. No ontological duality. No involution by default.",
+      "YCA (CYCLE_CLASS_ADMISSIBILITY)": "YCA01-YCA17. Cycle is purely structural. No temporal recurrence, no engine semantics.",
+      "DAB (DYNAMICAL_ADMISSIBILITY_BOUNDARY)": "DAB01-DAB12. FIREWALL. No dynamics admitted yet. No time, probability, causality, optimization.",
+      "CP (CANDIDATE_PROPOSAL)": "CP01-CP20. Meta-spec: how to propose new structures against the frozen stack. Non-backflow guarantee."
+    },
+    "canon_contracts": {
+      "Topology": "24 constraints. Compatibility, adjacency, neighborhoods. No symmetry/transitivity by default.",
+      "Path": "24 constraints. Finite encoded sequences. Not temporal evolution. No closure under concatenation.",
+      "Engine": "24 constraints. Cycles + explicit closure witness + obstruction witness. Not thermodynamic engines.",
+      "Entropy": "24 constraints. Scalar functionals. No monotonicity/additivity by default. Not thermodynamic entropy.",
+      "Transport": "24 constraints. Structural mapping. Not time evolution or motion.",
+      "Curvature": "24 constraints. Obstruction/holonomy. Not Riemannian curvature. Transport path-dependence.",
+      "Rosetta": "24 constraints. Overlays cannot modify kernel. Removable annotations only.",
+      "Simulation Protocol": "24 constraints. Cannot modify kernel admissibility. Replay from execution tapes.",
+      "Physics Rosetta": "24 constraints. Physics interpretations non-binding. No kernel scalar = physical quantity.",
+      "Cognition Rosetta": "24 constraints. No kernel objects = cognitive systems. No Jungian labels in kernel.",
+      "Game Theory Rosetta": "24 constraints. No kernel objects = players/strategies. No rationality axioms required."
+    },
+    "legacy_and_noncanon": {
+      "Base constraints ledger v1": "LEGACY. BC01-BC12. Superseded by CAS. Still useful provenance.",
+      "REFINEMENT_CONTRACT_v1.1": "LEGACY. R1-R8 (20 constraints). Superseded by formal canon specs.",
+      "Constraints.md": "NONCANON. Entropic monism, emergent identity, allowable math charter, unknowns register.",
+      "Constraints. Entropy.md": "NONCANON. Path entropy functional, i-scalar construction, proto-engines.",
+      "Axis 0.md through Axis 4 vs 5.md": "NONCANON NOTES. Axis math explorations, QIT generators, corrections."
+    }
+  },
+
+  "layer_2_upgrade_docs": {
+    "summary": "12 files. Progressive extraction of upgrade intent from extended conversations. Each pass preserves ambiguity and contradiction.",
+    "key_content": "Thread architecture (A1/A0/B/SIM), ZIP protocol, graveyard philosophy, SIM pipeline, A1 modes, failure analysis. Directed extractions fill 6 specific gaps: ZIP enumeration (9 types), batch scale, sharding, FULL+ confirmation, FULL++ confirmation, phase transition signals."
+  },
+
+  "layer_2_sim_archive": {
+    "summary": "51 Python scripts + 62 JSON result files. Prior sim evidence from the user's model. These are FUEL — they demonstrate what was tested and what metrics matter. They are NOT validated by the ratchet yet.",
+    "simpy_by_axis": {
+      "axis_0": {
+        "count": 6,
+        "domain": "AB coupling, mutual information, S(A|B), trajectory correlation, history recovery",
+        "metrics": "MI_init/final/traj, SAgB_init/final/traj, neg_SAgB_frac, MI_lambda_fit, reconstruction error",
+        "scripts": ["run_axis0_mutual_info", "run_axis0_traj_corr_suite", "run_axis0_mi_discrim_branches_ab", "run_axis0_sagb_entangle_seed", "run_axis0_negsagb_stress", "run_axis0_historyop_rec_suite_v1"]
+      },
+      "axis_3": {
+        "count": 2,
+        "domain": "Chirality/sign, Berry flux, terrain x sign response",
+        "metrics": "berry_flux_approx (+/-2pi), chirality (+/-1), entropy_mean, purity_mean per terrain",
+        "scripts": ["run_terrain8_sign_suite (shared with axis 5)"]
+      },
+      "axis_4": {
+        "count": 3,
+        "domain": "Sequence order, FWD/REV, C∘R vs R∘C (operator ordering)",
+        "metrics": "purity, vn_entropy per direction and polarity",
+        "scripts": ["run_axis4_seq01_both_dirs", "run_axis4_type2_all_seq_both_dirs", "axis4_seq_cycle_sim"]
+      },
+      "axis_6": {
+        "count": 3,
+        "domain": "Left/right operator action, UP/DOWN precedence, Ti/Te/Fi/Fe",
+        "metrics": "delta_trace_mean, comm_norm_mean per operator role, vn_entropy/purity per stage x axis6",
+        "scripts": ["run_oprole8_left_right_suite", "run_stage16_sub4_axis6u", "run_stage16_axis6_mix_sweep"]
+      },
+      "axis_12": {
+        "count": 3,
+        "domain": "Topology constraints, channel realization, Topology4 channel families",
+        "metrics": "edge constraints (SENI/NESI), deltaH, lin_err per topology regime",
+        "scripts": ["run_axis12_channel_realization_suite", "run_axis12_seq_constraints", "run_axis12_topology4_channelfamily_suite_v2"]
+      },
+      "multi_axis": {
+        "count": 4,
+        "domain": "Full-stack or multi-axis stress tests",
+        "metrics": "Combined: MI, SAgB, Berry flux, stage16 deltas, axis6 patterns",
+        "scripts": ["run_ultra4_full_stack", "run_full_axis_suite", "run_engine32_axis0_axis6_attack", "mega_sims_run_02"]
+      },
+      "foundation": {
+        "count": 1,
+        "domain": "Pre-axis mathematical foundations",
+        "metrics": "Non-commutation, density-matrix necessity",
+        "scripts": ["prove_foundation"]
+      },
+      "history_variants": {
+        "count": 8,
+        "domain": "History operator ordering, gradient scans, invariant probes",
+        "metrics": "MI stability under reordering/truncation/scrambling",
+        "note": "Some are placeholders with random values — real math not yet implemented"
+      }
+    },
+    "simson_structure": {
+      "format": "JSON with root-level params (n_vec, theta, cycles, seeds) + metrics objects",
+      "no_pass_fail": "None define explicit pass/fail. Thresholds must be inferred from metrics.",
+      "axis_coverage": "Axis 0, 3, 4, 5, 6, 12, multi-axis ultras, neg-controls, parameter sweeps",
+      "result_count": 62
+    }
+  },
+
+  "layer_2_thread_s_save": {
+    "summary": "Thread S Full Save Kit — a complete snapshot of Thread B canon state from BOOTPACK_THREAD_B_v3.9.13. 8 files.",
+    "README.md": "Describes the save kit bundle and its contents",
+    "THREAD_S_SAVE_SNAPSHOT_v2.txt": "Full snapshot: survivor ledger, park set, term registry, evidence pending, provenance. The restore artifact.",
+    "DUMP_LEDGER_BODIES.txt": "Verbatim item bodies for all survivors and parked items",
+    "DUMP_TERMS.txt": "Full term registry dump (264+ terms, mostly auto_* TERM_PERMITTED)",
+    "DUMP_INDEX.txt": "Index of active axioms (2), math defs (2), term defs (264+)",
+    "REPORT_POLICY_STATE.txt": "Policy flags: EQUALS_SIGN_CANONICAL_ALLOWED FALSE, DIGIT_SIGN_CANONICAL_ALLOWED FALSE",
+    "PROVENANCE.txt": "Counters: ACCEPTED_BATCH_COUNT, UNCHANGED_LEDGER_STREAK",
+    "SHA256SUMS.txt": "Integrity hashes for all files in the kit"
+  },
+
+  "layer_2_a2_export_pack": {
+    "summary": "A2 Export Pack from 2026-02-12 — A2's brain state for continuing in a new thread. 5 files.",
+    "README_A2_EXPORT_PACK_SMALL.md": "Overview: what's in the pack, how to use it",
+    "A2_JP_BEHAVIORAL_BOOT.md": "E0. Behavioral boot for A2: role, authority, modes (OBSERVE/PROPOSE/DRAFT/AUDIT/SEAL/REFUSE), proposal discipline, episodic sealing",
+    "A2_SYSTEM_SPEC_v1.md": "E0. A2 = outer evolution layer. Core documents it maintains. Boundaries (never canon, never simulate, never rewrite history)",
+    "A2_WORKING_UPGRADE_CONTEXT_v1.md": "Earlier version of the working upgrade context (same as A2_UPDATED_MEMORY copy)",
+    "A2_EPISODE_01_WORKING_LOG.md": "Earlier version of the episode log (same as A2_UPDATED_MEMORY copy)"
+  },
+
+  "layer_2_sim_meta": {
+    "SIM_RUNBOOK_v1.4.md": "E1. Runbook for running sims: paste hygiene, no-manual-editing workflow, debugging, minimal suite order",
+    "SIM_CATALOG_v1.3.md": "E1. Index of 62 result files by axis (0-6, Topology4, Stage16, ULTRA). Entry points and suggested run order.",
+    "SIM_EVIDENCE_PACK_autogen_v2.txt": "E2. Paste-ready SIM_EVIDENCE blocks with SIM_ID, hashes, metrics, evidence signals. For Thread-B ingestion."
+  },
+
+  "layer_2_a2_runtime_state": {
+    "summary": "4 structural indexes from a prior A2 session. Located at core_docs/a2_runtime_state/.",
+    "ZIP_INDEX_v1.md": "E0. Flat manifest of all paths in the A2 archive with byte sizes and timestamps. First-read at boot.",
+    "STRUCTURAL_MEMORY_MAP_v2.md": "E1. Structural index of core A2 memory docs with section headings, integration passes, L0/L1 track results.",
+    "UPGRADE_STRUCTURAL_MAP_v1.md": "E1. Structural index of upgrade-planning docs (extraction passes 1-9) with section headings.",
+    "FULL_READ_LOG_PASS_4.md": "E2. Audit log of every document in the corpus: structure, canon status, constraints, assumptions, conflicts."
+  },
+
+  "layer_3_high_entropy": {
+    "summary": "8 high-entropy docs in core_docs/high entropy doc/. Raw notes, thread saves, model digests. QUARANTINE tier.",
+    "holodeck docs.md": "108K chars. Projective holodeck model of perception. AI avatar architecture. Personality type implementations. 4F programs. Mental health framework. Long-term plan for world models. NOT kernel material.",
+    "grok gemini having digested the model.md": "271K chars. Full model context from Grok/Gemini. C01-C25 constraint registry. QIT foundation seed. Full axis articulation. IGT mapping. Cosmological extensions. SOURCE MATERIAL for constraint ladder.",
+    "apple notes save. pre axex notes.txt": "E2. Early notes on Ring Checkerboard, engine stages, cannon system linking axioms to engines via Rosetta.",
+    "axes math. apple notes dump.txt": "E3. Formal resolution of Axis 6/5 naming contradiction (left-action vs right-action) with fixed naming rule.",
+    "thread b 3.4.2 .txt": "E3. Older BOOTPACK_THREAD_B v3.5.2 enforcement kernel spec. Superseded by v3.9.13.",
+    "thread b save.txt": "E3. Same as above, longer version. Superseded.",
+    "gpt thread a1 trigram work out .txt": "E3. BOOTPACK_THREAD_A v2.2 with A1 coordinator role and copy/paste failure audit. Superseded.",
+    "A0 new thread save before sim run.md": "E3. Pre-sim snapshot of BOOTPACK_THREAD_A v2.2. Superseded.",
+    "grok unified phuysics nov 29th.txt": "E2-E3. 407K chars, 6599 lines. THE FULL PHYSICS MODEL as of Nov 2025. One-stuff one-force entropic monism. 4→8→16 type hierarchy from pure randomness. Cosmology (sequential bubble multiverse, white holes = supervoids = Big Bang). Dark sector (DM = negative entropy loops, DE = positive entropy divergence). The 4 operators (Te=gradient descent, Ti=eigenvalue solver, Fe=phase locking, Fi=resonant standing wave). S3 manifold with Weyl spinors for global chirality. Win/lose game mapping. Consciousness as Turing machine + oracle. AI alignment via entropy oracle. CORE IDEAS STRONG but ratchet/axis connections may be outdated since Nov.",
+    "Leviathan v3.2 word.docx": "E3. Binary docx version. See .txt version.",
+    "Leviathan v3.2 word.txt": "E3. 281K chars, 2204 lines. The Leviathan/Recursive Freedom Framework — the user's full social operating system. Decentralized anarcho-capitalist governance, delegated proxy voting, semantic computing (LevOS), cooperative economics, Ugly Mirror self-assessment, Paladin system, recursive scientific methodology. Scales from cooperatives to Kardashev civilizations. Philosophical basis: Hobbes, Hume, Confucius, Jung, Machiavelli, Sun Tzu. THIS IS THE BROADER CONTEXT the physics model sits inside.",
+    "x grok chat TOE.docx": "E3. Binary docx version. See .txt version.",
+    "x grok chat TOE.txt": "E3. 85 lines. Truncated version of the Grok TOE X thread. See 'grok toe redo save.txt' for fuller version.",
+    "grok toe redo save.txt": "E2. 141 lines. The FULL Grok TOE X thread (Nov 11, 2025). Where the core cosmological ideas were first articulated: ijk as 3 time dimensions (j,k = probability spaces), white noise on hypersphere as initial universe, retrocausal multiverse (many futures create present, not branching but CONVERGING), gravity = converging possibilities (inverse square = square of possibilities), spacetime IS entropy, dark energy = positive entropy = first, dark matter = negative entropy = micro-GW loops from parent universe, supervoids = singularities of Big Bang = white holes, matter = stabilized spacetime bubbles from dark matter, Bekenstein bound as universe size limit, evolved Boltzmann brain as retrocausal god. SOURCE for PHYSICS_FUEL_DIGEST."
+  },
+
+  "layer_1_work": {
+    "SESSION_STATE.md": "Rewritten each session. Current: graveyard-first architecture, pool system, A1 philosophy, 57 memory entries, what to build next.",
+    "A2_BOOT.md": "8-step boot sequence. Multi-prompt loading is normal. Emphasizes memory.jsonl last 10 entries.",
+    "FOLDER_MAP.md": "Structure reference. Rules for file counts and sizes.",
+    "system_specs/": "14 specs: INDEX, A0_CONTRACT, A1_DESIGN, A2_DESIGN, A2_PROTOCOL, B_FENCES, B_ACCEPTED_CONTAINERS, THREAD_BOUNDARIES, PIPELINE_SPEC, STATE_SCHEMA, GOVERNANCE, PRO_GLOSSARY_OVERLAY, JARGON_GATE, DOC_ENTROPY_REGISTRY."
+  }
+}

@@ -1,0 +1,14 @@
+# SOAK REPORT
+
+- cycle_count: 2
+- accepted_total: 4
+- parked_total: 0
+- rejected_total: 0
+- stop_reason: A1_NEEDS_EXTERNAL_STRATEGY
+
+## top_failure_tags
+- NONE
+
+## last_20_events
+- {"accepted":4,"export_content_digest":"20b9d0f76311aa8fc7aabe2668ea21d5272d2251d1cded031ed6dbb5243e42cb","export_packet":{"path":"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/runs/GPT_ZIP_PACKET_001/zip_packets/000001_A0_TO_B_EXPORT_BATCH_ZIP.zip"},"export_structural_digest":"79454bc080b05012eeacec6a37b847e96bd757e73b002fe1090678d58d0ccc5c","master_sim_status":"NOT_READY","parked":0,"reject_tags":[],"rejected":0,"repeated_noop":0,"repeated_schema_fail":0,"sim_outputs":[{"ingest":{"satisfied":["S_BIND_ALPHA_ALT_S0001"],"status":"OK"},"path":"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/runs/GPT_ZIP_PACKET_001/sim/sim_evidence_0001_001.txt","sim_id":"S_BIND_ALPHA_ALT_S0001","zip":"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/runs/GPT_ZIP_PACKET_001/zip_packets/000001_SIM_TO_A0_SIM_RESULT_ZIP.zip"},{"ingest":{"satisfied":["S_BIND_ALPHA_S0001"],"status":"OK"},"path":"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/runs/GPT_ZIP_PACKET_001/sim/sim_evidence_0001_002.txt","sim_id":"S_BIND_ALPHA_S0001","zip":"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/runs/GPT_ZIP_PACKET_001/zip_packets/000002_SIM_TO_A0_SIM_RESULT_ZIP.zip"}],"state_hash_after":"027aab813e5d822f0705241023e96f7303dc535e44c61b0e7d55f43432ad7e2a","state_hash_before":"de0e5fe905c27b70960a8a41dadfe10ac8ab9beef13ea3a6724d7d7630d353cc","step":1,"strategy_digest":"e2a40bb50f9fda3c2ba00817b72c5a0bbc5b30bf9b7102f549acd386b3ca76d6","strategy_packet":{"path":"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/runs/GPT_ZIP_PACKET_001/zip_packets/000001_A1_TO_A0_STRATEGY_ZIP.zip"},"unresolved_promotion_blocker_count":2}
+- {"a0_to_a1_save_zip":"/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/runs/GPT_ZIP_PACKET_001/zip_packets/000002_A0_TO_A1_SAVE_ZIP.zip","event":"a1_strategy_request_emitted","last_reject_tags":[],"source":"ZIP_PROTOCOL_v2","state_hash":"1b70b59679749962159a563e7aff03b6fbd0c632cfb61679a02cd973dda62e97","step":2}

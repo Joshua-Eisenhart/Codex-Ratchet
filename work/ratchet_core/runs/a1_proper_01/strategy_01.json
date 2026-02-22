@@ -1,0 +1,72 @@
+{
+  "terms_to_admit": [
+    {
+      "term": "entropy",
+      "why": "von Neumann entropy S(rho) = -Tr(rho log rho)",
+      "alternatives": [
+        {"suffix": "NO_TRACE", "objects": "density operator", "flaw": "missing trace — entropy requires Tr"},
+        {"suffix": "COMMUTATIVE", "objects": "density matrix commutator", "flaw": "entropy is scalar not commutator"},
+        {"suffix": "USES_IDENTITY", "objects": "density matrix trace identity", "flaw": "uses derived-only 'identity'"}
+      ]
+    },
+    {
+      "term": "purity",
+      "why": "Tr(rho^2) — scalar measure of mixedness",
+      "alternatives": [
+        {"suffix": "WRONG_DOMAIN", "objects": "channel operator", "flaw": "purity is on states not channels"},
+        {"suffix": "USES_FUNCTION", "objects": "density matrix function trace", "flaw": "uses derived-only 'function'"}
+      ]
+    },
+    {
+      "term": "fidelity",
+      "why": "F(rho,sigma) — overlap between quantum states",
+      "alternatives": [
+        {"suffix": "SINGLE_STATE", "objects": "density operator trace", "flaw": "fidelity needs TWO states"},
+        {"suffix": "USES_EQUAL", "objects": "density matrix trace equal operator", "flaw": "uses derived-only 'equal'"}
+      ]
+    },
+    {
+      "term": "adjoint",
+      "why": "(A†)_ij = conj(A_ji) — conjugate transpose",
+      "alternatives": [
+        {"suffix": "NO_CONJUGATE", "objects": "matrix operator", "flaw": "adjoint requires conjugation, not just transpose"},
+        {"suffix": "USES_COMPLEX", "objects": "matrix operator complex", "flaw": "uses derived-only 'complex'"}
+      ]
+    },
+    {
+      "term": "norm",
+      "why": "||A|| — non-negative scalar measuring operator size",
+      "alternatives": [
+        {"suffix": "UNBOUNDED", "objects": "operator", "flaw": "norm needs trace or inner product structure"},
+        {"suffix": "USES_DISTANCE", "objects": "operator density distance", "flaw": "uses derived-only 'distance'"}
+      ]
+    },
+    {
+      "term": "eigenvalue",
+      "why": "lambda where A|v> = lambda|v>",
+      "alternatives": [
+        {"suffix": "NO_OPERATOR", "objects": "hilbert space", "flaw": "eigenvalue requires an operator"},
+        {"suffix": "USES_NUMBER", "objects": "operator hilbert number", "flaw": "uses derived-only 'number'"}
+      ]
+    }
+  ],
+  "compounds_to_try": [],
+  "math_defs": [
+    {
+      "id": "S_DM_001",
+      "objects": "density matrix trace operator",
+      "alternatives": [
+        {"suffix": "NO_TRACE", "objects": "density matrix operator", "flaw": "density matrix requires Tr=1"},
+        {"suffix": "NO_HERMITIAN", "objects": "matrix trace operator", "flaw": "density matrix must be Hermitian"}
+      ]
+    },
+    {
+      "id": "S_UE_001",
+      "objects": "unitary operator hilbert space",
+      "alternatives": [
+        {"suffix": "NOT_INVERTIBLE", "objects": "operator hilbert space", "flaw": "unitary requires U†U=I"},
+        {"suffix": "USES_IDENTITY", "objects": "unitary operator identity", "flaw": "uses derived-only 'identity'"}
+      ]
+    }
+  ]
+}

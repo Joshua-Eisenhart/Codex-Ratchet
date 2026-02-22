@@ -1,0 +1,72 @@
+{
+  "budget": {
+    "max_graveyard_growth_per_n_cycles": 30,
+    "max_new_specs_per_batch": 8,
+    "max_new_terms_per_batch": 12,
+    "n_cycles": 10,
+    "probe_pressure_ratio": 0.1
+  },
+  "candidate_families": [
+    {
+      "candidate_templates": [
+        {
+          "evidence_token": "E_MS_A_FULL16X4",
+          "expected_kind": "SIM_SPEC",
+          "probe_id": "P94_FULL16X4_ENGINE_PROBE",
+          "probe_kind": "FULL16X4_ENGINE",
+          "probe_token": "PT_P94_FULL16X4_ENGINE",
+          "requires_probe": "P94_FULL16X4_ENGINE_PROBE",
+          "spec_id": "S_BIND_MS_A_FULL16X4"
+        }
+      ],
+      "expected_b_fences": [
+        "SPEC_KIND_UNSUPPORTED",
+        "MISSING_REQUIRED_PROBE",
+        "EVIDENCE_TOKEN_MISMATCH"
+      ],
+      "family_id": "SIM_SPEC_BIND",
+      "forbidden_terms": [
+        "axis",
+        "axes",
+        "engine_jargon"
+      ],
+      "purpose": "bind a deterministic sim evidence token to one canonical SIM_SPEC",
+      "required_terms": [
+        "sim",
+        "probe",
+        "evidence"
+      ],
+      "sim_hooks": [
+        {
+          "sim_id": "S_BIND_MS_A_FULL16X4",
+          "sim_spec_id": "S_BIND_MS_A_FULL16X4"
+        }
+      ]
+    }
+  ],
+  "input_doc_refs": [
+    {
+      "path": "core_docs/BOOTPACK_THREAD_B_v3.9.13.md",
+      "sha256": "9c6a2b4dcbab1800518b100d4ca94477d98e35a3599bdb547949c8b26657264a"
+    }
+  ],
+  "intent": "Compile a minimal bootpack-conformant SIM_SPEC bind block.",
+  "repair_rules": {
+    "DERIVED_ONLY_PRIMITIVE_USE": "DROP_CANDIDATE",
+    "EVIDENCE_TOKEN_MISMATCH": "ALIGN_ASSERT_TO_DEF_FIELD",
+    "MISSING_REQUIRED_PROBE": "ADD_REQUIRED_PROBE",
+    "PROBE_PRESSURE": "INJECT_PROBES",
+    "SPEC_KIND_UNSUPPORTED": "DROP_OR_REMAP_KIND",
+    "UNDEFINED_TERM_USE": "DROP_CANDIDATE"
+  },
+  "rosetta_map": {
+    "full16x4 engine": "full16x4_engine"
+  },
+  "stop_conditions": {
+    "max_repair_attempts_per_step": 3,
+    "repeated_noop_limit": 5,
+    "repeated_schema_fail_limit": 3
+  },
+  "strategy_id": "STRAT_MS_A_FULL16X4_V1",
+  "version": "A1_STRATEGY_v1"
+}

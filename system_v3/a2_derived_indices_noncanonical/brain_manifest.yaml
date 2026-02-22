@@ -1,0 +1,56 @@
+version: 1
+status: DRAFT_NONCANON
+date: "2026-02-20"
+
+interfaces:
+  # Canonical A2 state (fixed interface; consumed by tooling)
+  memory:
+    path: "system_v3/a2_state/memory.jsonl"
+    mode: "append_only"
+    record_schema: "A2_MEMORY_EVENT_v1"
+  doc_index:
+    path: "system_v3/a2_state/doc_index.json"
+    mode: "rewrite_allowed_registry"
+    record_schema: "A2_DOC_INDEX_v1"
+  fuel_queue:
+    path: "system_v3/a2_state/fuel_queue.json"
+    mode: "rewrite_allowed_registry"
+    record_schema: "A2_FUEL_QUEUE_v1"
+  rosetta:
+    path: "system_v3/a2_state/rosetta.json"
+    mode: "rewrite_allowed_registry"
+    record_schema: "A2_ROSETTA_v1"
+  constraint_surface:
+    path: "system_v3/a2_state/constraint_surface.json"
+    mode: "rewrite_allowed_derived"
+    record_schema: "A2_CONSTRAINT_SURFACE_v1"
+  intent_summary:
+    path: "system_v3/a2_state/INTENT_SUMMARY.md"
+    mode: "rewrite_allowed_derived"
+    record_schema: "A2_INTENT_SUMMARY_v1"
+  model_context:
+    path: "system_v3/a2_state/MODEL_CONTEXT.md"
+    mode: "rewrite_allowed_derived"
+    record_schema: "A2_MODEL_CONTEXT_v1"
+
+  # Optional derived indices (regenerable; never treated as canon inputs)
+  thread_seals:
+    path: "system_v3/a2_derived_indices_noncanonical/thread_seals.000.jsonl"
+    mode: "append_only"
+    record_schema: "A2_THREAD_SEAL_v1"
+  contradictions:
+    path: "system_v3/a2_derived_indices_noncanonical/contradictions.yaml"
+    mode: "rewrite_allowed_small_index"
+    record_schema: "A2_CONTRADICTION_INDEX_v1"
+  pending_actions:
+    path: "system_v3/a2_derived_indices_noncanonical/pending_actions.yaml"
+    mode: "rewrite_allowed_small_index"
+    record_schema: "A2_PENDING_ACTIONS_v1"
+  decisions:
+    path: "system_v3/a2_derived_indices_noncanonical/decisions.yaml"
+    mode: "rewrite_allowed_small_index"
+    record_schema: "A2_DECISIONS_v1"
+
+sharding:
+  max_bytes_per_jsonl: 65536
+  shard_suffix_format: ".%03d"

@@ -28,6 +28,20 @@ def main() -> int:
     parser.add_argument("--min-negative-signals", type=int, default=1)
     parser.add_argument("--min-kill-signals", type=int, default=1)
     parser.add_argument("--min-graveyard-records", type=int, default=1)
+    parser.add_argument("--semantic-gate-min-canonical-terms", type=int, default=10)
+    parser.add_argument("--semantic-gate-min-graveyard-count", type=int, default=10)
+    parser.add_argument("--semantic-gate-min-unique-probe-terms", type=int, default=8)
+    parser.add_argument("--semantic-gate-max-fallback-probe-fraction", type=float, default=0.10)
+    parser.add_argument(
+        "--semantic-gate-phase",
+        choices=["mixed", "graveyard_fill", "recovery"],
+        default="mixed",
+        help="Pass-through phase for semantic gate evaluation.",
+    )
+    parser.add_argument(
+        "--semantic-gate-required-probe-terms",
+        default="density_matrix,cptp_channel,partial_trace,unitary_operator,correlation_polarity,qit_master_conjunction",
+    )
     parser.add_argument("--max-shard-bytes", type=int, default=5_000_000)
     parser.add_argument("--max-shard-lines", type=int, default=200_000)
     parser.add_argument("--max-run-bytes", type=int, default=200_000_000)
@@ -122,6 +136,27 @@ def main() -> int:
                 run_dir,
                 "--min-graveyard-records",
                 str(args.min_graveyard_records),
+            ],
+        ),
+        (
+            "P5_SIM_EVIDENCE_LOOP_C",
+            [
+                "python3",
+                str(repo_root / "system_v3" / "tools" / "run_a1_semantic_and_math_substance_gate.py"),
+                "--run-dir",
+                run_dir,
+                "--phase",
+                str(args.semantic_gate_phase),
+                "--min-canonical-terms",
+                str(args.semantic_gate_min_canonical_terms),
+                "--min-graveyard-count",
+                str(args.semantic_gate_min_graveyard_count),
+                "--min-unique-probe-terms",
+                str(args.semantic_gate_min_unique_probe_terms),
+                "--max-fallback-probe-fraction",
+                str(args.semantic_gate_max_fallback_probe_fraction),
+                "--required-probe-terms",
+                str(args.semantic_gate_required_probe_terms),
             ],
         ),
         (

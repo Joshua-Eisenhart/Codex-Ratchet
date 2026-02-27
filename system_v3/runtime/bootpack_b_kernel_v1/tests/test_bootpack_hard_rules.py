@@ -135,6 +135,27 @@ class TestBootpackHardRules(unittest.TestCase):
         self.assertIn("S_FOLLOW", accepted_ids)
         self.assertEqual("PENDING_EVIDENCE", self.state.survivor_ledger["S_FOLLOW"]["status"])
 
+    def test_prune_stale_undefined_term_use_park_entry(self):
+        parked_id = "S_PARKED_TERM"
+        parked_term = "nested_hopf_torus_constraint"
+        self.state.park_set[parked_id] = {
+            "id": parked_id,
+            "class": "SPEC_HYP",
+            "tag": "UNDEFINED_TERM_USE",
+            "detail": "UNDEFINED_LEXEME:nested",
+            "item_text": (
+                f"SPEC_HYP {parked_id}\n"
+                f"SPEC_KIND {parked_id} CORR TERM_DEF\n"
+                f"DEF_FIELD {parked_id} CORR TERM \"{parked_term}\"\n"
+            ),
+        }
+        self.state.term_registry["nested"] = {"state": "CANONICAL_ALLOWED"}
+        self.state.term_registry[parked_term] = {"state": "CANONICAL_ALLOWED"}
+
+        self.kernel._prune_resolved_park_entries(self.state)
+
+        self.assertNotIn(parked_id, self.state.park_set)
+
 
 if __name__ == "__main__":
     unittest.main()

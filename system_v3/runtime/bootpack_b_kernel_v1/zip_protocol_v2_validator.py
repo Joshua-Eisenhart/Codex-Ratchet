@@ -113,6 +113,10 @@ _FORBIDDEN_BY_TYPE: dict[str, set[str]] = {
 }
 
 
+_FORWARD_REPLAY_SOURCES = ("A1", "A0")
+_PARKED_KEY_PREFIX = "__PARKED__:"
+
+
 def _sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
@@ -220,11 +224,82 @@ def _count_exact(text: str, begin: str, end: str) -> tuple[int, int]:
     return begins, ends
 
 
+def _parked_state_key(run_id: str, source_layer: str) -> tuple[str, str]:
+    return (run_id, f"{_PARKED_KEY_PREFIX}{source_layer}")
+
+
+def _read_parked_sequences(
+    seq_state: dict[tuple[str, str], object],
+    run_id: str,
+    source_layer: str,
+) -> set[int]:
+    raw = seq_state.get(_parked_state_key(run_id, source_layer), [])
+    if isinstance(raw, int):
+        return {int(raw)}
+    if isinstance(raw, (list, tuple, set)):
+        out: set[int] = set()
+        for value in raw:
+            try:
+                out.add(int(value))
+            except Exception:
+                continue
+        return out
+    return set()
+
+
+def _mark_deterministic_park(
+    seq_state: dict[tuple[str, str], object],
+    run_id: str,
+    source_layer: str,
+    sequence: int,
+) -> None:
+    parked = _read_parked_sequences(seq_state, run_id, source_layer)
+    parked.add(int(sequence))
+    seq_state[_parked_state_key(run_id, source_layer)] = sorted(parked)
+
+
+def _sequence_exists_or_parked(
+    seq_state: dict[tuple[str, str], object],
+    run_id: str,
+    source_layer: str,
+    sequence: int,
+) -> bool:
+    accepted = int(seq_state.get((run_id, source_layer), 0))
+    if int(sequence) <= accepted:
+        return True
+    parked = _read_parked_sequences(seq_state, run_id, source_layer)
+    return int(sequence) in parked
+
+
+def _forward_horizon(
+    seq_state: dict[tuple[str, str], object],
+    run_id: str,
+    source_layer: str,
+) -> int:
+    accepted = int(seq_state.get((run_id, source_layer), 0))
+    parked = _read_parked_sequences(seq_state, run_id, source_layer)
+    parked_max = max(parked) if parked else 0
+    return max(accepted, parked_max)
+
+
+def _missing_forward_sequence(
+    seq_state: dict[tuple[str, str], object],
+    run_id: str,
+    source_layer: str,
+    required_upto: int,
+) -> int | None:
+    for required_seq in range(1, int(required_upto) + 1):
+        if _sequence_exists_or_parked(seq_state, run_id, source_layer, required_seq):
+            continue
+        return required_seq
+    return None
+
+
 def validate_zip_protocol_v2(
     zip_path: str,
     last_accepted_sequence: dict[tuple[str, str], int] | None = None,
 ) -> dict:
-    seq_state = last_accepted_sequence if last_accepted_sequence is not None else {}
+    seq_state: dict[tuple[str, str], object] = last_accepted_sequence if last_accepted_sequence is not None else {}
 
     try:
         zf = zipfile.ZipFile(zip_path, "r")
@@ -321,6 +396,8 @@ def validate_zip_protocol_v2(
     if sequence <= last_seq:
         return _reject("SEQUENCE_REGRESSION", "sequence_regression")
     if sequence > last_seq + 1:
+        if direction == "FORWARD":
+            _mark_deterministic_park(seq_state, run_id, source_layer, sequence)
         return _park("SEQUENCE_GAP")
 
     # Manifest parse.
@@ -428,6 +505,24 @@ def validate_zip_protocol_v2(
         else:
             return _reject("CONTAINER_BOUNDARY_INVALID", "unknown_container_rule")
 
+    if direction == "BACKWARD":
+        if zip_type == "B_TO_A0_STATE_UPDATE_ZIP":
+            for forward_source in _FORWARD_REPLAY_SOURCES:
+                missing = _missing_forward_sequence(seq_state, run_id, forward_source, sequence)
+                if missing is None:
+                    continue
+                _mark_deterministic_park(seq_state, run_id, source_layer, sequence)
+                return _park(f"MISSING_FORWARD_SEQUENCE:{forward_source}:{missing}")
+        elif zip_type == "SIM_TO_A0_SIM_RESULT_ZIP":
+            horizon = _forward_horizon(seq_state, run_id, "A0")
+            if horizon < 1:
+                _mark_deterministic_park(seq_state, run_id, source_layer, sequence)
+                return _park("MISSING_FORWARD_SEQUENCE:A0:1")
+            required_upto = min(sequence, horizon)
+            missing = _missing_forward_sequence(seq_state, run_id, "A0", required_upto)
+            if missing is not None:
+                _mark_deterministic_park(seq_state, run_id, source_layer, sequence)
+                return _park(f"MISSING_FORWARD_SEQUENCE:A0:{missing}")
+
     seq_state[(run_id, source_layer)] = sequence
     return _ok(sequence)
-

@@ -45,6 +45,56 @@ def _write_json(path: Path, obj: dict) -> None:
     _write_text(path, json.dumps(obj, indent=2, sort_keys=True) + "\n")
 
 
+def _default_manifest(
+    *,
+    run_id: str,
+    created_utc: str,
+    baseline_state_hash: str,
+    strategy_hash: str,
+    spec_hash: str,
+    bootpack_b_hash: str,
+    bootpack_a_hash: str,
+) -> dict:
+    return {
+        "schema": "RUN_MANIFEST_v1",
+        "run_id": run_id,
+        "created_utc": created_utc,
+        "baseline_state_hash": baseline_state_hash,
+        "strategy_hash": strategy_hash,
+        "spec_hash": spec_hash,
+        "bootpack_b_hash": bootpack_b_hash,
+        "bootpack_a_hash": bootpack_a_hash,
+    }
+
+
+def _default_report_template(dst_name: str, run_id: str) -> dict:
+    schema_map = {
+        "spec_lock_report.json": "SPEC_LOCK_REPORT_v1",
+        "artifact_grammar_report.json": "ARTIFACT_GRAMMAR_REPORT_v1",
+        "phase_transition_report.json": "PHASE_TRANSITION_REPORT_v1",
+        "conformance_report.json": "CONFORMANCE_REPORT_v1",
+        "a0_compile_report.json": "A0_COMPILE_REPORT_v1",
+        "replay_pass_1.json": "REPLAY_PASS_REPORT_v1",
+        "replay_pass_2.json": "REPLAY_PASS_REPORT_v1",
+        "replay_pair_report.json": "REPLAY_PAIR_REPORT_v1",
+        "evidence_ingest_report.json": "EVIDENCE_INGEST_REPORT_v1",
+        "graveyard_integrity_report.json": "GRAVEYARD_INTEGRITY_REPORT_v1",
+        "a1_semantic_and_math_substance_gate_report.json": "A1_SEMANTIC_AND_MATH_SUBSTANCE_GATE_REPORT_v1",
+        "long_run_write_guard_report.json": "LONG_RUN_WRITE_GUARD_REPORT_v1",
+        "loop_health_diagnostic.json": "LOOP_HEALTH_DIAGNOSTIC_v1",
+        "release_checklist_v1.json": "RELEASE_CHECKLIST_v1",
+    }
+    obj = {"schema": schema_map.get(dst_name, "RUN_REPORT_v1"), "run_id": run_id, "status": "PENDING"}
+    if dst_name == "release_checklist_v1.json":
+        obj["candidate_id"] = run_id
+        obj["waivers"] = []
+    if dst_name == "phase_transition_report.json":
+        obj["current_phase"] = "P0_SPEC_LOCK"
+        obj["completed_phases"] = []
+        obj["phase_gate_status"] = {}
+    return obj
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Initialize deterministic run surface from templates.")
     parser.add_argument("--run-id", required=True)
@@ -64,8 +114,7 @@ def main() -> int:
 
     repo_root = Path(__file__).resolve().parents[2]
     templates_root = repo_root / "system_v3" / "runs" / "_run_templates_v1"
-    if not templates_root.exists():
-        raise FileNotFoundError(f"missing templates root: {templates_root}")
+    templates_available = templates_root.exists()
 
     runs_root = repo_root / "system_v3" / "runs"
     run_root = runs_root / run_id
@@ -102,7 +151,18 @@ def main() -> int:
 
     # Materialize manifest.
     manifest_template = templates_root / "RUN_MANIFEST_v1.template.json"
-    manifest = _load_json_template(manifest_template, mapping)
+    if templates_available and manifest_template.exists():
+        manifest = _load_json_template(manifest_template, mapping)
+    else:
+        manifest = _default_manifest(
+            run_id=run_id,
+            created_utc=created_utc,
+            baseline_state_hash=baseline_state_hash,
+            strategy_hash=strategy_hash,
+            spec_hash=spec_hash,
+            bootpack_b_hash=bootpack_b_hash,
+            bootpack_a_hash=bootpack_a_hash,
+        )
     _write_json(run_root / "RUN_MANIFEST_v1.json", manifest)
 
     # Materialize report templates.
@@ -117,15 +177,17 @@ def main() -> int:
         "replay_pair_report.template.json": "replay_pair_report.json",
         "evidence_ingest_report.template.json": "evidence_ingest_report.json",
         "graveyard_integrity_report.template.json": "graveyard_integrity_report.json",
+        "a1_semantic_and_math_substance_gate_report.template.json": "a1_semantic_and_math_substance_gate_report.json",
         "long_run_write_guard_report.template.json": "long_run_write_guard_report.json",
         "loop_health_diagnostic.template.json": "loop_health_diagnostic.json",
         "release_checklist_v1.template.json": "release_checklist_v1.json",
     }
     for src_name, dst_name in sorted(report_templates.items()):
         src = templates_root / "reports" / src_name
-        if not src.exists():
-            raise FileNotFoundError(f"missing template: {src}")
-        obj = _load_json_template(src, mapping)
+        if templates_available and src.exists():
+            obj = _load_json_template(src, mapping)
+        else:
+            obj = _default_report_template(dst_name, run_id)
         _write_json(run_root / "reports" / dst_name, obj)
 
     # Deterministic empty tape/log shards.

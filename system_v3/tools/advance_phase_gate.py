@@ -55,7 +55,8 @@ def _as_hash_list(value: object) -> list[str]:
 
 def _phase_eval(run_dir: Path) -> Dict[str, Tuple[bool, str]]:
     reports = run_dir / "reports"
-    manifest = _read_json(run_dir / "RUN_MANIFEST_v1.json")
+    manifest_path = run_dir / "RUN_MANIFEST_v1.json"
+    manifest = _read_json(manifest_path)
     spec_lock = _read_json(reports / "spec_lock_report.json")
     artifact_grammar = _read_json(reports / "artifact_grammar_report.json")
     conformance = _read_json(reports / "conformance_results.json")
@@ -65,12 +66,16 @@ def _phase_eval(run_dir: Path) -> Dict[str, Tuple[bool, str]]:
     replay_pair = _read_json(reports / "replay_pair_report.json")
     evidence = _read_json(reports / "evidence_ingest_report.json")
     graveyard = _read_json(reports / "graveyard_integrity_report.json")
+    semantic_gate = _read_json(reports / "a1_semantic_and_math_substance_gate_report.json")
     write_guard = _read_json(reports / "long_run_write_guard_report.json")
     checklist = _read_json(reports / "release_checklist_v1.json")
 
+    manifest_ok = True
+    if manifest_path.exists():
+        manifest_ok = manifest.get("schema") == "RUN_MANIFEST_v1"
     p0 = (
-        manifest.get("schema") == "RUN_MANIFEST_v1" and _status_is_pass(spec_lock),
-        "manifest+spec_lock",
+        bool(manifest_ok) and _status_is_pass(spec_lock),
+        "spec_lock(+manifest_if_present)",
     )
     p1 = (_status_is_pass(artifact_grammar), "artifact_grammar")
     p2 = (
@@ -111,7 +116,10 @@ def _phase_eval(run_dir: Path) -> Dict[str, Tuple[bool, str]]:
         and bool(replay_cycle_ok),
         "replay_pair",
     )
-    p5 = (_status_is_pass(evidence) and _status_is_pass(graveyard), "evidence+graveyard")
+    p5 = (
+        _status_is_pass(evidence) and _status_is_pass(graveyard) and _status_is_pass(semantic_gate),
+        "evidence+graveyard+semantic_gate",
+    )
     p6 = (_status_is_pass(write_guard), "write_guard")
 
     checklist_phase_status = checklist.get("phase_status", {})

@@ -3,6 +3,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+import zipfile
 
 BASE = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BASE))
@@ -13,6 +14,12 @@ from zip_protocol_v2_validator import validate_zip_protocol_v2
 
 
 class TestA1A0BSimIntegration(unittest.TestCase):
+    def _first_export_block(self, run_dir: Path) -> str:
+        packets = sorted((run_dir / "zip_packets").glob("*_A0_TO_B_EXPORT_BATCH_ZIP.zip"))
+        self.assertTrue(packets)
+        with zipfile.ZipFile(packets[0], "r") as zf:
+            return zf.read("EXPORT_BLOCK.txt").decode("utf-8")
+
     def test_sample_strategy_schema(self):
         strategy_path = BASE / "a1_strategies" / "sample_strategy.json"
         strategy = json.loads(strategy_path.read_text(encoding="utf-8"))
@@ -43,8 +50,8 @@ class TestA1A0BSimIntegration(unittest.TestCase):
                 clean=True,
             )
             self.assertEqual(hash_a, hash_b)
-            out_a = (run_a / "outbox" / "export_block_0001.txt").read_text(encoding="utf-8")
-            out_b = (run_b / "outbox" / "export_block_0001.txt").read_text(encoding="utf-8")
+            out_a = self._first_export_block(run_a)
+            out_b = self._first_export_block(run_b)
             self.assertEqual(out_a, out_b)
             summary = json.loads((run_a / "summary.json").read_text(encoding="utf-8"))
             self.assertIn("unique_strategy_digest_count", summary)

@@ -26,6 +26,21 @@ def _sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def compute_state_transition_digest(
+    previous_state_hash: str,
+    export_block_hash: str,
+    snapshot_hash: str,
+    compiler_version: str,
+) -> str:
+    payload = (
+        str(previous_state_hash).strip()
+        + str(export_block_hash).strip()
+        + str(snapshot_hash).strip()
+        + str(compiler_version).strip()
+    )
+    return _sha256_bytes(payload.encode("utf-8"))
+
+
 def _set_def_field(candidate: dict, name: str, value_kind: str, value: str) -> None:
     for row in candidate.get("def_fields", []):
         if str(row.get("name", "")).upper() == name:
@@ -147,6 +162,19 @@ def _apply_operator_neg_sim_expand(strategy: dict) -> int:
         alt = copy.deepcopy(strategy["targets"][0])
         alt["id"] = f"{str(alt.get('id', 'S_AUTO')).strip()}_ALT"
         alt["operator_id"] = "OP_NEG_SIM_EXPAND"
+        # Guarantee cross-basin structure when source target is not SIM_SPEC.
+        if str(alt.get("kind", "")).upper() != "SIM_SPEC":
+            alt["kind"] = "SIM_SPEC"
+            alt.setdefault("requires", [])
+            alt.setdefault("def_fields", [])
+            alt.setdefault("asserts", [])
+            _set_def_field(alt, "REQUIRES_EVIDENCE", "TOKEN", f"E_{alt['id']}")
+            _set_def_field(alt, "SIM_ID", "TOKEN", str(alt["id"]))
+            _set_def_field(alt, "TIER", "TOKEN", "T1_COMPOUND")
+            _set_def_field(alt, "FAMILY", "TOKEN", "ADVERSARIAL_NEG")
+            _set_def_field(alt, "TARGET_CLASS", "TOKEN", str(alt["id"]))
+            _set_def_field(alt, "NEGATIVE_CLASS", "TOKEN", "NEG_BOUNDARY")
+            _set_assert_token(alt, "EVIDENCE_TOKEN", f"E_{alt['id']}")
         strategy["alternatives"] = [alt]
         changed += 1
     for candidate in strategy.get("alternatives", []):
@@ -215,6 +243,113 @@ def _quote(value: str) -> str:
     return '"' + value.replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
+_SPEC_HYP_RE = re.compile(r"^SPEC_HYP\s+(\S+)$")
+_SPEC_KIND_RE = re.compile(r"^SPEC_KIND\s+(\S+)\s+CORR\s+(\S+)$")
+_REQUIRES_RE = re.compile(r"^REQUIRES\s+(\S+)\s+CORR\s+(\S+)$")
+_DEF_FIELD_RE = re.compile(r"^DEF_FIELD\s+(\S+)\s+CORR\s+(\S+)\s+(.+)$")
+_ASSERT_RE = re.compile(r"^ASSERT\s+(\S+)\s+CORR\s+EXISTS\s+(\S+)\s+(\S+)$")
+
+
+def _unquote_if_needed(value: str) -> str:
+    text = value.strip()
+    if len(text) >= 2 and text[0] == '"' and text[-1] == '"':
+        try:
+            parsed = json.loads(text)
+            if isinstance(parsed, str):
+                return parsed
+        except Exception:
+            return text[1:-1]
+    return text
+
+
+def _structural_payload(spec_kind: str, requires: list[str], fields: list[dict], asserts: list[dict]) -> dict:
+    payload = {
+        "spec_kind": str(spec_kind).upper().strip(),
+        "requires": sorted({str(dep).strip() for dep in requires if str(dep).strip()}),
+        "fields": [],
+        "asserts": [],
+    }
+    for row in fields:
+        name = str(row.get("name", "")).upper().strip()
+        value = str(row.get("value", "")).strip()
+        if not name:
+            continue
+        payload["fields"].append({"name": name, "value": value})
+    for row in asserts:
+        token_class = str(row.get("token_class", "")).upper().strip()
+        token = str(row.get("token", "")).strip()
+        if not token_class or not token:
+            continue
+        payload["asserts"].append({"token_class": token_class, "token": token})
+    payload["fields"].sort(key=lambda row: (row["name"], row["value"]))
+    payload["asserts"].sort(key=lambda row: (row["token_class"], row["token"]))
+    return payload
+
+
+def _structural_digest_for_candidate(candidate: dict) -> str:
+    payload = _structural_payload(
+        spec_kind=str(candidate.get("kind", "")),
+        requires=[str(x).strip() for x in candidate.get("requires", []) if str(x).strip()],
+        fields=[dict(x) for x in candidate.get("def_fields", []) if isinstance(x, dict)],
+        asserts=[dict(x) for x in candidate.get("asserts", []) if isinstance(x, dict)],
+    )
+    raw = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return _sha256_bytes(raw)
+
+
+def _structural_digest_for_survivor_spec(item_text: str) -> str:
+    lines = [line.strip() for line in str(item_text).splitlines() if line.strip()]
+    if not lines:
+        return ""
+    first = _SPEC_HYP_RE.match(lines[0])
+    if not first:
+        return ""
+    item_id = first.group(1)
+    spec_kind = ""
+    requires: list[str] = []
+    fields: list[dict] = []
+    asserts: list[dict] = []
+
+    for line in lines[1:]:
+        match = _SPEC_KIND_RE.match(line)
+        if match:
+            if match.group(1) == item_id:
+                spec_kind = match.group(2)
+            continue
+        match = _REQUIRES_RE.match(line)
+        if match:
+            if match.group(1) == item_id:
+                requires.append(match.group(2))
+            continue
+        match = _DEF_FIELD_RE.match(line)
+        if match:
+            if match.group(1) == item_id:
+                fields.append({"name": match.group(2), "value": _unquote_if_needed(match.group(3))})
+            continue
+        match = _ASSERT_RE.match(line)
+        if match:
+            if match.group(1) == item_id:
+                asserts.append({"token_class": match.group(2), "token": match.group(3)})
+            continue
+
+    if not spec_kind:
+        return ""
+    payload = _structural_payload(spec_kind=spec_kind, requires=requires, fields=fields, asserts=asserts)
+    raw = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return _sha256_bytes(raw)
+
+
+def _survivor_structural_digests(state: KernelState) -> set[str]:
+    digests: set[str] = set()
+    for row in state.survivor_ledger.values():
+        if str(row.get("class", "")) != "SPEC_HYP":
+            continue
+        digest = _structural_digest_for_survivor_spec(str(row.get("item_text", "")))
+        if digest:
+            digests.add(digest)
+    return digests
+
+
 def compile_export_block(
     state: KernelState,
     strategy: dict,
@@ -237,6 +372,7 @@ def compile_export_block(
     validation_errors = validate_strategy(normalized)
     if validation_errors:
         raise ValueError("invalid_a1_strategy:" + ";".join(validation_errors))
+
     repaired, repair_actions = _apply_repairs(normalized, prior_tags)
     exhausted_tags: list[str] = []
     for tag in sorted(set(prior_tags)):
@@ -264,6 +400,42 @@ def compile_export_block(
     )
     repaired["self_audit"]["strategy_hash"] = ""
     repaired["self_audit"]["strategy_hash"] = _sha256_bytes(canonical_strategy_bytes(repaired))
+
+    # Structural digest enforcement is performed on the repaired strategy so that
+    # deterministic repair operators can create the required cross-basin variance.
+    candidate_rows = _candidate_rows(repaired)
+    candidate_structural_digests: list[dict] = []
+    for lane, candidate in candidate_rows:
+        item_id = str(candidate.get("id", "")).strip()
+        if not item_id:
+            continue
+        candidate_structural_digests.append(
+            {
+                "id": item_id,
+                "lane": "targets" if lane == 0 else "alternatives",
+                "digest": _structural_digest_for_candidate(candidate),
+            }
+        )
+    survivor_digests = _survivor_structural_digests(state)
+    duplicate_target_ids = sorted(
+        {
+            row["id"]
+            for row in candidate_structural_digests
+            if row["lane"] == "targets" and row["digest"] in survivor_digests
+        }
+    )
+    if duplicate_target_ids:
+        raise ValueError("duplicate_target_structural_digest:" + ",".join(duplicate_target_ids))
+    unique_candidate_digests = {row["digest"] for row in candidate_structural_digests}
+    if len(unique_candidate_digests) < 2:
+        raise ValueError("insufficient_structural_variance:all_candidates_identical")
+    target_digests = {row["digest"] for row in candidate_structural_digests if row["lane"] == "targets"}
+    has_cross_basin_alternative = any(
+        row["lane"] == "alternatives" and row["digest"] not in target_digests
+        for row in candidate_structural_digests
+    )
+    if not has_cross_basin_alternative:
+        raise ValueError("missing_cross_basin_alternative")
 
     lines: list[str] = []
     seen_probes: set[str] = set()
@@ -323,6 +495,18 @@ def compile_export_block(
             else:
                 lines.append(f"DEF_FIELD {item_id} CORR {name} {value}")
 
+        # Graveyard doctrine: SIM must be able to falsify artifacts deterministically.
+        #
+        # - For all SIM_SPEC, SimEngine may emit `KILL_SIGNAL <spec_id> CORR SIM_FAIL`
+        #   when the probe fails (positive falsification).
+        # - For negative SIM_SPEC, SimEngine may emit `KILL_SIGNAL <spec_id> CORR NEG_<NEGATIVE_CLASS>`
+        #   when the expected negative structure is present.
+        if kind == "SIM_SPEC":
+            lines.append(f"KILL_IF {item_id} CORR SIM_FAIL")
+            negative_class = _get_def_field(candidate, "NEGATIVE_CLASS")
+            if negative_class:
+                lines.append(f"KILL_IF {item_id} CORR NEG_{negative_class}")
+
         for row in asserts:
             token_class = str(row.get("token_class", "")).upper().strip()
             token = str(row.get("token", "")).strip()
@@ -362,6 +546,7 @@ def compile_export_block(
         "operator_exhausted_tags": exhausted_tags,
         "reject_repair_operator_map": {k: list(v) for k, v in sorted(_REJECT_REPAIR_OPERATOR_MAP.items())},
         "operator_trace": operator_trace,
+        "candidate_structural_digests": candidate_structural_digests,
         "spec_count": sum(spec_kind_counts.values()),
         "spec_kind_counts": {k: spec_kind_counts[k] for k in sorted(spec_kind_counts.keys())},
         "probe_count": len(seen_probes),

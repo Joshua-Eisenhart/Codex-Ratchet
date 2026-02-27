@@ -157,7 +157,42 @@ class TestZipProtocolV2Validator(unittest.TestCase):
             self.assertEqual("REJECT", result["outcome"])
             self.assertEqual("FORBIDDEN_CONTAINER_PRESENT", result["tag"])
 
+    def test_backward_before_forward_is_park(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            seq: dict[tuple[str, str], int] = {}
+            backward_zip = _make_zip(Path(td), "B_TO_A0_STATE_UPDATE_ZIP", sequence=1, run_id="RUN_BACKWARD_ORDER")
+            result = validate_zip_protocol_v2(str(backward_zip), seq)
+            self.assertEqual("PARK", result["outcome"])
+            self.assertIn("MISSING_FORWARD_SEQUENCE", str(result.get("reason", "")))
+
+    def test_backward_after_forward_is_ok(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            seq: dict[tuple[str, str], int] = {}
+            run_id = "RUN_BACKWARD_OK"
+            a1_forward = _make_zip(Path(td), "A1_TO_A0_STRATEGY_ZIP", sequence=1, run_id=run_id)
+            a0_forward = _make_zip(Path(td), "A0_TO_B_EXPORT_BATCH_ZIP", sequence=1, run_id=run_id)
+            backward_zip = _make_zip(Path(td), "B_TO_A0_STATE_UPDATE_ZIP", sequence=1, run_id=run_id)
+
+            self.assertEqual("OK", validate_zip_protocol_v2(str(a1_forward), seq)["outcome"])
+            self.assertEqual("OK", validate_zip_protocol_v2(str(a0_forward), seq)["outcome"])
+            result = validate_zip_protocol_v2(str(backward_zip), seq)
+            self.assertEqual("OK", result["outcome"])
+
+    def test_backward_sequence_regression_rejects(self) -> None:
+        with tempfile.TemporaryDirectory() as td:
+            seq: dict[tuple[str, str], int] = {}
+            run_id = "RUN_BACKWARD_REGRESSION"
+            a1_forward = _make_zip(Path(td), "A1_TO_A0_STRATEGY_ZIP", sequence=1, run_id=run_id)
+            a0_forward = _make_zip(Path(td), "A0_TO_B_EXPORT_BATCH_ZIP", sequence=1, run_id=run_id)
+            backward_zip = _make_zip(Path(td), "B_TO_A0_STATE_UPDATE_ZIP", sequence=1, run_id=run_id)
+
+            self.assertEqual("OK", validate_zip_protocol_v2(str(a1_forward), seq)["outcome"])
+            self.assertEqual("OK", validate_zip_protocol_v2(str(a0_forward), seq)["outcome"])
+            self.assertEqual("OK", validate_zip_protocol_v2(str(backward_zip), seq)["outcome"])
+            result = validate_zip_protocol_v2(str(backward_zip), seq)
+            self.assertEqual("REJECT", result["outcome"])
+            self.assertEqual("SEQUENCE_REGRESSION", result["tag"])
+
 
 if __name__ == "__main__":
     unittest.main()
-

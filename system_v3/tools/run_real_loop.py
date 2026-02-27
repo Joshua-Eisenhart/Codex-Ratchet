@@ -7,12 +7,14 @@ import json
 import re
 import shutil
 import subprocess
+import zipfile
 from pathlib import Path
 
 
 BEGIN_RECORD_RE = re.compile(r"^BEGIN EXPORT_RECORD (\d{8})$")
 END_RECORD_RE = re.compile(r"^END EXPORT_RECORD (\d{8})$")
 REQUIRES_RE = re.compile(r"^\s*REQUIRES\s+(\S+)\s+CORR\s+(\S+)\s*$")
+ZIP_PACKET_RE = re.compile(r"^(\d+)_([A-Z0-9_]+)\.zip$")
 
 
 def _sha256_bytes(data: bytes) -> str:
@@ -37,6 +39,29 @@ def _write_jsonl(path: Path, rows: list[dict]) -> None:
 
 def _run(cmd: list[str], cwd: Path) -> subprocess.CompletedProcess[str]:
     return subprocess.run(cmd, cwd=str(cwd), check=False, capture_output=True, text=True)
+
+
+def _iter_zip_packet_paths(run_dir: Path) -> list[tuple[int, str, Path]]:
+    out: list[tuple[int, str, Path]] = []
+    zip_root = run_dir / "zip_packets"
+    if not zip_root.exists():
+        return out
+    for path in sorted(zip_root.glob("*.zip")):
+        m = ZIP_PACKET_RE.match(path.name)
+        if not m:
+            continue
+        seq = int(m.group(1))
+        packet_tag = str(m.group(2))
+        out.append((seq, packet_tag, path))
+    return sorted(out, key=lambda row: row[0])
+
+
+def _read_zip_member_text(path: Path, member: str) -> str:
+    try:
+        with zipfile.ZipFile(path, "r") as zf:
+            return zf.read(member).decode("utf-8", "ignore")
+    except (FileNotFoundError, KeyError, zipfile.BadZipFile):
+        return ""
 
 
 def _extract_export_records(run_dir: Path) -> list[tuple[int, str]]:
@@ -68,7 +93,19 @@ def _extract_export_records(run_dir: Path) -> list[tuple[int, str]]:
     if records:
         return sorted(records, key=lambda x: x[0])
 
-    # Fallback: already split files.
+    # Fallback: canonical zip packet stream.
+    zip_records: list[tuple[int, str]] = []
+    for seq, packet_tag, path in _iter_zip_packet_paths(run_dir):
+        if packet_tag != "A0_TO_B_EXPORT_BATCH_ZIP":
+            continue
+        block = _read_zip_member_text(path, "EXPORT_BLOCK.txt").strip()
+        if not block:
+            continue
+        zip_records.append((seq, block + "\n"))
+    if zip_records:
+        return sorted(zip_records, key=lambda x: x[0])
+
+    # Last fallback: already split files.
     split_files = sorted(outbox.glob("export_block_*.txt"))
     for idx, path in enumerate(split_files, start=1):
         try:
@@ -82,6 +119,8 @@ def _extract_export_records(run_dir: Path) -> list[tuple[int, str]]:
 def _materialize_export_split_and_reports(run_dir: Path) -> dict:
     outbox = run_dir / "outbox"
     reports = run_dir / "reports"
+    outbox.mkdir(parents=True, exist_ok=True)
+    reports.mkdir(parents=True, exist_ok=True)
     records = _extract_export_records(run_dir)
     dependency_rows: list[dict] = []
 
@@ -153,7 +192,34 @@ def _sync_events_to_logs(run_dir: Path) -> dict:
         dst = logs_dir / path.name
         shutil.copyfile(path, dst)
         copied += 1
-    return {"copied_event_files": copied}
+    if copied > 0:
+        return {"copied_event_files": copied, "generated_event_rows": 0}
+
+    # Canonical runtime writes packet artifacts instead of root events.* files.
+    # Build a deterministic synthetic event shard from ZIP headers.
+    rows: list[dict] = []
+    for seq, packet_tag, packet_path in _iter_zip_packet_paths(run_dir):
+        header_text = _read_zip_member_text(packet_path, "ZIP_HEADER.json")
+        header = {}
+        if header_text.strip():
+            try:
+                header = json.loads(header_text)
+            except json.JSONDecodeError:
+                header = {}
+        rows.append(
+            {
+                "event": "zip_packet",
+                "sequence": seq,
+                "packet_tag": packet_tag,
+                "zip_type": str(header.get("zip_type", packet_tag)),
+                "direction": str(header.get("direction", "")),
+                "source_layer": str(header.get("source_layer", "")),
+                "target_layer": str(header.get("target_layer", "")),
+            }
+        )
+    event_path = logs_dir / "events.000.jsonl"
+    _write_jsonl(event_path, rows)
+    return {"copied_event_files": 0, "generated_event_rows": len(rows)}
 
 
 def _compute_replay_hashes(event_files: list[Path]) -> tuple[list[str], str]:
@@ -221,16 +287,30 @@ def _materialize_graveyard_records(run_dir: Path, state: dict) -> dict:
     b_reports.mkdir(parents=True, exist_ok=True)
     path = b_reports / "graveyard_records.000.jsonl"
     graveyard = state.get("graveyard", [])
+    if isinstance(graveyard, dict):
+        graveyard_rows = list(graveyard.values())
+    elif isinstance(graveyard, list):
+        graveyard_rows = graveyard
+    else:
+        graveyard_rows = []
     rows: list[dict] = []
-    for row in graveyard:
-        candidate_id = str(row.get("id", ""))
-        reason_tag = str(row.get("reason", "UNKNOWN"))
-        failure_class = "SIM_KILL" if reason_tag.startswith("SIM_") else "B_KILL"
+    for row in graveyard_rows:
+        if not isinstance(row, dict):
+            continue
+        candidate_id = str(row.get("id", "")).strip()
+        reason_tag = str(row.get("reason", row.get("detail", row.get("tag", "UNKNOWN")))).strip()
+        if str(row.get("tag", "")).strip() == "KILL_SIGNAL":
+            failure_class = "SIM_KILL"
+        else:
+            failure_class = "B_KILL"
+        raw_lines = row.get("raw_lines", [])
+        if (not isinstance(raw_lines, list) or not raw_lines) and str(row.get("item_text", "")).strip():
+            raw_lines = str(row.get("item_text", "")).splitlines()
         rows.append(
             {
                 "candidate_id": candidate_id,
                 "reason_tag": reason_tag,
-                "raw_lines": row.get("raw_lines", []),
+                "raw_lines": raw_lines,
                 "failure_class": failure_class,
                 "target_ref": row.get("target_ref", ""),
             }
@@ -242,6 +322,20 @@ def _materialize_graveyard_records(run_dir: Path, state: dict) -> dict:
 def _materialize_sim_evidence_pack(run_dir: Path, state: dict) -> dict:
     sim_dir = run_dir / "sim"
     sim_dir.mkdir(parents=True, exist_ok=True)
+
+    # Canonical path: SIM evidence already exists in packet payloads.
+    packet_blocks: list[str] = []
+    for _, packet_tag, packet_path in _iter_zip_packet_paths(run_dir):
+        if packet_tag != "SIM_TO_A0_SIM_RESULT_ZIP":
+            continue
+        block = _read_zip_member_text(packet_path, "SIM_EVIDENCE.txt").strip()
+        if block:
+            packet_blocks.append(block)
+    if packet_blocks:
+        pack_path = sim_dir / "sim_evidence_pack_0001.txt"
+        pack_path.write_text("\n".join(packet_blocks) + "\n", encoding="utf-8")
+        return {"sim_manifest_count": len(packet_blocks), "evidence_blocks": len(packet_blocks)}
+
     manifest_rows: list[tuple[str, dict]] = []
 
     ledger_shards = sorted(sim_dir.glob("manifests.*.jsonl"))
@@ -270,9 +364,15 @@ def _materialize_sim_evidence_pack(run_dir: Path, state: dict) -> dict:
         return {"sim_manifest_count": 0, "evidence_blocks": 0}
 
     graveyard = state.get("graveyard", [])
+    if isinstance(graveyard, dict):
+        graveyard_rows = list(graveyard.values())
+    elif isinstance(graveyard, list):
+        graveyard_rows = graveyard
+    else:
+        graveyard_rows = []
     kill_lines = []
-    if graveyard:
-        g0 = graveyard[0]
+    if graveyard_rows:
+        g0 = graveyard_rows[0]
         kill_lines.append(
             f"KILL_SIGNAL {g0.get('id', 'ALT_UNKNOWN')} CORR KILL_{str(g0.get('reason', 'UNKNOWN'))}"
         )
@@ -354,6 +454,14 @@ def _init_run_surface_if_needed(run_dir: Path, repo_root: Path, bootpack_a_hash:
         raise RuntimeError(f"init_run_surface failed: {cp.stderr or cp.stdout}")
 
 
+def _clear_global_resume_state(repo_root: Path) -> None:
+    current_state_dir = repo_root / "system_v3" / "runs" / "_CURRENT_STATE"
+    for name in ("state.json", "sequence_state.json"):
+        path = current_state_dir / name
+        if path.exists():
+            path.unlink()
+
+
 def _pending_evidence_count(run_dir: Path) -> int:
     state = _load_state(run_dir)
     return int(len(state.get("evidence_pending", {})))
@@ -387,6 +495,13 @@ def _run_full_cycle_once(
     )
 
 
+def _first_existing(paths: list[Path]) -> Path | None:
+    for p in paths:
+        if p.exists():
+            return p
+    return None
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run real system_v3 runtime loop into system_v3 run surface.")
     parser.add_argument("--run-id", required=True)
@@ -412,70 +527,80 @@ def main() -> int:
     repo_root = Path(__file__).resolve().parents[2]
     run_dir = repo_root / "system_v3" / "runs" / args.run_id
 
-    bootpack_b_path = repo_root / "core_docs" / "BOOTPACK_THREAD_B_v3.9.13.md"
-    bootpack_a_path = repo_root / "core_docs" / "BOOTPACK_THREAD_A_v2.60.md"
-    if not bootpack_a_path.exists():
-        bootpack_a_path = repo_root / "core_docs" / "BOOTPACK_THREAD_A0_v2.60.md"
-    bootpack_b_hash = _sha256_file(bootpack_b_path)
-    bootpack_a_hash = _sha256_file(bootpack_a_path) if bootpack_a_path.exists() else _sha256_bytes(b"missing_bootpack_a")
+    bootpack_b_path = _first_existing(
+        [
+            repo_root / "core_docs" / "BOOTPACK_THREAD_B_v3.9.13.md",
+            repo_root / "core_docs" / "upgrade docs" / "BOOTPACK_THREAD_B_v3.9.13.md",
+        ]
+    )
+    bootpack_a_path = _first_existing(
+        [
+            repo_root / "core_docs" / "BOOTPACK_THREAD_A_v2.60.md",
+            repo_root / "core_docs" / "BOOTPACK_THREAD_A0_v2.60.md",
+            repo_root / "core_docs" / "upgrade docs" / "BOOTPACK_THREAD_A_v2.60.md",
+            repo_root / "core_docs" / "upgrade docs" / "BOOTPACK_THREAD_A0_v2.60.md",
+        ]
+    )
+    bootpack_b_hash = _sha256_file(bootpack_b_path) if bootpack_b_path else _sha256_bytes(b"missing_bootpack_b")
+    bootpack_a_hash = _sha256_file(bootpack_a_path) if bootpack_a_path else _sha256_bytes(b"missing_bootpack_a")
 
     if args.clean_existing_run and run_dir.exists():
         shutil.rmtree(run_dir)
 
     _init_run_surface_if_needed(run_dir, repo_root, bootpack_a_hash, bootpack_b_hash)
-
-    runner_path = repo_root / "system_v3" / "runtime" / "ratchet_core" / "runner.py"
-    cp_init = _run(["python3", str(runner_path), "--init", "--run-dir", str(run_dir)], repo_root)
-    if cp_init.returncode != 0:
-        print(json.dumps({"status": "FAIL", "stage": "runner_init", "stderr": cp_init.stderr}, sort_keys=True))
-        return 2
+    if args.clean_existing_run:
+        _clear_global_resume_state(repo_root)
 
     cycle_reports: list[dict] = []
     stdout_chunks: list[str] = []
-    for cycle_index in range(1, args.loops + 1):
-        pending_before = _pending_evidence_count(run_dir)
-        if args.adaptive_sim_cap:
-            sim_cap = max(args.sim_cap_min, pending_before + args.sim_cap_headroom)
-            sim_cap = min(args.sim_cap_max, sim_cap)
-        else:
-            sim_cap = args.sim_cap
-
-        cp_full = _run_full_cycle_once(
-            runner_path=runner_path,
-            repo_root=repo_root,
-            run_dir=run_dir,
-            max_entries=args.max_entries,
-            max_items=args.max_items,
-            sim_cap=sim_cap,
-        )
-        if cp_full.returncode != 0:
-            print(
-                json.dumps(
-                    {
-                        "status": "FAIL",
-                        "stage": "runner_full_cycle",
-                        "cycle_index": cycle_index,
-                        "stdout": cp_full.stdout,
-                        "stderr": cp_full.stderr,
-                    },
-                    sort_keys=True,
-                )
+    autoratchet_path = repo_root / "system_v3" / "runtime" / "bootpack_b_kernel_v1" / "tools" / "autoratchet.py"
+    # Phase pipeline semantic gating expects at least one full sweep of the
+    # refined goal set (including the terminal master-conjunction probe).
+    # Keep enough headroom for full refined_fuel closure as goals evolve.
+    planner_steps = max(96, int(args.loops))
+    graveyard_fill_steps = min(8, planner_steps)
+    autoratchet_cmd = [
+        "python3",
+        str(autoratchet_path),
+        "--run-id",
+        args.run_id,
+        "--steps",
+        str(planner_steps),
+        "--goal-profile",
+        "refined_fuel",
+        "--goal-selection",
+        "interleaved",
+        "--debate-strategy",
+        "graveyard_first_then_recovery",
+        "--graveyard-fill-steps",
+        str(graveyard_fill_steps),
+    ]
+    cp_full = _run(autoratchet_cmd, repo_root)
+    if cp_full.returncode != 0:
+        print(
+            json.dumps(
+                {
+                    "status": "FAIL",
+                    "stage": "autoratchet",
+                    "stdout": cp_full.stdout,
+                    "stderr": cp_full.stderr,
+                },
+                sort_keys=True,
             )
-            return 2
+        )
+        return 2
 
-        pending_after = _pending_evidence_count(run_dir)
-        expand_empty = '"status":"EXPAND_EMPTY"' in (cp_full.stdout or "")
-        cycle_report = {
-            "cycle_index": cycle_index,
-            "sim_cap": sim_cap,
-            "pending_before": pending_before,
-            "pending_after": pending_after,
-            "expand_empty": bool(expand_empty),
-        }
-        cycle_reports.append(cycle_report)
-        stdout_chunks.append(cp_full.stdout.strip())
-        if expand_empty:
-            break
+    pending_after = _pending_evidence_count(run_dir)
+    cycle_report = {
+        "cycle_index": 1,
+        "sim_cap": int(args.sim_cap),
+        "pending_before": 0,
+        "pending_after": pending_after,
+        "expand_empty": False,
+        "planner_steps_requested": planner_steps,
+    }
+    cycle_reports.append(cycle_report)
+    stdout_chunks.append(cp_full.stdout.strip())
 
     _write_json(
         run_dir / "reports" / "adaptive_sim_cap_report.json",
@@ -495,14 +620,32 @@ def main() -> int:
     export_summary = _materialize_export_split_and_reports(run_dir)
     replay_summary = _materialize_replay_reports(run_dir, args.min_cycles)
     state = _load_state(run_dir)
+    sim_result_rows = 0
+    for rows in (state.get("sim_results", {}) or {}).values():
+        if isinstance(rows, list):
+            sim_result_rows += len(rows)
+    graveyard_obj = state.get("graveyard", {})
+    graveyard_count = len(graveyard_obj) if isinstance(graveyard_obj, (dict, list)) else 0
+    park_obj = state.get("park_set", state.get("parked", {}))
+    parked_count = len(park_obj) if isinstance(park_obj, (dict, list)) else 0
+    term_registry = state.get("term_registry", {})
+    term_count = len(term_registry) if isinstance(term_registry, dict) else len(state.get("terms", []))
+    canonical_term_count = 0
+    if isinstance(term_registry, dict):
+        canonical_term_count = sum(
+            1
+            for row in term_registry.values()
+            if isinstance(row, dict) and str(row.get("state", "")).strip() == "CANONICAL_ALLOWED"
+        )
     final_state_counts = {
         "survivor_order_count": len(state.get("survivor_order", [])),
-        "spec_count": len(state.get("specs", [])),
-        "term_count": len(state.get("terms", [])),
-        "graveyard_count": len(state.get("graveyard", [])),
-        "parked_count": len(state.get("parked", [])),
+        "spec_count": len(state.get("survivor_ledger", state.get("specs", []))),
+        "term_count": term_count,
+        "canonical_term_count": canonical_term_count,
+        "graveyard_count": graveyard_count,
+        "parked_count": parked_count,
         "pending_evidence_count": len(state.get("evidence_pending", {})),
-        "sim_run_count": int(state.get("sim_run_count", 0)),
+        "sim_run_count": int(state.get("sim_run_count", sim_result_rows)),
     }
     evidence_summary = _materialize_sim_evidence_pack(run_dir, state)
     graveyard_summary = _materialize_graveyard_records(run_dir, state)

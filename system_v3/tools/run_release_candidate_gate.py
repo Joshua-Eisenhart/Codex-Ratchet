@@ -17,6 +17,7 @@ BASE_REQUIRED_ARTIFACTS = [
     "reports/replay_pair_report.json",
     "reports/evidence_ingest_report.json",
     "reports/graveyard_integrity_report.json",
+    "reports/a1_semantic_and_math_substance_gate_report.json",
     "reports/long_run_write_guard_report.json",
     "reports/release_checklist_v1.json",
 ]

@@ -11,11 +11,9 @@ ROOT = Path("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
 ALLOWED_TOP_LEVEL_DIRS = {
     ".cursor",
     ".git",
+    "archive",
     "core_docs",
-    "josh-flowmind-spec",
-    "system_spec_pack_v2",
     "system_v3",
-    "work",
 }
 
 
@@ -44,10 +42,18 @@ def main() -> int:
             unexpected.append(str(p))
 
     runs_root = ROOT / "system_v3" / "runs"
-    run_dirs = sorted(
-        [p for p in runs_root.glob("RUN__*") if p.is_dir()],
-        key=lambda p: p.name,
-    ) if runs_root.exists() else []
+    run_dirs = []
+    if runs_root.exists():
+        for p in runs_root.iterdir():
+            if not p.is_dir():
+                continue
+            # Non-run buckets are explicitly prefixed.
+            if p.name.startswith("_"):
+                continue
+            if p.name.startswith("LEGACY__"):
+                continue
+            run_dirs.append(p)
+        run_dirs.sort(key=lambda p: p.name)
     largest_runs = []
     runs_total_bytes = 0
     for run_dir in run_dirs:

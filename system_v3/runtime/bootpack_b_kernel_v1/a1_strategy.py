@@ -93,12 +93,18 @@ def _validate_candidate(candidate: object, index: int, lane: str, errors: list[s
         errors.append(f"{prefix}.item_class must be one of {sorted(ALLOWED_ITEM_CLASSES)}")
     if candidate.get("kind") not in ALLOWED_SPEC_KINDS:
         errors.append(f"{prefix}.kind must be one of {sorted(ALLOWED_SPEC_KINDS)}")
-    if not isinstance(candidate.get("requires"), list):
+    requires = candidate.get("requires")
+    if not isinstance(requires, list):
         errors.append(f"{prefix}.requires must be list")
+        requires = []
     if not isinstance(candidate.get("def_fields"), list):
         errors.append(f"{prefix}.def_fields must be list")
     if not isinstance(candidate.get("asserts"), list):
         errors.append(f"{prefix}.asserts must be list")
+    if candidate.get("kind") == "SIM_SPEC":
+        has_probe_dep = any(isinstance(dep, str) and dep.startswith("P") for dep in requires)
+        if not has_probe_dep:
+            errors.append(f"{prefix}.requires must include at least one probe dependency id starting with 'P' for SIM_SPEC")
 
     for j, field in enumerate(candidate.get("def_fields", [])):
         if not isinstance(field, dict):

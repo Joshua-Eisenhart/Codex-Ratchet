@@ -25,6 +25,7 @@ from zip_protocol import create_zip
 from feedback import run_feedback
 from fuel_cursor import load_fuel_cursor, save_fuel_cursor
 from a1_seed_strategy import fuel_to_strategy
+from autonomous_a1 import run_autonomous_a1
 DEFAULT_RUN_DIR = os.path.join("runs", "ratchet_v2")
 LOG_SHARD_BYTES = 2_000_000
 OUTBOX_SHARD_BYTES = 2_000_000
@@ -444,17 +445,53 @@ def run_full_cycle(run_dir, repo_root, strategy_path=None, fuel_path=None,
     else:
         fp = fuel_path or os.path.join(repo_root, "system_v3", "a2_state", "fuel_queue.json")
         cursor = load_fuel_cursor(run_dir)
-        strategy, next_cursor, total_entries = fuel_to_strategy(
-            fp, state, max_entries=max_entries, start=cursor, repo_root=repo_root)
-        save_fuel_cursor(run_dir, next_cursor)
-        meta = strategy.get("_meta", {}) if isinstance(strategy, dict) else {}
-        log_fn({"event": "strategy_generated", "fuel_path": fp,
-                "fuel_cursor": cursor, "fuel_cursor_next": next_cursor,
-                "fuel_total_entries": total_entries,
-                "terms": len(strategy["terms_to_admit"]),
-                "math_defs": len(strategy["math_defs"]),
-                "hard_reject_ratio": meta.get("hard_reject_ratio", 0.0),
-                "suppress_new_math_defs": bool(meta.get("suppress_new_math_defs", False))})
+        
+        # Check fuel queue status
+        try:
+            with open(fp, "r") as f:
+                fuel_data = json.load(f)
+                fuel_entries = fuel_data.get("entries", [])
+                fuel_exhausted = cursor >= len(fuel_entries)
+        except (FileNotFoundError, json.JSONDecodeError):
+            fuel_exhausted = True
+        
+        # AUTONOMOUS MODE: Generate from graveyard when fuel is exhausted
+        if fuel_exhausted:
+            log_fn({"event": "fuel_exhausted", "cursor": cursor, "attempting_autonomous": True})
+            
+            # Convert state to dict for autonomous generator
+            state_dict = state.__dict__ if hasattr(state, '__dict__') else {}
+            result = run_autonomous_a1(state_dict)
+            
+            if result.get("autonomous"):
+                strategy = result["strategy"]
+                log_fn({
+                    "event": "autonomous_strategy",
+                    "near_misses": result.get("near_misses", 0),
+                    "candidates": result.get("candidates", 0),
+                    "attractors": result.get("attractors", 0),
+                    "terms": len(strategy.get("terms_to_admit", [])),
+                    "math_defs": len(strategy.get("math_defs", []))
+                })
+            else:
+                # Fallback: use seed strategy even if it returns empty
+                log_fn({"event": "autonomous_fallback", "reason": result.get("reason", "unknown")})
+                strategy, next_cursor, total_entries = fuel_to_strategy(
+                    fp, state, max_entries=max_entries, start=cursor, repo_root=repo_root)
+                save_fuel_cursor(run_dir, next_cursor)
+        else:
+            # Normal fuel-based generation
+            strategy, next_cursor, total_entries = fuel_to_strategy(
+                fp, state, max_entries=max_entries, start=cursor, repo_root=repo_root)
+            save_fuel_cursor(run_dir, next_cursor)
+            meta = strategy.get("_meta", {}) if isinstance(strategy, dict) else {}
+            log_fn({"event": "strategy_generated", "fuel_path": fp,
+                    "fuel_cursor": cursor, "fuel_cursor_next": next_cursor,
+                    "fuel_total_entries": total_entries,
+                    "terms": len(strategy["terms_to_admit"]),
+                    "math_defs": len(strategy["math_defs"]),
+                    "hard_reject_ratio": meta.get("hard_reject_ratio", 0.0),
+                    "suppress_new_math_defs": bool(meta.get("suppress_new_math_defs", False))})
 
     create_zip("A1_STRATEGY", "A1_LLM", "A1_EXPANDER", strategy,
                out_dir=run_dir_path / "zips")

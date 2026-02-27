@@ -75,10 +75,14 @@ class TestSimTierFlow(unittest.TestCase):
         self.assertEqual("T1_COMPOUND", tasks[1].tier)
 
     def test_pipeline_cycle_emits_and_ingests_evidence(self):
+        # Use a known term key in spec_id so the deterministic probe passes and
+        # the SIM emits evidence (positive SIMs fail-closed on unknown probes).
+        spec_id = "S_SIM_PIPE_DENSITY_MATRIX"
+        evidence_token = "E_SIM_PIPE_DENSITY_MATRIX"
         block = _sim_spec_block(
-            spec_id="S_SIM_PIPE",
+            spec_id=spec_id,
             probe_id="P_SIM_PIPE",
-            evidence_token="E_SIM_PIPE",
+            evidence_token=evidence_token,
             tier="T0_ATOM",
             family="BASELINE",
             target_class="TC_PIPE",
@@ -88,9 +92,11 @@ class TestSimTierFlow(unittest.TestCase):
         pipeline.kernel = self.kernel
         cycle = pipeline.run_sim_cycle(self.state, batch_id="PIPE_RUN")
         self.assertEqual(1, cycle["planned_task_count"])
-        self.assertIn("S_SIM_PIPE", cycle["satisfied_spec_ids"])
-        self.assertNotIn("S_SIM_PIPE", self.state.evidence_pending)
-        self.assertIn("S_SIM_PIPE", self.state.sim_results)
+        self.assertIn(spec_id, cycle["satisfied_spec_ids"])
+        self.assertNotIn(spec_id, self.state.evidence_pending)
+        self.assertIn(spec_id, self.state.sim_results)
+        self.assertIn(evidence_token, self.state.evidence_tokens)
+        self.assertEqual(1, self.state.interaction_counts.get(spec_id, 0))
 
     def test_kill_signal_changes_status(self):
         block = _wrap_export(
@@ -128,7 +134,9 @@ class TestSimTierFlow(unittest.TestCase):
             ]
         )
         self.kernel.ingest_sim_evidence_pack(evidence, self.state, batch_id="KILL_EVIDENCE")
-        self.assertEqual("KILLED", self.state.survivor_ledger["S_KILL_TARGET"]["status"])
+        self.assertNotIn("S_KILL_TARGET", self.state.survivor_ledger)
+        self.assertIn("S_KILL_TARGET", self.state.graveyard)
+        self.assertEqual(0, self.state.interaction_counts.get("S_KILL_TARGET", 0))
 
     def test_ruleset_hash_activation_gate(self):
         evidence = "\n".join(
@@ -201,6 +209,72 @@ class TestSimTierFlow(unittest.TestCase):
         report = engine.coverage_report(self.state, graveyard_by_target_class={})
         self.assertEqual("NOT_READY", report["master_sim_status"])
         self.assertTrue(any(row["sim_id"] == "S_PROMOTE_T1" for row in report["unresolved_promotion_blockers"]))
+
+    def _prime_promotion_candidate(self, with_interaction: bool, with_kill: bool) -> tuple[SimEngine, str, str]:
+        engine = SimEngine()
+        sim_id = "S_PROMOTE_READY"
+        target_class = "TC_PROMOTE_READY"
+        self.state.sim_registry[sim_id] = {
+            "spec_id": sim_id,
+            "tier": "T1_COMPOUND",
+            "family": "BASELINE",
+            "target_class": target_class,
+            "negative_class": "NEG_BOUNDARY",
+            "depends_on": [],
+            "evidence_token": "E_PROMOTE_READY",
+        }
+        self.state.spec_meta[sim_id] = {
+            "kind": "SIM_SPEC",
+            "sim_id": sim_id,
+            "target_class": target_class,
+        }
+        if with_interaction:
+            self.state.interaction_counts[sim_id] = 1
+        families = ["BASELINE", "BOUNDARY_SWEEP", "PERTURBATION", "ADVERSARIAL_NEG", "COMPOSITION_STRESS"]
+        self.state.sim_results[sim_id] = [
+            {
+                "spec_id": sim_id,
+                "tier": "T1_COMPOUND",
+                "family": family,
+                "target_class": target_class,
+                "negative_class": "NEG_BOUNDARY" if family == "ADVERSARIAL_NEG" else "",
+                "output_hash": "f" * 64,
+            }
+            for family in families
+        ]
+        if with_kill:
+            kill_spec_id = "S_PROMOTE_READY_KILLED"
+            self.state.spec_meta[kill_spec_id] = {
+                "kind": "SIM_SPEC",
+                "sim_id": kill_spec_id,
+                "target_class": target_class,
+            }
+            self.state.kill_log.append(
+                {
+                    "batch_id": "PROMOTION_TEST",
+                    "id": kill_spec_id,
+                    "tag": "KILL_SIGNAL",
+                    "token": "NEG_BOUNDARY",
+                }
+            )
+        return engine, sim_id, target_class
+
+    def test_no_sim_interaction_blocks_promotion(self):
+        engine, sim_id, target_class = self._prime_promotion_candidate(with_interaction=False, with_kill=True)
+        outcome = engine.evaluate_promotion(self.state, sim_id, graveyard_by_target_class={target_class: 1})
+        self.assertEqual("PROMOTE_FAIL", outcome["status"])
+        self.assertIn("G0_INTERACTION_DENSITY", outcome["reason_tags"])
+
+    def test_interaction_allows_promotion_when_other_gates_pass(self):
+        engine, sim_id, target_class = self._prime_promotion_candidate(with_interaction=True, with_kill=True)
+        outcome = engine.evaluate_promotion(self.state, sim_id, graveyard_by_target_class={target_class: 1})
+        self.assertEqual("PROMOTE_PASS", outcome["status"])
+
+    def test_graveyard_without_kill_signal_rejects(self):
+        engine, sim_id, target_class = self._prime_promotion_candidate(with_interaction=True, with_kill=False)
+        outcome = engine.evaluate_promotion(self.state, sim_id, graveyard_by_target_class={target_class: 1})
+        self.assertEqual("PROMOTE_FAIL", outcome["status"])
+        self.assertIn("G3_GRAVEYARD_KILL_SIGNAL", outcome["reason_tags"])
 
 
 if __name__ == "__main__":

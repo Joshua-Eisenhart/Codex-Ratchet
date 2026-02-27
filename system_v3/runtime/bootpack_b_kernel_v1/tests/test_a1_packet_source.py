@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parents[1]
+RUNS_ROOT = BASE.parents[1] / "runs"
 sys.path.insert(0, str(BASE))
 
 from a1_a0_b_sim_runner import run_loop
@@ -37,7 +38,7 @@ class TestA1PacketSource(unittest.TestCase):
     def test_packet_source_consumes_strategy_zip(self) -> None:
         strategy_path = BASE / "a1_strategies" / "sample_strategy.json"
         run_id = "TEST_A1_PACKET_ZIP"
-        run_dir = BASE / "runs" / run_id
+        run_dir = RUNS_ROOT / run_id
         (run_dir / "a1_inbox").mkdir(parents=True, exist_ok=True)
         # Drop a valid strategy capsule into the inbox before starting the run (clean=False).
         inbox_zip = run_dir / "a1_inbox" / "000001_A1_TO_A0_STRATEGY_ZIP.zip"

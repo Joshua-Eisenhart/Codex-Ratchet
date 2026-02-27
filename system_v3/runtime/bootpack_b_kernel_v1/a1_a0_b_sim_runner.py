@@ -1,6 +1,7 @@
 import argparse
 import hashlib
 import json
+import os
 import re
 import shutil
 import sys
@@ -8,7 +9,7 @@ import time
 from pathlib import Path
 import zipfile
 
-from a0_compiler import compile_export_block
+from a0_compiler import compile_export_block, compute_state_transition_digest
 from a1_bridge import A1Bridge
 from a1_model_selector import select_best_model_across_runs
 from a1_strategy import load_strategy
@@ -22,6 +23,15 @@ from zip_protocol_v2_writer import write_zip_protocol_v2
 
 _FIXED_CREATED_UTC = "1980-01-01T00:00:00Z"
 _SEQ_SOURCES = {"A2", "A1", "A0", "B", "SIM"}
+_RUN_SUBDIR_EXPLICIT_ALIASES = {
+    "a1_inbox": "a1_packet_inbox_surface",
+    "a1_strategies": "optional_a1_strategy_duplicate_surface",
+    "outbox": "deterministic_outbound_export_block_cache_surface",
+    "reports": "deterministic_compile_and_kernel_report_surface",
+    "sim": "optional_plaintext_sim_evidence_duplicate_surface",
+    "snapshots": "optional_plaintext_snapshot_duplicate_surface",
+    "zip_packets": "zip_protocol_v2_packet_journal_surface",
+}
 
 
 def _write_json(path: Path, payload: dict) -> None:
@@ -83,6 +93,12 @@ def _write_soak_report(run_dir: Path, summary: dict, events_path: Path) -> None:
     else:
         lines.append("- NONE")
     lines.append("")
+    lines.append("## sim_tier_legend")
+    lines.append("- T0_ATOM: atomic / minimal primitive checks")
+    lines.append("- T1_COMPOUND: small compositions (few linked terms)")
+    lines.append("- T2_OPERATOR: operator-level objects (transformations/actions)")
+    lines.append("- T3_STRUCTURE: multi-part structures / composed systems")
+    lines.append("")
     lines.append("## last_20_events")
     if not last_rows:
         lines.append("- NONE")
@@ -90,6 +106,37 @@ def _write_soak_report(run_dir: Path, summary: dict, events_path: Path) -> None:
         for row in last_rows:
             lines.append(f"- {json.dumps(row, sort_keys=True, separators=(',', ':'))}")
     (run_dir / "soak_report.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def _update_runs_registry(runs_root: Path, summary: dict) -> None:
+    """
+    Writes small, human-operational indexing metadata to runs/.
+
+    This does not affect determinism: it is out-of-band bookkeeping for humans to
+    identify the "current" ratchet run and to list runs without relying on folder names.
+    """
+    runs_root.mkdir(parents=True, exist_ok=True)
+    run_id = str(summary.get("run_id", "")).strip()
+    if not run_id:
+        return
+
+    (runs_root / "_CURRENT_RUN.txt").write_text(run_id + "\n", encoding="utf-8")
+
+    # Append-only registry log.
+    row = {
+        "run_id": run_id,
+        "steps_completed": int(summary.get("steps_completed", 0) or 0),
+        "stop_reason": str(summary.get("stop_reason", "") or ""),
+        "accepted_total": int(summary.get("accepted_total", 0) or 0),
+        "parked_total": int(summary.get("parked_total", 0) or 0),
+        "rejected_total": int(summary.get("rejected_total", 0) or 0),
+        "final_state_hash": str(summary.get("final_state_hash", "") or ""),
+        "sim_registry_count": int(summary.get("sim_registry_count", 0) or 0),
+        "master_sim_status": str(summary.get("master_sim_status", "") or ""),
+    }
+    registry_path = runs_root / "_RUNS_REGISTRY.jsonl"
+    with registry_path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(row, sort_keys=True, separators=(",", ":")) + "\n")
 
 
 def _now_run_id() -> str:
@@ -122,9 +169,7 @@ def _structural_digest(export_text: str) -> str:
 
 def _graveyard_by_target_class(state: KernelState) -> dict[str, int]:
     counts: dict[str, int] = {}
-    for item_id, row in state.park_set.items():
-        if str(row.get("class", "")) != "SPEC_HYP":
-            continue
+    for item_id in sorted(state.graveyard.keys()):
         meta = state.spec_meta.get(item_id, {})
         if meta.get("kind") != "SIM_SPEC":
             continue
@@ -132,11 +177,15 @@ def _graveyard_by_target_class(state: KernelState) -> dict[str, int]:
         if not target_class:
             continue
         counts[target_class] = counts.get(target_class, 0) + 1
-    for item_id, row in state.survivor_ledger.items():
-        if str(row.get("class", "")) != "SPEC_HYP":
-            continue
-        if str(row.get("status", "")) != "KILLED":
-            continue
+    # Backward-compat fallback for old states without explicit graveyard entries.
+    if counts:
+        return counts
+    killed_ids = {
+        str(row.get("id", "")).strip()
+        for row in state.kill_log
+        if str(row.get("tag", "")) == "KILL_SIGNAL" and str(row.get("id", "")).strip()
+    }
+    for item_id in sorted(killed_ids):
         meta = state.spec_meta.get(item_id, {})
         if meta.get("kind") != "SIM_SPEC":
             continue
@@ -162,6 +211,9 @@ def _assert_no_legacy_runtime_modules_loaded() -> None:
 def _load_resume_state(
     *,
     run_id: str,
+    run_state_path: Path,
+    run_sequence_state_path: Path,
+    run_zip_packets_dir: Path,
     current_state_path: Path,
     sequence_state_path: Path,
 ) -> tuple[KernelState, dict[tuple[str, str], int], dict[str, int]]:
@@ -169,12 +221,16 @@ def _load_resume_state(
     seq_state: dict[tuple[str, str], int] = {}
     seq_by_source: dict[str, int] = {}
 
-    if current_state_path.exists():
-        payload = json.loads(current_state_path.read_text(encoding="utf-8"))
+    # Prefer run-local state to avoid cross-run contamination from shared current_state.
+    state_source = run_state_path if run_state_path.exists() else current_state_path
+    if state_source.exists():
+        payload = json.loads(state_source.read_text(encoding="utf-8"))
         state = KernelState.from_dict(payload)
 
-    if sequence_state_path.exists():
-        payload = json.loads(sequence_state_path.read_text(encoding="utf-8"))
+    # Prefer run-local sequence state; fallback to shared state for legacy runs.
+    seq_source = run_sequence_state_path if run_sequence_state_path.exists() else sequence_state_path
+    if seq_source.exists():
+        payload = json.loads(seq_source.read_text(encoding="utf-8"))
         if isinstance(payload, dict) and str(payload.get("run_id", "")) == run_id:
             raw_seq = payload.get("seq_by_source", {})
             if isinstance(raw_seq, dict):
@@ -188,6 +244,32 @@ def _load_resume_state(
                     seq_by_source[source_key] = seq_value
                     seq_state[(run_id, source_key)] = seq_value
 
+    # Backfill sequence maxima from existing run packets when sequence state
+    # is unavailable (legacy runs / interrupted writes).
+    if not seq_by_source and run_zip_packets_dir.exists():
+        for zip_path in sorted(run_zip_packets_dir.glob("*.zip")):
+            try:
+                with zipfile.ZipFile(zip_path, "r") as zf:
+                    header = json.loads(zf.read("ZIP_HEADER.json").decode("utf-8"))
+            except Exception:
+                continue
+            if str(header.get("run_id", "")) != run_id:
+                continue
+            source = str(header.get("source_layer", ""))
+            if source not in _SEQ_SOURCES:
+                continue
+            try:
+                seq = int(header.get("sequence", 0))
+            except Exception:
+                continue
+            if seq < 0:
+                continue
+            prev = int(seq_by_source.get(source, 0))
+            if seq > prev:
+                seq_by_source[source] = seq
+        for source, seq in seq_by_source.items():
+            seq_state[(run_id, source)] = int(seq)
+
     return state, seq_state, seq_by_source
 
 
@@ -196,18 +278,46 @@ def _persist_resume_state(
     run_id: str,
     state: KernelState,
     seq_by_source: dict[str, int],
+    run_state_path: Path,
+    run_sequence_state_path: Path,
     current_state_path: Path,
     sequence_state_path: Path,
 ) -> None:
+    seq_payload = {
+        "run_id": run_id,
+        "seq_by_source": {key: int(seq_by_source.get(key, 0)) for key in sorted(_SEQ_SOURCES)},
+    }
+
+    # Run-local persistence (authoritative for resume continuity).
+    run_state_path.parent.mkdir(parents=True, exist_ok=True)
+    run_state_path.write_text(state.to_json(), encoding="utf-8")
+    _write_json(run_sequence_state_path, seq_payload)
+
+    # Shared persistence (legacy compatibility).
     current_state_path.parent.mkdir(parents=True, exist_ok=True)
     current_state_path.write_text(state.to_json(), encoding="utf-8")
-    _write_json(
-        sequence_state_path,
-        {
-            "run_id": run_id,
-            "seq_by_source": {key: int(seq_by_source.get(key, 0)) for key in sorted(_SEQ_SOURCES)},
-        },
-    )
+    _write_json(sequence_state_path, seq_payload)
+
+
+def _remove_tree_retry(path: Path, attempts: int = 8) -> None:
+    for _ in range(attempts):
+        if not path.exists():
+            return
+        shutil.rmtree(path, ignore_errors=True)
+    if path.exists():
+        raise RuntimeError(f"clean_remove_failed:{path}")
+
+
+def _ensure_explicit_run_aliases(run_dir: Path) -> None:
+    for short_name, long_name in sorted(_RUN_SUBDIR_EXPLICIT_ALIASES.items()):
+        target = run_dir / short_name
+        link = run_dir / long_name
+        if not target.exists():
+            continue
+        if link.exists() or link.is_symlink():
+            continue
+        rel_target = os.path.relpath(str(target), str(link.parent))
+        link.symlink_to(rel_target)
 
 
 def run_loop(
@@ -218,26 +328,44 @@ def run_loop(
     a1_model: str,
     a1_timeout_sec: int,
     clean: bool = False,
+    retain_diagnostics: bool = True,
+    retain_snapshots: bool = False,
+    retain_sim_text: bool = False,
+    runs_root_override: str | None = None,
 ) -> tuple[Path, str]:
     _assert_no_legacy_runtime_modules_loaded()
-    base = Path(__file__).resolve().parent
-    run_dir = base / "runs" / run_id
-    current_state_path = base / "current_state" / "state.json"
-    sequence_state_path = base / "current_state" / "sequence_state.json"
+    bootpack_root = Path(__file__).resolve().parent
+    system_v3_root = bootpack_root.parents[1]
+    runs_root = (
+        Path(str(runs_root_override)).expanduser().resolve()
+        if runs_root_override and str(runs_root_override).strip()
+        else (system_v3_root / "runs")
+    )
+    runs_root.mkdir(parents=True, exist_ok=True)
+    run_dir = runs_root / run_id
+    run_state_path = run_dir / "state.json"
+    run_sequence_state_path = run_dir / "sequence_state.json"
+    current_state_path = runs_root / "_CURRENT_STATE" / "state.json"
+    sequence_state_path = runs_root / "_CURRENT_STATE" / "sequence_state.json"
     if clean and run_dir.exists():
-        shutil.rmtree(run_dir)
+        _remove_tree_retry(run_dir)
     if clean:
         if current_state_path.exists():
             current_state_path.unlink()
         if sequence_state_path.exists():
             sequence_state_path.unlink()
-    (run_dir / "outbox").mkdir(parents=True, exist_ok=True)
-    (run_dir / "reports").mkdir(parents=True, exist_ok=True)
+    if retain_diagnostics:
+        (run_dir / "outbox").mkdir(parents=True, exist_ok=True)
+        (run_dir / "reports").mkdir(parents=True, exist_ok=True)
     (run_dir / "zip_packets").mkdir(parents=True, exist_ok=True)
+    # These dirs exist for compatibility with prior runs/tools, but the default
+    # behavior is now "ZIP-only" to avoid redundant disk bloat.
     (run_dir / "sim").mkdir(parents=True, exist_ok=True)
     (run_dir / "snapshots").mkdir(parents=True, exist_ok=True)
-    (run_dir / "a1_strategies").mkdir(parents=True, exist_ok=True)
+    if retain_diagnostics:
+        (run_dir / "a1_strategies").mkdir(parents=True, exist_ok=True)
     (run_dir / "a1_inbox").mkdir(parents=True, exist_ok=True)
+    _ensure_explicit_run_aliases(run_dir)
 
     events_path = run_dir / "events.jsonl"
     if clean:
@@ -247,6 +375,9 @@ def run_loop(
     else:
         state, seq_state, seq_by_source = _load_resume_state(
             run_id=run_id,
+            run_state_path=run_state_path,
+            run_sequence_state_path=run_sequence_state_path,
+            run_zip_packets_dir=run_dir / "zip_packets",
             current_state_path=current_state_path,
             sequence_state_path=sequence_state_path,
         )
@@ -269,6 +400,7 @@ def run_loop(
         seq = int(header.get("sequence", 0))
         seq_state[(run, src)] = int(seq)
 
+    step_offset = int(len(state.canonical_ledger))
     repeated_noop = 0
     repeated_schema_fail = 0
     a1_generation_fail_count = 0
@@ -282,13 +414,19 @@ def run_loop(
     export_content_digests: set[str] = set()
     export_structural_digests: set[str] = set()
     final_coverage_report = {}
-    steps_completed = 0
+    steps_completed_local = 0
 
     for step in range(1, steps + 1):
-        steps_completed = step
+        global_step = step_offset + step
+        steps_completed_local = step
         state_hash_before = state.hash()
         try:
-            strategy_result = a1.next_strategy(strategy_path=strategy_path, step=step, state_hash=state_hash_before, last_tags=last_tags)
+            strategy_result = a1.next_strategy(
+                strategy_path=strategy_path,
+                step=global_step,
+                state_hash=state_hash_before,
+                last_tags=last_tags,
+            )
             strategy = strategy_result["strategy"]
             a1_generation_fail_count = 0
         except Exception as exc:
@@ -311,7 +449,7 @@ def run_loop(
                         "A0_SAVE_SUMMARY.json": {
                             "schema": "A0_SAVE_SUMMARY_v1",
                             "run_id": run_id,
-                            "step": step,
+                            "step": global_step,
                             "state_hash": state_hash_before,
                             "last_reject_tags": sorted(set(last_tags)),
                             "base_strategy": base_strategy,
@@ -322,7 +460,7 @@ def run_loop(
                 _append_jsonl(
                     events_path,
                     {
-                        "step": step,
+                        "step": global_step,
                         "event": "a1_strategy_request_emitted",
                         "source": "ZIP_PROTOCOL_v2",
                         "state_hash": state_hash_before,
@@ -336,10 +474,10 @@ def run_loop(
             _append_jsonl(
                 events_path,
                 {
-                    "step": step,
+                    "step": global_step,
                     "event": "a1_generation_fail",
                     "source": a1_source,
-                    "model": a1_model if a1_source == "ollama" else "",
+                    "model": "",
                     "error": str(exc)[:1200],
                     "a1_generation_fail_count": a1_generation_fail_count,
                 },
@@ -350,8 +488,9 @@ def run_loop(
                 break
             continue
 
-        strategy_file = run_dir / "a1_strategies" / f"a1_strategy_{step:04d}.json"
-        _write_json(strategy_file, strategy)
+        if retain_diagnostics:
+            strategy_file = run_dir / "a1_strategies" / f"a1_strategy_{global_step:04d}.json"
+            _write_json(strategy_file, strategy)
         strategy_digest = _sha256_text(json.dumps(strategy, sort_keys=True, separators=(",", ":")))
         strategy_digests.add(strategy_digest)
 
@@ -373,24 +512,31 @@ def run_loop(
         _validate_ok(a1_zip)
         strategy_packet = {"path": str(a1_zip)}
 
+        # Packet mode already supplies explicit A1 artifacts; keep compile deterministic
+        # and avoid carrying prior reject tags as an implicit repair channel.
+        compile_prior_tags = [] if a1_source == "packet" else last_tags
         compiled = compile_export_block(
             state=state,
             strategy=strategy,
             canonical_state_hash=state_hash_before,
-            step=step,
-            prior_tags=last_tags,
+            step=global_step,
+            prior_tags=compile_prior_tags,
         )
         export_text = compiled["export_text"]
-        export_file = run_dir / "outbox" / f"export_block_{step:04d}.txt"
-        export_file.write_text(export_text, encoding="utf-8")
+        if retain_diagnostics:
+            export_file = run_dir / "outbox" / f"export_block_{global_step:04d}.txt"
+            export_file.write_text(export_text, encoding="utf-8")
         export_content_digest = _content_digest(export_text)
         export_structural_digest = _structural_digest(export_text)
         export_content_digests.add(export_content_digest)
         export_structural_digests.add(export_structural_digest)
-        compile_report_file = run_dir / "reports" / f"a0_compile_{step:04d}.json"
-        _write_json(compile_report_file, compiled["report"])
+        if retain_diagnostics:
+            compile_report_file = run_dir / "reports" / f"a0_compile_{global_step:04d}.json"
+            _write_json(compile_report_file, compiled["report"])
+        else:
+            compile_report_file = run_dir / "_omitted_a0_compile_report.json"
         exhausted_tags = list(compiled["report"].get("operator_exhausted_tags", []))
-        if exhausted_tags:
+        if exhausted_tags and a1_source != "packet":
             stop_reason = "A2_OPERATOR_SET_EXHAUSTED"
             escalation_reasons = [f"OPERATOR_SET_EXHAUSTED:{tag}" for tag in sorted(set(exhausted_tags))]
             recommended_model, recommended_source = select_best_model_across_runs(run_dir.parent)
@@ -399,7 +545,7 @@ def run_loop(
                 request_path,
                 {
                     "run_id": run_id,
-                    "step": step,
+                    "step": global_step,
                     "stop_reason": stop_reason,
                     "reasons": escalation_reasons,
                     "prior_reject_tags": sorted(set(last_tags)),
@@ -429,9 +575,10 @@ def run_loop(
         _validate_ok(a0_export_zip)
         export_packet = {"path": str(a0_export_zip)}
 
-        eval_result = pipeline.handle_message(export_text, state, batch_id=f"STEP_{step:04d}")
-        report_file = run_dir / "reports" / f"b_report_{step:04d}.txt"
-        report_file.write_text(eval_result.get("output_text", ""), encoding="utf-8")
+        eval_result = pipeline.handle_message(export_text, state, batch_id=f"STEP_{global_step:04d}")
+        if retain_diagnostics:
+            report_file = run_dir / "reports" / f"b_report_{global_step:04d}.txt"
+            report_file.write_text(eval_result.get("output_text", ""), encoding="utf-8")
 
         accepted = 0
         parked = 0
@@ -452,8 +599,9 @@ def run_loop(
             repeated_schema_fail = 0
 
         snapshot_text = build_snapshot_v2(state, timestamp_utc="", lexicographic=True)
-        snapshot_path = run_dir / "snapshots" / f"snapshot_{step:04d}.txt"
-        snapshot_path.write_text(snapshot_text, encoding="utf-8")
+        if retain_snapshots:
+            snapshot_path = run_dir / "snapshots" / f"snapshot_{global_step:04d}.txt"
+            snapshot_path.write_text(snapshot_text, encoding="utf-8")
         b_state_zip = run_dir / "zip_packets" / f"{_next_seq('B'):06d}_B_TO_A0_STATE_UPDATE_ZIP.zip"
         write_zip_protocol_v2(
             out_path=b_state_zip,
@@ -470,13 +618,51 @@ def run_loop(
             payload_text={"THREAD_S_SAVE_SNAPSHOT_v2.txt": snapshot_text},
         )
         _validate_ok(b_state_zip)
+        snapshot_hash = _sha256_text(snapshot_text)
+        export_block_hash = str(compiled["report"].get("export_block_sha256", ""))
+        compiler_version = str(compiled["report"].get("compiler_version", ""))
+        state_transition_digest = compute_state_transition_digest(
+            previous_state_hash=state_hash_before,
+            export_block_hash=export_block_hash,
+            snapshot_hash=snapshot_hash,
+            compiler_version=compiler_version,
+        )
+        a0_sequence = int(seq_by_source.get("A0", 0))
+        last_sequence = 0
+        if state.canonical_ledger:
+            last_sequence = int(state.canonical_ledger[-1].get("sequence", 0))
+        if a0_sequence <= last_sequence:
+            raise ValueError(f"state_transition_sequence_regression:{a0_sequence}:{last_sequence}")
+        state.canonical_ledger.append(
+            {
+                "step": global_step,
+                "sequence": a0_sequence,
+                "previous_state_hash": state_hash_before,
+                "export_block_hash": export_block_hash,
+                "snapshot_hash": snapshot_hash,
+                "compiler_version": compiler_version,
+                "state_transition_digest": state_transition_digest,
+            }
+        )
 
         tasks = pipeline.dispatcher.plan_tasks(state)
+        # Deterministic budget enforcement: cap SIM execution per step to the
+        # (repaired) strategy budget. This prevents evidence_pending fanout from
+        # exploding run surfaces during mass-batch phases.
+        try:
+            max_sims = int((compiled.get("repaired_strategy", {}) or {}).get("budget", {}).get("max_sims", 0) or 0)
+        except Exception:
+            max_sims = 0
+        if max_sims > 0 and len(tasks) > max_sims:
+            tasks = tasks[:max_sims]
         sim_outputs = []
         for sim_index, task in enumerate(tasks, start=1):
             evidence_text = pipeline.sim_engine.run_task(state, task)
-            evidence_path = run_dir / "sim" / f"sim_evidence_{step:04d}_{sim_index:03d}.txt"
-            evidence_path.write_text(evidence_text, encoding="utf-8")
+            evidence_path = ""
+            if retain_sim_text:
+                evidence_file = run_dir / "sim" / f"sim_evidence_{global_step:04d}_{sim_index:03d}.txt"
+                evidence_file.write_text(evidence_text, encoding="utf-8")
+                evidence_path = str(evidence_file)
             sim_zip = run_dir / "zip_packets" / f"{_next_seq('SIM'):06d}_SIM_TO_A0_SIM_RESULT_ZIP.zip"
             write_zip_protocol_v2(
                 out_path=sim_zip,
@@ -493,8 +679,12 @@ def run_loop(
                 payload_text={"SIM_EVIDENCE.txt": evidence_text},
             )
             _validate_ok(sim_zip)
-            ingest = pipeline.kernel.ingest_sim_evidence_pack(evidence_text, state, batch_id=f"STEP_{step:04d}_SIM_{sim_index:03d}")
-            sim_outputs.append({"path": str(evidence_path), "sim_id": task.sim_id, "ingest": ingest, "zip": str(sim_zip)})
+            ingest = pipeline.kernel.ingest_sim_evidence_pack(
+                evidence_text,
+                state,
+                batch_id=f"STEP_{global_step:04d}_SIM_{sim_index:03d}",
+            )
+            sim_outputs.append({"path": evidence_path, "sim_id": task.sim_id, "ingest": ingest, "zip": str(sim_zip)})
 
         state_hash_after = state.hash()
         repeated_noop = repeated_noop + 1 if state_hash_after == state_hash_before else 0
@@ -505,7 +695,7 @@ def run_loop(
         _append_jsonl(
             events_path,
             {
-                "step": step,
+                "step": global_step,
                 "state_hash_before": state_hash_before,
                 "state_hash_after": state_hash_after,
                 "strategy_packet": strategy_packet,
@@ -517,6 +707,7 @@ def run_loop(
                 "parked": parked,
                 "rejected": rejected,
                 "reject_tags": reject_tags,
+                "state_transition_digest": state_transition_digest,
                 "sim_outputs": sim_outputs,
                 "master_sim_status": final_coverage_report.get("master_sim_status", "NOT_READY"),
                 "unresolved_promotion_blocker_count": len(final_coverage_report.get("unresolved_promotion_blockers", [])),
@@ -528,6 +719,8 @@ def run_loop(
             run_id=run_id,
             state=state,
             seq_by_source=seq_by_source,
+            run_state_path=run_state_path,
+            run_sequence_state_path=run_sequence_state_path,
             current_state_path=current_state_path,
             sequence_state_path=sequence_state_path,
         )
@@ -539,12 +732,14 @@ def run_loop(
             stop_reason = "REPEATED_SCHEMA_FAIL"
             break
 
-    state_path = run_dir / "state.json"
+    state_path = run_state_path
     state_path.write_text(state.to_json(), encoding="utf-8")
     _persist_resume_state(
         run_id=run_id,
         state=state,
         seq_by_source=seq_by_source,
+        run_state_path=run_state_path,
+        run_sequence_state_path=run_sequence_state_path,
         current_state_path=current_state_path,
         sequence_state_path=sequence_state_path,
     )
@@ -555,14 +750,15 @@ def run_loop(
         {
             "run_id": run_id,
             "steps_requested": steps,
-            "steps_completed": steps_completed,
+            "steps_completed": step_offset + steps_completed_local,
+            "steps_completed_local": steps_completed_local,
             "stop_reason": stop_reason,
             "accepted_total": accepted_total,
             "parked_total": parked_total,
             "rejected_total": rejected_total,
             "final_state_hash": state_hash,
             "a1_source": a1_source,
-            "a1_model": a1_model if a1_source == "ollama" else "",
+            "a1_model": "",
             "needs_real_llm": stop_reason == "A2_OPERATOR_SET_EXHAUSTED",
             "escalation_reasons": escalation_reasons,
             "unique_strategy_digest_count": len(strategy_digests),
@@ -580,7 +776,9 @@ def run_loop(
         },
     )
     summary = json.loads((run_dir / "summary.json").read_text(encoding="utf-8"))
-    _write_soak_report(run_dir, summary, events_path)
+    if retain_diagnostics:
+        _write_soak_report(run_dir, summary, events_path)
+    _update_runs_registry(runs_root, summary)
     return run_dir, state_hash
 
 
@@ -589,10 +787,30 @@ def main() -> int:
     parser.add_argument("--strategy", default="a1_strategies/sample_strategy.json")
     parser.add_argument("--steps", type=int, default=50)
     parser.add_argument("--run-id", default=None)
-    parser.add_argument("--a1-source", choices=["replay", "ollama", "packet"], default="packet")
-    parser.add_argument("--a1-model", default="phi4-mini")
+    parser.add_argument(
+        "--runs-root",
+        default=None,
+        help="Override runs root dir. Default is system_v3/runs. Useful for sandbox test runs under work/.",
+    )
+    parser.add_argument("--a1-source", choices=["replay", "packet"], default="packet")
+    parser.add_argument("--a1-model", default="disabled", help="Deprecated. Ollama source has been removed.")
     parser.add_argument("--a1-timeout-sec", type=int, default=60)
     parser.add_argument("--clean", action="store_true")
+    parser.add_argument(
+        "--retain-diagnostics",
+        action="store_true",
+        help="Write duplicate human-readable artifacts (reports/, outbox/, a1_strategies/, soak_report.md).",
+    )
+    parser.add_argument(
+        "--retain-snapshots",
+        action="store_true",
+        help="Also write snapshot_*.txt to runs/<RUN_ID>/snapshots (duplicates B snapshot ZIP payload).",
+    )
+    parser.add_argument(
+        "--retain-sim-text",
+        action="store_true",
+        help="Also write sim_evidence_*.txt to runs/<RUN_ID>/sim (duplicates SIM ZIP payload).",
+    )
     args = parser.parse_args()
 
     run_id = args.run_id or _now_run_id()
@@ -604,6 +822,10 @@ def main() -> int:
         a1_model=args.a1_model,
         a1_timeout_sec=args.a1_timeout_sec,
         clean=args.clean,
+        retain_diagnostics=bool(args.retain_diagnostics),
+        retain_snapshots=bool(args.retain_snapshots),
+        retain_sim_text=bool(args.retain_sim_text),
+        runs_root_override=args.runs_root,
     )
     print(str(run_dir))
     print(state_hash)

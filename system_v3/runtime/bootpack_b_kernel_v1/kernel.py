@@ -1,4 +1,5 @@
 import re
+import time
 from dataclasses import dataclass
 
 from containers import parse_export_block, parse_sim_evidence_pack, split_items
@@ -51,6 +52,10 @@ TERM_LINE_REGEX = re.compile(r'^DEF_FIELD\s+(\S+)\s+CORR\s+TERM\s+"([^"]*)"$')
 LABEL_LINE_REGEX = re.compile(r'^DEF_FIELD\s+(\S+)\s+CORR\s+LABEL\s+"([^"]*)"$')
 SIM_HASH_LINE_REGEX = re.compile(r"^DEF_FIELD\s+(\S+)\s+CORR\s+SIM_CODE_HASH_SHA256\s+(\S+)$")
 ITEM_ID_REGEX = re.compile(r"^[A-Za-z0-9_]+$")
+
+
+def _utc_iso_now() -> str:
+    return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
 
 @dataclass
@@ -207,6 +212,8 @@ class BootpackBKernel:
                 ruleset_hash = block.metrics.get("ruleset_sha256", "").lower()
                 if HEX64_REGEX.match(ruleset_hash):
                     state.active_ruleset_sha256 = ruleset_hash
+            kill_targets = {str(target).strip() for target, _ in block.kill_signals if str(target).strip()}
+            counted_targets: set[str] = set()
             for target, token in block.evidence_signals:
                 state.evidence_tokens.add(token)
                 if target in state.evidence_pending and token in state.evidence_pending[target]:
@@ -216,6 +223,26 @@ class BootpackBKernel:
                         if target in state.survivor_ledger:
                             state.survivor_ledger[target]["status"] = "ACTIVE"
                     satisfied.append(target)
+                # Canon permits are indexed by their own item id in evidence_pending,
+                # while SIM evidence is typically targeted at SIM_SPEC ids. Satisfy by
+                # token across all pending entries to avoid stale pending-evidence rows.
+                for pending_id in list(state.evidence_pending.keys()):
+                    pending_tokens = state.evidence_pending.get(pending_id, set())
+                    if token not in pending_tokens:
+                        continue
+                    pending_tokens.remove(token)
+                    if not pending_tokens:
+                        state.evidence_pending.pop(pending_id, None)
+                        if pending_id in state.survivor_ledger:
+                            state.survivor_ledger[pending_id]["status"] = "ACTIVE"
+                    else:
+                        state.evidence_pending[pending_id] = pending_tokens
+                    satisfied.append(pending_id)
+                if target not in kill_targets and target not in counted_targets:
+                    survivor = state.survivor_ledger.get(target)
+                    if isinstance(survivor, dict) and str(survivor.get("class", "")) == "SPEC_HYP":
+                        state.interaction_counts[target] = int(state.interaction_counts.get(target, 0)) + 1
+                        counted_targets.add(target)
                 for term, entry in state.term_registry.items():
                     if entry.get("required_evidence") == token:
                         entry["state"] = "CANONICAL_ALLOWED"
@@ -787,6 +814,8 @@ class BootpackBKernel:
         for existing in state.survivor_ledger.values():
             if existing.get("class") != parse.header:
                 continue
+            if str(existing.get("status", "")) == "KILLED":
+                continue
             token_set_old = self._tokens_for_jaccard(existing.get("item_text", ""))
             union = token_set_new | token_set_old
             if not union:
@@ -810,6 +839,8 @@ class BootpackBKernel:
         metadata: dict | None = None,
     ) -> None:
         metadata = metadata or {}
+        # Accepting an item clears any stale parked entry for the same id.
+        state.park_set.pop(item_id, None)
         state.survivor_ledger[item_id] = {"class": item_class, "status": status, "item_text": item_text, "metadata": metadata}
         if item_id not in state.survivor_order:
             state.survivor_order.append(item_id)
@@ -880,6 +911,7 @@ class BootpackBKernel:
         if accepted_any:
             state.accepted_batch_count += 1
             self._apply_probe_utilization(state)
+            self._prune_resolved_park_entries(state)
         new_hash = state.hash()
         if new_hash == old_hash:
             state.unchanged_ledger_streak += 1
@@ -969,6 +1001,35 @@ class BootpackBKernel:
         if parked_ids:
             result["accepted"] = [entry for entry in result["accepted"] if entry.get("id") not in parked_ids]
 
+    def _prune_resolved_park_entries(self, state: KernelState) -> None:
+        if not state.park_set:
+            return
+        for item_id, row in list(state.park_set.items()):
+            if not isinstance(row, dict):
+                continue
+            tag = str(row.get("tag", "")).strip()
+            detail = str(row.get("detail", "")).strip()
+            if tag != "UNDEFINED_TERM_USE":
+                continue
+            if not detail.startswith("UNDEFINED_LEXEME:"):
+                continue
+            missing = detail.split(":", 1)[1].strip().lower()
+            if not missing:
+                continue
+            missing_resolved = missing in state.l0_lexeme_set or self._term_in_allowed_state(state, missing)
+            if not missing_resolved:
+                continue
+            # Drop stale parked TERM_DEF rows once the term is admitted through a valid path.
+            item_text = str(row.get("item_text", ""))
+            parked_term = ""
+            for line in item_text.splitlines():
+                m = TERM_LINE_REGEX.match(line.strip())
+                if m:
+                    parked_term = m.group(2).strip().lower()
+                    break
+            if parked_term and self._term_in_allowed_state(state, parked_term):
+                state.park_set.pop(item_id, None)
+
     def _apply_kill_signal(self, state: KernelState, sim_id: str, target_id: str, cond_token: str, batch_id: str) -> None:
         entry = state.survivor_ledger.get(target_id)
         if entry is None:
@@ -984,9 +1045,23 @@ class BootpackBKernel:
         else:
             if sim_id != target_id:
                 return
-        if entry.get("status") == "KILLED":
+        if target_id in state.graveyard:
             return
-        entry["status"] = "KILLED"
-        state.survivor_ledger[target_id] = entry
+        # Killed artifacts leave survivor/park space and become explicit graveyard items.
+        state.survivor_ledger.pop(target_id, None)
+        state.survivor_order = [entry_id for entry_id in state.survivor_order if entry_id != target_id]
+        state.park_set.pop(target_id, None)
+        state.graveyard[target_id] = {
+            "id": target_id,
+            "class": entry.get("class", ""),
+            "item_text": entry.get("item_text", ""),
+            "tag": "KILL_SIGNAL",
+            "token": cond_token,
+            "detail": cond_token,
+            "killed_by_sim_id": sim_id,
+            "killed_in_batch_id": batch_id,
+            "ts_utc": _utc_iso_now(),
+            "metadata": dict(metadata),
+        }
         state.kill_log.append({"batch_id": batch_id, "id": target_id, "tag": "KILL_SIGNAL", "token": cond_token})
         state.evidence_pending.pop(target_id, None)

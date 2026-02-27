@@ -20,6 +20,7 @@ def _now_id() -> str:
 
 
 def main() -> int:
+    raise SystemExit("A1 model-selection benchmark is retired: ollama path removed; use packet-mode Codex workflow.")
     parser = argparse.ArgumentParser()
     parser.add_argument("--strategy", default="a1_strategies/sample_strategy.json")
     parser.add_argument("--models", required=True, help="comma-separated ollama models")
@@ -29,8 +30,9 @@ def main() -> int:
     args = parser.parse_args()
 
     base = Path(__file__).resolve().parent
+    runs_root = base.parents[1] / "runs"
     bench_id = args.bench_id or _now_id()
-    bench_dir = base / "runs" / bench_id
+    bench_dir = runs_root / bench_id
     bench_dir.mkdir(parents=True, exist_ok=True)
 
     models = [item.strip() for item in args.models.split(",") if item.strip()]
@@ -75,4 +77,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

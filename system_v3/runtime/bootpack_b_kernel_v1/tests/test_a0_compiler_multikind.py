@@ -88,13 +88,33 @@ class TestA0CompilerMultikind(unittest.TestCase):
                     "operator_id": "OP_BIND_SIM",
                 },
             ],
-            "alternatives": [],
+            "alternatives": [
+                {
+                    "item_class": "SPEC_HYP",
+                    "id": "S_ALT_SIM_MULTIKIND",
+                    "kind": "SIM_SPEC",
+                    "requires": ["P_MATH_QIT"],
+                    "def_fields": [
+                        {"field_id": "F1", "name": "REQUIRES_EVIDENCE", "value_kind": "TOKEN", "value": "E_ALT_SIM_MULTIKIND"},
+                        {"field_id": "F2", "name": "SIM_ID", "value_kind": "TOKEN", "value": "S_ALT_SIM_MULTIKIND"},
+                        {"field_id": "F3", "name": "TIER", "value_kind": "TOKEN", "value": "T1_COMPOUND"},
+                        {"field_id": "F4", "name": "FAMILY", "value_kind": "TOKEN", "value": "PERTURBATION"},
+                        {"field_id": "F5", "name": "TARGET_CLASS", "value_kind": "TOKEN", "value": "TC_ALT_SIM_MULTIKIND"},
+                        {"field_id": "F6", "name": "NEGATIVE_CLASS", "value_kind": "TOKEN", "value": "NEG_BOUNDARY"},
+                    ],
+                    "asserts": [
+                        {"assert_id": "A1", "token_class": "PROBE_TOKEN", "token": "PT_P_MATH_QIT"},
+                        {"assert_id": "A2", "token_class": "EVIDENCE_TOKEN", "token": "E_ALT_SIM_MULTIKIND"},
+                    ],
+                    "operator_id": "OP_NEG_SIM_EXPAND",
+                }
+            ],
             "sims": {"positive": [], "negative": []},
             "self_audit": {
                 "strategy_hash": "3" * 64,
                 "compile_lane_digest": "4" * 64,
                 "candidate_count": 4,
-                "alternative_count": 0,
+                "alternative_count": 1,
                 "operator_ids_used": ["OP_BIND_SIM"],
             },
         }

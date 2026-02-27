@@ -49,11 +49,9 @@ def read_text(p: Path) -> str:
 
 def iter_authority_sources() -> List[Path]:
     sources: List[Path] = []
-    sources.append(
-        ROOT
-        / "system_v2/core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md"
-    )
-    upgrade_dir = ROOT / "system_v2/core_docs/a2 hand assembled docs/uploads/upgrade docs"
+    # core_docs was reorganized; keep authority sources in the new canonical locations.
+    sources.append(ROOT / "core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md")
+    upgrade_dir = ROOT / "core_docs/upgrade docs"
     if upgrade_dir.exists():
         sources.extend(sorted(upgrade_dir.glob("*.md"), key=lambda p: str(p).lower()))
     return [p for p in sources if p.exists() and p.is_file()]

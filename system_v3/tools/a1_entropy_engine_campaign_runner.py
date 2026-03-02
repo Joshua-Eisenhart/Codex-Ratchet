@@ -35,6 +35,20 @@ def _read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _neg_kill_stats(state: dict) -> tuple[int, int]:
+    kill_log = state.get("kill_log", []) if isinstance(state, dict) else []
+    if not isinstance(kill_log, list):
+        return 0, 0
+    neg_tokens: list[str] = []
+    for row in kill_log:
+        if not isinstance(row, dict):
+            continue
+        token = str(row.get("token", "")).strip().upper()
+        if token.startswith("NEG_"):
+            neg_tokens.append(token)
+    return int(len(neg_tokens)), int(len(set(neg_tokens)))
+
+
 def _count_rescue_from_fields(strategy_path: Path) -> int:
     try:
         strategy = _read_json(strategy_path)
@@ -271,7 +285,13 @@ def _autofill_entropy_lenses7_memos(
 
 
 def _autofill_graveyard13_memos(
-    *, run_id: str, sequence: int, run_dir: Path, memo_drop_dir: Path, focus_terms: list[str]
+    *,
+    run_id: str,
+    sequence: int,
+    run_dir: Path,
+    memo_drop_dir: Path,
+    focus_terms: list[str],
+    adversarial_hard_mode: bool = False,
 ) -> list[Path]:
     import time
 
@@ -321,13 +341,13 @@ def _autofill_graveyard13_memos(
         "DEVIL_CLASSICAL_TIME": ["CLASSICAL_TIME"],
         "DEVIL_COMMUTATIVE": ["COMMUTATIVE_ASSUMPTION"],
         "DEVIL_CONTINUUM": ["INFINITE_SET", "INFINITE_RESOLUTION", "CONTINUOUS_BATH"],
-        "DEVIL_EQUALS_SMUGGLE": ["COMMUTATIVE_ASSUMPTION", "INFINITE_SET"],
+        "DEVIL_EQUALS_SMUGGLE": ["COMMUTATIVE_ASSUMPTION", "INFINITE_SET", "PRIMITIVE_EQUALS"],
         "BOUNDARY_REPAIR": ["COMMUTATIVE_ASSUMPTION", "CLASSICAL_TIME"],
         "RESCUER_MINIMAL_EDIT": ["COMMUTATIVE_ASSUMPTION", "CLASSICAL_TIME"],
         "RESCUER_OPERATOR_REFACTOR": ["COMMUTATIVE_ASSUMPTION", "CLASSICAL_TIME"],
         "ENTROPY_LENS_VN": ["CLASSICAL_TIME", "CONTINUOUS_BATH"],
         "ENTROPY_LENS_MUTUAL": ["COMMUTATIVE_ASSUMPTION", "CLASSICAL_TIME"],
-        "ENGINE_LENS_SZILARD_CARNOT": ["CONTINUOUS_BATH", "CLASSICAL_TIME", "INFINITE_SET"],
+        "ENGINE_LENS_SZILARD_CARNOT": ["CONTINUOUS_BATH", "CLASSICAL_TIME", "INFINITE_SET", "CLASSICAL_TEMPERATURE"],
     }
 
     role_templates: dict[str, dict[str, list[str] | str]] = {
@@ -388,6 +408,46 @@ def _autofill_graveyard13_memos(
             "risks": ["No temperature/time primitive inside positive lanes."],
         },
     }
+
+    if adversarial_hard_mode:
+        base_terms = sorted(
+            {
+                *base_terms,
+                "primitive_equals_relation",
+                "classical_temperature_parameter",
+                "euclidean_metric_space",
+                "continuous_time_parameter",
+                "infinite_resolution_limit",
+                "commutative_swap_equivalence",
+                "operator_order_sensitivity_witness",
+                "trajectory_reversal_non_equivalence",
+            }
+        )
+        for role in ("STEELMAN_CORE", "STEELMAN_ALT_FORMALISM", "BOUNDARY_REPAIR", "RESCUER_MINIMAL_EDIT", "RESCUER_OPERATOR_REFACTOR"):
+            neg_role_map[role] = sorted(
+                {
+                    *list(neg_role_map.get(role, [])),
+                    "PRIMITIVE_EQUALS",
+                    "EUCLIDEAN_METRIC",
+                    "INFINITE_RESOLUTION",
+                    "CLASSICAL_TEMPERATURE",
+                }
+            )
+        role_templates["DEVIL_CLASSICAL_TIME"]["claims"].append(
+            "Inject explicit TIME_PARAM and step-index-as-time variants to force NEG_CLASSICAL_TIME kill evidence."
+        )
+        role_templates["DEVIL_COMMUTATIVE"]["claims"].append(
+            "Inject explicit ASSUME_COMMUTATIVE and swap-equivalence variants to force NEG_COMMUTATIVE_ASSUMPTION."
+        )
+        role_templates["DEVIL_CONTINUUM"]["claims"].append(
+            "Inject EUCLIDEAN_METRIC and CLASSICAL_TEMPERATURE variants to force finite/athermal boundary kills."
+        )
+        role_templates["DEVIL_EQUALS_SMUGGLE"]["claims"].append(
+            "Inject primitive a=a defaults and hidden identity lifting to force NEG_PRIMITIVE_EQUALS."
+        )
+        role_templates["BOUNDARY_REPAIR"]["claims"].append(
+            "For each adversarial fail class, propose one explicit rescue transform with RESCUE_FROM lineage."
+        )
 
     written: list[Path] = []
     for role, tpl in role_templates.items():
@@ -614,6 +674,7 @@ def _cycle_once(
                         run_dir=run_dir,
                         memo_drop_dir=memo_drop_dir,
                         focus_terms=focus,
+                        adversarial_hard_mode=bool(getattr(_cycle_once, "_autofill_adversarial_hard_mode", False)),
                     )
                 else:
                     _autofill_entropy_lenses7_memos(
@@ -846,6 +907,11 @@ def main(argv: list[str]) -> int:
         help="If set, auto-generate deterministic role memos when missing, so the campaign can run unattended (no external LLM).",
     )
     ap.add_argument(
+        "--autofill-adversarial-hard-mode",
+        action="store_true",
+        help="When autofill is enabled for graveyard13, inject stronger adversarial memo content and fail-class coverage.",
+    )
+    ap.add_argument(
         "--graveyard-fill-min-delta",
         type=int,
         default=1,
@@ -862,6 +928,18 @@ def main(argv: list[str]) -> int:
         type=int,
         default=1,
         help="During recovery cycles, fail if emitted strategy has fewer RESCUE_FROM fields than this threshold.",
+    )
+    ap.add_argument(
+        "--min-neg-kill-delta",
+        type=int,
+        default=0,
+        help="If >0, each executed cycle must increase NEG_* kill count by at least this delta.",
+    )
+    ap.add_argument(
+        "--min-neg-kill-class-delta",
+        type=int,
+        default=0,
+        help="If >0, each executed cycle must increase unique NEG_* kill classes by at least this delta.",
     )
     ap.add_argument(
         "--graveyard-fill-policy",
@@ -966,6 +1044,7 @@ def main(argv: list[str]) -> int:
     stop_caps = _StopCaps(max_run_mb=float(args.max_run_mb))
     prev_state = _read_json(run_dir / "state.json")
     prev_graveyard = int(len(prev_state.get("graveyard", {}) or {})) if isinstance(prev_state, dict) else 0
+    prev_neg_kill_count, prev_neg_kill_class_count = _neg_kill_stats(prev_state if isinstance(prev_state, dict) else {})
     prev_canonical = (
         sum(
             1
@@ -989,6 +1068,7 @@ def main(argv: list[str]) -> int:
         cycle_min_corroboration = 1 if cycle_debate_mode == "graveyard_first" else 2
         # Thread a runtime flag through the function object to avoid widening the argument surface.
         setattr(_cycle_once, "_autofill", bool(args.autofill_memos))
+        setattr(_cycle_once, "_autofill_adversarial_hard_mode", bool(args.autofill_adversarial_hard_mode))
         setattr(_cycle_once, "_min_corroboration", int(cycle_min_corroboration))
         setattr(_cycle_once, "_memo_quality_gate", bool(args.memo_quality_gate))
         setattr(_cycle_once, "_memo_quality_min_overall", float(args.memo_quality_min_overall))
@@ -1041,6 +1121,14 @@ def main(argv: list[str]) -> int:
         canonical_delta = current_canonical - prev_canonical
         result["cycle_canonical_delta"] = int(canonical_delta)
         prev_canonical = current_canonical
+        current_state = _read_json(run_dir / "state.json")
+        neg_kill_count, neg_kill_class_count = _neg_kill_stats(current_state if isinstance(current_state, dict) else {})
+        neg_kill_delta = int(neg_kill_count - prev_neg_kill_count)
+        neg_kill_class_delta = int(neg_kill_class_count - prev_neg_kill_class_count)
+        result["cycle_neg_kill_delta"] = int(neg_kill_delta)
+        result["cycle_neg_kill_class_delta"] = int(neg_kill_class_delta)
+        prev_neg_kill_count = int(neg_kill_count)
+        prev_neg_kill_class_count = int(neg_kill_class_count)
         if (
             str(result.get("status")) == "STEP_EXECUTED"
             and cycle_debate_mode == "graveyard_first"
@@ -1081,6 +1169,20 @@ def main(argv: list[str]) -> int:
         ):
             result["status"] = "STOPPED__RECOVERY_NOT_USING_RESCUE"
             result["expected_min_rescue_from_fields"] = int(args.recovery_min_rescue_from_fields)
+        if (
+            str(result.get("status")) == "STEP_EXECUTED"
+            and int(args.min_neg_kill_delta) > 0
+            and neg_kill_delta < int(args.min_neg_kill_delta)
+        ):
+            result["status"] = "STOPPED__NEG_KILL_DELTA_BELOW_MIN"
+            result["expected_min_neg_kill_delta"] = int(args.min_neg_kill_delta)
+        if (
+            str(result.get("status")) == "STEP_EXECUTED"
+            and int(args.min_neg_kill_class_delta) > 0
+            and neg_kill_class_delta < int(args.min_neg_kill_class_delta)
+        ):
+            result["status"] = "STOPPED__NEG_KILL_CLASS_DELTA_BELOW_MIN"
+            result["expected_min_neg_kill_class_delta"] = int(args.min_neg_kill_class_delta)
         cycles.append(result)
         if str(result.get("status")) != "STEP_EXECUTED":
             stop_reason = str(result.get("status"))
@@ -1097,6 +1199,8 @@ def main(argv: list[str]) -> int:
         "graveyard_fill_min_delta": int(args.graveyard_fill_min_delta),
         "graveyard_fill_max_canonical_delta": int(args.graveyard_fill_max_canonical_delta),
         "recovery_min_rescue_from_fields": int(args.recovery_min_rescue_from_fields),
+        "min_neg_kill_delta": int(args.min_neg_kill_delta),
+        "min_neg_kill_class_delta": int(args.min_neg_kill_class_delta),
         "memo_quality_gate": bool(args.memo_quality_gate),
         "memo_quality_min_overall": float(args.memo_quality_min_overall),
         "fuel_max_bytes": int(args.fuel_max_bytes),

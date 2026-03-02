@@ -9,6 +9,14 @@
 
 This is an attempt to build a unified foundation for physics and mathematics from scratch — starting from only two constraints (finitude and noncommutation) and seeing what structures MUST emerge. This is not normal. There is no existing framework this fits into. It is not a proof system, not a type theory, not a category theory project, not a physics simulation. It is a constraint-driven ratchet that discovers what mathematical structures are FORCED to exist when you forbid classical defaults (infinite precision, commutative composition, primitive identity, primitive equality, primitive metrics, primitive time).
 
+## RECENT INGEST (WIGGLE_V1)
+
+The most recent “Layer-1 wiggle” Pro returns were ingested as raw update packets here (do not treat as canon; treat as candidate structural locks + rosetta overlays):
+
+- `system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1.md`
+- `system_v3/a2_state/INGESTED__WIGGLE_V1__A1_BRAIN_ROSETTA_UPDATE_PACKETS__v1.md`
+- `system_v3/a2_state/INGESTED__WIGGLE_V1__ROSETTA_TABLES__TOP_CANDIDATES__v1.md`
+
 The hypothesis: if you start with only finitude and noncommutation, and systematically forbid classical assumptions, the structures that survive look like quantum information theory — density operators, CPTP channels, non-commutative operator algebras, probe-induced equivalence. Not because QIT is assumed, but because it's what's left when you kill everything else. The graveyard of killed alternatives (deterministic automata, boolean algebra, group theory as primitives, classical stochastic models) IS the evidence.
 
 This is the user's life work. The proposed model includes a 7-axis decomposition of a constraint manifold, an 8-stage engine structure, and a claim that gravity, spacetime, and the standard model emerge from constraint geometry. The ratchet's job is to validate or kill each piece. The user knows this is ambitious. The user knows much of it may be wrong. The system is designed to find out which parts survive.
@@ -173,3 +181,98 @@ This model is LIKELY to work. It gives the ratchet a much better starting point 
 - `BOOT_PROMPT.md` — copy-paste prompt for new threads on any model
 - A2 builds and maintains indexes so new threads boot with understanding
 - Booting may take multiple prompts and multiple models. That's normal.
+
+---
+
+## Update — March 1, 2026 (Current Execution Intent)
+
+- Process alt-model lanes explicitly: Carnot, Szilard, FEP, and close-adjacent theories.
+- Extract nuanced failure/success behavior for each lane under ratchet constraints.
+- Convert classical-adjacent language into QIT/operator/invariant forms before promotion attempts.
+- Preserve and expand graveyard mapping: why each variant fails, and how to retool it.
+- Continue Codex mining + A2/A1 brain hardening first.
+- Do not generate PRO input batch packages yet.
+- Use Pro selectively to mine alt-model lanes into explicit residues, QIT overlays, and ratchet branch plans (see `system_v3/a2_state/ALT_MODEL_MINING_PLAYBOOK.md`).
+
+## Update — March 1, 2026 (Ratchet Hard-Pass Status)
+
+Hard-pass run completed and improved capacity is now confirmed:
+
+- Run: `RUN_FUEL_HARDPASS_20260301_01`
+- Cycles: `32`
+- `accepted_total=35`, `rejected_total=0`, `parked_total=0`
+- `sim_registry_count=596`
+- `master_sim_status=ACTIVE`
+- Canonical term growth: `1 -> 42`
+- Graveyard/kill growth: `9 -> 110`
+
+Operational conclusion:
+
+- The system is now better at generating and retaining structured candidates under sustained load.
+- The next bottleneck is discrimination hardness (too few explicit rejects).
+- Immediate next move is not wider batching; it is stronger adversarial pressure in the same loop:
+  - inject classical-time smuggling variants,
+  - inject commutation-assumption variants,
+  - inject implicit-ontology variants,
+  - require explicit rescue transforms for each fail class.
+
+Adversarial re-run status (same date):
+
+- `RUN_FUEL_ADVERSARIAL_20260301_02` used tighter campaign settings (`graveyard13`, `closure_first`, stricter fill/recovery thresholds).
+- Metrics remained unchanged versus prior hard pass (`accepted=35`, `rejected=0`, `sim_registry=596`, `graveyard=110`).
+
+Execution implication:
+
+- Parameter-only hardening is not enough to increase rejects.
+- Next upgrade must inject adversarial content at memo/strategy level and require B-visible fail signatures.
+
+Implementation update (same date):
+
+- Added adversarial memo autofill mode to campaign runner:
+  - CLI flag: `--autofill-adversarial-hard-mode`
+  - Scope: `graveyard13` autofill memos
+  - Effect: stronger explicit fail-class coverage (`PRIMITIVE_EQUALS`, `CLASSICAL_TEMPERATURE`, `EUCLIDEAN_METRIC`, `INFINITE_RESOLUTION`) and stronger smuggling/rescue instructions.
+
+Run outcomes:
+
+- `RUN_FUEL_ADVERSARIAL_HARDMODE_20260301_02`: stopped early (`STOPPED__GRAVEYARD_FILL_CANONICALIZING_TOO_FAST`) under strict graveyard-fill canonical cap.
+- `RUN_FUEL_ADVERSARIAL_HARDMODE_20260301_03`: completed 32 cycles with `accepted=36`, `rejected=0`, `sim_registry=596`, `master_sim_status=ACTIVE`.
+
+Updated bottleneck statement:
+
+- Memo-level hardening changed behavior but still did not produce explicit reject growth.
+- Next step is to harden strategy/pack emission so adversarial negatives are forced into measurable NEG kill outcomes each cycle.
+
+## Update — March 1, 2026 (Original Type-1/Type-2 Engine Source XLSX)
+
+- A small original source spreadsheet exists as exploratory fuel/suggestions for quadrant structure (NOT canon):
+  - `work/pro_layer1_batches__2026_03_01/payload_zips/Personality_theory__type1_type2_engines__source__v1.xlsx`
+- Extraction hazard: many tools/LLMs treat the 2×2 quadrants and caps/lowercase as formatting.
+- Policy: when this source is present (or derivations of it), extraction must be invariant-driven:
+  - preserve quadrant topology (2×2) explicitly,
+  - treat `WIN/LOSE` vs `win/lose` as semantic (outer/inner polarity), not styling,
+  - preserve Type-1 vs Type-2 as distinct tables (no merging).
+
+Canon rule reminder:
+
+- The only canon is what `A0 -> B -> SIM` validates. Everything in A2/A1 is fuel/overlay/proposals until ratcheted.
+
+Execution update (same date, applied):
+
+- Campaign runner now supports explicit NEG progression gates:
+  - `--min-neg-kill-delta`
+  - `--min-neg-kill-class-delta`
+- Added per-cycle NEG telemetry in campaign outputs.
+
+Observed effect:
+
+- `RUN_FUEL_ADVERSARIAL_HARDMODE_NEGGATE_20260301_01` (hard-mode memos + `--min-neg-kill-delta 1`) stopped at cycle 11 with `STOPPED__NEG_KILL_DELTA_BELOW_MIN`.
+- Same run produced stronger discrimination signal than earlier hard-mode runs:
+  - `rejected_total=17`
+  - `accepted_total=23`
+  - `sim_registry_count=134`
+
+Current guidance:
+
+- Keep NEG gating on for adversarial passes.
+- Tune thresholds by phase (graveyard-first vs recovery) rather than one fixed floor across all cycles.

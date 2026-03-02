@@ -5,6 +5,14 @@
 # It may contain hallucinated connections — treat as fuel, not truth.
 # Updated: 2026-02-18
 
+## RECENT INGEST (WIGGLE_V1)
+
+The latest Pro “wiggle” extraction returns were ingested verbatim into A2 state as packets (fuel/overlay only; not canon):
+
+- `system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1.md`
+- `system_v3/a2_state/INGESTED__WIGGLE_V1__A1_BRAIN_ROSETTA_UPDATE_PACKETS__v1.md`
+- `system_v3/a2_state/INGESTED__WIGGLE_V1__ROSETTA_TABLES__TOP_CANDIDATES__v1.md`
+
 ---
 
 ## Where this sits in existing thought
@@ -171,3 +179,117 @@ Consciousness as narrative, not substance. The inversion of time (potential crea
 - Friston's Markov blankets may be probe-induced partition boundaries in the constraint manifold
 
 These are FUEL for the graveyard. They may be killed. That's the point.
+
+---
+
+## Update — March 1, 2026 (Alt-Model Processing Priority)
+
+This cycle prioritizes structured processing of adjacent model families as explicit overlays:
+
+- Carnot/Szilard engine analogs (metaphor quarantined; convert to operator form).
+- FEP/Active Inference mappings (derive in QIT constraints; no primitive Bayesian/time assumptions).
+- Holodeck-style control/embodiment proposals (retain as noncanonical test fuel).
+
+Operational lock for this phase:
+
+- Preserve pass/fail/retool traces for each alt-claim.
+- Keep graveyard mapping explicit (failure is useful signal).
+- Do not collapse divergent narratives into one smoothed account.
+- Do not produce external PRO batch packs during this hardening pass.
+
+## Update — March 1, 2026 (32-Cycle Hard-Pass Telemetry)
+
+Latest hard-pass run confirms materially stronger ratchet throughput under fuel pressure:
+
+- Run ID: `RUN_FUEL_HARDPASS_20260301_01`
+- Steps/cycles: `32` (`MAX_CYCLES_REACHED` at campaign layer; `MAX_STEPS` per runner summary)
+- Accepted: `35`
+- Rejected: `0`
+- Parked: `0`
+- SIM registry: `596`
+- Master SIM status: `ACTIVE`
+- Canonical terms: `1 -> 42` across cycle 1 to cycle 32
+- Graveyard + kill log: `9 -> 110` across cycle 1 to cycle 32
+
+Interpretation for A2/A1 guidance:
+
+- Strength improved on exploration throughput and term/sim expansion.
+- Failure-surface capture is active (graveyard/kill growth), but hard rejection pressure remains too low (`rejected_total=0`).
+- Next useful pressure increase is adversarial variant injection (noncommutation traps, time-smuggling traps, implicit ontology traps) while preserving current operator-lock discipline.
+
+## Update — March 1, 2026 (Engine Quadrant Source + Invariant Extraction)
+
+An original source spreadsheet exists as an exploratory suggestion surface for the Type-1/Type-2 engine quadrant layout (NOT canon):
+
+- `work/pro_layer1_batches__2026_03_01/payload_zips/Personality_theory__type1_type2_engines__source__v1.xlsx`
+
+Operational risk:
+
+- Many pipelines read the sheet text but miss the 2×2 quadrant structure and miss the semantic meaning of caps/lowercase.
+
+Extraction requirement (A2/A1 guidance):
+
+- Treat the quadrant as a structural invariant (2×2 grid); do not linearize without preserving the grid mapping.
+- Treat payoff capitalization (`WIN/LOSE` vs `win/lose`) as semantic polarity, not formatting.
+- Emit both Type-1 and Type-2 tables explicitly and separately (no smoothing into a single hybrid table).
+
+Canon firewall:
+
+- No part of this spreadsheet is canon by default. Canon exists only after `A0 -> B -> SIM` validation.
+
+Adversarial attempt check (same date):
+
+- Run ID: `RUN_FUEL_ADVERSARIAL_20260301_02`
+- Config used: `preset=graveyard13`, `goal_selection=closure_first`, stricter graveyard/recovery constraints.
+- Outcome remained effectively identical to prior hard pass:
+  - `accepted_total=35`, `rejected_total=0`, `sim_registry_count=596`, `graveyard_count=110`.
+
+Conclusion:
+
+- Current "adversarial" knobs change campaign framing but are not yet generating stronger reject diversity.
+- To raise ratchet discrimination, adversarial pressure likely needs to be injected at strategy/memo content level (explicit classical-time, commutation, and ontology-smuggling variants), not only campaign runner parameter level.
+
+Memo-injection hard-mode update:
+
+- Campaign runner now supports `--autofill-adversarial-hard-mode` for `graveyard13` autofill.
+- This mode injects stronger adversarial fail classes/claims in generated memos:
+  - adds `PRIMITIVE_EQUALS`, `CLASSICAL_TEMPERATURE`, `EUCLIDEAN_METRIC`, `INFINITE_RESOLUTION` coverage,
+  - strengthens devil lanes with explicit smuggling variants,
+  - requires rescue transforms per fail class in boundary/repair lanes.
+
+Validation runs:
+
+- `RUN_FUEL_ADVERSARIAL_HARDMODE_20260301_02` stopped early at cycle gate:
+  - `STOPPED__GRAVEYARD_FILL_CANONICALIZING_TOO_FAST` (useful signal: harder adversarial memo mix increases early canonical pressure under strict fill gate).
+- `RUN_FUEL_ADVERSARIAL_HARDMODE_20260301_03` completed 32 cycles:
+  - `accepted_total=36`, `rejected_total=0`, `sim_registry_count=596`, `master_sim_status=ACTIVE`.
+
+Current read:
+
+- Hard-mode memo injection changed run dynamics (gate pressure and slight acceptance shift) but still does not increase explicit reject count.
+- Next discrimination upgrade should target pack-selector/output constraints so adversarial negatives become mandatory emitted artifacts with measured NEG kill deltas.
+
+Campaign-gate upgrade applied:
+
+- Added measurable adversarial pressure gates in campaign runner:
+  - `--min-neg-kill-delta`
+  - `--min-neg-kill-class-delta`
+- Per-cycle telemetry now includes:
+  - `cycle_neg_kill_delta`
+  - `cycle_neg_kill_class_delta`
+
+Validation run:
+
+- Run ID: `RUN_FUEL_ADVERSARIAL_HARDMODE_NEGGATE_20260301_01`
+- Config: hard-mode memo injection + `--min-neg-kill-delta 1`
+- Report stop: `STOPPED__NEG_KILL_DELTA_BELOW_MIN` at cycle 11 (first recovery cycle had zero new NEG kills).
+- Summary surface in same run shows stronger discrimination signal than prior runs:
+  - `rejected_total=17`
+  - `accepted_total=23`
+  - `sim_registry_count=134`
+
+Interpretation:
+
+- NEG kill gating is now working as an explicit enforcement mechanism.
+- The first clear reject growth appears once NEG progression is required.
+- Next tuning move: set mode-specific NEG floors (higher in graveyard_first, lower/nonzero in recovery) to avoid trivial early stop while preserving pressure.

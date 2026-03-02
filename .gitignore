@@ -9,6 +9,16 @@ Thumbs.db
 .minimax/
 work/
 
+# Run artifacts and exports are disposable (the save is system_v3 specs + brains)
+system_v3/runs/
+system_v3/runs/**/*
+
+# Any zip outputs are disposable unless explicitly curated outside the repo
+*.zip
+
 # Python bytecode/caches
 __pycache__/
 *.py[cod]
+# local installs / tooling caches
+node_modules/
+.agent/

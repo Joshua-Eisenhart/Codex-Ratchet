@@ -1,11 +1,11 @@
 {
   "schema": "A2_COMPREHENSIVE_BOOT_STATE_v1",
-  "generated_utc": "2026-03-22T21:27:18Z",
+  "generated_utc": "2026-03-22T21:35:18Z",
   "system_architecture": {
-    "total_nodes": 765,
-    "total_edges": 504,
-    "connected_nodes": 364,
-    "isolated_nodes": 401,
+    "total_nodes": 771,
+    "total_edges": 915,
+    "connected_nodes": 457,
+    "isolated_nodes": 314,
     "nodes_by_type": {
       "V4_SKILL": 131,
       "V4_RUNNER": 18,
@@ -17,14 +17,25 @@
       "V3_TOOL": 215,
       "UPGRADE_DOC": 14,
       "V4_STATE": 8,
-      "V3_STATE": 8
+      "V3_STATE": 8,
+      "V3_SYSTEM_LAYER": 6
     },
     "edges_by_type": {
       "IMPORTS": 219,
       "TESTS": 184,
       "PROBES": 1,
       "SPECIFIES": 71,
-      "READS_STATE": 29
+      "READS_STATE": 29,
+      "EVOLVED_INTO": 4,
+      "PORTED_TO": 37,
+      "REFERENCES": 296,
+      "BELONGS_TO_LAYER": 22,
+      "IMPLEMENTED_IN_V4_BY": 46,
+      "DISTILLS_TO": 1,
+      "PACKAGES_FOR": 1,
+      "COMPILES_TO": 1,
+      "TESTED_BY": 1,
+      "USES": 2
     },
     "hubs": [
       {
@@ -32,6 +43,12 @@
         "name": "run_real_ratchet",
         "type": "V4_RUNNER",
         "degree": 54
+      },
+      {
+        "id": "v3_spec::00_MANIFEST",
+        "name": "00_MANIFEST",
+        "type": "V3_SPEC",
+        "degree": 50
       },
       {
         "id": "v4_skill::skill_registry",
@@ -43,7 +60,13 @@
         "id": "v4_skill::a2_graph_refinery",
         "name": "a2_graph_refinery",
         "type": "V4_SKILL",
-        "degree": 36
+        "degree": 37
+      },
+      {
+        "id": "v3_layer::A1_STRATEGY",
+        "name": "A1_STRATEGY",
+        "type": "V3_SYSTEM_LAYER",
+        "degree": 26
       },
       {
         "id": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/state.py",
@@ -52,40 +75,28 @@
         "degree": 25
       },
       {
+        "id": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+        "name": "76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+        "type": "V3_SPEC",
+        "degree": 24
+      },
+      {
+        "id": "v3_layer::A2_OPERATIONS",
+        "name": "A2_OPERATIONS",
+        "type": "V3_SYSTEM_LAYER",
+        "degree": 22
+      },
+      {
         "id": "v4_skill::runtime_state_kernel",
         "name": "runtime_state_kernel",
         "type": "V4_SKILL",
+        "degree": 21
+      },
+      {
+        "id": "v3_spec::02_OWNERSHIP_MAP",
+        "name": "02_OWNERSHIP_MAP",
+        "type": "V3_SPEC",
         "degree": 20
-      },
-      {
-        "id": "v4_skill::a1_brain",
-        "name": "a1_brain",
-        "type": "V4_SKILL",
-        "degree": 17
-      },
-      {
-        "id": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py",
-        "name": "a1_a0_b_sim_runner",
-        "type": "V3_RUNTIME",
-        "degree": 16
-      },
-      {
-        "id": "v4_skill::v4_graph_builder",
-        "name": "v4_graph_builder",
-        "type": "V4_SKILL",
-        "degree": 15
-      },
-      {
-        "id": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/kernel.py",
-        "name": "kernel",
-        "type": "V3_RUNTIME",
-        "degree": 13
-      },
-      {
-        "id": "v4_skill::intent_runtime_policy",
-        "name": "intent_runtime_policy",
-        "type": "V4_SKILL",
-        "degree": 11
       }
     ]
   },
@@ -116,7 +127,7 @@
       "total": 5
     }
   },
-  "memory_entries": 7,
+  "memory_entries": 8,
   "latest_seal": {
     "next_read_set": [
       "system_v4/a2_state/graphs/system_architecture_v1.json",

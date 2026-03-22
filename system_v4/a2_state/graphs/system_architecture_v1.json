@@ -1,10 +1,10 @@
 {
   "schema": "SYSTEM_ARCHITECTURE_GRAPH_v1",
-  "generated_utc": "2026-03-22T20:48:52Z",
+  "generated_utc": "2026-03-22T21:33:08Z",
   "description": "Real system architecture graph traced from code imports, specs, tests, and probes",
   "stats": {
-    "total_nodes": 765,
-    "total_edges": 504,
+    "total_nodes": 771,
+    "total_edges": 915,
     "nodes_by_type": {
       "V4_SKILL": 131,
       "V4_RUNNER": 18,
@@ -16,20 +16,31 @@
       "V3_TOOL": 215,
       "UPGRADE_DOC": 14,
       "V4_STATE": 8,
-      "V3_STATE": 8
+      "V3_STATE": 8,
+      "V3_SYSTEM_LAYER": 6
     },
     "edges_by_type": {
       "IMPORTS": 219,
       "TESTS": 184,
       "PROBES": 1,
       "SPECIFIES": 71,
-      "READS_STATE": 29
+      "READS_STATE": 29,
+      "EVOLVED_INTO": 4,
+      "PORTED_TO": 37,
+      "REFERENCES": 296,
+      "BELONGS_TO_LAYER": 22,
+      "IMPLEMENTED_IN_V4_BY": 46,
+      "DISTILLS_TO": 1,
+      "PACKAGES_FOR": 1,
+      "COMPILES_TO": 1,
+      "TESTED_BY": 1,
+      "USES": 2
     },
-    "isolated_nodes": 401,
-    "connected_nodes": 364,
-    "edge_to_node_ratio": 0.66,
+    "isolated_nodes": 314,
+    "connected_nodes": 457,
+    "edge_to_node_ratio": 1.19,
     "max_degree": 54,
-    "avg_degree": 2.77
+    "avg_degree": 4.0
   },
   "nodes": {
     "v4_skill::a0_compiler": {
@@ -5268,6 +5279,36 @@
       "name": "model_context",
       "file": "system_v3/a2_state/MODEL_CONTEXT.md",
       "size_bytes": 30689
+    },
+    "v3_layer::B_KERNEL": {
+      "node_type": "V3_SYSTEM_LAYER",
+      "name": "B_KERNEL",
+      "description": "V3 system layer: B_KERNEL"
+    },
+    "v3_layer::A0_COMPILER": {
+      "node_type": "V3_SYSTEM_LAYER",
+      "name": "A0_COMPILER",
+      "description": "V3 system layer: A0_COMPILER"
+    },
+    "v3_layer::A1_STRATEGY": {
+      "node_type": "V3_SYSTEM_LAYER",
+      "name": "A1_STRATEGY",
+      "description": "V3 system layer: A1_STRATEGY"
+    },
+    "v3_layer::SIM_EVIDENCE": {
+      "node_type": "V3_SYSTEM_LAYER",
+      "name": "SIM_EVIDENCE",
+      "description": "V3 system layer: SIM_EVIDENCE"
+    },
+    "v3_layer::A2_OPERATIONS": {
+      "node_type": "V3_SYSTEM_LAYER",
+      "name": "A2_OPERATIONS",
+      "description": "V3 system layer: A2_OPERATIONS"
+    },
+    "v3_layer::INFRASTRUCTURE": {
+      "node_type": "V3_SYSTEM_LAYER",
+      "name": "INFRASTRUCTURE",
+      "description": "V3 system layer: INFRASTRUCTURE"
     }
   },
   "edges": [
@@ -8294,6 +8335,2722 @@
       "target": "state::v4_daemon_state",
       "relation": "READS_STATE",
       "layer": "V4_STATE_FLOW"
+    },
+    {
+      "source": "v3_tool::a1_entropy_engine_campaign_runner",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "EVOLVED_INTO",
+      "layer": "V3_TOOL_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "campaign",
+          "entropy"
+        ]
+      }
+    },
+    {
+      "source": "v3_tool::audit_a1_current_queue_note_alignment",
+      "target": "v4_skill::a2_substrate_base_queue_pivot_audit",
+      "relation": "EVOLVED_INTO",
+      "layer": "V3_TOOL_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "audit",
+          "queue"
+        ]
+      }
+    },
+    {
+      "source": "v3_tool::audit_a1_queue_surfaces_pydantic",
+      "target": "v4_skill::a2_substrate_base_queue_pivot_audit",
+      "relation": "EVOLVED_INTO",
+      "layer": "V3_TOOL_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "audit",
+          "queue"
+        ]
+      }
+    },
+    {
+      "source": "v3_tool::audit_first_controller_a1_launch_subset_graph",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_admission_audit_operator",
+      "relation": "EVOLVED_INTO",
+      "layer": "V3_TOOL_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "audit",
+          "first"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/a1_bridge.py",
+      "target": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "bridge"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/a1_bridge.py",
+      "target": "v4_skill::a2_entropy_bridge_helper_decomposition_control",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "bridge"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/a1_bridge.py",
+      "target": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "bridge"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/zip_protocol_v2_validator.py",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "validator",
+          "zip"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/sim_engine.py",
+      "target": "v4_skill::sim_engine",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "engine",
+          "sim"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/sim_engine.py",
+      "target": "v4_skill::sim_holodeck_engine",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "engine",
+          "sim"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/zip_protocol_v2_writer.py",
+      "target": "v4_skill::v4_tape_writer",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "v",
+          "writer"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/a1_model_selector.py",
+      "target": "v4_skill::a2_context_spec_workflow_follow_on_selector_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "selector"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/a1_model_selector.py",
+      "target": "v4_skill::a2_context_spec_workflow_post_shell_selector_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "selector"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/a1_model_selector.py",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_follow_on_selector_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "selector"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/a1_model_selector.py",
+      "target": "v4_skill::a2_skill_improver_target_selector_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "selector"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/a1_model_selector.py",
+      "target": "v4_skill::a2_source_family_lane_selector_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "selector"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/a0_compiler.py",
+      "target": "v4_skill::a0_compiler",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "compiler"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_model_selector.py",
+      "target": "v4_skill::a2_context_spec_workflow_follow_on_selector_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "selector"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_model_selector.py",
+      "target": "v4_skill::a2_context_spec_workflow_post_shell_selector_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "selector"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_model_selector.py",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_follow_on_selector_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "selector"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_model_selector.py",
+      "target": "v4_skill::a2_skill_improver_target_selector_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "selector"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_model_selector.py",
+      "target": "v4_skill::a2_source_family_lane_selector_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "selector"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_pack_selector.py",
+      "target": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "pack"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_pack_selector.py",
+      "target": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "pack"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_pack_selector.py",
+      "target": "v4_skill::a2_context_spec_workflow_follow_on_selector_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "selector"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_pack_selector.py",
+      "target": "v4_skill::a2_context_spec_workflow_post_shell_selector_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "selector"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_pack_selector.py",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_follow_on_selector_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "selector"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_pack_selector.py",
+      "target": "v4_skill::a2_skill_improver_target_selector_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "selector"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_pack_selector.py",
+      "target": "v4_skill::a2_source_family_lane_selector_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "selector"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_packet_source.py",
+      "target": "v4_skill::a2_skill_source_intake_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "source"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_packet_source.py",
+      "target": "v4_skill::a2_source_family_lane_selector_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "source"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a0_compiler_multikind.py",
+      "target": "v4_skill::a0_compiler",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "compiler"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_bridge_parsing.py",
+      "target": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "bridge"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_bridge_parsing.py",
+      "target": "v4_skill::a2_entropy_bridge_helper_decomposition_control",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "bridge"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_bridge_parsing.py",
+      "target": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "bridge"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_state_snapshot.py",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "state"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_state_snapshot.py",
+      "target": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "state"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_state_snapshot.py",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_admission_audit_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "state"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_state_snapshot.py",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_proof_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "state"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_state_snapshot.py",
+      "target": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "state"
+        ]
+      }
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_state_snapshot.py",
+      "target": "v4_skill::a2_next_state_signal_adaptation_audit_operator",
+      "relation": "PORTED_TO",
+      "layer": "V3_RUNTIME_TO_V4_SKILL",
+      "attributes": {
+        "word_overlap": [
+          "a",
+          "state"
+        ]
+      }
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::01_REQUIREMENTS_LEDGER",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::02_OWNERSHIP_MAP",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::03_B_KERNEL_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::13_CONTENT_REDUNDANCY_LINT_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::04_A0_COMPILER_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::16_ZIP_SAVE_AND_TAPES_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::06_SIM_EVIDENCE_AND_TIERS_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::20_CONTROLLED_TUNING_AND_UPGRADE_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::21_IMPLEMENTATION_BUILD_SEQUENCE_AND_ACCEPTANCE_MATRIX",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::22_RUN_SURFACE_TEMPLATE_AND_SCAFFOLDER_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::23_BOOTPACK_CONFORMANCE_FIXTURE_MATRIX_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::10_INITIAL_AUDIT_REPORT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::11_MIGRATION_HANDOFF_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::12_BOOTPACK_SYNC_AUDIT_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::14_A_THREAD_BOOTPACK_PROJECTION",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::27_BOOTPACK_RATCHET_FUEL_MINT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::27_MASTER_CONTROLLER_THREAD_PROCESS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::29_ZIP_BOOT_BINDING_RULES__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::29_STAGE_3_TEMPLATE_AND_SCHEMA_GATE_FLOW__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::30_CHATUI_CLAW_PLAYWRIGHT_PROTOCOL_v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::34_A1_READY_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::40_PARALLEL_CODEX_THREAD_CONTROL__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::72_SIM_CAMPAIGN_AND_SUITE_MODES__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::74_A0_SAVE_REPORT_SURFACES__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::75_A2_MINING_AND_ROSETTA_ARTIFACT_PACKS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::00_MANIFEST",
+      "target": "v3_spec::79_INTEGRATION_LEDGER__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::01_REQUIREMENTS_LEDGER",
+      "target": "v3_spec::72_SIM_CAMPAIGN_AND_SUITE_MODES__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::01_REQUIREMENTS_LEDGER",
+      "target": "v3_spec::73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::01_REQUIREMENTS_LEDGER",
+      "target": "v3_spec::74_A0_SAVE_REPORT_SURFACES__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::01_REQUIREMENTS_LEDGER",
+      "target": "v3_spec::75_A2_MINING_AND_ROSETTA_ARTIFACT_PACKS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::03_B_KERNEL_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::04_A0_COMPILER_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::06_SIM_EVIDENCE_AND_TIERS_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::16_ZIP_SAVE_AND_TAPES_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::20_CONTROLLED_TUNING_AND_UPGRADE_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::21_IMPLEMENTATION_BUILD_SEQUENCE_AND_ACCEPTANCE_MATRIX",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::22_RUN_SURFACE_TEMPLATE_AND_SCAFFOLDER_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::23_BOOTPACK_CONFORMANCE_FIXTURE_MATRIX_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::01_REQUIREMENTS_LEDGER",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::13_CONTENT_REDUNDANCY_LINT_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::02_OWNERSHIP_MAP",
+      "target": "v3_spec::78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::03_B_KERNEL_SPEC",
+      "target": "v3_spec::17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::03_B_KERNEL_SPEC",
+      "target": "v3_spec::13_CONTENT_REDUNDANCY_LINT_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC",
+      "target": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::06_SIM_EVIDENCE_AND_TIERS_SPEC",
+      "target": "v3_spec::72_SIM_CAMPAIGN_AND_SUITE_MODES__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v3_spec::03_B_KERNEL_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v3_spec::27_BOOTPACK_RATCHET_FUEL_MINT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v3_spec::27_MASTER_CONTROLLER_THREAD_PROCESS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v3_spec::16_ZIP_SAVE_AND_TAPES_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC",
+      "target": "v3_spec::72_SIM_CAMPAIGN_AND_SUITE_MODES__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC",
+      "target": "v3_spec::73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC",
+      "target": "v3_spec::21_IMPLEMENTATION_BUILD_SEQUENCE_AND_ACCEPTANCE_MATRIX",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::10_INITIAL_AUDIT_REPORT",
+      "target": "v3_spec::11_MIGRATION_HANDOFF_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::10_INITIAL_AUDIT_REPORT",
+      "target": "v3_spec::12_BOOTPACK_SYNC_AUDIT_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::10_INITIAL_AUDIT_REPORT",
+      "target": "v3_spec::13_CONTENT_REDUNDANCY_LINT_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::10_INITIAL_AUDIT_REPORT",
+      "target": "v3_spec::14_A_THREAD_BOOTPACK_PROJECTION",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::12_BOOTPACK_SYNC_AUDIT_SPEC",
+      "target": "v3_spec::23_BOOTPACK_CONFORMANCE_FIXTURE_MATRIX_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::14_A_THREAD_BOOTPACK_PROJECTION",
+      "target": "v3_spec::56_BROWSER_OBSERVED_CAPTURE_TO_PROOF_PATH__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::14_A_THREAD_BOOTPACK_PROJECTION",
+      "target": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::14_A_THREAD_BOOTPACK_PROJECTION",
+      "target": "v3_spec::04_A0_COMPILER_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::14_A_THREAD_BOOTPACK_PROJECTION",
+      "target": "v3_spec::03_B_KERNEL_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::14_A_THREAD_BOOTPACK_PROJECTION",
+      "target": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v3_spec::75_A2_MINING_AND_ROSETTA_ARTIFACT_PACKS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::16_ZIP_SAVE_AND_TAPES_SPEC",
+      "target": "v3_spec::73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::16_ZIP_SAVE_AND_TAPES_SPEC",
+      "target": "v3_spec::74_A0_SAVE_REPORT_SURFACES__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::16_ZIP_SAVE_AND_TAPES_SPEC",
+      "target": "v3_spec::56_BROWSER_OBSERVED_CAPTURE_TO_PROOF_PATH__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::16_ZIP_SAVE_AND_TAPES_SPEC",
+      "target": "v3_spec::00_MANIFEST",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1",
+      "target": "v3_spec::01_REQUIREMENTS_LEDGER",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::21_IMPLEMENTATION_BUILD_SEQUENCE_AND_ACCEPTANCE_MATRIX",
+      "target": "v3_spec::22_RUN_SURFACE_TEMPLATE_AND_SCAFFOLDER_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE",
+      "target": "v3_spec::01_REQUIREMENTS_LEDGER",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE",
+      "target": "v3_spec::10_INITIAL_AUDIT_REPORT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE",
+      "target": "v3_spec::68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v3_spec::24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v3_spec::24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::27_BOOTPACK_RATCHET_FUEL_MINT__v1",
+      "target": "v3_spec::24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::27_MASTER_CONTROLLER_THREAD_PROCESS__v1",
+      "target": "v3_spec::27_BOOTPACK_RATCHET_FUEL_MINT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::27_MASTER_CONTROLLER_THREAD_PROCESS__v1",
+      "target": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::27_MASTER_CONTROLLER_THREAD_PROCESS__v1",
+      "target": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::27_MASTER_CONTROLLER_THREAD_PROCESS__v1",
+      "target": "v3_spec::03_B_KERNEL_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::27_MASTER_CONTROLLER_THREAD_PROCESS__v1",
+      "target": "v3_spec::16_ZIP_SAVE_AND_TAPES_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v3_spec::27_BOOTPACK_RATCHET_FUEL_MINT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v3_spec::27_MASTER_CONTROLLER_THREAD_PROCESS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v3_spec::03_B_KERNEL_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v3_spec::10_INITIAL_AUDIT_REPORT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::29_ZIP_BOOT_BINDING_RULES__v1",
+      "target": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::29_ZIP_BOOT_BINDING_RULES__v1",
+      "target": "v3_spec::28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::29_ZIP_BOOT_BINDING_RULES__v1",
+      "target": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::29_ZIP_BOOT_BINDING_RULES__v1",
+      "target": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::29_ZIP_BOOT_BINDING_RULES__v1",
+      "target": "v3_spec::00_MANIFEST",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_spec::28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_spec::29_ZIP_BOOT_BINDING_RULES__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_spec::29_STAGE_3_TEMPLATE_AND_SCHEMA_GATE_FLOW__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_spec::77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_spec::78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_spec::34_A1_READY_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v3_spec::30_CHATUI_CLAW_PLAYWRIGHT_PROTOCOL_v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v3_spec::77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v3_spec::78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v3_spec::24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v3_spec::03_B_KERNEL_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v3_spec::77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v3_spec::78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::35_PRO_THREAD_BOOT_LEVELS__v1",
+      "target": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::35_PRO_THREAD_BOOT_LEVELS__v1",
+      "target": "v3_spec::03_B_KERNEL_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::35_PRO_THREAD_BOOT_LEVELS__v1",
+      "target": "v3_spec::11_MIGRATION_HANDOFF_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::35_PRO_THREAD_BOOT_LEVELS__v1",
+      "target": "v3_spec::36_PRO_LAUNCH_TEMPLATE__NARROW_SOURCE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::35_PRO_THREAD_BOOT_LEVELS__v1",
+      "target": "v3_spec::37_PRO_LAUNCH_TEMPLATE__FULL_A2_REASONING_SPACE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::35_PRO_THREAD_BOOT_LEVELS__v1",
+      "target": "v3_spec::38_PRO_LAUNCH_TEMPLATE__LANE_REFINERY__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::35_PRO_THREAD_BOOT_LEVELS__v1",
+      "target": "v3_spec::39_PRO_LAUNCH_TEMPLATE__METHOD_COMPARE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::40_PARALLEL_CODEX_THREAD_CONTROL__v1",
+      "target": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::40_PARALLEL_CODEX_THREAD_CONTROL__v1",
+      "target": "v3_spec::28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::40_PARALLEL_CODEX_THREAD_CONTROL__v1",
+      "target": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::40_PARALLEL_CODEX_THREAD_CONTROL__v1",
+      "target": "v3_spec::34_A1_READY_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::41_AUTO_GO_ON_RULE__v1",
+      "target": "v3_spec::40_PARALLEL_CODEX_THREAD_CONTROL__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::41_AUTO_GO_ON_RULE__v1",
+      "target": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::41_AUTO_GO_ON_RULE__v1",
+      "target": "v3_spec::03_B_KERNEL_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::41_AUTO_GO_ON_RULE__v1",
+      "target": "v3_spec::11_MIGRATION_HANDOFF_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::42_AUTO_GO_ON_APPLICATOR__v1",
+      "target": "v3_spec::41_AUTO_GO_ON_RULE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::43_AUTO_GO_ON_EXECUTION_PATH__v1",
+      "target": "v3_spec::41_AUTO_GO_ON_RULE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::43_AUTO_GO_ON_EXECUTION_PATH__v1",
+      "target": "v3_spec::42_AUTO_GO_ON_APPLICATOR__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::44_AUTO_GO_ON_SENDER_PACKET__v1",
+      "target": "v3_spec::41_AUTO_GO_ON_RULE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::44_AUTO_GO_ON_SENDER_PACKET__v1",
+      "target": "v3_spec::42_AUTO_GO_ON_APPLICATOR__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::44_AUTO_GO_ON_SENDER_PACKET__v1",
+      "target": "v3_spec::43_AUTO_GO_ON_EXECUTION_PATH__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::45_AUTO_GO_ON_RUNNER__v1",
+      "target": "v3_spec::44_AUTO_GO_ON_SENDER_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::45_AUTO_GO_ON_RUNNER__v1",
+      "target": "v3_spec::41_AUTO_GO_ON_RULE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::45_AUTO_GO_ON_RUNNER__v1",
+      "target": "v3_spec::42_AUTO_GO_ON_APPLICATOR__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::45_AUTO_GO_ON_RUNNER__v1",
+      "target": "v3_spec::43_AUTO_GO_ON_EXECUTION_PATH__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::46_AUTO_GO_ON_THREAD_RESULT_SHAPE__v1",
+      "target": "v3_spec::41_AUTO_GO_ON_RULE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::46_AUTO_GO_ON_THREAD_RESULT_SHAPE__v1",
+      "target": "v3_spec::42_AUTO_GO_ON_APPLICATOR__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::46_AUTO_GO_ON_THREAD_RESULT_SHAPE__v1",
+      "target": "v3_spec::45_AUTO_GO_ON_RUNNER__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::48_BROWSER_ASSISTED_GO_ON_EXECUTION__v1",
+      "target": "v3_spec::43_AUTO_GO_ON_EXECUTION_PATH__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::48_BROWSER_ASSISTED_GO_ON_EXECUTION__v1",
+      "target": "v3_spec::45_AUTO_GO_ON_RUNNER__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::48_BROWSER_ASSISTED_GO_ON_EXECUTION__v1",
+      "target": "v3_spec::44_AUTO_GO_ON_SENDER_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::49_BROWSER_GO_ON_IMPLEMENTATION_PLAN__v1",
+      "target": "v3_spec::48_BROWSER_ASSISTED_GO_ON_EXECUTION__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::49_BROWSER_GO_ON_IMPLEMENTATION_PLAN__v1",
+      "target": "v3_spec::44_AUTO_GO_ON_SENDER_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::49_BROWSER_GO_ON_IMPLEMENTATION_PLAN__v1",
+      "target": "v3_spec::60_BROWSER_REAL_SEND_MODE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::50_BROWSER_GO_ON_PROOF_PACKET__v1",
+      "target": "v3_spec::48_BROWSER_ASSISTED_GO_ON_EXECUTION__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::50_BROWSER_GO_ON_PROOF_PACKET__v1",
+      "target": "v3_spec::49_BROWSER_GO_ON_IMPLEMENTATION_PLAN__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::53_BROWSER_CODEX_THREAD_TARGET_CAPTURE__v1",
+      "target": "v3_spec::51_BROWSER_CODEX_THREAD_TARGET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::54_BROWSER_CODEX_THREAD_CAPTURE_RECORD__v1",
+      "target": "v3_spec::53_BROWSER_CODEX_THREAD_TARGET_CAPTURE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::54_BROWSER_CODEX_THREAD_CAPTURE_RECORD__v1",
+      "target": "v3_spec::51_BROWSER_CODEX_THREAD_TARGET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::57_BROWSER_OBSERVED_CAPTURE_SINK__v1",
+      "target": "v3_spec::54_BROWSER_CODEX_THREAD_CAPTURE_RECORD__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::57_BROWSER_OBSERVED_CAPTURE_SINK__v1",
+      "target": "v3_spec::56_BROWSER_OBSERVED_CAPTURE_TO_PROOF_PATH__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::58_BROWSER_OBSERVED_PACKET_TO_PROOF_PATH__v1",
+      "target": "v3_spec::57_BROWSER_OBSERVED_CAPTURE_SINK__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::63_BROWSER_OBSERVED_PACKET_TO_PLAYWRIGHT_PROOF_PATH__v1",
+      "target": "v3_spec::57_BROWSER_OBSERVED_CAPTURE_SINK__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::64_BROWSER_OBSERVED_THREAD_PACKET_STAGER__v1",
+      "target": "v3_spec::57_BROWSER_OBSERVED_CAPTURE_SINK__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "target": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "target": "v3_spec::28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "target": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "target": "v3_spec::30_CHATUI_CLAW_PLAYWRIGHT_PROTOCOL_v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "target": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "target": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "target": "v3_spec::34_A1_READY_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "target": "v3_spec::40_PARALLEL_CODEX_THREAD_CONTROL__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "target": "v3_spec::41_AUTO_GO_ON_RULE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "target": "v3_spec::42_AUTO_GO_ON_APPLICATOR__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "target": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "target": "v3_spec::03_B_KERNEL_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "target": "v3_spec::11_MIGRATION_HANDOFF_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1",
+      "target": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1",
+      "target": "v3_spec::28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1",
+      "target": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1",
+      "target": "v3_spec::40_PARALLEL_CODEX_THREAD_CONTROL__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1",
+      "target": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1",
+      "target": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1",
+      "target": "v3_spec::03_B_KERNEL_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1",
+      "target": "v3_spec::11_MIGRATION_HANDOFF_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1",
+      "target": "v3_spec::41_AUTO_GO_ON_RULE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1",
+      "target": "v3_spec::34_A1_READY_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1",
+      "target": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1",
+      "target": "v3_spec::28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1",
+      "target": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1",
+      "target": "v3_spec::03_B_KERNEL_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1",
+      "target": "v3_spec::11_MIGRATION_HANDOFF_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::69_FIRST_PARALLEL_CODEX_WAVE_C0_EVALUATION_PACKET__v1",
+      "target": "v3_spec::68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::69_FIRST_PARALLEL_CODEX_WAVE_C0_EVALUATION_PACKET__v1",
+      "target": "v3_spec::67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::69_FIRST_PARALLEL_CODEX_WAVE_C0_EVALUATION_PACKET__v1",
+      "target": "v3_spec::41_AUTO_GO_ON_RULE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::69_FIRST_PARALLEL_CODEX_WAVE_C0_EVALUATION_PACKET__v1",
+      "target": "v3_spec::42_AUTO_GO_ON_APPLICATOR__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::69_FIRST_PARALLEL_CODEX_WAVE_C0_EVALUATION_PACKET__v1",
+      "target": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::69_FIRST_PARALLEL_CODEX_WAVE_C0_EVALUATION_PACKET__v1",
+      "target": "v3_spec::28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::70_FIRST_PARALLEL_CODEX_WAVE_LAUNCH_HANDOFF__v1",
+      "target": "v3_spec::69_FIRST_PARALLEL_CODEX_WAVE_C0_EVALUATION_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::70_FIRST_PARALLEL_CODEX_WAVE_LAUNCH_HANDOFF__v1",
+      "target": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::70_FIRST_PARALLEL_CODEX_WAVE_LAUNCH_HANDOFF__v1",
+      "target": "v3_spec::28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::70_FIRST_PARALLEL_CODEX_WAVE_LAUNCH_HANDOFF__v1",
+      "target": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::70_FIRST_PARALLEL_CODEX_WAVE_LAUNCH_HANDOFF__v1",
+      "target": "v3_spec::03_B_KERNEL_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::70_FIRST_PARALLEL_CODEX_WAVE_LAUNCH_HANDOFF__v1",
+      "target": "v3_spec::11_MIGRATION_HANDOFF_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v3_spec::28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v3_spec::27_BOOTPACK_RATCHET_FUEL_MINT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v3_spec::27_MASTER_CONTROLLER_THREAD_PROCESS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v3_spec::40_PARALLEL_CODEX_THREAD_CONTROL__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::72_SIM_CAMPAIGN_AND_SUITE_MODES__v1",
+      "target": "v3_spec::06_SIM_EVIDENCE_AND_TIERS_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::72_SIM_CAMPAIGN_AND_SUITE_MODES__v1",
+      "target": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::72_SIM_CAMPAIGN_AND_SUITE_MODES__v1",
+      "target": "v3_spec::04_A0_COMPILER_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1",
+      "target": "v3_spec::16_ZIP_SAVE_AND_TAPES_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1",
+      "target": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1",
+      "target": "v3_spec::17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1",
+      "target": "v3_spec::13_CONTENT_REDUNDANCY_LINT_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::74_A0_SAVE_REPORT_SURFACES__v1",
+      "target": "v3_spec::04_A0_COMPILER_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::74_A0_SAVE_REPORT_SURFACES__v1",
+      "target": "v3_spec::16_ZIP_SAVE_AND_TAPES_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::74_A0_SAVE_REPORT_SURFACES__v1",
+      "target": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::75_A2_MINING_AND_ROSETTA_ARTIFACT_PACKS__v1",
+      "target": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::75_A2_MINING_AND_ROSETTA_ARTIFACT_PACKS__v1",
+      "target": "v3_spec::04_A0_COMPILER_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::03_B_KERNEL_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::16_ZIP_SAVE_AND_TAPES_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::27_BOOTPACK_RATCHET_FUEL_MINT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::27_MASTER_CONTROLLER_THREAD_PROCESS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::40_PARALLEL_CODEX_THREAD_CONTROL__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::66_PARALLEL_CODEX_RUN_PLAYBOOK__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::72_SIM_CAMPAIGN_AND_SUITE_MODES__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::74_A0_SAVE_REPORT_SURFACES__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::75_A2_MINING_AND_ROSETTA_ARTIFACT_PACKS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::13_CONTENT_REDUNDANCY_LINT_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::04_A0_COMPILER_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::30_CHATUI_CLAW_PLAYWRIGHT_PROTOCOL_v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::34_A1_READY_PACKET__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::06_SIM_EVIDENCE_AND_TIERS_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
+      "target": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1",
+      "target": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1",
+      "target": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1",
+      "target": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1",
+      "target": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1",
+      "target": "v3_spec::77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::79_INTEGRATION_LEDGER__v1",
+      "target": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::79_INTEGRATION_LEDGER__v1",
+      "target": "v3_spec::03_B_KERNEL_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::79_INTEGRATION_LEDGER__v1",
+      "target": "v3_spec::20_CONTROLLED_TUNING_AND_UPGRADE_CONTRACT",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::79_INTEGRATION_LEDGER__v1",
+      "target": "v3_spec::29_ZIP_BOOT_BINDING_RULES__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::79_INTEGRATION_LEDGER__v1",
+      "target": "v3_spec::29_STAGE_3_TEMPLATE_AND_SCHEMA_GATE_FLOW__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::79_INTEGRATION_LEDGER__v1",
+      "target": "v3_spec::21_IMPLEMENTATION_BUILD_SEQUENCE_AND_ACCEPTANCE_MATRIX",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::THREAD_CONSOLIDATED_RECORD__2026_03_09__v1",
+      "target": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::THREAD_CONSOLIDATED_RECORD__2026_03_09__v1",
+      "target": "v3_spec::03_B_KERNEL_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::THREAD_CONSOLIDATED_RECORD__2026_03_09__v1",
+      "target": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::THREAD_CONSOLIDATED_RECORD__2026_03_09__v1",
+      "target": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::THREAD_CONSOLIDATED_RECORD__2026_03_09__v1",
+      "target": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::THREAD_CONSOLIDATED_RECORD__2026_03_09__v1",
+      "target": "v3_spec::16_ZIP_SAVE_AND_TAPES_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::THREAD_CONSOLIDATED_RECORD__2026_03_09__v1",
+      "target": "v3_spec::02_OWNERSHIP_MAP",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::THREAD_CONSOLIDATED_RECORD__2026_03_09__v1",
+      "target": "v3_spec::01_REQUIREMENTS_LEDGER",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::THREAD_CONSOLIDATED_RECORD__2026_03_09__v1",
+      "target": "v3_spec::06_SIM_EVIDENCE_AND_TIERS_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::THREAD_CONSOLIDATED_RECORD__2026_03_09__v1",
+      "target": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::THREAD_CONSOLIDATED_RECORD__2026_03_09__v1",
+      "target": "v3_spec::27_BOOTPACK_RATCHET_FUEL_MINT__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::THREAD_CONSOLIDATED_RECORD__2026_03_09__v1",
+      "target": "v3_spec::27_MASTER_CONTROLLER_THREAD_PROCESS__v1",
+      "relation": "REFERENCES",
+      "layer": "V3_SPEC_INTERNAL"
+    },
+    {
+      "source": "v3_spec::03_B_KERNEL_SPEC",
+      "target": "v3_layer::B_KERNEL",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_spec::17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1",
+      "target": "v3_layer::B_KERNEL",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_layer::B_KERNEL",
+      "target": "v4_skill::b_kernel",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::B_KERNEL",
+      "target": "v4_skill::ratchet_integrator",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::B_KERNEL",
+      "target": "v4_skill::ratchet_overseer",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::B_KERNEL",
+      "target": "v4_skill::ratchet_prompt_stack",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::B_KERNEL",
+      "target": "v4_skill::runtime_state_kernel",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::B_KERNEL",
+      "target": "v4_skill::skill_kernel_bridge_builder",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::B_KERNEL",
+      "target": "v4_skill::skill_kernel_link_seeding_policy_audit",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::B_KERNEL",
+      "target": "v4_skill::survivor_kernel_bridge_backfill_audit",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::B_KERNEL",
+      "target": "v4_skill::z3_constraint_checker",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_spec::04_A0_COMPILER_SPEC",
+      "target": "v3_layer::A0_COMPILER",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_layer::A0_COMPILER",
+      "target": "v4_skill::a0_compiler",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A0_COMPILER",
+      "target": "v4_skill::slice_compiler",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A0_COMPILER",
+      "target": "v4_skill::zip_subagent_builder",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A0_COMPILER",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC",
+      "target": "v3_layer::A1_STRATEGY",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v3_layer::A1_STRATEGY",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v3_layer::A1_STRATEGY",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_layer::A1_STRATEGY",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v3_layer::A1_STRATEGY",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v3_layer::A1_STRATEGY",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v3_layer::A1_STRATEGY",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v3_layer::A1_STRATEGY",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v4_skill::a1_cartridge_assembler",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v4_skill::a1_cartridge_graph_builder",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v4_skill::a1_brain",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v4_skill::a1_distiller",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_spec::06_SIM_EVIDENCE_AND_TIERS_SPEC",
+      "target": "v3_layer::SIM_EVIDENCE",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_spec::72_SIM_CAMPAIGN_AND_SUITE_MODES__v1",
+      "target": "v3_layer::SIM_EVIDENCE",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_layer::SIM_EVIDENCE",
+      "target": "v4_skill::sim_holodeck_engine",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::SIM_EVIDENCE",
+      "target": "v4_skill::sim_engine",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v3_layer::A2_OPERATIONS",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v3_layer::A2_OPERATIONS",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v3_layer::A2_OPERATIONS",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v3_layer::A2_OPERATIONS",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v3_layer::A2_OPERATIONS",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v4_skill::a2_brain_refresh",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v4_skill::a2_brain_surface_refresher",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v4_skill::a2_high_intake_graph_builder",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v4_skill::a2_low_control_graph_builder",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v4_skill::a2_mid_refinement_graph_builder",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v4_skill::a1_brain",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v4_skill::a1_cartridge_graph_builder",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v4_skill::a2_append_safe_context_shell_audit_operator",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v4_skill::a2_autoresearch_council_runtime_proof_operator",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v4_skill::a2_boot",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC",
+      "target": "v3_layer::INFRASTRUCTURE",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES",
+      "target": "v3_layer::INFRASTRUCTURE",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v3_layer::INFRASTRUCTURE",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_spec::16_ZIP_SAVE_AND_TAPES_SPEC",
+      "target": "v3_layer::INFRASTRUCTURE",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "V3_LAYER_MEMBERSHIP"
+    },
+    {
+      "source": "v3_layer::INFRASTRUCTURE",
+      "target": "v4_skill::v4_tape_writer",
+      "relation": "IMPLEMENTED_IN_V4_BY",
+      "layer": "V3_LAYER_TO_V4_SKILL"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v3_layer::A1_STRATEGY",
+      "relation": "DISTILLS_TO",
+      "layer": "V3_PIPELINE"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v3_layer::A0_COMPILER",
+      "relation": "PACKAGES_FOR",
+      "layer": "V3_PIPELINE"
+    },
+    {
+      "source": "v3_layer::A0_COMPILER",
+      "target": "v3_layer::B_KERNEL",
+      "relation": "COMPILES_TO",
+      "layer": "V3_PIPELINE"
+    },
+    {
+      "source": "v3_layer::B_KERNEL",
+      "target": "v3_layer::SIM_EVIDENCE",
+      "relation": "TESTED_BY",
+      "layer": "V3_PIPELINE"
+    },
+    {
+      "source": "v3_layer::A2_OPERATIONS",
+      "target": "v3_layer::INFRASTRUCTURE",
+      "relation": "USES",
+      "layer": "V3_PIPELINE"
+    },
+    {
+      "source": "v3_layer::A1_STRATEGY",
+      "target": "v3_layer::INFRASTRUCTURE",
+      "relation": "USES",
+      "layer": "V3_PIPELINE"
     }
   ]
 }

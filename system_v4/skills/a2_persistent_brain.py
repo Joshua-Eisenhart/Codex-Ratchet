@@ -414,3 +414,170 @@ class A2PersistentBrain:
             if skill_name.replace("-", "_") in cdata.get("skills", []):
                 return cdata.get("name")
         return None
+
+    # ── 9. V3 BOOT-READ-ORDER PROTOCOL (spec 07 §Boot Order) ───────────────
+    # The v3 boot order defines 3 steps: owner law → brain surfaces → persistent state
+    V3_BOOT_READ_ORDER = {
+        "step1_owner_law": [
+            "system_v3/specs/01_REQUIREMENTS_LEDGER.md",
+            "system_v3/specs/02_OWNERSHIP_MAP.md",
+            "system_v3/specs/07_A2_OPERATIONS_SPEC.md",
+            "system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md",
+        ],
+        "step2_brain_surfaces": [
+            "system_v3/a2_state/INTENT_SUMMARY.md",
+            "system_v3/a2_state/A2_BRAIN_SLICE__v1.md",
+            "system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md",
+            "system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md",
+            "system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md",
+            "system_v3/a2_state/OPEN_UNRESOLVED__v1.md",
+            "system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md",
+            "system_v3/a2_state/SURFACE_CLASS_AND_MEMORY_ADMISSION_RULES__v1.md",
+            "system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md",
+            "system_v3/a2_state/A2_SKILL_SOURCE_INTAKE_PROCEDURE__CURRENT__v1.md",
+        ],
+        "step3_persistent_state": [
+            "system_v3/a2_state/memory.jsonl",
+            "system_v3/a2_state/doc_index.json",
+            "system_v3/a2_state/fuel_queue.json",
+            "system_v3/a2_state/rosetta.json",
+            "system_v3/a2_state/constraint_surface.json",
+        ],
+    }
+
+    # 3x2 layer graph paths
+    LAYER_3x2 = {
+        "A2_HIGH_INTAKE": "system_v4/a2_state/graphs/a2_high_intake_graph_v1.json",
+        "A2_MID_REFINEMENT": "system_v4/a2_state/graphs/a2_mid_refinement_graph_v1.json",
+        "A2_LOW_CONTROL": "system_v4/a2_state/graphs/a2_low_control_graph_v1.json",
+        "A1_JARGONED": "system_v4/a1_state/a1_jargoned_graph_v1.json",
+        "A1_STRIPPED": "system_v4/a1_state/a1_stripped_graph_v1.json",
+        "A1_CARTRIDGE": "system_v4/a1_state/a1_cartridge_graph_v1.json",
+    }
+
+    def audit_v3_boot_surfaces(self) -> Dict[str, Any]:
+        """Check which v3 boot-read-order surfaces exist and their sizes."""
+        result: Dict[str, Any] = {}
+        for step, paths in self.V3_BOOT_READ_ORDER.items():
+            step_result = []
+            for p in paths:
+                fpath = self.workspace_root / p
+                step_result.append({
+                    "path": p,
+                    "exists": fpath.exists(),
+                    "size_bytes": fpath.stat().st_size if fpath.exists() else 0,
+                })
+            result[step] = step_result
+        return result
+
+    def assess_a2_a1_bridge(self) -> Dict[str, Any]:
+        """Assess the health of the A2→A1 Rosetta bridge."""
+        def _count_nodes(path: str) -> int:
+            fpath = self.workspace_root / path
+            if not fpath.exists():
+                return 0
+            try:
+                data = json.loads(fpath.read_text())
+                nodes = data.get("nodes", {})
+                return len(nodes) if isinstance(nodes, dict) else 0
+            except (json.JSONDecodeError, OSError):
+                return 0
+
+        layer_counts = {}
+        for layer, path in self.LAYER_3x2.items():
+            layer_counts[layer] = _count_nodes(path)
+
+        rosetta_path = self.workspace_root / "system_v4" / "a1_state" / "rosetta_v2.json"
+
+        a2_low = layer_counts.get("A2_LOW_CONTROL", 0)
+        a1_jar = layer_counts.get("A1_JARGONED", 0)
+
+        if a1_jar <= 2:
+            status = "BROKEN"
+        elif a1_jar < a2_low // 2:
+            status = "PARTIAL"
+        else:
+            status = "HEALTHY"
+
+        return {
+            "bridge_status": status,
+            "layer_node_counts": layer_counts,
+            "rosetta_v2_exists": rosetta_path.exists(),
+            "rosetta_v2_size_bytes": (
+                rosetta_path.stat().st_size if rosetta_path.exists() else 0
+            ),
+            "bottleneck": (
+                "A1 jargoned graph builder needs to run with real A2_LOW_CONTROL data"
+                if status == "BROKEN"
+                else "A1 stripped/cartridge builders need data"
+                if layer_counts.get("A1_STRIPPED", 0) == 0
+                else "Bridge is healthy"
+            ),
+        }
+
+    def generate_comprehensive_boot_state(self) -> Dict[str, Any]:
+        """
+        Full system boot state for any new thread.
+        Follows the v3 spec 07 boot-read-order protocol.
+        """
+        topo = self.get_system_topology_summary()
+        bridge = self.assess_a2_a1_bridge()
+        v3_surfaces = self.audit_v3_boot_surfaces()
+
+        # Latest seal
+        latest_seal = None
+        if self.seal_log_path.exists():
+            with self.seal_log_path.open("r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if line:
+                        try:
+                            latest_seal = json.loads(line)
+                        except json.JSONDecodeError:
+                            pass
+
+        # Memory log count
+        memory_entries = 0
+        if self.memory_log_path.exists():
+            with self.memory_log_path.open("r", encoding="utf-8") as f:
+                for _ in f:
+                    memory_entries += 1
+
+        report = {
+            "schema": "A2_COMPREHENSIVE_BOOT_STATE_v1",
+            "generated_utc": self._utc_iso(),
+            "system_architecture": topo,
+            "layer_3x2": bridge["layer_node_counts"],
+            "a2_to_a1_bridge": {
+                "status": bridge["bridge_status"],
+                "bottleneck": bridge["bottleneck"],
+                "rosetta_v2_size": bridge["rosetta_v2_size_bytes"],
+            },
+            "v3_boot_surfaces": {
+                step: {
+                    "present": sum(1 for s in surfaces if s["exists"]),
+                    "total": len(surfaces),
+                }
+                for step, surfaces in v3_surfaces.items()
+            },
+            "memory_entries": memory_entries,
+            "latest_seal": latest_seal,
+            "pending_actions": (
+                latest_seal.get("pending_actions", []) if latest_seal else []
+            ),
+        }
+
+        with self.system_state_path.open("w", encoding="utf-8") as f:
+            json.dump(report, f, indent=2)
+
+        self.append_memory_event(
+            entry_type="COMPREHENSIVE_BOOT_STATE",
+            content={
+                "graph_nodes": topo["total_nodes"],
+                "bridge_status": bridge["bridge_status"],
+                "layer_counts": bridge["layer_node_counts"],
+            },
+            tags=["BOOT", "3x2", "BRIDGE_ASSESSMENT"],
+        )
+
+        return report

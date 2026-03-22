@@ -1,7 +1,7 @@
 {
-  "schema": "A2_SYSTEM_STATE_REPORT_v1",
-  "generated_utc": "2026-03-22T21:03:09Z",
-  "system_topology": {
+  "schema": "A2_COMPREHENSIVE_BOOT_STATE_v1",
+  "generated_utc": "2026-03-22T21:27:18Z",
+  "system_architecture": {
     "total_nodes": 765,
     "total_edges": 504,
     "connected_nodes": 364,
@@ -89,10 +89,34 @@
       }
     ]
   },
-  "skill_count": 131,
-  "test_count": 93,
-  "spec_count": 88,
-  "memory_entries": 6,
+  "layer_3x2": {
+    "A2_HIGH_INTAKE": 8793,
+    "A2_MID_REFINEMENT": 858,
+    "A2_LOW_CONTROL": 419,
+    "A1_JARGONED": 2,
+    "A1_STRIPPED": 0,
+    "A1_CARTRIDGE": 0
+  },
+  "a2_to_a1_bridge": {
+    "status": "BROKEN",
+    "bottleneck": "A1 jargoned graph builder needs to run with real A2_LOW_CONTROL data",
+    "rosetta_v2_size": 30394
+  },
+  "v3_boot_surfaces": {
+    "step1_owner_law": {
+      "present": 4,
+      "total": 4
+    },
+    "step2_brain_surfaces": {
+      "present": 10,
+      "total": 10
+    },
+    "step3_persistent_state": {
+      "present": 5,
+      "total": 5
+    }
+  },
+  "memory_entries": 7,
   "latest_seal": {
     "next_read_set": [
       "system_v4/a2_state/graphs/system_architecture_v1.json",
@@ -114,42 +138,10 @@
     "state_digest_hash": "b6efe06c10aadc5ef8212b83658383917db4fd2cbbbd9db5fbdf5e012115001b",
     "ts_utc": "2026-03-22T21:03:09Z"
   },
-  "state_files_health": {
-    "memory.jsonl": {
-      "exists": true,
-      "size_bytes": 1504
-    },
-    "thread_seals": {
-      "exists": true,
-      "size_bytes": 1274
-    },
-    "doc_index_v4.json": {
-      "exists": true,
-      "size_bytes": 87913
-    },
-    "system_architecture_graph": {
-      "exists": true,
-      "size_bytes": 307126
-    },
-    "intent_control": {
-      "exists": true,
-      "size_bytes": 106068
-    },
-    "daemon_state": {
-      "exists": true,
-      "size_bytes": 5786
-    }
-  },
   "pending_actions": [
     "Wire v3 runtime internal import edges into system_architecture_v1.json",
     "Map v3 specs to v3 runtime code (SPECIFIES edges)",
     "Map upgrade docs to v3-to-v4 bridge edges",
     "Build the nested graph from system_architecture_v1.json layers"
-  ],
-  "next_read_set": [
-    "system_v4/a2_state/graphs/system_architecture_v1.json",
-    "system_v4/a2_state/system_state_report.json",
-    "system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md",
-    "system_v3/specs/28_A2_THREAD_BOOT__v1.md"
   ]
 }

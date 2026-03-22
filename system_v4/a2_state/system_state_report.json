@@ -1,0 +1,143 @@
+{
+  "schema": "A2_SYSTEM_STATE_REPORT_v1",
+  "generated_utc": "2026-03-22T20:51:37Z",
+  "system_topology": {
+    "total_nodes": 765,
+    "total_edges": 504,
+    "connected_nodes": 364,
+    "isolated_nodes": 401,
+    "nodes_by_type": {
+      "V4_SKILL": 131,
+      "V4_RUNNER": 18,
+      "V4_TEST": 93,
+      "V4_PROBE": 12,
+      "V4_SKILL_SPEC": 88,
+      "V3_RUNTIME": 92,
+      "V3_SPEC": 86,
+      "V3_TOOL": 215,
+      "UPGRADE_DOC": 14,
+      "V4_STATE": 8,
+      "V3_STATE": 8
+    },
+    "edges_by_type": {
+      "IMPORTS": 219,
+      "TESTS": 184,
+      "PROBES": 1,
+      "SPECIFIES": 71,
+      "READS_STATE": 29
+    },
+    "hubs": [
+      {
+        "id": "v4_runner::run_real_ratchet",
+        "name": "run_real_ratchet",
+        "type": "V4_RUNNER",
+        "degree": 54
+      },
+      {
+        "id": "v4_skill::skill_registry",
+        "name": "skill_registry",
+        "type": "V4_SKILL",
+        "degree": 38
+      },
+      {
+        "id": "v4_skill::a2_graph_refinery",
+        "name": "a2_graph_refinery",
+        "type": "V4_SKILL",
+        "degree": 36
+      },
+      {
+        "id": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/state.py",
+        "name": "state",
+        "type": "V3_RUNTIME",
+        "degree": 25
+      },
+      {
+        "id": "v4_skill::runtime_state_kernel",
+        "name": "runtime_state_kernel",
+        "type": "V4_SKILL",
+        "degree": 20
+      },
+      {
+        "id": "v4_skill::a1_brain",
+        "name": "a1_brain",
+        "type": "V4_SKILL",
+        "degree": 17
+      },
+      {
+        "id": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py",
+        "name": "a1_a0_b_sim_runner",
+        "type": "V3_RUNTIME",
+        "degree": 16
+      },
+      {
+        "id": "v4_skill::v4_graph_builder",
+        "name": "v4_graph_builder",
+        "type": "V4_SKILL",
+        "degree": 15
+      },
+      {
+        "id": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/kernel.py",
+        "name": "kernel",
+        "type": "V3_RUNTIME",
+        "degree": 13
+      },
+      {
+        "id": "v4_skill::intent_runtime_policy",
+        "name": "intent_runtime_policy",
+        "type": "V4_SKILL",
+        "degree": 11
+      }
+    ]
+  },
+  "skill_count": 131,
+  "test_count": 93,
+  "spec_count": 88,
+  "memory_entries": 4,
+  "latest_seal": {
+    "next_read_set": [
+      "path/to/next/doc"
+    ],
+    "pending_actions": [
+      "Continue extraction of Axis 6 polarity terms"
+    ],
+    "schema": "A2_SEAL_RECORD_v1",
+    "seal_id": "SEAL_V4_00000001",
+    "source_memory_head_entry_id": "00000002",
+    "source_memory_head_hash": "f5fcbfcb7da40a30f198a62a15f8b1747171c702d887ef3e6646b9ecc0e95a72",
+    "source_thread_id": "V4_THREAD_001",
+    "state_digest_hash": "abcd1234efgh5678",
+    "ts_utc": "2026-03-18T00:49:51Z"
+  },
+  "state_files_health": {
+    "memory.jsonl": {
+      "exists": true,
+      "size_bytes": 1004
+    },
+    "thread_seals": {
+      "exists": true,
+      "size_bytes": 404
+    },
+    "doc_index_v4.json": {
+      "exists": true,
+      "size_bytes": 87913
+    },
+    "system_architecture_graph": {
+      "exists": true,
+      "size_bytes": 307126
+    },
+    "intent_control": {
+      "exists": true,
+      "size_bytes": 106068
+    },
+    "daemon_state": {
+      "exists": true,
+      "size_bytes": 5786
+    }
+  },
+  "pending_actions": [
+    "Continue extraction of Axis 6 polarity terms"
+  ],
+  "next_read_set": [
+    "path/to/next/doc"
+  ]
+}

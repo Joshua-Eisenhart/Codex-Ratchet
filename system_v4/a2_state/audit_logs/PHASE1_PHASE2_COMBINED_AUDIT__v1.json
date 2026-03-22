@@ -1,0 +1,88 @@
+{
+  "timestamp": "2026-03-22T09:32:13Z",
+  "phase": "Phase 1+2 Combined",
+  "environment": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/.venv_spec_graph/bin/python3",
+  "python_version": "3.13.6 (main, Aug  6 2025, 13:05:20) [Clang 17.0.0 (clang-1700.0.13.3)]",
+  "experiments": {
+    "egglog_rewrite": {
+      "status": "FAIL",
+      "detail": "Expected a RuntimeExpr not eq(Edge(n1, n2))"
+    },
+    "pyRankMCDA_council": {
+      "status": "PARTIAL",
+      "detail": "Module loads. Functions available: ['MDS', 'MinMaxScaler', 'adjust_text', 'colormaps', 'itertools', 'kendalltau', 'linear_sum_assignment', 'minimize', 'np', 'nx']. API needs more investigation."
+    },
+    "mutmut_probe": {
+      "status": "PARTIAL",
+      "detail": "mutmut returncode=2. Output: Usage: python -m mutmut run [OPTIONS] [MUTANT_NAMES]...\nTry 'python -m mutmut run --help' for help.\n\nError: No such option: --paths-to-mutate\n"
+    },
+    "dvc_version": {
+      "status": "PASS",
+      "detail": "DVC available: DVC version: 3.67.0 (pip)\n-------------------------\nPlatform: Python 3.13.6 on macOS-26.2-arm64-arm-"
+    },
+    "hypothesis_domain_invariants": {
+      "status": "PASS",
+      "detail": "4/4 all pass: kernel_admissibility, refined_authority, no_empty_description, edges_have_relation"
+    },
+    "pysmt_formula": {
+      "status": "PASS",
+      "detail": "(Phase 1) Solver-agnostic SMT works"
+    },
+    "cvc5_constraint": {
+      "status": "PASS",
+      "detail": "(Phase 1) cvc5 SAT checks work"
+    },
+    "gudhi_persistence": {
+      "status": "PASS",
+      "detail": "(Phase 1) Betti [206,0], 301 persistence pairs"
+    },
+    "leidenalg_communities": {
+      "status": "PASS",
+      "detail": "(Phase 1) 276 communities, modularity 0.395"
+    },
+    "dotmotif_motifs": {
+      "status": "PASS",
+      "detail": "(Phase 1) 3181 chain motifs"
+    }
+  },
+  "packages_installed": {
+    "phase1": {
+      "hypothesis": "6.151.9",
+      "hypofuzz": "25.11.1",
+      "gudhi": "3.11.0",
+      "leidenalg": "0.11.0",
+      "igraph": "1.0.0",
+      "dotmotif": "0.14.0",
+      "mutmut": "3.5.0",
+      "cosmic-ray": "8.4.4",
+      "pysmt": "0.9.6",
+      "cvc5": "1.3.3",
+      "pyRankMCDA": "2.1.5"
+    },
+    "phase2": {
+      "egglog": "13.0.1",
+      "crosshair-tool": "0.0.102",
+      "dvc": "3.67.0",
+      "z3-solver": "4.16.0 (transitive)",
+      "diskcache": "5.6.3 (transitive)"
+    },
+    "failed": {
+      "egg-smol": "Rust/maturin build on Python 3.13"
+    }
+  },
+  "blockers": [
+    "egg-smol: Rust build fails on Python 3.13 \u2014 egglog installed as replacement",
+    "mutmut: needs pytest test suite for skill files to evaluate mutation survival",
+    "CrossHair: NetworkX internals cause issues under symbolic execution"
+  ],
+  "next_tranche": {
+    "phase3": [
+      "Write pytest tests for top 3 skill files \u2192 re-run mutmut",
+      "Write Hypothesis invariants for promoted subgraph (boundary edges, layer consistency)",
+      "Try OPA/Conftest for graph artifact policy checking",
+      "Initialize DVC for experiment tracking",
+      "Run leidenalg on larger graphs (a2_high_intake, system_graph)",
+      "Run GUDHI on promoted subgraph for topological comparison"
+    ]
+  }
+}

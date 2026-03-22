@@ -355,3 +355,62 @@ class A2PersistentBrain:
 
         return results
 
+    # ── 7. SKILL UNDERSTANDING ──────────────────────────────────────────────
+    def load_skill_understanding(self) -> Dict[str, Any]:
+        """Load the skill understanding index."""
+        path = self.a2_state_dir / "skill_understanding_index_v1.json"
+        if not path.exists():
+            return {"skills": {}}
+        with path.open() as f:
+            return json.load(f)
+
+    def lookup_skill(self, skill_name: str) -> Optional[Dict[str, Any]]:
+        """
+        Look up everything the brain knows about a skill:
+        what it does, who it talks to, where it's explained.
+        """
+        idx = self.load_skill_understanding()
+        skill = idx.get("skills", {}).get(skill_name)
+        if not skill:
+            for name, info in idx.get("skills", {}).items():
+                if skill_name.replace("-", "_") == name or skill_name in name:
+                    skill = info
+                    skill["matched_name"] = name
+                    break
+        return skill
+
+    def find_explanations(self, skill_name: str) -> List[str]:
+        """Find all docs/files that explain a given skill."""
+        info = self.lookup_skill(skill_name)
+        if not info:
+            return []
+        return info.get("mentioned_in_docs", [])
+
+    # ── 8. NESTED GRAPH ACCESS ──────────────────────────────────────────────
+    def load_nested_graph(self) -> Dict[str, Any]:
+        """Load the nested system graph (L0-L3 layers)."""
+        path = self.a2_state_dir / "graphs" / "nested_system_graph_v1.json"
+        if not path.exists():
+            return {"layers": {}}
+        with path.open() as f:
+            return json.load(f)
+
+    def get_system_core(self) -> Dict[str, Any]:
+        """Return L0: the lowest-entropy system spine."""
+        nested = self.load_nested_graph()
+        return nested.get("layers", {}).get("L0_SYSTEM_CORE", {})
+
+    def get_skill_clusters(self) -> Dict[str, Any]:
+        """Return L1: skill clusters with cross-cluster dependencies."""
+        nested = self.load_nested_graph()
+        return nested.get("layers", {}).get("L1_SKILL_CLUSTERS", {})
+
+    def get_cluster_for_skill(self, skill_name: str) -> Optional[str]:
+        """Find which cluster a skill belongs to."""
+        clusters = self.get_skill_clusters()
+        for _nid, cdata in clusters.get("nodes", {}).items():
+            if skill_name in cdata.get("skills", []):
+                return cdata.get("name")
+            if skill_name.replace("-", "_") in cdata.get("skills", []):
+                return cdata.get("name")
+        return None

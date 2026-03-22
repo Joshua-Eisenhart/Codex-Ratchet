@@ -1,6 +1,6 @@
 {
   "schema": "A2_SYSTEM_STATE_REPORT_v1",
-  "generated_utc": "2026-03-22T20:51:37Z",
+  "generated_utc": "2026-03-22T21:03:09Z",
   "system_topology": {
     "total_nodes": 765,
     "total_edges": 504,
@@ -92,30 +92,36 @@
   "skill_count": 131,
   "test_count": 93,
   "spec_count": 88,
-  "memory_entries": 4,
+  "memory_entries": 6,
   "latest_seal": {
     "next_read_set": [
-      "path/to/next/doc"
+      "system_v4/a2_state/graphs/system_architecture_v1.json",
+      "system_v4/a2_state/system_state_report.json",
+      "system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md",
+      "system_v3/specs/28_A2_THREAD_BOOT__v1.md"
     ],
     "pending_actions": [
-      "Continue extraction of Axis 6 polarity terms"
+      "Wire v3 runtime internal import edges into system_architecture_v1.json",
+      "Map v3 specs to v3 runtime code (SPECIFIES edges)",
+      "Map upgrade docs to v3-to-v4 bridge edges",
+      "Build the nested graph from system_architecture_v1.json layers"
     ],
     "schema": "A2_SEAL_RECORD_v1",
-    "seal_id": "SEAL_V4_00000001",
-    "source_memory_head_entry_id": "00000002",
-    "source_memory_head_hash": "f5fcbfcb7da40a30f198a62a15f8b1747171c702d887ef3e6646b9ecc0e95a72",
-    "source_thread_id": "V4_THREAD_001",
-    "state_digest_hash": "abcd1234efgh5678",
-    "ts_utc": "2026-03-18T00:49:51Z"
+    "seal_id": "SEAL_V4_00000002",
+    "source_memory_head_entry_id": "00000005",
+    "source_memory_head_hash": "b07858c6ce452e1ba3c07cb25f1cd6dd7dcffd5a6fd7a92c199487527124f261",
+    "source_thread_id": "directory-restructure-and-brain-build-2026-03-22",
+    "state_digest_hash": "b6efe06c10aadc5ef8212b83658383917db4fd2cbbbd9db5fbdf5e012115001b",
+    "ts_utc": "2026-03-22T21:03:09Z"
   },
   "state_files_health": {
     "memory.jsonl": {
       "exists": true,
-      "size_bytes": 1004
+      "size_bytes": 1504
     },
     "thread_seals": {
       "exists": true,
-      "size_bytes": 404
+      "size_bytes": 1274
     },
     "doc_index_v4.json": {
       "exists": true,
@@ -135,9 +141,15 @@
     }
   },
   "pending_actions": [
-    "Continue extraction of Axis 6 polarity terms"
+    "Wire v3 runtime internal import edges into system_architecture_v1.json",
+    "Map v3 specs to v3 runtime code (SPECIFIES edges)",
+    "Map upgrade docs to v3-to-v4 bridge edges",
+    "Build the nested graph from system_architecture_v1.json layers"
   ],
   "next_read_set": [
-    "path/to/next/doc"
+    "system_v4/a2_state/graphs/system_architecture_v1.json",
+    "system_v4/a2_state/system_state_report.json",
+    "system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md",
+    "system_v3/specs/28_A2_THREAD_BOOT__v1.md"
   ]
 }

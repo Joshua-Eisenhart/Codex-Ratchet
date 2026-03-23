@@ -1,0 +1,31 @@
+task: AUDIT
+title: "Audit A2 persistent brain vs current state"
+scope:
+  - system_v4/skills/a2_persistent_brain.py
+  - system_v4/skills/a2_boot.py
+  - system_v4/skills/a2_brain_refresh.py
+  - system_v4/skills/a2_brain_surface_refresher.py
+  - system_v4/a2_state/
+  - system_v4/specs/01_V4_SYSTEM_SPEC.md
+
+output_format: |
+  Produce an audit report answering:
+  1. Does a2_persistent_brain.py actually implement the A2 mode contract?
+     (REHYDRATE, MAP, DIFF, PACKETIZE, AUDIT)
+  2. Which canonical state files does it read/write?
+  3. What is missing vs the V4 spec?
+  4. What is the actual boot sequence?
+  5. Compare claimed vs actual capability
+  
+  Format: markdown report with structured findings.
+  Include a GAPS section listing what needs to be built.
+
+output_path: threads/results/JOB_003/
+max_docs: 1
+priority: HIGH
+context: |
+  A2 is the persistent memory manager. It should rehydrate from artifacts,
+  detect structural deltas, and emit packets for A1. 
+  The GPT Pro architecture audit recommends 5 hard modes:
+  REHYDRATE, MAP, DIFF, PACKETIZE, AUDIT.
+  See: system_v4/a2_state/GPT_PRO_ARCHITECTURE_AUDIT__2026_03_22.md

@@ -1,0 +1,27 @@
+task: CROSS_VALIDATE
+title: "Cross-validate v3 system understanding vs v4 system spec"
+scope:
+  - system_v4/a2_state/v3_system_understanding_v1.json
+  - system_v4/specs/01_V4_SYSTEM_SPEC.md
+  - system_v4/specs/03_V4_SKILL_CLUSTER_SPEC.md
+  - system_v4/a2_state/v3_v4_governance_map_v1.json
+
+output_format: |
+  Compare what the system BELIEVES about v3 (v3_system_understanding)
+  vs what v4 REQUIRES (V4_SYSTEM_SPEC + SKILL_CLUSTER_SPEC).
+  
+  For each area:
+  - alignment: ALIGNED | PARTIAL | CONTRADICTED | MISSING
+  - evidence: specific citations
+  - action: what needs to change
+  
+  Focus on: layer mapping, authority model, skill contracts,
+  state file contracts, graph structure expectations.
+
+output_path: threads/results/JOB_004/
+max_docs: 1
+priority: HIGH
+context: |
+  v3_system_understanding was auto-generated from reading v3 specs.
+  It may have blind spots. V4 spec is the authority.
+  Governance map shows which v3 spec governs which v4 skill.

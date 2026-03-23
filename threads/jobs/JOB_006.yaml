@@ -1,0 +1,40 @@
+task: WIGGLE
+title: "A1 wiggle: Is A1 a packet generator or a prose reasoner?"
+scope:
+  - system_v4/skills/a1_brain.py
+  - system_v4/skills/a1_distiller.py
+  - system_v4/skills/a1_rosetta_mapper.py
+  - system_v4/skills/wiggle_lane_runner.py
+  - system_v4/a2_state/GPT_PRO_ARCHITECTURE_AUDIT__2026_03_22.md
+  - system_v3/specs/35_A1_EXCHANGE_PROTOCOL_AND_RATCHET_LOOP__v1.md
+
+output_format: |
+  Run 5 lanes (one doc each):
+  
+  1. STEELMAN: Best case for A1 as structured packet generator
+     - How would A1 emit typed packets instead of prose?
+     - What contract changes are needed?
+  
+  2. ALT_FORMALISM: A1 as a branch-and-bound optimizer
+     - Frame A1 as combinatorial search over proposal space
+     - What does this buy us?
+  
+  3. ADVERSARIAL_NEG: Why A1 as packet generator might fail
+     - What gets lost when you take away narrative?
+     - When is prose reasoning actually necessary?
+  
+  4. BOUNDARY_REPAIR: What's the minimum viable change?
+     - Keep A1 as-is but add structured output wrappers
+     - What wrapper format captures the value?
+  
+  5. RESCUE: Salvage from negative lane
+     - What from the adversarial lane can be fixed?
+     - Hybrid approach?
+
+output_path: threads/results/JOB_006/
+max_docs: 5
+priority: MEDIUM
+context: |
+  GPT Pro audit says: "A1 should be a disposable branch composer, 
+  not the brain." Current A1 is prose-heavy. This wiggle job explores
+  the design space for converting A1 to packet-based operation.

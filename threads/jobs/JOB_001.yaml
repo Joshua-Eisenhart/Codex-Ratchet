@@ -1,0 +1,29 @@
+task: DEEP_READ
+title: "Deep read A1 process specs (v3 specs 35-79)"
+scope:
+  - system_v3/specs/35_A1_EXCHANGE_PROTOCOL_AND_RATCHET_LOOP__v1.md
+  - system_v3/specs/36_A1_RESUME_PLANNER__v1.md
+  - system_v3/specs/37_A1_ACTIVE_CANDIDATE_REGISTRY__v1.md
+  - system_v3/specs/38_A1_SURFACE_V3_MANIFEST__v1.md
+  - system_v3/specs/39_A1_ADAPTIVE_RATCHET_PLANNER__v1.md
+  - system_v3/specs/40_A1_PARALLEL_CODEX_PROTOCOL__v1.md
+  - system_v3/specs/41_FIVE_SESSION_CODEX_RATCHET__v1.md
+  - system_v3/specs/42_THREAD_RATCHET_PROTOCOL__v1.md
+  - system_v3/specs/43_A1_BOOTPACK_CONSTRUCTION_STANDARD__v1.md
+
+output_format: |
+  For each spec, extract:
+  - key_concepts: list of named concepts with one-line definitions
+  - requirements: list of requirement IDs (RQ-xxx) with descriptions
+  - contradictions: any conflicts with other specs or v4 system spec
+  - governance_links: which v4 skills should this govern?
+  
+  Use one YAML doc per spec. Keep each under 200 lines.
+
+output_path: threads/results/JOB_001/
+max_docs: 9
+priority: HIGH
+context: |
+  These specs define the A1 exchange/ratchet protocol. 
+  They govern how A1 proposes, wiggles, branches, and hands off to A0.
+  Cross-reference with: system_v4/specs/01_V4_SYSTEM_SPEC.md

@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Codex Ratchet Rich Edge Schema",
+  "description": "The complex edge structure that connects nodes in the 12 nested graphs",
+  "type": "object",
+  "required": ["source", "target", "relation_type"],
+  "properties": {
+    "source": { "type": "string" },
+    "target": { "type": "string" },
+    "relation_type": { 
+        "type": "string",
+        "description": "E.g., GOVERNS, IMPORTS, EXTRACTS, REFINES, CONTRADICTS, PROPOSES"
+    },
+    "sign": { 
+        "type": "integer", 
+        "enum": [-1, 0, 1], 
+        "default": 0,
+        "description": "1 for positive/promoting, -1 for negative/inhibiting, 0 for neutral structural"
+    },
+    "attention_corr": { 
+        "type": "number", 
+        "minimum": -1.0, 
+        "maximum": 1.0, 
+        "default": 0.0,
+        "description": "Correlation between these nodes in the soft geometry field"
+    },
+    "attention_anti": { 
+        "type": "number", 
+        "minimum": -1.0, 
+        "maximum": 1.0, 
+        "default": 0.0,
+        "description": "Anti-correlation between these nodes in the soft geometry field"
+    },
+    "tension": { 
+        "type": "number", 
+        "minimum": 0.0, 
+        "maximum": 1.0, 
+        "default": 0.0,
+        "description": "Amount of unresolved conflict or stress between these concepts"
+    },
+    "confidence": { 
+        "type": "number", 
+        "minimum": 0.0, 
+        "maximum": 1.0, 
+        "default": 1.0,
+        "description": "A2's confidence in this edge being structurally true"
+    },
+    "pos_evidence": { 
+        "type": "array", 
+        "items": { "type": "string" }, 
+        "default": [],
+        "description": "List of Sim IDs or document paths supporting this edge"
+    },
+    "neg_evidence": { 
+        "type": "array", 
+        "items": { "type": "string" }, 
+        "default": [],
+        "description": "List of Sim IDs breaking this edge or contradicting documents"
+    },
+    "graveyard_pressure": { 
+        "type": "number", 
+        "minimum": 0.0, 
+        "maximum": 1.0, 
+        "default": 0.0,
+        "description": "How close this edge/node is to being moved into the graveyard"
+    },
+    "projector": { 
+        "type": "string",
+        "description": "The rule or skill execution that turned soft geometry into this hard claim"
+    }
+  }
+}

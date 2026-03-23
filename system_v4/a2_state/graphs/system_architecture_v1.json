@@ -3,8 +3,8 @@
   "generated_utc": "2026-03-22T21:33:08Z",
   "description": "Real system architecture graph traced from code imports, specs, tests, and probes",
   "stats": {
-    "total_nodes": 771,
-    "total_edges": 915,
+    "total_nodes": 806,
+    "total_edges": 1409,
     "nodes_by_type": {
       "V4_SKILL": 131,
       "V4_RUNNER": 18,
@@ -40,7 +40,11 @@
     "connected_nodes": 457,
     "edge_to_node_ratio": 1.19,
     "max_degree": 54,
-    "avg_degree": 4.0
+    "avg_degree": 4.0,
+    "governance_edges": 396,
+    "v3_spec_nodes": 0,
+    "v4_governance_nodes": 9,
+    "v4_governance_edges": 60
   },
   "nodes": {
     "v4_skill::a0_compiler": {
@@ -5778,6 +5782,60 @@
         "intent_patterns": 5,
         "mutation_patterns": 3
       }
+    },
+    "v4_gov::ratchet_core": {
+      "node_type": "V4_GOVERNANCE",
+      "name": "Ratchet Core",
+      "description": "Core ratchet loop: B adjudicator, integrator, overseer",
+      "authority": "V4_SYSTEM_SPEC \u00a75"
+    },
+    "v4_gov::skill_infrastructure": {
+      "node_type": "V4_GOVERNANCE",
+      "name": "Skill Infrastructure",
+      "description": "Skill registry, types, improvement, search",
+      "authority": "V4_SKILL_CLUSTER_SPEC \u00a72"
+    },
+    "v4_gov::graph_infrastructure": {
+      "node_type": "V4_GOVERNANCE",
+      "name": "Graph Infrastructure",
+      "description": "Graph builders, bridges, ingestors, projections",
+      "authority": "V4_SYSTEM_SPEC \u00a74"
+    },
+    "v4_gov::runtime_state": {
+      "node_type": "V4_GOVERNANCE",
+      "name": "Runtime State Management",
+      "description": "Runtime state, sessions, memory, policy",
+      "authority": "V4_SYSTEM_SPEC \u00a73/\u00a75"
+    },
+    "v4_gov::testing_verification": {
+      "node_type": "V4_GOVERNANCE",
+      "name": "Testing & Verification",
+      "description": "Model checking, fuzzing, property testing, diffing",
+      "authority": "V4_SYSTEM_SPEC \u00a710"
+    },
+    "v4_gov::external_adapters": {
+      "node_type": "V4_GOVERNANCE",
+      "name": "External Adapters & Imported Skills",
+      "description": "Imported from external source families (lev-os, z3, evermem, etc)",
+      "authority": "V4_SYSTEM_SPEC \u00a77 (External Family Roles)"
+    },
+    "v4_gov::topology_geometry": {
+      "node_type": "V4_GOVERNANCE",
+      "name": "Topology & Geometry (Latent, Non-Canon)",
+      "description": "Soft geometry body \u2014 explore/route/score, NOT truth source",
+      "authority": "GPT Pro Audit: Body 2 (soft geometry field)"
+    },
+    "v4_gov::evidence_graveyard": {
+      "node_type": "V4_GOVERNANCE",
+      "name": "Evidence & Graveyard",
+      "description": "Graveyard management, evidence routing, tape writing",
+      "authority": "V4_SYSTEM_SPEC \u00a74 (graph rules) + graph_intent_runtime"
+    },
+    "v4_gov::a1_execution": {
+      "node_type": "V4_GOVERNANCE",
+      "name": "A1 Execution Layer",
+      "description": "A1 wiggle lanes, doc queue generation",
+      "authority": "V3 A1 specs + V4 overlay"
     }
   },
   "edges": [
@@ -11806,6 +11864,2742 @@
       "relation": "GOVERNS",
       "state": "accepted",
       "attributes": {}
+    },
+    {
+      "source": "v3_spec::03_B_KERNEL_SPEC",
+      "target": "v4_skill::b_kernel",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1",
+      "target": "v4_skill::b_kernel",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::04_A0_COMPILER_SPEC",
+      "target": "v4_skill::a0_compiler",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC",
+      "target": "v4_skill::a1_distiller",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC",
+      "target": "v4_skill::a0_compiler",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC",
+      "target": "v4_skill::a1_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v4_skill::a1_cartridge_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v4_skill::a1_distiller",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v4_skill::a1_cartridge_assembler",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v4_skill::a1_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v4_skill::a1_entropy_structure_decomposition_control",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v4_skill::a1_cartridge_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v4_skill::a1_distiller",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v4_skill::a1_cartridge_assembler",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v4_skill::a1_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v4_skill::a1_entropy_structure_decomposition_control",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a1_cartridge_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a1_distiller",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a1_cartridge_assembler",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a1_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a1_entropy_structure_decomposition_control",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v4_skill::a1_cartridge_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v4_skill::a1_distiller",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v4_skill::a1_cartridge_assembler",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v4_skill::a1_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v4_skill::a1_entropy_structure_decomposition_control",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v4_skill::a1_cartridge_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v4_skill::a1_distiller",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v4_skill::a1_cartridge_assembler",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v4_skill::a1_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v4_skill::a1_entropy_structure_decomposition_control",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a1_cartridge_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a1_distiller",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a1_cartridge_assembler",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a1_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a1_entropy_structure_decomposition_control",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v4_skill::a1_cartridge_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v4_skill::a1_distiller",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v4_skill::a1_cartridge_assembler",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v4_skill::a1_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v4_skill::a1_entropy_structure_decomposition_control",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::34_A1_READY_PACKET__v1",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::06_SIM_EVIDENCE_AND_TIERS_SPEC",
+      "target": "v4_skill::sim_holodeck_engine",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::06_SIM_EVIDENCE_AND_TIERS_SPEC",
+      "target": "v4_skill::sim_engine",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::72_SIM_CAMPAIGN_AND_SUITE_MODES__v1",
+      "target": "v4_skill::sim_holodeck_engine",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::72_SIM_CAMPAIGN_AND_SUITE_MODES__v1",
+      "target": "v4_skill::sim_engine",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_workshop_analysis_gate_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_append_safe_context_shell_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_skill_improver_first_target_proof_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_admission_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_disposition_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_lev_builder_placement_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_context_spec_workflow_pattern_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_lev_builder_formalization_skeleton_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_brain_surface_refresher",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_context_spec_workflow_post_shell_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_stage1_operatorized_entropy_head_refinement",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_entropy_bridge_helper_decomposition_control",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_skill_source_intake_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_skill_improver_second_target_admission_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_tracked_work_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_high_intake_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_substrate_base_queue_pivot_audit",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_lev_autodev_loop_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_skill_improver_dry_run_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_follow_on_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_brain_refresh",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_research_deliberation_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_colder_witness_execution_consolidation",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_source_family_lane_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_evermem_backend_reachability_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_next_state_signal_adaptation_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_v3_to_v4_graphification_ingestor",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_proof_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_mid_refinement_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_future_lane_existence_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_readiness_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_boot",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_lev_architecture_fitness_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_low_control_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_thermodynamic_purge",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_context_spec_workflow_follow_on_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_skill_improver_readiness_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_skill_improver_target_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_lev_agents_promotion_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_lev_builder_formalization_proposal_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v4_skill::a2_autoresearch_council_runtime_proof_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_workshop_analysis_gate_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_append_safe_context_shell_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_skill_improver_first_target_proof_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_admission_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_disposition_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_lev_builder_placement_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_context_spec_workflow_pattern_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_brain_surface_refresher",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_lev_builder_formalization_skeleton_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_context_spec_workflow_post_shell_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_stage1_operatorized_entropy_head_refinement",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_entropy_bridge_helper_decomposition_control",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_skill_source_intake_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_skill_improver_second_target_admission_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_tracked_work_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_high_intake_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_substrate_base_queue_pivot_audit",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_lev_autodev_loop_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_skill_improver_dry_run_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_follow_on_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_brain_refresh",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_research_deliberation_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_colder_witness_execution_consolidation",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_source_family_lane_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_evermem_backend_reachability_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_next_state_signal_adaptation_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_v3_to_v4_graphification_ingestor",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_proof_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_mid_refinement_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_future_lane_existence_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_readiness_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_boot",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_lev_architecture_fitness_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_low_control_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_thermodynamic_purge",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_context_spec_workflow_follow_on_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_skill_improver_readiness_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_skill_improver_target_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_lev_agents_promotion_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_lev_builder_formalization_proposal_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT",
+      "target": "v4_skill::a2_autoresearch_council_runtime_proof_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_workshop_analysis_gate_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_append_safe_context_shell_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_skill_improver_first_target_proof_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_admission_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_disposition_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_lev_builder_placement_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_context_spec_workflow_pattern_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_brain_surface_refresher",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_lev_builder_formalization_skeleton_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_context_spec_workflow_post_shell_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_stage1_operatorized_entropy_head_refinement",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_entropy_bridge_helper_decomposition_control",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_skill_source_intake_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_skill_improver_second_target_admission_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_tracked_work_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_high_intake_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_substrate_base_queue_pivot_audit",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_lev_autodev_loop_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_skill_improver_dry_run_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_follow_on_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_brain_refresh",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_research_deliberation_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_colder_witness_execution_consolidation",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_source_family_lane_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_evermem_backend_reachability_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_next_state_signal_adaptation_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_v3_to_v4_graphification_ingestor",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_proof_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_mid_refinement_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_future_lane_existence_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_readiness_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_boot",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_lev_architecture_fitness_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_low_control_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_thermodynamic_purge",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_context_spec_workflow_follow_on_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_skill_improver_readiness_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_skill_improver_target_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_lev_agents_promotion_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_lev_builder_formalization_proposal_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::25_BOOTPACK_A2_REFINERY__v1",
+      "target": "v4_skill::a2_autoresearch_council_runtime_proof_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_workshop_analysis_gate_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_append_safe_context_shell_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_skill_improver_first_target_proof_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_admission_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_disposition_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_lev_builder_placement_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_context_spec_workflow_pattern_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_brain_surface_refresher",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_lev_builder_formalization_skeleton_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_context_spec_workflow_post_shell_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_stage1_operatorized_entropy_head_refinement",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_entropy_bridge_helper_decomposition_control",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_skill_source_intake_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_skill_improver_second_target_admission_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_tracked_work_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_high_intake_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_substrate_base_queue_pivot_audit",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_lev_autodev_loop_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_skill_improver_dry_run_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_follow_on_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_brain_refresh",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_research_deliberation_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_colder_witness_execution_consolidation",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_source_family_lane_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_evermem_backend_reachability_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_next_state_signal_adaptation_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_v3_to_v4_graphification_ingestor",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_proof_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_mid_refinement_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_future_lane_existence_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_readiness_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_boot",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_lev_architecture_fitness_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_low_control_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_thermodynamic_purge",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_context_spec_workflow_follow_on_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_skill_improver_readiness_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_skill_improver_target_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_lev_agents_promotion_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_lev_builder_formalization_proposal_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v4_skill::a2_autoresearch_council_runtime_proof_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_workshop_analysis_gate_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_append_safe_context_shell_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_skill_improver_first_target_proof_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_admission_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_disposition_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_lev_builder_placement_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_context_spec_workflow_pattern_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_brain_surface_refresher",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_lev_builder_formalization_skeleton_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_context_spec_workflow_post_shell_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_stage1_operatorized_entropy_head_refinement",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_entropy_bridge_helper_decomposition_control",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_skill_source_intake_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_skill_improver_second_target_admission_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_tracked_work_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_high_intake_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_substrate_base_queue_pivot_audit",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_lev_autodev_loop_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_skill_improver_dry_run_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_follow_on_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_brain_refresh",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_research_deliberation_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_colder_witness_execution_consolidation",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_source_family_lane_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_evermem_backend_reachability_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_next_state_signal_adaptation_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_v3_to_v4_graphification_ingestor",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_proof_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_mid_refinement_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_future_lane_existence_audit_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_readiness_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_boot",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_lev_architecture_fitness_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_low_control_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_thermodynamic_purge",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_context_spec_workflow_follow_on_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_skill_improver_readiness_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_skill_improver_target_selector_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_lev_agents_promotion_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_lev_builder_formalization_proposal_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "target": "v4_skill::a2_autoresearch_council_runtime_proof_operator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC",
+      "target": "v4_skill::zip_subagent_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC",
+      "target": "v4_skill::a0_compiler",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC",
+      "target": "v4_skill::a1_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC",
+      "target": "v4_skill::rosetta_v2",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES",
+      "target": "v4_skill::runtime_context_snapshot",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES",
+      "target": "v4_skill::zip_subagent_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES",
+      "target": "v4_skill::graph_capability_auditor",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES",
+      "target": "v4_skill::rosetta_v2",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v4_skill::a1_cartridge_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v4_skill::a1_distiller",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v4_skill::a1_cartridge_assembler",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v4_skill::a1_brain",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v4_skill::a1_entropy_structure_decomposition_control",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::15_ROSETTA_AND_MINING_ARTIFACTS",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::16_ZIP_SAVE_AND_TAPES_SPEC",
+      "target": "v4_skill::zip_subagent_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::16_ZIP_SAVE_AND_TAPES_SPEC",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::16_ZIP_SAVE_AND_TAPES_SPEC",
+      "target": "v4_skill::rosetta_v2",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::20_CONTROLLED_TUNING_AND_UPGRADE_CONTRACT",
+      "target": "v4_skill::zip_subagent_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::20_CONTROLLED_TUNING_AND_UPGRADE_CONTRACT",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::20_CONTROLLED_TUNING_AND_UPGRADE_CONTRACT",
+      "target": "v4_skill::rosetta_v2",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::22_RUN_SURFACE_TEMPLATE_AND_SCAFFOLDER_CONTRACT",
+      "target": "v4_skill::zip_subagent_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::22_RUN_SURFACE_TEMPLATE_AND_SCAFFOLDER_CONTRACT",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::22_RUN_SURFACE_TEMPLATE_AND_SCAFFOLDER_CONTRACT",
+      "target": "v4_skill::rosetta_v2",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE",
+      "target": "v4_skill::zip_subagent_builder",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v3_spec::24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE",
+      "target": "v4_skill::rosetta_v2",
+      "relation": "GOVERNS",
+      "layer": "V3_SPEC_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::ratchet_core",
+      "target": "v4_skill::b_adjudicator",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::ratchet_core",
+      "target": "v4_skill::ratchet_integrator",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::ratchet_core",
+      "target": "v4_skill::ratchet_overseer",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::ratchet_core",
+      "target": "v4_skill::ratchet_prompt_stack",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::ratchet_core",
+      "target": "v4_skill::slice_compiler",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::ratchet_core",
+      "target": "v4_skill::slice_manifest",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::ratchet_core",
+      "target": "v4_skill::slice_request",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::skill_infrastructure",
+      "target": "v4_skill::skill_registry",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::skill_infrastructure",
+      "target": "v4_skill::registry_types",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::skill_infrastructure",
+      "target": "v4_skill::skill_improver_operator",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::skill_infrastructure",
+      "target": "v4_skill::bounded_improve_operator",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::graph_infrastructure",
+      "target": "v4_skill::v4_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::graph_infrastructure",
+      "target": "v4_skill::nested_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::graph_infrastructure",
+      "target": "v4_skill::nested_graph_layer_auditor",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::graph_infrastructure",
+      "target": "v4_skill::nested_graph_queue_observation_sync",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::graph_infrastructure",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::graph_infrastructure",
+      "target": "v4_skill::skill_kernel_bridge_builder",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::graph_infrastructure",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::graph_infrastructure",
+      "target": "v4_skill::control_graph_bridge_gap_auditor",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::graph_infrastructure",
+      "target": "v4_skill::control_graph_bridge_source_auditor",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::graph_infrastructure",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::graph_infrastructure",
+      "target": "v4_skill::identity_registry_builder",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::graph_infrastructure",
+      "target": "v4_skill::graph_tool_integration",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::graph_infrastructure",
+      "target": "v4_skill::intent_control_surface_builder",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::runtime_state",
+      "target": "v4_skill::runtime_state",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::runtime_state",
+      "target": "v4_skill::runtime_state_kernel",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::runtime_state",
+      "target": "v4_skill::intent_runtime_policy",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::runtime_state",
+      "target": "v4_skill::outer_session_ledger",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::runtime_state",
+      "target": "v4_skill::outside_control_shell_operator",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::runtime_state",
+      "target": "v4_skill::memory_admission_guard",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::testing_verification",
+      "target": "v4_skill::model_checker",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::testing_verification",
+      "target": "v4_skill::differential_tester",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::testing_verification",
+      "target": "v4_skill::structured_fuzzer",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::testing_verification",
+      "target": "v4_skill::property_pressure_tester",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::testing_verification",
+      "target": "v4_skill::frontier_search_operator",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::external_adapters",
+      "target": "v4_skill::autoresearch_operator",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::external_adapters",
+      "target": "v4_skill::evermem_adapter",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::external_adapters",
+      "target": "v4_skill::pimono_evermem_adapter",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::external_adapters",
+      "target": "v4_skill::witness_evermem_sync",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::external_adapters",
+      "target": "v4_skill::z3_cegis_refiner",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::external_adapters",
+      "target": "v4_skill::z3_constraint_checker",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::external_adapters",
+      "target": "v4_skill::llm_council_operator",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::external_adapters",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::external_adapters",
+      "target": "v4_skill::witness_recorder",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::topology_geometry",
+      "target": "v4_skill::clifford_edge_semantics_audit",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::topology_geometry",
+      "target": "v4_skill::edge_payload_schema_audit",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::topology_geometry",
+      "target": "v4_skill::edge_payload_schema_probe",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::topology_geometry",
+      "target": "v4_skill::toponetx_projection_adapter_audit",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::topology_geometry",
+      "target": "v4_skill::pyg_heterograph_projection_audit",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::topology_geometry",
+      "target": "v4_skill::qit_rosetta_tables",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::topology_geometry",
+      "target": "v4_skill::fep_regulation_operator",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::topology_geometry",
+      "target": "v4_skill::nonlive_overlay_projector",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::topology_geometry",
+      "target": "v4_skill::skill_kernel_link_seeding_policy_audit",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::topology_geometry",
+      "target": "v4_skill::survivor_kernel_bridge_backfill_audit",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::evidence_graveyard",
+      "target": "v4_skill::graveyard_lawyer",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::evidence_graveyard",
+      "target": "v4_skill::graveyard_router",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::evidence_graveyard",
+      "target": "v4_skill::v4_tape_writer",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::evidence_graveyard",
+      "target": "v4_skill::identity_registry_overlap_quarantine",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::a1_execution",
+      "target": "v4_skill::wiggle_lane_runner",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_gov::a1_execution",
+      "target": "v4_skill::generate_doc_queue",
+      "relation": "GOVERNS",
+      "layer": "V4_NATIVE_GOVERNANCE"
     }
   ]
 }

@@ -5599,6 +5599,126 @@
         ],
         "source": "lev-os/context/schemas/flowmind-types.yaml"
       }
+    },
+    "27cee9f623f7c79c": {
+      "node_type": "LEV_CTX",
+      "name": "CTX_GRAPH_YAML",
+      "state": "accepted",
+      "attributes": {
+        "file": "ctx/graph.yaml",
+        "lines": 120,
+        "role": "system_dna",
+        "axioms": [
+          "C1_finitude",
+          "C2_non_commutation"
+        ],
+        "governance": [
+          "C3_nominalized_reality",
+          "C4_ratchet_convergence",
+          "C5_locality"
+        ],
+        "primitives": [
+          "entity",
+          "claim",
+          "evidence",
+          "proposal",
+          "gate",
+          "view",
+          "tick",
+          "intent"
+        ],
+        "gate_types": [
+          "scope",
+          "safety",
+          "feasibility",
+          "standards",
+          "progress"
+        ],
+        "truth_states": [
+          "proposed",
+          "accepted",
+          "contested",
+          "refuted",
+          "superseded"
+        ],
+        "depth": [
+          "L0_overview",
+          "L1_structure",
+          "L2_details",
+          "L3_runtime"
+        ],
+        "shearing_layers": [
+          "site",
+          "structure",
+          "skin",
+          "services",
+          "space_plan",
+          "stuff"
+        ],
+        "node_types": [
+          "agent",
+          "function",
+          "gate",
+          "subgraph"
+        ],
+        "compositor": [
+          "extract",
+          "classify",
+          "validate",
+          "apply"
+        ],
+        "lifecycle_domains": [
+          "entity",
+          "governance",
+          "execution",
+          "runtime"
+        ]
+      }
+    },
+    "74426defa9f4b31d": {
+      "node_type": "LEV_CTX",
+      "name": "CTX_ENTITIES_YAML",
+      "state": "accepted",
+      "attributes": {
+        "file": "ctx/entities.yaml",
+        "lines": 123,
+        "role": "entity_registry",
+        "types": [
+          "spec",
+          "design",
+          "decision",
+          "plan",
+          "proposal",
+          "handoff",
+          "report",
+          "validation-report"
+        ]
+      }
+    },
+    "be57b9910cb7a72c": {
+      "node_type": "LEV_CTX",
+      "name": "CTX_GATES_YAML",
+      "state": "accepted",
+      "attributes": {
+        "file": "ctx/gates.yaml",
+        "lines": 63,
+        "role": "validation_gates",
+        "severity_model": [
+          "enforced",
+          "declared",
+          "aspirational"
+        ]
+      }
+    },
+    "a8e949e601e8eccd": {
+      "node_type": "LEV_CTX",
+      "name": "CTX_VERNACULAR_YAML",
+      "state": "accepted",
+      "attributes": {
+        "file": "ctx/vernacular.yaml",
+        "lines": 234,
+        "role": "term_dictionary"
+      }
     }
   },
   "edges": [
@@ -11559,6 +11679,45 @@
       "state": "accepted",
       "attributes": {
         "cross_system": "lev-os \u2192 codex-ratchet"
+      }
+    },
+    {
+      "source": "27cee9f623f7c79c",
+      "target": "74426defa9f4b31d",
+      "relation": "DEFINES_TYPES_FOR",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "27cee9f623f7c79c",
+      "target": "be57b9910cb7a72c",
+      "relation": "DEFINES_GATES_FOR",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "27cee9f623f7c79c",
+      "target": "a8e949e601e8eccd",
+      "relation": "DEFINES_TERMS_FOR",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "27cee9f623f7c79c",
+      "target": "b15358544f7052e5",
+      "relation": "ENCODES",
+      "state": "accepted",
+      "attributes": {
+        "source": "upstream/main"
+      }
+    },
+    {
+      "source": "27cee9f623f7c79c",
+      "target": "bbac3752c9ffeabd",
+      "relation": "SUPERSEDES",
+      "state": "accepted",
+      "attributes": {
+        "source": "upstream/main"
       }
     }
   ]

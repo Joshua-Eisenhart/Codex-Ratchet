@@ -183,5 +183,17 @@
     }
   },
   "jp_key_insight": "YAML as IR works better than markdown for LLM enforcement. The 5 YAML files (behavior-schema + proposals + flowmind-types + flowmind compilation + system-flowmind schema) ARE the first principles. Drop the context packet in and the LLM builds from first principles.",
-  "evals_approach": "Deterministic runs: input/output/result audit logging. Results determined by separate context window (different agent) for non-biased evaluation. Proof the YAML approach works: re-ran skills after YAML rewrite, measurably better."
+  "evals_approach": "Deterministic runs: input/output/result audit logging. Results determined by separate context window (different agent) for non-biased evaluation. Proof the YAML approach works: re-ran skills after YAML rewrite, measurably better.",
+  "upstream_ctx_packet": {
+    "description": "JP's compressed context packet \u2014 4 YAML files, 540 lines total",
+    "source": "https://github.com/lev-os/leviathan/tree/main/ctx",
+    "files": {
+      "graph.yaml": "System DNA: axioms, governance, principles, primitives, gates, truth states, depth, layers, lifecycle, node types, compositor. 120 lines.",
+      "entities.yaml": "8 SDLC entity types: spec, design, decision, plan, proposal, handoff, report, validation-report. 123 lines.",
+      "gates.yaml": "Validation gate severity model: enforced/declared/aspirational. 63 lines.",
+      "vernacular.yaml": "Complete term dictionary covering all concepts. 234 lines."
+    },
+    "key_insight": "The entire system compressed from 17+ scattered context/ files into 4 clean YAML files. 'YAML is DNA. These files define the organism. The runtime expresses them.'",
+    "local_path": "work/reference_repos/lev-os/leviathan/ctx/"
+  }
 }

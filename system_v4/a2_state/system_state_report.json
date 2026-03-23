@@ -1,9 +1,9 @@
 {
-  "schema": "A2_COMPREHENSIVE_BOOT_STATE_v1",
-  "generated_utc": "2026-03-22T21:35:18Z",
-  "system_architecture": {
-    "total_nodes": 771,
-    "total_edges": 915,
+  "schema": "A2_SYSTEM_STATE_REPORT_v1",
+  "generated_utc": "2026-03-23T06:24:15Z",
+  "system_topology": {
+    "total_nodes": 826,
+    "total_edges": 2716,
     "connected_nodes": 457,
     "isolated_nodes": 314,
     "nodes_by_type": {
@@ -42,117 +42,129 @@
         "id": "v4_runner::run_real_ratchet",
         "name": "run_real_ratchet",
         "type": "V4_RUNNER",
-        "degree": 54
+        "degree": 120
       },
       {
-        "id": "v3_spec::00_MANIFEST",
-        "name": "00_MANIFEST",
-        "type": "V3_SPEC",
-        "degree": 50
+        "id": "layer::infrastructure",
+        "name": "Infrastructure",
+        "type": "SYSTEM_LAYER",
+        "degree": 118
       },
       {
-        "id": "v4_skill::skill_registry",
-        "name": "skill_registry",
-        "type": "V4_SKILL",
-        "degree": 38
+        "id": "layer::a1_strategy",
+        "name": "A1 Strategy",
+        "type": "SYSTEM_LAYER",
+        "degree": 99
       },
       {
         "id": "v4_skill::a2_graph_refinery",
         "name": "a2_graph_refinery",
         "type": "V4_SKILL",
-        "degree": 37
+        "degree": 80
       },
       {
-        "id": "v3_layer::A1_STRATEGY",
-        "name": "A1_STRATEGY",
-        "type": "V3_SYSTEM_LAYER",
-        "degree": 26
-      },
-      {
-        "id": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/state.py",
-        "name": "state",
-        "type": "V3_RUNTIME",
-        "degree": 25
-      },
-      {
-        "id": "v3_spec::76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
-        "name": "76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1",
-        "type": "V3_SPEC",
-        "degree": 24
-      },
-      {
-        "id": "v3_layer::A2_OPERATIONS",
-        "name": "A2_OPERATIONS",
-        "type": "V3_SYSTEM_LAYER",
-        "degree": 22
-      },
-      {
-        "id": "v4_skill::runtime_state_kernel",
-        "name": "runtime_state_kernel",
+        "id": "v4_skill::a1_brain",
+        "name": "a1_brain",
         "type": "V4_SKILL",
-        "degree": 21
+        "degree": 78
       },
       {
-        "id": "v3_spec::02_OWNERSHIP_MAP",
-        "name": "02_OWNERSHIP_MAP",
+        "id": "v3_spec::28_A2_THREAD_BOOT__v1",
+        "name": "28_A2_THREAD_BOOT__v1",
         "type": "V3_SPEC",
-        "degree": 20
+        "degree": 69
+      },
+      {
+        "id": "v3_spec::07_A2_OPERATIONS_SPEC",
+        "name": "07_A2_OPERATIONS_SPEC",
+        "type": "V3_SPEC",
+        "degree": 64
+      },
+      {
+        "id": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+        "name": "71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+        "type": "V3_SPEC",
+        "degree": 61
+      },
+      {
+        "id": "v4_skill::a2_persistent_brain",
+        "name": "a2_persistent_brain",
+        "type": "V4_SKILL",
+        "degree": 57
+      },
+      {
+        "id": "layer::a2_operations",
+        "name": "A2 Operations",
+        "type": "SYSTEM_LAYER",
+        "degree": 54
       }
     ]
   },
-  "layer_3x2": {
-    "A2_HIGH_INTAKE": 8793,
-    "A2_MID_REFINEMENT": 858,
-    "A2_LOW_CONTROL": 419,
-    "A1_JARGONED": 2,
-    "A1_STRIPPED": 0,
-    "A1_CARTRIDGE": 0
-  },
-  "a2_to_a1_bridge": {
-    "status": "BROKEN",
-    "bottleneck": "A1 jargoned graph builder needs to run with real A2_LOW_CONTROL data",
-    "rosetta_v2_size": 30394
-  },
-  "v3_boot_surfaces": {
-    "step1_owner_law": {
-      "present": 4,
-      "total": 4
-    },
-    "step2_brain_surfaces": {
-      "present": 10,
-      "total": 10
-    },
-    "step3_persistent_state": {
-      "present": 5,
-      "total": 5
-    }
-  },
-  "memory_entries": 8,
+  "skill_count": 131,
+  "test_count": 93,
+  "spec_count": 88,
+  "memory_entries": 14,
   "latest_seal": {
     "next_read_set": [
       "system_v4/a2_state/graphs/system_architecture_v1.json",
+      "system_v4/a2_state/v3_system_understanding_v1.json",
       "system_v4/a2_state/system_state_report.json",
-      "system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md",
-      "system_v3/specs/28_A2_THREAD_BOOT__v1.md"
+      "system_v4/a2_state/skill_understanding_index_v1.json",
+      "system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md"
     ],
     "pending_actions": [
-      "Wire v3 runtime internal import edges into system_architecture_v1.json",
-      "Map v3 specs to v3 runtime code (SPECIFIES edges)",
-      "Map upgrade docs to v3-to-v4 bridge edges",
-      "Build the nested graph from system_architecture_v1.json layers"
+      "Run a1_jargoned_graph_builder with real A2_LOW_CONTROL data to fix broken bridge",
+      "Run a1_stripped_graph_builder and a1_cartridge_graph_builder to populate A1 layers",
+      "Process the 314 isolated v3 tool nodes into the graph (find what they became in v4)",
+      "Build v4 equivalents of missing v3 brain surfaces (fuel_queue, rosetta, constraint_surface)",
+      "Run the nested_graph_builder to update nested_graph_v1.json with TopoNetX/PyG"
     ],
     "schema": "A2_SEAL_RECORD_v1",
-    "seal_id": "SEAL_V4_00000002",
-    "source_memory_head_entry_id": "00000005",
-    "source_memory_head_hash": "b07858c6ce452e1ba3c07cb25f1cd6dd7dcffd5a6fd7a92c199487527124f261",
-    "source_thread_id": "directory-restructure-and-brain-build-2026-03-22",
-    "state_digest_hash": "b6efe06c10aadc5ef8212b83658383917db4fd2cbbbd9db5fbdf5e012115001b",
-    "ts_utc": "2026-03-22T21:03:09Z"
+    "seal_id": "SEAL_V4_00000003",
+    "source_memory_head_entry_id": "00000009",
+    "source_memory_head_hash": "63e00841ba5a11626f7df72dfad88f75a0c9d12949637d07403dadc81bca2a1f",
+    "source_thread_id": "system-processing-session-2026-03-22-1431",
+    "state_digest_hash": "cd1b058c8d664dffaa4bdcd4e2214c291996880df429aa9602b0f68fb3beb1e6",
+    "ts_utc": "2026-03-22T21:35:42Z"
+  },
+  "state_files_health": {
+    "memory.jsonl": {
+      "exists": true,
+      "size_bytes": 3751
+    },
+    "thread_seals": {
+      "exists": true,
+      "size_bytes": 2383
+    },
+    "doc_index_v4.json": {
+      "exists": true,
+      "size_bytes": 88119
+    },
+    "system_architecture_graph": {
+      "exists": true,
+      "size_bytes": 794527
+    },
+    "intent_control": {
+      "exists": true,
+      "size_bytes": 106068
+    },
+    "daemon_state": {
+      "exists": true,
+      "size_bytes": 5786
+    }
   },
   "pending_actions": [
-    "Wire v3 runtime internal import edges into system_architecture_v1.json",
-    "Map v3 specs to v3 runtime code (SPECIFIES edges)",
-    "Map upgrade docs to v3-to-v4 bridge edges",
-    "Build the nested graph from system_architecture_v1.json layers"
+    "Run a1_jargoned_graph_builder with real A2_LOW_CONTROL data to fix broken bridge",
+    "Run a1_stripped_graph_builder and a1_cartridge_graph_builder to populate A1 layers",
+    "Process the 314 isolated v3 tool nodes into the graph (find what they became in v4)",
+    "Build v4 equivalents of missing v3 brain surfaces (fuel_queue, rosetta, constraint_surface)",
+    "Run the nested_graph_builder to update nested_graph_v1.json with TopoNetX/PyG"
+  ],
+  "next_read_set": [
+    "system_v4/a2_state/graphs/system_architecture_v1.json",
+    "system_v4/a2_state/v3_system_understanding_v1.json",
+    "system_v4/a2_state/system_state_report.json",
+    "system_v4/a2_state/skill_understanding_index_v1.json",
+    "system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md"
   ]
 }

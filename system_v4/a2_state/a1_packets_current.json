@@ -1,0 +1,124 @@
+{
+  "schema": "A2_PACKET_SET_v1",
+  "generated_utc": "2026-03-23T06:24:15Z",
+  "packet_count": 2,
+  "packets": [
+    {
+      "packet_type": "A2_BRAIN_SLICE",
+      "ts_utc": "2026-03-23T06:24:15Z",
+      "content": {
+        "self_model": {
+          "node_count": 826,
+          "edge_count": 2716,
+          "avg_degree": 6.58,
+          "node_types": {
+            "V3_TOOL": 215,
+            "V4_SKILL": 131,
+            "V4_TEST": 93,
+            "V3_RUNTIME": 92,
+            "V4_SKILL_SPEC": 88,
+            "V3_SPEC": 86,
+            "V4_RUNNER": 18,
+            "UPGRADE_DOC": 14,
+            "SYSTEM_LAYER": 13,
+            "V4_PROBE": 12,
+            "V4_GOVERNANCE": 9,
+            "CANONICAL_STATE": 9,
+            "V4_STATE": 8,
+            "V3_STATE": 8,
+            "SYSTEM_FLOWMIND": 7,
+            "V3_SYSTEM_LAYER": 6,
+            "LEV_CTX": 4,
+            "COMPILATION_CONCEPT": 3,
+            "LEV_PRIMITIVE": 3,
+            "CR_CTX": 3,
+            "SYSTEM_BRIDGE": 1,
+            "RUNTIME_PRIMITIVE": 1,
+            "GRAPH_STRUCTURE": 1,
+            "SYSTEM_CAPABILITY": 1
+          },
+          "edge_relations": {
+            "GOVERNS": 457,
+            "CO_GOVERNED": 396,
+            "BELONGS_TO_LAYER": 340,
+            "REFERENCES": 300,
+            "IMPORTS": 219,
+            "TESTS": 215,
+            "CO_LAYER": 175,
+            "USES": 104,
+            "SPECIFIES": 91,
+            "CO_IMPORTS": 75,
+            "CO_ACCESSES": 74,
+            "IMPLEMENTED_IN_V4_BY": 46,
+            "PORTED_TO": 37,
+            "READS_WRITES": 30,
+            "READS_STATE": 29,
+            "IMPLEMENTS": 21,
+            "FEEDS": 19,
+            "SHARES_CONCEPTS": 18,
+            "MIRRORS": 11,
+            "EVOLVED_INTO": 10,
+            "REQUIRES": 8,
+            "RELATED_TO": 7,
+            "MAPS_TO": 6,
+            "SHARES_REQUIREMENTS": 3,
+            "CONTAINS": 2,
+            "ANALOGOUS_TO": 2,
+            "DERIVED_FROM": 2,
+            "PROBES": 1,
+            "DISTILLS_TO": 1,
+            "PACKAGES_FOR": 1,
+            "COMPILES_TO": 1,
+            "TESTED_BY": 1,
+            "DISTILLS_INTO": 1,
+            "OPERATES_ON": 1,
+            "ENABLES": 1,
+            "TYPES_USED_BY": 1,
+            "PRODUCES": 1,
+            "GOVERNED_BY": 1,
+            "GATED_BY": 1,
+            "LOGGED_BY": 1,
+            "DEFINES_TYPES_FOR": 1,
+            "DEFINES_GATES_FOR": 1,
+            "DEFINES_TERMS_FOR": 1,
+            "ENCODES": 1,
+            "SUPERSEDES": 1,
+            "OPERATIONALIZES": 1
+          },
+          "governance_coverage": {
+            "governed": 131,
+            "total_skills": 131,
+            "ratio": 1.0
+          }
+        },
+        "refinery_layers": {
+          "A2_3_INTAKE": 15873,
+          "A1_JARGONED": 420,
+          "A2_2_CANDIDATE": 861,
+          "GRAVEYARD": 378,
+          "A2_1_KERNEL": 419,
+          "A1_STRIPPED": 401,
+          "A1_CARTRIDGE": 401,
+          "A0_COMPILED": 401,
+          "B_ADJUDICATED": 595,
+          "SKILL_REGISTRY": 123,
+          "SIM_EVIDENCED": 68,
+          "CANON_SECURE": 1
+        }
+      }
+    },
+    {
+      "packet_type": "A2_PENDING_ACTIONS",
+      "ts_utc": "2026-03-23T06:24:15Z",
+      "content": {
+        "actions": [
+          "Run a1_jargoned_graph_builder with real A2_LOW_CONTROL data to fix broken bridge",
+          "Run a1_stripped_graph_builder and a1_cartridge_graph_builder to populate A1 layers",
+          "Process the 314 isolated v3 tool nodes into the graph (find what they became in v4)",
+          "Build v4 equivalents of missing v3 brain surfaces (fuel_queue, rosetta, constraint_surface)",
+          "Run the nested_graph_builder to update nested_graph_v1.json with TopoNetX/PyG"
+        ]
+      }
+    }
+  ]
+}

@@ -2,9 +2,25 @@ import json
 import time
 import hashlib
 import os
+from enum import Enum
 from pathlib import Path
 from typing import Dict, Any, Optional, List
 from collections import Counter
+
+
+class A2Mode(str, Enum):
+    """
+    A2 hard modes — each mode is a bounded computation with defined
+    inputs, outputs, and side effects. Mode never silently becomes
+    patch/canon mode.
+    
+    Per GPT Pro Architecture Audit 2026-03-22.
+    """
+    REHYDRATE = "REHYDRATE"     # Restore from artifacts, rebuild working state
+    MAP       = "MAP"           # Scan for structural understanding
+    DIFF      = "DIFF"          # Detect structural deltas (append-only)
+    PACKETIZE = "PACKETIZE"     # Emit packets for A1 consumption
+    AUDIT     = "AUDIT"         # Verify self-model integrity
 
 
 class A2PersistentBrain:
@@ -581,3 +597,389 @@ class A2PersistentBrain:
         )
 
         return report
+
+    # ── 10. A2 MODE ROUTING ──────────────────────────────────────────────────
+
+    def run_mode(self, mode: A2Mode) -> Dict[str, Any]:
+        """
+        Execute one A2 mode. Each mode is a bounded computation.
+        Never silently becomes patch/canon mode.
+
+        Returns a result dict with:
+          - mode: which mode ran
+          - ts_utc: when
+          - result: mode-specific output
+          - deltas: {intent, self_model, target, evidence}
+        """
+        dispatch = {
+            A2Mode.REHYDRATE: self._mode_rehydrate,
+            A2Mode.MAP:       self._mode_map,
+            A2Mode.DIFF:      self._mode_diff,
+            A2Mode.PACKETIZE: self._mode_packetize,
+            A2Mode.AUDIT:     self._mode_audit,
+        }
+        handler = dispatch.get(mode)
+        if handler is None:
+            raise ValueError(f"Unknown A2 mode: {mode}")
+
+        result = handler()
+
+        # Log the mode execution
+        self.append_memory_event(
+            entry_type=f"A2_MODE_{mode.value}",
+            content={
+                "mode": mode.value,
+                "summary": result.get("summary", ""),
+            },
+            tags=["A2_MODE", mode.value],
+        )
+
+        return {
+            "mode": mode.value,
+            "ts_utc": self._utc_iso(),
+            "result": result,
+        }
+
+    def _mode_rehydrate(self) -> Dict[str, Any]:
+        """
+        REHYDRATE: Restore working state from persistent artifacts.
+        Read all canonical state files, rebuild in-memory caches.
+        """
+        # Load all state surfaces
+        self._system_graph = None  # Force reload
+        graph = self.load_system_graph()
+        doc_index = self.refresh_doc_index()
+        nested = self.load_nested_graph()
+        skill_idx = self.load_skill_understanding()
+        boot = self.generate_boot_state_report()
+
+        # Load refinery graph too
+        refinery_path = self.a2_state_dir / "graphs" / "system_graph_a2_refinery.json"
+        refinery_nodes = 0
+        refinery_edges = 0
+        if refinery_path.exists():
+            try:
+                rg = json.loads(refinery_path.read_text())
+                refinery_nodes = len(rg.get("nodes", {}))
+                refinery_edges = len(rg.get("edges", []))
+            except (json.JSONDecodeError, OSError):
+                pass
+
+        return {
+            "summary": f"Rehydrated: arch={len(graph.get('nodes', {}))}n/{len(graph.get('edges', []))}e, "
+                       f"refinery={refinery_nodes}n/{refinery_edges}e, "
+                       f"docs={doc_index['document_count']}, "
+                       f"skills={len(skill_idx.get('skills', {}))}",
+            "architecture_graph": {
+                "nodes": len(graph.get("nodes", {})),
+                "edges": len(graph.get("edges", [])),
+            },
+            "refinery_graph": {
+                "nodes": refinery_nodes,
+                "edges": refinery_edges,
+            },
+            "doc_index": {"document_count": doc_index["document_count"]},
+            "skills": len(skill_idx.get("skills", {})),
+            "nested_layers": len(nested.get("layers", {})),
+            "boot_state": {
+                "memory_entries": boot.get("memory_entries", 0),
+                "pending_actions": boot.get("pending_actions", []),
+            },
+        }
+
+    def _mode_map(self) -> Dict[str, Any]:
+        """
+        MAP: Scan for structural understanding of the current system.
+        Produces a self-model snapshot.
+        """
+        graph = self.load_system_graph()
+        nodes = graph.get("nodes", {})
+        edges = graph.get("edges", [])
+
+        # Node type census
+        type_census: Counter = Counter()
+        for n in nodes.values():
+            if isinstance(n, dict):
+                type_census[n.get("node_type", "UNKNOWN")] += 1
+
+        # Edge relation census
+        rel_census: Counter = Counter()
+        for e in edges:
+            rel_census[e.get("relation", "UNKNOWN")] += 1
+
+        # Degree distribution
+        degree: Counter = Counter()
+        for e in edges:
+            degree[e["source"]] += 1
+            degree[e["target"]] += 1
+
+        degrees = list(degree.values()) if degree else [0]
+        avg_degree = sum(degrees) / len(degrees) if degrees else 0
+
+        # Governance coverage
+        governed = set()
+        for e in edges:
+            if e.get("relation") == "GOVERNS" and e["target"].startswith("v4_skill::"):
+                governed.add(e["target"])
+        total_skills = sum(1 for n in nodes.values()
+                          if isinstance(n, dict) and n.get("node_type") == "V4_SKILL")
+
+        # Check refinery layer counts
+        refinery_path = self.a2_state_dir / "graphs" / "system_graph_a2_refinery.json"
+        layer_counts = {}
+        if refinery_path.exists():
+            try:
+                rg = json.loads(refinery_path.read_text())
+                for n in rg.get("nodes", {}).values():
+                    if isinstance(n, dict):
+                        tz = n.get("trust_zone", "UNKNOWN")
+                        layer_counts[tz] = layer_counts.get(tz, 0) + 1
+            except (json.JSONDecodeError, OSError):
+                pass
+
+        return {
+            "summary": f"Mapped: {len(nodes)}n/{len(edges)}e, "
+                       f"avg_degree={avg_degree:.1f}, "
+                       f"governed={len(governed)}/{total_skills}",
+            "self_model": {
+                "node_count": len(nodes),
+                "edge_count": len(edges),
+                "avg_degree": round(avg_degree, 2),
+                "node_types": dict(type_census.most_common()),
+                "edge_relations": dict(rel_census.most_common()),
+                "governance_coverage": {
+                    "governed": len(governed),
+                    "total_skills": total_skills,
+                    "ratio": round(len(governed) / total_skills, 3) if total_skills else 0,
+                },
+            },
+            "refinery_layers": layer_counts,
+        }
+
+    def _mode_diff(self) -> Dict[str, Any]:
+        """
+        DIFF: Detect structural deltas since last run.
+        Compares current doc index against previous to find changes.
+        """
+        # Load previous doc index
+        prev_index = {}
+        if self.doc_index_path.exists():
+            try:
+                prev = json.loads(self.doc_index_path.read_text())
+                for doc in prev.get("documents", []):
+                    prev_index[doc["path"]] = doc["sha256"]
+            except (json.JSONDecodeError, OSError):
+                pass
+
+        # Refresh to get current
+        current = self.refresh_doc_index()
+        curr_index = {}
+        for doc in current.get("documents", []):
+            curr_index[doc["path"]] = doc["sha256"]
+
+        # Compute deltas
+        added = [p for p in curr_index if p not in prev_index]
+        removed = [p for p in prev_index if p not in curr_index]
+        modified = [
+            p for p in curr_index
+            if p in prev_index and curr_index[p] != prev_index[p]
+        ]
+        unchanged = len(curr_index) - len(added) - len(modified)
+
+        has_changes = bool(added or removed or modified)
+
+        return {
+            "summary": f"Diff: +{len(added)} -{len(removed)} ~{len(modified)} ={unchanged}",
+            "has_changes": has_changes,
+            "deltas": {
+                "added": added,
+                "removed": removed,
+                "modified": modified,
+                "unchanged_count": unchanged,
+            },
+        }
+
+    def _mode_packetize(self) -> Dict[str, Any]:
+        """
+        PACKETIZE: Emit structured packets for A1 consumption.
+        Reads current state and produces A1-ready data packets.
+        """
+        # Run diff first to know what changed
+        diff_result = self._mode_diff()
+        map_result = self._mode_map()
+
+        # Build A1 brain slice
+        packets = []
+
+        # Packet 1: System state summary
+        packets.append({
+            "packet_type": "A2_BRAIN_SLICE",
+            "ts_utc": self._utc_iso(),
+            "content": {
+                "self_model": map_result["self_model"],
+                "refinery_layers": map_result.get("refinery_layers", {}),
+            },
+        })
+
+        # Packet 2: Delta report (if changes exist)
+        if diff_result["has_changes"]:
+            packets.append({
+                "packet_type": "A2_DELTA_REPORT",
+                "ts_utc": self._utc_iso(),
+                "content": diff_result["deltas"],
+            })
+
+        # Packet 3: Pending actions from latest seal
+        boot = self.generate_boot_state_report()
+        pending = boot.get("pending_actions", [])
+        if pending:
+            packets.append({
+                "packet_type": "A2_PENDING_ACTIONS",
+                "ts_utc": self._utc_iso(),
+                "content": {"actions": pending},
+            })
+
+        # Packet 4: Governance gaps
+        gov_coverage = map_result["self_model"]["governance_coverage"]
+        if gov_coverage["ratio"] < 1.0:
+            packets.append({
+                "packet_type": "A2_GOVERNANCE_GAP",
+                "ts_utc": self._utc_iso(),
+                "content": {
+                    "governed": gov_coverage["governed"],
+                    "total": gov_coverage["total_skills"],
+                    "gap": gov_coverage["total_skills"] - gov_coverage["governed"],
+                },
+            })
+
+        # Write packets to a2_state for A1 pickup
+        packet_path = self.a2_state_dir / "a1_packets_current.json"
+        packet_payload = {
+            "schema": "A2_PACKET_SET_v1",
+            "generated_utc": self._utc_iso(),
+            "packet_count": len(packets),
+            "packets": packets,
+        }
+        with packet_path.open("w", encoding="utf-8") as f:
+            json.dump(packet_payload, f, indent=2)
+
+        return {
+            "summary": f"Packetized: {len(packets)} packets for A1",
+            "packet_count": len(packets),
+            "packet_types": [p["packet_type"] for p in packets],
+            "packet_path": str(packet_path),
+        }
+
+    def _mode_audit(self) -> Dict[str, Any]:
+        """
+        AUDIT: Verify self-model integrity.
+        Check for inconsistencies, missing files, broken references.
+        """
+        findings = []
+
+        # 1. Check all canonical state files exist
+        canonical_files = {
+            "memory.jsonl": self.memory_log_path,
+            "thread_seals": self.seal_log_path,
+            "doc_index_v4.json": self.doc_index_path,
+            "system_architecture_graph": self.system_graph_path,
+            "system_graph_a2_refinery": self.a2_state_dir / "graphs" / "system_graph_a2_refinery.json",
+            "identity_registry": self.a2_state_dir / "graphs" / "identity_registry_v1.json",
+            "governance_map": self.a2_state_dir / "v3_v4_governance_map_v1.json",
+        }
+        for name, path in canonical_files.items():
+            if not path.exists():
+                findings.append({
+                    "severity": "HIGH",
+                    "type": "MISSING_STATE_FILE",
+                    "file": name,
+                    "path": str(path),
+                })
+
+        # 2. Check graph consistency
+        graph = self.load_system_graph()
+        nodes = graph.get("nodes", {})
+        edges = graph.get("edges", [])
+
+        # Orphan edges (reference nonexistent nodes)
+        orphan_edges = 0
+        for e in edges:
+            if e.get("source") not in nodes:
+                orphan_edges += 1
+            if e.get("target") not in nodes:
+                orphan_edges += 1
+        if orphan_edges > 0:
+            findings.append({
+                "severity": "MEDIUM",
+                "type": "ORPHAN_EDGES",
+                "count": orphan_edges,
+            })
+
+        # 3. Check governance completeness
+        governed = set()
+        for e in edges:
+            if e.get("relation") == "GOVERNS" and e["target"].startswith("v4_skill::"):
+                governed.add(e["target"])
+        total_skills = sum(1 for n in nodes.values()
+                          if isinstance(n, dict) and n.get("node_type") == "V4_SKILL")
+        ungoverned = total_skills - len(governed)
+        if ungoverned > 0:
+            findings.append({
+                "severity": "MEDIUM",
+                "type": "UNGOVERNED_SKILLS",
+                "count": ungoverned,
+            })
+
+        # 4. Check A2→A1 bridge
+        bridge = self.assess_a2_a1_bridge()
+        if bridge["bridge_status"] != "HEALTHY":
+            findings.append({
+                "severity": "HIGH",
+                "type": "BRIDGE_UNHEALTHY",
+                "status": bridge["bridge_status"],
+                "bottleneck": bridge["bottleneck"],
+            })
+
+        # 5. Check 3x2 layer population
+        for layer, path in self.LAYER_3x2.items():
+            fpath = self.workspace_root / path
+            if not fpath.exists():
+                findings.append({
+                    "severity": "LOW",
+                    "type": "MISSING_LAYER_GRAPH",
+                    "layer": layer,
+                })
+
+        # Compute health score
+        high_count = sum(1 for f in findings if f["severity"] == "HIGH")
+        med_count = sum(1 for f in findings if f["severity"] == "MEDIUM")
+        low_count = sum(1 for f in findings if f["severity"] == "LOW")
+        health_score = max(0.0, 1.0 - (high_count * 0.2 + med_count * 0.05 + low_count * 0.01))
+
+        return {
+            "summary": f"Audit: health={health_score:.2f}, "
+                       f"{high_count}H/{med_count}M/{low_count}L findings",
+            "health_score": round(health_score, 3),
+            "finding_count": len(findings),
+            "findings_by_severity": {
+                "HIGH": high_count,
+                "MEDIUM": med_count,
+                "LOW": low_count,
+            },
+            "findings": findings,
+        }
+
+    def run_full_cycle(self) -> Dict[str, Any]:
+        """
+        Run all 5 modes in sequence: REHYDRATE → MAP → DIFF → PACKETIZE → AUDIT.
+        Returns combined results.
+        """
+        results = {}
+        for mode in A2Mode:
+            results[mode.value] = self.run_mode(mode)
+        return {
+            "schema": "A2_FULL_CYCLE_v1",
+            "ts_utc": self._utc_iso(),
+            "modes_run": [m.value for m in A2Mode],
+            "results": results,
+        }

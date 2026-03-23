@@ -47,4 +47,4 @@ The intended long-term behavior is attractor-basin formation: as constraints tig
 - User’s intent and scope (authoritative): `system_v3/a2_state/INTENT_SUMMARY.md`
 - Interpretive overlay (explicitly non-authoritative): `system_v3/a2_state/MODEL_CONTEXT.md`
 - Implementation-facing specs (noncanon drafts): `system_v3/specs/`
-
+- Cross-system integration trackers for repos / skills / source bundles: `REPO_SKILL_INTEGRATION_TRACKER.md`, `SKILL_CANDIDATES_BACKLOG.md`

@@ -1,0 +1,259 @@
+{
+  "audit_only": true,
+  "authoritative_graph": "system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+  "bridge_source_rows": [
+    {
+      "bridge_family": "SKILL -> KERNEL_CONCEPT",
+      "current_direct_edge_count": 0,
+      "derivation_status": "heuristic_only",
+      "grounding_surface": "skill nodes currently expose operational metadata such as source_path, applicable layers, inputs, outputs, adapters, and related_skills, but not owner-bound kernel concept identity",
+      "property_keys": [
+        "adapters",
+        "applicable_graphs",
+        "applicable_layers",
+        "applicable_trust_zones",
+        "inputs",
+        "outputs",
+        "related_skills",
+        "skill_type",
+        "source_path",
+        "source_type",
+        "status"
+      ],
+      "recommended_interpretation": "do not seed skill-to-kernel edges from current skill metadata alone; any link would still be heuristic or text-derived",
+      "samples": [
+        {
+          "id": "SKILL::a0-compiler",
+          "name": "a0-compiler",
+          "properties": {
+            "adapters": {
+              "shell": "system_v4/skills/a0_compiler.py"
+            },
+            "applicable_graphs": [],
+            "applicable_layers": [
+              "A0_COMPILED"
+            ],
+            "applicable_trust_zones": [
+              "A0_COMPILED"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "related_skills": [],
+            "skill_type": "bridge"
+          }
+        },
+        {
+          "id": "SKILL::a1-brain",
+          "name": "a1-brain",
+          "properties": {
+            "adapters": {
+              "shell": "system_v4/skills/a1_brain.py"
+            },
+            "applicable_graphs": [
+              "rosetta",
+              "dependency"
+            ],
+            "applicable_layers": [
+              "A1_JARGONED",
+              "A1_STRIPPED"
+            ],
+            "applicable_trust_zones": [
+              "A1_JARGONED",
+              "A1_STRIPPED"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "related_skills": [],
+            "skill_type": "extraction"
+          }
+        },
+        {
+          "id": "SKILL::a1-cartridge-assembler",
+          "name": "a1-cartridge-assembler",
+          "properties": {
+            "adapters": {
+              "shell": "system_v4/skills/a1_cartridge_assembler.py"
+            },
+            "applicable_graphs": [],
+            "applicable_layers": [
+              "A1_CARTRIDGE",
+              "PHASE_A1_CARTRIDGE"
+            ],
+            "applicable_trust_zones": [
+              "A1_CARTRIDGE",
+              "PHASE_A1_CARTRIDGE"
+            ],
+            "inputs": [],
+            "outputs": [],
+            "related_skills": [],
+            "skill_type": "orchestration"
+          }
+        }
+      ],
+      "supporting_counts": {
+        "skill_count": 110,
+        "skill_nodes_with_nonempty_conceptish_fields": 0
+      }
+    },
+    {
+      "bridge_family": "B_SURVIVOR -> KERNEL_CONCEPT",
+      "current_direct_edge_count": 1,
+      "derivation_status": "partial_property_trace",
+      "grounding_surface": "B_SURVIVOR.properties.source_concept_id is the strongest current owner-bound kernel trace field",
+      "recommended_interpretation": "treat survivor-to-kernel linkage as partially derivable from survivor properties, but only resolved live kernel ids are strong enough for backfill candidates",
+      "samples": {
+        "resolved": [
+          {
+            "source_concept_id": "A2_2::REFINED::canon_geometry_constraint_manifold::f1ddcf9da0ce2187",
+            "source_concept_name": "canon_geometry_constraint_manifold",
+            "survivor_id": "B_SURVIVOR::F049"
+          }
+        ],
+        "unresolved": [
+          {
+            "source_concept_id": "A2_3::QIT_BRIDGE_PASS::Entropy as Spacetime (Axiom)::2ab647479e76a51a",
+            "survivor_id": "B_SURVIVOR::P015"
+          },
+          {
+            "source_concept_id": "A2_3::QIT_BRIDGE_PASS::Entropy as Spacetime (Axiom)::2ab647479e76a51a",
+            "survivor_id": "B_SURVIVOR::F051"
+          },
+          {
+            "source_concept_id": "A2_3::QIT_BRIDGE_PASS::Retrocausal Multiverse (Converging Futures)::c08e73cb75074e43",
+            "survivor_id": "B_SURVIVOR::F055"
+          }
+        ]
+      },
+      "supporting_counts": {
+        "survivor_count": 78,
+        "survivors_with_nonempty_source_concept_id": 47,
+        "survivors_with_resolved_live_kernel_source": 1
+      }
+    },
+    {
+      "bridge_family": "SIM_EVIDENCED -> KERNEL_CONCEPT",
+      "current_direct_edge_count": 0,
+      "derivation_status": "chain_partial",
+      "grounding_surface": "SIM_EVIDENCED reaches kernel-facing trace only through SIM_EVIDENCE_FOR -> B_SURVIVOR -> source_concept_id",
+      "recommended_interpretation": "permit only chain-derived kernel trace on the SIM side; do not claim direct sim-to-kernel linkage from current owner surfaces",
+      "samples": [
+        {
+          "sim_id": "SIM_EVIDENCED::F049",
+          "survivor_id": "B_SURVIVOR::F049",
+          "survivor_source_concept_id": "A2_2::REFINED::canon_geometry_constraint_manifold::f1ddcf9da0ce2187"
+        },
+        {
+          "sim_id": "SIM_EVIDENCED::F051",
+          "survivor_id": "B_SURVIVOR::F051",
+          "survivor_source_concept_id": "A2_3::QIT_BRIDGE_PASS::Entropy as Spacetime (Axiom)::2ab647479e76a51a"
+        },
+        {
+          "sim_id": "SIM_EVIDENCED::F055",
+          "survivor_id": "B_SURVIVOR::F055",
+          "survivor_source_concept_id": "A2_3::QIT_BRIDGE_PASS::Retrocausal Multiverse (Converging Futures)::c08e73cb75074e43"
+        }
+      ],
+      "supporting_counts": {
+        "sim_evidenced_count": 67,
+        "sim_to_sourced_survivor_edge_count": 36,
+        "sim_to_survivor_edge_count": 67
+      }
+    },
+    {
+      "bridge_family": "B_OUTCOME -> KERNEL_CONCEPT",
+      "current_direct_edge_count": 0,
+      "derivation_status": "not_derivable_now",
+      "grounding_surface": "B_OUTCOME currently lacks owner-bound kernel trace fields in the live graph",
+      "recommended_interpretation": "treat b_outcome nodes as kernel-untraced control-chain surfaces until explicit concept linkage is emitted",
+      "samples": [
+        {
+          "id": "B_ADJUDICATED::STAGE_0_CANONICAL_GRAMMAR",
+          "name": "STAGE_0_CANONICAL_GRAMMAR_B_STATUS",
+          "trace_fields": {}
+        },
+        {
+          "id": "B_ADJUDICATED::A2_REFINERY_BOOTPACK_CONTRACT",
+          "name": "A2_REFINERY_BOOTPACK_CONTRACT_B_STATUS",
+          "trace_fields": {}
+        },
+        {
+          "id": "B_ADJUDICATED::A1_MULTI_NARRATIVE_EXECUTION_CONTRACT",
+          "name": "A1_MULTI_NARRATIVE_EXECUTION_CONTRACT_B_STATUS",
+          "trace_fields": {}
+        }
+      ],
+      "supporting_counts": {
+        "b_outcome_count": 401,
+        "nonempty_trace_field_total": 0
+      },
+      "trace_field_hits": {}
+    },
+    {
+      "bridge_family": "EXECUTION_BLOCK -> KERNEL_CONCEPT",
+      "current_direct_edge_count": 0,
+      "derivation_status": "not_derivable_now",
+      "grounding_surface": "EXECUTION_BLOCK currently lacks owner-bound kernel trace fields in the live graph",
+      "recommended_interpretation": "treat execution_block nodes as kernel-untraced control-chain surfaces until explicit concept linkage is emitted",
+      "samples": [
+        {
+          "id": "A0_COMPILED::STAGE_0_CANONICAL_GRAMMAR",
+          "name": "STAGE_0_CANONICAL_GRAMMAR_COMPILED",
+          "trace_fields": {}
+        },
+        {
+          "id": "A0_COMPILED::A2_REFINERY_BOOTPACK_CONTRACT",
+          "name": "A2_REFINERY_BOOTPACK_CONTRACT_COMPILED",
+          "trace_fields": {}
+        },
+        {
+          "id": "A0_COMPILED::A1_MULTI_NARRATIVE_EXECUTION_CONTRACT",
+          "name": "A1_MULTI_NARRATIVE_EXECUTION_CONTRACT_COMPILED",
+          "trace_fields": {}
+        }
+      ],
+      "supporting_counts": {
+        "execution_block_count": 401,
+        "nonempty_trace_field_total": 0
+      },
+      "trace_field_hits": {}
+    }
+  ],
+  "bridge_source_summary": {
+    "chain_partial": 1,
+    "heuristic_only": 1,
+    "not_derivable_now": 2,
+    "partial_property_trace": 1
+  },
+  "do_not_promote": true,
+  "focus_node_type_counts": {
+    "B_OUTCOME": 401,
+    "B_SURVIVOR": 78,
+    "EXECUTION_BLOCK": 401,
+    "KERNEL_CONCEPT": 842,
+    "SIM_EVIDENCED": 67,
+    "SKILL": 110
+  },
+  "focus_node_types": [
+    "SKILL",
+    "KERNEL_CONCEPT",
+    "EXECUTION_BLOCK",
+    "B_OUTCOME",
+    "B_SURVIVOR",
+    "SIM_EVIDENCED"
+  ],
+  "generated_utc": "2026-03-21T23:34:15Z",
+  "issues": [],
+  "nonoperative": true,
+  "recommended_next_actions": [
+    "Do not auto-seed SKILL -> KERNEL_CONCEPT links from current skill metadata; the live owner surfaces still lack owner-bound kernel concept identity on the skill side.",
+    "Treat B_SURVIVOR.properties.source_concept_id as the strongest current witness-side bridge source, but only resolved live kernel ids are strong enough for any backfill proposal.",
+    "Treat SIM_EVIDENCED kernel trace as chain-derived only through SIM_EVIDENCE_FOR -> B_SURVIVOR, not as direct sim-to-kernel linkage.",
+    "Keep B_OUTCOME and EXECUTION_BLOCK kernel-untraced until explicit kernel trace fields or relations are emitted.",
+    "Proceed to the first bounded TopoNetX projection with these bridge-source limits explicit instead of pretending the control graph is already fully joined."
+  ],
+  "repo_root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "schema": "CONTROL_GRAPH_BRIDGE_SOURCE_AUDIT_v1",
+  "status": "ok",
+  "supporting_bridge_gap_audit": "system_v4/a2_state/audit_logs/CONTROL_GRAPH_BRIDGE_GAP_AUDIT__CURRENT__v1.json",
+  "supporting_projection_audit": "system_v4/a2_state/audit_logs/PYG_HETEROGRAPH_PROJECTION_AUDIT__CURRENT__v1.json"
+}

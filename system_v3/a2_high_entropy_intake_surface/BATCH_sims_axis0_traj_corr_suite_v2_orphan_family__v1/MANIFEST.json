@@ -1,0 +1,134 @@
+{
+  "batch_id": "BATCH_sims_axis0_traj_corr_suite_v2_orphan_family__v1",
+  "batch_scope": "residual_axis0_trajectory_correlation_v2_result_only_orphan",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T06:21:54Z",
+  "deferred_next_raw_folder_order_source": null,
+  "extraction_mode": "SIM_AXIS0_TRAJ_CORR_SUITE_V2_ORPHAN_PASS",
+  "notes": [
+    "This batch reopens the axis0 trajectory-correlation v2 orphan as its own bounded result-only family.",
+    "Source membership is bounded to results_axis0_traj_corr_suite_v2.json and does not merge in the earlier local family or the repo-top descendants.",
+    "No runtime execution was performed."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "A2_2_CANDIDATE",
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_axis0_boundary_bookkeep_v1_orphan_slice__v1/MANIFEST.json",
+      "relevance": "Provides continuity from the previous result-only orphan pass and records the explicit decision to keep the current surface separate."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_axis0_traj_corr_suite_family__v1/MANIFEST.json",
+      "relevance": "Provides the earlier local trajectory-correlation family anchor for contract comparison."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis0_traj_corr_suite.json",
+      "relevance": "Shows the earlier local full-absolute 32-case trajectory-correlation surface."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS0_TRAJ_CORR_SUITE_V4.json",
+      "relevance": "Shows the repo-top compressed single-sequence descendant contract."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS0_TRAJ_CORR_SUITE_V5.json",
+      "relevance": "Shows the repo-top compressed two-sequence entangled-init delta descendant contract."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md",
+      "relevance": "Shows catalog listing for the current orphan and the earlier local family.",
+      "line_window": "51-52"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt",
+      "relevance": "Shows zero repo-held evidence-pack visibility for the current orphan."
+    }
+  ],
+  "runtime_expectations": [
+    "The current surface stores 128 axis0 trajectory entries at trials 128, cycles 64, theta 0.07, with four sequences, a hidden T1/T2 axis, two directions, two init modes, two gate types, and two repetition labels.",
+    "Absolute baseline entries are only for SEQ01; SEQ02 through SEQ04 are stored as deltas against the corresponding prefix baseline.",
+    "No direct runner-name anchor is recoverable in the current simpy inventory.",
+    "The next remaining result-only orphan begins at results_ultra3_full_geometry_stage16_axis0.json."
+  ],
+  "failure_modes": [
+    "Inventing a runner anchor that is not present.",
+    "Treating missing absolute SEQ02-04 entries as absent runs instead of delta encoding.",
+    "Collapsing the current orphan into the earlier local suite or into repo-top V4/V5.",
+    "Ignoring the hidden T1/T2 axis in the key lattice.",
+    "Mistaking catalog presence for evidence admission."
+  ],
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "sims_split_rule": {
+    "detected": true,
+    "included_in_this_batch": true,
+    "notes": "This batch remains inside the separate sims source class and does not mix with ordinary theory/doc extraction.",
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims"
+  },
+  "source_membership": [
+    {
+      "line_count": 939,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis0_traj_corr_suite_v2.json",
+      "role_in_batch": "axis0_traj_corr_suite_v2_result_orphan_surface",
+      "sha256": "057c85359ed0c4a874a1f67beed9a4e4f0c2d836b673a8325f600aab95bcf6cf",
+      "size_bytes": 30375,
+      "source_class": "result_surface"
+    }
+  ],
+  "derived_summary": {
+    "result_only_residual_count_before_this_batch": 3,
+    "local_result_count_in_batch": 1,
+    "trials": 128,
+    "cycles": 64,
+    "theta": 0.07,
+    "sequence_count": 4,
+    "axis0_traj_entry_count": 128,
+    "base_entry_count": 32,
+    "delta_entry_count": 96,
+    "base_sequences": [
+      "SEQ01"
+    ],
+    "delta_sequences": [
+      "SEQ02",
+      "SEQ03",
+      "SEQ04"
+    ],
+    "hidden_t_prefixes": [
+      "T1",
+      "T2"
+    ],
+    "hidden_t_prefix_counts": {
+      "T1": 16,
+      "T2": 16
+    },
+    "max_base_mi_case": {
+      "case": "T1_REV_BELL_CZ_R1_SEQ01",
+      "MI_traj_mean": 0.03093941684451413,
+      "neg_SAgB_frac_traj": 0.0107421875,
+      "SAgB_traj_mean": 0.5804241241050389
+    },
+    "max_abs_delta_mi_case": {
+      "case": "T1_REV_BELL_CNOT_R1_SEQ04",
+      "dMI": 0.08605915916874307,
+      "dNegFrac": 0.00958251953125,
+      "dSAgB": -0.07798693536836021
+    },
+    "local_family_same_family_decision": false,
+    "local_family_separation_basis": [
+      "32_absolute_cases_vs_seq01_baselines_plus_deltas",
+      "no_gate_axis_in_local_family",
+      "no_repetition_axis_in_local_family",
+      "explicit_sign_labels_vs_hidden_T_prefix_axis",
+      "current_orphan_base_mi_scale_far_below_local_max_mi"
+    ],
+    "descendant_v4_same_family_decision": false,
+    "descendant_v5_same_family_decision": false,
+    "descendant_separation_basis": [
+      "V4_single_sequence_aggregate",
+      "V5_two_sequence_entangled_init_delta",
+      "current_128_case_lattice",
+      "different_trial_counts"
+    ],
+    "direct_runner_name_hit_count": 0,
+    "catalog_filename_mentions": 2,
+    "top_level_evidence_pack_match_count": 0
+  }
+}

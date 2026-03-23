@@ -1,0 +1,74 @@
+{
+  "batch_id": "BATCH_upgrade_docs_directed_extraction_family_contradiction_reprocess__v1",
+  "batch_scope": "adjacent_directed_extraction_question_answer_family_reduction",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-08T22:45:13Z",
+  "extraction_mode": "CONTRADICTION_REPROCESS_PASS",
+  "promotion_status": "A2_2_CANDIDATE",
+  "promotion_guardrail": "Proposal-side only. Preserve answer-version deltas and UNSPECIFIED boundaries. Do not flatten variant ZIP names or confirmation semantics into active doctrine from this batch.",
+  "assigned_root": {
+    "root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs",
+    "position_start_in_folder_order": 3,
+    "position_end_in_folder_order": 5
+  },
+  "deferred_next_in_folder_order": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md"
+  ],
+  "family_rationale": [
+    "Three adjacent docs in folder order form one bounded audit/questions plus answers family.",
+    "The main value is contradiction-preserving comparison across the two answer surfaces.",
+    "Bundling avoids losing the semantic link between the six audited gaps and their answer attempts."
+  ],
+  "possible_downstream_consequence_policy": "Possible downstream consequence only; preserve source-local ambiguity markers and answer-version differences; no direct A2-1 or runtime/control promotion from this batch.",
+  "intra_family_deltas": [
+    "Source 2 adds ZIP names not present in source 1, including proposal-side overlay naming.",
+    "Source 1 gives stronger FULL+ and FULL++ confirmation semantics than source 2.",
+    "Source 2 preserves more quoted thread language and some stronger batch-scale markers.",
+    "Source 3 frames the six gaps as non-contradictions, while the answer variants still diverge."
+  ],
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "source_membership": [
+    {
+      "line_count": 168,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS.md",
+      "role_in_batch": "first_answer_variant",
+      "sha256": "18450e8a57f8b55f1706891bdff21c2c23caee214622335d6b02858e6847cdab",
+      "size_bytes": 4107
+    },
+    {
+      "line_count": 127,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS_v2.md",
+      "role_in_batch": "second_dense_answer_variant",
+      "sha256": "50238ccbf6f3936d613e8f83d29d113cf39bb386cba0b3dc189729deb1ca4ad3",
+      "size_bytes": 4135
+    },
+    {
+      "line_count": 204,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_AUDIT_AND_QUESTIONS.md",
+      "role_in_batch": "audit_and_question_frame",
+      "sha256": "497789608a36fbdcd7ebec41fa2a51d06288016f5087e2c930f83c225e0671eb",
+      "size_bytes": 4896
+    }
+  ],
+  "structure_markers": [
+    {
+      "label": "audit_gap_frame_and_targeted_question_set",
+      "line_span": "source3:8-204"
+    },
+    {
+      "label": "answer_variant_one_full_question_set",
+      "line_span": "source1:13-168"
+    },
+    {
+      "label": "answer_variant_two_dense_question_set",
+      "line_span": "source2:4-126"
+    }
+  ],
+  "control_surface_mutation": "NONE",
+  "notes": [
+    "Only the assigned upgrade-docs root was read for this batch.",
+    "Folder-order bundling preserved even though semantic interpretation starts from the audit file.",
+    "The next large source in folder order is the megaboot suite doc."
+  ]
+}

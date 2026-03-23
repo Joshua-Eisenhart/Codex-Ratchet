@@ -1,0 +1,166 @@
+{
+  "audit_only": true,
+  "cluster_id": "SKILL_CLUSTER::next-state-signal-adaptation",
+  "do_not_promote": true,
+  "doc_alignment": [
+    {
+      "exists": true,
+      "label": "reference_note",
+      "missing_required_markers": [],
+      "path": "work/external_refs/OPENCLAW_RL__REFERENCE_NOTE__2026_03_21__v1.md"
+    },
+    {
+      "exists": true,
+      "label": "skill_source_corpus",
+      "missing_required_markers": [],
+      "path": "SKILL_SOURCE_CORPUS.md"
+    },
+    {
+      "exists": true,
+      "label": "integration_tracker",
+      "missing_required_markers": [],
+      "path": "REPO_SKILL_INTEGRATION_TRACKER.md"
+    },
+    {
+      "exists": true,
+      "label": "candidates_backlog",
+      "missing_required_markers": [],
+      "path": "SKILL_CANDIDATES_BACKLOG.md"
+    },
+    {
+      "exists": true,
+      "label": "imported_cluster_map",
+      "missing_required_markers": [],
+      "path": "system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md"
+    }
+  ],
+  "extracted_patterns": [
+    {
+      "pattern": "unified_next_state_signal",
+      "ratchet_translation": "treat post-action witness evidence as a broad signal family, not just as passive logging",
+      "source": "paper_abstract"
+    },
+    {
+      "pattern": "evaluative_and_directive_split",
+      "ratchet_translation": "keep scalar judgment and textual correction as distinct lanes for later bounded improvement work",
+      "source": "paper_abstract_and_repo_readme"
+    },
+    {
+      "pattern": "async_improvement_architecture",
+      "ratchet_translation": "mine decoupled background improvement as a pattern, but keep Ratchet claims audit-only until a later proof lane exists",
+      "source": "paper_abstract_and_repo_readme"
+    }
+  ],
+  "first_slice": "a2-next-state-signal-adaptation-audit-operator",
+  "gate": {
+    "allow_bounded_pattern_mining": true,
+    "allow_online_training_claims": false,
+    "allow_policy_mutation_claims": false,
+    "allow_runtime_import_claims": false,
+    "blocking_issues": [],
+    "reason": "paper-to-system mapping is source-bound, corpus-held, and constrained to existing Ratchet seams",
+    "recommended_next_step": "candidate_next_state_directive_probe",
+    "safe_to_continue": true
+  },
+  "generated_utc": "2026-03-21T20:54:07Z",
+  "imported_member_disposition": {
+    "async-serving-judging-training-loop": {
+      "adapt_away_from": [
+        "concurrent online trainer runtime",
+        "background serving stack import",
+        "claims that Ratchet already improves live from use"
+      ],
+      "classification": "mine",
+      "keep": "decouple capture, review, and improvement work as an architectural pattern"
+    },
+    "directive-correction-supervision": {
+      "adapt_away_from": [
+        "teacher-student distillation stack import",
+        "judge model training assumptions",
+        "token-level training claims without bounded proof"
+      ],
+      "classification": "adapt",
+      "keep": "separate richer directive correction from scalar evaluative judgment"
+    },
+    "next-state-signals": {
+      "adapt_away_from": [
+        "live RL trainer coupling",
+        "OpenClaw runtime requirements",
+        "always-on policy update claims"
+      ],
+      "classification": "adapt",
+      "keep": "treat user reply, tool output, terminal state, and GUI state as first-class post-action evidence"
+    }
+  },
+  "issues": [],
+  "local_repo_status": {
+    "checkout_state": "url_only",
+    "exists": false,
+    "git_dir_exists": false,
+    "path": "work/reference_repos/Gen-Verse/OpenClaw-RL",
+    "readme_exists": false,
+    "shallow_lock_present": false
+  },
+  "non_goals": [
+    "No OpenClaw runtime or server import.",
+    "No PRM / judge / trainer stack import.",
+    "No claim that Ratchet now improves online simply by being used.",
+    "No unfenced live mutation or policy-update loop.",
+    "No claim that the local OpenClaw repo checkout is stable until it is verified."
+  ],
+  "nonoperative": true,
+  "paper": {
+    "arxiv_id": "2603.10165",
+    "paper_url": "https://arxiv.org/abs/2603.10165",
+    "repo_url": "https://github.com/Gen-Verse/OpenClaw-RL",
+    "submitted_date": "2026-03-10",
+    "title": "OpenClaw-RL: Train Any Agent Simply by Talking"
+  },
+  "ratchet_seam_mapping": [
+    {
+      "exists": true,
+      "mapping": "captures post-action witness traces, replies, tool outputs, and context updates",
+      "path": "system_v4/skills/witness_recorder.py",
+      "skill_id": "witness-recorder"
+    },
+    {
+      "exists": true,
+      "mapping": "provides an explicit transition/state substrate instead of opaque interaction logs",
+      "path": "system_v4/skills/runtime_state_kernel.py",
+      "skill_id": "runtime-state-kernel"
+    },
+    {
+      "exists": true,
+      "mapping": "keeps improvement loops gated and measurable instead of unfenced online training",
+      "path": "system_v4/skills/bounded_improve_operator.py",
+      "skill_id": "bounded-improve-operator"
+    },
+    {
+      "exists": true,
+      "mapping": "audits whether an improvement lane is ready before any mutation claim",
+      "path": "system_v4/skills/a2_skill_improver_readiness_operator.py",
+      "skill_id": "a2-skill-improver-readiness-operator"
+    },
+    {
+      "exists": true,
+      "mapping": "proves one bounded improvement loop with exact restore instead of admitting a general live learner",
+      "path": "system_v4/skills/a2_skill_improver_first_target_proof_operator.py",
+      "skill_id": "a2-skill-improver-first-target-proof-operator"
+    }
+  ],
+  "recommended_actions": [
+    "Keep this slice audit-only and use it as a pattern-mapping bridge, not as an imported RL runtime.",
+    "Use the report to scope a later bounded next-state / directive-signal probe over Ratchet witness and skill-improver surfaces.",
+    "Do not widen this source into online training, PRM/judge stack import, or automatic policy mutation claims.",
+    "Verify the local OpenClaw-RL checkout later if network conditions allow, but do not block the bounded paper-derived slice on that clone."
+  ],
+  "repo_root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "schema": "A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT_v1",
+  "source_family": "OpenClaw-RL-derived next-state signal family",
+  "staged_output_targets": {
+    "json_report": "system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.json",
+    "md_report": "system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.md",
+    "packet_json": "system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_PACKET__CURRENT__v1.json"
+  },
+  "status": "ok"
+}

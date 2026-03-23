@@ -1,0 +1,94 @@
+{
+  "batch_id": "BATCH_sims_prove_foundation_proof_family__v1",
+  "batch_scope": "residual_prove_foundation_deterministic_proof_family",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T06:45:48Z",
+  "deferred_next_raw_folder_order_source": null,
+  "extraction_mode": "SIM_PROVE_FOUNDATION_PROOF_PASS",
+  "notes": [
+    "This batch treats prove_foundation.py as its own bounded deterministic proof family.",
+    "The mega stochastic diagnostic strip was read only as the preceding comparison boundary and is not a source member here.",
+    "No runtime execution was performed."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "A2_2_CANDIDATE",
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_mega_sims_diagnostic_strip__v1/MANIFEST.json",
+      "relevance": "Provides continuity from the prior diagnostic pass and records the explicit proof-boundary split."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_residual_inventory_closure_audit__v1/MANIFEST.json",
+      "relevance": "Shows this file was the final remaining diagnostic/proof residual after the mega strip."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md",
+      "relevance": "Shows zero catalog visibility for the proof family."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt",
+      "relevance": "Shows zero top-level evidence-pack visibility for the proof family."
+    }
+  ],
+  "runtime_expectations": [
+    "prove_foundation.py would emit one local SIM_EVIDENCE v1 block for S_FOUNDATION_PROOF if non_commutative, is_mixed, and trace_preserved all evaluate true.",
+    "The source constructs Pauli X and Z, a Bell state, a partial trace over qubit B, and a depolarizing probe with p = 0.1.",
+    "Source-based analytic consequences are: non_commutative true, reduced-state purity 0.4999999999999998, entanglement_generates_entropy true, and trace_preserved true.",
+    "After this batch, the diagnostic/proof residual class is exhausted and only hygiene residue remains."
+  ],
+  "failure_modes": [
+    "Treating the proof as cataloged or repo-top evidenced when it is not.",
+    "Collapsing the proof into prose and losing its executable witness structure.",
+    "Overstating the channel section as proving more than trace preservation.",
+    "Merging the proof back into the mega stochastic strip because both use SIM_EVIDENCE v1 formatting.",
+    "Mistaking proof-family completion for total residual completion while hygiene artifacts remain."
+  ],
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "sims_split_rule": {
+    "detected": true,
+    "included_in_this_batch": true,
+    "notes": "This batch remains inside the separate sims source class and does not mix with ordinary theory/doc extraction.",
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims"
+  },
+  "source_membership": [
+    {
+      "line_count": 88,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/prove_foundation.py",
+      "role_in_batch": "deterministic_foundation_proof_script",
+      "sha256": "7015eb7eb2dc6d1babd7d5c8d8703326ef52fea93c9900dfa2d5ab7ed8f3e01e",
+      "size_bytes": 2871,
+      "source_class": "proof_script"
+    }
+  ],
+  "derived_summary": {
+    "diagnostic_or_proof_residual_count_before_this_batch": 1,
+    "diagnostic_or_proof_residual_count_after_this_batch": 0,
+    "local_source_count_in_batch": 1,
+    "catalog_match_count": 0,
+    "top_level_evidence_pack_match_count": 0,
+    "sim_id": "S_FOUNDATION_PROOF",
+    "evidence_token": "E_FOUNDATION_PROOF",
+    "source_based_analytic_consequences": {
+      "non_commutative": true,
+      "rho_a_is_identity_over_2": true,
+      "subsystem_purity": 0.4999999999999998,
+      "entanglement_generates_entropy": true,
+      "channel_preserves_trace": true,
+      "trace_prime_real": 0.9999999999999998
+    },
+    "channel_parameters": {
+      "p": 0.1
+    },
+    "comparison_vs_mega_strip": {
+      "same_family_decision": false,
+      "current_is_deterministic": true,
+      "mega_strip_is_stochastic": true,
+      "current_qubit_count": 2,
+      "mega_strip_qubit_count": 1
+    },
+    "remaining_hygiene_residue": {
+      "pycache_count": 3,
+      "top_level_noise_count": 1
+    }
+  }
+}

@@ -1,0 +1,108 @@
+# DEEP_READ_A1_STATE
+
+- **Start:** 2026-03-18T09:43:37Z
+- **End:** 2026-03-18T09:43:49Z
+- **Documents processed:** 44
+- **Batches created:** 44
+- **Nodes added:** 88
+- **Edges added:** 44
+- **Contradictions found:** 0
+- **Checkpoints:** 45
+
+## Graph Totals
+- A2-3: 3910 nodes
+- A2-2: 80 nodes
+- A2-1: 111 nodes
+- Total: 4101 nodes, 7769 edges
+
+## Documents
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_CARTRIDGE_REVIEW__ACTIVE_FAMILY_CROSS_JUDGMENT__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_CARTRIDGE_REVIEW__CORRELATION_DIVERSITY_FUNCTIONAL__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_CARTRIDGE_REVIEW__CORRELATION_POLARITY__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_CARTRIDGE_REVIEW__ENTROPY_PRODUCTION_RATE__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_CARTRIDGE_REVIEW__PROBE_OPERATOR__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRANCH_BUDGET_AND_MERGE_PACK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_COLDER_WITNESS_PACK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_LIFT_PACK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_REFORMULATION_PACK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_CLUSTER_RESCUE_PACK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_CORRELATION_EXECUTABLE_PACK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_STRUCTURE_LIFT_PACK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_FAMILY_MERGE_FENCE__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_HELPER_LEAK_STRIP_PACK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_PROBE_COMPANION_PACK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_REQUIRED_PROBE_WITNESS_PACK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_RESCUE_TARGET_DECOMPOSITION_PACK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_THERMAL_TIME_RESCUE_PACK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_EXECUTABLE_DISTILLATION_UPDATE__SOURCE_BOUND_v2.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BRIDGE_CAMPAIGN__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BROAD_RESCUE_PACK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_ENGINE_CAMPAIGN__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_ENGINE_FAMILY__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_SUBSTRATE_FAMILY_CAMPAIGN__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_GRAVEYARD_FIRST_VALIDITY_PROFILE__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__ANCHOR_WITNESS_WORKFLOW__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__EXTERNAL_TOOL_DRIFT_AUDIT__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__LIVE_FAMILY_HINT_COVERAGE__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_NEGATIVE_CLASS_REGISTRY__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_RESCUE_AND_GRAVEYARD_OPERATORS__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__ACTIVE_FAMILY_COMPARISON_MATRIX__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__ACTIVE_FAMILY_CROSS_AUDIT__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__ACTIVE_FAMILY_INDEX__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__ACTIVE_FAMILY_MANIFEST__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__CORRELATION_DIVERSITY_FUNCTIONAL__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__CORRELATION_POLARITY__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__ENTROPY_PRODUCTION_RATE__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__PROBE_OPERATOR__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_SECOND_SUBSTRATE_ENRICHMENT_FAMILY__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md
+
+## Batches
+- `AUTO_A1_CARTRIDGE_REVIEW__ACTIVE_FAMILY_CROSS_JUDGMENT__v1_046dd5ad82deed0e`
+- `AUTO_A1_CARTRIDGE_REVIEW__CORRELATION_DIVERSITY_FUNCTIONAL__v1_d6bcd1a8bb1584ed`
+- `AUTO_A1_CARTRIDGE_REVIEW__CORRELATION_POLARITY__v1_40202d9b013f3bf3`
+- `AUTO_A1_CARTRIDGE_REVIEW__ENTROPY_PRODUCTION_RATE__v1_c7fc58e1d37f2017`
+- `AUTO_A1_CARTRIDGE_REVIEW__PROBE_OPERATOR__v1_1ac7eefc643c28d7`
+- `AUTO_A1_ENTROPY_BRANCH_BUDGET_AND_MERGE_PACK__v1_16bf7bd5955bd79e`
+- `AUTO_A1_ENTROPY_BRIDGE_COLDER_WITNESS_PACK__v1_cb403c4065dca959`
+- `AUTO_A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1_24981ad8388f099d`
+- `AUTO_A1_ENTROPY_BRIDGE_HELPER_LIFT_PACK__v1_03601d7050bed06e`
+- `AUTO_A1_ENTROPY_BRIDGE_REFORMULATION_PACK__v1_de8dbaff9f79215b`
+- `AUTO_A1_ENTROPY_CLUSTER_RESCUE_PACK__v1_9cb1d74e91163b43`
+- `AUTO_A1_ENTROPY_CORRELATION_EXECUTABLE_PACK__v1_44aae9e921ae7d50`
+- `AUTO_A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1_3307ec61b72703f9`
+- `AUTO_A1_ENTROPY_DIVERSITY_STRUCTURE_LIFT_PACK__v1_733fe687aad5edb8`
+- `AUTO_A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1_b815920f208ff50e`
+- `AUTO_A1_ENTROPY_FAMILY_MERGE_FENCE__v1_71b43d295fbe0ae6`
+- `AUTO_A1_ENTROPY_HELPER_LEAK_STRIP_PACK__v1_7bc5a4bbbd8010a9`
+- `AUTO_A1_ENTROPY_PROBE_COMPANION_PACK__v1_cf2bb2e723d97c37`
+- `AUTO_A1_ENTROPY_REQUIRED_PROBE_WITNESS_PACK__v1_06c6ce5770289daa`
+- `AUTO_A1_ENTROPY_RESCUE_TARGET_DECOMPOSITION_PACK__v1_cbfff37c172afd27`
+- `AUTO_A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1_5dd02426b147a3aa`
+- `AUTO_A1_ENTROPY_THERMAL_TIME_RESCUE_PACK__v1_7ea0fdbffdea83fc`
+- `AUTO_A1_EXECUTABLE_DISTILLATION_UPDATE__SOURCE_BOUND_v2_f20e15bc4c7db4d8`
+- `AUTO_A1_FIRST_ENTROPY_BRIDGE_CAMPAIGN__v1_982bb90a84dbcfb8`
+- `AUTO_A1_FIRST_ENTROPY_BROAD_RESCUE_PACK__v1_a26003571c45b1b7`
+- `AUTO_A1_FIRST_ENTROPY_ENGINE_CAMPAIGN__v1_b3cf7590d4e92a61`
+- `AUTO_A1_FIRST_ENTROPY_ENGINE_FAMILY__v1_4f842fbacdc7e6ef`
+- `AUTO_A1_FIRST_SUBSTRATE_FAMILY_CAMPAIGN__v1_e6696a7ac33b4d06`
+- `AUTO_A1_GRAVEYARD_FIRST_VALIDITY_PROFILE__v1_8a709e5bbb425adb`
+- `AUTO_A1_INTEGRATION_BATCH__ANCHOR_WITNESS_WORKFLOW__v1_af8a77023a428a82`
+- `AUTO_A1_INTEGRATION_BATCH__EXTERNAL_TOOL_DRIFT_AUDIT__v1_a698d2c0800df8e4`
+- `AUTO_A1_INTEGRATION_BATCH__LIVE_FAMILY_HINT_COVERAGE__v1_6d9d661106839e37`
+- `AUTO_A1_NEGATIVE_CLASS_REGISTRY__v1_0b688e6493527454`
+- `AUTO_A1_RESCUE_AND_GRAVEYARD_OPERATORS__v1_8120e0000ce5b8e8`
+- `AUTO_A1_ROSETTA_BATCH__ACTIVE_FAMILY_COMPARISON_MATRIX__v1_51ce54f415132d67`
+- `AUTO_A1_ROSETTA_BATCH__ACTIVE_FAMILY_CROSS_AUDIT__v1_1a016748bcc95def`
+- `AUTO_A1_ROSETTA_BATCH__ACTIVE_FAMILY_INDEX__v1_1fa58f058e6827c0`
+- `AUTO_A1_ROSETTA_BATCH__ACTIVE_FAMILY_MANIFEST__v1_d39c6bfd9202a810`
+- `AUTO_A1_ROSETTA_BATCH__CORRELATION_DIVERSITY_FUNCTIONAL__v1_88bde41fdf32bb96`
+- `AUTO_A1_ROSETTA_BATCH__CORRELATION_POLARITY__v1_5a8c61b58e06bddf`
+- `AUTO_A1_ROSETTA_BATCH__ENTROPY_PRODUCTION_RATE__v1_286f513cad79fb7b`
+- `AUTO_A1_ROSETTA_BATCH__PROBE_OPERATOR__v1_8bda6af97ca79b70`
+- `AUTO_A1_SECOND_SUBSTRATE_ENRICHMENT_FAMILY__v1_3f178b227a282caa`
+- `AUTO_A1_TARGET_FAMILY_MODEL__v1_fb0048ea2f5d8d61`

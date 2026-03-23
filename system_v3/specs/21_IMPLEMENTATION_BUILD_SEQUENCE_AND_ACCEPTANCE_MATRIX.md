@@ -41,6 +41,7 @@ Run-surface scaffolding companion:
   - fixture suite
 - Exit criteria:
   - fixture pass for grammar, lexeme, undefined-term, derived-only, probe pressure, evidence checks
+  - `reports/conformance_results.json` status `PASS`
 
 `P3_A0_COMPILER`
 - Inputs:
@@ -83,6 +84,7 @@ Run-surface scaffolding companion:
 Per run candidate, required files:
 - `reports/spec_lock_report.json`
 - `reports/artifact_grammar_report.json`
+- `reports/conformance_results.json`
 - `reports/conformance_report.json`
 - `reports/a0_compile_report.json`
 - `reports/phase_transition_report.json`
@@ -91,6 +93,7 @@ Per run candidate, required files:
 - `reports/replay_pair_report.json`
 - `reports/evidence_ingest_report.json`
 - `reports/graveyard_integrity_report.json`
+- `reports/a1_semantic_and_math_substance_gate_report.json`
 - `reports/long_run_write_guard_report.json`
 - `reports/loop_health_diagnostic.json`
 - `reports/release_checklist_v1.json`

@@ -1,0 +1,27 @@
+{
+  "allow_bounded_autodev_loop_audit": true,
+  "allow_cron_claims": false,
+  "allow_git_sync_claims": false,
+  "allow_heartbeat_process_claims": false,
+  "allow_plan_surface_ownership": false,
+  "allow_prompt_stack_runtime_claims": false,
+  "allow_runtime_loop_claims": false,
+  "audit_only": true,
+  "blocking_issues": [],
+  "cluster_id": "SKILL_CLUSTER::lev-autodev-exec-validation",
+  "do_not_promote": true,
+  "first_slice": "a2-lev-autodev-loop-audit-operator",
+  "gate_status": "ready_for_bounded_autodev_loop_audit",
+  "generated_utc": "2026-03-22T00:16:33Z",
+  "nonoperative": true,
+  "recommended_actions": [
+    "Keep this slice audit-only, repo-held, and nonoperative.",
+    "Use the report to scope a later validation-boundary or exit-condition follow-on only if the gate stays clean.",
+    "Do not widen this slice into cron, heartbeat runtime, prompt-stack control, `.lev` ownership, git sync, or service installation."
+  ],
+  "recommended_next_step": "candidate_autodev_validation_boundary_probe",
+  "recommended_source_skill_id": "autodev-loop",
+  "safe_to_continue": true,
+  "schema": "A2_LEV_AUTODEV_LOOP_AUDIT_PACKET_v1",
+  "status": "ok"
+}

@@ -1,0 +1,130 @@
+{
+  "batch_id": "BATCH_sims_terrain8_sign_suite_family__v1",
+  "batch_scope": "terrain8_sign_suite_local_surface_with_topology4_terrain8_and_ultra2_boundary_anchors",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T00:19:12Z",
+  "deferred_next_raw_folder_order_source": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_ultra2_axis0_ab_stage16_axis6.py",
+  "extraction_mode": "SIM_TERRAIN8_SIGN_SUITE_PASS",
+  "notes": [
+    "This batch treats run_terrain8_sign_suite.py as a standalone terrain-only sign family.",
+    "Topology4 Terrain8 and ultra2 were read only as comparison anchors for naming/provenance and raw-order family boundary.",
+    "No runtime execution was performed."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "A2_2_CANDIDATE",
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md",
+      "relevance": "Catalogs the local terrain suite, the Topology4 Terrain8 descendant, and the adjacent ultra2 macro bundle.",
+      "line_window": "13,59,77,115,128,146-147"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt",
+      "relevance": "Contains the Topology4 Terrain8 evidence block and omits both S_SIM_TERRAIN8_SIGN_SUITE and S_SIM_ULTRA2_AXIS0_AB_STAGE16_AXIS6.",
+      "line_window": "54-89"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis12_topology4_channelfamily_suite_v2.py",
+      "relevance": "Current code hash match for the repo-top Terrain8 evidence block."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS12_TOPOLOGY4_TERRAIN8_SUITE_V1.json",
+      "relevance": "Terrain8-named comparison surface with materially different value regime and metric structure."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_ultra2_axis0_ab_stage16_axis6.py",
+      "relevance": "Next raw-order macro composite family boundary."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_ultra2_axis0_ab_stage16_axis6.json",
+      "relevance": "Confirms ultra2 is a composite result surface rather than a terrain-only extension."
+    }
+  ],
+  "runtime_expectations": [
+    "run_terrain8_sign_suite.py writes one results_terrain8_sign_suite.json and one local evidence block for S_SIM_TERRAIN8_SIGN_SUITE.",
+    "The runner uses 256 random one-qubit states, 64 repeated cycles, one axis unitary, and one terrain channel per pass.",
+    "The adjacent ultra2 runner uses a different contract entirely: a macro composite result with stage16, axis0_ab, and axis12 sections."
+  ],
+  "failure_modes": [
+    "The local terrain suite can be mistaken for the repo-top Terrain8 surface because both use Terrain8 naming.",
+    "The local sign effect can be overstated if Ne and Se are treated as equally sign-sensitive with Ni and Si.",
+    "The adjacent ultra2 macro bundle can be merged incorrectly into this batch because of raw-folder adjacency alone."
+  ],
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "sims_split_rule": {
+    "detected": true,
+    "included_in_this_batch": true,
+    "notes": "This batch remains inside the separate sims source class and does not mix with ordinary theory/doc extraction.",
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims"
+  },
+  "source_membership": [
+    {
+      "line_count": 137,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_terrain8_sign_suite.py",
+      "role_in_batch": "terrain_only_sign_runner",
+      "sha256": "ae880aada392690b6ef541c41224ebb8bbb43b90a6170e6ec1c60ccc6300a369",
+      "size_bytes": 4421,
+      "source_class": "executable_runner"
+    },
+    {
+      "line_count": 20,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_terrain8_sign_suite.json",
+      "role_in_batch": "terrain_only_sign_result_surface",
+      "sha256": "973cc8c0e1103bebd957239c1b8ff487ed070d27286b3b988511808ea8317a1b",
+      "size_bytes": 792,
+      "source_class": "result_surface"
+    }
+  ],
+  "derived_summary": {
+    "local_sim_id": "S_SIM_TERRAIN8_SIGN_SUITE",
+    "top_level_evidence_pack_match_count": 0,
+    "related_topology4_terrain8_evidence_block_present": true,
+    "related_topology4_terrain8_code_hash": "be1a8c714b57ebfe98559d14237d85b258f760f5db2691f10b3f778660edcb12",
+    "related_topology4_terrain8_output_hash": "218b43b4a1adee0149363f5103840329693d81e82beea73485fdc1235e2a6e9a",
+    "terrain_ordering": {
+      "lowest_entropy_plus": "Se",
+      "highest_entropy_plus": "Ne",
+      "lowest_entropy_minus": "Se",
+      "highest_entropy_minus": "Ne",
+      "highest_purity_plus": "Se",
+      "lowest_purity_plus": "Ne",
+      "highest_purity_minus": "Se",
+      "lowest_purity_minus": "Ne"
+    },
+    "sign_gap_absmax": {
+      "entropy": {
+        "terrain": "Ni",
+        "value": 0.001752965040475507
+      },
+      "purity": {
+        "terrain": "Ni",
+        "value": 0.0017208049418918625
+      }
+    },
+    "sign_gap_near_zero": {
+      "entropy": {
+        "terrain": "Ne",
+        "value": 6.34164105672852e-08
+      },
+      "purity": {
+        "terrain": "Ne",
+        "value": 6.341633129736124e-08
+      }
+    },
+    "topology4_terrain8_regime_mismatch": {
+      "strongest_entropy_difference_vs_local": {
+        "label": "minus_Se_vs_topology4_sign-1_Se_average",
+        "value": 0.3758546427572002
+      }
+    },
+    "adjacent_boundary_decision": {
+      "ultra2_same_family": false,
+      "ultra2_begins_next_batch": true,
+      "ultra2_sections": {
+        "stage16": 48,
+        "axis0_ab": 16,
+        "axis12": 8
+      }
+    }
+  }
+}

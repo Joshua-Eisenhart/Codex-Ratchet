@@ -3,13 +3,32 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Set, Tuple
 
 
-ROOT = Path("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
+def _infer_repo_root(start: Path) -> Path:
+    cur = start.resolve()
+    if cur.is_file():
+        cur = cur.parent
+    for _ in range(10):
+        if (cur / "system_v3").is_dir():
+            return cur
+        cur = cur.parent
+    return start.resolve()
+
+
+def _resolve_repo_root(repo_root_raw: str) -> Path:
+    raw = str(repo_root_raw or "").strip()
+    if raw:
+        return Path(raw).expanduser().resolve()
+    env = str(os.environ.get("CODEX_RATCHET_ROOT", "") or "").strip()
+    if env:
+        return Path(env).expanduser().resolve()
+    return _infer_repo_root(Path(__file__).resolve())
 
 NORMATIVE_RE = re.compile(
     r"(?i)\b("
@@ -50,15 +69,17 @@ def read_text(p: Path) -> str:
 def iter_authority_sources() -> List[Path]:
     sources: List[Path] = []
     # core_docs was reorganized; keep authority sources in the new canonical locations.
-    sources.append(ROOT / "core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md")
-    upgrade_dir = ROOT / "core_docs/upgrade docs"
+    root = _resolve_repo_root("")
+    sources.append(root / "core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md")
+    upgrade_dir = root / "core_docs/upgrade docs"
     if upgrade_dir.exists():
         sources.extend(sorted(upgrade_dir.glob("*.md"), key=lambda p: str(p).lower()))
     return [p for p in sources if p.exists() and p.is_file()]
 
 
 def iter_v3_spec_docs() -> List[Path]:
-    spec_dir = ROOT / "system_v3/specs"
+    root = _resolve_repo_root("")
+    spec_dir = root / "system_v3/specs"
     return sorted([p for p in spec_dir.glob("*.md") if p.is_file()], key=lambda p: str(p).lower())
 
 
@@ -132,11 +153,32 @@ def build_authority_token_hits(tokens: List[str], v3_docs: List[Path]) -> Dict[s
 
 
 def main() -> int:
-    out_dir = ROOT / "system_v3/specs/reports"
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Audit authority token coverage across system_v3/specs.")
+    parser.add_argument(
+        "--repo-root",
+        default="",
+        help="Repository root. If omitted, uses $CODEX_RATCHET_ROOT, else infers from script path.",
+    )
+    args = parser.parse_args()
+
+    root = _resolve_repo_root(args.repo_root)
+
+    out_dir = root / "system_v3/specs/reports"
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    authority_sources = iter_authority_sources()
-    v3_docs = iter_v3_spec_docs()
+    # Pass root explicitly to avoid accidental coupling to the caller's cwd.
+    authority_sources = []
+    # core_docs was reorganized; keep authority sources in the new canonical locations.
+    authority_sources.append(root / "core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md")
+    upgrade_dir = root / "core_docs/upgrade docs"
+    if upgrade_dir.exists():
+        authority_sources.extend(sorted(upgrade_dir.glob("*.md"), key=lambda p: str(p).lower()))
+    authority_sources = [p for p in authority_sources if p.exists() and p.is_file()]
+
+    spec_dir = root / "system_v3/specs"
+    v3_docs = sorted([p for p in spec_dir.glob("*.md") if p.is_file()], key=lambda p: str(p).lower())
 
     norm_lines: List[NormLine] = []
     token_counts: Dict[str, int] = {}

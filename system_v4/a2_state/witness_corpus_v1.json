@@ -1,0 +1,203 @@
+[
+  {
+    "recorded_at": "2026-03-20T21:56:11Z",
+    "witness": {
+      "kind": "intent",
+      "passed": true,
+      "violations": [],
+      "touched_boundaries": [],
+      "trace": [
+        {
+          "at": "2026-03-20T21:56:11Z",
+          "op": "intent:maker",
+          "before_hash": "",
+          "after_hash": "",
+          "notes": [
+            "All my intent, and the stuff I am writing, are first-class things to be saved and in the very graphs. My intentions. The intent is a first-class thing to refine. And extracting the system and its maker's intent is the most important thing to be refined and preserved. The whole point of the persistent memory and A2 and A1 brains: not losing context, and saving that context continuously as the system runs."
+          ]
+        }
+      ]
+    },
+    "tags": {
+      "source": "maker",
+      "intent": "All my intent, and the stuff I am writing, are first-class things to be saved and in the very graphs. My intentions. The intent is a first-class thing to refine. And extracting the system and its make",
+      "phase": "DESIGN_PRINCIPLE",
+      "priority": "P0",
+      "topic": "intent_preservation"
+    }
+  },
+  {
+    "recorded_at": "2026-03-20T21:56:11Z",
+    "witness": {
+      "kind": "intent",
+      "passed": true,
+      "violations": [],
+      "touched_boundaries": [],
+      "trace": [
+        {
+          "at": "2026-03-20T21:56:11Z",
+          "op": "intent:maker",
+          "before_hash": "",
+          "after_hash": "",
+          "notes": [
+            "Skills and graphs should be fully integrated and mature. The system should self-heal, self-improve, and self-optimize as a live closed-loop controller, not just a skill library."
+          ]
+        }
+      ]
+    },
+    "tags": {
+      "source": "maker",
+      "intent": "Skills and graphs should be fully integrated and mature. The system should self-heal, self-improve, and self-optimize as a live closed-loop controller, not just a skill library.",
+      "phase": "DESIGN_PRINCIPLE",
+      "priority": "P0",
+      "topic": "skill_graph_integration"
+    }
+  },
+  {
+    "recorded_at": "2026-03-20T21:56:11Z",
+    "witness": {
+      "kind": "intent",
+      "passed": true,
+      "violations": [],
+      "touched_boundaries": [],
+      "trace": [
+        {
+          "at": "2026-03-20T21:56:11Z",
+          "op": "intent:maker",
+          "before_hash": "",
+          "after_hash": "",
+          "notes": [
+            "The system derives skills from: Lev nonclassical runtime design doc, Z3 constraint solver, Karpathy's design philosophy, lev-os/agents, lev-os/leviathan/workshop, and JP's skill ideas. These are not just references \u2014 they are first-class sources to be continuously refined into operational skills."
+          ]
+        }
+      ]
+    },
+    "tags": {
+      "source": "maker",
+      "intent": "The system derives skills from: Lev nonclassical runtime design doc, Z3 constraint solver, Karpathy's design philosophy, lev-os/agents, lev-os/leviathan/workshop, and JP's skill ideas. These are not j",
+      "phase": "DESIGN_PRINCIPLE",
+      "priority": "P1",
+      "topic": "skill_derivation_sources"
+    }
+  },
+  {
+    "recorded_at": "2026-03-20T22:18:30Z",
+    "witness": {
+      "kind": "context",
+      "passed": true,
+      "violations": [],
+      "touched_boundaries": [],
+      "trace": [
+        {
+          "at": "2026-03-20T22:18:30Z",
+          "op": "context:system",
+          "before_hash": "",
+          "after_hash": "",
+          "notes": [
+            "Controller gate=LAUNCH_READY. Controller mode=CONTROLLER_ONLY. A1 queue status=NO_WORK. Dispatch ID=. Target role=. Ready packet=."
+          ]
+        }
+      ]
+    },
+    "tags": {
+      "source": "system",
+      "context": "Controller gate=LAUNCH_READY. Controller mode=CONTROLLER_ONLY. A1 queue status=NO_WORK. Dispatch ID=. Target role=. Ready packet=.",
+      "phase": "CONTROL_SNAPSHOT",
+      "topic": "queue_controller_state",
+      "queue_status": "NO_WORK",
+      "dispatch_id": ""
+    }
+  },
+  {
+    "recorded_at": "2026-03-22T00:56:24Z",
+    "witness": {
+      "kind": "negative",
+      "passed": false,
+      "violations": [
+        "STALE_GRAPH_AUDIT_SURFACE"
+      ],
+      "touched_boundaries": [
+        "frontier",
+        "blocked"
+      ],
+      "trace": [
+        {
+          "at": "2026-03-22T00:56:24Z",
+          "op": "rewrite_graph_capability_report",
+          "before_hash": "35484cece82000dc",
+          "after_hash": "fcf140cd9da35784",
+          "notes": [
+            "replace stale graph capability audit output after runtime graph sync so the report reflects 114/114 coverage",
+            "keep registry and graph parity explicit before widening any new lane"
+          ]
+        }
+      ]
+    },
+    "tags": {
+      "source": "system",
+      "phase": "POST_ACTION_REPAIR",
+      "topic": "graph_audit_sync",
+      "skill": "graph-capability-auditor"
+    }
+  },
+  {
+    "recorded_at": "2026-03-22T00:56:24Z",
+    "witness": {
+      "kind": "positive",
+      "passed": true,
+      "violations": [],
+      "touched_boundaries": [
+        "stable",
+        "admissible"
+      ],
+      "trace": [
+        {
+          "at": "2026-03-22T00:56:24Z",
+          "op": "land_second_target_admission_hold",
+          "before_hash": "2044a907831f00d5",
+          "after_hash": "e28d4bdbe72726b2",
+          "notes": [
+            "keep skill-improver at one proven target only and do not widen to a second target class without owner-grounded admission",
+            "record the fail-closed hold result as real maintenance evidence"
+          ]
+        }
+      ]
+    },
+    "tags": {
+      "source": "system",
+      "phase": "POST_ACTION_REPAIR",
+      "topic": "skill_improver_gate",
+      "skill": "a2-skill-improver-second-target-admission-audit-operator"
+    }
+  },
+  {
+    "recorded_at": "2026-03-22T00:56:24Z",
+    "witness": {
+      "kind": "positive",
+      "passed": true,
+      "violations": [],
+      "touched_boundaries": [
+        "stable",
+        "admissible"
+      ],
+      "trace": [
+        {
+          "at": "2026-03-22T00:56:24Z",
+          "op": "refresh_standing_a2_after_corpus_sync",
+          "before_hash": "28d6eaa30fea7f8e",
+          "after_hash": "7073d2ac81dcd562",
+          "notes": [
+            "repair standing A2 lag after front-door corpus sync and keep controller surfaces current",
+            "do not widen the lane until the upper loop is green again"
+          ]
+        }
+      ]
+    },
+    "tags": {
+      "source": "system",
+      "phase": "POST_ACTION_REPAIR",
+      "topic": "a2_refresh_sync",
+      "skill": "a2-brain-surface-refresher"
+    }
+  }
+]

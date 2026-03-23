@@ -1,0 +1,237 @@
+{
+  "batch_id": "BATCH_archive_surface_heat_dumps_root_family_split__v1",
+  "batch_scope": "heat_dumps_root_family_split",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T20:12:26Z",
+  "deferred_next_in_folder_order": [
+    "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z"
+  ],
+  "extraction_mode": "ARCHIVE_HEAT_DUMPS_ROOT_FAMILY_SPLIT_PASS",
+  "notes": [
+    "This batch processes only the top-level HEAT_DUMPS family and treats it as a historical retention root, not as current runtime authority.",
+    "HEAT_DUMPS is structurally heterogenous: one recursive mega-dump, one empty current-state rotation, one loose-file current-state rotation, one oversized-run bucket, one save-export bucket, and 13 visible run-demotion batches.",
+    "The 20260225T070252Z branch is especially dense, with 27615 files, 1171 directories, a RUN_ENGINE_ENTROPY_0001 sandbox tree, and a moved-out-of-git archive that recursively contains nested heat-dump families.",
+    "The two current-state rotation branches contradict each other in retention shape: one is empty, while the other preserves only loose numbered state and sequence snapshots.",
+    "The demotion manifests preserve the policy shift from simple move-only reversible archive demotion toward move-with-witness-rewrite, where normalized anchor and regeneration-witness surfaces replace raw local run citations before move.",
+    "Later demotion waves also require archive-path rewrites in active a1_state and a2_state control surfaces, showing explicit authority displacement away from raw local run paths.",
+    "Manifests repeatedly state that archive demotion is not deletion, which preserves reversibility even as active doctrinal dependence on raw run paths is reduced.",
+    "This root batch does not descend into any one heat-dump subfamily beyond representative manifest and inventory signatures."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "REVISIT_REQUIRED",
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "source_family": "archive root heat dumps family split",
+  "source_membership": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS",
+      "role_in_batch": "direct_heat_dump_root",
+      "top_level_entries": [
+        "20260225T070252Z",
+        "SYSTEM_V3__CURRENT_STATE_ROTATIONS__20260224T223517Z",
+        "SYSTEM_V3__CURRENT_STATE_ROTATIONS__20260224T223534Z",
+        "SYSTEM_V3__RUNS_OVER_2MB__20260224T224703Z",
+        "SYSTEM_V3__RUN_DEMOTION_BATCH_01__20260308T205105Z",
+        "SYSTEM_V3__RUN_DEMOTION_BATCH_02A__20260308T205343Z",
+        "SYSTEM_V3__RUN_DEMOTION_BATCH_02B__20260308T205508Z",
+        "SYSTEM_V3__RUN_DEMOTION_BATCH_03__20260309T050608Z",
+        "SYSTEM_V3__RUN_DEMOTION_BATCH_04__20260308T235900Z",
+        "SYSTEM_V3__RUN_DEMOTION_BATCH_05__20260308T222429Z",
+        "SYSTEM_V3__RUN_DEMOTION_BATCH_06__20260309T054702Z",
+        "SYSTEM_V3__RUN_DEMOTION_BATCH_07__20260309T060500Z",
+        "SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z",
+        "SYSTEM_V3__RUN_DEMOTION_BATCH_09__20260309T070408Z",
+        "SYSTEM_V3__RUN_DEMOTION_BATCH_10__20260309T070854Z",
+        "SYSTEM_V3__RUN_DEMOTION_BATCH_11__20260309T071410Z",
+        "SYSTEM_V3__RUN_DEMOTION_BATCH_12__20260309T071701Z",
+        "SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z",
+        "SYSTEM_V3__RUN_SAVE_EXPORTS__20260224T224330Z"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z",
+      "role_in_batch": "timestamped_mega_dump_family",
+      "file_count": 27615,
+      "directory_count": 1171,
+      "immediate_children": [
+        "RUN_ENGINE_ENTROPY_0001",
+        "repo_archive__moved_out_of_git"
+      ],
+      "notable_nested_families": [
+        "RUN_ENGINE_ENTROPY_0001/a1_sandbox__incoming_consumed",
+        "RUN_ENGINE_ENTROPY_0001/a1_sandbox__lawyer_memos",
+        "RUN_ENGINE_ENTROPY_0001/a1_sandbox__prompt_queue",
+        "repo_archive__moved_out_of_git/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__CURRENT_STATE_ROTATIONS__20260224T223517Z",
+      "role_in_batch": "empty_current_state_rotation",
+      "file_count": 0,
+      "directory_count": 0
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__CURRENT_STATE_ROTATIONS__20260224T223534Z",
+      "role_in_batch": "loose_file_current_state_rotation",
+      "file_count": 47,
+      "directory_count": 0,
+      "retained_file_families": [
+        "state 2.json through state 25.json",
+        "sequence_state 2.json through sequence_state 24.json"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUNS_OVER_2MB__20260224T224703Z",
+      "role_in_batch": "oversized_run_bucket",
+      "file_count": 2912,
+      "directory_count": 42,
+      "retained_run_families": [
+        "RUN_QIT_EXTENDED_PROBEGATE_0001",
+        "RUN_QIT_EXTENDED_PROBEGATE_0002",
+        "RUN_QIT_FRONTIER_0001",
+        "RUN_QIT_FRONTIER_0002",
+        "RUN_QIT_REALSIM_0001",
+        "RUN_QIT_REALSIM_0002",
+        "RUN_QIT_TOOLKIT_LAWYERS_0002"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_SAVE_EXPORTS__20260224T224330Z",
+      "role_in_batch": "save_export_micro_family",
+      "file_count": 4,
+      "directory_count": 1,
+      "retained_members": [
+        "_save_exports/SYSTEM_SAVE__bootstrap__smoke.zip",
+        "_save_exports/SYSTEM_SAVE__bootstrap__smoke.zip.sha256",
+        "_save_exports/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__smoke.zip",
+        "_save_exports/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__smoke.zip.sha256"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_01__20260308T205105Z/RUN_DEMOTION_MANIFEST__v1.md",
+      "role_in_batch": "demotion_wave_anchor_01",
+      "policy_markers": [
+        "archive demotion by move only",
+        "deletion none",
+        "explicit keep set"
+      ],
+      "moved_runs_count": 6
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_02A__20260308T205343Z/RUN_DEMOTION_MANIFEST__v1.md",
+      "role_in_batch": "demotion_wave_anchor_02a",
+      "policy_markers": [
+        "safer half of the second demotion wave",
+        "move only"
+      ],
+      "moved_run_families": [
+        "RUN_DUAL_THREAD_NO_PRO_SMOKE",
+        "RUN_SUBSTRATE_FAMILY_EXCHANGE_SMOKE"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_02B__20260308T205508Z/RUN_DEMOTION_MANIFEST__v1.md",
+      "role_in_batch": "demotion_wave_anchor_02b",
+      "policy_markers": [
+        "older non-referenced bridge continuation/history runs",
+        "explicit retained local bridge runs"
+      ],
+      "moved_runs_count": 8
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_03__20260309T050608Z/RUN_DEMOTION_MANIFEST__v1.md",
+      "role_in_batch": "demotion_wave_anchor_03",
+      "policy_markers": [
+        "rewrite requirement",
+        "run_anchor_surface archive-path rewrite in same bounded step"
+      ],
+      "moved_runs_count": 5
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_04__20260308T235900Z/RUN_DEMOTION_MANIFEST__v1.md",
+      "role_in_batch": "demotion_wave_anchor_04",
+      "policy_markers": [
+        "family-level doctrine rewritten to normalized anchor and regeneration-witness surfaces"
+      ],
+      "moved_runs_count": 5
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_05__20260308T222429Z/RUN_DEMOTION_MANIFEST__v1.md",
+      "role_in_batch": "demotion_wave_anchor_05",
+      "policy_markers": [
+        "single-run move-with-witness-rewrite"
+      ],
+      "moved_runs_count": 1
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_06__20260309T054702Z/RUN_DEMOTION_MANIFEST__v1.md",
+      "role_in_batch": "demotion_wave_anchor_06",
+      "policy_markers": [
+        "archive demotion not deletion",
+        "move-with-witness-rewrite"
+      ],
+      "moved_runs_count": 1
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_07__20260309T060500Z/RUN_DEMOTION_MANIFEST__v1.md",
+      "role_in_batch": "demotion_wave_anchor_07",
+      "policy_markers": [
+        "residue-broad anchor/witness rewrite precondition"
+      ],
+      "moved_runs_count": 3
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_DEMOTION_MANIFEST__v1.md",
+      "role_in_batch": "demotion_wave_anchor_08",
+      "policy_markers": [
+        "HEAT_DUMP batch class",
+        "move-with-witness-rewrite",
+        "local/broad pair witness rewrite"
+      ],
+      "moved_runs_count": 2
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_09__20260309T070408Z/RUN_DEMOTION_MANIFEST__v1.md",
+      "role_in_batch": "demotion_wave_anchor_09",
+      "policy_markers": [
+        "entropy-rate family normalization"
+      ],
+      "moved_runs_count": 2
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_10__20260309T070854Z/RUN_DEMOTION_MANIFEST__v1.md",
+      "role_in_batch": "demotion_wave_anchor_10",
+      "policy_markers": [
+        "substrate family anchor/witness rewrite",
+        "active a1_state and a2_state doctrine rewrite precondition"
+      ],
+      "moved_runs_count": 5
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_11__20260309T071410Z/RUN_DEMOTION_MANIFEST__v1.md",
+      "role_in_batch": "demotion_wave_anchor_11",
+      "policy_markers": [
+        "substrate-enrichment family anchor/witness rewrite",
+        "active a1_state and a2_state doctrine rewrite precondition"
+      ],
+      "moved_runs_count": 7
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_12__20260309T071701Z/RUN_DEMOTION_MANIFEST__v1.md",
+      "role_in_batch": "demotion_wave_anchor_12",
+      "policy_markers": [
+        "entropy-structure family witness rewrite",
+        "additional active control-surface rewrite"
+      ],
+      "moved_runs_count": 5
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_DEMOTION_MANIFEST__v1.md",
+      "role_in_batch": "demotion_wave_anchor_13",
+      "policy_markers": [
+        "packet-smoke family anchor/witness rewrite",
+        "no extra active A1/A2 raw-path rewrites required"
+      ],
+      "moved_runs_count": 7
+    }
+  ]
+}

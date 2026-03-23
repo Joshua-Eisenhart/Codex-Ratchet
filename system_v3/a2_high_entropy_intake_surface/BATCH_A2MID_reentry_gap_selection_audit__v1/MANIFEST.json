@@ -1,0 +1,180 @@
+{
+  "schema": "A2_MID_REFINEMENT_BATCH_MANIFEST_v1",
+  "batch_id": "BATCH_A2MID_reentry_gap_selection_audit__v1",
+  "batch_scope": "bounded_residual_gap_audit_over_current_a2_mid_reentry_lane_to_confirm_local_child_closure_and_select_the_next_real_unresolved_parent",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T07:15:45Z",
+  "extraction_mode": "A2_MID_REFINEMENT_PASS",
+  "promotion_status": "A2_2_CANDIDATE",
+  "promotion_guardrail": "Proposal-side only. Do not promote to A2-1 kernel law from this audit packet without a later explicit selective promotion pass.",
+  "parent_batch_ids": [
+    "BATCH_A2MID_constraints_entropy_chain_fences__v1",
+    "BATCH_A2MID_constraints_foundation_governance_fences__v1"
+  ],
+  "comparison_anchor_batch_ids": [
+    "BATCH_refinedfuel_nonsims_residual_inventory_closure_audit__v1",
+    "BATCH_a2feed_thread_b_bootpack_engine_pattern__v1",
+    "BATCH_A2MID_bootpack_thread_b_kernel_gating__v1"
+  ],
+  "parent_artifacts": [
+    "SOURCE_DEPENDENCY_MAP__v1.md",
+    "SELECTION_RATIONALE__v1.md",
+    "A2_2_REFINED_CANDIDATES__v1.md",
+    "CONTRADICTION_PRESERVATION__v1.md",
+    "DOWNSTREAM_CONSEQUENCE_NOTES__v1.md",
+    "MANIFEST.json"
+  ],
+  "selection_basis": {
+    "queue_reason": "Selected because the queued next step explicitly called for a bounded residual-gap audit over the current A2-mid re-entry lane before choosing the next real unresolved parent.",
+    "parent_reason": "The two paired Constraints children were the strongest local lane anchors for testing whether the current refined-fuel re-entry sequence was already closed at the direct-child level.",
+    "comparison_anchor_reason": "The non-sims closure audit provided a closure-audit precedent, the a2feed Thread B parent provided the strongest compact unresolved candidate, and the existing upgrade-doc Thread B child was used to test whether that candidate was truly still open.",
+    "deferred_alternatives": [
+      {
+        "batch_id": "BATCH_a2feed_leviathan_family_source_map__v1",
+        "reason": "Deferred because it remains a much larger source-map revisit with lower bounded next-step yield than the compact unresolved Thread B engine-pattern parent."
+      },
+      {
+        "batch_id": "BATCH_a2feed_gpt_thread_a1_trigram_source_map__v1",
+        "reason": "Deferred because it is another giant mixed source-map revisit rather than a narrower engine-pattern seam."
+      },
+      {
+        "batch_id": "BATCH_upgrade_docs_megaboot_ratchet_suite_source_map__v1",
+        "reason": "Deferred because it is broad and composite, while the unresolved a2feed Thread B parent is smaller and more immediately reducible."
+      },
+      {
+        "batch_id": "BATCH_archive_surface_batch01_core_constraint_ladder_axis_foundation__v1",
+        "reason": "Deferred because it is an output-heavy archival package rather than a cleaner compact live-source parent."
+      }
+    ]
+  },
+  "raw_source_reread_needed": false,
+  "raw_source_reread_reason": "The paired Constraints children, the current ledger, the a2feed Thread B parent artifacts, and the existing upgrade-doc Thread B child were sufficient to determine the next bounded target without reopening raw source.",
+  "candidate_items": [
+    {
+      "id": "RC1",
+      "name": "CURRENT_REENTRY_PAIR_IS_DIRECT_CHILD_CLOSED",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the main local audit result: the current refined-fuel re-entry pair is already closed at the direct-child level.",
+      "parent_dependencies": [
+        "BATCH_A2MID_constraints_entropy_chain_fences__v1:DOWNSTREAM_CONSEQUENCE_NOTES__v1.md",
+        "BATCH_A2MID_constraints_foundation_governance_fences__v1:DOWNSTREAM_CONSEQUENCE_NOTES__v1.md",
+        "BATCH_A2MID_constraints_entropy_chain_fences__v1:MANIFEST.json",
+        "BATCH_A2MID_constraints_foundation_governance_fences__v1:MANIFEST.json"
+      ],
+      "comparison_anchor_dependencies": [
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "RC2",
+      "name": "LEDGER_STATE_OVERRIDES_STALE_QUEUE_TEXT",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the cleanest general rule learned by this audit: current ledger state outranks stale queue text when selecting the next bounded target.",
+      "parent_dependencies": [
+        "BATCH_A2MID_constraints_entropy_chain_fences__v1:SELECTION_RATIONALE__v1.md",
+        "BATCH_A2MID_constraints_foundation_governance_fences__v1:SELECTION_RATIONALE__v1.md"
+      ],
+      "comparison_anchor_dependencies": [
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "RC3",
+      "name": "NEXT_REAL_UNRESOLVED_PARENT_IS_A2FEED_THREAD_B_BOOTPACK_KERNEL",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the actual next-source selection result as one bounded packet for the next go-on step.",
+      "comparison_anchor_dependencies": [
+        "BATCH_a2feed_thread_b_bootpack_engine_pattern__v1:SOURCE_MAP__v1.md",
+        "BATCH_a2feed_thread_b_bootpack_engine_pattern__v1:A2_3_DISTILLATES__v1.md",
+        "BATCH_a2feed_thread_b_bootpack_engine_pattern__v1:MANIFEST.json",
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "RC4",
+      "name": "UPGRADE_DOC_THREAD_B_CHILD_IS_ADDITIVE_NOT_DUPLICATIVE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the noncollapse rule that the existing upgrade-doc Thread B child is useful sibling context but not closure for the unresolved a2feed parent.",
+      "comparison_anchor_dependencies": [
+        "BATCH_A2MID_bootpack_thread_b_kernel_gating__v1:SOURCE_DEPENDENCY_MAP__v1.md",
+        "BATCH_A2MID_bootpack_thread_b_kernel_gating__v1:A2_2_REFINED_CANDIDATES__v1.md",
+        "BATCH_a2feed_thread_b_bootpack_engine_pattern__v1:A2_3_DISTILLATES__v1.md"
+      ]
+    },
+    {
+      "id": "RC5",
+      "name": "COMPACT_ENGINE_PATTERN_REENTRY_BEATS_GIANT_SOURCE_MAP_REVISITS",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the practical next-step prioritization rule that emerged once the local pair was shown to be closed.",
+      "comparison_anchor_dependencies": [
+        "BATCH_refinedfuel_nonsims_residual_inventory_closure_audit__v1:SOURCE_MAP__v1.md",
+        "BATCH_INDEX__v1.md"
+      ]
+    }
+  ],
+  "quarantined_items": [
+    {
+      "id": "Q1",
+      "name": "REOPEN_ALREADY_CHILD_CLOSED_REFINEDFUEL_PAIR",
+      "status": "QUARANTINED",
+      "why_quarantined": "The paired refined-fuel siblings were already directly reduced and do not represent the next real unresolved gap.",
+      "parent_dependencies": [
+        "BATCH_A2MID_constraints_entropy_chain_fences__v1:MANIFEST.json",
+        "BATCH_A2MID_constraints_foundation_governance_fences__v1:MANIFEST.json"
+      ]
+    },
+    {
+      "id": "Q2",
+      "name": "STALE_QUEUE_TEXT_AS_SELECTION_AUTHORITY",
+      "status": "QUARANTINED",
+      "why_quarantined": "Queue continuity is useful, but it cannot outrank current ledger state once new child coverage lands.",
+      "comparison_anchor_dependencies": [
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "Q3",
+      "name": "UPGRADE_DOC_THREAD_B_CHILD_AS_FULL_COVERAGE_OF_A2FEED_PARENT",
+      "status": "QUARANTINED",
+      "why_quarantined": "The existing Thread B child comes from a different parent family and therefore cannot erase the unresolved a2feed parent.",
+      "comparison_anchor_dependencies": [
+        "BATCH_A2MID_bootpack_thread_b_kernel_gating__v1:SELECTION_RATIONALE__v1.md",
+        "BATCH_a2feed_thread_b_bootpack_engine_pattern__v1:SOURCE_MAP__v1.md"
+      ]
+    },
+    {
+      "id": "Q4",
+      "name": "DEFAULT_GIANT_SOURCE_MAP_REENTRY_OVER_BOUNDED_ENGINE_PATTERN_SELECTION",
+      "status": "QUARANTINED",
+      "why_quarantined": "Large unresolved parents remain real, but the next bounded step should still favor the smaller high-signal unresolved engine-pattern parent.",
+      "comparison_anchor_dependencies": [
+        "BATCH_refinedfuel_nonsims_residual_inventory_closure_audit__v1:SOURCE_MAP__v1.md",
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "Q5",
+      "name": "AUDIT_SELECTION_PACKET_AS_ACTIVE_A2_CONTROL_UPDATE",
+      "status": "QUARANTINED",
+      "why_quarantined": "This batch remains a bounded intake-surface selection artifact and does not directly mutate active A2 control memory.",
+      "comparison_anchor_dependencies": [
+        "A2_MID_REFINEMENT_PROCESS__v1",
+        "BATCH_INDEX__v1.md"
+      ]
+    }
+  ],
+  "reasons_for_candidate_status": [
+    "These candidates isolate the main reusable outputs of the audit: local pair closure, ledger-first target selection, the next unresolved parent choice, noncollapse of sibling Thread B families, and compact-step prioritization.",
+    "They keep the lane source-led and bounded without reopening already-covered parents or drifting into giant revisit batches prematurely."
+  ],
+  "reasons_for_quarantine_status": [
+    "These items remain repetition risk, stale-thread-authority overread, false closure, bulk-first reentry, or active-memory overpromotion rather than clean reusable A2-2 packets.",
+    "The audit preserves them as warnings while refusing to let them steer the next bounded step."
+  ],
+  "control_surface_mutation": "NONE",
+  "notes": [
+    "Operated from repo-held intake artifacts only after rereading the required A2-mid prerequisite surfaces.",
+    "Used the paired Constraints children as local closure anchors and the a2feed plus upgrade-doc Thread B materials as next-target comparison context.",
+    "No raw-source reread was needed for this lane-state audit packet."
+  ]
+}

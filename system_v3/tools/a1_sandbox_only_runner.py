@@ -104,6 +104,22 @@ def _fuel_digest() -> tuple[str, dict]:
     return digest, excerpt
 
 
+def _a2_distillation_digest() -> tuple[str, dict]:
+    sources = {
+        "A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md": A2_STATE / "A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md",
+        "A2_TO_A1_DISTILLATION_INPUTS__v1.md": A2_STATE / "A2_TO_A1_DISTILLATION_INPUTS__v1.md",
+        "A2_TERM_CONFLICT_MAP__v1.md": A2_STATE / "A2_TERM_CONFLICT_MAP__v1.md",
+        "A2_BRAIN_SLICE__v1.md": A2_STATE / "A2_BRAIN_SLICE__v1.md",
+        "INTENT_SUMMARY.md": A2_STATE / "INTENT_SUMMARY.md",
+        "MODEL_CONTEXT.md": A2_STATE / "MODEL_CONTEXT.md",
+        "OPEN_UNRESOLVED__v1.md": A2_STATE / "OPEN_UNRESOLVED__v1.md",
+        "SURFACE_CLASS_AND_MEMORY_ADMISSION_RULES__v1.md": A2_STATE / "SURFACE_CLASS_AND_MEMORY_ADMISSION_RULES__v1.md",
+    }
+    excerpt = {name: _read_text_if_exists(path, max_chars=4000) for name, path in sources.items()}
+    digest = _sha256_text(_canon_json(excerpt))
+    return digest, excerpt
+
+
 @dataclass
 class Brain:
     schema: str
@@ -330,6 +346,7 @@ def main(argv: list[str]) -> int:
 
     brain = _load_brain(run_dir, run_id)
     fuel_hash, fuel_excerpt = _fuel_digest()
+    a2_distillation_hash, _a2_excerpt = _a2_distillation_digest()
 
     executed = 0
     while executed < int(args.steps):
@@ -349,6 +366,7 @@ def main(argv: list[str]) -> int:
             "required_roles": list(ROLE_SET),
             "inputs": {
                 "a1_brain_digest": brain_digest,
+                "a2_distillation_digest": a2_distillation_hash,
                 "fuel_digest": fuel_hash,
                 "constraints": list(CONSTRAINTS),
             },

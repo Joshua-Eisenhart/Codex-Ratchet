@@ -1,0 +1,198 @@
+{
+  "schema": "A2_MID_REFINEMENT_BATCH_MANIFEST_v1",
+  "batch_id": "BATCH_A2MID_physics_fuel_quarantine_gates__v1",
+  "batch_scope": "second_pass_reduction_of_refined_fuel_physics_digest_quarantine_rewrite_and_admission_gate_structure",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T04:22:16Z",
+  "extraction_mode": "TERM_CONFLICT_REDUCTION_PASS",
+  "promotion_status": "A2_2_CANDIDATE",
+  "promotion_guardrail": "Proposal-side only. Do not promote to A2-1 kernel law from this batch without a later explicit selective promotion pass.",
+  "parent_batch_ids": [
+    "BATCH_refinedfuel_physics_fuel_digest_term_conflict__v1"
+  ],
+  "comparison_anchor_batch_ids": [
+    "BATCH_A2MID_geometry_manifold_axis_fences__v1"
+  ],
+  "parent_artifacts": [
+    "SOURCE_MAP__v1.md",
+    "CLUSTER_MAP__v1.md",
+    "TENSION_MAP__v1.md",
+    "A2_3_DISTILLATES__v1.md",
+    "A2_2_CANDIDATE_SUMMARIES__v1.md",
+    "MANIFEST.json"
+  ],
+  "selection_basis": {
+    "queue_reason": "Selected as the next existing intake batch after the geometry/manifold fence reduction because it closes the ordinary refined-fuel top-level root with a compact quarantine and admission-boundary surface.",
+    "parent_reason": "The parent batch already isolates the clearest quarantine rules, rewrite gate, operator-only salvage, and staged downstream order.",
+    "comparison_anchor_reason": "The geometry/manifold A2-mid batch was used as an anchor so the digest's derived-geometry sequencing stays tied to a stricter nearby fence packet.",
+    "deferred_alternatives": [
+      {
+        "batch_id": "BATCH_a2feed_oldstate_episode01_workinglog_source_map__v1",
+        "reason": "Deferred until the last ordinary refined-fuel top-level batch was reduced into a smaller reusable packet."
+      },
+      {
+        "batch_id": "fresh_raw_digest_recomparison",
+        "reason": "Not selected because this thread prefers existing intake artifacts over fresh raw-source rereads unless a parent batch proves insufficient."
+      }
+    ]
+  },
+  "raw_source_reread_needed": false,
+  "raw_source_reread_reason": "The physics-fuel digest parent batch plus the existing geometry/manifold comparison anchor were sufficient to isolate the reusable quarantine gates and preserve the live overread risks for this pass.",
+  "candidate_items": [
+    {
+      "id": "RC1",
+      "name": "PHYSICS_FUEL_NONCONTAMINATION_CONTRACT",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the digest's clearest boundary-management rule without importing the larger candidate menu.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:C1",
+        "A2_3_DISTILLATES__v1.md:D1",
+        "A2_2_CANDIDATE_SUMMARIES__v1.md:C1",
+        "TENSION_MAP__v1.md:T1",
+        "TENSION_MAP__v1.md:T6"
+      ]
+    },
+    {
+      "id": "RC2",
+      "name": "CANDIDATE_TERM_MENU_WITHOUT_ENDORSEMENT_RULE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the value of the curated term menu while preventing it from self-upgrading into admitted content.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:C2",
+        "A2_3_DISTILLATES__v1.md:D2",
+        "A2_2_CANDIDATE_SUMMARIES__v1.md:C1",
+        "TENSION_MAP__v1.md:T1",
+        "TENSION_MAP__v1.md:T5",
+        "TENSION_MAP__v1.md:T7"
+      ]
+    },
+    {
+      "id": "RC3",
+      "name": "OPERATOR_TESTABLE_REWRITE_GATE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the strongest compile-boundary condition in the digest and keeps later reuse tied to explicit rewrite discipline.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:C3",
+        "A2_3_DISTILLATES__v1.md:D1",
+        "A2_3_DISTILLATES__v1.md:D6",
+        "A2_2_CANDIDATE_SUMMARIES__v1.md:C2",
+        "TENSION_MAP__v1.md:T6"
+      ]
+    },
+    {
+      "id": "RC4",
+      "name": "RETROCAUSAL_BOUNDARY_VALUE_OPERATOR_SALVAGE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the digest's narrowest useful TOE residue in stripped operator form without reopening the narrative bundle.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:C4",
+        "A2_3_DISTILLATES__v1.md:D3",
+        "A2_2_CANDIDATE_SUMMARIES__v1.md:C2",
+        "TENSION_MAP__v1.md:T2",
+        "TENSION_MAP__v1.md:T3"
+      ]
+    },
+    {
+      "id": "RC5",
+      "name": "NO_PRIMITIVE_TIME_CAUSALITY_PRIVILEGED_FUTURE_FENCE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the strongest anti-cosmology fence attached to the operator salvage route.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:C4",
+        "A2_3_DISTILLATES__v1.md:D3",
+        "TENSION_MAP__v1.md:T3"
+      ]
+    },
+    {
+      "id": "RC6",
+      "name": "OPERATOR_TO_DERIVED_GEOMETRY_TO_KILLABLE_GRAVITY_ORDER",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the digest's clearest sequencing fence and keeps geometry and gravity strictly downstream of operator-only reformulation.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:C5",
+        "CLUSTER_MAP__v1.md:C2",
+        "A2_3_DISTILLATES__v1.md:D4",
+        "A2_2_CANDIDATE_SUMMARIES__v1.md:C2",
+        "A2_2_CANDIDATE_SUMMARIES__v1.md:C4",
+        "TENSION_MAP__v1.md:T4",
+        "TENSION_MAP__v1.md:T7"
+      ],
+      "comparison_anchor_dependencies": [
+        "BATCH_A2MID_geometry_manifold_axis_fences__v1:RC1",
+        "BATCH_A2MID_geometry_manifold_axis_fences__v1:RC2"
+      ]
+    }
+  ],
+  "quarantined_items": [
+    {
+      "id": "Q1",
+      "name": "METAPHYSICAL_NARRATIVE_BUNDLE",
+      "status": "QUARANTINED",
+      "why_quarantined": "Teleology, anthropic, deity, and time-first cosmology remain contaminated narrative bundles rather than reusable A2-2 packets.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:C3",
+        "A2_2_CANDIDATE_SUMMARIES__v1.md:C3",
+        "TENSION_MAP__v1.md:T2"
+      ]
+    },
+    {
+      "id": "Q2",
+      "name": "BERRY_CHIRALITY_HOPF_WIGNER_STYLE_TERMS_AS_ALREADY_LICENSED_KERNEL",
+      "status": "QUARANTINED",
+      "why_quarantined": "These terms remain candidates only and still require separate derived handling and semantic separation before any lower-layer reuse.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:C2",
+        "A2_2_CANDIDATE_SUMMARIES__v1.md:C3",
+        "TENSION_MAP__v1.md:T4",
+        "TENSION_MAP__v1.md:T5"
+      ]
+    },
+    {
+      "id": "Q3",
+      "name": "PATH_INTEGRAL_BOUNDARY_VALUE_LANGUAGE_AS_PRIVILEGED_FUTURE_REOPENING",
+      "status": "QUARANTINED",
+      "why_quarantined": "The digest's own no-time / no-privileged-future fence blocks this overread.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:C4",
+        "TENSION_MAP__v1.md:T3"
+      ]
+    },
+    {
+      "id": "Q4",
+      "name": "GRAVITY_AS_GRADIENT_AS_ENDORSED_MODEL_CONTENT",
+      "status": "QUARANTINED",
+      "why_quarantined": "Gravity candidates remain late, sim-tested, and killable rather than endorsed model content.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:C2",
+        "CLUSTER_MAP__v1.md:C5",
+        "A2_2_CANDIDATE_SUMMARIES__v1.md:C3",
+        "TENSION_MAP__v1.md:T7"
+      ]
+    },
+    {
+      "id": "Q5",
+      "name": "REPO_REUSE_AS_CANONIZATION",
+      "status": "QUARANTINED",
+      "why_quarantined": "Repo-local reuse increases reference value but does not change the digest's noncanon status.",
+      "parent_dependencies": [
+        "A2_3_DISTILLATES__v1.md:D5",
+        "A2_2_CANDIDATE_SUMMARIES__v1.md:C4"
+      ]
+    }
+  ],
+  "reasons_for_candidate_status": [
+    "These candidates isolate the digest's strongest quarantine, rewrite, salvage, and sequencing gates without rebuilding the full candidate inventory.",
+    "They keep the digest's operator-only logic primary while preserving the nearby geometry fence as a comparison anchor.",
+    "They remain compact, source-linked, and proposal-side for later translation work."
+  ],
+  "reasons_for_quarantine_status": [
+    "These items remain narrative bundles, candidate-term overreads, or downstream-only hypotheses rather than clean reusable A2-2 surfaces.",
+    "The parent batch is strong enough to preserve them as explicit risks, but not to promote them into active law."
+  ],
+  "control_surface_mutation": "NONE",
+  "notes": [
+    "Operated from existing intake artifacts after prior required control-surface reads.",
+    "Used the geometry/manifold A2-mid batch only as a sequencing comparison anchor.",
+    "No raw core-doc reread was needed for this bounded physics-fuel quarantine reduction pass."
+  ]
+}

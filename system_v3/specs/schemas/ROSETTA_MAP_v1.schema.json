@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ROSETTA_MAP_v1.schema.json",
+  "title": "ROSETTA_MAP_v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "map_id", "created_utc", "entries", "source_pointers"],
+  "properties": {
+    "schema": { "const": "ROSETTA_MAP_v1" },
+    "map_id": { "type": "string" },
+    "created_utc": { "type": "string" },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["entry_id", "source_term", "kernel_anchor", "anchor_type", "status", "kernel_candidate", "source_pointers"],
+        "properties": {
+          "entry_id": { "type": "string" },
+          "source_term": { "type": "string" },
+          "kernel_anchor": { "type": "string" },
+          "anchor_type": { "type": "string", "enum": ["TERM", "SPEC_ID"] },
+          "status": { "type": "string", "enum": ["BOUND", "UNKNOWN"] },
+          "kernel_candidate": { "type": "string" },
+          "source_pointers": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "source_pointers": { "type": "array", "items": { "type": "string" } }
+  }
+}

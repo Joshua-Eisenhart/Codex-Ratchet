@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "RATCHET_FUEL_CANDIDATE_PACKET_STAGE2_v1.schema.json",
+  "title": "RATCHET_FUEL_CANDIDATE_PACKET_STAGE2_v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "packet_id",
+    "source_job_id",
+    "lanes",
+    "term_candidates",
+    "math_candidates",
+    "sim_candidates_positive",
+    "sim_candidates_negative"
+  ],
+  "properties": {
+    "schema": {
+      "const": "RATCHET_FUEL_CANDIDATE_PACKET_STAGE2_v1"
+    },
+    "packet_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_]{8,160}$"
+    },
+    "source_job_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_]{8,160}$"
+    },
+    "source_artifact_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "lanes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "STEELMAN",
+          "ALT_FORMALISM",
+          "BOUNDARY_REPAIR",
+          "ADVERSARIAL_NEG",
+          "RESCUER"
+        ]
+      }
+    },
+    "term_candidates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/candidateCore"
+      }
+    },
+    "math_candidates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/candidateCore"
+      }
+    },
+    "sim_candidates_positive": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/simCandidatePositive"
+      }
+    },
+    "sim_candidates_negative": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/simCandidateNegative"
+      }
+    },
+    "open_blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "candidateCore": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "candidate_kind",
+        "target_class",
+        "lane",
+        "source_locator"
+      ],
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "pattern": "^[A-Z0-9_]{4,160}$"
+        },
+        "candidate_kind": {
+          "type": "string",
+          "enum": [
+            "TERM_DEF",
+            "MATH_DEF"
+          ]
+        },
+        "target_class": {
+          "type": "string",
+          "pattern": "^[A-Z0-9_]{4,160}$"
+        },
+        "lane": {
+          "type": "string",
+          "enum": [
+            "STEELMAN",
+            "ALT_FORMALISM",
+            "BOUNDARY_REPAIR",
+            "RESCUER"
+          ]
+        },
+        "source_locator": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "simCandidatePositive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "candidate_kind",
+        "target_class",
+        "lane",
+        "source_locator"
+      ],
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "pattern": "^[A-Z0-9_]{4,160}$"
+        },
+        "candidate_kind": {
+          "type": "string",
+          "const": "SIM_SPEC_POSITIVE"
+        },
+        "target_class": {
+          "type": "string",
+          "pattern": "^[A-Z0-9_]{4,160}$"
+        },
+        "lane": {
+          "type": "string",
+          "enum": [
+            "STEELMAN",
+            "ALT_FORMALISM",
+            "BOUNDARY_REPAIR",
+            "RESCUER"
+          ]
+        },
+        "source_locator": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "simCandidateNegative": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "candidate_kind",
+        "target_class",
+        "lane",
+        "source_locator",
+        "negative_class"
+      ],
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "pattern": "^[A-Z0-9_]{4,160}$"
+        },
+        "candidate_kind": {
+          "type": "string",
+          "const": "SIM_SPEC_NEGATIVE"
+        },
+        "target_class": {
+          "type": "string",
+          "pattern": "^[A-Z0-9_]{4,160}$"
+        },
+        "lane": {
+          "type": "string",
+          "const": "ADVERSARIAL_NEG"
+        },
+        "source_locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "negative_class": {
+          "type": "string",
+          "pattern": "^[A-Z0-9_]{3,160}$"
+        }
+      }
+    }
+  }
+}
+

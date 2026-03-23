@@ -1,0 +1,188 @@
+{
+  "schema": "A2_MID_REFINEMENT_BATCH_MANIFEST_v1",
+  "batch_id": "BATCH_A2MID_early_a2feed_bigdoc_lane_closure_audit__v1",
+  "batch_scope": "closure_aware_residual_audit_over_the_completed_early_a2feed_bigdoc_reentry_lane_selecting_the_next_live_source_bearing_archive_parent_after_a0_gpt_grok_and_grok_gemini_children_are_all_present",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T09:55:44Z",
+  "extraction_mode": "A2_MID_REFINEMENT_PASS",
+  "promotion_status": "A2_2_CANDIDATE",
+  "promotion_guardrail": "Proposal-side only. Do not treat this closure audit as active A2 control memory, as proof of global intake completion, or as authority to promote any nominated archive parent without a separate bounded child reduction.",
+  "parent_batch_ids": [
+    "BATCH_A2MID_a0_threadsave_operating_pattern_fences__v1",
+    "BATCH_A2MID_gpt_thread_a1_bridge_evidence_trigram_split__v1",
+    "BATCH_A2MID_grok_eisenhart_swap_validation_fences__v1",
+    "BATCH_A2MID_grok_gemini_registry_manifesto_axis_fences__v1"
+  ],
+  "comparison_anchor_batch_ids": [
+    "BATCH_A2MID_post_archive_a2feed_bigdoc_selection_audit__v1",
+    "BATCH_A2MID_archive_packaged_sequence_closure_audit__v1",
+    "BATCH_archive_surface_cache_recent_purgeable_save_exports__v1",
+    "BATCH_archive_surface_deep_archive_root_milestone_split__v1"
+  ],
+  "parent_artifacts": [
+    "MANIFEST.json",
+    "SOURCE_DEPENDENCY_MAP__v1.md",
+    "A2_2_REFINED_CANDIDATES__v1.md",
+    "CONTRADICTION_PRESERVATION__v1.md",
+    "DOWNSTREAM_CONSEQUENCE_NOTES__v1.md"
+  ],
+  "selection_basis": {
+    "queue_reason": "Selected because the just-completed A0 child closed the last remaining parent in the early a2feed big-doc lane, so the real bounded next step was a live-ledger closure audit rather than guessing from stale queue state.",
+    "parent_reason": "The four completed early a2feed children now provide enough coverage to exit that lane as a primary re-entry pool and to re-rank the next unresolved source-bearing archive parents using current ledger state.",
+    "comparison_anchor_reason": "The prior post-archive selection audit was used to preserve lane-transition logic, the archive packaged-sequence closure audit was used to keep stale archive-package reopening blocked, and the cache-export and deep-archive-root first-pass parents were used to compare the two strongest next archive lanes now that early a2feed closure is real.",
+    "deferred_alternatives": [
+      {
+        "batch_id": "BATCH_archive_surface_deep_archive_root_milestone_split__v1",
+        "reason": "Deferred because it remains a topology-heavy 7805-file root map whose own first-pass candidate summary says the next descent should be registry-driven, making it lower-yield for immediate A2-mid reduction than the smaller cache save-export family."
+      },
+      {
+        "batch_id": "BATCH_archive_surface_deep_archive_migrated_run_root_registry_and_family_signatures__v1",
+        "reason": "Deferred because it is still downstream of the deep-archive root lane and benefits from an explicit lane-selection step before deeper migrated-run re-entry."
+      },
+      {
+        "batch_id": "BATCH_archive_surface_deep_archive_run_foundation_batch_0001__v1",
+        "reason": "Deferred because descendant run families remain meaningful but should not outrank the cleaner export-lineage bridge packet and the unresolved root-versus-descendant lane choice."
+      }
+    ]
+  },
+  "raw_source_reread_needed": false,
+  "raw_source_reread_reason": "This batch is a routing audit. The live ledger plus the completed early-a2feed children and the first-pass cache and deep-archive parent artifacts were sufficient to nominate the next bounded target without reopening raw archive files.",
+  "candidate_items": [
+    {
+      "id": "RC1",
+      "name": "EARLY_A2FEED_BIGDOC_LANE_IS_NOW_DIRECT_CHILD_CLOSED_ENOUGH_TO_EXIT_AS_PRIMARY_REENTRY_POOL",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the routing fact that the four early a2feed big-doc parents now each have bounded A2-mid children and no longer form the strongest immediate unresolved pool.",
+      "parent_dependencies": [
+        "BATCH_A2MID_a0_threadsave_operating_pattern_fences__v1:MANIFEST.json",
+        "BATCH_A2MID_gpt_thread_a1_bridge_evidence_trigram_split__v1:MANIFEST.json",
+        "BATCH_A2MID_grok_eisenhart_swap_validation_fences__v1:MANIFEST.json",
+        "BATCH_A2MID_grok_gemini_registry_manifesto_axis_fences__v1:MANIFEST.json",
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "RC2",
+      "name": "POST_ARCHIVE_A2FEED_BIGDOC_SELECTION_AUDIT_IS_NOW_DISCHARGED_BY_CHILD_COMPLETION",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the fact that the earlier routing audit has now been fully acted on and should not continue to drive queue text as if the lane were still open.",
+      "comparison_anchor_dependencies": [
+        "BATCH_A2MID_post_archive_a2feed_bigdoc_selection_audit__v1:A2_2_REFINED_CANDIDATES__v1.md:RC2",
+        "BATCH_A2MID_post_archive_a2feed_bigdoc_selection_audit__v1:A2_2_REFINED_CANDIDATES__v1.md:RC5"
+      ]
+    },
+    {
+      "id": "RC3",
+      "name": "NEXT_UNRESOLVED_SOURCE_BEARING_POOL_NOW_SITS_IN_ARCHIVE_SAVE_EXPORT_AND_DEEP_ARCHIVE_LANES",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the narrowed live unresolved archive pool after early a2feed closure: the strongest remaining source-bearing parents now cluster in the purgeable cache save-export family and the deep-archive root family.",
+      "comparison_anchor_dependencies": [
+        "BATCH_archive_surface_cache_recent_purgeable_save_exports__v1:MANIFEST.json",
+        "BATCH_archive_surface_deep_archive_root_milestone_split__v1:MANIFEST.json",
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "RC4",
+      "name": "PURGEABLE_CACHE_SAVE_EXPORT_FAMILY_IS_THE_STRONGEST_NEXT_REENTRY_TARGET",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the selection result that the purgeable cache save-export family is the cleanest next archive parent because it is bounded, checksum-tight, and directly exposes retention-gradient evidence that later archive-derived packages often lose.",
+      "comparison_anchor_dependencies": [
+        "BATCH_archive_surface_cache_recent_purgeable_save_exports__v1:A2_2_CANDIDATE_SUMMARIES__v1.md:C2",
+        "BATCH_archive_surface_cache_recent_purgeable_save_exports__v1:A2_2_CANDIDATE_SUMMARIES__v1.md:C3",
+        "BATCH_archive_surface_cache_recent_purgeable_save_exports__v1:MANIFEST.json"
+      ]
+    },
+    {
+      "id": "RC5",
+      "name": "DEEP_ARCHIVE_ROOT_MILESTONE_SPLIT_REMAINS_REAL_BUT_LOWER_YIELD_THAN_CACHE_EXPORT_REENTRY_NOW",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the demotion rule that the deep-archive root remains important but is still a topology-first 7805-file root map whose own next-step note points to later registry-driven descent rather than immediate A2-mid reduction at the root.",
+      "comparison_anchor_dependencies": [
+        "BATCH_archive_surface_deep_archive_root_milestone_split__v1:A2_2_CANDIDATE_SUMMARIES__v1.md:C1",
+        "BATCH_archive_surface_deep_archive_root_milestone_split__v1:A2_2_CANDIDATE_SUMMARIES__v1.md:C3",
+        "BATCH_archive_surface_deep_archive_root_milestone_split__v1:MANIFEST.json"
+      ]
+    },
+    {
+      "id": "RC6",
+      "name": "CACHE_EXPORT_REENTRY_SHOULD_PRECEDE_DEEP_ARCHIVE_DESCENT_AND_DESCENDANT_RUN_SELECTION",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the ordering rule that the cleaner cache export bridge should be reduced before deeper deep-archive root or descendant run families, because it offers the least noisy transition from full-save retention evidence into later archive-loss and lineage questions.",
+      "comparison_anchor_dependencies": [
+        "BATCH_archive_surface_cache_recent_purgeable_save_exports__v1:A2_2_CANDIDATE_SUMMARIES__v1.md:C3",
+        "BATCH_archive_surface_deep_archive_root_milestone_split__v1:A2_2_CANDIDATE_SUMMARIES__v1.md:C2",
+        "BATCH_archive_surface_deep_archive_root_milestone_split__v1:A2_2_CANDIDATE_SUMMARIES__v1.md:C5"
+      ]
+    }
+  ],
+  "quarantined_items": [
+    {
+      "id": "Q1",
+      "name": "REOPENING_EARLY_A2FEED_BIGDOC_LANE_AS_IF_IT_WERE_STILL_UNCHILDED",
+      "status": "QUARANTINED",
+      "why_quarantined": "The four strongest early a2feed big-doc parents now each have bounded A2-mid children, so treating that lane as still open would be stale-lane reopening.",
+      "parent_dependencies": [
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "Q2",
+      "name": "TREATING_EARLY_A2FEED_LANE_CLOSURE_AS_GLOBAL_LEDGER_COMPLETION",
+      "status": "QUARANTINED",
+      "why_quarantined": "Closing the early a2feed lane does not erase unresolved archive save-export and deep-archive parents elsewhere in the intake surface.",
+      "parent_dependencies": [
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "Q3",
+      "name": "DEFAULTING_NEXT_TO_DEEP_ARCHIVE_ROOT_JUST_BECAUSE_FOLDER_ORDER_CONTINUES",
+      "status": "QUARANTINED",
+      "why_quarantined": "The deep-archive root is real but lower-yield now than the smaller, more bounded cache export bridge family.",
+      "comparison_anchor_dependencies": [
+        "BATCH_archive_surface_deep_archive_root_milestone_split__v1:MANIFEST.json",
+        "BATCH_archive_surface_cache_recent_purgeable_save_exports__v1:MANIFEST.json"
+      ]
+    },
+    {
+      "id": "Q4",
+      "name": "SKIPPING_CACHE_EXPORT_BRIDGE_AND_JUMPING_STRAIGHT_TO_DEEP_ARCHIVE_DESCENDANT_RUNS",
+      "status": "QUARANTINED",
+      "why_quarantined": "Descendant run families remain meaningful, but the lane still benefits from resolving the cleaner export-lineage bridge before deeper archive descent.",
+      "comparison_anchor_dependencies": [
+        "BATCH_archive_surface_cache_recent_purgeable_save_exports__v1:A2_2_CANDIDATE_SUMMARIES__v1.md:C5",
+        "BATCH_archive_surface_deep_archive_root_milestone_split__v1:A2_2_CANDIDATE_SUMMARIES__v1.md:C5"
+      ]
+    },
+    {
+      "id": "Q5",
+      "name": "TREATING_PURGEABLE_CACHE_AS_NONREUSABLE_ONLY_BECAUSE_IT_IS_MARKED_SAFE_TO_DELETE",
+      "status": "QUARANTINED",
+      "why_quarantined": "The delete marker does not erase the family's value as a bounded witness of fuller save-export contents and retention-gradient evidence.",
+      "comparison_anchor_dependencies": [
+        "BATCH_archive_surface_cache_recent_purgeable_save_exports__v1:A2_2_CANDIDATE_SUMMARIES__v1.md:C1",
+        "BATCH_archive_surface_cache_recent_purgeable_save_exports__v1:A2_2_CANDIDATE_SUMMARIES__v1.md:C3"
+      ]
+    },
+    {
+      "id": "Q6",
+      "name": "SELECTION_AUDIT_AS_ACTIVE_A2_CONTROL_UPDATE",
+      "status": "QUARANTINED",
+      "why_quarantined": "This batch is a bounded routing audit under A2-mid and must not be promoted directly into active control memory.",
+      "parent_dependencies": [
+        "A2_MID_REFINEMENT_PROCESS__v1.md",
+        "BATCH_INDEX__v1.md"
+      ]
+    }
+  ],
+  "reasons_for_candidate_status": [
+    "These candidates preserve the live routing facts that matter now: the early a2feed big-doc lane is direct-child closed, the next unresolved source-bearing archive pool is the cache-export versus deep-archive family split, and the purgeable cache save-export family is the strongest next bounded re-entry target.",
+    "They remain selection-only, contradiction-preserving, and explicitly below active A2 authority."
+  ],
+  "reasons_for_quarantine_status": [
+    "These items remain stale-lane reopening, global-completion overread, folder-order bias, premature deep-archive descent, or control-memory promotion rather than clean A2-mid routing packets.",
+    "The audit is useful for target selection, but not promotable as active law."
+  ],
+  "control_surface_mutation": "NONE"
+}

@@ -1,0 +1,163 @@
+{
+  "batch_id": "BATCH_sims_axis12_harden_v2_result_orphan_triplet__v1",
+  "batch_scope": "residual_axis12_harden_v2_result_only_triplet",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T06:05:18Z",
+  "deferred_next_raw_folder_order_source": null,
+  "extraction_mode": "SIM_AXIS12_HARDEN_V2_RESULT_ORPHAN_PASS",
+  "notes": [
+    "This batch is the successor result-only residual-class pass reopening the deferred harden v2 outputs.",
+    "Source membership is bounded to the three v2 result surfaces and does not re-admit the runner.",
+    "No runtime execution was performed."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "A2_2_CANDIDATE",
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_axis12_harden_v1_result_orphan_triplet__v1/MANIFEST.json",
+      "relevance": "Provides the fuller v1 predecessor triplet for version-seam comparison."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_axis12_harden_runner_strip__v1/MANIFEST.json",
+      "relevance": "Provides producer-side continuity and shows this exact v2 triplet was intentionally deferred from the runner-only batch."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis12_harden_v2_triple.py",
+      "relevance": "Defines the shared v2 output contract for the current three result surfaces.",
+      "line_window": "171-249"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md",
+      "relevance": "Shows filename-level catalog visibility for the three current result surfaces.",
+      "line_window": "61,63,66"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt",
+      "relevance": "Shows zero repo-held evidence-pack visibility for the current filenames and local SIM_IDs."
+    }
+  ],
+  "runtime_expectations": [
+    "The three result surfaces belong to one v2 producer run with shared num_states 512, cycles 64, theta 0.07, and a three-point parameter sweep under both axis3 signs.",
+    "All three current surfaces store only six row summaries with disc fields and no by-sequence layer.",
+    "The third surface is a dynamic relabeled-channel control rather than a combinatorial swap-only control.",
+    "The next remaining result-only orphan after this batch begins at results_axis0_boundary_bookkeep_v1.json."
+  ],
+  "failure_modes": [
+    "Mistaking filename-level catalog visibility for evidence-pack admission.",
+    "Treating the compressed successor schema as if it still preserved sequence-level explanations.",
+    "Overreading the tiny weak-row sign flip in altchan_v2.",
+    "Describing negctrl_label_v2 as a no-op control when it is a dynamic, mostly inverted surface.",
+    "Collapsing v1 and v2 into one harden result batch."
+  ],
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "sims_split_rule": {
+    "detected": true,
+    "included_in_this_batch": true,
+    "notes": "This batch remains inside the separate sims source class and does not mix with ordinary theory/doc extraction.",
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims"
+  },
+  "source_membership": [
+    {
+      "line_count": 75,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis12_paramsweep_v2.json",
+      "role_in_batch": "axis12_harden_v2_base_paramsweep_result_surface",
+      "sha256": "b9b72a01a12d0b2a230fd6996026d247bedfd7f332d5e653e31fcf3a9a724f72",
+      "size_bytes": 1344,
+      "source_class": "result_surface"
+    },
+    {
+      "line_count": 75,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis12_altchan_v2.json",
+      "role_in_batch": "axis12_harden_v2_alt_channel_result_surface",
+      "sha256": "c6b8194d29eaab38b30cf3d6aa5821b05a7d879f62909306d34efbbc63b5552c",
+      "size_bytes": 1196,
+      "source_class": "result_surface"
+    },
+    {
+      "line_count": 75,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis12_negctrl_label_v2.json",
+      "role_in_batch": "axis12_harden_v2_relabeled_control_surface",
+      "sha256": "d15262a79fd4f114f86e14394fac249526ff4f77532b28d68c65d1b870ca0990",
+      "size_bytes": 1350,
+      "source_class": "result_surface"
+    }
+  ],
+  "derived_summary": {
+    "result_only_residual_count_before_this_batch": 7,
+    "local_result_count_in_batch": 3,
+    "dynamic_surface_count": 3,
+    "combinatorial_surface_count": 0,
+    "shared_num_states": 512,
+    "shared_cycles": 64,
+    "shared_theta": 0.07,
+    "shared_row_count_dynamic_surfaces": 6,
+    "paramsweep_mean_dS_by_sign": {
+      "-1": 0.0006795066665520692,
+      "1": 0.0013776134754462193
+    },
+    "paramsweep_mean_dP_by_sign": {
+      "-1": -0.0006590837536308106,
+      "1": -0.0013325884929744625
+    },
+    "paramsweep_max_abs_dS": {
+      "value": 0.002552123876453427,
+      "sign": 1,
+      "params": {
+        "gamma": 0.12,
+        "p": 0.08,
+        "q": 0.1
+      }
+    },
+    "paramsweep_max_abs_dP": {
+      "value": 0.002452870920967354,
+      "sign": 1,
+      "params": {
+        "gamma": 0.12,
+        "p": 0.08,
+        "q": 0.1
+      }
+    },
+    "paramsweep_v1_delta_max_abs_dS": {
+      "value": 0.00018284670210544363,
+      "sign": 1,
+      "params": {
+        "gamma": 0.02,
+        "p": 0.02,
+        "q": 0.02
+      }
+    },
+    "altchan_mean_dS_by_sign": {
+      "-1": -1.5350306322344427e-08,
+      "1": -2.61303525853999e-08
+    },
+    "altchan_mean_dP_by_sign": {
+      "-1": 1.5350075321940437e-08,
+      "1": 2.6130141309958315e-08
+    },
+    "altchan_max_abs_dS": 7.83910577561997e-08,
+    "altchan_medium_high_zero_rows": 4,
+    "altchan_weak_row_sign_flipped_vs_v1": true,
+    "negctrl_label_mean_dS_by_sign": {
+      "-1": -0.00013313511956610422,
+      "1": -0.00033819663466161387
+    },
+    "negctrl_label_mean_dP_by_sign": {
+      "-1": 0.000128539806614536,
+      "1": 0.00032213729155594617
+    },
+    "negctrl_label_negative_dS_row_count": 5,
+    "negctrl_label_positive_dS_row_count": 1,
+    "negctrl_label_max_abs_dS": {
+      "value": 0.0007217115914999184,
+      "sign": 1,
+      "params": {
+        "gamma": 0.12,
+        "p": 0.08,
+        "q": 0.1
+      }
+    },
+    "catalog_filename_mentions": 3,
+    "catalog_sim_id_match_count": 0,
+    "top_level_evidence_pack_match_count": 0
+  }
+}

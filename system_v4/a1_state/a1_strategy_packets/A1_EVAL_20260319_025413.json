@@ -1,0 +1,1499 @@
+{
+  "schema": "A1_STRATEGY_v1",
+  "strategy_id": "A1_EVAL_20260319_025413",
+  "source": "eval_slice_run",
+  "targets": [
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F050",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F050_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "density_matrix"
+        },
+        {
+          "field_id": "DF_F050_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Unprocessed File Type (generate_density_matrix_packet.py): #!/usr/bin/env python3 | \"\"\" | Generate a single A1_TO_A0_STRATEGY_ZIP packet that ratchets concrete QIT-aligned"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F050_01",
+          "token_class": "STRUCTURAL",
+          "token": "density_matrix"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::generate_density_matrix_packet_py::37c7e4214bd3c7fe"
+    },
+    {
+      "item_class": "PROBE_HYP",
+      "id": "P015",
+      "kind": "SIM_SPEC",
+      "requires": [
+        "F050"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_P015_01",
+          "name": "probe_target",
+          "value_kind": "BARE",
+          "value": "F050"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_P015_01",
+          "token_class": "PROBE_CHECK",
+          "token": "structural_consistency_F050"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::generate_density_matrix_packet_py::37c7e4214bd3c7fe"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F054",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F054_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "partial_trace"
+        },
+        {
+          "field_id": "DF_F054_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Unprocessed File Type (000007_A1_COLD_CORE_PROPOSALS_v1.json): {\"admissible_term_candidates\":[\"correlation_diversity_functional\",\"induced\",\"partition\",\"probe_induced_partition_boundary\"],\"graveyard_re"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F054_01",
+          "token_class": "STRUCTURAL",
+          "token": "partial_trace"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::000007_a1_cold_core_proposals_v1_json::62b053ff6f27f918"
+    },
+    {
+      "item_class": "PROBE_HYP",
+      "id": "P016",
+      "kind": "SIM_SPEC",
+      "requires": [
+        "F054"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_P016_01",
+          "name": "probe_target",
+          "value_kind": "BARE",
+          "value": "F054"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_P016_01",
+          "token_class": "PROBE_CHECK",
+          "token": "structural_consistency_F054"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::000007_a1_cold_core_proposals_v1_json::62b053ff6f27f918"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F058",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F058_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "operator_space"
+        },
+        {
+          "field_id": "DF_F058_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Archived Work File: This specification defines the bounded operator space A1 may use for structured repair and anti-fake wiggle discipline."
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F058_01",
+          "token_class": "STRUCTURAL",
+          "token": "operator_space"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::a1_repair_operator_mapping_v1::f470d57cce0f7654"
+    },
+    {
+      "item_class": "PROBE_HYP",
+      "id": "P017",
+      "kind": "SIM_SPEC",
+      "requires": [
+        "F058"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_P017_01",
+          "name": "probe_target",
+          "value_kind": "BARE",
+          "value": "F058"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_P017_01",
+          "token_class": "PROBE_CHECK",
+          "token": "structural_consistency_F058"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::a1_repair_operator_mapping_v1::f470d57cce0f7654"
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S005",
+      "kind": "SIM_SPEC",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_S005_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "matrix"
+        },
+        {
+          "field_id": "DF_S005_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "6 validator contracts: A0_DETERMINISM_TEST (validates A0-DET-01: identical inputs -> identical outputs), FULL_CYCLE_SIMULATION (end-to-end cycle test plan), SEMANTIC_RATCHET_STRESS_TEST_PLAN (stress t"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_S005_01",
+          "token_class": "STRUCTURAL",
+          "token": "matrix"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::validator_contracts_and_stress_tests::f5361462e799484f"
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S009",
+      "kind": "SIM_SPEC",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_S009_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "operator"
+        },
+        {
+          "field_id": "DF_S009_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Seven sim tiers with explicit acyclic dependencies and no tier-skip promotion: T0_ATOM, T1_COMPOUND, T2_OPERATOR, T3_STRUCTURE, T4_SYSTEM_SEGMENT, T5_ENGINE, T6_WHOLE_SYSTEM. Each tier gates higher ti"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_S009_01",
+          "token_class": "STRUCTURAL",
+          "token": "operator"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::sim_7_tier_architecture::b050a4b12910d3ef"
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S013",
+      "kind": "SIM_SPEC",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_S013_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "The B Kernel processes artifacts through a fixed 7+3 stage pipeline (AUDIT_PROVENANCE through COMMIT) with exact rejection fences, accepts exactly 3 container types, maintains 6 replayable state objec"
+        }
+      ],
+      "asserts": [],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_2::REFINED::DETERMINISTIC_KERNEL_PIPELINE::030ebc838121b473"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F062",
+      "kind": "TERM_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F062_01",
+          "name": "term_literal",
+          "value_kind": "BARE",
+          "value": "deterministic"
+        },
+        {
+          "field_id": "DF_F062_02",
+          "name": "admission_basis",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Structural term extracted from concept analysis"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F062_01",
+          "token_class": "TERM_ADMISSION",
+          "token": "deterministic"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_2::REFINED::DETERMINISTIC_KERNEL_PIPELINE::030ebc838121b473"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F063",
+      "kind": "TERM_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F063_01",
+          "name": "term_literal",
+          "value_kind": "BARE",
+          "value": "commit"
+        },
+        {
+          "field_id": "DF_F063_02",
+          "name": "admission_basis",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Structural term extracted from concept analysis"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F063_01",
+          "token_class": "TERM_ADMISSION",
+          "token": "commit"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_2::REFINED::DETERMINISTIC_KERNEL_PIPELINE::030ebc838121b473"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F064",
+      "kind": "TERM_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F064_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Promoted concept: rosetta_translations_cognition_physics_game_theory. Extraction mode: SOURCE_MAP_PASS. Tags: ['rosetta', 'cognition', 'physics', 'game_theory', 'overlay']. Reason: PROMOTION_AUDIT: al"
+        }
+      ],
+      "asserts": [],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_2::REFINED::rosetta_translations_cognition_physics_game_theory::8e5e534c3b294677"
+    },
+    {
+      "item_class": "PROBE_HYP",
+      "id": "P018",
+      "kind": "SIM_SPEC",
+      "requires": [
+        "F064"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_P018_01",
+          "name": "probe_target",
+          "value_kind": "BARE",
+          "value": "F064"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_P018_01",
+          "token_class": "PROBE_CHECK",
+          "token": "structural_consistency_F064"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_2::REFINED::rosetta_translations_cognition_physics_game_theory::8e5e534c3b294677"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F065",
+      "kind": "TERM_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F065_01",
+          "name": "term_literal",
+          "value_kind": "BARE",
+          "value": "compute_topology"
+        },
+        {
+          "field_id": "DF_F065_02",
+          "name": "admission_basis",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Structural term extracted from concept analysis"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F065_01",
+          "token_class": "TERM_ADMISSION",
+          "token": "compute_topology"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_2::REFINED::rosetta_translations_cognition_physics_game_theory::8e5e534c3b294677"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F066",
+      "kind": "TERM_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F066_01",
+          "name": "term_literal",
+          "value_kind": "BARE",
+          "value": "kernel_mechanics"
+        },
+        {
+          "field_id": "DF_F066_02",
+          "name": "admission_basis",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Structural term extracted from concept analysis"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F066_01",
+          "token_class": "TERM_ADMISSION",
+          "token": "kernel_mechanics"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_2::REFINED::rosetta_translations_cognition_physics_game_theory::8e5e534c3b294677"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F070",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F070_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "tensor"
+        },
+        {
+          "field_id": "DF_F070_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "sim_tensor_product.py (926B): import sys from pathlib import Path  RUNTIME_ROOT = Path(__file__).resolve().parents[1] if str(RUNTIME_ROOT) not in sys.path:     sys.path.insert(0, str(RUNTIME_ROOT)) fr"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F070_01",
+          "token_class": "STRUCTURAL",
+          "token": "tensor"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::v3_runtime_sim_tensor_product::74596bdb3b4161f9"
+    },
+    {
+      "item_class": "PROBE_HYP",
+      "id": "P019",
+      "kind": "SIM_SPEC",
+      "requires": [
+        "F070"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_P019_01",
+          "name": "probe_target",
+          "value_kind": "BARE",
+          "value": "F070"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_P019_01",
+          "token_class": "PROBE_CHECK",
+          "token": "structural_consistency_F070"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::v3_runtime_sim_tensor_product::74596bdb3b4161f9"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F074",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F074_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "tensor"
+        },
+        {
+          "field_id": "DF_F074_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Unprocessed File Type (sim_tensor_product.py): import sys | from pathlib import Path | RUNTIME_ROOT = Path(__file__).resolve().parents[1]"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F074_01",
+          "token_class": "STRUCTURAL",
+          "token": "tensor"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::sim_tensor_product_py::c41217de862d8099"
+    },
+    {
+      "item_class": "PROBE_HYP",
+      "id": "P020",
+      "kind": "SIM_SPEC",
+      "requires": [
+        "F074"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_P020_01",
+          "name": "probe_target",
+          "value_kind": "BARE",
+          "value": "F074"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_P020_01",
+          "token_class": "PROBE_CHECK",
+          "token": "structural_consistency_F074"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::sim_tensor_product_py::c41217de862d8099"
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S017",
+      "kind": "SIM_SPEC",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_S017_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Fixed deterministic stage order: AUDIT_PROVENANCE \u2192 DERIVED_ONLY_GUARD \u2192 CONTENT_DIGIT_GUARD \u2192 UNDEFINED_TERM_FENCE \u2192 SCHEMA_CHECK \u2192 DEPENDENCY_GRAPH \u2192 NEAR_DUPLICATE \u2192 PRESSURE \u2192 EVIDENCE_UPDATE \u2192 CO"
+        }
+      ],
+      "asserts": [],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::b_kernel_7_stage_pipeline::95b99beda7182e10"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F079",
+      "kind": "TERM_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F079_01",
+          "name": "term_literal",
+          "value_kind": "BARE",
+          "value": "fence"
+        },
+        {
+          "field_id": "DF_F079_02",
+          "name": "admission_basis",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Structural term extracted from concept analysis"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F079_01",
+          "token_class": "TERM_ADMISSION",
+          "token": "fence"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::b_kernel_7_stage_pipeline::95b99beda7182e10"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F081",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F081_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "space"
+        },
+        {
+          "field_id": "DF_F081_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "The universe as an expanding entangled field layering a massive, static probability space (white noise/fuzz). Time and information emerge from sequential correlations across this static field."
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F081_01",
+          "token_class": "STRUCTURAL",
+          "token": "space"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::holographic_entropy_bound::dae2251ea1c2a197"
+    },
+    {
+      "item_class": "PROBE_HYP",
+      "id": "P021",
+      "kind": "SIM_SPEC",
+      "requires": [
+        "F081"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_P021_01",
+          "name": "probe_target",
+          "value_kind": "BARE",
+          "value": "F081"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_P021_01",
+          "token_class": "PROBE_CHECK",
+          "token": "structural_consistency_F081"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::holographic_entropy_bound::dae2251ea1c2a197"
+    }
+  ],
+  "alternatives": [
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F051",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F051_POISON",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "equality_identity"
+        },
+        {
+          "field_id": "DF_F050_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Unprocessed File Type (generate_density_matrix_packet.py): #!/usr/bin/env python3 | \"\"\" | Generate a single A1_TO_A0_STRATEGY_ZIP packet that ratchets concrete QIT-aligned"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F050_01",
+          "token_class": "STRUCTURAL",
+          "token": "density_matrix"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::generate_density_matrix_packet_py::37c7e4214bd3c7fe"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F052",
+      "kind": "MATH_DEF",
+      "requires": [
+        "UNDEFINED_999"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_F050_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "density_matrix"
+        },
+        {
+          "field_id": "DF_F050_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Unprocessed File Type (generate_density_matrix_packet.py): #!/usr/bin/env python3 | \"\"\" | Generate a single A1_TO_A0_STRATEGY_ZIP packet that ratchets concrete QIT-aligned"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F050_01",
+          "token_class": "STRUCTURAL",
+          "token": "density_matrix"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::generate_density_matrix_packet_py::37c7e4214bd3c7fe"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F053",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F050_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "density_matrix"
+        },
+        {
+          "field_id": "DF_F050_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Unprocessed File Type (generate_density_matrix_packet.py): #!/usr/bin/env python3 | \"\"\" | Generate a single A1_TO_A0_STRATEGY_ZIP packet that ratchets concrete QIT-aligned"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F050_01",
+          "token_class": "STRUCTURAL",
+          "token": "density_matrix"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::generate_density_matrix_packet_py::37c7e4214bd3c7fe"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F055",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F055_POISON",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "equality_identity"
+        },
+        {
+          "field_id": "DF_F054_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Unprocessed File Type (000007_A1_COLD_CORE_PROPOSALS_v1.json): {\"admissible_term_candidates\":[\"correlation_diversity_functional\",\"induced\",\"partition\",\"probe_induced_partition_boundary\"],\"graveyard_re"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F054_01",
+          "token_class": "STRUCTURAL",
+          "token": "partial_trace"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::000007_a1_cold_core_proposals_v1_json::62b053ff6f27f918"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F056",
+      "kind": "MATH_DEF",
+      "requires": [
+        "UNDEFINED_999"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_F054_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "partial_trace"
+        },
+        {
+          "field_id": "DF_F054_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Unprocessed File Type (000007_A1_COLD_CORE_PROPOSALS_v1.json): {\"admissible_term_candidates\":[\"correlation_diversity_functional\",\"induced\",\"partition\",\"probe_induced_partition_boundary\"],\"graveyard_re"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F054_01",
+          "token_class": "STRUCTURAL",
+          "token": "partial_trace"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::000007_a1_cold_core_proposals_v1_json::62b053ff6f27f918"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F057",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F054_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "partial_trace"
+        },
+        {
+          "field_id": "DF_F054_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Unprocessed File Type (000007_A1_COLD_CORE_PROPOSALS_v1.json): {\"admissible_term_candidates\":[\"correlation_diversity_functional\",\"induced\",\"partition\",\"probe_induced_partition_boundary\"],\"graveyard_re"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F054_01",
+          "token_class": "STRUCTURAL",
+          "token": "partial_trace"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::000007_a1_cold_core_proposals_v1_json::62b053ff6f27f918"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F059",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F059_POISON",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "equality_identity"
+        },
+        {
+          "field_id": "DF_F058_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Archived Work File: This specification defines the bounded operator space A1 may use for structured repair and anti-fake wiggle discipline."
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F058_01",
+          "token_class": "STRUCTURAL",
+          "token": "operator_space"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::a1_repair_operator_mapping_v1::f470d57cce0f7654"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F060",
+      "kind": "MATH_DEF",
+      "requires": [
+        "UNDEFINED_999"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_F058_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "operator_space"
+        },
+        {
+          "field_id": "DF_F058_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Archived Work File: This specification defines the bounded operator space A1 may use for structured repair and anti-fake wiggle discipline."
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F058_01",
+          "token_class": "STRUCTURAL",
+          "token": "operator_space"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::a1_repair_operator_mapping_v1::f470d57cce0f7654"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F061",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F058_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "operator_space"
+        },
+        {
+          "field_id": "DF_F058_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Archived Work File: This specification defines the bounded operator space A1 may use for structured repair and anti-fake wiggle discipline."
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F058_01",
+          "token_class": "STRUCTURAL",
+          "token": "operator_space"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::a1_repair_operator_mapping_v1::f470d57cce0f7654"
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S006",
+      "kind": "SIM_SPEC",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_S006_POISON",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "equality_identity"
+        },
+        {
+          "field_id": "DF_S005_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "6 validator contracts: A0_DETERMINISM_TEST (validates A0-DET-01: identical inputs -> identical outputs), FULL_CYCLE_SIMULATION (end-to-end cycle test plan), SEMANTIC_RATCHET_STRESS_TEST_PLAN (stress t"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_S005_01",
+          "token_class": "STRUCTURAL",
+          "token": "matrix"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::validator_contracts_and_stress_tests::f5361462e799484f"
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S007",
+      "kind": "SIM_SPEC",
+      "requires": [
+        "UNDEFINED_999"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_S005_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "matrix"
+        },
+        {
+          "field_id": "DF_S005_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "6 validator contracts: A0_DETERMINISM_TEST (validates A0-DET-01: identical inputs -> identical outputs), FULL_CYCLE_SIMULATION (end-to-end cycle test plan), SEMANTIC_RATCHET_STRESS_TEST_PLAN (stress t"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_S005_01",
+          "token_class": "STRUCTURAL",
+          "token": "matrix"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::validator_contracts_and_stress_tests::f5361462e799484f"
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S008",
+      "kind": "SIM_SPEC",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_S005_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "matrix"
+        },
+        {
+          "field_id": "DF_S005_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "6 validator contracts: A0_DETERMINISM_TEST (validates A0-DET-01: identical inputs -> identical outputs), FULL_CYCLE_SIMULATION (end-to-end cycle test plan), SEMANTIC_RATCHET_STRESS_TEST_PLAN (stress t"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_S005_01",
+          "token_class": "STRUCTURAL",
+          "token": "matrix"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::validator_contracts_and_stress_tests::f5361462e799484f"
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S010",
+      "kind": "SIM_SPEC",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_S010_POISON",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "equality_identity"
+        },
+        {
+          "field_id": "DF_S009_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Seven sim tiers with explicit acyclic dependencies and no tier-skip promotion: T0_ATOM, T1_COMPOUND, T2_OPERATOR, T3_STRUCTURE, T4_SYSTEM_SEGMENT, T5_ENGINE, T6_WHOLE_SYSTEM. Each tier gates higher ti"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_S009_01",
+          "token_class": "STRUCTURAL",
+          "token": "operator"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::sim_7_tier_architecture::b050a4b12910d3ef"
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S011",
+      "kind": "SIM_SPEC",
+      "requires": [
+        "UNDEFINED_999"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_S009_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "operator"
+        },
+        {
+          "field_id": "DF_S009_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Seven sim tiers with explicit acyclic dependencies and no tier-skip promotion: T0_ATOM, T1_COMPOUND, T2_OPERATOR, T3_STRUCTURE, T4_SYSTEM_SEGMENT, T5_ENGINE, T6_WHOLE_SYSTEM. Each tier gates higher ti"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_S009_01",
+          "token_class": "STRUCTURAL",
+          "token": "operator"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::sim_7_tier_architecture::b050a4b12910d3ef"
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S012",
+      "kind": "SIM_SPEC",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_S009_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "operator"
+        },
+        {
+          "field_id": "DF_S009_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Seven sim tiers with explicit acyclic dependencies and no tier-skip promotion: T0_ATOM, T1_COMPOUND, T2_OPERATOR, T3_STRUCTURE, T4_SYSTEM_SEGMENT, T5_ENGINE, T6_WHOLE_SYSTEM. Each tier gates higher ti"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_S009_01",
+          "token_class": "STRUCTURAL",
+          "token": "operator"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::sim_7_tier_architecture::b050a4b12910d3ef"
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S014",
+      "kind": "SIM_SPEC",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_S014_POISON",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "equality_identity"
+        }
+      ],
+      "asserts": [],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_2::REFINED::DETERMINISTIC_KERNEL_PIPELINE::030ebc838121b473"
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S015",
+      "kind": "SIM_SPEC",
+      "requires": [
+        "UNDEFINED_999"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_S013_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "The B Kernel processes artifacts through a fixed 7+3 stage pipeline (AUDIT_PROVENANCE through COMMIT) with exact rejection fences, accepts exactly 3 container types, maintains 6 replayable state objec"
+        }
+      ],
+      "asserts": [],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_2::REFINED::DETERMINISTIC_KERNEL_PIPELINE::030ebc838121b473"
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S016",
+      "kind": "SIM_SPEC",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_S013_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "The B Kernel processes artifacts through a fixed 7+3 stage pipeline (AUDIT_PROVENANCE through COMMIT) with exact rejection fences, accepts exactly 3 container types, maintains 6 replayable state objec"
+        }
+      ],
+      "asserts": [],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_2::REFINED::DETERMINISTIC_KERNEL_PIPELINE::030ebc838121b473"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F067",
+      "kind": "TERM_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F067_POISON",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "equality_identity"
+        }
+      ],
+      "asserts": [],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_2::REFINED::rosetta_translations_cognition_physics_game_theory::8e5e534c3b294677"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F068",
+      "kind": "TERM_DEF",
+      "requires": [
+        "UNDEFINED_999"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_F064_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Promoted concept: rosetta_translations_cognition_physics_game_theory. Extraction mode: SOURCE_MAP_PASS. Tags: ['rosetta', 'cognition', 'physics', 'game_theory', 'overlay']. Reason: PROMOTION_AUDIT: al"
+        }
+      ],
+      "asserts": [],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_2::REFINED::rosetta_translations_cognition_physics_game_theory::8e5e534c3b294677"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F069",
+      "kind": "TERM_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F064_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Promoted concept: rosetta_translations_cognition_physics_game_theory. Extraction mode: SOURCE_MAP_PASS. Tags: ['rosetta', 'cognition', 'physics', 'game_theory', 'overlay']. Reason: PROMOTION_AUDIT: al"
+        }
+      ],
+      "asserts": [],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_2::REFINED::rosetta_translations_cognition_physics_game_theory::8e5e534c3b294677"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F071",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F071_POISON",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "equality_identity"
+        },
+        {
+          "field_id": "DF_F070_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "sim_tensor_product.py (926B): import sys from pathlib import Path  RUNTIME_ROOT = Path(__file__).resolve().parents[1] if str(RUNTIME_ROOT) not in sys.path:     sys.path.insert(0, str(RUNTIME_ROOT)) fr"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F070_01",
+          "token_class": "STRUCTURAL",
+          "token": "tensor"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::v3_runtime_sim_tensor_product::74596bdb3b4161f9"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F072",
+      "kind": "MATH_DEF",
+      "requires": [
+        "UNDEFINED_999"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_F070_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "tensor"
+        },
+        {
+          "field_id": "DF_F070_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "sim_tensor_product.py (926B): import sys from pathlib import Path  RUNTIME_ROOT = Path(__file__).resolve().parents[1] if str(RUNTIME_ROOT) not in sys.path:     sys.path.insert(0, str(RUNTIME_ROOT)) fr"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F070_01",
+          "token_class": "STRUCTURAL",
+          "token": "tensor"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::v3_runtime_sim_tensor_product::74596bdb3b4161f9"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F073",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F070_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "tensor"
+        },
+        {
+          "field_id": "DF_F070_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "sim_tensor_product.py (926B): import sys from pathlib import Path  RUNTIME_ROOT = Path(__file__).resolve().parents[1] if str(RUNTIME_ROOT) not in sys.path:     sys.path.insert(0, str(RUNTIME_ROOT)) fr"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F070_01",
+          "token_class": "STRUCTURAL",
+          "token": "tensor"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::v3_runtime_sim_tensor_product::74596bdb3b4161f9"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F075",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F075_POISON",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "equality_identity"
+        },
+        {
+          "field_id": "DF_F074_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Unprocessed File Type (sim_tensor_product.py): import sys | from pathlib import Path | RUNTIME_ROOT = Path(__file__).resolve().parents[1]"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F074_01",
+          "token_class": "STRUCTURAL",
+          "token": "tensor"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::sim_tensor_product_py::c41217de862d8099"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F076",
+      "kind": "MATH_DEF",
+      "requires": [
+        "UNDEFINED_999"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_F074_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "tensor"
+        },
+        {
+          "field_id": "DF_F074_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Unprocessed File Type (sim_tensor_product.py): import sys | from pathlib import Path | RUNTIME_ROOT = Path(__file__).resolve().parents[1]"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F074_01",
+          "token_class": "STRUCTURAL",
+          "token": "tensor"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::sim_tensor_product_py::c41217de862d8099"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F077",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F074_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "tensor"
+        },
+        {
+          "field_id": "DF_F074_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Unprocessed File Type (sim_tensor_product.py): import sys | from pathlib import Path | RUNTIME_ROOT = Path(__file__).resolve().parents[1]"
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F074_01",
+          "token_class": "STRUCTURAL",
+          "token": "tensor"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::sim_tensor_product_py::c41217de862d8099"
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S018",
+      "kind": "SIM_SPEC",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_S018_POISON",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "equality_identity"
+        }
+      ],
+      "asserts": [],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::b_kernel_7_stage_pipeline::95b99beda7182e10"
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S019",
+      "kind": "SIM_SPEC",
+      "requires": [
+        "UNDEFINED_999"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_S017_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Fixed deterministic stage order: AUDIT_PROVENANCE \u2192 DERIVED_ONLY_GUARD \u2192 CONTENT_DIGIT_GUARD \u2192 UNDEFINED_TERM_FENCE \u2192 SCHEMA_CHECK \u2192 DEPENDENCY_GRAPH \u2192 NEAR_DUPLICATE \u2192 PRESSURE \u2192 EVIDENCE_UPDATE \u2192 CO"
+        }
+      ],
+      "asserts": [],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::b_kernel_7_stage_pipeline::95b99beda7182e10"
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S020",
+      "kind": "SIM_SPEC",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_S017_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "Fixed deterministic stage order: AUDIT_PROVENANCE \u2192 DERIVED_ONLY_GUARD \u2192 CONTENT_DIGIT_GUARD \u2192 UNDEFINED_TERM_FENCE \u2192 SCHEMA_CHECK \u2192 DEPENDENCY_GRAPH \u2192 NEAR_DUPLICATE \u2192 PRESSURE \u2192 EVIDENCE_UPDATE \u2192 CO"
+        }
+      ],
+      "asserts": [],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::b_kernel_7_stage_pipeline::95b99beda7182e10"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F082",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F082_POISON",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "equality_identity"
+        },
+        {
+          "field_id": "DF_F081_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "The universe as an expanding entangled field layering a massive, static probability space (white noise/fuzz). Time and information emerge from sequential correlations across this static field."
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F081_01",
+          "token_class": "STRUCTURAL",
+          "token": "space"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::holographic_entropy_bound::dae2251ea1c2a197"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F083",
+      "kind": "MATH_DEF",
+      "requires": [
+        "UNDEFINED_999"
+      ],
+      "def_fields": [
+        {
+          "field_id": "DF_F081_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "space"
+        },
+        {
+          "field_id": "DF_F081_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "The universe as an expanding entangled field layering a massive, static probability space (white noise/fuzz). Time and information emerge from sequential correlations across this static field."
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F081_01",
+          "token_class": "STRUCTURAL",
+          "token": "space"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::holographic_entropy_bound::dae2251ea1c2a197"
+    },
+    {
+      "item_class": "AXIOM_HYP",
+      "id": "F084",
+      "kind": "MATH_DEF",
+      "requires": [],
+      "def_fields": [
+        {
+          "field_id": "DF_F081_01",
+          "name": "structural_form",
+          "value_kind": "BARE",
+          "value": "space"
+        },
+        {
+          "field_id": "DF_F081_02",
+          "name": "description",
+          "value_kind": "LABEL_QUOTED",
+          "value": "The universe as an expanding entangled field layering a massive, static probability space (white noise/fuzz). Time and information emerge from sequential correlations across this static field."
+        }
+      ],
+      "asserts": [
+        {
+          "assert_id": "A_F081_01",
+          "token_class": "STRUCTURAL",
+          "token": "space"
+        }
+      ],
+      "operator_id": "OP_COLD_CORE_EXTRACT",
+      "source_concept_id": "A2_3::SOURCE_MAP_PASS::holographic_entropy_bound::dae2251ea1c2a197"
+    }
+  ],
+  "eval_report_summary": {
+    "overall_pass": false,
+    "gate_results": {
+      "discourse_ban": true,
+      "math_def_ratio": true,
+      "math_l0_coverage": true,
+      "source_lineage": true,
+      "try_to_fail_alternatives": true,
+      "no_duplicates": true
+    },
+    "kind_distribution": {
+      "MATH_DEF": 6,
+      "SIM_SPEC": 11,
+      "TERM_DEF": 6
+    }
+  }
+}

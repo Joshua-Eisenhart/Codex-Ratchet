@@ -26,7 +26,16 @@ def _run_cmd(cmd: list[str], *, cwd: Path) -> str:
 def _read_json(path: Path) -> dict:
     if not path.exists():
         return {}
-    return json.loads(path.read_text(encoding="utf-8"))
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        return {}
+    if path.name == "state.json":
+        heavy_path = path.with_name("state.heavy.json")
+        if heavy_path.exists():
+            heavy = json.loads(heavy_path.read_text(encoding="utf-8"))
+            if isinstance(heavy, dict):
+                data.update(heavy)
+    return data
 
 
 def _canonical_step_count(state: dict) -> int:

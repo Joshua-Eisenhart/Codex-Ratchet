@@ -1,0 +1,83 @@
+{
+  "audit_only": true,
+  "bridge_packet_path": "system_v4/a2_state/audit_logs/A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_PACKET__CURRENT__v1.json",
+  "bridge_report_path": "system_v4/a2_state/audit_logs/A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.json",
+  "cluster_id": "SKILL_CLUSTER::next-state-signal-adaptation",
+  "consumer_status": "candidate_first_target_context_consumer_admissible",
+  "context_contract_summary": {
+    "explicit_ctx_get": true,
+    "explicit_input_section": true,
+    "has_explicit_context_contract": true,
+    "markers_in_source": [
+      "context_packet",
+      "context_bridge_packet",
+      "bridge_packet",
+      "directive_topics",
+      "selected_witness_indices",
+      "context_notes"
+    ],
+    "markers_in_spec": [
+      "context_packet",
+      "context_bridge_packet",
+      "bridge_packet",
+      "directive_topics",
+      "selected_witness_indices",
+      "context_notes"
+    ],
+    "source_exists": true,
+    "spec_exists": true
+  },
+  "do_not_promote": true,
+  "first_target_proof_report_path": "system_v4/a2_state/audit_logs/SKILL_IMPROVER_FIRST_TARGET_PROOF_REPORT__CURRENT__v1.json",
+  "generated_utc": "2026-03-22T01:26:39Z",
+  "issues": [],
+  "non_goals": [
+    "Do not mutate any target skill or witness surface from this slice.",
+    "Do not invent a context seam if the current consumer contract does not expose one.",
+    "Do not widen this into second-target admission, live learning, runtime import, or graph backfill.",
+    "Do not treat a repo-held packet preview as proof that the consumer path is implemented."
+  ],
+  "nonoperative": true,
+  "owner_skill_id": "skill-improver-operator",
+  "proposed_consumer_packet_preview": {
+    "allowed_target_paths": [
+      "system_v4/skills/a2_skill_improver_readiness_operator.py"
+    ],
+    "directive_topics": [
+      "a2_refresh_sync",
+      "graph_audit_sync",
+      "skill_improver_gate"
+    ],
+    "forbidden_uses": [
+      "second target admission",
+      "live mutation or autonomous policy updates",
+      "online learning or runtime import claims",
+      "graph link seeding or graph backfill claims"
+    ],
+    "missing_contract_fields": [],
+    "owner_skill_id": "skill-improver-operator",
+    "selected_target_skill_id": "a2-skill-improver-readiness-operator",
+    "selected_target_skill_path": "system_v4/skills/a2_skill_improver_readiness_operator.py",
+    "selected_witness_indices": [
+      4,
+      5,
+      6
+    ]
+  },
+  "proven_first_target_skill_id": "a2-skill-improver-readiness-operator",
+  "recommended_actions": [
+    "Keep this slice audit-only and fail closed unless the owner skill exposes an explicit first-target context contract.",
+    "Do not widen this result into live mutation, second-target admission, runtime import, or graph backfill.",
+    "If a later consumer is built, keep it first-target-context-only and retain the general skill-improver gate."
+  ],
+  "recommended_next_step": "hold_consumer_as_audit_only",
+  "repo_root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "schema": "A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT_v1",
+  "second_target_packet_path": "system_v4/a2_state/audit_logs/SKILL_IMPROVER_SECOND_TARGET_ADMISSION_PACKET__CURRENT__v1.json",
+  "selected_target_skill_id": "a2-skill-improver-readiness-operator",
+  "selected_target_skill_path": "system_v4/skills/a2_skill_improver_readiness_operator.py",
+  "slice_id": "a2-next-state-first-target-context-consumer-admission-audit-operator",
+  "source_family": "OpenClaw-RL-derived next-state bridge plus Ratchet-native skill-improver gate surfaces",
+  "status": "ok",
+  "target_selection_packet_path": "system_v4/a2_state/audit_logs/SKILL_IMPROVER_TARGET_SELECTION_PACKET__CURRENT__v1.json"
+}

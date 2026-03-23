@@ -6,6 +6,20 @@ Owner: `RQ-100..RQ-108`
 ## Scope
 This document defines how A1 performs high-entropy exploration while staying compile-safe for A0 and enforceable by B.
 
+## Live Operator Law Note
+This document remains a draft/noncanon branch-model surface.
+
+Its operator/quota model is not the active runtime/control-plane operator law.
+
+For the live operator enum and repair/operator mapping, use:
+- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ENUM_REGISTRY_v1.md`
+- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A1_REPAIR_OPERATOR_MAPPING_v1.md`
+- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A1_STRATEGY_v1.md`
+
+Interpretation rule:
+- read the operator/quota sections below as historical draft wiggle doctrine
+- do not use them as the live source of truth for current runtime `operator_id` values
+
 ## Normative Clauses
 - `RQ-100` MUST: A1 executes branch exploration using a fixed operator-quota table whose quotas sum to exactly `1.0` each cycle.
 - `RQ-101` MUST: each branch record stores immutable lineage fields `branch_id`, `parent_branch_id`, `seed_hash`, `prompt_hash`, `operator_history[]`, and `feedback_refs[]`.
@@ -60,7 +74,7 @@ Required keys:
 - `token_class` (bootpack token class)
 - `token` (string)
 
-## Operator Set (Deterministic IDs)
+## Legacy Operator Set (Historical Draft IDs)
 Allowed operator IDs:
 - `OP_MUTATE_LEXEME`
 - `OP_SPLIT_COMPOUND`
@@ -73,7 +87,10 @@ Allowed operator IDs:
 
 Unknown operator ID is invalid and must be dropped with logged reason `UNKNOWN_OPERATOR`.
 
-## Operator Quota Table (Default)
+This set is preserved as part of the older wiggle branch/quota model.
+It does not redefine the live control-plane operator enum.
+
+## Legacy Operator Quota Table (Historical Draft)
 Cycle-default quota table:
 - `OP_MUTATE_LEXEME`: `0.18`
 - `OP_SPLIT_COMPOUND`: `0.14`
@@ -96,7 +113,7 @@ Sort key order:
 
 Tie behavior is deterministic and stable.
 
-## Stall Detection and Rebalance
+## Legacy Stall Detection and Rebalance (Historical Draft)
 Stall condition:
 - no newly accepted survivors linked to branch family for `N=3` cycles, or
 - repeated same reject tag set for `N=3` cycles.
@@ -129,4 +146,3 @@ Minimum acceptance checks for this contract:
 3. quota sum not `1.0` -> cycle invalidated.
 4. kernel-lane free English detected in `BARE` value -> preflight fail.
 5. repeated stall with no rebalance event -> contract violation.
-

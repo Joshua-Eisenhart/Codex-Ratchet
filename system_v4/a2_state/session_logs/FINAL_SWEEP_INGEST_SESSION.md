@@ -1,0 +1,141 @@
+# FINAL_SWEEP_INGEST_SESSION
+
+- **Start:** 2026-03-18T08:08:27Z
+- **End:** 2026-03-18T08:08:40Z
+- **Documents processed:** 59
+- **Batches created:** 59
+- **Nodes added:** 1455
+- **Edges added:** 1396
+- **Contradictions found:** 0
+- **Checkpoints:** 59
+
+## Graph Totals
+- A2-3: 3084 nodes
+- A2-2: 32 nodes
+- A2-1: 119 nodes
+- Total: 3235 nodes, 7051 edges
+
+## Documents
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/BOOTSTRAP/00_READ_FIRST.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/BOOTSTRAP/INPUTS/BOOTPACK_THREAD_B_v3.9.13.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COSMOLOGICALLY_CONSTRAINT_ADMISSIBLE_STRUCTURES_v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis0_boundary_bookkeep_sweep_v2.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis4_type2_all_seq_both_dirs.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS4.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/a2_state/ingest/doc_cards/DOC_6826FEAE2E41.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/conformance/fixtures_v1/fixtures/FIX_FORMULA_001_GLYPH_REJECT.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ANTI_HELPFULNESS_POLICY_v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/templates/A1_TO_A2_SAVE_ZIP_TEMPLATE/ZIP_HEADER.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/runtime/bootpack_b_kernel_v1/a1_strategies/sample_strategy.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/runtime/ratchet_core/tests_bootpack_conformance/fixtures/glyph_digit_reject.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/specs/02_OWNERSHIP_MAP.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/specs/27_BOOTPACK_RATCHET_FUEL_MINT__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/BOOTSTRAP/00_READ_FIRST.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/BOOTSTRAP/INPUTS/BLOCKAGE_DIAGNOSIS.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPOSITION_CLASS_ADMISSIBILITY_v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Simulation protocol v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_NEGCTRL_AXIS6_COMMUTE_V3.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis4_seq01_both_dirs.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a2_feed_high entropy doc/grok toe redo save.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/a2_state/A2_BRAIN_SLICE__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/a2_state/ingest/doc_cards/DOC_608E31082B06.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/conformance/fixtures_v1/fixtures/FIX_DERIVED_001_PRIMITIVE_USE_REJECT.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A2_EXECUTION_POLICY_v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/templates/A1_TO_A0_STRATEGY_ZIP_TEMPLATE/ZIP_HEADER.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/public_facing_docs/02_PUBLIC_FACING_FLOWMIND_A3_HOSTING_INTERFACE_CONTRACT_v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/runtime/ratchet_core/tests_bootpack_conformance/fixtures/formula_unquoted_equal_reject.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/runtime/ratchet_core/tests_bootpack_conformance/fixtures/undefined_term_reject.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/specs/24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/BOOTSTRAP/00_READ_FIRST.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/BOOTSTRAP/CORE/INTEGRATION_MAP__GROUND_TRUTH_TO_RUNTIME__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/BOOTSTRAP/SIM/SIM_RATCHET_PROTOCOL_v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axes 0 - 6 5 3 - 4 1 2.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/METRIC_ADMISSIBILITY_v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS4_SEQ03_P03.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis12_axis0_link_v1.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_ultra4_full_stack.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a2_runtime_state archived old state/STRUCTURAL_MEMORY_MAP_v2.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/a2_derived_indices_noncanonical/README.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/a2_state/ingest/doc_cards/DOC_1531D2CCB68B.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/a2_state/ingest/doc_cards/DOC_E4EBE53C78D0.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/03_MUTATION_PATH_RULES.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ZIP_PROTOCOL_v2.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/templates/SIM_TO_A0_SIM_RESULT_ZIP_TEMPLATE/ZIP_HEADER.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/runtime/ratchet_core/tests_bootpack_conformance/fixtures/axiom_root_reject.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/runtime/ratchet_core/tests_bootpack_conformance/fixtures/save_order_park.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/specs/15_ROSETTA_AND_MINING_ARTIFACTS.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/tools/A1_SANDBOX_ONLY_PACKET_CONTRACT_v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BOOKKEEPING_PACKET_SMOKE_FAMILY__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_RATE_FAMILY__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_subagents/EXTERNAL_RESEARCH_CONTROLLER_BOOT_RECIPE__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/INBOX/GENERAL_TASK_PLAN__AUTOMATION_SKILLS_PRO_REFINERY__2026_03_13__v1.md
+
+## Key Findings
+- FINAL SWEEP: 1396 files from system repair bootstraps + run anchors + zip subagents + inbox
+
+## Batches
+- `AUTO_00_READ_FIRST_4126808f7af159bc`
+- `AUTO_BOOTPACK_THREAD_B_v3.9.13_bfff6d90cc09f58c`
+- `AUTO_AXIS_FOUNDATION_COMPANION_v1.4_24b8762c4e6d7892`
+- `AUTO_COSMOLOGICALLY_CONSTRAINT_ADMISSIBLE_STRUCTURES_v1_938ad3ac806572a7`
+- `AUTO_archive_manifest_v_1_a97c248de72308d7`
+- `AUTO_results_axis0_boundary_bookkeep_sweep_v2_56eb4d1e4963919f`
+- `AUTO_results_axis4_type2_all_seq_both_dirs_b8aba82ba353e681`
+- `AUTO_thread b 3.4.2 _b85f9c8cf6f195fc`
+- `AUTO_SYSTEM_UPGRADE_PLAN_EXTRACT_PASS4_3314e20e10047e74`
+- `AUTO_INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1_d0fb734dc0027b9a`
+- `AUTO_DOC_6826FEAE2E41_108371c29aa94a36`
+- `AUTO_FIX_FORMULA_001_GLYPH_REJECT_0782cb6f22f073c7`
+- `AUTO_ANTI_HELPFULNESS_POLICY_v1_52ae6004f7af13ca`
+- `AUTO_ZIP_HEADER_6fca8effa3acc533`
+- `AUTO_sample_strategy_6b907bd02a360656`
+- `AUTO_glyph_digit_reject_be6fdfc88c6b0c4b`
+- `AUTO_02_OWNERSHIP_MAP_0a94518e86613689`
+- `AUTO_27_BOOTPACK_RATCHET_FUEL_MINT__v1_28b9facc6d2b4fd7`
+- `AUTO_00_READ_FIRST_34116e142fb45fea`
+- `AUTO_BLOCKAGE_DIAGNOSIS_09fd4b3709681369`
+- `AUTO_AXIS0_SPEC_OPTIONS_v0.1_5073315518daa00c`
+- `AUTO_COMPOSITION_CLASS_ADMISSIBILITY_v1_eef569a18493fe4d`
+- `AUTO_Simulation protocol v1_b76d97a2f7d749b0`
+- `AUTO_results_S_SIM_NEGCTRL_AXIS6_COMMUTE_V3_e103ace78fc90b7a`
+- `AUTO_results_axis4_seq01_both_dirs_7859348511bfdfab`
+- `AUTO_grok toe redo save_0957a70ce2fd274a`
+- `AUTO_SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1_8dcf660860811746`
+- `AUTO_A2_BRAIN_SLICE__v1_2837bb49c9c90ac2`
+- `AUTO_DOC_608E31082B06_4fbbd556bb7b897d`
+- `AUTO_FIX_DERIVED_001_PRIMITIVE_USE_REJECT_15a71f2534acd32c`
+- `AUTO_A2_EXECUTION_POLICY_v1_394a36b0a650711b`
+- `AUTO_ZIP_HEADER_9ee56beb11aff47a`
+- `AUTO_02_PUBLIC_FACING_FLOWMIND_A3_HOSTING_INTERFACE_CONTRACT_v1_9275e47cdfee388c`
+- `AUTO_formula_unquoted_equal_reject_65d253812dfde2cf`
+- `AUTO_undefined_term_reject_3f5bc62d6d59da72`
+- `AUTO_24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE_c71241b12dd398c3`
+- `AUTO_00_READ_FIRST_290a6987d7ae2431`
+- `AUTO_INTEGRATION_MAP__GROUND_TRUTH_TO_RUNTIME__v1_3375a247a953197b`
+- `AUTO_SIM_RATCHET_PROTOCOL_v1_82290eba500e80ec`
+- `AUTO_Axes 0 - 6 5 3 - 4 1 2_6fa9b51865301fd5`
+- `AUTO_METRIC_ADMISSIBILITY_v1_55bf4a95284f43a9`
+- `AUTO_results_S_SIM_AXIS4_SEQ03_P03_4646d882e386a4be`
+- `AUTO_results_axis12_axis0_link_v1_0fa1c57c3e730a5b`
+- `AUTO_results_ultra4_full_stack_a36bde9ab820a4e3`
+- `AUTO_STRUCTURAL_MEMORY_MAP_v2_032db1514867b180`
+- `AUTO_README_a6849fb6c3765881`
+- `AUTO_DOC_1531D2CCB68B_01a1f5136e5e5b02`
+- `AUTO_DOC_E4EBE53C78D0_f13a0049c41b934f`
+- `AUTO_03_MUTATION_PATH_RULES_d1a57586981db8e6`
+- `AUTO_ZIP_PROTOCOL_v2_c97234f930ce8745`
+- `AUTO_ZIP_HEADER_4d62e8826e369beb`
+- `AUTO_axiom_root_reject_7605a4578fab322b`
+- `AUTO_save_order_park_93aa6702a9a9e932`
+- `AUTO_15_ROSETTA_AND_MINING_ARTIFACTS_00e7e181c1e98fb1`
+- `AUTO_A1_SANDBOX_ONLY_PACKET_CONTRACT_v1_43b7aff8311dcd3f`
+- `AUTO_RUN_ANCHOR__ENTROPY_BOOKKEEPING_PACKET_SMOKE_FAMILY__v1_e83159ba7241b5e2`
+- `AUTO_RUN_REGENERATION_WITNESS__ENTROPY_RATE_FAMILY__v1_ea0d80440e7de021`
+- `AUTO_EXTERNAL_RESEARCH_CONTROLLER_BOOT_RECIPE__v1_0f42f6b5ad741136`
+- `AUTO_GENERAL_TASK_PLAN__AUTOMATION_SKILLS_PRO_REFINERY__2026_03_13__v1_46954bf4260cc676`

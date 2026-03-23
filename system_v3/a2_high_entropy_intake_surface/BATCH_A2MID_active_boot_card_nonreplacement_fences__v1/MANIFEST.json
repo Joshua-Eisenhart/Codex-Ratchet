@@ -1,0 +1,144 @@
+{
+  "schema": "A2_MID_REFINEMENT_BATCH_MANIFEST_v1",
+  "batch_id": "BATCH_A2MID_active_boot_card_nonreplacement_fences__v1",
+  "batch_scope": "thin_entry_boot_card_reduction_preserving_four_card_structure_and_nonreplacement_fences",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T11:40:07Z",
+  "extraction_mode": "A2_MID_REFINEMENT_PASS",
+  "promotion_status": "A2_2_CANDIDATE",
+  "parent_batch_ids": [
+    "BATCH_systemv3_active_operator_boot_card__v1"
+  ],
+  "parent_artifacts": [
+    "SOURCE_MAP__v1.md",
+    "CLUSTER_MAP__v1.md",
+    "TENSION_MAP__v1.md",
+    "A2_3_DISTILLATES__v1.md",
+    "A2_2_CANDIDATE_SUMMARIES__v1.md",
+    "MANIFEST.json"
+  ],
+  "selection_basis": {
+    "ledger_reason": "This is the smallest current active-system recall surface and the right parent for one final bounded semantic pass before verification-oriented work.",
+    "bounded_goal": "Preserve the thin boot card as a four-card recall layer while making its nonreplacement, nonpromotion, and thicker-parent dependency impossible to miss.",
+    "deferred_alternatives": [
+      {
+        "batch_id": "BATCH_systemv3_active_lineage_integrity_audit__v1",
+        "reason": "Strongest next verification packet once the thin-entry boot layer is explicitly fenced."
+      },
+      {
+        "batch_id": "BATCH_systemv3_active_manifest_lineage_bridge__v1",
+        "reason": "Strongest later lineage packet if the queue pivots from recall to manifest continuity."
+      },
+      {
+        "batch_id": "BATCH_systemv3_active_manifest_reader_contract__v1",
+        "reason": "Strongest later reader-contract packet if the queue moves toward manifest-consumption rules."
+      }
+    ]
+  },
+  "comparison_anchor_batches": [
+    "BATCH_A2MID_active_operator_capsule_preservation__v1",
+    "BATCH_A2MID_active_crossbatch_cluster_authority_map__v1"
+  ],
+  "raw_source_reread_needed": false,
+  "raw_source_reread_reason": "The parent boot card already isolates the four minimal cards and their tensions, and the consulted A2-mid anchors already preserve the thicker hierarchy that this thin layer must not replace.",
+  "candidate_items": [
+    {
+      "id": "RC1",
+      "name": "FOUR_CARD_OPERATOR_RECALL_SET",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the structural split that keeps the boot card readable and bounded.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:Cluster A",
+        "CLUSTER_MAP__v1:Cluster B",
+        "CLUSTER_MAP__v1:Cluster C",
+        "CLUSTER_MAP__v1:Cluster D",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C1"
+      ]
+    },
+    {
+      "id": "RC2",
+      "name": "AUTHORITY_CARD_IS_DISAGREEMENT_ORDER_ONLY",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Keeps the first card limited to precedence instead of overloading it with the whole boot stack.",
+      "parent_dependencies": [
+        "A2_3_DISTILLATES__v1:D1",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C2",
+        "TENSION_MAP__v1:T2"
+      ]
+    },
+    {
+      "id": "RC3",
+      "name": "A2_BOOT_CARD_RETAINS_ORDER_WITHOUT_PRETENDING_SUFFICIENCY",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves boot order while explicitly fencing the card against false sufficiency.",
+      "parent_dependencies": [
+        "A2_3_DISTILLATES__v1:D2",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C3",
+        "TENSION_MAP__v1:T1",
+        "TENSION_MAP__v1:T5"
+      ]
+    },
+    {
+      "id": "RC4",
+      "name": "LIVE_A1_STATUS_CARD_KEEPS_CONSERVATIVE_MAP_AND_BOTTLENECK",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Keeps the current live family map and dominant bottleneck visible together.",
+      "parent_dependencies": [
+        "A2_3_DISTILLATES__v1:D3",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C4",
+        "TENSION_MAP__v1:T3",
+        "TENSION_MAP__v1:T4"
+      ]
+    },
+    {
+      "id": "RC5",
+      "name": "QUARANTINE_CARD_MUST_STAY_EXPLICIT",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Protects the boot card from silent promotion of helper and shell surfaces.",
+      "parent_dependencies": [
+        "A2_3_DISTILLATES__v1:D4",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C5",
+        "TENSION_MAP__v1:T5"
+      ]
+    },
+    {
+      "id": "RC6",
+      "name": "BOOT_CARD_IS_RECALL_LAYER_NOT_BOOT_REPLACEMENT",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the parent packet's main nonreplacement fence at the thinnest layer.",
+      "parent_dependencies": [
+        "A2_3_DISTILLATES__v1:D5",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C6",
+        "TENSION_MAP__v1:T1"
+      ]
+    }
+  ],
+  "quarantined_items": [
+    {
+      "id": "Q1",
+      "name": "THIN_BOOT_CARD_AS_TRUE_BOOT_SUBSTITUTE",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent explicitly frames thin recall and thick boot as separate needs.",
+      "parent_dependencies": [
+        "TENSION_MAP__v1:T1",
+        "A2_3_DISTILLATES__v1:D5"
+      ]
+    },
+    {
+      "id": "Q2",
+      "name": "SHORT_RECALL_CARD_AS_CLOSURE_OR_AUTHORITY_PROMOTION",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent explicitly says simplification is safe only if quarantine stays visible and thicker context remains upstream.",
+      "parent_dependencies": [
+        "TENSION_MAP__v1:T2",
+        "TENSION_MAP__v1:T5",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C5"
+      ]
+    }
+  ],
+  "control_surface_mutation": "NONE",
+  "notes": [
+    "This batch preserves the thin boot card as a recall-only layer while making its thicker-parent dependency explicit.",
+    "No raw source reread and no active append-save were performed."
+  ]
+}

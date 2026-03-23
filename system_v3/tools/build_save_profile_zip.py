@@ -25,6 +25,10 @@ _NONRUN_ARCHIVE_EXCLUDE_PATTERNS = [
     "*.tgz",
     "*.7z",
 ]
+_RUN_DUPLICATE_SURFACE_PATTERNS = [
+    "outbox/*",
+    "snapshots/*",
+]
 _DEFAULT_BOOTSTRAP_EXCLUDE_PATTERNS = _DEFAULT_DEBUG_EXCLUDE_PATTERNS + [
     "*.zip",
     "*.zip.sha256",
@@ -133,6 +137,10 @@ def _build_debug_file_list(repo_root: Path, include_run_ids: list[str]) -> list[
                         keep = True
                         break
                 if not keep:
+                    continue
+                # Selected runs should still exclude duplicate plaintext helper
+                # surfaces; packet/tape/state lineage remains the authoritative save.
+                if _is_excluded(rel, [], _RUN_DUPLICATE_SURFACE_PATTERNS):
                     continue
             else:
                 # Debug profile keeps selected run packets (including ZIP payloads),

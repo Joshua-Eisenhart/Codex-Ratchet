@@ -5,6 +5,10 @@ Date: 2026-02-24
 This directory is the human-facing, high-entropy documentation surface.
 It is not part of the deterministic runtime.
 
+Cross-system integration ledger:
+- `REPO_SKILL_INTEGRATION_TRACKER.md`
+- `SKILL_CANDIDATES_BACKLOG.md`
+
 Canonical sub-roots (current order):
 
 1) `core_docs/a1_refined_Ratchet Fuel/`

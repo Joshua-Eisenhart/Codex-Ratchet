@@ -47,6 +47,40 @@ def _normalized_event_log_hash(run_dir: Path) -> str:
     return hashlib.sha256("\n".join(buf).encode("utf-8")).hexdigest() if buf else ""
 
 
+def _manual_review_required(payload: dict) -> bool:
+    return bool(payload.get("controller_review_required"))
+
+
+def _manual_review_details(payload: dict) -> dict:
+    if not _manual_review_required(payload):
+        return {
+            "required": False,
+            "decision": None,
+            "reason": None,
+        }
+    return {
+        "required": True,
+        "decision": payload.get("controller_review_decision"),
+        "reason": payload.get("controller_review_reason"),
+    }
+
+
+def _pair_status(
+    *,
+    rc_a: int,
+    rc_b: int,
+    same_state_hash: bool,
+    same_counts: bool,
+    same_event_hash_norm: bool,
+    manual_review_required: bool,
+) -> str:
+    if manual_review_required:
+        return "FAIL"
+    if rc_a == 0 and rc_b == 0 and same_state_hash and same_counts and same_event_hash_norm:
+        return "PASS"
+    return "FAIL"
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run paired bridge campaigns and compare determinism.")
     parser.add_argument("--run-id-a", required=True)
@@ -122,7 +156,17 @@ def main() -> int:
     same_counts = counts_a == counts_b and bool(counts_a)
     same_event_hash = bool(event_hash_a) and event_hash_a == event_hash_b
     same_event_hash_norm = bool(event_hash_norm_a) and event_hash_norm_a == event_hash_norm_b
-    status = "PASS" if (rc_a == 0 and rc_b == 0 and same_state_hash and same_counts and same_event_hash_norm) else "FAIL"
+    manual_review_a = _manual_review_details(out_a)
+    manual_review_b = _manual_review_details(out_b)
+    manual_review_required = manual_review_a["required"] or manual_review_b["required"]
+    status = _pair_status(
+        rc_a=rc_a,
+        rc_b=rc_b,
+        same_state_hash=same_state_hash,
+        same_counts=same_counts,
+        same_event_hash_norm=same_event_hash_norm,
+        manual_review_required=manual_review_required,
+    )
 
     report = {
         "schema": "BRIDGE_DETERMINISM_PAIR_REPORT_v1",
@@ -130,6 +174,9 @@ def main() -> int:
         "run_a": {"run_id": args.run_id_a, "return_code": rc_a, "summary": out_a, "counts": counts_a},
         "run_b": {"run_id": args.run_id_b, "return_code": rc_b, "summary": out_b, "counts": counts_b},
         "compare": {
+            "manual_review_required": manual_review_required,
+            "manual_review_a": manual_review_a,
+            "manual_review_b": manual_review_b,
             "same_final_state_hash": same_state_hash,
             "same_state_counts": same_counts,
             "same_event_log_hash_raw": same_event_hash,

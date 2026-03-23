@@ -4,18 +4,21 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import re
 import shutil
 import subprocess
-import zipfile
+import time
 from pathlib import Path
 
-
-BEGIN_RECORD_RE = re.compile(r"^BEGIN EXPORT_RECORD (\d{8})$")
-END_RECORD_RE = re.compile(r"^END EXPORT_RECORD (\d{8})$")
-REQUIRES_RE = re.compile(r"^\s*REQUIRES\s+(\S+)\s+CORR\s+(\S+)\s*$")
-ZIP_PACKET_RE = re.compile(r"^(\d+)_([A-Z0-9_]+)\.zip$")
-
+from run_real_loop_recovery import (
+    _extract_export_records,
+    _materialize_export_split_and_reports,
+    _materialize_graveyard_records,
+    _materialize_sim_evidence_pack,
+    _materialize_tapes,
+    _read_zip_member_text,
+    _reconstructed_artifact_classes,
+    _sync_events_to_logs,
+)
 
 def _sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
@@ -30,196 +33,8 @@ def _write_json(path: Path, obj: dict) -> None:
     path.write_text(json.dumps(obj, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
-def _write_jsonl(path: Path, rows: list[dict]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as fh:
-        for row in rows:
-            fh.write(json.dumps(row, sort_keys=True, separators=(",", ":")) + "\n")
-
-
 def _run(cmd: list[str], cwd: Path) -> subprocess.CompletedProcess[str]:
     return subprocess.run(cmd, cwd=str(cwd), check=False, capture_output=True, text=True)
-
-
-def _iter_zip_packet_paths(run_dir: Path) -> list[tuple[int, str, Path]]:
-    out: list[tuple[int, str, Path]] = []
-    zip_root = run_dir / "zip_packets"
-    if not zip_root.exists():
-        return out
-    for path in sorted(zip_root.glob("*.zip")):
-        m = ZIP_PACKET_RE.match(path.name)
-        if not m:
-            continue
-        seq = int(m.group(1))
-        packet_tag = str(m.group(2))
-        out.append((seq, packet_tag, path))
-    return sorted(out, key=lambda row: row[0])
-
-
-def _read_zip_member_text(path: Path, member: str) -> str:
-    try:
-        with zipfile.ZipFile(path, "r") as zf:
-            return zf.read(member).decode("utf-8", "ignore")
-    except (FileNotFoundError, KeyError, zipfile.BadZipFile):
-        return ""
-
-
-def _extract_export_records(run_dir: Path) -> list[tuple[int, str]]:
-    outbox = run_dir / "outbox"
-    records: list[tuple[int, str]] = []
-
-    shard_files = sorted(outbox.glob("export_blocks.*.txt"))
-    for shard in shard_files:
-        lines = shard.read_text(encoding="utf-8").splitlines()
-        i = 0
-        while i < len(lines):
-            m = BEGIN_RECORD_RE.match(lines[i].strip())
-            if not m:
-                i += 1
-                continue
-            seq = int(m.group(1))
-            j = i + 1
-            while j < len(lines):
-                end_m = END_RECORD_RE.match(lines[j].strip())
-                if end_m and int(end_m.group(1)) == seq:
-                    block = "\n".join(lines[i + 1 : j]).strip() + "\n"
-                    records.append((seq, block))
-                    i = j + 1
-                    break
-                j += 1
-            else:
-                i += 1
-
-    if records:
-        return sorted(records, key=lambda x: x[0])
-
-    # Fallback: canonical zip packet stream.
-    zip_records: list[tuple[int, str]] = []
-    for seq, packet_tag, path in _iter_zip_packet_paths(run_dir):
-        if packet_tag != "A0_TO_B_EXPORT_BATCH_ZIP":
-            continue
-        block = _read_zip_member_text(path, "EXPORT_BLOCK.txt").strip()
-        if not block:
-            continue
-        zip_records.append((seq, block + "\n"))
-    if zip_records:
-        return sorted(zip_records, key=lambda x: x[0])
-
-    # Last fallback: already split files.
-    split_files = sorted(outbox.glob("export_block_*.txt"))
-    for idx, path in enumerate(split_files, start=1):
-        try:
-            seq = int(path.stem.split("_")[-1])
-        except ValueError:
-            seq = idx
-        records.append((seq, path.read_text(encoding="utf-8")))
-    return sorted(records, key=lambda x: x[0])
-
-
-def _materialize_export_split_and_reports(run_dir: Path) -> dict:
-    outbox = run_dir / "outbox"
-    reports = run_dir / "reports"
-    outbox.mkdir(parents=True, exist_ok=True)
-    reports.mkdir(parents=True, exist_ok=True)
-    records = _extract_export_records(run_dir)
-    dependency_rows: list[dict] = []
-
-    for seq, block in records:
-        lines = block.splitlines()
-        if lines:
-            if lines[0].strip() in {"BEGIN EXPORT_BLOCK v1", "BEGIN EXPORT_BLOCK vN"}:
-                lines[0] = "BEGIN EXPORT_BLOCK vN"
-            if lines[-1].strip() in {"END EXPORT_BLOCK v1", "END EXPORT_BLOCK vN"}:
-                lines[-1] = "END EXPORT_BLOCK vN"
-        block = "\n".join(lines).strip() + "\n"
-
-        export_path = outbox / f"export_block_{seq:04d}.txt"
-        export_path.write_text(block, encoding="utf-8")
-        export_hash = _sha256_bytes(block.encode("utf-8"))
-
-        requires_edges = []
-        for line in block.splitlines():
-            m = REQUIRES_RE.match(line)
-            if m:
-                src = m.group(1)
-                dep = m.group(2)
-                requires_edges.append({"from": src, "to": dep})
-                dependency_rows.append({"seq": seq, "from": src, "to": dep})
-
-        _write_json(
-            reports / f"compile_report_{seq:04d}.json",
-            {
-                "schema": "COMPILE_REPORT_v1",
-                "seq": seq,
-                "status": "PASS",
-                "export_block_path": str(export_path),
-                "export_block_sha256": export_hash,
-            },
-        )
-        _write_json(
-            reports / f"dependency_report_{seq:04d}.json",
-            {
-                "schema": "DEPENDENCY_REPORT_v1",
-                "seq": seq,
-                "status": "PASS",
-                "edges": requires_edges,
-            },
-        )
-        _write_json(
-            reports / f"preflight_report_{seq:04d}.json",
-            {
-                "schema": "PREFLIGHT_REPORT_v1",
-                "seq": seq,
-                "status": "PASS",
-                "errors": [],
-                "warnings": [],
-            },
-        )
-
-    return {
-        "export_count": len(records),
-        "dependency_edge_count": len(dependency_rows),
-    }
-
-
-def _sync_events_to_logs(run_dir: Path) -> dict:
-    root_event_files = sorted(run_dir.glob("events.*.jsonl"))
-    logs_dir = run_dir / "logs"
-    logs_dir.mkdir(parents=True, exist_ok=True)
-
-    copied = 0
-    for path in root_event_files:
-        dst = logs_dir / path.name
-        shutil.copyfile(path, dst)
-        copied += 1
-    if copied > 0:
-        return {"copied_event_files": copied, "generated_event_rows": 0}
-
-    # Canonical runtime writes packet artifacts instead of root events.* files.
-    # Build a deterministic synthetic event shard from ZIP headers.
-    rows: list[dict] = []
-    for seq, packet_tag, packet_path in _iter_zip_packet_paths(run_dir):
-        header_text = _read_zip_member_text(packet_path, "ZIP_HEADER.json")
-        header = {}
-        if header_text.strip():
-            try:
-                header = json.loads(header_text)
-            except json.JSONDecodeError:
-                header = {}
-        rows.append(
-            {
-                "event": "zip_packet",
-                "sequence": seq,
-                "packet_tag": packet_tag,
-                "zip_type": str(header.get("zip_type", packet_tag)),
-                "direction": str(header.get("direction", "")),
-                "source_layer": str(header.get("source_layer", "")),
-                "target_layer": str(header.get("target_layer", "")),
-            }
-        )
-    event_path = logs_dir / "events.000.jsonl"
-    _write_jsonl(event_path, rows)
-    return {"copied_event_files": 0, "generated_event_rows": len(rows)}
 
 
 def _compute_replay_hashes(event_files: list[Path]) -> tuple[list[str], str]:
@@ -279,150 +94,20 @@ def _load_state(run_dir: Path) -> dict:
     state_path = run_dir / "state.json"
     if not state_path.exists():
         return {}
-    return json.loads(state_path.read_text(encoding="utf-8"))
+    data = json.loads(state_path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        return {}
+    heavy_path = state_path.with_name("state.heavy.json")
+    if heavy_path.exists():
+        try:
+            heavy = json.loads(heavy_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            heavy = {}
+        if isinstance(heavy, dict):
+            data.update(heavy)
+    return data
 
 
-def _materialize_graveyard_records(run_dir: Path, state: dict) -> dict:
-    b_reports = run_dir / "b_reports"
-    b_reports.mkdir(parents=True, exist_ok=True)
-    path = b_reports / "graveyard_records.000.jsonl"
-    graveyard = state.get("graveyard", [])
-    if isinstance(graveyard, dict):
-        graveyard_rows = list(graveyard.values())
-    elif isinstance(graveyard, list):
-        graveyard_rows = graveyard
-    else:
-        graveyard_rows = []
-    rows: list[dict] = []
-    for row in graveyard_rows:
-        if not isinstance(row, dict):
-            continue
-        candidate_id = str(row.get("id", "")).strip()
-        reason_tag = str(row.get("reason", row.get("detail", row.get("tag", "UNKNOWN")))).strip()
-        if str(row.get("tag", "")).strip() == "KILL_SIGNAL":
-            failure_class = "SIM_KILL"
-        else:
-            failure_class = "B_KILL"
-        raw_lines = row.get("raw_lines", [])
-        if (not isinstance(raw_lines, list) or not raw_lines) and str(row.get("item_text", "")).strip():
-            raw_lines = str(row.get("item_text", "")).splitlines()
-        rows.append(
-            {
-                "candidate_id": candidate_id,
-                "reason_tag": reason_tag,
-                "raw_lines": raw_lines,
-                "failure_class": failure_class,
-                "target_ref": row.get("target_ref", ""),
-            }
-        )
-    _write_jsonl(path, rows)
-    return {"graveyard_records": len(rows)}
-
-
-def _materialize_sim_evidence_pack(run_dir: Path, state: dict) -> dict:
-    sim_dir = run_dir / "sim"
-    sim_dir.mkdir(parents=True, exist_ok=True)
-
-    # Canonical path: SIM evidence already exists in packet payloads.
-    packet_blocks: list[str] = []
-    for _, packet_tag, packet_path in _iter_zip_packet_paths(run_dir):
-        if packet_tag != "SIM_TO_A0_SIM_RESULT_ZIP":
-            continue
-        block = _read_zip_member_text(packet_path, "SIM_EVIDENCE.txt").strip()
-        if block:
-            packet_blocks.append(block)
-    if packet_blocks:
-        pack_path = sim_dir / "sim_evidence_pack_0001.txt"
-        pack_path.write_text("\n".join(packet_blocks) + "\n", encoding="utf-8")
-        return {"sim_manifest_count": len(packet_blocks), "evidence_blocks": len(packet_blocks)}
-
-    manifest_rows: list[tuple[str, dict]] = []
-
-    ledger_shards = sorted(sim_dir.glob("manifests.*.jsonl"))
-    for shard in ledger_shards:
-        for line in shard.read_text(encoding="utf-8", errors="ignore").splitlines():
-            if not line.strip():
-                continue
-            row = json.loads(line)
-            digest = str(row.get("manifest_sha256", "")).strip()
-            payload = dict(row)
-            payload.pop("manifest_sha256", None)
-            payload.pop("record_index", None)
-            if not digest:
-                digest = _sha256_bytes(
-                    json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
-                )
-            manifest_rows.append((digest, payload))
-
-    if not manifest_rows:
-        manifests_dir = run_dir / "sim_manifests"
-        for manifest_path in sorted(manifests_dir.glob("*.json")):
-            payload = json.loads(manifest_path.read_text(encoding="utf-8"))
-            manifest_rows.append((manifest_path.stem, payload))
-
-    if not manifest_rows:
-        return {"sim_manifest_count": 0, "evidence_blocks": 0}
-
-    graveyard = state.get("graveyard", [])
-    if isinstance(graveyard, dict):
-        graveyard_rows = list(graveyard.values())
-    elif isinstance(graveyard, list):
-        graveyard_rows = graveyard
-    else:
-        graveyard_rows = []
-    kill_lines = []
-    if graveyard_rows:
-        g0 = graveyard_rows[0]
-        kill_lines.append(
-            f"KILL_SIGNAL {g0.get('id', 'ALT_UNKNOWN')} CORR KILL_{str(g0.get('reason', 'UNKNOWN'))}"
-        )
-
-    blocks: list[str] = []
-    for idx, (manifest_hash, m) in enumerate(manifest_rows):
-        target_spec = str(m.get("target_spec", "S_UNKNOWN"))
-        target_token = str(m.get("target_token", "EV_UNKNOWN")).strip('"')
-        lines = [
-            "BEGIN SIM_EVIDENCE v1",
-            f"SIM_ID: {m.get('sim_id', manifest_hash)}",
-            f"CODE_HASH_SHA256: {m.get('code_hash_sha256', '')}",
-            f"OUTPUT_HASH_SHA256: {m.get('output_hash_sha256', '')}",
-            f"INPUT_HASH_SHA256: {m.get('input_hash_sha256', '')}",
-            f"RUN_MANIFEST_SHA256: {manifest_hash}",
-            f"EVIDENCE_SIGNAL {target_spec} CORR {target_token}",
-        ]
-        if idx == 0 and kill_lines:
-            lines.extend(kill_lines)
-        lines.append("END SIM_EVIDENCE v1")
-        blocks.append("\n".join(lines))
-
-    pack_path = sim_dir / "sim_evidence_pack_0001.txt"
-    pack_path.write_text("\n".join(blocks) + "\n", encoding="utf-8")
-    return {"sim_manifest_count": len(manifest_rows), "evidence_blocks": len(blocks)}
-
-
-def _materialize_tapes(run_dir: Path) -> dict:
-    outbox = run_dir / "outbox"
-    export_files = sorted(outbox.glob("export_block_*.txt"))
-    rows_export: list[dict] = []
-    for idx, p in enumerate(export_files, start=1):
-        rows_export.append(
-            {
-                "seq": idx,
-                "path": str(p),
-                "sha256": _sha256_file(p),
-            }
-        )
-    _write_jsonl(run_dir / "tapes" / "export_tape.000.jsonl", rows_export)
-    _write_jsonl(
-        run_dir / "tapes" / "campaign_tape.000.jsonl",
-        [
-            {
-                "run_id": run_dir.name,
-                "export_count": len(rows_export),
-            }
-        ],
-    )
-    return {"export_tape_rows": len(rows_export)}
 
 
 def _init_run_surface_if_needed(run_dir: Path, repo_root: Path, bootpack_a_hash: str, bootpack_b_hash: str) -> None:
@@ -430,6 +115,31 @@ def _init_run_surface_if_needed(run_dir: Path, repo_root: Path, bootpack_a_hash:
     if manifest.exists():
         return
     run_dir.mkdir(parents=True, exist_ok=True)
+    # Compatibility: some entrypoints (bootpack runner) can materialize a run_dir
+    # without the system_v3 RUN_MANIFEST. In that case, fail-open by writing the
+    # minimal manifest + required dirs rather than calling init_run_surface.py,
+    # which requires an empty target directory.
+    if any(run_dir.iterdir()):
+        created_utc = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        spec_hash = _sha256_file(repo_root / "system_v3" / "specs" / "01_REQUIREMENTS_LEDGER.md")
+        strategy_hash = _sha256_file(repo_root / "system_v3" / "a2_state" / "fuel_queue.json")
+        baseline_hash = _sha256_bytes(b"baseline_zero_state")
+        for d in ["b_reports", "sim", "tapes", "logs", "reports", "tuning"]:
+            (run_dir / d).mkdir(parents=True, exist_ok=True)
+        _write_json(
+            manifest,
+            {
+                "schema": "RUN_MANIFEST_v1",
+                "run_id": run_dir.name,
+                "created_utc": created_utc,
+                "baseline_state_hash": baseline_hash,
+                "strategy_hash": strategy_hash,
+                "spec_hash": spec_hash,
+                "bootpack_b_hash": bootpack_b_hash,
+                "bootpack_a_hash": bootpack_a_hash,
+            },
+        )
+        return
     spec_hash = _sha256_file(repo_root / "system_v3" / "specs" / "01_REQUIREMENTS_LEDGER.md")
     strategy_hash = _sha256_file(repo_root / "system_v3" / "a2_state" / "fuel_queue.json")
     baseline_hash = _sha256_bytes(b"baseline_zero_state")
@@ -502,6 +212,59 @@ def _first_existing(paths: list[Path]) -> Path | None:
     return None
 
 
+def _effective_recovery_invocation_source(
+    *,
+    allow_reconstructed_artifacts: bool,
+    recovery_invocation_source: str | None,
+) -> str:
+    if not allow_reconstructed_artifacts:
+        return "strict_default"
+    if recovery_invocation_source in {"compatibility_flag", "dedicated_recovery_entrypoint"}:
+        return recovery_invocation_source
+    return "compatibility_flag"
+
+
+def _recovery_invocation_metadata(*, repo_root: Path, recovery_invocation_source: str) -> dict:
+    preferred_entrypoint = repo_root / "system_v3" / "tools" / "run_real_loop_recovery_cycle.py"
+    if recovery_invocation_source == "compatibility_flag":
+        return {
+            "recovery_invocation_mode": "compatibility_flag",
+            "compatibility_recovery_flag_used": True,
+            "preferred_recovery_entrypoint": str(preferred_entrypoint),
+        }
+    if recovery_invocation_source == "dedicated_recovery_entrypoint":
+        return {
+            "recovery_invocation_mode": "dedicated_recovery_entrypoint",
+            "compatibility_recovery_flag_used": False,
+            "preferred_recovery_entrypoint": str(preferred_entrypoint),
+        }
+    return {
+        "recovery_invocation_mode": "strict_default",
+        "compatibility_recovery_flag_used": False,
+        "preferred_recovery_entrypoint": str(preferred_entrypoint),
+    }
+
+
+def _compatibility_warnings(*, recovery_invocation_source: str) -> list[str]:
+    if recovery_invocation_source != "compatibility_flag":
+        return []
+    return ["COMPATIBILITY_RECOVERY_PATH_USED"]
+
+
+def _controller_review_metadata(*, recovery_invocation_source: str) -> dict:
+    if recovery_invocation_source == "compatibility_flag":
+        return {
+            "required": True,
+            "decision": "MANUAL_REVIEW_REQUIRED",
+            "reason": "compatibility_recovery_path_used",
+        }
+    return {
+        "required": False,
+        "decision": None,
+        "reason": None,
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run real system_v3 runtime loop into system_v3 run surface.")
     parser.add_argument("--run-id", required=True)
@@ -522,6 +285,17 @@ def main() -> int:
     parser.add_argument("--max-runs-count", type=int, default=200)
     parser.add_argument("--top-n-largest-runs", type=int, default=10)
     parser.add_argument("--clean-existing-run", action="store_true")
+    parser.add_argument(
+        "--allow-reconstructed-artifacts",
+        action="store_true",
+        help="Compatibility flag for recovery-mode synthesis. Prefer system_v3/tools/run_real_loop_recovery_cycle.py. Default is fail-closed strict mode.",
+    )
+    parser.add_argument(
+        "--recovery-invocation-source",
+        choices=("compatibility_flag", "dedicated_recovery_entrypoint"),
+        default=None,
+        help=argparse.SUPPRESS,
+    )
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parents[2]
@@ -543,6 +317,20 @@ def main() -> int:
     )
     bootpack_b_hash = _sha256_file(bootpack_b_path) if bootpack_b_path else _sha256_bytes(b"missing_bootpack_b")
     bootpack_a_hash = _sha256_file(bootpack_a_path) if bootpack_a_path else _sha256_bytes(b"missing_bootpack_a")
+    recovery_invocation_source = _effective_recovery_invocation_source(
+        allow_reconstructed_artifacts=bool(args.allow_reconstructed_artifacts),
+        recovery_invocation_source=args.recovery_invocation_source,
+    )
+    recovery_invocation = _recovery_invocation_metadata(
+        repo_root=repo_root,
+        recovery_invocation_source=recovery_invocation_source,
+    )
+    compatibility_warnings = _compatibility_warnings(
+        recovery_invocation_source=recovery_invocation_source
+    )
+    controller_review = _controller_review_metadata(
+        recovery_invocation_source=recovery_invocation_source
+    )
 
     if args.clean_existing_run and run_dir.exists():
         shutil.rmtree(run_dir)
@@ -568,6 +356,7 @@ def main() -> int:
         str(planner_steps),
         "--goal-profile",
         "refined_fuel",
+        "--allow-legacy-goal-profile-mode",
         "--goal-selection",
         "interleaved",
         "--debate-strategy",
@@ -616,8 +405,10 @@ def main() -> int:
         },
     )
 
-    sync_summary = _sync_events_to_logs(run_dir)
-    export_summary = _materialize_export_split_and_reports(run_dir)
+    sync_summary = _sync_events_to_logs(run_dir, allow_reconstructed_artifacts=bool(args.allow_reconstructed_artifacts))
+    export_summary = _materialize_export_split_and_reports(
+        run_dir, allow_reconstructed_artifacts=bool(args.allow_reconstructed_artifacts)
+    )
     replay_summary = _materialize_replay_reports(run_dir, args.min_cycles)
     state = _load_state(run_dir)
     sim_result_rows = 0
@@ -647,9 +438,61 @@ def main() -> int:
         "pending_evidence_count": len(state.get("evidence_pending", {})),
         "sim_run_count": int(state.get("sim_run_count", sim_result_rows)),
     }
-    evidence_summary = _materialize_sim_evidence_pack(run_dir, state)
-    graveyard_summary = _materialize_graveyard_records(run_dir, state)
-    tape_summary = _materialize_tapes(run_dir)
+    evidence_summary = _materialize_sim_evidence_pack(
+        run_dir, state, allow_reconstructed_artifacts=bool(args.allow_reconstructed_artifacts)
+    )
+    graveyard_summary = _materialize_graveyard_records(
+        run_dir, state, allow_reconstructed_artifacts=bool(args.allow_reconstructed_artifacts)
+    )
+    tape_summary = _materialize_tapes(run_dir, allow_reconstructed_artifacts=bool(args.allow_reconstructed_artifacts))
+
+    missing_required_runtime_artifacts: list[str] = []
+    if str(sync_summary.get("event_mode", "")).strip() == "MISSING_CANONICAL_EVENTS":
+        missing_required_runtime_artifacts.append("canonical_events")
+    if str(graveyard_summary.get("graveyard_mode", "")).strip() == "MISSING_CANONICAL_GRAVEYARD_RECORDS":
+        missing_required_runtime_artifacts.append("graveyard_records")
+    reconstructed_artifact_classes = _reconstructed_artifact_classes(
+        sync_summary,
+        export_summary,
+        evidence_summary,
+        graveyard_summary,
+        tape_summary,
+    )
+
+    if missing_required_runtime_artifacts:
+        out = {
+            "status": "FAIL",
+            "stage": "MISSING_REQUIRED_RUNTIME_ARTIFACTS",
+            "run_id": args.run_id,
+            "run_dir": str(run_dir),
+            "bootpack_b_hash": bootpack_b_hash,
+            "bootpack_a_hash": bootpack_a_hash,
+            "runner_stdout": "\n".join([s for s in stdout_chunks if s]),
+            "final_state_counts": final_state_counts,
+            "adaptive_sim_cap_enabled": bool(args.adaptive_sim_cap),
+            "adaptive_sim_cap_cycle_reports": cycle_reports,
+            "sync_summary": sync_summary,
+            "export_summary": export_summary,
+            "replay_summary": replay_summary,
+            "evidence_summary": evidence_summary,
+            "graveyard_summary": graveyard_summary,
+            "tape_summary": tape_summary,
+            "recovery_mode_active": bool(args.allow_reconstructed_artifacts),
+            "reconstructed_artifact_classes": reconstructed_artifact_classes,
+            "recovery_invocation": recovery_invocation,
+            "warnings": compatibility_warnings,
+            "controller_review_required": controller_review["required"],
+            "controller_review_decision": controller_review["decision"],
+            "controller_review_reason": controller_review["reason"],
+            "missing_required_runtime_artifacts": missing_required_runtime_artifacts,
+            "allow_reconstructed_artifacts": bool(args.allow_reconstructed_artifacts),
+            "gate_stdout": "",
+            "gate_stderr": "",
+            "sprawl_stdout": "",
+            "sprawl_stderr": "",
+        }
+        print(json.dumps(out, sort_keys=True))
+        return 2
 
     gate_cmd = [
         "python3",
@@ -701,6 +544,13 @@ def main() -> int:
         "evidence_summary": evidence_summary,
         "graveyard_summary": graveyard_summary,
         "tape_summary": tape_summary,
+        "recovery_mode_active": bool(args.allow_reconstructed_artifacts),
+        "reconstructed_artifact_classes": reconstructed_artifact_classes,
+        "recovery_invocation": recovery_invocation,
+        "warnings": compatibility_warnings,
+        "controller_review_required": controller_review["required"],
+        "controller_review_decision": controller_review["decision"],
+        "controller_review_reason": controller_review["reason"],
         "gate_stdout": cp_gate.stdout.strip(),
         "gate_stderr": cp_gate.stderr.strip(),
         "sprawl_stdout": cp_sprawl.stdout.strip(),

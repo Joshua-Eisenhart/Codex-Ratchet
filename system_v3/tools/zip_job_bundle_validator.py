@@ -56,6 +56,31 @@ def _expand_topic_slug_paths(paths: list[str], slugs: list[str]) -> list[str]:
     return expanded
 
 
+def _normalize_source_refs(manifest: dict) -> list[str]:
+    raw = manifest.get("source_reference_list")
+    if raw is None:
+        raw = manifest.get("source_refs", [])
+    if not isinstance(raw, list):
+        return []
+    out: list[str] = []
+    for item in raw:
+        if isinstance(item, str):
+            out.append(item)
+            continue
+        if isinstance(item, dict):
+            path = item.get("path") or item.get("rel_path")
+            if isinstance(path, str):
+                out.append(path)
+    return out
+
+
+def _matches_prefix(path: str, prefixes: list[str]) -> bool:
+    for prefix in prefixes:
+        if path == prefix or path.startswith(prefix) or path.startswith(prefix + "/"):
+            return True
+    return False
+
+
 def _validate_manifest_shape(manifest: dict, bundle_root: Path) -> tuple[list[str], list[str]]:
     errors: list[str] = []
     warnings: list[str] = []
@@ -91,6 +116,28 @@ def _validate_manifest_shape(manifest: dict, bundle_root: Path) -> tuple[list[st
         warnings.append("legacy_task_order_differs_from_task_execution_order")
     if "source_refs" in manifest and manifest.get("source_refs") != manifest.get("source_reference_list"):
         warnings.append("legacy_source_refs_differs_from_source_reference_list")
+
+    return errors, warnings
+
+
+def _validate_source_ref_hygiene(
+    source_refs: list[str],
+    *,
+    require_nonempty: bool,
+    warn_prefixes: list[str],
+    forbid_prefixes: list[str],
+) -> tuple[list[str], list[str]]:
+    errors: list[str] = []
+    warnings: list[str] = []
+
+    if require_nonempty and not source_refs:
+        errors.append("source_reference_list_required_nonempty")
+
+    for ref in source_refs:
+        if _matches_prefix(ref, forbid_prefixes):
+            errors.append(f"forbidden_source_ref:{ref}")
+        elif _matches_prefix(ref, warn_prefixes):
+            warnings.append(f"warn_source_ref:{ref}")
 
     return errors, warnings
 
@@ -173,6 +220,23 @@ def main(argv: list[str]) -> int:
         action="store_true",
         help="Fail template mode when fill tokens are present in manifest placeholders.",
     )
+    parser.add_argument(
+        "--require-source-refs",
+        action="store_true",
+        help="Fail when source_reference_list resolves to an empty set.",
+    )
+    parser.add_argument(
+        "--warn-source-ref-prefix",
+        action="append",
+        default=[],
+        help="Warn when a normalized source ref starts with this prefix. May be repeated.",
+    )
+    parser.add_argument(
+        "--forbid-source-ref-prefix",
+        action="append",
+        default=[],
+        help="Fail when a normalized source ref starts with this prefix. May be repeated.",
+    )
     args = parser.parse_args(argv)
 
     bundle_root = Path(args.bundle_root).expanduser().resolve()
@@ -184,6 +248,15 @@ def main(argv: list[str]) -> int:
     manifest = _load_json(manifest_path)
     errors, warnings = _validate_manifest_shape(manifest, bundle_root)
     manifest_fill = _collect_manifest_fill_tokens(manifest)
+    source_refs = _normalize_source_refs(manifest)
+    ref_errors, ref_warnings = _validate_source_ref_hygiene(
+        source_refs,
+        require_nonempty=bool(args.require_source_refs),
+        warn_prefixes=[str(v).strip().strip("/") for v in args.warn_source_ref_prefix if str(v).strip()],
+        forbid_prefixes=[str(v).strip().strip("/") for v in args.forbid_source_ref_prefix if str(v).strip()],
+    )
+    errors.extend(ref_errors)
+    warnings.extend(ref_warnings)
 
     placeholder_counts: dict[str, int] = {}
     if args.mode == "template":
@@ -207,6 +280,8 @@ def main(argv: list[str]) -> int:
             "mode": args.mode,
             "bundle_root": str(bundle_root),
             "manifest_path": str(manifest_path),
+            "source_ref_count": len(source_refs),
+            "source_refs": source_refs,
             "topic_slug_count": len(topic_slugs),
             "topic_slugs": topic_slugs,
             "missing_required_outputs": missing_required_outputs,
@@ -222,6 +297,8 @@ def main(argv: list[str]) -> int:
         "mode": args.mode,
         "bundle_root": str(bundle_root),
         "manifest_path": str(manifest_path),
+        "source_ref_count": len(source_refs),
+        "source_refs": source_refs,
         "placeholder_file_count": len(placeholder_counts),
         "placeholder_counts": placeholder_counts,
         "errors": errors,

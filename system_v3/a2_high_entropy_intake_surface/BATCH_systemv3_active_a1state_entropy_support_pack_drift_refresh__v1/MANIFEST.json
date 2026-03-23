@@ -1,0 +1,140 @@
+{
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "batch_id": "BATCH_systemv3_active_a1state_entropy_support_pack_drift_refresh__v1",
+  "batch_scope": "bounded_live_refresh_over_drifted_members_of_the_active_a1state_entropy_support_pack_family",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T20:27:18Z",
+  "extraction_mode": "ACTIVE_A1STATE_ENTROPY_SUPPORT_PACK_DRIFT_REFRESH_PASS",
+  "promotion_status": "A2_3_REUSABLE",
+  "promotion_guardrail": "Proposal-side only. This packet records live source drift inside the earlier active a1_state entropy-support family. It does not authorize rewriting the older batch, backfilling later campaign or integration packets, or promoting the refreshed support/control quartet directly into active A2-1 law from this batch alone.",
+  "parent_batch_ids": [
+    "BATCH_systemv3_active_a1state_entropy_support_pack_family__v1"
+  ],
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_systemv3_active_a1state_entropy_support_pack_family__v1/MANIFEST.json",
+      "role_in_batch": "historical_snapshot_manifest_anchor",
+      "relevance": "Preserves the exact earlier source-bound family snapshot that no longer matches the four live support/control files."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_systemv3_active_a1state_campaign_graveyard_validity_packet__v1/MANIFEST.json",
+      "role_in_batch": "downstream_continuation_anchor",
+      "relevance": "Shows that folder-order continuation after this refresh still moves into the active A1 campaign/graveyard validity doctrine family."
+    }
+  ],
+  "source_membership": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md",
+      "role_in_batch": "diversity_alias_support_pack",
+      "sha256": "f699d251491797ff7eedc5ddb7dd31f513f43691fd83cffcb59d25790feaf308",
+      "line_count": 163,
+      "size_bytes": 5279,
+      "previous_parent_snapshot": {
+        "batch_id": "BATCH_systemv3_active_a1state_entropy_support_pack_family__v1",
+        "sha256": "ee4b23afb15c360f5c166058fe49521d4b04c670deb02faddbb48afac0d1a35d",
+        "line_count": 163,
+        "size_bytes": 5317
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_HELPER_LEAK_STRIP_PACK__v1.md",
+      "role_in_batch": "helper_leak_strip_control_pack",
+      "sha256": "921fcb359a3cd8c40844dc52b583ab782da25dc354807d7c515af28d94406f3f",
+      "line_count": 177,
+      "size_bytes": 5370,
+      "previous_parent_snapshot": {
+        "batch_id": "BATCH_systemv3_active_a1state_entropy_support_pack_family__v1",
+        "sha256": "3e5ec1e81db617f3c5aac6cf00993789edb81c4318bf8ec0d0521d7d5a2fc99a",
+        "line_count": 179,
+        "size_bytes": 5728
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md",
+      "role_in_batch": "structure_decomposition_control_pack",
+      "sha256": "ff4af42c6fd6beb8070615f7982486c900d1c2518eec355f62cf61d18e7ab6da",
+      "line_count": 124,
+      "size_bytes": 4441,
+      "previous_parent_snapshot": {
+        "batch_id": "BATCH_systemv3_active_a1state_entropy_support_pack_family__v1",
+        "sha256": "fe8c590a1588cc12be3fbf5c840bae9f4603c7cd8201594cdcc3d959826da62d",
+        "line_count": 125,
+        "size_bytes": 4791
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_THERMAL_TIME_RESCUE_PACK__v1.md",
+      "role_in_batch": "thermal_time_rescue_followup_pack",
+      "sha256": "d50a4c64d1ac18b01a17591ce819f58493de95b953ffc581f128f2145f5eb809",
+      "line_count": 115,
+      "size_bytes": 4178,
+      "previous_parent_snapshot": {
+        "batch_id": "BATCH_systemv3_active_a1state_entropy_support_pack_family__v1",
+        "sha256": "865099fffe1034298860367d3506213ea6a399ecab64bce0b4d614942c5b42d1",
+        "line_count": 116,
+        "size_bytes": 4463
+      }
+    }
+  ],
+  "family_rationale": [
+    "The queued reuse check failed because four live support/control members of the earlier active a1_state entropy-support family drifted from the stored manifest.",
+    "This refresh is intentionally limited to the drifted quartet so the older first-pass family batch remains preserved as a historical source-bound snapshot.",
+    "The next low-entropy continuation still belongs to the adjacent active A1 campaign/graveyard validity family rather than a full re-extraction of the entire entropy-support packet."
+  ],
+  "drift_summary": {
+    "changed_member_count": 4,
+    "unchanged_member_count": 7,
+    "changed_member_classes": [
+      "support_control_surface",
+      "rescue_followup_surface"
+    ],
+    "why_refresh_not_reuse": "The old family manifest no longer source-matches the live repo on these four files."
+  },
+  "raw_source_reread_needed": true,
+  "raw_source_reread_reason": "The queued reuse check failed. The four drifted live support/control files were reopened directly to preserve bounded, source-linked refresh content instead of falsely reporting manifest reuse.",
+  "control_surface_mutation": "NONE",
+  "deferred_next_in_folder_order": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_EXECUTABLE_DISTILLATION_UPDATE__SOURCE_BOUND_v2.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BRIDGE_CAMPAIGN__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BROAD_RESCUE_PACK__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_ENGINE_CAMPAIGN__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_ENGINE_FAMILY__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_STRUCTURE_CAMPAIGN__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_SUBSTRATE_FAMILY_CAMPAIGN__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_GRAVEYARD_FIRST_VALIDITY_PROFILE__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_NEGATIVE_CLASS_REGISTRY__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_RESCUE_AND_GRAVEYARD_OPERATORS__v1.md"
+  ],
+  "structure_markers": [
+    {
+      "label": "alias_support_refresh_packet",
+      "line_spans": [
+        "A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md:1-163"
+      ]
+    },
+    {
+      "label": "helper_leak_refresh_packet",
+      "line_spans": [
+        "A1_ENTROPY_HELPER_LEAK_STRIP_PACK__v1.md:1-177"
+      ]
+    },
+    {
+      "label": "structure_decomposition_refresh_packet",
+      "line_spans": [
+        "A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md:1-124"
+      ]
+    },
+    {
+      "label": "thermal_time_rescue_refresh_packet",
+      "line_spans": [
+        "A1_ENTROPY_THERMAL_TIME_RESCUE_PACK__v1.md:1-115"
+      ]
+    }
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; use this packet to keep the active A1 entropy-support read current without rewriting the earlier family batch or promoting the refreshed support/control quartet directly into active A2-1 law from this refresh alone",
+  "notes": [
+    "No active A2 surfaces were mutated.",
+    "The earlier BATCH_systemv3_active_a1state_entropy_support_pack_family__v1 remains preserved as a historical source-bound packet.",
+    "This packet records live drift only and does not settle authority questions by itself."
+  ]
+}

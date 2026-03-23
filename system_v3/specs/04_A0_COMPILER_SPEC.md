@@ -152,7 +152,7 @@ Dropped items are appended to carryover queue with reason `BUDGET_TRUNCATED`.
 ## Sequencing and Naming (`RQ-039`)
 Within run scope:
 - monotonic `batch_seq` integer
-- monotonic outbox file suffix
+- monotonic packet/export sequence suffix
 - monotonic report file suffix
 
 No reuse of sequence id after failure.
@@ -183,11 +183,17 @@ Logging:
 
 ## Persistence (`RQ-035`)
 A0 writes append-only:
-- `outbox/export_block_<seq>.txt`
+- authoritative export packet lineage:
+  - `zip_packets/<seq>_A0_TO_B_EXPORT_BATCH_ZIP.zip`
 - `reports/compile_report_<seq>.json`
 - `reports/dependency_report_<seq>.json`
 - `reports/preflight_report_<seq>.json`
 - `logs/events.<shard>.jsonl`
+
+Fallback/diagnostic only:
+- `outbox/export_block_<seq>.txt`
+  - optional plaintext cache surface
+  - must not be treated as authoritative when ZIP packet lineage exists
 
 Event record (JSONL; deterministic field set):
 - `seq` (monotonic int within shard)

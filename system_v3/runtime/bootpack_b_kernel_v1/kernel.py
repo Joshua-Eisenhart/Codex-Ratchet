@@ -1,5 +1,4 @@
 import re
-import time
 from dataclasses import dataclass
 
 from containers import parse_export_block, parse_sim_evidence_pack, split_items
@@ -52,12 +51,6 @@ TERM_LINE_REGEX = re.compile(r'^DEF_FIELD\s+(\S+)\s+CORR\s+TERM\s+"([^"]*)"$')
 LABEL_LINE_REGEX = re.compile(r'^DEF_FIELD\s+(\S+)\s+CORR\s+LABEL\s+"([^"]*)"$')
 SIM_HASH_LINE_REGEX = re.compile(r"^DEF_FIELD\s+(\S+)\s+CORR\s+SIM_CODE_HASH_SHA256\s+(\S+)$")
 ITEM_ID_REGEX = re.compile(r"^[A-Za-z0-9_]+$")
-
-
-def _utc_iso_now() -> str:
-    return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-
-
 @dataclass
 class _ItemParse:
     item_id: str
@@ -216,6 +209,7 @@ class BootpackBKernel:
             counted_targets: set[str] = set()
             for target, token in block.evidence_signals:
                 state.evidence_tokens.add(token)
+                state.evidence_token_provenance.setdefault(token, set()).add(block.code_hash_sha256)
                 if target in state.evidence_pending and token in state.evidence_pending[target]:
                     state.evidence_pending[target].remove(token)
                     if not state.evidence_pending[target]:
@@ -245,6 +239,10 @@ class BootpackBKernel:
                         counted_targets.add(target)
                 for term, entry in state.term_registry.items():
                     if entry.get("required_evidence") == token:
+                        bound_math_def = str(entry.get("bound_math_def", "") or "")
+                        required_hash = str((state.spec_meta.get(bound_math_def, {}) or {}).get("sim_code_hash_sha256", "") or "")
+                        if required_hash and required_hash != block.code_hash_sha256:
+                            continue
                         entry["state"] = "CANONICAL_ALLOWED"
                         state.term_registry[term] = entry
             if block.sim_id == "S_MEGA_BOOT_HASH":
@@ -335,7 +333,8 @@ class BootpackBKernel:
             return
         metadata = {"kill_if_tokens": list(parse.kill_if_tokens), "kill_bind": parse.kill_bind}
         self._accept(state, result, parse.item_id, parse.header, parse.item_text, "ACTIVE", metadata=metadata)
-        state.spec_meta[parse.item_id] = {"kind": "MATH_DEF"}
+        required_hash = str((parse.fields.get("SIM_CODE_HASH_SHA256", [""]) or [""])[0] or "").lower()
+        state.spec_meta[parse.item_id] = {"kind": "MATH_DEF", "sim_code_hash_sha256": required_hash}
         self._record_probe_references(state, parse.requires)
 
     def _admit_term_def(self, parse: _ItemParse, state: KernelState, result: dict, batch_id: str) -> None:
@@ -441,7 +440,10 @@ class BootpackBKernel:
             self._reject(state, result, parse.item_id, "SCHEMA_FAIL", "CANON_PERMIT_UNKNOWN_TERM", batch_id)
             return
         entry["required_evidence"] = evidence_token
-        if evidence_token in state.evidence_tokens:
+        bound_math_def = str(entry.get("bound_math_def", "") or "")
+        required_hash = str((state.spec_meta.get(bound_math_def, {}) or {}).get("sim_code_hash_sha256", "") or "")
+        evidence_hashes = state.evidence_token_provenance.get(evidence_token, set())
+        if evidence_token in state.evidence_tokens and (not required_hash or required_hash in evidence_hashes):
             entry["state"] = "CANONICAL_ALLOWED"
             status = "ACTIVE"
         else:
@@ -484,6 +486,9 @@ class BootpackBKernel:
         family = parse.fields.get("FAMILY", ["BASELINE"])[0]
         target_class = parse.fields.get("TARGET_CLASS", [parse.item_id])[0]
         negative_class = parse.fields.get("NEGATIVE_CLASS", [""])[0]
+        stage_id = parse.fields.get("STAGE_ID", [""])[0]
+        stage_suite_kind = parse.fields.get("STAGE_SUITE_KIND", [""])[0]
+        stage_depends_on = parse.fields.get("STAGE_DEPENDS_ON", [])
         depends_on = parse.fields.get("DEPENDS_ON", [])
         state.spec_meta[parse.item_id] = {
             "kind": "SIM_SPEC",
@@ -494,6 +499,9 @@ class BootpackBKernel:
             "target_class": target_class,
             "negative_class": negative_class,
             "depends_on": list(depends_on),
+            "stage_id": stage_id,
+            "stage_suite_kind": stage_suite_kind,
+            "stage_depends_on": list(stage_depends_on),
             "is_negative": bool(negative_class),
         }
         state.sim_registry[sim_id] = {
@@ -503,6 +511,9 @@ class BootpackBKernel:
             "target_class": target_class,
             "negative_class": negative_class,
             "depends_on": list(depends_on),
+            "stage_id": stage_id,
+            "stage_suite_kind": stage_suite_kind,
+            "stage_depends_on": list(stage_depends_on),
             "evidence_token": evidence_token,
         }
         if sim_id not in state.sim_promotion_status:
@@ -624,6 +635,8 @@ class BootpackBKernel:
             is_label = LABEL_LINE_REGEX.match(line) is not None
             formula_match = FORMULA_LINE_REGEX.match(line)
             is_formula = formula_match is not None
+            if (not is_formula) and "=" in line:
+                return _LineViolation("UNQUOTED_EQUAL", "BR-008", line, "=")
             if is_formula:
                 formula = formula_match.group(2)
                 non_ascii = NON_ASCII_REGEX.search(formula)
@@ -703,7 +716,7 @@ class BootpackBKernel:
         match = FIELD_REGEX.match(line)
         if match:
             field_name = match.group(2)
-            if field_name in {"TERM", "LABEL", "FORMULA", "SIM_CODE_HASH_SHA256"}:
+            if field_name in {"TERM", "LABEL", "FORMULA", "SIM_CODE_HASH_SHA256", "STAGE_SUITE_KIND"}:
                 return ""
             return match.group(3).strip()
         if line.startswith("WITNESS ") or line.startswith("KILL_IF "):
@@ -714,6 +727,9 @@ class BootpackBKernel:
 
     def _find_undefined_token(self, payload: str, state: KernelState) -> str:
         for token in LOWER_TOKEN_REGEX.findall(payload):
+            token = token.lower()
+            if self._term_in_allowed_state(state, token):
+                continue
             for segment in token.split("_"):
                 segment = segment.lower()
                 if segment.isdigit():
@@ -1060,7 +1076,6 @@ class BootpackBKernel:
             "detail": cond_token,
             "killed_by_sim_id": sim_id,
             "killed_in_batch_id": batch_id,
-            "ts_utc": _utc_iso_now(),
             "metadata": dict(metadata),
         }
         state.kill_log.append({"batch_id": batch_id, "id": target_id, "tag": "KILL_SIGNAL", "token": cond_token})

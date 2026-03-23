@@ -10,9 +10,7 @@ from pathlib import Path
 from hypothesis import given, strategies as st, settings, HealthCheck
 
 # Import the module under test
-import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from skills.nested_graph_builder import (
+from system_v4.skills.nested_graph_builder import (
     _load_json, _write_json, _node_id, _utc_iso,
     _build_layer_summary, build_nested_graph, LAYER_GRAPHS, REPO_ROOT,
 )

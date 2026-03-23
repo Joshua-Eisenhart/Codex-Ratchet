@@ -1,0 +1,108 @@
+{
+  "cluster_alignment": {
+    "cluster_id": "SKILL_CLUSTER::skill-source-intake",
+    "first_slice": "a2-skill-source-intake-operator",
+    "text_alignment": {
+      "backlog_mentions_first_slice": true,
+      "cluster_schema_exists": true,
+      "corpus_mentions_cluster": true,
+      "imported_cluster_map_exists": true,
+      "tracker_mentions_first_cluster": true
+    }
+  },
+  "front_door": {
+    "local_source_repo_inventory": {
+      "exists": true,
+      "indexed_in_a2": true,
+      "path": "LOCAL_SOURCE_REPO_INVENTORY.md"
+    },
+    "repo_skill_integration_tracker": {
+      "exists": true,
+      "indexed_in_a2": true,
+      "path": "REPO_SKILL_INTEGRATION_TRACKER.md"
+    },
+    "skill_candidates_backlog": {
+      "exists": true,
+      "indexed_in_a2": true,
+      "path": "SKILL_CANDIDATES_BACKLOG.md"
+    },
+    "skill_source_corpus": {
+      "exists": true,
+      "indexed_in_a2": true,
+      "path": "SKILL_SOURCE_CORPUS.md"
+    }
+  },
+  "generated_utc": "2026-03-21T10:44:56Z",
+  "issues": [],
+  "lev_os_agents": {
+    "expected_skill_doc_counts": {
+      "curated": 61,
+      "library": 571,
+      "total": 632
+    },
+    "first_cluster_members": {
+      "lev-intake": {
+        "exists": true,
+        "path": "work/reference_repos/lev-os/agents/skills/lev-intake/SKILL.md"
+      },
+      "skill-builder": {
+        "exists": true,
+        "path": "work/reference_repos/lev-os/agents/skills/skill-builder/SKILL.md"
+      },
+      "skill-discovery": {
+        "exists": true,
+        "path": "work/reference_repos/lev-os/agents/skills/skill-discovery/SKILL.md"
+      }
+    },
+    "member_classification": {
+      "lev-intake": {
+        "adapt_away_from": [
+          ".lev/workshop",
+          "~/.config/lev/config.yaml",
+          "project-doc assumptions"
+        ],
+        "classification": "adapt",
+        "keep": "bounded intake and smallest-useful-disposition framing",
+        "ratchet_role": "a2-side source intake front door"
+      },
+      "skill-builder": {
+        "adapt_away_from": [
+          "skill-seekers",
+          "skills.sh",
+          "Claude-specific packaging"
+        ],
+        "classification": "adapt",
+        "keep": "staged validation, prior-art checks, and propose-not-activate rule",
+        "ratchet_role": "staged build/admission evaluator for imported material"
+      },
+      "skill-discovery": {
+        "adapt_away_from": [
+          "qmd",
+          "cm",
+          "~/.agents/skills collections"
+        ],
+        "classification": "adapt",
+        "keep": "local-first discovery and ranking behavior",
+        "ratchet_role": "local-first skill/source resolver over registry and corpus metadata"
+      }
+    },
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/reference_repos/lev-os/agents",
+    "skill_doc_counts": {
+      "curated": 61,
+      "library": 571,
+      "total": 632
+    }
+  },
+  "recommended_next_actions": [
+    "Keep the first imported cluster bounded to A2-side intake, discovery, and staged build/admission semantics.",
+    "Do not port qmd/cm, skill-seekers, or workshop path overlays into the first Ratchet-native slice.",
+    "Promote the next imported cluster only after the current intake report is repo-held and stable."
+  ],
+  "repo_root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "schema": "A2_SKILL_SOURCE_INTAKE_REPORT_v1",
+  "staged_output_targets": {
+    "json_report": "system_v4/a2_state/audit_logs/A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.json",
+    "md_report": "system_v4/a2_state/audit_logs/A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.md"
+  },
+  "status": "ok"
+}

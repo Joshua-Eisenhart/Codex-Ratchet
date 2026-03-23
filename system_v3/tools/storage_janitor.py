@@ -15,7 +15,7 @@ LEGACY_MIGRATED_ROOT = RUNS_ROOT / "LEGACY__MIGRATED__"
 CURRENT_STATE_ROOT = RUNS_ROOT / "_CURRENT_STATE"
 DEFAULT_BOOKKEEPING_DIR = Path(os.environ.get("CODEX_RATCHET_BOOKKEEPING_DIR", "")).expanduser()
 
-LEGACY_DUP_DIR_NAMES = {"snapshots", "sim", "a1_strategies", "reports", "outbox"}
+LEGACY_DUP_DIR_NAMES = {"snapshots", "sim", "a1_strategies", "outbox"}
 EXCLUDED_GIT = ROOT / ".git"
 
 

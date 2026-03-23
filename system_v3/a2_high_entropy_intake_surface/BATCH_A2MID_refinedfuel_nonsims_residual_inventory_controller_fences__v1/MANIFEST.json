@@ -1,0 +1,141 @@
+{
+  "schema": "A2_MID_REFINEMENT_BATCH_MANIFEST_v1",
+  "batch_id": "BATCH_A2MID_refinedfuel_nonsims_residual_inventory_controller_fences__v1",
+  "batch_scope": "controller_facing_reduction_of_refinedfuel_nonsims_residual_inventory_closure_into_coverage_routing_and_authority_fences",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T11:51:46Z",
+  "extraction_mode": "A2_MID_REFINEMENT_PASS",
+  "promotion_status": "A2_2_CANDIDATE",
+  "promotion_guardrail": "Proposal-side only. Do not promote to A2-1 kernel law from this batch without a later explicit selective promotion pass.",
+  "parent_batch_ids": [
+    "BATCH_refinedfuel_nonsims_residual_inventory_closure_audit__v1"
+  ],
+  "parent_artifacts": [
+    "SOURCE_MAP__v1.md",
+    "CLUSTER_MAP__v1.md",
+    "TENSION_MAP__v1.md",
+    "A2_3_DISTILLATES__v1.md",
+    "A2_2_CANDIDATE_SUMMARIES__v1.md",
+    "MANIFEST.json"
+  ],
+  "selection_basis": {
+    "ledger_reason": "Parent batch was the only live unreduced non-A2MID A2_2_CANDIDATE packet on the intake surface at selection time.",
+    "bounded_goal": "Reduce the refined-fuel residual-closure audit into controller-facing fences for coverage closure, hygiene-only residue handling, multi-coverage routing, revisit-queue priority, and anti-authority closure discipline.",
+    "deferred_alternatives": []
+  },
+  "raw_source_reread_needed": false,
+  "raw_source_reread_reason": "The parent already isolates the closure-routing boundary tightly enough for a bounded controller-facing reduction.",
+  "candidate_items": [
+    {
+      "id": "RC1",
+      "name": "NONSIMS_REFINEDFUEL_DIRECT_SOURCE_COVERAGE_IS_CLOSED_AND_THE_ONLY_RESIDUAL_IS_HYGIENE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the parent's strongest coverage-closure boundary while blocking source-gap inflation from hygiene residue.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:1",
+        "CLUSTER_MAP__v1.md:2",
+        "TENSION_MAP__v1.md:1",
+        "SOURCE_MAP__v1.md",
+        "MANIFEST.json"
+      ]
+    },
+    {
+      "id": "RC2",
+      "name": "BROAD_SAME_ROOT_SOURCE_EXTRACTION_SHOULD_STOP_AFTER_FULL_SLICE_COVERAGE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Compresses the parent's full-root-slice coverage into a stop-enumerating controller fence.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:2",
+        "SOURCE_MAP__v1.md",
+        "A2_3_DISTILLATES__v1.md"
+      ]
+    },
+    {
+      "id": "RC3",
+      "name": "MULTI_COVERAGE_IS_ROUTING_DEBT_NOT_MISSING_SOURCE_CONTACT",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the parent's strongest anti-duplication-overread rule.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:3",
+        "TENSION_MAP__v1.md:2",
+        "SOURCE_MAP__v1.md",
+        "A2_3_DISTILLATES__v1.md"
+      ]
+    },
+    {
+      "id": "RC4",
+      "name": "REVISIT_REQUIRED_REENTRY_NOW_DOMINATES_AND_CONSTRAINTS_ENTROPY_IS_THE_NOMINATED_START",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the parent's strongest live handoff from broad coverage into selective re-entry.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:4",
+        "TENSION_MAP__v1.md:3",
+        "A2_2_CANDIDATE_SUMMARIES__v1.md",
+        "A2_3_DISTILLATES__v1.md",
+        "MANIFEST.json"
+      ]
+    },
+    {
+      "id": "RC5",
+      "name": "CLOSURE_AUDIT_IS_A_ROUTING_BOUNDARY_NOT_SEMANTIC_CLOSURE_OR_ACTIVE_AUTHORITY",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Keeps the audit useful while blocking closure and authority inflation.",
+      "parent_dependencies": [
+        "TENSION_MAP__v1.md:4",
+        "A2_3_DISTILLATES__v1.md",
+        "MANIFEST.json"
+      ]
+    }
+  ],
+  "quarantined_items": [
+    {
+      "id": "Q1",
+      "name": "DOT_DS_STORE_AS_A_REAL_UNBATCHED_SOURCE_FAMILY",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent explicitly preserves the lone residual as hygiene-only rather than a real source family.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:1",
+        "TENSION_MAP__v1.md:1",
+        "A2_3_DISTILLATES__v1.md"
+      ]
+    },
+    {
+      "id": "Q2",
+      "name": "MULTI_COVERAGE_AS_PROOF_THAT_SOURCE_COVERAGE_IS_STILL_INCOMPLETE",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent explicitly separates deliberate multi-coverage from missing source contact.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:3",
+        "TENSION_MAP__v1.md:2",
+        "A2_3_DISTILLATES__v1.md"
+      ]
+    },
+    {
+      "id": "Q3",
+      "name": "CLOSURE_SIGNALS_AS_SEMANTIC_CLOSURE_CANON_OR_MUTATION_PERMISSION",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent remains routing-only and refuses to self-authorize semantic closure or mutation rights.",
+      "parent_dependencies": [
+        "TENSION_MAP__v1.md:4",
+        "A2_3_DISTILLATES__v1.md",
+        "MANIFEST.json"
+      ]
+    },
+    {
+      "id": "Q4",
+      "name": "NEW_BROAD_REFINEDFUEL_SOURCE_MAP_SWEEP_INSTEAD_OF_SELECTIVE_REENTRY",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent explicitly routes next work into the unresolved revisit queue rather than more broad source enumeration.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:4",
+        "TENSION_MAP__v1.md:3",
+        "A2_2_CANDIDATE_SUMMARIES__v1.md"
+      ]
+    }
+  ],
+  "control_surface_mutation": "NONE",
+  "notes": [
+    "This batch was produced as the thirty-third controller-facing A2-mid reduction in this audit thread.",
+    "No raw source reread, runtime execution, or active A2 append-save was performed."
+  ]
+}

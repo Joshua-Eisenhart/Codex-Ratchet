@@ -1,0 +1,145 @@
+{
+  "batch_id": "BATCH_sims_residual_inventory_closure_audit__v1",
+  "batch_scope": "residual_sims_side_inventory_closure_audit_after_raw_order_exhaustion",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T04:27:25Z",
+  "deferred_next_raw_folder_order_source": null,
+  "extraction_mode": "SIM_RESIDUAL_CLOSURE_AUDIT_PASS",
+  "notes": [
+    "This batch is a closure audit, not a new runner/result family extraction.",
+    "Residual classification is filename-level only for the unbatched artifact set.",
+    "No runtime execution was performed."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "A2_2_CANDIDATE",
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_ultra_axis0_ab_axis6_sweep_family__v1/MANIFEST.json",
+      "relevance": "Confirms the raw-order simpy strip was already exhausted at file 51 of 51."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_sim_suite_v1_descendant_bundle__v1/MANIFEST.json",
+      "relevance": "Shows run_axis0_traj_corr_suite.py, run_axis12_channel_realization_suite.py, and run_axis12_seq_constraints.py were comparison anchors without becoming direct source members.",
+      "line_window": "32-40"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_sim_suite_v2_successor_bundle__v1/MANIFEST.json",
+      "relevance": "Shows run_axis12_topology4_channelfamily_suite_v2.py and run_axis0_traj_corr_suite.py were comparison anchors without becoming direct source members.",
+      "line_window": "31-39"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md",
+      "relevance": "Provides ledger continuity showing 17 earlier sims batches before this closure audit."
+    }
+  ],
+  "runtime_expectations": [
+    "No later raw-order simpy family remains after the final ultra sweep batch.",
+    "Any future sims-side intake would have to reopen residual paired families, runner-only surfaces, or orphan result surfaces as a new priority campaign.",
+    "This closure audit itself is filename-level only for residual artifacts and does not content-extract every residual file."
+  ],
+  "failure_modes": [
+    "Mistaking raw-order family exhaustion for complete sims-side source coverage.",
+    "Mistaking comparison-anchor reuse for direct source membership.",
+    "Treating orphan results, diagnostics, cache artifacts, or .DS_Store as ordinary residual sim families."
+  ],
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "sims_split_rule": {
+    "detected": true,
+    "included_in_this_batch": true,
+    "notes": "This batch remains inside the separate sims source class and does not mix with ordinary theory/doc extraction.",
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims"
+  },
+  "source_membership": [
+    {
+      "line_count": 158,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md",
+      "role_in_batch": "top_level_catalog_anchor",
+      "sha256": "0875a516fe8ed7d7ca5724b6655d13c5b07eb4b580829e598dce97e833254748",
+      "size_bytes": 7893,
+      "source_class": "inventory_anchor"
+    },
+    {
+      "line_count": 663,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt",
+      "role_in_batch": "top_level_evidence_anchor",
+      "sha256": "63b7e2029a9a3f5b06294b301ffcc62dd386077bed0ff4a3b9ef561b9f99140a",
+      "size_bytes": 30407,
+      "source_class": "evidence_anchor"
+    }
+  ],
+  "derived_summary": {
+    "batched_sim_batch_count_before_this_closure": 17,
+    "direct_source_member_file_count_before_this_closure": 76,
+    "total_sims_file_count": 120,
+    "residual_file_count": 44,
+    "residual_by_directory": {
+      "top_level": 1,
+      "simpy": 21,
+      "simson": 22
+    },
+    "residual_non_noise_file_count": 40,
+    "raw_order_exhaustion": {
+      "simpy_file_count": 51,
+      "more_raw_order_simpy_files_remaining": false,
+      "closure_audit_after_exhaustion": true
+    },
+    "residual_runner_result_pair_count": 12,
+    "residual_anchor_only_runner_count": 4,
+    "residual_runner_only_count": 2,
+    "residual_result_only_count": 10,
+    "residual_diagnostic_or_proof_script_count": 4,
+    "residual_pycache_count": 3,
+    "residual_top_level_noise_count": 1,
+    "residual_unreferenced_file_count": 40,
+    "residual_paired_families": [
+      "axis0_historyop_rec_suite_v1",
+      "axis0_mi_discrim_branches",
+      "axis0_mi_discrim_branches_ab",
+      "axis0_mutual_info",
+      "axis0_negsagb_stress",
+      "axis0_sagb_entangle_seed",
+      "axis0_traj_corr_metrics",
+      "axis0_traj_corr_suite",
+      "axis12_channel_realization_suite",
+      "axis12_seq_constraints",
+      "axis12_topology4_channelfamily_suite_v2",
+      "axis12_topology4_channelgrid_v1"
+    ],
+    "anchor_only_runners": [
+      "run_axis0_traj_corr_suite.py",
+      "run_axis12_channel_realization_suite.py",
+      "run_axis12_seq_constraints.py",
+      "run_axis12_topology4_channelfamily_suite_v2.py"
+    ],
+    "runner_only_residuals": [
+      "run_axis12_harden_triple_v1.py",
+      "run_axis12_harden_v2_triple.py"
+    ],
+    "result_only_residuals": [
+      "results_axis0_boundary_bookkeep_v1.json",
+      "results_axis0_traj_corr_suite_v2.json",
+      "results_axis12_altchan_v1.json",
+      "results_axis12_altchan_v2.json",
+      "results_axis12_negctrl_label_v2.json",
+      "results_axis12_negctrl_swap_v1.json",
+      "results_axis12_paramsweep_v1.json",
+      "results_axis12_paramsweep_v2.json",
+      "results_ultra3_full_geometry_stage16_axis0.json",
+      "results_ultra_big_ax012346.json"
+    ],
+    "diagnostic_or_proof_scripts": [
+      "mega_sims_failure_detector.py",
+      "mega_sims_run_02.py",
+      "mega_sims_trivial_check.py",
+      "prove_foundation.py"
+    ],
+    "pycache_artifacts": [
+      "__pycache__/ run_axis0_boundary_bookkeep_sweep_v2.cpython-313.pyc",
+      "__pycache__/ run_axis12_axis0_link_v1.cpython-313.pyc",
+      "__pycache__/ run_mega_axis0_ab_stage16_axis6.cpython-313.pyc"
+    ],
+    "top_level_noise": [
+      ".DS_Store"
+    ]
+  }
+}

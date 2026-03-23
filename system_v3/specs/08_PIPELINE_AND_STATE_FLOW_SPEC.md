@@ -13,6 +13,12 @@ Date: 2026-02-20
 8. B ingests `SIM_EVIDENCE`.
 9. A1/A2 consume feedback for next cycle.
 
+Companion repair targets:
+- staged SIM campaign process:
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/72_SIM_CAMPAIGN_AND_SUITE_MODES__v1.md`
+- semantic `FULL+` save ZIP:
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1.md`
+
 Build-phase companion:
 - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/21_IMPLEMENTATION_BUILD_SEQUENCE_AND_ACCEPTANCE_MATRIX.md`
 
@@ -61,19 +67,34 @@ Suggested `<run_id>` pattern (operational; noncanon):
 - `RUN__YYYYMMDD_HHMMSSZ__<strategy_hash12>__<baseline_state_hash12>`
 
 Fixed subpaths (create only if needed):
-- `outbox/`:
-  - compiled `EXPORT_BLOCK vN` artifacts, one file per batch
 - `b_reports/`:
   - Thread B report outputs for each submitted batch (verbatim text containers)
-- `snapshots/`:
-  - `THREAD_S_SAVE_SNAPSHOT v2` outputs (verbatim)
 - `sim/`:
   - sim requests, manifests, outputs
   - sim evidence packs (verbatim `SIM_EVIDENCE v1` blocks)
 - `tapes/`:
-  - `EXPORT_TAPE v1` and `CAMPAIGN_TAPE v1` (JSONL, sharded)
+  - authoritative `EXPORT_TAPE v1` and `CAMPAIGN_TAPE v1` lineage (JSONL, sharded)
 - `logs/`:
   - append-only deterministic JSONL event logs + derived metrics (sharded)
+- `zip_packets/`:
+  - authoritative packet journal surface for live A1/A0/B/SIM exchange
+- `a1_inbox/`:
+  - inbound external A1 packet surface
+- `snapshots/`:
+  - optional plaintext duplicate surface for `THREAD_S_SAVE_SNAPSHOT v2` outputs
+- `outbox/`:
+  - optional fallback/diagnostic materialization surface only
+  - never required when authoritative ZIP packet lineage and tapes are present
+
+Resume/persistence surfaces:
+- `state.json`:
+  - lean resume/control surface only
+- `state.heavy.json`:
+  - heavy derived cache sidecar for large `spec_meta` / `sim_*` structures
+- `_CURRENT_STATE/state.json`:
+  - lean current-run pointer/cache only, never a duplicate full-state snapshot
+- `_CURRENT_STATE/sequence_state.json`:
+  - matching lean live sequence cache only
 
 Sharding:
 - follow `RQ-092` file/line limits and deterministic shard suffixing.

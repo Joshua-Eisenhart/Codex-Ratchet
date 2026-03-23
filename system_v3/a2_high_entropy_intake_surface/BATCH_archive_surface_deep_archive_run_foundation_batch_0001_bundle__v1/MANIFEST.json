@@ -1,0 +1,215 @@
+{
+  "batch_id": "BATCH_archive_surface_deep_archive_run_foundation_batch_0001_bundle__v1",
+  "batch_scope": "deep_archive_run_foundation_batch_0001_bundle",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T09:24:26Z",
+  "deferred_next_in_folder_order": [
+    "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001"
+  ],
+  "extraction_mode": "ARCHIVE_DEEP_RUN_BUNDLE_PASS",
+  "notes": [
+    "This batch processes only RUN_FOUNDATION_BATCH_0001_bundle and treats it as a compact working-run capsule, not as a replacement for the parent run.",
+    "README_WORKING_RUN.txt preserves an explicit packet-mode recipe: clean one-step bootstrap, inject two strategy packets, then continue to step 2.",
+    "The final state hash e2037bac... is consistent across README, summary.json, state.json, and state.json.sha256.",
+    "The embedded state is genuinely clean on parked/reject dimensions: park_set_len 0 and reject_log_len 0.",
+    "The bundle still retains narrow negative lineage under the clean headline: kill_log_len 2, unresolved_promotion_blocker_count 2, and both kill-log entries use NEG_NEG_COMMUTATIVE_ASSUMPTION.",
+    "The bundle keeps no HARDMODE_METRICS.json, no sequence_state.json, and no sim directory despite runtime sim-evidence path references in events and the soak report.",
+    "The detached top-level strategy packets are duplicated exactly in a1_inbox/consumed/.",
+    "The bundle preserves an unresolved packet-lineage split: top-level and consumed 000002_A1_TO_A0_STRATEGY_ZIP.zip hash to 833b223e..., while embedded zip_packets/000002_A1_TO_A0_STRATEGY_ZIP.zip hashes to 573d01fa... under the same filename."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "REVISIT_REQUIRED",
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "source_family": "archive root deep archive run foundation batch 0001 bundle",
+  "source_membership": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_bundle",
+      "role_in_batch": "working_run_bundle_root",
+      "total_files": 27,
+      "total_dirs": 4,
+      "top_level_entries": [
+        "000001_A1_TO_A0_STRATEGY_ZIP.zip",
+        "000002_A1_TO_A0_STRATEGY_ZIP.zip",
+        "README_WORKING_RUN.txt",
+        "RUN_FOUNDATION_BATCH_0001"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_bundle/README_WORKING_RUN.txt",
+      "role_in_batch": "working_run_readme",
+      "sha256": "b7e84797fe28e48cfe355537fba9985a0e460ddfa628bab18ff6c820fcc0272d",
+      "size_bytes": 585,
+      "readme_markers": {
+        "run_id": "RUN_FOUNDATION_BATCH_0001",
+        "execution_mode": "packet",
+        "command_ladder": [
+          "python3 a1_a0_b_sim_runner.py --a1-source packet --run-id RUN_FOUNDATION_BATCH_0001 --steps 1 --clean",
+          "place two A1_TO_A0_STRATEGY_ZIP packets into runs/RUN_FOUNDATION_BATCH_0001/a1_inbox/",
+          "python3 a1_a0_b_sim_runner.py --a1-source packet --run-id RUN_FOUNDATION_BATCH_0001 --steps 2"
+        ],
+        "expected_summary_highlights": {
+          "accepted_total": 30,
+          "rejected_total": 0,
+          "parked_total": 0,
+          "kill_log_count": 2,
+          "sim_registry_count": 10,
+          "final_state_hash": "e2037bacdeaaa3425f00f8d00880127228f4a372457e8ae9ccf62a9b2b993ddc"
+        }
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_bundle/000001_A1_TO_A0_STRATEGY_ZIP.zip",
+      "role_in_batch": "detached_strategy_packet",
+      "size_bytes": 2458,
+      "sha256": "cda70b1eed0e8f9f307a4f1f987c70fd94be7e432529acb5bed46308cf140bd0"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_bundle/000002_A1_TO_A0_STRATEGY_ZIP.zip",
+      "role_in_batch": "detached_strategy_packet",
+      "size_bytes": 2390,
+      "sha256": "833b223e74ccb4358b1c97dcfca39a87a7db365287b9802e5b93caccb80871c2"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_bundle/RUN_FOUNDATION_BATCH_0001",
+      "role_in_batch": "embedded_child_run",
+      "files": 24,
+      "dirs": 3,
+      "top_level_entries": [
+        "a1_inbox",
+        "events.jsonl",
+        "soak_report.md",
+        "state.json",
+        "state.json.sha256",
+        "summary.json",
+        "zip_packets"
+      ],
+      "omitted_control_surfaces": [
+        "HARDMODE_METRICS.json",
+        "sequence_state.json",
+        "sim/"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_bundle/RUN_FOUNDATION_BATCH_0001/summary.json",
+      "role_in_batch": "embedded_summary",
+      "sha256": "9b38904a26ebb4ae870f54d6a26057b56af9c76a50dcdbf4c929d355bc21dc62",
+      "size_bytes": 834,
+      "summary": {
+        "run_id": "RUN_FOUNDATION_BATCH_0001",
+        "steps_completed": 2,
+        "steps_requested": 2,
+        "stop_reason": "MAX_STEPS",
+        "accepted_total": 30,
+        "rejected_total": 0,
+        "parked_total": 0,
+        "sim_registry_count": 10,
+        "master_sim_status": "NOT_READY",
+        "needs_real_llm": false,
+        "unique_export_content_digest_count": 2,
+        "unique_export_structural_digest_count": 2,
+        "unique_strategy_digest_count": 2,
+        "unresolved_promotion_blocker_count": 2,
+        "final_state_hash": "e2037bacdeaaa3425f00f8d00880127228f4a372457e8ae9ccf62a9b2b993ddc"
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_bundle/RUN_FOUNDATION_BATCH_0001/state.json",
+      "role_in_batch": "embedded_state",
+      "sha256": "e2037bacdeaaa3425f00f8d00880127228f4a372457e8ae9ccf62a9b2b993ddc",
+      "size_bytes": 36097,
+      "state_summary": {
+        "accepted_batch_count": 2,
+        "canonical_ledger_len": 2,
+        "derived_only_terms_len": 47,
+        "evidence_pending_len": 0,
+        "evidence_tokens_len": 10,
+        "interaction_counts_len": 8,
+        "kill_log_len": 2,
+        "park_set_len": 0,
+        "reject_log_len": 0,
+        "sim_promotion_status_len": 10,
+        "sim_registry_len": 10,
+        "sim_results_len": 10,
+        "survivor_ledger_len": 32,
+        "survivor_order_len": 32,
+        "term_registry_len": 10,
+        "active_megaboot_id": "",
+        "active_megaboot_sha256": "",
+        "active_ruleset_sha256": ""
+      },
+      "kill_log_tokens": [
+        "NEG_NEG_COMMUTATIVE_ASSUMPTION"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_bundle/RUN_FOUNDATION_BATCH_0001/state.json.sha256",
+      "role_in_batch": "embedded_state_hash_sidecar",
+      "declared_sha256": "e2037bacdeaaa3425f00f8d00880127228f4a372457e8ae9ccf62a9b2b993ddc",
+      "matches_state_json": true,
+      "matches_readme_final_hash": true,
+      "matches_summary_final_hash": true
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_bundle/RUN_FOUNDATION_BATCH_0001/events.jsonl",
+      "role_in_batch": "embedded_event_ledger",
+      "sha256": "c05d8c74fabc4c26196c55d59a9b5ba7d74f26578a6a3198c606f105603795ab",
+      "size_bytes": 6826,
+      "line_count": 3,
+      "event_kind_counts": {
+        "a1_strategy_request_emitted": 1,
+        "step_result": 2
+      },
+      "steps_present": [
+        1,
+        2
+      ],
+      "referenced_strategy_packets": [
+        "000001_A1_TO_A0_STRATEGY_ZIP.zip",
+        "000002_A1_TO_A0_STRATEGY_ZIP.zip"
+      ],
+      "referenced_export_packets": [
+        "000002_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+        "000003_A0_TO_B_EXPORT_BATCH_ZIP.zip"
+      ],
+      "referenced_sim_result_count": 10
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_bundle/RUN_FOUNDATION_BATCH_0001/soak_report.md",
+      "role_in_batch": "embedded_soak_report",
+      "sha256": "ebb2ef89b67642c44c9d24bf3e7e47e9de439f77ef4cc4c074e70f5667b2fa31",
+      "size_bytes": 6995,
+      "headline": {
+        "cycle_count": 2,
+        "accepted_total": 30,
+        "parked_total": 0,
+        "rejected_total": 0,
+        "stop_reason": "MAX_STEPS"
+      },
+      "top_failure_tags": [
+        "NONE"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_bundle/RUN_FOUNDATION_BATCH_0001/zip_packets",
+      "role_in_batch": "embedded_packet_subset",
+      "packet_count": 17,
+      "packet_kind_counts": {
+        "A0_TO_A1_SAVE_ZIP": 1,
+        "A0_TO_B_EXPORT_BATCH_ZIP": 2,
+        "A1_TO_A0_STRATEGY_ZIP": 2,
+        "B_TO_A0_STATE_UPDATE_ZIP": 2,
+        "SIM_TO_A0_SIM_RESULT_ZIP": 10
+      },
+      "strategy_hashes_for_shared_names": {
+        "000001_A1_TO_A0_STRATEGY_ZIP.zip": "cda70b1eed0e8f9f307a4f1f987c70fd94be7e432529acb5bed46308cf140bd0",
+        "000002_A1_TO_A0_STRATEGY_ZIP.zip": "573d01fa8bcbd01920d32666644eea6f59ad68373ac861719338044ba127a276"
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_bundle/RUN_FOUNDATION_BATCH_0001/a1_inbox/consumed",
+      "role_in_batch": "embedded_consumed_strategy_residue",
+      "packet_count": 2,
+      "byte_identical_to_top_level_strategy_packets": true
+    }
+  ]
+}

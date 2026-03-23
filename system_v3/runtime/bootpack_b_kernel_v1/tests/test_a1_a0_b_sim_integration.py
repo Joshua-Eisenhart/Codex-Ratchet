@@ -39,6 +39,7 @@ class TestA1A0BSimIntegration(unittest.TestCase):
                 a1_model="",
                 a1_timeout_sec=1,
                 clean=True,
+                runs_root_override=tmpdir,
             )
             run_b, hash_b = run_loop(
                 strategy_path=strategy_path,
@@ -48,6 +49,7 @@ class TestA1A0BSimIntegration(unittest.TestCase):
                 a1_model="",
                 a1_timeout_sec=1,
                 clean=True,
+                runs_root_override=tmpdir,
             )
             self.assertEqual(hash_a, hash_b)
             out_a = self._first_export_block(run_a)

@@ -1,30 +1,33 @@
 {
-  "timestamp": "2026-03-22T09:22:14Z",
-  "phase": "Phase 1 \u2014 v2 (fixed edge loading)",
+  "timestamp": "2026-03-22T11:12:40Z",
+  "phase": "Phase 1",
+  "environment": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/.venv_spec_graph/bin/python",
+  "python_version": "3.13.6 (main, Aug  6 2025, 13:05:20) [Clang 17.0.0 (clang-1700.0.13.3)]",
+  "graph_loaded": "419 nodes, 0 edges",
   "experiments": {
     "GUDHI_persistence": {
-      "status": "PASS",
-      "detail": "Betti: [206, 0], pairs: 301"
+      "status": "SKIP",
+      "detail": "No edges loaded"
     },
     "leidenalg_communities": {
-      "status": "PASS",
-      "detail": "276 communities, mod=0.3950, sizes=[40, 16, 12, 10, 7, 4, 4, 3, 3, 3]"
+      "status": "SKIP",
+      "detail": "No edges loaded"
     },
     "dotmotif_motifs": {
-      "status": "PASS",
-      "detail": "Chain motifs: 3181"
+      "status": "SKIP",
+      "detail": "No edges loaded"
     },
     "hypothesis_property_tests": {
       "status": "PASS",
-      "detail": "2/2 passed"
+      "detail": "Passed: 2, Failed: 0"
     },
     "pysmt_formula": {
       "status": "PASS",
-      "detail": "Invariant + violation both satisfiable"
+      "detail": "Invariant satisfiable: True. Violation satisfiable: True"
     },
     "cvc5_constraint": {
       "status": "PASS",
-      "detail": "Tree constraint SAT"
+      "detail": "Tree constraint SAT: True, model: nc=1, ec=0"
     }
   },
   "packages_installed": {
@@ -39,19 +42,9 @@
     "pysmt": "0.9.6",
     "cvc5": "1.3.3",
     "pyRankMCDA": "2.1.5",
-    "egg-smol": "FAILED (Rust/maturin on Python 3.13)"
-  },
-  "graph_stats": {
-    "low_control": "419 nodes, 749 edges",
-    "promoted": "296 nodes, 731 edges"
+    "egg-smol": "FAILED (maturin/Rust build on Python 3.13)"
   },
   "blockers": [
-    "egg-smol: Rust build fails on Python 3.13"
-  ],
-  "next_tranche": [
-    "Phase 2: OPA + Conftest, DVC, CrossHair, Promptfoo, pyRankMCDA council experiments",
-    "Fallback egg-smol: try egglog-python instead",
-    "Run mutmut on system_v4/skills/",
-    "Run Hypothesis on broader graph invariants"
+    "egg-smol: Rust/maturin build fails on Python 3.13. Fallback: egglog-python."
   ]
 }

@@ -1,0 +1,161 @@
+# MASS_DIR_INGEST_SESSION
+
+- **Start:** 2026-03-18T08:03:02Z
+- **End:** 2026-03-18T08:03:05Z
+- **Documents processed:** 69
+- **Batches created:** 69
+- **Nodes added:** 726
+- **Edges added:** 657
+- **Contradictions found:** 0
+- **Checkpoints:** 69
+
+## Graph Totals
+- A2-3: 1089 nodes
+- A2-2: 32 nodes
+- A2-1: 119 nodes
+- Total: 1240 nodes, 1094 edges
+
+## Documents
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/ARCHIVE_MANIFEST_v2 copy.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/MEGABOOT_RATCHET_SUITE_v7.4.8-PROJECTS copy.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_AUDIT_AND_QUESTIONS.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/jp graph prompt!!.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_EPISODE_01_WORKING_LOG copy.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/STRUCTURAL_MEMORY_MAP_v2.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/29 thing.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_BRAIN_SLICE__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_PATH_BUILD_PRIORITY_PACK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_RATE_LIFT_PACK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_STRUCTURE_CAMPAIGN__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__ACTIVE_FAMILY_EXEC_SUMMARY__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/README.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/doc_index_backup__20260224T235943Z.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_FIRST_DISPATCH_OPERATOR_PACKET__2026_03_11__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_WIGGLE_CONTROLLER_PROMPT__2026_03_15__v1.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CARNOT_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_EIGHTH_REFRESH__2026_03_12__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_SEVENTH_REFRESH__2026_03_12__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_TENTH_REFRESH__2026_03_12__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_BRANCH_GROUP_VISIBILITY_AND_AUDIT_PATCH__2026_03_15__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_CURRENT_QUEUE_SELECTOR_FAIL_CLOSED__2026_03_15__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_NON_RESCUE_BRANCH_LINEAGE_OWNERSHIP_PATCH__2026_03_15__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_SCAFFOLD_RESCUE_LANE_AND_LANE_MINIMUM_GATE__2026_03_15__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_TRACK_DERIVATION_PATCH__2026_03_15__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_QUEUE_CANDIDATE_REGISTRY_PATH__2026_03_15__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_SINGLE_PRIMARY_ROOT_TOPOLOGY_PATCH__2026_03_15__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A2_CONTROLLER_LAUNCH_HANDOFF_LOCAL_SPEC_OBJECT_STACK__2026_03_15__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CARNOT_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_FIFTH_REFRESH__2026_03_12__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_FEP_SIXTH_REFRESH__2026_03_12__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_LOCAL_PACK_RETURN__2026_03_11__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__FOUR_WORKER_RETURNS_INGESTED_AND_NEXT_FOUR_READY__2026_03_16__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__RUN_REAL_LOOP_CONTROLLER_SIGNAL_REPORT_PROPAGATION__2026_03_15__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__STAGE1_OPERATORIZED_ENTROPY_HEAD_GROUNDING__2026_03_17__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__WORKFLOW_VERIFICATION_LANE_RECOVERY__2026_03_16__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__GRAPH_SUBSET_AUDIT_TOOL__2026_03_15__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__VALIDATION_PROVENANCE_STAMPING__2026_03_15__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__A2_STATE_CONSOLIDATION_MANIFEST_FIX__2026_03_16__v1.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__INTAKE_WARM_COLD_CONSUMER_INTEGRATION__2026_03_16__v1.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__WORKER_LAUNCH_PROCESS_FIX__2026_03_16__v1.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/DOC_INDEX_STATUS_CAUTION__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_SEVENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_EIGHTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_LANE_OPERATOR_CHECKLIST__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/PARALLEL_CODEX_WORKER_RESULT_SINK__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/SCALE_UP_ENVELOPE__2026_03_11__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/SYSTEM_SHAPE_OWNER_MAP__2026_03_10__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/WORK_SYSTEM_V3_AND_TO_SEND_TO_PRO_AUDIT__2026_03_10__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ingest/doc_cards/DOC_0A487DFA1D85.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ingest/doc_cards/DOC_5F7FD27F5040.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ingest/doc_cards/DOC_A711A4DDAD9C.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ingest/system_map_v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a2_worker_stage1_operatorized_entropy_head/A2_WORKER_LAUNCH_PACKET__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1__GATE_RESULT.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/conformance/fixtures_v1/README.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/conformance/fixtures_v1/fixtures/FIX_NEAR_001_PARK_NEAR_DUPLICATE.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/00_README.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/job_templates/A1_CONSOLIDATION_PREPACK_JOB_TEMPLATE/tasks/00_TASK__INGEST_AND_VALIDATE_WORKER_OUTPUTS.task.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A2_ENTROPY_POLICY_v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/LAYER_ISOLATION_INVARIANT_v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/templates/A0_TO_A1_SAVE_ZIP_TEMPLATE/MANIFEST.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/templates/A1_TO_A2_SAVE_ZIP_TEMPLATE/ZIP_HEADER.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/templates/README.md
+
+## Key Findings
+- MASS DIR INGEST: 657 files from 8 directories (skipped high entropy)
+
+## Batches
+- `AUTO_ARCHIVE_MANIFEST_v2 copy_331af48ae2f740e9`
+- `AUTO_MEGABOOT_RATCHET_SUITE_v7.4.8-PROJECTS copy_fc32520a575172e8`
+- `AUTO_DIRECTED_EXTRACTION_AUDIT_AND_QUESTIONS_f3eb79d61b5e1a5e`
+- `AUTO_jp graph prompt!!_7e02b050728fe379`
+- `AUTO_A2_EPISODE_01_WORKING_LOG copy_882c27d4afd87c7b`
+- `AUTO_STRUCTURAL_MEMORY_MAP_v2_5380d8e32916bdab`
+- `AUTO_29 thing_9336bcbc394874a2`
+- `AUTO_A1_BRAIN_SLICE__v1_63960f2da430def3`
+- `AUTO_A1_ENTROPY_BRIDGE_PATH_BUILD_PRIORITY_PACK__v1_165f649628ccc926`
+- `AUTO_A1_ENTROPY_RATE_LIFT_PACK__v1_93596713c65f080d`
+- `AUTO_A1_FIRST_ENTROPY_STRUCTURE_CAMPAIGN__v1_b06e74875e31bc70`
+- `AUTO_A1_ROSETTA_BATCH__ACTIVE_FAMILY_EXEC_SUMMARY__v1_1dd65ff6ab20bdfd`
+- `AUTO_README_54f2d0142f1b9180`
+- `AUTO_doc_index_backup__20260224T235943Z_2c0c8b0152de5e6d`
+- `AUTO_A1_FIRST_DISPATCH_OPERATOR_PACKET__2026_03_11__v1_021c60271303f114`
+- `AUTO_A1_WIGGLE_CONTROLLER_PROMPT__2026_03_15__v1_53c210b90453c491`
+- `AUTO_A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1_0cb41c1a8f22563c`
+- `AUTO_A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2_37a401e3dcbe9647`
+- `AUTO_A2_TO_A1_IMPACT_NOTE__CARNOT_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1_3798dcee8ccbf591`
+- `AUTO_A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_EIGHTH_REFRESH__2026_03_12__v1_4af221b3f5d8c65e`
+- `AUTO_A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_SEVENTH_REFRESH__2026_03_12__v1_56adddf0be32e272`
+- `AUTO_A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_TENTH_REFRESH__2026_03_12__v1_eac1447adcacfb63`
+- `AUTO_A2_TO_A1_IMPACT_NOTE__MAXWELL_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1_23395a73ea0c16f4`
+- `AUTO_A2_UPDATE_NOTE__A1_BRANCH_GROUP_VISIBILITY_AND_AUDIT_PATCH__2026_03_15__v1_67cf6a5d2ea66d36`
+- `AUTO_A2_UPDATE_NOTE__A1_CURRENT_QUEUE_SELECTOR_FAIL_CLOSED__2026_03_15__v1_34ad06fb506485c8`
+- `AUTO_A2_UPDATE_NOTE__A1_FAMILY_SLICE_NON_RESCUE_BRANCH_LINEAGE_OWNERSHIP_PATCH__2026_03_15__v1_9bd0e4091a25fd61`
+- `AUTO_A2_UPDATE_NOTE__A1_FAMILY_SLICE_SCAFFOLD_RESCUE_LANE_AND_LANE_MINIMUM_GATE__2026_03_15__v1_8bb67e0c0c3be885`
+- `AUTO_A2_UPDATE_NOTE__A1_FAMILY_SLICE_TRACK_DERIVATION_PATCH__2026_03_15__v1_277e8b0c372c5df3`
+- `AUTO_A2_UPDATE_NOTE__A1_QUEUE_CANDIDATE_REGISTRY_PATH__2026_03_15__v1_9716a46feeb551df`
+- `AUTO_A2_UPDATE_NOTE__A1_SINGLE_PRIMARY_ROOT_TOPOLOGY_PATCH__2026_03_15__v1_ec1b03fc3629ffe8`
+- `AUTO_A2_UPDATE_NOTE__A2_CONTROLLER_LAUNCH_HANDOFF_LOCAL_SPEC_OBJECT_STACK__2026_03_15__v1_84e51e2854cdcedc`
+- `AUTO_A2_UPDATE_NOTE__CARNOT_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1_becad220a85c792a`
+- `AUTO_A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_FIFTH_REFRESH__2026_03_12__v1_ed1ebed71f3d2eb8`
+- `AUTO_A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_FEP_SIXTH_REFRESH__2026_03_12__v1_7b633dd5ed084223`
+- `AUTO_A2_UPDATE_NOTE__ENTROPY_LOCAL_PACK_RETURN__2026_03_11__v1_7d6e1ea2d0e72a49`
+- `AUTO_A2_UPDATE_NOTE__FOUR_WORKER_RETURNS_INGESTED_AND_NEXT_FOUR_READY__2026_03_16__v1_d2836b75de52a31e`
+- `AUTO_A2_UPDATE_NOTE__MAXWELL_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1_cd9703cbf3865069`
+- `AUTO_A2_UPDATE_NOTE__RUN_REAL_LOOP_CONTROLLER_SIGNAL_REPORT_PROPAGATION__2026_03_15__v1_abfe32488d94a7dd`
+- `AUTO_A2_UPDATE_NOTE__STAGE1_OPERATORIZED_ENTROPY_HEAD_GROUNDING__2026_03_17__v1_68d8397ae13462fa`
+- `AUTO_A2_UPDATE_NOTE__WORKFLOW_VERIFICATION_LANE_RECOVERY__2026_03_16__v1_504c5ab17a4d96f7`
+- `AUTO_A2_WORKER_DISPATCH_PACKET__GRAPH_SUBSET_AUDIT_TOOL__2026_03_15__v1_0fbc9d4d4bbc71d6`
+- `AUTO_A2_WORKER_DISPATCH_PACKET__VALIDATION_PROVENANCE_STAMPING__2026_03_15__v1_c10ced34689b6129`
+- `AUTO_A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1_e245c8c872cb9f0b`
+- `AUTO_A2_WORKER_PROMPT__A2_STATE_CONSOLIDATION_MANIFEST_FIX__2026_03_16__v1_a5f0705810d3961b`
+- `AUTO_A2_WORKER_PROMPT__INTAKE_WARM_COLD_CONSUMER_INTEGRATION__2026_03_16__v1_7d80d9e6bfcafe16`
+- `AUTO_A2_WORKER_PROMPT__WORKER_LAUNCH_PROCESS_FIX__2026_03_16__v1_f9151451ef2867ac`
+- `AUTO_DOC_INDEX_STATUS_CAUTION__v1_019f4a1ebb8672d9`
+- `AUTO_EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_SEVENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1_57481c3474a2b1b3`
+- `AUTO_EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_EIGHTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1_9c560445d732ac6f`
+- `AUTO_EXTERNAL_LANE_OPERATOR_CHECKLIST__ENTROPY_CARNOT_SZILARD__2026_03_10__v1_03bf4c4ee8ff9a40`
+- `AUTO_INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1_0b710389ca7d0df1`
+- `AUTO_PARALLEL_CODEX_WORKER_RESULT_SINK__v1_c4f0815b90e8b220`
+- `AUTO_SCALE_UP_ENVELOPE__2026_03_11__v1_e55f8e29ac56fc31`
+- `AUTO_SYSTEM_SHAPE_OWNER_MAP__2026_03_10__v1_37689b405b36ad10`
+- `AUTO_WORK_SYSTEM_V3_AND_TO_SEND_TO_PRO_AUDIT__2026_03_10__v1_57eb8925c4cbcb30`
+- `AUTO_DOC_0A487DFA1D85_2527d116af91bc19`
+- `AUTO_DOC_5F7FD27F5040_d03326d1dd4e8391`
+- `AUTO_DOC_A711A4DDAD9C_57a26d3667af491b`
+- `AUTO_system_map_v1_7f3285eb76aa28e3`
+- `AUTO_A2_WORKER_LAUNCH_PACKET__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1__GATE_RESULT_341fc3afbcdc45d1`
+- `AUTO_README_84322cc22c7b26f8`
+- `AUTO_FIX_NEAR_001_PARK_NEAR_DUPLICATE_2e2d5e4cd24e5fe8`
+- `AUTO_00_README_98ef5b6b851295d4`
+- `AUTO_00_TASK__INGEST_AND_VALIDATE_WORKER_OUTPUTS.task_f7047379f6b4def2`
+- `AUTO_A2_ENTROPY_POLICY_v1_f3fda9bf92d7b27f`
+- `AUTO_LAYER_ISOLATION_INVARIANT_v1_52d0ffd11aaed7be`
+- `AUTO_MANIFEST_0847adc659d4e680`
+- `AUTO_ZIP_HEADER_d414916b4d222178`
+- `AUTO_README_3ea757038181e375`

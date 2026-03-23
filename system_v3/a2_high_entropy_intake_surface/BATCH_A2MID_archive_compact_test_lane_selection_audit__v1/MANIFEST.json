@@ -1,0 +1,163 @@
+{
+  "schema": "A2_MID_REFINEMENT_BATCH_MANIFEST_v1",
+  "batch_id": "BATCH_A2MID_archive_compact_test_lane_selection_audit__v1",
+  "batch_scope": "closure_aware_residual_audit_over_the_compact_deep_archive_test_lane_after_packet_deterministic_real_a1_resume_state_transition_and_v2_packet_bootstrap_child_closure_bounded_to_next_family_selection_and_v2_zipv2_replay_001_nomination",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T20:24:10Z",
+  "extraction_mode": "A2_MID_REFINEMENT_PASS",
+  "promotion_status": "A2_2_CANDIDATE",
+  "promotion_guardrail": "Proposal-side only. Do not treat this compact-test routing audit as active A2 control memory or as proof that the compact deep-archive test lane is globally complete; it is only a bounded routing surface for the next re-entry choice.",
+  "parent_batch_ids": [
+    "BATCH_A2MID_archive_signal_lane_closure_audit__v1",
+    "BATCH_A2MID_archive_test_packet_empty_handoff_fences__v1",
+    "BATCH_A2MID_archive_test_packet_zip_identity_residue__v1",
+    "BATCH_A2MID_archive_test_det_a_controller_fences__v1",
+    "BATCH_A2MID_archive_test_det_b_controller_fences__v1",
+    "BATCH_A2MID_archive_test_real_a1_001_controller_fences__v1",
+    "BATCH_A2MID_archive_test_real_a1_002_controller_fences__v1",
+    "BATCH_A2MID_archive_test_resume_stub_leakage__v1",
+    "BATCH_A2MID_archive_test_state_transition_chain_a_controller_fences__v1",
+    "BATCH_A2MID_archive_chain_b_shell_drift__v1",
+    "BATCH_A2MID_archive_mutation_snapshot_overhang__v1",
+    "BATCH_A2MID_archive_v2_packet_e2e_save_request_divergence__v1",
+    "BATCH_A2MID_archive_v2_packet_req_bootstrap_scaffold__v1"
+  ],
+  "comparison_anchor_batch_ids": [
+    "BATCH_archive_surface_deep_archive_v2_zipv2_replay_001__v1",
+    "BATCH_A2MID_archive_v2_packet_e2e_save_request_divergence__v1",
+    "BATCH_A2MID_archive_v2_packet_req_bootstrap_scaffold__v1"
+  ],
+  "parent_artifacts": [
+    "A2_2_REFINED_CANDIDATES__v1.md",
+    "SELECTION_RATIONALE__v1.md",
+    "MANIFEST.json"
+  ],
+  "selection_basis": {
+    "queue_reason": "Selected because the queued packet-zip target was already discharged by an existing A2-mid child, the first corrective REAL_A1_002 nomination was also already discharged, the second corrective state-transition nomination was also already discharged, and the third corrective v2 packet-bootstrap nomination was also already discharged by the live ledger.",
+    "parent_reason": "The signal-lane closure audit plus the already-completed packet, deterministic, REAL_A1, resume, state-transition, and earlier v2 packet-bootstrap children provide the bounded closure anchors needed to select the real next unresolved compact-test family.",
+    "comparison_anchor_reason": "The remaining unchilded compact test parent in this lane is now only REPLAY_001, and the earlier v2 packet-bootstrap siblings remain useful comparison anchors because they preserve the already-reduced neighboring seams inside the same local trio.",
+    "deferred_alternatives": []
+  },
+  "raw_source_reread_needed": false,
+  "raw_source_reread_reason": "The needed work here was live-ledger correction and next-family nomination. The existing child batches plus the unresolved REPLAY_001 summaries and tension map were sufficient to determine the next bounded target.",
+  "candidate_items": [
+    {
+      "id": "RC1",
+      "name": "EARLIER_COMPACT_TEST_FAMILIES_THROUGH_V2_PACKET_REQ_ARE_DIRECT_CHILD_CLOSED",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the routing fact that earlier compact-test families in this lane already have direct A2-mid children.",
+      "parent_dependencies": [
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "RC2",
+      "name": "NEXT_UNRESOLVED_COMPACT_TEST_POOL_NOW_IS_ONLY_V2_ZIPV2_REPLAY_001",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the narrowed residual pool after closure of the earlier compact test families in this local lane.",
+      "comparison_anchor_dependencies": [
+        "BATCH_archive_surface_deep_archive_v2_zipv2_replay_001__v1:A2_2_CANDIDATE_SUMMARIES__v1.md",
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "RC3",
+      "name": "V2_ZIPV2_REPLAY_001_IS_THE_STRONGEST_NEXT_UNRESOLVED_TARGET",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the strongest next bounded target because REPLAY_001 remains unchilded and retains the strongest remaining contradiction packet in this slice.",
+      "comparison_anchor_dependencies": [
+        "BATCH_archive_surface_deep_archive_v2_zipv2_replay_001__v1:A2_2_CANDIDATE_SUMMARIES__v1.md",
+        "BATCH_archive_surface_deep_archive_v2_zipv2_replay_001__v1:TENSION_MAP__v1.md"
+      ]
+    },
+    {
+      "id": "RC4",
+      "name": "REPLAY_001_NOW_OUTRANKS_PACKET_REQ_AND_PACKET_E2E_ONLY_BECAUSE_THEY_ARE_ALREADY_CHILDED",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the live-ledger reason REPLAY_001 is now the next move: earlier v2 packet-bootstrap siblings already have children.",
+      "comparison_anchor_dependencies": [
+        "BATCH_A2MID_archive_v2_packet_e2e_save_request_divergence__v1",
+        "BATCH_A2MID_archive_v2_packet_req_bootstrap_scaffold__v1",
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "RC5",
+      "name": "SOLE_REMAINING_PARENT_STATUS_SHRINKS_ROUTING_AMBIGUITY",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the local routing condition that compact-test sibling ambiguity is now gone inside this lane because only one unresolved parent remains.",
+      "comparison_anchor_dependencies": [
+        "BATCH_archive_surface_deep_archive_v2_zipv2_replay_001__v1:A2_2_CANDIDATE_SUMMARIES__v1.md",
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "RC6",
+      "name": "LEDGER_STATE_OVERRIDES_STALE_PACKET_ZIP_REAL_A1_STATE_TRANSITION_AND_PACKET_E2E_QUEUE_TEXT",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the process rule that target selection must come from the live ledger rather than stale queue text pointing at already-childed packet, REAL_A1, state-transition, or earlier v2 packet-bootstrap parents.",
+      "parent_dependencies": [
+        "BATCH_A2MID_archive_signal_lane_closure_audit__v1:A2_2_REFINED_CANDIDATES__v1.md",
+        "BATCH_INDEX__v1.md"
+      ]
+    }
+  ],
+  "quarantined_items": [
+    {
+      "id": "Q1",
+      "name": "DUPLICATE_EARLIER_COMPACT_TEST_REDUCTION",
+      "status": "QUARANTINED",
+      "why_quarantined": "Earlier compact-test parents already have direct A2-mid children and should not be reduced again by default.",
+      "parent_dependencies": [
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "Q2",
+      "name": "TREAT_EARLIER_MICROFAMILY_CLOSURE_AS_TOTAL_DEEP_ARCHIVE_TEST_CLOSURE",
+      "status": "QUARANTINED",
+      "why_quarantined": "Earlier family closure does not erase the remaining unchilded REPLAY_001 parent in this lane.",
+      "parent_dependencies": [
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "Q3",
+      "name": "REOPEN_ALREADY_CHILDED_STATE_TRANSITION_OR_V2_PACKET_BOOTSTRAP_PARENTS",
+      "status": "QUARANTINED",
+      "why_quarantined": "State-transition and earlier v2 packet-bootstrap parents already have direct A2-mid children in the live ledger.",
+      "parent_dependencies": [
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "Q4",
+      "name": "TREAT_REPLAY_001_AS_OPTIONAL_WHEN_IT_IS_THE_ONLY_REMAINING_PARENT",
+      "status": "QUARANTINED",
+      "why_quarantined": "REPLAY_001 is the sole remaining unresolved compact-test parent in the current slice.",
+      "comparison_anchor_dependencies": [
+        "BATCH_archive_surface_deep_archive_v2_zipv2_replay_001__v1:A2_2_CANDIDATE_SUMMARIES__v1.md",
+        "BATCH_INDEX__v1.md"
+      ]
+    },
+    {
+      "id": "Q5",
+      "name": "TREAT_THIS_ROUTING_AUDIT_AS_ACTIVE_A2_CONTROL_MEMORY",
+      "status": "QUARANTINED",
+      "why_quarantined": "This batch is only a bounded A2-mid routing surface and must not be promoted into active A2 control law.",
+      "parent_dependencies": [
+        "A2_MID_REFINEMENT_PROCESS__v1.md",
+        "BATCH_INDEX__v1.md"
+      ]
+    }
+  ],
+  "reasons_for_candidate_status": [
+    "These candidates isolate the closure facts that matter now: earlier compact-test families in this lane are already child-complete; the residual compact test pool has collapsed to REPLAY_001 only; and REPLAY_001 is therefore the strongest next bounded entry point.",
+    "They remain routing-only, contradiction-preserving, and explicitly below active A2 authority."
+  ],
+  "reasons_for_quarantine_status": [
+    "These items remain stale duplicate targeting, overclosure, reopening of already-childed parents, or active-control inflation rather than clean routing packets.",
+    "The audit is useful for selection, but not promotable as active law."
+  ],
+  "control_surface_mutation": "NONE"
+}

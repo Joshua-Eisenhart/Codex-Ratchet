@@ -10,6 +10,37 @@ It proposes strategy objects; it does not emit B containers.
 Execution-depth companion:
 - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/18_A1_WIGGLE_EXECUTION_CONTRACT.md`
 
+## Live Operator Law Note
+The current live packet/runtime/control path uses the control-plane operator enum and repair mapping:
+- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ENUM_REGISTRY_v1.md`
+- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A1_REPAIR_OPERATOR_MAPPING_v1.md`
+- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A1_STRATEGY_v1.md`
+
+So the older repair operator vocabulary later in this draft should be read as legacy/nonactive doctrine, not as the current runtime `operator_id` source of truth.
+
+## Section Status Map
+Sections in this file are mixed rather than uniformly current.
+
+Treat these sections as the still-useful live/profile-facing surface:
+- `Role`
+- `Anti-Classical Leakage`
+- `Rosetta Function`
+- `Rosetta: Cold-Core Extraction + Reattachment Dictionaries`
+- `Mandatory Output`
+- `Strategy Container Shape`
+- `A1_STRATEGY_v1 Minimal Schema (Implementation-Facing)`
+- `Strategy Contents`
+- `Canon Boundary`
+- `Fix-Intent Schema`
+
+Treat sections explicitly labeled `Legacy` as preserved historical draft branch/wiggle doctrine, not as the live runtime/control path:
+- `Legacy Wiggle Model`
+- `Legacy Branch Scheduler`
+- `Legacy Novelty Floor`
+- `Legacy Repair Loop Vocabulary`
+- `Legacy Branch Lifecycle`
+- `Legacy Stall Behavior`
+
 ## Anti-Classical Leakage (`RQ-097`, `RQ-098`)
 - `RQ-097` MUST: treat any “classical proof thinking” that bypasses ratcheting as drift and correct it via explicit proposal repair.
 - `RQ-098` MUST: default stance is non-conservative batching; convergence is via massive exploration under finitude and noncommutation.
@@ -60,29 +91,95 @@ Required sections:
 JSON is allowed. A0 canonicalizes either to deterministic JSON (`RQ-030`).
 
 ## A1_STRATEGY_v1 Minimal Schema (Implementation-Facing)
-This schema is the minimal stable interface A0 expects. Extra keys may exist above the boundary, but A0 may drop/ignore them.
+This section describes the current live packet profile validated by the active bootpack A1->A0 path.
+For the current local packet path, extra root keys are rejected fail-closed; richer authoring surfaces must be canonicalized into this subset before packet emission.
 
 Top-level required keys:
 - `schema: A1_STRATEGY_v1`
+- `strategy_id`
+- `inputs`
 - `budget`
 - `policy`
 - `targets`
 - `alternatives`
 - `sims`
+- `self_audit`
+
+Required live subfields:
+- `inputs`
+  - `state_hash`
+  - `fuel_slice_hashes[]`
+  - `bootpack_rules_hash`
+  - `pinned_ruleset_sha256`
+  - `pinned_megaboot_sha256`
+- `policy`
+  - `forbid_fields[]`
+  - `overlay_ban_terms[]`
+  - `require_try_to_fail`
+- `self_audit`
+  - `strategy_hash`
+  - `compile_lane_digest`
+  - `candidate_count`
+  - `alternative_count`
+  - `operator_ids_used[]`
+
+Authoring-side helper summaries (not current packet root fields):
+- `target_terms`
+  - compact ordered term list extracted from final `targets[]`
+  - intended to make the final selected target family legible without re-parsing `def_fields`
+- `family_terms`
+  - compact ordered term list derived from `target_terms` plus active role-bearing admissibility buckets
+  - intended to make family scope legible for audits, controller logic, and downstream non-compile consumers
+  - should prefer heads, companions, passengers, witnesses, and witness-floor terms
+  - should not inflate with residue-only terms by default
+- `admissibility`
+  - compact role-placement summary emitted by A1 when available
+  - intended to make landing/admissibility judgment explicit before A0 compilation
+
+Minimal `admissibility` shape:
+- `executable_head[]`
+- `active_companion_floor[]`
+- `late_passengers[]`
+- `witness_only_terms[]`
+- `residue_terms[]`
+- `landing_blockers[]`
+
+Recommended extended `admissibility` shape for active selector output:
+- `witness_floor[]`
+- `current_readiness_status{}`
+- `process_audit{}`
+  - `wiggle_minimum_content_ok`
+  - `movement_over_throughput_ok`
+  - `evidence_gated_promotion_ok`
+  - `sim_evidence_boundary_ok`
+  - `hash_anchored_sim_evidence_ok`
+  - `state_sim_evidence_hash`
+  - `warnings[]`
+
+Boundary note:
+- `target_terms` and `family_terms` are summary aids, not authoritative compile inputs
+- `admissibility` is advisory A1 judgment, not earned truth
+- on the live packet path, these helper summaries must stay outside the validated packet root
+- they should remain available in adjacent audit/handoff surfaces rather than packet fields rejected by the validator
+
+Operational purpose of the extended fields:
+- surface `WIGGLE_MINIMUM_CONTENT_CONTRACT` as a default output check rather than scattered doctrine
+- prefer movement over throughput by warning when residue dominates the strategy object
+- keep evidence-gated term promotion visible in the emitted role/status map
+- make the sims source/evidence boundary visible at the strategy handoff layer
+- on the current local selector path, allow hash-anchored sim evidence to be satisfied either by `inputs.evidence_summary_hash` or by a deterministic digest of state-backed `sim_results`
 
 ### Kernel-Lane Item Object (inside `targets[]` and `alternatives[]`)
 Each candidate is represented as a structured object that A0 can deterministically compile into bootpack grammar lines.
 
 Minimum fields:
-- `item_class`: `AXIOM_HYP|PROBE_HYP|SPEC_HYP`
+- `item_class`: current live packet path requires `SPEC_HYP`
 - `id`: `<ID>`
-- `kind`: for:
-  - `AXIOM_HYP`: `axiom_kind`
-  - `PROBE_HYP`: `probe_kind`
-  - `SPEC_HYP`: `spec_kind`
+- `kind`: current live packet path allows `MATH_DEF|TERM_DEF|LABEL_DEF|CANON_PERMIT|SIM_SPEC`
 - `requires[]`: list of dependency IDs (may be empty)
 - `asserts[]`: list of assertion objects (may be empty)
 - `def_fields[]`: list of DEF_FIELD objects (may be empty)
+- `operator_id`: emitting operator id for traceability
 
 Assertion object:
 - `assert_id`: `<ID>` (line-local correlation id)
@@ -98,6 +195,7 @@ DEF_FIELD object:
 Compilation rule (boundary hygiene):
 - Any free English / high-entropy text MUST be placed in `LABEL_QUOTED` or `FORMULA_QUOTED` only.
 - `BARE` values must be restricted to kernel-safe tokens (IDs, token-like atoms) to avoid undefined-term and derived-only violations.
+- current live packet validator also requires every `SIM_SPEC` candidate to include at least one probe dependency id beginning with `P`
 
 Minimum structural skeleton (illustrative; non-normative keys may be added above the boundary):
 ```yaml
@@ -120,6 +218,15 @@ sims:
   positive: []
   negative: []
 fix_intents: []                   # optional; see RQ-045/RQ-049
+admissibility:                    # optional compact landing-role summary
+  executable_head: []
+  active_companion_floor: []
+  late_passengers: []
+  witness_only_terms: []
+  residue_terms: []
+  landing_blockers: []
+target_terms: []                  # optional explicit term list from final targets
+family_terms: []                  # optional explicit family/role term summary
 ```
 
 Hard bans (A1 output policy; enforced at A0 preflight):
@@ -135,7 +242,10 @@ For each target cluster:
 - positive/negative sim references
 - expected failure modes
 
-## Wiggle Model (`RQ-042`)
+## Legacy Wiggle Model (`RQ-042`)
+This section preserves older branch-exploration draft language.
+It is not the live control-plane operator/scheduler source of truth.
+
 Allowed exploration moves:
 - lexical mutations
 - composition/decomposition mutations
@@ -148,7 +258,10 @@ Disallowed:
 - bypassing root constraints
 - prose payloads aimed at B parser surface
 
-## Branch Scheduler (`RQ-046`)
+## Legacy Branch Scheduler (`RQ-046`)
+This quota summary is preserved as older draft branch doctrine.
+It does not define the current live runtime/control scheduler surface.
+
 A1 maintains branch states:
 - `OPEN`
 - `ACTIVE`
@@ -165,7 +278,7 @@ Per cycle quota table (defaults):
 
 Quota sum must be exactly 1.0.
 
-## Novelty Floor (`RQ-047`)
+## Legacy Novelty Floor (`RQ-047`)
 Each new branch is compared against active branches.
 Novelty score uses deterministic token/structure distance.
 
@@ -173,7 +286,10 @@ Default rule:
 - reject branch if novelty score `< 0.15`
 - unless branch addresses unseen failure mode id
 
-## Repair Loop (`RQ-043`)
+## Legacy Repair Loop Vocabulary (`RQ-043`)
+This repair operator list is preserved as older draft terminology.
+The live runtime/control path now uses the control-plane operator enum/mapping instead.
+
 Inputs:
 - B reject tags
 - B park reasons
@@ -190,7 +306,7 @@ Repair operators:
 
 All repaired candidates carry `repair_from` references.
 
-## Branch Lifecycle (`RQ-048`)
+## Legacy Branch Lifecycle (`RQ-048`)
 Retire branch when:
 - identical failure tag repeats for `N` retries (default `N=3`)
 - no novelty increase for `M` cycles (default `M=2`)
@@ -220,7 +336,7 @@ Each fix intent must include:
 
 Fix intents are A2/engineering review inputs, not runtime mutations.
 
-## Stall Behavior
+## Legacy Stall Behavior
 If branch pool stalls:
 - increase unresolved-frontier bias
 - increase failure-mode-coverage bias

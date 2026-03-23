@@ -3,10 +3,29 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 
 
-ROOT = Path("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
+def _infer_repo_root(start: Path) -> Path:
+    cur = start.resolve()
+    if cur.is_file():
+        cur = cur.parent
+    for _ in range(10):
+        if (cur / "system_v3").is_dir():
+            return cur
+        cur = cur.parent
+    return start.resolve()
+
+
+def _resolve_repo_root(repo_root_raw: str) -> Path:
+    raw = str(repo_root_raw or "").strip()
+    if raw:
+        return Path(raw).expanduser().resolve()
+    env = str(os.environ.get("CODEX_RATCHET_ROOT", "") or "").strip()
+    if env:
+        return Path(env).expanduser().resolve()
+    return _infer_repo_root(Path(__file__).resolve())
 
 
 def _dir_size_bytes(root: Path) -> int:
@@ -37,12 +56,19 @@ def _largest_files(root: Path, top_n: int) -> list[dict]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Report archive tier sizes and largest files.")
+    parser.add_argument(
+        "--repo-root",
+        default="",
+        help="Repository root. If omitted, uses $CODEX_RATCHET_ROOT, else infers from script path.",
+    )
     parser.add_argument("--max-cache-bytes", type=int, default=2_000_000_000)
     parser.add_argument("--max-deep-bytes", type=int, default=20_000_000_000)
     parser.add_argument("--top-n", type=int, default=20)
     args = parser.parse_args()
 
-    archive_root = ROOT / "archive"
+    root = _resolve_repo_root(args.repo_root)
+
+    archive_root = root / "archive"
     cache_root = archive_root / "CACHE__HIGH_ENTROPY__RECENT__PURGEABLE"
     deep_root = archive_root / "DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY"
     legacy_root = archive_root / "LEGACY_REFERENCE__READ_ONLY"

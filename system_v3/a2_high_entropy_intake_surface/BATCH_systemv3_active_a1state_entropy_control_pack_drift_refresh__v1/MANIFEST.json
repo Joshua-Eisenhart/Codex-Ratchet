@@ -1,0 +1,122 @@
+{
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "batch_id": "BATCH_systemv3_active_a1state_entropy_control_pack_drift_refresh__v1",
+  "batch_scope": "bounded_live_refresh_over_drifted_members_of_the_active_a1state_entropy_control_pack_family",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T20:23:38Z",
+  "extraction_mode": "ACTIVE_A1STATE_ENTROPY_CONTROL_PACK_DRIFT_REFRESH_PASS",
+  "promotion_status": "A2_3_REUSABLE",
+  "promotion_guardrail": "Proposal-side only. This packet records live source drift inside the earlier active a1_state entropy-control family. It does not authorize rewriting the older batch, backfilling later entropy-support packets, or promoting the refreshed bridge-support trio directly into active A2-1 law from this batch alone.",
+  "parent_batch_ids": [
+    "BATCH_systemv3_active_a1state_entropy_control_pack_family__v1"
+  ],
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_systemv3_active_a1state_entropy_control_pack_family__v1/MANIFEST.json",
+      "role_in_batch": "historical_snapshot_manifest_anchor",
+      "relevance": "Preserves the exact earlier source-bound family snapshot that no longer matches the three live bridge-support files."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_systemv3_active_a1state_entropy_support_pack_family__v1/MANIFEST.json",
+      "role_in_batch": "downstream_continuation_anchor",
+      "relevance": "Shows that folder-order continuation after this refresh still moves into the active A1 entropy support-pack family."
+    }
+  ],
+  "source_membership": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_COLDER_WITNESS_PACK__v1.md",
+      "role_in_batch": "colder_witness_entropy_reformulation_pack",
+      "sha256": "e43de1773f5904a73f56d7bc17a34ef032cc88eddff99c51f1a1917441255da8",
+      "line_count": 139,
+      "size_bytes": 4675,
+      "previous_parent_snapshot": {
+        "batch_id": "BATCH_systemv3_active_a1state_entropy_control_pack_family__v1",
+        "sha256": "25a1362e0020f2350c256e4833e1a25b07a1f096745531bdfd83ee94d575998d",
+        "line_count": 138,
+        "size_bytes": 4611
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_LIFT_PACK__v1.md",
+      "role_in_batch": "helper_lift_entropy_reformulation_pack",
+      "sha256": "b07a07548eb3e74437fe5d0f4fb2727d779da3380e5a69503d0ee47d76d8f362",
+      "line_count": 80,
+      "size_bytes": 2442,
+      "previous_parent_snapshot": {
+        "batch_id": "BATCH_systemv3_active_a1state_entropy_control_pack_family__v1",
+        "sha256": "2d9c4225a79deb306adc541ea26405c17407aa27d67df740df7286910ab3ff0a",
+        "line_count": 80,
+        "size_bytes": 2486
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_REFORMULATION_PACK__v1.md",
+      "role_in_batch": "entropy_rescue_structure_pack",
+      "sha256": "09604c979dca0806c73ce742c4321a933f417d9039f5f9067c209cf63d66f148",
+      "line_count": 134,
+      "size_bytes": 4264,
+      "previous_parent_snapshot": {
+        "batch_id": "BATCH_systemv3_active_a1state_entropy_control_pack_family__v1",
+        "sha256": "52a27518af5d4cadbe174326f0342fefe7b65bf51ae5f9c97ab4c3d8b7c1f7a5",
+        "line_count": 133,
+        "size_bytes": 4198
+      }
+    }
+  ],
+  "family_rationale": [
+    "The queued reuse check failed because three live bridge-support members of the earlier active a1_state entropy-control family drifted from the stored manifest.",
+    "This refresh is intentionally limited to the drifted trio so the older first-pass family batch remains preserved as a historical source-bound snapshot.",
+    "The next low-entropy continuation still belongs to the adjacent active A1 entropy support-pack family rather than a full re-extraction of the entire entropy-control packet."
+  ],
+  "drift_summary": {
+    "changed_member_count": 3,
+    "unchanged_member_count": 5,
+    "changed_member_classes": [
+      "bridge_support_surface",
+      "reformulation_surface"
+    ],
+    "why_refresh_not_reuse": "The old family manifest no longer source-matches the live repo on these three files."
+  },
+  "raw_source_reread_needed": true,
+  "raw_source_reread_reason": "The queued reuse check failed. The three drifted live bridge-support files were reopened directly to preserve bounded, source-linked refresh content instead of falsely reporting manifest reuse.",
+  "control_surface_mutation": "NONE",
+  "deferred_next_in_folder_order": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_STRUCTURE_LIFT_PACK__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_FAMILY_MERGE_FENCE__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_HELPER_LEAK_STRIP_PACK__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_PROBE_COMPANION_PACK__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_RATE_LIFT_PACK__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_REQUIRED_PROBE_WITNESS_PACK__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_RESCUE_TARGET_DECOMPOSITION_PACK__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_THERMAL_TIME_RESCUE_PACK__v1.md"
+  ],
+  "structure_markers": [
+    {
+      "label": "colder_witness_refresh_packet",
+      "line_spans": [
+        "A1_ENTROPY_BRIDGE_COLDER_WITNESS_PACK__v1.md:1-139"
+      ]
+    },
+    {
+      "label": "helper_lift_refresh_packet",
+      "line_spans": [
+        "A1_ENTROPY_BRIDGE_HELPER_LIFT_PACK__v1.md:1-80"
+      ]
+    },
+    {
+      "label": "reformulation_refresh_packet",
+      "line_spans": [
+        "A1_ENTROPY_BRIDGE_REFORMULATION_PACK__v1.md:1-134"
+      ]
+    }
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; use this packet to keep the active A1 entropy-control read current without rewriting the earlier family batch or promoting the refreshed bridge-support trio directly into active A2-1 law from this refresh alone",
+  "notes": [
+    "No active A2 surfaces were mutated.",
+    "The earlier BATCH_systemv3_active_a1state_entropy_control_pack_family__v1 remains preserved as a historical source-bound packet.",
+    "This packet records live drift only and does not settle authority questions by itself."
+  ]
+}

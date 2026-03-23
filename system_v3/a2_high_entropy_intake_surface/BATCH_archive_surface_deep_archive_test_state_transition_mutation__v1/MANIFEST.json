@@ -1,0 +1,292 @@
+{
+  "batch_id": "BATCH_archive_surface_deep_archive_test_state_transition_mutation__v1",
+  "batch_scope": "deep_archive_test_state_transition_mutation_run_root",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T19:50:55Z",
+  "deferred_next_in_folder_order": [
+    "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/V2_ZIPV2_PACKET_E2E_001"
+  ],
+  "extraction_mode": "ARCHIVE_DEEP_TEST_STATE_TRANSITION_MUTATION_PASS",
+  "notes": [
+    "This batch processes only TEST_STATE_TRANSITION_MUTATION and treats it as a historical one-step mutation run, not as current runtime authority.",
+    "The primary executed spine preserves one accepted batch, one executed event row, one strategy/export/snapshot chain, and two retained SIM results with no queued continuation packet.",
+    "Summary and state sidecar bind to final hash 63995c34..., while the sole executed event ends on fcb5d2fe....",
+    "Summary and soak report zero parks and zero rejects, yet final state keeps two PARKED promotion states and two unresolved blockers.",
+    "The Thread-S snapshot still lists both retained specs under EVIDENCE_PENDING, while final state keeps evidence_pending empty.",
+    "Export and snapshot preserve KILL_IF ... NEG_NEG_BOUNDARY lines for both specs, yet final state keeps kill_log empty and retained SIM evidence files do not emit explicit kill-signal lines.",
+    "The root also keeps an exact duplicate ` 2` file family and multiple empty suffixed directories as packaging residue.",
+    "Archived event rows still point to live-runtime packet paths under system_v3/runtime and use the variant step-result shape without an explicit event key."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "REVISIT_REQUIRED",
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "source_family": "archive root deep archive test state transition mutation run root",
+  "source_membership": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION",
+      "role_in_batch": "direct_run_root",
+      "top_level_entries": [
+        "a1_inbox",
+        "a1_strategies 2",
+        "events 2.jsonl",
+        "events.jsonl",
+        "outbox 2",
+        "reports 2",
+        "sequence_state 2.json",
+        "sequence_state.json",
+        "soak_report 2.md",
+        "soak_report.md",
+        "state 2.json",
+        "state.json",
+        "state.json 2.sha256",
+        "state.json.sha256",
+        "summary 2.json",
+        "summary.json",
+        "zip_packets 2",
+        "zip_packets"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/summary.json",
+      "role_in_batch": "primary_run_summary",
+      "summary": {
+        "run_id": "TEST_STATE_TRANSITION_MUTATION",
+        "a1_source": "replay",
+        "needs_real_llm": false,
+        "steps_completed": 1,
+        "steps_requested": 1,
+        "accepted_total": 4,
+        "parked_total": 0,
+        "rejected_total": 0,
+        "sim_registry_count": 2,
+        "unresolved_promotion_blocker_count": 2,
+        "stop_reason": "MAX_STEPS",
+        "unique_strategy_digest_count": 1,
+        "unique_export_content_digest_count": 1,
+        "unique_export_structural_digest_count": 1,
+        "final_state_hash": "63995c34d867895591e52acf86da07ea9bd6d96de0c1a0de2d9afb7039fb1000"
+      },
+      "promotion_counts_by_tier": {
+        "T0_ATOM": {
+          "fail": 0,
+          "pass": 0
+        },
+        "T1_COMPOUND": {
+          "fail": 2,
+          "pass": 0
+        },
+        "T2_OPERATOR": {
+          "fail": 0,
+          "pass": 0
+        },
+        "T3_STRUCTURE": {
+          "fail": 0,
+          "pass": 0
+        },
+        "T4_SYSTEM_SEGMENT": {
+          "fail": 0,
+          "pass": 0
+        },
+        "T5_ENGINE": {
+          "fail": 0,
+          "pass": 0
+        },
+        "T6_WHOLE_SYSTEM": {
+          "fail": 0,
+          "pass": 0
+        }
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/state.json",
+      "role_in_batch": "primary_run_state",
+      "state_summary": {
+        "accepted_batch_count": 1,
+        "canonical_ledger_len": 1,
+        "evidence_tokens_len": 2,
+        "probe_meta_len": 2,
+        "reject_log_len": 0,
+        "sim_promotion_status_len": 2,
+        "sim_registry_len": 2,
+        "sim_results_len": 2,
+        "survivor_ledger_len": 6,
+        "evidence_pending_len": 0,
+        "kill_log_len": 0
+      },
+      "canonical_previous_hashes": [
+        "7c6fbf60826eaf185e71e9329873beddeda9baa2f9ce956626b97115e8bafc89"
+      ],
+      "evidence_tokens": [
+        "E_BIND_ALPHA",
+        "E_BIND_ALPHA_ALT"
+      ],
+      "survivor_ids": [
+        "F01_FINITUDE",
+        "N01_NONCOMMUTATION",
+        "P_BIND_ALPHA",
+        "P_BIND_ALPHA_ALT",
+        "S_BIND_ALPHA_ALT_ALT_S0001",
+        "S_BIND_ALPHA_S0001"
+      ],
+      "sim_registry_ids": [
+        "S_BIND_ALPHA_ALT_ALT_S0001",
+        "S_BIND_ALPHA_S0001"
+      ],
+      "sim_promotion_status_values": [
+        "PARKED"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/state.json.sha256",
+      "role_in_batch": "primary_state_hash_sidecar",
+      "declared_sha256": "63995c34d867895591e52acf86da07ea9bd6d96de0c1a0de2d9afb7039fb1000",
+      "matches_state_json": true,
+      "matches_summary_final_hash": true
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/sequence_state.json",
+      "role_in_batch": "primary_sequence_counters",
+      "seq_by_source": {
+        "A0": 1,
+        "A1": 1,
+        "A2": 0,
+        "B": 1,
+        "SIM": 2
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/events.jsonl",
+      "role_in_batch": "primary_event_ledger",
+      "line_count": 1,
+      "row_shape": "step_result_variant_without_explicit_event_field",
+      "steps_present": [
+        1
+      ],
+      "accepted_sum": 4,
+      "parked_sum": 0,
+      "rejected_sum": 0,
+      "step_summaries": [
+        {
+          "step": 1,
+          "accepted": 4,
+          "rejected": 0,
+          "unresolved_promotion_blocker_count": 2,
+          "state_hash_before": "7c6fbf60826eaf185e71e9329873beddeda9baa2f9ce956626b97115e8bafc89",
+          "state_hash_after": "fcb5d2fe5a693a675ab749e15acc5baeeadc412c596aa076ee32c46c718fa1ba",
+          "sim_outputs_len": 2
+        }
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/soak_report.md",
+      "role_in_batch": "primary_soak_report",
+      "report_summary": {
+        "cycle_count": 1,
+        "accepted_total": 4,
+        "parked_total": 0,
+        "rejected_total": 0,
+        "stop_reason": "MAX_STEPS",
+        "top_failure_tags": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/{summary 2.json,state 2.json,state.json 2.sha256,sequence_state 2.json,events 2.jsonl,soak_report 2.md}",
+      "role_in_batch": "duplicate_file_family",
+      "byte_identical_to_primary": true
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/{a1_inbox,a1_strategies 2,outbox 2,reports 2,zip_packets 2}",
+      "role_in_batch": "empty_residue_directories",
+      "all_empty": true
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/zip_packets",
+      "role_in_batch": "packet_lattice",
+      "file_count": 5,
+      "kind_counts": {
+        "A0_TO_B_EXPORT_BATCH_ZIP": 1,
+        "A1_TO_A0_STRATEGY_ZIP": 1,
+        "B_TO_A0_STATE_UPDATE_ZIP": 1,
+        "SIM_TO_A0_SIM_RESULT_ZIP": 2
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/zip_packets/000001_A1_TO_A0_STRATEGY_ZIP.zip",
+      "role_in_batch": "only_strategy_packet",
+      "sha256": "c42c71ae226d9d67cc12aa5dfc14ebf8a8cbe8ffdbd83097056c7f4a890a477f",
+      "size_bytes": 1905,
+      "payload_summary": {
+        "strategy_id": "STRAT_SAMPLE_0001",
+        "target_id": "S_BIND_ALPHA_S0001",
+        "alternative_id": "S_BIND_ALPHA_ALT_ALT_S0001",
+        "target_family": "PERTURBATION",
+        "alternative_family": "PERTURBATION",
+        "target_tier": "T1_COMPOUND",
+        "alternative_tier": "T1_COMPOUND",
+        "target_negative_class": "NEG_BOUNDARY",
+        "alternative_negative_class": "NEG_BOUNDARY",
+        "input_state_hash": "7c6fbf60826eaf185e71e9329873beddeda9baa2f9ce956626b97115e8bafc89"
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/zip_packets/000001_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+      "role_in_batch": "only_export_packet",
+      "sha256": "e39f055c7aeeca650ec7ade53792fc2dc61e75542047b839ab7077a279758fa7",
+      "size_bytes": 1423,
+      "payload_markers": {
+        "target_thread": "THREAD_B_ENFORCEMENT_KERNEL",
+        "export_targets": [
+          "P_BIND_ALPHA",
+          "S_BIND_ALPHA_S0001",
+          "P_BIND_ALPHA_ALT",
+          "S_BIND_ALPHA_ALT_ALT_S0001"
+        ],
+        "negative_class_values": [
+          "NEG_BOUNDARY"
+        ],
+        "kill_if_value": "NEG_NEG_BOUNDARY"
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/zip_packets/000001_B_TO_A0_STATE_UPDATE_ZIP.zip",
+      "role_in_batch": "only_thread_s_snapshot_packet",
+      "sha256": "74bbff97650c8613af3e016ed49abe78d2e68f701867aaa46e3f75d58b88544a",
+      "size_bytes": 1552,
+      "payload_markers": {
+        "accepted_batch_count": 1,
+        "survivor_ids": [
+          "F01_FINITUDE",
+          "N01_NONCOMMUTATION",
+          "P_BIND_ALPHA",
+          "P_BIND_ALPHA_ALT",
+          "S_BIND_ALPHA_ALT_ALT_S0001",
+          "S_BIND_ALPHA_S0001"
+        ],
+        "evidence_pending_for": [
+          "S_BIND_ALPHA_ALT_ALT_S0001",
+          "S_BIND_ALPHA_S0001"
+        ]
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/zip_packets/{000001_SIM_TO_A0_SIM_RESULT_ZIP.zip,000002_SIM_TO_A0_SIM_RESULT_ZIP.zip}",
+      "role_in_batch": "retained_sim_evidence_pair",
+      "payload_markers": [
+        {
+          "sim_id": "S_BIND_ALPHA_ALT_ALT_S0001",
+          "tier": "T1_COMPOUND",
+          "family": "PERTURBATION",
+          "evidence_signal": "E_BIND_ALPHA_ALT"
+        },
+        {
+          "sim_id": "S_BIND_ALPHA_S0001",
+          "tier": "T1_COMPOUND",
+          "family": "PERTURBATION",
+          "evidence_signal": "E_BIND_ALPHA"
+        }
+      ]
+    }
+  ]
+}

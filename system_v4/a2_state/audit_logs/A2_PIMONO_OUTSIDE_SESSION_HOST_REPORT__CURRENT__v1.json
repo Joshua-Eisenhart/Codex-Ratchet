@@ -1,0 +1,127 @@
+{
+  "assistant_stop_reasons": {
+    "aborted": 21,
+    "error": 1,
+    "stop": 65,
+    "toolUse": 366
+  },
+  "audit_only": true,
+  "bash_execution_present": false,
+  "cluster_id": "SKILL_CLUSTER::outside-control-shell-session-host",
+  "compaction_summary": {
+    "before_compaction_fixture_present": true,
+    "entry_type_count": 0,
+    "entry_type_present": false,
+    "message_role_count": 0,
+    "message_role_present": false
+  },
+  "do_not_promote": true,
+  "entry_counts": {
+    "message": 914,
+    "model_change": 1,
+    "session": 1,
+    "thinking_level_change": 103
+  },
+  "first_slice": "outside-control-shell-operator",
+  "generated_utc": "2026-03-21T12:22:01Z",
+  "interactive_shell_capability": {
+    "follow_up_documented": true,
+    "get_state_documented": true,
+    "interactive_shell_example_path": "work/reference_repos/other/pi-mono/packages/coding-agent/examples/extensions/interactive-shell.ts",
+    "interactive_shell_example_present": true,
+    "rpc_doc_path": "work/reference_repos/other/pi-mono/packages/coding-agent/docs/rpc.md",
+    "rpc_mode_documented": true,
+    "steer_documented": true
+  },
+  "issues": [],
+  "message_counts": {
+    "assistant": 453,
+    "toolResult": 373,
+    "user": 88
+  },
+  "mom_workspace_boundary": {
+    "boundary_only": true,
+    "dangerous_surfaces": [
+      "treating mom as a safe host runtime",
+      "treating context.jsonl as canonical truth",
+      "auth or credential files",
+      "attachment bodies",
+      "host or container execution state"
+    ],
+    "doc_path": "work/reference_repos/other/pi-mono/packages/mom/README.md",
+    "doc_present": true,
+    "safe_observable_surfaces": [
+      "workspace/channel layout",
+      "log.jsonl",
+      "context.jsonl shape only",
+      "global and channel MEMORY.md",
+      "global and channel skills/",
+      "settings.json",
+      "attachment inventory and paths only"
+    ],
+    "workspace_layout_documented": true
+  },
+  "non_goals": [
+    "Do not claim full pi-mono integration or runtime hosting inside Ratchet.",
+    "Do not claim memory integration, startup retrieval, or A2 replacement.",
+    "Do not mutate pi-mono workspaces, session files, or canonical A2 state.",
+    "Do not treat mom workspace surfaces or context.jsonl as canonical control state."
+  ],
+  "nonoperative": true,
+  "observer_only": true,
+  "recommended_next_actions": [
+    "Keep the pi-mono slice report-only and read-only until a later host/session operator is justified.",
+    "Treat mom as a workspace-boundary source only; do not treat it as canonical control state.",
+    "Use this report as evidence for later outside-shell planning, not as proof of runtime integration."
+  ],
+  "schema": "A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT_v1",
+  "session_header": {
+    "branch_reference_present": false,
+    "cwd": "/Users/badlogic/workspaces/pi-mono",
+    "declared_keys": [
+      "cwd",
+      "id",
+      "modelId",
+      "provider",
+      "thinkingLevel",
+      "timestamp",
+      "type"
+    ],
+    "id": "d703a1a9-1b7b-4fb1-b512-c9738b1fe617",
+    "modelId": "claude-sonnet-4-5",
+    "provider": "anthropic",
+    "thinkingLevel": "off",
+    "timestamp": "2025-11-20T23:33:50.805Z",
+    "version_present": false
+  },
+  "source_family": "pi-mono",
+  "source_ref_status": {
+    "before_compaction_fixture": {
+      "exists": true,
+      "path": "work/reference_repos/other/pi-mono/packages/coding-agent/test/fixtures/before-compaction.jsonl",
+      "required": false
+    },
+    "interactive_shell_example": {
+      "exists": true,
+      "path": "work/reference_repos/other/pi-mono/packages/coding-agent/examples/extensions/interactive-shell.ts",
+      "required": true
+    },
+    "mom_doc": {
+      "exists": true,
+      "path": "work/reference_repos/other/pi-mono/packages/mom/README.md",
+      "required": true
+    },
+    "rpc_doc": {
+      "exists": true,
+      "path": "work/reference_repos/other/pi-mono/packages/coding-agent/docs/rpc.md",
+      "required": true
+    },
+    "session_doc": {
+      "exists": true,
+      "path": "work/reference_repos/other/pi-mono/packages/coding-agent/docs/session.md",
+      "required": true
+    }
+  },
+  "status": "ok",
+  "target_surface_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/reference_repos/other/pi-mono/packages/coding-agent/test/fixtures/large-session.jsonl"
+}

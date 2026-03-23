@@ -3,17 +3,38 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 
 
-ROOT = Path("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
+def _infer_repo_root(start: Path) -> Path:
+    cur = start.resolve()
+    if cur.is_file():
+        cur = cur.parent
+    for _ in range(10):
+        if (cur / "system_v3").is_dir():
+            return cur
+        cur = cur.parent
+    return start.resolve()
+
+
+def _resolve_repo_root(repo_root_raw: str) -> Path:
+    raw = str(repo_root_raw or "").strip()
+    if raw:
+        return Path(raw).expanduser().resolve()
+    env = str(os.environ.get("CODEX_RATCHET_ROOT", "") or "").strip()
+    if env:
+        return Path(env).expanduser().resolve()
+    return _infer_repo_root(Path(__file__).resolve())
 
 ALLOWED_TOP_LEVEL_DIRS = {
     ".cursor",
     ".git",
+    ".minimax",
     "archive",
     "core_docs",
     "system_v3",
+    "work",
 }
 
 
@@ -29,19 +50,26 @@ def _dir_size_bytes(root: Path) -> int:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Guard top-level and run-surface sprawl.")
+    parser.add_argument(
+        "--repo-root",
+        default="",
+        help="Repository root. If omitted, uses $CODEX_RATCHET_ROOT, else infers from script path.",
+    )
     parser.add_argument("--max-runs-total-bytes", type=int, default=2_000_000_000)
     parser.add_argument("--max-runs-count", type=int, default=200)
     parser.add_argument("--top-n-largest-runs", type=int, default=10)
     args = parser.parse_args()
 
+    root = _resolve_repo_root(args.repo_root)
+
     unexpected = []
-    for p in sorted(ROOT.iterdir(), key=lambda x: x.name.lower()):
+    for p in sorted(root.iterdir(), key=lambda x: x.name.lower()):
         if not p.is_dir():
             continue
         if p.name not in ALLOWED_TOP_LEVEL_DIRS:
             unexpected.append(str(p))
 
-    runs_root = ROOT / "system_v3" / "runs"
+    runs_root = root / "system_v3" / "runs"
     run_dirs = []
     if runs_root.exists():
         for p in runs_root.iterdir():
@@ -67,7 +95,7 @@ def main() -> int:
     top_level_ok = len(unexpected) == 0
 
     report = {
-        "root": str(ROOT),
+        "root": str(root),
         "allowed_top_level_dirs": sorted(ALLOWED_TOP_LEVEL_DIRS),
         "unexpected_top_level_dirs": unexpected,
         "run_surface": {

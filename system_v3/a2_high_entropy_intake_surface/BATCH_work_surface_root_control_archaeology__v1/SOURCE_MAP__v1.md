@@ -1,0 +1,261 @@
+# SOURCE_MAP__v1
+Status: PROPOSED / NONCANONICAL / BOUNDED INTAKE ARTIFACT
+Batch: `BATCH_work_surface_root_control_archaeology__v1`
+Extraction mode: `PROCESS_ARCHAEOLOGY_PASS`
+Batch scope: first bounded `work/` root-control and shadow-`system_v3` entrypoint family, treated as spillover archaeology rather than active law
+Date: 2026-03-09
+
+## 1) Folder-Order Selection
+- first `work/` control-family docs selected in folder order:
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/00_READ_FIRST__A2_A1_REFINERY_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/ANALYSIS_SUMMARY.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CORE/A0_COMPILER_PROTOCOL_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CORE/SYSTEM_ARCHITECTURE_CANON_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CURRENT.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/LEAN_POLICY__READ_ME_FIRST__v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/SIM/NEGATIVE_SIM_PROTOCOL_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/SPINNER_ENGINE_PROTOCOL_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/SYSTEM_RUNTIME_CANON_v1.md`
+- bundled shadow migration family from the first `work/system_v3/` control plaques:
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_v3/00_CANONICAL_ENTRYPOINTS_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_v3/01_OPERATIONS_RUNBOOK_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_v3/02_SAFE_DELETE_SURFACE_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_v3/03_EXPLICIT_NAME_ALIAS_SURFACE_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_v3/WORKSPACE_LAYOUT_v1.md`
+- bundling reason:
+  - the root plaques and the shadow `system_v3` plaques describe one transitional control family:
+    - transfer-first A2 distillery ideas
+    - A1 sandbox/autonomy repair
+    - lean promote/prune behavior
+    - runtime/alias/entrypoint migration claims
+  - taken together, they expose reusable prototype process patterns and the exact migration debt that left those patterns stranded inside `work/`
+- deferred next docs in folder order:
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/AUTOWIGGLE_RESULTS.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/BLOCKAGE_DIAGNOSIS.txt`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/RATCHET_STATE_EXTRACT.txt`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/README__HOW_TO_RUN.txt`
+
+## 2) Source Membership
+- source 1:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/00_READ_FIRST__A2_A1_REFINERY_v1.md`
+  - sha256: `3d3a86e4d8aa27f0236f87ace46d8f8ba5569e139fdff786b2a8ec2d2daa17d0`
+  - size bytes: `4862`
+  - line count: `119`
+  - readable status in this batch: transition refinery plaque
+  - source-class note:
+    - strongest explicit statement that `work/` once hosted a sandbox-only A2->A1 refinery with transfer-first, contradiction-preserving goals
+- source 2:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/ANALYSIS_SUMMARY.md`
+  - sha256: `c1a6394353ed08691f4dd229e35f47625ac0cbd820c915473296a7a5c3dd0b8f`
+  - size bytes: `3987`
+  - line count: `149`
+  - readable status in this batch: autonomy-gap diagnosis and sandbox proposal
+  - source-class note:
+    - MiniMax-authored analysis surface describing a stalled lower half and a proposed A1 sandbox rescue
+- source 3:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CORE/A0_COMPILER_PROTOCOL_v1.md`
+  - sha256: `d6890336aaae47ad1e689cb1eb788729b5ad624227908bca5d03638334c761b7`
+  - size bytes: `2459`
+  - line count: `103`
+  - readable status in this batch: prototype lower-half bridge plaque
+  - source-class note:
+    - compact A0 contract emphasizing deterministic compile, evidence binding, and chain assembly
+- source 4:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CORE/SYSTEM_ARCHITECTURE_CANON_v1.md`
+  - sha256: `a88837cd055c120de0fefa75cdea390b32a75629554777ffd66faf21c10f19fc`
+  - size bytes: `4900`
+  - line count: `158`
+  - readable status in this batch: prototype official architecture claim
+  - source-class note:
+    - strong "canonical" phrasing for a work-surface architecture plaque that now has only archaeological status
+- source 5:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CURRENT.md`
+  - sha256: `85001b28223aee9146792b1e492c7289d2f13ffb1fc115a1ca7b7b4eb6b33acd`
+  - size bytes: `459`
+  - line count: `14`
+  - readable status in this batch: minimal shared focus plaque
+  - source-class note:
+    - points operators back toward `system_v3` as the real promotion target while still using `work/zip_dropins` as active support
+- source 6:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/LEAN_POLICY__READ_ME_FIRST__v1.md`
+  - sha256: `e5107f8e492297763f52e145bd4dd5b776fab8344d35d5401b90c09164ffd75f`
+  - size bytes: `612`
+  - line count: `20`
+  - readable status in this batch: prune/promote rule plaque
+  - source-class note:
+    - strongest explicit statement that most of `work/` is disposable after learning/promotion
+- source 7:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/SIM/NEGATIVE_SIM_PROTOCOL_v1.md`
+  - sha256: `ceea3b123beb332deeada982d074c4f3c666ed4f6ff041cf18772628d1295c91`
+  - size bytes: `3120`
+  - line count: `119`
+  - readable status in this batch: graveyard evidence protocol plaque
+  - source-class note:
+    - useful negative-sim and rescue-trigger schema proposal
+- source 8:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/SPINNER_ENGINE_PROTOCOL_v1.md`
+  - sha256: `6e1ab95e4cd2603cab9736a21f49dd66e35c8520bf204c4fc9a0345c62da0bee`
+  - size bytes: `3083`
+  - line count: `140`
+  - readable status in this batch: engine-topology claim surface
+  - source-class note:
+    - explicit dual-spinner/loop-orientation doctrine parked in `work/`
+- source 9:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/SYSTEM_RUNTIME_CANON_v1.md`
+  - sha256: `347414841c95c0b5e1ad63de3bdc89d3dd4b3b3c4139531277662670f9155fbd`
+  - size bytes: `6271`
+  - line count: `295`
+  - readable status in this batch: broad runtime doctrine plaque
+  - source-class note:
+    - mixes runtime-boundary language with strong attractor/engine claims
+- source 10:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_v3/00_CANONICAL_ENTRYPOINTS_v1.md`
+  - sha256: `1a9813379fee4ae7a40c8684534ee83603b20e146b962c5ff093bd9d990119f8`
+  - size bytes: `1404`
+  - line count: `36`
+  - readable status in this batch: shadow entrypoint plaque
+  - source-class note:
+    - marks a mirror `system_v3` tree inside `work/` as if it were an active canonical control surface
+- source 11:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_v3/01_OPERATIONS_RUNBOOK_v1.md`
+  - sha256: `434de941d74aca0667f31d0d69d1f6c101b99f44b8a54271003f584d8dae9126`
+  - size bytes: `1706`
+  - line count: `62`
+  - readable status in this batch: shadow operations runbook
+  - source-class note:
+    - concrete run/guard/save commands preserved inside the spillover mirror
+- source 12:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_v3/02_SAFE_DELETE_SURFACE_v1.md`
+  - sha256: `f292af5020039e57eb1682912365383ecd136383abee61a48a2fe0e97a30a768`
+  - size bytes: `1080`
+  - line count: `30`
+  - readable status in this batch: shadow cleanup guard surface
+  - source-class note:
+    - shows early cleanup heuristics tied to archive staging and replay guards
+- source 13:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_v3/03_EXPLICIT_NAME_ALIAS_SURFACE_v1.md`
+  - sha256: `1d50163d7b2d61e971e8abe31f307e78b98e30172ea5e7aefaea26e41a6ca618`
+  - size bytes: `1650`
+  - line count: `34`
+  - readable status in this batch: shadow alias migration surface
+  - source-class note:
+    - highest-value direct evidence that `work/` holds a mirror/alias migration experiment rather than a clean finished tree
+- source 14:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_v3/WORKSPACE_LAYOUT_v1.md`
+  - sha256: `9f519fa59f1485a7b0e1b9a5b484a70242e453b23243ca68ee260b2205cee4b7`
+  - size bytes: `1507`
+  - line count: `37`
+  - readable status in this batch: shadow workspace contract plaque
+  - source-class note:
+    - explicitly says `work/` is legacy/active v2 and that new v3 artifacts belong in `system_v3/`
+
+## 3) Structural Map
+### Cluster A: transfer-first refinery sandbox
+- primary sources:
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/00_READ_FIRST__A2_A1_REFINERY_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CURRENT.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/LEAN_POLICY__READ_ME_FIRST__v1.md`
+- key markers:
+  - transfer over dense compression
+  - multi-view outputs
+  - strict `FACT | INFERENCE | SPECULATION`
+  - ZIP-job one-at-a-time processing
+  - promote then prune
+- strong reusable read:
+  - the batch contains a real prototype pattern for bounded intake/refinery work:
+    - explicit transfer hooks
+    - contradiction preservation
+    - output labeling
+    - lean cleanup after promotion
+
+### Cluster B: autonomy-gap and sandbox rescue proposal
+- primary source:
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/ANALYSIS_SUMMARY.md`
+- key markers:
+  - lower half mechanically works
+  - A1 inbox empties
+  - sandbox lanes proposed as a rescue
+  - graveyard should become active workspace
+- strong reusable read:
+  - useful archaeology for why `work/` accumulated lane, sandbox, and external-strategy scaffolding
+
+### Cluster C: prototype runtime doctrine and graveyard mechanics
+- primary sources:
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CORE/A0_COMPILER_PROTOCOL_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CORE/SYSTEM_ARCHITECTURE_CANON_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/SYSTEM_RUNTIME_CANON_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/SPINNER_ENGINE_PROTOCOL_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/SIM/NEGATIVE_SIM_PROTOCOL_v1.md`
+- key markers:
+  - deterministic A0 bridge
+  - path-family generation
+  - graveyard + negative sim discipline
+  - dual-spinner engine claims
+  - append-log persistence
+- strong reusable read:
+  - reusable process logic exists here for:
+    - path families instead of flat lists
+    - negative-sim evidence packaging
+    - rescue triggers
+    - "A0 cannot invent structure" compile discipline
+- quarantine read:
+  - the same cluster overreaches into strong runtime/ontology claims that should stay archaeology-only
+
+### Cluster D: shadow `system_v3` migration mirror
+- primary sources:
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_v3/00_CANONICAL_ENTRYPOINTS_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_v3/01_OPERATIONS_RUNBOOK_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_v3/02_SAFE_DELETE_SURFACE_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_v3/03_EXPLICIT_NAME_ALIAS_SURFACE_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_v3/WORKSPACE_LAYOUT_v1.md`
+- key markers:
+  - ACTIVE/canonical language inside the spillover tree
+  - short-path to long-path alias mapping
+  - explicit cleanup and guard scripts
+  - entrypoint and save-profile documentation
+- strongest process-archaeology read:
+  - `work/` contains a mirror migration surface, not just random leftovers
+  - the alias plan itself is useful
+  - the presence of that mirror now counts as migration debt, not present authority
+
+### Cluster E: referenced-but-missing refinery artifacts
+- absent paths cited by source 1:
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/A2_BRAIN__CORE_DOCS_COMPRESSION_PIPELINE_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/A2_BRAIN__ZIP_SUBAGENT_PROTOCOL_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/A2_BRAIN__TASK_CATALOG_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/A2_BRAIN__ENTROPY_DISTILLERY_LAYERS_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/A2_A1_RATCHET__BIDIRECTIONAL_TRACEABILITY_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/SANDBOX_ONLY__OVERVIEW_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/SANDBOX_ONLY__ZIP_SUBAGENT_PROTOCOL_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a2_distillery_tools/a2_distillery.py`
+- reusable read:
+  - absence is itself source-bound evidence that the work-surface refinery story outran durable artifact preservation
+
+## 4) Structural Quality Notes
+- this batch is high-value for process archaeology because it captures a transitional moment where:
+  - useful distillery and migration ideas were already explicit
+  - the active promotion target had shifted toward `system_v3`
+  - a mirror `work/system_v3` tree still retained ACTIVE/canonical self-labeling
+- the batch is not a clean runtime truth source:
+  - several documents use `ACTIVE`, `canonical`, or "official" labels despite now residing in spillover
+  - several promised supporting specs/scripts are missing
+  - strong runtime/engine claims are mixed with valid process controls and migration notes
+- possible downstream consequence:
+  - good candidate family for later A2-mid reduction around:
+    - migration-boundary rules
+    - lean promote/prune discipline
+    - alias-surface cleanup
+    - quarantine of work-surface runtime doctrine
+
+## 5) Source-Class Read
+- best classification:
+  - legacy/test/prototype spillover control family
+  - migration mirror plus process plaques
+  - useful for reusable process patterns and migration debt extraction
+- not best classified as:
+  - active A2 control memory
+  - active runtime/spec law
+  - current canonical system map
+- likely trust placement under current A2 rules:
+  - reusable only after quarantine-preserving reduction
+  - strongest value is in process shape, not in the self-authorizing labels found inside the docs

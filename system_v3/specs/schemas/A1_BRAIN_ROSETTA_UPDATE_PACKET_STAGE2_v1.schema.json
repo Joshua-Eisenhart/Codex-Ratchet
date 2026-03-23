@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "A1_BRAIN_ROSETTA_UPDATE_PACKET_STAGE2_v1.schema.json",
+  "title": "A1_BRAIN_ROSETTA_UPDATE_PACKET_STAGE2_v1",
+  "description": "Stage-2 A1 rosetta proposal packet. Proposal-only surface. This schema does not confer earned canon. Prefer `target_term`. The field name `canonical_term` is a legacy compatibility alias for the proposed kernel anchor term and should not be read as lower-loop-earned truth.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "packet_id",
+    "source_job_id",
+    "rosetta_entries",
+    "negative_class_candidates"
+  ],
+  "properties": {
+    "schema": {
+      "const": "A1_BRAIN_ROSETTA_UPDATE_PACKET_STAGE2_v1"
+    },
+    "packet_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_]{8,160}$"
+    },
+    "source_job_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_]{8,160}$"
+    },
+    "rosetta_entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "entry_id",
+          "source_label",
+          "mapping_kind"
+        ],
+        "anyOf": [
+          {
+            "required": [
+              "target_term"
+            ]
+          },
+          {
+            "required": [
+              "canonical_term"
+            ]
+          }
+        ],
+        "properties": {
+          "entry_id": {
+            "type": "string",
+            "pattern": "^[A-Z0-9_]{4,120}$"
+          },
+          "target_term": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]{3,120}$",
+            "description": "Preferred field name for the proposed kernel anchor term. Proposal-only; not an earned-canon declaration."
+          },
+          "canonical_term": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]{3,120}$",
+            "description": "Legacy compatibility alias for `target_term`. Proposal-only; not an earned-canon declaration."
+          },
+          "source_label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mapping_kind": {
+            "type": "string",
+            "enum": [
+              "EXACT",
+              "APPROX",
+              "HYPOTHESIS"
+            ]
+          },
+          "source_locator": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "blocked_mappings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "block_id",
+          "reason"
+        ],
+        "properties": {
+          "block_id": {
+            "type": "string",
+            "pattern": "^[A-Z0-9_]{4,120}$"
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "negative_class_candidates": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z0-9_]{3,120}$"
+      }
+    }
+  }
+}

@@ -1,9 +1,50 @@
 # MODEL CONTEXT (LLM interpretation — higher entropy than INTENT_SUMMARY)
 # This is the LLM's reading of the Eisenhart model, placing it in academic context.
-# INTENT_SUMMARY.md is the user's voice (low entropy, authoritative).
+# INTENT_SUMMARY.md is the user's voice (low entropy, intent-primary, still noncanon).
 # This doc is interpretive overlay (medium entropy, useful but not authoritative).
 # It may contain hallucinated connections — treat as fuel, not truth.
-# Updated: 2026-02-18
+# Updated: 2026-03-07
+# Additional caution:
+# - Use with system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md
+# - Use with system_v3/a2_state/A2_INPUT_TRUST_AND_QUARANTINE_MAP__v1.md
+# - Use with system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md
+# - Use with system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md
+# - Use with system_v3/a2_state/A2_BRAIN_SLICE__v1.md
+# - Do not let interpretive overlay outrank lower-loop process or source-bound A2 understanding.
+
+## Update — March 7, 2026 (Correlation And Use Rules)
+
+This surface remains interpretive overlay.
+
+Use it for:
+
+- academic/contextual placement,
+- adjacent-project comparison,
+- speculative mapping between the user's model and nearby traditions,
+- high-entropy hypothesis fuel that may help A2 widen search range.
+
+Do NOT use it for:
+
+- overriding user intent,
+- defining active procedure,
+- deciding proposal-vs-earned-state boundaries,
+- acting as the sole A1 steering context.
+
+Correlated surface rules:
+
+- `INTENT_SUMMARY.md` outranks this file on user direction and priorities.
+- `A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md` outranks this file on system philosophy, layer role, and process law.
+- `A2_TERM_CONFLICT_MAP__v1.md` outranks this file on contradiction handling, term collisions, and authority weighting.
+- `A2_TO_A1_DISTILLATION_INPUTS__v1.md` outranks this file on what A1 may inherit or emit next.
+- `A2_BRAIN_SLICE__v1.md` outranks this file for active bounded operation.
+- `OPEN_UNRESOLVED__v1.md` should retain tensions instead of letting this overlay smooth them away.
+
+Thread-derived correction:
+
+- user corrections outrank assistant synthesis;
+- recency does not outrank authority;
+- this file is allowed to be suggestive and expansive, but not allowed to silently normalize the system into a generic agent framework;
+- broad analogies are only useful if they can be retooled into the system's own layer/process/ZIP discipline.
 
 ## RECENT INGEST (WIGGLE_V1)
 

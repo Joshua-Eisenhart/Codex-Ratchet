@@ -1,0 +1,99 @@
+{
+  "batch_id": "BATCH_archive_surface_heat_dumps_20260225T070252Z_root_split__v1",
+  "batch_scope": "heat_dumps_20260225T070252Z_root_split",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T20:23:11Z",
+  "deferred_next_in_folder_order": [
+    "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/RUN_ENGINE_ENTROPY_0001"
+  ],
+  "extraction_mode": "ARCHIVE_HEAT_DUMPS_20260225T070252Z_ROOT_SPLIT_PASS",
+  "notes": [
+    "This batch processes only HEAT_DUMPS/20260225T070252Z and treats it as a historical timestamped heat-dump root, not as current runtime authority.",
+    "The root splits into exactly two meaningful branches: RUN_ENGINE_ENTROPY_0001 and repo_archive__moved_out_of_git.",
+    "RUN_ENGINE_ENTROPY_0001 is sandbox-shaped rather than run-shaped at this boundary, with 2558 files across consumed JSONs, lawyer memos, and prompt queues.",
+    "The role names in the engine-entropy branch repeat six lens/rescuer families plus a seventh PACK_SELECTOR prompt role, which makes it look like prompt-orchestration residue rather than earned runtime state.",
+    "repo_archive__moved_out_of_git is much larger, with 25056 files and 1166 directories, and already preserves its own cache/deep-archive/ops-log taxonomy plus an archive index.",
+    "ARCHIVE_INDEX_v1.json inside the moved-out-of-git branch records one latest checkpoint and ten recent heat-dump references under a nested cache subtree.",
+    "The nested mirror also preserves naming drift and topology seams: OPS_LOGS casing differs from later roots, the direct nested HEAT_DUMPS child is empty, and checkpoint/recent-heat bookkeeping lives beside that emptiness.",
+    "This root batch does not descend into either child family beyond structural signatures and the nested archive index."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "REVISIT_REQUIRED",
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "source_family": "archive heat dumps 20260225T070252Z root split",
+  "source_membership": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z",
+      "role_in_batch": "direct_timestamped_heat_dump_root",
+      "top_level_entries": [
+        "RUN_ENGINE_ENTROPY_0001",
+        "repo_archive__moved_out_of_git",
+        ".DS_Store"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/RUN_ENGINE_ENTROPY_0001",
+      "role_in_batch": "engine_entropy_residue_family",
+      "file_count": 2558,
+      "directory_count": 3,
+      "child_families": [
+        "a1_sandbox__incoming_consumed",
+        "a1_sandbox__lawyer_memos",
+        "a1_sandbox__prompt_queue"
+      ],
+      "subtree_counts": {
+        "a1_sandbox__incoming_consumed": 810,
+        "a1_sandbox__lawyer_memos": 810,
+        "a1_sandbox__prompt_queue": 938
+      },
+      "role_signatures": [
+        "LENS_VN",
+        "LENS_MUTUAL_INFO",
+        "LENS_CONDITIONAL",
+        "LENS_THERMO_ANALOGY",
+        "DEVIL_CLASSICAL_SMUGGLER",
+        "RESCUER",
+        "PACK_SELECTOR"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git",
+      "role_in_batch": "moved_out_of_git_archive_mirror",
+      "file_count": 25056,
+      "directory_count": 1166,
+      "top_level_entries": [
+        "ARCHIVE_INDEX_v1.json",
+        "CACHE__HIGH_ENTROPY__RECENT__PURGEABLE",
+        "DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY",
+        "HEAT_DUMPS",
+        "OPS_LOGS"
+      ],
+      "subtree_counts": {
+        "CACHE__HIGH_ENTROPY__RECENT__PURGEABLE": {
+          "files": 25017,
+          "dirs": 1154
+        },
+        "DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY": {
+          "files": 30,
+          "dirs": 8
+        },
+        "HEAT_DUMPS": {
+          "files": 0,
+          "dirs": 0
+        },
+        "OPS_LOGS": {
+          "files": 7,
+          "dirs": 0
+        }
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/ARCHIVE_INDEX_v1.json",
+      "role_in_batch": "nested_archive_index",
+      "schema": "ARCHIVE_INDEX_v1",
+      "latest_checkpoint": "archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/CHECKPOINTS/SYSTEM_V3_A1_TUNING_20260225T011355Z",
+      "recent_heat_dump_count": 10,
+      "recent_heat_dump_prefix": "archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS/"
+    }
+  ]
+}

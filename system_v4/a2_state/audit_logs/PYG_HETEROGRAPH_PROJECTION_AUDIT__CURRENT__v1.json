@@ -1,0 +1,530 @@
+{
+  "audit_only": true,
+  "bounded_probe_source": "system_v4/a2_state/graphs/a2_low_control_graph_v1.json",
+  "canonical_graph_owner": "system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+  "deferred_edge_fields": [
+    "entropy_state",
+    "correlation_entropy",
+    "orientation_basis",
+    "clifford_grade",
+    "obstruction_score"
+  ],
+  "do_not_promote": true,
+  "edge_contracts": [
+    {
+      "all_attribute_keys": [],
+      "edge_count": 401,
+      "edge_type": {
+        "relation": "ADJUDICATED_FROM",
+        "source_type": "B_OUTCOME",
+        "target_type": "EXECUTION_BLOCK"
+      },
+      "numeric_attribute_keys": []
+    },
+    {
+      "all_attribute_keys": [
+        "batch_id"
+      ],
+      "edge_count": 1,
+      "edge_type": {
+        "relation": "ACCEPTED_FROM",
+        "source_type": "B_SURVIVOR",
+        "target_type": "KERNEL_CONCEPT"
+      },
+      "numeric_attribute_keys": []
+    },
+    {
+      "all_attribute_keys": [
+        "description"
+      ],
+      "edge_count": 1,
+      "edge_type": {
+        "relation": "CONTRADICTS",
+        "source_type": "KERNEL_CONCEPT",
+        "target_type": "KERNEL_CONCEPT"
+      },
+      "numeric_attribute_keys": []
+    },
+    {
+      "all_attribute_keys": [
+        "link_type",
+        "referenced_term"
+      ],
+      "edge_count": 380,
+      "edge_type": {
+        "relation": "DEPENDS_ON",
+        "source_type": "KERNEL_CONCEPT",
+        "target_type": "KERNEL_CONCEPT"
+      },
+      "numeric_attribute_keys": []
+    },
+    {
+      "all_attribute_keys": [
+        "link_type",
+        "reason",
+        "shared_name_parts",
+        "tags_a_sample",
+        "tags_b_sample"
+      ],
+      "edge_count": 101,
+      "edge_type": {
+        "relation": "EXCLUDES",
+        "source_type": "KERNEL_CONCEPT",
+        "target_type": "KERNEL_CONCEPT"
+      },
+      "numeric_attribute_keys": [
+        "shared_name_parts"
+      ]
+    },
+    {
+      "all_attribute_keys": [],
+      "edge_count": 10,
+      "edge_type": {
+        "relation": "REFINED_INTO",
+        "source_type": "KERNEL_CONCEPT",
+        "target_type": "KERNEL_CONCEPT"
+      },
+      "numeric_attribute_keys": []
+    },
+    {
+      "all_attribute_keys": [
+        "link_type",
+        "shared_count",
+        "shared_tags"
+      ],
+      "edge_count": 233,
+      "edge_type": {
+        "relation": "RELATED_TO",
+        "source_type": "KERNEL_CONCEPT",
+        "target_type": "KERNEL_CONCEPT"
+      },
+      "numeric_attribute_keys": [
+        "shared_count",
+        "shared_tags"
+      ]
+    },
+    {
+      "all_attribute_keys": [
+        "link_type",
+        "nested_layer",
+        "reasoning",
+        "shared_components"
+      ],
+      "edge_count": 726,
+      "edge_type": {
+        "relation": "STRUCTURALLY_RELATED",
+        "source_type": "KERNEL_CONCEPT",
+        "target_type": "KERNEL_CONCEPT"
+      },
+      "numeric_attribute_keys": [
+        "shared_components"
+      ]
+    },
+    {
+      "all_attribute_keys": [
+        "failed",
+        "passed",
+        "tier"
+      ],
+      "edge_count": 67,
+      "edge_type": {
+        "relation": "SIM_EVIDENCE_FOR",
+        "source_type": "SIM_EVIDENCED",
+        "target_type": "B_SURVIVOR"
+      },
+      "numeric_attribute_keys": [
+        "failed",
+        "passed"
+      ]
+    },
+    {
+      "all_attribute_keys": [
+        "inferred",
+        "role"
+      ],
+      "edge_count": 295,
+      "edge_type": {
+        "relation": "RELATED_TO",
+        "source_type": "SKILL",
+        "target_type": "SKILL"
+      },
+      "numeric_attribute_keys": [
+        "inferred"
+      ]
+    },
+    {
+      "all_attribute_keys": [],
+      "edge_count": 12,
+      "edge_type": {
+        "relation": "SKILL_FOLLOWS",
+        "source_type": "SKILL",
+        "target_type": "SKILL"
+      },
+      "numeric_attribute_keys": []
+    }
+  ],
+  "focus_node_types": [
+    "KERNEL_CONCEPT",
+    "SKILL",
+    "EXECUTION_BLOCK",
+    "B_OUTCOME",
+    "B_SURVIVOR",
+    "SIM_EVIDENCED"
+  ],
+  "generated_utc": "2026-03-22T03:39:03Z",
+  "issues": [],
+  "low_control_probe_status": {
+    "edge_count": 858,
+    "exists": true,
+    "is_sufficient_alone": false,
+    "node_count": 419,
+    "node_type_counts": {
+      "KERNEL_CONCEPT": 419
+    },
+    "path": "system_v4/a2_state/graphs/a2_low_control_graph_v1.json",
+    "reason_not_sufficient_alone": "current owner surface is all KERNEL_CONCEPT nodes and does not carry the full control-facing family set",
+    "relation_counts": {
+      "DEPENDS_ON": 55,
+      "EXCLUDES": 9,
+      "OVERLAPS": 614,
+      "RELATED_TO": 2,
+      "STRUCTURALLY_RELATED": 178
+    }
+  },
+  "node_contracts": [
+    {
+      "canonical_side_table_fields": [
+        "id",
+        "name",
+        "description",
+        "layer",
+        "trust_zone",
+        "authority",
+        "status",
+        "admissibility_state",
+        "tags"
+      ],
+      "node_count": 401,
+      "node_type": "B_OUTCOME",
+      "property_keys": [
+        "b_reasoning",
+        "b_verdict",
+        "legacy_tagged_utc"
+      ]
+    },
+    {
+      "canonical_side_table_fields": [
+        "id",
+        "name",
+        "description",
+        "layer",
+        "trust_zone",
+        "authority",
+        "status",
+        "admissibility_state",
+        "tags"
+      ],
+      "node_count": 78,
+      "node_type": "B_SURVIVOR",
+      "property_keys": [
+        "accepted_utc",
+        "batch_id",
+        "candidate_id",
+        "item_class",
+        "kind",
+        "source_concept_id"
+      ]
+    },
+    {
+      "canonical_side_table_fields": [
+        "id",
+        "name",
+        "description",
+        "layer",
+        "trust_zone",
+        "authority",
+        "status",
+        "admissibility_state",
+        "tags"
+      ],
+      "node_count": 401,
+      "node_type": "EXECUTION_BLOCK",
+      "property_keys": [
+        "compiled_logic",
+        "legacy_tagged_utc"
+      ]
+    },
+    {
+      "canonical_side_table_fields": [
+        "id",
+        "name",
+        "description",
+        "layer",
+        "trust_zone",
+        "authority",
+        "status",
+        "admissibility_state",
+        "tags"
+      ],
+      "node_count": 842,
+      "node_type": "KERNEL_CONCEPT",
+      "property_keys": [
+        "extraction_mode",
+        "orphan",
+        "promoted_by",
+        "promoted_from",
+        "promoted_reason",
+        "retired_from_zone",
+        "retired_reason",
+        "source_line_range"
+      ]
+    },
+    {
+      "canonical_side_table_fields": [
+        "id",
+        "name",
+        "description",
+        "layer",
+        "trust_zone",
+        "authority",
+        "status",
+        "admissibility_state",
+        "tags"
+      ],
+      "node_count": 67,
+      "node_type": "SIM_EVIDENCED",
+      "property_keys": [
+        "failed",
+        "families_tested",
+        "passed",
+        "t0_complete",
+        "target_id",
+        "tier"
+      ]
+    },
+    {
+      "canonical_side_table_fields": [
+        "id",
+        "name",
+        "description",
+        "layer",
+        "trust_zone",
+        "authority",
+        "status",
+        "admissibility_state",
+        "tags"
+      ],
+      "node_count": 123,
+      "node_type": "SKILL",
+      "property_keys": [
+        "adapters",
+        "applicable_graphs",
+        "applicable_layers",
+        "applicable_trust_zones",
+        "inputs",
+        "outputs",
+        "related_skills",
+        "skill_type",
+        "source_path",
+        "source_type",
+        "status"
+      ]
+    }
+  ],
+  "node_family_pair_counts": {
+    "B_OUTCOME->EXECUTION_BLOCK": 401,
+    "B_SURVIVOR->KERNEL_CONCEPT": 1,
+    "KERNEL_CONCEPT->KERNEL_CONCEPT": 1451,
+    "SIM_EVIDENCED->B_SURVIVOR": 67,
+    "SKILL->SKILL": 307
+  },
+  "nonoperative": true,
+  "observed_limits": [
+    "skill nodes currently project as a separate relation family; direct skill-to-kernel bridges are not materially present",
+    "B_OUTCOME currently connects to EXECUTION_BLOCK, not directly to the kernel concept graph",
+    "SIM_EVIDENCED currently connects to B_SURVIVOR, so witness evidence is present but not yet unified into the kernel/skill slice"
+  ],
+  "preferred_interpreter": ".venv_spec_graph/bin/python",
+  "projection_focus": "read_only_control_subgraph",
+  "projection_id": "PYG_PROJECTION::control_subgraph_v1",
+  "pyg_summary": {
+    "edge_store_count": 11,
+    "edge_stores": [
+      {
+        "edge_attr_keys": [],
+        "edge_count": 401,
+        "edge_type": {
+          "relation": "ADJUDICATED_FROM",
+          "source_type": "B_OUTCOME",
+          "target_type": "EXECUTION_BLOCK"
+        },
+        "has_edge_attr": false
+      },
+      {
+        "edge_attr_keys": [],
+        "edge_count": 1,
+        "edge_type": {
+          "relation": "ACCEPTED_FROM",
+          "source_type": "B_SURVIVOR",
+          "target_type": "KERNEL_CONCEPT"
+        },
+        "has_edge_attr": false
+      },
+      {
+        "edge_attr_keys": [],
+        "edge_count": 1,
+        "edge_type": {
+          "relation": "CONTRADICTS",
+          "source_type": "KERNEL_CONCEPT",
+          "target_type": "KERNEL_CONCEPT"
+        },
+        "has_edge_attr": false
+      },
+      {
+        "edge_attr_keys": [],
+        "edge_count": 380,
+        "edge_type": {
+          "relation": "DEPENDS_ON",
+          "source_type": "KERNEL_CONCEPT",
+          "target_type": "KERNEL_CONCEPT"
+        },
+        "has_edge_attr": false
+      },
+      {
+        "edge_attr_keys": [
+          "shared_name_parts"
+        ],
+        "edge_count": 101,
+        "edge_type": {
+          "relation": "EXCLUDES",
+          "source_type": "KERNEL_CONCEPT",
+          "target_type": "KERNEL_CONCEPT"
+        },
+        "has_edge_attr": true
+      },
+      {
+        "edge_attr_keys": [],
+        "edge_count": 10,
+        "edge_type": {
+          "relation": "REFINED_INTO",
+          "source_type": "KERNEL_CONCEPT",
+          "target_type": "KERNEL_CONCEPT"
+        },
+        "has_edge_attr": false
+      },
+      {
+        "edge_attr_keys": [
+          "shared_count",
+          "shared_tags"
+        ],
+        "edge_count": 233,
+        "edge_type": {
+          "relation": "RELATED_TO",
+          "source_type": "KERNEL_CONCEPT",
+          "target_type": "KERNEL_CONCEPT"
+        },
+        "has_edge_attr": true
+      },
+      {
+        "edge_attr_keys": [
+          "shared_components"
+        ],
+        "edge_count": 726,
+        "edge_type": {
+          "relation": "STRUCTURALLY_RELATED",
+          "source_type": "KERNEL_CONCEPT",
+          "target_type": "KERNEL_CONCEPT"
+        },
+        "has_edge_attr": true
+      },
+      {
+        "edge_attr_keys": [
+          "failed",
+          "passed"
+        ],
+        "edge_count": 67,
+        "edge_type": {
+          "relation": "SIM_EVIDENCE_FOR",
+          "source_type": "SIM_EVIDENCED",
+          "target_type": "B_SURVIVOR"
+        },
+        "has_edge_attr": true
+      },
+      {
+        "edge_attr_keys": [
+          "inferred"
+        ],
+        "edge_count": 295,
+        "edge_type": {
+          "relation": "RELATED_TO",
+          "source_type": "SKILL",
+          "target_type": "SKILL"
+        },
+        "has_edge_attr": true
+      },
+      {
+        "edge_attr_keys": [],
+        "edge_count": 12,
+        "edge_type": {
+          "relation": "SKILL_FOLLOWS",
+          "source_type": "SKILL",
+          "target_type": "SKILL"
+        },
+        "has_edge_attr": false
+      }
+    ],
+    "heterodata_repr": "HeteroData(\n  KERNEL_CONCEPT={\n    num_nodes=842,\n    node_index=[842],\n  },\n  EXECUTION_BLOCK={\n    num_nodes=401,\n    node_index=[401],\n  },\n  B_OUTCOME={\n    num_nodes=401,\n    node_index=[401],\n  },\n  SKILL={\n    num_nodes=123,\n    node_index=[123],\n  },\n  B_SURVIVOR={\n    num_nodes=78,\n    node_index=[78],\n  },\n  SIM_EVIDENCED={\n    num_nodes=67,\n    node_index=[67],\n  },\n  (B_OUTCOME, ADJUDICATED_FROM, EXECUTION_BLOCK)={ edge_index=[2, 401] },\n  (B_SURVIVOR, ACCEPTED_FROM, KERNEL_CONCEPT)={ edge_index=[2, 1] },\n  (KERNEL_CONCEPT, CONTRADICTS, KERNEL_CONCEPT)={ edge_index=[2, 1] },\n  (KERNEL_CONCEPT, DEPENDS_ON, KERNEL_CONCEPT)={ edge_index=[2, 380] },\n  (KERNEL_CONCEPT, EXCLUDES, KERNEL_CONCEPT)={\n    edge_index=[2, 101],\n    edge_attr=[101, 1],\n  },\n  (KERNEL_CONCEPT, REFINED_INTO, KERNEL_CONCEPT)={ edge_index=[2, 10] },\n  (KERNEL_CONCEPT, RELATED_TO, KERNEL_CONCEPT)={\n    edge_index=[2, 233],\n    edge_attr=[233, 2],\n  },\n  (KERNEL_CONCEPT, STRUCTURALLY_RELATED, KERNEL_CONCEPT)={\n    edge_index=[2, 726],\n    edge_attr=[726, 1],\n  },\n  (SIM_EVIDENCED, SIM_EVIDENCE_FOR, B_SURVIVOR)={\n    edge_index=[2, 67],\n    edge_attr=[67, 2],\n  },\n  (SKILL, RELATED_TO, SKILL)={\n    edge_index=[2, 295],\n    edge_attr=[295, 1],\n  },\n  (SKILL, SKILL_FOLLOWS, SKILL)={ edge_index=[2, 12] }\n)",
+    "node_store_count": 6,
+    "node_stores": [
+      {
+        "node_count": 401,
+        "node_type": "B_OUTCOME"
+      },
+      {
+        "node_count": 78,
+        "node_type": "B_SURVIVOR"
+      },
+      {
+        "node_count": 401,
+        "node_type": "EXECUTION_BLOCK"
+      },
+      {
+        "node_count": 842,
+        "node_type": "KERNEL_CONCEPT"
+      },
+      {
+        "node_count": 67,
+        "node_type": "SIM_EVIDENCED"
+      },
+      {
+        "node_count": 123,
+        "node_type": "SKILL"
+      }
+    ],
+    "training_ready": false,
+    "training_ready_reason": "projection contract exists, but feature engineering and bridge completion are still bounded follow-ons"
+  },
+  "recommended_next_actions": [
+    "Keep canonical graph ownership in the JSON-backed live graph store.",
+    "Use this projection as a read-only PyG view over the control-facing families only.",
+    "Add a separate graph-bridge audit for skill-to-kernel and witness-to-kernel links before any training claim.",
+    "Treat TopoNetX as the next higher-order projection lane rather than widening this PyG slice into full topology ownership."
+  ],
+  "relation_family_counts": {
+    "B_OUTCOME::ADJUDICATED_FROM::EXECUTION_BLOCK": 401,
+    "B_SURVIVOR::ACCEPTED_FROM::KERNEL_CONCEPT": 1,
+    "KERNEL_CONCEPT::CONTRADICTS::KERNEL_CONCEPT": 1,
+    "KERNEL_CONCEPT::DEPENDS_ON::KERNEL_CONCEPT": 380,
+    "KERNEL_CONCEPT::EXCLUDES::KERNEL_CONCEPT": 101,
+    "KERNEL_CONCEPT::REFINED_INTO::KERNEL_CONCEPT": 10,
+    "KERNEL_CONCEPT::RELATED_TO::KERNEL_CONCEPT": 233,
+    "KERNEL_CONCEPT::STRUCTURALLY_RELATED::KERNEL_CONCEPT": 726,
+    "SIM_EVIDENCED::SIM_EVIDENCE_FOR::B_SURVIVOR": 67,
+    "SKILL::RELATED_TO::SKILL": 295,
+    "SKILL::SKILL_FOLLOWS::SKILL": 12
+  },
+  "repo_root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "schema": "PYG_HETEROGRAPH_PROJECTION_AUDIT_v1",
+  "skill_id": "pyg-heterograph-projection-audit",
+  "status": "ok"
+}

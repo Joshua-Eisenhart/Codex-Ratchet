@@ -1,0 +1,39 @@
+{
+  "batch_id": "BATCH_A2MID_axis0_traj_v2_delta_lattice__v1",
+  "created_at_utc": "2026-03-09T10:11:16Z",
+  "parent_batch_ids": [
+    "BATCH_sims_axis0_traj_corr_suite_v2_orphan_family__v1"
+  ],
+  "comparison_anchor_batch_ids": [
+    "BATCH_A2MID_axis0_bookkeep_slice_anchor__v1",
+    "BATCH_sims_axis0_traj_corr_suite_family__v1",
+    "BATCH_A2MID_sims_evidence_boundary__v1"
+  ],
+  "extraction_mode": "A2_MID_REFINEMENT_PASS",
+  "promotion_status": "A2_2_CANDIDATE",
+  "raw_source_reread_needed": false,
+  "raw_source_reread_reason": "Parent batch already preserved the one-file orphan shell, the seq01-baseline-plus-deltas contract, the hidden T-axis, the strongest perturbation point, the non-runner-anchor rule, the family-separation seams, and the catalog-versus-evidence visibility split.",
+  "output_files": [
+    "SOURCE_DEPENDENCY_MAP__v1.md",
+    "SELECTION_RATIONALE__v1.md",
+    "A2_2_REFINED_CANDIDATES__v1.md",
+    "CONTRADICTION_PRESERVATION__v1.md",
+    "DOWNSTREAM_CONSEQUENCE_NOTES__v1.md",
+    "MANIFEST.json"
+  ],
+  "candidate_count": 6,
+  "quarantine_count": 5,
+  "reasons_for_candidate_status": [
+    "The orphan is the correct bounded one-file result-only packet and retains a distinctive seq01-baseline-plus-deltas contract.",
+    "The hidden T-axis and strongest perturbation point remain reusable only if they stay attached to the wider 128-case lattice.",
+    "The current orphan remains useful only if it stays separate from both the earlier local trajectory suite and the repo-top descendants.",
+    "Catalog visibility remains informative only if it is kept distinct from evidence admission."
+  ],
+  "reasons_for_quarantine": [
+    "No current runner anchor is inferred where none is recoverable.",
+    "Delta encoding is not treated as missing sequence coverage.",
+    "The hidden T-axis is not collapsed out of the lattice.",
+    "The orphan is not merged into the earlier local suite.",
+    "The orphan is not merged into V4/V5 or treated as evidence-admitted."
+  ]
+}

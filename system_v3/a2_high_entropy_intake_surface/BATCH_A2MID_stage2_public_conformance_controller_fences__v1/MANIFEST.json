@@ -1,0 +1,125 @@
+{
+  "schema": "A2_MID_REFINEMENT_BATCH_MANIFEST_v1",
+  "batch_id": "BATCH_A2MID_stage2_public_conformance_controller_fences__v1",
+  "batch_scope": "controller_facing_reduction_of_stage2_public_conformance_boundaries",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T07:25:38Z",
+  "extraction_mode": "A2_MID_REFINEMENT_PASS",
+  "promotion_status": "A2_2_CANDIDATE",
+  "parent_batch_ids": [
+    "BATCH_systemv3_active_spec_stage2_public_conformance__v1"
+  ],
+  "parent_artifacts": [
+    "SOURCE_MAP__v1.md",
+    "CLUSTER_MAP__v1.md",
+    "TENSION_MAP__v1.md",
+    "A2_3_DISTILLATES__v1.md",
+    "A2_2_CANDIDATE_SUMMARIES__v1.md",
+    "MANIFEST.json"
+  ],
+  "selection_basis": {
+    "ledger_reason": "Parent batch was the strongest remaining low-entropy systemv3 sibling on the controller action board.",
+    "bounded_goal": "Reduce the late stage2/public/conformance packet into controller-usable delivery, schema, conformance, and public-boundary fences.",
+    "deferred_alternatives": [
+      {
+        "batch_id": "BATCH_systemv3_active_a2state_entropy_pattern_packet__v1",
+        "reason": "Best next active-A2 sibling after the late-stage delivery packet is narrowed."
+      },
+      {
+        "batch_id": "BATCH_work_surface_root_control_archaeology__v1",
+        "reason": "Best archaeology follow-on once the remaining low-entropy systemv3 packet is reduced."
+      }
+    ]
+  },
+  "raw_source_reread_needed": false,
+  "raw_source_reread_reason": "Parent artifacts already isolate the late-stage delivery, controller, schema, conformance, and public-boundary clusters needed for this bounded reduction.",
+  "candidate_items": [
+    {
+      "id": "RC1",
+      "name": "DELIVERY_GATE_STACK_BEFORE_PROMOTION",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Provides the controller with a compact late-stage promotion gate stack rather than a broad release packet.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:Cluster A",
+        "A2_3_DISTILLATES__v1:D1",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C1"
+      ]
+    },
+    {
+      "id": "RC2",
+      "name": "PROVISIONAL_CONTROLLER_PROCESS_USE_RULE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the controller process as active but revisable rather than fixed architecture.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:Cluster B",
+        "A2_3_DISTILLATES__v1:D2",
+        "TENSION_MAP__v1:T5",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C3"
+      ]
+    },
+    {
+      "id": "RC3",
+      "name": "CONFORMANCE_VECTOR_DRIFT_SIGNATURE_CAPTURE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Turns the fixture-tag mismatch into a small explicit drift signal the controller can track.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:Cluster D",
+        "A2_3_DISTILLATES__v1:D4",
+        "TENSION_MAP__v1:T1",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C2"
+      ]
+    },
+    {
+      "id": "RC4",
+      "name": "SCHEMA_STUBS_ARE_NOT_ENFORCEMENT",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Keeps schema and browser hardening declarations useful without overstating implementation completeness.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:Cluster C",
+        "A2_3_DISTILLATES__v1:D3",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C4"
+      ]
+    },
+    {
+      "id": "RC5",
+      "name": "PUBLIC_BOUNDARY_OVERLAY_BELOW_INTERNAL_BOOTSET",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves public-facing explanations as overlays below thicker internal boot and control surfaces.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:Cluster E",
+        "A2_3_DISTILLATES__v1:D5",
+        "TENSION_MAP__v1:T4",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C5"
+      ]
+    }
+  ],
+  "quarantined_items": [
+    {
+      "id": "Q1",
+      "name": "WORK_PATH_STAGE3_AS_CURRENT_WRITE_POSTURE",
+      "status": "QUARANTINED",
+      "why_quarantined": "Late-stage work-path examples are not yet reconciled with the cleaner current write posture.",
+      "parent_dependencies": [
+        "TENSION_MAP__v1:T2",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C6",
+        "A2_3_DISTILLATES__v1:D6"
+      ]
+    },
+    {
+      "id": "Q2",
+      "name": "PUBLIC_HOSTING_AND_BROWSER_PATH_AS_KERNEL_AUTHORITY",
+      "status": "QUARANTINED",
+      "why_quarantined": "Public hosting overlays and browser-mediated paths must not self-promote into kernel or internal control authority.",
+      "parent_dependencies": [
+        "TENSION_MAP__v1:T7",
+        "TENSION_MAP__v1:T4",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C5"
+      ]
+    }
+  ],
+  "control_surface_mutation": "NONE",
+  "notes": [
+    "This batch was produced after the active control-spine reduction as the next low-entropy controller-facing stage2/public reduction.",
+    "No raw source reread and no active A2 append-save were performed."
+  ]
+}

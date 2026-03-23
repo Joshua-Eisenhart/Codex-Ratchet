@@ -1,0 +1,78 @@
+{
+  "batch_id": "BATCH_sims_axis12_topology4_channelfamily_suite_v2_orphan_surface__v1",
+  "batch_scope": "closure_exception_local_axis12_topology4_channelfamily_result_surface",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T06:53:31Z",
+  "deferred_next_raw_folder_order_source": null,
+  "extraction_mode": "SIM_AXIS12_TOPOLOGY4_CHANNELFAMILY_SUITE_V2_ORPHAN_SURFACE_PASS",
+  "notes": [
+    "This batch admits the one local result surface that had previously been read only as a comparison anchor in the terrain8 seam batch.",
+    "The earlier seam-preservation batch remains valid and is not replaced by this correction.",
+    "No runtime execution was performed."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "A2_2_CANDIDATE",
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_axis12_topology4_channelfamily_terrain8_seam__v1/MANIFEST.json",
+      "relevance": "Shows this local result was intentionally kept comparison-only during the earlier seam-preservation pass."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_hygiene_residue_artifacts__v1/MANIFEST.json",
+      "relevance": "Provides continuity from the prior closure pass whose direct-source coverage turned out to be one file short."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_residual_inventory_closure_audit__v1/MANIFEST.json",
+      "relevance": "Provides the original filename-level residual inventory baseline used for closure checks."
+    }
+  ],
+  "runtime_expectations": [
+    "The current local surface is a compact topology4-family summary with four family keys, num_states 4096, lin_trials 512, p0 0.12, and k 0.18.",
+    "This batch changes only source admission state inside the intake surface and does not alter the earlier terrain8-admission seam logic.",
+    "After this batch, direct-source coverage reaches the full sims inventory."
+  ],
+  "failure_modes": [
+    "Treating this correction as if it replaced the earlier terrain8 seam batch.",
+    "Rewriting the earlier comparison-only decision as accidental rather than seam-preserving.",
+    "Continuing to report incomplete direct-source coverage after this admission."
+  ],
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "sims_split_rule": {
+    "detected": true,
+    "included_in_this_batch": true,
+    "notes": "This batch remains inside the separate sims source class and does not mix with ordinary theory/doc extraction.",
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims"
+  },
+  "source_membership": [
+    {
+      "line_count": 37,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis12_topology4_channelfamily_suite_v2.json",
+      "role_in_batch": "local_topology4_channelfamily_result_surface",
+      "sha256": "ffe8b0e3d5b640b1674f2826607b9540bb8e7ccad7df0a61717203234732b490",
+      "size_bytes": 1077,
+      "source_class": "result_surface"
+    }
+  ],
+  "derived_summary": {
+    "missing_sims_file_count_before_this_batch": 1,
+    "missing_sims_file_count_after_this_batch": 0,
+    "local_source_count_in_batch": 1,
+    "family_count": 4,
+    "topology4_family_extrema": {
+      "max_lin_err_family": "EC_AD",
+      "max_lin_err_value": 0.02232371509931299,
+      "max_deltaH_absmean_family": "EO_FX",
+      "max_deltaH_absmean_value": 0.12029928053976777
+    },
+    "local_scalar_metadata": {
+      "H": "Z",
+      "k": 0.18,
+      "p0": 0.12,
+      "seed": 0,
+      "num_states": 4096,
+      "lin_trials": 512
+    },
+    "prior_seam_same_family_decision": false,
+    "direct_source_coverage_reaches_full_inventory": true
+  }
+}

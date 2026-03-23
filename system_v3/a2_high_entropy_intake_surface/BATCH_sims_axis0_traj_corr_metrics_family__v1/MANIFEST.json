@@ -1,0 +1,126 @@
+{
+  "batch_id": "BATCH_sims_axis0_traj_corr_metrics_family__v1",
+  "batch_scope": "residual_axis0_trajectory_correlation_metrics_family",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T05:05:38Z",
+  "deferred_next_raw_folder_order_source": null,
+  "extraction_mode": "SIM_AXIS0_TRAJ_CORR_METRICS_PASS",
+  "notes": [
+    "This batch continues the post-closure residual paired-family campaign.",
+    "The family is bounded to the dual-init trajectory-correlation runner and its paired result surface.",
+    "No runtime execution was performed."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "A2_2_CANDIDATE",
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md",
+      "relevance": "Confirms the current trajectory-correlation metrics family is catalog-listed.",
+      "line_window": "50"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt",
+      "relevance": "Repo-held top-level evidence pack was searched for the local SIM_ID and no match was found."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_axis0_sagb_entangle_seed_family__v1/MANIFEST.json",
+      "relevance": "Provides residual campaign continuity and identifies this pair as the next prioritized unit."
+    }
+  ],
+  "runtime_expectations": [
+    "The runner writes one results_axis0_traj_corr_metrics.json and one local sim_evidence_pack.txt containing one SIM_EVIDENCE block.",
+    "The family uses 256 trials, 64 cycles, axis3 sign +1, moderate terrain noise on A, and 1 CNOT repetition per terrain step.",
+    "One run covers both GINIBRE and BELL init modes against the same branch pair.",
+    "If residual pair intake continues, the next prioritized pair begins at run_axis0_traj_corr_suite.py."
+  ],
+  "failure_modes": [
+    "Mistaking trajectory negativity for negative final-state conditional entropy.",
+    "Mistaking small sequence-order deltas for init-independent directionality.",
+    "Mistaking local evidence emission for repo-top evidence-pack admission."
+  ],
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "sims_split_rule": {
+    "detected": true,
+    "included_in_this_batch": true,
+    "notes": "This batch remains inside the separate sims source class and does not mix with ordinary theory/doc extraction.",
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims"
+  },
+  "source_membership": [
+    {
+      "line_count": 293,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis0_traj_corr_metrics.py",
+      "role_in_batch": "axis0_trajectory_correlation_metrics_runner",
+      "sha256": "13b2fd6c2e539107f3a957e78d8ea97104f5cbeaa23ad88f835441f203aa5b76",
+      "size_bytes": 10511,
+      "source_class": "executable_runner"
+    },
+    {
+      "line_count": 77,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis0_traj_corr_metrics.json",
+      "role_in_batch": "axis0_trajectory_correlation_metrics_result_surface",
+      "sha256": "83a3a84e8de1cc9bcfa51b5c1d5a1cdbc248c8cf91cff26bd03d17f67550e335",
+      "size_bytes": 2357,
+      "source_class": "result_surface"
+    }
+  ],
+  "derived_summary": {
+    "local_sim_id": "S_SIM_AXIS0_TRAJ_CORR_METRICS",
+    "top_level_evidence_pack_match_count": 0,
+    "trials": 256,
+    "cycles": 64,
+    "axis3_sign": 1,
+    "theta": 0.07,
+    "n_vec": [
+      0.3,
+      0.4,
+      0.866025403784
+    ],
+    "terrain_params": {
+      "gamma": 0.02,
+      "p": 0.02,
+      "q": 0.02
+    },
+    "entangle_reps": 1,
+    "init_modes": [
+      "GINIBRE",
+      "BELL"
+    ],
+    "bell_metrics": {
+      "seq01_mi_traj_mean": 0.19953947697263238,
+      "seq02_mi_traj_mean": 0.19904219278757085,
+      "delta_mi_traj_mean_seq02_minus_seq01": -0.0004972841850615362,
+      "seq01_mi_lambda_fit": 0.09089451058064207,
+      "seq02_mi_lambda_fit": 0.09095562467075757,
+      "delta_mi_lambda_fit_seq02_minus_seq01": 6.11140901154994e-05,
+      "seq01_sagb_traj_mean": 0.458606010341021,
+      "seq02_sagb_traj_mean": 0.4590764109410929,
+      "delta_sagb_traj_mean_seq02_minus_seq01": 0.00047040060007191853,
+      "seq01_sagb_neg_frac_traj": 0.09753605769230769,
+      "seq02_sagb_neg_frac_traj": 0.09723557692307692,
+      "delta_sagb_neg_frac_traj_seq02_minus_seq01": -0.00030048076923076816,
+      "seq01_sagb_init_mean": -0.6931471805599333,
+      "seq02_sagb_init_mean": -0.6931471805599333,
+      "seq01_sagb_final_mean": 0.6460960417722438,
+      "seq02_sagb_final_mean": 0.6460646351342514
+    },
+    "ginibre_metrics": {
+      "seq01_mi_traj_mean": 0.04274720855831073,
+      "seq02_mi_traj_mean": 0.04292466237318384,
+      "delta_mi_traj_mean_seq02_minus_seq01": 0.00017745381487310752,
+      "seq01_mi_lambda_fit": 0.06109132455497861,
+      "seq02_mi_lambda_fit": 0.06077880904757679,
+      "delta_mi_lambda_fit_seq02_minus_seq01": -0.00031251550740181433,
+      "seq01_sagb_traj_mean": 0.6135087129574414,
+      "seq02_sagb_traj_mean": 0.6132992335996692,
+      "delta_sagb_traj_mean_seq02_minus_seq01": -0.00020947935777215765,
+      "seq01_sagb_neg_frac_traj": 0.0,
+      "seq02_sagb_neg_frac_traj": 0.0,
+      "delta_sagb_neg_frac_traj_seq02_minus_seq01": 0.0,
+      "seq01_sagb_init_mean": 0.32673009003320846,
+      "seq02_sagb_init_mean": 0.32673009003320846,
+      "seq01_sagb_final_mean": 0.6488507737880436,
+      "seq02_sagb_final_mean": 0.6487357467902918
+    },
+    "next_residual_priority_source": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis0_traj_corr_suite.py"
+  }
+}

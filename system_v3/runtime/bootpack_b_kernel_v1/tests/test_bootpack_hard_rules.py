@@ -156,6 +156,29 @@ class TestBootpackHardRules(unittest.TestCase):
 
         self.assertNotIn(parked_id, self.state.park_set)
 
+    def test_probe_term_allows_canonical_compound_term_without_segment_split(self):
+        self.state.term_registry["correlation_polarity"] = {"state": "CANONICAL_ALLOWED"}
+        block = _wrap_export(
+            [
+                "PROBE_HYP P_CORR_POL",
+                "PROBE_KIND P_CORR_POL CORR UTIL_TEST",
+                "ASSERT P_CORR_POL CORR EXISTS PROBE_TOKEN PT_P_CORR_POL",
+                "SPEC_HYP S_CORR_POL_SIM",
+                "SPEC_KIND S_CORR_POL_SIM CORR SIM_SPEC",
+                "REQUIRES S_CORR_POL_SIM CORR P_CORR_POL",
+                "DEF_FIELD S_CORR_POL_SIM CORR PROBE_TERM correlation_polarity",
+                "DEF_FIELD S_CORR_POL_SIM CORR REQUIRES_EVIDENCE E_CORR_POL",
+                "ASSERT S_CORR_POL_SIM CORR EXISTS EVIDENCE_TOKEN E_CORR_POL",
+            ],
+            export_id="E_CORR_POL_SIM",
+        )
+
+        result = self.kernel.evaluate_export_block(block, self.state, batch_id="B_CORR_POL")
+
+        self.assertEqual([], result["rejected"])
+        accepted_ids = {row["id"] for row in result["accepted"]}
+        self.assertIn("S_CORR_POL_SIM", accepted_ids)
+
 
 if __name__ == "__main__":
     unittest.main()

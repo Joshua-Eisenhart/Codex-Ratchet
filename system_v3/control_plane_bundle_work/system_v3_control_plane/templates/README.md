@@ -3,6 +3,12 @@
 
 This directory provides **scaffolding** for building ZIPs that conform to `specs/ZIP_PROTOCOL_v2.md`.
 
+For the whole-system template view, see:
+- `../specs/ZIP_SUBAGENT_TEMPLATE_MATRIX__v1.md`
+
+For upper-layer ZIP_JOB / ZIP subagent scaffolds, see:
+- `../job_templates/README.md`
+
 ## Important
 - ZIP validation is allowlist-only per `zip_type`.
 - When producing a ZIP from a template, include **only** the allowlisted files.

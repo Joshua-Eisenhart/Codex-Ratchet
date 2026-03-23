@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import zipfile
 
 
 TEXT_SUFFIXES = {".txt", ".log", ".md", ".jsonl", ".json"}
@@ -31,6 +32,41 @@ def _iter_sim_files(sim_root: Path) -> list[Path]:
     return out
 
 
+def _iter_sim_zip_packets(zip_root: Path) -> list[Path]:
+    out: list[Path] = []
+    if not zip_root.exists():
+        return out
+    for path in sorted(zip_root.glob("*_SIM_TO_A0_SIM_RESULT_ZIP.zip")):
+        if path.is_file():
+            out.append(path)
+    return out
+
+
+def _read_json(path: Path) -> dict:
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _read_last_sim_event(run_dir: Path) -> dict:
+    candidates = [run_dir / "logs" / "events.000.jsonl", run_dir / "events.jsonl"]
+    for path in candidates:
+        if not path.exists():
+            continue
+        rows = [line.strip() for line in path.read_text(encoding="utf-8", errors="ignore").splitlines() if line.strip()]
+        for line in reversed(rows):
+            try:
+                row = json.loads(line)
+            except Exception:
+                continue
+            if isinstance(row.get("sim"), dict):
+                return row
+    return {}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Evaluate P5 evidence-ingest gate.")
     parser.add_argument("--run-dir", required=True)
@@ -41,9 +77,11 @@ def main() -> int:
 
     run_dir = Path(args.run_dir).resolve()
     sim_root = run_dir / "sim"
+    zip_root = run_dir / "zip_packets"
     reports_dir = run_dir / "reports"
 
     sim_files = _iter_sim_files(sim_root)
+    sim_zips = _iter_sim_zip_packets(zip_root)
     evidence_blocks = 0
     evidence_tokens: set[str] = set()
     positive_signal_count = 0
@@ -68,6 +106,35 @@ def main() -> int:
             if line.startswith("KILL_SIGNAL "):
                 kill_signal_count += 1
 
+    for path in sim_zips:
+        try:
+            with zipfile.ZipFile(path, "r") as zf:
+                lines = zf.read("SIM_EVIDENCE.txt").decode("utf-8", errors="ignore").splitlines()
+        except Exception:
+            continue
+        for line in lines:
+            if line.strip() == "BEGIN SIM_EVIDENCE v1":
+                evidence_blocks += 1
+                continue
+            if line.startswith("EVIDENCE_SIGNAL "):
+                positive_signal_count += 1
+                parts = line.split()
+                if len(parts) >= 4:
+                    evidence_tokens.add(parts[-1])
+                upper = line.upper()
+                if "NEG_" in upper or "NEGATIVE" in upper:
+                    negative_signal_count += 1
+                continue
+            if line.startswith("KILL_SIGNAL "):
+                kill_signal_count += 1
+
+    summary = _read_json(run_dir / "summary.json")
+    last_sim_event = _read_last_sim_event(run_dir)
+    sim_event = last_sim_event.get("sim", {}) if isinstance(last_sim_event.get("sim"), dict) else {}
+    campaign_program_ids = [str(x).strip() for x in (summary.get("campaign_program_ids") or []) if str(x).strip()]
+    suite_modes_seen = [str(x).strip() for x in (sim_event.get("suite_modes_seen") or []) if str(x).strip()]
+    stages_seen = [str(x).strip() for x in (sim_event.get("stages_seen") or []) if str(x).strip()]
+
     checks = [
         {
             "check_id": "SIM_EVIDENCE_BLOCK_PRESENT",
@@ -89,6 +156,21 @@ def main() -> int:
             "status": _status(kill_signal_count >= args.min_kill_signals),
             "detail": f"kill_signal_count={kill_signal_count} min_required={args.min_kill_signals}",
         },
+        {
+            "check_id": "SIM_CAMPAIGN_METADATA_PRESENT",
+            "status": _status(bool(campaign_program_ids) or bool(sim_event.get("campaign_program_id"))),
+            "detail": f"campaign_program_ids={campaign_program_ids or [str(sim_event.get('campaign_program_id', '')).strip()]}",
+        },
+        {
+            "check_id": "SIM_STAGE_METADATA_PRESENT",
+            "status": _status(len(stages_seen) >= 1),
+            "detail": f"stages_seen={stages_seen}",
+        },
+        {
+            "check_id": "SIM_SUITE_MODE_METADATA_PRESENT",
+            "status": _status(len(suite_modes_seen) >= 1),
+            "detail": f"suite_modes_seen={suite_modes_seen}",
+        },
     ]
 
     status = "PASS" if all(check["status"] == "PASS" for check in checks) else "FAIL"
@@ -99,11 +181,16 @@ def main() -> int:
         "checks": checks,
         "sim_files_scanned": [str(p) for p in sim_files],
         "sim_file_count": len(sim_files),
+        "sim_zip_packets_scanned": [str(p) for p in sim_zips],
+        "sim_zip_packet_count": len(sim_zips),
         "evidence_block_count": evidence_blocks,
         "positive_signal_count": positive_signal_count,
         "negative_signal_count": negative_signal_count,
         "kill_signal_count": kill_signal_count,
         "ingested_evidence_tokens": sorted(evidence_tokens),
+        "campaign_program_ids": campaign_program_ids,
+        "stages_seen": stages_seen,
+        "suite_modes_seen": suite_modes_seen,
         "errors": [] if status == "PASS" else ["EVIDENCE_GATE_UNSATISFIED"],
         "updated_utc": "UNCHANGED_BY_GATE_EVAL",
     }

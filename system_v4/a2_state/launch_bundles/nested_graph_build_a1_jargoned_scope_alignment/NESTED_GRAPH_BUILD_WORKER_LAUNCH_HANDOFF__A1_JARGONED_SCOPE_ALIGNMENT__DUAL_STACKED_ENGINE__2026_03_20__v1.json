@@ -1,0 +1,51 @@
+{
+  "schema": "NESTED_GRAPH_BUILD_WORKER_LAUNCH_HANDOFF_v1",
+  "queue_status": "BLOCKED_ON_A1_JARGONED_SCOPE_ALIGNMENT",
+  "dispatch_id": "NESTED_GRAPH_BUILD__A1_JARGONED_SCOPE_ALIGNMENT__DUAL_STACKED_ENGINE__2026_03_20__v1",
+  "unit_id": "A1_JARGONED_SCOPE_ALIGNMENT",
+  "program_id": "NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1",
+  "layer_id": "A1_JARGONED",
+  "role_label": "NESTED_GRAPH_BUILD__A1_JARGONED_SCOPE_ALIGNMENT__DUAL_STACKED_ENGINE__2026_03_20__v1",
+  "role_type": "A1_SCOPE_ALIGNMENT",
+  "role_scope": "One bounded correction-first pass that aligns A1_JARGONED to the queue-selected DUAL_STACKED_ENGINE family by minting packet-backed Rosetta fuel from existing A2 concepts and rewriting the A1_JARGONED handoff to that aligned scope, or fails closed with explicit missing prerequisites.",
+  "thread_class": "A1_WORKER",
+  "mode": "PROCEDURE_FIRST_CORRECTION",
+  "required_boot": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/26_BOOTPACK_A1_WIGGLE__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/33_A2_VS_A1_ROLE_SPLIT__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/75_A2_MINING_AND_ROSETTA_ARTIFACT_PACKS__v1.md"
+  ],
+  "source_artifacts": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/rosetta_v2.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_FAMILY_SLICE__DUAL_STACKED_ENGINE_2026_03_17__v1.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_low_control_graph_v1.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/identity_registry_v1.json"
+  ],
+  "depends_on": [
+    "NESTED_GRAPH_BUILD__IDENTITY_REGISTRY__2026_03_20__v1",
+    "NESTED_GRAPH_BUILD__A2_LOW_CONTROL__2026_03_20__v1"
+  ],
+  "expected_outputs": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/rosetta_v2.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/launch_bundles/nested_graph_build_a1_jargoned/NESTED_GRAPH_BUILD_WORKER_LAUNCH_HANDOFF__A1_JARGONED__2026_03_20__v1.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_JARGONED_SCOPE_ALIGNMENT_AUDIT__2026_03_20__v1.md"
+  ],
+  "write_scope": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/rosetta_v2.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/launch_bundles/nested_graph_build_a1_jargoned/NESTED_GRAPH_BUILD_WORKER_LAUNCH_HANDOFF__A1_JARGONED__2026_03_20__v1.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_JARGONED_SCOPE_ALIGNMENT_AUDIT__2026_03_20__v1.md"
+  ],
+  "operator_steps": [
+    "Do not materialize A1_JARGONED in this correction pass.",
+    "Treat the queue-selected DUAL_STACKED_ENGINE family slice as the authoritative scope target.",
+    "Mint only packet-backed Rosetta entries whose source_concept_id resolves in the live master graph.",
+    "Rewrite the A1_JARGONED handoff only if the corrected scope produces packet-backed Rosetta fuel.",
+    "Fail closed if the family terms still cannot be anchored to live A2 concepts."
+  ],
+  "prompt_to_send": "Run one bounded correction pass that aligns A1_JARGONED to the DUAL_STACKED_ENGINE family. Mint only packet-backed Rosetta fuel from live A2 anchors, rewrite the A1_JARGONED handoff to that aligned scope if successful, and stop.",
+  "stop_rule": "Stop after one bounded A1_JARGONED scope-alignment correction pass."
+}

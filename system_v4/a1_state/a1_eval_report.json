@@ -1,0 +1,253 @@
+{
+  "timestamp": "2026-03-22T03:32:16Z",
+  "total_targets": 14,
+  "total_alternatives": 24,
+  "gates": {
+    "discourse_ban": {
+      "pass": true,
+      "violations": [],
+      "count": 0,
+      "threshold": 2
+    },
+    "math_def_ratio": {
+      "pass": true,
+      "math_defs": 5,
+      "total_non_probe": 9,
+      "ratio": 0.556,
+      "threshold": 0.3
+    },
+    "math_l0_coverage": {
+      "pass": true,
+      "math_with_sufficient_l0": 5,
+      "total_math": 5,
+      "details": [
+        {
+          "id": "F229",
+          "l0_count": 2,
+          "pass": true
+        },
+        {
+          "id": "F233",
+          "l0_count": 2,
+          "pass": true
+        },
+        {
+          "id": "F237",
+          "l0_count": 2,
+          "pass": true
+        },
+        {
+          "id": "F242",
+          "l0_count": 1,
+          "pass": true
+        },
+        {
+          "id": "F246",
+          "l0_count": 1,
+          "pass": true
+        }
+      ]
+    },
+    "source_lineage": {
+      "pass": true,
+      "note": "Lineage tracked via concept_results mapping"
+    },
+    "try_to_fail_alternatives": {
+      "pass": true,
+      "total_alternatives": 24,
+      "same_as_target": 10,
+      "details": [
+        {
+          "id": "F230",
+          "struct": "equality_identity",
+          "same_as_target": false
+        },
+        {
+          "id": "F231",
+          "struct": "density_matrix",
+          "same_as_target": true
+        },
+        {
+          "id": "F232",
+          "struct": "density_matrix",
+          "same_as_target": true
+        },
+        {
+          "id": "F234",
+          "struct": "equality_identity",
+          "same_as_target": false
+        },
+        {
+          "id": "F235",
+          "struct": "partial_trace",
+          "same_as_target": true
+        },
+        {
+          "id": "F236",
+          "struct": "partial_trace",
+          "same_as_target": true
+        },
+        {
+          "id": "F238",
+          "struct": "equality_identity",
+          "same_as_target": false
+        },
+        {
+          "id": "F239",
+          "struct": "operator_space",
+          "same_as_target": true
+        },
+        {
+          "id": "F240",
+          "struct": "operator_space",
+          "same_as_target": true
+        },
+        {
+          "id": "S062",
+          "struct": "equality_identity",
+          "same_as_target": false
+        }
+      ]
+    },
+    "no_duplicates": {
+      "pass": true,
+      "duplicates": {}
+    }
+  },
+  "per_concept": {
+    "A2_3::SOURCE_MAP_PASS::generate_density_matrix_packet_py::37c7e4214bd3c7fe": {
+      "name": "generate_density_matrix_packet_py",
+      "category": "MATH_RICH",
+      "expected_kind": "MATH_DEF",
+      "candidate_count": 2,
+      "actual_kinds": [
+        "MATH_DEF",
+        "SIM_SPEC"
+      ],
+      "kind_match": true
+    },
+    "A2_3::SOURCE_MAP_PASS::000007_a1_cold_core_proposals_v1_json::62b053ff6f27f918": {
+      "name": "000007_a1_cold_core_proposals_v1_json",
+      "category": "MATH_RICH",
+      "expected_kind": "MATH_DEF",
+      "candidate_count": 2,
+      "actual_kinds": [
+        "MATH_DEF",
+        "SIM_SPEC"
+      ],
+      "kind_match": true
+    },
+    "A2_3::SOURCE_MAP_PASS::a1_repair_operator_mapping_v1::f470d57cce0f7654": {
+      "name": "a1_repair_operator_mapping_v1",
+      "category": "MATH_RICH",
+      "expected_kind": "MATH_DEF",
+      "candidate_count": 2,
+      "actual_kinds": [
+        "MATH_DEF",
+        "SIM_SPEC"
+      ],
+      "kind_match": true
+    },
+    "A2_3::SOURCE_MAP_PASS::validator_contracts_and_stress_tests::f5361462e799484f": {
+      "name": "validator_contracts_and_stress_tests",
+      "category": "SPEC_CONSTRAINT",
+      "expected_kind": "SIM_SPEC",
+      "candidate_count": 1,
+      "actual_kinds": [
+        "SIM_SPEC"
+      ],
+      "kind_match": true
+    },
+    "A2_3::SOURCE_MAP_PASS::sim_7_tier_architecture::b050a4b12910d3ef": {
+      "name": "sim_7_tier_architecture",
+      "category": "SPEC_CONSTRAINT",
+      "expected_kind": "SIM_SPEC",
+      "candidate_count": 1,
+      "actual_kinds": [
+        "SIM_SPEC"
+      ],
+      "kind_match": true
+    },
+    "A2_2::REFINED::DETERMINISTIC_KERNEL_PIPELINE::030ebc838121b473": {
+      "name": "DETERMINISTIC_KERNEL_PIPELINE",
+      "category": "SPEC_CONSTRAINT",
+      "expected_kind": "SIM_SPEC",
+      "candidate_count": 2,
+      "actual_kinds": [
+        "SIM_SPEC",
+        "TERM_DEF"
+      ],
+      "kind_match": true
+    },
+    "A2_2::REFINED::rosetta_translations_cognition_physics_game_theory::8e5e534c3b294677": {
+      "name": "rosetta_translations_cognition_physics_game_theory",
+      "category": "ROSETTA",
+      "expected_kind": "TERM_DEF",
+      "candidate_count": 0,
+      "actual_kinds": [],
+      "kind_match": false
+    },
+    "A2_2::REFINED::end_to_end_9_step_loop::ab9367cbb4530618": {
+      "name": "end_to_end_9_step_loop",
+      "category": "META_DISCOURSE",
+      "expected_kind": "LABEL_DEF_OR_NOOP",
+      "candidate_count": 0,
+      "actual_kinds": [],
+      "kind_match": true
+    },
+    "A2_2::REFINED::system_bundle_and_reboot_playbook::b12c89702f536083": {
+      "name": "system_bundle_and_reboot_playbook",
+      "category": "META_DISCOURSE",
+      "expected_kind": "LABEL_DEF_OR_NOOP",
+      "candidate_count": 0,
+      "actual_kinds": [],
+      "kind_match": true
+    },
+    "A2_2::REFINED::lev_os_skill_system::edf23409db54ac95": {
+      "name": "lev_os_skill_system",
+      "category": "META_DISCOURSE",
+      "expected_kind": "LABEL_DEF_OR_NOOP",
+      "candidate_count": 0,
+      "actual_kinds": [],
+      "kind_match": true
+    },
+    "A2_2::REFINED::a2_entropy_reduction_mission::befe40027c55382a": {
+      "name": "a2_entropy_reduction_mission",
+      "category": "META_DISCOURSE",
+      "expected_kind": "LABEL_DEF_OR_NOOP",
+      "candidate_count": 0,
+      "actual_kinds": [],
+      "kind_match": true
+    },
+    "A2_3::SOURCE_MAP_PASS::v3_runtime_sim_tensor_product::74596bdb3b4161f9": {
+      "name": "v3_runtime_sim_tensor_product",
+      "category": "MATH_RICH",
+      "expected_kind": "MATH_DEF",
+      "candidate_count": 2,
+      "actual_kinds": [
+        "MATH_DEF",
+        "SIM_SPEC"
+      ],
+      "kind_match": true
+    },
+    "A2_3::SOURCE_MAP_PASS::sim_tensor_product_py::c41217de862d8099": {
+      "name": "sim_tensor_product_py",
+      "category": "MATH_RICH",
+      "expected_kind": "MATH_DEF",
+      "candidate_count": 2,
+      "actual_kinds": [
+        "MATH_DEF",
+        "SIM_SPEC"
+      ],
+      "kind_match": true
+    }
+  },
+  "overall_pass": false,
+  "kind_distribution": {
+    "MATH_DEF": 5,
+    "SIM_SPEC": 8,
+    "TERM_DEF": 1
+  },
+  "slice_name": "a1_eval_slice.json",
+  "slice_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_eval_slice.json"
+}

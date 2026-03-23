@@ -1,0 +1,111 @@
+{
+  "audit_only": true,
+  "bridge_candidate_count": 3,
+  "bridge_candidates": [
+    {
+      "after_hash": "fcf140cd9da35784",
+      "before_hash": "35484cece82000dc",
+      "bridge_role": "preserve_graph_registry_parity",
+      "kind": "negative",
+      "notes_preview": [
+        "replace stale graph capability audit output after runtime graph sync so the report reflects 114/114 coverage",
+        "keep registry and graph parity explicit before widening any new lane"
+      ],
+      "phase": "POST_ACTION_REPAIR",
+      "recorded_at": "2026-03-22T00:56:24Z",
+      "skill": "graph-capability-auditor",
+      "topic": "graph_audit_sync",
+      "witness_index": 4
+    },
+    {
+      "after_hash": "e28d4bdbe72726b2",
+      "before_hash": "2044a907831f00d5",
+      "bridge_role": "retain_general_gate",
+      "kind": "positive",
+      "notes_preview": [
+        "keep skill-improver at one proven target only and do not widen to a second target class without owner-grounded admission",
+        "record the fail-closed hold result as real maintenance evidence"
+      ],
+      "phase": "POST_ACTION_REPAIR",
+      "recorded_at": "2026-03-22T00:56:24Z",
+      "skill": "a2-skill-improver-second-target-admission-audit-operator",
+      "topic": "skill_improver_gate",
+      "witness_index": 5
+    },
+    {
+      "after_hash": "7073d2ac81dcd562",
+      "before_hash": "28d6eaa30fea7f8e",
+      "bridge_role": "preserve_upper_loop_green",
+      "kind": "positive",
+      "notes_preview": [
+        "repair standing A2 lag after front-door corpus sync and keep controller surfaces current",
+        "do not widen the lane until the upper loop is green again"
+      ],
+      "phase": "POST_ACTION_REPAIR",
+      "recorded_at": "2026-03-22T00:56:24Z",
+      "skill": "a2-brain-surface-refresher",
+      "topic": "a2_refresh_sync",
+      "witness_index": 6
+    }
+  ],
+  "bridge_status": "admissible_as_first_target_context_only",
+  "cluster_id": "SKILL_CLUSTER::next-state-signal-adaptation",
+  "context_bridge_preview": {
+    "allowed_context_uses": [
+      "bounded audit prompts or summaries for the one proven target only",
+      "repair-context preservation for future maintenance-lane review",
+      "repo-held bridge packets that remain nonoperative and do_not_promote"
+    ],
+    "allowed_target_skill_ids": [
+      "a2-skill-improver-readiness-operator"
+    ],
+    "directive_topics": [
+      "a2_refresh_sync",
+      "graph_audit_sync",
+      "skill_improver_gate"
+    ],
+    "first_proven_target_skill_id": "a2-skill-improver-readiness-operator",
+    "forbidden_uses": [
+      "second target admission",
+      "live mutation or autonomous policy updates",
+      "online learning or runtime import claims",
+      "graph link seeding or graph backfill claims"
+    ],
+    "owner_skill_id": "skill-improver-operator",
+    "retained_second_target_gate": "hold_one_proven_target_only",
+    "selected_witness_indices": [
+      4,
+      5,
+      6
+    ]
+  },
+  "do_not_promote": true,
+  "first_proven_target_skill_id": "a2-skill-improver-readiness-operator",
+  "first_target_proof_report_path": "system_v4/a2_state/audit_logs/SKILL_IMPROVER_FIRST_TARGET_PROOF_REPORT__CURRENT__v1.json",
+  "generated_utc": "2026-03-22T01:05:54Z",
+  "issues": [],
+  "non_goals": [
+    "Do not mutate witness entries or any skill-improver target from this slice.",
+    "Do not treat this bridge as second-target admission or general mutation authority.",
+    "Do not claim live learning, online training, or OpenClaw runtime behavior from this audit.",
+    "Do not seed graph links or backfill kernel relations from this bridge result."
+  ],
+  "nonoperative": true,
+  "owner_skill_id": "skill-improver-operator",
+  "probe_packet_path": "system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_PACKET__CURRENT__v1.json",
+  "probe_report_path": "system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.json",
+  "readiness_report_path": "system_v4/a2_state/audit_logs/SKILL_IMPROVER_READINESS_REPORT__CURRENT__v1.json",
+  "recommended_actions": [
+    "Keep this slice audit-only and use it only to preserve bounded first-target context around real post-action witness signals.",
+    "Retain the general skill-improver gate and the one-proven-target hold even when the bridge is admissible.",
+    "Do not widen this bridge into graph seeding, live learning, or OpenClaw runtime claims."
+  ],
+  "recommended_next_step": "hold_context_bridge_as_audit_only",
+  "repo_root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "schema": "A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT_v1",
+  "second_target_packet_path": "system_v4/a2_state/audit_logs/SKILL_IMPROVER_SECOND_TARGET_ADMISSION_PACKET__CURRENT__v1.json",
+  "slice_id": "a2-next-state-improver-context-bridge-audit-operator",
+  "source_family": "OpenClaw-RL-derived next-state signal family plus Ratchet-native skill-improver truth maintenance",
+  "status": "ok",
+  "witness_path": "system_v4/a2_state/witness_corpus_v1.json"
+}

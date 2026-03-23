@@ -1,0 +1,196 @@
+{
+  "admissible_write_shapes": [
+    {
+      "allowed_when": "new recurring pressure, communication nuance, design correction, or carry-forward instruction should persist without rewriting summaries",
+      "shape_id": "append_log_delta",
+      "target_surface": "system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md"
+    },
+    {
+      "allowed_when": "standing compressed understanding actually changed and append-log-only carry is no longer enough",
+      "shape_id": "summary_refresh_only",
+      "target_surfaces": [
+        "system_v3/a2_state/INTENT_SUMMARY.md",
+        "system_v3/a2_state/A2_BRAIN_SLICE__v1.md"
+      ]
+    },
+    {
+      "allowed_when": "a live blocker, tension, ambiguity, or explicit hold state changed",
+      "shape_id": "unresolved_refresh_only",
+      "target_surface": "system_v3/a2_state/OPEN_UNRESOLVED__v1.md"
+    },
+    {
+      "allowed_when": "current lane, selector result, hold state, or admitted current truth changed",
+      "shape_id": "controller_state_refresh_only",
+      "target_surface": "system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md"
+    },
+    {
+      "allowed_when": "one bounded tranche lands and needs explicit repo-held delta capture without becoming the continuity shell itself",
+      "shape_id": "bounded_delta_note_pair",
+      "target_surface_class": "A2_UPDATE_NOTE plus optional A2_TO_A1_IMPACT_NOTE"
+    }
+  ],
+  "audit_only": true,
+  "audit_scope": "bounded_append_safe_context_shell_audit",
+  "blocked_related_pattern_ids": [
+    "scoped_memory_sidecar"
+  ],
+  "cluster_id": "SKILL_CLUSTER::context-spec-workflow-memory",
+  "continuity_shell_contract": {
+    "blocked_expansions": [
+      "canonical brain replacement",
+      "new owner-surface family creation",
+      "background session-manager ownership",
+      "external memory platform ownership",
+      "graph-substrate replacement"
+    ],
+    "bounded_delta_surface_class": "A2_UPDATE_NOTE plus optional A2_TO_A1_IMPACT_NOTE",
+    "controller_refresh_surface_path": "system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md",
+    "preferred_append_surface_path": "system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md",
+    "primary_shell_surface_paths": [
+      "system_v3/a2_state/INTENT_SUMMARY.md",
+      "system_v3/a2_state/A2_BRAIN_SLICE__v1.md",
+      "system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md",
+      "system_v3/a2_state/OPEN_UNRESOLVED__v1.md",
+      "system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md"
+    ],
+    "summary_refresh_surface_paths": [
+      "system_v3/a2_state/INTENT_SUMMARY.md",
+      "system_v3/a2_state/A2_BRAIN_SLICE__v1.md"
+    ],
+    "unresolved_surface_path": "system_v3/a2_state/OPEN_UNRESOLVED__v1.md"
+  },
+  "do_not_promote": true,
+  "generated_utc": "2026-03-22T02:48:31Z",
+  "imported_member_disposition": {
+    "Context-Engineering": {
+      "adapt_away_from": [
+        "full framework import",
+        "field-theory or ontology claims as runtime law",
+        "tooling-owned context replacement"
+      ],
+      "classification": "adapt",
+      "keep": "layered context shells, protocol-shell discipline, and carry-forward framing without whole-thread replay"
+    },
+    "mem0": {
+      "adapt_away_from": [
+        "canonical brain replacement",
+        "memory platform ownership",
+        "vector-db or graph substrate ownership"
+      ],
+      "classification": "mine",
+      "keep": "scoped memory-sidecar, mutation-history, and session/run identity ideas only as later bounded sidecar pressure"
+    },
+    "spec-kit": {
+      "adapt_away_from": [
+        "CLI scaffolding assumptions",
+        "slash-command workflow ownership",
+        "project generator claims"
+      ],
+      "classification": "adapt",
+      "keep": "explicit contract language for what stays standing owner memory versus bounded task or note surfaces"
+    },
+    "superpowers": {
+      "adapt_away_from": [
+        "full workflow operating-system replacement",
+        "plugin marketplace assumptions",
+        "git-worktree ownership"
+      ],
+      "classification": "mine",
+      "keep": "review-before-completion and bounded workflow discipline so shell updates stay deliberate"
+    }
+  },
+  "issues": [],
+  "local_sources": {
+    "Context-Engineering": {
+      "exists": true,
+      "path": "work/reference_repos/external_audit/Context-Engineering",
+      "readme_exists": true
+    },
+    "mem0": {
+      "exists": true,
+      "path": "work/reference_repos/external_audit/mem0",
+      "readme_exists": true
+    },
+    "spec-kit": {
+      "exists": true,
+      "path": "work/reference_repos/external_audit/spec-kit",
+      "readme_exists": true
+    },
+    "superpowers": {
+      "exists": true,
+      "path": "work/reference_repos/external_audit/superpowers",
+      "readme_exists": true
+    }
+  },
+  "non_goals": [
+    "No canonical A2/A1 brain replacement claim.",
+    "No new owner-surface family creation claim.",
+    "No background session-manager or workflow-host ownership claim.",
+    "No external memory platform or service bootstrap claim.",
+    "No graph-substrate replacement claim.",
+    "No selector widening by momentum."
+  ],
+  "nonoperative": true,
+  "recommended_actions": [
+    "Keep the standing continuity shell small and explicit: append nuance into the append log first, then refresh summaries only when shell meaning actually changed.",
+    "Treat A2 update-note pairs as bounded tranche evidence, not as the continuity shell itself.",
+    "Hold this slice as audit-only; do not convert it into a live memory manager, background process, or canonical-brain replacement."
+  ],
+  "recommended_next_step": "hold_append_safe_context_shell_as_audit_only",
+  "schema": "A2_APPEND_SAFE_CONTEXT_SHELL_AUDIT_REPORT_v1",
+  "selector_alignment": {
+    "aligned": true,
+    "recommended_next_slice_id": "a2-append-safe-context-shell-audit-operator",
+    "selected_pattern_id": "append_safe_context_shell"
+  },
+  "shell_surface_inventory": [
+    {
+      "admitted_write_shape": "summary_refresh_only",
+      "exists": true,
+      "line_count": 705,
+      "modified_utc": "2026-03-22T02:41:43Z",
+      "path": "system_v3/a2_state/INTENT_SUMMARY.md",
+      "role": "standing summary shell",
+      "size_bytes": 45581
+    },
+    {
+      "admitted_write_shape": "summary_refresh_only",
+      "exists": true,
+      "line_count": 398,
+      "modified_utc": "2026-03-22T02:41:43Z",
+      "path": "system_v3/a2_state/A2_BRAIN_SLICE__v1.md",
+      "role": "standing compressed brain shell",
+      "size_bytes": 20210
+    },
+    {
+      "admitted_write_shape": "append_log_delta",
+      "exists": true,
+      "line_count": 1332,
+      "modified_utc": "2026-03-22T02:41:43Z",
+      "path": "system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md",
+      "role": "append-first continuity log",
+      "size_bytes": 58139
+    },
+    {
+      "admitted_write_shape": "unresolved_refresh_only",
+      "exists": true,
+      "line_count": 507,
+      "modified_utc": "2026-03-22T02:41:43Z",
+      "path": "system_v3/a2_state/OPEN_UNRESOLVED__v1.md",
+      "role": "live tensions and unresolved blocker shell",
+      "size_bytes": 32537
+    },
+    {
+      "admitted_write_shape": "controller_state_refresh_only",
+      "exists": true,
+      "line_count": 456,
+      "modified_utc": "2026-03-22T02:41:43Z",
+      "path": "system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md",
+      "role": "controller-facing current state shell",
+      "size_bytes": 25738
+    }
+  ],
+  "slice_id": "a2-append-safe-context-shell-audit-operator",
+  "source_family": "Context-Engineering / spec-kit / superpowers / mem0 source set",
+  "status": "ok"
+}

@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 import re
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -64,7 +65,32 @@ def split_paragraphs(text: str) -> List[str]:
 
 
 def main() -> int:
-    root = Path("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Detect near-duplicate content across system_v3/specs.")
+    parser.add_argument(
+        "--repo-root",
+        default="",
+        help="Repository root. If omitted, uses $CODEX_RATCHET_ROOT, else infers from script path.",
+    )
+    args = parser.parse_args()
+
+    raw = str(args.repo_root or "").strip()
+    if raw:
+        root = Path(raw).expanduser().resolve()
+    else:
+        env = str(os.environ.get("CODEX_RATCHET_ROOT", "") or "").strip()
+        if env:
+            root = Path(env).expanduser().resolve()
+        else:
+            cur = Path(__file__).resolve()
+            root = cur
+            for _ in range(10):
+                if (root / "system_v3").is_dir():
+                    break
+                root = root.parent
+            root = root.resolve()
+
     spec_dir = root / "system_v3/specs"
     reports_dir = spec_dir / "reports"
     reports_dir.mkdir(parents=True, exist_ok=True)

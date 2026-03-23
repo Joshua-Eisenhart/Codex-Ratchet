@@ -3,6 +3,9 @@ Status: DRAFT / NONCANON
 Date: 2026-02-20
 Owner: `RQ-050..RQ-059`
 
+Companion repair target:
+- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/72_SIM_CAMPAIGN_AND_SUITE_MODES__v1.md`
+
 ## Kernel-Facing Artifact Grammar (Bootpack B)
 Thread B consumes SIM evidence only via `SIM_EVIDENCE v1` blocks (optionally as a `SIM_EVIDENCE_PACK`).
 
@@ -73,6 +76,7 @@ Hash definitions (deterministic; implementation-level):
 Rules:
 - explicit acyclic dependencies
 - no tier-skip promotion
+- stage/suite process discipline is defined separately in the companion campaign spec
 
 ## Stress Families (`RQ-056`)
 Required per target class:

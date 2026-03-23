@@ -1,0 +1,163 @@
+{
+  "schema": "A2_MID_REFINEMENT_BATCH_MANIFEST_v1",
+  "batch_id": "BATCH_A2MID_archive_chain_b_shell_drift__v1",
+  "batch_scope": "archive_chain_variant_reduction_preserving_two_executed_transitions_plus_queued_third_continuation_three_step_count_inflation_summary_state_final_hash_vs_last_event_split_replay_vs_real_llm_demand_mismatch_second_step_schema_fail_mixed_survivor_carryover_mixed_suffix_duplicate_files_and_empty_zip_packets2_shell",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T20:31:21Z",
+  "extraction_mode": "A2_MID_REFINEMENT_PASS",
+  "promotion_status": "A2_2_CANDIDATE",
+  "parent_batch_ids": [
+    "BATCH_archive_surface_deep_archive_test_state_transition_chain_b__v1"
+  ],
+  "parent_artifacts": [
+    "SOURCE_MAP__v1.md",
+    "CLUSTER_MAP__v1.md",
+    "TENSION_MAP__v1.md",
+    "A2_3_DISTILLATES__v1.md",
+    "A2_2_CANDIDATE_SUMMARIES__v1.md",
+    "MANIFEST.json"
+  ],
+  "selection_basis": {
+    "ledger_reason": "This is the next untouched deep-archive test parent after chain A and the clearest variant object that preserves the same chain contradiction with a different residue pattern.",
+    "bounded_goal": "Reduce the parent into a smaller archive chain-variant packet that preserves two executed steps plus queued third continuation, three-step count inflation, final-hash versus last-event split, replay-versus-real-LLM demand mismatch, second-step schema fail, mixed survivor carryover, mixed-suffix duplicate files, and the empty zip_packets 2 shell.",
+    "deferred_alternatives": [
+      {
+        "batch_id": "BATCH_archive_surface_deep_archive_test_state_transition_mutation__v1",
+        "reason": "Best next sibling once both chain variants are preserved."
+      },
+      {
+        "batch_id": "BATCH_archive_surface_deep_archive_run_foundation_packet_failure__v1",
+        "reason": "Useful later for non-chain packet-failure comparison."
+      }
+    ]
+  },
+  "comparison_anchor_batches": [
+    "BATCH_A2MID_archive_chain_a_continuation_hashsplit__v1",
+    "BATCH_A2MID_archive_test_resume_stub_leakage__v1"
+  ],
+  "raw_source_reread_needed": false,
+  "raw_source_reread_reason": "The parent packet already retains the event/state/hash contradictions, queued third continuation, mixed-suffix duplicate-file pattern, empty zip_packets 2 shell, and runtime-path leakage needed for second-pass refinement, and the consulted A2-mid anchors already preserve the sibling chain-A comparison and the preceding resume stub.",
+  "candidate_items": [
+    {
+      "id": "RC1",
+      "name": "CHAIN_B_PRESERVES_TWO_EXECUTED_TRANSITIONS_WITH_A_QUEUED_THIRD_CONTINUATION",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the strongest executed-versus-queued boundary.",
+      "parent_dependencies": [
+        "events.jsonl",
+        "state.json",
+        "zip_packets/000003_A1_TO_A0_STRATEGY_ZIP.zip",
+        "MANIFEST.json"
+      ]
+    },
+    {
+      "id": "RC2",
+      "name": "REPLAY_ATTRIBUTION_DOES_NOT_CANCEL_THE_RETAINED_REAL_LLM_DEMAND_FLAG",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the clearest lineage-demand contradiction.",
+      "parent_dependencies": [
+        "summary.json",
+        "MANIFEST.json"
+      ]
+    },
+    {
+      "id": "RC3",
+      "name": "THREE_STEP_COUNTING_SURFACES_DO_NOT_OVERRIDE_TWO_EXECUTED_TRANSITIONS",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the cleanest count-inflation seam.",
+      "parent_dependencies": [
+        "summary.json",
+        "soak_report.md",
+        "sequence_state.json",
+        "events.jsonl",
+        "state.json"
+      ]
+    },
+    {
+      "id": "RC4",
+      "name": "SUMMARY_STATE_FINAL_HASH_OUTRANKS_THE_LAST_EVENT_ENDPOINT_WHILE_FEEDING_THE_QUEUED_THIRD_PACKET",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the narrowest closure-layer authority fence.",
+      "parent_dependencies": [
+        "summary.json",
+        "state.json.sha256",
+        "events.jsonl",
+        "zip_packets/000003_A1_TO_A0_STRATEGY_ZIP.zip"
+      ]
+    },
+    {
+      "id": "RC5",
+      "name": "MIXED_SUFFIX_DUPLICATE_FILES_AND_EMPTY_ZIP_PACKETS_2_STAY_PACKAGING_RESIDUE_ONLY",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the distinctive variant-specific residue seam without promoting it into state authority.",
+      "parent_dependencies": [
+        "{summary 3.json,state 2.json,state.json 2.sha256,sequence_state 3.json,events 2.jsonl,soak_report 3.md}",
+        "zip_packets 2/",
+        "MANIFEST.json"
+      ]
+    },
+    {
+      "id": "RC6",
+      "name": "SECOND_STEP_S0002_PROPOSAL_AND_MIXED_SURVIVOR_CARRYOVER_PREVENT_CLEAN_CHAIN_CLOSURE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the strongest anti-closure fence in the parent.",
+      "parent_dependencies": [
+        "state.json",
+        "zip_packets/000002_A1_TO_A0_STRATEGY_ZIP.zip",
+        "zip_packets/000002_B_TO_A0_STATE_UPDATE_ZIP.zip",
+        "zip_packets/000002_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+        "MANIFEST.json"
+      ]
+    }
+  ],
+  "quarantined_items": [
+    {
+      "id": "Q1",
+      "name": "THREE_STEP_SUMMARY_AS_PROOF_THAT_THREE_TRANSITIONS_EXECUTED",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent explicitly preserves only two executed event rows and two canonical ledger entries.",
+      "parent_dependencies": [
+        "summary.json",
+        "soak_report.md",
+        "sequence_state.json",
+        "events.jsonl",
+        "state.json"
+      ]
+    },
+    {
+      "id": "Q2",
+      "name": "QUEUED_THIRD_STRATEGY_PACKET_AS_PROOF_OF_THIRD_STEP_SUCCESS",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent explicitly preserves the third packet as queued continuation above the executed two-step spine.",
+      "parent_dependencies": [
+        "zip_packets/000003_A1_TO_A0_STRATEGY_ZIP.zip",
+        "events.jsonl"
+      ]
+    },
+    {
+      "id": "Q3",
+      "name": "MIXED_SUFFIX_DUPLICATE_FILES_AND_EMPTY_ZIP_PACKETS_2_AS_NEW_EXECUTION_STATE",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent explicitly preserves both as residue-only packaging artifacts.",
+      "parent_dependencies": [
+        "{summary 3.json,state 2.json,state.json 2.sha256,sequence_state 3.json,events 2.jsonl,soak_report 3.md}",
+        "zip_packets 2/"
+      ]
+    },
+    {
+      "id": "Q4",
+      "name": "RUNTIME_PATH_LEAKAGE_AS_PROOF_OF_LIVE_RUNTIME_AUTHORITY",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent preserves runtime absolute paths as historical leakage while the packet bodies now live in the archive mirror.",
+      "parent_dependencies": [
+        "events.jsonl",
+        "zip_packets/"
+      ]
+    }
+  ],
+  "control_surface_mutation": "NONE",
+  "notes": [
+    "This batch preserves archive-side chain-variant contradiction structure as proposal-side reduction only, not as active runtime truth or transport law.",
+    "No raw source reread and no active append-save were performed."
+  ]
+}

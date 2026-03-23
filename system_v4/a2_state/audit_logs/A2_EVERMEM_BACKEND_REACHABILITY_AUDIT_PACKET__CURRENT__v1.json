@@ -1,0 +1,21 @@
+{
+  "cluster_id": "SKILL_CLUSTER::evermem-witness-memory",
+  "curl_health_ok": false,
+  "docker_daemon_ok": false,
+  "env_exists": false,
+  "generated_utc": "2026-03-21T19:43:10Z",
+  "health_url": "http://localhost:1995/health",
+  "issues": [
+    "EverMemOS .env is missing",
+    "EverMemOS .venv is missing",
+    "docker daemon unavailable: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?",
+    "curl health probe failed: curl: (7) Failed to connect to localhost port 1995 after 0 ms: Couldn't connect to server",
+    "python health probe failed: URLError: [Errno 1] Operation not permitted"
+  ],
+  "next_step": "start_docker_daemon",
+  "python_health_ok": false,
+  "schema": "A2_EVERMEM_BACKEND_REACHABILITY_AUDIT_PACKET_v1",
+  "slice_id": "a2-evermem-backend-reachability-audit-operator",
+  "status": "attention_required",
+  "venv_exists": false
+}

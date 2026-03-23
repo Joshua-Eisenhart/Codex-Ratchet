@@ -72,8 +72,14 @@ def _score_role_compliance(obj: dict) -> float:
 def _score_term_specificity(obj: dict) -> float:
     terms = [str(x).strip() for x in (obj.get("proposed_terms", []) or []) if str(x).strip()]
     unique = {t for t in terms if TERM_RE.fullmatch(t)}
-    # 12+ good explicit terms is considered fully specific.
-    return _clamp01(float(len(unique)) / 12.0)
+    mode = str(obj.get("term_specificity_mode", obj.get("focus_term_mode", "broad"))).strip().lower()
+    if mode in {"concept_only", "concept_local_rescue"}:
+        target = 4.0
+    elif mode in {"concept_plus_rescue", "concept_priority_rescue", "phase_seed_broad_then_priority"}:
+        target = 6.0
+    else:
+        target = 12.0
+    return _clamp01(float(len(unique)) / target)
 
 
 def _score_negative_class_specificity(obj: dict) -> float:

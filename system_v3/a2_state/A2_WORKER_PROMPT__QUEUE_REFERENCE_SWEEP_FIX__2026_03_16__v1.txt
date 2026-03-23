@@ -1,0 +1,34 @@
+Use $ratchet-a2-a1.
+
+Use the current A2 boot:
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md
+
+Run one bounded A2M Promotion Review pass only.
+
+dispatch_id: A2_WORKER__QUEUE_REFERENCE_SWEEP_FIX__2026_03_16__v1
+ROLE_LABEL: A2M Promotion Review
+ROLE_TYPE: A2_M_PROMOTION_REVIEW
+ROLE_SCOPE: one bounded pass to apply the three active-helper queue-note reference fixes identified by the active-only sweep
+
+Use only these artifacts:
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__QUEUE_REFERENCE_SWEEP_ACTIVE_ONLY__2026_03_16__v1__return.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_ACTIVE_CURRENT_QUEUE_COMPANION_SURFACES__2026_03_15__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_STAGED_ACTIVE_FAMILY_SLICE_COMPANION__2026_03_15__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A2_CONTROLLER_QUEUE_HELPER_BOOT_INTEGRATION__2026_03_15__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_16__v1.md
+
+Task:
+- update only the three active-helper references named by the sweep to the March 16 queue note
+- leave historical records untouched
+
+Rules:
+- do not widen to other files
+- stop after one bounded pass
+
+Before your final answer:
+- write the exact final closeout body to:
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__QUEUE_REFERENCE_SWEEP_FIX__2026_03_16__v1__return.txt
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__QUEUE_REFERENCE_SWEEP_FIX__2026_03_16__v1.txt
+- if the folders do not exist, create them
+- do not ask the operator to save, paste back, or carry files
+- if you cannot self-save, report that exact blocker and stop

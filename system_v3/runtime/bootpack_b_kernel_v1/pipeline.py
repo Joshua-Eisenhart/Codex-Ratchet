@@ -19,7 +19,8 @@ class A0BSimPipeline:
         return self.kernel.evaluate_export_block(export_block_text, state, batch_id=batch_id)
 
     def run_sim_cycle(self, state: KernelState, batch_id: str = "") -> dict:
-        tasks = self.dispatcher.plan_tasks(state)
+        plan = self.dispatcher.build_campaign_plan(state)
+        tasks = plan.tasks
         evidence_blocks = [self.sim_engine.run_task(state, task) for task in tasks]
         satisfied = []
         for index, evidence in enumerate(evidence_blocks):
@@ -30,4 +31,7 @@ class A0BSimPipeline:
             "planned_sim_ids": [task.sim_id for task in tasks],
             "evidence_block_count": len(evidence_blocks),
             "satisfied_spec_ids": sorted(set(satisfied)),
+            "stages_seen": list(plan.stages_seen),
+            "suite_modes_seen": list(plan.suite_modes_seen),
+            "blocked_stage_ids": list(plan.blocked_stage_ids),
         }

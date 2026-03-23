@@ -1,0 +1,146 @@
+# CONTROLLER_WARM_VISIBILITY__v1
+Status: PROPOSED / NONCANONICAL / CONTROLLER WARM VISIBILITY SURFACE
+Date: 2026-03-16
+Role: bounded warm-visibility listing for intake batches whose ledger status is exactly `A2_3_REUSABLE`
+
+## Scope
+- derived in one bounded pass from `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md`
+- application rule source: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__A2_INTAKE_COLD_INDEX_APPLICATION_PLAN__2026_03_16__v1__return.txt`
+- keyed only by existing batch id and current status
+- no intake artifacts moved, renamed, deleted, or reclassified by this surface
+
+## Warm gate
+- include only batches whose ledger status is exactly `A2_3_REUSABLE`
+- exclude all `REVISIT_REQUIRED` batches from this warm surface
+- exclude all `A2_2_CANDIDATE` batches from this warm surface
+- exclude all `BATCH_A2MID_*` batches from this warm surface
+- exclude blocked integrity-residue classes from this warm surface
+
+## Warm listing
+- `BATCH_a2feed_a0_threadsave_source_map__v1` - `A2_3_REUSABLE`
+- `BATCH_a2feed_grok_eisenhart_model_source_map__v1` - `A2_3_REUSABLE`
+- `BATCH_archived_state_episode01_working_log_family__v1` - `A2_3_REUSABLE`
+- `BATCH_archived_state_intent_manifest_v1__v1` - `A2_3_REUSABLE`
+- `BATCH_archived_state_jp_behavioral_boot__v1` - `A2_3_REUSABLE`
+- `BATCH_archived_state_low_entropy_library_v4__v1` - `A2_3_REUSABLE`
+- `BATCH_archived_state_system_spec_v1__v1` - `A2_3_REUSABLE`
+- `BATCH_archived_state_export_pack_small_readme__v1` - `A2_3_REUSABLE`
+- `BATCH_archived_state_structural_memory_map_v2__v1` - `A2_3_REUSABLE`
+- `BATCH_archived_state_upgrade_structural_map_v1__v1` - `A2_3_REUSABLE`
+- `BATCH_a2feed_holodeck_docs_source_map__v1` - `A2_3_REUSABLE`
+- `BATCH_sims_top_level_docs_source_map__v1` - `A2_3_REUSABLE`
+- `BATCH_a2feed_thread_b_3_4_2_bootpack_source_map__v1` - `A2_3_REUSABLE`
+- `BATCH_a2feed_thread_b_save_process_history__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_axis0_physics_bridge_qit_bridge__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_axis0_spec_options_qit_bridge__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_axis0_spec_options_v02_qit_bridge__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_axis0_spec_options_v03_qit_bridge__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_canon_geometry_manifold_term_conflict__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_physics_fuel_digest_term_conflict__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_thread_s_full_save_family__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_axis_function_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_axis_set_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_axis0_note_precursor_qit_bridge__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_base_constraints_ledger_term_conflict__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_candidate_proposal_schema__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_completeness_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_composition_class_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_constraint_manifold_derivation_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_coordinate_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_cosmologically_constraint_admissible_structures_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_cycle_class_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_cognition_rosetta_personality_analogy__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_curvature_contract_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_dimensionality_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_duality_class_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_dynamical_admissibility_boundary_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_engine_contract_engine_pattern__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_entropy_contract_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_geometry_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_game_theory_rosetta_personality_analogy__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_metric_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_obstruction_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_orthogonality_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_path_contract_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_physics_rosetta_personality_analogy__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_refinement_contract_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_relational_transport_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_rosetta_contract_personality_analogy__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_state_abstraction_admissibility_proposal_schema__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_simulation_protocol_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_topology_contract_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_transport_contract_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_archive_manifest_source_map__v1` - `A2_3_REUSABLE`
+- `BATCH_archived_state_zip_index_v1__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_engine_contract_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_entropy_contract_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_geometry_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_dimensionality_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_duality_class_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_dynamical_admissibility_boundary_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_game_theory_rosetta_personality_analogy__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_metric_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_obstruction_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_orthogonality_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_path_contract_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_physics_rosetta_personality_analogy__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_refinement_contract_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_relational_transport_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_rosetta_contract_personality_analogy__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_state_abstraction_admissibility_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_simulation_protocol_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_topology_contract_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_transport_contract_math_class__v1` - `A2_3_REUSABLE`
+- `BATCH_refinedfuel_nonsims_archive_manifest_source_map__v1` - `A2_3_REUSABLE`
+- `BATCH_archive_surface_root_policy_lineage__v1` - `A2_3_REUSABLE`
+- `BATCH_work_surface_root_control_archaeology__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_root_spec_control_spine__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_spec_stage2_public_conformance__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_a2state_entropy_pattern_packet__v1` - `A2_3_REUSABLE`
+- `BATCH_work_surface_stage3_pro_send_packaging__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_a2state_ingest_validation_promotion_packet__v1` - `A2_3_REUSABLE`
+- `BATCH_work_surface_sendpack_to_update_export_lineage__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_a2state_live_state_index_packet__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_a1state_brain_and_cartridge_judgment_packet__v1` - `A2_3_REUSABLE`
+- `BATCH_work_surface_delta_update_bootstrap_revision_ladder__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_a1state_entropy_control_pack_family__v1` - `A2_3_REUSABLE`
+- `BATCH_work_surface_bootstrap_revision_ladder_completion__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_a1state_entropy_support_pack_family__v1` - `A2_3_REUSABLE`
+- `BATCH_work_surface_residual_handoff_and_zipjob_refinery__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_a1state_campaign_graveyard_validity_packet__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_a1state_integration_rosetta_meta_packet__v1` - `A2_3_REUSABLE`
+- `BATCH_work_surface_shadow_systemv3_and_curated_wrappers__v1` - `A2_3_REUSABLE`
+- `BATCH_work_surface_broken_thread_extract_and_zipvm_golden_harness__v1` - `A2_3_REUSABLE`
+- `BATCH_work_surface_local_a1_exchange_queue_and_coldcore__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_residual_state_control_runtime_tools__v1` - `A2_3_REUSABLE`
+- `BATCH_work_surface_root_doctrine_and_autowiggle_helper_residue__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_crossbatch_a2mid_reduction__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_operator_kernel_capsule__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_operator_boot_card__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_lineage_integrity_audit__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_manifest_lineage_bridge__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_manifest_reader_contract__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_manifest_validator_fixture_matrix__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_manifest_fixture_runner_plan__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_manifest_fixture_runner_cli_shape__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_manifest_fixture_runner_module_shape__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_manifest_fixture_runner_interface_shapes__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_manifest_fixture_runner_python_type_stubs__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_manifest_fixture_runner_pyi_stub_shape__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_root_spec_control_spine_drift_refresh__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_spec_stage2_public_conformance_drift_refresh__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_a2state_entropy_pattern_drift_refresh__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_a2state_ingest_validation_promotion_drift_refresh__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_a1state_brain_and_cartridge_judgment_drift_refresh__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_a1state_entropy_control_pack_drift_refresh__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_a1state_entropy_support_pack_drift_refresh__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_a1state_campaign_graveyard_validity_drift_refresh__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_a1state_integration_rosetta_meta_drift_refresh__v1` - `A2_3_REUSABLE`
+- `BATCH_systemv3_active_residual_state_control_runtime_tools_drift_refresh__v1` - `A2_3_REUSABLE`
+
+## Count
+- total listed warm entries: `120`
+
+## Admission note
+- surface class for this bounded execution artifact: `RUNTIME_ONLY`
+- this file does not mutate ledger status, owner-surface authority, or intake taxonomy

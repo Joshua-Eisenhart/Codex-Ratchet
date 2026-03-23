@@ -1,0 +1,264 @@
+{
+  "authoritative_live_store": {
+    "edge_count": 40643,
+    "exists": true,
+    "node_count": 19939,
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/system_graph_a2_refinery.json"
+  },
+  "canonical_graph_count": 1,
+  "current_queue_handoff_status": {
+    "dispatch_id": "",
+    "existing_outputs": [],
+    "exists": false,
+    "expected_output_count": 0,
+    "layer_id": "",
+    "missing_boot": [],
+    "missing_sources": [],
+    "mode": "",
+    "next_required_lane": "",
+    "path": "",
+    "queue_status": "NO_WORK",
+    "role_type": "",
+    "state": "NO_WORK",
+    "thread_class": "",
+    "unit_id": "",
+    "write_scope": []
+  },
+  "explicit_identity_registry": true,
+  "generated_utc": "2026-03-22T02:55:39Z",
+  "identity_registry_status": {
+    "exists": true,
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/identity_registry_v1.json"
+  },
+  "layer_population_in_master_graph": {
+    "A0_COMPILED": 401,
+    "A1_CARTRIDGE": 401,
+    "A1_JARGONED": 420,
+    "A1_STRIPPED": 401,
+    "A2": 7,
+    "A2_2_CANDIDATE": 1153,
+    "A2_3_INTAKE": 4,
+    "A2_HIGH_INTAKE": 5765,
+    "A2_LOW_CONTROL": 9,
+    "A2_MID_REFINEMENT": 170,
+    "B_ADJUDICATED": 575,
+    "GRAVEYARD": 324,
+    "INDEX": 10099,
+    "SIM_EVIDENCED": 67,
+    "SKILL_REGISTRY": 123,
+    "TERM_REGISTRY": 20
+  },
+  "limitations": [
+    "one authoritative live graph store still carries all A2/A1 populations",
+    "separate layer store blocked for A1_STRIPPED",
+    "separate layer store blocked for A1_CARTRIDGE",
+    "A1 graph projection has no explicit edge list",
+    "nested_graph_v1 is a projection summary, not a live owner graph",
+    "current queued correction flow is intentionally paused with no immediate bounded follow-on lane",
+    "bridge contracts between the intended 3+3 layer stores are not materialized as separate owner surfaces"
+  ],
+  "nested_queue_health_summary": {
+    "carryover_heavy_layer_count": 2,
+    "carryover_heavy_layers": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "observation_flags": [
+      "queue_paused_no_work",
+      "program_paused_no_current_work",
+      "observation_sync_in_place",
+      "carryover_heavy_a2_layers_observed"
+    ],
+    "observation_source": "queue_packet",
+    "observation_sync_state": "in_sync",
+    "preserved_overlap_observation_health": {
+      "derived_from": "preserved_overlap_observation_summary",
+      "hygiene_only_layer_count": 0,
+      "layer_count": 3,
+      "max_preserved_only_overlap_edge_count": 2947,
+      "missing_layer_store_count": 0,
+      "no_preserve_diagnostics_layer_count": 1,
+      "note": "observational summary only; queue control fields remain unchanged",
+      "observation_mode": "non_operative",
+      "preserved_only_overlap_layer_count": 2,
+      "treatment_reported_layer_count": 2
+    },
+    "program_status": "NO_CURRENT_WORK__DIRECT_ENTROPY_EXECUTABLE_PAUSED",
+    "queue_handoff_state": "NO_WORK",
+    "queue_status": "NO_WORK",
+    "stored_health_match_state": "matches_observations",
+    "stored_health_source": "queue_packet",
+    "stored_health_sync_state": "in_sync"
+  },
+  "next_recommended_unit": null,
+  "preserved_overlap_treatment_summary": {
+    "A2_HIGH_INTAKE": {
+      "current_runtime_effect": "",
+      "equal_runtime_weight_admissible_now": null,
+      "exists": true,
+      "has_overlap_hygiene": false,
+      "has_overlap_treatment": false,
+      "has_preserve_diagnostics": false,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_high_intake_graph_v1.json",
+      "preserved_only_edge_count": 0,
+      "preserved_only_overlap_edge_count": 0,
+      "reason_flags": [],
+      "recommended_future_handling": "",
+      "treatment_state": "no_preserve_diagnostics_present"
+    },
+    "A2_LOW_CONTROL": {
+      "current_runtime_effect": "none_observed_in_live_consumers",
+      "equal_runtime_weight_admissible_now": false,
+      "exists": true,
+      "has_overlap_hygiene": true,
+      "has_overlap_treatment": true,
+      "has_preserve_diagnostics": true,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_low_control_graph_v1.json",
+      "preserved_only_edge_count": 620,
+      "preserved_only_overlap_edge_count": 614,
+      "reason_flags": [
+        "preserved_only_carryover_not_in_current_master_graph",
+        "overlap_dominant_carryover",
+        "overlap_attribute_contract_mismatch",
+        "no_direct_live_owner_edge_consumer_observed"
+      ],
+      "recommended_future_handling": "quarantine_or_downrank_before_equal_runtime_use",
+      "treatment_state": "treatment_reported"
+    },
+    "A2_MID_REFINEMENT": {
+      "current_runtime_effect": "none_observed_in_live_consumers",
+      "equal_runtime_weight_admissible_now": false,
+      "exists": true,
+      "has_overlap_hygiene": true,
+      "has_overlap_treatment": true,
+      "has_preserve_diagnostics": true,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_mid_refinement_graph_v1.json",
+      "preserved_only_edge_count": 2953,
+      "preserved_only_overlap_edge_count": 2947,
+      "reason_flags": [
+        "preserved_only_carryover_not_in_current_master_graph",
+        "overlap_dominant_carryover",
+        "overlap_attribute_contract_mismatch",
+        "no_direct_live_owner_edge_consumer_observed"
+      ],
+      "recommended_future_handling": "quarantine_or_downrank_before_equal_runtime_use",
+      "treatment_state": "treatment_reported"
+    }
+  },
+  "projection_surfaces": {
+    "a1_projection": {
+      "exists": true,
+      "has_edges": false,
+      "node_count": 111,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/A1_GRAPH_PROJECTION.json"
+    },
+    "nested_graph_v1": {
+      "exists": true,
+      "layer_count": 11,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/nested_graph_v1.json"
+    },
+    "promoted_subgraph": {
+      "edge_count": 733,
+      "exists": true,
+      "node_count": 296,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/promoted_subgraph.json"
+    }
+  },
+  "query_capabilities": {
+    "graph_backend": "networkx.MultiDiGraph",
+    "graphml_export": true,
+    "nx_methods": {
+      "nx_ancestors": {
+        "available": true,
+        "relation_filter": true
+      },
+      "nx_descendants": {
+        "available": true,
+        "relation_filter": true
+      },
+      "nx_ego_graph": {
+        "available": true,
+        "relation_filter": true
+      },
+      "nx_simple_cycles": {
+        "available": true,
+        "relation_filter": true
+      },
+      "nx_topological_sort": {
+        "available": true,
+        "relation_filter": true
+      }
+    },
+    "relation_filtered_queries_available": true
+  },
+  "schema": "GRAPH_CAPABILITY_AUDIT_v1",
+  "skill_graph_coverage": {
+    "active_skill_count": 123,
+    "fully_graphed": true,
+    "graphed_skill_node_count": 123,
+    "isolated_skill_node_count": 0,
+    "matching_active_skill_count": 123,
+    "missing_active_skill_count": 0,
+    "sample_isolated_skill_ids": [],
+    "sample_missing_active_skill_ids": [],
+    "sample_single_edge_skill_ids": [
+      "a0-compiler",
+      "a1-distiller",
+      "a1-from-a2-distillation",
+      "a1-rosetta-mapper",
+      "a1-routing-state",
+      "a2-graph-refinery",
+      "a2-thermodynamic-purge",
+      "automation-controller",
+      "b-adjudicator",
+      "brain-delta-consolidation"
+    ],
+    "sample_stale_skill_ids": [],
+    "single_edge_skill_node_count": 35,
+    "stale_skill_node_count": 0
+  },
+  "target_layer_store_status": {
+    "A1_CARTRIDGE": {
+      "exists": true,
+      "materialized": false,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_cartridge_graph_v1.json",
+      "state": "BLOCKED"
+    },
+    "A1_JARGONED": {
+      "exists": true,
+      "materialized": true,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_jargoned_graph_v1.json",
+      "state": "MATERIALIZED"
+    },
+    "A1_STRIPPED": {
+      "exists": true,
+      "materialized": false,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_stripped_graph_v1.json",
+      "state": "BLOCKED"
+    },
+    "A2_HIGH_INTAKE": {
+      "exists": true,
+      "materialized": true,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_high_intake_graph_v1.json",
+      "state": "MATERIALIZED"
+    },
+    "A2_LOW_CONTROL": {
+      "exists": true,
+      "materialized": true,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_low_control_graph_v1.json",
+      "state": "MATERIALIZED"
+    },
+    "A2_MID_REFINEMENT": {
+      "exists": true,
+      "materialized": true,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_mid_refinement_graph_v1.json",
+      "state": "MATERIALIZED"
+    }
+  },
+  "typed_layer_stores_materialized": [
+    "A2_HIGH_INTAKE",
+    "A2_MID_REFINEMENT",
+    "A2_LOW_CONTROL",
+    "A1_JARGONED"
+  ]
+}

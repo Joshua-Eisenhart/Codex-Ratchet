@@ -11,7 +11,6 @@ L0_LEXEME_SET = {
     "density",
     "matrix",
     "operator",
-    "probe",
     "channel",
     "cptp",
     "unitary",
@@ -24,55 +23,6 @@ L0_LEXEME_SET = {
     "tensor",
     "superoperator",
     "generator",
-    # Extended QIT/geometry lexeme floor used by adaptive A1 planning.
-    # This prevents repeated atomic bootstrap churn for obvious component words
-    # and keeps ratchet pressure on compound-term + SIM semantics.
-    "positive",
-    "semidefinite",
-    "one",
-    "kraus",
-    "measurement",
-    "observable",
-    "projector",
-    "eigenvalue",
-    "spectrum",
-    "purity",
-    "entropy",
-    "coherence",
-    "decoherence",
-    "representation",
-    "liouvillian",
-    "left",
-    "right",
-    "action",
-    "von",
-    "neumann",
-    "production",
-    "rate",
-    "noncommutative",
-    "composition",
-    "order",
-    "pauli",
-    "bloch",
-    "sphere",
-    "hopf",
-    "fibration",
-    "torus",
-    "berry",
-    "flux",
-    "spinor",
-    "double",
-    "cover",
-    "correlation",
-    "polarity",
-    "trajectory",
-    "variance",
-    "realization",
-    "engine",
-    "cycle",
-    "qit",
-    "master",
-    "conjunction",
 }
 
 
@@ -106,24 +56,71 @@ DERIVED_ONLY_TERMS = {
     "maximize",
     "minimize",
     "utility",
+    "function",
+    "functions",
     "map",
     "maps",
     "mapping",
     "mapped",
-    "function",
-    "functions",
-    "domain",
-    "codomain",
-    "set",
-    "relation",
+    "apply",
+    "applies",
+    "applied",
+    "application",
+    "uniform",
+    "uniformly",
+    "unique",
+    "uniquely",
     "real",
     "integer",
+    "integers",
     "natural",
+    "naturals",
     "number",
+    "numbers",
+    "count",
+    "counting",
     "probability",
     "random",
-    "digit_sign",
-    "equals_sign",
+    "ratio",
+    "proportion",
+    "statistics",
+    "statistical",
+    "platonic",
+    "platon",
+    "platonism",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "mapping_of",
+    "implies_that",
+    "complex",
+    "quaternion",
+    "quaternions",
+    "imaginary",
+    "i_unit",
+    "j_unit",
+    "k_unit",
+    "set",
+    "relation",
+    "domain",
+    "codomain",
+}
+
+
+HEAVY_STATE_FIELDS = {
+    "probe_meta",
+    "sim_promotion_status",
+    "sim_registry",
+    "sim_results",
+    "spec_meta",
+    "interaction_counts",
 }
 
 
@@ -168,6 +165,7 @@ class KernelState:
     term_registry: dict[str, dict] = field(default_factory=dict)
     evidence_pending: dict[str, set[str]] = field(default_factory=dict)
     evidence_tokens: set[str] = field(default_factory=set)
+    evidence_token_provenance: dict[str, set[str]] = field(default_factory=dict)
     spec_meta: dict[str, dict] = field(default_factory=dict)
     probe_meta: dict[str, dict] = field(default_factory=dict)
     formula_glyph_requirements: dict[str, str] = field(
@@ -233,19 +231,17 @@ class KernelState:
         )
         return rows
 
-    def to_dict(self) -> dict:
+    def to_dict(self, *, include_heavy: bool = True) -> dict:
         survivor_ledger = {key: self.survivor_ledger[key] for key in sorted(self.survivor_ledger.keys())}
         park_set = {key: self.park_set[key] for key in sorted(self.park_set.keys())}
         graveyard = {key: self.graveyard[key] for key in sorted(self.graveyard.keys())}
         evidence_pending = {key: sorted(self.evidence_pending[key]) for key in sorted(self.evidence_pending.keys())}
-        spec_meta = {key: self.spec_meta[key] for key in sorted(self.spec_meta.keys())}
-        probe_meta = {key: self.probe_meta[key] for key in sorted(self.probe_meta.keys())}
-        sim_registry = {key: self.sim_registry[key] for key in sorted(self.sim_registry.keys())}
-        sim_results = {key: self.sim_results[key] for key in sorted(self.sim_results.keys())}
-        sim_promotion_status = {key: self.sim_promotion_status[key] for key in sorted(self.sim_promotion_status.keys())}
-        interaction_counts = {key: int(self.interaction_counts[key]) for key in sorted(self.interaction_counts.keys())}
+        evidence_token_provenance = {
+            key: sorted(self.evidence_token_provenance.get(key, set()))
+            for key in sorted(self.evidence_token_provenance.keys())
+        }
         canonical_ledger = self._sorted_canonical_ledger()
-        return {
+        payload = {
             "active_megaboot_id": self.active_megaboot_id,
             "active_megaboot_sha256": self.active_megaboot_sha256,
             "active_ruleset_sha256": self.active_ruleset_sha256,
@@ -260,20 +256,32 @@ class KernelState:
             "term_registry": self._sorted_term_registry(),
             "evidence_pending": evidence_pending,
             "evidence_tokens": sorted(self.evidence_tokens),
-            "spec_meta": spec_meta,
-            "probe_meta": probe_meta,
-            "sim_registry": sim_registry,
-            "sim_results": sim_results,
-            "sim_promotion_status": sim_promotion_status,
-            "interaction_counts": interaction_counts,
+            "evidence_token_provenance": evidence_token_provenance,
             "canonical_ledger": canonical_ledger,
             "formula_glyph_requirements": {k: self.formula_glyph_requirements[k] for k in sorted(self.formula_glyph_requirements.keys())},
             "l0_lexeme_set": sorted(self.l0_lexeme_set),
             "derived_only_terms": sorted(self.derived_only_terms),
         }
+        if include_heavy:
+            payload.update(self.heavy_dict())
+        return payload
 
-    def to_json(self) -> str:
-        return json.dumps(self.to_dict(), sort_keys=True, separators=(",", ":")) + "\n"
+    def heavy_dict(self) -> dict:
+        return {
+            "spec_meta": {key: self.spec_meta[key] for key in sorted(self.spec_meta.keys())},
+            "probe_meta": {key: self.probe_meta[key] for key in sorted(self.probe_meta.keys())},
+            "sim_registry": {key: self.sim_registry[key] for key in sorted(self.sim_registry.keys())},
+            "sim_results": {key: self.sim_results[key] for key in sorted(self.sim_results.keys())},
+            "sim_promotion_status": {
+                key: self.sim_promotion_status[key] for key in sorted(self.sim_promotion_status.keys())
+            },
+            "interaction_counts": {
+                key: int(self.interaction_counts[key]) for key in sorted(self.interaction_counts.keys())
+            },
+        }
+
+    def to_json(self, *, include_heavy: bool = True) -> str:
+        return json.dumps(self.to_dict(include_heavy=include_heavy), sort_keys=True, separators=(",", ":")) + "\n"
 
     @classmethod
     def from_dict(cls, payload: dict) -> "KernelState":
@@ -299,19 +307,11 @@ class KernelState:
             for k, v in (payload.get("evidence_pending", {}) or {}).items()
         }
         state.evidence_tokens = {str(x) for x in (payload.get("evidence_tokens", []) or [])}
-        state.spec_meta = {str(k): dict(v) for k, v in (payload.get("spec_meta", {}) or {}).items()}
-        state.probe_meta = {str(k): dict(v) for k, v in (payload.get("probe_meta", {}) or {}).items()}
-        state.sim_registry = {str(k): dict(v) for k, v in (payload.get("sim_registry", {}) or {}).items()}
-        state.sim_results = {
-            str(k): [dict(row) for row in (v or []) if isinstance(row, dict)]
-            for k, v in (payload.get("sim_results", {}) or {}).items()
+        state.evidence_token_provenance = {
+            str(k): {str(x) for x in (v or [])}
+            for k, v in (payload.get("evidence_token_provenance", {}) or {}).items()
         }
-        state.sim_promotion_status = {
-            str(k): str(v) for k, v in (payload.get("sim_promotion_status", {}) or {}).items()
-        }
-        state.interaction_counts = {
-            str(k): int(v) for k, v in (payload.get("interaction_counts", {}) or {}).items()
-        }
+        state.apply_heavy_dict(payload)
         state.canonical_ledger = [
             dict(row) for row in (payload.get("canonical_ledger", []) or []) if isinstance(row, dict)
         ]
@@ -323,5 +323,22 @@ class KernelState:
 
         return state
 
+    def apply_heavy_dict(self, payload: dict) -> None:
+        if not isinstance(payload, dict):
+            return
+        self.spec_meta = {str(k): dict(v) for k, v in (payload.get("spec_meta", {}) or {}).items()}
+        self.probe_meta = {str(k): dict(v) for k, v in (payload.get("probe_meta", {}) or {}).items()}
+        self.sim_registry = {str(k): dict(v) for k, v in (payload.get("sim_registry", {}) or {}).items()}
+        self.sim_results = {
+            str(k): [dict(row) for row in (v or []) if isinstance(row, dict)]
+            for k, v in (payload.get("sim_results", {}) or {}).items()
+        }
+        self.sim_promotion_status = {
+            str(k): str(v) for k, v in (payload.get("sim_promotion_status", {}) or {}).items()
+        }
+        self.interaction_counts = {
+            str(k): int(v) for k, v in (payload.get("interaction_counts", {}) or {}).items()
+        }
+
     def hash(self) -> str:
-        return hashlib.sha256(self.to_json().encode("utf-8")).hexdigest()
+        return hashlib.sha256(self.to_json(include_heavy=True).encode("utf-8")).hexdigest()

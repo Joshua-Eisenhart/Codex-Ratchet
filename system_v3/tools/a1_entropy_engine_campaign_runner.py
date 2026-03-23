@@ -2,12 +2,19 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import shutil
 import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
+
+from a1_selector_warning_snapshot import (
+    build_selector_provenance_fields,
+    build_selector_warning_snapshot,
+    extract_selector_warning_fields,
+)
 
 
 REPO = Path(__file__).resolve().parents[2]
@@ -16,6 +23,7 @@ RUNS_DEFAULT = SYSTEM_V3 / "runs"
 A2_STATE_DEFAULT = SYSTEM_V3 / "a2_state"
 BOOTPACK = SYSTEM_V3 / "runtime" / "bootpack_b_kernel_v1"
 RUNNER = BOOTPACK / "a1_a0_b_sim_runner.py"
+TRANSIENT_A1_CAMPAIGN_ROOT = REPO / "work" / "a1_transient_campaign"
 
 LAWYER_PACK = SYSTEM_V3 / "tools" / "a1_lawyer_pack.py"
 LAWYER_SINK = SYSTEM_V3 / "tools" / "a1_lawyer_sink.py"
@@ -25,6 +33,10 @@ PACKETIZE = SYSTEM_V3 / "tools" / "codex_json_to_a1_strategy_packet_zip.py"
 MEMO_QUALITY_GATE = SYSTEM_V3 / "tools" / "a1_memo_quality_gate.py"
 
 
+def _transient_campaign_root(*, run_id: str) -> Path:
+    return TRANSIENT_A1_CAMPAIGN_ROOT / str(run_id).strip()
+
+
 def _run_cmd(cmd: list[str], *, cwd: Path) -> str:
     return subprocess.check_output(cmd, cwd=str(cwd), text=True).strip()
 
@@ -32,7 +44,24 @@ def _run_cmd(cmd: list[str], *, cwd: Path) -> str:
 def _read_json(path: Path) -> dict:
     if not path.exists():
         return {}
-    return json.loads(path.read_text(encoding="utf-8"))
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        return {}
+    if path.name == "state.json":
+        heavy_path = path.with_name("state.heavy.json")
+        if heavy_path.exists():
+            heavy = json.loads(heavy_path.read_text(encoding="utf-8"))
+            if isinstance(heavy, dict):
+                data.update(heavy)
+    return data
+
+
+def _sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
 
 
 def _neg_kill_stats(state: dict) -> tuple[int, int]:
@@ -81,6 +110,83 @@ def _strategy_target_probe_terms(strategy_path: Path) -> list[str]:
                 if term:
                     out.append(term)
     return out
+
+
+def _strategy_process_audit_snapshot(strategy_path: Path) -> dict:
+    try:
+        strategy = _read_json(strategy_path)
+    except Exception:
+        return {}
+    admissibility = strategy.get("admissibility", {}) if isinstance(strategy, dict) else {}
+    if not isinstance(admissibility, dict):
+        return {}
+    process_audit = admissibility.get("process_audit", {}) if isinstance(admissibility.get("process_audit", {}), dict) else {}
+    raw_warnings = process_audit.get("warnings", []) if isinstance(process_audit.get("warnings", []), list) else []
+    warnings = [str(raw).strip() for raw in raw_warnings if str(raw).strip()]
+    raw_warning_codes = process_audit.get("warning_codes", []) if isinstance(process_audit.get("warning_codes", []), list) else []
+    warning_codes = [str(raw).strip() for raw in raw_warning_codes if str(raw).strip()]
+    raw_warning_categories = process_audit.get("warning_categories", []) if isinstance(process_audit.get("warning_categories", []), list) else []
+    warning_categories = [str(raw).strip() for raw in raw_warning_categories if str(raw).strip()]
+    raw_warning_details = process_audit.get("warning_details", []) if isinstance(process_audit.get("warning_details", []), list) else []
+    warning_details = [row for row in raw_warning_details if isinstance(row, dict)]
+    return build_selector_warning_snapshot(
+        warnings,
+        warning_codes=warning_codes,
+        warning_categories=warning_categories,
+        warning_details=warning_details,
+    )
+
+
+def _selector_warning_snapshot(
+    warnings: list[str],
+    *,
+    warning_codes: list[str] | None = None,
+    warning_categories: list[str] | None = None,
+    summary_limit: int = 160,
+    example_limit: int = 3,
+) -> dict:
+    return build_selector_warning_snapshot(
+        warnings,
+        warning_codes=warning_codes,
+        warning_categories=warning_categories,
+        summary_limit=summary_limit,
+        example_limit=example_limit,
+    )
+
+
+def _with_selector_warning_snapshot(payload: dict, warnings: list[str]) -> dict:
+    out = dict(payload)
+    selector_warning_fields = extract_selector_warning_fields(out)
+    warning_codes = list(selector_warning_fields.get("selector_warning_codes", []) or [])
+    warning_categories = list(selector_warning_fields.get("selector_warning_categories", []) or [])
+    snapshot = _selector_warning_snapshot(
+        warnings,
+        warning_codes=warning_codes,
+        warning_categories=warning_categories,
+    )
+    if snapshot:
+        out.update(snapshot)
+    return out
+
+
+def _cold_core_provenance_payload(
+    *,
+    cold_core_path: str,
+    cold_core_source: str,
+    cold_core_path_class: str,
+    cold_core_sha256: str,
+    cold_core_sequence: int | str = 0,
+    cold_core_sequence_mismatch_stage: str = "",
+) -> dict:
+    return build_selector_provenance_fields(
+        cold_core_path=cold_core_path,
+        cold_core_source=cold_core_source,
+        cold_core_path_class=cold_core_path_class,
+        cold_core_sha256=cold_core_sha256,
+        cold_core_sequence=cold_core_sequence,
+        cold_core_sequence_mismatch_stage=cold_core_sequence_mismatch_stage,
+        selector_prefixed=False,
+    )
 
 
 def _dir_size_bytes(path: Path) -> int:
@@ -153,6 +259,14 @@ def _required_roles_for_preset(preset: str) -> set[str]:
             "ENTROPY_LENS_VN",
             "ENTROPY_LENS_MUTUAL",
             "ENGINE_LENS_SZILARD_CARNOT",
+        }
+    if preset == "substrate5":
+        return {
+            "STEELMAN_CORE",
+            "DEVIL_CLASSICAL_TIME",
+            "DEVIL_COMMUTATIVE",
+            "BOUNDARY_REPAIR",
+            "RESCUER_MINIMAL_EDIT",
         }
     # lawyer4
     return {"STEELMAN", "DEVIL", "BOUNDARY"}
@@ -496,8 +610,10 @@ def _cycle_once(
             }
     sandbox = run_dir / "a1_sandbox"
     sandbox.mkdir(parents=True, exist_ok=True)
+    transient_root = _transient_campaign_root(run_id=run_id)
+    transient_root.mkdir(parents=True, exist_ok=True)
 
-    pending_path = sandbox / "pending_cycle.json"
+    pending_path = transient_root / "pending_cycle.json"
     pack_result: dict
     sequence: int
     if pending_path.exists():
@@ -733,6 +849,31 @@ def _cycle_once(
     cold_core_path = Path(str(strip_result.get("out", "")).strip())
     if not cold_core_path.exists():
         raise SystemExit("cold core strip did not produce output")
+    cold_core_sequence = int(strip_result.get("sequence", 0) or 0)
+    selector_cold_core_sha256 = str(strip_result.get("cold_core_sha256", "")).strip()
+    if not selector_cold_core_sha256:
+        selector_cold_core_sha256 = _sha256_file(cold_core_path)
+    selector_cold_core_source = "explicit_arg"
+    selector_cold_core_path_class = str(strip_result.get("cold_core_path_class", "")).strip() or "transient_store"
+    selector_process_warnings: list[str] = []
+    selector_warning_codes: list[str] = []
+    selector_warning_categories: list[str] = []
+    if cold_core_sequence != int(sequence):
+        return _with_selector_warning_snapshot({
+            "schema": "A1_ENTROPY_ENGINE_CYCLE_RESULT_v1",
+            "run_id": run_id,
+            "sequence": sequence,
+            "status": "STOPPED__COLD_CORE_SEQUENCE_MISMATCH",
+            **_cold_core_provenance_payload(
+                cold_core_path=str(cold_core_path),
+                cold_core_source=selector_cold_core_source,
+                cold_core_path_class=selector_cold_core_path_class,
+                cold_core_sha256=selector_cold_core_sha256,
+                cold_core_sequence=cold_core_sequence,
+                cold_core_sequence_mismatch_stage="strip",
+            ),
+            "selector_process_warnings": list(selector_process_warnings),
+        }, selector_process_warnings)
 
     try:
         select_cmd = [
@@ -763,22 +904,135 @@ def _cycle_once(
         if bool(getattr(_cycle_once, "_forbid_rescue_in_graveyard_first", False)) and str(debate_mode) == "graveyard_first":
             select_cmd.append("--forbid-rescue-in-graveyard-first")
         select_raw = _run_cmd(select_cmd, cwd=REPO)
+        select_result = json.loads(select_raw)
+        selector_warning_fields = extract_selector_warning_fields(select_result if isinstance(select_result, dict) else {})
+        raw_selector_warnings = selector_warning_fields.get("selector_process_warnings", []) or []
+        for raw in raw_selector_warnings if isinstance(raw_selector_warnings, list) else []:
+            msg = str(raw).strip()
+            if msg and msg not in selector_process_warnings:
+                selector_process_warnings.append(msg)
+        raw_selector_warning_codes = selector_warning_fields.get("selector_warning_codes", []) or []
+        for raw in raw_selector_warning_codes if isinstance(raw_selector_warning_codes, list) else []:
+            code = str(raw).strip()
+            if code and code not in selector_warning_codes:
+                selector_warning_codes.append(code)
+        raw_selector_warning_categories = selector_warning_fields.get("selector_warning_categories", []) or []
+        for raw in raw_selector_warning_categories if isinstance(raw_selector_warning_categories, list) else []:
+            category = str(raw).strip()
+            if category and category not in selector_warning_categories:
+                selector_warning_categories.append(category)
+        selector_reported_sequence = int(select_result.get("sequence", sequence) or sequence)
+        if selector_reported_sequence != int(sequence):
+            mismatch_msg = (
+                f"pack selector reported sequence {selector_reported_sequence}, "
+                f"expected {int(sequence)}; refusing mismatched strategy handoff"
+            )
+            if mismatch_msg not in selector_process_warnings:
+                selector_process_warnings.append(mismatch_msg)
+            if "pack_selector_reported_sequence_mismatch" not in selector_warning_codes:
+                selector_warning_codes.append("pack_selector_reported_sequence_mismatch")
+            if "cold_core_sequence" not in selector_warning_categories:
+                selector_warning_categories.append("cold_core_sequence")
+            return _with_selector_warning_snapshot({
+                "schema": "A1_ENTROPY_ENGINE_CYCLE_RESULT_v1",
+                "run_id": run_id,
+                "sequence": sequence,
+                "status": "STOPPED__PACK_SELECTOR_FAILED",
+                **_cold_core_provenance_payload(
+                    cold_core_path=str(cold_core_path),
+                    cold_core_source=selector_cold_core_source,
+                    cold_core_path_class=selector_cold_core_path_class,
+                    cold_core_sha256=selector_cold_core_sha256,
+                ),
+                "selector_process_warnings": list(selector_process_warnings),
+                "selector_warning_codes": list(selector_warning_codes),
+                "selector_warning_categories": list(selector_warning_categories),
+                "strategy_path": str(select_result.get("out", "")).strip(),
+                "selector_reported_sequence": selector_reported_sequence,
+            }, selector_process_warnings)
+        selector_cold_core_sequence = int(select_result.get("cold_core_sequence", cold_core_sequence) or cold_core_sequence)
+        if selector_cold_core_sequence != int(cold_core_sequence):
+            return _with_selector_warning_snapshot({
+                "schema": "A1_ENTROPY_ENGINE_CYCLE_RESULT_v1",
+                "run_id": run_id,
+                "sequence": sequence,
+                "status": "STOPPED__COLD_CORE_SEQUENCE_MISMATCH",
+                **_cold_core_provenance_payload(
+                    cold_core_path=str(cold_core_path),
+                    cold_core_source=selector_cold_core_source,
+                    cold_core_path_class=selector_cold_core_path_class,
+                    cold_core_sha256=selector_cold_core_sha256,
+                    cold_core_sequence=selector_cold_core_sequence,
+                    cold_core_sequence_mismatch_stage="selector",
+                ),
+                "selector_process_warnings": list(selector_process_warnings),
+            }, selector_process_warnings)
+        selector_cold_core_source = str(select_result.get("cold_core_source", selector_cold_core_source)).strip() or selector_cold_core_source
+        selector_cold_core_path_class = str(select_result.get("cold_core_path_class", selector_cold_core_path_class)).strip() or selector_cold_core_path_class
+        strategy_path = Path(str(select_result.get("out", "")).strip())
     except subprocess.CalledProcessError as exc:
+        fallback_strategy = sandbox / "outgoing" / f"{sequence:06d}_A1_STRATEGY_v1__PACK_SELECTOR.json"
+        if fallback_strategy.exists():
+            select_result = {
+                "schema": "A1_PACK_SELECTOR_RESULT_v1",
+                "status": "PASS__PREPACK_FALLBACK",
+                "sequence": int(sequence),
+                "out": str(fallback_strategy),
+                "cold_core": str(cold_core_path),
+                "cold_core_sequence": int(cold_core_sequence),
+                "cold_core_source": selector_cold_core_source,
+                "cold_core_path_class": selector_cold_core_path_class,
+                "cold_core_sha256": selector_cold_core_sha256,
+                "selector_process_warnings": list(selector_process_warnings),
+                "fallback": "PREPACK_STRATEGY_SEQUENCE_MATCH",
+            }
+            strategy_path = fallback_strategy
+        else:
         # Fail closed but do not crash the whole campaign. This can happen when
         # all proposed terms are already canonical and debate_mode isn't recovery.
-        return {
-            "schema": "A1_ENTROPY_ENGINE_CYCLE_RESULT_v1",
-            "run_id": run_id,
-            "sequence": sequence,
-            "status": "STOPPED__PACK_SELECTOR_FAILED",
-            "cold_core_path": str(cold_core_path),
-            "cmd": exc.cmd,
-            "stdout": (exc.output or "").strip(),
-        }
-    select_result = json.loads(select_raw)
-    strategy_path = Path(str(select_result.get("out", "")).strip())
+            return _with_selector_warning_snapshot({
+                "schema": "A1_ENTROPY_ENGINE_CYCLE_RESULT_v1",
+                "run_id": run_id,
+                "sequence": sequence,
+                "status": "STOPPED__PACK_SELECTOR_FAILED",
+                **_cold_core_provenance_payload(
+                    cold_core_path=str(cold_core_path),
+                    cold_core_source=selector_cold_core_source,
+                    cold_core_path_class=selector_cold_core_path_class,
+                    cold_core_sha256=selector_cold_core_sha256,
+                ),
+                "selector_process_warnings": list(selector_process_warnings),
+                "selector_warning_codes": list(selector_warning_codes),
+                "selector_warning_categories": list(selector_warning_categories),
+                "cmd": exc.cmd,
+                "stdout": (exc.output or "").strip(),
+            }, selector_process_warnings)
     if not strategy_path.exists():
         raise SystemExit("pack selector did not produce strategy output")
+    selector_snapshot = _strategy_process_audit_snapshot(strategy_path)
+    selector_process_warnings = list(selector_snapshot.get("selector_warning_examples", []) or [])
+    raw_strategy = _read_json(strategy_path)
+    admissibility = raw_strategy.get("admissibility", {}) if isinstance(raw_strategy, dict) else {}
+    process_audit = admissibility.get("process_audit", {}) if isinstance(admissibility.get("process_audit", {}), dict) else {}
+    raw_selector_process_warnings = process_audit.get("warnings", []) if isinstance(process_audit.get("warnings", []), list) else []
+    selector_process_warnings = [
+        str(raw).strip()
+        for raw in raw_selector_process_warnings
+        if str(raw).strip()
+    ]
+    selector_warning_codes = list(selector_snapshot.get("selector_warning_codes", []) or [])
+    selector_warning_categories = list(selector_snapshot.get("selector_warning_categories", []) or [])
+    if isinstance(select_result, dict):
+        select_result["selector_process_warnings"] = list(selector_process_warnings)
+        select_result["selector_warning_codes"] = list(selector_warning_codes)
+        select_result["selector_warning_categories"] = list(selector_warning_categories)
+        select_result.update(
+            _selector_warning_snapshot(
+                selector_process_warnings,
+                warning_codes=selector_warning_codes,
+                warning_categories=selector_warning_categories,
+            )
+        )
 
     # Do NOT force packet sequence to match sandbox sequence. Packet sequence must follow
     # ZIP_PROTOCOL_v2 monotone sequence for (run_id, source_layer), which is tracked
@@ -789,28 +1043,57 @@ def _cycle_once(
     )
     packet_result = json.loads(packet_raw)
 
-    runner_raw = _run_cmd(
-        ["python3", str(RUNNER), "--a1-source", "packet", "--run-id", run_id, "--steps", "1", "--runs-root", str(runs_root)],
-        cwd=BOOTPACK,
-    )
+    try:
+        runner_raw = _run_cmd(
+            ["python3", str(RUNNER), "--a1-source", "packet", "--run-id", run_id, "--steps", "1", "--runs-root", str(runs_root)],
+            cwd=BOOTPACK,
+        )
+    except subprocess.CalledProcessError as exc:
+        return _with_selector_warning_snapshot({
+            "schema": "A1_ENTROPY_ENGINE_CYCLE_RESULT_v1",
+            "run_id": run_id,
+            "sequence": sequence,
+            "status": "STOPPED__LOWER_LOOP_PACKET_FAILED",
+            **_cold_core_provenance_payload(
+                cold_core_path=str(cold_core_path),
+                cold_core_source=selector_cold_core_source,
+                cold_core_path_class=selector_cold_core_path_class,
+                cold_core_sha256=selector_cold_core_sha256,
+            ),
+            "selector_process_warnings": list(selector_process_warnings),
+            "selector_warning_codes": list(selector_warning_codes),
+            "selector_warning_categories": list(selector_warning_categories),
+            "strategy_path": str(strategy_path),
+            "packet_path": str(packet_result.get("out", "")),
+            "cmd": exc.cmd,
+            "stdout": (exc.output or "").strip(),
+        }, selector_process_warnings)
     summary = _read_json(run_dir / "summary.json")
     state = _read_json(run_dir / "state.json")
     # Fail closed if the runner did not actually consume a strategy packet.
     # This typically indicates ZIP sequence mismatch or packet validation failure.
     unique_strat = int(summary.get("unique_strategy_digest_count", 0) or 0)
     if unique_strat <= 0:
-        return {
+        return _with_selector_warning_snapshot({
             "schema": "A1_ENTROPY_ENGINE_CYCLE_RESULT_v1",
             "run_id": run_id,
             "sequence": sequence,
             "status": "A1_PACKET_NOT_CONSUMED",
             "prompt_paths": list(pack_result.get("prompt_paths", [])),
-            "cold_core_path": str(cold_core_path),
+            **_cold_core_provenance_payload(
+                cold_core_path=str(cold_core_path),
+                cold_core_source=selector_cold_core_source,
+                cold_core_path_class=selector_cold_core_path_class,
+                cold_core_sha256=selector_cold_core_sha256,
+            ),
+            "selector_process_warnings": list(selector_process_warnings),
+            "selector_warning_codes": list(selector_warning_codes),
+            "selector_warning_categories": list(selector_warning_categories),
             "strategy_path": str(strategy_path),
             "packet_path": str(packet_result.get("out", "")),
             "runner_last_line": runner_raw.splitlines()[-1] if runner_raw else "",
             "summary": summary,
-        }
+        }, selector_process_warnings)
     pending_path.unlink(missing_ok=True)
 
     # Prune high-entropy sandbox surfaces to prevent run bloat.
@@ -826,29 +1109,31 @@ def _cycle_once(
     keep_external_exchange = int(getattr(_cycle_once, "_prune_keep_external_exchange", 72))
 
     prune_report = {
-        # Prompts are reproducible from state + fuel; keep only a small tail.
-        "prompt_queue": _prune_dir_keep_last(sandbox / "prompt_queue", keep_last=max(1, keep_prompt_queue)),
-        "lawyer_memos": _prune_dir_keep_last(sandbox / "lawyer_memos", keep_last=max(1, keep_lawyer_memos)),
-        "incoming_drop": _prune_dir_keep_last(sandbox / "incoming_drop", keep_last=max(1, keep_incoming_drop)),
+        "incoming_drop": _prune_dir_keep_last(memo_drop_dir, keep_last=max(1, keep_incoming_drop)),
         "incoming_consumed": _prune_dir_keep_last(
-            sandbox / "incoming_consumed", keep_last=max(1, keep_incoming_consumed)
+            memo_consumed_dir, keep_last=max(1, keep_incoming_consumed)
         ),
-        "cold_core": _prune_dir_keep_last(sandbox / "cold_core", keep_last=max(1, keep_cold_core)),
+        "cold_core": _prune_dir_keep_last(transient_root / "cold_core", keep_last=max(1, keep_cold_core)),
         "outgoing": _prune_dir_keep_last(sandbox / "outgoing", keep_last=max(1, keep_outgoing)),
         "failed_packets": _prune_dir_keep_last(sandbox / "failed_packets", keep_last=max(1, keep_failed_packets)),
-        "external_memo_exchange_requests": _prune_dir_keep_last(
-            sandbox / "external_memo_exchange" / "requests",
-            keep_last=max(1, keep_external_exchange),
-        ),
+        "pending_cycle": _prune_dir_keep_last(transient_root, keep_last=max(1, keep_external_exchange)),
     }
 
-    return {
+    return _with_selector_warning_snapshot({
         "schema": "A1_ENTROPY_ENGINE_CYCLE_RESULT_v1",
         "run_id": run_id,
         "sequence": sequence,
         "status": "STEP_EXECUTED",
         "prompt_paths": list(pack_result.get("prompt_paths", [])),
-        "cold_core_path": str(cold_core_path),
+        **_cold_core_provenance_payload(
+            cold_core_path=str(cold_core_path),
+            cold_core_source=selector_cold_core_source,
+            cold_core_path_class=selector_cold_core_path_class,
+            cold_core_sha256=selector_cold_core_sha256,
+        ),
+        "selector_process_warnings": list(selector_process_warnings),
+        "selector_warning_codes": list(selector_warning_codes),
+        "selector_warning_categories": list(selector_warning_categories),
         "strategy_path": str(strategy_path),
         "packet_path": str(packet_result.get("out", "")),
         "runner_last_line": runner_raw.splitlines()[-1] if runner_raw else "",
@@ -869,7 +1154,7 @@ def _cycle_once(
             "park_set_count": len(state.get("park_set", {}) or {}),
             "sim_registry_count": len(state.get("sim_registry", {}) or {}),
         },
-    }
+    }, selector_process_warnings)
 
 
 def main(argv: list[str]) -> int:
@@ -878,7 +1163,7 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--clean", action="store_true")
     ap.add_argument("--runs-root", default=str(RUNS_DEFAULT), help="Override runs root (default: system_v3/runs).")
     ap.add_argument("--a2-state-dir", default=str(A2_STATE_DEFAULT), help="Override A2 state dir used for A1 prompt fuel.")
-    ap.add_argument("--preset", choices=["lawyer4", "entropy_lenses7", "graveyard13"], default="graveyard13")
+    ap.add_argument("--preset", choices=["lawyer4", "entropy_lenses7", "graveyard13", "substrate5"], default="graveyard13")
     ap.add_argument("--fuel-max-bytes", type=int, default=60_000)
     ap.add_argument("--debate-mode", choices=["balanced", "graveyard_first", "graveyard_recovery"], default="graveyard_first")
     ap.add_argument(
@@ -1035,9 +1320,13 @@ def main(argv: list[str]) -> int:
     a2_state_dir = Path(args.a2_state_dir).expanduser().resolve()
     _init_run(run_id=run_id, runs_root=runs_root, clean=bool(args.clean))
     run_dir = runs_root / run_id
-    sandbox_root = run_dir / "a1_sandbox"
-    memo_drop_dir = Path(args.memo_drop_dir).expanduser().resolve() if str(args.memo_drop_dir).strip() else (sandbox_root / "incoming_drop")
-    memo_consumed_dir = sandbox_root / "incoming_consumed"
+    transient_root = _transient_campaign_root(run_id=run_id)
+    memo_drop_dir = (
+        Path(args.memo_drop_dir).expanduser().resolve()
+        if str(args.memo_drop_dir).strip()
+        else (transient_root / "incoming_drop")
+    )
+    memo_consumed_dir = transient_root / "incoming_consumed"
 
     cycles: list[dict] = []
     stop_reason = "MAX_CYCLES_REACHED"

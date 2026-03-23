@@ -1,0 +1,2470 @@
+[
+  {
+    "script": "system_v4/skills/run_tier0_28_29_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_28_BOOT",
+    "concepts": [
+      {
+        "name": "a2_thread_role",
+        "description": "Refreshes A2 understanding, mines high-entropy material, preserves contradictions, routes queues, and emits bounded A2->A1 handoff fuel. It NEVER acts as an A1 proposal generator or A0/B/SIM runtime.",
+        "tags": [
+          "a2",
+          "thread",
+          "boot",
+          "role"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "a2_hard_rules",
+        "description": "Includes NO_HIDDEN_MEMORY, NO_SMOOTHING (contradictions are priority), SOURCE_BOUND, NO_CANON_INFLATION, ONE_BOUNDED_PASS, and A1_SEPARATION.",
+        "tags": [
+          "rules",
+          "a2",
+          "constraint"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "a2_controller_launch_lock",
+        "description": "If THREAD_CLASS=A2_CONTROLLER, it must recover weighted state from A2_CONTROLLER_STATE_RECORD__CURRENT__v1. Identity is invalid if it cannot state model, corpus, lane, queue status, and go-on budget.",
+        "tags": [
+          "controller",
+          "boot",
+          "launch"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "a2_default_a1_trigger",
+        "description": "A2 marks A1 ready ONLY via READY_FROM_NEW_A2_HANDOFF, READY_FROM_EXISTING_FUEL, or READY_FROM_A2_PREBUILT_BATCH. A2 does not start A1, only decides if it should run.",
+        "tags": [
+          "a1_trigger",
+          "handoff",
+          "queue"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_28_29_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_28_SCHEMA",
+    "concepts": [
+      {
+        "name": "stage_2_schema_stubs",
+        "description": "Strict JSON schema stubs for Stage-2 bootpack outputs (manifest, A2/A1 brain updates, candidate fuel).",
+        "tags": [
+          "schema",
+          "validation",
+          "stage_2"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "stage_2_validation_behavior",
+        "description": "Job artifacts should validate against schemas before acceptance. Failing validation equals fail-closed (using zip_job_bundle_validator.py and stage2_schema_gate.py).",
+        "tags": [
+          "fail_closed",
+          "schema",
+          "validation"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_28_29_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_29_FLOW",
+    "concepts": [
+      {
+        "name": "stage_3_validation_flow",
+        "description": "Concrete bundle template wiring extraction, updates, and candidate fuel. Runs structural validation first, then Stage-2 schema gate.",
+        "tags": [
+          "stage_3",
+          "bundle",
+          "validation"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "stage_3_failure_policy",
+        "description": "Missing output, missing schema file, JSON parse failure, or schema violation immediately FAILS. No silent downgrade and no auto-correction.",
+        "tags": [
+          "fail_closed",
+          "strictness",
+          "policy"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_28_29_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_29_ZIP",
+    "concepts": [
+      {
+        "name": "zip_boot_binding",
+        "description": "Every thread and ZIP lane must have an explicit repo-held boot binding stating its role, boot surface, allowed/blocked actions, required outputs, and stop rule.",
+        "tags": [
+          "zip",
+          "binding",
+          "subagent"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "thread_boot_separation",
+        "description": "A2 work loads A2 boot. A1 work loads A1 boot. A worker lane must not rely on operator memory or conversational drift. Corrected artifacts require a fresh filename reissue.",
+        "tags": [
+          "boot",
+          "role_separation",
+          "discipline"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_deep_extraction_pass11.py",
+    "extraction_mode": "ENGINE_PATTERN",
+    "batch_id": "PIPELINE_SURVEY"
+  },
+  {
+    "script": "system_v4/skills/run_deep_extraction_pass11.py"
+  },
+  {
+    "script": "system_v4/skills/run_deep_extraction_pass5.py"
+  },
+  {
+    "script": "system_v4/skills/run_tier0_22_24_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_22",
+    "concepts": [
+      {
+        "name": "run_surface_scaffolding",
+        "description": "Deterministic scaffolding for implementation/test runs from (run_id, baseline_state_hash, strategy_hash, spec_hash, bootpack_b_hash, bootpack_a_hash). Emits identical file tree/contents for identical inputs. Fails closed if target dir exists and is non-empty.",
+        "tags": [
+          "scaffolding",
+          "deterministic",
+          "runner",
+          "template"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "scaffolder_template_root",
+        "description": "Located at system_v3/runs/_run_templates_v1/. If present, loads template-backed manifest/reports; if absent, falls back to built-in deterministic defaults. Existing template versions are immutable.",
+        "tags": [
+          "template",
+          "filesystem"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "run_phase_gate_pipeline",
+        "description": "Evaluates phase gate conditions (P0_SPEC_LOCK to P7_RELEASE_CANDIDATE) from run reports artifacts, updates phase_transition_report.json and release_checklist_v1.json. Optional --require-phase fails if a required phase is not PASS.",
+        "tags": [
+          "pipeline",
+          "phase_gate",
+          "runner"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "real_loop_execution_mode",
+        "description": "Includes a strict/default path that fails closed on missing canonical artifacts, and an explicit recovery path (run_real_loop_recovery_cycle.py) preferred when reconstructed artifacts are intentionally allowed.",
+        "tags": [
+          "loop",
+          "execution",
+          "recovery"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_22_24_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_23",
+    "concepts": [
+      {
+        "name": "conformance_fixture_record",
+        "description": "Immutable fixture entry containing fixture_id, expected_status (PASS|PARK|REJECT), expected_tags, and rule_families. Carries minimal reproducible payload to validate B behavior and block drift.",
+        "tags": [
+          "fixture",
+          "conformance",
+          "testing"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "fixture_pack_versioning",
+        "description": "Fixture sets are append-only (fixtures_v1, fixtures_v2). Historical expectations remain immutable.",
+        "tags": [
+          "fixture",
+          "versioning",
+          "immutability"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "tuning_promotion_gate",
+        "description": "Any tuning class (RULE_INTERPRETATION or SEMANTIC_CHANGE) requires 100% pass on frozen fixture set before promotion. Conformance report includes bootpack_hash and fixture_pack_hash.",
+        "tags": [
+          "promotion",
+          "gate",
+          "tuning",
+          "b_kernel"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_22_24_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_24",
+    "concepts": [
+      {
+        "name": "stage_0_canonical_filename_format",
+        "description": "Artifacts follow a strict 5-field order separated by double underscore: BATCH_OR_SEQ_PREFIX__PIPELINE_SCOPE__ARTIFACT_ROLE__SUBJECT__VERSION.extension. No spaces, hyphens, or parentheses.",
+        "tags": [
+          "naming",
+          "grammar",
+          "convention",
+          "deterministic"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "filename_length_constraints",
+        "description": "Max filename length is preferred <= 120, hard max <= 160 chars. If overlong, the subject field must be compressed by removing stop words natively, but prefix fields must never be shortened.",
+        "tags": [
+          "naming",
+          "constraints",
+          "bounding"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "artifact_role_enum",
+        "description": "Stage-0 artifact roles include INPUT_JOB, OUTPUT_JOB, BRAIN_UPDATE_PACKET, BOOTPACK, AUDIT, MANIFEST, REQUEST, and RETURN.",
+        "tags": [
+          "naming",
+          "enum",
+          "role"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_2b_specs_extraction.py",
+    "doc_path": "18_A1_WIGGLE_EXECUTION_CONTRACT.md",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "WAVE2B_SPEC_A1_WIGGLE_001",
+    "concepts": [
+      {
+        "name": "a1_branch_exploration_contract",
+        "description": "A1 branch exploration uses a fixed operator-quota table summing to exactly 1.0. Each branch stores immutable lineage (branch_id, parent, seed_hash, prompt_hash, operator_history, feedback_refs). Branches are ranked by viability then novelty with deterministic tie-breaking. Every target cluster must emit at least one TRY_TO_FAIL alternative.",
+        "tags": [
+          "a1_layer",
+          "branch",
+          "exploration",
+          "quota"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "compile_ready_candidate_object",
+        "description": "Every A1 kernel-lane candidate must be a structured object with item_class, id, kind, requires[], def_fields[] (field_id, name, value_kind\u2208{BARE,TERM_QUOTED,LABEL_QUOTED,FORMULA_QUOTED}, value), asserts[]. Token-safe only \u2014 no free English in compile lanes.",
+        "tags": [
+          "a1_layer",
+          "schema",
+          "compilation",
+          "grammar"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_2b_specs_extraction.py",
+    "doc_path": "19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "WAVE2B_SPEC_A2_BRAIN_001",
+    "concepts": [
+      {
+        "name": "a2_canonical_schemas",
+        "description": "Detailed schemas for all canonical A2 files: memory.jsonl (A2_MEMORY_ENTRY_v1 with entry_id, ts_utc, entry_type, content, source_refs, tags), doc_index.json (A2_DOC_INDEX_v1), fuel_queue.json (A2_FUEL_QUEUE_v1 with provenance + validity state), rosetta.json (A2_ROSETTA_OVERLAY_v1 with mapping states PROPOSED/ACTIVE/DEPRECATED).",
+        "tags": [
+          "a2_layer",
+          "schema",
+          "persistence",
+          "canonical"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "seal_record_contract",
+        "description": "SEAL_RECORD (A2_SEAL_RECORD_v1): seal_id, ts_utc, source_memory_head_entry_id, source_memory_head_hash, pending_actions[], next_read_set[], state_digest_hash. Thread closeout packets capture worker thread diagnostics as repo-held comparison packets.",
+        "tags": [
+          "a2_layer",
+          "seal",
+          "context",
+          "determinism"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a2_deterministic_tick_sequence",
+        "description": "Ordered refresh sequence per A2 tick: refresh doc_index \u2192 append memory entries \u2192 refresh fuel_queue \u2192 refresh rosetta \u2192 refresh derived summaries (if compaction trigger) \u2192 append SEAL_RECORD (if seal trigger). No reorder allowed within one tick.",
+        "tags": [
+          "a2_layer",
+          "tick",
+          "determinism",
+          "refresh"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_2b_specs_extraction.py",
+    "doc_path": "20_CONTROLLED_TUNING_AND_UPGRADE_CONTRACT.md",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "WAVE2B_SPEC_TUNING_001",
+    "concepts": [
+      {
+        "name": "tuning_classification_gates",
+        "description": "Three tuning classes: SAFE_PARAM (auto-apply after replay), RULE_INTERPRETATION (explicit review required), SEMANTIC_CHANGE (explicit review + fixture matrix lock). Every proposal must declare objective metric, stop condition, rollback target, and mutation budget before execution.",
+        "tags": [
+          "tuning",
+          "upgrade",
+          "classification",
+          "gates"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "deterministic_dual_replay",
+        "description": "RQ-124: promotion candidate must produce identical final state hash AND identical event-log hash across two full deterministic replays from same baseline. Mismatch \u2192 mark NONDETERMINISTIC, write graveyard record, block promotion. No silent rule changes, no undocumented fallback logic.",
+        "tags": [
+          "tuning",
+          "determinism",
+          "replay",
+          "promotion"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_deep_extraction_pass14.py",
+    "extraction_mode": "ENGINE_PATTERN",
+    "batch_id": "BIDIRECTIONAL_A0_B_SIM_LOOP"
+  },
+  {
+    "script": "system_v4/skills/run_tier0_06_07_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_06",
+    "concepts": [
+      {
+        "name": "sim_evidence_bar",
+        "description": "A meaningful survivor requires both positive evidence and a specifically targeted negative SIM failure (falsification test), plus alternative failures in the graveyard.",
+        "tags": [
+          "sim",
+          "evidence",
+          "validation",
+          "negative_sim"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "sim_deterministic_replay",
+        "description": "Every SIM manifest executes rigidly, ensuring that the identical code and inputs yield mathematically identical output and code hashes.",
+        "tags": [
+          "sim",
+          "determinism",
+          "hashing"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "sim_tier_architecture",
+        "description": "Simulations span T0_ATOM up to T6_WHOLE_SYSTEM. Substantive promotion demands acyclic tier progression without skipping.",
+        "tags": [
+          "sim",
+          "tiers",
+          "architecture"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "sim_stress_families",
+        "description": "Each tier specifies quantitative stress richness coverage across BASELINE, BOUNDARY_SWEEP, PERTURBATION, ADVERSARIAL_NEG, and COMPOSITION_STRESS.",
+        "tags": [
+          "sim",
+          "stress",
+          "testing_coverage"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_06_07_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_07",
+    "concepts": [
+      {
+        "name": "a2_persistent_brain",
+        "description": "A2's authorized persistence lives strictly in canon files (e.g., memory.jsonl, doc_index.json). Overlays and derivations never overwrite fundamental constraints.",
+        "tags": [
+          "a2",
+          "memory",
+          "canon",
+          "persistence"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a2_contradiction_handling",
+        "description": "A2 maintains conflicting data pairs deliberately with source pointers; it strictly prohibits smoothing out or masking unresolved tensions mechanically.",
+        "tags": [
+          "a2",
+          "contradictions",
+          "epistemology"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a2_dispatch_first_controller",
+        "description": "The A2 Controller operates purely to route tasks; substantive high-entropy behavior is offloaded to bounds-restricted disposable workers.",
+        "tags": [
+          "a2",
+          "controller",
+          "routing",
+          "workers"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a2_audit_and_classification",
+        "description": "Audits classify repository files (active vs. work vs. archive) before permissioning mutation limits, restricting casual broad-stroke 'cleanup' rewriting.",
+        "tags": [
+          "a2",
+          "audit",
+          "permissions",
+          "repository"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_01_02_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_01",
+    "concepts": [
+      {
+        "name": "root_constraints",
+        "description": "F01_FINITUDE and N01_NONCOMMUTATION are non-negotiable. Canon admission authority rests solely with B. Survivor order is semantically meaningful.",
+        "tags": [
+          "constraints",
+          "finitude",
+          "noncommutation",
+          "canon_authority"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "thread_boundaries",
+        "description": "A2 is high-entropy mining. A1 is nondeterministic Rosetta layer. A0 is deterministic compiler. B is deterministic adjudicator. SIM is deterministic evidence executor.",
+        "tags": [
+          "architecture",
+          "layer_law",
+          "A0",
+          "A1",
+          "A2",
+          "B_kernel",
+          "SIM"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a0_a1_b_sim_contracts",
+        "description": "A0 canonicalizes A1 to stable JSON. A1 manages strategy and explores branches without writing canon state. B kernel enforces rigid schema borders and rejection criteria. SIM demands both positive and negative deterministic evidence.",
+        "tags": [
+          "loop_mechanics",
+          "compilation",
+          "evidence",
+          "ratchet_core"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "graveyard_mechanics",
+        "description": "Graveyard isn't filler; it provides structural exploration memory tracking B/SIM-kills. Meaningful survivors must link to failed alternatives in graveyard.",
+        "tags": [
+          "graveyard",
+          "memory",
+          "admissibility"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "zip_save_tapes",
+        "description": "Inter-thread communication uses atomic ZIP_JOB bundles. Save levels involve MIN, FULL+, FULL++. CAMPAIGN_TAPE records EXPORT_BLOCK and THREAD_B_REPORT pairs.",
+        "tags": [
+          "zip",
+          "io",
+          "save_state",
+          "tape"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_01_02_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_02",
+    "concepts": [
+      {
+        "name": "strict_id_ownership",
+        "description": "Every requirement ID (RQ-*) has exactly one normative owner document. Other documents must reference only.",
+        "tags": [
+          "governance",
+          "documentation",
+          "authoritative_source"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "non_owner_constraints",
+        "description": "Extract docs (e.g. 17, 77, 78) hold no normative authority. Non-owners cannot redefine, change IDs, or alter requirement semantics.",
+        "tags": [
+          "governance",
+          "extracts",
+          "constraints"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_deep_extraction.py"
+  },
+  {
+    "script": "system_v4/skills/run_wave_2_contracts_extraction.py",
+    "doc_path": "16_ZIP_SAVE_AND_TAPES_SPEC.md",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "WAVE2_SPEC_ZIP_SAVE_001",
+    "concepts": [
+      {
+        "name": "zip_job_deterministic_carrier",
+        "description": "ZIP_JOB is the atomic deterministic inter-thread carrier. Self-describing via ZIP_JOB_MANIFEST_v1.json. Validates deterministically before use. B does not ingest ZIPs directly \u2014 only its three accepted containers pass through.",
+        "tags": [
+          "carrier",
+          "determinism",
+          "zip_protocol",
+          "boundary"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "save_levels_min_full_fullpp",
+        "description": "Three explicit save levels: MIN (fast rebootable checkpoint), FULL+ (canon restore carrier, sufficient to restore B and proceed without Rosetta), FULL++ (FULL+ plus campaign tape plus optional overlays, never required by B).",
+        "tags": [
+          "persistence",
+          "save",
+          "restore",
+          "levels"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "campaign_tape_append_only",
+        "description": "CAMPAIGN_TAPE v1 is mandatory and append-only. Records (EXPORT_BLOCK + THREAD_B_REPORT) pairs in canonical order via deterministic JSONL. EXPORT_TAPE v1 is the pre-run ordered list that promotes into CAMPAIGN_TAPE by appending B reports.",
+        "tags": [
+          "lineage",
+          "tape",
+          "append_only",
+          "determinism"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "graveyard_rescue_share",
+        "description": "RQ-096: when graveyard is non-empty, A0 must target >= 50% graveyard-rescue share in each batch (by count), subject to caps. This ensures failed candidates keep getting reworked.",
+        "tags": [
+          "graveyard",
+          "rescue",
+          "batch_policy"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_2_contracts_extraction.py",
+    "doc_path": "17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1.md",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "WAVE2_SPEC_BOOTPACK_B_001",
+    "concepts": [
+      {
+        "name": "b_canon_state_objects",
+        "description": "B maintains exactly these replayable state objects: SURVIVOR_LEDGER (Map ID\u2192{CLASS,STATUS,ITEM_TEXT,PROVENANCE}), PARK_SET, REJECT_LOG, KILL_LOG, TERM_REGISTRY (Map TERM_LITERAL\u2192{STATE,BOUND_MATH_DEF,REQUIRED_EVIDENCE,PROVENANCE} where STATE\u2208{QUARANTINED,MATH_DEFINED,TERM_PERMITTED,LABEL_PERMITTED,CANONICAL_ALLOWED}), EVIDENCE_PENDING.",
+        "tags": [
+          "kernel",
+          "state",
+          "replayability",
+          "ledger"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "term_admission_pipeline",
+        "description": "Four-shape term pipeline: MATH_DEF (formal math object with OBJECTS/OPERATIONS/INVARIANTS/DOMAIN/CODOMAIN + SIM_CODE_HASH), TERM_DEF (binds to MATH_DEF, requires it, term drift ban), LABEL_DEF (binds to TERM_DEF), CANON_PERMIT (requires TERM_DEF + evidence token for CANONICAL_ALLOWED promotion).",
+        "tags": [
+          "kernel",
+          "term_pipeline",
+          "grammar",
+          "admission"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "derived_only_guard",
+        "description": "Large set of terms (equal, identity, coordinate, metric, time, cause, optimize, probability, etc.) are derived-only primitives: not forbidden, but forbidden as primitive use until CANONICAL_ALLOWED via the full term pipeline. Prevents classical language from entering the system unchecked.",
+        "tags": [
+          "kernel",
+          "fence",
+          "nonclassical_law",
+          "derived_only"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "kernel_seed_state",
+        "description": "Initial B state: SURVIVOR_LEDGER seeded with exactly F01_FINITUDE and N01_NONCOMMUTATION. PARK_SET empty. TERM_REGISTRY empty. Everything else must be ratcheted in from scratch.",
+        "tags": [
+          "kernel",
+          "seed",
+          "initial_state",
+          "axioms"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "kill_if_semantics",
+        "description": "KILL_IF is declarative and idempotent. An item is KILLED iff: (1) item declares KILL_IF <ID> CORR <COND_TOKEN>, (2) SIM_EVIDENCE contains matching KILL_SIGNAL, and (3) kill binding passes (default local: SIM_ID must equal target ID; remote kill requires explicit KILL_BIND DEF_FIELD).",
+        "tags": [
+          "kernel",
+          "kill",
+          "evidence",
+          "falsification"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "known_internal_inconsistencies",
+        "description": "Two recorded inconsistencies in the bootpack: (1) TERM_DRIFT appears as a rejection tag but is not in the BR-000A TAG_FENCE, (2) MEGABOOT_SHA256 header is required by MBH-002 when active but not listed in EXPORT_BLOCK container grammar. These are preserved, not smoothed.",
+        "tags": [
+          "contradiction",
+          "bootpack",
+          "preserved_tension"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_deep_extraction_pass10.py",
+    "extraction_mode": "ENGINE_PATTERN",
+    "batch_id": "EXTRACTION_META"
+  },
+  {
+    "script": "system_v4/skills/run_deep_extraction_pass10.py"
+  },
+  {
+    "script": "system_v4/skills/run_tier0_08_09_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_08",
+    "concepts": [
+      {
+        "name": "end_to_end_loop",
+        "description": "Explicit 9-step processing loop: A2 Context -> A1 Strategy -> A0 Compile -> B Adjudicate -> A0 Snapshot -> A0 SIM Dispatch -> SIM Exec -> B SIM Ingest -> A1/A2 Feedback.",
+        "tags": [
+          "pipeline",
+          "architecture",
+          "loop",
+          "interaction"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "state_objects_definition",
+        "description": "System state is formally divided into B-canonical state, parked set, graveyard, term registry, pending evidence, SIM manifests, and strategy hash index.",
+        "tags": [
+          "state",
+          "objects",
+          "canonical"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "run_surface_contract",
+        "description": "All execution artifacts must strictly inhabit system_v3/runs/<run_id>/ with designated directories (b_reports, sim, tapes, zip_packets). Sprawl is forbidden.",
+        "tags": [
+          "filesystem",
+          "run_surface",
+          "directories"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "persistence_resume_surfaces",
+        "description": "Resume state divides into a lean pointer (state.json) and a heavy derived cache (state.heavy.json). Unnecessary transient snapshots are blocked.",
+        "tags": [
+          "persistence",
+          "resume",
+          "state_cache"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_08_09_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_09",
+    "concepts": [
+      {
+        "name": "ownership_integrity_gate",
+        "description": "Guards that exactly one document owns each requirement ID natively. Non-owners may cross-reference but never redefine or overwrite semantic intent.",
+        "tags": [
+          "governance",
+          "conformance",
+          "ownership"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "anti_paperclip_guard",
+        "description": "Triggers immediate hard failure upon detecting counterfeit evidence tokens, untargeted graveyard padding, or gaming admission metrics.",
+        "tags": [
+          "conformance",
+          "anti_gaming",
+          "graveyard_padding"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "redundancy_and_drift_lint",
+        "description": "Machine-lint blocks collisions/orphans and tracks a normative drift hash baseline preventing unseen modifications to requirement clauses.",
+        "tags": [
+          "lint",
+          "drift",
+          "redundancy",
+          "hashing"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "promotion_audit_package",
+        "description": "A spec or codebase promotion demands a full conformance envelope: pass reports, risk lists, migration notes, and a rollback strategy.",
+        "tags": [
+          "promotion",
+          "governance",
+          "audit"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_deep_extraction_pass4.py"
+  },
+  {
+    "script": "system_v4/skills/run_thread_context_v6_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_THREAD_CONTEXT_EXTRACT_V6",
+    "concepts": [
+      {
+        "name": "continuous_thread_context_processing",
+        "description": "Threads must regularly dump and process their active context (like this THREAD_CONTEXT_EXTRACT file) through the refinery. This ensures continuity and allows the next thread to load easily.",
+        "tags": [
+          "thread",
+          "context",
+          "refinery",
+          "continuity"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "opus_workload_cross_validation",
+        "description": "The deep-read passes must actively re-read the documents shallowly processed by prior runs (such as the Opus runs), utilizing the newly established graph boundaries to enrich or correct findings.",
+        "tags": [
+          "deep_read",
+          "audit",
+          "cross_validation"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_05_18_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_05",
+    "concepts": [
+      {
+        "name": "a1_exploration_layer",
+        "description": "A1 is a nondeterministic exploration and repair layer. It emits strategies (A1_STRATEGY_v1) rather than directly writing canon state.",
+        "tags": [
+          "a1",
+          "strategy",
+          "exploration",
+          "architecture"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "anti_classical_leakage",
+        "description": "Classical proof thinking acts as drift and must be repaired. Default execution relies on massive non-conservative exploration under finitude laws.",
+        "tags": [
+          "a1",
+          "anti_classical",
+          "exploration_strategy"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "rosetta_translation_bridge",
+        "description": "A1 bridges high-entropy jargon into bare math/kernel-safe structures. It isolates free English overlays to non-compiled dictionaries to avoid B_Kernel leaks.",
+        "tags": [
+          "a1",
+          "rosetta",
+          "translation",
+          "hygiene"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "strategy_schema",
+        "description": "Strategy schemas require budget, targets, alternatives, and sims. Free English is blocked from compiled field properties. Overlays provide contextual binding.",
+        "tags": [
+          "a1",
+          "schema",
+          "strategy",
+          "compilation"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "legacy_wiggle_model",
+        "description": "Historically, A1 maintained exploration via branch state tracking, fixed operator quotas, novelty scoring, and stall rebalancing. This lives as an architectural baseline.",
+        "tags": [
+          "a1",
+          "legacy_wiggle",
+          "exploration",
+          "quotas"
+        ],
+        "authority": "DRAFT"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_05_18_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_18",
+    "concepts": [
+      {
+        "name": "branch_object_schema",
+        "description": "Exploration branches store immutable lineage (seed_hash, operator_history) and are ranked deterministically by viability and novelty.",
+        "tags": [
+          "a1",
+          "branch_schema",
+          "lineage",
+          "ranking"
+        ],
+        "authority": "DRAFT"
+      },
+      {
+        "name": "graveyard_seeking_alternatives",
+        "description": "A1 must emit at least one intentionally failing alternative (TRY_TO_FAIL) per target cluster to build the structural graveyard map.",
+        "tags": [
+          "a1",
+          "graveyard",
+          "failure_design"
+        ],
+        "authority": "DRAFT"
+      },
+      {
+        "name": "raw_repair_feedback",
+        "description": "A1's repair loop explicitly consumes raw B reject tags and SIM fail classes directly, prohibiting lossy prose generalizations.",
+        "tags": [
+          "a1",
+          "repair",
+          "feedback_loop"
+        ],
+        "authority": "DRAFT"
+      },
+      {
+        "name": "compile_ready_candidates",
+        "description": "Candidate objects handed to A0 must precisely fit required keys (item_class, id, kind, requires, def_fields, asserts) enforcing the A0 boundary.",
+        "tags": [
+          "a1",
+          "compile_ready",
+          "contract",
+          "boundary"
+        ],
+        "authority": "DRAFT"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_71_75_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_71_CTRL",
+    "concepts": [
+      {
+        "name": "a2_controller_launch_packet",
+        "description": "Fail-closed launch gate for A2_CONTROLLER threads. Invalid if missing MODEL, THREAD_CLASS, PRIMARY_CORPUS, STATE_RECORD, CURRENT_PRIMARY_LANE, CURRENT_A1_QUEUE_STATUS, GO_ON_BUDGET, STOP_RULE, DISPATCH_RULE, or INITIAL_BOUNDED_SCOPE.",
+        "tags": [
+          "controller",
+          "launch",
+          "packet",
+          "stricture"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "primary_corpus_lock",
+        "description": "Controller may not begin from vague mixed-corpus impression; PRIMARY_CORPUS must be explicit.",
+        "tags": [
+          "controller",
+          "corpus",
+          "lock"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "no_controller_refinery_drift",
+        "description": "Controller may route, dispatch, or refresh state, but MAY NOT absorb long serial worker/refinery work as its normal continuation behavior. Dispatches workers for substantive work.",
+        "tags": [
+          "controller",
+          "discipline",
+          "worker_dispatch"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_71_75_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_72_SIM",
+    "concepts": [
+      {
+        "name": "sim_staged_campaign",
+        "description": "SIM system isn't a flat queue but a staged campaign: TERM_SEED -> COMPOUND -> OPERATOR -> STRUCTURE -> SEGMENT -> ENGINE -> MEGA. Higher stages are meaningless if lower stages are open.",
+        "tags": [
+          "sim",
+          "campaign",
+          "staging"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "sim_suite_modes",
+        "description": "Required support for micro_suite, mid_suite, segment_suite, engine_suite, mega_suite, failure_isolation, graveyard_rescue, and replay_from_tape.",
+        "tags": [
+          "sim",
+          "suite",
+          "modes",
+          "testing"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "failure_isolation_rule",
+        "description": "If a suite fails or produces mixed evidence, the next legal path is failure_isolation or explicit stop with unresolved blocker report.",
+        "tags": [
+          "failure",
+          "isolation",
+          "sim"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_71_75_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_73_SAVE",
+    "concepts": [
+      {
+        "name": "full_plus_semantic_save",
+        "description": "A semantic restore carrier (not generic export) with THREAD_S_SAVE_SNAPSHOT_v2.txt, DUMP_LEDGER_BODIES.txt, DUMP_TERMS.txt, DUMP_INDEX.txt, REPORT_POLICY_STATE.txt, PROVENANCE.txt, and SHA256SUMS.txt.",
+        "tags": [
+          "save",
+          "semantic",
+          "snapshot"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "save_level_manifest",
+        "description": "Manifest declaring schema, bundle_id, boot_id, and save_level (MIN, FULL+, FULL++). FULL++ includes tapes and rosetta overlays.",
+        "tags": [
+          "save",
+          "manifest",
+          "level"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_71_75_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_74_A0",
+    "concepts": [
+      {
+        "name": "a0_save_report_surfaces",
+        "description": "Deterministic A0/operator artifacts via PROJECT_SAVE_DOC, AUDIT_PROJECT_SAVE_DOC_REPORT, EXPORT_BLOCK_LINT_REPORT, TAPE_SUMMARY_REPORT, TERM_CHAIN_REPORT, and INSTRUMENTATION_REPORT.",
+        "tags": [
+          "a0",
+          "reports",
+          "surfaces",
+          "deterministic"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "export_block_linting",
+        "description": "Structural preflight scan against known kernel fences prior to B submission (ascii checks, undefined term heuristic, derived-only heuristic).",
+        "tags": [
+          "linting",
+          "a0",
+          "export"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_71_75_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_75_ROSETTA",
+    "concepts": [
+      {
+        "name": "kernel_overlay_boundary_rule",
+        "description": "Kernel lane (B-safe, cold-core, A0-compilable, anchor-bound) and Overlay lane (noncanon, explanatory, cross-domain, removable) must remain strictly separate.",
+        "tags": [
+          "separation",
+          "kernel",
+          "overlay",
+          "rosetta"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "overlay_rosetta_artifacts",
+        "description": "Explicit packs: FUEL_DIGEST (mined extracts), ROSETTA_MAP (overlay mapping), OVERLAY_SAVE_DOC, and EXPORT_CANDIDATE_PACK.",
+        "tags": [
+          "rosetta",
+          "a1",
+          "overlay",
+          "extraction"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "kernel_anchor_binding_rule",
+        "description": "Rosetta overlay entries must bind to a kernel anchor or explicitly mark UNKNOWN. Overlay labels cannot stand in for admitted kernel ids/terms.",
+        "tags": [
+          "anchor",
+          "rosetta",
+          "constraint"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_19_20_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_19",
+    "concepts": [
+      {
+        "name": "a2_schema_versioning",
+        "description": "All canonical A2 files must explicitly declare a schema version; undocumented or unknown versions are rejected instantly.",
+        "tags": [
+          "a2",
+          "schema",
+          "versioning",
+          "persistence"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "seal_record_contract",
+        "description": "Context seals append a deterministic SEAL_RECORD linking the exact source memory hashes and pending actions at that point in time.",
+        "tags": [
+          "seal",
+          "context",
+          "a2",
+          "records"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "entropy_compaction",
+        "description": "High-entropy history is compacted into lean summaries (like INTENT_SUMMARY.md) via explicit append-only events linked to immutable source IDs.",
+        "tags": [
+          "entropy",
+          "compaction",
+          "memory",
+          "summarization"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "deterministic_sharding",
+        "description": "A2 logs shard rigidly at precise byte (65536) and line (2000) limits. Closed shards become immutable.",
+        "tags": [
+          "sharding",
+          "limits",
+          "logs",
+          "immutability"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_19_20_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_20",
+    "concepts": [
+      {
+        "name": "tuning_proposal_schema",
+        "description": "All tuning modifications to A0/B/SIM require a formal TUNING_PROPOSAL_v1 defining metrics, stop conditions, and rollback targets.",
+        "tags": [
+          "tuning",
+          "upgrade",
+          "proposal",
+          "control"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "conformance_replay_gate",
+        "description": "Modifications affecting outcomes must successfully pass a fixed, deterministic conformance suite of grammar and logical fixtures.",
+        "tags": [
+          "tuning",
+          "conformance",
+          "replay",
+          "gate"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "tuning_classification",
+        "description": "Tuning proposals are strictly classified. SAFE_PARAM may auto-apply; RULE_INTERPRETATION and SEMANTIC_CHANGE mandate explicitly recorded human reviews.",
+        "tags": [
+          "tuning",
+          "classification",
+          "review",
+          "safety"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "deterministic_promotion",
+        "description": "Final promotion of a tuned candidate demands two identical replays yielding identical system states and identical event logs.",
+        "tags": [
+          "tuning",
+          "promotion",
+          "determinism",
+          "validation"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_03_17_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_03",
+    "concepts": [
+      {
+        "name": "b_kernel_accepted_containers",
+        "description": "B Kernel accepts only EXPORT_BLOCK vN, SIM_EVIDENCE v1, and THREAD_S_SAVE_SNAPSHOT v2. Everything else is REJECTED.",
+        "tags": [
+          "b_kernel",
+          "containers",
+          "admissibility",
+          "schema"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "b_kernel_rejection_fence",
+        "description": "A strict, verbatim set of allowed REJECT tags ensures that rejection reasons are formally recognized (e.g., SCHEMA_FAIL, UNDEFINED_TERM_USE). Unknown tags trigger SCHEMA_FAIL.",
+        "tags": [
+          "b_kernel",
+          "rejection",
+          "tag_fence"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "b_kernel_fences",
+        "description": "Enforces multiple semantic and lexical fences: Undefined-term fence, Derived-only fence, Lexeme fence (L0 bootstrap), and Glyph/formula guards.",
+        "tags": [
+          "b_kernel",
+          "fences",
+          "lexemes",
+          "undefined_terms"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "b_kernel_probe_pressure",
+        "description": "Requires at least 1 ACCEPTED PROBE_HYP per 10 ACCEPTED SPEC_HYP. Unmet pressure parks lower-priority specs.",
+        "tags": [
+          "b_kernel",
+          "probe",
+          "pressure"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "b_kernel_stage_order",
+        "description": "Execution follows a strict, deterministic sequence of 10 stages from AUDIT_PROVENANCE to COMMIT. Reordering is strictly forbidden.",
+        "tags": [
+          "b_kernel",
+          "stage_order",
+          "deterministic",
+          "execution"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_03_17_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_17",
+    "concepts": [
+      {
+        "name": "message_discipline",
+        "description": "Messages must cleanly encapsulate COMMAND_MESSAGE, ARTIFACT_MESSAGE, or SIM_EVIDENCE_PACK without informal prose. Comments are banned inside artifacts.",
+        "tags": [
+          "message",
+          "discipline",
+          "bootpack",
+          "grammar"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "canon_state_objects",
+        "description": "System state is replayable and consists of clearly defined components: SURVIVOR_LEDGER, PARK_SET, REJECT_LOG, KILL_LOG, TERM_REGISTRY, EVIDENCE_PENDING, plus various metadata states.",
+        "tags": [
+          "state",
+          "canon",
+          "ledger",
+          "registry"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "term_admission_pipeline",
+        "description": "Disciplined definition flow ensuring rigorous semantics: MATH_DEF creates structural constraints, TERM_DEF binds concepts, LABEL_DEF names them, and CANON_PERMIT requires evidence.",
+        "tags": [
+          "term",
+          "admission",
+          "pipeline",
+          "semantics"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "evidence_state_transitions",
+        "description": "SIM_SPEC items must have exactly one REQUIRES_EVIDENCE token. Positive matches clear EVIDENCE_PENDING triggers state changes in the TERM_REGISTRY up to CANONICAL_ALLOWED.",
+        "tags": [
+          "evidence",
+          "transition",
+          "sim_spec",
+          "state_machine"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_04_16_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_04",
+    "concepts": [
+      {
+        "name": "a0_canonicalization",
+        "description": "A0 canonicalizes A1 strategies to stable JSON, dropping non-kernel fields like confidence and embeddings. It outputs strategy_canonical.json and strategy_hash.txt.",
+        "tags": [
+          "a0",
+          "canonicalization",
+          "normalization"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a0_compile_ordering",
+        "description": "Output is placed in a deterministic bucket order (prerequisites, primary targets, alternatives, etc.) preventing any randomization.",
+        "tags": [
+          "a0",
+          "compile",
+          "ordering",
+          "deterministic"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a0_bootpack_grammar",
+        "description": "A0 rigidly translates valid strategy JSONs into the strict EXPORT_BLOCK grammar recognized by B_Kernel. No prose or english is allowed.",
+        "tags": [
+          "a0",
+          "compilation",
+          "grammar",
+          "bootpack"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a0_budget_truncation",
+        "description": "Enforces item, sim, and wall-time budgets. Uses deterministic truncation rules on overflow, dropping lowest priority/highest dependency depth first.",
+        "tags": [
+          "a0",
+          "budget",
+          "truncation",
+          "resource_management"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_04_16_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_16",
+    "concepts": [
+      {
+        "name": "zip_job_carrier",
+        "description": "Atomic deterministic ZIP bundles are the sole carriers for inter-thread communication. ZIPs themselves never split.",
+        "tags": [
+          "zip",
+          "io",
+          "subagent",
+          "bundle"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "zip_sharding",
+        "description": "ZIP internal text contents are sharded explicitly at 65536 bytes or 2000 lines.",
+        "tags": [
+          "zip",
+          "sharding",
+          "limits"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "zip_manifest",
+        "description": "Every ZIP carrier involves a deterministic ZIP_JOB_MANIFEST_v1.json explicitly defining schemas, execution order, source refs, and outputs.",
+        "tags": [
+          "zip",
+          "manifest",
+          "contract"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "save_levels",
+        "description": "States distinct retention schemas: MIN (fast checkpoint), FULL+ (semantic canon restore), and FULL++ (adds noncanon/ROSETTA).",
+        "tags": [
+          "save_state",
+          "retention",
+          "levels"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "campaign_export_tapes",
+        "description": "CAMPAIGN_TAPE records both canonical exports and Thread B reports. EXPORT_TAPE records just exports. Uses append-only JSONL format.",
+        "tags": [
+          "tape",
+          "records",
+          "campaign"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "graveyard_rescue_share",
+        "description": "A0 targets a >=50% inclusion rate of graveyard rescue variants into its batch exports when alternatives are available.",
+        "tags": [
+          "graveyard",
+          "rescue",
+          "a0",
+          "compilation"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_21_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_21",
+    "concepts": [
+      {
+        "name": "build_phases_sequence",
+        "description": "Fixed mandatory sequence from P0_SPEC_LOCK to P7_RELEASE_CANDIDATE. Bypassing any phase is strictly forbidden.",
+        "tags": [
+          "build_sequence",
+          "phases",
+          "implementation",
+          "strict"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "conformance_smoke_gates",
+        "description": "Progression past P2 requires strict 100% conformance on bootpack fixtures; entering P5 requires a deterministic 50-cycle A1->B smoke replay.",
+        "tags": [
+          "conformance",
+          "smoke_test",
+          "replay",
+          "gate"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "survivor_significance_gate",
+        "description": "Meaningful survivors must be explicitly linked to positive_sim_ids, negative_sim_ids, and graveyard_alt_ids.",
+        "tags": [
+          "survivor",
+          "gate",
+          "evidence",
+          "validation"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "release_candidate_gate",
+        "description": "Final release approval checks two end-to-end replay passes establishing identical state/log hashes, packaged in RELEASE_CHECKLIST_v1.",
+        "tags": [
+          "release",
+          "candidate",
+          "determinism",
+          "checklist"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "run_surface_guard",
+        "description": "Restricts execution outputs securely to system_v3/runs/<run_id>/, explicitly forbidding changes to core_docs/ or work/.",
+        "tags": [
+          "filesystem",
+          "run_surface",
+          "guard",
+          "security"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_1_specs_extraction.py",
+    "doc_path": "03_B_KERNEL_SPEC.md",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "WAVE1_SPEC_B_KERNEL_001",
+    "concepts": [
+      {
+        "name": "b_kernel_7_stage_pipeline",
+        "description": "Fixed deterministic stage order: AUDIT_PROVENANCE \u2192 DERIVED_ONLY_GUARD \u2192 CONTENT_DIGIT_GUARD \u2192 UNDEFINED_TERM_FENCE \u2192 SCHEMA_CHECK \u2192 DEPENDENCY_GRAPH \u2192 NEAR_DUPLICATE \u2192 PRESSURE \u2192 EVIDENCE_UPDATE \u2192 COMMIT. No reordering permitted.",
+        "tags": [
+          "kernel",
+          "pipeline",
+          "determinism",
+          "admissibility"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "b_kernel_rejection_fence",
+        "description": "Closed set of 15 rejection tags (MULTI_ARTIFACT_OR_PROSE, COMMENT_BAN, SNAPSHOT_NONVERBATIM, UNDEFINED_TERM_USE, etc.). Any out-of-fence tag triggers REJECT_BLOCK SCHEMA_FAIL. Outcome semantics: ACCEPT (mutate canon), PARK (retain for replay), REJECT (write graveyard record).",
+        "tags": [
+          "kernel",
+          "rejection",
+          "graveyard",
+          "fail_closed"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "b_kernel_accepted_containers",
+        "description": "B accepts exactly three container shapes: EXPORT_BLOCK vN, SIM_EVIDENCE v1, THREAD_S_SAVE_SNAPSHOT v2. Any other shape is REJECT SCHEMA_FAIL.",
+        "tags": [
+          "kernel",
+          "schema",
+          "container_grammar"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "graveyard_write_contract",
+        "description": "Every rejection must include candidate_id, reason_tag, raw_lines, failure_class (B_KILL or SIM_KILL), target_ref. Meaningful survivors must link to negative_sim_ids and alternative_graveyard_ids. No-raw-line rejects and untied junk alternatives are forbidden.",
+        "tags": [
+          "graveyard",
+          "evidence",
+          "lineage",
+          "anti_paperclip"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_1_specs_extraction.py",
+    "doc_path": "04_A0_COMPILER_SPEC.md",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "WAVE1_SPEC_A0_COMPILER_001",
+    "concepts": [
+      {
+        "name": "a0_deterministic_canonicalization",
+        "description": "A0 is the deterministic bridge from A1 strategy to B artifacts. Canonicalization pipeline: parse \u2192 drop forbidden fields (confidence, probability, embedding) \u2192 normalize types \u2192 sort keys \u2192 serialize canonical JSON \u2192 hash. A0 never declares canon truth.",
+        "tags": [
+          "compiler",
+          "determinism",
+          "canonicalization",
+          "boundary"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a0_export_block_compilation",
+        "description": "A0 compiles A1_STRATEGY_v1 items into EXPORT_BLOCK vN containers using bootpack grammar (AXIOM_HYP, PROBE_HYP, SPEC_HYP). Deterministic bucket ordering: anchor prereqs \u2192 primary targets \u2192 alternatives \u2192 pressure/probe \u2192 sim/evidence. No free English in B-scanned fields.",
+        "tags": [
+          "compiler",
+          "grammar",
+          "export_block",
+          "boundary"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a0_budget_and_truncation",
+        "description": "Budget enforcement via max_items, max_sims, max_wall_ms. Deterministic truncation on overflow: drop lowest-priority bucket first, then reverse lexical, then highest dependency depth, then latest branch id. Dropped items go to carryover queue with BUDGET_TRUNCATED.",
+        "tags": [
+          "compiler",
+          "budget",
+          "determinism"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_1_specs_extraction.py",
+    "doc_path": "05_A1_STRATEGY_AND_REPAIR_SPEC.md",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "WAVE1_SPEC_A1_STRATEGY_001",
+    "concepts": [
+      {
+        "name": "a1_rosetta_function",
+        "description": "A1 is the Rosetta layer between high-entropy source language (A2/human) and canon-safe B grammar. Two-phase: (1) Cold-core extraction strips to explicit math objects/relations, rewrites as kernel-safe candidates, forces hidden assumptions into named deps, generates designed-to-fail alternatives. (2) Reattachment dictionaries map multiple external dialects onto surviving kernel objects as annotation-only overlays.",
+        "tags": [
+          "strategy",
+          "rosetta",
+          "translation",
+          "nondeterministic"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a1_strategy_v1_schema",
+        "description": "Mandatory output format: A1_STRATEGY_v1 with schema, strategy_id, inputs (state_hash, fuel_slice_hashes, bootpack_rules_hash), budget, policy (forbid_fields, overlay_ban_terms, require_try_to_fail), targets[], alternatives[], sims{positive,negative}, self_audit. Hard bans: no confidence/probability fields, no raw prose to B.",
+        "tags": [
+          "strategy",
+          "schema",
+          "contract"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a1_anti_classical_leakage",
+        "description": "RQ-097: treat any 'classical proof thinking' that bypasses ratcheting as drift and correct via explicit proposal repair. RQ-098: default stance is non-conservative batching; convergence via massive exploration under finitude and noncommutation.",
+        "tags": [
+          "constraint",
+          "nonclassical_law",
+          "anti_drift"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_1_specs_extraction.py",
+    "doc_path": "06_SIM_EVIDENCE_AND_TIERS_SPEC.md",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "WAVE1_SPEC_SIM_EVIDENCE_001",
+    "concepts": [
+      {
+        "name": "sim_7_tier_architecture",
+        "description": "Evidence tiers: T0_ATOM \u2192 T1_COMPOUND \u2192 T2_OPERATOR \u2192 T3_STRUCTURE \u2192 T4_SYSTEM_SEGMENT \u2192 T5_ENGINE \u2192 T6_WHOLE_SYSTEM. Explicit acyclic dependencies. No tier-skip promotion.",
+        "tags": [
+          "simulation",
+          "evidence",
+          "tiers",
+          "architecture"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "sim_stress_families",
+        "description": "Five required stress families per target class: BASELINE, BOUNDARY_SWEEP, PERTURBATION, ADVERSARIAL_NEG, COMPOSITION_STRESS. Threshold profile specifies minimum counts per tier per family (e.g., T6 requires 5/10/20/10/10).",
+        "tags": [
+          "simulation",
+          "stress_testing",
+          "coverage"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "negative_sim_definition",
+        "description": "Negative sim is a falsification test (not a generic failure artifact) with required fields: target_id, failure_mode_id, expected_outcome_class (NEG_EXPECT_FAIL_TARGET or NEG_EXPECT_REJECT_ALTERNATIVE). Static admission is insufficient \u2014 meaningful survivor status requires positive evidence + negative evidence + plausible failed alternatives.",
+        "tags": [
+          "simulation",
+          "falsification",
+          "evidence_bar"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_1_specs_extraction.py",
+    "doc_path": "07_A2_OPERATIONS_SPEC.md",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "WAVE1_SPEC_A2_OPS_001",
+    "concepts": [
+      {
+        "name": "a2_persistent_brain",
+        "description": "Canonical A2 state lives under a2_state/ with fixed interface: append-only memory.jsonl, rewritable registries (doc_index, fuel_queue, rosetta, constraint_surface), and active control surfaces (system understanding, term conflict map, distillation inputs, brain slice, intent summary, model context, open unresolved).",
+        "tags": [
+          "a2_layer",
+          "persistence",
+          "state_management",
+          "brain"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a2_controller_dispatch_first",
+        "description": "RQ-147: A2_CONTROLLER is dispatch/routing first. If substantive processing can be expressed as a bounded worker packet, controller must dispatch rather than absorb. Direct controller work is limited to: weighted state refresh, queue/readiness eval, one bounded audit pass, launch/dispatch/closeout routing.",
+        "tags": [
+          "a2_layer",
+          "controller",
+          "dispatch",
+          "boundary"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a2_low_entropy_boot_order",
+        "description": "A2 kernel formation begins from lowest-entropy system-law surfaces, then expands: A2_OPERATIONS_SPEC \u2192 ZIP_PROTOCOL \u2192 ZIP_SAVE_SPEC \u2192 SURFACE_CLASS_RULES \u2192 BRAIN_SLICE \u2192 SYSTEM_UNDERSTANDING \u2192 TERM_CONFLICT_MAP \u2192 DISTILLATION_INPUTS \u2192 INTENT_SUMMARY \u2192 MODEL_CONTEXT \u2192 OPEN_UNRESOLVED. Do not begin from high-entropy thread material or interpretive overlay.",
+        "tags": [
+          "a2_layer",
+          "boot_order",
+          "entropy_gradient"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a2_append_first_safety",
+        "description": "Default posture: classify before mutating, append before rewriting, demote before deleting. No rewriting active control docs for a cleaner story. No replacing older user corrections. No deleting system surfaces as ordinary cleanup. Leaner appearance is not evidence of improvement.",
+        "tags": [
+          "a2_layer",
+          "safety",
+          "mutation_order"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_1_specs_extraction.py",
+    "doc_path": "08_PIPELINE_AND_STATE_FLOW_SPEC.md",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "WAVE1_SPEC_PIPELINE_001",
+    "concepts": [
+      {
+        "name": "end_to_end_9_step_loop",
+        "description": "Fixed pipeline: A2 prepares fuel \u2192 A1 generates strategy \u2192 A0 canonicalizes/compiles \u2192 B adjudicates \u2192 A0 loads snapshot \u2192 A0 dispatches SIM queue \u2192 SIM runs evidence \u2192 B ingests evidence \u2192 A1/A2 consume feedback. State objects: canonical state (B-owned), parked set, graveyard, term registry, pending evidence map, sim manifest store, strategy hash index.",
+        "tags": [
+          "pipeline",
+          "architecture",
+          "state_flow",
+          "determinism"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "stall_and_progress_surfaces",
+        "description": "Stall signals: repeated same-tag rejection, pending-evidence accumulation without closure, park-set growth without dep resolution, branch diversity collapse. Progress signals: growth of evidence-backed survivors, closure of stress-family coverage, tier promotion progress, structured graveyard expansion tied to real targets.",
+        "tags": [
+          "pipeline",
+          "diagnostics",
+          "health_metrics"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_1_specs_extraction.py",
+    "doc_path": "09_CONFORMANCE_AND_REDUNDANCY_GATES.md",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "WAVE1_SPEC_CONFORMANCE_001",
+    "concepts": [
+      {
+        "name": "eleven_conformance_gates",
+        "description": "11 gates that must all pass before promotion: Gate 0 Authority Coverage, Gate 1 Ownership Integrity, Gate 2 Unknown Handling (mark UNKNOWN, no promotion of unverified inference), Gate 3 Root Constraint Protection (no weakening RQ-001/RQ-002), Gate 4 Anti-Paperclip (no fake evidence, no graveyard padding, no admission-count optimization), Gate 5 Pre-Run Conformance, Gate 6 Owner/Orphan Lint, Gate 7 Normative Drift Hash, Gate 8 Promotion Audit Package, Gate 9 Controlled Tuning, Gate 10 Fixture Matrix Lock.",
+        "tags": [
+          "conformance",
+          "gates",
+          "promotion",
+          "anti_paperclip"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_3_a2_state_extraction.py",
+    "doc_path": "A2_BRAIN_SLICE__v1.md",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "WAVE3_A2_BRAIN_SLICE_001",
+    "concepts": [
+      {
+        "name": "a2_entropy_reduction_mission",
+        "description": "A2 exists to reduce document entropy without destroying intent. Primary objective is structured over-capture, not aggressive compression. A2 output is fuel for A1 and later ratchet work, not canon. A2 is also the controlling upstream surface for bounded work sequencing.",
+        "tags": [
+          "a2_layer",
+          "mission",
+          "entropy",
+          "over_capture"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a2_seven_hard_rules",
+        "description": "7 inviolable A2 rules: (1) no narrative smoothing \u2014 contradictions are preserved, (2) no implicit ontology admission, (3) no implicit time semantics, (4) no implicit commutative defaults, (5) no teleology unless marked as hypothesis, (6) every claim needs source locator or UNVERIFIED, (7) incomplete extraction fails closed with gap report.",
+        "tags": [
+          "a2_layer",
+          "constraint",
+          "hard_rules",
+          "fail_closed"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "a2_axis_0_first_principle",
+        "description": "Do not operationalize all axes at once. Use Axis-0 first as entropy-management/refinement/compression lens for the system itself. Prefer nested constraint-shaped self-maps over one flat graph. Geometry sits outside axes; axes are slices/degrees of freedom on that larger structure.",
+        "tags": [
+          "a2_layer",
+          "axis_0",
+          "self_reference",
+          "constraint_geometry"
+        ],
+        "authority": "DRAFT"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_3_a2_state_extraction.py",
+    "doc_path": "A2_TERM_CONFLICT_MAP__v1.md",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "WAVE3_A2_TERM_CONFLICT_001",
+    "concepts": [
+      {
+        "name": "fourteen_active_term_conflicts",
+        "description": "14 known semantic conflicts with working rules: (1) 'canon' used too broadly, (2) AXIOM_HYP vs root constraint, (3) entropy vs classical thermodynamic language, (4) Axis 4 vs 5 (localization vs excitation), (5) 'canonical_term' in proposals sounds truth-stamping, (6) A2 environment boundary stronger in branch docs, (7) family/path unit not centrally described, (8) overlay/kernel/fuel/history boundary blurred, (9) lean packet vs mass-lane tension, (10) axes as ratchetable objects vs manifold DOF, (11) helper term bootstrap leakage, (13) thread weighting by authority not recency, (14) constraint manifold authority status.",
+        "tags": [
+          "term_conflict",
+          "semantic_drift",
+          "working_rules"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "user_corrections_outrank_synthesis",
+        "description": "User corrections outrank assistant synthesis. Reason for a user input outranks its surface wording. Older user inputs are not automatically weaker. Newer assistant outputs are not automatically stronger. Contradictions must be preserved rather than flattened into a latest-summary voice.",
+        "tags": [
+          "authority",
+          "user_correction",
+          "anti_recency_bias"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_3_a2_state_extraction.py",
+    "doc_path": "A2_TO_A1_DISTILLATION_INPUTS__v1.md",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "WAVE3_A2_DISTILLATION_001",
+    "concepts": [
+      {
+        "name": "coupled_structural_evidence_ladders",
+        "description": "The active machine is one ratchet with two coupled ladders: structural (A2\u2192A1\u2192A0\u2192B) and evidence (SIM tier progression T0-T6). Do not confuse admissibility with evidence. Do not treat SIM as optional after B. Keep candidate families tied to both obligations.",
+        "tags": [
+          "ratchet",
+          "coupled_ladders",
+          "structural",
+          "evidence"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "first_substrate_family_five_terms",
+        "description": "First concrete ratchet target family: finite_dimensional_hilbert_space, density_matrix, probe_operator, cptp_channel, partial_trace. Already grouped in active A1 surface, has direct SIM support. Gives QIT substrate before stronger manifold/axis claims. Higher-structure (hopf, axes) deferred until base substrate survives.",
+        "tags": [
+          "substrate",
+          "qit",
+          "term_family",
+          "execution"
+        ],
+        "authority": "DRAFT"
+      },
+      {
+        "name": "ten_negative_classes",
+        "description": "10 mandatory negative classes: PRIMITIVE_EQUALS, CLASSICAL_TIME, PRIMITIVE_PROBABILITY, EUCLIDEAN_METRIC, COMMUTATIVE_ASSUMPTION, CONTINUOUS_BATH, INFINITE_SET, CLASSICAL_TEMPERATURE, NARRATIVE_SMOOTHING, KERNEL_VALID_BUT_MODEL_EMPTY. These shape A1 graveyard pressure.",
+        "tags": [
+          "negatives",
+          "falsification",
+          "classical_residue"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "entropy_engine_campaign_state",
+        "description": "First entropy-engine family uses operatorized QIT terms (probe_induced_partition_boundary, correlation_diversity_functional, entropy_bookkeeping_operator, distinguishability_processing_machine). Do NOT start from primitive temperature, equilibrium, heat/work, cycle semantics, or Bayesian surprise. Classical engines (Carnot, Szilard, Maxwell-demon) are graveyard-library residue sources, not direct term targets.",
+        "tags": [
+          "entropy",
+          "campaign",
+          "qit_first",
+          "anti_classical"
+        ],
+        "authority": "DRAFT"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_deep_extraction_pass9.py",
+    "extraction_mode": "ENGINE_PATTERN",
+    "batch_id": "GRAVEYARD_SIM_AXES"
+  },
+  {
+    "script": "system_v4/skills/run_tier0_control_plane_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_CTRL_PLANE_README",
+    "concepts": [
+      {
+        "name": "control_plane_spec_suite",
+        "description": "The single source-of-truth for ZIP transport law, strategy schemas, repair discipline, promotion binding, A2 perception, and FlowMind integration. A frozen spec surface, not implementation code.",
+        "tags": [
+          "control_plane",
+          "truth",
+          "transport"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "execution_posture",
+        "description": "Fail-closed, deterministic validation, no bypass paths, mutation only via declared path, no implicit defaults.",
+        "tags": [
+          "stricture",
+          "fail_closed",
+          "execution"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "version_coupling_rule",
+        "description": "If ZIP_PROTOCOL changes, REJECT_TAG_TAXONOMY, A1_STRATEGY, STRUCTURAL_DIGEST, and STATE_TRANSITION_DIGEST versions must be reviewed.",
+        "tags": [
+          "versioning",
+          "coupling",
+          "protocol"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_control_plane_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_CTRL_PLANE_ARCH",
+    "concepts": [
+      {
+        "name": "architecture_directional_flow",
+        "description": "FORWARD lane is proposals only (A2 -> A1 -> A0 -> B). BACKWARD lane is feedback + save ladder (B/SIM -> A0 -> A1 -> A2). All cross-layer comms use typed ZIPs.",
+        "tags": [
+          "layers",
+          "direction",
+          "zip"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "artifact_invariants",
+        "description": "Transport is structure-only (no policy). SAVE ZIPs are info summaries only. B admission is via EXPORT_BLOCK vN. SIM evidence is via SIM_EVIDENCE v1. State snapshots via THREAD_S_SAVE_SNAPSHOT v2.",
+        "tags": [
+          "invariant",
+          "transport",
+          "artifacts"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "federation_governance",
+        "description": "Multi-MMM/decentralized ideation is an A2 exploration strategy, not a transport or kernel primitive. Must still output via A1_TO_A0_STRATEGY_ZIP.",
+        "tags": [
+          "federation",
+          "a2",
+          "governance"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_control_plane_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_CTRL_PLANE_BOUNDARIES",
+    "concepts": [
+      {
+        "name": "layer_transport_boundaries",
+        "description": "Hard boundaries defining cross-layer artifacts. A2 emits PROPOSAL to A1. A1 emits STRATEGY to A0. A0 emits EXPORT_BATCH to B. B emits STATE_UPDATE to A0. SIM emits SIM_RESULT to A0.",
+        "tags": [
+          "boundary",
+          "transport",
+          "artifacts"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "transport_only_doctrine",
+        "description": "Transport law MUST NOT encode policy logic, confidence metrics, classification stages, TTL/latency, ABAC semantics, or probabilistic reasoning.",
+        "tags": [
+          "doctrine",
+          "transport",
+          "separation"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "backward_save_ladder",
+        "description": "Save ZIPs move strictly backward (A0->A1, A1->A2) as informational summaries only. They forbid mutation containers.",
+        "tags": [
+          "save",
+          "backward",
+          "summary"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_control_plane_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_CTRL_PLANE_MUTATION",
+    "concepts": [
+      {
+        "name": "single_mutation_path",
+        "description": "Mutation to canonical state is only via: A1 STRATEGY -> A0 compiles to EXPORT_BATCH -> B admits EXPORT_BLOCK. No other path mutates canon.",
+        "tags": [
+          "mutation",
+          "path",
+          "kernel"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "mutation_prohibitions",
+        "description": "A2 and A1 must not emit mutation containers. A0 must not invent new structure. SAVE ZIPs must not contain mutation containers. ZIP failure prevents alternate routing/downgrade.",
+        "tags": [
+          "prohibition",
+          "mutation"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "evidence_is_not_mutation",
+        "description": "SIM_EVIDENCE v1 is evidence only, not direct mutation. State snapshots (THREAD_S_SAVE_SNAPSHOT v2) represent B-produced state only; A0 is just a custodian.",
+        "tags": [
+          "evidence",
+          "mutation",
+          "sim"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_control_plane_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_CTRL_PLANE_CONTEXT",
+    "concepts": [
+      {
+        "name": "anti_hacking_doctrine",
+        "description": "All entropy layers are adversarial. A0/B/SIM treat all LLM artifacts as hostile input. No auto-correction, no schema forgiveness, no implicit defaults, no free-text interpretation.",
+        "tags": [
+          "adversarial",
+          "hostile",
+          "protection"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "interaction_density_rule",
+        "description": "Every new term must participate in non-trivial SIM interactions. Graveyard entries must be SIM-falsified, not narrative-rejected. Promotion requires interaction density.",
+        "tags": [
+          "density",
+          "interaction",
+          "sim"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "cross_basin_fairness",
+        "description": "A1 must generate structurally distinct alternatives. Enforcement layers must remain neutral. No probabilistic selection.",
+        "tags": [
+          "fairness",
+          "a1",
+          "alternative"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "entropy_layers_classification",
+        "description": "ZERO entropy: A0, B, SIM. MEDIUM entropy: A1 structured proposal, repair loop. HIGH entropy: A2 mining, debugging, fuel generation. A2 is manual-triggered only.",
+        "tags": [
+          "entropy",
+          "layers",
+          "classification"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_0_1_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_GROK_TOE_001",
+    "concepts": [
+      {
+        "name": "holographic_entropy_bound",
+        "description": "The universe as an expanding entangled field layering a massive, static probability space (white noise/fuzz). Time and information emerge from sequential correlations across this static field.",
+        "tags": [
+          "ontology",
+          "entropy",
+          "holographic_principle",
+          "time_emergence"
+        ],
+        "authority": "NONCANON"
+      },
+      {
+        "name": "retrocausal_multiverse_genesis",
+        "description": "The present is caused by multiple converging possible futures. Infinite branches converge backward to create a single determined past and present.",
+        "tags": [
+          "causality",
+          "multiverse",
+          "origins",
+          "teleology"
+        ],
+        "authority": "NONCANON"
+      },
+      {
+        "name": "finite_universe_compressibility",
+        "description": "Infinity is prohibited. Universes are treated as very large numbers bounded by Bekenstein limits. A random 'fuzz' universe is an incompressible number; evolving universes sit atop larger, unevolving numbers.",
+        "tags": [
+          "math_class",
+          "finitude",
+          "information_theory",
+          "vacuum_structure"
+        ],
+        "authority": "NONCANON"
+      },
+      {
+        "name": "converging_possibilities_gravity",
+        "description": "Gravity is the pressure of all future spacetime possibilities converging on and pushing against the present. This geometry allows FTL-like effects (entanglement) without info transfer.",
+        "tags": [
+          "gravity",
+          "geometry",
+          "spacetime_mechanics",
+          "entanglement"
+        ],
+        "authority": "NONCANON"
+      },
+      {
+        "name": "dark_matter_as_condensed_entropy",
+        "description": "If dark energy is expanding, positive entropy, then dark matter is contractive, negative entropy. Dark matter acts as 'sticky' micro gravitational waves forming the baseline foam from which 3D matter emerges.",
+        "tags": [
+          "dark_matter",
+          "dark_energy",
+          "entropy_polarity",
+          "matter_formation"
+        ],
+        "authority": "NONCANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_0_1_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_THREAD_EXTRACT_MAX_001",
+    "concepts": [
+      {
+        "name": "system_v4_rebuild_frame",
+        "description": "The overarching project goal is rebuilding the upper system starting with A2 as the understanding and control layer, rather than managing old v3 lanes or prompting scaffolding.",
+        "tags": [
+          "project_frame",
+          "architecture",
+          "v4_transition",
+          "A2_layer"
+        ],
+        "authority": "NONCANON"
+      },
+      {
+        "name": "pure_nonclassical_retooling",
+        "description": "All imported methods and structures must be stripped of classical semantics and re-expressed in pure nonclassical terms without exception.",
+        "tags": [
+          "constraint",
+          "nonclassical_law",
+          "methodology"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "graph_as_control_substrate",
+        "description": "The nested multi-graph (control, runtime, evidence, fuel, etc.) is the literal control mechanism of the system, replacing flat docs and notes. It structures degrees of freedom over deeper topology.",
+        "tags": [
+          "graph_theory",
+          "control_plane",
+          "architecture",
+          "topology"
+        ],
+        "authority": "DRAFT"
+      },
+      {
+        "name": "elimination_over_truth",
+        "description": "Constraints act to eliminate, not to stamp 'Truth'. Survivors are pressure-shaped by attractor basins, similar to evolution, rejecting narrative collapse or single preferred truths.",
+        "tags": [
+          "epistemology",
+          "constraint_mechanics",
+          "evolutionary_dynamics"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "graveyard_branch_work",
+        "description": "The system retains a mass graveyard of failed/rejected terms and continues to work backward from them, building branches to root constraints as the attractor basin matures.",
+        "tags": [
+          "graveyard",
+          "process_architecture",
+          "branching"
+        ],
+        "authority": "DRAFT"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_0_1_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_29_THING_001",
+    "concepts": [
+      {
+        "name": "topological_reasoning_runtime",
+        "description": "Extending Lev from a graph-first agent to a mathematical runtime structured around: topologies (shape), orchestration (movement rules), and dispatch (execution), undergirded by deep nonclassical state.",
+        "tags": [
+          "architecture",
+          "lev_os",
+          "runtime_design",
+          "topology"
+        ],
+        "authority": "DRAFT"
+      },
+      {
+        "name": "nonclassical_state_space",
+        "description": "A structured runtime state where transform order matters (non-commutative), equivalence is probe-relative, and state comprises region, phase, loop scale, boundaries, and invariants.",
+        "tags": [
+          "state_machine",
+          "nonclassical_law",
+          "data_structures",
+          "phase_mechanics"
+        ],
+        "authority": "DRAFT"
+      },
+      {
+        "name": "hopf_fibration_as_design_lens",
+        "description": "Using nested Hopf tori logic not as a literal map of the universe, but as an explicit geometry for systems needing nested loops, phase-sensitive movement, and multi-scale recurrence.",
+        "tags": [
+          "geometry",
+          "system_design",
+          "recurrence",
+          "topology"
+        ],
+        "authority": "DRAFT"
+      },
+      {
+        "name": "karpathy_simplicity_hygiene",
+        "description": "A structural counter-pressure against invisible bloat: keep core loops visible, mutate one thing at a time, score explicitly, and maintain a small, legible control plane.",
+        "tags": [
+          "engineering_discipline",
+          "complexity_control",
+          "legibility"
+        ],
+        "authority": "DRAFT"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_wave_0_1_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_MEGABOOT_001",
+    "concepts": [
+      {
+        "name": "unitary_thread_b_ratchet",
+        "description": "The singular execution loop combining B_Kernel and SIM constraints: Accept -> Park -> Reject -> Term Kill. This is the sole mechanism for converting proposed structure into verified canonical state.",
+        "tags": [
+          "execution_loop",
+          "kernel",
+          "ratchet_core",
+          "admissibility"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "four_layer_trust_architecture",
+        "description": "Strict separation of concerns: A2 (Understanding/Extraction), A1 (Proposal/Alignment), A0 (Constraint Packaging), and B (Proof/Execution). Context flows down, verified evidence flows up.",
+        "tags": [
+          "architecture",
+          "layer_law",
+          "trust_zones",
+          "system_v4"
+        ],
+        "authority": "CANON"
+      },
+      {
+        "name": "evidence_ladder_sims",
+        "description": "The 7-tier scale of pure Python, zero-dependency QIT matrix tests (T0_ATOM to T6_WHOLE_SYSTEM) providing executable evidence that structures behave coherently under nonclassical pressure.",
+        "tags": [
+          "simulation",
+          "validation",
+          "evidence_engine",
+          "quantum_information"
+        ],
+        "authority": "CANON"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_deep_extraction_pass8.py"
+  },
+  {
+    "script": "system_v4/skills/run_tier0_25_27_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_25",
+    "concepts": [
+      {
+        "name": "a2_refinery_bootpack",
+        "description": "Strict execution contract for A2 high-entropy extraction prioritize over-capture, invariant locks, and contradiction preservation. Requires FAIL_CLOSED if outputs are missing.",
+        "tags": [
+          "a2",
+          "refinery",
+          "extraction"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "a2_invariant_locks",
+        "description": "Extraction must capture explicit structural rules: Type-1/2 engines, Outer/Inner structure, WIN/LOSE semantics, Deductive/Inductive split, T-then-F ordering, and Eight-strategy completeness.",
+        "tags": [
+          "invariant",
+          "structural_rules",
+          "lock"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "a2_required_outputs",
+        "description": "Emits normalization report, topic index, meta manifest, summary, per-topic packets (context, intent, contradiction maps), A2/A1 brain updates, and quality gate report.",
+        "tags": [
+          "outputs",
+          "a2",
+          "package"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_25_27_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_26",
+    "concepts": [
+      {
+        "name": "a1_wiggle_execution_contract",
+        "description": "A1 multi-narrative execution generates structured proposals from A2 outputs. Requires explicit adversarial exploration: STEELMAN, ALT_FORMALISM, BOUNDARY_REPAIR, ADVERSARIAL_NEG, and RESCUER lanes.",
+        "tags": [
+          "a1",
+          "wiggle",
+          "exploration",
+          "adversarial"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "a1_candidate_shapes",
+        "description": "Produces TERM_DEF, MATH_DEF, and SIM_SPEC positive/negative candidates including source anchors, target class, lane ID, and explicit fail/success conditions.",
+        "tags": [
+          "a1",
+          "candidate",
+          "definition"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "a1_graveyard_update_contract",
+        "description": "Failed/parked candidates append failure class, likely classical residue, minimal rescue edit, and retry priority back into the workspace graveyard.",
+        "tags": [
+          "graveyard",
+          "a1",
+          "update"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_25_27_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_27_FUEL",
+    "concepts": [
+      {
+        "name": "a1_ratchet_fuel_packaging",
+        "description": "Turns A1 exploratory outputs into ratchet-ready fuel packets. Forbids hidden assumptions, metric smuggling, and silent fallback to prose. Requires both positive and negative candidates.",
+        "tags": [
+          "a1",
+          "fuel",
+          "ratchet",
+          "packaging"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "a1_adversarial_surface",
+        "description": "At least one negative candidate must target implicit time, commutative assumption, primitive equality, continuum/infinite-set assumption, or ontology leakage.",
+        "tags": [
+          "adversarial",
+          "testing",
+          "boundary"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_tier0_25_27_extraction.py",
+    "extraction_mode": "SOURCE_MAP",
+    "batch_id": "BATCH_V4_SOURCE_MAP_TIER0_27_CTRL",
+    "concepts": [
+      {
+        "name": "master_controller_thread",
+        "description": "Entropy-routing and problem-routing role that decides when to spawn/correct fresh-thread worker lanes by reading shared artifacts. Values artifact-held process over thread-memory process.",
+        "tags": [
+          "controller",
+          "thread",
+          "orchestration"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "master_controller_spawn_triggers",
+        "description": "Spawns workers on entropy overload (large docs, contradiction clusters), ratchet plateau (residue dominates, failure loops), or promotion pressure.",
+        "tags": [
+          "controller",
+          "trigger",
+          "scaling"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "weak_lane_correction",
+        "description": "Over spawning new threads, prefer correcting weak lanes via targeted prompts (diagnosing shallow extraction, packaging drift, contradiction collapse).",
+        "tags": [
+          "controller",
+          "correction",
+          "diagnostics"
+        ],
+        "authority": "SOURCE_CLAIM"
+      },
+      {
+        "name": "regeneration_witness_rule",
+        "description": "Preserves a compact regeneration witness or run-anchor summary rather than large transient memo workspaces for replayable execution.",
+        "tags": [
+          "retention",
+          "memo",
+          "witness"
+        ],
+        "authority": "SOURCE_CLAIM"
+      }
+    ]
+  },
+  {
+    "script": "system_v4/skills/run_deep_extraction_pass3.py"
+  },
+  {
+    "script": "system_v4/skills/run_deep_extraction_pass13.py",
+    "extraction_mode": "ENGINE_PATTERN",
+    "batch_id": "V3_RUNTIME_TOOLS"
+  },
+  {
+    "script": "system_v4/skills/run_deep_extraction_pass7.py",
+    "extraction_mode": "ENGINE_PATTERN",
+    "batch_id": "ROOT_CASCADES_AND_META"
+  },
+  {
+    "script": "system_v4/skills/run_deep_extraction_pass12.py",
+    "extraction_mode": "ENGINE_PATTERN",
+    "batch_id": "ADMISSIBILITY_FINAL"
+  },
+  {
+    "script": "system_v4/skills/run_deep_extraction_pass6.py"
+  },
+  {
+    "script": "system_v4/skills/run_deep_extraction_pass2.py"
+  }
+]

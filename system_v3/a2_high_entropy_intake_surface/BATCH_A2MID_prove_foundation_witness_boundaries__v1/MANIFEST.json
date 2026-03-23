@@ -1,0 +1,39 @@
+{
+  "batch_id": "BATCH_A2MID_prove_foundation_witness_boundaries__v1",
+  "created_at_utc": "2026-03-09T10:28:15Z",
+  "parent_batch_ids": [
+    "BATCH_sims_prove_foundation_proof_family__v1"
+  ],
+  "comparison_anchor_batch_ids": [
+    "BATCH_A2MID_mega_diagnostic_strip_seams__v1",
+    "BATCH_A2MID_sims_residual_coverage_split__v1",
+    "BATCH_sims_hygiene_residue_artifacts__v1"
+  ],
+  "extraction_mode": "A2_MID_REFINEMENT_PASS",
+  "promotion_status": "A2_2_CANDIDATE",
+  "raw_source_reread_needed": false,
+  "raw_source_reread_reason": "The parent batch already preserved the single deterministic proof witness, the local-evidence-without-admission limit, the gated executable witness contract, the explicit noncommutation and Bell mixedness witnesses, the narrow trace-preservation probe, and the hygiene-only residual boundary.",
+  "output_files": [
+    "SOURCE_DEPENDENCY_MAP__v1.md",
+    "SELECTION_RATIONALE__v1.md",
+    "A2_2_REFINED_CANDIDATES__v1.md",
+    "CONTRADICTION_PRESERVATION__v1.md",
+    "DOWNSTREAM_CONSEQUENCE_NOTES__v1.md",
+    "MANIFEST.json"
+  ],
+  "candidate_count": 6,
+  "quarantine_count": 5,
+  "reasons_for_candidate_status": [
+    "The proof family is the next bounded residual step after the mega diagnostic-strip reduction and remains cleanly one-file.",
+    "Its value depends on preserving executable witness structure rather than converting it into prose-only proof language.",
+    "Its Bell mixedness and noncommutation witnesses are reusable only if they stay explicit and source-bound.",
+    "Its channel section is reusable only if trace-preservation scope stays narrow and hygiene-only nonclosure remains visible."
+  ],
+  "reasons_for_quarantine": [
+    "Local proof emission is not treated as catalog or top-level evidence-pack admission.",
+    "Deterministic proof framing is not allowed to erase the conditional evidence gate.",
+    "The Bell-state section is not flattened into generic entanglement prose.",
+    "The depolarizing probe is not promoted into broader dynamics proof.",
+    "Proof-family completion is not treated as total sims-side residual completion."
+  ]
+}

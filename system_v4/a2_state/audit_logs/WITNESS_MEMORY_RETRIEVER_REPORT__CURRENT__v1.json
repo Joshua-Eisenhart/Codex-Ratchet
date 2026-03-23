@@ -1,0 +1,52 @@
+{
+  "audit_only": true,
+  "cluster_id": "SKILL_CLUSTER::evermem-witness-memory",
+  "do_not_promote": true,
+  "entry_count": 4,
+  "evermem_url": "http://localhost:1995/api/v1",
+  "gate": {
+    "allow_a2_replacement_claims": false,
+    "allow_bootstrap_claims": false,
+    "allow_pimono_memory_claims": false,
+    "allow_runtime_claims": false,
+    "reason": "bounded witness-seam retrieval did not succeed, so broader EverMem claims remain unearned",
+    "recommended_next_step": "hold_at_retrieval_probe"
+  },
+  "generated_utc": "2026-03-21T19:37:09Z",
+  "issues": [
+    "current witness sync status is sync_failed",
+    "retrieval probe failed: URLError: [Errno 1] Operation not permitted"
+  ],
+  "latest_witness_recorded_at": "2026-03-20T22:18:30Z",
+  "non_goals": [
+    "Do not claim startup boot restore or A2 bootstrap.",
+    "Do not claim pi-mono integration or outside-control-shell integration.",
+    "Do not claim durable memory law or general context recovery.",
+    "Do not claim semantic quality guarantees beyond attempted bounded retrieval.",
+    "Do not mutate canonical A2 state, witness state, or EverMem sync state from this slice."
+  ],
+  "observer_only": true,
+  "query": "Controller gate=LAUNCH_READY. Controller mode=CONTROLLER_ONLY. A1 queue status=NO_WORK. Dispatch ID=. Target role=. Ready packet=.",
+  "query_source": "latest_witness_trace",
+  "recommended_next_actions": [
+    "Keep this slice bounded to witness-seam retrieval and repo-held reporting only.",
+    "Do not widen this result into startup bootstrap, pi-mono memory, or A2 replacement claims.",
+    "Use this report as evidence for later EverMem planning only after the retrieval result is explicit."
+  ],
+  "repo_root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "retrieval": {
+    "error": "URLError: [Errno 1] Operation not permitted",
+    "memory_count": 0,
+    "memory_samples": [],
+    "status_code": null,
+    "success": false
+  },
+  "schema": "WITNESS_MEMORY_RETRIEVER_REPORT_v1",
+  "slice_id": "witness-memory-retriever",
+  "source_family": "EverMemOS witness seam",
+  "status": "attention_required",
+  "sync_report_path": "system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json",
+  "sync_status": "sync_failed",
+  "timeout_seconds": 2.0,
+  "witness_path": "system_v4/a2_state/witness_corpus_v1.json"
+}

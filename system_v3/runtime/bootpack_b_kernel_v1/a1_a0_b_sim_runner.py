@@ -10,6 +10,7 @@ from pathlib import Path
 import zipfile
 
 from a0_compiler import compile_export_block, compute_state_transition_digest
+from a1_autowiggle import AutowiggleConfig
 from a1_bridge import A1Bridge
 from a1_model_selector import select_best_model_across_runs
 from a1_strategy import load_strategy
@@ -26,10 +27,13 @@ _SEQ_SOURCES = {"A2", "A1", "A0", "B", "SIM"}
 _RUN_SUBDIR_EXPLICIT_ALIASES = {
     "a1_inbox": "a1_packet_inbox_surface",
     "a1_strategies": "optional_a1_strategy_duplicate_surface",
+    "b_reports": "thread_b_report_surface",
+    "logs": "append_only_event_log_surface",
     "outbox": "deterministic_outbound_export_block_cache_surface",
     "reports": "deterministic_compile_and_kernel_report_surface",
     "sim": "optional_plaintext_sim_evidence_duplicate_surface",
     "snapshots": "optional_plaintext_snapshot_duplicate_surface",
+    "tapes": "append_only_tape_surface",
     "zip_packets": "zip_protocol_v2_packet_journal_surface",
 }
 
@@ -51,6 +55,15 @@ def _append_jsonl(path: Path, payload: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as handle:
         handle.write(json.dumps(payload, sort_keys=True, separators=(",", ":")) + "\n")
+
+
+def _relpath(run_dir: Path, path: str | Path) -> str:
+    if not path:
+        return ""
+    try:
+        return str(Path(path).resolve().relative_to(run_dir.resolve()))
+    except Exception:
+        return str(path)
 
 
 def _read_jsonl(path: Path) -> list[dict]:
@@ -137,6 +150,18 @@ def _update_runs_registry(runs_root: Path, summary: dict) -> None:
     registry_path = runs_root / "_RUNS_REGISTRY.jsonl"
     with registry_path.open("a", encoding="utf-8") as handle:
         handle.write(json.dumps(row, sort_keys=True, separators=(",", ":")) + "\n")
+
+
+def _campaign_strategy_meta(compiled: dict) -> tuple[str, str]:
+    repaired = compiled.get("repaired_strategy", {}) if isinstance(compiled, dict) else {}
+    if not isinstance(repaired, dict):
+        return "", ""
+    sim_program = repaired.get("sim_program", {})
+    if not isinstance(sim_program, dict):
+        return "", ""
+    program_id = str(sim_program.get("program_id", "")).strip()
+    replay_source = str(sim_program.get("replay_source", "")).strip()
+    return program_id, replay_source
 
 
 def _now_run_id() -> str:
@@ -226,6 +251,10 @@ def _load_resume_state(
     if state_source.exists():
         payload = json.loads(state_source.read_text(encoding="utf-8"))
         state = KernelState.from_dict(payload)
+        heavy_path = run_state_path.with_name("state.heavy.json")
+        if state_source == run_state_path and heavy_path.exists():
+            heavy_payload = json.loads(heavy_path.read_text(encoding="utf-8"))
+            state.apply_heavy_dict(heavy_payload)
 
     # Prefer run-local sequence state; fallback to shared state for legacy runs.
     seq_source = run_sequence_state_path if run_sequence_state_path.exists() else sequence_state_path
@@ -283,6 +312,9 @@ def _persist_resume_state(
     current_state_path: Path,
     sequence_state_path: Path,
 ) -> None:
+    run_state_text = state.to_json(include_heavy=False)
+    heavy_state_text = json.dumps(state.heavy_dict(), sort_keys=True, separators=(",", ":")) + "\n"
+    run_state_hash = _sha256_text(run_state_text)
     seq_payload = {
         "run_id": run_id,
         "seq_by_source": {key: int(seq_by_source.get(key, 0)) for key in sorted(_SEQ_SOURCES)},
@@ -290,12 +322,22 @@ def _persist_resume_state(
 
     # Run-local persistence (authoritative for resume continuity).
     run_state_path.parent.mkdir(parents=True, exist_ok=True)
-    run_state_path.write_text(state.to_json(), encoding="utf-8")
+    run_state_path.write_text(run_state_text, encoding="utf-8")
+    run_state_path.with_name("state.heavy.json").write_text(heavy_state_text, encoding="utf-8")
     _write_json(run_sequence_state_path, seq_payload)
 
-    # Shared persistence (legacy compatibility).
+    # Shared persistence is a lean resume pointer/cache, not a duplicate full state.
+    current_payload = {
+        "schema": "CURRENT_RUN_POINTER_v1",
+        "run_id": run_id,
+        "run_state_relpath": _relpath(current_state_path.parent.parent, run_state_path),
+        "run_sequence_state_relpath": _relpath(current_state_path.parent.parent, run_sequence_state_path),
+        "state_hash": run_state_hash,
+        "canonical_ledger_count": len(state.canonical_ledger),
+        "sim_registry_count": len(state.sim_registry),
+    }
     current_state_path.parent.mkdir(parents=True, exist_ok=True)
-    current_state_path.write_text(state.to_json(), encoding="utf-8")
+    _write_json(current_state_path, current_payload)
     _write_json(sequence_state_path, seq_payload)
 
 
@@ -327,6 +369,7 @@ def run_loop(
     a1_source: str,
     a1_model: str,
     a1_timeout_sec: int,
+    autowiggle_config: AutowiggleConfig | None = None,
     clean: bool = False,
     retain_diagnostics: bool = True,
     retain_snapshots: bool = False,
@@ -357,6 +400,10 @@ def run_loop(
     if retain_diagnostics:
         (run_dir / "outbox").mkdir(parents=True, exist_ok=True)
         (run_dir / "reports").mkdir(parents=True, exist_ok=True)
+    # Minimal deterministic surfaces that must exist regardless of diagnostics.
+    (run_dir / "b_reports").mkdir(parents=True, exist_ok=True)
+    (run_dir / "tapes").mkdir(parents=True, exist_ok=True)
+    (run_dir / "logs").mkdir(parents=True, exist_ok=True)
     (run_dir / "zip_packets").mkdir(parents=True, exist_ok=True)
     # These dirs exist for compatibility with prior runs/tools, but the default
     # behavior is now "ZIP-only" to avoid redundant disk bloat.
@@ -367,11 +414,27 @@ def run_loop(
     (run_dir / "a1_inbox").mkdir(parents=True, exist_ok=True)
     _ensure_explicit_run_aliases(run_dir)
 
-    events_path = run_dir / "events.jsonl"
+    events_path = run_dir / "logs" / "events.000.jsonl"
+    legacy_events_path = run_dir / "events.jsonl"
+    if legacy_events_path.exists() and not events_path.exists():
+        events_path = legacy_events_path
+    elif not legacy_events_path.exists() and events_path != legacy_events_path:
+        try:
+            rel_target = os.path.relpath(str(events_path), str(legacy_events_path.parent))
+            legacy_events_path.symlink_to(rel_target)
+        except OSError:
+            # Best-effort only; determinism is carried by the canonical logs/ shard path.
+            pass
     if clean:
         state = KernelState()
         seq_state: dict[tuple[str, str], int] = {}
         seq_by_source: dict[str, int] = {}
+        # Deterministic empty tape shards.
+        for tape in [
+            run_dir / "tapes" / "export_tape.000.jsonl",
+            run_dir / "tapes" / "campaign_tape.000.jsonl",
+        ]:
+            tape.write_text("", encoding="utf-8")
     else:
         state, seq_state, seq_by_source = _load_resume_state(
             run_id=run_id,
@@ -382,7 +445,13 @@ def run_loop(
             sequence_state_path=sequence_state_path,
         )
     pipeline = A0BSimPipeline()
-    a1 = A1Bridge(source=a1_source, model=a1_model, timeout_sec=a1_timeout_sec, inbox_dir=run_dir / "a1_inbox")
+    a1 = A1Bridge(
+        source=a1_source,
+        model=a1_model,
+        timeout_sec=a1_timeout_sec,
+        inbox_dir=run_dir / "a1_inbox",
+        autowiggle_config=autowiggle_config,
+    )
 
     def _next_seq(source_layer: str) -> int:
         seq_by_source[source_layer] = int(seq_by_source.get(source_layer, 0)) + 1
@@ -413,6 +482,14 @@ def run_loop(
     strategy_digests: set[str] = set()
     export_content_digests: set[str] = set()
     export_structural_digests: set[str] = set()
+    campaign_program_ids: set[str] = set()
+    campaign_stage_ids_seen: set[str] = set()
+    campaign_suite_modes_seen: set[str] = set()
+    blocked_stage_ids_seen: set[str] = set()
+    blocked_suite_modes_seen: set[str] = set()
+    failure_isolation_total = 0
+    graveyard_rescue_total = 0
+    replay_from_tape_total = 0
     final_coverage_report = {}
     steps_completed_local = 0
 
@@ -426,6 +503,7 @@ def run_loop(
                 step=global_step,
                 state_hash=state_hash_before,
                 last_tags=last_tags,
+                state=state,
             )
             strategy = strategy_result["strategy"]
             a1_generation_fail_count = 0
@@ -465,7 +543,7 @@ def run_loop(
                         "source": "ZIP_PROTOCOL_v2",
                         "state_hash": state_hash_before,
                         "last_reject_tags": sorted(set(last_tags)),
-                        "a0_to_a1_save_zip": str(out_zip),
+                        "a0_to_a1_save_zip_relpath": _relpath(run_dir, out_zip),
                     },
                 )
                 stop_reason = "A1_NEEDS_EXTERNAL_STRATEGY"
@@ -510,7 +588,7 @@ def run_loop(
             payload_json={"A1_STRATEGY_v1.json": strategy},
         )
         _validate_ok(a1_zip)
-        strategy_packet = {"path": str(a1_zip)}
+        strategy_packet = {"relpath": _relpath(run_dir, a1_zip)}
 
         # Packet mode already supplies explicit A1 artifacts; keep compile deterministic
         # and avoid carrying prior reject tags as an implicit repair channel.
@@ -523,8 +601,8 @@ def run_loop(
             prior_tags=compile_prior_tags,
         )
         export_text = compiled["export_text"]
+        export_file = run_dir / "outbox" / f"export_block_{global_step:04d}.txt"
         if retain_diagnostics:
-            export_file = run_dir / "outbox" / f"export_block_{global_step:04d}.txt"
             export_file.write_text(export_text, encoding="utf-8")
         export_content_digest = _content_digest(export_text)
         export_structural_digest = _structural_digest(export_text)
@@ -573,12 +651,11 @@ def run_loop(
             payload_text={"EXPORT_BLOCK.txt": export_text},
         )
         _validate_ok(a0_export_zip)
-        export_packet = {"path": str(a0_export_zip)}
+        export_packet = {"relpath": _relpath(run_dir, a0_export_zip)}
 
         eval_result = pipeline.handle_message(export_text, state, batch_id=f"STEP_{global_step:04d}")
-        if retain_diagnostics:
-            report_file = run_dir / "reports" / f"b_report_{global_step:04d}.txt"
-            report_file.write_text(eval_result.get("output_text", ""), encoding="utf-8")
+        report_file = run_dir / "b_reports" / f"b_report_{global_step:04d}.txt"
+        report_file.write_text(eval_result.get("output_text", ""), encoding="utf-8")
 
         accepted = 0
         parked = 0
@@ -627,6 +704,32 @@ def run_loop(
             snapshot_hash=snapshot_hash,
             compiler_version=compiler_version,
         )
+        try:
+            export_id = parse_export_block(export_text).export_id
+        except Exception:
+            export_id = "UNKNOWN_EXPORT_ID"
+        export_relpath = str(a0_export_zip.relative_to(run_dir))
+        b_report_relpath = str(report_file.relative_to(run_dir))
+        _append_jsonl(
+            run_dir / "tapes" / "export_tape.000.jsonl",
+            {
+                "seq": int(seq_by_source.get("A0", 0)),
+                "export_id": export_id,
+                "export_block_sha256": export_block_hash,
+                "export_block_relpath": export_relpath,
+            },
+        )
+        _append_jsonl(
+            run_dir / "tapes" / "campaign_tape.000.jsonl",
+            {
+                "seq": int(seq_by_source.get("A0", 0)),
+                "export_id": export_id,
+                "export_block_sha256": export_block_hash,
+                "export_block_relpath": export_relpath,
+                "thread_b_report_sha256": _sha256_file(report_file),
+                "thread_b_report_relpath": b_report_relpath,
+            },
+        )
         a0_sequence = int(seq_by_source.get("A0", 0))
         last_sequence = 0
         if state.canonical_ledger:
@@ -645,7 +748,8 @@ def run_loop(
             }
         )
 
-        tasks = pipeline.dispatcher.plan_tasks(state)
+        plan = pipeline.dispatcher.build_campaign_plan(state)
+        tasks = list(plan.tasks)
         # Deterministic budget enforcement: cap SIM execution per step to the
         # (repaired) strategy budget. This prevents evidence_pending fanout from
         # exploding run surfaces during mass-batch phases.
@@ -655,6 +759,13 @@ def run_loop(
             max_sims = 0
         if max_sims > 0 and len(tasks) > max_sims:
             tasks = tasks[:max_sims]
+        campaign_program_id, replay_source = _campaign_strategy_meta(compiled)
+        if campaign_program_id:
+            campaign_program_ids.add(campaign_program_id)
+        campaign_stage_ids_seen.update(stage_id for stage_id in plan.stages_seen if stage_id)
+        campaign_suite_modes_seen.update(mode for mode in plan.suite_modes_seen if mode)
+        blocked_stage_ids_seen.update(stage_id for stage_id in plan.blocked_stage_ids if stage_id)
+        blocked_suite_modes_seen.update(mode for mode in plan.blocked_suite_modes if mode)
         sim_outputs = []
         for sim_index, task in enumerate(tasks, start=1):
             evidence_text = pipeline.sim_engine.run_task(state, task)
@@ -684,7 +795,27 @@ def run_loop(
                 state,
                 batch_id=f"STEP_{global_step:04d}_SIM_{sim_index:03d}",
             )
-            sim_outputs.append({"path": evidence_path, "sim_id": task.sim_id, "ingest": ingest, "zip": str(sim_zip)})
+            sim_outputs.append(
+                {
+                    "sim_id": task.sim_id,
+                    "stage_id": task.stage_id,
+                    "stage_suite_kind": task.stage_suite_kind,
+                    "zip_relpath": _relpath(run_dir, sim_zip),
+                    "ingest_status": str(ingest.get("status", "")),
+                    "satisfied_count": len(ingest.get("satisfied", []) or []),
+                    "evidence_relpath": _relpath(run_dir, evidence_path) if evidence_path else "",
+                }
+            )
+        executed_stage_counts: dict[str, int] = {}
+        executed_suite_counts: dict[str, int] = {}
+        for task in tasks:
+            if task.stage_id:
+                executed_stage_counts[task.stage_id] = int(executed_stage_counts.get(task.stage_id, 0)) + 1
+            if task.stage_suite_kind:
+                executed_suite_counts[task.stage_suite_kind] = int(executed_suite_counts.get(task.stage_suite_kind, 0)) + 1
+        failure_isolation_total += int(executed_suite_counts.get("failure_isolation", 0))
+        graveyard_rescue_total += int(executed_suite_counts.get("graveyard_rescue", 0))
+        replay_from_tape_total += int(executed_suite_counts.get("replay_from_tape", 0))
 
         state_hash_after = state.hash()
         repeated_noop = repeated_noop + 1 if state_hash_after == state_hash_before else 0
@@ -692,6 +823,49 @@ def run_loop(
             state,
             graveyard_by_target_class=_graveyard_by_target_class(state),
         )
+        sim_status_counts: dict[str, int] = {}
+        satisfied_total = 0
+        for row in sim_outputs:
+            status = str(row.get("ingest_status", "")).strip() or "UNKNOWN"
+            sim_status_counts[status] = int(sim_status_counts.get(status, 0)) + 1
+            satisfied_total += int(row.get("satisfied_count", 0) or 0)
+        sim_event_payload: dict = {
+            "count": len(sim_outputs),
+            "status_counts": sim_status_counts,
+            "satisfied_total": satisfied_total,
+            "campaign_program_id": campaign_program_id,
+            "replay_source": replay_source,
+            "stages_seen": list(plan.stages_seen),
+            "suite_modes_seen": list(plan.suite_modes_seen),
+            "blocked_stage_ids": list(plan.blocked_stage_ids),
+            "blocked_suite_modes": list(plan.blocked_suite_modes),
+            "planned_stage_task_counts": dict(plan.stage_task_counts),
+            "planned_suite_mode_task_counts": dict(plan.suite_mode_task_counts),
+            "executed_stage_task_counts": executed_stage_counts,
+            "executed_suite_mode_task_counts": executed_suite_counts,
+            "failure_isolation_count": int(executed_suite_counts.get("failure_isolation", 0)),
+            "graveyard_rescue_count": int(executed_suite_counts.get("graveyard_rescue", 0)),
+            "replay_from_tape_count": int(executed_suite_counts.get("replay_from_tape", 0)),
+        }
+        if retain_sim_text or retain_diagnostics:
+            sim_event_payload["items"] = sim_outputs
+        if retain_diagnostics:
+            _write_json(
+                run_dir / "reports" / f"sim_campaign_{global_step:04d}.json",
+                {
+                    "schema": "SIM_CAMPAIGN_REPORT_v1",
+                    "run_id": run_id,
+                    "step": global_step,
+                    "campaign_program_id": campaign_program_id,
+                    "replay_source": replay_source,
+                    "planned_stage_task_counts": dict(plan.stage_task_counts),
+                    "planned_suite_mode_task_counts": dict(plan.suite_mode_task_counts),
+                    "blocked_stage_ids": list(plan.blocked_stage_ids),
+                    "blocked_suite_modes": list(plan.blocked_suite_modes),
+                    "executed_stage_task_counts": executed_stage_counts,
+                    "executed_suite_mode_task_counts": executed_suite_counts,
+                },
+            )
         _append_jsonl(
             events_path,
             {
@@ -708,7 +882,7 @@ def run_loop(
                 "rejected": rejected,
                 "reject_tags": reject_tags,
                 "state_transition_digest": state_transition_digest,
-                "sim_outputs": sim_outputs,
+                "sim": sim_event_payload,
                 "master_sim_status": final_coverage_report.get("master_sim_status", "NOT_READY"),
                 "unresolved_promotion_blocker_count": len(final_coverage_report.get("unresolved_promotion_blockers", [])),
                 "repeated_noop": repeated_noop,
@@ -732,8 +906,6 @@ def run_loop(
             stop_reason = "REPEATED_SCHEMA_FAIL"
             break
 
-    state_path = run_state_path
-    state_path.write_text(state.to_json(), encoding="utf-8")
     _persist_resume_state(
         run_id=run_id,
         state=state,
@@ -743,8 +915,13 @@ def run_loop(
         current_state_path=current_state_path,
         sequence_state_path=sequence_state_path,
     )
-    state_hash = _sha256_file(state_path)
-    (run_dir / "state.json.sha256").write_text(f"{state_hash}  state.json\n", encoding="utf-8")
+    state_hash = state.hash()
+    state_file_hash = _sha256_file(run_state_path)
+    (run_dir / "state.json.sha256").write_text(f"{state_file_hash}  state.json\n", encoding="utf-8")
+    (run_dir / "state.heavy.json.sha256").write_text(
+        f"{_sha256_file(run_state_path.with_name('state.heavy.json'))}  state.heavy.json\n",
+        encoding="utf-8",
+    )
     _write_json(
         run_dir / "summary.json",
         {
@@ -757,6 +934,7 @@ def run_loop(
             "parked_total": parked_total,
             "rejected_total": rejected_total,
             "final_state_hash": state_hash,
+            "state_file_sha256": state_file_hash,
             "a1_source": a1_source,
             "a1_model": "",
             "needs_real_llm": stop_reason == "A2_OPERATOR_SET_EXHAUSTED",
@@ -770,6 +948,14 @@ def run_loop(
                 and len(export_content_digests) >= 5
             ),
             "sim_registry_count": len(state.sim_registry),
+            "campaign_program_ids": sorted(campaign_program_ids),
+            "campaign_stage_ids_seen": sorted(campaign_stage_ids_seen),
+            "campaign_suite_modes_seen": sorted(campaign_suite_modes_seen),
+            "blocked_stage_ids_seen": sorted(blocked_stage_ids_seen),
+            "blocked_suite_modes_seen": sorted(blocked_suite_modes_seen),
+            "failure_isolation_total": failure_isolation_total,
+            "graveyard_rescue_total": graveyard_rescue_total,
+            "replay_from_tape_total": replay_from_tape_total,
             "master_sim_status": final_coverage_report.get("master_sim_status", "NOT_READY"),
             "unresolved_promotion_blocker_count": len(final_coverage_report.get("unresolved_promotion_blockers", [])),
             "promotion_counts_by_tier": final_coverage_report.get("promotion_counts_by_tier", {}),
@@ -792,7 +978,13 @@ def main() -> int:
         default=None,
         help="Override runs root dir. Default is system_v3/runs. Useful for sandbox test runs under work/.",
     )
-    parser.add_argument("--a1-source", choices=["replay", "packet"], default="packet")
+    parser.add_argument("--a1-source", choices=["replay", "packet", "autowiggle"], default="packet")
+    # AUTOWIGGLE knobs (only used when --a1-source autowiggle)
+    parser.add_argument("--autowiggle-max-items", type=int, default=140)
+    parser.add_argument("--autowiggle-max-sims", type=int, default=110)
+    parser.add_argument("--autowiggle-target-count", type=int, default=90)
+    parser.add_argument("--autowiggle-alternative-count", type=int, default=50)
+    parser.add_argument("--autowiggle-rescue-fraction", type=float, default=0.50)
     parser.add_argument("--a1-model", default="disabled", help="Deprecated. Ollama source has been removed.")
     parser.add_argument("--a1-timeout-sec", type=int, default=60)
     parser.add_argument("--clean", action="store_true")
@@ -813,6 +1005,16 @@ def main() -> int:
     )
     args = parser.parse_args()
 
+    autowiggle_config = None
+    if args.a1_source == "autowiggle":
+        autowiggle_config = AutowiggleConfig(
+            max_items=int(args.autowiggle_max_items),
+            max_sims=int(args.autowiggle_max_sims),
+            target_count=int(args.autowiggle_target_count),
+            alternative_count=int(args.autowiggle_alternative_count),
+            graveyard_rescue_fraction=float(args.autowiggle_rescue_fraction),
+        )
+
     run_id = args.run_id or _now_run_id()
     run_dir, state_hash = run_loop(
         strategy_path=Path(args.strategy),
@@ -821,6 +1023,7 @@ def main() -> int:
         a1_source=args.a1_source,
         a1_model=args.a1_model,
         a1_timeout_sec=args.a1_timeout_sec,
+        autowiggle_config=autowiggle_config,
         clean=args.clean,
         retain_diagnostics=bool(args.retain_diagnostics),
         retain_snapshots=bool(args.retain_snapshots),

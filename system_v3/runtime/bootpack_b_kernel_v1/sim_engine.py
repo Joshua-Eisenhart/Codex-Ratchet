@@ -3,6 +3,7 @@ import json
 import math
 import re
 from dataclasses import dataclass
+from pathlib import Path
 
 from state import KernelState
 
@@ -105,6 +106,17 @@ _KNOWN_TERM_KEYS: tuple[str, ...] = tuple(
 
 def _sha256_bytes(raw: bytes) -> str:
     return hashlib.sha256(raw).hexdigest()
+
+def _sha256_file(path: Path) -> str:
+    try:
+        return _sha256_bytes(path.read_bytes())
+    except Exception:
+        # Fail-closed determinism: fall back to a constant identity rather than
+        # introducing per-run randomness.
+        return _sha256_bytes(b"bootpack_b_kernel_v1_sim_engine")
+
+
+_SIM_STUB_PATH = Path(__file__).resolve().parent / "SIM_STUB_QIT_v1.txt"
 
 
 def _deterministic_hash_dict(payload: dict) -> str:
@@ -342,11 +354,16 @@ class SimTask:
     target_class: str
     negative_class: str
     depends_on: tuple[str, ...]
+    stage_id: str = ""
+    stage_suite_kind: str = ""
+    stage_depends_on: tuple[str, ...] = ()
 
 
 class SimEngine:
     def __init__(self):
-        self.code_hash_prefix = _sha256_bytes(b"bootpack_b_kernel_v1_sim_engine")
+        # CODE_HASH_SHA256 must represent SIM "code identity" (not task identity).
+        # Use the pinned stub so A1/A0 can bind MATH_DEF SIM_CODE_HASH_SHA256 deterministically.
+        self.code_hash_prefix = _sha256_file(_SIM_STUB_PATH)
 
     def _normalize_probe_term(self, raw: str) -> str:
         token = str(raw or "").strip().lower().replace("-", "_").replace(" ", "_")
@@ -2204,7 +2221,7 @@ class SimEngine:
             "probe_digest": probe_digest,
         }
         output_hash = _deterministic_hash_dict(payload)
-        code_hash = _sha256_bytes((self.code_hash_prefix + task.sim_id).encode("utf-8"))
+        code_hash = str(self.code_hash_prefix)
         run_manifest_payload = {
             "manifest_schema": "SIM_RUN_MANIFEST_v1",
             "sim_engine_id": "bootpack_b_kernel_v1",

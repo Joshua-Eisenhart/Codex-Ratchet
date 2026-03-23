@@ -136,18 +136,24 @@ def main() -> int:
         "__BOOTPACK_A_HASH__": bootpack_a_hash,
     }
 
-    # Required deterministic directory surface.
+    # Required deterministic directory surface. Duplicate helper surfaces like
+    # outbox/ and snapshots/ are created only if a fallback/diagnostic path
+    # actually needs them later.
     for d in [
-        "outbox",
         "b_reports",
-        "snapshots",
         "sim",
         "tapes",
         "logs",
         "reports",
         "tuning",
+        "zip_packets",
+        "a1_inbox",
     ]:
         (run_root / d).mkdir(parents=True, exist_ok=True)
+
+    # Lean resume surface is part of the run contract even before the runtime
+    # materializes actual state.
+    _write_json(run_root / "state.json", {"schema": "RUN_STATE_POINTER_v1", "status": "PENDING"})
 
     # Materialize manifest.
     manifest_template = templates_root / "RUN_MANIFEST_v1.template.json"

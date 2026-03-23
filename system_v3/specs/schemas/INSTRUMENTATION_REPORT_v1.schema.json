@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "INSTRUMENTATION_REPORT_v1.schema.json",
+  "title": "INSTRUMENTATION_REPORT_v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "status", "run_dir", "counts", "digest_pressure", "top_reject_tags", "warnings", "source_pointers"],
+  "properties": {
+    "schema": {
+      "const": "INSTRUMENTATION_REPORT_v1"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["PASS", "FAIL"]
+    },
+    "run_dir": {
+      "type": "string"
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "zip_packet_count",
+        "event_count",
+        "export_tape_count",
+        "campaign_tape_count",
+        "evidence_pending_count",
+        "reject_log_count",
+        "kill_log_count",
+        "sim_registry_count",
+        "sim_results_count",
+        "term_registry_count"
+      ],
+      "properties": {
+        "zip_packet_count": {"type": "integer", "minimum": 0},
+        "event_count": {"type": "integer", "minimum": 0},
+        "export_tape_count": {"type": "integer", "minimum": 0},
+        "campaign_tape_count": {"type": "integer", "minimum": 0},
+        "evidence_pending_count": {"type": "integer", "minimum": 0},
+        "reject_log_count": {"type": "integer", "minimum": 0},
+        "kill_log_count": {"type": "integer", "minimum": 0},
+        "sim_registry_count": {"type": "integer", "minimum": 0},
+        "sim_results_count": {"type": "integer", "minimum": 0},
+        "term_registry_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "digest_pressure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "unique_strategy_digest_count",
+        "unique_export_content_digest_count",
+        "unique_export_structural_digest_count",
+        "id_churn_signal"
+      ],
+      "properties": {
+        "unique_strategy_digest_count": {"type": "integer", "minimum": 0},
+        "unique_export_content_digest_count": {"type": "integer", "minimum": 0},
+        "unique_export_structural_digest_count": {"type": "integer", "minimum": 0},
+        "id_churn_signal": {"type": "boolean"}
+      }
+    },
+    "top_reject_tags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["tag", "count"],
+        "properties": {
+          "tag": {"type": "string"},
+          "count": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "source_pointers": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  }
+}

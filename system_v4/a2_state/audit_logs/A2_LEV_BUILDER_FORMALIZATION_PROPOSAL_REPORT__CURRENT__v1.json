@@ -1,0 +1,201 @@
+{
+  "audit_only": true,
+  "candidate": {
+    "id": "lev-builder-formalization-proposal-default",
+    "raw_input": "Emit one bounded Ratchet-native formalization proposal that follows the landed lev-builder placement audit without generating files, patches, migration steps, or runtime claims.",
+    "reference_refs": [
+      "work/reference_repos/lev-os/agents/skills/lev-builder/references/dsl-spec.md"
+    ],
+    "source": "lev-os/agents formalize / placement / migrate cluster",
+    "source_refs": [
+      "work/reference_repos/lev-os/agents/skills/lev-builder/SKILL.md",
+      "work/reference_repos/lev-os/agents/skills/arch/SKILL.md",
+      "work/reference_repos/lev-os/agents/skills/work/SKILL.md"
+    ],
+    "stage_request": "formalization_proposal",
+    "title": "bounded lev-builder formalization proposal packet",
+    "type": "formalization_proposal"
+  },
+  "cluster_id": "SKILL_CLUSTER::lev-formalization-placement",
+  "do_not_promote": true,
+  "evidence_inputs": {
+    "brain_refresh_status": "ok",
+    "graph_skill_coverage": {
+      "active_skill_count": 102,
+      "fully_graphed": true,
+      "graphed_skill_node_count": 102,
+      "missing_active_skill_count": 0,
+      "stale_skill_node_count": 0
+    },
+    "placement_follow_on_slice": "a2-lev-builder-formalization-proposal-operator",
+    "placement_gate_status": "ready_for_bounded_placement_audit",
+    "placement_packet_ready": true,
+    "placement_report_status": "ok",
+    "placement_upstream_slice": "a2-lev-builder-placement-audit-operator"
+  },
+  "formalization_proposal": {
+    "acceptance_gates": {
+      "must_exist_before_build": [
+        "system_v4/a2_state/audit_logs/A2_LEV_BUILDER_PLACEMENT_AUDIT_REPORT__CURRENT__v1.json",
+        "system_v4/a2_state/audit_logs/A2_LEV_BUILDER_PLACEMENT_AUDIT_PACKET__CURRENT__v1.json",
+        "system_v4/a2_state/audit_logs/A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.json",
+        "system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json"
+      ],
+      "must_stay_false": [
+        "allow_migration",
+        "allow_patch_application",
+        "allow_runtime_claims"
+      ],
+      "proof_requirements": [
+        "future bounded build slice must have a dedicated smoke",
+        "graph coverage must remain converged after any later bounded build",
+        "A2 refresher must return ok after any later bounded build"
+      ]
+    },
+    "formalization_plan": {
+      "deferred_items": [
+        "any filesystem patch generation",
+        "any migration or production-path write",
+        "any runtime-import claim",
+        "any registry mutation beyond the future bounded build slice"
+      ],
+      "future_skill_shape_notes": [
+        "Keep the future SKILL.md lean and progressive-disclosure oriented.",
+        "Separate future references from core workflow instead of porting lev-builder wholesale.",
+        "Carry forward placement and prior-art discipline without importing mutation machinery."
+      ],
+      "required_files": [
+        "system_v4/skill_specs/a2-lev-builder-formalization-skeleton-operator/SKILL.md",
+        "system_v4/skills/a2_lev_builder_formalization_skeleton_operator.py",
+        "system_v4/skills/test_a2_lev_builder_formalization_skeleton_operator_smoke.py"
+      ],
+      "required_reports": [
+        "system_v4/a2_state/audit_logs/A2_LEV_BUILDER_PLACEMENT_AUDIT_REPORT__CURRENT__v1.json",
+        "system_v4/a2_state/audit_logs/A2_LEV_BUILDER_PLACEMENT_AUDIT_PACKET__CURRENT__v1.json",
+        "system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json",
+        "system_v4/a2_state/audit_logs/A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.json"
+      ],
+      "required_smokes": [
+        "system_v4/skills/test_a2_lev_builder_formalization_skeleton_operator_smoke.py"
+      ]
+    },
+    "proposal_rationale": [
+      "carry forward the placement verdict from the landed audit slice",
+      "declare one future build target bundle without creating files for it here",
+      "keep the next actual build lane behind explicit proof and migration gates"
+    ],
+    "proposal_target": {
+      "graph_family": "runtime",
+      "proposed_skill_id": "a2-lev-builder-formalization-skeleton-operator",
+      "proposed_skill_type": "maintenance",
+      "source_skill_carryforward": "lev-builder",
+      "target_family": "Ratchet-native lev formalization placement",
+      "target_paths": {
+        "operator_source": "system_v4/skills/a2_lev_builder_formalization_skeleton_operator.py",
+        "report_json": "system_v4/a2_state/audit_logs/A2_LEV_BUILDER_FORMALIZATION_SKELETON_REPORT__CURRENT__v1.json",
+        "skill_spec": "system_v4/skill_specs/a2-lev-builder-formalization-skeleton-operator/SKILL.md",
+        "smoke_test": "system_v4/skills/test_a2_lev_builder_formalization_skeleton_operator_smoke.py"
+      },
+      "trust_zone": "A2_MID_REFINEMENT"
+    }
+  },
+  "gate": {
+    "allow_build": false,
+    "allow_formalization_proposal": true,
+    "allow_migration": false,
+    "allow_runtime_claims": false,
+    "blocking_issues": [],
+    "gate_results": {
+      "graph_truth_alignment": {
+        "evidence": "active=102 graphed=102 missing=0 stale=0",
+        "status": "pass"
+      },
+      "placement_alignment": {
+        "evidence": "status=ok gate_status=ready_for_bounded_placement_audit follow_on=a2-lev-builder-formalization-proposal-operator",
+        "status": "pass"
+      },
+      "placement_packet_alignment": {
+        "evidence": "allow_bounded_placement_audit=True follow_on=a2-lev-builder-formalization-proposal-operator",
+        "status": "pass"
+      },
+      "proposal_hygiene": {
+        "evidence": "candidate request does not include build/migration/runtime-claim language",
+        "status": "pass"
+      },
+      "proposal_scope": {
+        "evidence": "stage_request=formalization_proposal",
+        "status": "pass"
+      },
+      "reference_refs_available": {
+        "evidence": "1/1 refs present",
+        "status": "pass"
+      },
+      "refresh_alignment": {
+        "evidence": "brain_refresh_status=ok",
+        "status": "pass"
+      },
+      "source_refs_available": {
+        "evidence": "3/3 refs present",
+        "status": "pass"
+      }
+    },
+    "gate_status": "ready_for_formalization_proposal",
+    "priority_findings": [],
+    "reason": "upstream placement truth, A2 freshness, and graph truth all support one bounded proposal packet",
+    "recommended_next_step": "a2-lev-builder-formalization-skeleton-operator",
+    "safe_to_continue": true
+  },
+  "gate_status": "ready_for_formalization_proposal",
+  "generated_utc": "2026-03-21T13:52:02Z",
+  "issues": [],
+  "non_goals": [
+    "No path mutation or graph-plan generation.",
+    "No patch generation or application.",
+    "No test execution.",
+    "No migration or production-path writes.",
+    "No registry updates, commits, or pushes.",
+    "No live runtime claims or imported runtime ownership claims.",
+    "No prompt-stack or .lev substrate import.",
+    "No multi-candidate ranking or broad cluster planning."
+  ],
+  "nonoperative": true,
+  "proposal_only": true,
+  "proposal_scope": {
+    "bounded_question": "What exact Ratchet-native operator/spec/test/report bundle should exist next if we formalize this seam without widening claims?",
+    "single_candidate_only": true,
+    "stage_request": "formalization_proposal"
+  },
+  "recommended_actions": [
+    "Keep this slice proposal-only and repo-held.",
+    "Use the emitted proposal packet to decide whether the future skeleton slice should be built at all.",
+    "Keep migration, patching, and runtime-import claims explicitly false in the follow-on build lane."
+  ],
+  "recommended_source_skill_id": "lev-builder",
+  "reference_ref_status": [
+    {
+      "exists": true,
+      "path": "work/reference_repos/lev-os/agents/skills/lev-builder/references/dsl-spec.md"
+    }
+  ],
+  "repo_root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "schema": "a2_lev_builder_formalization_proposal_report_v1",
+  "slice_id": "a2-lev-builder-formalization-proposal-operator",
+  "source_family": "lev_os_agents_curated",
+  "source_ref_status": [
+    {
+      "exists": true,
+      "path": "work/reference_repos/lev-os/agents/skills/lev-builder/SKILL.md"
+    },
+    {
+      "exists": true,
+      "path": "work/reference_repos/lev-os/agents/skills/arch/SKILL.md"
+    },
+    {
+      "exists": true,
+      "path": "work/reference_repos/lev-os/agents/skills/work/SKILL.md"
+    }
+  ],
+  "status": "ok",
+  "upstream_placement_packet_path": "system_v4/a2_state/audit_logs/A2_LEV_BUILDER_PLACEMENT_AUDIT_PACKET__CURRENT__v1.json",
+  "upstream_placement_report_path": "system_v4/a2_state/audit_logs/A2_LEV_BUILDER_PLACEMENT_AUDIT_REPORT__CURRENT__v1.json"
+}

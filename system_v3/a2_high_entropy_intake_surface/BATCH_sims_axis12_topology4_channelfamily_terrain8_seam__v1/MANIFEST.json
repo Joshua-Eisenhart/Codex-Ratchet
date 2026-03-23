@@ -1,0 +1,102 @@
+{
+  "batch_id": "BATCH_sims_axis12_topology4_channelfamily_terrain8_seam__v1",
+  "batch_scope": "residual_axis12_topology4_channelfamily_to_terrain8_admission_seam",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T05:27:03Z",
+  "deferred_next_raw_folder_order_source": null,
+  "extraction_mode": "SIM_AXIS12_TOPOLOGY4_CHANNELFAMILY_TERRAIN8_SEAM_PASS",
+  "notes": [
+    "This batch continues the post-closure residual paired-family campaign.",
+    "The family is bounded to the current topology4 runner plus the repo-held admitted terrain8 surface attributed to the same runner hash.",
+    "The runner's own local channelfamily result stays comparison-only because preserving the seam is the point of the batch.",
+    "No runtime execution was performed."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "A2_2_CANDIDATE",
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis12_topology4_channelfamily_suite_v2.json",
+      "relevance": "Current local result surface emitted by the runner's present-day output contract; used to preserve the schema mismatch."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md",
+      "relevance": "Shows both the current channelfamily naming and the admitted terrain8 artifact in the same topology4 strip.",
+      "line_window": "13,59,68-80,138"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt",
+      "relevance": "Directly admits the selected terrain8 surface under the current runner hash."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_axis12_seq_constraints_family__v1/MANIFEST.json",
+      "relevance": "Provides residual campaign continuity and identifies this seam as the next prioritized unit."
+    }
+  ],
+  "runtime_expectations": [
+    "The current runner writes results_axis12_topology4_channelfamily_suite_v2.json and one local SIM_EVIDENCE block for S_SIM_AXIS12_TOPOLOGY4_CHANNELFAMILY_SUITE_V2.",
+    "The selected admitted terrain8 surface is repo-held and evidence-pack admitted under the same runner hash but a different SIM_ID.",
+    "If residual pair intake continues, the next prioritized pair begins at run_axis12_topology4_channelgrid_v1.py."
+  ],
+  "failure_modes": [
+    "Smoothing the admitted terrain8 surface into the current local topology4-family contract because the hash matches.",
+    "Ignoring the runner's own local result file and losing the seam entirely.",
+    "Assuming exact repo-top admission means the current runner still emits the admitted surface.",
+    "Collapsing the next topology4 channelgrid pair into the current batch."
+  ],
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "sims_split_rule": {
+    "detected": true,
+    "included_in_this_batch": true,
+    "notes": "This batch remains inside the separate sims source class and does not mix with ordinary theory/doc extraction.",
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims"
+  },
+  "source_membership": [
+    {
+      "line_count": 213,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis12_topology4_channelfamily_suite_v2.py",
+      "role_in_batch": "axis12_topology4_runner_current_channelfamily_contract",
+      "sha256": "be1a8c714b57ebfe98559d14237d85b258f760f5db2691f10b3f778660edcb12",
+      "size_bytes": 7090,
+      "source_class": "executable_runner"
+    },
+    {
+      "line_count": 78,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS12_TOPOLOGY4_TERRAIN8_SUITE_V1.json",
+      "role_in_batch": "repo_top_admitted_terrain8_surface_under_same_runner_hash",
+      "sha256": "218b43b4a1adee0149363f5103840329693d81e82beea73485fdc1235e2a6e9a",
+      "size_bytes": 1833,
+      "source_class": "result_surface"
+    }
+  ],
+  "derived_summary": {
+    "selected_admitted_sim_id": "S_SIM_AXIS12_TOPOLOGY4_TERRAIN8_SUITE_V1",
+    "current_runner_local_sim_id": "S_SIM_AXIS12_TOPOLOGY4_CHANNELFAMILY_SUITE_V2",
+    "current_runner_local_result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis12_topology4_channelfamily_suite_v2.json",
+    "top_level_evidence_pack_match_count": 1,
+    "top_level_current_local_sim_id_match_count": 0,
+    "selected_output_hash_matches_evidence_pack": true,
+    "local_result_hash": "ffe8b0e3d5b640b1674f2826607b9540bb8e7ccad7df0a61717203234732b490",
+    "local_result_line_count": 37,
+    "terrain8_extrema": {
+      "lowest_entropy_cell": "Si_sign-1_DOWN",
+      "lowest_entropy_value": 0.32534208782053975,
+      "highest_purity_cell": "Si_sign-1_UP",
+      "highest_purity_value": 0.8057525632184778
+    },
+    "terrain8_sign_patterns": {
+      "Se_delta_entropy_sign1_minus_sign-1_DOWN": -0.013641149799005936,
+      "Se_delta_purity_sign1_minus_sign-1_DOWN": 0.011849262134888128,
+      "Ne_delta_entropy_sign1_minus_sign-1_DOWN": 0.0036927725396385114,
+      "Ne_delta_purity_sign1_minus_sign-1_DOWN": -0.002510209063542712,
+      "Si_delta_entropy_sign1_minus_sign-1_DOWN": 0.010269144388391438,
+      "Si_delta_purity_sign1_minus_sign-1_DOWN": -0.007365018990676209
+    },
+    "current_local_families": {
+      "max_lin_err_family": "EC_AD",
+      "max_lin_err_value": 0.02232371509931299,
+      "max_deltaH_absmean_family": "EO_FX",
+      "max_deltaH_absmean_value": 0.12029928053976777
+    },
+    "next_residual_priority_source": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis12_topology4_channelgrid_v1.py"
+  }
+}

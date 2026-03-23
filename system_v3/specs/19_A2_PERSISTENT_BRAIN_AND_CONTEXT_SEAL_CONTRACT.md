@@ -16,6 +16,30 @@ This document defines canonical A2 state schemas, seal mechanics, compaction mec
 - `RQ-115` MUST: document index refresh performs deterministic full scan with path-lexicographic ordering and stable sha256 content hashes.
 - `RQ-116` MUST: A2 sharding policy is explicit and deterministic for append logs and derived registries.
 
+## Current Live Compatibility Profile
+Current live autosave/snapshot tooling is narrower than the full target-state contract below.
+
+Observed live behavior on the active autosave path:
+- `system_v3/tools/a2_state_persist_tick.py` appends lean autosave events to `memory.jsonl`
+- current autosave event shape is compatibility-style, not full target-state seal shape:
+  - required live keys observed: `ts`, `type`
+  - common live autosave keys observed: `seq`, `manifest_sha256`, `file_count`, `total_bytes`
+  - optional live autosave key observed: `latest_zip_sha256`
+- memory sharding currently uses:
+  - `system_v3/a2_state/memory_shards/index_v1.json`
+  - shard files named `memory_shard_<N>.jsonl`
+  - rollover event `type = memory_shard_open`
+- live snapshot manifest emitted by `a2_state_persist_tick.py` / `a2_state_snapshot.py` is manifest-led:
+  - manifest schema currently observed: `A2_STATE_MANIFEST_v1` or `A2_STATE_SNAPSHOT_MANIFEST_v1`
+  - current manifest fields are centered on `file_count`, `total_bytes`, and `files[{rel_path,byte_size,sha256}]`
+- optional latest zip path on the active autosave path is:
+  - `system_v3/a2_state/snapshots/a2_state_snapshot_latest.zip`
+
+Compatibility implication:
+- the detailed sections below remain useful as the fuller target-state contract
+- but the current live path does not yet enforce the full `schema_version` / `SEAL_RECORD` / canonical registry schema set described below
+- audits should treat the autosave compatibility profile as the active implementation truth until the fuller seal contract is actually wired into the tools
+
 ## Canonical File Interface
 Canonical directory:
 - `system_v3/a2_state/`
@@ -58,7 +82,11 @@ Required top-level keys:
 - `sha256`
 - `size_bytes`
 - `layer`
-- `canon_status`
+- `source_local_status`
+
+Legacy compatibility:
+- `canon_status` may still be present in generated indices as a compatibility alias.
+- `source_local_status` is the preferred field name because it does not imply earned ratchet truth.
 
 Ordering:
 - sorted strictly by `path` ascending.
@@ -127,6 +155,27 @@ Required keys:
 - `next_read_set[]`
 - `state_digest_hash`
 
+## THREAD_CLOSEOUT_PACKET Sink (Operational Companion)
+Location:
+- `system_v3/a2_derived_indices_noncanonical/thread_closeout_packets.000.jsonl` (shardable)
+
+Purpose:
+- capture returned worker-thread closeout audits as repo-held comparison packets
+
+Required keys:
+- `schema`: `THREAD_CLOSEOUT_PACKET_v1`
+- `captured_utc`
+- `source_thread_label`
+- `final_decision`
+- `thread_diagnosis`
+- `role_and_scope`
+- `strongest_outputs`
+- `keepers`
+- `if_one_more_step`
+- `risks`
+- `handoff_packet`
+- `closed_statement`
+
 ## Entropy Compaction Contract
 Compaction direction:
 - high entropy entries -> low entropy summaries
@@ -170,4 +219,3 @@ No reorder is allowed within one tick.
 3. seal write without source hash set -> reject write.
 4. fuel entry without provenance fields -> reject write.
 5. contradiction entry missing status enum -> reject write.
-

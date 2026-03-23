@@ -33,6 +33,19 @@ def _read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _read_run_state(run_dir: Path) -> dict:
+    state_path = run_dir / "state.json"
+    heavy_path = run_dir / "state.heavy.json"
+    state = _read_json(state_path) if state_path.exists() else {}
+    if not isinstance(state, dict):
+        state = {}
+    if heavy_path.exists():
+        heavy = _read_json(heavy_path)
+        if isinstance(heavy, dict):
+            state.update(heavy)
+    return state
+
+
 def _find_latest_save_zip(run_dir: Path) -> Path:
     pkt = run_dir / "zip_packets"
     if not pkt.is_dir():
@@ -135,12 +148,25 @@ def _fuel_docs_for_a1(*, max_bytes_total: int, a2_state_dir: Path) -> list[dict]
     ladder = fuel_root / "constraint ladder"
     sims = fuel_root / "sims"
     thread_save = fuel_root / "THREAD_S_FULL_SAVE"
+    a2_system_understanding = a2_state_dir / "A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md"
+    a2_term_conflicts = a2_state_dir / "A2_TERM_CONFLICT_MAP__v1.md"
+    a2_to_a1_inputs = a2_state_dir / "A2_TO_A1_DISTILLATION_INPUTS__v1.md"
+    a2_brain_slice = a2_state_dir / "A2_BRAIN_SLICE__v1.md"
     a2_model_context = a2_state_dir / "MODEL_CONTEXT.md"
     a2_intent_summary = a2_state_dir / "INTENT_SUMMARY.md"
+    a2_open_unresolved = a2_state_dir / "OPEN_UNRESOLVED__v1.md"
+    a2_surface_rules = a2_state_dir / "SURFACE_CLASS_AND_MEMORY_ADMISSION_RULES__v1.md"
     prioritized = [
-        # A2 context/intent are authoritative steering fuel for A1 behavior.
+        # Refreshed controlling A2 surfaces come first so A1 inherits current
+        # sequencing, conflict, and handoff discipline before broader fuel.
+        a2_system_understanding,
+        a2_term_conflicts,
+        a2_to_a1_inputs,
+        a2_brain_slice,
         a2_intent_summary,
         a2_model_context,
+        a2_open_unresolved,
+        a2_surface_rules,
         fuel_root / "PHYSICS_FUEL_DIGEST_v1.0.md",
         fuel_root / "AXIS_FOUNDATION_COMPANION_v1.4.md",
         fuel_root / "AXES_MASTER_SPEC_v0.2.md",
@@ -268,6 +294,12 @@ def main(argv: list[str]) -> int:
         help="Emit deterministic run+fuel context only (no output/schema instructions).",
     )
     ap.add_argument(
+        "--wiggle-profile",
+        choices=["micro5", "mass1000"],
+        default="micro5",
+        help="Controls the A1 wiggle quota language embedded in the context prompt.",
+    )
+    ap.add_argument(
         "--a1-brain-max-bytes",
         type=int,
         default=24_000,
@@ -294,12 +326,14 @@ def main(argv: list[str]) -> int:
         last_tags = []
 
     next_seq = _next_a1_inbox_sequence(run_dir, run_id)
-    state_path = run_dir / "state.json"
-    state = _read_json(state_path) if state_path.exists() else {}
+    state = _read_run_state(run_dir)
     canon_terms = _canonical_terms(state)
     l0_lexemes = sorted({str(x) for x in (state.get("l0_lexeme_set", []) or []) if str(x).strip()})
     derived_only_terms = sorted({str(x) for x in (state.get("derived_only_terms", []) or []) if str(x).strip()})
     graveyard_surface = _recent_graveyard_surface(state)
+    wiggle_profile = str(getattr(args, "wiggle_profile", "micro5") or "micro5").strip().lower()
+    if wiggle_profile not in {"micro5", "mass1000"}:
+        wiggle_profile = "micro5"
 
     fuel_docs = _fuel_docs_for_a1(max_bytes_total=int(args.fuel_max_bytes), a2_state_dir=a2_state_dir)
     a1_brain = _read_latest_a1_brain_summary(max_bytes=int(args.a1_brain_max_bytes), a2_state_dir=a2_state_dir)
@@ -353,7 +387,7 @@ def main(argv: list[str]) -> int:
     lines.append("ROSETTA / JARGON QUARANTINE RULE:")
     lines.append("- Jargon, metaphors, psychology labels, and narrative are NOT allowed in MATH_DEF/TERM_DEF/CANON_PERMIT/SIM_SPEC DEF_FIELD values.")
     lines.append("- The ONLY place you may carry high-entropy human labels is LABEL_DEF:")
-    lines.append("  - LABEL_DEF.DEF_FIELD TERM \"<canonical_term>\"")
+    lines.append("  - LABEL_DEF.DEF_FIELD TERM \"<target_term>\"")
     lines.append("  - LABEL_DEF.DEF_FIELD LABEL \"<human label>\"")
     lines.append("- Keep LABEL ASCII and <= 120 characters.")
     lines.append("- This enables bidirectional lookup (term -> label) without contaminating math payloads.")
@@ -361,24 +395,37 @@ def main(argv: list[str]) -> int:
     lines.append("Recent graveyard surface to rescue/challenge:")
     lines.append(json.dumps(graveyard_surface, ensure_ascii=True))
     lines.append("")
-    lines.append("WIGGLE / MULTI-NARRATIVE QUOTAS (hard):")
-    lines.append("- targets: EXACTLY 1 (STEELMAN)")
-    lines.append("- alternatives: EXACTLY 4 (BOUNDARY_SWEEP, PERTURBATION, COMPOSITION_STRESS, ADVERSARIAL_NEG)")
-    lines.append("- Ensure structural distinctness across all 5 candidates (different FAMILY/TIER/fields).")
+    lines.append("WIGGLE MODE:")
+    lines.append(f"- profile={wiggle_profile}")
     lines.append("")
-    lines.append("SEQUENTIAL LAWYER PROCEDURE (internal reasoning, still output one JSON object):")
-    lines.append("1. Steelman: emit one coherent target chain.")
-    lines.append("2. Devil: emit one sincere adversarial lane intended to die under SIM.")
-    lines.append("3. Boundary/Perturb/Stress: emit three nearby alternatives.")
-    lines.append("4. Rescue: at least one alternative should target a prior killed or parked surface.")
-    lines.append("")
-    lines.append("Role mapping (encoded ONLY via operator_id + DEF_FIELD FAMILY):")
-    lines.append("- targets[0]: operator_id=OP_BIND_SIM, FAMILY=BASELINE")
-    lines.append("- alternatives[0]: operator_id=OP_REPAIR_DEF_FIELD, FAMILY=BOUNDARY_SWEEP")
-    lines.append("- alternatives[1]: operator_id=OP_MUTATE_LEXEME, FAMILY=PERTURBATION")
-    lines.append("- alternatives[2]: operator_id=OP_REORDER_DEPENDENCIES, FAMILY=COMPOSITION_STRESS")
-    lines.append("- alternatives[3]: operator_id=OP_NEG_SIM_EXPAND, FAMILY=ADVERSARIAL_NEG, NEGATIVE_CLASS must be non-empty")
-    lines.append("")
+    if wiggle_profile == "micro5":
+        lines.append("WIGGLE / MULTI-NARRATIVE QUOTAS (hard):")
+        lines.append("- targets: EXACTLY 1 (STEELMAN)")
+        lines.append("- alternatives: EXACTLY 4 (BOUNDARY_SWEEP, PERTURBATION, COMPOSITION_STRESS, ADVERSARIAL_NEG)")
+        lines.append("- Ensure structural distinctness across all 5 candidates (different FAMILY/TIER/fields).")
+        lines.append("")
+        lines.append("SEQUENTIAL LAWYER PROCEDURE (internal reasoning, still output one JSON object):")
+        lines.append("1. Steelman: emit one coherent target chain.")
+        lines.append("2. Devil: emit one sincere adversarial lane intended to die under SIM.")
+        lines.append("3. Boundary/Perturb/Stress: emit three nearby alternatives.")
+        lines.append("4. Rescue: at least one alternative should target a prior killed or parked surface.")
+        lines.append("")
+        lines.append("Role mapping (encoded ONLY via operator_id + DEF_FIELD FAMILY):")
+        lines.append("- targets[0]: operator_id=OP_BIND_SIM, FAMILY=BASELINE")
+        lines.append("- alternatives[0]: operator_id=OP_REPAIR_DEF_FIELD, FAMILY=BOUNDARY_SWEEP")
+        lines.append("- alternatives[1]: operator_id=OP_MUTATE_LEXEME, FAMILY=PERTURBATION")
+        lines.append("- alternatives[2]: operator_id=OP_REORDER_DEPENDENCIES, FAMILY=COMPOSITION_STRESS")
+        lines.append("- alternatives[3]: operator_id=OP_NEG_SIM_EXPAND, FAMILY=ADVERSARIAL_NEG, NEGATIVE_CLASS must be non-empty")
+        lines.append("")
+    else:
+        lines.append("WIGGLE / MULTI-NARRATIVE (mass mode):")
+        lines.append("- Do NOT use tiny fixed quotas (no 'targets=1, alternatives=4').")
+        lines.append("- Follow the role prompt size requirements for targets/alternatives/sims/budget.")
+        lines.append("- Every candidate MUST include DEF_FIELD FAMILY and TARGET_CLASS.")
+        lines.append("- Include try-to-fail lanes with NEGATIVE_CLASS populated.")
+        lines.append("- Include RESCUE_FROM lanes when the graveyard is non-empty.")
+        lines.append("- Maintain structural variance; avoid near-duplicate payloads.")
+        lines.append("")
     lines.append("Each candidate object must have EXACT keys:")
     lines.append("- item_class,id,kind,requires,def_fields,asserts,operator_id")
     lines.append("- item_class=\"SPEC_HYP\"")

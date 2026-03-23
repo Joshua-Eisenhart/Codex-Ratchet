@@ -1,0 +1,87 @@
+{
+  "allow_direct_kernel_backfill_now": false,
+  "audit_only": true,
+  "authoritative_graph": "system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+  "direct_kernel_backfill_candidate_count": 0,
+  "direct_kernel_backfill_candidates": [],
+  "do_not_promote": true,
+  "examples": {
+    "blank_source_concept_id": [
+      {
+        "survivor_id": "B_SURVIVOR::F001",
+        "target_id": "",
+        "target_node_type": ""
+      },
+      {
+        "survivor_id": "B_SURVIVOR::F002",
+        "target_id": "",
+        "target_node_type": ""
+      },
+      {
+        "survivor_id": "B_SURVIVOR::F003",
+        "target_id": "",
+        "target_node_type": ""
+      }
+    ],
+    "live_kernel_already_linked": [
+      {
+        "survivor_id": "B_SURVIVOR::F049",
+        "target_id": "A2_2::REFINED::canon_geometry_constraint_manifold::f1ddcf9da0ce2187",
+        "target_node_type": "KERNEL_CONCEPT"
+      }
+    ],
+    "live_nonkernel_already_linked::EXTRACTED_CONCEPT": [
+      {
+        "survivor_id": "B_SURVIVOR::P015",
+        "target_id": "A2_3::QIT_BRIDGE_PASS::Entropy as Spacetime (Axiom)::2ab647479e76a51a",
+        "target_node_type": "EXTRACTED_CONCEPT"
+      },
+      {
+        "survivor_id": "B_SURVIVOR::F051",
+        "target_id": "A2_3::QIT_BRIDGE_PASS::Entropy as Spacetime (Axiom)::2ab647479e76a51a",
+        "target_node_type": "EXTRACTED_CONCEPT"
+      },
+      {
+        "survivor_id": "B_SURVIVOR::F055",
+        "target_id": "A2_3::QIT_BRIDGE_PASS::Retrocausal Multiverse (Converging Futures)::c08e73cb75074e43",
+        "target_node_type": "EXTRACTED_CONCEPT"
+      }
+    ],
+    "live_nonkernel_already_linked::REFINED_CONCEPT": [
+      {
+        "survivor_id": "B_SURVIVOR::F101",
+        "target_id": "A2_2::REFINED::identity_emergence_constraint::6101e2668ceeacd6",
+        "target_node_type": "REFINED_CONCEPT"
+      },
+      {
+        "survivor_id": "B_SURVIVOR::F117",
+        "target_id": "A2_2::REFINED::Entropy-First Unified Framework::5c4e1467d2c7dd19",
+        "target_node_type": "REFINED_CONCEPT"
+      },
+      {
+        "survivor_id": "B_SURVIVOR::F121",
+        "target_id": "A2_2::REFINED::Chiral Game Theory Operators::89d247f8fe9376cf",
+        "target_node_type": "REFINED_CONCEPT"
+      }
+    ]
+  },
+  "generated_utc": "2026-03-21T23:43:58Z",
+  "issues": [],
+  "nonoperative": true,
+  "recommended_next_actions": [
+    "Do not run bulk direct survivor-to-kernel backfill under current truth unless a survivor resolves to a live KERNEL_CONCEPT without an existing ACCEPTED_FROM edge.",
+    "Treat survivor links that already resolve to REFINED_CONCEPT or EXTRACTED_CONCEPT as evidence of concept-class layering, not as missing direct kernel edges.",
+    "Return to skill-kernel-link-seeding-policy-audit after this slice so the skill island remains fail-closed while witness-side class layering is clarified.",
+    "If survivor-side bridge strengthening continues later, add an explicit concept-class normalization or promotion policy before any broader kernel backfill claim."
+  ],
+  "repo_root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "schema": "SURVIVOR_KERNEL_BRIDGE_BACKFILL_AUDIT_v1",
+  "status": "ok",
+  "supporting_bridge_source_audit": "system_v4/a2_state/audit_logs/CONTROL_GRAPH_BRIDGE_SOURCE_AUDIT__CURRENT__v1.json",
+  "survivor_source_class_counts": {
+    "blank_source_concept_id": 31,
+    "live_kernel_already_linked": 1,
+    "live_nonkernel_already_linked::EXTRACTED_CONCEPT": 34,
+    "live_nonkernel_already_linked::REFINED_CONCEPT": 12
+  }
+}

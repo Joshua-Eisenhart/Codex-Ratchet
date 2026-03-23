@@ -1,0 +1,244 @@
+{
+  "batch_id": "BATCH_sims_sim_suite_v1_descendant_bundle__v1",
+  "batch_scope": "run_sim_suite_v1_multisim_bundle_and_ten_emitted_descendant_results",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-08T23:45:18Z",
+  "deferred_next_raw_folder_order_source": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_sim_suite_v2_full_axes.py",
+  "extraction_mode": "SIM_SUITE_V1_BUNDLE_PASS",
+  "notes": [
+    "This batch treats run_sim_suite_v1.py as a bundle runner and includes the ten descendant result surfaces it explicitly emits.",
+    "run_sim_suite_v2_full_axes.py and dedicated runner hash matches were used only as comparison anchors.",
+    "No runtime execution was performed."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "A2_2_CANDIDATE",
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md",
+      "relevance": "Catalogs the emitted descendants and keeps sim_suite_v1 / sim_suite_v2 as separate entrypoints.",
+      "line_window": "39-58,91-107,141-142"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt",
+      "relevance": "Contains all ten descendant evidence blocks and exposes the mixed code-hash attribution map.",
+      "line_window": "1-50,93-98,187-250,269-298,318-373"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_sim_suite_v2_full_axes.py",
+      "relevance": "Successor bundle comparison anchor and current hash match for Negctrl V2 evidence attribution.",
+      "line_window": "249-282,423-450"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis0_traj_corr_suite.py",
+      "relevance": "Current hash match for the Axis0 traj corr V4 evidence block."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis12_channel_realization_suite.py",
+      "relevance": "Current hash match for the Axis12 channel realization V4 evidence block."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis12_seq_constraints.py",
+      "relevance": "Current hash match for the Axis12 sequence constraints V2 evidence block."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/axis4_seq_cycle_sim.py",
+      "relevance": "Current hash match for the Axis4 all-bidir evidence block."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/ run_mega_axis0_ab_stage16_axis6.py",
+      "relevance": "Current hash match for the Stage16 V4 evidence block."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_STAGE16_SUB4_UNIFORM_AXIS6_V5.json",
+      "relevance": "Comparison anchor showing byte identity with the V4 result payload."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_NEGCTRL_AXIS6_COMMUTE_V3.json",
+      "relevance": "Comparison anchor showing successor-version trials drift with zero metrics preserved."
+    }
+  ],
+  "runtime_expectations": [
+    "run_sim_suite_v1.py writes ten results_*.json files and one sim_evidence_pack.txt containing ten SIM_EVIDENCE blocks.",
+    "Axis3 uses a 400x400 grid integral, Axis6 and Axis5 use 512-trial sweeps, Axis4 uses 256 states over 64 cycles, Axis12 channel realization uses 81 parameter rows with 256 trials, and Axis0 / Stage16 / Negctrl use 256-trial-class settings.",
+    "The bundle hash is 1c8a7ac34593b255c6fb6b9450aba872b789f4ca6dd50f4ace57e25dd7ebfcc7, but repo-top evidence attribution is descendant-specific rather than uniform."
+  ],
+  "failure_modes": [
+    "The bundle can be mistaken for the single current producer path for all ten descendants even though the evidence pack splits provenance across six code hashes.",
+    "The successor bundle run_sim_suite_v2_full_axes.py can be prematurely merged into the same family because its current hash already appears in the Negctrl V2 evidence chain.",
+    "Version labels can be over-trusted: Stage16 V4/V5 are byte-identical while Negctrl V2/V3 preserve zero metrics but change trials."
+  ],
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "sims_split_rule": {
+    "detected": true,
+    "included_in_this_batch": true,
+    "notes": "This batch remains inside the separate sims source class and does not mix with ordinary theory/doc extraction.",
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims"
+  },
+  "source_membership": [
+    {
+      "line_count": 628,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_sim_suite_v1.py",
+      "role_in_batch": "multisim_bundle_runner",
+      "sha256": "1c8a7ac34593b255c6fb6b9450aba872b789f4ca6dd50f4ace57e25dd7ebfcc7",
+      "size_bytes": 23141,
+      "source_class": "executable_runner"
+    },
+    {
+      "line_count": 8,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS3_WEYL_HOPF_GRID_V1.json",
+      "role_in_batch": "axis3_descendant_result",
+      "sha256": "fb388518543942bcd6e9c5d470d1ccfa3a5fca4994653036a4ec5691d7ed3a12",
+      "size_bytes": 186,
+      "source_class": "result_surface"
+    },
+    {
+      "line_count": 10,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS6_LR_MULTI_V1.json",
+      "role_in_batch": "axis6_descendant_result",
+      "sha256": "a5cf7dba061222261a14b1d6c802b0ba09c4632abe61fbea6c7a37f66b07f231",
+      "size_bytes": 276,
+      "source_class": "result_surface"
+    },
+    {
+      "line_count": 15,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS5_FGA_SWEEP_V1.json",
+      "role_in_batch": "axis5_fga_descendant_result",
+      "sha256": "a49e4359d4e9a5892f250b100bd284cbffd138ecace220d7d50aed8db65148fb",
+      "size_bytes": 240,
+      "source_class": "result_surface"
+    },
+    {
+      "line_count": 15,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS5_FSA_SWEEP_V1.json",
+      "role_in_batch": "axis5_fsa_descendant_result",
+      "sha256": "5679caa330bc8cd1dfdb8924f1ade199f6b15a3e8f94035abef963b2120e0664",
+      "size_bytes": 249,
+      "source_class": "result_surface"
+    },
+    {
+      "line_count": 200,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS4_SEQ_ALL_BIDIR_V1.json",
+      "role_in_batch": "axis4_all_bidir_descendant_result",
+      "sha256": "e088e8cea763046b6549fa995cf0bf7857b874c178af1de4a84b0489033905ec",
+      "size_bytes": 5210,
+      "source_class": "result_surface"
+    },
+    {
+      "line_count": 42,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS12_SEQ_CONSTRAINTS_V2.json",
+      "role_in_batch": "axis12_seq_constraints_descendant_result",
+      "sha256": "3393419880e4d7029afa35b3dfa174fb20575693db92b909c1bd576afe6bfc5e",
+      "size_bytes": 506,
+      "source_class": "result_surface"
+    },
+    {
+      "line_count": 595,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS12_CHANNEL_REALIZATION_V4.json",
+      "role_in_batch": "axis12_channel_realization_descendant_result",
+      "sha256": "bda60d5e904bcf1e6f441e7ddafc95622fd978e61076b591677b34ddc173331b",
+      "size_bytes": 10825,
+      "source_class": "result_surface"
+    },
+    {
+      "line_count": 50,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_STAGE16_SUB4_AXIS6_UNIFORM_V4.json",
+      "role_in_batch": "stage16_descendant_result",
+      "sha256": "955244986b65a4a45227f50737471c41ebf97d1462cabdd3d5b4a8467cbf7c8e",
+      "size_bytes": 1445,
+      "source_class": "result_surface"
+    },
+    {
+      "line_count": 5,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_NEGCTRL_AXIS6_COMMUTE_V2.json",
+      "role_in_batch": "negctrl_axis6_descendant_result",
+      "sha256": "79d6784a4d30f278344b563677e95057dbdd0d6df69690085799e23add96bc79",
+      "size_bytes": 71,
+      "source_class": "result_surface"
+    },
+    {
+      "line_count": 28,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS0_TRAJ_CORR_SUITE_V4.json",
+      "role_in_batch": "axis0_traj_corr_descendant_result",
+      "sha256": "34e7e9f0f3f9c00ff027008831b0a6c7e79911158768b8cd64f9bcd138694796",
+      "size_bytes": 460,
+      "source_class": "result_surface"
+    }
+  ],
+  "derived_summary": {
+    "emitted_result_count": 10,
+    "top_level_evidence_pack_match_count": 10,
+    "bundle_hash": "1c8a7ac34593b255c6fb6b9450aba872b789f4ca6dd50f4ace57e25dd7ebfcc7",
+    "emitted_sim_ids": [
+      "S_SIM_AXIS3_WEYL_HOPF_GRID_V1",
+      "S_SIM_AXIS6_LR_MULTI_V1",
+      "S_SIM_AXIS5_FGA_SWEEP_V1",
+      "S_SIM_AXIS5_FSA_SWEEP_V1",
+      "S_SIM_AXIS4_SEQ_ALL_BIDIR_V1",
+      "S_SIM_AXIS12_SEQ_CONSTRAINTS_V2",
+      "S_SIM_AXIS12_CHANNEL_REALIZATION_V4",
+      "S_SIM_STAGE16_SUB4_AXIS6_UNIFORM_V4",
+      "S_SIM_NEGCTRL_AXIS6_COMMUTE_V2",
+      "S_SIM_AXIS0_TRAJ_CORR_SUITE_V4"
+    ],
+    "evidence_attribution_groups": {
+      "current_run_sim_suite_v1_hash": [
+        "S_SIM_AXIS3_WEYL_HOPF_GRID_V1",
+        "S_SIM_AXIS6_LR_MULTI_V1",
+        "S_SIM_AXIS5_FGA_SWEEP_V1",
+        "S_SIM_AXIS5_FSA_SWEEP_V1"
+      ],
+      "run_axis12_seq_constraints_hash_45a914e4": [
+        "S_SIM_AXIS12_SEQ_CONSTRAINTS_V2"
+      ],
+      "run_axis12_channel_realization_suite_hash_5e635824": [
+        "S_SIM_AXIS12_CHANNEL_REALIZATION_V4"
+      ],
+      "axis4_seq_cycle_sim_hash_b741c60d": [
+        "S_SIM_AXIS4_SEQ_ALL_BIDIR_V1"
+      ],
+      "run_axis0_traj_corr_suite_hash_a42e2207": [
+        "S_SIM_AXIS0_TRAJ_CORR_SUITE_V4"
+      ],
+      "run_mega_axis0_ab_stage16_axis6_hash_8f12b695": [
+        "S_SIM_STAGE16_SUB4_AXIS6_UNIFORM_V4"
+      ],
+      "current_run_sim_suite_v2_hash_dd05c8f6": [
+        "S_SIM_NEGCTRL_AXIS6_COMMUTE_V2"
+      ]
+    },
+    "axis12_channel_realization_grid_summary": {
+      "rows": 81,
+      "entropy_mean_mean": 0.4983972609503455,
+      "entropy_mean_min": {
+        "theta": 0.03,
+        "gamma": 0.02,
+        "p": 0.02,
+        "q": 0.02,
+        "entropy_mean": 0.3814357096495682
+      },
+      "entropy_mean_max": {
+        "theta": 0.12,
+        "gamma": 0.14,
+        "p": 0.14,
+        "q": 0.14,
+        "entropy_mean": 0.5745966436971428
+      }
+    },
+    "axis4_direction_summary": {
+      "all_sequences_have_t1_fwd_entropy_gt_t1_rev_entropy": true,
+      "all_sequences_have_t2_fwd_entropy_gt_t2_rev_entropy": true
+    },
+    "stage16_v4_v5_file_identity": {
+      "same_sha256": true,
+      "v4_sha256": "955244986b65a4a45227f50737471c41ebf97d1462cabdd3d5b4a8467cbf7c8e"
+    },
+    "negctrl_v2_v3_comparison": {
+      "v2_delta_trace_mean": 0.0,
+      "v2_comm_norm_mean": 0.0,
+      "v2_trials": 256,
+      "v3_delta_trace_mean": 0.0,
+      "v3_comm_norm_mean": 0.0,
+      "v3_trials": 512
+    }
+  }
+}

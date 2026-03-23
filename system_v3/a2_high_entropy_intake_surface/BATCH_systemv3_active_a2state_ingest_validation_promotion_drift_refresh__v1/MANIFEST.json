@@ -1,0 +1,103 @@
+{
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "batch_id": "BATCH_systemv3_active_a2state_ingest_validation_promotion_drift_refresh__v1",
+  "batch_scope": "bounded_live_refresh_over_drifted_members_of_the_active_a2state_ingest_validation_promotion_family",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T20:12:27Z",
+  "extraction_mode": "ACTIVE_A2STATE_INGEST_VALIDATION_PROMOTION_DRIFT_REFRESH_PASS",
+  "promotion_status": "A2_3_REUSABLE",
+  "promotion_guardrail": "Proposal-side only. This packet records live source drift inside the earlier active a2_state ingest/validation/promotion family. It does not authorize rewriting the older batch, backfilling later live-state/index packets, or promoting the refreshed audit surfaces directly into active A2-1 law from this batch alone.",
+  "parent_batch_ids": [
+    "BATCH_systemv3_active_a2state_ingest_validation_promotion_packet__v1"
+  ],
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_systemv3_active_a2state_ingest_validation_promotion_packet__v1/MANIFEST.json",
+      "role_in_batch": "historical_snapshot_manifest_anchor",
+      "relevance": "Preserves the exact earlier source-bound snapshot that no longer matches the two live audit files."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_systemv3_active_a2state_live_state_index_packet__v1/MANIFEST.json",
+      "role_in_batch": "downstream_continuation_anchor",
+      "relevance": "Shows that folder-order continuation after this refresh still moves into the active live-state and ingest-index packet, which still source-matches live repo state."
+    }
+  ],
+  "source_membership": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/POST_UPDATE_CONSOLIDATION_AUDIT__v1.md",
+      "role_in_batch": "live_drifted_repo_audit_surface",
+      "sha256": "68e4d5115546ac134329ba82ad3182e60678a38b8434436f5ec2875129c09cee",
+      "line_count": 1523,
+      "size_bytes": 71078,
+      "previous_parent_snapshot": {
+        "batch_id": "BATCH_systemv3_active_a2state_ingest_validation_promotion_packet__v1",
+        "sha256": "23b5f9564b2a9ce77e6fbbeab64afa8265fa90866ac92b966d142d496b73454e",
+        "line_count": 1526,
+        "size_bytes": 73401
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/SIM_FAMILY_PROMOTION_AUDIT__ACTIVE_LANES__v1.md",
+      "role_in_batch": "live_drifted_sim_promotion_audit_surface",
+      "sha256": "3926d742466b81ec5ec6af81e80edd38908ca3e0e8bcf8ebe3aa23cde8dad042",
+      "line_count": 310,
+      "size_bytes": 15085,
+      "previous_parent_snapshot": {
+        "batch_id": "BATCH_systemv3_active_a2state_ingest_validation_promotion_packet__v1",
+        "sha256": "2b0b16c432a80f7d6bcd4d28ac3daa88ce551d7eccaf56c3e85de5292c51aa1a",
+        "line_count": 311,
+        "size_bytes": 15751
+      }
+    }
+  ],
+  "family_rationale": [
+    "The queued active a2_state ingest/validation/promotion batch could not be honestly reused because two live audit members drifted from the stored manifest.",
+    "This refresh is intentionally limited to the drifted audit subset so the older first-pass batch remains preserved as a historical source-bound snapshot.",
+    "The next low-entropy continuation still belongs to the existing live-state and ingest-index packet rather than a full re-extraction of the entire ingest/validation/promotion family."
+  ],
+  "drift_summary": {
+    "changed_member_count": 2,
+    "unchanged_member_count": 7,
+    "changed_member_classes": [
+      "post_update_repo_audit_surface",
+      "sim_family_promotion_audit_surface"
+    ],
+    "why_refresh_not_reuse": "The old parent manifest no longer source-matches the live repo on these two files."
+  },
+  "raw_source_reread_needed": true,
+  "raw_source_reread_reason": "The queued reuse check failed. The two drifted live audit files were reopened directly to preserve bounded, source-linked refresh content instead of falsely reporting manifest reuse.",
+  "control_surface_mutation": "NONE",
+  "deferred_next_in_folder_order": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/a1_brain.jsonl",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/autosave_seq.txt",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/campaign_status/CAMPAIGN_STATUS__20260224T225042Z.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/constraint_surface.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/core_docs_ingest_index_v1.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/doc_index.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/fuel_queue.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ingest/index_v1.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ingest/system_map_v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/memory.jsonl",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/rosetta.json"
+  ],
+  "structure_markers": [
+    {
+      "label": "repo_level_post_update_audit_packet",
+      "line_spans": [
+        "POST_UPDATE_CONSOLIDATION_AUDIT__v1.md:1-1523"
+      ]
+    },
+    {
+      "label": "family_specific_sim_promotion_audit_packet",
+      "line_spans": [
+        "SIM_FAMILY_PROMOTION_AUDIT__ACTIVE_LANES__v1.md:1-310"
+      ]
+    }
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; use this packet to keep the active ingest/validation/promotion read current without rewriting the earlier batch or promoting the refreshed audit surfaces directly into active A2-1 law from this refresh alone",
+  "notes": [
+    "No active A2 surfaces were mutated.",
+    "The earlier BATCH_systemv3_active_a2state_ingest_validation_promotion_packet__v1 remains preserved as a historical source-bound packet.",
+    "This packet records live drift only and does not settle authority questions by itself."
+  ]
+}

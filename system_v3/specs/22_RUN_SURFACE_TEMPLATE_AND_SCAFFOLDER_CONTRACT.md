@@ -7,10 +7,10 @@ Owner: `RQ-133..RQ-138`
 This document defines deterministic run-surface scaffolding for implementation and test runs.
 
 ## Normative Clauses
-- `RQ-133` MUST: run surface scaffolding is deterministic from `(run_id, baseline_state_hash, strategy_hash)` and emits identical file tree and template contents for identical inputs.
+- `RQ-133` MUST: run surface scaffolding is deterministic from `(run_id, baseline_state_hash, strategy_hash, spec_hash, bootpack_b_hash, bootpack_a_hash)` and emits identical file tree/bootstrap contents for identical inputs.
 - `RQ-134` MUST: scaffolder pre-emits required gate report templates before run start.
 - `RQ-135` MUST: scaffolder pre-emits tape/log placeholders using deterministic shard suffixes.
-- `RQ-136` MUST: run manifest includes immutable source references and hashes for the active spec set and bootpack files used.
+- `RQ-136` MUST: run manifest includes immutable active spec/bootpack hashes; template-backed paths may additionally include source references.
 - `RQ-137` MUST: scaffolder fails closed when target run directory already exists and is non-empty.
 - `RQ-138` MUST: template set changes are versioned under new template directory/version token; existing template versions are immutable.
 
@@ -18,7 +18,11 @@ This document defines deterministic run-surface scaffolding for implementation a
 Template root:
 - `system_v3/runs/_run_templates_v1/`
 
-Required template assets:
+Current live behavior:
+- if `system_v3/runs/_run_templates_v1/` exists, the scaffolder may load template-backed manifest/report assets from it
+- if that template root is absent, the live scaffolder falls back to built-in deterministic defaults for manifest/report/tape/log bootstrap surfaces
+
+Template-backed assets when the template root exists:
 - `README.md`
 - `RUN_MANIFEST_v1.template.json`
 - `reports/spec_lock_report.template.json`
@@ -55,7 +59,8 @@ python3 system_v3/tools/init_run_surface.py \
 
 Behavior:
 - creates `system_v3/runs/<RUN_ID>/`
-- copies template-derived files into deterministic directory structure
+- creates deterministic directory structure
+- uses template-derived files when the template root is present; otherwise uses built-in deterministic defaults
 - materializes `RUN_MANIFEST_v1.json` with provided hash values
 - refuses to overwrite existing non-empty run directory
 
@@ -83,6 +88,9 @@ Behavior:
 `P1_ARTIFACT_GRAMMAR` producer:
 - `system_v3/tools/run_artifact_grammar_gate.py`
 
+`P2_B_CONFORMANCE` producer:
+- `system_v3/tools/run_conformance_fixture_matrix.py`
+
 `P3_A0_COMPILER` producer:
 - `system_v3/tools/run_a0_compile_gate.py`
 
@@ -102,6 +110,10 @@ Behavior:
 All producer tools:
 - read current workspace state
 - write deterministic report JSON into the target run's `reports/` directory
+
+`P2_B_CONFORMANCE` output rule:
+- primary detailed result: `reports/conformance_results.json`
+- summary companion: `reports/conformance_report.json`
 
 `P3_A0_COMPILER` CLI contract:
 ```text
@@ -162,15 +174,21 @@ python3 system_v3/tools/run_phase_gate_pipeline.py \
 ```
 
 ## Real Loop Tool Contract (Non-Normative Helper)
-Tool path:
+Strict/default tool path:
 - `system_v3/tools/run_real_loop.py`
+
+Explicit recovery tool path:
+- `system_v3/tools/run_real_loop_recovery_cycle.py`
 
 Purpose:
 - runs `system_v3/runtime/ratchet_core/runner.py` inside a run-scoped surface
-- materializes required gate artifacts (`export_block_*.txt`, compile/dependency/preflight reports, replay reports, evidence pack, graveyard records, tapes)
+- materializes required gate artifacts from authoritative packet/tape lineage (compile/dependency/preflight reports, replay reports, evidence pack, graveyard records, tapes)
+- may materialize `export_block_*.txt` only as a fallback/diagnostic surface when authoritative packet lineage is insufficient
 - executes full gate pipeline after run materialization
+- default strict mode fails closed on missing canonical runtime artifacts such as canonical events and canonical graveyard records
+- recovery mode is operator-explicit and should use the dedicated recovery entrypoint rather than treating recovery as the normal runtime path
 
-CLI contract:
+Strict/default CLI contract:
 ```text
 python3 system_v3/tools/run_real_loop.py \
   --run-id <RUN_ID> \
@@ -192,6 +210,34 @@ python3 system_v3/tools/run_real_loop.py \
   [--top-n-largest-runs 10] \
   [--clean-existing-run]
 ```
+
+Recovery CLI contract:
+```text
+python3 system_v3/tools/run_real_loop_recovery_cycle.py \
+  --run-id <RUN_ID> \
+  [--loops 1] \
+  [--max-entries 20] \
+  [--max-items 1000] \
+  [--sim-cap 3] \
+  [--adaptive-sim-cap] \
+  [--sim-cap-min 8] \
+  [--sim-cap-max 200] \
+  [--sim-cap-headroom 16] \
+  [--min-cycles 50] \
+  [--max-shard-bytes 5000000] \
+  [--max-shard-lines 200000] \
+  [--max-run-bytes 200000000] \
+  [--max-run-files 5000] \
+  [--max-runs-total-bytes 2000000000] \
+  [--max-runs-count 200] \
+  [--top-n-largest-runs 10] \
+  [--clean-existing-run]
+```
+
+Recovery note:
+- `run_real_loop_recovery_cycle.py` forces recovery mode and is the preferred operator entrypoint when reconstructed artifacts are intentionally allowed
+- `run_real_loop.py --allow-reconstructed-artifacts` remains a lower-level compatibility path, not the preferred operator surface
+- compatibility-path recovery on the strict runner now emits a controller-facing manual-review signal; preferred recovery entrypoints do not share that legacy-path marker
 
 Determinism-pair helper:
 - `system_v3/tools/run_bridge_determinism_pair.py`
@@ -222,14 +268,18 @@ python3 system_v3/tools/run_loop_health_diagnostic.py \
 
 ## Run Directory Structure (Minimum)
 Required dirs:
-- `outbox/`
 - `b_reports/`
-- `snapshots/`
 - `sim/`
 - `tapes/`
 - `logs/`
 - `reports/`
 - `tuning/`
+- `zip_packets/`
+- `a1_inbox/`
+
+Optional fallback/diagnostic dirs:
+- `outbox/`
+- `snapshots/`
 
 Required bootstrap files:
 - `RUN_MANIFEST_v1.json`
@@ -243,12 +293,15 @@ Required bootstrap files:
 - `reports/replay_pair_report.json`
 - `reports/evidence_ingest_report.json`
 - `reports/graveyard_integrity_report.json`
+- `reports/a1_semantic_and_math_substance_gate_report.json`
 - `reports/long_run_write_guard_report.json`
 - `reports/loop_health_diagnostic.json`
 - `reports/release_checklist_v1.json`
 - `tapes/export_tape.000.jsonl`
 - `tapes/campaign_tape.000.jsonl`
 - `logs/events.000.jsonl`
+- `state.json`
+- `state.heavy.json` (when heavy sidecar content exists for the run)
 
 Optional helper report files:
 - `reports/adaptive_sim_cap_report.json`
@@ -261,32 +314,39 @@ Required keys:
 - `baseline_state_hash`
 - `strategy_hash`
 - `spec_hash`
-- `bootpack_hashes`:
-  - `thread_b_bootpack_sha256`
-  - `thread_a_bootpack_sha256`
+- `bootpack_b_hash`
+- `bootpack_a_hash`
+
+Optional template-backed extensions:
 - `template_version`
 - `source_refs[]`
 
-`source_refs[]` entry:
+`source_refs[]` entry when present:
 - `path`
 - `sha256`
 - `role`
 
 ## Determinism Rules
-- all JSON files use sorted keys, ASCII-only output
+- all JSON files use sorted keys
+- current live tooling writes UTF-8 JSON text; ASCII-only JSON is not required by the scaffolder path
 - `.jsonl` placeholders are created as empty files (zero bytes)
 - shard naming starts at `.000`
 - no timestamp-derived randomness in file names
+- `outbox/` must not be treated as authoritative lineage when ZIP packets and tapes are present
+- helper materialization should prefer packet/tape sources over regenerating duplicate export files
 
 ## Fail-Closed Conditions
 Initialization fails when:
 - any required hash arg is missing or non-hex
 - run id contains invalid path characters
 - target run path exists and has any content
-- required template asset is missing
+
+Template-backed note:
+- current live scaffolder does not fail merely because `_run_templates_v1/` is absent; it falls back to built-in deterministic defaults
 
 ## Versioning Rule
 Template version upgrades:
 - new version path: `system_v3/runs/_run_templates_v<N>/`
 - older versions remain untouched
-- manifest field `template_version` pins run to exact template version
+- when template-backed mode is used, manifest field `template_version` should pin run to exact template version
+- the current built-in fallback mode does not emit `template_version`

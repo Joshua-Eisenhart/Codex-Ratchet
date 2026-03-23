@@ -1,0 +1,412 @@
+{
+  "batch_id": "BATCH_archive_surface_deep_archive_run_signal_0005_bundle__v1",
+  "batch_scope": "deep_archive_run_signal_0005_bundle_zip",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T11:05:03Z",
+  "deferred_next_in_folder_order": [
+    "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_EMPTY"
+  ],
+  "extraction_mode": "ARCHIVE_DEEP_RUN_SIGNAL_BUNDLE_PASS",
+  "notes": [
+    "This batch processes only RUN_SIGNAL_0005_bundle.zip and treats it as a historical self-contained export bundle, not as a current control surface.",
+    "The zip is materially fuller than the thinner direct run-root pattern because it embeds local sim evidence files, per-step strategy JSONs, export blocks, snapshots, compile/eval reports, the full packet lattice, and both audit overlays under one root.",
+    "The embedded final state hash 0045ff3f... is consistent across embedded summary.json, state.json, state.json.sha256, and SIGNAL_AUDIT.json.",
+    "The embedded runtime-facing surfaces are internally aligned on a 60-pass lattice with 960 accepted items.",
+    "The main contradiction is fuller retention without fuller closure: embedded summary/state, the embedded event endpoint, and the deterministic replay audit still end on three different final hashes.",
+    "Transport-facing surfaces are clean, but embedded state still retains 360 parked sim promotion states and 60 pending canonical evidence items.",
+    "Embedded strategy packets use a 000001-style family while embedded consumed packets use a 400001-style family; only the first consumed packet is byte-identical to an embedded packet.",
+    "Replay audit covers the full 541-packet lattice but marks only 60 events as OK and 481 as PARK, mainly for missing forward prerequisites and sequence gaps.",
+    "SIGNAL_AUDIT.json still contains an unresolved null seam because it reports MATH_DEF 120 while the math-kill total is omitted or null.",
+    "The bundle includes Finder noise such as root and inbox .DS_Store entries; these are historical packaging artifacts, not system authority."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "REVISIT_REQUIRED",
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "source_family": "archive root deep archive run signal 0005 bundle zip",
+  "source_membership": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip",
+      "role_in_batch": "direct_bundle_zip",
+      "sha256": "d42708222c0c771394bf98def2002abfece88811a0247a8436a28594ab790e78",
+      "size_bytes": 5008299,
+      "zip_file_count": 1271,
+      "zip_dir_count": 9,
+      "embedded_root": "RUN_SIGNAL_0005",
+      "embedded_file_family_counts": {
+        "a1_inbox": 61,
+        "a1_strategies": 60,
+        "outbox": 60,
+        "reports": 120,
+        "sim": 360,
+        "snapshots": 60,
+        "zip_packets": 541
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip",
+      "zip_member_path": "RUN_SIGNAL_0005/summary.json",
+      "role_in_batch": "embedded_summary",
+      "summary": {
+        "run_id": "RUN_SIGNAL_0005",
+        "steps_completed": 60,
+        "steps_requested": 60,
+        "stop_reason": "MAX_STEPS",
+        "accepted_total": 960,
+        "rejected_total": 0,
+        "parked_total": 0,
+        "sim_registry_count": 360,
+        "unresolved_promotion_blocker_count": 360,
+        "final_state_hash": "0045ff3fdb8a39572123eef7bfb071d583d60326371eb0d6a08be8bc36307f93",
+        "unique_export_content_digest_count": 60,
+        "unique_export_structural_digest_count": 60,
+        "unique_strategy_digest_count": 60,
+        "promotion_counts_by_tier": {
+          "T0_ATOM": {
+            "fail": 60,
+            "pass": 0
+          },
+          "T1_COMPOUND": {
+            "fail": 180,
+            "pass": 0
+          },
+          "T2_OPERATOR": {
+            "fail": 60,
+            "pass": 0
+          },
+          "T3_STRUCTURE": {
+            "fail": 60,
+            "pass": 0
+          }
+        }
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip",
+      "zip_member_path": "RUN_SIGNAL_0005/state.json",
+      "role_in_batch": "embedded_state",
+      "state_summary": {
+        "accepted_batch_count": 60,
+        "canonical_ledger_len": 60,
+        "derived_only_terms_len": 47,
+        "evidence_pending_len": 60,
+        "evidence_tokens_len": 360,
+        "interaction_counts_len": 240,
+        "kill_log_len": 240,
+        "park_set_len": 0,
+        "reject_log_len": 0,
+        "sim_promotion_status_len": 360,
+        "sim_registry_len": 360,
+        "sim_results_len": 360,
+        "survivor_ledger_len": 962,
+        "survivor_order_len": 962,
+        "term_registry_len": 180,
+        "probe_meta_len": 120,
+        "spec_meta_len": 840,
+        "active_megaboot_id": "",
+        "active_megaboot_sha256": "",
+        "active_ruleset_sha256": ""
+      },
+      "sim_promotion_status_values": [
+        "PARKED"
+      ],
+      "kill_log_summary": [
+        {
+          "token": "NEG_CLASSICAL_TIME",
+          "count": 120
+        },
+        {
+          "token": "NEG_COMMUTATIVE_ASSUMPTION",
+          "count": 120
+        }
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip",
+      "zip_member_path": "RUN_SIGNAL_0005/state.json.sha256",
+      "role_in_batch": "embedded_state_hash_sidecar",
+      "declared_sha256": "0045ff3fdb8a39572123eef7bfb071d583d60326371eb0d6a08be8bc36307f93",
+      "matches_state_json": true,
+      "matches_summary_final_hash": true
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip",
+      "zip_member_path": "RUN_SIGNAL_0005/sequence_state.json",
+      "role_in_batch": "embedded_sequence_state",
+      "seq_by_source": {
+        "A0": 61,
+        "A1": 60,
+        "A2": 0,
+        "B": 60,
+        "SIM": 360
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip",
+      "zip_member_path": "RUN_SIGNAL_0005/SIGNAL_AUDIT.json",
+      "role_in_batch": "embedded_signal_audit_overlay",
+      "audit_summary": {
+        "run_id": "RUN_SIGNAL_0005",
+        "steps_completed": 60,
+        "accepted_total": 960,
+        "sim_registry_count": 360,
+        "canonical_ledger_len": 60,
+        "survivor_count": 962,
+        "term_registry_count": 180,
+        "branch_track_counts": {
+          "DENSITY_CHANNEL": 180,
+          "OPERATOR_ORDER": 180,
+          "TRACE_STABILITY": 180
+        },
+        "kill_kind_counts": {
+          "MATH_DEF": 120,
+          "SIM_SPEC": 120
+        },
+        "pending_by_kind": {
+          "CANON_PERMIT": 60
+        },
+        "final_state_hash": "0045ff3fdb8a39572123eef7bfb071d583d60326371eb0d6a08be8bc36307f93"
+      },
+      "math_kill_total_present": false
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip",
+      "zip_member_path": "RUN_SIGNAL_0005/REPLAY_AUDIT.json",
+      "role_in_batch": "embedded_replay_audit_overlay",
+      "replay_summary": {
+        "determinism_pass": true,
+        "replay_event_count": 541,
+        "replay_ok_count": 60,
+        "replay_park_count": 481,
+        "replay_directions": {
+          "BACKWARD": 421,
+          "FORWARD": 120
+        },
+        "replay_source_layers": {
+          "A0": 61,
+          "A1": 60,
+          "B": 60,
+          "SIM": 360
+        },
+        "replay_reasons": [
+          "MISSING_FORWARD_SEQUENCE:A0:1",
+          "REPLAY_PREREQ_MISSING_FORWARD",
+          "SEQUENCE_GAP"
+        ],
+        "replay_final_hash": "ed1a34d2fb3b0e18312f868861abbb289e50e08ef16f2fbf7afe54d9b84cc3ae",
+        "replay_matches_summary_final_hash": false
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip",
+      "zip_member_path": "RUN_SIGNAL_0005/events.jsonl",
+      "role_in_batch": "embedded_event_ledger",
+      "line_count": 61,
+      "explicit_event_counts": {
+        "a1_strategy_request_emitted": 1
+      },
+      "implicit_step_result_rows": 60,
+      "steps_present": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60
+      ],
+      "accepted_sum": 960,
+      "parked_sum": 0,
+      "rejected_sum": 0,
+      "unique_strategy_digests": 60,
+      "unique_export_content_digests": 60,
+      "unique_export_structural_digests": 60,
+      "last_result_state_hash_after": "299c9c26d502dd7cc000d4503130cc56c8c9e7b0b3a0c34302dbb46ef28a46fc",
+      "event_final_hash_matches_summary": false
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip",
+      "zip_member_path": "RUN_SIGNAL_0005/soak_report.md",
+      "role_in_batch": "embedded_soak_report",
+      "report_summary": {
+        "cycle_count": 60,
+        "accepted_total": 960,
+        "parked_total": 0,
+        "rejected_total": 0,
+        "stop_reason": "MAX_STEPS",
+        "top_failure_tags": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip",
+      "zip_member_path": "RUN_SIGNAL_0005/a1_strategies/",
+      "role_in_batch": "embedded_strategy_export_family",
+      "file_count": 60,
+      "first_files": [
+        "a1_strategy_0001.json",
+        "a1_strategy_0002.json",
+        "a1_strategy_0003.json",
+        "a1_strategy_0004.json",
+        "a1_strategy_0005.json"
+      ],
+      "last_files": [
+        "a1_strategy_0056.json",
+        "a1_strategy_0057.json",
+        "a1_strategy_0058.json",
+        "a1_strategy_0059.json",
+        "a1_strategy_0060.json"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip",
+      "zip_member_path": "RUN_SIGNAL_0005/outbox/",
+      "role_in_batch": "embedded_export_block_family",
+      "file_count": 60,
+      "first_files": [
+        "export_block_0001.txt",
+        "export_block_0002.txt",
+        "export_block_0003.txt",
+        "export_block_0004.txt",
+        "export_block_0005.txt"
+      ],
+      "last_files": [
+        "export_block_0056.txt",
+        "export_block_0057.txt",
+        "export_block_0058.txt",
+        "export_block_0059.txt",
+        "export_block_0060.txt"
+      ],
+      "sample_semantics": [
+        "TARGET THREAD_B_ENFORCEMENT_KERNEL",
+        "per-block negative-class kill bindings",
+        "compiled batch proposal text"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip",
+      "zip_member_path": "RUN_SIGNAL_0005/snapshots/",
+      "role_in_batch": "embedded_snapshot_family",
+      "file_count": 60,
+      "first_files": [
+        "snapshot_0001.txt",
+        "snapshot_0002.txt",
+        "snapshot_0003.txt",
+        "snapshot_0004.txt",
+        "snapshot_0005.txt"
+      ],
+      "last_files": [
+        "snapshot_0056.txt",
+        "snapshot_0057.txt",
+        "snapshot_0058.txt",
+        "snapshot_0059.txt",
+        "snapshot_0060.txt"
+      ],
+      "snapshot_format": "THREAD_S_SAVE_SNAPSHOT v2"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip",
+      "zip_member_path": "RUN_SIGNAL_0005/reports/",
+      "role_in_batch": "embedded_compile_eval_report_family",
+      "file_count": 120,
+      "a0_compile_count": 60,
+      "b_report_count": 60,
+      "sample_b_report_result": "PASS"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip",
+      "zip_member_path": "RUN_SIGNAL_0005/sim/",
+      "role_in_batch": "embedded_local_sim_evidence_family",
+      "file_count": 360,
+      "first_files": [
+        "sim_evidence_0001_001.txt",
+        "sim_evidence_0001_002.txt",
+        "sim_evidence_0001_003.txt",
+        "sim_evidence_0001_004.txt",
+        "sim_evidence_0001_005.txt"
+      ],
+      "last_files": [
+        "sim_evidence_0060_002.txt",
+        "sim_evidence_0060_003.txt",
+        "sim_evidence_0060_004.txt",
+        "sim_evidence_0060_005.txt",
+        "sim_evidence_0060_006.txt"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip",
+      "zip_member_path": "RUN_SIGNAL_0005/zip_packets/",
+      "role_in_batch": "embedded_packet_lattice",
+      "file_count": 541,
+      "packet_kind_counts": {
+        "A0_TO_A1_SAVE_ZIP": 1,
+        "A0_TO_B_EXPORT_BATCH_ZIP": 60,
+        "A1_TO_A0_STRATEGY_ZIP": 60,
+        "B_TO_A0_STATE_UPDATE_ZIP": 60,
+        "SIM_TO_A0_SIM_RESULT_ZIP": 360
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip",
+      "zip_member_path": "RUN_SIGNAL_0005/a1_inbox/consumed/",
+      "role_in_batch": "embedded_consumed_strategy_lane",
+      "file_count": 60,
+      "same_position_byte_identical_pairs": 1,
+      "same_position_byte_mismatch_pairs": 59,
+      "only_matching_step": 1
+    }
+  ]
+}

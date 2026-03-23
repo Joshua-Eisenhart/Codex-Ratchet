@@ -1,0 +1,122 @@
+{
+  "admission_decision": "admit_for_follow_on_selection",
+  "audit_only": true,
+  "candidate": {
+    "id": "lev-builder-post-skeleton-follow-on-selector-default",
+    "raw_input": "Select the smallest honest post-skeleton follow-on branch without migration, runner, registry, or runtime-live claims.",
+    "source": "lev-os/agents formalize / placement / migrate cluster",
+    "source_refs": [
+      "work/reference_repos/lev-os/agents/skills/lev-builder/SKILL.md",
+      "work/reference_repos/lev-os/agents/skills/arch/SKILL.md",
+      "work/reference_repos/lev-os/agents/skills/work/SKILL.md"
+    ],
+    "stage_request": "post_skeleton_follow_on_selection",
+    "title": "bounded lev-builder follow-on selection",
+    "type": "post_skeleton_follow_on_selection"
+  },
+  "candidate_options": [
+    {
+      "follow_on_id": "post_skeleton_follow_on_unresolved",
+      "label": "post-skeleton follow-on unresolved branch",
+      "reasons": [
+        "readiness and scaffold surfaces are aligned",
+        "the remaining follow-on stays unresolved instead of widening into runtime work"
+      ],
+      "score": 10,
+      "status": "selected"
+    },
+    {
+      "follow_on_id": "hold_at_scaffold",
+      "label": "hold at scaffold",
+      "reasons": [
+        "available as a fallback if the selector is later re-run with broken upstream truth"
+      ],
+      "score": 1,
+      "status": "standby"
+    }
+  ],
+  "cluster_id": "SKILL_CLUSTER::lev-formalization-placement",
+  "do_not_promote": true,
+  "gate": {
+    "allow_graph_claims": false,
+    "allow_migration": false,
+    "allow_patch_application": false,
+    "allow_registry_mutation": false,
+    "allow_runner_mutation": false,
+    "allow_runtime_claims": false,
+    "blocking_issues": [],
+    "follow_on_selection_ready": true,
+    "gate_results": {
+      "non_live_surface_guard": {
+        "evidence": "allow_registry_mutation=False allow_runner_mutation=False allow_runtime_claims=False allow_migration=False",
+        "status": "pass"
+      },
+      "readiness_alignment": {
+        "evidence": "status=ok gate_status=bounded_post_skeleton_ready next_step=a2-lev-builder-post-skeleton-follow-on-selector-operator",
+        "status": "pass"
+      },
+      "scope_hygiene": {
+        "evidence": "stage_request=post_skeleton_follow_on_selection",
+        "status": "pass"
+      },
+      "skeleton_alignment": {
+        "evidence": "status=ok gate_status=bounded_scaffold_completed next_step=post_skeleton_follow_on_unresolved",
+        "status": "pass"
+      },
+      "source_refs_available": {
+        "evidence": "3/3 refs present",
+        "status": "pass"
+      }
+    },
+    "gate_status": "follow_on_selection_ready",
+    "priority_findings": [],
+    "reason": "the landed readiness and skeleton surfaces justify a selector-only unresolved follow-on branch",
+    "recommended_next_step": "post_skeleton_follow_on_unresolved",
+    "safe_to_continue": true
+  },
+  "gate_status": "follow_on_selection_ready",
+  "generated_utc": "2026-03-21T14:21:21Z",
+  "issues": [],
+  "non_goals": [
+    "No file migration or production-path writes.",
+    "No registry mutation or runner mutation from this slice.",
+    "No runtime-live claim, runtime-import claim, or imported ownership claim.",
+    "No patch generation or patch application.",
+    "No downstream execution lane hidden inside the selector."
+  ],
+  "non_migratory": true,
+  "nonoperative": true,
+  "recommended_actions": [
+    "Keep this slice selector-only, repo-held, and non-migratory.",
+    "Treat the selected follow-on as a bounded unresolved branch, not a runtime or registry instruction.",
+    "Do not widen the selector into execution, migration, or imported-ownership claims."
+  ],
+  "recommended_next_step": "post_skeleton_follow_on_unresolved",
+  "recommended_source_skill_id": "lev-builder",
+  "repo_root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "schema": "a2_lev_builder_post_skeleton_follow_on_selector_report_v1",
+  "selected_follow_on": {
+    "follow_on_id": "post_skeleton_follow_on_unresolved",
+    "label": "post-skeleton follow-on unresolved branch",
+    "reasons": [
+      "readiness and scaffold surfaces are aligned",
+      "the remaining follow-on stays unresolved instead of widening into runtime work"
+    ],
+    "score": 10,
+    "status": "selected"
+  },
+  "selected_follow_on_id": "post_skeleton_follow_on_unresolved",
+  "selector_only": true,
+  "slice_id": "a2-lev-builder-post-skeleton-follow-on-selector-operator",
+  "source_family": "lev_os_agents_curated",
+  "status": "ok",
+  "unresolved_questions": [
+    "Whether the post-skeleton follow-on should remain unresolved or be retired entirely.",
+    "Whether any later migration/runtime lane should exist beyond this selector branch.",
+    "Whether imported runtime ownership is justified for any future follow-on."
+  ],
+  "upstream_readiness_packet_path": "system_v4/a2_state/audit_logs/A2_LEV_BUILDER_POST_SKELETON_READINESS_PACKET__CURRENT__v1.json",
+  "upstream_readiness_report_path": "system_v4/a2_state/audit_logs/A2_LEV_BUILDER_POST_SKELETON_READINESS_REPORT__CURRENT__v1.json",
+  "upstream_skeleton_packet_path": "system_v4/a2_state/audit_logs/A2_LEV_BUILDER_FORMALIZATION_SKELETON_PACKET__CURRENT__v1.json",
+  "upstream_skeleton_report_path": "system_v4/a2_state/audit_logs/A2_LEV_BUILDER_FORMALIZATION_SKELETON_REPORT__CURRENT__v1.json"
+}

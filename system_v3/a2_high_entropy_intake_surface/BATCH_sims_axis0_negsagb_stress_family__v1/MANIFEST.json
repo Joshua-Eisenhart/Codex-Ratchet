@@ -1,0 +1,129 @@
+{
+  "batch_id": "BATCH_sims_axis0_negsagb_stress_family__v1",
+  "batch_scope": "residual_axis0_negative_conditional_entropy_stress_search_family",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T04:54:09Z",
+  "deferred_next_raw_folder_order_source": null,
+  "extraction_mode": "SIM_AXIS0_NEGSAGB_STRESS_PASS",
+  "notes": [
+    "This batch continues the post-closure residual paired-family campaign.",
+    "The family is bounded to the negativity-stress sweep runner and its compressed best-plus-sample paired result surface.",
+    "No runtime execution was performed."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "A2_2_CANDIDATE",
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md",
+      "relevance": "Confirms the current stress family is catalog-listed.",
+      "line_window": "48"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt",
+      "relevance": "Repo-held top-level evidence pack was searched for the local SIM_ID and no match was found."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis0_mutual_info.py",
+      "relevance": "Smaller baseline anchor showing a one-in-512 negativity event that the larger sweep fails to beat."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis0_mutual_info.json",
+      "relevance": "Confirms the baseline stores neg_SAgB_frac 0.001953125 and SAgB_min below zero."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_axis0_mutual_info_family__v1/MANIFEST.json",
+      "relevance": "Provides residual campaign continuity and identifies this pair as the next prioritized unit."
+    }
+  ],
+  "runtime_expectations": [
+    "The runner writes one results_axis0_negsagb_stress.json and one local sim_evidence_pack.txt containing one SIM_EVIDENCE block.",
+    "The family exhausts a 3456-record search over branch order, axis sign, cycle count, noise tuples, entangler choice, entangle repetitions, and entangle position.",
+    "If residual pair intake continues, the next prioritized pair begins at run_axis0_sagb_entangle_seed.py."
+  ],
+  "failure_modes": [
+    "Mistaking search breadth for search success.",
+    "Treating the stored best-plus-sample result as if it retained the full sweep table.",
+    "Assuming the larger stress family supersedes the smaller mutual-info baseline on stored negativity evidence."
+  ],
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "sims_split_rule": {
+    "detected": true,
+    "included_in_this_batch": true,
+    "notes": "This batch remains inside the separate sims source class and does not mix with ordinary theory/doc extraction.",
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims"
+  },
+  "source_membership": [
+    {
+      "line_count": 316,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis0_negsagb_stress.py",
+      "role_in_batch": "axis0_negative_conditional_entropy_stress_runner",
+      "sha256": "43500c562680ce7b5f80516d3187f6525161ed0088d302fe7f44a9eb241883df",
+      "size_bytes": 11182,
+      "source_class": "executable_runner"
+    },
+    {
+      "line_count": 380,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis0_negsagb_stress.json",
+      "role_in_batch": "axis0_negative_conditional_entropy_stress_result_surface",
+      "sha256": "43e447a611618da0081acb9e8df6faf7f78010b5e4a14febc3b99acd37b6cdea",
+      "size_bytes": 11155,
+      "source_class": "result_surface"
+    }
+  ],
+  "derived_summary": {
+    "local_sim_id": "S_SIM_AXIS0_NEGSAGB_STRESS",
+    "top_level_evidence_pack_match_count": 0,
+    "records_count": 3456,
+    "records_sample_count": 10,
+    "early_stop_threshold": 0.05,
+    "full_search_exhausted": true,
+    "best_score": 0.0,
+    "best_record": {
+      "axis3_sign": 1,
+      "cycles": 8,
+      "params": {
+        "gamma": 0.02,
+        "p": 0.02,
+        "q": 0.02
+      },
+      "entangler": "CNOT",
+      "entangle_reps": 1,
+      "entangle_pos": "BEFORE",
+      "delta_MI_mean_SEQ02_minus_SEQ01": -0.00030116171275254566,
+      "delta_SAgB_mean_SEQ02_minus_SEQ01": 0.0003039874049425295,
+      "delta_negfrac_SEQ02_minus_SEQ01": 0.0,
+      "seq01_negfrac": 0.0,
+      "seq02_negfrac": 0.0
+    },
+    "sample_absmax_delta_mi": {
+      "value": 0.0003737679379132719,
+      "entangler": "CZ",
+      "entangle_reps": 1,
+      "entangle_pos": "AFTER",
+      "cycles": 8,
+      "params": {
+        "gamma": 0.02,
+        "p": 0.02,
+        "q": 0.02
+      }
+    },
+    "sample_absmax_delta_sagb": {
+      "value": -0.00037998941985362134,
+      "entangler": "CZ",
+      "entangle_reps": 1,
+      "entangle_pos": "AFTER",
+      "cycles": 8,
+      "params": {
+        "gamma": 0.02,
+        "p": 0.02,
+        "q": 0.02
+      }
+    },
+    "comparison_vs_mutual_info_baseline": {
+      "baseline_runner_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis0_mutual_info.py",
+      "baseline_neg_SAgB_frac": 0.001953125,
+      "baseline_SAgB_min": -0.002114071978150056
+    },
+    "next_residual_priority_source": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis0_sagb_entangle_seed.py"
+  }
+}

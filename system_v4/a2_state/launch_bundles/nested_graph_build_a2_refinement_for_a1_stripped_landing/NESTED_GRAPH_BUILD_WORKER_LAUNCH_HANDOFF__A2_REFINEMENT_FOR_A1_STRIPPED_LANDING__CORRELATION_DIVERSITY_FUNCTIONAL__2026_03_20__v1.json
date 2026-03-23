@@ -1,0 +1,48 @@
+{
+  "schema": "NESTED_GRAPH_BUILD_WORKER_LAUNCH_HANDOFF_v1",
+  "queue_status": "BLOCKED_ON_A2_REFINEMENT_FOR_A1_STRIPPED_LANDING",
+  "dispatch_id": "NESTED_GRAPH_BUILD__A2_REFINEMENT_FOR_A1_STRIPPED_LANDING__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1",
+  "unit_id": "A2_REFINEMENT_FOR_A1_STRIPPED_LANDING__CORRELATION_DIVERSITY_FUNCTIONAL",
+  "program_id": "NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1",
+  "layer_id": "A2_MID_REFINEMENT",
+  "role_label": "NESTED_GRAPH_BUILD__A2_REFINEMENT_FOR_A1_STRIPPED_LANDING__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1",
+  "role_type": "A2_REFINEMENT_PASS",
+  "role_scope": "One bounded A2 refinement correction pass that revisits the stalled direct-structure target correlation_diversity_functional, determines whether any current source-anchored exact landing could support future A1_STRIPPED, or explicitly preserves the blocker if no such landing exists.",
+  "thread_class": "A2_WORKER",
+  "mode": "PROCEDURE_FIRST_CORRECTION",
+  "required_boot": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/A2_BOOT__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/A2_GRAPH_REFINERY_PROCESS__v2.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/33_A2_VS_A1_ROLE_SPLIT__v1.md"
+  ],
+  "source_artifacts": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_stripped_graph_v1.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_STRIPPED_GRAPH_AUDIT__2026_03_20__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_STRIPPED_TERM_PLAN_ALIGNMENT__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__STAGE1_OPERATORIZED_ENTROPY_HEAD_GROUNDING__2026_03_17__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__STAGE1_OPERATORIZED_ENTROPY_HEAD_GROUNDING__2026_03_17__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_VALIDATION_TARGETS__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md"
+  ],
+  "depends_on": [
+    "NESTED_GRAPH_BUILD__A2_MID_REFINEMENT__2026_03_20__v1",
+    "NESTED_GRAPH_BUILD__A1_STRIPPED__2026_03_20__v1"
+  ],
+  "expected_outputs": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_REFINEMENT_FOR_A1_STRIPPED_LANDING__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.md"
+  ],
+  "write_scope": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_REFINEMENT_FOR_A1_STRIPPED_LANDING__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.md"
+  ],
+  "operator_steps": [
+    "Stay A2-only. Do not perform proposal-side A1 translation or packaging in this pass.",
+    "Treat the current A1_STRIPPED failure as an input symptom, not as permission to invent a landing.",
+    "If no current source-anchored exact landing exists, preserve the blocker explicitly and stop fail-closed.",
+    "If a thinner landing candidate exists, name the exact source-anchored term and supporting doctrine surfaces, but do not materialize A1 owner graphs in this pass."
+  ],
+  "prompt_to_send": "Run one bounded A2 refinement pass for the stalled direct-structure target correlation_diversity_functional. Using the current blocked A1 stripped state plus the Stage-1 entropy-head A2 doctrine, decide whether any current source-anchored exact landing exists that could later support A1_STRIPPED, or preserve the blocker explicitly if not, and stop with one bounded audit output.",
+  "stop_rule": "Stop after one bounded A2 refinement-for-stripped-landing correction pass."
+}

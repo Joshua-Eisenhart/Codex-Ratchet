@@ -1,0 +1,140 @@
+{
+  "schema": "A2_MID_REFINEMENT_BATCH_MANIFEST_v1",
+  "batch_id": "BATCH_A2MID_work_surface_stage3_sendpack_controller_fences__v1",
+  "batch_scope": "controller_facing_reduction_of_stage3_pro_sendpack_handoff_packaging",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T10:46:31Z",
+  "extraction_mode": "A2_MID_REFINEMENT_PASS",
+  "promotion_status": "A2_2_CANDIDATE",
+  "parent_batch_ids": [
+    "BATCH_work_surface_stage3_pro_send_packaging__v1"
+  ],
+  "parent_artifacts": [
+    "SOURCE_MAP__v1.md",
+    "CLUSTER_MAP__v1.md",
+    "TENSION_MAP__v1.md",
+    "A2_3_DISTILLATES__v1.md",
+    "A2_2_CANDIDATE_SUMMARIES__v1.md",
+    "MANIFEST.json"
+  ],
+  "selection_basis": {
+    "ledger_reason": "This was the first uncovered parent after the already-reduced active and work-surface run in the current ledger slice.",
+    "bounded_goal": "Reduce the Stage-3 spillover sendpack into a smaller controller-usable handoff packet without rereading raw sources or touching active control surfaces.",
+    "deferred_alternatives": [
+      {
+        "batch_id": "BATCH_work_surface_sendpack_to_update_export_lineage__v1",
+        "reason": "Best direct follow-on once the upstream Stage-3 handoff packet is narrowed."
+      },
+      {
+        "batch_id": "BATCH_systemv3_active_a2state_ingest_validation_promotion_packet__v1",
+        "reason": "Best next low-entropy sibling if the queue returns to active ingest and promotion boundaries."
+      },
+      {
+        "batch_id": "BATCH_archive_surface_batch05_thread_b_trigram_and_megaboot__v1",
+        "reason": "Useful archive lineage follow-on, but not part of this bounded work-surface transport reduction."
+      }
+    ]
+  },
+  "comparison_anchor_batches": [
+    "BATCH_A2MID_work_surface_root_control_archaeology_controller_fences__v1",
+    "BATCH_A2MID_export_pack_restart_bundle__v1"
+  ],
+  "raw_source_reread_needed": false,
+  "raw_source_reread_reason": "Parent artifacts already isolate the Stage-3 handoff stack, contradiction signatures, and source-class boundaries needed for this bounded reduction.",
+  "candidate_items": [
+    {
+      "id": "RC1",
+      "name": "MICRO_NOTE_CHANNEL_IS_COORDINATION_ONLY",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the smallest reusable human-side rule while keeping authority on the formal handoff stack.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:C1",
+        "A2_3_DISTILLATES__v1:D2",
+        "TENSION_MAP__v1:T1",
+        "TENSION_MAP__v1:T5",
+        "A2_2_CANDIDATE_SUMMARIES__v1:Candidate 4"
+      ]
+    },
+    {
+      "id": "RC2",
+      "name": "SERIAL_SINGLE_ATTACHMENT_DISPATCH_BOUNDARY",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Compresses the parent's logical-set versus transport-unit split into a direct external dispatch rule.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:C2",
+        "CLUSTER_MAP__v1:C3",
+        "A2_3_DISTILLATES__v1:D1",
+        "TENSION_MAP__v1:T2",
+        "A2_2_CANDIDATE_SUMMARIES__v1:Candidate 1",
+        "A2_2_CANDIDATE_SUMMARIES__v1:Candidate 2"
+      ]
+    },
+    {
+      "id": "RC3",
+      "name": "OUTPUT_ONLY_RETURN_HYGIENE_WITH_CONTEXT_LOSS_CAUTION",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Keeps the lean return contract reusable without erasing the context dropped by outputs-only packaging.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:C3",
+        "A2_3_DISTILLATES__v1:D3",
+        "A2_3_DISTILLATES__v1:D6",
+        "TENSION_MAP__v1:T3",
+        "A2_2_CANDIDATE_SUMMARIES__v1:Candidate 2"
+      ]
+    },
+    {
+      "id": "RC4",
+      "name": "CHECKSUM_LEDGER_FILENAME_BINDING_WITHOUT_DRIFT_ERASURE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves a direct filename-binding rule while keeping control-file naming drift visible and unresolved.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:C4",
+        "A2_3_DISTILLATES__v1:D4",
+        "TENSION_MAP__v1:T4",
+        "TENSION_MAP__v1:T6",
+        "A2_2_CANDIDATE_SUMMARIES__v1:Candidate 3"
+      ]
+    },
+    {
+      "id": "RC5",
+      "name": "WRAPPED_CHILD_JOB_TRANSPORT_ONLY_CLASSIFICATION",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Prevents transport inventory from backsliding into payload-semantic or execution-status claims.",
+      "parent_dependencies": [
+        "SOURCE_MAP__v1:Segment B",
+        "SOURCE_MAP__v1:Segment D",
+        "A2_3_DISTILLATES__v1:D4",
+        "A2_2_CANDIDATE_SUMMARIES__v1:Candidate 1"
+      ]
+    }
+  ],
+  "quarantined_items": [
+    {
+      "id": "Q1",
+      "name": "WORK_LOCAL_SEND_ORDER_AS_ACTIVE_PROTOCOL_LAW",
+      "status": "QUARANTINED",
+      "why_quarantined": "Useful spillover transport mechanics cannot self-promote into active protocol law from a `work/`-local packet.",
+      "parent_dependencies": [
+        "A2_3_DISTILLATES__v1:D5",
+        "TENSION_MAP__v1:T5",
+        "A2_2_CANDIDATE_SUMMARIES__v1:Candidate 2"
+      ]
+    },
+    {
+      "id": "Q2",
+      "name": "TEN_JOB_SET_AS_EXECUTION_SUCCESS_OR_PAYLOAD_SEMANTIC_PROOF",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent batch is transport archaeology only and does not prove execution success or direct payload processing.",
+      "parent_dependencies": [
+        "SOURCE_MAP__v1:Segment B",
+        "A2_3_DISTILLATES__v1:D4",
+        "TENSION_MAP__v1:T3"
+      ]
+    }
+  ],
+  "control_surface_mutation": "NONE",
+  "notes": [
+    "This batch preserves the Stage-3 sendpack as spillover transport archaeology rather than active protocol law.",
+    "No raw source reread and no active A2 append-save were performed."
+  ]
+}

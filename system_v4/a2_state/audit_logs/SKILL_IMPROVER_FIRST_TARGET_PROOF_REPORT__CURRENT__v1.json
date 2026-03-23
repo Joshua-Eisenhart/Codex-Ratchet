@@ -1,0 +1,82 @@
+{
+  "audit_only": false,
+  "baseline_smoke": {
+    "command": [
+      "python3",
+      "system_v4/skills/test_a2_skill_improver_readiness_operator_smoke.py"
+    ],
+    "detail": "PASS: a2 skill improver readiness operator smoke",
+    "returncode": 0,
+    "status": "passed"
+  },
+  "bounded_proof_only": true,
+  "candidate_hash": "343d20e3201210eaca249a19081d5ed45e0250663db89fc7f4b874afbb415998",
+  "cluster_id": "SKILL_CLUSTER::a2-skill-truth-maintenance",
+  "commit_result": {
+    "compile_ok": true,
+    "detail": "Candidate compiles. Selected test command passed. Candidate committed to target skill.",
+    "dry_run": false,
+    "improved": true,
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/a2_skill_improver_readiness_operator.py",
+    "proposed_change": true,
+    "score": 3,
+    "tests_state": "passed",
+    "write_permitted": true
+  },
+  "do_not_promote": true,
+  "dry_run_result": {
+    "compile_ok": true,
+    "detail": "Candidate compiles. Selected test command passed. Dry-run active. Candidate not committed.",
+    "dry_run": true,
+    "improved": false,
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/a2_skill_improver_readiness_operator.py",
+    "proposed_change": true,
+    "score": 3,
+    "tests_state": "passed",
+    "write_permitted": false
+  },
+  "generated_utc": "2026-03-21T13:19:22Z",
+  "issues": [],
+  "original_hash": "d0ecf14998f341571b23c6bdf9663b925028359ebe3fbb5d2b00b6170a95c129",
+  "post_commit_smoke": {
+    "command": [
+      "python3",
+      "system_v4/skills/test_a2_skill_improver_readiness_operator_smoke.py"
+    ],
+    "detail": "PASS: a2 skill improver readiness operator smoke",
+    "returncode": 0,
+    "status": "passed"
+  },
+  "post_restore_smoke": {
+    "command": [
+      "python3",
+      "system_v4/skills/test_a2_skill_improver_readiness_operator_smoke.py"
+    ],
+    "detail": "PASS: a2 skill improver readiness operator smoke",
+    "returncode": 0,
+    "status": "passed"
+  },
+  "proof_completed": true,
+  "proof_marker": "# a2_skill_improver_first_target_proof_marker: 2026-03-21T13:19:21Z",
+  "proof_mode": "gated_commit_restore",
+  "proof_scope": "one selected first target only; not general live repo mutation",
+  "recommended_actions": [
+    "Keep general skill-improver mutation gated even after one successful bounded proof target.",
+    "Use this proof slice only against the currently selected target unless a new target-selection report is emitted.",
+    "Refresh the standing A2 control surfaces after a successful proof so the controller truth reflects one proven target rather than only a selected target."
+  ],
+  "restore_status": {
+    "final_hash_matches_original": true,
+    "restored_original_bytes": true,
+    "status": "restored"
+  },
+  "schema": "skill_improver_first_target_proof_report_v1",
+  "selection_packet_path": "system_v4/a2_state/audit_logs/SKILL_IMPROVER_TARGET_SELECTION_PACKET__CURRENT__v1.json",
+  "selection_report_path": "system_v4/a2_state/audit_logs/SKILL_IMPROVER_TARGET_SELECTION_REPORT__CURRENT__v1.json",
+  "slice_id": "a2-skill-improver-first-target-proof-operator",
+  "source_family": "Ratchet-native A2 truth maintenance",
+  "status": "ok",
+  "target_skill_id": "a2-skill-improver-readiness-operator",
+  "target_skill_path": "system_v4/skills/a2_skill_improver_readiness_operator.py",
+  "target_smoke_path": "system_v4/skills/test_a2_skill_improver_readiness_operator_smoke.py"
+}

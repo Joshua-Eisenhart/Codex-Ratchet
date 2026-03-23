@@ -1,0 +1,84 @@
+# SESSION_V3_RUNTIME_DEEP_INGESTION_2026-03-18
+
+- **Start:** 2026-03-19T00:20:15Z
+- **End:** 2026-03-19T00:20:44Z
+- **Documents processed:** 28
+- **Batches created:** 28
+- **Nodes added:** 50
+- **Edges added:** 22
+- **Contradictions found:** 0
+- **Checkpoints:** 29
+
+## Graph Totals
+- INDEX: 0 nodes
+- A2_HIGH: 0 nodes
+- A2_MID: 2 nodes
+- A2_LOW: 0 nodes
+- A1_JARGONED: 5 nodes
+- A1_STRIPPED: 5 nodes
+- A1_CARTRIDGE: 5 nodes
+- GRAVEYARD: 0 nodes
+- (legacy A2-3): 17205 nodes
+- (legacy A2-2): 176 nodes
+- (legacy A2-1): 138 nodes
+- Total: 17555 nodes, 17367 edges
+
+## Documents
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/kernel.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/zip_protocol_v2_validator.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a0_compiler.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_dispatcher.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_model_selector.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_engine.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_strategy.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_autowiggle.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_bridge.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_debug_policy.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/state.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/containers.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/snapshot.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/pipeline.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/gateway.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/zip_protocol_v2_writer.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/a2_graph_refinery.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/v4_graph_builder.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/run_wave_0_1_extraction.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/run_promotion_audit.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/run_contradiction_scan.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/run_mass_extraction.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/a2_boot.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/test_a2_graph_refinery_patched.py
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/A2_GRAPH_REFINERY_PROCESS__v2.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__ANTIGRAVITY__2026_03_18__v8.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__OPUS__2026_03_18__v7.md
+
+## Batches
+- `BATCH_V3RT_CORE_LOOP_001`
+- `BATCH_V3RT_ZIP_PROTOCOL_001`
+- `BATCH_V3RT_STRATEGY_COMPILER_001`
+- `BATCH_V3RT_DISPATCH_GATEWAY_001`
+- `BATCH_V3RT_LLM_CONTAINMENT_001`
+- `BATCH_V3RT_BIDIR_LOOP_001`
+- `BATCH_V3RT_REG_SIM_ENGINE`
+- `BATCH_V3RT_REG_A1_STRATEGY`
+- `BATCH_V3RT_REG_A1_AUTOWIGGLE`
+- `BATCH_V3RT_REG_A1_BRIDGE`
+- `BATCH_V3RT_REG_A1_DEBUG_POLICY`
+- `BATCH_V3RT_REG_STATE`
+- `BATCH_V3RT_REG_CONTAINERS`
+- `BATCH_V3RT_REG_SNAPSHOT`
+- `BATCH_V3RT_REG_PIPELINE`
+- `BATCH_V3RT_REG_GATEWAY`
+- `BATCH_V3RT_REG_ZIP_PROTOCOL_V2_WRITER`
+- `BATCH_V4_REG_A2_GRAPH_REFINERY`
+- `BATCH_V4_REG_V4_GRAPH_BUILDER`
+- `BATCH_V4_REG_RUN_WAVE_0_1_EXTRACTION`
+- `BATCH_V4_REG_RUN_PROMOTION_AUDIT`
+- `BATCH_V4_REG_RUN_CONTRADICTION_SCAN`
+- `BATCH_V4_REG_RUN_MASS_EXTRACTION`
+- `BATCH_V4_REG_A2_BOOT`
+- `BATCH_V4_REG_TEST_A2_GRAPH_REFINERY_PATCHED`
+- `BATCH_V4_REG_A2_GRAPH_REFINERY_PROCESS__V2`
+- `BATCH_V4_REG_THREAD_CONTEXT_EXTRACT__ANTIGR`
+- `BATCH_V4_REG_THREAD_CONTEXT_EXTRACT__OPUS__`

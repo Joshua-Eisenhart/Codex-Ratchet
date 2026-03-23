@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+import zipfile
 from pathlib import Path
 
 
@@ -22,23 +23,56 @@ def _read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def _next_sequence(inbox_dir: Path, run_id: str) -> int:
-    state_path = inbox_dir / "sequence_state.json"
-    if not state_path.exists():
-        return 1
-    try:
-        raw = json.loads(state_path.read_text(encoding="utf-8"))
-    except Exception:
-        return 1
-    if not isinstance(raw, dict):
-        return 1
-    key = f"{run_id}|A1"
-    last = raw.get(key, 0)
-    try:
-        last_n = int(last)
-    except Exception:
-        last_n = 0
-    return last_n + 1
+def _next_sequence(run_dir: Path, run_id: str) -> int:
+    """
+    Next expected inbound A1 packet sequence.
+
+    IMPORTANT:
+    - The bootpack runtime consumes external A1 packets via A1Bridge(packet), which persists
+      monotone sequence continuity in: run_dir/a1_inbox/sequence_state.json.
+    - This is intentionally separate from run_dir/sequence_state.json, which tracks the
+      runtime-generated ZIP packet journal (zip_packets/) sequences.
+    """
+
+    inbox = run_dir / "a1_inbox"
+    seq_state_path = inbox / "sequence_state.json"
+    if seq_state_path.is_file():
+        try:
+            raw = json.loads(seq_state_path.read_text(encoding="utf-8"))
+        except Exception:
+            raw = {}
+        if isinstance(raw, dict):
+            key = f"{run_id}|A1"
+            try:
+                last = int(raw.get(key, 0))
+            except Exception:
+                last = 0
+            return last + 1
+
+    # Fallback: infer next seq from packet headers currently in the inbox.
+    max_seen = 0
+    if inbox.is_dir():
+        for p in sorted(inbox.glob("*.zip")):
+            if not p.is_file():
+                continue
+            try:
+                with zipfile.ZipFile(p, "r") as zf:
+                    header = json.loads(zf.read("ZIP_HEADER.json").decode("utf-8"))
+            except Exception:
+                continue
+            if str(header.get("run_id", "")).strip() != run_id:
+                continue
+            if str(header.get("source_layer", "")).strip() != "A1":
+                continue
+            try:
+                seq = int(header.get("sequence", 0))
+            except Exception:
+                continue
+            if seq > max_seen:
+                max_seen = seq
+    if max_seen > 0:
+        return max_seen + 1
+    return 1
 
 
 def main(argv: list[str]) -> int:
@@ -66,7 +100,7 @@ def main(argv: list[str]) -> int:
     if errors:
         raise SystemExit("invalid A1_STRATEGY_v1:\n- " + "\n- ".join(errors))
 
-    seq = int(args.sequence) if args.sequence is not None else _next_sequence(inbox, run_id)
+    seq = int(args.sequence) if args.sequence is not None else _next_sequence(run_dir, run_id)
     if seq <= 0:
         raise SystemExit(f"invalid sequence: {seq}")
 

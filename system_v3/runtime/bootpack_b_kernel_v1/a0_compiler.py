@@ -3,7 +3,7 @@ import hashlib
 import json
 import re
 
-from a1_strategy import canonical_strategy_bytes, validate_strategy
+from a1_strategy import SCHEMA_V1, SCHEMA_V2, canonical_strategy_bytes, validate_strategy
 from containers import build_export_block
 from state import KernelState
 
@@ -79,6 +79,11 @@ def _set_assert_token(candidate: dict, token_class: str, token: str) -> None:
     )
 
 
+def _strategy_schema(strategy: dict) -> str:
+    schema = str(strategy.get("schema", "")).strip()
+    return schema if schema in {SCHEMA_V1, SCHEMA_V2} else SCHEMA_V1
+
+
 def _apply_operator_inject_probe(strategy: dict) -> int:
     changed = 0
     for lane in ["targets", "alternatives"]:
@@ -126,6 +131,7 @@ def _apply_operator_mutate_lexeme(strategy: dict) -> int:
 
 def _apply_operator_repair_def_field(strategy: dict) -> int:
     changed = 0
+    schema = _strategy_schema(strategy)
     for lane in ["targets", "alternatives"]:
         for candidate in strategy.get(lane, []):
             candidate.setdefault("requires", [])
@@ -141,13 +147,13 @@ def _apply_operator_repair_def_field(strategy: dict) -> int:
             if not _get_def_field(candidate, "SIM_ID"):
                 _set_def_field(candidate, "SIM_ID", "TOKEN", str(candidate.get("id", "S_AUTO")))
                 changed += 1
-            if not _get_def_field(candidate, "TIER"):
+            if schema == SCHEMA_V1 and not _get_def_field(candidate, "TIER"):
                 _set_def_field(candidate, "TIER", "TOKEN", "T0_ATOM")
                 changed += 1
-            if not _get_def_field(candidate, "FAMILY"):
+            if schema == SCHEMA_V1 and not _get_def_field(candidate, "FAMILY"):
                 _set_def_field(candidate, "FAMILY", "TOKEN", "BASELINE")
                 changed += 1
-            if not _get_def_field(candidate, "TARGET_CLASS"):
+            if schema == SCHEMA_V1 and not _get_def_field(candidate, "TARGET_CLASS"):
                 _set_def_field(candidate, "TARGET_CLASS", "TOKEN", str(candidate.get("id", "S_AUTO")))
                 changed += 1
             _set_assert_token(candidate, "EVIDENCE_TOKEN", evidence)
@@ -156,9 +162,10 @@ def _apply_operator_repair_def_field(strategy: dict) -> int:
 
 def _apply_operator_neg_sim_expand(strategy: dict) -> int:
     changed = 0
+    schema = _strategy_schema(strategy)
     if not strategy.get("targets"):
         return changed
-    if not strategy.get("alternatives"):
+    if schema == SCHEMA_V1 and not strategy.get("alternatives"):
         alt = copy.deepcopy(strategy["targets"][0])
         alt["id"] = f"{str(alt.get('id', 'S_AUTO')).strip()}_ALT"
         alt["operator_id"] = "OP_NEG_SIM_EXPAND"
@@ -185,15 +192,31 @@ def _apply_operator_neg_sim_expand(strategy: dict) -> int:
     sims = strategy.setdefault("sims", {"positive": [], "negative": []})
     positive = sims.setdefault("positive", [])
     negative = sims.setdefault("negative", [])
+    bind_stage_lookup: dict[str, str] = {}
+    if schema == SCHEMA_V2:
+        for lane_name in ["positive", "negative"]:
+            for row in sims.get(lane_name, []):
+                if not isinstance(row, dict):
+                    continue
+                bind_id = str(row.get("binds_to", "")).strip()
+                stage_id = str(row.get("stage_id", "")).strip()
+                if bind_id and stage_id:
+                    bind_stage_lookup[bind_id] = stage_id
     for candidate in strategy.get("targets", []):
         bind_id = str(candidate.get("id", "")).strip()
         if bind_id and not any(row.get("binds_to") == bind_id for row in positive):
-            positive.append({"sim_id": f"SIM_POS_{bind_id}", "binds_to": bind_id})
+            row = {"sim_id": f"SIM_POS_{bind_id}", "binds_to": bind_id}
+            if schema == SCHEMA_V2 and bind_id in bind_stage_lookup:
+                row["stage_id"] = bind_stage_lookup[bind_id]
+            positive.append(row)
             changed += 1
     for candidate in strategy.get("alternatives", []):
         bind_id = str(candidate.get("id", "")).strip()
         if bind_id and not any(row.get("binds_to") == bind_id for row in negative):
-            negative.append({"sim_id": f"SIM_NEG_{bind_id}", "binds_to": bind_id})
+            row = {"sim_id": f"SIM_NEG_{bind_id}", "binds_to": bind_id}
+            if schema == SCHEMA_V2 and bind_id in bind_stage_lookup:
+                row["stage_id"] = bind_stage_lookup[bind_id]
+            negative.append(row)
             changed += 1
     return changed
 
@@ -445,6 +468,87 @@ def compile_export_block(
     max_items = int(repaired.get("budget", {}).get("max_items", 1))
     candidate_rows = _candidate_rows(repaired)[:max_items]
 
+    # Optional substance gates (fail-closed) driven by strategy.policy.
+    #
+    # Rationale: a batch can be syntactically valid yet structurally useless
+    # (lexeme-safe filler). These gates let A1 require "wiggle" properties
+    # (graveyard rescue share, probe-term coverage) without hard-coding them
+    # into the kernel.
+    policy = repaired.get("policy", {}) if isinstance(repaired.get("policy"), dict) else {}
+
+    # 1) Graveyard rescue share.
+    # Enforce only when explicitly enabled and the graveyard is non-empty.
+    if policy.get("enforce_graveyard_rescue_share") and getattr(state, "graveyard", None):
+        try:
+            min_share = float(policy.get("min_graveyard_rescue_share", 0.50))
+        except Exception:
+            min_share = 0.50
+        target_rows = [cand for lane, cand in candidate_rows if lane == "targets"]
+        if target_rows:
+            rescue_count = 0
+            for cand in target_rows:
+                for df in cand.get("def_fields", []) or []:
+                    # Canonical field name is RESCUE_FROM. Accept RESCUE_OF as alias.
+                    nm = str(df.get("name", "")).upper().strip()
+                    if nm in {"RESCUE_FROM", "RESCUE_OF"}:
+                        rescue_count += 1
+                        break
+            rescue_share = rescue_count / max(1, len(target_rows))
+            if rescue_share + 1e-12 < min_share:
+                raise ValueError(
+                    f"insufficient_graveyard_rescue_share:{rescue_count}/{len(target_rows)}<{min_share}"
+                )
+
+    # 2) Minimum SIM_SPEC count in the exported batch.
+    if "min_sim_spec_count" in policy:
+        try:
+            min_sim = int(policy.get("min_sim_spec_count", 0))
+        except Exception:
+            min_sim = 0
+        if min_sim > 0:
+            sim_count = sum(1 for _, cand in candidate_rows if str(cand.get("kind", "")).upper() == "SIM_SPEC")
+            if sim_count < min_sim:
+                raise ValueError(f"insufficient_sim_spec_count:{sim_count}<{min_sim}")
+
+    # 3) Require coverage of specific probe terms.
+    required_probe_terms = policy.get("required_probe_terms", [])
+    if required_probe_terms and isinstance(required_probe_terms, list):
+        required = {str(t).strip().lower() for t in required_probe_terms if str(t).strip()}
+        seen_terms: set[str] = set()
+        for _, cand in candidate_rows:
+            if str(cand.get("kind", "")).upper() != "SIM_SPEC":
+                continue
+            for df in cand.get("def_fields", []) or []:
+                if str(df.get("name", "")).upper().strip() == "PROBE_TERM":
+                    term = str(df.get("value", "")).strip().strip('"').lower()
+                    if term:
+                        seen_terms.add(term)
+                    break
+        missing = sorted(required - seen_terms)
+        if missing:
+            raise ValueError("missing_required_probe_terms:" + ",".join(missing))
+
+    schema = _strategy_schema(repaired)
+    sim_bind_stage: dict[str, str] = {}
+    if schema == SCHEMA_V2:
+        sims = repaired.get("sims", {}) if isinstance(repaired.get("sims"), dict) else {}
+        for lane in ["positive", "negative"]:
+            for row in sims.get(lane, []):
+                if not isinstance(row, dict):
+                    continue
+                bind_id = str(row.get("binds_to", "")).strip()
+                stage_id = str(row.get("stage_id", "")).strip()
+                if bind_id and stage_id:
+                    sim_bind_stage[bind_id] = stage_id
+    stage_meta_by_id: dict[str, dict] = {}
+    if schema == SCHEMA_V2 and isinstance(repaired.get("sim_program"), dict):
+        for row in repaired["sim_program"].get("stages", []):
+            if not isinstance(row, dict):
+                continue
+            stage_id = str(row.get("stage_id", "")).strip()
+            if stage_id:
+                stage_meta_by_id[stage_id] = row
+
     for lane, candidate in candidate_rows:
         item_id = str(candidate.get("id", "")).strip()
         kind = str(candidate.get("kind", "")).upper().strip()
@@ -454,6 +558,8 @@ def compile_export_block(
         requires = [str(x).strip() for x in candidate.get("requires", []) if str(x).strip()]
         def_fields = [dict(x) for x in candidate.get("def_fields", []) if isinstance(x, dict)]
         asserts = [dict(x) for x in candidate.get("asserts", []) if isinstance(x, dict)]
+        stage_id = sim_bind_stage.get(item_id, "") if kind == "SIM_SPEC" else ""
+        stage_meta = stage_meta_by_id.get(stage_id, {}) if stage_id else {}
 
         for dep in requires:
             if not _PROBE_ID_RE.match(dep):
@@ -486,7 +592,9 @@ def compile_export_block(
 
         for row in def_fields:
             name = str(row.get("name", "")).upper().strip()
-            if not name or name == "PROBE_KIND":
+            # BRANCH_TRACK is A1-only routing metadata. Do not leak it into
+            # Thread B exports where it can trigger undefined-term fences.
+            if not name or name in {"PROBE_KIND", "BRANCH_TRACK"}:
                 continue
             value = str(row.get("value", "")).strip()
             value_kind = str(row.get("value_kind", "TOKEN")).upper().strip()
@@ -494,6 +602,16 @@ def compile_export_block(
                 lines.append(f"DEF_FIELD {item_id} CORR {name} {_quote(value)}")
             else:
                 lines.append(f"DEF_FIELD {item_id} CORR {name} {value}")
+
+        if kind == "SIM_SPEC" and stage_id:
+            lines.append(f"DEF_FIELD {item_id} CORR STAGE_ID {stage_id}")
+            suite_kind = str(stage_meta.get("suite_kind", "")).strip()
+            if suite_kind:
+                lines.append(f"DEF_FIELD {item_id} CORR STAGE_SUITE_KIND {suite_kind}")
+            for dep_stage in stage_meta.get("depends_on", []) if isinstance(stage_meta.get("depends_on", []), list) else []:
+                dep_stage = str(dep_stage).strip()
+                if dep_stage:
+                    lines.append(f"DEF_FIELD {item_id} CORR STAGE_DEPENDS_ON {dep_stage}")
 
         # Graveyard doctrine: SIM must be able to falsify artifacts deterministically.
         #

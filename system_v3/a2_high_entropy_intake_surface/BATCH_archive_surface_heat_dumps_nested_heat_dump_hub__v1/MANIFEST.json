@@ -1,0 +1,84 @@
+{
+  "batch_id": "BATCH_archive_surface_heat_dumps_nested_heat_dump_hub__v1",
+  "batch_scope": "heat_dumps_nested_heat_dump_hub",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T23:33:09Z",
+  "deferred_next_in_folder_order": [
+    "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS/RUN_SURFACE_ROTATION_A1_WORKING__20260225T005137Z"
+  ],
+  "extraction_mode": "ARCHIVE_HEAT_DUMPS_NESTED_HEAT_DUMP_HUB_PASS",
+  "notes": [
+    "This batch processes only the nested HEAT_DUMPS subtree under the moved-out-of-git cache root and treats it as historical rotation lineage, not as current authority.",
+    "The subtree contains 13 timestamped families across four semantics: A1-working slices, real-loop history slices, generic run rotations, and save-export rotations.",
+    "The earliest manifested run families use relative source and destination strings, while later run/save families switch to absolute workspace paths.",
+    "RUN_SURFACE_ROTATION__20260225T005815Z is the broad mixed demotion pivot: 53 moved families and 2 kept real-loop survivors.",
+    "RUN_SURFACE_ROTATION__20260225T010616Z and RUN_SURFACE_ROTATION__20260225T011409Z preserve repeated compact eight-object moved bundles under a rolling kept frontier.",
+    "SAVE_EXPORT_ROTATION__20260225T010624Z is a manifest-only shell that declares 8 kept artifacts and 0 moved artifacts while retaining only rotation_manifest.json.",
+    "RUN_SURFACE_ROTATION__20260225T050420Z is a payload-only run residue that keeps RUN_REAL_LOOP_DEEP_0025 without the outer rotation manifest.",
+    "SAVE_EXPORT_ROTATION__20260225T012831Z and SAVE_EXPORT_ROTATION__20260225T051154Z are payload-only save residues containing zips and sha256 sidecars but no manifest.",
+    "The subtree therefore preserves three packaging states at once: manifested rotations, manifest-only shell, and payload-only residue.",
+    "Late payload-only residue also preserves separate clocks between wrapper family timestamps and inner payload creation timestamps."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "REVISIT_REQUIRED",
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "source_family": "archive heat dumps nested heat-dump rotation hub",
+  "source_membership": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS",
+      "role_in_batch": "direct_nested_heat_dump_hub",
+      "file_count": 25171,
+      "directory_count": 1153,
+      "child_family_count": 13,
+      "family_kind_counts": {
+        "RUN_SURFACE_ROTATION_A1_WORKING": 1,
+        "RUN_SURFACE_ROTATION_REAL_LOOP_HISTORY": 1,
+        "RUN_SURFACE_ROTATION": 5,
+        "SAVE_EXPORT_ROTATION": 6
+      },
+      "timestamp_range": [
+        "20260225T004921Z",
+        "20260225T051154Z"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS/RUN_SURFACE_ROTATION__20260225T005815Z/rotation_manifest.json",
+      "role_in_batch": "representative_broad_mixed_run_rotation",
+      "schema": "RUN_SURFACE_ROTATION_MANIFEST_v1",
+      "kept_count": 2,
+      "moved_count": 53
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS/RUN_SURFACE_ROTATION__20260225T010616Z/rotation_manifest.json",
+      "role_in_batch": "representative_compact_run_rotation",
+      "schema": "RUN_SURFACE_ROTATION_MANIFEST_v1",
+      "kept_count": 2,
+      "moved_count": 8
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS/SAVE_EXPORT_ROTATION__20260225T010624Z/rotation_manifest.json",
+      "role_in_batch": "manifest_only_save_shell",
+      "schema": "SAVE_EXPORT_ROTATION_MANIFEST_v1",
+      "kept_count": 8,
+      "moved_count": 0,
+      "folder_payload_file_count": 1
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS/RUN_SURFACE_ROTATION__20260225T050420Z/RUN_REAL_LOOP_DEEP_0025/RUN_MANIFEST_v1.json",
+      "role_in_batch": "payload_only_run_residue",
+      "schema": "RUN_MANIFEST_v1",
+      "run_id": "RUN_REAL_LOOP_DEEP_0025",
+      "created_utc": "2026-02-25T01:36:45Z"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS/SAVE_EXPORT_ROTATION__20260225T012831Z",
+      "role_in_batch": "payload_only_save_residue",
+      "payload_file_count": 8
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS/SAVE_EXPORT_ROTATION__20260225T051154Z",
+      "role_in_batch": "late_payload_only_save_residue",
+      "payload_file_count": 4
+    }
+  ]
+}

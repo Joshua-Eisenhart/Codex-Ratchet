@@ -1,0 +1,33 @@
+Use $ratchet-a2-a1.
+
+Use the current A2 boot:
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md
+
+Run one bounded A2H Upgrade Docs pass only.
+
+dispatch_id: A2_WORKER__A2_STATE_CONSOLIDATION_MANIFEST_AUDIT__2026_03_16__v1
+ROLE_LABEL: A2H Upgrade Docs
+ROLE_TYPE: A2_HIGH_UPGRADE_DOCS
+ROLE_SCOPE: one bounded pass to audit whether the consolidation mutation note and archive layout are sufficiently clear for controller pickup
+
+Use only these artifacts:
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_STATE_CONSOLIDATION_MUTATION__2026_03_16__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/archive/system_v3/A2_STATE_CONSOLIDATION_ARCHIVE_ONLY_NOTE_CHAIN__2026_03_16__v1
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/archive/quarantine/A2_STATE_CONSOLIDATION_RUNTIME_ONLY_MIRRORS__2026_03_16__v1
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md
+
+Task:
+- audit whether the consolidation mutation note is enough for a fresh controller thread to understand what moved and what stayed
+- produce a bounded fix list or no-findings result only
+
+Rules:
+- do not change docs in this pass
+- stop after one bounded pass
+
+Before your final answer:
+- write the exact final closeout body to:
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__A2_STATE_CONSOLIDATION_MANIFEST_AUDIT__2026_03_16__v1__return.txt
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__A2_STATE_CONSOLIDATION_MANIFEST_AUDIT__2026_03_16__v1.txt
+- if the folders do not exist, create them
+- do not ask the operator to save, paste back, or carry files
+- if you cannot self-save, report that exact blocker and stop

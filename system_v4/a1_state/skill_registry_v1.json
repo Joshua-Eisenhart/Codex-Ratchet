@@ -1,0 +1,5480 @@
+{
+  "a0-compiler": {
+    "adapters": {
+      "shell": "system_v4/skills/a0_compiler.py"
+    },
+    "applicable_graphs": [],
+    "applicable_trust_zones": [
+      "A0_COMPILED"
+    ],
+    "capabilities": {},
+    "description": "Compile deterministic execution blocks",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "a0-compiler",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "a0-compiler",
+    "skill_type": "bridge",
+    "source_path": "system_v4/skills/a0_compiler.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-brain": {
+    "adapters": {
+      "shell": "system_v4/skills/a1_brain.py"
+    },
+    "applicable_graphs": [
+      "rosetta",
+      "dependency"
+    ],
+    "applicable_trust_zones": [
+      "A1_JARGONED",
+      "A1_STRIPPED"
+    ],
+    "capabilities": {
+      "is_phase_runner": true
+    },
+    "description": "A1 extraction, classification, routing",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "a1-brain",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "a1-brain",
+    "skill_type": "extraction",
+    "source_path": "system_v4/skills/a1_brain.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-cartridge-assembler": {
+    "adapters": {
+      "shell": "system_v4/skills/a1_cartridge_assembler.py"
+    },
+    "applicable_graphs": [],
+    "applicable_trust_zones": [
+      "A1_CARTRIDGE",
+      "PHASE_A1_CARTRIDGE"
+    ],
+    "capabilities": {
+      "is_generic_phase_handler": true,
+      "is_phase_runner": true
+    },
+    "description": "Package A1 candidates into ratchet cartridges",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "a1-cartridge-assembler",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "a1-cartridge-assembler",
+    "skill_type": "orchestration",
+    "source_path": "system_v4/skills/a1_cartridge_assembler.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-cartridge-graph-builder": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a1-cartridge-graph-builder/SKILL.md",
+      "gemini": "system_v4/skill_specs/a1-cartridge-graph-builder/SKILL.md",
+      "shell": "system_v4/skills/a1_cartridge_graph_builder.py"
+    },
+    "applicable_graphs": [
+      "strategy"
+    ],
+    "applicable_trust_zones": [
+      "A1_CARTRIDGE"
+    ],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true,
+      "is_owner_graph_builder": true
+    },
+    "description": "Materialize the bounded A1 cartridge owner graph from the live A1 stripped owner graph and current cartridge doctrine, or fail closed if only witness-side stripped terms are present.",
+    "inputs": [
+      "a1_stripped_graph_v1",
+      "a1_cartridge_review",
+      "a1_cartridge_cross_judgment",
+      "a1_entropy_diversity_alias_lift_pack"
+    ],
+    "last_verified_utc": "2026-03-20T09:47:02Z",
+    "name": "a1-cartridge-graph-builder",
+    "outputs": [
+      "a1_cartridge_graph_v1",
+      "a1_cartridge_graph_audit"
+    ],
+    "provenance": "repo-grounded seventh nested-graph build unit",
+    "related_skills": [
+      "a1-stripped-graph-builder",
+      "a1-cartridge-assembler",
+      "nested-graph-layer-auditor",
+      "graph-capability-auditor"
+    ],
+    "skill_id": "a1-cartridge-graph-builder",
+    "skill_type": "refinement",
+    "source_path": "system_v4/skill_specs/a1-cartridge-graph-builder/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "a1",
+      "cartridge",
+      "graph",
+      "build",
+      "fail-closed"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-distiller": {
+    "adapters": {
+      "shell": "system_v4/skills/a1_distiller.py"
+    },
+    "applicable_graphs": [
+      "dependency"
+    ],
+    "applicable_trust_zones": [
+      "A1_JARGONED",
+      "A1_STRIPPED"
+    ],
+    "capabilities": {},
+    "description": "Distill A2 concepts \u2192 A1 kernel candidates",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "a1-distiller",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "a1-distiller",
+    "skill_type": "extraction",
+    "source_path": "system_v4/skills/a1_distiller.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-entropy-bridge-helper-lift-pack": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a1-entropy-bridge-helper-lift-pack/SKILL.md",
+      "gemini": "system_v4/skill_specs/a1-entropy-bridge-helper-lift-pack/SKILL.md",
+      "shell": "system_v4/skills/a1_entropy_bridge_helper_lift_pack.py"
+    },
+    "applicable_graphs": [
+      "concept"
+    ],
+    "applicable_trust_zones": [
+      "A1_JARGONED"
+    ],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true,
+      "is_phase_runner": true
+    },
+    "description": "Run one bounded correction pass over the A1 entropy bridge helper-lift control pack for correlation_polarity and write an explicit audit that keeps helper-lift as a boundary probe while handing off to the first entropy structure campaign if the doctrine supports it.",
+    "inputs": [
+      "colder_witness_execution_consolidation_audit",
+      "entropy_bridge_helper_lift_pack",
+      "first_entropy_structure_campaign"
+    ],
+    "last_verified_utc": "2026-03-20T10:50:54Z",
+    "name": "a1-entropy-bridge-helper-lift-pack",
+    "outputs": [
+      "a1_entropy_bridge_helper_lift_pack_audit"
+    ],
+    "provenance": "repo-grounded A1 correction lane for entropy bridge helper lift",
+    "related_skills": [
+      "a2-colder-witness-execution-consolidation",
+      "a1-first-entropy-structure-campaign",
+      "graph-capability-auditor",
+      "nested-graph-layer-auditor"
+    ],
+    "skill_id": "a1-entropy-bridge-helper-lift-pack",
+    "skill_type": "correction",
+    "source_path": "system_v4/skill_specs/a1-entropy-bridge-helper-lift-pack/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "A1",
+      "entropy",
+      "helper-lift",
+      "correction",
+      "fail-closed"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-entropy-diversity-alias-lift-pack": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a1-entropy-diversity-alias-lift-pack/SKILL.md",
+      "gemini": "system_v4/skill_specs/a1-entropy-diversity-alias-lift-pack/SKILL.md",
+      "shell": "system_v4/skills/a1_entropy_diversity_alias_lift_pack.py"
+    },
+    "applicable_graphs": [
+      "concept"
+    ],
+    "applicable_trust_zones": [
+      "A1_JARGONED"
+    ],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true,
+      "is_phase_runner": true
+    },
+    "description": "Run one bounded correction pass over the colder diversity alias lift pack for pairwise_correlation_spread_functional and write an explicit audit that keeps the alias witness-only under current lower-loop semantics.",
+    "inputs": [
+      "a1_entropy_structure_decomposition_control_audit",
+      "entropy_diversity_alias_lift_pack",
+      "entropy_executable_entrypoint"
+    ],
+    "last_verified_utc": "2026-03-20T11:03:34Z",
+    "name": "a1-entropy-diversity-alias-lift-pack",
+    "outputs": [
+      "a1_entropy_diversity_alias_lift_pack_audit"
+    ],
+    "provenance": "repo-grounded correction lane for the colder diversity alias review",
+    "related_skills": [
+      "a1-entropy-structure-decomposition-control",
+      "graph-capability-auditor",
+      "nested-graph-layer-auditor"
+    ],
+    "skill_id": "a1-entropy-diversity-alias-lift-pack",
+    "skill_type": "correction",
+    "source_path": "system_v4/skill_specs/a1-entropy-diversity-alias-lift-pack/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "A1",
+      "entropy",
+      "alias",
+      "correction",
+      "fail-closed"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-entropy-structure-decomposition-control": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a1-entropy-structure-decomposition-control/SKILL.md",
+      "gemini": "system_v4/skill_specs/a1-entropy-structure-decomposition-control/SKILL.md",
+      "shell": "system_v4/skills/a1_entropy_structure_decomposition_control.py"
+    },
+    "applicable_graphs": [
+      "concept"
+    ],
+    "applicable_trust_zones": [
+      "A1_JARGONED"
+    ],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true,
+      "is_phase_runner": true
+    },
+    "description": "Run one bounded correction pass over the entropy-structure decomposition control pack for correlation_diversity_functional and write an explicit audit that keeps direct structure targets proposal-side while handing off to a colder alias review.",
+    "inputs": [
+      "a1_first_entropy_structure_campaign_audit",
+      "entropy_structure_decomposition_control",
+      "entropy_executable_entrypoint",
+      "entropy_diversity_alias_lift_pack"
+    ],
+    "last_verified_utc": "2026-03-20T11:03:34Z",
+    "name": "a1-entropy-structure-decomposition-control",
+    "outputs": [
+      "a1_entropy_structure_decomposition_control_audit"
+    ],
+    "provenance": "repo-grounded correction lane for the entropy structure decomposition-control boundary",
+    "related_skills": [
+      "a1-first-entropy-structure-campaign",
+      "a1-entropy-diversity-alias-lift-pack",
+      "graph-capability-auditor",
+      "nested-graph-layer-auditor"
+    ],
+    "skill_id": "a1-entropy-structure-decomposition-control",
+    "skill_type": "correction",
+    "source_path": "system_v4/skill_specs/a1-entropy-structure-decomposition-control/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "A1",
+      "entropy",
+      "structure",
+      "decomposition",
+      "correction",
+      "fail-closed"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-first-entropy-structure-campaign": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a1-first-entropy-structure-campaign/SKILL.md",
+      "gemini": "system_v4/skill_specs/a1-first-entropy-structure-campaign/SKILL.md",
+      "shell": "system_v4/skills/a1_first_entropy_structure_campaign.py"
+    },
+    "applicable_graphs": [
+      "concept"
+    ],
+    "applicable_trust_zones": [
+      "A1_JARGONED"
+    ],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true
+    },
+    "description": "Run one bounded correction pass over the first entropy structure campaign for correlation_diversity_functional and write an explicit audit that preserves the route as execution-real helper-only evidence while handing off to decomposition control.",
+    "inputs": [
+      "a1_entropy_bridge_helper_lift_pack_audit",
+      "first_entropy_structure_campaign",
+      "entropy_structure_family_anchor",
+      "entropy_structure_decomposition_control"
+    ],
+    "last_verified_utc": "2026-03-20T10:50:54Z",
+    "name": "a1-first-entropy-structure-campaign",
+    "outputs": [
+      "a1_first_entropy_structure_campaign_audit"
+    ],
+    "provenance": "repo-grounded A1 correction lane for the first direct entropy-structure campaign",
+    "related_skills": [
+      "a1-entropy-bridge-helper-lift-pack",
+      "graph-capability-auditor",
+      "nested-graph-layer-auditor"
+    ],
+    "skill_id": "a1-first-entropy-structure-campaign",
+    "skill_type": "correction",
+    "source_path": "system_v4/skill_specs/a1-first-entropy-structure-campaign/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "A1",
+      "entropy",
+      "structure",
+      "correction",
+      "fail-closed"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-from-a2-distillation": {
+    "adapters": {
+      "codex": "~/.codex/skills/a1-from-a2-distillation/SKILL.md",
+      "gemini": "system_v4/skill_specs/a1-from-a2-distillation/SKILL.md"
+    },
+    "applicable_graphs": [
+      "concept",
+      "dependency"
+    ],
+    "applicable_trust_zones": [
+      "A1_JARGONED",
+      "A1_STRIPPED"
+    ],
+    "capabilities": {},
+    "description": "A1 distillation from A2 candidates",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T22:25:55Z",
+    "name": "a1-from-a2-distillation",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "a1-from-a2-distillation",
+    "skill_type": "extraction",
+    "source_path": "system_v4/skill_specs/a1-from-a2-distillation/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "codex"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-jargoned-graph-builder": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a1-jargoned-graph-builder/SKILL.md",
+      "gemini": "system_v4/skill_specs/a1-jargoned-graph-builder/SKILL.md",
+      "shell": "system_v4/skills/a1_jargoned_graph_builder.py"
+    },
+    "applicable_graphs": [
+      "rosetta"
+    ],
+    "applicable_trust_zones": [
+      "A1_JARGONED",
+      "PHASE_A1_ROSETTA"
+    ],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true,
+      "is_generic_phase_handler": true,
+      "is_owner_graph_builder": true,
+      "is_phase_runner": true
+    },
+    "description": "Materialize the bounded A1 jargoned owner graph from packet-backed Rosetta fuel, or fail closed when the queued A1 scope does not align with live Rosetta anchors.",
+    "inputs": [
+      "system_graph_a2_refinery",
+      "rosetta_v2",
+      "a1_queue_candidate_registry",
+      "a2_to_a1_family_slice"
+    ],
+    "last_verified_utc": "2026-03-20T09:27:36Z",
+    "name": "a1-jargoned-graph-builder",
+    "outputs": [
+      "a1_jargoned_graph_v1",
+      "a1_jargoned_graph_audit"
+    ],
+    "provenance": "repo-grounded fifth nested-graph build unit",
+    "related_skills": [
+      "identity-registry-builder",
+      "a2-low-control-graph-builder",
+      "graph-capability-auditor",
+      "nested-graph-layer-auditor",
+      "a1-rosetta-stripper"
+    ],
+    "skill_id": "a1-jargoned-graph-builder",
+    "skill_type": "refinement",
+    "source_path": "system_v4/skill_specs/a1-jargoned-graph-builder/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "a1",
+      "jargoned",
+      "graph",
+      "build",
+      "fail-closed"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-jargoned-scope-aligner": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a1-jargoned-scope-aligner/SKILL.md",
+      "gemini": "system_v4/skill_specs/a1-jargoned-scope-aligner/SKILL.md",
+      "shell": "system_v4/skills/a1_jargoned_scope_aligner.py"
+    },
+    "applicable_graphs": [
+      "rosetta"
+    ],
+    "applicable_trust_zones": [
+      "A1_JARGONED"
+    ],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true
+    },
+    "description": "Align the queued A1_JARGONED family scope with live packet-backed Rosetta fuel, minting only defensible anchored terms and preserving blocked scope residue explicitly.",
+    "inputs": [
+      "rosetta_v2",
+      "a1_queue_candidate_registry",
+      "a2_to_a1_family_slice",
+      "system_graph_a2_refinery"
+    ],
+    "last_verified_utc": "2026-03-20T09:36:49Z",
+    "name": "a1-jargoned-scope-aligner",
+    "outputs": [
+      "rosetta_v2",
+      "a1_jargoned_handoff",
+      "a1_jargoned_scope_alignment_audit"
+    ],
+    "provenance": "repo-grounded A1 boundary correction lane",
+    "related_skills": [
+      "a1-jargoned-graph-builder",
+      "a1-rosetta-stripper",
+      "identity-registry-builder",
+      "nested-graph-layer-auditor"
+    ],
+    "skill_id": "a1-jargoned-scope-aligner",
+    "skill_type": "correction",
+    "source_path": "system_v4/skill_specs/a1-jargoned-scope-aligner/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "a1",
+      "jargoned",
+      "rosetta",
+      "scope",
+      "correction"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-rosetta-mapper": {
+    "adapters": {
+      "shell": "system_v4/skills/a1_rosetta_mapper.py"
+    },
+    "applicable_graphs": [
+      "rosetta"
+    ],
+    "applicable_trust_zones": [
+      "A1_JARGONED",
+      "PHASE_A1_ROSETTA"
+    ],
+    "capabilities": {
+      "is_generic_phase_handler": true,
+      "is_phase_runner": true
+    },
+    "description": "Map overlay labels to Rosetta aliases",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "a1-rosetta-mapper",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "a1-rosetta-mapper",
+    "skill_type": "refinement",
+    "source_path": "system_v4/skills/a1_rosetta_mapper.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-rosetta-stripper": {
+    "adapters": {
+      "shell": "system_v4/skills/a1_rosetta_stripper.py"
+    },
+    "applicable_graphs": [
+      "rosetta"
+    ],
+    "applicable_trust_zones": [
+      "A1_JARGONED",
+      "A1_STRIPPED",
+      "PHASE_A1_STRIPPER"
+    ],
+    "capabilities": {
+      "is_generic_phase_handler": true,
+      "is_phase_runner": true
+    },
+    "description": "Strip jargon overlays from concepts",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "a1-rosetta-stripper",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "a1-rosetta-stripper",
+    "skill_type": "refinement",
+    "source_path": "system_v4/skills/a1_rosetta_stripper.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-routing-state": {
+    "adapters": {
+      "shell": "system_v4/skills/a1_routing_state.py"
+    },
+    "applicable_graphs": [],
+    "applicable_trust_zones": [
+      "A1_JARGONED",
+      "A1_STRIPPED"
+    ],
+    "capabilities": {},
+    "description": "A1 treatment traces and pass tracking",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "a1-routing-state",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "a1-routing-state",
+    "skill_type": "maintenance",
+    "source_path": "system_v4/skills/a1_routing_state.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-stripped-exact-term-aligner": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a1-stripped-exact-term-aligner/SKILL.md",
+      "gemini": "system_v4/skill_specs/a1-stripped-exact-term-aligner/SKILL.md",
+      "shell": "system_v4/skills/a1_stripped_exact_term_aligner.py"
+    },
+    "applicable_graphs": [
+      "dependency"
+    ],
+    "applicable_trust_zones": [
+      "A1_STRIPPED"
+    ],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true,
+      "is_phase_runner": true
+    },
+    "description": "Resolve exact stripped-term admissibility for a bounded A1 alias term, write an explicit correction audit, and re-materialize the stripped owner graph from the corrected doctrine.",
+    "inputs": [
+      "a1_stripped_graph_v1",
+      "a1_cartridge_graph_v1",
+      "a1_live_family_hint_coverage",
+      "a1_entropy_diversity_alias_lift_pack",
+      "a1_cartridge_reviews"
+    ],
+    "last_verified_utc": "2026-03-20T09:57:33Z",
+    "name": "a1-stripped-exact-term-aligner",
+    "outputs": [
+      "a1_stripped_exact_term_alignment_audit",
+      "a1_stripped_graph_v1"
+    ],
+    "provenance": "repo-grounded A1 exact-term correction lane",
+    "related_skills": [
+      "a1-stripped-graph-builder",
+      "a1-cartridge-graph-builder",
+      "nested-graph-layer-auditor",
+      "graph-capability-auditor"
+    ],
+    "skill_id": "a1-stripped-exact-term-aligner",
+    "skill_type": "correction",
+    "source_path": "system_v4/skill_specs/a1-stripped-exact-term-aligner/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "a1",
+      "stripped",
+      "exact-term",
+      "correction",
+      "fail-closed"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-stripped-graph-builder": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a1-stripped-graph-builder/SKILL.md",
+      "gemini": "system_v4/skill_specs/a1-stripped-graph-builder/SKILL.md",
+      "shell": "system_v4/skills/a1_stripped_graph_builder.py"
+    },
+    "applicable_graphs": [
+      "dependency"
+    ],
+    "applicable_trust_zones": [
+      "A1_STRIPPED",
+      "PHASE_A1_STRIPPER"
+    ],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true,
+      "is_generic_phase_handler": true,
+      "is_owner_graph_builder": true,
+      "is_phase_runner": true
+    },
+    "description": "Materialize the bounded A1 stripped owner graph from the live A1 jargoned owner graph and current A1 admissibility doctrine, or fail closed if only witness-side terms are present.",
+    "inputs": [
+      "a1_jargoned_graph_v1",
+      "a2_to_a1_family_slice",
+      "a1_rosetta_batch",
+      "a1_entropy_diversity_structure_lift_pack",
+      "a1_live_family_hint_coverage"
+    ],
+    "last_verified_utc": "2026-03-20T09:41:18Z",
+    "name": "a1-stripped-graph-builder",
+    "outputs": [
+      "a1_stripped_graph_v1",
+      "a1_stripped_graph_audit"
+    ],
+    "provenance": "repo-grounded sixth nested-graph build unit",
+    "related_skills": [
+      "a1-jargoned-graph-builder",
+      "a1-jargoned-scope-aligner",
+      "a1-rosetta-stripper",
+      "nested-graph-layer-auditor"
+    ],
+    "skill_id": "a1-stripped-graph-builder",
+    "skill_type": "refinement",
+    "source_path": "system_v4/skill_specs/a1-stripped-graph-builder/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "a1",
+      "stripped",
+      "graph",
+      "build"
+    ],
+    "tool_dependencies": []
+  },
+  "a1-stripped-term-plan-aligner": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a1-stripped-term-plan-aligner/SKILL.md",
+      "gemini": "system_v4/skill_specs/a1-stripped-term-plan-aligner/SKILL.md",
+      "shell": "system_v4/skills/a1_stripped_term_plan_aligner.py"
+    },
+    "applicable_graphs": [
+      "dependency"
+    ],
+    "applicable_trust_zones": [],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true
+    },
+    "description": "Resolve whether a bounded passenger family term has any honest exact stripped landing under current repo-held doctrine, emit an explicit audit, and keep A1 fail-closed when no exact landing exists.",
+    "inputs": [
+      "a1_jargoned_graph_v1",
+      "a1_stripped_graph_v1",
+      "a1_cartridge_graph_v1",
+      "a1_family_doctrine_surfaces"
+    ],
+    "last_verified_utc": "2026-03-20T10:06:27Z",
+    "name": "a1-stripped-term-plan-aligner",
+    "outputs": [
+      "a1_stripped_term_plan_alignment_audit",
+      "a1_stripped_graph_v1",
+      "a1_cartridge_graph_v1"
+    ],
+    "provenance": "repo-grounded A1 family-level stripped landing correction lane",
+    "related_skills": [
+      "a1-stripped-graph-builder",
+      "a1-stripped-exact-term-aligner",
+      "a1-cartridge-graph-builder",
+      "nested-graph-layer-auditor",
+      "graph-capability-auditor"
+    ],
+    "skill_id": "a1-stripped-term-plan-aligner",
+    "skill_type": "correction",
+    "source_path": "system_v4/skill_specs/a1-stripped-term-plan-aligner/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "A1",
+      "stripped",
+      "term-plan",
+      "correction",
+      "fail-closed"
+    ],
+    "tool_dependencies": []
+  },
+  "a2-a1-memory-admission-guard": {
+    "adapters": {
+      "codex": "~/.codex/skills/a2-a1-memory-admission-guard/SKILL.md",
+      "gemini": "system_v4/skill_specs/a2-a1-memory-admission-guard/SKILL.md"
+    },
+    "applicable_graphs": [
+      "concept"
+    ],
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A1_JARGONED"
+    ],
+    "capabilities": {},
+    "description": "Guard what enters persistent memory",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T22:25:55Z",
+    "name": "a2-a1-memory-admission-guard",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "a2-a1-memory-admission-guard",
+    "skill_type": "verification",
+    "source_path": "system_v4/skill_specs/a2-a1-memory-admission-guard/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "codex"
+    ],
+    "tool_dependencies": []
+  },
+  "a2-brain-refresh": {
+    "adapters": {
+      "codex": "~/.codex/skills/a2-brain-refresh/SKILL.md",
+      "gemini": "system_v4/skill_specs/a2-brain-refresh/SKILL.md"
+    },
+    "applicable_graphs": [
+      "concept"
+    ],
+    "applicable_trust_zones": [
+      "A2_HIGH_INTAKE",
+      "A2_MID_REFINEMENT"
+    ],
+    "capabilities": {},
+    "description": "Refresh A2 brain state from graph",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T22:25:55Z",
+    "name": "a2-brain-refresh",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "a2-brain-refresh",
+    "skill_type": "maintenance",
+    "source_path": "system_v4/skill_specs/a2-brain-refresh/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "codex"
+    ],
+    "tool_dependencies": []
+  },
+  "a2-brain-surface-refresher": {
+    "skill_id": "a2-brain-surface-refresher",
+    "name": "a2-brain-surface-refresher",
+    "description": "Audit-mode A2 brain surface refresher",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_HIGH_INTAKE",
+      "A2_MID_REFINEMENT"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": true,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_high_intake_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "task_signal",
+      "changed_paths",
+      "changed_tools",
+      "new_run_evidence",
+      "pending_a1_work",
+      "report_path",
+      "markdown_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "brain_surface_refresh_report",
+      "brain_surface_refresh_packet"
+    ],
+    "related_skills": [
+      "a2-brain-refresh",
+      "a2-tracked-work-operator",
+      "graph-capability-auditor",
+      "runtime-context-snapshot"
+    ],
+    "source_path": "system_v4/skills/a2_brain_surface_refresher.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-brain-surface-refresher/SKILL.md",
+      "shell": "system_v4/skills/a2_brain_surface_refresher.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native truth-maintenance slice for standing A2 refresh audit over current repo truth",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "a2",
+      "brain-refresh",
+      "truth-maintenance",
+      "surface-refresh",
+      "owner-law",
+      "audit-mode",
+      "maintenance"
+    ],
+    "tool_dependencies": []
+  },
+  "a2-colder-witness-execution-consolidation": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-colder-witness-execution-consolidation/SKILL.md",
+      "gemini": "system_v4/skill_specs/a2-colder-witness-execution-consolidation/SKILL.md",
+      "shell": "system_v4/skills/a2_colder_witness_execution_consolidation.py"
+    },
+    "applicable_graphs": [
+      "concept"
+    ],
+    "applicable_trust_zones": [],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true
+    },
+    "description": "Run one bounded A2-only consolidation pass for the colder-witness executable branch around correlation_polarity and write an explicit audit that preserves the broad executable head/floor split without promoting direct structure heads.",
+    "inputs": [
+      "a2_entropy_bridge_helper_decomposition_control_audit",
+      "entropy_executable_entrypoint_surface",
+      "entropy_correlation_executable_pack"
+    ],
+    "last_verified_utc": "2026-03-20T10:37:59Z",
+    "name": "a2-colder-witness-execution-consolidation",
+    "outputs": [
+      "colder_witness_execution_consolidation_audit"
+    ],
+    "provenance": "repo-grounded A2 correction lane for colder-witness executable consolidation",
+    "related_skills": [
+      "a2-entropy-bridge-helper-decomposition-control",
+      "graph-capability-auditor",
+      "nested-graph-layer-auditor"
+    ],
+    "skill_id": "a2-colder-witness-execution-consolidation",
+    "skill_type": "correction",
+    "source_path": "system_v4/skill_specs/a2-colder-witness-execution-consolidation/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "A2",
+      "entropy",
+      "correlation-polarity",
+      "correction",
+      "fail-closed"
+    ],
+    "tool_dependencies": []
+  },
+  "a2-entropy-bridge-helper-decomposition-control": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-entropy-bridge-helper-decomposition-control/SKILL.md",
+      "gemini": "system_v4/skill_specs/a2-entropy-bridge-helper-decomposition-control/SKILL.md",
+      "shell": "system_v4/skills/a2_entropy_bridge_helper_decomposition_control.py"
+    },
+    "applicable_graphs": [
+      "concept"
+    ],
+    "applicable_trust_zones": [],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true
+    },
+    "description": "Run one bounded A2-only helper-decomposition control pass for correlation_diversity_functional and write an explicit audit that confirms compound bridge heads stay proposal-side while colder witnesses remain the executable floor.",
+    "inputs": [
+      "a2_stage1_operatorized_entropy_head_refinement_audit",
+      "helper_decomposition_control_surface",
+      "executable_entrypoint_surface"
+    ],
+    "last_verified_utc": "2026-03-20T10:32:32Z",
+    "name": "a2-entropy-bridge-helper-decomposition-control",
+    "outputs": [
+      "a2_entropy_bridge_helper_decomposition_control_audit"
+    ],
+    "provenance": "repo-grounded A2 correction lane for entropy bridge helper-decomposition control",
+    "related_skills": [
+      "a2-stage1-operatorized-entropy-head-refinement",
+      "graph-capability-auditor",
+      "nested-graph-layer-auditor"
+    ],
+    "skill_id": "a2-entropy-bridge-helper-decomposition-control",
+    "skill_type": "correction",
+    "source_path": "system_v4/skill_specs/a2-entropy-bridge-helper-decomposition-control/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "A2",
+      "entropy",
+      "helper-decomposition",
+      "correction",
+      "fail-closed"
+    ],
+    "tool_dependencies": []
+  },
+  "a2-evermem-backend-reachability-audit-operator": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-evermem-backend-reachability-audit-operator/SKILL.md",
+      "dispatch_binding": "python_module",
+      "shell": "system_v4/skills/a2_evermem_backend_reachability_audit_operator.py"
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_low_control_graph_v1"
+    ],
+    "applicable_trust_zones": [
+      "A2_LOW_CONTROL",
+      "A2_MID_REFINEMENT"
+    ],
+    "capabilities": {
+      "can_only_propose": true,
+      "can_write_repo": true,
+      "is_phase_runner": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "description": "Bounded EverMem backend reachability audit over local bring-up prerequisites, Docker daemon, and localhost probes",
+    "inputs": [
+      "repo_root",
+      "evermemos_repo_path",
+      "health_url",
+      "retrieval_report_path",
+      "sync_report_path",
+      "timeout_seconds",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "name": "a2-evermem-backend-reachability-audit-operator",
+    "outputs": [
+      "evermem_backend_reachability_audit_report",
+      "evermem_backend_reachability_audit_packet"
+    ],
+    "provenance": "Ratchet-native bounded audit over the local EverMemOS backend bring-up path and localhost reachability",
+    "related_skills": [
+      "witness-memory-retriever",
+      "witness-evermem-sync",
+      "a2-brain-surface-refresher",
+      "outside-control-shell-operator"
+    ],
+    "skill_id": "a2-evermem-backend-reachability-audit-operator",
+    "skill_type": "maintenance",
+    "source_path": "system_v4/skills/a2_evermem_backend_reachability_audit_operator.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "evermem",
+      "backend-reachability",
+      "outside-memory",
+      "audit-mode",
+      "maintenance",
+      "localhost"
+    ]
+  },
+  "a2-graph-refinery": {
+    "adapters": {
+      "shell": "system_v4/skills/v4_graph_builder.py"
+    },
+    "applicable_graphs": [
+      "provenance",
+      "concept",
+      "contradiction"
+    ],
+    "applicable_trust_zones": [
+      "A2_HIGH_INTAKE",
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true
+    },
+    "description": "A2 graph refinery \u2014 intake, promotion, NX queries",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "a2-graph-refinery",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "a2-graph-refinery",
+    "skill_type": "orchestration",
+    "source_path": "system_v4/skills/a2_graph_refinery.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "a2-high-intake-graph-builder": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-high-intake-graph-builder/SKILL.md",
+      "gemini": "system_v4/skill_specs/a2-high-intake-graph-builder/SKILL.md",
+      "shell": "system_v4/skills/a2_high_intake_graph_builder.py"
+    },
+    "applicable_graphs": [
+      "concept"
+    ],
+    "applicable_trust_zones": [
+      "A2_HIGH_INTAKE",
+      "PHASE_A2_3_INTAKE"
+    ],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true,
+      "is_generic_phase_handler": true,
+      "is_owner_graph_builder": true,
+      "is_phase_runner": true
+    },
+    "description": "Materialize the bounded A2 high-intake owner graph from the live refinery graph after the identity registry scaffold exists.",
+    "inputs": [
+      "system_graph_a2_refinery",
+      "identity_registry_v1"
+    ],
+    "last_verified_utc": "2026-03-20T09:09:51Z",
+    "name": "a2-high-intake-graph-builder",
+    "outputs": [
+      "a2_high_intake_graph_v1",
+      "a2_high_intake_graph_audit"
+    ],
+    "provenance": "repo-grounded second nested-graph build unit",
+    "related_skills": [
+      "identity-registry-builder",
+      "graph-capability-auditor",
+      "nested-graph-layer-auditor"
+    ],
+    "skill_id": "a2-high-intake-graph-builder",
+    "skill_type": "refinement",
+    "source_path": "system_v4/skill_specs/a2-high-intake-graph-builder/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "a2",
+      "intake",
+      "graph",
+      "build"
+    ],
+    "tool_dependencies": []
+  },
+  "a2-low-control-graph-builder": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-low-control-graph-builder/SKILL.md",
+      "gemini": "system_v4/skill_specs/a2-low-control-graph-builder/SKILL.md",
+      "shell": "system_v4/skills/a2_low_control_graph_builder.py"
+    },
+    "applicable_graphs": [
+      "dependency"
+    ],
+    "applicable_trust_zones": [
+      "A2_LOW_CONTROL",
+      "PHASE_A2_1_PROMOTION"
+    ],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true,
+      "is_generic_phase_handler": true,
+      "is_owner_graph_builder": true,
+      "is_phase_runner": true
+    },
+    "description": "Materialize the bounded A2 low-control owner graph from the live refinery graph after the upstream A2 owner graphs exist.",
+    "inputs": [
+      "system_graph_a2_refinery",
+      "identity_registry_v1",
+      "a2_high_intake_graph_v1",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "last_verified_utc": "2026-03-20T09:16:31Z",
+    "name": "a2-low-control-graph-builder",
+    "outputs": [
+      "a2_low_control_graph_v1",
+      "a2_low_control_graph_audit"
+    ],
+    "provenance": "repo-grounded fourth nested-graph build unit",
+    "related_skills": [
+      "identity-registry-builder",
+      "a2-high-intake-graph-builder",
+      "a2-mid-refinement-graph-builder",
+      "graph-capability-auditor",
+      "nested-graph-layer-auditor"
+    ],
+    "skill_id": "a2-low-control-graph-builder",
+    "skill_type": "refinement",
+    "source_path": "system_v4/skill_specs/a2-low-control-graph-builder/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "a2",
+      "low-control",
+      "graph",
+      "build"
+    ],
+    "tool_dependencies": []
+  },
+  "a2-mid-refinement-graph-builder": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-mid-refinement-graph-builder/SKILL.md",
+      "gemini": "system_v4/skill_specs/a2-mid-refinement-graph-builder/SKILL.md",
+      "shell": "system_v4/skills/a2_mid_refinement_graph_builder.py"
+    },
+    "applicable_graphs": [
+      "concept"
+    ],
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "PHASE_A2_2_CONTRADICTION"
+    ],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true,
+      "is_generic_phase_handler": true,
+      "is_owner_graph_builder": true,
+      "is_phase_runner": true
+    },
+    "description": "Materialize the bounded A2 mid-refinement owner graph from the live refinery graph after the identity and A2 high-intake owner graphs exist.",
+    "inputs": [
+      "system_graph_a2_refinery",
+      "identity_registry_v1",
+      "a2_high_intake_graph_v1"
+    ],
+    "last_verified_utc": "2026-03-20T09:16:31Z",
+    "name": "a2-mid-refinement-graph-builder",
+    "outputs": [
+      "a2_mid_refinement_graph_v1",
+      "a2_mid_refinement_graph_audit"
+    ],
+    "provenance": "repo-grounded third nested-graph build unit",
+    "related_skills": [
+      "identity-registry-builder",
+      "a2-high-intake-graph-builder",
+      "graph-capability-auditor",
+      "nested-graph-layer-auditor"
+    ],
+    "skill_id": "a2-mid-refinement-graph-builder",
+    "skill_type": "refinement",
+    "source_path": "system_v4/skill_specs/a2-mid-refinement-graph-builder/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "a2",
+      "mid-refinement",
+      "graph",
+      "build"
+    ],
+    "tool_dependencies": []
+  },
+  "a2-refinement-for-a1-stripped-landing": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-refinement-for-a1-stripped-landing/SKILL.md",
+      "gemini": "system_v4/skill_specs/a2-refinement-for-a1-stripped-landing/SKILL.md",
+      "shell": "system_v4/skills/a2_refinement_for_a1_stripped_landing.py"
+    },
+    "applicable_graphs": [
+      "concept"
+    ],
+    "applicable_trust_zones": [],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true
+    },
+    "description": "Run one bounded A2-only correction pass for a stalled direct-structure target whose A1 stripped landing failed closed, and write an explicit audit that either names a current source-anchored landing or preserves the blocker.",
+    "inputs": [
+      "a1_stripped_graph_v1",
+      "a1_stripped_term_plan_alignment_audit",
+      "a2_stage1_entropy_head_doctrine"
+    ],
+    "last_verified_utc": "2026-03-20T10:09:00Z",
+    "name": "a2-refinement-for-a1-stripped-landing",
+    "outputs": [
+      "a2_refinement_for_a1_stripped_landing_audit"
+    ],
+    "provenance": "repo-grounded A2 correction lane for stalled stripped landing",
+    "related_skills": [
+      "a2-mid-refinement-graph-builder",
+      "a1-stripped-term-plan-aligner",
+      "graph-capability-auditor",
+      "nested-graph-layer-auditor"
+    ],
+    "skill_id": "a2-refinement-for-a1-stripped-landing",
+    "skill_type": "correction",
+    "source_path": "system_v4/skill_specs/a2-refinement-for-a1-stripped-landing/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "A2",
+      "refinement",
+      "landing",
+      "correction",
+      "fail-closed"
+    ],
+    "tool_dependencies": []
+  },
+  "a2-stage1-operatorized-entropy-head-refinement": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-stage1-operatorized-entropy-head-refinement/SKILL.md",
+      "gemini": "system_v4/skill_specs/a2-stage1-operatorized-entropy-head-refinement/SKILL.md",
+      "shell": "system_v4/skills/a2_stage1_operatorized_entropy_head_refinement.py"
+    },
+    "applicable_graphs": [
+      "concept"
+    ],
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT"
+    ],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true
+    },
+    "description": "Run one bounded A2-only Stage-1 entropy-head refinement pass for correlation_diversity_functional and write an explicit audit that either preserves the blocker or names a thinner admissible source-anchored read without promoting to A1.",
+    "inputs": [
+      "a2_refinement_for_a1_stripped_landing_audit",
+      "stage1_entropy_head_doctrine",
+      "helper_decomposition_control_surface"
+    ],
+    "last_verified_utc": "2026-03-20T10:24:57Z",
+    "name": "a2-stage1-operatorized-entropy-head-refinement",
+    "outputs": [
+      "a2_stage1_operatorized_entropy_head_refinement_audit"
+    ],
+    "provenance": "repo-grounded Stage-1 A2 entropy-head correction lane",
+    "related_skills": [
+      "a2-refinement-for-a1-stripped-landing",
+      "graph-capability-auditor",
+      "nested-graph-layer-auditor"
+    ],
+    "skill_id": "a2-stage1-operatorized-entropy-head-refinement",
+    "skill_type": "correction",
+    "source_path": "system_v4/skill_specs/a2-stage1-operatorized-entropy-head-refinement/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "A2",
+      "stage1",
+      "entropy",
+      "refinement",
+      "correction",
+      "fail-closed"
+    ],
+    "tool_dependencies": []
+  },
+  "a2-substrate-base-queue-pivot-audit": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-substrate-base-queue-pivot-audit/SKILL.md",
+      "gemini": "system_v4/skill_specs/a2-substrate-base-queue-pivot-audit/SKILL.md",
+      "shell": "system_v4/skills/a2_substrate_base_queue_pivot_audit.py"
+    },
+    "applicable_graphs": [
+      "concept",
+      "dependency"
+    ],
+    "applicable_trust_zones": [
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true
+    },
+    "description": "Audit whether the dormant substrate-base family slice should replace the current entropy-selected A1 queue candidate, and update the live current A1 queue surfaces only if the existing queue selector admits it.",
+    "inputs": [
+      "current_a1_queue_packet",
+      "current_a1_candidate_registry",
+      "substrate_base_family_slice",
+      "substrate_family_campaign",
+      "queue_status_surface_spec"
+    ],
+    "last_verified_utc": "2026-03-20T11:18:07Z",
+    "name": "a2-substrate-base-queue-pivot-audit",
+    "outputs": [
+      "substrate_base_queue_pivot_audit",
+      "current_a1_candidate_registry",
+      "current_a1_queue_packet",
+      "current_a1_queue_note"
+    ],
+    "provenance": "repo-grounded A2 control lane for substrate-base queue pivot admission",
+    "related_skills": [
+      "graph-capability-auditor",
+      "nested-graph-layer-auditor",
+      "a1-jargoned-graph-builder"
+    ],
+    "skill_id": "a2-substrate-base-queue-pivot-audit",
+    "skill_type": "correction",
+    "source_path": "system_v4/skill_specs/a2-substrate-base-queue-pivot-audit/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "A2",
+      "queue",
+      "substrate",
+      "pivot",
+      "correction",
+      "fail-closed"
+    ],
+    "tool_dependencies": []
+  },
+  "a2-thermodynamic-purge": {
+    "adapters": {
+      "shell": "system_v4/skills/a2_thermodynamic_purge.py"
+    },
+    "applicable_graphs": [
+      "concept"
+    ],
+    "applicable_trust_zones": [
+      "A2_HIGH_INTAKE",
+      "A2_MID_REFINEMENT"
+    ],
+    "capabilities": {},
+    "description": "Entropy-based concept pruning",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "a2-thermodynamic-purge",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "a2-thermodynamic-purge",
+    "skill_type": "maintenance",
+    "source_path": "system_v4/skills/a2_thermodynamic_purge.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "automation-controller": {
+    "adapters": {
+      "codex": "~/.codex/skills/codex-automation-controller/SKILL.md",
+      "gemini": "system_v4/skill_specs/automation-controller/SKILL.md"
+    },
+    "applicable_graphs": [],
+    "applicable_trust_zones": [],
+    "capabilities": {},
+    "description": "Codex automation orchestration",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T22:25:55Z",
+    "name": "automation-controller",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "automation-controller",
+    "skill_type": "orchestration",
+    "source_path": "system_v4/skill_specs/automation-controller/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "codex"
+    ],
+    "tool_dependencies": []
+  },
+  "b-adjudicator": {
+    "adapters": {
+      "shell": "system_v4/skills/b_adjudicator.py"
+    },
+    "applicable_graphs": [
+      "runtime"
+    ],
+    "applicable_trust_zones": [
+      "B_ADJUDICATED"
+    ],
+    "capabilities": {},
+    "description": "Bridge: runs B adjudication on graph nodes",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "b-adjudicator",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "b-adjudicator",
+    "skill_type": "bridge",
+    "source_path": "system_v4/skills/b_adjudicator.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "b-kernel": {
+    "adapters": {
+      "shell": "system_v4/skills/b_kernel.py"
+    },
+    "applicable_graphs": [
+      "runtime"
+    ],
+    "applicable_trust_zones": [
+      "B_ADJUDICATED"
+    ],
+    "capabilities": {
+      "is_phase_runner": true
+    },
+    "description": "B-kernel adjudication (accept/park/reject)",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "b-kernel",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "b-kernel",
+    "skill_type": "verification",
+    "source_path": "system_v4/skills/b_kernel.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "brain-delta-consolidation": {
+    "adapters": {
+      "codex": "~/.codex/skills/brain-delta-consolidation/SKILL.md",
+      "gemini": "system_v4/skill_specs/brain-delta-consolidation/SKILL.md"
+    },
+    "applicable_graphs": [],
+    "applicable_trust_zones": [],
+    "capabilities": {},
+    "description": "Consolidate brain state deltas",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T22:25:55Z",
+    "name": "brain-delta-consolidation",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "brain-delta-consolidation",
+    "skill_type": "maintenance",
+    "source_path": "system_v4/skill_specs/brain-delta-consolidation/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "codex"
+    ],
+    "tool_dependencies": []
+  },
+  "browser-automation": {
+    "adapters": {
+      "codex": "~/.codex/skills/playwright/SKILL.md",
+      "gemini": "system_v4/skill_specs/browser-automation/SKILL.md"
+    },
+    "applicable_graphs": [],
+    "applicable_trust_zones": [],
+    "capabilities": {},
+    "description": "Browser automation capabilities",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T22:25:55Z",
+    "name": "browser-automation",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "browser-automation",
+    "skill_type": "bridge",
+    "source_path": "system_v4/skill_specs/browser-automation/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "codex"
+    ],
+    "tool_dependencies": []
+  },
+  "closeout-result-ingest": {
+    "adapters": {
+      "codex": "~/.codex/skills/closeout-result-ingest/SKILL.md",
+      "gemini": "system_v4/skill_specs/closeout-result-ingest/SKILL.md"
+    },
+    "applicable_graphs": [],
+    "applicable_trust_zones": [],
+    "capabilities": {},
+    "description": "Ingest results from completed threads",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T22:25:55Z",
+    "name": "closeout-result-ingest",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "closeout-result-ingest",
+    "skill_type": "bridge",
+    "source_path": "system_v4/skill_specs/closeout-result-ingest/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "codex"
+    ],
+    "tool_dependencies": []
+  },
+  "external-research-refinery-launcher": {
+    "adapters": {
+      "codex": "~/.codex/skills/external-research-refinery-launcher/SKILL.md",
+      "gemini": "system_v4/skill_specs/external-research-refinery-launcher/SKILL.md"
+    },
+    "applicable_graphs": [],
+    "applicable_trust_zones": [],
+    "capabilities": {},
+    "description": "Launch external research tasks",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T22:25:55Z",
+    "name": "external-research-refinery-launcher",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "external-research-refinery-launcher",
+    "skill_type": "orchestration",
+    "source_path": "system_v4/skill_specs/external-research-refinery-launcher/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "codex"
+    ],
+    "tool_dependencies": []
+  },
+  "external-research-return-ingest": {
+    "adapters": {
+      "codex": "~/.codex/skills/external-research-return-ingest/SKILL.md",
+      "gemini": "system_v4/skill_specs/external-research-return-ingest/SKILL.md"
+    },
+    "applicable_graphs": [
+      "provenance"
+    ],
+    "applicable_trust_zones": [
+      "A2_HIGH_INTAKE"
+    ],
+    "capabilities": {},
+    "description": "Ingest external research results",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T22:25:55Z",
+    "name": "external-research-return-ingest",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "external-research-return-ingest",
+    "skill_type": "bridge",
+    "source_path": "system_v4/skill_specs/external-research-return-ingest/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "codex"
+    ],
+    "tool_dependencies": []
+  },
+  "generate-doc-queue": {
+    "adapters": {
+      "shell": "system_v4/skills/generate_doc_queue.py"
+    },
+    "applicable_graphs": [
+      "provenance"
+    ],
+    "applicable_trust_zones": [
+      "INDEX"
+    ],
+    "capabilities": {},
+    "description": "Manage document processing queue",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "generate-doc-queue",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "generate-doc-queue",
+    "skill_type": "maintenance",
+    "source_path": "system_v4/skills/generate_doc_queue.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "graph-capability-auditor": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/graph-capability-auditor/SKILL.md",
+      "gemini": "system_v4/skill_specs/graph-capability-auditor/SKILL.md",
+      "shell": "system_v4/skills/graph_capability_auditor.py"
+    },
+    "applicable_graphs": [
+      "concept",
+      "dependency",
+      "rosetta",
+      "runtime",
+      "attractor"
+    ],
+    "applicable_trust_zones": [
+      "INDEX",
+      "A2_HIGH_INTAKE",
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL",
+      "A1_JARGONED",
+      "A1_STRIPPED",
+      "A1_CARTRIDGE"
+    ],
+    "capabilities": {
+      "can_only_propose": true,
+      "can_write_repo": true
+    },
+    "description": "Audit what the current graph substrate can actually express and what it still cannot.",
+    "inputs": [
+      "system_graph_a2_refinery",
+      "nested_graph_v1",
+      "promoted_subgraph",
+      "a1_graph_projection"
+    ],
+    "last_verified_utc": "2026-03-20T08:54:05Z",
+    "name": "graph-capability-auditor",
+    "outputs": [
+      "graph_capability_report",
+      "graph_capability_note"
+    ],
+    "provenance": "repo-grounded capability audit for the nested graph stack",
+    "related_skills": [
+      "ratchet-a2-a1",
+      "nested-graph-layer-auditor",
+      "ratchet-overseer"
+    ],
+    "skill_id": "graph-capability-auditor",
+    "skill_type": "audit",
+    "source_path": "system_v4/skill_specs/graph-capability-auditor/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "graph",
+      "audit",
+      "capability",
+      "nested-graph"
+    ],
+    "tool_dependencies": []
+  },
+  "graveyard-lawyer": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/graveyard-lawyer/SKILL.md",
+      "gemini": "system_v4/skill_specs/graveyard-lawyer/SKILL.md",
+      "shell": "system_v4/skills/graveyard_lawyer.py"
+    },
+    "applicable_graphs": [
+      "graveyard",
+      "runtime",
+      "dependency"
+    ],
+    "applicable_trust_zones": [
+      "GRAVEYARD",
+      "B_ADJUDICATED",
+      "SIM_EVIDENCED"
+    ],
+    "capabilities": {
+      "can_only_propose": true,
+      "can_spawn_subagents": true
+    },
+    "description": "Re-argue rejected structures. Find bad kills, premature parking, conflation kills, or new evidence that justifies reopening.",
+    "inputs": [
+      "graveyard_records",
+      "routing_state",
+      "graph_nodes"
+    ],
+    "last_verified_utc": "2026-03-20T06:39:01Z",
+    "name": "graveyard-lawyer",
+    "outputs": [
+      "reopen_candidates",
+      "reopen_arguments",
+      "rescue_proposals"
+    ],
+    "provenance": "graveyard_router.py get_rescue_candidates/attempt_resurrection",
+    "related_skills": [
+      "ratchet-verify",
+      "ratchet-overseer",
+      "b-kernel",
+      "sim-engine"
+    ],
+    "skill_id": "graveyard-lawyer",
+    "skill_type": "agent",
+    "source_path": "system_v4/skill_specs/graveyard-lawyer/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "graveyard",
+      "agent",
+      "rescue",
+      "reopen"
+    ],
+    "tool_dependencies": []
+  },
+  "graveyard-router": {
+    "adapters": {
+      "shell": "system_v4/skills/graveyard_router.py"
+    },
+    "applicable_graphs": [
+      "graveyard"
+    ],
+    "applicable_trust_zones": [
+      "GRAVEYARD"
+    ],
+    "capabilities": {},
+    "description": "Route failures to graveyard + attractor memory",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "graveyard-router",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "graveyard-router",
+    "skill_type": "bridge",
+    "source_path": "system_v4/skills/graveyard_router.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "identity-registry-builder": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/identity-registry-builder/SKILL.md",
+      "gemini": "system_v4/skill_specs/identity-registry-builder/SKILL.md",
+      "shell": "system_v4/skills/identity_registry_builder.py"
+    },
+    "applicable_graphs": [
+      "concept",
+      "rosetta",
+      "dependency"
+    ],
+    "applicable_trust_zones": [
+      "INDEX",
+      "A2_HIGH_INTAKE",
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL",
+      "A1_JARGONED",
+      "A1_STRIPPED",
+      "A1_CARTRIDGE"
+    ],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true,
+      "is_owner_graph_builder": true
+    },
+    "description": "Build the first additive identity-registry scaffold from the live refinery graph without pretending the full nested stack already exists.",
+    "inputs": [
+      "system_graph_a2_refinery",
+      "promoted_subgraph",
+      "a1_graph_projection",
+      "rosetta_v2"
+    ],
+    "last_verified_utc": "2026-03-20T09:05:41Z",
+    "name": "identity-registry-builder",
+    "outputs": [
+      "identity_registry_v1",
+      "identity_bridge_contracts_v1",
+      "identity_registry_build_audit"
+    ],
+    "provenance": "repo-grounded first nested-graph build unit",
+    "related_skills": [
+      "graph-capability-auditor",
+      "nested-graph-layer-auditor",
+      "ratchet-a2-a1"
+    ],
+    "skill_id": "identity-registry-builder",
+    "skill_type": "refinement",
+    "source_path": "system_v4/skill_specs/identity-registry-builder/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "identity",
+      "registry",
+      "nested-graph",
+      "build"
+    ],
+    "tool_dependencies": []
+  },
+  "identity-registry-overlap-quarantine": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/identity-registry-overlap-quarantine/SKILL.md",
+      "gemini": "system_v4/skill_specs/identity-registry-overlap-quarantine/SKILL.md",
+      "shell": "system_v4/skills/identity_registry_overlap_quarantine.py"
+    },
+    "applicable_graphs": [
+      "concept",
+      "rosetta",
+      "dependency"
+    ],
+    "applicable_trust_zones": [
+      "INDEX",
+      "A2_HIGH_INTAKE",
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL",
+      "A1_JARGONED",
+      "A1_STRIPPED",
+      "A1_CARTRIDGE"
+    ],
+    "capabilities": {
+      "can_only_propose": false,
+      "can_write_repo": true
+    },
+    "description": "Quarantine heuristic identity-overlap edges out of the live identity owner surface into a separate non-canonical suggestion surface, keeping the owner graph limited to canonical identity facts.",
+    "inputs": [
+      "identity_registry_v1"
+    ],
+    "last_verified_utc": "2026-03-20T20:49:15Z",
+    "name": "identity-registry-overlap-quarantine",
+    "outputs": [
+      "identity_registry_v1",
+      "identity_registry_overlap_suggestions_v1",
+      "identity_registry_overlap_quarantine_audit"
+    ],
+    "provenance": "repo-grounded correction lane for quarantining lexical identity overlap out of the owner surface",
+    "related_skills": [
+      "identity-registry-builder",
+      "graph-capability-auditor",
+      "nested-graph-layer-auditor"
+    ],
+    "skill_id": "identity-registry-overlap-quarantine",
+    "skill_type": "correction",
+    "source_path": "system_v4/skill_specs/identity-registry-overlap-quarantine/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "identity",
+      "registry",
+      "quarantine",
+      "overlap",
+      "correction"
+    ],
+    "tool_dependencies": []
+  },
+  "memory-admission-guard": {
+    "adapters": {
+      "shell": "system_v4/skills/memory_admission_guard.py"
+    },
+    "applicable_graphs": [],
+    "applicable_trust_zones": [],
+    "capabilities": {},
+    "description": "Guard what enters persistent memory",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "memory-admission-guard",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "memory-admission-guard",
+    "skill_type": "verification",
+    "source_path": "system_v4/skills/memory_admission_guard.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "nested-graph-layer-auditor": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/nested-graph-layer-auditor/SKILL.md",
+      "gemini": "system_v4/skill_specs/nested-graph-layer-auditor/SKILL.md",
+      "shell": "system_v4/skills/nested_graph_layer_auditor.py"
+    },
+    "applicable_graphs": [
+      "concept",
+      "dependency",
+      "rosetta"
+    ],
+    "applicable_trust_zones": [
+      "INDEX",
+      "A2_HIGH_INTAKE",
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL",
+      "A1_JARGONED",
+      "A1_STRIPPED",
+      "A1_CARTRIDGE"
+    ],
+    "capabilities": {
+      "can_only_propose": true,
+      "can_write_repo": true
+    },
+    "description": "Audit each queued nested-graph layer against build program, boot surfaces, and owner surfaces.",
+    "inputs": [
+      "nested_graph_build_program",
+      "build_queue_status_packet"
+    ],
+    "last_verified_utc": "2026-03-20T08:54:05Z",
+    "name": "nested-graph-layer-auditor",
+    "outputs": [
+      "nested_graph_layer_audit_report",
+      "nested_graph_layer_audit_note"
+    ],
+    "provenance": "controller-grade audit for the 3+3 nested graph build queue",
+    "related_skills": [
+      "graph-capability-auditor",
+      "ratchet-a2-a1",
+      "thread-run-monitor"
+    ],
+    "skill_id": "nested-graph-layer-auditor",
+    "skill_type": "audit",
+    "source_path": "system_v4/skill_specs/nested-graph-layer-auditor/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "graph",
+      "audit",
+      "layer",
+      "queue"
+    ],
+    "tool_dependencies": []
+  },
+  "pro-return-instant-audit": {
+    "adapters": {
+      "codex": "~/.codex/skills/pro-return-instant-audit/SKILL.md",
+      "gemini": "system_v4/skill_specs/pro-return-instant-audit/SKILL.md"
+    },
+    "applicable_graphs": [],
+    "applicable_trust_zones": [],
+    "capabilities": {},
+    "description": "Quick audit of returned results",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T22:25:55Z",
+    "name": "pro-return-instant-audit",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "pro-return-instant-audit",
+    "skill_type": "audit",
+    "source_path": "system_v4/skill_specs/pro-return-instant-audit/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "codex"
+    ],
+    "tool_dependencies": []
+  },
+  "ratchet-a2-a1": {
+    "adapters": {
+      "codex": "~/.codex/skills/ratchet-a2-a1/SKILL.md",
+      "gemini": "system_v4/skill_specs/ratchet-a2-a1/SKILL.md"
+    },
+    "applicable_graphs": [
+      "provenance",
+      "concept",
+      "rosetta",
+      "dependency"
+    ],
+    "applicable_trust_zones": [
+      "A2_HIGH_INTAKE",
+      "A2_MID_REFINEMENT",
+      "A1_JARGONED",
+      "A1_STRIPPED"
+    ],
+    "capabilities": {},
+    "description": "A2\u2192A1 distillation pipeline",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T22:25:55Z",
+    "name": "ratchet-a2-a1",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "ratchet-a2-a1",
+    "skill_type": "orchestration",
+    "source_path": "system_v4/skill_specs/ratchet-a2-a1/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "codex"
+    ],
+    "tool_dependencies": []
+  },
+  "ratchet-integrator": {
+    "adapters": {
+      "shell": "system_v4/skills/ratchet_integrator.py"
+    },
+    "applicable_graphs": [
+      "runtime"
+    ],
+    "applicable_trust_zones": [
+      "A2_LOW_CONTROL",
+      "B_ADJUDICATED"
+    ],
+    "capabilities": {},
+    "description": "Write ratchet outcomes into graph",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "ratchet-integrator",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "ratchet-integrator",
+    "skill_type": "bridge",
+    "source_path": "system_v4/skills/ratchet_integrator.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "ratchet-overseer": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/ratchet-overseer/SKILL.md",
+      "gemini": "system_v4/skill_specs/ratchet-overseer/SKILL.md",
+      "shell": "system_v4/skills/ratchet_overseer.py"
+    },
+    "applicable_graphs": [
+      "runtime",
+      "graveyard",
+      "dependency"
+    ],
+    "applicable_trust_zones": [
+      "B_ADJUDICATED",
+      "SIM_EVIDENCED",
+      "GRAVEYARD"
+    ],
+    "capabilities": {
+      "can_only_propose": true
+    },
+    "description": "Monitor ratchet convergence \u2014 watch acceptance rates, SIM kill rates, attractor density, and alert on stall/drift.",
+    "inputs": [
+      "batch_summaries",
+      "invocation_log",
+      "survivor_ledger",
+      "graveyard",
+      "sim_evidence"
+    ],
+    "last_verified_utc": "2026-03-20T06:39:01Z",
+    "name": "ratchet-overseer",
+    "outputs": [
+      "convergence_report",
+      "drift_alerts",
+      "plateau_diagnosis"
+    ],
+    "provenance": "run_real_ratchet.py batch summary output",
+    "related_skills": [
+      "ratchet-verify",
+      "graveyard-lawyer",
+      "run-real-ratchet"
+    ],
+    "skill_id": "ratchet-overseer",
+    "skill_type": "supervisor",
+    "source_path": "system_v4/skill_specs/ratchet-overseer/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "convergence",
+      "supervisor",
+      "monitor",
+      "basin"
+    ],
+    "tool_dependencies": []
+  },
+  "ratchet-prompt-stack": {
+    "adapters": {
+      "shell": "system_v4/skills/ratchet_prompt_stack.py"
+    },
+    "applicable_graphs": [],
+    "applicable_trust_zones": [],
+    "capabilities": {},
+    "description": "Prompt engineering for ratchet passes",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "ratchet-prompt-stack",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "ratchet-prompt-stack",
+    "skill_type": "bridge",
+    "source_path": "system_v4/skills/ratchet_prompt_stack.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "ratchet-reduce": {
+    "adapters": {
+      "codex": "system_v4/skills/ratchet-reduce/SKILL.md",
+      "gemini": "system_v4/skills/ratchet-reduce/SKILL.md"
+    },
+    "applicable_graphs": [
+      "provenance",
+      "concept"
+    ],
+    "applicable_trust_zones": [
+      "A2_HIGH_INTAKE",
+      "A2_MID_REFINEMENT"
+    ],
+    "capabilities": {},
+    "description": "Extract structured claims from source documents into graph concepts",
+    "inputs": [
+      "source_document_path"
+    ],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "ratchet-reduce",
+    "outputs": [
+      "EXTRACTED_CONCEPT nodes",
+      "SOURCE_MAP edges"
+    ],
+    "provenance": "",
+    "related_skills": [
+      "ratchet-reflect",
+      "ratchet-reweave",
+      "ratchet-verify"
+    ],
+    "skill_id": "ratchet-reduce",
+    "skill_type": "extraction",
+    "source_path": "system_v4/skills/ratchet-reduce/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "6R",
+      "graph-extraction"
+    ],
+    "tool_dependencies": []
+  },
+  "ratchet-reflect": {
+    "adapters": {
+      "codex": "system_v4/skills/ratchet-reflect/SKILL.md",
+      "gemini": "system_v4/skills/ratchet-reflect/SKILL.md"
+    },
+    "applicable_graphs": [
+      "concept",
+      "contradiction"
+    ],
+    "applicable_trust_zones": [
+      "A2_HIGH_INTAKE",
+      "A2_MID_REFINEMENT"
+    ],
+    "capabilities": {},
+    "description": "Find connections between concepts and weave the graph",
+    "inputs": [
+      "concept_id or recent concepts"
+    ],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "ratchet-reflect",
+    "outputs": [
+      "RELATED_TO edges",
+      "OVERLAPS edges",
+      "CONTRADICTS edges"
+    ],
+    "provenance": "",
+    "related_skills": [
+      "ratchet-reduce",
+      "ratchet-reweave",
+      "ratchet-verify"
+    ],
+    "skill_id": "ratchet-reflect",
+    "skill_type": "enrichment",
+    "source_path": "system_v4/skills/ratchet-reflect/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "6R",
+      "graph-enrichment"
+    ],
+    "tool_dependencies": []
+  },
+  "ratchet-reweave": {
+    "adapters": {
+      "codex": "system_v4/skills/ratchet-reweave/SKILL.md",
+      "gemini": "system_v4/skills/ratchet-reweave/SKILL.md"
+    },
+    "applicable_graphs": [
+      "concept",
+      "contradiction"
+    ],
+    "applicable_trust_zones": [
+      "A2_HIGH_INTAKE",
+      "A2_MID_REFINEMENT"
+    ],
+    "capabilities": {},
+    "description": "Update existing graph concepts with new knowledge (backward pass)",
+    "inputs": [
+      "concept_id or sparse/stale concepts"
+    ],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "ratchet-reweave",
+    "outputs": [
+      "Updated concept nodes",
+      "New edges"
+    ],
+    "provenance": "",
+    "related_skills": [
+      "ratchet-reduce",
+      "ratchet-reflect",
+      "ratchet-verify"
+    ],
+    "skill_id": "ratchet-reweave",
+    "skill_type": "refinement",
+    "source_path": "system_v4/skills/ratchet-reweave/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "6R",
+      "graph-refinement"
+    ],
+    "tool_dependencies": []
+  },
+  "ratchet-verify": {
+    "adapters": {
+      "codex": "system_v4/skills/ratchet-verify/SKILL.md",
+      "gemini": "system_v4/skills/ratchet-verify/SKILL.md"
+    },
+    "applicable_graphs": [
+      "concept",
+      "contradiction",
+      "dependency"
+    ],
+    "applicable_trust_zones": [
+      "A2_HIGH_INTAKE",
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {},
+    "description": "Quality gate verification for graph concepts",
+    "inputs": [
+      "concept_id or batch"
+    ],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "ratchet-verify",
+    "outputs": [
+      "Verification report",
+      "PROMOTED edges"
+    ],
+    "provenance": "",
+    "related_skills": [
+      "ratchet-reduce",
+      "ratchet-reflect",
+      "ratchet-reweave"
+    ],
+    "skill_id": "ratchet-verify",
+    "skill_type": "verification",
+    "source_path": "system_v4/skills/ratchet-verify/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "6R",
+      "graph-verification"
+    ],
+    "tool_dependencies": []
+  },
+  "rosetta-v2": {
+    "adapters": {
+      "shell": "system_v4/skills/rosetta_v2.py"
+    },
+    "applicable_graphs": [
+      "rosetta"
+    ],
+    "applicable_trust_zones": [
+      "A1_JARGONED",
+      "A1_STRIPPED"
+    ],
+    "capabilities": {},
+    "description": "Typed Rosetta sense/alias tracking",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "rosetta-v2",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "rosetta-v2",
+    "skill_type": "refinement",
+    "source_path": "system_v4/skills/rosetta_v2.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "run-a1-eval-slice": {
+    "adapters": {
+      "shell": "system_v4/skills/run_a1_eval_slice.py"
+    },
+    "applicable_graphs": [
+      "concept"
+    ],
+    "applicable_trust_zones": [
+      "A1_JARGONED",
+      "A1_STRIPPED"
+    ],
+    "capabilities": {},
+    "description": "A1 evaluation harness",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "run-a1-eval-slice",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "run-a1-eval-slice",
+    "skill_type": "verification",
+    "source_path": "system_v4/skills/run_a1_eval_slice.py",
+    "source_type": "runner",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "run-real-ratchet": {
+    "adapters": {
+      "shell": "system_v4/skills/run_real_ratchet.py"
+    },
+    "applicable_graphs": [
+      "dependency",
+      "runtime"
+    ],
+    "applicable_trust_zones": [
+      "A1_STRIPPED",
+      "A1_CARTRIDGE",
+      "B_ADJUDICATED",
+      "SIM_EVIDENCED"
+    ],
+    "capabilities": {
+      "is_phase_runner": true
+    },
+    "description": "Full autonomous ratchet loop",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "run-real-ratchet",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "run-real-ratchet",
+    "skill_type": "runner",
+    "source_path": "system_v4/skills/run_real_ratchet.py",
+    "source_type": "runner",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "runtime-graph-bridge": {
+    "adapters": {
+      "shell": "system_v4/skills/runtime_graph_bridge.py"
+    },
+    "applicable_graphs": [
+      "runtime"
+    ],
+    "applicable_trust_zones": [
+      "B_ADJUDICATED",
+      "SIM_EVIDENCED",
+      "GRAVEYARD"
+    ],
+    "capabilities": {
+      "is_phase_runner": true
+    },
+    "description": "Map B/SIM outcomes back into master graph",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "runtime-graph-bridge",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "runtime-graph-bridge",
+    "skill_type": "bridge",
+    "source_path": "system_v4/skills/runtime_graph_bridge.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "safe-run-maintenance": {
+    "adapters": {
+      "codex": "~/.codex/skills/safe-run-maintenance/SKILL.md",
+      "gemini": "system_v4/skill_specs/safe-run-maintenance/SKILL.md"
+    },
+    "applicable_graphs": [],
+    "applicable_trust_zones": [],
+    "capabilities": {},
+    "description": "Safe maintenance operations",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T22:25:55Z",
+    "name": "safe-run-maintenance",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "safe-run-maintenance",
+    "skill_type": "maintenance",
+    "source_path": "system_v4/skill_specs/safe-run-maintenance/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "codex"
+    ],
+    "tool_dependencies": []
+  },
+  "sim-engine": {
+    "adapters": {
+      "shell": "system_v4/skills/sim_engine.py"
+    },
+    "applicable_graphs": [
+      "runtime"
+    ],
+    "applicable_trust_zones": [
+      "SIM_EVIDENCED"
+    ],
+    "capabilities": {
+      "is_phase_runner": true
+    },
+    "description": "SIM stress testing, evidence, kills",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "sim-engine",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "sim-engine",
+    "skill_type": "verification",
+    "source_path": "system_v4/skills/sim_engine.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "sim-holodeck-engine": {
+    "adapters": {
+      "shell": "system_v4/skills/sim_holodeck_engine.py"
+    },
+    "applicable_graphs": [
+      "memory"
+    ],
+    "applicable_trust_zones": [
+      "HOLODECK_MEMORY"
+    ],
+    "capabilities": {},
+    "description": "Holodeck scenario engine",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "sim-holodeck-engine",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "sim-holodeck-engine",
+    "skill_type": "orchestration",
+    "source_path": "system_v4/skills/sim_holodeck_engine.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "thread-closeout-auditor": {
+    "adapters": {
+      "codex": "~/.codex/skills/thread-closeout-auditor/SKILL.md",
+      "gemini": "system_v4/skill_specs/thread-closeout-auditor/SKILL.md"
+    },
+    "applicable_graphs": [],
+    "applicable_trust_zones": [],
+    "capabilities": {},
+    "description": "Audit thread closeout quality",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T22:25:55Z",
+    "name": "thread-closeout-auditor",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "thread-closeout-auditor",
+    "skill_type": "audit",
+    "source_path": "system_v4/skill_specs/thread-closeout-auditor/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "codex"
+    ],
+    "tool_dependencies": []
+  },
+  "thread-dispatch-controller": {
+    "adapters": {
+      "codex": "~/.codex/skills/thread-dispatch-controller/SKILL.md",
+      "gemini": "system_v4/skill_specs/thread-dispatch-controller/SKILL.md"
+    },
+    "applicable_graphs": [],
+    "applicable_trust_zones": [],
+    "capabilities": {},
+    "description": "Manage thread dispatch and routing",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T22:25:55Z",
+    "name": "thread-dispatch-controller",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "thread-dispatch-controller",
+    "skill_type": "orchestration",
+    "source_path": "system_v4/skill_specs/thread-dispatch-controller/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "codex"
+    ],
+    "tool_dependencies": []
+  },
+  "thread-run-monitor": {
+    "adapters": {
+      "codex": "~/.codex/skills/thread-run-monitor/SKILL.md",
+      "gemini": "system_v4/skill_specs/thread-run-monitor/SKILL.md"
+    },
+    "applicable_graphs": [],
+    "applicable_trust_zones": [],
+    "capabilities": {},
+    "description": "Monitor running threads",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T22:25:55Z",
+    "name": "thread-run-monitor",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "thread-run-monitor",
+    "skill_type": "orchestration",
+    "source_path": "system_v4/skill_specs/thread-run-monitor/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "codex"
+    ],
+    "tool_dependencies": []
+  },
+  "v4-graph-builder": {
+    "adapters": {
+      "shell": "system_v4/skills/v4_graph_builder.py"
+    },
+    "applicable_graphs": [
+      "provenance",
+      "concept",
+      "contradiction",
+      "dependency",
+      "rosetta",
+      "runtime",
+      "graveyard"
+    ],
+    "applicable_trust_zones": [],
+    "capabilities": {},
+    "description": "Pydantic + NX + GraphML graph engine",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "v4-graph-builder",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "v4-graph-builder",
+    "skill_type": "bridge",
+    "source_path": "system_v4/skills/v4_graph_builder.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "v4-tape-writer": {
+    "adapters": {
+      "shell": "system_v4/skills/v4_tape_writer.py"
+    },
+    "applicable_graphs": [
+      "runtime"
+    ],
+    "applicable_trust_zones": [
+      "SIM_EVIDENCED"
+    ],
+    "capabilities": {},
+    "description": "Write campaign/evidence tapes",
+    "inputs": [],
+    "last_verified_utc": "2026-03-19T21:53:38Z",
+    "name": "v4-tape-writer",
+    "outputs": [],
+    "provenance": "",
+    "related_skills": [],
+    "skill_id": "v4-tape-writer",
+    "skill_type": "bridge",
+    "source_path": "system_v4/skills/v4_tape_writer.py",
+    "source_type": "operator_module",
+    "status": "active",
+    "tags": [
+      "operator"
+    ],
+    "tool_dependencies": []
+  },
+  "wiggle-lane-runner": {
+    "adapters": {
+      "codex": "system_v4/skill_specs/wiggle-lane-runner/SKILL.md",
+      "gemini": "system_v4/skill_specs/wiggle-lane-runner/SKILL.md",
+      "shell": "system_v4/skills/wiggle_lane_runner.py"
+    },
+    "applicable_graphs": [
+      "concept",
+      "dependency",
+      "rosetta"
+    ],
+    "applicable_trust_zones": [
+      "A1_JARGONED",
+      "A1_STRIPPED",
+      "A1_CARTRIDGE"
+    ],
+    "capabilities": {
+      "can_only_propose": true,
+      "can_run_parallel": true,
+      "can_spawn_subagents": true
+    },
+    "description": "Spawn parallel A1 narrative lanes with different biases, compare outputs, merge the strongest before B adjudication.",
+    "inputs": [
+      "candidate_ids",
+      "graph_nodes",
+      "lane_configs"
+    ],
+    "last_verified_utc": "2026-03-20T07:36:01Z",
+    "name": "wiggle-lane-runner",
+    "outputs": [
+      "lane_results",
+      "comparison_matrix",
+      "merged_strategy_packet"
+    ],
+    "provenance": "A1 wiggle concept \u2014 user design",
+    "related_skills": [
+      "a1-brain",
+      "ratchet-reduce",
+      "ratchet-overseer",
+      "graveyard-lawyer"
+    ],
+    "skill_id": "wiggle-lane-runner",
+    "skill_type": "agent",
+    "source_path": "system_v4/skill_specs/wiggle-lane-runner/SKILL.md",
+    "source_type": "repo_skill",
+    "status": "active",
+    "tags": [
+      "wiggle",
+      "agent",
+      "lane",
+      "multi-narrative",
+      "A1"
+    ],
+    "tool_dependencies": []
+  },
+  "runtime-state-kernel": {
+    "skill_id": "runtime-state-kernel",
+    "name": "Runtime State Kernel",
+    "skill_type": "bridge",
+    "applicable_trust_zones": [
+      "INDEX"
+    ],
+    "applicable_graphs": [
+      "identity_registry_v1"
+    ],
+    "source_path": "system_v4/skills/runtime_state_kernel.py",
+    "adapters": {
+      "shell": "system_v4/skills/runtime_state_kernel.py"
+    },
+    "capabilities": {},
+    "inputs": [],
+    "outputs": [
+      "runtime_state",
+      "probe",
+      "transform",
+      "witness"
+    ],
+    "tool_dependencies": [],
+    "provenance": "lev_nonclassical_runtime_design_audited.md \u00a7Core Types",
+    "status": "active",
+    "last_updated_utc": "2026-03-20T21:34:00Z",
+    "description": "Runtime State Kernel",
+    "tags": [
+      "nonclassical-runtime",
+      "kernel"
+    ],
+    "source_type": "python_module",
+    "related_skills": [],
+    "last_verified_utc": "2026-03-20T21:40:31Z"
+  },
+  "witness-recorder": {
+    "skill_id": "witness-recorder",
+    "name": "Witness Recorder",
+    "skill_type": "bridge",
+    "applicable_trust_zones": [
+      "SIM_EVIDENCED"
+    ],
+    "applicable_graphs": [],
+    "source_path": "system_v4/skills/witness_recorder.py",
+    "adapters": {
+      "shell": "system_v4/skills/witness_recorder.py"
+    },
+    "capabilities": {
+      "can_write_repo": true
+    },
+    "inputs": [
+      "witness"
+    ],
+    "outputs": [
+      "witness_corpus"
+    ],
+    "tool_dependencies": [],
+    "provenance": "lev_nonclassical_runtime_design_audited.md \u00a7Event Spine",
+    "status": "active",
+    "last_updated_utc": "2026-03-20T21:34:00Z",
+    "description": "Witness Recorder",
+    "tags": [
+      "nonclassical-runtime",
+      "kernel"
+    ],
+    "source_type": "python_module",
+    "related_skills": [],
+    "last_verified_utc": "2026-03-20T21:40:31Z"
+  },
+  "z3-constraint-checker": {
+    "skill_id": "z3-constraint-checker",
+    "name": "Z3 Constraint Checker",
+    "skill_type": "verification",
+    "applicable_trust_zones": [
+      "B_ADJUDICATED"
+    ],
+    "applicable_graphs": [],
+    "source_path": "system_v4/skills/z3_constraint_checker.py",
+    "adapters": {
+      "shell": "system_v4/skills/z3_constraint_checker.py"
+    },
+    "capabilities": {
+      "requires_tool": true
+    },
+    "inputs": [
+      "runtime_state",
+      "constraints"
+    ],
+    "outputs": [
+      "constraint_result",
+      "witness"
+    ],
+    "tool_dependencies": [
+      "z3"
+    ],
+    "provenance": "lev_nonclassical_runtime_design_audited.md \u00a7SAT/SMT",
+    "status": "active",
+    "last_updated_utc": "2026-03-20T21:34:00Z",
+    "description": "Z3 Constraint Checker",
+    "tags": [
+      "nonclassical-runtime",
+      "kernel"
+    ],
+    "source_type": "python_module",
+    "related_skills": [],
+    "last_verified_utc": "2026-03-20T21:40:31Z"
+  },
+  "z3-cegis-refiner": {
+    "skill_id": "z3-cegis-refiner",
+    "name": "Z3 CEGIS Refiner",
+    "skill_type": "refinement",
+    "applicable_trust_zones": [
+      "B_ADJUDICATED"
+    ],
+    "applicable_graphs": [],
+    "source_path": "system_v4/skills/z3_cegis_refiner.py",
+    "adapters": {
+      "shell": "system_v4/skills/z3_cegis_refiner.py"
+    },
+    "capabilities": {
+      "requires_tool": true
+    },
+    "inputs": [
+      "runtime_state",
+      "candidate"
+    ],
+    "outputs": [
+      "candidate",
+      "witness",
+      "cegis_history"
+    ],
+    "tool_dependencies": [
+      "z3"
+    ],
+    "provenance": "lev_nonclassical_runtime_design_audited.md \u00a7CEGIS",
+    "status": "active",
+    "last_updated_utc": "2026-03-20T21:34:00Z",
+    "description": "Z3 CEGIS Refiner",
+    "tags": [
+      "nonclassical-runtime",
+      "kernel"
+    ],
+    "source_type": "python_module",
+    "related_skills": [],
+    "last_verified_utc": "2026-03-20T21:40:31Z"
+  },
+  "property-pressure-tester": {
+    "skill_id": "property-pressure-tester",
+    "name": "Property Pressure Tester",
+    "skill_type": "verification",
+    "applicable_trust_zones": [
+      "SIM_EVIDENCED"
+    ],
+    "applicable_graphs": [],
+    "source_path": "system_v4/skills/property_pressure_tester.py",
+    "adapters": {
+      "shell": "system_v4/skills/property_pressure_tester.py"
+    },
+    "capabilities": {},
+    "inputs": [
+      "runtime_state",
+      "invariants",
+      "perturbations"
+    ],
+    "outputs": [
+      "pressure_result",
+      "witness"
+    ],
+    "tool_dependencies": [],
+    "provenance": "lev_nonclassical_runtime_design_audited.md \u00a7Property-Based Testing",
+    "status": "active",
+    "last_updated_utc": "2026-03-20T21:34:00Z",
+    "description": "Property Pressure Tester",
+    "tags": [
+      "nonclassical-runtime",
+      "kernel"
+    ],
+    "source_type": "python_module",
+    "related_skills": [],
+    "last_verified_utc": "2026-03-20T21:40:31Z"
+  },
+  "differential-tester": {
+    "skill_id": "differential-tester",
+    "name": "Differential Tester",
+    "skill_type": "verification",
+    "applicable_trust_zones": [
+      "SIM_EVIDENCED"
+    ],
+    "applicable_graphs": [],
+    "source_path": "system_v4/skills/differential_tester.py",
+    "adapters": {
+      "shell": "system_v4/skills/differential_tester.py"
+    },
+    "capabilities": {},
+    "inputs": [
+      "runtime_state",
+      "candidates",
+      "probes"
+    ],
+    "outputs": [
+      "diff_test_result",
+      "disagreements"
+    ],
+    "tool_dependencies": [],
+    "provenance": "lev_nonclassical_runtime_design_audited.md \u00a7Differential Testing",
+    "status": "active",
+    "last_updated_utc": "2026-03-20T21:34:00Z",
+    "description": "Differential Tester",
+    "tags": [
+      "nonclassical-runtime",
+      "kernel"
+    ],
+    "source_type": "python_module",
+    "related_skills": [],
+    "last_verified_utc": "2026-03-20T21:40:31Z"
+  },
+  "structured-fuzzer": {
+    "skill_id": "structured-fuzzer",
+    "name": "Structured Fuzzer",
+    "skill_type": "verification",
+    "applicable_trust_zones": [
+      "SIM_EVIDENCED"
+    ],
+    "applicable_graphs": [],
+    "source_path": "system_v4/skills/structured_fuzzer.py",
+    "adapters": {
+      "shell": "system_v4/skills/structured_fuzzer.py"
+    },
+    "capabilities": {},
+    "inputs": [
+      "runtime_state"
+    ],
+    "outputs": [
+      "fuzz_result",
+      "witness"
+    ],
+    "tool_dependencies": [],
+    "provenance": "lev_nonclassical_runtime_design_audited.md \u00a7Fuzzing",
+    "status": "active",
+    "last_updated_utc": "2026-03-20T21:34:00Z",
+    "description": "Structured Fuzzer",
+    "tags": [
+      "nonclassical-runtime",
+      "kernel"
+    ],
+    "source_type": "python_module",
+    "related_skills": [],
+    "last_verified_utc": "2026-03-20T21:40:31Z"
+  },
+  "model-checker": {
+    "skill_id": "model-checker",
+    "name": "Model Checker",
+    "skill_type": "verification",
+    "applicable_trust_zones": [
+      "B_ADJUDICATED"
+    ],
+    "applicable_graphs": [],
+    "source_path": "system_v4/skills/model_checker.py",
+    "adapters": {
+      "shell": "system_v4/skills/model_checker.py"
+    },
+    "capabilities": {},
+    "inputs": [
+      "runtime_state",
+      "transforms"
+    ],
+    "outputs": [
+      "exploration_result",
+      "counterexamples"
+    ],
+    "tool_dependencies": [],
+    "provenance": "lev_nonclassical_runtime_design_audited.md \u00a7Model Checking",
+    "status": "active",
+    "last_updated_utc": "2026-03-20T21:34:00Z",
+    "description": "Model Checker",
+    "tags": [
+      "nonclassical-runtime",
+      "kernel"
+    ],
+    "source_type": "python_module",
+    "related_skills": [],
+    "last_verified_utc": "2026-03-20T21:40:31Z"
+  },
+  "bounded-improve-operator": {
+    "skill_id": "bounded-improve-operator",
+    "name": "Bounded Improve Operator",
+    "skill_type": "refinement",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT"
+    ],
+    "applicable_graphs": [
+      "a2_mid_refinement_graph_v1"
+    ],
+    "source_path": "system_v4/skills/bounded_improve_operator.py",
+    "adapters": {
+      "shell": "system_v4/skills/bounded_improve_operator.py"
+    },
+    "capabilities": {},
+    "inputs": [
+      "runtime_state",
+      "mutation_fn",
+      "eval_fn"
+    ],
+    "outputs": [
+      "improved_state",
+      "improvement_result"
+    ],
+    "tool_dependencies": [],
+    "provenance": "lev_nonclassical_runtime_design_audited.md \u00a7Karpathy + \u00a7autoresearch",
+    "status": "active",
+    "last_updated_utc": "2026-03-20T21:34:00Z",
+    "description": "Bounded Improve Operator",
+    "tags": [
+      "nonclassical-runtime",
+      "kernel"
+    ],
+    "source_type": "python_module",
+    "related_skills": [],
+    "last_verified_utc": "2026-03-20T21:40:31Z"
+  },
+  "fep-regulation-operator": {
+    "skill_id": "fep-regulation-operator",
+    "name": "FEP Regulation Operator",
+    "skill_type": "refinement",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT"
+    ],
+    "applicable_graphs": [
+      "a2_mid_refinement_graph_v1"
+    ],
+    "source_path": "system_v4/skills/fep_regulation_operator.py",
+    "adapters": {
+      "shell": "system_v4/skills/fep_regulation_operator.py"
+    },
+    "capabilities": {},
+    "inputs": [
+      "runtime_state",
+      "observation"
+    ],
+    "outputs": [
+      "regulated_state",
+      "regulation_result"
+    ],
+    "tool_dependencies": [],
+    "provenance": "lev_nonclassical_runtime_design_audited.md \u00a7FEP + \u00a7Bayesian",
+    "status": "active",
+    "last_updated_utc": "2026-03-20T21:34:00Z",
+    "description": "FEP Regulation Operator",
+    "tags": [
+      "nonclassical-runtime",
+      "kernel"
+    ],
+    "source_type": "python_module",
+    "related_skills": [],
+    "last_verified_utc": "2026-03-20T21:40:31Z"
+  },
+  "frontier-search-operator": {
+    "skill_id": "frontier-search-operator",
+    "name": "Frontier Search Operator",
+    "skill_type": "refinement",
+    "applicable_trust_zones": [
+      "A2_LOW_CONTROL"
+    ],
+    "applicable_graphs": [
+      "a2_low_control_graph_v1"
+    ],
+    "source_path": "system_v4/skills/frontier_search_operator.py",
+    "adapters": {
+      "shell": "system_v4/skills/frontier_search_operator.py"
+    },
+    "capabilities": {},
+    "inputs": [
+      "runtime_state",
+      "transforms"
+    ],
+    "outputs": [
+      "search_result",
+      "motifs"
+    ],
+    "tool_dependencies": [],
+    "provenance": "lev_nonclassical_runtime_design_audited.md \u00a7AlphaGeometry + \u00a7DreamCoder + \u00a7AIT",
+    "status": "active",
+    "last_updated_utc": "2026-03-20T21:34:00Z",
+    "description": "Frontier Search Operator",
+    "tags": [
+      "nonclassical-runtime",
+      "kernel"
+    ],
+    "source_type": "python_module",
+    "related_skills": [],
+    "last_verified_utc": "2026-03-20T21:40:31Z"
+  },
+  "intent-control-surface-builder": {
+    "skill_id": "intent-control-surface-builder",
+    "name": "Intent Control Surface Builder",
+    "description": "Build the current derived A2 intent-control surface from witness and refinery intent/context signals.",
+    "skill_type": "bridge",
+    "source_type": "python_module",
+    "source_path": "system_v4/skills/intent_control_surface_builder.py",
+    "applicable_trust_zones": [
+      "A2_LOW_CONTROL"
+    ],
+    "applicable_graphs": [
+      "control"
+    ],
+    "inputs": [
+      "witness_corpus_v1",
+      "system_graph_a2_refinery"
+    ],
+    "outputs": [
+      "A2_INTENT_CONTROL_SURFACE_v1"
+    ],
+    "related_skills": [
+      "witness-recorder",
+      "runtime-graph-bridge",
+      "bounded-improve-operator"
+    ],
+    "adapters": {
+      "shell": "system_v4/skills/intent_control_surface_builder.py"
+    },
+    "capabilities": {
+      "can_write_repo": true
+    },
+    "tool_dependencies": [],
+    "provenance": "GRAPH_SKILL_INTENT_CO_DEVELOPMENT_PLAN__2026_03_20__v1.md",
+    "status": "active",
+    "last_verified_utc": "2026-03-20T23:59:00Z",
+    "tags": [
+      "intent-control",
+      "intent",
+      "context",
+      "a2-control"
+    ]
+  },
+  "runtime-context-snapshot": {
+    "skill_id": "runtime-context-snapshot",
+    "name": "Runtime Context Snapshot",
+    "description": "Capture the current controller and A1 queue state into the append-only context witness spine.",
+    "skill_type": "bridge",
+    "source_type": "python_module",
+    "source_path": "system_v4/skills/runtime_context_snapshot.py",
+    "applicable_trust_zones": [
+      "A2_3_INTAKE"
+    ],
+    "applicable_graphs": [
+      "witness"
+    ],
+    "inputs": [
+      "A2_CONTROLLER_LAUNCH_SPINE",
+      "A1_QUEUE_STATUS_PACKET"
+    ],
+    "outputs": [
+      "context_witness"
+    ],
+    "related_skills": [
+      "witness-recorder",
+      "intent-control-surface-builder"
+    ],
+    "adapters": {
+      "shell": "system_v4/skills/runtime_context_snapshot.py"
+    },
+    "capabilities": {
+      "can_write_repo": true
+    },
+    "tool_dependencies": [],
+    "provenance": "maker intent preservation / continuous context goal",
+    "status": "active",
+    "last_verified_utc": "2026-03-20T23:59:00Z",
+    "tags": [
+      "context",
+      "snapshot",
+      "witness",
+      "intent-control"
+    ]
+  },
+  "intent-refinement-graph-builder": {
+    "skill_id": "intent-refinement-graph-builder",
+    "name": "Intent Refinement Graph Builder",
+    "description": "Materialize graph-native intent/context signals and intent refinements from the witness corpus.",
+    "skill_type": "bridge",
+    "source_type": "python_module",
+    "source_path": "system_v4/skills/intent_refinement_graph_builder.py",
+    "applicable_trust_zones": [
+      "A2_2_CANDIDATE"
+    ],
+    "applicable_graphs": [
+      "system_graph_a2_refinery"
+    ],
+    "inputs": [
+      "witness_corpus_v1",
+      "system_graph_a2_refinery"
+    ],
+    "outputs": [
+      "intent_refinement_graph_update"
+    ],
+    "related_skills": [
+      "runtime-context-snapshot",
+      "intent-control-surface-builder"
+    ],
+    "adapters": {
+      "shell": "system_v4/skills/intent_refinement_graph_builder.py"
+    },
+    "capabilities": {
+      "can_write_repo": true
+    },
+    "tool_dependencies": [],
+    "provenance": "maker intent preservation / graph-native refinement goal",
+    "status": "active",
+    "last_verified_utc": "2026-03-20T23:59:00Z",
+    "tags": [
+      "intent",
+      "context",
+      "graph-builder",
+      "intent-control"
+    ]
+  },
+  "autoresearch-operator": {
+    "skill_id": "autoresearch-operator",
+    "name": "autoresearch-operator",
+    "description": "Autoresearch operator",
+    "skill_type": "agent",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "state",
+      "generator",
+      "evaluator"
+    ],
+    "outputs": [
+      "best_state",
+      "stats"
+    ],
+    "related_skills": [
+      "bounded-improve-operator",
+      "llm-council-operator",
+      "skill-improver-operator"
+    ],
+    "source_path": "system_v4/skills/autoresearch_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "shell": "system_v4/skills/autoresearch_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "karpathy/autoresearch retooled into Ratchet runtime search",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "autoresearch",
+      "karpathy",
+      "research",
+      "runtime",
+      "meta-skill"
+    ]
+  },
+  "llm-council-operator": {
+    "skill_id": "llm-council-operator",
+    "name": "llm-council-operator",
+    "description": "LLM council adjudication operator",
+    "skill_type": "adjudicator",
+    "applicable_trust_zones": [
+      "B_ADJUDICATED",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "a2_low_control_graph_v1"
+    ],
+    "inputs": [
+      "candidates",
+      "consensus_threshold"
+    ],
+    "outputs": [
+      "accepted",
+      "rejected",
+      "proceedings"
+    ],
+    "related_skills": [
+      "autoresearch-operator",
+      "bounded-improve-operator",
+      "skill-improver-operator"
+    ],
+    "source_path": "system_v4/skills/llm_council_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "shell": "system_v4/skills/llm_council_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "karpathy/llm-council retooled into Ratchet adjudication",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "llm-council",
+      "karpathy",
+      "council",
+      "adjudication",
+      "runtime"
+    ]
+  },
+  "skill-improver-operator": {
+    "skill_id": "skill-improver-operator",
+    "name": "skill-improver-operator",
+    "description": "Gated skill improvement operator",
+    "skill_type": "operator",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": true,
+      "requires_human_gate": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "target_skill_path",
+      "candidate_code",
+      "test_command",
+      "allow_write",
+      "approval_token",
+      "allowed_targets",
+      "recorder"
+    ],
+    "outputs": [
+      "improved",
+      "detail",
+      "path",
+      "proposed_change",
+      "compile_ok",
+      "tests_state",
+      "score",
+      "write_permitted",
+      "dry_run"
+    ],
+    "related_skills": [
+      "autoresearch-operator",
+      "llm-council-operator",
+      "a2-skill-improver-readiness-operator"
+    ],
+    "source_path": "system_v4/skills/skill_improver_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "shell": "system_v4/skills/skill_improver_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Karpathy mutator-loop pattern adapted to Ratchet skill maintenance",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "skill-improvement",
+      "maintenance",
+      "meta-skill",
+      "runtime"
+    ]
+  },
+  "a2-skill-improver-readiness-operator": {
+    "skill_id": "a2-skill-improver-readiness-operator",
+    "name": "a2-skill-improver-readiness-operator",
+    "description": "Audit-only readiness operator for skill-improver-operator",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": true,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "target_skill_path",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "skill_improver_readiness_report",
+      "skill_improver_readiness_packet"
+    ],
+    "related_skills": [
+      "skill-improver-operator",
+      "a2-brain-surface-refresher",
+      "graph-capability-auditor"
+    ],
+    "source_path": "system_v4/skills/a2_skill_improver_readiness_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-skill-improver-readiness-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_skill_improver_readiness_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native meta-skill readiness audit over skill-improver-operator before live mutation claims",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "skill-improver-readiness",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "audit-mode",
+      "runtime"
+    ]
+  },
+  "a2-skill-improver-target-selector-operator": {
+    "skill_id": "a2-skill-improver-target-selector-operator",
+    "name": "a2-skill-improver-target-selector-operator",
+    "description": "Audit-only selector for the first bounded target class for skill-improver-operator",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": true,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "skill_improver_target_selection_report",
+      "skill_improver_target_selection_packet"
+    ],
+    "related_skills": [
+      "skill-improver-operator",
+      "a2-skill-improver-readiness-operator",
+      "a2-brain-surface-refresher"
+    ],
+    "source_path": "system_v4/skills/a2_skill_improver_target_selector_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-skill-improver-target-selector-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_skill_improver_target_selector_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native follow-on slice that turns skill-improver readiness into bounded first-target selection",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "skill-improver-target-selection",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "audit-mode",
+      "runtime"
+    ]
+  },
+  "a2-skill-improver-dry-run-operator": {
+    "skill_id": "a2-skill-improver-dry-run-operator",
+    "name": "a2-skill-improver-dry-run-operator",
+    "description": "Bounded dry-run first-target bridge over skill-improver-operator",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "target_skill_id",
+      "candidate_code",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "status",
+      "selected_target",
+      "improver_result",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "related_skills": [
+      "skill-improver-operator",
+      "a2-skill-improver-readiness-operator",
+      "a2-skill-improver-target-selector-operator",
+      "a2-brain-surface-refresher"
+    ],
+    "source_path": "system_v4/skills/a2_skill_improver_dry_run_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-skill-improver-dry-run-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_skill_improver_dry_run_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native bounded first-target dry-run bridge over skill-improver-operator",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "skill-improver-dry-run",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "dry-run",
+      "runtime"
+    ]
+  },
+  "a2-skill-improver-first-target-proof-operator": {
+    "skill_id": "a2-skill-improver-first-target-proof-operator",
+    "name": "a2-skill-improver-first-target-proof-operator",
+    "description": "Bounded first-target proof slice for skill-improver-operator using the selected target only",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": true,
+      "can_only_propose": false,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "proof_mode",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "skill_improver_first_target_proof_report",
+      "skill_improver_first_target_proof_packet"
+    ],
+    "related_skills": [
+      "skill-improver-operator",
+      "a2-skill-improver-readiness-operator",
+      "a2-skill-improver-target-selector-operator",
+      "a2-skill-improver-dry-run-operator"
+    ],
+    "source_path": "system_v4/skills/a2_skill_improver_first_target_proof_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-skill-improver-first-target-proof-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_skill_improver_first_target_proof_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native bounded proof slice that demonstrates one selected skill-improver target under explicit allowlist and approval-token control",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "skill-improver-first-target-proof",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "bounded-proof",
+      "runtime"
+    ]
+  },
+  "a2-skill-improver-second-target-admission-audit-operator": {
+    "skill_id": "a2-skill-improver-second-target-admission-audit-operator",
+    "name": "a2-skill-improver-second-target-admission-audit-operator",
+    "description": "Audit-only follow-on that decides whether skill-improver-operator should hold at one proven target or admit one second bounded native target class",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": true,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "skill_improver_second_target_admission_report",
+      "skill_improver_second_target_admission_packet"
+    ],
+    "related_skills": [
+      "skill-improver-operator",
+      "a2-skill-improver-readiness-operator",
+      "a2-skill-improver-target-selector-operator",
+      "a2-skill-improver-first-target-proof-operator",
+      "a2-brain-surface-refresher"
+    ],
+    "source_path": "system_v4/skills/a2_skill_improver_second_target_admission_audit_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-skill-improver-second-target-admission-audit-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_skill_improver_second_target_admission_audit_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native follow-on audit that turns one proven first target into an explicit hold-vs-second-target-class decision",
+    "status": "active",
+    "last_verified_utc": "2026-03-22T00:00:00Z",
+    "tags": [
+      "skill-improver-second-target-admission",
+      "second-target-admission",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "audit-mode",
+      "runtime"
+    ]
+  },
+  "a2-lev-agents-promotion-operator": {
+    "skill_id": "a2-lev-agents-promotion-operator",
+    "name": "a2-lev-agents-promotion-operator",
+    "description": "Audit-only operator that ranks the next lev-os/agents cluster to promote into Ratchet-native form",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "a2_lev_agents_promotion_report",
+      "a2_lev_agents_promotion_packet"
+    ],
+    "related_skills": [
+      "a2-skill-source-intake-operator",
+      "a2-tracked-work-operator",
+      "a2-workshop-analysis-gate-operator"
+    ],
+    "source_path": "system_v4/skills/a2_lev_agents_promotion_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-lev-agents-promotion-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_lev_agents_promotion_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native audit slice over the local lev-os/agents corpus that recommends the next bounded imported cluster promotion",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "lev-agents-promotion",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "audit-mode",
+      "runtime",
+      "imported-cluster"
+    ]
+  },
+  "a2-lev-autodev-loop-audit-operator": {
+    "skill_id": "a2-lev-autodev-loop-audit-operator",
+    "name": "a2-lev-autodev-loop-audit-operator",
+    "description": "Audit-only operator that audits one bounded lev autodev execution/validation loop slice before any broader recurring runtime claim",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "candidate",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "lev_autodev_loop_audit_report",
+      "lev_autodev_loop_audit_packet"
+    ],
+    "related_skills": [
+      "a2-lev-agents-promotion-operator",
+      "a2-tracked-work-operator",
+      "a2-brain-surface-refresher"
+    ],
+    "source_path": "system_v4/skills/a2_lev_autodev_loop_audit_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-lev-autodev-loop-audit-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_lev_autodev_loop_audit_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native audit slice over lev-os/agents autodev-loop plus autodev-lev, with lev-plan and stack as background-only context, to decide one bounded execution/validation loop seam without recurring runtime claims",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "lev-autodev-loop",
+      "execution-validation",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "audit-mode",
+      "runtime",
+      "imported-cluster"
+    ]
+  },
+  "a2-lev-architecture-fitness-operator": {
+    "skill_id": "a2-lev-architecture-fitness-operator",
+    "name": "a2-lev-architecture-fitness-operator",
+    "description": "Audit-only operator that audits one bounded lev architecture and fitness guidance slice before any broader review, migration, or runtime claim",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "candidate",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "lev_architecture_fitness_report",
+      "lev_architecture_fitness_packet"
+    ],
+    "related_skills": [
+      "a2-lev-agents-promotion-operator",
+      "a2-lev-autodev-loop-audit-operator",
+      "a2-brain-surface-refresher"
+    ],
+    "source_path": "system_v4/skills/a2_lev_architecture_fitness_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-lev-architecture-fitness-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_lev_architecture_fitness_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native audit slice over lev-os/agents arch adapted for bounded quality-attribute/tradeoff guidance, with lev-builder mined only as background context",
+    "status": "active",
+    "last_verified_utc": "2026-03-22T00:00:00Z",
+    "tags": [
+      "lev-architecture-fitness",
+      "architecture-review",
+      "fitness-functions",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "audit-mode",
+      "runtime",
+      "imported-cluster"
+    ]
+  },
+  "a2-lev-builder-placement-audit-operator": {
+    "skill_id": "a2-lev-builder-placement-audit-operator",
+    "name": "a2-lev-builder-placement-audit-operator",
+    "description": "Audit-only operator that audits one bounded lev-builder placement/formalization slice before any broader imported Lev promotion claim",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "candidate",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "a2_lev_builder_placement_audit_report",
+      "a2_lev_builder_placement_audit_packet"
+    ],
+    "related_skills": [
+      "a2-lev-agents-promotion-operator",
+      "a2-workshop-analysis-gate-operator",
+      "a2-brain-surface-refresher"
+    ],
+    "source_path": "system_v4/skills/a2_lev_builder_placement_audit_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-lev-builder-placement-audit-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_lev_builder_placement_audit_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native audit slice over lev-os/agents lev-builder plus arch and work to decide bounded placement/formalization before any broader Lev import claim",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "lev-builder-placement",
+      "formalization-placement",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "audit-mode",
+      "runtime",
+      "imported-cluster"
+    ]
+  },
+  "a2-lev-builder-formalization-proposal-operator": {
+    "skill_id": "a2-lev-builder-formalization-proposal-operator",
+    "name": "a2-lev-builder-formalization-proposal-operator",
+    "description": "Proposal-only operator that emits one bounded Ratchet-native formalization proposal after the lev-builder placement audit has landed",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "placement_report_path",
+      "placement_packet_path",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "lev_builder_formalization_proposal_report",
+      "lev_builder_formalization_proposal_packet"
+    ],
+    "related_skills": [
+      "a2-lev-builder-placement-audit-operator",
+      "a2-lev-agents-promotion-operator",
+      "a2-brain-surface-refresher"
+    ],
+    "source_path": "system_v4/skills/a2_lev_builder_formalization_proposal_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-lev-builder-formalization-proposal-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_lev_builder_formalization_proposal_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native proposal-only follow-on to the lev-builder placement audit that emits one bounded formalization packet without migration or runtime claims",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "lev-builder-formalization-proposal",
+      "formalization-proposal",
+      "proposal-only",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "runtime",
+      "imported-cluster"
+    ]
+  },
+  "a2-lev-builder-formalization-skeleton-operator": {
+    "skill_id": "a2-lev-builder-formalization-skeleton-operator",
+    "name": "a2-lev-builder-formalization-skeleton-operator",
+    "description": "Scaffold-only operator that proves the bounded lev-builder formalization scaffold bundle is landed without widening into migration or runtime claims",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": false,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "proposal_report_path",
+      "proposal_packet_path",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "lev_builder_formalization_skeleton_report",
+      "lev_builder_formalization_skeleton_packet"
+    ],
+    "related_skills": [
+      "a2-lev-builder-formalization-proposal-operator",
+      "a2-lev-builder-placement-audit-operator",
+      "a2-brain-surface-refresher"
+    ],
+    "source_path": "system_v4/skills/a2_lev_builder_formalization_skeleton_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-lev-builder-formalization-skeleton-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_lev_builder_formalization_skeleton_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native scaffold-only follow-on to the lev-builder formalization proposal that records the landed scaffold bundle without migration or runtime claims",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "lev-builder-formalization-skeleton",
+      "formalization-skeleton",
+      "scaffold-only",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "runtime",
+      "imported-cluster"
+    ]
+  },
+  "a2-lev-builder-post-skeleton-readiness-operator": {
+    "skill_id": "a2-lev-builder-post-skeleton-readiness-operator",
+    "name": "a2-lev-builder-post-skeleton-readiness-operator",
+    "description": "Audit-only readiness gate that decides whether the lev-builder post-skeleton seam justifies any selector-only downstream slice without widening into migration or runtime claims",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "skeleton_report_path",
+      "skeleton_packet_path",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "lev_builder_post_skeleton_readiness_report",
+      "lev_builder_post_skeleton_readiness_packet"
+    ],
+    "related_skills": [
+      "a2-lev-builder-formalization-skeleton-operator",
+      "a2-lev-builder-formalization-proposal-operator",
+      "a2-lev-builder-placement-audit-operator",
+      "a2-brain-surface-refresher"
+    ],
+    "source_path": "system_v4/skills/a2_lev_builder_post_skeleton_readiness_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-lev-builder-post-skeleton-readiness-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_lev_builder_post_skeleton_readiness_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native post-skeleton readiness gate over the lev-builder placement/proposal/skeleton chain that admits only a possible selector-only follow-on",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "lev-builder-post-skeleton-readiness",
+      "post-skeleton-readiness",
+      "readiness-gate",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "runtime",
+      "imported-cluster"
+    ]
+  },
+  "a2-lev-builder-post-skeleton-follow-on-selector-operator": {
+    "skill_id": "a2-lev-builder-post-skeleton-follow-on-selector-operator",
+    "name": "a2-lev-builder-post-skeleton-follow-on-selector-operator",
+    "description": "Selector-only post-skeleton follow-on operator that chooses the smallest honest lev-builder unresolved branch without widening into migration or runtime claims",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "readiness_report_path",
+      "readiness_packet_path",
+      "skeleton_report_path",
+      "skeleton_packet_path",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "lev_builder_post_skeleton_follow_on_selector_report",
+      "lev_builder_post_skeleton_follow_on_selector_packet"
+    ],
+    "related_skills": [
+      "a2-lev-builder-post-skeleton-readiness-operator",
+      "a2-lev-builder-formalization-skeleton-operator",
+      "a2-lev-builder-placement-audit-operator",
+      "a2-brain-surface-refresher"
+    ],
+    "source_path": "system_v4/skills/a2_lev_builder_post_skeleton_follow_on_selector_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-lev-builder-post-skeleton-follow-on-selector-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_lev_builder_post_skeleton_follow_on_selector_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native selector-only follow-on to the lev-builder post-skeleton readiness gate that keeps the next branch unresolved instead of widening into migration or runtime claims",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "lev-builder-post-skeleton-follow-on-selector",
+      "post-skeleton-follow-on-selector",
+      "selector-only",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "runtime",
+      "imported-cluster"
+    ]
+  },
+  "a2-lev-builder-post-skeleton-disposition-audit-operator": {
+    "skill_id": "a2-lev-builder-post-skeleton-disposition-audit-operator",
+    "name": "a2-lev-builder-post-skeleton-disposition-audit-operator",
+    "description": "Audit-only post-skeleton disposition operator that decides whether the selected lev-builder unresolved branch should stay open, hold, or retire without widening into runtime claims",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "selector_report_path",
+      "selector_packet_path",
+      "readiness_report_path",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "lev_builder_post_skeleton_disposition_audit_report",
+      "lev_builder_post_skeleton_disposition_audit_packet"
+    ],
+    "related_skills": [
+      "a2-lev-builder-post-skeleton-follow-on-selector-operator",
+      "a2-lev-builder-post-skeleton-readiness-operator",
+      "a2-brain-surface-refresher"
+    ],
+    "source_path": "system_v4/skills/a2_lev_builder_post_skeleton_disposition_audit_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-lev-builder-post-skeleton-disposition-audit-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_lev_builder_post_skeleton_disposition_audit_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native post-skeleton branch-governance audit over the lev-builder selector/readiness chain that decides retain/hold/retire without widening into migration or runtime claims",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "lev-builder-post-skeleton-disposition",
+      "post-skeleton-disposition",
+      "branch-governance",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "runtime",
+      "imported-cluster"
+    ]
+  },
+  "a2-lev-builder-post-skeleton-future-lane-existence-audit-operator": {
+    "skill_id": "a2-lev-builder-post-skeleton-future-lane-existence-audit-operator",
+    "name": "a2-lev-builder-post-skeleton-future-lane-existence-audit-operator",
+    "description": "Audit-only future-lane existence operator that decides whether the retained lev-builder unresolved branch still exists as a repo-held governance artifact without widening into runtime claims",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "disposition_report_path",
+      "disposition_packet_path",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "lev_builder_post_skeleton_future_lane_existence_audit_report",
+      "lev_builder_post_skeleton_future_lane_existence_audit_packet"
+    ],
+    "related_skills": [
+      "a2-lev-builder-post-skeleton-disposition-audit-operator",
+      "a2-lev-builder-post-skeleton-follow-on-selector-operator",
+      "a2-brain-surface-refresher"
+    ],
+    "source_path": "system_v4/skills/a2_lev_builder_post_skeleton_future_lane_existence_audit_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-lev-builder-post-skeleton-future-lane-existence-audit-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_lev_builder_post_skeleton_future_lane_existence_audit_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native post-skeleton future-lane existence audit over the lev-builder disposition chain that preserves the unresolved branch as a governance artifact without admitting migration or runtime claims",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "lev-builder-post-skeleton-future-lane-existence",
+      "future-lane-existence",
+      "branch-governance",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "runtime",
+      "imported-cluster"
+    ]
+  },
+  "evermem-memory-backend-adapter": {
+    "skill_id": "evermem-memory-backend-adapter",
+    "name": "evermem-memory-backend-adapter",
+    "description": "Evermem memory backend adapter",
+    "skill_type": "adapter",
+    "applicable_trust_zones": [
+      "A2_HIGH_INTAKE",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "requires_tool": true,
+      "can_call_external": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "tool_dependencies": [
+      "evermemos_http"
+    ],
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_high_intake_graph_v1",
+      "a2_low_control_graph_v1"
+    ],
+    "inputs": [
+      "content",
+      "msg_id",
+      "sender",
+      "memory_types",
+      "base_url",
+      "timeout_seconds"
+    ],
+    "outputs": [
+      "success",
+      "msg_id",
+      "status_code",
+      "error"
+    ],
+    "related_skills": [
+      "witness-evermem-sync",
+      "pimono-evermem-adapter"
+    ],
+    "source_path": "system_v4/skills/evermem_adapter.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "shell": "system_v4/skills/evermem_adapter.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "EverMind-AI/EverMemOS memory backend bridge",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T11:15:04Z",
+    "tags": [
+      "evermem",
+      "memory-backend",
+      "episodic-memory",
+      "semantic-memory",
+      "runtime"
+    ]
+  },
+  "witness-evermem-sync": {
+    "skill_id": "witness-evermem-sync",
+    "name": "witness-evermem-sync",
+    "description": "Witness Evermem sync adapter",
+    "skill_type": "adapter",
+    "applicable_trust_zones": [
+      "A2_LOW_CONTROL",
+      "B_ADJUDICATED"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "requires_tool": true,
+      "can_call_external": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "tool_dependencies": [
+      "evermemos_http"
+    ],
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_low_control_graph_v1"
+    ],
+    "inputs": [
+      "witness_path",
+      "last_sync_idx",
+      "evermem_url",
+      "state_path",
+      "report_json_path",
+      "report_md_path",
+      "timeout_seconds"
+    ],
+    "outputs": [
+      "previous_idx",
+      "new_idx",
+      "synced",
+      "attempted_count",
+      "remaining_count",
+      "status",
+      "first_error",
+      "state_path",
+      "report_json_path",
+      "report_md_path"
+    ],
+    "related_skills": [
+      "evermem-memory-backend-adapter",
+      "pimono-evermem-adapter"
+    ],
+    "source_path": "system_v4/skills/witness_evermem_sync.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "shell": "system_v4/skills/witness_evermem_sync.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet witness corpus projection into EverMemOS",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T11:15:04Z",
+    "tags": [
+      "evermem",
+      "witness-sync",
+      "memory-backend",
+      "runtime"
+    ]
+  },
+  "witness-memory-retriever": {
+    "skill_id": "witness-memory-retriever",
+    "name": "witness-memory-retriever",
+    "description": "Bounded EverMem witness-memory retrieval probe that attempts one witness-derived lookup and emits repo-held report surfaces without claiming bootstrap or broader memory integration",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_LOW_CONTROL",
+      "B_ADJUDICATED"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_low_control_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "witness_path",
+      "sync_report_path",
+      "query",
+      "evermem_url",
+      "timeout_seconds",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "witness_memory_retriever_report",
+      "witness_memory_retriever_packet"
+    ],
+    "related_skills": [
+      "witness-evermem-sync",
+      "evermem-memory-backend-adapter",
+      "outside-control-shell-operator"
+    ],
+    "source_path": "system_v4/skills/witness_memory_retriever.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/witness-memory-retriever/SKILL.md",
+      "shell": "system_v4/skills/witness_memory_retriever.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native bounded retrieval probe over the EverMem witness seam",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "evermem",
+      "witness-memory-retrieval",
+      "retrieval-probe",
+      "outside-memory",
+      "runtime",
+      "maintenance"
+    ]
+  },
+  "pimono-evermem-adapter": {
+    "skill_id": "pimono-evermem-adapter",
+    "name": "pimono-evermem-adapter",
+    "description": "Pimono Evermem adapter",
+    "skill_type": "adapter",
+    "applicable_trust_zones": [
+      "A2_HIGH_INTAKE",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "requires_tool": true,
+      "can_call_external": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "tool_dependencies": [
+      "evermemos_http"
+    ],
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_high_intake_graph_v1"
+    ],
+    "inputs": [
+      "query",
+      "user_id",
+      "limit"
+    ],
+    "outputs": [
+      "context_blocks",
+      "count",
+      "status"
+    ],
+    "related_skills": [
+      "evermem-memory-backend-adapter",
+      "witness-evermem-sync"
+    ],
+    "source_path": "system_v4/skills/pimono_evermem_adapter.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "shell": "system_v4/skills/pimono_evermem_adapter.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "pi-mono plus EverMemOS outside-control bridge",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "pimono",
+      "evermem",
+      "memory-retrieval",
+      "outside-control-shell"
+    ]
+  },
+  "a2-skill-source-intake-operator": {
+    "skill_id": "a2-skill-source-intake-operator",
+    "name": "a2-skill-source-intake-operator",
+    "description": "A2-side skill source intake audit operator",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_HIGH_INTAKE",
+      "A2_MID_REFINEMENT"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_high_intake_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "report_path"
+    ],
+    "outputs": [
+      "intake_report"
+    ],
+    "related_skills": [
+      "skill-improver-operator",
+      "autoresearch-operator",
+      "witness-evermem-sync"
+    ],
+    "source_path": "system_v4/skills/a2_skill_source_intake_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "shell": "system_v4/skills/a2_skill_source_intake_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "lev-os/agents lev-intake + skill-discovery + skill-builder retooled into a bounded A2 source-intake audit slice",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "source-intake",
+      "lev-os",
+      "imported-cluster",
+      "a2",
+      "maintenance"
+    ]
+  },
+  "a2-tracked-work-operator": {
+    "skill_id": "a2-tracked-work-operator",
+    "name": "a2-tracked-work-operator",
+    "description": "A2 tracked work state operator",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "report_path"
+    ],
+    "outputs": [
+      "work_state_report"
+    ],
+    "related_skills": [
+      "a2-skill-source-intake-operator",
+      "skill-improver-operator"
+    ],
+    "source_path": "system_v4/skills/a2_tracked_work_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "shell": "system_v4/skills/a2_tracked_work_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "lev-os/agents work pattern adapted into a bounded Ratchet tracked-work note",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "tracked-work",
+      "lev-os",
+      "imported-cluster",
+      "a2",
+      "maintenance"
+    ]
+  },
+  "a2-research-deliberation-operator": {
+    "skill_id": "a2-research-deliberation-operator",
+    "name": "a2-research-deliberation-operator",
+    "description": "A2 research deliberation cluster operator",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "B_ADJUDICATED"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "question",
+      "state",
+      "generator",
+      "evaluator",
+      "candidates",
+      "report_path"
+    ],
+    "outputs": [
+      "deliberation_report"
+    ],
+    "related_skills": [
+      "autoresearch-operator",
+      "llm-council-operator",
+      "a2-tracked-work-operator"
+    ],
+    "source_path": "system_v4/skills/a2_research_deliberation_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "shell": "system_v4/skills/a2_research_deliberation_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "lev-os/agents lev-research + cdo retooled into a bounded Ratchet research/deliberation cluster slice",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "research-deliberation",
+      "lev-os",
+      "imported-cluster",
+      "meta-skill",
+      "runtime"
+    ]
+  },
+  "a2-workshop-analysis-gate-operator": {
+    "skill_id": "a2-workshop-analysis-gate-operator",
+    "name": "a2-workshop-analysis-gate-operator",
+    "description": "A2 workshop analysis gate operator",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": true,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "candidate",
+      "candidate_path",
+      "intake_context_path",
+      "source_refs",
+      "report_path",
+      "markdown_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "workshop_analysis_gate_report",
+      "workshop_analysis_gate_packet"
+    ],
+    "related_skills": [
+      "a2-skill-source-intake-operator",
+      "a2-tracked-work-operator",
+      "a2-brain-surface-refresher"
+    ],
+    "source_path": "system_v4/skills/a2_workshop_analysis_gate_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "shell": "system_v4/skills/a2_workshop_analysis_gate_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "lev-os/agents lev-workshop + lev-align + work retooled into a bounded Ratchet workshop-analysis gate slice",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "workshop-analysis-gating",
+      "lev-os",
+      "imported-cluster",
+      "a2",
+      "maintenance",
+      "audit-mode"
+    ]
+  },
+  "outer-session-ledger": {
+    "skill_id": "outer-session-ledger",
+    "name": "outer-session-ledger",
+    "description": "Outer session ledger continuity operator",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_LOW_CONTROL",
+      "A2_MID_REFINEMENT"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": true,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_low_control_graph_v1"
+    ],
+    "inputs": [
+      "repo",
+      "sessions_root",
+      "host_kind",
+      "state_path",
+      "events_path",
+      "report_json_path",
+      "report_md_path"
+    ],
+    "outputs": [
+      "outer_session_ledger_state",
+      "outer_session_ledger_report"
+    ],
+    "related_skills": [
+      "a2-brain-surface-refresher",
+      "a2-workshop-analysis-gate-operator",
+      "witness-evermem-sync"
+    ],
+    "source_path": "system_v4/skills/outer_session_ledger.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "shell": "system_v4/skills/outer_session_ledger.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "lev-os/leviathan session durability patterns retooled into a bounded Ratchet continuity ledger slice",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "session-ledger",
+      "leviathan",
+      "imported-cluster",
+      "a2",
+      "maintenance",
+      "continuity"
+    ]
+  },
+  "outside-control-shell-operator": {
+    "skill_id": "outside-control-shell-operator",
+    "name": "outside-control-shell-operator",
+    "description": "Read-only pi-mono outside session host audit operator",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_LOW_CONTROL",
+      "A2_MID_REFINEMENT"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": true,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_low_control_graph_v1"
+    ],
+    "inputs": [
+      "repo",
+      "target_surface_path",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "outside_session_host_report",
+      "outside_session_host_packet"
+    ],
+    "related_skills": [
+      "outer-session-ledger",
+      "a2-brain-surface-refresher",
+      "a2-workshop-analysis-gate-operator"
+    ],
+    "source_path": "system_v4/skills/outside_control_shell_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "shell": "system_v4/skills/outside_control_shell_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "pi-mono coding-agent session surfaces and mom workspace boundary retooled into a bounded Ratchet outside-session-host audit slice",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "pimono",
+      "outside-control-shell",
+      "session-host",
+      "imported-cluster",
+      "a2",
+      "maintenance",
+      "audit-mode"
+    ]
+  },
+  "a2-next-state-signal-adaptation-audit-operator": {
+    "skill_id": "a2-next-state-signal-adaptation-audit-operator",
+    "name": "a2-next-state-signal-adaptation-audit-operator",
+    "description": "Bounded next-state signal adaptation audit operator",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "B_ADJUDICATED"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": true,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo",
+      "report_path",
+      "markdown_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "next_state_signal_adaptation_audit_report",
+      "next_state_signal_adaptation_audit_packet"
+    ],
+    "related_skills": [
+      "witness-recorder",
+      "runtime-state-kernel",
+      "bounded-improve-operator",
+      "a2-skill-improver-readiness-operator",
+      "a2-skill-improver-first-target-proof-operator"
+    ],
+    "source_path": "system_v4/skills/a2_next_state_signal_adaptation_audit_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-next-state-signal-adaptation-audit-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_next_state_signal_adaptation_audit_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "OpenClaw-RL paper/repo retooled into a bounded Ratchet next-state signal adaptation audit slice",
+    "status": "active",
+    "last_verified_utc": "2026-03-21T00:00:00Z",
+    "tags": [
+      "openclaw-rl",
+      "next-state-signals",
+      "directive-correction",
+      "imported-cluster",
+      "a2",
+      "maintenance",
+      "audit-mode"
+    ]
+  },
+  "a2-next-state-directive-signal-probe-operator": {
+    "skill_id": "a2-next-state-directive-signal-probe-operator",
+    "name": "a2-next-state-directive-signal-probe-operator",
+    "description": "Probe the live witness corpus for bounded next-state and directive-correction evidence without claiming live learning or mutation",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "B_ADJUDICATED"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": true,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo",
+      "next_state_audit_path",
+      "witness_path",
+      "readiness_report_path",
+      "report_path",
+      "markdown_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "next_state_directive_signal_probe_report",
+      "next_state_directive_signal_probe_packet"
+    ],
+    "related_skills": [
+      "a2-next-state-signal-adaptation-audit-operator",
+      "witness-recorder",
+      "runtime-state-kernel",
+      "a2-skill-improver-readiness-operator"
+    ],
+    "source_path": "system_v4/skills/a2_next_state_directive_signal_probe_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-next-state-directive-signal-probe-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_next_state_directive_signal_probe_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "OpenClaw-RL-derived bounded probe over Ratchet witness entries and directive-correction evidence, retooled into a repo-held next-state signal slice",
+    "status": "active",
+    "last_verified_utc": "2026-03-22T00:00:00Z",
+    "tags": [
+      "openclaw-rl",
+      "next-state-signals",
+      "next-state-signal-probe",
+      "directive-correction",
+      "witness-corpus",
+      "imported-cluster",
+      "a2",
+      "maintenance",
+      "audit-mode",
+      "runtime"
+    ]
+  },
+  "a2-next-state-improver-context-bridge-audit-operator": {
+    "skill_id": "a2-next-state-improver-context-bridge-audit-operator",
+    "name": "a2-next-state-improver-context-bridge-audit-operator",
+    "description": "Audit-only bridge that decides whether current next-state witness signals can populate a bounded skill-improver context surface without widening mutation authority",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": true,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo",
+      "probe_report_path",
+      "probe_packet_path",
+      "witness_path",
+      "readiness_report_path",
+      "first_target_proof_report_path",
+      "second_target_packet_path",
+      "report_path",
+      "markdown_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "next_state_improver_context_bridge_audit_report",
+      "next_state_improver_context_bridge_audit_packet"
+    ],
+    "related_skills": [
+      "a2-next-state-directive-signal-probe-operator",
+      "witness-recorder",
+      "skill-improver-operator",
+      "a2-skill-improver-readiness-operator",
+      "a2-skill-improver-first-target-proof-operator",
+      "a2-skill-improver-second-target-admission-audit-operator"
+    ],
+    "source_path": "system_v4/skills/a2_next_state_improver_context_bridge_audit_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-next-state-improver-context-bridge-audit-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_next_state_improver_context_bridge_audit_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "OpenClaw-RL-derived next-state signal lane plus Ratchet-native skill-improver truth maintenance retooled into a bounded context-bridge audit slice",
+    "status": "active",
+    "last_verified_utc": "2026-03-22T00:00:00Z",
+    "tags": [
+      "openclaw-rl",
+      "next-state-signals",
+      "next-state-improver-context-bridge",
+      "directive-correction",
+      "skill-improver",
+      "imported-cluster",
+      "a2",
+      "maintenance",
+      "audit-mode",
+      "runtime"
+    ]
+  },
+  "a2-next-state-first-target-context-consumer-admission-audit-operator": {
+    "skill_id": "a2-next-state-first-target-context-consumer-admission-audit-operator",
+    "name": "a2-next-state-first-target-context-consumer-admission-audit-operator",
+    "description": "Audit-only slice that decides whether the landed next-state bridge has any explicit first-target consumer contract in the current skill-improver lane",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": true,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo",
+      "bridge_report_path",
+      "bridge_packet_path",
+      "target_selection_packet_path",
+      "first_target_proof_report_path",
+      "second_target_packet_path",
+      "report_path",
+      "markdown_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "next_state_first_target_context_consumer_admission_report",
+      "next_state_first_target_context_consumer_admission_packet"
+    ],
+    "related_skills": [
+      "a2-next-state-improver-context-bridge-audit-operator",
+      "skill-improver-operator",
+      "a2-skill-improver-target-selector-operator",
+      "a2-skill-improver-first-target-proof-operator",
+      "a2-skill-improver-second-target-admission-audit-operator"
+    ],
+    "source_path": "system_v4/skills/a2_next_state_first_target_context_consumer_admission_audit_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-next-state-first-target-context-consumer-admission-audit-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_next_state_first_target_context_consumer_admission_audit_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "OpenClaw-RL-derived next-state bridge plus Ratchet-native skill-improver gate surfaces retooled into a bounded first-target consumer-admission audit",
+    "status": "active",
+    "last_verified_utc": "2026-03-22T00:00:00Z",
+    "tags": [
+      "openclaw-rl",
+      "next-state-signals",
+      "first-target-context-consumer",
+      "skill-improver",
+      "imported-cluster",
+      "a2",
+      "maintenance",
+      "audit-mode",
+      "runtime"
+    ]
+  },
+  "a2-next-state-first-target-context-consumer-proof-operator": {
+    "skill_id": "a2-next-state-first-target-context-consumer-proof-operator",
+    "name": "a2-next-state-first-target-context-consumer-proof-operator",
+    "description": "Metadata-only proof slice that exercises the admitted first-target next-state context consumer seam without widening skill-improver write authority",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "consumer_report_path",
+      "consumer_packet_path",
+      "bridge_report_path",
+      "bridge_packet_path",
+      "target_selection_packet_path",
+      "first_target_proof_report_path",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "next_state_first_target_context_consumer_proof_report",
+      "next_state_first_target_context_consumer_proof_packet"
+    ],
+    "related_skills": [
+      "skill-improver-operator",
+      "a2-next-state-improver-context-bridge-audit-operator",
+      "a2-next-state-first-target-context-consumer-admission-audit-operator",
+      "a2-skill-improver-first-target-proof-operator"
+    ],
+    "source_path": "system_v4/skills/a2_next_state_first_target_context_consumer_proof_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-next-state-first-target-context-consumer-proof-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_next_state_first_target_context_consumer_proof_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "OpenClaw-RL-derived next-state bridge plus Ratchet-native skill-improver gate surfaces retooled into a bounded metadata-only first-target consumer proof",
+    "status": "active",
+    "last_verified_utc": "2026-03-22T00:00:00Z",
+    "tags": [
+      "openclaw-rl",
+      "next-state-signals",
+      "next-state-context-consumer-proof",
+      "skill-improver",
+      "imported-cluster",
+      "a2",
+      "maintenance",
+      "audit-mode",
+      "runtime"
+    ]
+  },
+  "a2-source-family-lane-selector-operator": {
+    "skill_id": "a2-source-family-lane-selector-operator",
+    "name": "a2-source-family-lane-selector-operator",
+    "description": "Audit-only selector that recommends the next bounded non-lev source-family lane from current corpus and hold state",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "a2_source_family_lane_selection_report",
+      "a2_source_family_lane_selection_packet"
+    ],
+    "related_skills": [
+      "a2-skill-source-intake-operator",
+      "a2-research-deliberation-operator",
+      "a2-lev-agents-promotion-operator"
+    ],
+    "source_path": "system_v4/skills/a2_source_family_lane_selector_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-source-family-lane-selector-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_source_family_lane_selector_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native selector slice that recommends the next bounded non-lev source-family lane after current lev, next-state, graph, and EverMem holds",
+    "status": "active",
+    "last_verified_utc": "2026-03-22T00:00:00Z",
+    "tags": [
+      "source-family-selector",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "audit-mode",
+      "runtime"
+    ]
+  },
+  "a2-context-spec-workflow-pattern-audit-operator": {
+    "skill_id": "a2-context-spec-workflow-pattern-audit-operator",
+    "name": "a2-context-spec-workflow-pattern-audit-operator",
+    "description": "Audit-only first slice for the context-spec-workflow-memory cluster that maps append-safe context, executable spec coupling, workflow discipline, and scoped memory-sidecar patterns onto current Ratchet seams",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "analysis_scope",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "a2_context_spec_workflow_pattern_audit_report",
+      "a2_context_spec_workflow_pattern_audit_packet"
+    ],
+    "related_skills": [
+      "a2-source-family-lane-selector-operator",
+      "a2-skill-source-intake-operator",
+      "a2-research-deliberation-operator"
+    ],
+    "source_path": "system_v4/skills/a2_context_spec_workflow_pattern_audit_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-context-spec-workflow-pattern-audit-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_context_spec_workflow_pattern_audit_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native first bounded slice for Context-Engineering, spec-kit, superpowers, and mem0 as source-family pressure only",
+    "status": "active",
+    "last_verified_utc": "2026-03-22T00:00:00Z",
+    "tags": [
+      "context-spec-workflow",
+      "context-shell",
+      "spec-coupling",
+      "memory-sidecar",
+      "imported-cluster",
+      "a2",
+      "maintenance",
+      "audit-mode",
+      "runtime"
+    ]
+  },
+  "a2-context-spec-workflow-follow-on-selector-operator": {
+    "skill_id": "a2-context-spec-workflow-follow-on-selector-operator",
+    "name": "a2-context-spec-workflow-follow-on-selector-operator",
+    "description": "Selector-only follow-on operator that chooses one bounded second slice for the context-spec-workflow-memory cluster without widening into runtime, service, or substrate claims",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "selection_scope",
+      "pattern_report_path",
+      "pattern_packet_path",
+      "source_selector_report_path",
+      "evermem_report_path",
+      "controller_record_path",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "a2_context_spec_workflow_follow_on_selector_report",
+      "a2_context_spec_workflow_follow_on_selector_packet"
+    ],
+    "related_skills": [
+      "a2-context-spec-workflow-pattern-audit-operator",
+      "a2-source-family-lane-selector-operator",
+      "a2-brain-surface-refresher"
+    ],
+    "source_path": "system_v4/skills/a2_context_spec_workflow_follow_on_selector_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-context-spec-workflow-follow-on-selector-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_context_spec_workflow_follow_on_selector_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "bounded follow-on selector for Context-Engineering, spec-kit, superpowers, and mem0 after the first context/spec/workflow pattern audit",
+    "status": "active",
+    "last_verified_utc": "2026-03-22T00:00:00Z",
+    "tags": [
+      "context-spec-workflow",
+      "context-spec-follow-on-selector",
+      "selector-only",
+      "imported-cluster",
+      "a2",
+      "maintenance",
+      "audit-mode",
+      "runtime"
+    ]
+  },
+  "a2-append-safe-context-shell-audit-operator": {
+    "skill_id": "a2-append-safe-context-shell-audit-operator",
+    "name": "a2-append-safe-context-shell-audit-operator",
+    "description": "Audit-only append-safe context-shell slice for the context-spec-workflow-memory cluster that maps current standing A2 continuity surfaces, admitted write shapes, and anti-bloat fences",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "audit_scope",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "a2_append_safe_context_shell_audit_report",
+      "a2_append_safe_context_shell_audit_packet"
+    ],
+    "related_skills": [
+      "a2-context-spec-workflow-follow-on-selector-operator",
+      "a2-context-spec-workflow-pattern-audit-operator",
+      "a2-brain-surface-refresher"
+    ],
+    "source_path": "system_v4/skills/a2_append_safe_context_shell_audit_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-append-safe-context-shell-audit-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_append_safe_context_shell_audit_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "bounded follow-on append-safe continuity-shell audit derived from the context-spec-workflow-memory source-family cluster",
+    "status": "active",
+    "last_verified_utc": "2026-03-22T00:00:00Z",
+    "tags": [
+      "context-spec-workflow",
+      "append-safe-context-shell",
+      "continuity-shell",
+      "imported-cluster",
+      "a2",
+      "maintenance",
+      "audit-mode",
+      "runtime"
+    ]
+  },
+  "a2-context-spec-workflow-post-shell-selector-operator": {
+    "skill_id": "a2-context-spec-workflow-post-shell-selector-operator",
+    "name": "a2-context-spec-workflow-post-shell-selector-operator",
+    "description": "Selector-only post-shell controller slice for the context-spec-workflow-memory cluster that holds the lane after append-safe landing and records the first standby follow-on without widening by momentum",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "selection_scope",
+      "append_safe_report_path",
+      "follow_on_selector_report_path",
+      "evermem_report_path",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "a2_context_spec_workflow_post_shell_selector_report",
+      "a2_context_spec_workflow_post_shell_selector_packet"
+    ],
+    "related_skills": [
+      "a2-append-safe-context-shell-audit-operator",
+      "a2-context-spec-workflow-follow-on-selector-operator",
+      "a2-brain-surface-refresher"
+    ],
+    "source_path": "system_v4/skills/a2_context_spec_workflow_post_shell_selector_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-context-spec-workflow-post-shell-selector-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_context_spec_workflow_post_shell_selector_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "bounded post-shell controller selector for the context-spec-workflow-memory cluster after append-safe landing",
+    "status": "active",
+    "last_verified_utc": "2026-03-22T00:00:00Z",
+    "tags": [
+      "context-spec-workflow",
+      "context-spec-post-shell-selector",
+      "selector-only",
+      "imported-cluster",
+      "a2",
+      "maintenance",
+      "audit-mode",
+      "runtime"
+    ]
+  },
+  "a2-autoresearch-council-runtime-proof-operator": {
+    "skill_id": "a2-autoresearch-council-runtime-proof-operator",
+    "name": "a2-autoresearch-council-runtime-proof-operator",
+    "description": "Bounded first runtime-proof slice for the karpathy-meta-research-runtime cluster using local autoresearch and llm-council seams over a seeded local search space",
+    "skill_type": "maintenance",
+    "applicable_trust_zones": [
+      "A2_MID_REFINEMENT",
+      "A2_LOW_CONTROL"
+    ],
+    "capabilities": {
+      "is_phase_runner": true,
+      "can_write_repo": false,
+      "can_only_propose": true,
+      "mutates_graph": false,
+      "reads_graph": true
+    },
+    "applicable_graphs": [
+      "runtime",
+      "control",
+      "a2_mid_refinement_graph_v1"
+    ],
+    "inputs": [
+      "repo_root",
+      "proof_mode",
+      "random_seed",
+      "report_json_path",
+      "report_md_path",
+      "packet_path"
+    ],
+    "outputs": [
+      "a2_autoresearch_council_runtime_proof_report",
+      "a2_autoresearch_council_runtime_proof_packet"
+    ],
+    "related_skills": [
+      "autoresearch-operator",
+      "llm-council-operator",
+      "a2-research-deliberation-operator",
+      "a2-source-family-lane-selector-operator"
+    ],
+    "source_path": "system_v4/skills/a2_autoresearch_council_runtime_proof_operator.py",
+    "source_type": "operator_module",
+    "adapters": {
+      "codex": "system_v4/skill_specs/a2-autoresearch-council-runtime-proof-operator/SKILL.md",
+      "shell": "system_v4/skills/a2_autoresearch_council_runtime_proof_operator.py",
+      "dispatch_binding": "python_module"
+    },
+    "provenance": "Ratchet-native first bounded slice for the Karpathy meta-research family that proves the existing local autoresearch plus llm-council seams without importing hosted research runtimes",
+    "status": "active",
+    "last_verified_utc": "2026-03-22T00:00:00Z",
+    "tags": [
+      "karpathy-meta-research",
+      "autoresearch",
+      "llm-council",
+      "runtime-proof",
+      "imported-cluster",
+      "a2",
+      "maintenance",
+      "audit-mode",
+      "runtime"
+    ]
+  }
+}

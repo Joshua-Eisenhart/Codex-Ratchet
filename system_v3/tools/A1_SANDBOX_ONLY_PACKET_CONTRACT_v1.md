@@ -8,6 +8,9 @@ This contract defines **sandbox-only** packets for A1 work.
 - MUST be sequential: one packet step at a time.
 - MUST support multi-narrative generation (steelman + devils + rescuers) without schema drift.
 - MUST be compact: avoid document explosion; store only structured deltas.
+- MUST treat refreshed A2-derived constraints as the controlling input, not optional background context.
+- MUST fail closed on malformed or underspecified packet content; no helpful interpretation layer is assumed.
+- MUST preserve proposal-only status; packet completion does not imply earned truth or lower-loop advancement.
 
 ## Packet Types
 
@@ -36,6 +39,7 @@ A single sandbox step. Contains a `REQUEST` and a `RESPONSE` artifact.
 - `required_roles` (list[string])
 - `inputs` (object):
   - `a1_brain_digest` (sha256 string)
+  - `a2_distillation_digest` (sha256 string)
   - `fuel_digest` (sha256 string)
   - `constraints` (list[string])
 

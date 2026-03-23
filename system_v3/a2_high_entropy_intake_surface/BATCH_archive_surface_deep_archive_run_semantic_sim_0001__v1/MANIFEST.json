@@ -1,0 +1,296 @@
+{
+  "batch_id": "BATCH_archive_surface_deep_archive_run_semantic_sim_0001__v1",
+  "batch_scope": "deep_archive_run_semantic_sim_0001",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T10:36:03Z",
+  "deferred_next_in_folder_order": [
+    "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002"
+  ],
+  "extraction_mode": "ARCHIVE_DEEP_RUN_SEMANTIC_SIM_PASS",
+  "notes": [
+    "This batch processes only RUN_SEMANTIC_SIM_0001 and treats it as a direct historical semantic-SIM run, not as a wrapper bundle or current control surface.",
+    "The run root preserves a root sequence ledger but no inbox-local sequence ledger; a1_inbox contains only the consumed lane.",
+    "The final state hash 71106355... is consistent across summary.json, state.json, and state.json.sha256.",
+    "The main contradiction is clean accounting without promotion success: summary.json matches retained step and digest counts while all promotion pass counts remain zero and unresolved blockers rise to 30.",
+    "Transport counters are clean, but unresolved promotion debt remains large: thirty blockers, thirty parked sim promotion states, five pending canonical evidence items, and ten retained kill signals.",
+    "Embedded strategy packets use a 000001-style family while consumed packets use a 400001-style family; only the first consumed packet is byte-identical to an embedded packet.",
+    "The archive object keeps no local sim directory even though retained SIM outputs carry concrete runtime-like sim_evidence paths.",
+    "This run is historically valuable because it shows a semantically rich five-step trajectory with no park or reject residue, yet still fail-closed promotion truth."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "REVISIT_REQUIRED",
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "source_family": "archive root deep archive run semantic sim 0001",
+  "source_membership": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SEMANTIC_SIM_0001",
+      "role_in_batch": "direct_semantic_sim_run_root",
+      "total_files": 57,
+      "total_dirs": 3,
+      "top_level_entries": [
+        "a1_inbox",
+        "events.jsonl",
+        "sequence_state.json",
+        "soak_report.md",
+        "state.json",
+        "state.json.sha256",
+        "summary.json",
+        "zip_packets"
+      ],
+      "omitted_control_surfaces": [
+        "README*",
+        "HARDMODE_METRICS.json",
+        "sim/"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SEMANTIC_SIM_0001/summary.json",
+      "role_in_batch": "direct_summary",
+      "sha256": "f58c539a8c241699fa43046df5a1612ce4bcd6cabffcdcbd39ac37c9a0b4501e",
+      "size_bytes": 832,
+      "summary": {
+        "run_id": "RUN_SEMANTIC_SIM_0001",
+        "steps_completed": 5,
+        "steps_requested": 5,
+        "stop_reason": "MAX_STEPS",
+        "accepted_total": 70,
+        "rejected_total": 0,
+        "parked_total": 0,
+        "sim_registry_count": 30,
+        "unresolved_promotion_blocker_count": 30,
+        "final_state_hash": "711063559a9219f16fb8b0e81020004d9bad7f4979cc8f94cabcc6036d583c57",
+        "unique_export_content_digest_count": 5,
+        "unique_export_structural_digest_count": 5,
+        "unique_strategy_digest_count": 5,
+        "promotion_counts_by_tier": {
+          "T0_ATOM": {
+            "fail": 5,
+            "pass": 0
+          },
+          "T1_COMPOUND": {
+            "fail": 15,
+            "pass": 0
+          },
+          "T2_OPERATOR": {
+            "fail": 5,
+            "pass": 0
+          },
+          "T3_STRUCTURE": {
+            "fail": 5,
+            "pass": 0
+          }
+        }
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SEMANTIC_SIM_0001/state.json",
+      "role_in_batch": "direct_state",
+      "sha256": "711063559a9219f16fb8b0e81020004d9bad7f4979cc8f94cabcc6036d583c57",
+      "size_bytes": 87702,
+      "state_summary": {
+        "accepted_batch_count": 5,
+        "canonical_ledger_len": 5,
+        "derived_only_terms_len": 47,
+        "evidence_pending_len": 5,
+        "evidence_tokens_len": 30,
+        "interaction_counts_len": 20,
+        "kill_log_len": 10,
+        "park_set_len": 0,
+        "reject_log_len": 0,
+        "sim_promotion_status_len": 30,
+        "sim_registry_len": 30,
+        "sim_results_len": 30,
+        "survivor_ledger_len": 72,
+        "survivor_order_len": 72,
+        "term_registry_len": 15,
+        "active_megaboot_id": "",
+        "active_megaboot_sha256": "",
+        "active_ruleset_sha256": ""
+      },
+      "evidence_pending_shape": {
+        "type": "dict",
+        "count": 5,
+        "keys": [
+          "S_CANON_A_0001",
+          "S_CANON_A_0002",
+          "S_CANON_A_0003",
+          "S_CANON_A_0004",
+          "S_CANON_A_0005"
+        ]
+      },
+      "park_set_summary": {
+        "count": 0
+      },
+      "reject_log_summary": {
+        "count": 0
+      },
+      "sim_promotion_status_summary": {
+        "count": 30,
+        "all_status": "PARKED"
+      },
+      "sim_family_roots": [
+        "BASE",
+        "BOUND",
+        "NEG_A",
+        "NEG_B",
+        "PERT",
+        "STRESS"
+      ],
+      "kill_log": [
+        {
+          "id": "S_SIM_NEG_A_0001",
+          "token": "NEG_COMMUTATIVE_ASSUMPTION"
+        },
+        {
+          "id": "S_SIM_NEG_B_0001",
+          "token": "NEG_CLASSICAL_TIME"
+        },
+        {
+          "id": "S_SIM_NEG_A_0002",
+          "token": "NEG_COMMUTATIVE_ASSUMPTION"
+        },
+        {
+          "id": "S_SIM_NEG_B_0002",
+          "token": "NEG_CLASSICAL_TIME"
+        },
+        {
+          "id": "S_SIM_NEG_A_0003",
+          "token": "NEG_COMMUTATIVE_ASSUMPTION"
+        },
+        {
+          "id": "S_SIM_NEG_B_0003",
+          "token": "NEG_CLASSICAL_TIME"
+        },
+        {
+          "id": "S_SIM_NEG_A_0004",
+          "token": "NEG_COMMUTATIVE_ASSUMPTION"
+        },
+        {
+          "id": "S_SIM_NEG_B_0004",
+          "token": "NEG_CLASSICAL_TIME"
+        },
+        {
+          "id": "S_SIM_NEG_A_0005",
+          "token": "NEG_COMMUTATIVE_ASSUMPTION"
+        },
+        {
+          "id": "S_SIM_NEG_B_0005",
+          "token": "NEG_CLASSICAL_TIME"
+        }
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SEMANTIC_SIM_0001/state.json.sha256",
+      "role_in_batch": "state_hash_sidecar",
+      "declared_sha256": "711063559a9219f16fb8b0e81020004d9bad7f4979cc8f94cabcc6036d583c57",
+      "matches_state_json": true,
+      "matches_summary_final_hash": true
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SEMANTIC_SIM_0001/sequence_state.json",
+      "role_in_batch": "sequence_state",
+      "sha256": "ded38c41bf4b9ca221bed2baf863263d900226b6393335d4741174cec80e3231",
+      "size_bytes": 89,
+      "seq_by_source": {
+        "A0": 6,
+        "A1": 5,
+        "A2": 0,
+        "B": 5,
+        "SIM": 30
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SEMANTIC_SIM_0001/a1_inbox",
+      "role_in_batch": "inbox_without_sequence_state",
+      "top_level_entries": [
+        "consumed"
+      ],
+      "inbox_sequence_state_present": false
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SEMANTIC_SIM_0001/events.jsonl",
+      "role_in_batch": "direct_event_ledger",
+      "sha256": "feaa0b44b463e67fc8d3427746b0b8210d6f6ca9b3de77fed878b76badc14631",
+      "size_bytes": 18011,
+      "line_count": 6,
+      "explicit_event_counts": {
+        "a1_strategy_request_emitted": 1
+      },
+      "implicit_step_result_rows": 5,
+      "steps_present": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "referenced_strategy_packets": [
+        "000001_A1_TO_A0_STRATEGY_ZIP.zip",
+        "000002_A1_TO_A0_STRATEGY_ZIP.zip",
+        "000003_A1_TO_A0_STRATEGY_ZIP.zip",
+        "000004_A1_TO_A0_STRATEGY_ZIP.zip",
+        "000005_A1_TO_A0_STRATEGY_ZIP.zip"
+      ],
+      "referenced_export_packets": [
+        "000002_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+        "000003_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+        "000004_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+        "000005_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+        "000006_A0_TO_B_EXPORT_BATCH_ZIP.zip"
+      ],
+      "referenced_sim_output_count": 30,
+      "unique_strategy_digest_count_retained": 5,
+      "unique_export_content_digest_count_retained": 5,
+      "unique_export_structural_digest_count_retained": 5
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SEMANTIC_SIM_0001/soak_report.md",
+      "role_in_batch": "direct_soak_report",
+      "sha256": "e75df4fd9fa3b8b927c6fd7f96a1dc733d7e234671d03f20c3913f212476e92f",
+      "size_bytes": 18186,
+      "headline": {
+        "cycle_count": 5,
+        "accepted_total": 70,
+        "parked_total": 0,
+        "rejected_total": 0,
+        "stop_reason": "MAX_STEPS"
+      },
+      "top_failure_tags": [
+        "NONE"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SEMANTIC_SIM_0001/zip_packets",
+      "role_in_batch": "embedded_packet_lattice",
+      "packet_count": 46,
+      "packet_kind_counts": {
+        "A0_TO_A1_SAVE_ZIP": 1,
+        "A0_TO_B_EXPORT_BATCH_ZIP": 5,
+        "A1_TO_A0_STRATEGY_ZIP": 5,
+        "B_TO_A0_STATE_UPDATE_ZIP": 5,
+        "SIM_TO_A0_SIM_RESULT_ZIP": 30
+      },
+      "embedded_strategy_hashes": {
+        "000001_A1_TO_A0_STRATEGY_ZIP.zip": "1eda36d29c64c9e3f98652e40a410227e96b09b1a7d8d8da6f5a68239f33ec48",
+        "000002_A1_TO_A0_STRATEGY_ZIP.zip": "43c5fb7fc467f224179941dbbe259d7ead9fb7e34628cd8f04e749cb59ab723e",
+        "000003_A1_TO_A0_STRATEGY_ZIP.zip": "2f56c1109c65ac390d6f7dc73b0c2167c3517a7b5347636458fe7aa570cefd30",
+        "000004_A1_TO_A0_STRATEGY_ZIP.zip": "952f4ca1a78870829a0628e174eb1e347108f84a3439cad64fd9a649e88c894b",
+        "000005_A1_TO_A0_STRATEGY_ZIP.zip": "91e2b38cdce9ae3284b1fc97df7dbb14744aeafda5f62b10b2d879cc0f2c58d0"
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SEMANTIC_SIM_0001/a1_inbox/consumed",
+      "role_in_batch": "renumbered_consumed_strategy_residue",
+      "packet_count": 5,
+      "consumed_strategy_hashes": {
+        "400001_A1_TO_A0_STRATEGY_ZIP.zip": "1eda36d29c64c9e3f98652e40a410227e96b09b1a7d8d8da6f5a68239f33ec48",
+        "400002_A1_TO_A0_STRATEGY_ZIP.zip": "1c02cb76107dd52d1387fa82d5ce07333d3974077f8aa4cac5d0dd9945e853bf",
+        "400003_A1_TO_A0_STRATEGY_ZIP.zip": "4cc639d0fd0b6399a51ddd40b05121f0be41cc285e798ffe281f1c4d9e8f5403",
+        "400004_A1_TO_A0_STRATEGY_ZIP.zip": "35acb4ecff554f3ac304f292fb93e480079fc5df75e61a085e923708ffd32b9f",
+        "400005_A1_TO_A0_STRATEGY_ZIP.zip": "947b9f89bf15893f2acbff6fa1f1283d408be0a1d6dcb83746f844cc82f276fa"
+      },
+      "same_filenames_as_embedded_strategy_family": false,
+      "byte_identical_pairs_with_embedded_strategy_family": 1
+    }
+  ]
+}

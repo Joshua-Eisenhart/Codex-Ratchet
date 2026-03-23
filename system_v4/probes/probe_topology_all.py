@@ -25,8 +25,8 @@ def load_graph(path):
             
     edges = data.get('edges', [])
     for e in edges:
-        src = e.get("source") or e.get("from")
-        tgt = e.get("target") or e.get("to")
+        src = e.get("source_id") or e.get("source") or e.get("from")
+        tgt = e.get("target_id") or e.get("target") or e.get("to")
         if not src:
             rel_id = e.get("relation_id") or ""
             if isinstance(rel_id, str) and "::" in rel_id:

@@ -1,6 +1,7 @@
 import json
 import shutil
 import sys
+import tempfile
 import unittest
 import uuid
 from pathlib import Path
@@ -21,24 +22,12 @@ class TestMaxSimsEnforced(unittest.TestCase):
         """
         run_id = f"TEST_MAX_SIMS_PACKET_{uuid.uuid4().hex[:8]}"
         bootpack_root = BASE
-        system_v3_root = bootpack_root.parents[1]
-        runs_root = system_v3_root / "runs"
-        run_dir = runs_root / run_id
-        inbox = run_dir / "a1_inbox"
-
-        # Ensure a fresh start without relying on run_loop(clean=True), because
-        # packet mode requires us to stage an inbox capsule before running.
-        shutil.rmtree(run_dir, ignore_errors=True)
-        current_state = runs_root / "_CURRENT_STATE"
-        (current_state / "state.json").unlink(missing_ok=True)
-        (current_state / "sequence_state.json").unlink(missing_ok=True)
-
-        inbox.mkdir(parents=True, exist_ok=True)
-
         max_sims = 2
         candidates: list[dict] = []
 
-        def sim_candidate(*, cid: str, probe: str, evidence: str, tier: str, family: str, tc: str, negative_class: str = "") -> dict:
+        def sim_candidate(
+            *, cid: str, probe: str, evidence: str, tier: str, family: str, tc: str, negative_class: str = ""
+        ) -> dict:
             def_fields = [
                 {"field_id": "F_EVID", "name": "REQUIRES_EVIDENCE", "value_kind": "TOKEN", "value": evidence},
                 {"field_id": "F_SIMID", "name": "SIM_ID", "value_kind": "TOKEN", "value": cid},
@@ -114,46 +103,59 @@ class TestMaxSimsEnforced(unittest.TestCase):
         errors = validate_strategy(strategy)
         self.assertEqual([], errors)
 
-        packet_path = inbox / "000001_A1_TO_A0_STRATEGY_ZIP.zip"
-        write_zip_protocol_v2(
-            out_path=packet_path,
-            header={
-                "zip_type": "A1_TO_A0_STRATEGY_ZIP",
-                "direction": "FORWARD",
-                "source_layer": "A1",
-                "target_layer": "A0",
-                "run_id": run_id,
-                "sequence": 1,
-                "created_utc": "1980-01-01T00:00:00Z",
-                # Per ZIP_PROTOCOL_v2 validator policy: compiler_version is only
-                # populated for A0-emitted capsules. Other layers must emit "".
-                "compiler_version": "",
-            },
-            payload_json={"A1_STRATEGY_v1.json": strategy},
-        )
+        with tempfile.TemporaryDirectory() as tmpdir:
+            runs_root = Path(tmpdir)
+            run_dir = runs_root / run_id
+            inbox = run_dir / "a1_inbox"
 
-        # Run exactly one step; max_sims must cap SIM execution.
-        run_loop(
-            strategy_path=bootpack_root / "a1_strategies" / "sample_strategy.json",
-            steps=1,
-            run_id=run_id,
-            a1_source="packet",
-            a1_model="",
-            a1_timeout_sec=1,
-            clean=False,
-            retain_diagnostics=False,
-        )
+            # Ensure a fresh start without relying on run_loop(clean=True), because
+            # packet mode requires us to stage an inbox capsule before running.
+            shutil.rmtree(run_dir, ignore_errors=True)
+            current_state = runs_root / "_CURRENT_STATE"
+            (current_state / "state.json").unlink(missing_ok=True)
+            (current_state / "sequence_state.json").unlink(missing_ok=True)
+            inbox.mkdir(parents=True, exist_ok=True)
 
-        state = json.loads((run_dir / "state.json").read_text(encoding="utf-8"))
-        sim_registry_count = len(state.get("sim_registry", {}) or {})
-        sim_results_count = len(state.get("sim_results", {}) or {})
-        evidence_pending_count = len(state.get("evidence_pending", {}) or {})
+            packet_path = inbox / "000001_A1_TO_A0_STRATEGY_ZIP.zip"
+            write_zip_protocol_v2(
+                out_path=packet_path,
+                header={
+                    "zip_type": "A1_TO_A0_STRATEGY_ZIP",
+                    "direction": "FORWARD",
+                    "source_layer": "A1",
+                    "target_layer": "A0",
+                    "run_id": run_id,
+                    "sequence": 1,
+                    "created_utc": "1980-01-01T00:00:00Z",
+                    # Per ZIP_PROTOCOL_v2 validator policy: compiler_version is only
+                    # populated for A0-emitted capsules. Other layers must emit "".
+                    "compiler_version": "",
+                },
+                payload_json={"A1_STRATEGY_v1.json": strategy},
+            )
 
-        self.assertGreaterEqual(sim_registry_count, max_sims + 1)
-        self.assertEqual(max_sims, sim_results_count)
-        self.assertEqual(sim_registry_count - max_sims, evidence_pending_count)
+            # Run exactly one step; max_sims must cap SIM execution.
+            run_loop(
+                strategy_path=bootpack_root / "a1_strategies" / "sample_strategy.json",
+                steps=1,
+                run_id=run_id,
+                a1_source="packet",
+                a1_model="",
+                a1_timeout_sec=1,
+                clean=False,
+                retain_diagnostics=False,
+                runs_root_override=tmpdir,
+            )
 
-        shutil.rmtree(run_dir, ignore_errors=True)
+            state = json.loads((run_dir / "state.json").read_text(encoding="utf-8"))
+            heavy_state = json.loads((run_dir / "state.heavy.json").read_text(encoding="utf-8"))
+            sim_registry_count = len(heavy_state.get("sim_registry", {}) or {})
+            sim_results_count = len(heavy_state.get("sim_results", {}) or {})
+            evidence_pending_count = len(state.get("evidence_pending", {}) or {})
+
+            self.assertGreaterEqual(sim_registry_count, max_sims + 1)
+            self.assertEqual(max_sims, sim_results_count)
+            self.assertEqual(sim_registry_count - max_sims, evidence_pending_count)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,36 @@
+{
+  "blocked_terms": [],
+  "blockers": [
+    "A1_STRIPPED owner graph is missing or empty",
+    "no exact A1_STRIPPED terms satisfy the current cartridge inclusion rule"
+  ],
+  "build_status": "FAIL_CLOSED",
+  "derived_from": {
+    "a1_stripped_graph": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_stripped_graph_v1.json",
+    "alias_lift_pack": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md",
+    "cartridge_review": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_CARTRIDGE_REVIEW__CORRELATION_DIVERSITY_FUNCTIONAL__v1.md",
+    "cross_judgment": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_CARTRIDGE_REVIEW__ACTIVE_FAMILY_CROSS_JUDGMENT__v1.md",
+    "handoff_packet": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/launch_bundles/nested_graph_build_a1_cartridge/NESTED_GRAPH_BUILD_WORKER_LAUNCH_HANDOFF__A1_CARTRIDGE__2026_03_20__v1.json"
+  },
+  "edges": [],
+  "generated_utc": "2026-03-20T10:18:59Z",
+  "handoff_snapshot": {
+    "dispatch_id": "NESTED_GRAPH_BUILD__A1_CARTRIDGE__2026_03_20__v1",
+    "queue_status": "BLOCKED_ON_A1_STRIPPED_TERM_PLAN_ALIGNMENT"
+  },
+  "materialized": false,
+  "nodes": {},
+  "owner_layer": "A1_CARTRIDGE",
+  "schema": "A1_CARTRIDGE_GRAPH_v1",
+  "selection_contract": {
+    "edge_rule": "Materialize only PACKAGED_FROM edges from A1_CARTRIDGE to A1_STRIPPED. Do not promote COMPILED_FROM or infer internal strategy/dependency topology.",
+    "exact_term_gate": "family-level cartridge PASS is insufficient; the exact stripped term must pass",
+    "included_node_rule": "Include only materialized A1_STRIPPED nodes whose exact stripped term is currently treated by cartridge doctrine as packageable fuel rather than witness-only or deferred."
+  },
+  "summary": {
+    "blocked_term_count": 0,
+    "edge_count": 0,
+    "included_terms": [],
+    "node_count": 0
+  }
+}

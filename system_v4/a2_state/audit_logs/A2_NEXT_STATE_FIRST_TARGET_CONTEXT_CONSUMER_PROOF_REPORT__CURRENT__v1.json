@@ -1,0 +1,118 @@
+{
+  "audit_only": true,
+  "bridge_packet_path": "system_v4/a2_state/audit_logs/A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_PACKET__CURRENT__v1.json",
+  "bridge_preview": {
+    "directive_topics": [
+      "a2_refresh_sync",
+      "graph_audit_sync",
+      "skill_improver_gate"
+    ],
+    "retained_second_target_gate": "hold_one_proven_target_only",
+    "selected_witness_indices": [
+      4,
+      5,
+      6
+    ]
+  },
+  "bridge_report_path": "system_v4/a2_state/audit_logs/A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.json",
+  "cluster_id": "SKILL_CLUSTER::next-state-signal-adaptation",
+  "consumer_packet_path": "system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_PACKET__CURRENT__v1.json",
+  "consumer_report_path": "system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.json",
+  "context_packet_preview": {
+    "context_notes": [
+      "bounded audit prompts or summaries for the one proven target only",
+      "repair-context preservation for future maintenance-lane review",
+      "repo-held bridge packets that remain nonoperative and do_not_promote"
+    ],
+    "directive_topics": [
+      "a2_refresh_sync",
+      "graph_audit_sync",
+      "skill_improver_gate"
+    ],
+    "first_target_context_only": true,
+    "forbidden_uses": [
+      "second target admission",
+      "live mutation or autonomous policy updates",
+      "online learning or runtime import claims",
+      "graph link seeding or graph backfill claims"
+    ],
+    "metadata_only": true,
+    "owner_skill_id": "skill-improver-operator",
+    "retain_general_gate": true,
+    "selected_target_skill_id": "a2-skill-improver-readiness-operator",
+    "selected_witness_indices": [
+      4,
+      5,
+      6
+    ]
+  },
+  "do_not_promote": true,
+  "first_target_proof_report_path": "system_v4/a2_state/audit_logs/SKILL_IMPROVER_FIRST_TARGET_PROOF_REPORT__CURRENT__v1.json",
+  "generated_utc": "2026-03-22T02:30:38Z",
+  "issues": [],
+  "non_goals": [
+    "Do not write to the selected target skill from this slice.",
+    "Do not widen this proof into second-target admission, live learning, runtime import, or graph backfill.",
+    "Do not treat a metadata-only context proof as authority to bypass the general skill-improver gate.",
+    "Do not claim this slice creates a general-purpose next-state consumer lane."
+  ],
+  "nonoperative": true,
+  "owner_skill_id": "skill-improver-operator",
+  "proof_completed": true,
+  "proof_only": true,
+  "proven_first_target_skill_id": "a2-skill-improver-readiness-operator",
+  "recommended_actions": [
+    "Keep this slice metadata-only and dry-run only.",
+    "Retain the general skill-improver gate and the one-proven-target hold.",
+    "Do not widen this proof into graph backfill, second-target admission, runtime import, or live learning."
+  ],
+  "recommended_next_step": "hold_consumer_proof_as_metadata_only",
+  "repo_root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "schema": "A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_PROOF_REPORT_v1",
+  "selected_target_skill_id": "a2-skill-improver-readiness-operator",
+  "selected_target_skill_path": "system_v4/skills/a2_skill_improver_readiness_operator.py",
+  "selected_target_smoke_path": "system_v4/skills/test_a2_skill_improver_readiness_operator_smoke.py",
+  "skill_improver_result": {
+    "compile_ok": true,
+    "context_contract_status": "metadata_only_context_loaded",
+    "context_summary": {
+      "allow_graph_backfill": false,
+      "allow_live_learning": false,
+      "allow_runtime_import": false,
+      "allow_second_target": false,
+      "bridge_packet_present": true,
+      "context_bridge_packet_present": true,
+      "context_notes": [
+        "bounded audit prompts or summaries for the one proven target only",
+        "repair-context preservation for future maintenance-lane review",
+        "repo-held bridge packets that remain nonoperative and do_not_promote"
+      ],
+      "context_packet_present": true,
+      "directive_topics": [
+        "a2_refresh_sync",
+        "graph_audit_sync",
+        "skill_improver_gate"
+      ],
+      "metadata_only": true,
+      "selected_witness_indices": [
+        4,
+        5,
+        6
+      ],
+      "target_scope": "first_target_context_only",
+      "writes_affected": false
+    },
+    "detail": "Candidate compiles. Selected test command passed. Dry-run active. Candidate not committed. Explicit first-target context metadata accepted without changing write gates.",
+    "dry_run": true,
+    "improved": false,
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/a2_skill_improver_readiness_operator.py",
+    "proposed_change": false,
+    "score": 2,
+    "tests_state": "passed",
+    "write_permitted": false
+  },
+  "slice_id": "a2-next-state-first-target-context-consumer-proof-operator",
+  "source_family": "OpenClaw-RL-derived next-state bridge plus Ratchet-native skill-improver gate surfaces",
+  "status": "ok",
+  "target_selection_packet_path": "system_v4/a2_state/audit_logs/SKILL_IMPROVER_TARGET_SELECTION_PACKET__CURRENT__v1.json"
+}

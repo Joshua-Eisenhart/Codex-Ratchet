@@ -1,0 +1,313 @@
+# SOURCE_MAP__v1
+Status: PROPOSED / NONCANONICAL / BOUNDED INTAKE ARTIFACT
+Batch: `BATCH_work_surface_residual_handoff_and_zipjob_refinery__v1`
+Extraction mode: `RESIDUAL_HANDOFF_AND_ZIPJOB_REFINERY_PASS`
+Batch scope: remaining reusable `work/` residue centered on `to_send_to_pro`, `stage_bootstrap_extracts`, `zip_dropins`, `zip_job_templates`, `zip_subagents`, and the minimax coordination sandbox
+Date: 2026-03-09
+
+## 1) Folder-Order Selection
+- primary residual family after earlier `work_surface` batches:
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_CONTEXT_PACK__BRANCH_DUAL_DOC_EXTRACTION__v1/00_READ_FIRST.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_CONTEXT_PACK__BRANCH_DUAL_DOC_EXTRACTION__v1/CONTEXT_PACK_INVENTORY.json`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_CONTEXT_PACK__BRANCH_DUAL_DOC_EXTRACTION__v1/PRO_RUN_LAUNCH__DUAL_THREAD_EXTRACTION__v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_CONTEXT_PACK__BRANCH_DUAL_DOC_EXTRACTION__LIGHT__v1/00_READ_FIRST.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_CONTEXT_PACK__BRANCH_DUAL_DOC_EXTRACTION__LIGHT__v1/CONTEXT_PACK_INVENTORY.json`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_CONTEXT_PACK__BRANCH_DUAL_DOC_EXTRACTION__LIGHT__v1/state_inputs/STATE_INPUTS_NOTE.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_CONTEXT_PACK__THREAD_EXTRACT__AUTO__v1/00_READ_FIRST.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_CONTEXT_PACK__THREAD_EXTRACT__AUTO__v1/CONTEXT_PACK_INVENTORY.json`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_THREAD_UPDATE_PACK__v5_SMALL/00_READ_FIRST.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/stage_bootstrap_extracts/A2_BRAIN_v1__type_counts.json`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/stage_bootstrap_extracts/A2_BRAIN_v1__filtered__no_SYSTEM_PROCESS.json`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__A2_LAYER_1_5__MULTI_RUN_CONSOLIDATION_AND_A1_WIGGLE_PREP__CHATUI_DROPIN__v4/meta/README__L1_5__WHAT_THIS_JOB_IS__v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__A2_LAYER_1_5__MULTI_RUN_CONSOLIDATION_AND_A1_WIGGLE_PREP__CHATUI_DROPIN__v4/meta/ZIP_JOB_MANIFEST_v1.json`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__DEFAULT_ANY_DOCUMENT__CHATUI_DROPIN__v7_2_4__SINGLE_ATTACHMENT__STRICT_PATH_CONFORMANCE_AND_SHORT_BATCH_NAMING__v1/meta/README__DEFAULT_DROPIN_ANY_DOCUMENT__CHATUI_PRO__v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__DEFAULT_ANY_DOCUMENT__CHATUI_DROPIN__v7_2_4__SINGLE_ATTACHMENT__STRICT_PATH_CONFORMANCE_AND_SHORT_BATCH_NAMING__v1/meta/PROCESS_RUNBOOK__A2_TO_A1_LAYERED_ENTROPY_REFINERY__ZIP_JOB_CHATUI_DROPIN_AND_SINGLE_ATTACHMENT_EXECUTION__v7_2.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__DEFAULT_ANY_DOCUMENT__CHATUI_DROPIN__v7_2_4__SINGLE_ATTACHMENT__STRICT_PATH_CONFORMANCE_AND_SHORT_BATCH_NAMING__v1/meta/ZIP_JOB_MANIFEST_v1.json`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_job_templates/A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__BUNDLE_TEMPLATE_v3/meta/README.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_job_templates/A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__BUNDLE_TEMPLATE_v3/meta/ZIP_JOB_MANIFEST_v1.json`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_job_templates/A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__BUNDLE_TEMPLATE_v3/meta/ZIP_JOB_MANIFEST_REALIZED_v1.json`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/coordination_sandbox__codex_minimax__noncanonical_delete_safe/00_SANDBOX_MANIFEST.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/coordination_sandbox__codex_minimax__noncanonical_delete_safe/codex_exchange/10_MINIMAX_ERROR_REPORT__VIOLATION_OF_READ_ONLY_BOUNDARY.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/coordination_sandbox__codex_minimax__noncanonical_delete_safe/codex_exchange/25_CODEX_TO_MINIMAX__ZIP_JOB_CHATUI_AUTOMATION__TEMPLATE_SUITE_AND_EXECUTION_PLAN__HANDOFF_v1.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/coordination_sandbox__codex_minimax__noncanonical_delete_safe/outbox/00_ZIP_SUBAGENT_ALIGNMENT__codex_response.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_subagents/ZIP_SUBAGENT_SYSTEM_v2_1__CONTROL_PLANE_ALIGNED__LONG_EXPLICIT_NAMING.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_subagents/MESSAGE_TO_CODEX__ZIP_SUBAGENT_ALIGNMENT.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_subagents/MESSAGE_TO_CODEX__REFINERY_SPEC_CONFIRMED.md`
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_subagents/templates/EXTRACT_TOPIC_v1/INSTRUCTIONS.md`
+- bundling reason:
+  - these files form one residual prototype lane:
+    - Pro context pack construction
+    - small-delta and filtered-state export shaping
+    - ZIP_JOB template and drop-in contract hardening
+    - sandbox and external-claw coordination doctrine
+  - the lane is still clearly `work/` archaeology:
+    - manual packs
+    - auto-built packs
+    - manifest scaffolds
+    - alignment messages
+    - sandbox-only operational doctrine
+- deferred next docs in folder order:
+  - no further bounded `work_surface` batch is queued after this pass
+
+## 2) Source Membership
+### Family A: manual, light, and auto Pro context packs
+- source 1:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_CONTEXT_PACK__BRANCH_DUAL_DOC_EXTRACTION__v1/00_READ_FIRST.md`
+  - readable status in this batch: full manual context-pack plaque
+  - source-class note:
+    - defines four-run fenced-file extraction over two high-entropy thread docs
+    - explicitly grounds the run in `system_v3/specs/*`, three upgrade docs, and local state inputs
+- source 2:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_CONTEXT_PACK__BRANCH_DUAL_DOC_EXTRACTION__v1/CONTEXT_PACK_INVENTORY.json`
+  - readable status in this batch: full inventory anchor
+  - source-class note:
+    - `kept_file_count: 89`
+    - `total_bytes: 20680623`
+- source 3:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_CONTEXT_PACK__BRANCH_DUAL_DOC_EXTRACTION__v1/PRO_RUN_LAUNCH__DUAL_THREAD_EXTRACTION__v1.md`
+  - readable status in this batch: full manual run launcher
+  - source-class note:
+    - keeps one-pack choice between full and light variants
+    - preserves exact starter messages and fenced-file return contract
+- source 4:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_CONTEXT_PACK__BRANCH_DUAL_DOC_EXTRACTION__LIGHT__v1/00_READ_FIRST.md`
+  - readable status in this batch: light-pack plaque
+  - source-class note:
+    - keeps the same extraction purpose and run order as the full pack
+- source 5:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_CONTEXT_PACK__BRANCH_DUAL_DOC_EXTRACTION__LIGHT__v1/CONTEXT_PACK_INVENTORY.json`
+  - readable status in this batch: light inventory anchor
+  - source-class note:
+    - `kept_file_count: 48`
+    - `total_bytes: 374819`
+    - differs from the full pack by `41` paths
+- source 6:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_CONTEXT_PACK__BRANCH_DUAL_DOC_EXTRACTION__LIGHT__v1/state_inputs/STATE_INPUTS_NOTE.md`
+  - readable status in this batch: local-state dependency note
+  - source-class note:
+    - explicitly omits `A1_ROSETTA_v1.json` and `A2_BRAIN_v1.json`
+    - redirects those dependencies to local `work/audit_tmp/.../inputs/` paths
+- source 7:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_CONTEXT_PACK__THREAD_EXTRACT__AUTO__v1/00_READ_FIRST.md`
+  - readable status in this batch: auto-built lean plaque
+  - source-class note:
+    - says the pack is built by `system_v3/tools/build_pro_context_pack.py`
+    - says selection uses deterministic seeds plus one-hop in-doc references
+- source 8:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_CONTEXT_PACK__THREAD_EXTRACT__AUTO__v1/CONTEXT_PACK_INVENTORY.json`
+  - readable status in this batch: auto inventory anchor
+  - source-class note:
+    - `kept_file_count: 48`
+    - `total_bytes: 374819`
+    - inventory is membership-identical to the manual light pack
+
+### Family B: small-delta and filtered-state export shaping
+- source 9:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/PRO_THREAD_UPDATE_PACK__v5_SMALL/00_READ_FIRST.md`
+  - readable status in this batch: small-delta plaque
+  - source-class note:
+    - declares “small delta” intent
+    - still bundles large issue ledgers, Playwright claw docs/scripts, validator tooling, and a nine-file canon-lock core set
+- source 10:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/stage_bootstrap_extracts/A2_BRAIN_v1__type_counts.json`
+  - readable status in this batch: type-distribution anchor
+  - source-class note:
+    - counts `6536` total entries
+    - `SYSTEM_PROCESS: 4743`
+    - non-`SYSTEM_PROCESS` remainder is the minority surface
+- source 11:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/stage_bootstrap_extracts/A2_BRAIN_v1__filtered__no_SYSTEM_PROCESS.json`
+  - readable status in this batch: filtered export anchor
+  - source-class note:
+    - schema `A2_BRAIN_v1_FILTERED_v1`
+    - `entry_count_total: 6536`
+    - `entry_count_filtered: 1793`
+    - filter excludes `SYSTEM_PROCESS`
+
+### Family C: ZIP_JOB drop-ins and template hardening
+- source 12:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__A2_LAYER_1_5__MULTI_RUN_CONSOLIDATION_AND_A1_WIGGLE_PREP__CHATUI_DROPIN__v4/meta/README__L1_5__WHAT_THIS_JOB_IS__v1.md`
+  - readable status in this batch: Layer-1.5 drop-in plaque
+  - source-class note:
+    - frames the job as multi-run consolidation into an A1 wiggle prep packet
+    - explicitly states the bundle is noncanon
+- source 13:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__A2_LAYER_1_5__MULTI_RUN_CONSOLIDATION_AND_A1_WIGGLE_PREP__CHATUI_DROPIN__v4/meta/ZIP_JOB_MANIFEST_v1.json`
+  - readable status in this batch: Layer-1.5 manifest anchor
+  - source-class note:
+    - `task_execution_order: 6`
+    - `required_output_file_list: 8`
+- source 14:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__DEFAULT_ANY_DOCUMENT__CHATUI_DROPIN__v7_2_4__SINGLE_ATTACHMENT__STRICT_PATH_CONFORMANCE_AND_SHORT_BATCH_NAMING__v1/meta/README__DEFAULT_DROPIN_ANY_DOCUMENT__CHATUI_PRO__v1.md`
+  - readable status in this batch: strict single-attachment drop-in plaque
+  - source-class note:
+    - requires one ZIP upload and one-line start message
+    - says the return should be one ZIP with full `output/` tree
+- source 15:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__DEFAULT_ANY_DOCUMENT__CHATUI_DROPIN__v7_2_4__SINGLE_ATTACHMENT__STRICT_PATH_CONFORMANCE_AND_SHORT_BATCH_NAMING__v1/meta/PROCESS_RUNBOOK__A2_TO_A1_LAYERED_ENTROPY_REFINERY__ZIP_JOB_CHATUI_DROPIN_AND_SINGLE_ATTACHMENT_EXECUTION__v7_2.md`
+  - readable status in this batch: strict runbook anchor
+  - source-class note:
+    - loads six brain/overlay documents before extraction
+    - requires exact key names, exact policy lines, exact output paths, self-audit repair log, and fenced-file fallback if ZIP return is unavailable
+- source 16:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__DEFAULT_ANY_DOCUMENT__CHATUI_DROPIN__v7_2_4__SINGLE_ATTACHMENT__STRICT_PATH_CONFORMANCE_AND_SHORT_BATCH_NAMING__v1/meta/ZIP_JOB_MANIFEST_v1.json`
+  - readable status in this batch: strict drop-in manifest anchor
+  - source-class note:
+    - `task_execution_order: 9`
+    - `required_output_file_list: 21`
+    - adds `ALT_MODEL_LANE_PACKET` and `BRAIN_BOOT_ACK` relative to the template base
+- source 17:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_job_templates/A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__BUNDLE_TEMPLATE_v3/meta/README.md`
+  - readable status in this batch: template plaque
+  - source-class note:
+    - explicitly says `TEMPLATE (non-authoritative scaffold)`
+- source 18:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_job_templates/A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__BUNDLE_TEMPLATE_v3/meta/ZIP_JOB_MANIFEST_v1.json`
+  - readable status in this batch: template manifest anchor
+  - source-class note:
+    - `task_execution_order: 8`
+    - `required_output_file_list: 16`
+- source 19:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_job_templates/A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__BUNDLE_TEMPLATE_v3/meta/ZIP_JOB_MANIFEST_REALIZED_v1.json`
+  - readable status in this batch: realized-template anchor
+  - source-class note:
+    - expands `required_output_file_list` to `30`
+    - sets `topic_slug_count: 3`
+
+### Family D: sandbox boundary doctrine and zip-subagent alignment
+- source 20:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/coordination_sandbox__codex_minimax__noncanonical_delete_safe/00_SANDBOX_MANIFEST.md`
+  - readable status in this batch: sandbox root doctrine
+  - source-class note:
+    - defines hot/warm/cold entropy tiers
+    - constrains writes to sandbox and routes A0 output only through graveyard rescue
+- source 21:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/coordination_sandbox__codex_minimax__noncanonical_delete_safe/codex_exchange/10_MINIMAX_ERROR_REPORT__VIOLATION_OF_READ_ONLY_BOUNDARY.md`
+  - readable status in this batch: explicit boundary-failure confession
+  - source-class note:
+    - says `system_v3/` and `core_docs/` are read-only
+    - says sandbox implementation should stay inside `work/coordination_sandbox...`
+- source 22:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/coordination_sandbox__codex_minimax__noncanonical_delete_safe/codex_exchange/25_CODEX_TO_MINIMAX__ZIP_JOB_CHATUI_AUTOMATION__TEMPLATE_SUITE_AND_EXECUTION_PLAN__HANDOFF_v1.md`
+  - readable status in this batch: handoff doctrine
+  - source-class note:
+    - separates transport ZIPs from ZIP_JOB bundles
+    - asks for external claw, retries, quarantine, validation, and manifest unification
+- source 23:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/coordination_sandbox__codex_minimax__noncanonical_delete_safe/outbox/00_ZIP_SUBAGENT_ALIGNMENT__codex_response.md`
+  - readable status in this batch: alignment answer
+  - source-class note:
+    - maps `EXTRACT_TOPICS` to `A2_DOC_TOPIC_REFINERY`
+    - maps `EXTRACT_TOPIC` to `A2_TOPIC_PACKET`
+    - recommends flat-file ChatUI interchange plus fenced-file contract
+- source 24:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_subagents/ZIP_SUBAGENT_SYSTEM_v2_1__CONTROL_PLANE_ALIGNED__LONG_EXPLICIT_NAMING.md`
+  - readable status in this batch: zip-subagent system doctrine
+  - source-class note:
+    - separates `ZIP_PROTOCOL_v2` from `ZIP_JOB`
+    - enforces long explicit naming and loss-averse early layers
+- source 25:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_subagents/MESSAGE_TO_CODEX__ZIP_SUBAGENT_ALIGNMENT.md`
+  - readable status in this batch: old-template comparison request
+  - source-class note:
+    - still describes per-topic folder layout and shorter internal filenames
+- source 26:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_subagents/MESSAGE_TO_CODEX__REFINERY_SPEC_CONFIRMED.md`
+  - readable status in this batch: quarantine/validation confirmation
+  - source-class note:
+    - confirms external `returns_quarantine/` then internal `validated/`
+    - proposes rough provider caps and directory structure
+- source 27:
+  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_subagents/templates/EXTRACT_TOPIC_v1/INSTRUCTIONS.md`
+  - readable status in this batch: older per-topic template anchor
+  - source-class note:
+    - requires five views
+    - still uses folder-per-topic output structure with short leaf names like `EXTRACTIVE.md`
+
+## 3) Structural Map
+### Segment A: full pack -> light pack -> auto lean pack
+- strongest markers:
+  - full pack:
+    - 89 files
+    - 20.68 MB
+    - includes prompts, inputs, extracts, outputs, and state files
+  - light pack:
+    - 48 files
+    - 374,819 bytes
+    - omits large state files and many execution/output surfaces
+  - auto pack:
+    - membership-identical to light pack
+    - describes deterministic seed plus one-hop reference selection
+- strongest read:
+  - this is one reusable pattern for progressively slimming a Pro handoff pack while retaining a stable extraction script
+
+### Segment B: “small delta” still ships a fairly rich operator kit
+- strongest markers:
+  - `PRO_THREAD_UPDATE_PACK__v5_SMALL` keeps:
+    - issue ledgers
+    - Playwright automation
+    - validator tooling
+    - canon-lock bridge docs
+  - `stage_bootstrap_extracts` shows why:
+    - raw A2 state is dominated by `SYSTEM_PROCESS`
+    - portable residue therefore depends on explicit filtering
+- strongest read:
+  - the lane is trying to compress operational reality without losing enough structure to make external processing drift
+
+### Segment C: ZIP_JOB hardening from scaffold to strict drop-in
+- strongest markers:
+  - template v3:
+    - 8 tasks
+    - 16 required outputs
+    - non-authoritative scaffold
+  - drop-in v7_2_4:
+    - 9 tasks
+    - 21 required outputs
+    - strict exact-key, exact-path, self-audit, and overlay-header policy
+  - Layer-1.5 v4:
+    - 6 tasks
+    - 8 outputs
+    - multi-run consolidation into wiggle-prep packet
+- strongest read:
+  - the prototype family evolves by tightening deterministic contracts while splitting into source-doc and multi-run variants
+
+### Segment D: sandbox exchange becomes external-claw doctrine
+- strongest markers:
+  - sandbox manifest defines read-only boundary and heat-managed sandboxing
+  - violation report preserves a concrete read-only failure
+  - handoff note defines:
+    - two ZIP regimes
+    - external claw
+    - repair retries
+    - quarantine -> validate -> promote
+  - alignment reply maps older zip-subagent templates into the newer ZIP_JOB taxonomy
+- strongest read:
+  - the coordination sandbox is not random notes; it is the process-bridge where rough zip-subagent ideas were reconciled with stricter ZIP_JOB doctrine
+
+## 4) Structural Quality Notes
+- this batch is useful because it closes the remaining residual packaging/tooling lane without promoting it to law
+- the sources are still prototype residue:
+  - manual pack assemblies
+  - partial auto-builds
+  - non-authoritative templates
+  - sandbox exchange memos
+- preserved contradictions are stronger than any single clean story:
+  - light/auto packs are smaller but not self-sufficient
+  - small deltas still carry substantial operator and canon-lock structure
+  - path/schema strictness hardens while naming/interchange conventions are still being reconciled
+
+## 5) Source-Class Read
+- best classification:
+  - residual Pro handoff and ZIP_JOB refinery archaeology
+  - migration-debt packet for packaging, automation, and boundary discipline
+- not best classified as:
+  - active A2 or A1 governing law
+  - direct proof that external-claw automation was fully stabilized
+  - evidence that these pack families are still the preferred current transport or extraction interface
+- likely trust placement under current A2 rules:
+  - useful for reusable process patterns:
+    - deterministic pack slimming
+    - strict manifest/task contracts
+    - external quarantine and validation
+    - contradiction-preserving extraction templates
+  - insufficient to outrank active `system_v3` runtime/spec surfaces

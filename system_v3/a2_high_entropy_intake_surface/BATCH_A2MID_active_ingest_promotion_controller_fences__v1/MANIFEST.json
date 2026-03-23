@@ -1,0 +1,157 @@
+{
+  "schema": "A2_MID_REFINEMENT_BATCH_MANIFEST_v1",
+  "batch_id": "BATCH_A2MID_active_ingest_promotion_controller_fences__v1",
+  "batch_scope": "controller_facing_reduction_of_active_a2_ingest_validation_and_promotion_boundaries",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T10:50:42Z",
+  "extraction_mode": "A2_MID_REFINEMENT_PASS",
+  "promotion_status": "A2_2_CANDIDATE",
+  "parent_batch_ids": [
+    "BATCH_systemv3_active_a2state_ingest_validation_promotion_packet__v1"
+  ],
+  "parent_artifacts": [
+    "SOURCE_MAP__v1.md",
+    "CLUSTER_MAP__v1.md",
+    "TENSION_MAP__v1.md",
+    "A2_3_DISTILLATES__v1.md",
+    "A2_2_CANDIDATE_SUMMARIES__v1.md",
+    "MANIFEST.json"
+  ],
+  "selection_basis": {
+    "ledger_reason": "This was the first uncovered active `a2_state` parent after the already-reduced Stage-3 sendpack batch.",
+    "bounded_goal": "Reduce the active ingest/promotion packet into a smaller controller-usable boundary set without rereading raw sources or touching active state files.",
+    "deferred_alternatives": [
+      {
+        "batch_id": "BATCH_systemv3_active_a2state_live_state_index_packet__v1",
+        "reason": "Strongest next `a2_state` sibling once ingest and promotion boundaries are narrowed."
+      },
+      {
+        "batch_id": "BATCH_work_surface_sendpack_to_update_export_lineage__v1",
+        "reason": "Best direct work-surface follow-on once the upstream Stage-3 sendpack packet is reduced."
+      },
+      {
+        "batch_id": "BATCH_systemv3_active_a1state_brain_and_cartridge_judgment_packet__v1",
+        "reason": "Best next active sibling after the remaining `a2_state` live-state family is handled."
+      }
+    ]
+  },
+  "comparison_anchor_batches": [
+    "BATCH_A2MID_active_a2state_controller_admission_fences__v1",
+    "BATCH_A2MID_active_control_spine_controller_boundaries__v1"
+  ],
+  "raw_source_reread_needed": false,
+  "raw_source_reread_reason": "Parent artifacts already isolate ingest heterogeneity, fail-closed rosetta behavior, promotion-contract claims, and mixed audit/debt signals needed for this bounded reduction.",
+  "candidate_items": [
+    {
+      "id": "RC1",
+      "name": "HETEROGENEOUS_INGEST_PACKET_LINEAGE_RULE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the parent packet family's mixed completeness states as controller-relevant information rather than noise.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:Cluster A",
+        "A2_3_DISTILLATES__v1:D1",
+        "A2_3_DISTILLATES__v1:D2",
+        "A2_3_DISTILLATES__v1:D3",
+        "TENSION_MAP__v1:T1",
+        "TENSION_MAP__v1:T2",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C1"
+      ]
+    },
+    {
+      "id": "RC2",
+      "name": "FAIL_CLOSED_ROSETTA_ABSENCE_GATE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Compresses the parent's strongest anti-fabrication engineering rule into one controller-usable gate.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:Cluster B",
+        "A2_3_DISTILLATES__v1:D4",
+        "A2_3_DISTILLATES__v1:D5",
+        "TENSION_MAP__v1:T4",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C3"
+      ]
+    },
+    {
+      "id": "RC3",
+      "name": "RUNNABLE_PROPOSAL_EDGE_LANE_TRIAGE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the current runnable floor and keeps proposal-side bridge work and fenced edge families from being flattened together.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:Cluster C",
+        "A2_3_DISTILLATES__v1:D6",
+        "A2_3_DISTILLATES__v1:D7",
+        "TENSION_MAP__v1:T6",
+        "TENSION_MAP__v1:T7",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C1"
+      ]
+    },
+    {
+      "id": "RC4",
+      "name": "SOURCE_BOUND_PROMOTION_AUDIT_ON_EXCLUDED_EVIDENCE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Keeps promotion audits useful while blocking them from outranking the excluded evidence they summarize.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:Cluster C",
+        "A2_3_DISTILLATES__v1:D8",
+        "A2_3_DISTILLATES__v1:D11",
+        "TENSION_MAP__v1:T5",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C7"
+      ]
+    },
+    {
+      "id": "RC5",
+      "name": "PASS_WITH_DEBT_NONCLOSURE_RULE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Retains the strongest mixed-state audit contradiction without collapsing PASS language into closure.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:Cluster D",
+        "A2_3_DISTILLATES__v1:D9",
+        "TENSION_MAP__v1:T6",
+        "TENSION_MAP__v1:T8",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C2",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C4"
+      ]
+    },
+    {
+      "id": "RC6",
+      "name": "FULL_SURFACE_CLASSIFICATION_IS_CROSSCHECK_NOT_SUPERSEDER",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the whole-tree audit as a classification cross-check without letting it replace prior source-bounded batching.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:Cluster E",
+        "A2_3_DISTILLATES__v1:D10",
+        "TENSION_MAP__v1:T9",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C5"
+      ]
+    }
+  ],
+  "quarantined_items": [
+    {
+      "id": "Q1",
+      "name": "INGEST_MEMORY_UPDATE_INTENT_AS_EXECUTED_ACTIVE_MUTATION_FACT",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent documents intended downstream updates, but this lane remains intake-only and cannot treat them as present-tense mutation facts.",
+      "parent_dependencies": [
+        "TENSION_MAP__v1:T3",
+        "A2_3_DISTILLATES__v1:D1",
+        "A2_3_DISTILLATES__v1:D3"
+      ]
+    },
+    {
+      "id": "Q2",
+      "name": "ACTIVE_PROVEN_AS_CLOSED_REPO_WIDE_SUCCESS",
+      "status": "QUARANTINED",
+      "why_quarantined": "The same packet family preserves saturation, helper residue, open issues, and unresolved blockers alongside active/proven and PASS language.",
+      "parent_dependencies": [
+        "TENSION_MAP__v1:T6",
+        "TENSION_MAP__v1:T8",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C2",
+        "A2_2_CANDIDATE_SUMMARIES__v1:C4"
+      ]
+    }
+  ],
+  "control_surface_mutation": "NONE",
+  "notes": [
+    "This batch keeps ingest and promotion claims proposal-side and source-bound.",
+    "No raw source reread and no active A2 append-save were performed."
+  ]
+}

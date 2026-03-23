@@ -1,0 +1,143 @@
+{
+  "batch_id": "BATCH_sims_axis0_historyop_rec_suite_v1_family__v1",
+  "batch_scope": "residual_axis0_history_operator_reconstruction_family",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T04:36:59Z",
+  "deferred_next_raw_folder_order_source": null,
+  "extraction_mode": "SIM_AXIS0_HISTORYOP_REC_SUITE_PASS",
+  "notes": [
+    "This batch starts the post-closure residual paired-family campaign.",
+    "The family is bounded to one runner and one paired result despite containing four internal SIM_ID cases.",
+    "No runtime execution was performed."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "A2_2_CANDIDATE",
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md",
+      "relevance": "Confirms the family is catalog-listed at both the result and runner levels.",
+      "line_window": "44,135"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt",
+      "relevance": "Repo-held top-level evidence pack was searched for axis0 history-op reconstruction blocks and no matches were found."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_residual_inventory_closure_audit__v1/MANIFEST.json",
+      "relevance": "Confirms this family is the first prioritized residual runner/result pair after closure audit."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md",
+      "relevance": "Provides ledger continuity before the residual paired-family campaign begins."
+    }
+  ],
+  "runtime_expectations": [
+    "The runner writes one results_axis0_historyop_rec_suite_v1.json and one local sim_evidence_pack.txt containing four SIM_EVIDENCE blocks.",
+    "The family uses 4 reconstruction modes, 2 init modes, 2 axis3 signs, 4 sequences, 256 trials, 16 cycles, theta 0.07, and 1 entangle repetition.",
+    "If residual pair intake continues, the next prioritized pair begins at run_axis0_mi_discrim_branches.py."
+  ],
+  "failure_modes": [
+    "Mistaking local evidence emission for repo-top evidence-pack admission.",
+    "Mistaking higher reconstruction error for changed trajectory MI in this family.",
+    "Over-reading the writer's compact SEQ02-SEQ01 summary as if it captured every strong stored effect."
+  ],
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "sims_split_rule": {
+    "detected": true,
+    "included_in_this_batch": true,
+    "notes": "This batch remains inside the separate sims source class and does not mix with ordinary theory/doc extraction.",
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims"
+  },
+  "source_membership": [
+    {
+      "line_count": 369,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis0_historyop_rec_suite_v1.py",
+      "role_in_batch": "axis0_history_operator_reconstruction_runner",
+      "sha256": "919db9d0ee0528a31ee4a5d8bdfa3e2bed93b4ba5449bbdd77d50f7778ce90d6",
+      "size_bytes": 12316,
+      "source_class": "executable_runner"
+    },
+    {
+      "line_count": 2411,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis0_historyop_rec_suite_v1.json",
+      "role_in_batch": "axis0_history_operator_reconstruction_result_surface",
+      "sha256": "dbbbe790cde1ac3461396ad39f192845188e744f4d406f03a41d5e9689186b9e",
+      "size_bytes": 73934,
+      "source_class": "result_surface"
+    }
+  ],
+  "derived_summary": {
+    "local_sim_ids": [
+      "S_SIM_AXIS0_HISTORYOP_REC_ID_V1",
+      "S_SIM_AXIS0_HISTORYOP_REC_MARG_V1",
+      "S_SIM_AXIS0_HISTORYOP_REC_MIX_V1",
+      "S_SIM_AXIS0_HISTORYOP_REC_SCR_V1"
+    ],
+    "top_level_evidence_pack_match_count": 0,
+    "case_count": 4,
+    "run_keys_per_case": 4,
+    "sequence_count": 4,
+    "run_keys": [
+      "BELL_s+1",
+      "BELL_s-1",
+      "GINIBRE_s+1",
+      "GINIBRE_s-1"
+    ],
+    "trials": 256,
+    "cycles": 16,
+    "theta": 0.07,
+    "entangle_reps": 1,
+    "n_vec": [
+      0.3,
+      0.4,
+      0.866025403784
+    ],
+    "terrain_params": {
+      "gamma": 0.02,
+      "p": 0.02,
+      "q": 0.02
+    },
+    "rec_mode_avg_err_traj_mean": {
+      "REC_ID": 0.0,
+      "REC_MARG": 0.20640436952859126,
+      "REC_MIX": 0.3310559568545458,
+      "REC_SCR": 0.42241966974449235
+    },
+    "rec_mode_avg_mi_traj_mean": {
+      "REC_ID": 0.12588103091253527,
+      "REC_MARG": 0.12588103091253527,
+      "REC_MIX": 0.12588103091253527,
+      "REC_SCR": 0.12588103091253527
+    },
+    "neg_sagb_end_frac_max": 0.0,
+    "max_seq02_minus_seq01_dmi": {
+      "value": 0.008794687193699025,
+      "sim_id": "S_SIM_AXIS0_HISTORYOP_REC_ID_V1",
+      "run_key": "BELL_s+1"
+    },
+    "max_seq02_minus_seq01_derr": {
+      "value": 0.009416131379654302,
+      "sim_id": "S_SIM_AXIS0_HISTORYOP_REC_SCR_V1",
+      "run_key": "BELL_s+1"
+    },
+    "max_err_traj_mean": {
+      "value": 0.5245462662009697,
+      "sim_id": "S_SIM_AXIS0_HISTORYOP_REC_SCR_V1",
+      "run_key": "BELL_s-1",
+      "sequence": "SEQ03"
+    },
+    "max_mi_traj_mean": {
+      "value": 0.1923399902814273,
+      "sim_id": "S_SIM_AXIS0_HISTORYOP_REC_ID_V1",
+      "run_key": "BELL_s-1",
+      "sequence": "SEQ03"
+    },
+    "min_sagb_end_mean": {
+      "value": 0.6197164568830165,
+      "sim_id": "S_SIM_AXIS0_HISTORYOP_REC_ID_V1",
+      "run_key": "BELL_s-1",
+      "sequence": "SEQ03"
+    },
+    "next_residual_priority_source": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis0_mi_discrim_branches.py"
+  }
+}

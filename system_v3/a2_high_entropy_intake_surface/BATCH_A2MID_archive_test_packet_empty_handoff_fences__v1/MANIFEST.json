@@ -1,0 +1,149 @@
+{
+  "schema": "A2_MID_REFINEMENT_BATCH_MANIFEST_v1",
+  "batch_id": "BATCH_A2MID_archive_test_packet_empty_handoff_fences__v1",
+  "batch_scope": "archive_handoff_failure_reduction_preserving_request_only_boundary_state_placeholder_saved_strategy_intent_seed_residue_and_packaging_noise_limits",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T20:13:09Z",
+  "extraction_mode": "A2_MID_REFINEMENT_PASS",
+  "promotion_status": "A2_2_CANDIDATE",
+  "parent_batch_ids": [
+    "BATCH_archive_surface_deep_archive_test_a1_packet_empty__v1"
+  ],
+  "parent_artifacts": [
+    "SOURCE_MAP__v1.md",
+    "CLUSTER_MAP__v1.md",
+    "TENSION_MAP__v1.md",
+    "A2_3_DISTILLATES__v1.md",
+    "A2_2_CANDIDATE_SUMMARIES__v1.md",
+    "MANIFEST.json"
+  ],
+  "selection_basis": {
+    "ledger_reason": "This is the first untouched deep-archive test parent in the strip and the cleanest request-only handoff failure case.",
+    "bounded_goal": "Reduce the archive packet-empty run into a smaller batch that preserves request-only boundary failure, clean-but-thin hash integrity, placeholder-heavy saved strategy intent, conceptual seed residue, and packaging-noise limits.",
+    "deferred_alternatives": [
+      {
+        "batch_id": "BATCH_archive_surface_deep_archive_test_a1_packet_zip__v1",
+        "reason": "Best next sibling once the packet-empty boundary floor has been preserved."
+      },
+      {
+        "batch_id": "BATCH_archive_surface_deep_archive_test_det_b__v1",
+        "reason": "Useful later direct-run sibling after the packet pair is reduced."
+      }
+    ]
+  },
+  "comparison_anchor_batches": [
+    "BATCH_A2MID_archive_root_retention_mirror_drift__v1",
+    "BATCH_A2MID_archive_test_det_a_controller_fences__v1"
+  ],
+  "raw_source_reread_needed": false,
+  "raw_source_reread_reason": "The parent packet already compresses the exact run-root, packet, and contradiction surfaces needed for a handoff-failure reduction, and the consulted archive A2-mid anchors already preserve archive-only role and sibling-run comparison boundaries.",
+  "candidate_items": [
+    {
+      "id": "RC1",
+      "name": "ARCHIVE_ONLY_MINIMAL_A0_TO_A1_BOUNDARY_STUB",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the parent packet's clearest archive-role rule.",
+      "parent_dependencies": [
+        "A2_2_CANDIDATE_SUMMARIES__v1:Candidate Summary A",
+        "A2_3_DISTILLATES__v1:Distillate 1",
+        "CLUSTER_MAP__v1:Cluster 1"
+      ]
+    },
+    {
+      "id": "RC2",
+      "name": "ONE_HASH_ALIGNMENT_IS_REAL_BUT_LOW_INFORMATION",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the parent packet's strongest integrity-without-closure rule.",
+      "parent_dependencies": [
+        "A2_3_DISTILLATES__v1:Distillate 2",
+        "CLUSTER_MAP__v1:Cluster 2",
+        "TENSION_MAP__v1:Tension 4"
+      ]
+    },
+    {
+      "id": "RC3",
+      "name": "REQUEST_ONLY_HANDOFF_WITH_EMPTY_DOWNSTREAM_RECEIPT",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the parent packet's main boundary-failure signature.",
+      "parent_dependencies": [
+        "A2_2_CANDIDATE_SUMMARIES__v1:Candidate Summary B",
+        "A2_3_DISTILLATES__v1:Distillate 3",
+        "CLUSTER_MAP__v1:Cluster 3",
+        "TENSION_MAP__v1:Tension 1",
+        "TENSION_MAP__v1:Tension 2"
+      ]
+    },
+    {
+      "id": "RC4",
+      "name": "SAVED_STRATEGY_SKELETON_IS_INTENT_NOT_EXECUTED_WORK",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Keeps the strongest nonempty structure from the parent without collapsing the boundary failure.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1:Cluster 4",
+        "TENSION_MAP__v1:Tension 3",
+        "TENSION_MAP__v1:Tension 7"
+      ]
+    },
+    {
+      "id": "RC5",
+      "name": "SEED_VOCABULARY_AND_SURVIVORS_ARE_PRELOADED_NOT_EARNED_RUNTIME",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the parent packet's clearest seed-versus-runtime split.",
+      "parent_dependencies": [
+        "A2_2_CANDIDATE_SUMMARIES__v1:Candidate Summary C",
+        "A2_3_DISTILLATES__v1:Distillate 4",
+        "CLUSTER_MAP__v1:Cluster 5",
+        "TENSION_MAP__v1:Tension 5"
+      ]
+    },
+    {
+      "id": "RC6",
+      "name": "DUPLICATE_EMPTY_PACKET_DIRECTORY_IS_PACKAGING_NOISE_ONLY",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the parent packet's clearest packaging-noise fence.",
+      "parent_dependencies": [
+        "A2_3_DISTILLATES__v1:Distillate 5",
+        "CLUSTER_MAP__v1:Cluster 6",
+        "CLUSTER_MAP__v1:Cluster 7",
+        "TENSION_MAP__v1:Tension 6"
+      ]
+    }
+  ],
+  "quarantined_items": [
+    {
+      "id": "Q1",
+      "name": "A1_SOURCE_PACKET_AS_PROOF_OF_RECEIVED_A1_PACKET",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent packet explicitly preserves empty inbox, zero A1 sequence, and request-only stopping.",
+      "parent_dependencies": [
+        "TENSION_MAP__v1:Tension 1",
+        "TENSION_MAP__v1:Tension 2"
+      ]
+    },
+    {
+      "id": "Q2",
+      "name": "PLACEHOLDER_HASHED_SAVE_PACKET_AS_TRUSTED_PROVENANCE",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent packet explicitly marks the packet as structurally concrete but provenance-weak.",
+      "parent_dependencies": [
+        "TENSION_MAP__v1:Tension 7",
+        "CLUSTER_MAP__v1:Cluster 4"
+      ]
+    },
+    {
+      "id": "Q3",
+      "name": "CLEAN_HASH_ALIGNMENT_AS_SUBSTANTIVE_COMPLETION",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent packet explicitly says the alignment is real because almost nothing happened.",
+      "parent_dependencies": [
+        "TENSION_MAP__v1:Tension 4",
+        "CLUSTER_MAP__v1:Cluster 2"
+      ]
+    }
+  ],
+  "control_surface_mutation": "NONE",
+  "notes": [
+    "This batch preserves the archive handoff-failure stub as proposal-side contradiction guidance rather than runtime proof or packet-law authority.",
+    "No raw source reread and no active append-save were performed."
+  ]
+}

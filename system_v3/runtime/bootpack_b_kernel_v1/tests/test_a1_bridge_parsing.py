@@ -80,6 +80,74 @@ class TestA1BridgeParsing(unittest.TestCase):
         self.assertTrue(out["targets"][0]["id"].startswith("S_BETA_S0007"))
         self.assertIn("operator_ids_used", out["self_audit"])
 
+    def test_coerce_v2_preserves_schema_and_stage_binding(self):
+        base = {
+            "schema": "A1_STRATEGY_v2",
+            "strategy_id": "BASE_V2",
+            "inputs": {
+                "state_hash": "0" * 64,
+                "fuel_slice_hashes": ["1" * 64],
+                "bootpack_rules_hash": "2" * 64,
+                "pinned_ruleset_sha256": None,
+                "pinned_megaboot_sha256": None,
+            },
+            "budget": {"max_items": 2, "max_sims": 2},
+            "policy": {
+                "forbid_fields": ["confidence", "probability", "embedding", "hidden_prompt", "raw_text"],
+                "overlay_ban_terms": [],
+                "require_try_to_fail": True,
+            },
+            "targets": [
+                {
+                    "item_class": "SPEC_HYP",
+                    "id": "S_ALPHA",
+                    "kind": "SIM_SPEC",
+                    "requires": ["P_ALPHA"],
+                    "def_fields": [
+                        {"field_id": "F1", "name": "REQUIRES_EVIDENCE", "value_kind": "TOKEN", "value": "E_ALPHA"},
+                        {"field_id": "F2", "name": "TIER", "value_kind": "TOKEN", "value": "T0_ATOM"},
+                        {"field_id": "F3", "name": "FAMILY", "value_kind": "TOKEN", "value": "BASELINE"},
+                        {"field_id": "F4", "name": "TARGET_CLASS", "value_kind": "TOKEN", "value": "TC_QIT_FOUNDATION"},
+                        {"field_id": "F5", "name": "PROBE_TERM", "value_kind": "TOKEN", "value": "finite_dimensional_hilbert_space"},
+                    ],
+                    "asserts": [{"assert_id": "A1", "token_class": "EVIDENCE_TOKEN", "token": "E_ALPHA"}],
+                    "operator_id": "OP_BIND_SIM",
+                }
+            ],
+            "alternatives": [],
+            "sim_program": {
+                "program_id": "QIT_FOUNDATION_LADDER_V1",
+                "mode": "staged",
+                "replay_source": "NONE",
+                "mega_gate_policy": "all_lower_tiers_closed",
+                "stages": [
+                    {
+                        "stage_id": "S0_FOUNDATION",
+                        "tier": "T0_ATOM",
+                        "suite_kind": "micro_suite",
+                        "families": ["BASELINE", "ADVERSARIAL_NEG"],
+                        "depends_on": [],
+                        "target_classes": ["TC_QIT_FOUNDATION"],
+                        "max_sims": 4,
+                        "failure_policy": "bisect_on_fail",
+                    }
+                ],
+            },
+            "sims": {"positive": [{"sim_id": "SIM_POS_ALPHA", "binds_to": "S_ALPHA", "stage_id": "S0_FOUNDATION"}], "negative": []},
+            "self_audit": {
+                "strategy_hash": "3" * 64,
+                "compile_lane_digest": "4" * 64,
+                "candidate_count": 1,
+                "alternative_count": 0,
+                "operator_ids_used": ["OP_BIND_SIM"],
+            },
+        }
+        out = _coerce_strategy({"strategy_id": "NEW_V2", "targets": [{"id": "S_BETA"}]}, base, step=7)
+        self.assertEqual("A1_STRATEGY_v2", out["schema"])
+        self.assertEqual("NEW_V2", out["strategy_id"])
+        self.assertEqual("S0_FOUNDATION", out["sims"]["positive"][0]["stage_id"])
+        self.assertTrue(out["targets"][0]["id"].startswith("S_BETA_S0007"))
+
 
 if __name__ == "__main__":
     unittest.main()

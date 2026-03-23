@@ -83,7 +83,15 @@ def _read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def _build_memo(*, run_id: str, sequence: int, role: str, term_candidates: list[str], rescue_targets: list[str]) -> dict:
+def _build_memo(
+    *,
+    run_id: str,
+    sequence: int,
+    role: str,
+    term_candidates: list[str],
+    support_terms: list[str],
+    rescue_targets: list[str],
+) -> dict:
     role_u = str(role).strip().upper()
     return {
         "schema": "A1_LAWYER_MEMO_v1",
@@ -95,6 +103,7 @@ def _build_memo(*, run_id: str, sequence: int, role: str, term_candidates: list[
         "graveyard_rescue_targets": list(rescue_targets),
         "proposed_negative_classes": list(ROLE_NEG_CLASSES.get(role_u, ["COMMUTATIVE_ASSUMPTION", "CLASSICAL_TIME"])),
         "proposed_terms": list(term_candidates),
+        "support_terms": [str(x).strip() for x in support_terms if str(x).strip()],
     }
 
 
@@ -109,6 +118,7 @@ def main(argv: list[str]) -> int:
     sequence = int(req.get("sequence", 0) or 0)
     roles = [str(x).strip().upper() for x in (req.get("required_roles", []) or []) if str(x).strip()]
     term_candidates = [str(x).strip() for x in (req.get("term_candidates", []) or []) if str(x).strip()]
+    support_term_candidates = [str(x).strip() for x in (req.get("support_term_candidates", []) or []) if str(x).strip()]
     rescue_targets = [str(x).strip() for x in (req.get("graveyard_rescue_targets", []) or []) if str(x).strip()]
 
     memos = [
@@ -117,6 +127,7 @@ def main(argv: list[str]) -> int:
             sequence=sequence,
             role=role,
             term_candidates=term_candidates,
+            support_terms=support_term_candidates,
             rescue_targets=rescue_targets,
         )
         for role in roles

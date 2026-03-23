@@ -1,0 +1,199 @@
+{
+  "audit_only": true,
+  "authoritative_graph": "system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+  "bridge_rows": [
+    {
+      "bridge_status": "missing",
+      "edge_count": 0,
+      "examples": [],
+      "relations": {},
+      "source_type": "SKILL",
+      "target_type": "KERNEL_CONCEPT"
+    },
+    {
+      "bridge_status": "missing",
+      "edge_count": 0,
+      "examples": [],
+      "relations": {},
+      "source_type": "SKILL",
+      "target_type": "EXECUTION_BLOCK"
+    },
+    {
+      "bridge_status": "missing",
+      "edge_count": 0,
+      "examples": [],
+      "relations": {},
+      "source_type": "SKILL",
+      "target_type": "B_OUTCOME"
+    },
+    {
+      "bridge_status": "missing",
+      "edge_count": 0,
+      "examples": [],
+      "relations": {},
+      "source_type": "SKILL",
+      "target_type": "B_SURVIVOR"
+    },
+    {
+      "bridge_status": "missing",
+      "edge_count": 0,
+      "examples": [],
+      "relations": {},
+      "source_type": "SKILL",
+      "target_type": "SIM_EVIDENCED"
+    },
+    {
+      "bridge_status": "missing",
+      "edge_count": 0,
+      "examples": [],
+      "relations": {},
+      "source_type": "B_OUTCOME",
+      "target_type": "KERNEL_CONCEPT"
+    },
+    {
+      "bridge_status": "missing",
+      "edge_count": 0,
+      "examples": [],
+      "relations": {},
+      "source_type": "SIM_EVIDENCED",
+      "target_type": "KERNEL_CONCEPT"
+    },
+    {
+      "bridge_status": "present",
+      "edge_count": 67,
+      "examples": [
+        {
+          "attributes": {
+            "failed": 0,
+            "passed": 57,
+            "tier": "T0_ATOM"
+          },
+          "relation": "SIM_EVIDENCE_FOR",
+          "source_id": "SIM_EVIDENCED::F001",
+          "target_id": "B_SURVIVOR::F001"
+        },
+        {
+          "attributes": {
+            "failed": 0,
+            "passed": 57,
+            "tier": "T0_ATOM"
+          },
+          "relation": "SIM_EVIDENCE_FOR",
+          "source_id": "SIM_EVIDENCED::F002",
+          "target_id": "B_SURVIVOR::F002"
+        },
+        {
+          "attributes": {
+            "failed": 0,
+            "passed": 57,
+            "tier": "T0_ATOM"
+          },
+          "relation": "SIM_EVIDENCE_FOR",
+          "source_id": "SIM_EVIDENCED::F003",
+          "target_id": "B_SURVIVOR::F003"
+        }
+      ],
+      "relations": {
+        "SIM_EVIDENCE_FOR": 67
+      },
+      "source_type": "SIM_EVIDENCED",
+      "target_type": "B_SURVIVOR"
+    },
+    {
+      "bridge_status": "weak_signal",
+      "edge_count": 1,
+      "examples": [
+        {
+          "attributes": {
+            "batch_id": "BATCH_20260319_025232"
+          },
+          "relation": "ACCEPTED_FROM",
+          "source_id": "B_SURVIVOR::F049",
+          "target_id": "A2_2::REFINED::canon_geometry_constraint_manifold::f1ddcf9da0ce2187"
+        }
+      ],
+      "relations": {
+        "ACCEPTED_FROM": 1
+      },
+      "source_type": "B_SURVIVOR",
+      "target_type": "KERNEL_CONCEPT"
+    },
+    {
+      "bridge_status": "present",
+      "edge_count": 401,
+      "examples": [
+        {
+          "attributes": {},
+          "relation": "ADJUDICATED_FROM",
+          "source_id": "B_ADJUDICATED::STAGE_0_CANONICAL_GRAMMAR",
+          "target_id": "A0_COMPILED::STAGE_0_CANONICAL_GRAMMAR"
+        },
+        {
+          "attributes": {},
+          "relation": "ADJUDICATED_FROM",
+          "source_id": "B_ADJUDICATED::A2_REFINERY_BOOTPACK_CONTRACT",
+          "target_id": "A0_COMPILED::A2_REFINERY_BOOTPACK_CONTRACT"
+        },
+        {
+          "attributes": {},
+          "relation": "ADJUDICATED_FROM",
+          "source_id": "B_ADJUDICATED::A1_MULTI_NARRATIVE_EXECUTION_CONTRACT",
+          "target_id": "A0_COMPILED::A1_MULTI_NARRATIVE_EXECUTION_CONTRACT"
+        }
+      ],
+      "relations": {
+        "ADJUDICATED_FROM": 401
+      },
+      "source_type": "B_OUTCOME",
+      "target_type": "EXECUTION_BLOCK"
+    }
+  ],
+  "bridge_summary": {
+    "missing_bridge_family_count": 7,
+    "present_bridge_family_count": 2,
+    "weak_signal_bridge_family_count": 1
+  },
+  "do_not_promote": true,
+  "focus_node_type_counts": {
+    "B_OUTCOME": 401,
+    "B_SURVIVOR": 78,
+    "EXECUTION_BLOCK": 401,
+    "KERNEL_CONCEPT": 842,
+    "SIM_EVIDENCED": 67,
+    "SKILL": 110
+  },
+  "focus_node_types": [
+    "SKILL",
+    "KERNEL_CONCEPT",
+    "EXECUTION_BLOCK",
+    "B_OUTCOME",
+    "B_SURVIVOR",
+    "SIM_EVIDENCED"
+  ],
+  "generated_utc": "2026-03-21T23:26:53Z",
+  "issues": [],
+  "nonoperative": true,
+  "recommended_next_actions": [
+    "Build a bounded skill-to-kernel bridge audit or projection follow-on before claiming the graph connects skills to the control substrate.",
+    "Build a bounded witness-to-kernel bridge audit so B/SIM evidence can be traced into kernel/control surfaces more honestly.",
+    "Keep the current PyG view read-only until these bridge families are stronger than isolated or absent signals.",
+    "Do not widen training claims until bridge families exist beyond SKILL-to-SKILL and kernel-only relation islands."
+  ],
+  "relation_counts": {
+    "B_OUTCOME::ADJUDICATED_FROM::EXECUTION_BLOCK": 401,
+    "B_SURVIVOR::ACCEPTED_FROM::KERNEL_CONCEPT": 1,
+    "KERNEL_CONCEPT::CONTRADICTS::KERNEL_CONCEPT": 1,
+    "KERNEL_CONCEPT::DEPENDS_ON::KERNEL_CONCEPT": 380,
+    "KERNEL_CONCEPT::EXCLUDES::KERNEL_CONCEPT": 101,
+    "KERNEL_CONCEPT::REFINED_INTO::KERNEL_CONCEPT": 10,
+    "KERNEL_CONCEPT::RELATED_TO::KERNEL_CONCEPT": 233,
+    "KERNEL_CONCEPT::STRUCTURALLY_RELATED::KERNEL_CONCEPT": 726,
+    "SIM_EVIDENCED::SIM_EVIDENCE_FOR::B_SURVIVOR": 67,
+    "SKILL::RELATED_TO::SKILL": 246,
+    "SKILL::SKILL_FOLLOWS::SKILL": 12
+  },
+  "repo_root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "schema": "CONTROL_GRAPH_BRIDGE_GAP_AUDIT_v1",
+  "status": "ok",
+  "supporting_projection_audit": "system_v4/a2_state/audit_logs/PYG_HETEROGRAPH_PROJECTION_AUDIT__CURRENT__v1.json"
+}

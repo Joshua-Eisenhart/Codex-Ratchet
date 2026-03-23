@@ -10,6 +10,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[2]
 SYSTEM_V3 = REPO / "system_v3"
 RUNS_DEFAULT = SYSTEM_V3 / "runs"
+TRANSIENT_A1_LAWYER_ROOT = REPO / "work" / "a1_transient_lawyer"
 
 
 def _now_utc_compact() -> str:
@@ -23,6 +24,10 @@ def _write_json(path: Path, obj: dict) -> None:
 
 def _read_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _transient_memos_dir(*, run_id: str) -> Path:
+    return TRANSIENT_A1_LAWYER_ROOT / str(run_id).strip() / "lawyer_memos"
 
 
 def _is_strategy(obj: dict) -> bool:
@@ -60,11 +65,76 @@ def _validate_memo(obj: dict) -> None:
         raise SystemExit("memo.proposed_terms must be list")
 
 
+_REQUIRED_BRANCH_TRACK_TOKENS: tuple[str, ...] = (
+    "TRACK_IGT_TYPE1_ENGINE",
+    "TRACK_IGT_TYPE2_ENGINE",
+    "TRACK_AXIS0_PERTURBATION",
+    "TRACK_CONSTRAINT_LADDER",
+    "TRACK_PHYSICS_OVERLAY_OPERATORIZATION",
+    "TRACK_GRAVEYARD_RESCUE",
+)
+
+
+def _validate_strategy_substance(obj: dict) -> None:
+    """
+    Enforce that an A1_STRATEGY_v1 is not "kernel-safe filler".
+
+    This is intentionally minimal and structural:
+    - Every item must be tagged with BRANCH_TRACK.
+    - Coverage and minimum counts across the anchor tracks must hold.
+    """
+
+    alts = obj.get("alternatives")
+    if not isinstance(alts, list) or not alts:
+        raise SystemExit("strategy missing alternatives[]")
+
+    track_counts: dict[str, int] = {t: 0 for t in _REQUIRED_BRANCH_TRACK_TOKENS}
+    missing_branch_track = 0
+    invalid_track = 0
+    for item in alts:
+        if not isinstance(item, dict):
+            continue
+        def_fields = item.get("def_fields")
+        if not isinstance(def_fields, list):
+            missing_branch_track += 1
+            continue
+        found: str | None = None
+        for f in def_fields:
+            if not isinstance(f, dict):
+                continue
+            if str(f.get("name", "")).strip().upper() != "BRANCH_TRACK":
+                continue
+            found = str(f.get("value", "")).strip()
+            break
+        if not found:
+            missing_branch_track += 1
+            continue
+        if found not in track_counts:
+            invalid_track += 1
+            continue
+        track_counts[found] += 1
+
+    if missing_branch_track > 0:
+        raise SystemExit(f"strategy substance fail: {missing_branch_track} items missing BRANCH_TRACK")
+    if invalid_track > 0:
+        raise SystemExit(
+            f"strategy substance fail: {invalid_track} items have invalid BRANCH_TRACK (must be one of required anchors)"
+        )
+
+    used = [t for t, c in track_counts.items() if c > 0]
+    if len(used) < 4:
+        raise SystemExit(f"strategy substance fail: only {len(used)} BRANCH_TRACK anchors used; need >= 4. used={used}")
+
+    too_small = [(t, c) for t, c in track_counts.items() if c > 0 and c < 20]
+    if too_small:
+        raise SystemExit(f"strategy substance fail: track counts below 20: {too_small}")
+
+
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser(
         description=(
             "Ingest A1 lawyer-pack outputs into the run-local sandbox. "
-            "Memos are stored under a1_sandbox/lawyer_memos/. "
+            "Memos are stored under transient work surfaces. "
             "SYNTHESIS strategy is stored under a1_sandbox/outgoing/ for packetization."
         )
     )
@@ -89,7 +159,7 @@ def main(argv: list[str]) -> int:
         raise SystemExit("input must be a JSON object")
 
     sandbox_root = run_dir / "a1_sandbox"
-    memos_dir = sandbox_root / "lawyer_memos"
+    memos_dir = _transient_memos_dir(run_id=run_id)
     outgoing_dir = sandbox_root / "outgoing"
     for d in (memos_dir, outgoing_dir):
         d.mkdir(parents=True, exist_ok=True)
@@ -108,6 +178,9 @@ def main(argv: list[str]) -> int:
         return 0
 
     if _is_strategy(obj):
+        _validate_strategy_substance(obj)
+        for stale in sorted(outgoing_dir.glob("*__A1_STRATEGY_v1.json")):
+            stale.unlink(missing_ok=True)
         out_path = outgoing_dir / f"{_now_utc_compact()}__A1_STRATEGY_v1.json"
         _write_json(out_path, obj)
         print(json.dumps({"schema": "A1_LAWYER_SINK_RESULT_v1", "status": "STRATEGY_STORED", "out": str(out_path)}, sort_keys=True))

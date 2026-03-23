@@ -10,6 +10,8 @@ import zipfile
 from dataclasses import dataclass
 from pathlib import Path
 
+from a2_state_surfaces import iter_a2_state_surfaces
+
 
 _FIXED_ZIP_DATETIME = (1980, 1, 1, 0, 0, 0)
 
@@ -49,25 +51,7 @@ class _ManifestEntry:
 
 
 def _iter_a2_state_files(a2_state_dir: Path) -> list[Path]:
-    allow_globs = [
-        "INTENT_SUMMARY.md",
-        "MODEL_CONTEXT.md",
-        "memory.jsonl",
-        "doc_index.json",
-        "constraint_surface.json",
-        "rosetta.json",
-        "fuel_queue.json",
-        "ingest/index_v1.json",
-        "ingest/index_v1.sha256",
-        "ingest/system_map_v1.md",
-        "ingest/doc_cards/*.md",
-    ]
-    files: list[Path] = []
-    for g in allow_globs:
-        files.extend(a2_state_dir.glob(g))
-    files = [p for p in files if p.is_file() and p.name != ".DS_Store"]
-    files.sort(key=lambda p: p.as_posix())
-    return files
+    return iter_a2_state_surfaces(a2_state_dir)
 
 
 def _build_manifest(a2_state_dir: Path, files: list[Path]) -> dict:
@@ -221,4 +205,3 @@ def main(argv: list[str]) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main(os.sys.argv[1:]))
-

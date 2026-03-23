@@ -1,0 +1,144 @@
+{
+  "batch_id": "BATCH_sims_ultra3_full_geometry_stage16_axis0_orphan_family__v1",
+  "batch_scope": "residual_ultra3_full_geometry_stage16_axis0_result_only_orphan",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T06:30:00Z",
+  "deferred_next_raw_folder_order_source": null,
+  "extraction_mode": "SIM_ULTRA3_FULL_GEOMETRY_STAGE16_AXIS0_ORPHAN_PASS",
+  "notes": [
+    "This batch reopens results_ultra3_full_geometry_stage16_axis0.json as its own bounded result-only ultra family.",
+    "Source membership is bounded to the ultra3 result surface and does not merge in the catalog-adjacent ultra_big orphan or the earlier ultra strip batches.",
+    "No runtime execution was performed."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "A2_2_CANDIDATE",
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_axis0_traj_corr_suite_v2_orphan_family__v1/MANIFEST.json",
+      "relevance": "Provides continuity from the prior residual result-only pass and records the explicit decision to defer ultra3 next."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_ultra2_axis0_ab_stage16_axis6_macro_family__v1/MANIFEST.json",
+      "relevance": "Provides the earliest ultra-strip macro anchor for scale and branch-count comparison."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_ultra4_full_stack_family__v1/MANIFEST.json",
+      "relevance": "Shows the closest prior geometry-bearing ultra family and its extra axis12 branch."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_ultra_axis0_ab_axis6_sweep_family__v1/MANIFEST.json",
+      "relevance": "Shows the nearest non-geometry ultra continuation with matching stage16 and axis0_ab broad structure."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_ultra_big_ax012346.json",
+      "relevance": "Shows the next bounded ultra orphan uses a different topology-plus-traj contract and should stay separate."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md",
+      "relevance": "Shows catalog listing for ultra3_full_geometry_stage16_axis0 and ultra_big_ax012346.",
+      "line_window": "116,118"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt",
+      "relevance": "Shows zero repo-held evidence-pack visibility for the current ultra3 orphan and the deferred ultra_big orphan."
+    }
+  ],
+  "runtime_expectations": [
+    "The current surface stores one geometry-bearing ultra macro result with 4 sequences, 4 seeds, 48 stage16 entries, 128 axis0_ab entries, axis0_trials 256, axis0_cycles 64, and stage_states 4096.",
+    "The axis0_ab branch uses 32 absolute SEQ01 baselines and 96 SEQ02-04 deltas over a T1/T2, direction, init, gate, and repetition lattice.",
+    "The stage16 branch remains a small Se-centered perturbation surface inside the larger ultra shell.",
+    "The next remaining result-only orphan begins at results_ultra_big_ax012346.json."
+  ],
+  "failure_modes": [
+    "Treating the current orphan as the same family as ultra4 because both carry berry flux.",
+    "Treating the current orphan as the same family as the final ultra sweep because both carry stage16 and axis0_ab branches.",
+    "Collapsing the axis0_ab branch into one uniform record contract even though it mixes absolutes and deltas.",
+    "Overstating the berry-flux layer as exact ±2pi.",
+    "Merging the deferred ultra_big orphan into the current batch because of catalog adjacency."
+  ],
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "sims_split_rule": {
+    "detected": true,
+    "included_in_this_batch": true,
+    "notes": "This batch remains inside the separate sims source class and does not mix with ordinary theory/doc extraction.",
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims"
+  },
+  "source_membership": [
+    {
+      "line_count": 895,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_ultra3_full_geometry_stage16_axis0.json",
+      "role_in_batch": "ultra3_full_geometry_stage16_axis0_result_orphan_surface",
+      "sha256": "74a1e48f6c9aef13b6613f63d2bfcb469a244397606be4ea7f2a8454506dc88b",
+      "size_bytes": 25789,
+      "source_class": "result_surface"
+    }
+  ],
+  "derived_summary": {
+    "result_only_residual_count_before_this_batch": 2,
+    "local_result_count_in_batch": 1,
+    "top_level_evidence_pack_match_count": 0,
+    "berry_flux_plus": 6.195918844576741,
+    "berry_flux_minus": -6.195918844576741,
+    "berry_flux_abs_error_vs_2pi": 0.08726646260284543,
+    "stage16_entry_count": 48,
+    "axis0_ab_entry_count": 128,
+    "seq_field_count": 4,
+    "seed_count": 4,
+    "axis0_trials": 256,
+    "axis0_cycles": 64,
+    "stage_states": 4096,
+    "axis0_ab_record_split": {
+      "absolute_seq01_count": 32,
+      "delta_seq02_to_seq04_count": 96
+    },
+    "stage16_absmax": {
+      "value": 0.0030557656357999537,
+      "key": "T1_outer_1_Se_UP_MIX_A",
+      "dS": 0.0030557656357999537,
+      "dP": -0.002645109343650413
+    },
+    "axis0_ab_base_absmax": {
+      "key": "T1_FWD_BELL_CNOT_R1_SEQ01",
+      "MI_traj_mean": 0.199553386195354,
+      "neg_SAgB_frac_traj": 0.09749098557692311,
+      "SAgB_traj_mean": 0.45892110357900157
+    },
+    "axis0_ab_delta_absmax": {
+      "value": 0.13999170709895817,
+      "key": "T1_REV_BELL_CNOT_R1_SEQ04",
+      "dMI": 0.13999170709895817,
+      "dSAgB": -0.13978307120208378,
+      "dNegFrac": 0.060321514423076955
+    },
+    "comparison_vs_ultra4": {
+      "same_family_decision": false,
+      "ultra4_has_axis12": true,
+      "current_has_axis12": false,
+      "berry_flux_abs_difference": 0.021816615649886906,
+      "current_stage16_entry_count": 48,
+      "ultra4_stage16_entry_count": 48,
+      "current_axis0_ab_entry_count": 128,
+      "ultra4_axis0_ab_entry_count": 128
+    },
+    "comparison_vs_ultra_sweep": {
+      "same_family_decision": false,
+      "current_has_berry_flux": true,
+      "ultra_sweep_has_berry_flux": false,
+      "current_stage16_entry_count": 48,
+      "ultra_sweep_stage16_entry_count": 48,
+      "current_axis0_ab_entry_count": 128,
+      "ultra_sweep_axis0_ab_entry_count": 128
+    },
+    "comparison_vs_ultra_big": {
+      "same_family_decision": false,
+      "ultra_big_has_stage16": false,
+      "ultra_big_has_berry_flux": false,
+      "ultra_big_axis0_traj_branch_count": 4,
+      "ultra_big_topology4_branch_count": 4,
+      "ultra_big_sequence_count": 2,
+      "ultra_big_num_states": 65536,
+      "ultra_big_lin_trials": 4096
+    },
+    "catalog_filename_mentions": 2
+  }
+}

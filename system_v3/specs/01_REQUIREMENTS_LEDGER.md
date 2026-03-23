@@ -82,6 +82,9 @@ Date: 2026-02-20
 - `RQ-076` MUST: every spec upgrade set includes a machine-readable delta manifest.
 - `RQ-077` MUST: each task declares active model and reason at execution start.
 - `RQ-078` MUST: legacy docs remain read-only; promotion uses versioned paths only.
+- `RQ-145` MUST: fresh `A2_CONTROLLER` relaunches use one explicit launch packet declaring model, thread class, mode, primary corpus, state record, go-on count, go-on budget, stop rule, dispatch rule, and initial bounded scope.
+- `RQ-146` MUST: fresh `A2_CONTROLLER` relaunches recover weighted current truth from one small controller state record rather than inferring launch priority from mixed execution history alone.
+- `RQ-147` MUST: `A2_CONTROLLER` substantive processing is dispatch-first; if a bounded worker packet can express the work, the controller must dispatch rather than absorb worker/refinery behavior itself.
 
 ## A1 Wiggle Execution Requirements
 - `RQ-100` MUST: A1 branch exploration uses explicit operator quotas and deterministic quota accounting.
@@ -159,3 +162,13 @@ Date: 2026-02-20
 - `RQ-094` MUST: `CAMPAIGN_TAPE v1` is mandatory and append-only; records `(EXPORT_BLOCK + THREAD_B_REPORT)` pairs in canonical order.
 - `RQ-095` MUST: `EXPORT_TAPE v1` is pre-run ordered `EXPORT_BLOCK` list; can be promoted into `CAMPAIGN_TAPE v1` post-run.
 - `RQ-096` MUST: when graveyard is non-empty, A0 targets `>= 50%` graveyard-rescue share in batches (by count), subject to caps.
+
+## Current Repair-Target Companions
+- staged SIM campaign/process recovery target:
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/72_SIM_CAMPAIGN_AND_SUITE_MODES__v1.md`
+- semantic `FULL+` restore-bundle recovery target:
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1.md`
+- A0 save/report tooling recovery target:
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/74_A0_SAVE_REPORT_SURFACES__v1.md`
+- A2 mining/Rosetta artifact-pack recovery target:
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/75_A2_MINING_AND_ROSETTA_ARTIFACT_PACKS__v1.md`

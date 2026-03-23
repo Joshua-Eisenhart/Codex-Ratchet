@@ -1,0 +1,61 @@
+{
+  "schema": "NESTED_GRAPH_BUILD_WORKER_LAUNCH_HANDOFF_v1",
+  "queue_status": "BLOCKED_ON_A1_STRIPPED_TERM_PLAN_ALIGNMENT",
+  "dispatch_id": "NESTED_GRAPH_BUILD__A1_CARTRIDGE__2026_03_20__v1",
+  "unit_id": "A1_CARTRIDGE",
+  "program_id": "NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1",
+  "layer_id": "A1_CARTRIDGE",
+  "role_label": "NESTED_GRAPH_BUILD__A1_CARTRIDGE__2026_03_20__v1",
+  "role_type": "A1_GRAPH_BUILD",
+  "role_scope": "One bounded procedure-first pass for A1_CARTRIDGE using the live A1_STRIPPED owner graph and current cartridge doctrine. This unit is downstream-blocked until A1_STRIPPED has a real packageable exact term.",
+  "thread_class": "A1_WORKER",
+  "mode": "PROCEDURE_FIRST_BUILD",
+  "required_boot": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md"
+  ],
+  "source_artifacts": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_stripped_graph_v1.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_STRIPPED_GRAPH_AUDIT__2026_03_20__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_CARTRIDGE_REVIEW__CORRELATION_DIVERSITY_FUNCTIONAL__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_CARTRIDGE_REVIEW__ACTIVE_FAMILY_CROSS_JUDGMENT__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/identity_registry_v1.json"
+  ],
+  "depends_on": [
+    "NESTED_GRAPH_BUILD__IDENTITY_REGISTRY__2026_03_20__v1",
+    "NESTED_GRAPH_BUILD__A1_STRIPPED__2026_03_20__v1"
+  ],
+  "expected_outputs": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_cartridge_graph_v1.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_CARTRIDGE_GRAPH_AUDIT__2026_03_20__v1.md"
+  ],
+  "write_scope": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_cartridge_graph_v1.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_CARTRIDGE_GRAPH_AUDIT__2026_03_20__v1.md"
+  ],
+  "operator_steps": [
+    "Reload required boot surfaces before touching owner outputs.",
+    "Treat the live A1_STRIPPED owner graph as authoritative for cartridge inputs.",
+    "Write only the declared owner outputs for this layer pass.",
+    "Run the declared audit skill(s) before claiming completion.",
+    "Fail closed if the pass would require promoting witness-side stripped terms or silently promoting a projection artifact to authority."
+  ],
+  "monitor_route": {
+    "skill": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skill_specs/thread-run-monitor/SKILL.md",
+    "owner_surface": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_RUN_DIAGNOSIS_AND_STOP_RULES__v1.md",
+    "allowed_decisions": [
+      "STOP",
+      "CONTINUE_ONE_BOUNDED_STEP",
+      "CORRECT_LANE_LATER"
+    ]
+  },
+  "closeout_route": {
+    "skill": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skill_specs/thread-closeout-auditor/SKILL.md",
+    "sink_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/NESTED_GRAPH_BUILD_CLOSEOUTS__2026_03_20__v1.jsonl"
+  },
+  "source_packet_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json",
+  "program_packet_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json",
+  "prompt_to_send": "Run one bounded A1_CARTRIDGE nested-graph build pass from the live A1_STRIPPED owner graph and current cartridge doctrine. Materialize only exact packageable cartridge nodes and PACKAGED_FROM edges, or fail closed with explicit blocking reasons.",
+  "stop_rule": "Stop after one bounded A1 cartridge/strategy graph materialization pass."
+}

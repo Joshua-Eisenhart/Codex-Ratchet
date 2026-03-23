@@ -1,0 +1,128 @@
+{
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "batch_id": "BATCH_systemv3_active_a1state_brain_and_cartridge_judgment_drift_refresh__v1",
+  "batch_scope": "bounded_live_refresh_over_drifted_members_of_the_active_a1state_brain_and_cartridge_judgment_family",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T20:17:55Z",
+  "extraction_mode": "ACTIVE_A1STATE_BRAIN_AND_CARTRIDGE_JUDGMENT_DRIFT_REFRESH_PASS",
+  "promotion_status": "A2_3_REUSABLE",
+  "promotion_guardrail": "Proposal-side only. This packet records live source drift inside the earlier active a1_state brain-and-cartridge-judgment family. It does not authorize rewriting the older batch, backfilling later entropy-control packets, or promoting the refreshed family-local reviews directly into active A2-1 law from this batch alone.",
+  "parent_batch_ids": [
+    "BATCH_systemv3_active_a1state_brain_and_cartridge_judgment_packet__v1"
+  ],
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_systemv3_active_a1state_brain_and_cartridge_judgment_packet__v1/MANIFEST.json",
+      "role_in_batch": "historical_snapshot_manifest_anchor",
+      "relevance": "Preserves the exact earlier source-bound snapshot that no longer matches the four live family-local review files."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_systemv3_active_a1state_entropy_control_pack_family__v1/MANIFEST.json",
+      "role_in_batch": "downstream_continuation_anchor",
+      "relevance": "Shows that folder-order continuation after this refresh still moves into the active A1 entropy control-pack family."
+    }
+  ],
+  "source_membership": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_CARTRIDGE_REVIEW__CORRELATION_DIVERSITY_FUNCTIONAL__v1.md",
+      "role_in_batch": "live_drifted_family_local_review_surface",
+      "sha256": "c13870927d990f7669485c2aec8dce1aedb429be7516549940830ddabe389fed",
+      "line_count": 235,
+      "size_bytes": 9737,
+      "previous_parent_snapshot": {
+        "batch_id": "BATCH_systemv3_active_a1state_brain_and_cartridge_judgment_packet__v1",
+        "sha256": "d26124074626f6b33a6d9e5e296e9100c60895f0363f90dfc7b8867f3280581e",
+        "line_count": 234,
+        "size_bytes": 9596
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_CARTRIDGE_REVIEW__CORRELATION_POLARITY__v1.md",
+      "role_in_batch": "live_drifted_family_local_review_surface",
+      "sha256": "4d912418321dbfb614e32e0e29d6a2e915425f0f6110d39c304919fa9eabee5c",
+      "line_count": 198,
+      "size_bytes": 10052,
+      "previous_parent_snapshot": {
+        "batch_id": "BATCH_systemv3_active_a1state_brain_and_cartridge_judgment_packet__v1",
+        "sha256": "9f99bd330cf7a40f1f9723b56dcc289ff1eba2ff67c384e21129c53ba3639db5",
+        "line_count": 197,
+        "size_bytes": 9958
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_CARTRIDGE_REVIEW__ENTROPY_PRODUCTION_RATE__v1.md",
+      "role_in_batch": "live_drifted_family_local_review_surface",
+      "sha256": "c4f8f79ad2269bda7aca27143958eaa272ef194d04ca1dfcf92aad1b2fda5539",
+      "line_count": 218,
+      "size_bytes": 10522,
+      "previous_parent_snapshot": {
+        "batch_id": "BATCH_systemv3_active_a1state_brain_and_cartridge_judgment_packet__v1",
+        "sha256": "f4d59730bffbfc844022280fb9bd25a68106b8ae7943742427d37892d1041b8c",
+        "line_count": 218,
+        "size_bytes": 10503
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_CARTRIDGE_REVIEW__PROBE_OPERATOR__v1.md",
+      "role_in_batch": "live_drifted_family_local_review_surface",
+      "sha256": "488771d43a7ad1c273aa19c739706e42d9d2ab4073e99079f9c07688739a7b36",
+      "line_count": 206,
+      "size_bytes": 8045,
+      "previous_parent_snapshot": {
+        "batch_id": "BATCH_systemv3_active_a1state_brain_and_cartridge_judgment_packet__v1",
+        "sha256": "fca9cbfea6307439fd4bfafdf12239f99b1a3a64ba866f9f2aeca4898c262fbb",
+        "line_count": 206,
+        "size_bytes": 7960
+      }
+    }
+  ],
+  "family_rationale": [
+    "The queued active a1_state brain-and-cartridge batch could not be honestly reused because four live family-local review members drifted from the stored manifest.",
+    "This refresh is intentionally limited to the drifted review quartet so the older first-pass batch remains preserved as a historical source-bound snapshot.",
+    "The next low-entropy continuation still belongs to the adjacent active A1 entropy control-pack family rather than a full re-extraction of the entire brain-and-cartridge packet."
+  ],
+  "drift_summary": {
+    "changed_member_count": 4,
+    "unchanged_member_count": 2,
+    "changed_member_classes": [
+      "executable_head_review_surface",
+      "passenger_family_review_surface"
+    ],
+    "why_refresh_not_reuse": "The old parent manifest no longer source-matches the live repo on these four files."
+  },
+  "raw_source_reread_needed": true,
+  "raw_source_reread_reason": "The queued reuse check failed. The four drifted live cartridge-review files were reopened directly to preserve bounded, source-linked refresh content instead of falsely reporting manifest reuse.",
+  "control_surface_mutation": "NONE",
+  "deferred_next_in_folder_order": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRANCH_BUDGET_AND_MERGE_PACK__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_COLDER_WITNESS_PACK__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_LIFT_PACK__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_PATH_BUILD_PRIORITY_PACK__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_REFORMULATION_PACK__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_CLUSTER_RESCUE_PACK__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_CORRELATION_EXECUTABLE_PACK__v1.md"
+  ],
+  "structure_markers": [
+    {
+      "label": "executable_head_review_refresh_packet",
+      "line_spans": [
+        "A1_CARTRIDGE_REVIEW__PROBE_OPERATOR__v1.md:1-206",
+        "A1_CARTRIDGE_REVIEW__CORRELATION_POLARITY__v1.md:1-198"
+      ]
+    },
+    {
+      "label": "passenger_family_review_refresh_packet",
+      "line_spans": [
+        "A1_CARTRIDGE_REVIEW__ENTROPY_PRODUCTION_RATE__v1.md:1-218",
+        "A1_CARTRIDGE_REVIEW__CORRELATION_DIVERSITY_FUNCTIONAL__v1.md:1-235"
+      ]
+    }
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; use this packet to keep the active A1 brain-and-cartridge read current without rewriting the earlier batch or promoting the refreshed review quartet directly into active A2-1 law from this refresh alone",
+  "notes": [
+    "No active A2 surfaces were mutated.",
+    "The earlier BATCH_systemv3_active_a1state_brain_and_cartridge_judgment_packet__v1 remains preserved as a historical source-bound packet.",
+    "This packet records live drift only and does not settle authority questions by itself."
+  ]
+}

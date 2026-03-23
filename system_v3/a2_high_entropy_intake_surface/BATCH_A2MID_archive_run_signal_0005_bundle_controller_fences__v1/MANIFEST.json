@@ -1,0 +1,145 @@
+{
+  "schema": "A2_MID_REFINEMENT_BATCH_MANIFEST_v1",
+  "batch_id": "BATCH_A2MID_archive_run_signal_0005_bundle_controller_fences__v1",
+  "batch_scope": "controller_facing_reduction_of_archive_run_signal_0005_bundle_into_archive_scope_closure_replay_and_lineage_fences",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T12:20:00Z",
+  "extraction_mode": "A2_MID_REFINEMENT_PASS",
+  "promotion_status": "A2_2_CANDIDATE",
+  "promotion_guardrail": "Proposal-side only. Do not promote to A2-1 kernel law from this batch without a later explicit selective promotion pass.",
+  "parent_batch_ids": [
+    "BATCH_archive_surface_deep_archive_run_signal_0005_bundle__v1"
+  ],
+  "parent_artifacts": [
+    "SOURCE_MAP__v1.md",
+    "CLUSTER_MAP__v1.md",
+    "TENSION_MAP__v1.md",
+    "A2_3_DISTILLATES__v1.md",
+    "A2_2_CANDIDATE_SUMMARIES__v1.md",
+    "MANIFEST.json"
+  ],
+  "selection_basis": {
+    "ledger_reason": "Parent batch was the richest unresolved archive-side REVISIT_REQUIRED packet and had no existing controller-facing child reduction.",
+    "bounded_goal": "Reduce the historical RUN_SIGNAL_0005 bundle into controller-facing fences for archive-only scope, promotion-debt visibility, replay-vs-final-hash noncollapse, bundle-richness-vs-closure divergence, and fail-closed packet-lineage/audit-null handling.",
+    "deferred_alternatives": [
+      "BATCH_archive_surface_deep_archive_test_det_a__v1"
+    ]
+  },
+  "raw_source_reread_needed": false,
+  "raw_source_reread_reason": "The parent already isolates the archive-side bundle scope and contradiction surface tightly enough for a bounded controller-facing reduction.",
+  "candidate_items": [
+    {
+      "id": "RC1",
+      "name": "RUN_SIGNAL_0005_BUNDLE_IS_A_HISTORICAL_SELF_CONTAINED_EXPORT_KIT_NOT_CURRENT_CONTROL_AUTHORITY",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the archive-side scope boundary while keeping the bundle's retained value visible.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:1",
+        "CLUSTER_MAP__v1.md:7",
+        "A2_3_DISTILLATES__v1.md",
+        "MANIFEST.json"
+      ]
+    },
+    {
+      "id": "RC2",
+      "name": "SIXTY_PASS_RUNTIME_ALIGNMENT_DOES_NOT_ERASE_PENDING_EVIDENCE_OR_PARKED_PROMOTION_DEBT",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the parent's strongest anti-clean-counter overread rule.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:2",
+        "CLUSTER_MAP__v1.md:3",
+        "TENSION_MAP__v1.md:1",
+        "A2_3_DISTILLATES__v1.md"
+      ]
+    },
+    {
+      "id": "RC3",
+      "name": "DETERMINISTIC_REPLAY_STAYS_DERIVATIVE_WHEN_ITS_FINAL_HASH_DIVERGES_FROM_RUN_FINAL_HASH",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Compresses replay usefulness and replay-authority limits into one controller-facing fence.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:4",
+        "CLUSTER_MAP__v1.md:5",
+        "TENSION_MAP__v1.md:3",
+        "A2_3_DISTILLATES__v1.md"
+      ]
+    },
+    {
+      "id": "RC4",
+      "name": "BUNDLE_RICHNESS_DOES_NOT_COLLAPSE_THREE_WAY_CLOSURE_DIVERGENCE",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the bundle-richness boundary without letting retained structure become closure proof.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:1",
+        "CLUSTER_MAP__v1.md:5",
+        "TENSION_MAP__v1.md:2",
+        "TENSION_MAP__v1.md:7",
+        "A2_2_CANDIDATE_SUMMARIES__v1.md"
+      ]
+    },
+    {
+      "id": "RC5",
+      "name": "CONSUMED_400001_LANE_AND_SIGNAL_AUDIT_NULLS_REQUIRE_FAIL_CLOSED_LINEAGE_READS",
+      "status": "A2_2_CANDIDATE",
+      "why_candidate": "Preserves the packet-lineage split and audit-null seam as fail-closed controller rules.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:6",
+        "CLUSTER_MAP__v1.md:8",
+        "TENSION_MAP__v1.md:6",
+        "TENSION_MAP__v1.md:8",
+        "A2_3_DISTILLATES__v1.md"
+      ]
+    }
+  ],
+  "quarantined_items": [
+    {
+      "id": "Q1",
+      "name": "ZERO_PARK_AND_ZERO_REJECT_PACKET_COUNTERS_AS_PROOF_OF_SEMANTIC_CLOSURE",
+      "status": "QUARANTINED",
+      "why_quarantined": "Embedded state still preserves unresolved evidence and promotion debt despite clean counters.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:3",
+        "TENSION_MAP__v1.md:1",
+        "A2_3_DISTILLATES__v1.md"
+      ]
+    },
+    {
+      "id": "Q2",
+      "name": "REPLAY_DETERMINISM_AS_FINAL_HASH_AUTHORITY",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent preserves determinism and final-hash divergence together.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:5",
+        "TENSION_MAP__v1.md:3",
+        "A2_3_DISTILLATES__v1.md"
+      ]
+    },
+    {
+      "id": "Q3",
+      "name": "400001_CONSUMED_STRATEGY_PACKETS_AS_INTERCHANGEABLE_WITH_000001_EMBEDDED_PACKETS",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent explicitly preserves the naming split and dominant byte mismatch.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:6",
+        "TENSION_MAP__v1.md:6",
+        "A2_3_DISTILLATES__v1.md"
+      ]
+    },
+    {
+      "id": "Q4",
+      "name": "RICH_ARCHIVE_BUNDLE_AS_PERMISSION_TO_TREAT_HISTORICAL_EXPORT_AS_LIVE_RUNTIME_CANON",
+      "status": "QUARANTINED",
+      "why_quarantined": "The parent remains archive-side evidence only and carries an explicit downstream-consequence-only policy.",
+      "parent_dependencies": [
+        "CLUSTER_MAP__v1.md:1",
+        "TENSION_MAP__v1.md:7",
+        "MANIFEST.json"
+      ]
+    }
+  ],
+  "control_surface_mutation": "NONE",
+  "notes": [
+    "This batch was produced as the thirty-fourth controller-facing A2-mid reduction in this audit thread.",
+    "No raw source reread, runtime execution, or active A2 append-save was performed."
+  ]
+}

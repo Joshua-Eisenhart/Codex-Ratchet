@@ -59,7 +59,7 @@ def main() -> int:
     reports_dir = run_dir / "reports"
 
     candidate_records: list[dict] = []
-    for source_root in [run_dir / "b_reports", run_dir / "snapshots", run_dir / "tapes"]:
+    for source_root in [run_dir / "b_reports", run_dir / "tapes", run_dir / "snapshots"]:
         candidate_records.extend(_iter_json_records(source_root))
 
     required_keys = {"candidate_id", "reason_tag", "raw_lines", "failure_class"}

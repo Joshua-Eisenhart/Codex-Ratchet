@@ -1,0 +1,194 @@
+{
+  "batch_id": "BATCH_archive_surface_deep_archive_run_foundation_batch_0001_progress_bundle__v1",
+  "batch_scope": "deep_archive_run_foundation_batch_0001_progress_bundle",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T09:04:30Z",
+  "deferred_next_in_folder_order": [
+    "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE_v2"
+  ],
+  "extraction_mode": "ARCHIVE_DEEP_RUN_PROGRESS_BUNDLE_PASS",
+  "notes": [
+    "This batch processes only RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE and treats it as a replay/export derivative, not as a replacement for the parent run.",
+    "The bundle root is split across a replay README, one embedded child run snapshot, and one external carried strategy-packet lane.",
+    "README_PROGRESS.txt reports cumulative replay totals of accepted 64, parked 7, rejected 4, while the embedded summary and soak report preserve only a one-step final snapshot with accepted 15 and zero parked/rejected totals.",
+    "The final state hash 0e013eb1... is consistent across README, summary, state.json, and state.json.sha256.",
+    "The embedded state still retains failure residue even though the top-line summary does not: kill_log_len 5, park_set_len 7, reject_log_len 11.",
+    "The bundle carries seven A1 strategy packets in packets/ and duplicates them byte-for-byte in a1_inbox/consumed/.",
+    "The embedded event ledger references only five of the seven carried strategy packets, so replay material is broader than preserved replay history.",
+    "The embedded run keeps no HARDMODE_METRICS.json, no sequence_state.json, and no sim directory despite repeated sim-evidence path references in the README, event ledger, and soak report."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "REVISIT_REQUIRED",
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "source_family": "archive root deep archive run foundation batch 0001 progress bundle",
+  "source_membership": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE",
+      "role_in_batch": "progress_bundle_root",
+      "total_files": 63,
+      "total_dirs": 5,
+      "top_level_entries": [
+        "README_PROGRESS.txt",
+        "RUN_FOUNDATION_BATCH_0001",
+        "packets"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/README_PROGRESS.txt",
+      "role_in_batch": "replay_readme",
+      "sha256": "0fed33003713553d338f011668f49c888e8c2c6314a0d86954b9e58f83ffabd5",
+      "size_bytes": 982,
+      "readme_markers": {
+        "run_id": "RUN_FOUNDATION_BATCH_0001",
+        "mode": "packet",
+        "current_final_state_hash": "0e013eb1b87429686cf1b588fa2a7e45455cb145765ad63a5fdfa3c1eed49be8",
+        "cumulative_observed": {
+          "accepted": 64,
+          "parked": 7,
+          "rejected": 4
+        }
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001",
+      "role_in_batch": "embedded_child_run",
+      "files": 55,
+      "dirs": 3,
+      "top_level_entries": [
+        "a1_inbox",
+        "events.jsonl",
+        "soak_report.md",
+        "state.json",
+        "state.json.sha256",
+        "summary.json",
+        "zip_packets"
+      ],
+      "omitted_control_surfaces": [
+        "HARDMODE_METRICS.json",
+        "sequence_state.json",
+        "sim/"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/summary.json",
+      "role_in_batch": "embedded_summary",
+      "sha256": "236f5d553acc51f5d058a7b4ba2a03bc18c9bedea69bd7f3e30a277325cd0645",
+      "size_bytes": 835,
+      "summary": {
+        "run_id": "RUN_FOUNDATION_BATCH_0001",
+        "steps_completed": 1,
+        "steps_requested": 1,
+        "stop_reason": "MAX_STEPS",
+        "accepted_total": 15,
+        "rejected_total": 0,
+        "parked_total": 0,
+        "sim_registry_count": 25,
+        "master_sim_status": "NOT_READY",
+        "needs_real_llm": false,
+        "unique_export_content_digest_count": 1,
+        "unique_export_structural_digest_count": 1,
+        "unique_strategy_digest_count": 1,
+        "unresolved_promotion_blocker_count": 5,
+        "final_state_hash": "0e013eb1b87429686cf1b588fa2a7e45455cb145765ad63a5fdfa3c1eed49be8"
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/state.json",
+      "role_in_batch": "embedded_state",
+      "sha256": "0e013eb1b87429686cf1b588fa2a7e45455cb145765ad63a5fdfa3c1eed49be8",
+      "size_bytes": 85352,
+      "state_summary": {
+        "accepted_batch_count": 5,
+        "canonical_ledger_len": 5,
+        "derived_only_terms_len": 47,
+        "evidence_pending_len": 0,
+        "evidence_tokens_len": 25,
+        "interaction_counts_len": 20,
+        "kill_log_len": 5,
+        "park_set_len": 7,
+        "reject_log_len": 11,
+        "sim_promotion_status_len": 25,
+        "sim_registry_len": 25,
+        "sim_results_len": 25,
+        "survivor_ledger_len": 66,
+        "survivor_order_len": 66,
+        "term_registry_len": 18,
+        "active_megaboot_id": "",
+        "active_megaboot_sha256": "",
+        "active_ruleset_sha256": ""
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/state.json.sha256",
+      "role_in_batch": "embedded_state_hash_sidecar",
+      "declared_sha256": "0e013eb1b87429686cf1b588fa2a7e45455cb145765ad63a5fdfa3c1eed49be8",
+      "matches_state_json": true,
+      "matches_readme_final_hash": true
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/events.jsonl",
+      "role_in_batch": "embedded_event_ledger",
+      "sha256": "6688695c2bd75762ca96790707d29ca8c57cbb4e55015d3d0b4539a75df95ee0",
+      "size_bytes": 16561,
+      "line_count": 6,
+      "first_event_kind": "a1_strategy_request_emitted",
+      "referenced_strategy_packets": [
+        "000001_A1_TO_A0_STRATEGY_ZIP.zip",
+        "000002_A1_TO_A0_STRATEGY_ZIP.zip",
+        "000003_A1_TO_A0_STRATEGY_ZIP.zip",
+        "000005_A1_TO_A0_STRATEGY_ZIP.zip",
+        "000007_A1_TO_A0_STRATEGY_ZIP.zip"
+      ],
+      "referenced_export_packets": [
+        "000002_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+        "000003_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+        "000004_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+        "000005_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+        "000006_A0_TO_B_EXPORT_BATCH_ZIP.zip"
+      ],
+      "referenced_sim_result_count": 25
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/soak_report.md",
+      "role_in_batch": "embedded_soak_report",
+      "sha256": "7fcacf3bfbbde39ae53155497e59126fbeb544f9aabe03a5cd89e7212c1bbd23",
+      "size_bytes": 16746,
+      "headline": {
+        "cycle_count": 1,
+        "accepted_total": 15,
+        "parked_total": 0,
+        "rejected_total": 0,
+        "stop_reason": "MAX_STEPS"
+      },
+      "top_failure_tags": {
+        "SCHEMA_FAIL": 2
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/zip_packets",
+      "role_in_batch": "embedded_packet_subset",
+      "packet_count": 43,
+      "packet_kind_counts": {
+        "A0_TO_A1_SAVE_ZIP": 1,
+        "A0_TO_B_EXPORT_BATCH_ZIP": 5,
+        "A1_TO_A0_STRATEGY_ZIP": 7,
+        "B_TO_A0_STATE_UPDATE_ZIP": 5,
+        "SIM_TO_A0_SIM_RESULT_ZIP": 25
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/packets",
+      "role_in_batch": "carried_strategy_packets",
+      "packet_count": 7,
+      "packet_kind_counts": {
+        "A1_TO_A0_STRATEGY_ZIP": 7
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/a1_inbox/consumed",
+      "role_in_batch": "embedded_consumed_strategy_residue",
+      "packet_count": 7,
+      "byte_identical_to_packets_dir": true
+    }
+  ]
+}

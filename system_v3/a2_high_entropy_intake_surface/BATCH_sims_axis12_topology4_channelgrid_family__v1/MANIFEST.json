@@ -1,0 +1,121 @@
+{
+  "batch_id": "BATCH_sims_axis12_topology4_channelgrid_family__v1",
+  "batch_scope": "residual_axis12_topology4_channelgrid_family",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T05:43:27Z",
+  "deferred_next_raw_folder_order_source": null,
+  "extraction_mode": "SIM_AXIS12_TOPOLOGY4_CHANNELGRID_PASS",
+  "notes": [
+    "This batch completes the residual paired-family campaign identified by the closure audit.",
+    "The family is bounded to the local topology4 channelgrid runner and its paired result surface.",
+    "No runtime execution was performed."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "A2_2_CANDIDATE",
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md",
+      "relevance": "Shows the current channelgrid surface and the neighboring admitted terrain8 topology4 surface in the same strip.",
+      "line_window": "59,69,76,77"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt",
+      "relevance": "Shows repo-top admission for the neighboring terrain8 topology4 surface while omitting the current channelgrid SIM_ID."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_axis12_topology4_channelfamily_terrain8_seam__v1/MANIFEST.json",
+      "relevance": "Provides continuity from the prior topology4 seam batch and sets this clean pair next."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS12_TOPOLOGY4_TERRAIN8_SUITE_V1.json",
+      "relevance": "Neighboring admitted terrain8 surface used to preserve the topology4 visibility seam."
+    }
+  ],
+  "runtime_expectations": [
+    "The runner writes one results_axis12_topology4_channelgrid_v1.json and one local sim_evidence_pack.txt containing one SIM_EVIDENCE block.",
+    "The family uses 4096 sampled states, 512 linearity trials, and explicit noncommuting test vs commuting control axes.",
+    "Residual paired-family intake is complete after this batch."
+  ],
+  "failure_modes": [
+    "Mistaking control-axis success for total absence of test-axis sign effects.",
+    "Collapsing topology4 behavior into one scalar strength ranking.",
+    "Merging this clean local pair into the neighboring terrain8 seam batch.",
+    "Assuming paired-family completion means all residual classes are done."
+  ],
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "sims_split_rule": {
+    "detected": true,
+    "included_in_this_batch": true,
+    "notes": "This batch remains inside the separate sims source class and does not mix with ordinary theory/doc extraction.",
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims"
+  },
+  "source_membership": [
+    {
+      "line_count": 212,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis12_topology4_channelgrid_v1.py",
+      "role_in_batch": "axis12_topology4_channelgrid_runner",
+      "sha256": "f4017440edddbcfe71718df1bbb70647be0ead5179f97edba880fa3afa885cf2",
+      "size_bytes": 7541,
+      "source_class": "executable_runner"
+    },
+    {
+      "line_count": 72,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis12_topology4_channelgrid_v1.json",
+      "role_in_batch": "axis12_topology4_channelgrid_result_surface",
+      "sha256": "e8e2bb00ae3bc88fc7eb4d695d6e1ba13ff52844c4481bb817bf4cb047f05979",
+      "size_bytes": 2624,
+      "source_class": "result_surface"
+    }
+  ],
+  "derived_summary": {
+    "local_sim_id": "S_SIM_AXIS12_TOPOLOGY4_CHANNELGRID_V1",
+    "top_level_evidence_pack_match_count": 0,
+    "neighboring_topology4_admitted_sim_id": "S_SIM_AXIS12_TOPOLOGY4_TERRAIN8_SUITE_V1",
+    "num_states": 4096,
+    "lin_trials": 512,
+    "theta": 0.07,
+    "n_test": [
+      0.3,
+      0.4,
+      0.866025403784
+    ],
+    "n_ctrl": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "max_lin_err_family": "EC_AD",
+    "max_lin_err_value": 0.023410521136522085,
+    "max_test_sign_gap_family": "EO_FX",
+    "max_test_sign_gap_value": 0.0009384673072792976,
+    "max_ctrl_sign_gap_family": "EO_FX",
+    "max_ctrl_sign_gap_value": 2.7755575615628914e-17,
+    "families": {
+      "EO_FX": {
+        "test_plus_deltaH_absmean": 0.11991500306420856,
+        "test_minus_deltaH_absmean": 0.12085347037148786,
+        "test_delta_deltaH_absmean": -0.0009384673072792976,
+        "lin_err_mean": 3.0498805390193284e-16
+      },
+      "EO_AD": {
+        "test_plus_deltaH_absmean": 0.08891390701111858,
+        "test_minus_deltaH_absmean": 0.08982774161098828,
+        "test_delta_deltaH_absmean": -0.0009138345998696978,
+        "lin_err_mean": 0.01302066155298634
+      },
+      "EC_FX": {
+        "test_plus_deltaH_absmean": 0.026612723228841964,
+        "test_minus_deltaH_absmean": 0.026576246542811575,
+        "test_delta_deltaH_absmean": 3.647668603038931e-05,
+        "lin_err_mean": 2.9483925735467206e-16
+      },
+      "EC_AD": {
+        "test_plus_deltaH_absmean": 0.026612723228841957,
+        "test_minus_deltaH_absmean": 0.026576246542811578,
+        "test_delta_deltaH_absmean": 3.64766860303789e-05,
+        "lin_err_mean": 0.023410521136522085
+      }
+    },
+    "paired_family_campaign_complete": true
+  }
+}

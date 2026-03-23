@@ -1,0 +1,209 @@
+# CONTROLLER_QUEUE_ACTION_BOARD__v1
+Status: PROPOSED / NONCANONICAL / CONTROLLER ACTION BOARD
+Date: 2026-03-09
+Role: small explicit queue for reduction, quarantine, and archive decisions inside the intake surface
+
+## Filesystem Authority Gate
+- if the live filesystem and this queue disagree, the live filesystem snapshot wins
+- repair this queue and the paired integrity audit before any new dispatch
+- this board is a controller aid, not authority over the current directory state
+
+## 0) Produced This Pass
+- `BATCH_A2MID_active_control_spine_controller_boundaries__v1`
+  - first controller-facing A2-mid reduction produced from `BATCH_systemv3_active_root_spec_control_spine__v1`
+- `BATCH_A2MID_stage2_public_conformance_controller_fences__v1`
+  - second controller-facing A2-mid reduction produced from `BATCH_systemv3_active_spec_stage2_public_conformance__v1`
+- `BATCH_A2MID_active_a2state_controller_admission_fences__v1`
+  - third controller-facing A2-mid reduction produced from `BATCH_systemv3_active_a2state_entropy_pattern_packet__v1`
+- `BATCH_A2MID_work_surface_root_control_archaeology_controller_fences__v1`
+  - fourth controller-facing A2-mid reduction produced from `BATCH_work_surface_root_control_archaeology__v1`
+- `BATCH_A2MID_work_surface_entropy_mass_lane_controller_fences__v1`
+  - fifth controller-facing A2-mid reduction produced from `BATCH_work_surface_entropy_mass_lane_escalation__v1`
+- `BATCH_A2MID_work_surface_autowiggle_lane_blockage_controller_fences__v1`
+  - sixth controller-facing A2-mid reduction produced from `BATCH_work_surface_autowiggle_lane_blockage__v1`
+- `BATCH_A2MID_work_surface_autowiggle_fix_and_a1_firewall_controller_fences__v1`
+  - seventh controller-facing A2-mid reduction produced from `BATCH_work_surface_autowiggle_fix_and_a1_firewall__v1`
+- `BATCH_A2MID_a2feed_thread_b_3_4_2_bootpack_controller_fences__v1`
+  - eighth controller-facing A2-mid reduction produced from `BATCH_a2feed_thread_b_3_4_2_bootpack_source_map__v1`
+- `BATCH_A2MID_work_surface_shadow_systemv3_and_curated_wrappers_controller_fences__v1`
+  - ninth controller-facing A2-mid reduction produced from `BATCH_work_surface_shadow_systemv3_and_curated_wrappers__v1`
+- `BATCH_A2MID_archive_surface_root_policy_controller_fences__v1`
+  - tenth controller-facing A2-mid reduction produced from `BATCH_archive_surface_root_policy_lineage__v1`
+- `BATCH_A2MID_upgrade_docs_directed_extraction_contradiction_fences__v1`
+  - eleventh controller-facing A2-mid reduction produced from `BATCH_upgrade_docs_directed_extraction_family_contradiction_reprocess__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_engine_contract_controller_fences__v1`
+  - twelfth controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_engine_contract_math_class__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_entropy_contract_controller_fences__v1`
+  - thirteenth controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_entropy_contract_math_class__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_geometry_admissibility_controller_fences__v1`
+  - fourteenth controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_geometry_admissibility_math_class__v1`
+- `BATCH_A2MID_sims_axis0_boundary_bookkeep_controller_fences__v1`
+  - fifteenth controller-facing A2-mid reduction produced from `BATCH_sims_axis0_boundary_bookkeep_v1_orphan_slice__v1`
+- `BATCH_A2MID_sims_axis0_traj_corr_suite_v2_controller_fences__v1`
+  - sixteenth controller-facing A2-mid reduction produced from `BATCH_sims_axis0_traj_corr_suite_v2_orphan_family__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_game_theory_rosetta_controller_fences__v1`
+  - seventeenth controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_game_theory_rosetta_personality_analogy__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_metric_admissibility_controller_fences__v1`
+  - eighteenth controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_metric_admissibility_math_class__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_obstruction_admissibility_controller_fences__v1`
+  - nineteenth controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_obstruction_admissibility_math_class__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_orthogonality_admissibility_controller_fences__v1`
+  - twentieth controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_orthogonality_admissibility_math_class__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_path_contract_controller_fences__v1`
+  - twenty-first controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_path_contract_math_class__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_physics_rosetta_controller_fences__v1`
+  - twenty-second controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_physics_rosetta_personality_analogy__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_refinement_contract_controller_fences__v1`
+  - twenty-third controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_refinement_contract_math_class__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_relational_transport_controller_fences__v1`
+  - twenty-fourth controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_relational_transport_admissibility_math_class__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_rosetta_contract_controller_fences__v1`
+  - twenty-fifth controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_rosetta_contract_personality_analogy__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_state_abstraction_admissibility_controller_fences__v1`
+  - twenty-sixth controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_state_abstraction_admissibility_math_class__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_simulation_protocol_controller_fences__v1`
+  - twenty-seventh controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_simulation_protocol_math_class__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_topology_contract_controller_fences__v1`
+  - twenty-eighth controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_topology_contract_math_class__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_transport_contract_controller_fences__v1`
+  - twenty-ninth controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_transport_contract_math_class__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_archive_manifest_controller_fences__v1`
+  - thirtieth controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_archive_manifest_source_map__v1`
+- `BATCH_A2MID_sims_ultra3_geometry_stage16_axis0_controller_fences__v1`
+  - thirty-first controller-facing A2-mid reduction produced from `BATCH_sims_ultra3_full_geometry_stage16_axis0_orphan_family__v1`
+- `BATCH_A2MID_sims_ultra_big_ax012346_controller_fences__v1`
+  - thirty-second controller-facing A2-mid reduction produced from `BATCH_sims_ultra_big_ax012346_orphan_family__v1`
+- `BATCH_A2MID_refinedfuel_nonsims_residual_inventory_controller_fences__v1`
+  - thirty-third controller-facing A2-mid reduction produced from `BATCH_refinedfuel_nonsims_residual_inventory_closure_audit__v1`
+- `BATCH_A2MID_archive_run_signal_0005_bundle_controller_fences__v1`
+  - thirty-fourth controller-facing A2-mid reduction produced from `BATCH_archive_surface_deep_archive_run_signal_0005_bundle__v1`
+- `BATCH_A2MID_archive_test_det_a_controller_fences__v1`
+  - thirty-fifth controller-facing A2-mid reduction produced from `BATCH_archive_surface_deep_archive_test_det_a__v1`
+- `BATCH_A2MID_archive_test_det_b_controller_fences__v1`
+  - thirty-sixth controller-facing A2-mid reduction produced from `BATCH_archive_surface_deep_archive_test_det_b__v1`
+- `BATCH_A2MID_archive_test_real_a1_001_controller_fences__v1`
+  - thirty-seventh controller-facing A2-mid reduction produced from `BATCH_archive_surface_deep_archive_test_real_a1_001__v1`
+- `BATCH_A2MID_archive_test_real_a1_002_controller_fences__v1`
+  - thirty-eighth controller-facing A2-mid reduction produced from `BATCH_archive_surface_deep_archive_test_real_a1_002__v1`
+- `BATCH_A2MID_archive_test_resume_001_controller_fences__v1`
+  - thirty-ninth controller-facing A2-mid reduction produced from `BATCH_archive_surface_deep_archive_test_resume_001__v1`
+- `BATCH_A2MID_archive_test_state_transition_chain_a_controller_fences__v1`
+  - fortieth controller-facing A2-mid reduction produced from `BATCH_archive_surface_deep_archive_test_state_transition_chain_a__v1`
+- `BATCH_A2MID_archive_v2_packet_req_request_only_handoff__v1`
+  - forty-first controller-facing A2-mid reduction produced from `BATCH_archive_surface_deep_archive_v2_zipv2_packet_req_001__v1`
+- `BATCH_A2MID_archive_v2_replay_hashbridge_schemafail__v1`
+  - forty-second controller-facing A2-mid reduction produced from `BATCH_archive_surface_deep_archive_v2_zipv2_replay_001__v1`
+
+## 1) Immediate Reduction Tranche
+- no live unreduced non-A2MID `A2_2_CANDIDATE` broad-parent packet remains at this snapshot
+- stale queued broad-parent target cleared from the live tranche:
+  - `BATCH_sims_mega_sims_diagnostic_strip__v1`
+  - already reduced earlier as `BATCH_A2MID_mega_diagnostic_strip_seams__v1`
+- controller-side reentry split is now explicit:
+  - anchor/context lane:
+    - `Constraints. Entropy` pair
+    - use existing `BATCH_A2MID_constraints_entropy_chain_fences__v1` and `BATCH_A2MID_constraints_foundation_governance_fences__v1` as the direct-child fence packets
+  - stale next-parent corrected out of the live tranche:
+    - `BATCH_a2feed_thread_b_bootpack_engine_pattern__v1`
+    - now direct-child closed by `BATCH_A2MID_a2feed_thread_b_provenance_admission_fences__v1`
+  - current open revisit split:
+    - duplicate-family quarantine:
+      - `BATCH_a2feed_grok_unified_phuysics_source_map__v1`
+      - see `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_DUPLICATE_FAMILY_QUARANTINE__v1.md`
+    - archive-side revisit cluster:
+      - deep-archive run-signal and test packets
+      - richest bundle now direct-child closed by:
+        - `BATCH_A2MID_archive_run_signal_0005_bundle_controller_fences__v1`
+      - smaller `TEST_DET_A` packet now also direct-child closed by:
+        - `BATCH_A2MID_archive_test_det_a_controller_fences__v1`
+      - adjacent `TEST_DET_B` packet now also direct-child closed by:
+        - `BATCH_A2MID_archive_test_det_b_controller_fences__v1`
+      - adjacent `TEST_REAL_A1_001` packet now also direct-child closed by:
+        - `BATCH_A2MID_archive_test_real_a1_001_controller_fences__v1`
+      - adjacent `TEST_REAL_A1_002` packet now also direct-child closed by:
+        - `BATCH_A2MID_archive_test_real_a1_002_controller_fences__v1`
+      - adjacent `TEST_RESUME_001` packet now also direct-child closed by:
+        - `BATCH_A2MID_archive_test_resume_001_controller_fences__v1`
+      - adjacent `TEST_STATE_TRANSITION_CHAIN_A` packet now also direct-child closed by:
+        - `BATCH_A2MID_archive_test_state_transition_chain_a_controller_fences__v1`
+      - adjacent `TEST_STATE_TRANSITION_CHAIN_B` packet was already direct-child closed by:
+        - `BATCH_A2MID_archive_chain_b_shell_drift__v1`
+      - adjacent `TEST_STATE_TRANSITION_MUTATION` packet was already direct-child closed by:
+        - `BATCH_A2MID_archive_mutation_snapshot_overhang__v1`
+      - adjacent `V2_ZIPV2_PACKET_E2E_001` packet was already direct-child closed by:
+        - `BATCH_A2MID_archive_v2_packet_e2e_save_request_divergence__v1`
+      - adjacent `V2_ZIPV2_PACKET_REQ_001` packet now has duplicate child coverage:
+        - preferred live child handle:
+          - `BATCH_A2MID_archive_v2_packet_req_bootstrap_scaffold__v1`
+        - overlapping later duplicate-child residue:
+          - `BATCH_A2MID_archive_v2_packet_req_request_only_handoff__v1`
+        - duplicate-child routing surface:
+          - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_DUPLICATE_FAMILY_QUARANTINE__v1.md`
+      - adjacent `V2_ZIPV2_REPLAY_001` packet is now also direct-child closed by:
+        - `BATCH_A2MID_archive_v2_replay_hashbridge_schemafail__v1`
+      - next adjacent compact archive-side packet if another bounded historical pass is wanted:
+        - `BATCH_archive_surface_heat_dumps_root_family_split__v1`
+- compact routing surface:
+  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_REENTRY_SHORTLIST__v1.md`
+
+## 2) Hold In Quarantine / Revisit
+- `BATCH_a2feed_gpt_thread_a1_trigram_source_map__v1`
+- `BATCH_a2feed_grok_gemini_digested_model_source_map__v1`
+- `BATCH_a2feed_grok_unified_physics_source_map__v1`
+- `BATCH_a2feed_grok_unified_phuysics_source_map__v1`
+- `BATCH_a2feed_leviathan_family_source_map__v1`
+- `BATCH_a2feed_thread_b_bootpack_engine_pattern__v1`
+- `BATCH_upgrade_docs_bootpack_thread_a_engine_pattern__v1`
+- `BATCH_upgrade_docs_jp_graph_prompt_engine_pattern__v1`
+- `BATCH_upgrade_docs_megaboot_ratchet_suite_source_map__v1`
+- `BATCH_archive_surface_batch01_core_constraint_ladder_axis_foundation__v1`
+- refined-fuel revisit family remains a separate revisit lane rather than an immediate promotion lane:
+  - `BATCH_refinedfuel_axes_order_trigrams_term_conflict__v1`
+  - `BATCH_refinedfuel_axis12_topology_math_term_conflict__v1`
+  - `BATCH_refinedfuel_axis3_hopf_loops_term_conflict__v1`
+  - `BATCH_refinedfuel_axis4_qit_math_term_conflict__v1`
+  - `BATCH_refinedfuel_axis4_vs_axis5_heat_cold_term_conflict__v1`
+  - `BATCH_refinedfuel_axis_foundation_companion_term_conflict__v1`
+  - `BATCH_refinedfuel_constraints_entropy_source_map__v1`
+  - `BATCH_refinedfuel_constraints_entropy_term_conflict__v1`
+  - `BATCH_refinedfuel_constraints_source_map__v1`
+  - `BATCH_refinedfuel_constraints_term_conflict__v1`
+
+## 3) Archive Queue
+- live shell-only archive predicate:
+  - any `BATCH*` directory with zero child files
+  - and no manifest-bearing payload worth preserving
+  - confirm with one fresh shell-only scan immediately before archiving because shell membership changes during active intake work
+- latest verified close-out scan:
+  - current zero-file shell frontier:
+    - none
+  - current classification:
+    - no live hold-only malformed shell
+    - no live archive-ready malformed shell
+
+## 4) Secondary Cleanup Lane
+- paired full-surface anchor for this queue state: `444` batch directories total
+- latest close-out scan: `444` parseable manifests, all with explicit `promotion_status`
+- no current zero-file shell remains outside the manifest-bearing set at the same snapshot
+- ledger parity is clean across the manifest-bearing surface at the same snapshot: `444` ledgered entries, `0` duplicate ids, `0` manifest-bearing ledger gaps, `0` manifest/ledger mismatches
+- one reduction-ready child overlap now exists inside the live `A2_2_CANDIDATE` count:
+  - preferred child:
+    - `BATCH_A2MID_archive_v2_packet_req_bootstrap_scaffold__v1`
+  - overlapping later duplicate-child residue:
+    - `BATCH_A2MID_archive_v2_packet_req_request_only_handoff__v1`
+- late repairs completed earlier in this audit still hold:
+  - `BATCH_a2feed_grok_unified_phuysics_source_map__v1`
+  - `BATCH_a2feed_thread_b_3_4_2_bootpack_source_map__v1`
+  - `BATCH_systemv3_active_operator_kernel_capsule__v1`
+- latest normalization completed earlier in this audit still holds:
+  - `BATCH_A2MID_hygiene_artifact_closure_split__v1`
+    - realigned from `PROPOSAL_ONLY_NONCANON` to `A2_2_CANDIDATE`
+  - `BATCH_A2MID_prove_foundation_witness_boundaries__v1`
+    - realigned from `PROPOSAL_ONLY_NONCANON` to `A2_2_CANDIDATE`
+  - `BATCH_A2MID_axis12_suite_v2_coverage_correction__v1`
+    - realigned from `PROPOSAL_ONLY_NONCANON` to `A2_2_CANDIDATE`
+  - `BATCH_A2MID_archive_root_retention_mirror_drift__v1`
+    - realigned from `PROPOSAL_ONLY_NONCANON` to `A2_2_CANDIDATE`
+- no promotion-status normalization was required in this pass
+- rerun a quick shell-only audit before archiving empty dirs because the intake surface is still moving
+- if new legacy manifests appear, normalize them before promoting them into the controller-facing queue

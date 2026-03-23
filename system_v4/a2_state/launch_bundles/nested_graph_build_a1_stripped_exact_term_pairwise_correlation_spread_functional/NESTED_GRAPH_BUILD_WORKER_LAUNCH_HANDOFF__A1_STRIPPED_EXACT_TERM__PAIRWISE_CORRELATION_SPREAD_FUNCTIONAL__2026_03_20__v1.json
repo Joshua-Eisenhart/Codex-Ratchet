@@ -1,0 +1,48 @@
+{
+  "schema": "NESTED_GRAPH_BUILD_WORKER_LAUNCH_HANDOFF_v1",
+  "queue_status": "BLOCKED_ON_A1_STRIPPED_EXACT_TERM",
+  "dispatch_id": "NESTED_GRAPH_BUILD__A1_STRIPPED_EXACT_TERM__PAIRWISE_CORRELATION_SPREAD_FUNCTIONAL__2026_03_20__v1",
+  "unit_id": "A1_STRIPPED_EXACT_TERM__PAIRWISE_CORRELATION_SPREAD_FUNCTIONAL",
+  "program_id": "NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1",
+  "layer_id": "A1_STRIPPED",
+  "role_label": "NESTED_GRAPH_BUILD__A1_STRIPPED_EXACT_TERM__PAIRWISE_CORRELATION_SPREAD_FUNCTIONAL__2026_03_20__v1",
+  "role_type": "A1_EXACT_TERM_ALIGNMENT",
+  "role_scope": "One bounded correction-first pass that resolves whether the exact stripped term pairwise_correlation_spread_functional can be upgraded out of witness-side status, or whether A1_STRIPPED must keep it witness-only and A1_CARTRIDGE must remain blocked.",
+  "thread_class": "A1_WORKER",
+  "mode": "PROCEDURE_FIRST_CORRECTION",
+  "required_boot": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/26_BOOTPACK_A1_WIGGLE__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/33_A2_VS_A1_ROLE_SPLIT__v1.md"
+  ],
+  "source_artifacts": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_stripped_graph_v1.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_cartridge_graph_v1.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_STRIPPED_GRAPH_AUDIT__2026_03_20__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_CARTRIDGE_GRAPH_AUDIT__2026_03_20__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_CARTRIDGE_REVIEW__CORRELATION_DIVERSITY_FUNCTIONAL__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_CARTRIDGE_REVIEW__ACTIVE_FAMILY_CROSS_JUDGMENT__v1.md"
+  ],
+  "depends_on": [
+    "NESTED_GRAPH_BUILD__IDENTITY_REGISTRY__2026_03_20__v1",
+    "NESTED_GRAPH_BUILD__A1_STRIPPED__2026_03_20__v1"
+  ],
+  "expected_outputs": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_STRIPPED_EXACT_TERM_ALIGNMENT__PAIRWISE_CORRELATION_SPREAD_FUNCTIONAL__2026_03_20__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_stripped_graph_v1.json"
+  ],
+  "write_scope": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_STRIPPED_EXACT_TERM_ALIGNMENT__PAIRWISE_CORRELATION_SPREAD_FUNCTIONAL__2026_03_20__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_stripped_graph_v1.json"
+  ],
+  "operator_steps": [
+    "Do not claim A1_CARTRIDGE is materialized in this correction pass.",
+    "Audit the exact stripped term rather than the family label alone.",
+    "Fail closed unless current repo-held doctrine explicitly upgrades the exact stripped term or supplies a different packageable stripped target.",
+    "If no exact-term uplift is justified, preserve the cartridge block and record the reason explicitly."
+  ],
+  "prompt_to_send": "Run one bounded correction pass for the exact stripped term pairwise_correlation_spread_functional. Decide whether current repo-held doctrine upgrades it beyond witness-side status or confirms the cartridge block, and stop with an explicit audit result.",
+  "stop_rule": "Stop after one bounded A1_STRIPPED exact-term correction pass."
+}

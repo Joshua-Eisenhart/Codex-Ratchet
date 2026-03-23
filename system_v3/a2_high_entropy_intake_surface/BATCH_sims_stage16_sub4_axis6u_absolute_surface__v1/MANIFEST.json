@@ -1,0 +1,134 @@
+{
+  "batch_id": "BATCH_sims_stage16_sub4_axis6u_absolute_surface__v1",
+  "batch_scope": "stage16_sub4_axis6u_absolute_baseline_surface_with_mixed_family_descendant_and_terrain_boundary_anchors",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T00:13:23Z",
+  "deferred_next_raw_folder_order_source": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_terrain8_sign_suite.py",
+  "extraction_mode": "SIM_STAGE16_SUB4_AXIS6U_ABSOLUTE_PASS",
+  "notes": [
+    "This batch treats run_stage16_sub4_axis6u.py as a standalone absolute Stage16 baseline surface.",
+    "The mixed-axis6 family, the Stage16 V4/V5 descendants, and the adjacent terrain8 sign suite were read only as comparison anchors.",
+    "No runtime execution was performed."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "A2_2_CANDIDATE",
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md",
+      "relevance": "Catalogs the current Stage16 baseline surface, the Stage16 V4/V5 descendants, and the adjacent terrain8 sign suite.",
+      "line_window": "104-146"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt",
+      "relevance": "Contains the V4/V5 Stage16 descendant blocks but no S_SIM_STAGE16_SUB4_AXIS6U block.",
+      "line_window": "336-414"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_stage16_axis6_mix_control.py",
+      "relevance": "Provides the mixed-axis6 family whose U_* baseline matches the current absolute surface up to floating-point noise."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_stage16_axis6_mix_control.json",
+      "relevance": "Exposes the U_Smean and U_Pmean baseline fields for cellwise comparison."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_stage16_axis6_mix_sweep.py",
+      "relevance": "Confirms the current batch is the Stage16 baseline anchor rather than a mixed-axis6 comparison surface."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_STAGE16_SUB4_AXIS6_UNIFORM_V4.json",
+      "relevance": "Comparison anchor for the older top-level Stage16 delta descendant."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_STAGE16_SUB4_UNIFORM_AXIS6_V5.json",
+      "relevance": "Comparison anchor for the newer top-level Stage16 delta descendant; byte-identical to V4."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_terrain8_sign_suite.py",
+      "relevance": "Boundary-check anchor showing that the next raw-order file starts a terrain-only family."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_terrain8_sign_suite.json",
+      "relevance": "Boundary-check anchor showing the adjacent family has its own paired result surface and sign-by-terrain metric contract."
+    }
+  ],
+  "runtime_expectations": [
+    "run_stage16_sub4_axis6u.py writes one results_stage16_sub4_axis6u.json and one local evidence block for S_SIM_STAGE16_SUB4_AXIS6U.",
+    "The runner uses 512 random one-qubit states, the Se/Ne/Ni/Si terrain order, fixed Type1/Type2 outer and inner axis6 patterns, and one four-operator stage stack.",
+    "The adjacent run_terrain8_sign_suite.py uses a different contract: 256 states, 64 cycles, no Stage16 outer/inner split, and sign-by-terrain metrics only."
+  ],
+  "failure_modes": [
+    "The current absolute surface can be mistaken for a repo-top evidenced Stage16 artifact because related V4/V5 descendants are present in the evidence pack.",
+    "The current result can be mistaken for the same payload as the V4/V5 descendants even though the contracts and output hashes differ.",
+    "The adjacent terrain8 sign suite can be merged incorrectly into this batch because of raw-folder adjacency alone."
+  ],
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "sims_split_rule": {
+    "detected": true,
+    "included_in_this_batch": true,
+    "notes": "This batch remains inside the separate sims source class and does not mix with ordinary theory/doc extraction.",
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims"
+  },
+  "source_membership": [
+    {
+      "line_count": 228,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_stage16_sub4_axis6u.py",
+      "role_in_batch": "absolute_stage16_baseline_runner",
+      "sha256": "98464a84cef8615d4bb84c9bc2a7587688fe5a9fcb793adc1e732c9a7c3eebe2",
+      "size_bytes": 8135,
+      "source_class": "executable_runner"
+    },
+    {
+      "line_count": 168,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_stage16_sub4_axis6u.json",
+      "role_in_batch": "absolute_stage16_baseline_result_surface",
+      "sha256": "2cf3e5c8c0e1715efc99a0bae0ed1f495333d83344d5f63c81f3fe1d640fcbd4",
+      "size_bytes": 5189,
+      "source_class": "result_surface"
+    }
+  ],
+  "derived_summary": {
+    "local_sim_id": "S_SIM_STAGE16_SUB4_AXIS6U",
+    "top_level_evidence_pack_match_count": 0,
+    "related_stage16_descendant_evidence_blocks_present": 2,
+    "related_stage16_descendant_code_hash": "8f12b695b1c284709a4868bd5a3e6e662e6caef7790275497d7b79f06598a3d9",
+    "related_stage16_descendant_output_hash": "955244986b65a4a45227f50737471c41ebf97d1462cabdd3d5b4a8467cbf7c8e",
+    "related_stage16_descendants_byte_identical_to_each_other": true,
+    "current_vs_control_baseline_match": {
+      "practical_identity": true,
+      "nonzero_cells": 3,
+      "max_abs_difference": 1.1102230246251565e-16
+    },
+    "stage16_extrema": {
+      "cell_count": 16,
+      "min_entropy_cell": {
+        "name": "type1.inner.1_Se_DOWN",
+        "vn_entropy_mean": 0.5758532170682593,
+        "purity_mean": 0.6077734155352288
+      },
+      "max_entropy_cell": {
+        "name": "type2.inner.2_Ne_UP",
+        "vn_entropy_mean": 0.6703054812599413,
+        "purity_mean": 0.5224427900155866
+      },
+      "min_purity_cell": {
+        "name": "type2.inner.2_Ne_UP",
+        "vn_entropy_mean": 0.6703054812599413,
+        "purity_mean": 0.5224427900155866
+      },
+      "max_purity_cell": {
+        "name": "type1.inner.1_Se_DOWN",
+        "vn_entropy_mean": 0.5758532170682593,
+        "purity_mean": 0.6077734155352288
+      }
+    },
+    "adjacent_boundary_decision": {
+      "terrain8_sign_suite_same_family": false,
+      "terrain8_sign_suite_begins_next_batch": true,
+      "terrain8_strongest_sign_gap_metric": {
+        "name": "Ni_entropy_gap_abs",
+        "value": 0.001752965040475507
+      }
+    }
+  }
+}

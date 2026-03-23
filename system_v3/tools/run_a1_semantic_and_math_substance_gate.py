@@ -5,6 +5,9 @@ import argparse
 import json
 import re
 from pathlib import Path
+from zipfile import ZipFile
+
+from a1_selector_warning_snapshot import build_process_warning_snapshot
 
 
 SIM_CODE_HASH_RE = re.compile(r"^DEF_FIELD\s+\S+\s+CORR\s+SIM_CODE_HASH_SHA256\s+(\S+)\s*$", re.MULTILINE)
@@ -23,6 +26,26 @@ def _write_json(path: Path, obj: dict) -> None:
 
 def _load_state(run_dir: Path) -> dict:
     path = run_dir / "state.json"
+    heavy_path = run_dir / "state.heavy.json"
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    if not isinstance(data, dict):
+        return {}
+    if heavy_path.exists():
+        try:
+            heavy = json.loads(heavy_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            heavy = {}
+        if isinstance(heavy, dict):
+            data.update(heavy)
+    return data
+
+
+def _read_json(path: Path) -> dict:
     if not path.exists():
         return {}
     try:
@@ -30,6 +53,141 @@ def _load_state(run_dir: Path) -> dict:
     except json.JSONDecodeError:
         return {}
     return data if isinstance(data, dict) else {}
+
+
+def _strategy_objs_from_zip_packets(run_dir: Path, *, last_n: int = 12) -> list[dict]:
+    zip_dir = run_dir / "zip_packets"
+    paths = sorted(zip_dir.glob("*_A1_TO_A0_STRATEGY_ZIP.zip"))[-int(last_n) :]
+    out: list[dict] = []
+    for path in paths:
+        try:
+            with ZipFile(path, "r") as zf:
+                with zf.open("A1_STRATEGY_v1.json") as fh:
+                    obj = json.loads(fh.read().decode("utf-8"))
+            if isinstance(obj, dict):
+                out.append(obj)
+        except Exception:
+            continue
+    return out
+
+
+def _strategy_objs_from_outgoing_or_zip(run_dir: Path, *, last_n: int = 12) -> tuple[list[dict], str]:
+    outgoing_dir = run_dir / "a1_sandbox" / "outgoing"
+    paths = sorted(outgoing_dir.glob("*_A1_STRATEGY_v1__PACK_SELECTOR.json"))[-int(last_n) :]
+    strategy_objs: list[dict] = []
+    source_surface = "a1_sandbox_outgoing"
+    for path in paths:
+        obj = _read_json(path)
+        if isinstance(obj, dict):
+            strategy_objs.append(obj)
+    if strategy_objs:
+        return strategy_objs, source_surface
+    strategy_objs = _strategy_objs_from_zip_packets(run_dir, last_n=last_n)
+    if strategy_objs:
+        return strategy_objs, "zip_packets"
+    return [], "none"
+
+
+def _selector_support_metadata_summary(run_dir: Path, *, last_n: int = 12) -> dict:
+    strategy_objs, source_surface = _strategy_objs_from_outgoing_or_zip(run_dir, last_n=last_n)
+    if not strategy_objs:
+        return {
+            "strategy_count": 0,
+            "source_surface": "none",
+            "warning_count": 0,
+            "warning_codes": [],
+            "warning_categories": [],
+            "support_warning_present": False,
+            "mining_support_terms": [],
+            "mining_artifact_input_count": 0,
+            "max_mining_negative_pressure_count": 0,
+        }
+
+    warnings_seen: list[str] = []
+    warning_codes: list[str] = []
+    warning_categories: list[str] = []
+    mining_terms: list[str] = []
+    mining_artifact_inputs: set[str] = set()
+    max_negative_pressure = 0
+    max_warning_count = 0
+    support_warning_present = False
+
+    for strategy in strategy_objs:
+        if not isinstance(strategy, dict):
+            continue
+        admissibility = strategy.get("admissibility", {}) if isinstance(strategy.get("admissibility", {}), dict) else {}
+        process_audit = admissibility.get("process_audit", {}) if isinstance(admissibility.get("process_audit", {}), dict) else {}
+        raw_warnings = process_audit.get("warnings", []) if isinstance(process_audit.get("warnings", []), list) else []
+        for raw in raw_warnings:
+            msg = str(raw).strip()
+            if msg and msg not in warnings_seen:
+                warnings_seen.append(msg)
+        raw_warning_codes = process_audit.get("warning_codes", []) if isinstance(process_audit.get("warning_codes", []), list) else []
+        for raw in raw_warning_codes:
+            code = str(raw).strip()
+            if code and code not in warning_codes:
+                warning_codes.append(code)
+        raw_warning_categories = process_audit.get("warning_categories", []) if isinstance(process_audit.get("warning_categories", []), list) else []
+        for raw in raw_warning_categories:
+            category = str(raw).strip()
+            if category and category not in warning_categories:
+                warning_categories.append(category)
+        try:
+            warning_count = int(process_audit.get("warning_count", 0) or 0)
+        except Exception:
+            warning_count = 0
+        if warning_count > max_warning_count:
+            max_warning_count = warning_count
+        fallback_snapshot = build_process_warning_snapshot(raw_warnings)
+        fallback_warning_codes = fallback_snapshot.get("warning_codes", []) if isinstance(fallback_snapshot.get("warning_codes", []), list) else []
+        for raw in fallback_warning_codes:
+            code = str(raw).strip()
+            if code and code not in warning_codes:
+                warning_codes.append(code)
+        fallback_warning_categories = fallback_snapshot.get("warning_categories", []) if isinstance(fallback_snapshot.get("warning_categories", []), list) else []
+        for raw in fallback_warning_categories:
+            category = str(raw).strip()
+            if category and category not in warning_categories:
+                warning_categories.append(category)
+        try:
+            fallback_warning_count = int(fallback_snapshot.get("warning_count", 0) or 0)
+        except Exception:
+            fallback_warning_count = 0
+        if fallback_warning_count > max_warning_count:
+            max_warning_count = fallback_warning_count
+        if (
+            bool(process_audit.get("support_warning_present", False))
+            or "noncanon_mining_support_only" in warning_codes
+            or "support_boundary" in warning_categories
+            or bool(fallback_snapshot.get("support_warning_present", False))
+        ):
+            support_warning_present = True
+        for raw in (process_audit.get("mining_support_terms", []) or []):
+            term = str(raw).strip()
+            if term and term not in mining_terms:
+                mining_terms.append(term)
+        for raw in (process_audit.get("mining_artifact_inputs", []) or []):
+            value = str(raw).strip()
+            if value:
+                mining_artifact_inputs.add(value)
+        try:
+            negative_pressure = int(process_audit.get("mining_negative_pressure_count", 0) or 0)
+        except Exception:
+            negative_pressure = 0
+        if negative_pressure > max_negative_pressure:
+            max_negative_pressure = negative_pressure
+
+    return {
+        "strategy_count": len(strategy_objs),
+        "source_surface": source_surface,
+        "warning_count": max(len(warnings_seen), int(max_warning_count)),
+        "warning_codes": warning_codes,
+        "warning_categories": warning_categories,
+        "support_warning_present": support_warning_present,
+        "mining_support_terms": mining_terms,
+        "mining_artifact_input_count": len(mining_artifact_inputs),
+        "max_mining_negative_pressure_count": max_negative_pressure,
+    }
 
 
 def _flatten_sim_rows(state: dict) -> list[dict]:
@@ -152,6 +310,7 @@ def _run_check(
     }
     graveyard_ids = set(graveyard.keys()) if isinstance(graveyard, dict) else set()
     graveyard_kill_overlap_count = len(kill_ids.intersection(graveyard_ids))
+    selector_support = _selector_support_metadata_summary(run_dir)
 
     phase_norm = str(phase).strip().lower()
     strict_semantic = phase_norm != "graveyard_fill"
@@ -268,6 +427,15 @@ def _run_check(
             "sim_code_hash_unique_count": sim_code_hash_unique_count,
             "invalid_sim_code_hash_count": invalid_sim_code_hash_count,
             "placeholder_sim_code_hash_count": placeholder_sim_code_hash_count,
+            "selector_support_strategy_count": selector_support.get("strategy_count", 0),
+            "selector_support_source_surface": selector_support.get("source_surface", "none"),
+            "selector_warning_count": selector_support.get("warning_count", 0),
+            "selector_warning_codes": selector_support.get("warning_codes", []),
+            "selector_warning_categories": selector_support.get("warning_categories", []),
+            "selector_support_warning_present": bool(selector_support.get("support_warning_present", False)),
+            "selector_mining_support_terms": selector_support.get("mining_support_terms", []),
+            "selector_mining_artifact_input_count": selector_support.get("mining_artifact_input_count", 0),
+            "selector_max_mining_negative_pressure_count": selector_support.get("max_mining_negative_pressure_count", 0),
             "graveyard_count": graveyard_count,
             "kill_log_count": kill_log_count,
             "graveyard_kill_overlap_count": graveyard_kill_overlap_count,

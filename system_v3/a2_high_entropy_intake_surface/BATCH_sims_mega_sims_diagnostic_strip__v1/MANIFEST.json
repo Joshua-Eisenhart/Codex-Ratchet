@@ -1,0 +1,140 @@
+{
+  "batch_id": "BATCH_sims_mega_sims_diagnostic_strip__v1",
+  "batch_scope": "residual_mega_sims_stochastic_diagnostic_strip",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T06:41:39Z",
+  "deferred_next_raw_folder_order_source": null,
+  "extraction_mode": "SIM_MEGA_SIMS_DIAGNOSTIC_STRIP_PASS",
+  "notes": [
+    "This batch groups the three mega_sims diagnostic scripts as one bounded stochastic diagnostic strip.",
+    "prove_foundation.py was read only as the next proof-family boundary and is not a source member here.",
+    "No runtime execution was performed."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "A2_2_CANDIDATE",
+  "comparison_anchors": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_ultra_big_ax012346_orphan_family__v1/MANIFEST.json",
+      "relevance": "Provides continuity from the prior residual result-only pass and records the explicit shift into diagnostics."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_residual_inventory_closure_audit__v1/MANIFEST.json",
+      "relevance": "Shows the closure-audit classification of the remaining diagnostic/proof strip."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/prove_foundation.py",
+      "relevance": "Provides the deterministic proof boundary that stays separate from the mega stochastic strip."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md",
+      "relevance": "Shows zero catalog visibility for the mega strip."
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt",
+      "relevance": "Shows zero top-level evidence-pack visibility for the mega strip."
+    }
+  ],
+  "runtime_expectations": [
+    "mega_sims_failure_detector.py would evaluate 4096 one-qubit pure states for 5000 random-unitary steps and emit MS_TRIVIAL_DETECT only if its boolean flag remains true.",
+    "mega_sims_trivial_check.py would evaluate the same 4096-state 5000-step lattice and emit MS_TRIVIAL_CHECK only if its stricter boolean all-purity threshold remains true.",
+    "mega_sims_run_02.py would emit four always-signaled local surfaces: MS_B_AXIS6 at 8192x2000, MS_C_AXIS3 at 8192x2000, MS_D_OPCHAOS at 16384x2000, and MS_E_LONGRUN at 4096x10000.",
+    "All three scripts emit local stdout evidence only and do not write committed simson result surfaces.",
+    "The next residual work begins at prove_foundation.py as a separate proof family."
+  ],
+  "failure_modes": [
+    "Collapsing the two boolean detectors into one identical surface and losing the duplicated-token seam.",
+    "Treating mega_sims_run_02.py as a fundamentally different sim family rather than a scaled diagnostic variant.",
+    "Reading collapse as a live metric even though it is never updated in source.",
+    "Failing to mark the purity-preservation conclusion as a source-based inference rather than a runtime observation.",
+    "Merging prove_foundation.py into the mega strip just because it also emits SIM_EVIDENCE v1."
+  ],
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "sims_split_rule": {
+    "detected": true,
+    "included_in_this_batch": true,
+    "notes": "This batch remains inside the separate sims source class and does not mix with ordinary theory/doc extraction.",
+    "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims"
+  },
+  "source_membership": [
+    {
+      "line_count": 40,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/mega_sims_failure_detector.py",
+      "role_in_batch": "boolean_trivial_dynamics_detector",
+      "sha256": "90c6e384cd677b1a15a7a51fa23342fbff0357446a4cab2d41b1e4f9067aa243",
+      "size_bytes": 1277,
+      "source_class": "diagnostic_script"
+    },
+    {
+      "line_count": 85,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/mega_sims_run_02.py",
+      "role_in_batch": "metric_stress_diagnostic_runner",
+      "sha256": "fcb1702e9986c977b27148d4c8e7882a8db55411c2a04a99f317f7de4b1b774b",
+      "size_bytes": 2183,
+      "source_class": "diagnostic_script"
+    },
+    {
+      "line_count": 43,
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/mega_sims_trivial_check.py",
+      "role_in_batch": "boolean_trivialization_checker",
+      "sha256": "384d400c7f844bba47db6ed4f04aac954f3b1b3e5bb8c59a44de2e60e6a31656",
+      "size_bytes": 1356,
+      "source_class": "diagnostic_script"
+    }
+  ],
+  "derived_summary": {
+    "diagnostic_or_proof_residual_count_before_this_batch": 4,
+    "diagnostic_or_proof_residual_count_after_this_batch": 1,
+    "local_source_count_in_batch": 3,
+    "simson_result_match_count": 0,
+    "catalog_match_count": 0,
+    "top_level_evidence_pack_match_count": 0,
+    "proof_boundary_same_family_decision": false,
+    "source_text_similarity_failure_vs_trivial_check": 0.885681731864793,
+    "boolean_detector_count": 2,
+    "metric_stress_surface_count": 4,
+    "emitted_sim_ids": [
+      "MS_TRIVIAL_DETECT",
+      "MS_TRIVIAL_CHECK",
+      "MS_B_AXIS6",
+      "MS_C_AXIS3",
+      "MS_D_OPCHAOS",
+      "MS_E_LONGRUN"
+    ],
+    "emitted_evidence_tokens": [
+      "E_MS_TRIVIAL",
+      "E_MS_B_AXIS6",
+      "E_MS_C_AXIS3",
+      "E_MS_D_OPCHAOS",
+      "E_MS_E_LONGRUN"
+    ],
+    "shared_boolean_detector_parameters": {
+      "num_states": 4096,
+      "steps": 5000
+    },
+    "stress_surface_parameters": {
+      "MS_B_AXIS6": {
+        "num_states": 8192,
+        "steps": 2000
+      },
+      "MS_C_AXIS3": {
+        "num_states": 8192,
+        "steps": 2000
+      },
+      "MS_D_OPCHAOS": {
+        "num_states": 16384,
+        "steps": 2000
+      },
+      "MS_E_LONGRUN": {
+        "num_states": 4096,
+        "steps": 10000
+      }
+    },
+    "run_02_collapse_metric_is_inert": true,
+    "source_based_inference": {
+      "one_qubit_pure_state_init": true,
+      "unitary_conjugation_only": true,
+      "purity_preservation_expected": true,
+      "entropy_near_zero_expected": true
+    }
+  }
+}

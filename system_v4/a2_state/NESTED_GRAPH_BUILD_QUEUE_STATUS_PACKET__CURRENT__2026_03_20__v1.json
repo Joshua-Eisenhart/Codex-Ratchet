@@ -1,0 +1,103 @@
+{
+  "schema": "NESTED_GRAPH_BUILD_QUEUE_STATUS_PACKET_v1",
+  "queue_status": "NO_WORK",
+  "program_id": "NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1",
+  "dispatch_id": "",
+  "role_label": "",
+  "role_type": "",
+  "role_scope": "",
+  "thread_class": "",
+  "mode": "",
+  "required_boot": [],
+  "source_artifacts": [],
+  "queued_after_dispatch": [],
+  "dispatch_handoff_json": "",
+  "program_packet_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json",
+  "source_packet_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json",
+  "operator_steps": [],
+  "monitor_route": {
+    "skill": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skill_specs/thread-run-monitor/SKILL.md",
+    "owner_surface": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_RUN_DIAGNOSIS_AND_STOP_RULES__v1.md",
+    "allowed_decisions": [
+      "STOP",
+      "CONTINUE_ONE_BOUNDED_STEP",
+      "CORRECT_LANE_LATER"
+    ]
+  },
+  "closeout_route": {
+    "skill": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skill_specs/thread-closeout-auditor/SKILL.md",
+    "sink_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/NESTED_GRAPH_BUILD_CLOSEOUTS__2026_03_20__v1.jsonl"
+  },
+  "prompt_to_send": "",
+  "stop_rule": "No current bounded A1 entropy direct-executable follow-on. Stop and keep the route paused until cleaner alias or component-ladder evidence exists.",
+  "ready_unit_id": "",
+  "ready_layer_id": "",
+  "last_materialized_layer_id": "A1_JARGONED",
+  "queued_unit_ids": [],
+  "next_correction_unit_id": "",
+  "next_correction_handoff_json": "",
+  "reason": "Completed alias-lift audit confirmed pairwise_correlation_spread_functional remains witness-only. Direct entropy-executable work must pause.",
+  "pause_control_surface": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md",
+  "last_completed_dispatch_id": "NESTED_GRAPH_BUILD__A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__PAIRWISE_CORRELATION_SPREAD_FUNCTIONAL__2026_03_20__v1",
+  "last_completed_audit_surface": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__PAIRWISE_CORRELATION_SPREAD_FUNCTIONAL__2026_03_20__v1.md",
+  "preserved_overlap_observation_summary": {
+    "A2_HIGH_INTAKE": {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_high_intake_graph_v1.json",
+      "exists": true,
+      "observation_state": "no_preserve_diagnostics_present",
+      "has_preserve_diagnostics": false,
+      "has_overlap_hygiene": false,
+      "has_overlap_treatment": false,
+      "preserved_only_edge_count": 0,
+      "preserved_only_overlap_edge_count": 0,
+      "current_runtime_effect": "",
+      "reason_flags": []
+    },
+    "A2_MID_REFINEMENT": {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_mid_refinement_graph_v1.json",
+      "exists": true,
+      "observation_state": "treatment_reported",
+      "has_preserve_diagnostics": true,
+      "has_overlap_hygiene": true,
+      "has_overlap_treatment": true,
+      "preserved_only_edge_count": 2953,
+      "preserved_only_overlap_edge_count": 2947,
+      "current_runtime_effect": "none_observed_in_live_consumers",
+      "reason_flags": [
+        "preserved_only_carryover_not_in_current_master_graph",
+        "overlap_dominant_carryover",
+        "overlap_attribute_contract_mismatch",
+        "no_direct_live_owner_edge_consumer_observed"
+      ]
+    },
+    "A2_LOW_CONTROL": {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_low_control_graph_v1.json",
+      "exists": true,
+      "observation_state": "treatment_reported",
+      "has_preserve_diagnostics": true,
+      "has_overlap_hygiene": true,
+      "has_overlap_treatment": true,
+      "preserved_only_edge_count": 620,
+      "preserved_only_overlap_edge_count": 614,
+      "current_runtime_effect": "none_observed_in_live_consumers",
+      "reason_flags": [
+        "preserved_only_carryover_not_in_current_master_graph",
+        "overlap_dominant_carryover",
+        "overlap_attribute_contract_mismatch",
+        "no_direct_live_owner_edge_consumer_observed"
+      ]
+    }
+  },
+  "preserved_overlap_queue_health_summary": {
+    "observation_mode": "non_operative",
+    "derived_from": "preserved_overlap_observation_summary",
+    "layer_count": 3,
+    "treatment_reported_layer_count": 2,
+    "hygiene_only_layer_count": 0,
+    "no_preserve_diagnostics_layer_count": 1,
+    "missing_layer_store_count": 0,
+    "preserved_only_overlap_layer_count": 2,
+    "max_preserved_only_overlap_edge_count": 2947,
+    "note": "observational summary only; queue control fields remain unchanged"
+  }
+}

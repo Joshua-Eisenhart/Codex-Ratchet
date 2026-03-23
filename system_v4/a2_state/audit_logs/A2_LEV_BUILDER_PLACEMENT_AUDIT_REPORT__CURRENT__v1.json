@@ -1,0 +1,302 @@
+{
+  "analysis": {
+    "background_only_sources": [
+      "lev-plan",
+      "stack"
+    ],
+    "bounded_question": "Is lev-builder the right next imported source for a bounded Ratchet-native placement/formalization audit before any broader formalization or migration claim?",
+    "candidate_scope": {
+      "id": "lev-builder-placement-default",
+      "stage_request": "placement_audit",
+      "title": "bounded lev-builder placement and formalization audit"
+    },
+    "core_source_priority": [
+      "lev-builder",
+      "arch",
+      "work"
+    ],
+    "placement_verdict_shape": "Ratchet-native audit operator first, then a later proposal-only formalization slice if this gate stays clean",
+    "smallest_honest_slice": "assess one candidate, check prior art, issue a placement verdict, and emit one repo-held report plus one compact packet"
+  },
+  "audit_only": true,
+  "background_ref_status": [
+    {
+      "exists": true,
+      "path": "work/reference_repos/lev-os/agents/skills/lev-plan/SKILL.md"
+    },
+    {
+      "exists": true,
+      "path": "work/reference_repos/lev-os/agents/skills/stack/SKILL.md"
+    }
+  ],
+  "candidate": {
+    "background_refs": [
+      "work/reference_repos/lev-os/agents/skills/lev-plan/SKILL.md",
+      "work/reference_repos/lev-os/agents/skills/stack/SKILL.md"
+    ],
+    "id": "lev-builder-placement-default",
+    "raw_input": "Audit lev-builder as the next bounded imported source for Ratchet-native placement and formalization, without migrating files or claiming production integration.",
+    "source": "lev-os/agents formalize / placement / migrate cluster",
+    "source_refs": [
+      "work/reference_repos/lev-os/agents/skills/lev-builder/SKILL.md",
+      "work/reference_repos/lev-os/agents/skills/arch/SKILL.md",
+      "work/reference_repos/lev-os/agents/skills/work/SKILL.md"
+    ],
+    "stage_request": "placement_audit",
+    "title": "bounded lev-builder placement and formalization audit",
+    "type": "placement_audit"
+  },
+  "cluster_id": "SKILL_CLUSTER::lev-formalization-placement",
+  "do_not_promote": true,
+  "evidence_inputs": {
+    "brain_refresh_status": "ok",
+    "graph_skill_coverage": {
+      "active_skill_count": 101,
+      "graphed_skill_node_count": 101,
+      "missing_active_skill_count": 0,
+      "stale_skill_node_count": 0
+    },
+    "promotion_recommended_cluster_id": "SKILL_CLUSTER::lev-formalization-placement",
+    "promotion_recommended_first_slice_id": "a2-lev-builder-placement-audit-operator",
+    "promotion_report_status": "ok"
+  },
+  "first_slice": "a2-lev-builder-placement-audit-operator",
+  "gate": {
+    "allow_bounded_placement_audit": true,
+    "block_migration_claims": true,
+    "block_new_runtime_claims": true,
+    "block_patch_application": true,
+    "blocking_issues": [],
+    "gate_results": {
+      "graph_truth_alignment": {
+        "evidence": "active=101 graphed=101 missing=0 stale=0",
+        "status": "pass"
+      },
+      "non_goal_hygiene": {
+        "evidence": "candidate request does not include migration/patch/push language",
+        "status": "pass"
+      },
+      "promotion_alignment": {
+        "evidence": "recommended_cluster=SKILL_CLUSTER::lev-formalization-placement recommended_slice=a2-lev-builder-placement-audit-operator",
+        "status": "pass"
+      },
+      "refresh_alignment": {
+        "evidence": "brain_refresh_status=ok",
+        "status": "pass"
+      },
+      "scope_bounded": {
+        "evidence": "stage_request=placement_audit",
+        "status": "pass"
+      },
+      "source_refs_available": {
+        "evidence": "3/3 refs present",
+        "status": "pass"
+      }
+    },
+    "gate_status": "ready_for_bounded_placement_audit",
+    "priority_findings": [],
+    "reason": "required upstream reports are healthy and the candidate stays inside a one-candidate placement audit",
+    "recommended_next_step": "ready_for_formalization_proposal",
+    "safe_to_continue": true
+  },
+  "gate_status": "ready_for_bounded_placement_audit",
+  "generated_utc": "2026-03-21T13:43:50Z",
+  "graph_skill_coverage": {
+    "active_skill_count": 101,
+    "graphed_skill_node_count": 101,
+    "missing_active_skill_count": 0,
+    "stale_skill_node_count": 0
+  },
+  "imported_member_disposition": {
+    "arch": {
+      "adapt_away_from": [
+        "generic architecture review broadness",
+        "full ADR/C4 generation as the first bounded slice"
+      ],
+      "classification": "mine",
+      "keep": [
+        "quality attribute and tradeoff framing",
+        "fitness-function language for later candidate validation"
+      ]
+    },
+    "lev-builder": {
+      "adapt_away_from": [
+        "~/lev/core and ~/lev/workshop path ownership",
+        "graph-plan to filesystem patch execution",
+        "migration scripts and git close-loop behavior"
+      ],
+      "classification": "adapt",
+      "keep": [
+        "prior-art check before creating new placement/formalization work",
+        "explicit placement decision before claiming a target path",
+        "bounded promotion-path framing from candidate source to Ratchet-native asset"
+      ]
+    },
+    "lev-plan": {
+      "adapt_away_from": [
+        ".lev/pm plan lifecycle ownership"
+      ],
+      "classification": "background_only",
+      "keep": [
+        "promotion-state language for later follow-on planning"
+      ]
+    },
+    "stack": {
+      "adapt_away_from": [
+        "Leviathan prompt-stack runtime ownership",
+        "plugin CLI and external runtime session state"
+      ],
+      "classification": "background_only",
+      "keep": [
+        "staged execution language only as background context"
+      ]
+    },
+    "work": {
+      "adapt_away_from": [
+        "broad workflow ownership beyond this one placement question",
+        "task-management surfaces that imply imported control-plane behavior"
+      ],
+      "classification": "mine",
+      "keep": [
+        "bounded handoff and entity-tracking discipline",
+        "report-first procedure for one candidate at a time"
+      ]
+    }
+  },
+  "issues": [],
+  "member_dispositions": {
+    "arch": {
+      "adapt_away_from": [
+        "generic architecture review broadness",
+        "full ADR/C4 generation as the first bounded slice"
+      ],
+      "classification": "mine",
+      "keep": [
+        "quality attribute and tradeoff framing",
+        "fitness-function language for later candidate validation"
+      ]
+    },
+    "lev-builder": {
+      "adapt_away_from": [
+        "~/lev/core and ~/lev/workshop path ownership",
+        "graph-plan to filesystem patch execution",
+        "migration scripts and git close-loop behavior"
+      ],
+      "classification": "adapt",
+      "keep": [
+        "prior-art check before creating new placement/formalization work",
+        "explicit placement decision before claiming a target path",
+        "bounded promotion-path framing from candidate source to Ratchet-native asset"
+      ]
+    },
+    "lev-plan": {
+      "adapt_away_from": [
+        ".lev/pm plan lifecycle ownership"
+      ],
+      "classification": "background_only",
+      "keep": [
+        "promotion-state language for later follow-on planning"
+      ]
+    },
+    "stack": {
+      "adapt_away_from": [
+        "Leviathan prompt-stack runtime ownership",
+        "plugin CLI and external runtime session state"
+      ],
+      "classification": "background_only",
+      "keep": [
+        "staged execution language only as background context"
+      ]
+    },
+    "work": {
+      "adapt_away_from": [
+        "broad workflow ownership beyond this one placement question",
+        "task-management surfaces that imply imported control-plane behavior"
+      ],
+      "classification": "mine",
+      "keep": [
+        "bounded handoff and entity-tracking discipline",
+        "report-first procedure for one candidate at a time"
+      ]
+    }
+  },
+  "non_goals": [
+    "No path mutation or graph-plan generation.",
+    "No filesystem patch generation or application.",
+    "No test execution or validation-run claims.",
+    "No migration into production paths.",
+    "No registry updates or git close-loop actions.",
+    "No prompt-stack session control or .lev substrate import.",
+    "No live runtime claims for lev-builder or the wider lev formalization stack."
+  ],
+  "nonoperative": true,
+  "placement_axes": {
+    "formalize_then_migrate": {
+      "treatment": "adapt",
+      "why": "Keep the discipline of staged formalization, but remove Lev-specific workspace ownership and migration scripts."
+    },
+    "git_close_loop": {
+      "treatment": "skip",
+      "why": "Commit/push flows are not part of this bounded audit slice."
+    },
+    "graph_plan_to_patch": {
+      "treatment": "mine",
+      "why": "Potentially useful later, but too broad and mutating for the first bounded slice."
+    },
+    "placement_decision": {
+      "treatment": "keep",
+      "why": "Directly matches the current need to decide where a future Ratchet-native slice belongs before building it."
+    },
+    "prior_art_check": {
+      "treatment": "keep",
+      "why": "Prevents duplicate imported slices and forces placement decisions against existing Ratchet work."
+    }
+  },
+  "promotion_packet_path": "system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_PACKET__CURRENT__v1.json",
+  "promotion_report_path": "system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.json",
+  "recommended_actions": [
+    "Keep this slice audit-only and repo-held.",
+    "Use the verdict to decide whether a later proposal-only formalization slice should be emitted.",
+    "Do not widen this slice into migration, patching, runtime import, or registry mutation."
+  ],
+  "recommended_follow_on_slice_id": "a2-lev-builder-formalization-proposal-operator",
+  "recommended_next_action": "Keep this slice audit-only and repo-held.",
+  "recommended_source_skill_id": "lev-builder",
+  "repo_root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "schema": "a2_lev_builder_placement_audit_report_v1",
+  "source_family": "lev_os_agents_curated",
+  "source_ref_status": [
+    {
+      "exists": true,
+      "path": "work/reference_repos/lev-os/agents/skills/lev-builder/SKILL.md"
+    },
+    {
+      "exists": true,
+      "path": "work/reference_repos/lev-os/agents/skills/arch/SKILL.md"
+    },
+    {
+      "exists": true,
+      "path": "work/reference_repos/lev-os/agents/skills/work/SKILL.md"
+    }
+  ],
+  "source_refs": [
+    {
+      "exists": true,
+      "path": "work/reference_repos/lev-os/agents/skills/lev-builder/SKILL.md"
+    },
+    {
+      "exists": true,
+      "path": "work/reference_repos/lev-os/agents/skills/arch/SKILL.md"
+    },
+    {
+      "exists": true,
+      "path": "work/reference_repos/lev-os/agents/skills/work/SKILL.md"
+    }
+  ],
+  "staged_output_targets": {
+    "json_report": "system_v4/a2_state/audit_logs/A2_LEV_BUILDER_PLACEMENT_AUDIT_REPORT__CURRENT__v1.json",
+    "md_report": "system_v4/a2_state/audit_logs/A2_LEV_BUILDER_PLACEMENT_AUDIT_REPORT__CURRENT__v1.md",
+    "packet_json": "system_v4/a2_state/audit_logs/A2_LEV_BUILDER_PLACEMENT_AUDIT_PACKET__CURRENT__v1.json"
+  },
+  "status": "ok"
+}

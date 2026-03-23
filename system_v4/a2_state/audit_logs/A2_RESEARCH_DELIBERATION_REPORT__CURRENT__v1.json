@@ -1,0 +1,120 @@
+{
+  "cluster_id": "SKILL_CLUSTER::research-deliberation",
+  "execution": {
+    "accepted_count": 1,
+    "accepted_regions": [
+      "A2_REFINEMENT:motif_A"
+    ],
+    "autoresearch": {
+      "best_hash": "fb5fa42d94dcd7ec",
+      "best_region": "A2_REFINEMENT:motif_A:motif_A",
+      "best_score": 3.322314049586777,
+      "improved": true,
+      "trace_tail": [
+        "Depth 1: Evaluated A2_REFINEMENT:motif_A:motif_A -> 3.32",
+        "  -> NEW BEST: 3.32",
+        "Depth 1: Evaluated A2_REFINEMENT:motif_A:motif_B -> 3.20",
+        "Depth 1: Evaluated A2_REFINEMENT:motif_B:motif_A -> 3.20",
+        "Depth 1: Evaluated A2_REFINEMENT:motif_B:motif_B -> 3.07"
+      ]
+    },
+    "candidate_count": 3,
+    "candidate_summary": [
+      {
+        "hash": "fb5fa42d94dcd7ec",
+        "region": "A2_REFINEMENT:motif_A:motif_A",
+        "score_hint": 3.322314049586777
+      },
+      {
+        "hash": "c22332996b18ff76",
+        "region": "A2_REFINEMENT:motif_A",
+        "score_hint": 3.239669421487603
+      },
+      {
+        "hash": "61c2e444ec647f01",
+        "region": "A2_REFINEMENT:motif_B",
+        "score_hint": 3.115702479338843
+      }
+    ],
+    "council_summary": [
+      {
+        "accept_ratio": 0.3333333333333333,
+        "accepted": false,
+        "avg_score": 0.31315562401655667,
+        "region": "A2_REFINEMENT:motif_A:motif_A"
+      },
+      {
+        "accept_ratio": 0.6666666666666666,
+        "accepted": true,
+        "avg_score": 0.5454604799119155,
+        "region": "A2_REFINEMENT:motif_A"
+      },
+      {
+        "accept_ratio": 0.3333333333333333,
+        "accepted": false,
+        "avg_score": 0.4670134066731773,
+        "region": "A2_REFINEMENT:motif_B"
+      }
+    ],
+    "random_seed": 42,
+    "rejected_count": 2,
+    "rejected_regions": [
+      "A2_REFINEMENT:motif_A:motif_A",
+      "A2_REFINEMENT:motif_B"
+    ],
+    "route": "local-autoresearch-then-council",
+    "used_autoresearch": true,
+    "used_llm_council": true
+  },
+  "generated_utc": "2026-03-21T14:40:52Z",
+  "imported_member_disposition": {
+    "cdo": {
+      "adapt_away_from": [
+        "team dashboards",
+        "bd tracking",
+        "persistent team state",
+        "agent brief filesystem layout"
+      ],
+      "classification": "mine",
+      "keep": "adaptive deliberation and explicit perspective-synthesis pattern"
+    },
+    "lev-research": {
+      "adapt_away_from": [
+        "timetravel",
+        "valyu",
+        "oracle",
+        "external search adapters",
+        "session filesystem assumptions"
+      ],
+      "classification": "adapt",
+      "keep": "bounded route discipline and local-first research framing"
+    },
+    "workflow-cited-research": {
+      "adapt_away_from": [
+        "full workflow scaffolding",
+        "external notebook projection"
+      ],
+      "classification": "skip",
+      "keep": "later cited-research workflow idea only"
+    }
+  },
+  "issues": [],
+  "next_actions": [
+    "Keep the first research/deliberation slice local and bounded over existing Ratchet runtime skills.",
+    "Use explicit candidates or a seeded local search space instead of pretending external research backends are already ported.",
+    "Treat this slice as a live cluster seam for autoresearch plus council, not as the full lev-research or CDO stack."
+  ],
+  "non_goals": [
+    "No external search or timetravel backend calls.",
+    "No persistent team dashboard, bd board, or session tree import.",
+    "No claim that lev-research or CDO is fully ported."
+  ],
+  "question": "Evaluate current runtime motifs for the active batch",
+  "repo_root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "schema": "A2_RESEARCH_DELIBERATION_REPORT_v1",
+  "staged_output_targets": {
+    "json_report": "system_v4/a2_state/audit_logs/A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.json",
+    "md_report": "system_v4/a2_state/audit_logs/A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.md"
+  },
+  "status": "ok"
+}

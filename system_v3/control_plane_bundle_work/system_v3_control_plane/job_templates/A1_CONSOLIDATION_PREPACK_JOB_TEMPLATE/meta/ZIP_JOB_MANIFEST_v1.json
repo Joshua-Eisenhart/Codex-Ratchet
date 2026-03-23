@@ -1,0 +1,21 @@
+{
+  "schema": "ZIP_JOB_MANIFEST_v1",
+  "zip_job_kind": "A1_CONSOLIDATION_PREPACK_JOB",
+  "producer_role": "A1_CONSOLIDATOR",
+  "consumer_role": "A1_CONSOLIDATOR",
+  "producer": "A1",
+  "consumer": "A1",
+  "task_execution_order": [
+    "tasks/00_TASK__INGEST_AND_VALIDATE_WORKER_OUTPUTS.task.md",
+    "tasks/01_TASK__MERGE_AND_ORDER_TERM_FAMILIES.task.md",
+    "tasks/02_TASK__EMIT_PREPACK_AND_FAIL_CLOSED_AUDIT.task.md"
+  ],
+  "required_output_file_list": [
+    "output/CONSOLIDATED_SOURCE_REGISTRY__A1_CONSOLIDATION_PREPACK__v1.md",
+    "output/TERM_FAMILY_ORDERING_REPORT__A1_CONSOLIDATION_PREPACK__v1.md",
+    "output/NEGATIVE_AND_RESCUE_MERGE_REPORT__A1_CONSOLIDATION_PREPACK__v1.md",
+    "output/CONFLICT_AND_DEDUP_REPORT__A1_CONSOLIDATION_PREPACK__v1.md",
+    "output/A1_STRATEGY_v1.json",
+    "output/TRANSPORT_READINESS_AND_FAIL_CLOSED_REPORT__A1_CONSOLIDATION_PREPACK__v1.md"
+  ]
+}

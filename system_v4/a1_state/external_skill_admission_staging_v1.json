@@ -1,0 +1,379 @@
+{
+  "schema": "EXTERNAL_SKILL_ADMISSION_STAGING_v1",
+  "generated_utc": "2026-03-20T23:59:30Z",
+  "status": "STAGED_ANALYSIS_ONLY",
+  "purpose": "Bounded staging surface for external skill-source bundles before promotion into the live skill registry.",
+  "candidates": [
+    {
+      "candidate_id": "EXTSKILL::LEV_NONCLASSICAL_RUNTIME_DESIGN",
+      "source_kind": "local_design_doc",
+      "admission_status": "STAGED",
+      "source_surfaces": [
+        {
+          "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md",
+          "kind": "design_audit"
+        }
+      ],
+      "proposed_lanes": [
+        "KARPATHY_MINIMAL_CORE_AUDIT",
+        "SAT_SMT_Z3_LOCAL_GATE_SKILL",
+        "NONCLASSICAL_RUNTIME_RETOOL_FILTER"
+      ],
+      "promotion_target": "system_v4 external operator/admission family",
+      "notes": [
+        "Treat as retool filter, not drop-in doctrine.",
+        "Most useful sections: Karpathy Design Philosophy, SAT/SMT, model checking, abstract interpretation, constrained decoding."
+      ]
+    },
+    {
+      "candidate_id": "EXTSKILL::LEV_OS_AGENTS_WORKSHOP",
+      "source_kind": "external_repo_bundle",
+      "admission_status": "STAGED",
+      "source_surfaces": [
+        {
+          "url": "https://github.com/lev-os/agents",
+          "kind": "source_repo"
+        },
+        {
+          "path": "/tmp/lev_os_agents/lev-skills.sh",
+          "kind": "runtime_helper"
+        },
+        {
+          "path": "/tmp/lev_os_agents/skills/lev-workshop/SKILL.md",
+          "kind": "workflow_skill"
+        },
+        {
+          "path": "/tmp/lev_os_agents/skills/skill-builder/SKILL.md",
+          "kind": "workflow_skill"
+        },
+        {
+          "path": "/tmp/lev_os_agents/skills/lev-builder/SKILL.md",
+          "kind": "workflow_skill"
+        },
+        {
+          "path": "/tmp/lev_os_agents/skills/lev-align/SKILL.md",
+          "kind": "validation_skill"
+        }
+      ],
+      "proposed_lanes": [
+        "EXTERNAL_SKILL_ADMISSION_INVENTORY",
+        "WORKSHOP_LIFECYCLE_IMPORT",
+        "ALIGNMENT_GATE_ADAPTOR"
+      ],
+      "promotion_target": "system_v4 workshop/admission family",
+      "notes": [
+        "Observed 632 SKILL.md files in the local lev-os/agents checkout: 61 curated/runtime-tree skills and 571 library/pattern skills.",
+        "Most useful import is selective intake/discovery/build pattern mining, not wholesale skill activation."
+      ]
+    },
+    {
+      "candidate_id": "EXTSKILL::LEV_OS_AGENTS_SKILL_SOURCE_INTAKE_CLUSTER",
+      "source_kind": "imported_cluster_bundle",
+      "admission_status": "STAGED",
+      "source_surfaces": [
+        {
+          "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/reference_repos/lev-os/agents/skills/lev-intake/SKILL.md",
+          "kind": "imported_skill"
+        },
+        {
+          "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/reference_repos/lev-os/agents/skills/skill-discovery/SKILL.md",
+          "kind": "imported_skill"
+        },
+        {
+          "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/reference_repos/lev-os/agents/skills/skill-builder/SKILL.md",
+          "kind": "imported_skill"
+        },
+        {
+          "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md",
+          "kind": "cluster_map"
+        }
+      ],
+      "proposed_lanes": [
+        "A2_SKILL_SOURCE_INTAKE_OPERATOR",
+        "LOCAL_FIRST_SKILL_DISCOVERY_AUDIT",
+        "STAGED_IMPORT_ADMISSION_AUDIT"
+      ],
+      "promotion_target": "system_v4 imported cluster family",
+      "notes": [
+        "First imported cluster selected for real Ratchet-native promotion.",
+        "Keep/adapt: intake, local discovery, staged build/admission flow.",
+        "Mine only: external marketplace lookup, qmd/cm search, skill-seekers extraction stack."
+      ]
+    },
+    {
+      "candidate_id": "EXTSKILL::LEVIATHAN_WORKSHOP_AND_JP_VISION",
+      "source_kind": "external_repo_bundle",
+      "admission_status": "STAGED",
+      "source_surfaces": [
+        {
+          "url": "https://github.com/lev-os/leviathan",
+          "kind": "source_repo"
+        },
+        {
+          "path": "/tmp/lev_os_leviathan/workshop/analysis/IMPLEMENTATION_ROADMAP.md",
+          "kind": "implementation_roadmap"
+        },
+        {
+          "path": "/tmp/lev_os_leviathan/workshop/analysis/jp-lev-vision/vision.md",
+          "kind": "architecture_vision"
+        },
+        {
+          "path": "/tmp/lev_os_leviathan/workshop/analysis/agent-skills-context/analysis.md",
+          "kind": "analysis_note"
+        }
+      ],
+      "proposed_lanes": [
+        "STAR_SKILL_PACKAGING_MAP",
+        "NODE_CAPABILITY_INHERITANCE_AUDIT",
+        "WORKSHOP_TO_PRODUCTION_PROMOTION_MODEL"
+      ],
+      "promotion_target": "system_v4 packaging/taxonomy family",
+      "notes": [
+        "JP vision is especially relevant to core + companion-skill packaging.",
+        "Workshop analysis surfaces are useful as comparative intake, not direct doctrine."
+      ]
+    },
+    {
+      "candidate_id": "EXTSKILL::KARPATHY_SOURCE_BUNDLE",
+      "source_kind": "external_profile_bundle",
+      "admission_status": "STAGED",
+      "source_surfaces": [
+        {
+          "url": "https://github.com/karpathy",
+          "kind": "profile_root"
+        },
+        {
+          "url": "https://github.com/karpathy/nanoGPT",
+          "kind": "representative_repo"
+        },
+        {
+          "url": "https://github.com/karpathy/nanochat",
+          "kind": "representative_repo"
+        },
+        {
+          "url": "https://github.com/karpathy/autoresearch",
+          "kind": "pattern_repo"
+        },
+        {
+          "url": "https://github.com/karpathy/llm-council",
+          "kind": "pattern_repo"
+        }
+      ],
+      "proposed_lanes": [
+        "MINIMAL_CORE_LOOP_AUDIT",
+        "VISIBLE_LOOP_AND_EVAL_PATTERN_AUDIT",
+        "AUTORESEARCH_OPERATOR",
+        "LLM_COUNCIL_OPERATOR"
+      ],
+      "promotion_target": "system_v4 control-plane audit family",
+      "notes": [
+        "Use as design pressure and implementation style, not as direct substrate import.",
+        "Autoresearch and llm-council should no longer remain pattern-only if they are repeatedly requested as first-class capabilities."
+      ]
+    },
+    {
+      "candidate_id": "EXTSKILL::LEV_OS_ORG_FAMILY_INDEX",
+      "source_kind": "external_org_bundle",
+      "admission_status": "STAGED",
+      "source_surfaces": [
+        {
+          "url": "https://github.com/lev-os",
+          "kind": "org_root"
+        },
+        {
+          "url": "https://github.com/lev-os/agents",
+          "kind": "family_member"
+        },
+        {
+          "url": "https://github.com/lev-os/leviathan",
+          "kind": "family_member"
+        }
+      ],
+      "proposed_lanes": [
+        "LEV_OS_FAMILY_INDEX",
+        "WORKSHOP_LIFECYCLE_IMPORT",
+        "STAR_SKILL_PACKAGING_MAP"
+      ],
+      "promotion_target": "system_v4 external family preservation surface",
+      "notes": [
+        "Explicitly preserve the lev-os org root so the repo family itself does not get forgotten when work narrows to one child repo.",
+        "Use as a family index and admission anchor, not as doctrine."
+      ]
+    },
+    {
+      "candidate_id": "EXTSKILL::Z3_FORMAL_VERIFICATION_BUNDLE",
+      "source_kind": "external_repo_bundle",
+      "admission_status": "STAGED",
+      "source_surfaces": [
+        {
+          "url": "https://github.com/Z3Prover/z3",
+          "kind": "source_repo"
+        },
+        {
+          "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/REFERENCE_REPOS.md",
+          "kind": "local_reference_catalog"
+        },
+        {
+          "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md",
+          "kind": "local_design_mapping"
+        }
+      ],
+      "proposed_lanes": [
+        "SAT_SMT_Z3_LOCAL_GATE_SKILL",
+        "Z3_CEGIS_REFINER",
+        "FORMAL_VERIFICATION_FAMILY_AUDIT"
+      ],
+      "promotion_target": "system_v4 verification family",
+      "notes": [
+        "Z3 is already the strongest external method family operationalized in system_v4, but it should remain explicitly staged as a named source bundle so it does not disappear from future integration reads."
+      ]
+    },
+    {
+      "candidate_id": "EXTSKILL::PI_MONO_AGENTIC_PACKAGE_BUNDLE",
+      "source_kind": "external_repo_bundle",
+      "admission_status": "STAGED",
+      "source_surfaces": [
+        {
+          "url": "https://github.com/badlogic/pi-mono",
+          "kind": "source_repo"
+        },
+        {
+          "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/session_logs/DEEP_FUEL_PIMONO_SESSION.md",
+          "kind": "ingest_session"
+        },
+        {
+          "path": "/Users/joshuaeisenhart/GitHub/pi-mono/packages/agent/README.md",
+          "kind": "package_readme"
+        },
+        {
+          "path": "/Users/joshuaeisenhart/GitHub/pi-mono/packages/ai/README.md",
+          "kind": "package_readme"
+        },
+        {
+          "path": "/Users/joshuaeisenhart/GitHub/pi-mono/AGENTS.md",
+          "kind": "repo_manifest"
+        }
+      ],
+      "proposed_lanes": [
+        "PI_MONO_INTEGRATION_AUDIT",
+        "PIMONO_MEMORY_ADAPTOR_FAMILY",
+        "PIMONO_AGENT_CONTEXT_BRIDGE"
+      ],
+      "promotion_target": "system_v4 external adaptor family",
+      "notes": [
+        "Pi-mono is already graph-ingested as source material but has not yet been skillized as an integration family.",
+        "Most immediate value is memory/context integration through agent and ai packages."
+      ]
+    },
+    {
+      "candidate_id": "EXTSKILL::EVERMEM_AND_MSA_REQUEST_BUNDLE",
+      "source_kind": "thread_requested_repo_bundle",
+      "admission_status": "REQUEST_CAPTURE_PENDING",
+      "source_surfaces": [
+        {
+          "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/MASTER_INTEGRATION_AND_SKILLIZATION_MAP__2026_03_20__v1.md",
+          "kind": "request_summary"
+        }
+      ],
+      "proposed_lanes": [
+        "EVERMEM_MEMORY_BACKEND_ADAPTER",
+        "WITNESS_EVERMEM_SYNC",
+        "INTENT_MEMORY_LOADER",
+        "MSA_CAPABILITY_AUDIT"
+      ],
+      "promotion_target": "system_v4 external memory and backend adaptor family",
+      "notes": [
+        "Explicit user-requested family: EverMemOS / EverMind-style memory backend plus MSA long-context backend.",
+        "Direct repo URL capture is still required before promotion, but the request itself is now durably staged so it does not disappear between turns."
+      ]
+    },
+    {
+      "candidate_id": "EXTSKILL::29_METHOD_SOURCE_BUNDLE",
+      "source_kind": "local_source_document",
+      "admission_status": "STAGED",
+      "source_surfaces": [
+        {
+          "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/29 thing.txt",
+          "kind": "authoritative_source_doc"
+        },
+        {
+          "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/session_logs/OPUS_DEEP_READ_29_THING.md",
+          "kind": "graph_ingest_session"
+        }
+      ],
+      "proposed_lanes": [
+        "29_METHOD_SOURCE_AUDIT",
+        "29_METHOD_SOURCE_SKILLIZATION_PLAN",
+        "29_METHOD_SOURCE_GRAPH_PLACEMENT_REVIEW"
+      ],
+      "promotion_target": "system_v4 nonclassical external-method operator family",
+      "notes": [
+        "Canonical local referent for the repeatedly referenced 29-method source family is the source document `29 thing.txt`.",
+        "The `29 sources / 29 batches` cross-validation cluster is a separate graph artifact and must not be substituted for this document."
+      ]
+    },
+    {
+      "candidate_id": "PIMONO_REPO_INTEGRATION",
+      "human_label": "pi-mono package collection",
+      "source_surfaces": [
+        {
+          "path": "/Users/joshuaeisenhart/GitHub/pi-mono/"
+        }
+      ],
+      "admission_state": "PROPOSED"
+    },
+    {
+      "candidate_id": "EVERMEM_OS_INTEGRATION",
+      "human_label": "EverMemOS memory service",
+      "source_surfaces": [
+        {
+          "url": "https://github.com/EverMind-AI/EverMemOS"
+        }
+      ],
+      "admission_state": "PROPOSED"
+    },
+    {
+      "candidate_id": "MSA_LONG_CONTEXT",
+      "human_label": "MSA sparse attention memory",
+      "source_surfaces": [
+        {
+          "url": "https://github.com/EverMind-AI/MSA"
+        }
+      ],
+      "admission_state": "PROPOSED"
+    },
+    {
+      "candidate_id": "Z3_MODEL_CHECKER_INTEGRATION",
+      "human_label": "Z3 SMT Solver & Model Checking",
+      "source_surfaces": [
+        {
+          "url": "https://github.com/Z3Prover/z3"
+        }
+      ],
+      "admission_state": "PROPOSED"
+    },
+    {
+      "candidate_id": "LEV_OS_AGENTS_INTEGRATION",
+      "human_label": "lev-os agents + leviathan workshop",
+      "source_surfaces": [
+        {
+          "url": "https://github.com/lev-os/agents"
+        },
+        {
+          "url": "https://github.com/lev-os/leviathan"
+        }
+      ],
+      "admission_state": "PROPOSED"
+    },
+    {
+      "candidate_id": "LIVE_29_SOURCES_CROSSVAL",
+      "human_label": "29 sources / batches cross-val bundle",
+      "source_surfaces": [
+        {
+          "path": "system_v4/a2_state/session_logs"
+        }
+      ],
+      "admission_state": "PROPOSED"
+    }
+  ]
+}

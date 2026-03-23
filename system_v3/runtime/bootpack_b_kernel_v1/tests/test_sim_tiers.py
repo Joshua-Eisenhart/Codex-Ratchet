@@ -25,7 +25,18 @@ def _wrap_export(content_lines: list[str], export_id: str = "BATCH_SIM") -> str:
     return "\n".join(lines) + "\n"
 
 
-def _sim_spec_block(spec_id: str, probe_id: str, evidence_token: str, tier: str, family: str, target_class: str, negative_class: str = "") -> str:
+def _sim_spec_block(
+    spec_id: str,
+    probe_id: str,
+    evidence_token: str,
+    tier: str,
+    family: str,
+    target_class: str,
+    negative_class: str = "",
+    stage_id: str = "",
+    stage_suite_kind: str = "",
+    stage_depends_on: list[str] | None = None,
+) -> str:
     lines = [
         f"PROBE_HYP {probe_id}",
         f"PROBE_KIND {probe_id} CORR TIER_TEST",
@@ -42,6 +53,12 @@ def _sim_spec_block(spec_id: str, probe_id: str, evidence_token: str, tier: str,
     ]
     if negative_class:
         lines.insert(-1, f"DEF_FIELD {spec_id} CORR NEGATIVE_CLASS {negative_class}")
+    if stage_id:
+        lines.insert(-1, f"DEF_FIELD {spec_id} CORR STAGE_ID {stage_id}")
+    if stage_suite_kind:
+        lines.insert(-1, f"DEF_FIELD {spec_id} CORR STAGE_SUITE_KIND {stage_suite_kind}")
+    for dep_stage in stage_depends_on or []:
+        lines.insert(-1, f"DEF_FIELD {spec_id} CORR STAGE_DEPENDS_ON {dep_stage}")
     return _wrap_export(lines, export_id=f"BATCH_{spec_id}")
 
 
@@ -73,6 +90,65 @@ class TestSimTierFlow(unittest.TestCase):
         self.assertEqual(2, len(tasks))
         self.assertEqual("T0_ATOM", tasks[0].tier)
         self.assertEqual("T1_COMPOUND", tasks[1].tier)
+
+    def test_dispatch_holds_blocked_stage_until_dependency_stage_clears(self):
+        block_t0 = _sim_spec_block(
+            spec_id="S_STAGE_T0",
+            probe_id="P_STAGE_T0",
+            evidence_token="E_STAGE_T0",
+            tier="T0_ATOM",
+            family="BASELINE",
+            target_class="TC_STAGE",
+            stage_id="S0_BASE",
+            stage_suite_kind="micro_suite",
+        )
+        block_t1 = _sim_spec_block(
+            spec_id="S_STAGE_T1",
+            probe_id="P_STAGE_T1",
+            evidence_token="E_STAGE_T1",
+            tier="T1_COMPOUND",
+            family="BASELINE",
+            target_class="TC_STAGE",
+            stage_id="S1_COMPOUND",
+            stage_suite_kind="mid_suite",
+            stage_depends_on=["S0_BASE"],
+        )
+        self.kernel.evaluate_export_block(block_t0, self.state, batch_id="STAGE_T0")
+        self.kernel.evaluate_export_block(block_t1, self.state, batch_id="STAGE_T1")
+        plan = A0SimDispatcher().build_campaign_plan(self.state)
+        self.assertEqual(1, len(plan.tasks))
+        self.assertEqual("S_STAGE_T0", plan.tasks[0].spec_id)
+        self.assertEqual(("S0_BASE",), plan.stages_seen)
+        self.assertEqual(("micro_suite",), plan.suite_modes_seen)
+        self.assertEqual(("S1_COMPOUND",), plan.blocked_stage_ids)
+
+    def test_dispatch_blocks_mega_suite_until_lower_stage_clears(self):
+        block_t0 = _sim_spec_block(
+            spec_id="S_MEGA_T0",
+            probe_id="P_MEGA_T0",
+            evidence_token="E_MEGA_T0",
+            tier="T0_ATOM",
+            family="BASELINE",
+            target_class="TC_MEGA",
+            stage_id="S0_BASE",
+            stage_suite_kind="micro_suite",
+        )
+        block_t6 = _sim_spec_block(
+            spec_id="S_MEGA_T6",
+            probe_id="P_MEGA_T6",
+            evidence_token="E_MEGA_T6",
+            tier="T6_WHOLE_SYSTEM",
+            family="COMPOSITION_STRESS",
+            target_class="TC_MEGA",
+            stage_id="S6_MEGA",
+            stage_suite_kind="mega_suite",
+        )
+        self.kernel.evaluate_export_block(block_t0, self.state, batch_id="MEGA_T0")
+        self.kernel.evaluate_export_block(block_t6, self.state, batch_id="MEGA_T6")
+        plan = A0SimDispatcher().build_campaign_plan(self.state)
+        self.assertEqual(["S_MEGA_T0"], [task.spec_id for task in plan.tasks])
+        self.assertEqual(("S6_MEGA",), plan.blocked_stage_ids)
+        self.assertEqual(("mega_suite",), plan.blocked_suite_modes)
 
     def test_pipeline_cycle_emits_and_ingests_evidence(self):
         # Use a known term key in spec_id so the deterministic probe passes and

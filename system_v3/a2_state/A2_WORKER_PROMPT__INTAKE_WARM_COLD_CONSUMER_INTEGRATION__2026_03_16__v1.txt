@@ -1,0 +1,38 @@
+Use $ratchet-a2-a1.
+Use $a2-a1-memory-admission-guard.
+
+Use the current A2 boot:
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md
+
+Run one bounded A2H Refined Fuel Non-Sims pass only.
+
+dispatch_id: A2_WORKER__INTAKE_WARM_COLD_CONSUMER_INTEGRATION__2026_03_16__v1
+ROLE_LABEL: A2H Refined Fuel Non-Sims
+ROLE_TYPE: A2_HIGH_REFINED_FUEL_NON_SIMS
+ROLE_SCOPE: one bounded pass to wire the warm-default and cold-explicit intake consult rule into the exact controller/helper surfaces named by the consumer audit
+
+Use only these artifacts:
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__INTAKE_WARM_COLD_CONSUMER_AUDIT__2026_03_16__v1__return.txt
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT__CURRENT__2026_03_12__v1.md
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_SPINE__CURRENT__2026_03_15__v1.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json
+- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_HANDOFF__CURRENT__2026_03_12__v1.json
+
+Task:
+- integrate the exact warm-default / cold-explicit consult pointers into the listed controller/helper surfaces only
+- keep the intake runtime surfaces clearly `RUNTIME_ONLY`
+
+Rules:
+- do not promote runtime surfaces into owner-law by wording
+- do not touch broad specs in this pass
+- stop after one bounded pass
+
+Before your final answer:
+- write the exact final closeout body to:
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__INTAKE_WARM_COLD_CONSUMER_INTEGRATION__2026_03_16__v1__return.txt
+  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__INTAKE_WARM_COLD_CONSUMER_INTEGRATION__2026_03_16__v1.txt
+- if the folders do not exist, create them
+- do not ask the operator to save, paste back, or carry files
+- if you cannot self-save, report that exact blocker and stop

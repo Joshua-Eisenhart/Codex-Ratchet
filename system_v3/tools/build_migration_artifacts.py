@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 from typing import Dict, List
 
@@ -12,7 +13,32 @@ def write_json(path: Path, obj) -> None:
 
 
 def main() -> int:
-    root = Path("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Build migration mapping artifacts from system_v2 specs to system_v3/specs.")
+    parser.add_argument(
+        "--repo-root",
+        default="",
+        help="Repository root. If omitted, uses $CODEX_RATCHET_ROOT, else infers from script path.",
+    )
+    args = parser.parse_args()
+
+    raw = str(args.repo_root or "").strip()
+    if raw:
+        root = Path(raw).expanduser().resolve()
+    else:
+        env = str(os.environ.get("CODEX_RATCHET_ROOT", "") or "").strip()
+        if env:
+            root = Path(env).expanduser().resolve()
+        else:
+            cur = Path(__file__).resolve()
+            root = cur
+            for _ in range(10):
+                if (root / "system_v3").is_dir():
+                    break
+                root = root.parent
+            root = root.resolve()
+
     v2_pack = root / "system_v2/specs/system_spec_pack_v2"
     v2_work = root / "system_v2/work/system_specs"
     v3_specs = root / "system_v3/specs"

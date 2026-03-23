@@ -1,0 +1,322 @@
+{
+  "batch_id": "BATCH_archive_surface_deep_archive_run_qit_autoratchet_0003__v1",
+  "batch_scope": "deep_archive_run_qit_autoratchet_0003",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T09:55:55Z",
+  "deferred_next_in_folder_order": [
+    "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_QIT_AUTORATCHET_0004"
+  ],
+  "extraction_mode": "ARCHIVE_DEEP_RUN_QIT_AUTORATCHET_PASS",
+  "notes": [
+    "This batch processes only RUN_QIT_AUTORATCHET_0003 and treats it as a direct historical autoratchet run, not as a wrapper bundle or current control surface.",
+    "The run root preserves both root and inbox sequence ledgers, but only the A1 max aligns; the JSON bodies are not identical.",
+    "The final state hash 5f501170... is consistent across summary.json, state.json, and state.json.sha256.",
+    "The strongest contradiction is double compression: summary.json says one completed step and one unique digest family while events.jsonl preserves six retained result passes with six strategy digests, six export content digests, and five export structural digests.",
+    "The strategy queue is fully consumed, but unresolved promotion debt remains large: fourteen blockers, fourteen parked sim promotion states, four pending canonical evidence items, and six retained kill signals.",
+    "The dominant retained failure texture is schema failure plus near-redundancy rather than queue-gap failure; soak_report.md highlights SCHEMA_FAIL while state.json preserves eighteen reject rows split across SCHEMA_FAIL, NEAR_REDUNDANT, and UNDEFINED_TERM_USE.",
+    "The consumed and embedded A1_TO_A0_STRATEGY_ZIP families preserve the same six filenames but every same-name pair diverges byte-for-byte.",
+    "The archive object keeps no local sim evidence bodies despite eight retained SIM outputs and repeated runtime-path sim_evidence references."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "REVISIT_REQUIRED",
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "source_family": "archive root deep archive run qit autoratchet 0003",
+  "source_membership": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_QIT_AUTORATCHET_0003",
+      "role_in_batch": "direct_autoratchet_run_root",
+      "total_files": 40,
+      "total_dirs": 3,
+      "top_level_entries": [
+        "a1_inbox",
+        "events.jsonl",
+        "sequence_state.json",
+        "soak_report.md",
+        "state.json",
+        "state.json.sha256",
+        "summary.json",
+        "zip_packets"
+      ],
+      "omitted_control_surfaces": [
+        "README*",
+        "HARDMODE_METRICS.json",
+        "sim/"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_QIT_AUTORATCHET_0003/summary.json",
+      "role_in_batch": "direct_summary",
+      "sha256": "0cb670beb0ad149b601aa1d5aa12b6a579dbfcfcdd4ee58721d39ab2bcaf003f",
+      "size_bytes": 833,
+      "summary": {
+        "run_id": "RUN_QIT_AUTORATCHET_0003",
+        "steps_completed": 1,
+        "steps_requested": 1,
+        "stop_reason": "MAX_STEPS",
+        "accepted_total": 3,
+        "rejected_total": 2,
+        "parked_total": 2,
+        "sim_registry_count": 14,
+        "unresolved_promotion_blocker_count": 14,
+        "final_state_hash": "5f5011708ccc3f070f7c97e35c68767aea9926d412a9cf22b8e7adef060818f2",
+        "unique_export_content_digest_count": 1,
+        "unique_export_structural_digest_count": 1,
+        "unique_strategy_digest_count": 1,
+        "promotion_counts_by_tier": {
+          "T0_ATOM": {
+            "fail": 8,
+            "pass": 0
+          },
+          "T1_COMPOUND": {
+            "fail": 6,
+            "pass": 0
+          }
+        }
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_QIT_AUTORATCHET_0003/state.json",
+      "role_in_batch": "direct_state",
+      "sha256": "5f5011708ccc3f070f7c97e35c68767aea9926d412a9cf22b8e7adef060818f2",
+      "size_bytes": 69006,
+      "state_summary": {
+        "accepted_batch_count": 6,
+        "canonical_ledger_len": 6,
+        "derived_only_terms_len": 47,
+        "evidence_pending_len": 4,
+        "evidence_tokens_len": 8,
+        "interaction_counts_len": 5,
+        "kill_log_len": 6,
+        "park_set_len": 9,
+        "reject_log_len": 18,
+        "sim_promotion_status_len": 14,
+        "sim_registry_len": 14,
+        "sim_results_len": 8,
+        "survivor_ledger_len": 38,
+        "survivor_order_len": 38,
+        "term_registry_len": 4,
+        "active_megaboot_id": "",
+        "active_megaboot_sha256": "",
+        "active_ruleset_sha256": ""
+      },
+      "evidence_pending_shape": {
+        "type": "dict",
+        "count": 4,
+        "keys": [
+          "S000001_CANON_FINITE_DIMENSIONAL_HILBERT_SPACE",
+          "S000002_CANON_DENSITY_MATRIX",
+          "S000003_CANON_POSITIVE",
+          "S000004_CANON_SEMIDEFINITE"
+        ]
+      },
+      "park_set_summary": {
+        "count": 9,
+        "tag_counts": {
+          "NEAR_REDUNDANT": 8,
+          "UNDEFINED_TERM_USE": 1
+        }
+      },
+      "reject_log_summary": {
+        "count": 18,
+        "tag_counts": {
+          "SCHEMA_FAIL": 9,
+          "NEAR_REDUNDANT": 8,
+          "UNDEFINED_TERM_USE": 1
+        }
+      },
+      "sim_promotion_status_summary": {
+        "count": 14,
+        "all_status": "PARKED"
+      },
+      "kill_log": [
+        {
+          "id": "S000001_SIM_KILL_NEG_FINITE_DIMENSIONAL_HILBERT_SPACE",
+          "token": "NEG_INFINITE_SET"
+        },
+        {
+          "id": "S000001_MATH_NEG_FINITE_DIMENSIONAL_HILBERT_SPACE",
+          "token": "NEG_INFINITE_SET"
+        },
+        {
+          "id": "S000002_SIM_KILL_NEG_DENSITY_MATRIX",
+          "token": "NEG_COMMUTATIVE_ASSUMPTION"
+        },
+        {
+          "id": "S000002_MATH_NEG_DENSITY_MATRIX",
+          "token": "NEG_COMMUTATIVE_ASSUMPTION"
+        },
+        {
+          "id": "S000003_SIM_KILL_NEG_POSITIVE_SEMIDEFINITE",
+          "token": "NEG_INFINITE_SET"
+        },
+        {
+          "id": "S000003_MATH_NEG_POSITIVE_SEMIDEFINITE",
+          "token": "NEG_INFINITE_SET"
+        }
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_QIT_AUTORATCHET_0003/state.json.sha256",
+      "role_in_batch": "state_hash_sidecar",
+      "declared_sha256": "5f5011708ccc3f070f7c97e35c68767aea9926d412a9cf22b8e7adef060818f2",
+      "matches_state_json": true,
+      "matches_summary_final_hash": true
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_QIT_AUTORATCHET_0003/sequence_state.json",
+      "role_in_batch": "sequence_state",
+      "sha256": "62918dc809aa2be8e01cdc79a197a341d00101777f998315c4d7bce19c86c8e7",
+      "size_bytes": 91,
+      "seq_by_source": {
+        "A0": 7,
+        "A1": 6,
+        "A2": 0,
+        "B": 6,
+        "SIM": 8
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_QIT_AUTORATCHET_0003/a1_inbox/sequence_state.json",
+      "role_in_batch": "inbox_sequence_state",
+      "sha256": "a479ee124dafc76f07e247a85897e53e7e327e5ceb5dcab49027c8c8858ce851",
+      "size_bytes": 34,
+      "summary": {
+        "RUN_QIT_AUTORATCHET_0003|A1": 6
+      },
+      "matches_root_sequence_shape": false,
+      "matches_root_a1_max": true
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_QIT_AUTORATCHET_0003/events.jsonl",
+      "role_in_batch": "direct_event_ledger",
+      "sha256": "7bfe0d66e9fdbd0212fa06c66180d6294e6227496e3f9c90d3e044b08408769f",
+      "size_bytes": 10706,
+      "line_count": 7,
+      "explicit_event_counts": {
+        "a1_strategy_request_emitted": 1
+      },
+      "implicit_step_result_rows": 6,
+      "steps_present": [
+        1
+      ],
+      "referenced_strategy_packets": [
+        "000001_A1_TO_A0_STRATEGY_ZIP.zip",
+        "000002_A1_TO_A0_STRATEGY_ZIP.zip",
+        "000003_A1_TO_A0_STRATEGY_ZIP.zip",
+        "000004_A1_TO_A0_STRATEGY_ZIP.zip",
+        "000005_A1_TO_A0_STRATEGY_ZIP.zip",
+        "000006_A1_TO_A0_STRATEGY_ZIP.zip"
+      ],
+      "referenced_export_packets": [
+        "000002_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+        "000003_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+        "000004_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+        "000005_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+        "000006_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+        "000007_A0_TO_B_EXPORT_BATCH_ZIP.zip"
+      ],
+      "referenced_sim_output_count": 8,
+      "result_passes": [
+        {
+          "strategy_packet": "000001_A1_TO_A0_STRATEGY_ZIP.zip",
+          "export_packet": "000002_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+          "accepted": 7,
+          "parked": 0,
+          "rejected": 0,
+          "unresolved_promotion_blocker_count": 2
+        },
+        {
+          "strategy_packet": "000002_A1_TO_A0_STRATEGY_ZIP.zip",
+          "export_packet": "000003_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+          "accepted": 7,
+          "parked": 0,
+          "rejected": 0,
+          "unresolved_promotion_blocker_count": 4
+        },
+        {
+          "strategy_packet": "000003_A1_TO_A0_STRATEGY_ZIP.zip",
+          "export_packet": "000004_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+          "accepted": 9,
+          "parked": 3,
+          "rejected": 3,
+          "unresolved_promotion_blocker_count": 7
+        },
+        {
+          "strategy_packet": "000004_A1_TO_A0_STRATEGY_ZIP.zip",
+          "export_packet": "000005_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+          "accepted": 7,
+          "parked": 2,
+          "rejected": 2,
+          "unresolved_promotion_blocker_count": 10
+        },
+        {
+          "strategy_packet": "000005_A1_TO_A0_STRATEGY_ZIP.zip",
+          "export_packet": "000006_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+          "accepted": 3,
+          "parked": 2,
+          "rejected": 2,
+          "unresolved_promotion_blocker_count": 12
+        },
+        {
+          "strategy_packet": "000006_A1_TO_A0_STRATEGY_ZIP.zip",
+          "export_packet": "000007_A0_TO_B_EXPORT_BATCH_ZIP.zip",
+          "accepted": 3,
+          "parked": 2,
+          "rejected": 2,
+          "unresolved_promotion_blocker_count": 14
+        }
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_QIT_AUTORATCHET_0003/soak_report.md",
+      "role_in_batch": "direct_soak_report",
+      "sha256": "711624ab67a1fa281e0c2210a4bfb482f5fd27980129a08bbe6ffa1bc15bbc01",
+      "size_bytes": 10892,
+      "headline": {
+        "cycle_count": 1,
+        "accepted_total": 3,
+        "parked_total": 2,
+        "rejected_total": 2,
+        "stop_reason": "MAX_STEPS"
+      },
+      "top_failure_tags": [
+        "SCHEMA_FAIL: 4"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_QIT_AUTORATCHET_0003/zip_packets",
+      "role_in_batch": "embedded_packet_lattice",
+      "packet_count": 27,
+      "packet_kind_counts": {
+        "A0_TO_A1_SAVE_ZIP": 1,
+        "A0_TO_B_EXPORT_BATCH_ZIP": 6,
+        "A1_TO_A0_STRATEGY_ZIP": 6,
+        "B_TO_A0_STATE_UPDATE_ZIP": 6,
+        "SIM_TO_A0_SIM_RESULT_ZIP": 8
+      },
+      "embedded_strategy_hashes": {
+        "000001_A1_TO_A0_STRATEGY_ZIP.zip": "a910bbac4a807847b3783fdc88b75fc1764aa386a00dad10c4381951fbaf0944",
+        "000002_A1_TO_A0_STRATEGY_ZIP.zip": "c987633a7916745292af638d3ffbdb3786888d0a7c22c6f5ab0d8b9d18341ae4",
+        "000003_A1_TO_A0_STRATEGY_ZIP.zip": "9c5d4b87afc1f9c65564c05e7d0a578760bdc39411effef5950e29f22e512cb6",
+        "000004_A1_TO_A0_STRATEGY_ZIP.zip": "cca04fe4ae522b8b10161b7643a2cfd2b938565cde203129b82d4eb5e789bdd9",
+        "000005_A1_TO_A0_STRATEGY_ZIP.zip": "2e101c8e5a0a7f388652b0f56345801b50943b3677b8a9c77fe4cf9b78880af8",
+        "000006_A1_TO_A0_STRATEGY_ZIP.zip": "9c98991254f77d135544ad27b19409fae0b8f3c644d7f68d3f81404b64972d18"
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_QIT_AUTORATCHET_0003/a1_inbox/consumed",
+      "role_in_batch": "consumed_strategy_residue",
+      "packet_count": 6,
+      "consumed_strategy_hashes": {
+        "000001_A1_TO_A0_STRATEGY_ZIP.zip": "97093c1ef5edc8b59f23806d54d023cef830e70390de1b70f900612a90cea167",
+        "000002_A1_TO_A0_STRATEGY_ZIP.zip": "8d4e46c146d783fbccca57192a6acdadb50a8b9d98714651d9ec2dd8030004c9",
+        "000003_A1_TO_A0_STRATEGY_ZIP.zip": "28aad2cbe01858e71bbc9ba2159bbfb449da28c994abfdec2c8445a9f1d8cd9b",
+        "000004_A1_TO_A0_STRATEGY_ZIP.zip": "ec380b9705d33b6f1f1fdba7d63e707e5dd18e351b1297b3311307ff2a223f94",
+        "000005_A1_TO_A0_STRATEGY_ZIP.zip": "2775f8cd3a9e6201a08f2e90f965bc8274c0fdef5b35547bb1e6cc6ef1edeb75",
+        "000006_A1_TO_A0_STRATEGY_ZIP.zip": "ca2156370f47585d5d297e358d38048e829e6682c9a10140ccf61438e5d9ad60"
+      },
+      "same_filenames_as_embedded_strategy_family": true,
+      "byte_identical_pairs_with_embedded_strategy_family": 0
+    }
+  ]
+}

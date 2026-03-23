@@ -2,6 +2,9 @@
 Status: DRAFT / NONCANON
 Date: 2026-02-20
 
+Companion repair target:
+- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/75_A2_MINING_AND_ROSETTA_ARTIFACT_PACKS__v1.md`
+
 ## Purpose
 Make the “A2 miner / A1 rosetta” core function explicit as concrete artifact shapes, with hard boundary rules.
 
@@ -52,6 +55,8 @@ pointing at the same kernel referent (like an airport sign with multiple languag
 
 ## Artifact Shapes (noncanon)
 These are companion artifacts for audit/replay; they are not B input unless compiled into `EXPORT_BLOCK`.
+
+The current companion repair spec sharpens these shapes into executable recovery targets rather than leaving them as light suggested forms.
 
 ### ROSETTA_MAP v1
 - overlay mapping anchored to kernel ids/terms

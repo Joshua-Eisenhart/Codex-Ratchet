@@ -1,0 +1,62 @@
+{
+  "schema": "NESTED_GRAPH_BUILD_WORKER_LAUNCH_HANDOFF_v1",
+  "queue_status": "READY_FROM_EXISTING_FUEL",
+  "dispatch_id": "NESTED_GRAPH_BUILD__IDENTITY_REGISTRY__2026_03_20__v1",
+  "unit_id": "IDENTITY_REGISTRY",
+  "program_id": "NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1",
+  "layer_id": "IDENTITY_REGISTRY",
+  "role_label": "NESTED_GRAPH_BUILD__IDENTITY_REGISTRY__2026_03_20__v1",
+  "role_type": "A2_GRAPH_BUILD",
+  "role_scope": "One bounded procedure-first pass for IDENTITY_REGISTRY. Do not claim downstream layer stores already exist.",
+  "thread_class": "A2_WORKER",
+  "mode": "PROCEDURE_FIRST_BUILD",
+  "required_boot": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/A2_BOOT__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/A2_GRAPH_REFINERY_PROCESS__v2.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md"
+  ],
+  "source_artifacts": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/nested_graph_v1.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/promoted_subgraph.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/A1_GRAPH_PROJECTION.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/rosetta_v2.json"
+  ],
+  "depends_on": [],
+  "expected_outputs": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/identity_registry_v1.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/identity_bridge_contracts__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/IDENTITY_REGISTRY_BUILD_AUDIT__2026_03_20__v1.md"
+  ],
+  "write_scope": [
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/identity_registry_v1.json",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/identity_bridge_contracts__v1.md",
+    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/IDENTITY_REGISTRY_BUILD_AUDIT__2026_03_20__v1.md"
+  ],
+  "operator_steps": [
+    "Reload required boot surfaces before touching owner outputs.",
+    "Treat the live refinery graph as authoritative unless the packet explicitly names a more local owner surface.",
+    "Write only the declared owner outputs for this layer pass.",
+    "Run the declared audit skill(s) before claiming completion.",
+    "Fail closed if the pass would require inventing missing bridge doctrine or silently promoting a projection artifact to authority."
+  ],
+  "monitor_route": {
+    "skill": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skill_specs/thread-run-monitor/SKILL.md",
+    "owner_surface": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_RUN_DIAGNOSIS_AND_STOP_RULES__v1.md",
+    "allowed_decisions": [
+      "STOP",
+      "CONTINUE_ONE_BOUNDED_STEP",
+      "CORRECT_LANE_LATER"
+    ]
+  },
+  "closeout_route": {
+    "skill": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skill_specs/thread-closeout-auditor/SKILL.md",
+    "sink_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/NESTED_GRAPH_BUILD_CLOSEOUTS__2026_03_20__v1.jsonl"
+  },
+  "source_packet_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json",
+  "program_packet_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json",
+  "prompt_to_send": "Run one bounded IDENTITY_REGISTRY nested-graph build pass using the declared source artifacts and stop after producing only the declared outputs or a fail-closed prerequisite list.",
+  "stop_rule": "Stop after one bounded identity-registry scaffold pass."
+}

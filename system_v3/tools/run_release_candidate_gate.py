@@ -121,9 +121,6 @@ def main() -> int:
     checklist["artifact_refs"] = artifact_refs
     checklist["approved_utc"] = "UNCHANGED_BY_GATE_EVAL"
     checklist["waivers"] = checklist.get("waivers", [])
-
-    _write_json(checklist_path, checklist)
-
     status = "PASS" if (
         p0_to_p6_ok
         and len(missing_artifacts) == 0
@@ -131,6 +128,9 @@ def main() -> int:
         and bool(final_event_log_hash)
         and loop_health_ok
     ) else "FAIL"
+    checklist["status"] = status
+    _write_json(checklist_path, checklist)
+
     out = {
         "status": status,
         "checklist_path": str(checklist_path),

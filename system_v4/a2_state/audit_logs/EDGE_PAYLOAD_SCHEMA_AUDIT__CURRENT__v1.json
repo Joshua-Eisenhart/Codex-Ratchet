@@ -1,0 +1,120 @@
+{
+  "admitted_relations": [
+    "DEPENDS_ON",
+    "EXCLUDES",
+    "STRUCTURALLY_RELATED",
+    "RELATED_TO"
+  ],
+  "audit_only": true,
+  "do_not_promote": true,
+  "forbidden_relations": [
+    "OVERLAPS"
+  ],
+  "generated_utc": "2026-03-21T23:52:04Z",
+  "issues": [],
+  "low_control_probe": "system_v4/a2_state/graphs/a2_low_control_graph_v1.json",
+  "nonoperative": true,
+  "recommended_next_actions": [
+    "Keep the schema sidecar-only and relation-scoped; do not write these payloads into canonical graph edges yet.",
+    "Keep OVERLAPS and all skill-edge families outside the admitted schema scope.",
+    "If this line continues, the next bounded step would be a read-only payload-schema probe over one admitted relation family, not a runtime mutation pass."
+  ],
+  "repo_root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "schema": "EDGE_PAYLOAD_SCHEMA_AUDIT_v1",
+  "schema_rows": [
+    {
+      "deferred_ga_fields": [
+        "entropy_state",
+        "correlation_entropy",
+        "orientation_basis",
+        "clifford_grade",
+        "obstruction_score"
+      ],
+      "optional_scalar_carriers": [],
+      "optional_string_carriers": [
+        "link_type",
+        "pass",
+        "referenced_term"
+      ],
+      "payload_mode": "read_only_sidecar_only",
+      "relation": "DEPENDS_ON",
+      "required_carriers": [
+        "relation",
+        "source_id",
+        "target_id"
+      ]
+    },
+    {
+      "deferred_ga_fields": [
+        "entropy_state",
+        "correlation_entropy",
+        "orientation_basis",
+        "clifford_grade",
+        "obstruction_score"
+      ],
+      "optional_scalar_carriers": [
+        "shared_name_parts"
+      ],
+      "optional_string_carriers": [
+        "link_type",
+        "reason"
+      ],
+      "payload_mode": "read_only_sidecar_only",
+      "relation": "EXCLUDES",
+      "required_carriers": [
+        "relation",
+        "source_id",
+        "target_id"
+      ]
+    },
+    {
+      "deferred_ga_fields": [
+        "entropy_state",
+        "correlation_entropy",
+        "orientation_basis",
+        "clifford_grade",
+        "obstruction_score"
+      ],
+      "optional_scalar_carriers": [
+        "shared_components"
+      ],
+      "optional_string_carriers": [
+        "link_type",
+        "nested_layer",
+        "reasoning"
+      ],
+      "payload_mode": "read_only_sidecar_only",
+      "relation": "STRUCTURALLY_RELATED",
+      "required_carriers": [
+        "relation",
+        "source_id",
+        "target_id"
+      ]
+    },
+    {
+      "deferred_ga_fields": [
+        "entropy_state",
+        "correlation_entropy",
+        "orientation_basis",
+        "clifford_grade",
+        "obstruction_score"
+      ],
+      "optional_scalar_carriers": [
+        "shared_count"
+      ],
+      "optional_string_carriers": [
+        "link_type"
+      ],
+      "payload_mode": "read_only_sidecar_only",
+      "relation": "RELATED_TO",
+      "required_carriers": [
+        "relation",
+        "source_id",
+        "target_id"
+      ]
+    }
+  ],
+  "status": "ok",
+  "supporting_clifford_audit": "system_v4/a2_state/audit_logs/CLIFFORD_EDGE_SEMANTICS_AUDIT__CURRENT__v1.json",
+  "supporting_toponetx_audit": "system_v4/a2_state/audit_logs/TOPONETX_PROJECTION_ADAPTER_AUDIT__CURRENT__v1.json"
+}

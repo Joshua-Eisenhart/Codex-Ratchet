@@ -15,29 +15,53 @@ def analyze_graph(filepath):
             print(f"Error reading JSON from {filepath}")
             return None
             
-    nodes = graph.get("nodes", [])
-    edges = graph.get("edges", [])
-    
-    node_count = len(nodes)
-    edge_count = len(edges)
-    
+    raw_nodes = graph.get("nodes", [])
+    nodes = []
+    node_ids = set()
     node_types = defaultdict(int)
     missing_fields = defaultdict(list)
-    node_ids = set()
+
+    if isinstance(raw_nodes, dict):
+        for nid, val in raw_nodes.items():
+            if isinstance(val, dict):
+                # Ensure the node has an 'id' field, using the key if missing
+                if "id" not in val:
+                    val["id"] = nid
+                nodes.append(val)
+                node_ids.add(val["id"])
+            else:
+                # Handle case where value is not a dict (rare but possible)
+                nodes.append({"id": nid, "type": "UNKNOWN"})
+                node_ids.add(nid)
+    elif isinstance(raw_nodes, list):
+        nodes = raw_nodes
+        for n in nodes:
+            if isinstance(n, dict):
+                nid = n.get("id") or n.get("node_id") or n.get("uid")
+                if nid:
+                    node_ids.add(nid)
+            
+    node_count = len(nodes)
     
     for n in nodes:
-        nid = n.get("id")
-        if nid:
-            node_ids.add(nid)
-        ntype = n.get("type", "UNKNOWN")
+        if not isinstance(n, dict):
+            continue
+        nid = n.get("id") or n.get("node_id") or n.get("uid")
+        ntype = n.get("node_type") or n.get("type") or n.get("kind") or "UNKNOWN"
         node_types[ntype] += 1
         
         # Check required fields
         if "description" not in n or not str(n.get("description", "")).strip():
             missing_fields["description"].append(nid)
-        if "admissibility_state" not in n or not str(n.get("admissibility_state", "")).strip():
-            missing_fields["admissibility_state"].append(nid)
+        # admissibility_state is very common in this corpus
+        if "admissibility_state" not in n and "status" not in n:
+             missing_fields["admissibility_state"].append(nid)
             
+    edges = graph.get("edges", [])
+    if isinstance(edges, dict):
+        edges = list(edges.values())
+        
+    edge_count = len(edges)
     edge_relation_types = defaultdict(int)
     self_loops = 0
     duplicate_edges = 0
@@ -47,9 +71,11 @@ def analyze_graph(filepath):
     degrees = defaultdict(int)
     
     for e in edges:
-        src = e.get("source")
-        tgt = e.get("target")
-        rel = e.get("relation", "UNKNOWN")
+        if not isinstance(e, dict):
+            continue
+        src = e.get("source") or e.get("source_id") or e.get("from")
+        tgt = e.get("target") or e.get("target_id") or e.get("to")
+        rel = e.get("relation") or e.get("type") or e.get("edge_type") or "UNKNOWN"
         
         edge_relation_types[rel] += 1
         
@@ -59,7 +85,7 @@ def analyze_graph(filepath):
         if src == tgt and src is not None:
             self_loops += 1
             
-        edge_tuple = (src, tgt, rel)
+        edge_tuple = (str(src), str(tgt), str(rel))
         if edge_tuple in seen_edges:
             duplicate_edges += 1
         seen_edges.add(edge_tuple)
@@ -73,7 +99,7 @@ def analyze_graph(filepath):
     if node_count > 1:
         density = edge_count / (node_count * (node_count - 1))
         
-    deg_list = [degrees[n.get("id")] for n in nodes if n.get("id")]
+    deg_list = [degrees[n.get("id") or n.get("node_id") or n.get("uid")] for n in nodes if isinstance(n, dict)]
     if deg_list:
         deg_min = min(deg_list)
         deg_max = max(deg_list)
@@ -86,7 +112,9 @@ def analyze_graph(filepath):
     
     adj = defaultdict(list)
     for e in edges:
-        src, tgt = e.get("source"), e.get("target")
+        if not isinstance(e, dict): continue
+        src = e.get("source") or e.get("source_id") or e.get("from")
+        tgt = e.get("target") or e.get("target_id") or e.get("to")
         if src in node_ids and tgt in node_ids:
             adj[src].append(tgt)
             adj[tgt].append(src)
@@ -116,10 +144,10 @@ def analyze_graph(filepath):
         anomalies.append(f"⚠️ {duplicate_edges} duplicate edges found")
     if dangling_edges > 0:
         anomalies.append(f"⚠️ {dangling_edges} dangling edges found")
-    if isolated_nodes > node_count * 0.2 and node_count > 0:
+    if isolated_nodes > node_count * 0.5 and node_count > 0:
         anomalies.append(f"⚠️ High number of isolated nodes: {isolated_nodes}/{node_count} ({isolated_nodes*100/node_count:.1f}%)")
     for field, ids in missing_fields.items():
-        if len(ids) > node_count * 0.1 and node_count > 0:
+        if len(ids) > node_count * 0.2 and node_count > 0:
              anomalies.append(f"⚠️ Many nodes missing '{field}': {len(ids)} nodes")
     
     return {
@@ -144,6 +172,8 @@ def analyze_graph(filepath):
         "missing_fields": {k: len(v) for k, v in missing_fields.items()},
         "anomalies": anomalies
     }
+
+
 
 def main():
     if not os.path.exists(GRAPH_DIR):

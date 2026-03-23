@@ -1,0 +1,135 @@
+{
+  "audit_only": true,
+  "candidate_count": 2,
+  "candidate_targets": [
+    {
+      "eligible": true,
+      "imported_cluster": false,
+      "recommended_allowed_targets": [
+        "system_v4/skills/a2_skill_improver_readiness_operator.py"
+      ],
+      "recommended_test_command": [
+        "python3",
+        "system_v4/skills/test_a2_skill_improver_readiness_operator_smoke.py"
+      ],
+      "related_to_skill_improver": true,
+      "score": 12,
+      "selection_reasons": [
+        "maintenance skill",
+        "dedicated codex spec present",
+        "dedicated smoke present",
+        "propose-only gate present",
+        "audit-mode tag present",
+        "directly aligned with the skill-improver maintenance lane",
+        "smallest directly related readiness-gate target"
+      ],
+      "skill_id": "a2-skill-improver-readiness-operator",
+      "skill_type": "maintenance",
+      "smoke_path": "system_v4/skills/test_a2_skill_improver_readiness_operator_smoke.py",
+      "source_path": "system_v4/skills/a2_skill_improver_readiness_operator.py",
+      "spec_path": "system_v4/skill_specs/a2-skill-improver-readiness-operator/SKILL.md",
+      "tags": [
+        "skill-improver-readiness",
+        "meta-skill",
+        "maintenance",
+        "a2",
+        "audit-mode",
+        "runtime"
+      ]
+    },
+    {
+      "eligible": true,
+      "imported_cluster": false,
+      "recommended_allowed_targets": [
+        "system_v4/skills/a2_brain_surface_refresher.py"
+      ],
+      "recommended_test_command": [
+        "python3",
+        "system_v4/skills/test_a2_brain_surface_refresher_smoke.py"
+      ],
+      "related_to_skill_improver": true,
+      "score": 10,
+      "selection_reasons": [
+        "maintenance skill",
+        "dedicated codex spec present",
+        "dedicated smoke present",
+        "propose-only gate present",
+        "audit-mode tag present",
+        "directly aligned with the skill-improver maintenance lane"
+      ],
+      "skill_id": "a2-brain-surface-refresher",
+      "skill_type": "maintenance",
+      "smoke_path": "system_v4/skills/test_a2_brain_surface_refresher_smoke.py",
+      "source_path": "system_v4/skills/a2_brain_surface_refresher.py",
+      "spec_path": "system_v4/skill_specs/a2-brain-surface-refresher/SKILL.md",
+      "tags": [
+        "a2",
+        "brain-refresh",
+        "truth-maintenance",
+        "surface-refresh",
+        "owner-law",
+        "audit-mode",
+        "maintenance"
+      ]
+    }
+  ],
+  "cluster_id": "SKILL_CLUSTER::a2-skill-truth-maintenance",
+  "do_not_promote": true,
+  "generated_utc": "2026-03-21T13:04:22Z",
+  "issues": [],
+  "non_goals": [
+    "Do not mutate any target skill from this selector slice.",
+    "Do not auto-promote the selected target into live repo mutation.",
+    "Do not treat target ranking as proof that candidate mutation is safe.",
+    "Do not widen selection beyond the bounded first-target class."
+  ],
+  "nonoperative": true,
+  "readiness_gate_status": "bounded_ready_for_first_target",
+  "readiness_report_path": "system_v4/a2_state/audit_logs/SKILL_IMPROVER_READINESS_REPORT__CURRENT__v1.json",
+  "recommended_actions": [
+    "Keep this slice audit-only; do not mutate any skill from this selection report.",
+    "If a first target is chosen, keep skill-improver-operator behind its explicit allowlist + approval-token gate.",
+    "Use the recommended smoke path as the first bounded proof surface rather than widening to general repo mutation."
+  ],
+  "recommended_first_target_class": "native maintenance Python skill with dedicated smoke, codex spec, and audit-only/propose-only behavior",
+  "recommended_target": {
+    "eligible": true,
+    "imported_cluster": false,
+    "recommended_allowed_targets": [
+      "system_v4/skills/a2_skill_improver_readiness_operator.py"
+    ],
+    "recommended_test_command": [
+      "python3",
+      "system_v4/skills/test_a2_skill_improver_readiness_operator_smoke.py"
+    ],
+    "related_to_skill_improver": true,
+    "score": 12,
+    "selection_reasons": [
+      "maintenance skill",
+      "dedicated codex spec present",
+      "dedicated smoke present",
+      "propose-only gate present",
+      "audit-mode tag present",
+      "directly aligned with the skill-improver maintenance lane",
+      "smallest directly related readiness-gate target"
+    ],
+    "skill_id": "a2-skill-improver-readiness-operator",
+    "skill_type": "maintenance",
+    "smoke_path": "system_v4/skills/test_a2_skill_improver_readiness_operator_smoke.py",
+    "source_path": "system_v4/skills/a2_skill_improver_readiness_operator.py",
+    "spec_path": "system_v4/skill_specs/a2-skill-improver-readiness-operator/SKILL.md",
+    "tags": [
+      "skill-improver-readiness",
+      "meta-skill",
+      "maintenance",
+      "a2",
+      "audit-mode",
+      "runtime"
+    ]
+  },
+  "schema": "skill_improver_target_selection_report_v1",
+  "slice_id": "a2-skill-improver-target-selector-operator",
+  "source_family": "Ratchet-native A2 truth maintenance",
+  "status": "ok",
+  "target_skill_id": "skill-improver-operator"
+}

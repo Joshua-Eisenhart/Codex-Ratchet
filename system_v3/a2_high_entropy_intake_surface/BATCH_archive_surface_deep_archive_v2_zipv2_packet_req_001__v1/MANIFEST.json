@@ -1,0 +1,187 @@
+{
+  "batch_id": "BATCH_archive_surface_deep_archive_v2_zipv2_packet_req_001__v1",
+  "batch_scope": "deep_archive_v2_zipv2_packet_req_001_run_root",
+  "batch_status": "PROPOSED_NONCANON",
+  "created_utc": "2026-03-09T20:06:40Z",
+  "deferred_next_in_folder_order": [
+    "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/V2_ZIPV2_REPLAY_001"
+  ],
+  "extraction_mode": "ARCHIVE_DEEP_V2_ZIPV2_PACKET_REQ_001_PASS",
+  "notes": [
+    "This batch processes only V2_ZIPV2_PACKET_REQ_001 and treats it as a historical request-only ZIPv2 bootstrap, not as current runtime authority.",
+    "The run root preserves zero accepted work, one emitted A0_TO_A1 save packet, an empty inbox, and no retained sequence_state.json.",
+    "Summary, soak, and events are coherent on one retained step, zero accepted work, zero parks, zero rejects, and stop reason A1_NEEDS_EXTERNAL_STRATEGY.",
+    "The strongest contradiction is that summary says a1_source packet while the archive keeps no inbound A1 strategy, no strategy/export digests, and only one outbound A0_TO_A1_SAVE_ZIP.",
+    "State and sidecar bind to inert final hash de0e5fe9..., while the only retained packet embeds a generic sample base strategy whose input state hash is all zeroes.",
+    "The final state preserves only lexical/bootstrap shells such as derived_only_terms, formula_glyph_requirements, and l0_lexeme_set with no earned survivors, sims, evidence, or canonical ledger rows.",
+    "The archived event row still points to a live-runtime packet path under system_v3/runtime rather than the archive-local zip_packets copy.",
+    "The sole save packet is a backward A0-to-A1 handoff carrying a sample strategy scaffold, not an earned lower-loop result."
+  ],
+  "possible_downstream_consequence_policy": "possible downstream consequence only; no direct A2-1 or A1 promotion from this batch",
+  "promotion_status": "REVISIT_REQUIRED",
+  "schema": "A2_HIGH_ENTROPY_INTAKE_BATCH_MANIFEST_v1",
+  "source_family": "archive root deep archive v2 zipv2 packet req 001 run root",
+  "source_membership": [
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/V2_ZIPV2_PACKET_REQ_001",
+      "role_in_batch": "direct_run_root",
+      "top_level_entries": [
+        "a1_inbox",
+        "events.jsonl",
+        "soak_report.md",
+        "state.json",
+        "state.json.sha256",
+        "summary.json",
+        "zip_packets"
+      ],
+      "missing_top_level_runtime_surface": [
+        "sequence_state.json"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/V2_ZIPV2_PACKET_REQ_001/summary.json",
+      "role_in_batch": "run_summary",
+      "summary": {
+        "run_id": "V2_ZIPV2_PACKET_REQ_001",
+        "a1_source": "packet",
+        "needs_real_llm": false,
+        "steps_completed": 1,
+        "steps_requested": 3,
+        "accepted_total": 0,
+        "parked_total": 0,
+        "rejected_total": 0,
+        "sim_registry_count": 0,
+        "unresolved_promotion_blocker_count": 0,
+        "stop_reason": "A1_NEEDS_EXTERNAL_STRATEGY",
+        "unique_strategy_digest_count": 0,
+        "unique_export_content_digest_count": 0,
+        "unique_export_structural_digest_count": 0,
+        "final_state_hash": "de0e5fe905c27b70960a8a41dadfe10ac8ab9beef13ea3a6724d7d7630d353cc"
+      },
+      "promotion_counts_by_tier": {}
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/V2_ZIPV2_PACKET_REQ_001/state.json",
+      "role_in_batch": "run_state",
+      "state_summary": {
+        "accepted_batch_count": 0,
+        "canonical_ledger_len": 0,
+        "evidence_tokens_len": 0,
+        "probe_meta_len": 0,
+        "reject_log_len": 0,
+        "sim_promotion_status_len": 0,
+        "sim_registry_len": 0,
+        "sim_results_len": 0,
+        "survivor_ledger_len": 0,
+        "evidence_pending_len": 0,
+        "kill_log_len": 0
+      },
+      "metadata_shells_retained": [
+        "derived_only_terms",
+        "formula_glyph_requirements",
+        "l0_lexeme_set"
+      ],
+      "blank_runtime_ids": [
+        "active_megaboot_id",
+        "active_megaboot_sha256",
+        "active_ruleset_sha256"
+      ]
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/V2_ZIPV2_PACKET_REQ_001/state.json.sha256",
+      "role_in_batch": "state_hash_sidecar",
+      "declared_sha256": "de0e5fe905c27b70960a8a41dadfe10ac8ab9beef13ea3a6724d7d7630d353cc",
+      "matches_state_json": true,
+      "matches_summary_final_hash": true
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/V2_ZIPV2_PACKET_REQ_001/events.jsonl",
+      "role_in_batch": "outbound_request_ledger",
+      "line_count": 1,
+      "event_counts": {
+        "a1_strategy_request_emitted": 1
+      },
+      "steps_present": [
+        1
+      ],
+      "accepted_sum": 0,
+      "parked_sum": 0,
+      "rejected_sum": 0,
+      "step_summaries": [
+        {
+          "step": 1,
+          "event": "a1_strategy_request_emitted",
+          "state_hash": "de0e5fe905c27b70960a8a41dadfe10ac8ab9beef13ea3a6724d7d7630d353cc",
+          "source": "ZIP_PROTOCOL_v2",
+          "last_reject_tags": [],
+          "outbound_save_request_packet": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/V2_ZIPV2_PACKET_REQ_001/zip_packets/000001_A0_TO_A1_SAVE_ZIP.zip"
+        }
+      ],
+      "runtime_local_event_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/runs/V2_ZIPV2_PACKET_REQ_001/zip_packets/000001_A0_TO_A1_SAVE_ZIP.zip"
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/V2_ZIPV2_PACKET_REQ_001/soak_report.md",
+      "role_in_batch": "human_readable_soak_report",
+      "report_summary": {
+        "cycle_count": 1,
+        "accepted_total": 0,
+        "parked_total": 0,
+        "rejected_total": 0,
+        "stop_reason": "A1_NEEDS_EXTERNAL_STRATEGY",
+        "top_failure_tags": [
+          "NONE"
+        ]
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/V2_ZIPV2_PACKET_REQ_001/a1_inbox",
+      "role_in_batch": "empty_inbox_residue",
+      "file_count": 0
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/V2_ZIPV2_PACKET_REQ_001/zip_packets",
+      "role_in_batch": "save_only_packet_lattice",
+      "file_count": 1,
+      "kind_counts": {
+        "A0_TO_A1_SAVE_ZIP": 1
+      }
+    },
+    {
+      "path": "/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/V2_ZIPV2_PACKET_REQ_001/zip_packets/000001_A0_TO_A1_SAVE_ZIP.zip",
+      "role_in_batch": "outbound_save_packet",
+      "sha256": "6563e5f3a71693114f583e98a49e616d7147e672e30fc9336d03e145a71704da",
+      "size_bytes": 1875,
+      "member_hashes": {
+        "A0_SAVE_SUMMARY.json": "0f5503d8c0481d794c4e858a4a83b825e2ff0c142664b869170db72ecd4b712b",
+        "MANIFEST.json": "a9c20f18b6066e6e6c7bcf0c3d9be5a8f4c7c9bc6206bb3ad018f165f4d4fa2a"
+      },
+      "header_summary": {
+        "zip_protocol": "ZIP_PROTOCOL_v2",
+        "zip_type": "A0_TO_A1_SAVE_ZIP",
+        "direction": "BACKWARD",
+        "sequence": 1,
+        "source_layer": "A0",
+        "target_layer": "A1",
+        "run_id": "V2_ZIPV2_PACKET_REQ_001"
+      },
+      "payload_summary": {
+        "schema": "A0_SAVE_SUMMARY_v1",
+        "step": 1,
+        "state_hash": "de0e5fe905c27b70960a8a41dadfe10ac8ab9beef13ea3a6724d7d7630d353cc",
+        "last_reject_tags": [],
+        "base_strategy_id": "STRAT_SAMPLE_0001",
+        "base_target_id": "S_BIND_ALPHA",
+        "base_alternative_id": "S_BIND_ALPHA_ALT",
+        "base_positive_sim_id": "SIM_POS_BIND_ALPHA",
+        "base_negative_sim_id": "SIM_NEG_BIND_ALPHA",
+        "base_target_family": "BASELINE",
+        "base_alternative_family": "ADVERSARIAL_NEG",
+        "base_target_tier": "T0_ATOM",
+        "base_alternative_tier": "T0_ATOM",
+        "base_input_state_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+        "base_compile_lane_digest": "4444444444444444444444444444444444444444444444444444444444444444",
+        "base_strategy_hash": "3333333333333333333333333333333333333333333333333333333333333333"
+      }
+    }
+  ]
+}

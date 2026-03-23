@@ -6,7 +6,9 @@ import zipfile
 from copy import deepcopy
 from pathlib import Path
 
-from a1_strategy import canonical_strategy_bytes, load_strategy, validate_strategy
+from a1_autowiggle import AutowiggleConfig, generate_autowiggle_strategy
+from a1_strategy import SCHEMA_V1, SCHEMA_V2, canonical_strategy_bytes, load_strategy, validate_strategy
+from state import KernelState
 from zip_protocol_v2_validator import validate_zip_protocol_v2
 
 _FENCED_JSON_RE = re.compile(r"```json\s*(\{[\s\S]*?\})\s*```", re.IGNORECASE)
@@ -64,7 +66,14 @@ def _parse_strategy_output_text(raw_text: str) -> dict:
     raise ValueError("no parseable json object")
 
 
-def _clone_candidate(base_candidate: dict, lane: str, step: int, index: int) -> dict:
+def _clone_candidate(
+    base_candidate: dict,
+    lane: str,
+    step: int,
+    index: int,
+    schema: str = SCHEMA_V1,
+    stage_meta: dict | None = None,
+) -> dict:
     out = deepcopy(base_candidate)
     suffix = f"_S{step:04d}"
     candidate_id = str(out.get("id", "S_AUTO")).strip() or "S_AUTO"
@@ -201,12 +210,27 @@ def _clone_candidate(base_candidate: dict, lane: str, step: int, index: int) -> 
             )
         ]
         fields_by_name = {str(row.get("name", "")).upper(): row for row in out["def_fields"]}
-        phase = (step + index) % 3
-        default_tier = "T0_ATOM" if phase == 0 else "T1_COMPOUND"
-        default_family = "BASELINE" if phase == 0 else ("BOUNDARY_SWEEP" if phase == 1 else "PERTURBATION")
-        tier = str(fields_by_name.get("TIER", {}).get("value", "")).strip() or default_tier
-        family = str(fields_by_name.get("FAMILY", {}).get("value", "")).strip() or default_family
-        target_class = str(fields_by_name.get("TARGET_CLASS", {}).get("value", "")).strip() or candidate_id
+        stage_meta = stage_meta or {}
+        stage_families = [str(x).strip() for x in stage_meta.get("families", []) if str(x).strip()]
+        stage_target_classes = [str(x).strip() for x in stage_meta.get("target_classes", []) if str(x).strip()]
+        if schema == SCHEMA_V2:
+            tier = str(fields_by_name.get("TIER", {}).get("value", "")).strip() or str(stage_meta.get("tier", "")).strip()
+            family = str(fields_by_name.get("FAMILY", {}).get("value", "")).strip()
+            if not family:
+                if lane == "alternatives" and "ADVERSARIAL_NEG" in stage_families:
+                    family = "ADVERSARIAL_NEG"
+                elif len(stage_families) == 1:
+                    family = stage_families[0]
+            target_class = str(fields_by_name.get("TARGET_CLASS", {}).get("value", "")).strip()
+            if not target_class and len(stage_target_classes) == 1:
+                target_class = stage_target_classes[0]
+        else:
+            phase = (step + index) % 3
+            default_tier = "T0_ATOM" if phase == 0 else "T1_COMPOUND"
+            default_family = "BASELINE" if phase == 0 else ("BOUNDARY_SWEEP" if phase == 1 else "PERTURBATION")
+            tier = str(fields_by_name.get("TIER", {}).get("value", "")).strip() or default_tier
+            family = str(fields_by_name.get("FAMILY", {}).get("value", "")).strip() or default_family
+            target_class = str(fields_by_name.get("TARGET_CLASS", {}).get("value", "")).strip() or candidate_id
         target_class = _TARGET_CLASS_SUFFIX_RE.sub("", target_class)
         default_negative_class = "NEG_BOUNDARY" if lane == "alternatives" else ""
         negative_class = str(fields_by_name.get("NEGATIVE_CLASS", {}).get("value", "")).strip() or default_negative_class
@@ -251,11 +275,14 @@ def _strip_forbidden_keys(candidate: dict) -> dict:
 def _coerce_strategy(candidate: dict, base_strategy: dict, step: int) -> dict:
     out = deepcopy(base_strategy)
     candidate = _strip_forbidden_keys(candidate if isinstance(candidate, dict) else {})
+    schema = str(candidate.get("schema") or out.get("schema") or SCHEMA_V1).strip()
+    if schema not in {SCHEMA_V1, SCHEMA_V2}:
+        schema = str(out.get("schema") or SCHEMA_V1).strip()
 
     if isinstance(candidate.get("strategy_id"), str) and candidate["strategy_id"].strip():
         out["strategy_id"] = candidate["strategy_id"].strip()
 
-    for section in ["inputs", "budget", "policy", "sims"]:
+    for section in ["inputs", "budget", "policy", "sims", "sim_program"]:
         if isinstance(candidate.get(section), dict):
             merged = deepcopy(out.get(section, {}))
             for key, value in candidate[section].items():
@@ -280,6 +307,23 @@ def _coerce_strategy(candidate: dict, base_strategy: dict, step: int) -> dict:
     base_alternatives = [deepcopy(x) for x in out.get("alternatives", []) if isinstance(x, dict)]
 
     id_map: dict[str, str] = {}
+    existing_sims = deepcopy(out.get("sims", {})) if isinstance(out.get("sims"), dict) else {}
+    bind_stage_lookup: dict[str, str] = {}
+    for lane_name in ["positive", "negative"]:
+        for row in existing_sims.get(lane_name, []):
+            if not isinstance(row, dict):
+                continue
+            bind_id = str(row.get("binds_to", "")).strip()
+            stage_id = str(row.get("stage_id", "")).strip()
+            if bind_id and stage_id:
+                bind_stage_lookup[bind_id] = stage_id
+    stage_map = {}
+    if schema == SCHEMA_V2 and isinstance(out.get("sim_program"), dict):
+        for row in out["sim_program"].get("stages", []):
+            if isinstance(row, dict):
+                stage_id = str(row.get("stage_id", "")).strip()
+                if stage_id:
+                    stage_map[stage_id] = row
 
     coerced_targets = []
     if isinstance(candidate.get("targets"), list) and candidate["targets"]:
@@ -287,18 +331,35 @@ def _coerce_strategy(candidate: dict, base_strategy: dict, step: int) -> dict:
             if not isinstance(row, dict):
                 continue
             seed = deepcopy(base_targets[min(i - 1, len(base_targets) - 1)] if base_targets else base_target)
+            stage_source_id = str(seed.get("id", "")).strip()
             seed.update(row)
             old_id = str(seed.get("id", "")).strip()
-            cloned = _clone_candidate(seed, lane="targets", step=step, index=i)
+            cloned = _clone_candidate(
+                seed,
+                lane="targets",
+                step=step,
+                index=i,
+                schema=schema,
+                stage_meta=stage_map.get(bind_stage_lookup.get(old_id, "") or bind_stage_lookup.get(stage_source_id, ""), {}),
+            )
             new_id = str(cloned.get("id", "")).strip()
             if old_id and new_id:
                 id_map[old_id] = new_id
+            if stage_source_id and new_id and stage_source_id in bind_stage_lookup and new_id not in bind_stage_lookup:
+                bind_stage_lookup[new_id] = bind_stage_lookup[stage_source_id]
             coerced_targets.append(cloned)
     else:
         source_targets = base_targets if base_targets else [deepcopy(base_target)]
         for i, row in enumerate(source_targets, start=1):
             old_id = str(row.get("id", "")).strip()
-            cloned = _clone_candidate(row, lane="targets", step=step, index=i)
+            cloned = _clone_candidate(
+                row,
+                lane="targets",
+                step=step,
+                index=i,
+                schema=schema,
+                stage_meta=stage_map.get(bind_stage_lookup.get(old_id, ""), {}),
+            )
             new_id = str(cloned.get("id", "")).strip()
             if old_id and new_id:
                 id_map[old_id] = new_id
@@ -311,17 +372,34 @@ def _coerce_strategy(candidate: dict, base_strategy: dict, step: int) -> dict:
             if not isinstance(row, dict):
                 continue
             seed = deepcopy(base_alternatives[min(i - 1, len(base_alternatives) - 1)] if base_alternatives else base_alt)
+            stage_source_id = str(seed.get("id", "")).strip()
             seed.update(row)
             old_id = str(seed.get("id", "")).strip()
-            cloned = _clone_candidate(seed, lane="alternatives", step=step, index=i)
+            cloned = _clone_candidate(
+                seed,
+                lane="alternatives",
+                step=step,
+                index=i,
+                schema=schema,
+                stage_meta=stage_map.get(bind_stage_lookup.get(old_id, "") or bind_stage_lookup.get(stage_source_id, ""), {}),
+            )
             new_id = str(cloned.get("id", "")).strip()
             if old_id and new_id:
                 id_map[old_id] = new_id
+            if stage_source_id and new_id and stage_source_id in bind_stage_lookup and new_id not in bind_stage_lookup:
+                bind_stage_lookup[new_id] = bind_stage_lookup[stage_source_id]
             coerced_alts.append(cloned)
     elif base_alternatives:
         for i, row in enumerate(base_alternatives, start=1):
             old_id = str(row.get("id", "")).strip()
-            cloned = _clone_candidate(row, lane="alternatives", step=step, index=i)
+            cloned = _clone_candidate(
+                row,
+                lane="alternatives",
+                step=step,
+                index=i,
+                schema=schema,
+                stage_meta=stage_map.get(bind_stage_lookup.get(old_id, ""), {}),
+            )
             new_id = str(cloned.get("id", "")).strip()
             if old_id and new_id:
                 id_map[old_id] = new_id
@@ -331,12 +409,23 @@ def _coerce_strategy(candidate: dict, base_strategy: dict, step: int) -> dict:
         alt_seed["id"] = str(alt_seed.get("id", "S_ALT")) + "_ALT"
         alt_seed["operator_id"] = "OP_NEG_SIM_EXPAND"
         old_id = str(alt_seed.get("id", "")).strip()
-        cloned = _clone_candidate(alt_seed, lane="alternatives", step=step, index=1)
+        cloned = _clone_candidate(
+            alt_seed,
+            lane="alternatives",
+            step=step,
+            index=1,
+            schema=schema,
+            stage_meta=stage_map.get(bind_stage_lookup.get(old_id, ""), {}),
+        )
         new_id = str(cloned.get("id", "")).strip()
         if old_id and new_id:
             id_map[old_id] = new_id
         coerced_alts.append(cloned)
     out["alternatives"] = coerced_alts
+
+    for old_id, new_id in sorted(id_map.items()):
+        if old_id in bind_stage_lookup and new_id not in bind_stage_lookup:
+            bind_stage_lookup[new_id] = bind_stage_lookup[old_id]
 
     def _rewrite_candidate_refs(item: dict) -> None:
         requires = [str(x).strip() for x in item.get("requires", []) if str(x).strip()]
@@ -410,10 +499,16 @@ def _coerce_strategy(candidate: dict, base_strategy: dict, step: int) -> dict:
 
     positive = []
     for i, target in enumerate(out["targets"], start=1):
-        positive.append({"sim_id": f"SIM_POS_{target['id']}_{i:02d}", "binds_to": target["id"]})
+        row = {"sim_id": f"SIM_POS_{target['id']}_{i:02d}", "binds_to": target["id"]}
+        if schema == SCHEMA_V2 and target["id"] in bind_stage_lookup:
+            row["stage_id"] = bind_stage_lookup[target["id"]]
+        positive.append(row)
     negative = []
     for i, alt in enumerate(out["alternatives"], start=1):
-        negative.append({"sim_id": f"SIM_NEG_{alt['id']}_{i:02d}", "binds_to": alt["id"]})
+        row = {"sim_id": f"SIM_NEG_{alt['id']}_{i:02d}", "binds_to": alt["id"]}
+        if schema == SCHEMA_V2 and alt["id"] in bind_stage_lookup:
+            row["stage_id"] = bind_stage_lookup[alt["id"]]
+        negative.append(row)
     sims = out.get("sims", {})
     if not isinstance(sims, dict):
         sims = {}
@@ -443,7 +538,7 @@ def _coerce_strategy(candidate: dict, base_strategy: dict, step: int) -> dict:
     self_audit["compile_lane_digest"] = compile_lane_digest
     self_audit["strategy_hash"] = ""
     out["self_audit"] = self_audit
-    out["schema"] = "A1_STRATEGY_v1"
+    out["schema"] = schema
     out["self_audit"]["strategy_hash"] = hashlib.sha256(canonical_strategy_bytes(out)).hexdigest()
     return out
 
@@ -455,6 +550,7 @@ class A1Bridge:
         model: str = "phi4-mini",
         timeout_sec: int = 60,
         inbox_dir: Path | None = None,
+        autowiggle_config: AutowiggleConfig | None = None,
     ):
         if source == "ollama":
             raise ValueError("a1_source_ollama_disabled:use_packet_or_replay")
@@ -462,8 +558,19 @@ class A1Bridge:
         self.model = model
         self.timeout_sec = timeout_sec
         self.inbox_dir = inbox_dir
+        self.autowiggle_config = autowiggle_config
 
-    def next_strategy(self, strategy_path: Path, step: int, state_hash: str, last_tags: list[str]) -> dict:
+        if self.source not in {"replay", "packet", "autowiggle"}:
+            raise ValueError(f"unsupported A1 source: {self.source}")
+
+    def next_strategy(
+        self,
+        strategy_path: Path,
+        step: int,
+        state_hash: str,
+        last_tags: list[str],
+        state: KernelState | None = None,
+    ) -> dict:
         if self.source == "replay":
             loaded = load_strategy(strategy_path)
             strategy = _coerce_strategy({}, loaded["strategy"], step)
@@ -481,6 +588,26 @@ class A1Bridge:
             }
         if self.source == "packet":
             return self._from_packet_inbox(strategy_path, step, state_hash)
+        if self.source == "autowiggle":
+            if state is None:
+                raise ValueError("autowiggle_requires_state")
+            strategy = generate_autowiggle_strategy(
+                state=state,
+                step=step,
+                last_tags=last_tags,
+                config=self.autowiggle_config or AutowiggleConfig(),
+            )
+            strategy.setdefault("inputs", {})["state_hash"] = state_hash
+            errors = validate_strategy(strategy)
+            if errors:
+                raise ValueError("autowiggle_strategy_invalid:" + ";".join(errors))
+            strategy_sha = hashlib.sha256(canonical_strategy_bytes(strategy)).hexdigest()
+            return {
+                "strategy": strategy,
+                "strategy_sha256": strategy_sha,
+                "raw_output": json.dumps(strategy, sort_keys=True, separators=(",", ":")),
+                "source": "autowiggle",
+            }
         raise ValueError(f"unsupported A1 source: {self.source}")
 
     def _from_packet_inbox(self, strategy_path: Path, step: int, state_hash: str) -> dict:

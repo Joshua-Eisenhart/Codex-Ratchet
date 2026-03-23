@@ -1,0 +1,91 @@
+{
+  "audit_only": true,
+  "cluster_id": "SKILL_CLUSTER::evermem-witness-memory",
+  "current_ratchet_reports": {
+    "retrieval_next_step": "hold_at_retrieval_probe",
+    "retrieval_status": "attention_required",
+    "sync_status": "sync_failed"
+  },
+  "do_not_promote": true,
+  "docker_daemon": {
+    "argv": [
+      "docker",
+      "ps"
+    ],
+    "ok": false,
+    "returncode": 1,
+    "stderr": "Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?",
+    "stdout": ""
+  },
+  "evermemos_repo_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/reference_repos/EverMind-AI/EverMemOS",
+  "gate": {
+    "allow_a2_replacement_claims": false,
+    "allow_bootstrap_claims": false,
+    "allow_pimono_memory_claims": false,
+    "allow_service_start_claims": false,
+    "reason": "local backend preconditions are still incomplete, so hold at reachability audit instead of widening memory claims",
+    "recommended_next_step": "start_docker_daemon"
+  },
+  "generated_utc": "2026-03-21T19:43:10Z",
+  "health_probes": {
+    "curl": {
+      "argv": [
+        "curl",
+        "-sS",
+        "--max-time",
+        "2",
+        "http://localhost:1995/health"
+      ],
+      "ok": false,
+      "returncode": 7,
+      "stderr": "curl: (7) Failed to connect to localhost port 1995 after 0 ms: Couldn't connect to server",
+      "stdout": ""
+    },
+    "python": {
+      "body_preview": "",
+      "error": "URLError: [Errno 1] Operation not permitted",
+      "ok": false,
+      "status_code": null
+    }
+  },
+  "health_url": "http://localhost:1995/health",
+  "issues": [
+    "EverMemOS .env is missing",
+    "EverMemOS .venv is missing",
+    "docker daemon unavailable: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?",
+    "curl health probe failed: curl: (7) Failed to connect to localhost port 1995 after 0 ms: Couldn't connect to server",
+    "python health probe failed: URLError: [Errno 1] Operation not permitted"
+  ],
+  "non_goals": [
+    "Do not start Docker services from this slice.",
+    "Do not write .env or install dependencies from this slice.",
+    "Do not claim startup bootstrap, pi-mono memory, or A2 replacement.",
+    "Do not mutate canonical A2 state or EverMem runtime state from this slice."
+  ],
+  "observer_only": true,
+  "recommended_next_actions": [
+    "Keep this slice audit-only and environment-focused.",
+    "Do not widen this result into startup bootstrap or broader EverMem integration claims.",
+    "Use the recommended next step to decide whether to repair tooling, start Docker, prepare local boot, or rerun the retriever."
+  ],
+  "repo_root": "/Users/joshuaeisenhart/Desktop/Codex Ratchet",
+  "repo_state": {
+    "docker_compose_file_exists": true,
+    "env_exists": false,
+    "env_template_exists": true,
+    "repo_exists": true,
+    "uv_lock_exists": true,
+    "venv_exists": false,
+    "web_entry_exists": true
+  },
+  "schema": "A2_EVERMEM_BACKEND_REACHABILITY_AUDIT_REPORT_v1",
+  "slice_id": "a2-evermem-backend-reachability-audit-operator",
+  "source_family": "EverMemOS local backend bring-up path",
+  "status": "attention_required",
+  "tooling": {
+    "curl": "/usr/bin/curl",
+    "docker": "/usr/local/bin/docker",
+    "docker_compose": "/usr/local/bin/docker-compose",
+    "uv": "/Library/Frameworks/Python.framework/Versions/3.13/bin/uv"
+  }
+}

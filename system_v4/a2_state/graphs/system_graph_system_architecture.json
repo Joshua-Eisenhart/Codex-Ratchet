@@ -1,0 +1,125 @@
+{
+  "nodes": {
+    "v3_tool::replay_runner": {
+      "id": "v3_tool::replay_runner",
+      "node_type": "V3_TOOL",
+      "layer": "V3_LEGACY",
+      "name": "replay_runner",
+      "description": "Legacy v3 tool: replay_runner",
+      "original_path": null,
+      "properties": {
+        "file_path": "system_v3/runtime/bootpack_b_kernel_v1/tools/replay_runner.py"
+      },
+      "authority": "SOURCE_CLAIM",
+      "tags": [
+        "v3",
+        "tool",
+        "deprecated"
+      ],
+      "object_family": "LegacyCode",
+      "source_class": "DERIVED",
+      "status": "LIVE",
+      "trust_zone": "GRAVEYARD",
+      "admissibility_state": "DEPRECATED",
+      "lineage_refs": [],
+      "witness_refs": []
+    },
+    "v3_tool::a1_adaptive_ratchet_planner": {
+      "id": "v3_tool::a1_adaptive_ratchet_planner",
+      "node_type": "V3_TOOL",
+      "layer": "V3_LEGACY",
+      "name": "a1_adaptive_ratchet_planner",
+      "description": "Deterministic A1-side planner that generates packet-mode A1_STRATEGY_v1 capsules\nto advance a bottom-up term ladder (no FORMULA / no equals) toward QIT primitives.\n\nThis does NOT use an LLM. It is an ",
+      "original_path": null,
+      "properties": {
+        "file_path": "system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py"
+      },
+      "authority": "SOURCE_CLAIM",
+      "tags": [
+        "v3",
+        "tool",
+        "deprecated"
+      ],
+      "object_family": "LegacyCode",
+      "source_class": "DERIVED",
+      "status": "LIVE",
+      "trust_zone": "GRAVEYARD",
+      "admissibility_state": "DEPRECATED",
+      "lineage_refs": [],
+      "witness_refs": []
+    },
+    "v3_tool::autoratchet": {
+      "id": "v3_tool::autoratchet",
+      "node_type": "V3_TOOL",
+      "layer": "V3_LEGACY",
+      "name": "autoratchet",
+      "description": "Autonomous local loop (no external LLM) for packet-mode runs:\n  - generates 1 A1_TO_A0_STRATEGY_ZIP using the deterministic planner\n  - runs 1 step of a1_a0_b_sim_runner.py in packet mode\n  - repeats ",
+      "original_path": null,
+      "properties": {
+        "file_path": "system_v3/runtime/bootpack_b_kernel_v1/tools/autoratchet.py"
+      },
+      "authority": "SOURCE_CLAIM",
+      "tags": [
+        "v3",
+        "tool",
+        "deprecated"
+      ],
+      "object_family": "LegacyCode",
+      "source_class": "DERIVED",
+      "status": "LIVE",
+      "trust_zone": "GRAVEYARD",
+      "admissibility_state": "DEPRECATED",
+      "lineage_refs": [],
+      "witness_refs": []
+    },
+    "v3_tool::generate_hardmode_packets": {
+      "id": "v3_tool::generate_hardmode_packets",
+      "node_type": "V3_TOOL",
+      "layer": "V3_LEGACY",
+      "name": "generate_hardmode_packets",
+      "description": "Legacy v3 tool: generate_hardmode_packets",
+      "original_path": null,
+      "properties": {
+        "file_path": "system_v3/runtime/bootpack_b_kernel_v1/tools/generate_hardmode_packets.py"
+      },
+      "authority": "SOURCE_CLAIM",
+      "tags": [
+        "v3",
+        "tool",
+        "deprecated"
+      ],
+      "object_family": "LegacyCode",
+      "source_class": "DERIVED",
+      "status": "LIVE",
+      "trust_zone": "GRAVEYARD",
+      "admissibility_state": "DEPRECATED",
+      "lineage_refs": [],
+      "witness_refs": []
+    },
+    "v3_tool::generate_density_matrix_packet": {
+      "id": "v3_tool::generate_density_matrix_packet",
+      "node_type": "V3_TOOL",
+      "layer": "V3_LEGACY",
+      "name": "generate_density_matrix_packet",
+      "description": "Generate a single A1_TO_A0_STRATEGY_ZIP packet that ratchets concrete QIT-aligned\nterms (e.g. density_matrix) without introducing FORMULA/equality primitives.\n\nThis is an A1-side artifact generator (h",
+      "original_path": null,
+      "properties": {
+        "file_path": "system_v3/runtime/bootpack_b_kernel_v1/tools/generate_density_matrix_packet.py"
+      },
+      "authority": "SOURCE_CLAIM",
+      "tags": [
+        "v3",
+        "tool",
+        "deprecated"
+      ],
+      "object_family": "LegacyCode",
+      "source_class": "DERIVED",
+      "status": "LIVE",
+      "trust_zone": "GRAVEYARD",
+      "admissibility_state": "DEPRECATED",
+      "lineage_refs": [],
+      "witness_refs": []
+    }
+  },
+  "edges": []
+}

@@ -44,34 +44,33 @@
 
 ## V4 Directory Structure
 
-```
+```text
 system_v4/
-  specs/          7 spec files (this directory)
-  skills/       131 .py skill modules
-  tests/         93 test files
-  runners/       18 runner scripts
-  probes/        14 probe/analysis scripts
-  skill_specs/   88 per-skill spec directories
-  docs/           9 planning/tracking docs
+  specs/                 7 spec files (this directory)
+  skills/              131 .py skill modules
+  tests/                93 test files
+  runners/              18 runner scripts
+  probes/               14 probe/analysis scripts
+  skill_specs/          88 per-skill spec directories
+  docs/                  9 planning/tracking docs
   a2_state/
     graphs/                  12 graph files (DVC-tracked)
     audit_logs/             201 reports
     launch_bundles/          20 nested graph build dirs
     thread_context_extracts/  9 context files
-    process_docs/             9 reference/process docs
-    session_logs/           120 historical session traces
+    process_docs/             9 reference/process docs (clean boundary)
+    session_logs_archive/   120 historical session traces (archived)
     cartridges/               1 cartridge
     quarantine/               2 state files
     experiments/              2 files
     stack_sessions/           1 dir
     [live state files]        ~10 JSON/JSONL files
-  a1_state/      16 files (A1 brain, routing, eval, rosetta)
-  a2_understanding/  5 files
-  runtime_state/    61 batch output files
+  a1_state/             16 files (A1 brain, routing, eval, rosetta)
+  a2_understanding/      5 files
+  runtime_state/        61 batch output files
 ```
 
 ## Known Issues
 
 1. `nested_graph_v1.json` is empty (0 nodes, 0 edges) — needs rebuild
 2. 4 graph invariant test failures (duplicate edges, subset violation, edge count mismatch)
-3. `session_logs/` has 120 historical files — consider archiving

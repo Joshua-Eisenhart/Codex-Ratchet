@@ -10,7 +10,7 @@ Preserved the existing richer A2 low-control owner surface instead of overwritin
 
 # A2_LOW_CONTROL_GRAPH_AUDIT__2026_03_20__v1
 
-generated_utc: 2026-03-21T01:58:56Z
+generated_utc: 2026-03-23T05:52:32Z
 build_status: MATERIALIZED
 materialized: True
 node_count: 419
@@ -22,8 +22,8 @@ derived_from.a2_mid_refinement_graph: /Users/joshuaeisenhart/Desktop/Codex Ratch
 
 ## Projection Diagnostics
 - attempted_internal_edge_count: 238
-- selected_boundary_edge_count: 3912
-- internal_edge_retention_ratio: 0.057349
+- selected_boundary_edge_count: 3973
+- internal_edge_retention_ratio: 0.056519
 - selected_node_counts_by_trust_zone: {'A2_1_KERNEL': 419}
 - selected_node_counts_by_status: {'LIVE': 419}
 
@@ -54,17 +54,19 @@ derived_from.a2_mid_refinement_graph: /Users/joshuaeisenhart/Desktop/Codex Ratch
 - B_PARKED: 96
 - B_SURVIVOR: 78
 - CARTRIDGE_PACKAGE: 401
-- CONTEXT_SIGNAL: 1
+- CONCEPT: 1
+- CONTEXT_SIGNAL: 2
+- EMPIRICAL_EVIDENCE: 1
 - EXECUTION_BLOCK: 401
 - EXTRACTED_CONCEPT: 5895
 - GRAVEYARD_RECORD: 99
 - INTENT_REFINEMENT: 3
-- INTENT_SIGNAL: 3
+- INTENT_SIGNAL: 6
 - KERNEL_CONCEPT: 423
 - REFINED_CONCEPT: 1287
 - SIM_EVIDENCED: 67
 - SIM_KILL: 98
-- SKILL: 43
+- SKILL: 123
 - SOURCE_DOCUMENT: 10099
 - TERM_ADMITTED: 20
 - THREAD_SEAL: 21

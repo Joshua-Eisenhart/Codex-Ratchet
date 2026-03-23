@@ -4,7 +4,7 @@
   "description": "Real system architecture graph traced from code imports, specs, tests, and probes",
   "stats": {
     "total_nodes": 806,
-    "total_edges": 1409,
+    "total_edges": 1822,
     "nodes_by_type": {
       "V4_SKILL": 131,
       "V4_RUNNER": 18,
@@ -44,7 +44,9 @@
     "governance_edges": 396,
     "v3_spec_nodes": 0,
     "v4_governance_nodes": 9,
-    "v4_governance_edges": 60
+    "v4_governance_edges": 60,
+    "co_governed_edges": 396,
+    "feeds_edges": 17
   },
   "nodes": {
     "v4_skill::a0_compiler": {
@@ -14600,6 +14602,2897 @@
       "target": "v4_skill::generate_doc_queue",
       "relation": "GOVERNS",
       "layer": "V4_NATIVE_GOVERNANCE"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::a1_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::a1_distiller",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_distiller",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC"
+    },
+    {
+      "source": "v4_skill::a1_distiller",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC"
+    },
+    {
+      "source": "v4_skill::a1_distiller",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC"
+    },
+    {
+      "source": "v4_skill::a1_distiller",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_mapper",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_mapper",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_stripper",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_cartridge_assembler",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_cartridge_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_entropy_structure_decomposition_control",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a1_cartridge_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a1_distiller",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a1_entropy_structure_decomposition_control",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_graph_builder",
+      "target": "v4_skill::a1_distiller",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_graph_builder",
+      "target": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_graph_builder",
+      "target": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_graph_builder",
+      "target": "v4_skill::a1_entropy_structure_decomposition_control",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_graph_builder",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_graph_builder",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_graph_builder",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_graph_builder",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_graph_builder",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_graph_builder",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_graph_builder",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_graph_builder",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_graph_builder",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_distiller",
+      "target": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_distiller",
+      "target": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_distiller",
+      "target": "v4_skill::a1_entropy_structure_decomposition_control",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_distiller",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_distiller",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_distiller",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_distiller",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_distiller",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_distiller",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "target": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "target": "v4_skill::a1_entropy_structure_decomposition_control",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "target": "v4_skill::a1_entropy_structure_decomposition_control",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_structure_decomposition_control",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_structure_decomposition_control",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_structure_decomposition_control",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_structure_decomposition_control",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_structure_decomposition_control",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_structure_decomposition_control",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_structure_decomposition_control",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_structure_decomposition_control",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_entropy_structure_decomposition_control",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_first_entropy_structure_campaign",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_first_entropy_structure_campaign",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_first_entropy_structure_campaign",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_first_entropy_structure_campaign",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_first_entropy_structure_campaign",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_first_entropy_structure_campaign",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_first_entropy_structure_campaign",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_first_entropy_structure_campaign",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_graph_builder",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_graph_builder",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_graph_builder",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_graph_builder",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_graph_builder",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_graph_builder",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_graph_builder",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_scope_aligner",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_scope_aligner",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_scope_aligner",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_scope_aligner",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_scope_aligner",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_scope_aligner",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_mapper",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_mapper",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_mapper",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_stripper",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_stripper",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_stripper",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_routing_state",
+      "target": "v4_skill::a1_stripped_exact_term_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_routing_state",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_routing_state",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_stripped_exact_term_aligner",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_stripped_exact_term_aligner",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_stripped_graph_builder",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_graph_builder",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1"
+    },
+    {
+      "source": "v4_skill::a1_distiller",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1"
+    },
+    {
+      "source": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1"
+    },
+    {
+      "source": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1"
+    },
+    {
+      "source": "v4_skill::a1_entropy_structure_decomposition_control",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1"
+    },
+    {
+      "source": "v4_skill::a1_first_entropy_structure_campaign",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_graph_builder",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_scope_aligner",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_mapper",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_stripper",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1"
+    },
+    {
+      "source": "v4_skill::a1_routing_state",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1"
+    },
+    {
+      "source": "v4_skill::a1_stripped_exact_term_aligner",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1"
+    },
+    {
+      "source": "v4_skill::a1_stripped_graph_builder",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1"
+    },
+    {
+      "source": "v4_skill::a1_stripped_term_plan_aligner",
+      "target": "v4_skill::a2_refinement_for_a1_stripped_landing",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_graph_builder",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1"
+    },
+    {
+      "source": "v4_skill::a1_distiller",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1"
+    },
+    {
+      "source": "v4_skill::a1_entropy_bridge_helper_lift_pack",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1"
+    },
+    {
+      "source": "v4_skill::a1_entropy_diversity_alias_lift_pack",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1"
+    },
+    {
+      "source": "v4_skill::a1_entropy_structure_decomposition_control",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1"
+    },
+    {
+      "source": "v4_skill::a1_first_entropy_structure_campaign",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_graph_builder",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_scope_aligner",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_mapper",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_stripper",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1"
+    },
+    {
+      "source": "v4_skill::a1_routing_state",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1"
+    },
+    {
+      "source": "v4_skill::a1_stripped_exact_term_aligner",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1"
+    },
+    {
+      "source": "v4_skill::a1_stripped_graph_builder",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1"
+    },
+    {
+      "source": "v4_skill::a1_stripped_term_plan_aligner",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1"
+    },
+    {
+      "source": "v4_skill::sim_engine",
+      "target": "v4_skill::sim_holodeck_engine",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::06_SIM_EVIDENCE_AND_TIERS_SPEC"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::rosetta_v2",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::zip_subagent_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::rosetta_v2",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::zip_subagent_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "v4_skill::rosetta_v2",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "v4_skill::zip_subagent_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC"
+    },
+    {
+      "source": "v4_skill::rosetta_v2",
+      "target": "v4_skill::zip_subagent_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC"
+    },
+    {
+      "source": "v4_skill::rosetta_v2",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC"
+    },
+    {
+      "source": "v4_skill::zip_subagent_builder",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::08_PIPELINE_AND_STATE_FLOW_SPEC"
+    },
+    {
+      "source": "v4_skill::graph_capability_auditor",
+      "target": "v4_skill::rosetta_v2",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES"
+    },
+    {
+      "source": "v4_skill::graph_capability_auditor",
+      "target": "v4_skill::runtime_context_snapshot",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES"
+    },
+    {
+      "source": "v4_skill::graph_capability_auditor",
+      "target": "v4_skill::zip_subagent_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES"
+    },
+    {
+      "source": "v4_skill::graph_capability_auditor",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES"
+    },
+    {
+      "source": "v4_skill::rosetta_v2",
+      "target": "v4_skill::runtime_context_snapshot",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES"
+    },
+    {
+      "source": "v4_skill::runtime_context_snapshot",
+      "target": "v4_skill::zip_subagent_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES"
+    },
+    {
+      "source": "v4_skill::runtime_context_snapshot",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES"
+    },
+    {
+      "source": "v4_skill::b_adjudicator",
+      "target": "v4_skill::ratchet_integrator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::b_adjudicator",
+      "target": "v4_skill::ratchet_overseer",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::b_adjudicator",
+      "target": "v4_skill::ratchet_prompt_stack",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::b_adjudicator",
+      "target": "v4_skill::slice_compiler",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::b_adjudicator",
+      "target": "v4_skill::slice_manifest",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::b_adjudicator",
+      "target": "v4_skill::slice_request",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::ratchet_integrator",
+      "target": "v4_skill::ratchet_overseer",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::ratchet_integrator",
+      "target": "v4_skill::ratchet_prompt_stack",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::ratchet_integrator",
+      "target": "v4_skill::slice_compiler",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::ratchet_integrator",
+      "target": "v4_skill::slice_manifest",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::ratchet_integrator",
+      "target": "v4_skill::slice_request",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::ratchet_overseer",
+      "target": "v4_skill::ratchet_prompt_stack",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::ratchet_overseer",
+      "target": "v4_skill::slice_compiler",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::ratchet_overseer",
+      "target": "v4_skill::slice_manifest",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::ratchet_overseer",
+      "target": "v4_skill::slice_request",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::ratchet_prompt_stack",
+      "target": "v4_skill::slice_compiler",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::ratchet_prompt_stack",
+      "target": "v4_skill::slice_manifest",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::ratchet_prompt_stack",
+      "target": "v4_skill::slice_request",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::slice_compiler",
+      "target": "v4_skill::slice_manifest",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::slice_compiler",
+      "target": "v4_skill::slice_request",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::slice_manifest",
+      "target": "v4_skill::slice_request",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::ratchet_core"
+    },
+    {
+      "source": "v4_skill::bounded_improve_operator",
+      "target": "v4_skill::registry_types",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::skill_infrastructure"
+    },
+    {
+      "source": "v4_skill::bounded_improve_operator",
+      "target": "v4_skill::skill_improver_operator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::skill_infrastructure"
+    },
+    {
+      "source": "v4_skill::bounded_improve_operator",
+      "target": "v4_skill::skill_registry",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::skill_infrastructure"
+    },
+    {
+      "source": "v4_skill::registry_types",
+      "target": "v4_skill::skill_improver_operator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::skill_infrastructure"
+    },
+    {
+      "source": "v4_skill::registry_types",
+      "target": "v4_skill::skill_registry",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::skill_infrastructure"
+    },
+    {
+      "source": "v4_skill::skill_improver_operator",
+      "target": "v4_skill::skill_registry",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::skill_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_gap_auditor",
+      "target": "v4_skill::control_graph_bridge_source_auditor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_gap_auditor",
+      "target": "v4_skill::graph_tool_integration",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_gap_auditor",
+      "target": "v4_skill::identity_registry_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_gap_auditor",
+      "target": "v4_skill::intent_control_surface_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_gap_auditor",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_gap_auditor",
+      "target": "v4_skill::nested_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_gap_auditor",
+      "target": "v4_skill::nested_graph_layer_auditor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_gap_auditor",
+      "target": "v4_skill::nested_graph_queue_observation_sync",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_gap_auditor",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_gap_auditor",
+      "target": "v4_skill::skill_kernel_bridge_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_gap_auditor",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_gap_auditor",
+      "target": "v4_skill::v4_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_source_auditor",
+      "target": "v4_skill::graph_tool_integration",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_source_auditor",
+      "target": "v4_skill::identity_registry_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_source_auditor",
+      "target": "v4_skill::intent_control_surface_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_source_auditor",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_source_auditor",
+      "target": "v4_skill::nested_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_source_auditor",
+      "target": "v4_skill::nested_graph_layer_auditor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_source_auditor",
+      "target": "v4_skill::nested_graph_queue_observation_sync",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_source_auditor",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_source_auditor",
+      "target": "v4_skill::skill_kernel_bridge_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_source_auditor",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::control_graph_bridge_source_auditor",
+      "target": "v4_skill::v4_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::graph_tool_integration",
+      "target": "v4_skill::identity_registry_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::graph_tool_integration",
+      "target": "v4_skill::intent_control_surface_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::graph_tool_integration",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::graph_tool_integration",
+      "target": "v4_skill::nested_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::graph_tool_integration",
+      "target": "v4_skill::nested_graph_layer_auditor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::graph_tool_integration",
+      "target": "v4_skill::nested_graph_queue_observation_sync",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::graph_tool_integration",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::graph_tool_integration",
+      "target": "v4_skill::skill_kernel_bridge_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::graph_tool_integration",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::graph_tool_integration",
+      "target": "v4_skill::v4_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::identity_registry_builder",
+      "target": "v4_skill::intent_control_surface_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::identity_registry_builder",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::identity_registry_builder",
+      "target": "v4_skill::nested_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::identity_registry_builder",
+      "target": "v4_skill::nested_graph_layer_auditor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::identity_registry_builder",
+      "target": "v4_skill::nested_graph_queue_observation_sync",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::identity_registry_builder",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::identity_registry_builder",
+      "target": "v4_skill::skill_kernel_bridge_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::identity_registry_builder",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::identity_registry_builder",
+      "target": "v4_skill::v4_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::nested_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::nested_graph_layer_auditor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::nested_graph_queue_observation_sync",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::skill_kernel_bridge_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::v4_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::intent_refinement_graph_builder",
+      "target": "v4_skill::nested_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::intent_refinement_graph_builder",
+      "target": "v4_skill::nested_graph_layer_auditor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::intent_refinement_graph_builder",
+      "target": "v4_skill::nested_graph_queue_observation_sync",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::intent_refinement_graph_builder",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::intent_refinement_graph_builder",
+      "target": "v4_skill::skill_kernel_bridge_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::intent_refinement_graph_builder",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::intent_refinement_graph_builder",
+      "target": "v4_skill::v4_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::nested_graph_builder",
+      "target": "v4_skill::nested_graph_layer_auditor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::nested_graph_builder",
+      "target": "v4_skill::nested_graph_queue_observation_sync",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::nested_graph_builder",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::nested_graph_builder",
+      "target": "v4_skill::skill_kernel_bridge_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::nested_graph_builder",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::nested_graph_builder",
+      "target": "v4_skill::v4_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::nested_graph_layer_auditor",
+      "target": "v4_skill::nested_graph_queue_observation_sync",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::nested_graph_layer_auditor",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::nested_graph_layer_auditor",
+      "target": "v4_skill::skill_kernel_bridge_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::nested_graph_layer_auditor",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::nested_graph_layer_auditor",
+      "target": "v4_skill::v4_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::nested_graph_queue_observation_sync",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::nested_graph_queue_observation_sync",
+      "target": "v4_skill::skill_kernel_bridge_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::nested_graph_queue_observation_sync",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::nested_graph_queue_observation_sync",
+      "target": "v4_skill::v4_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::runtime_graph_bridge",
+      "target": "v4_skill::skill_kernel_bridge_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::runtime_graph_bridge",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::runtime_graph_bridge",
+      "target": "v4_skill::v4_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::skill_kernel_bridge_builder",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::skill_kernel_bridge_builder",
+      "target": "v4_skill::v4_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::system_v3_full_graph_ingestor",
+      "target": "v4_skill::v4_graph_builder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::graph_infrastructure"
+    },
+    {
+      "source": "v4_skill::intent_runtime_policy",
+      "target": "v4_skill::memory_admission_guard",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::runtime_state"
+    },
+    {
+      "source": "v4_skill::intent_runtime_policy",
+      "target": "v4_skill::outer_session_ledger",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::runtime_state"
+    },
+    {
+      "source": "v4_skill::intent_runtime_policy",
+      "target": "v4_skill::outside_control_shell_operator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::runtime_state"
+    },
+    {
+      "source": "v4_skill::intent_runtime_policy",
+      "target": "v4_skill::runtime_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::runtime_state"
+    },
+    {
+      "source": "v4_skill::intent_runtime_policy",
+      "target": "v4_skill::runtime_state_kernel",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::runtime_state"
+    },
+    {
+      "source": "v4_skill::memory_admission_guard",
+      "target": "v4_skill::outer_session_ledger",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::runtime_state"
+    },
+    {
+      "source": "v4_skill::memory_admission_guard",
+      "target": "v4_skill::outside_control_shell_operator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::runtime_state"
+    },
+    {
+      "source": "v4_skill::memory_admission_guard",
+      "target": "v4_skill::runtime_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::runtime_state"
+    },
+    {
+      "source": "v4_skill::memory_admission_guard",
+      "target": "v4_skill::runtime_state_kernel",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::runtime_state"
+    },
+    {
+      "source": "v4_skill::outer_session_ledger",
+      "target": "v4_skill::outside_control_shell_operator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::runtime_state"
+    },
+    {
+      "source": "v4_skill::outer_session_ledger",
+      "target": "v4_skill::runtime_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::runtime_state"
+    },
+    {
+      "source": "v4_skill::outer_session_ledger",
+      "target": "v4_skill::runtime_state_kernel",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::runtime_state"
+    },
+    {
+      "source": "v4_skill::outside_control_shell_operator",
+      "target": "v4_skill::runtime_state",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::runtime_state"
+    },
+    {
+      "source": "v4_skill::outside_control_shell_operator",
+      "target": "v4_skill::runtime_state_kernel",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::runtime_state"
+    },
+    {
+      "source": "v4_skill::runtime_state",
+      "target": "v4_skill::runtime_state_kernel",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::runtime_state"
+    },
+    {
+      "source": "v4_skill::differential_tester",
+      "target": "v4_skill::frontier_search_operator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::testing_verification"
+    },
+    {
+      "source": "v4_skill::differential_tester",
+      "target": "v4_skill::model_checker",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::testing_verification"
+    },
+    {
+      "source": "v4_skill::differential_tester",
+      "target": "v4_skill::property_pressure_tester",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::testing_verification"
+    },
+    {
+      "source": "v4_skill::differential_tester",
+      "target": "v4_skill::structured_fuzzer",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::testing_verification"
+    },
+    {
+      "source": "v4_skill::frontier_search_operator",
+      "target": "v4_skill::model_checker",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::testing_verification"
+    },
+    {
+      "source": "v4_skill::frontier_search_operator",
+      "target": "v4_skill::property_pressure_tester",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::testing_verification"
+    },
+    {
+      "source": "v4_skill::frontier_search_operator",
+      "target": "v4_skill::structured_fuzzer",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::testing_verification"
+    },
+    {
+      "source": "v4_skill::model_checker",
+      "target": "v4_skill::property_pressure_tester",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::testing_verification"
+    },
+    {
+      "source": "v4_skill::model_checker",
+      "target": "v4_skill::structured_fuzzer",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::testing_verification"
+    },
+    {
+      "source": "v4_skill::property_pressure_tester",
+      "target": "v4_skill::structured_fuzzer",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::testing_verification"
+    },
+    {
+      "source": "v4_skill::autoresearch_operator",
+      "target": "v4_skill::evermem_adapter",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::autoresearch_operator",
+      "target": "v4_skill::llm_council_operator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::autoresearch_operator",
+      "target": "v4_skill::pimono_evermem_adapter",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::autoresearch_operator",
+      "target": "v4_skill::witness_evermem_sync",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::autoresearch_operator",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::autoresearch_operator",
+      "target": "v4_skill::witness_recorder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::autoresearch_operator",
+      "target": "v4_skill::z3_cegis_refiner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::autoresearch_operator",
+      "target": "v4_skill::z3_constraint_checker",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::evermem_adapter",
+      "target": "v4_skill::llm_council_operator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::evermem_adapter",
+      "target": "v4_skill::pimono_evermem_adapter",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::evermem_adapter",
+      "target": "v4_skill::witness_evermem_sync",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::evermem_adapter",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::evermem_adapter",
+      "target": "v4_skill::witness_recorder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::evermem_adapter",
+      "target": "v4_skill::z3_cegis_refiner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::evermem_adapter",
+      "target": "v4_skill::z3_constraint_checker",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::llm_council_operator",
+      "target": "v4_skill::pimono_evermem_adapter",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::llm_council_operator",
+      "target": "v4_skill::witness_evermem_sync",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::llm_council_operator",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::llm_council_operator",
+      "target": "v4_skill::witness_recorder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::llm_council_operator",
+      "target": "v4_skill::z3_cegis_refiner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::llm_council_operator",
+      "target": "v4_skill::z3_constraint_checker",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::pimono_evermem_adapter",
+      "target": "v4_skill::witness_evermem_sync",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::pimono_evermem_adapter",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::pimono_evermem_adapter",
+      "target": "v4_skill::witness_recorder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::pimono_evermem_adapter",
+      "target": "v4_skill::z3_cegis_refiner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::pimono_evermem_adapter",
+      "target": "v4_skill::z3_constraint_checker",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::witness_evermem_sync",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::witness_evermem_sync",
+      "target": "v4_skill::witness_recorder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::witness_evermem_sync",
+      "target": "v4_skill::z3_cegis_refiner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::witness_evermem_sync",
+      "target": "v4_skill::z3_constraint_checker",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::witness_memory_retriever",
+      "target": "v4_skill::witness_recorder",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::witness_memory_retriever",
+      "target": "v4_skill::z3_cegis_refiner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::witness_memory_retriever",
+      "target": "v4_skill::z3_constraint_checker",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::witness_recorder",
+      "target": "v4_skill::z3_cegis_refiner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::witness_recorder",
+      "target": "v4_skill::z3_constraint_checker",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::z3_cegis_refiner",
+      "target": "v4_skill::z3_constraint_checker",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::external_adapters"
+    },
+    {
+      "source": "v4_skill::clifford_edge_semantics_audit",
+      "target": "v4_skill::edge_payload_schema_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::clifford_edge_semantics_audit",
+      "target": "v4_skill::edge_payload_schema_probe",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::clifford_edge_semantics_audit",
+      "target": "v4_skill::fep_regulation_operator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::clifford_edge_semantics_audit",
+      "target": "v4_skill::nonlive_overlay_projector",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::clifford_edge_semantics_audit",
+      "target": "v4_skill::pyg_heterograph_projection_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::clifford_edge_semantics_audit",
+      "target": "v4_skill::qit_rosetta_tables",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::clifford_edge_semantics_audit",
+      "target": "v4_skill::skill_kernel_link_seeding_policy_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::clifford_edge_semantics_audit",
+      "target": "v4_skill::survivor_kernel_bridge_backfill_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::clifford_edge_semantics_audit",
+      "target": "v4_skill::toponetx_projection_adapter_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::edge_payload_schema_audit",
+      "target": "v4_skill::edge_payload_schema_probe",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::edge_payload_schema_audit",
+      "target": "v4_skill::fep_regulation_operator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::edge_payload_schema_audit",
+      "target": "v4_skill::nonlive_overlay_projector",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::edge_payload_schema_audit",
+      "target": "v4_skill::pyg_heterograph_projection_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::edge_payload_schema_audit",
+      "target": "v4_skill::qit_rosetta_tables",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::edge_payload_schema_audit",
+      "target": "v4_skill::skill_kernel_link_seeding_policy_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::edge_payload_schema_audit",
+      "target": "v4_skill::survivor_kernel_bridge_backfill_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::edge_payload_schema_audit",
+      "target": "v4_skill::toponetx_projection_adapter_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::edge_payload_schema_probe",
+      "target": "v4_skill::fep_regulation_operator",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::edge_payload_schema_probe",
+      "target": "v4_skill::nonlive_overlay_projector",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::edge_payload_schema_probe",
+      "target": "v4_skill::pyg_heterograph_projection_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::edge_payload_schema_probe",
+      "target": "v4_skill::qit_rosetta_tables",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::edge_payload_schema_probe",
+      "target": "v4_skill::skill_kernel_link_seeding_policy_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::edge_payload_schema_probe",
+      "target": "v4_skill::survivor_kernel_bridge_backfill_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::edge_payload_schema_probe",
+      "target": "v4_skill::toponetx_projection_adapter_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::fep_regulation_operator",
+      "target": "v4_skill::nonlive_overlay_projector",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::fep_regulation_operator",
+      "target": "v4_skill::pyg_heterograph_projection_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::fep_regulation_operator",
+      "target": "v4_skill::qit_rosetta_tables",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::fep_regulation_operator",
+      "target": "v4_skill::skill_kernel_link_seeding_policy_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::fep_regulation_operator",
+      "target": "v4_skill::survivor_kernel_bridge_backfill_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::fep_regulation_operator",
+      "target": "v4_skill::toponetx_projection_adapter_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::nonlive_overlay_projector",
+      "target": "v4_skill::pyg_heterograph_projection_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::nonlive_overlay_projector",
+      "target": "v4_skill::qit_rosetta_tables",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::nonlive_overlay_projector",
+      "target": "v4_skill::skill_kernel_link_seeding_policy_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::nonlive_overlay_projector",
+      "target": "v4_skill::survivor_kernel_bridge_backfill_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::nonlive_overlay_projector",
+      "target": "v4_skill::toponetx_projection_adapter_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::pyg_heterograph_projection_audit",
+      "target": "v4_skill::qit_rosetta_tables",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::pyg_heterograph_projection_audit",
+      "target": "v4_skill::skill_kernel_link_seeding_policy_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::pyg_heterograph_projection_audit",
+      "target": "v4_skill::survivor_kernel_bridge_backfill_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::pyg_heterograph_projection_audit",
+      "target": "v4_skill::toponetx_projection_adapter_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::qit_rosetta_tables",
+      "target": "v4_skill::skill_kernel_link_seeding_policy_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::qit_rosetta_tables",
+      "target": "v4_skill::survivor_kernel_bridge_backfill_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::qit_rosetta_tables",
+      "target": "v4_skill::toponetx_projection_adapter_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::skill_kernel_link_seeding_policy_audit",
+      "target": "v4_skill::survivor_kernel_bridge_backfill_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::skill_kernel_link_seeding_policy_audit",
+      "target": "v4_skill::toponetx_projection_adapter_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::survivor_kernel_bridge_backfill_audit",
+      "target": "v4_skill::toponetx_projection_adapter_audit",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::topology_geometry"
+    },
+    {
+      "source": "v4_skill::graveyard_lawyer",
+      "target": "v4_skill::graveyard_router",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::evidence_graveyard"
+    },
+    {
+      "source": "v4_skill::graveyard_lawyer",
+      "target": "v4_skill::identity_registry_overlap_quarantine",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::evidence_graveyard"
+    },
+    {
+      "source": "v4_skill::graveyard_lawyer",
+      "target": "v4_skill::v4_tape_writer",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::evidence_graveyard"
+    },
+    {
+      "source": "v4_skill::graveyard_router",
+      "target": "v4_skill::identity_registry_overlap_quarantine",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::evidence_graveyard"
+    },
+    {
+      "source": "v4_skill::graveyard_router",
+      "target": "v4_skill::v4_tape_writer",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::evidence_graveyard"
+    },
+    {
+      "source": "v4_skill::identity_registry_overlap_quarantine",
+      "target": "v4_skill::v4_tape_writer",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::evidence_graveyard"
+    },
+    {
+      "source": "v4_skill::generate_doc_queue",
+      "target": "v4_skill::wiggle_lane_runner",
+      "relation": "CO_GOVERNED",
+      "layer": "GOVERNANCE_CLUSTER",
+      "shared_authority": "v4_gov::a1_execution"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "v4_skill::a1_brain",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "A2 brain state feeds A1 strategy"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "v4_skill::a1_distiller",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "A2 state feeds A1 distillation"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "v4_skill::a1_brain",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "Refined graph feeds A1 strategy"
+    },
+    {
+      "source": "v4_skill::a2_boot",
+      "target": "v4_skill::a1_brain",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "A2 boot context feeds A1"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a0_compiler",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "A1 strategy proposals feed A0 compiler"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_mapper",
+      "target": "v4_skill::a0_compiler",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "Rosetta mappings feed A0 compilation"
+    },
+    {
+      "source": "v4_skill::a1_distiller",
+      "target": "v4_skill::a0_compiler",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "Distilled proposals feed A0"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::b_adjudicator",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "Compiled artifacts feed B admission"
+    },
+    {
+      "source": "v4_skill::slice_compiler",
+      "target": "v4_skill::b_adjudicator",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "Compiled slices feed B"
+    },
+    {
+      "source": "v4_skill::b_adjudicator",
+      "target": "v4_skill::ratchet_integrator",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "B decisions feed ratchet integration"
+    },
+    {
+      "source": "v4_skill::graveyard_lawyer",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "Graveyard pressure feeds A2 state"
+    },
+    {
+      "source": "v4_skill::graveyard_router",
+      "target": "v4_skill::a1_brain",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "Graveyard routes feed A1 rescue lanes"
+    },
+    {
+      "source": "v4_skill::witness_recorder",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "Witness evidence feeds A2 state"
+    },
+    {
+      "source": "v4_skill::skill_registry",
+      "target": "v4_skill::ratchet_overseer",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "Registry state feeds overseer"
+    },
+    {
+      "source": "v4_skill::runtime_state",
+      "target": "v4_skill::ratchet_overseer",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "Runtime state feeds overseer"
+    },
+    {
+      "source": "v4_skill::a2_brain_refresh",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "Brain refresh feeds persistent state"
+    },
+    {
+      "source": "v4_skill::a2_brain_surface_refresher",
+      "target": "v4_skill::a2_brain_refresh",
+      "relation": "FEEDS",
+      "layer": "RATCHET_PIPELINE",
+      "description": "Surface refresh feeds brain refresh"
     }
   ]
 }

@@ -5381,6 +5381,150 @@
         "avg_integration": 5.3,
         "clusters": 16
       }
+    },
+    "b15358544f7052e5": {
+      "node_type": "SYSTEM_FLOWMIND",
+      "name": "constraint-manifold",
+      "state": "accepted",
+      "attributes": {
+        "root_axioms": [
+          "C1_FINITUDE",
+          "C2_NON_COMMUTATION"
+        ],
+        "implementation": "native",
+        "immutable": true,
+        "violations": [
+          "E001_FINITUDE_VIOLATION",
+          "E002_NONCOMMUTATION_VIOLATION"
+        ],
+        "boot_priority": 0,
+        "source": "lev-os/leviathan/core/flowmind/system/"
+      }
+    },
+    "25d132ca5d5dea7d": {
+      "node_type": "SYSTEM_FLOWMIND",
+      "name": "abac-policy-engine",
+      "state": "accepted",
+      "attributes": {
+        "invariants": [
+          "deny_by_default",
+          "fail_closed",
+          "emit_provenance"
+        ],
+        "immutable": true,
+        "boot_priority": 1,
+        "source": "lev-os/leviathan/core/flowmind/system/"
+      }
+    },
+    "48d60d59b66393ad": {
+      "node_type": "SYSTEM_FLOWMIND",
+      "name": "provenance-chain",
+      "state": "accepted",
+      "attributes": {
+        "storage": "append-only JSONL",
+        "replay": "deterministic",
+        "immutable": true,
+        "boot_priority": 2,
+        "source": "lev-os/leviathan/core/flowmind/system/"
+      }
+    },
+    "d7caa020b23f741f": {
+      "node_type": "SYSTEM_FLOWMIND",
+      "name": "ratchet-admission",
+      "state": "accepted",
+      "attributes": {
+        "direction": "forward_only",
+        "gates": [
+          "schema_validation",
+          "near_duplicate",
+          "constraint_check"
+        ],
+        "immutable": true,
+        "boot_priority": 3,
+        "source": "lev-os/leviathan/core/flowmind/system/"
+      }
+    },
+    "0ae527d78785cf8c": {
+      "node_type": "SYSTEM_FLOWMIND",
+      "name": "translator-boundary",
+      "state": "accepted",
+      "attributes": {
+        "boundary_rule": "probabilistic_to_deterministic",
+        "immutable": true,
+        "boot_priority": 4,
+        "source": "lev-os/leviathan/core/flowmind/system/"
+      }
+    },
+    "68833516a7a22723": {
+      "node_type": "SYSTEM_FLOWMIND",
+      "name": "perception-frame",
+      "state": "accepted",
+      "attributes": {
+        "sources": [
+          "terminal",
+          "filesystem",
+          "kernel_events"
+        ],
+        "frame_rate": "1000ms",
+        "immutable": false,
+        "boot_priority": 5,
+        "source": "lev-os/leviathan/core/flowmind/system/"
+      }
+    },
+    "89749b4c0152e157": {
+      "node_type": "SYSTEM_FLOWMIND",
+      "name": "telo-cycle",
+      "state": "accepted",
+      "attributes": {
+        "phases": [
+          "trial",
+          "error",
+          "learn",
+          "optimize"
+        ],
+        "immutable": false,
+        "boot_priority": 6,
+        "source": "lev-os/leviathan/core/flowmind/system/"
+      }
+    },
+    "2335623c373f5d49": {
+      "node_type": "COMPILATION_CONCEPT",
+      "name": "FLOWMIND_IR",
+      "state": "accepted",
+      "attributes": {
+        "captures": [
+          "actions",
+          "triggers",
+          "properties",
+          "satisfaction"
+        ],
+        "source": "lev-os"
+      }
+    },
+    "80b4d1ee35c845ec": {
+      "node_type": "COMPILATION_CONCEPT",
+      "name": "FLOWMIND_COMPILER",
+      "state": "accepted",
+      "attributes": {
+        "targets": [
+          "smartdown",
+          "openprose",
+          "system_prompt",
+          "prompt_gen",
+          "schedule",
+          "hooks"
+        ],
+        "source": "lev-os"
+      }
+    },
+    "9f3917a80cb1881d": {
+      "node_type": "COMPILATION_CONCEPT",
+      "name": "FLOWMIND_ASSEMBLER",
+      "state": "accepted",
+      "attributes": {
+        "direction": "concept \u2192 flowmind.yaml",
+        "source": "lev-os"
+      }
     }
   },
   "edges": [
@@ -11165,6 +11309,116 @@
       "relation": "USES",
       "state": "accepted",
       "attributes": {}
+    },
+    {
+      "source": "25d132ca5d5dea7d",
+      "target": "b15358544f7052e5",
+      "relation": "REQUIRES",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "48d60d59b66393ad",
+      "target": "25d132ca5d5dea7d",
+      "relation": "REQUIRES",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "d7caa020b23f741f",
+      "target": "48d60d59b66393ad",
+      "relation": "REQUIRES",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "0ae527d78785cf8c",
+      "target": "d7caa020b23f741f",
+      "relation": "REQUIRES",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "68833516a7a22723",
+      "target": "0ae527d78785cf8c",
+      "relation": "REQUIRES",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "89749b4c0152e157",
+      "target": "68833516a7a22723",
+      "relation": "REQUIRES",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "89749b4c0152e157",
+      "target": "48d60d59b66393ad",
+      "relation": "REQUIRES",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "89749b4c0152e157",
+      "target": "d7caa020b23f741f",
+      "relation": "REQUIRES",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "b15358544f7052e5",
+      "target": "v4_skill::b_kernel",
+      "relation": "MAPS_TO",
+      "state": "accepted",
+      "attributes": {
+        "cross_system": "lev-os \u2192 codex-ratchet"
+      }
+    },
+    {
+      "source": "d7caa020b23f741f",
+      "target": "v4_skill::ratchet_integrator",
+      "relation": "MAPS_TO",
+      "state": "accepted",
+      "attributes": {
+        "cross_system": "lev-os \u2192 codex-ratchet"
+      }
+    },
+    {
+      "source": "0ae527d78785cf8c",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "MAPS_TO",
+      "state": "accepted",
+      "attributes": {
+        "cross_system": "lev-os \u2192 codex-ratchet"
+      }
+    },
+    {
+      "source": "68833516a7a22723",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "MAPS_TO",
+      "state": "accepted",
+      "attributes": {
+        "cross_system": "lev-os \u2192 codex-ratchet"
+      }
+    },
+    {
+      "source": "89749b4c0152e157",
+      "target": "v4_skill::a2_brain_refresh",
+      "relation": "MAPS_TO",
+      "state": "accepted",
+      "attributes": {
+        "cross_system": "lev-os \u2192 codex-ratchet"
+      }
+    },
+    {
+      "source": "25d132ca5d5dea7d",
+      "target": "v4_skill::intent_control_surface_builder",
+      "relation": "MAPS_TO",
+      "state": "accepted",
+      "attributes": {
+        "cross_system": "lev-os \u2192 codex-ratchet"
+      }
     }
   ]
 }

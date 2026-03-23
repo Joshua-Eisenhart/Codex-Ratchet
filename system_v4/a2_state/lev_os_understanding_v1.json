@@ -1,0 +1,139 @@
+{
+  "schema": "LEV_OS_SYSTEM_UNDERSTANDING_v1",
+  "generated_utc": "2026-03-23T02:52:03Z",
+  "source": "work/reference_repos/lev-os/leviathan",
+  "system_flowminds": {
+    "constraint-manifold": {
+      "boot_priority": 0,
+      "description": "Root axioms: C1=Finitude, C2=Non-Commutation. FATAL on violation. Kernel absolute floor.",
+      "attributes": {
+        "root_axioms": [
+          "C1_FINITUDE",
+          "C2_NON_COMMUTATION"
+        ],
+        "implementation": "native",
+        "immutable": true,
+        "violations": [
+          "E001_FINITUDE_VIOLATION",
+          "E002_NONCOMMUTATION_VIOLATION"
+        ],
+        "boot_priority": 0,
+        "source": "lev-os/leviathan/core/flowmind/system/"
+      },
+      "codex_ratchet_mapping": "v4_skill::b_kernel"
+    },
+    "abac-policy-engine": {
+      "boot_priority": 1,
+      "description": "Deny-by-default access control. Fail-closed. Every evaluation emits provenance.",
+      "attributes": {
+        "invariants": [
+          "deny_by_default",
+          "fail_closed",
+          "emit_provenance"
+        ],
+        "immutable": true,
+        "boot_priority": 1,
+        "source": "lev-os/leviathan/core/flowmind/system/"
+      },
+      "codex_ratchet_mapping": "v4_skill::intent_control_surface_builder"
+    },
+    "provenance-chain": {
+      "boot_priority": 2,
+      "description": "Append-only audit trail. Deterministic replay. JSONL storage.",
+      "attributes": {
+        "storage": "append-only JSONL",
+        "replay": "deterministic",
+        "immutable": true,
+        "boot_priority": 2,
+        "source": "lev-os/leviathan/core/flowmind/system/"
+      },
+      "codex_ratchet_mapping": "v4_skill::witness_chain_builder"
+    },
+    "ratchet-admission": {
+      "boot_priority": 3,
+      "description": "Admission gates. Constraints only tighten (forward_only). Near-duplicate rejection.",
+      "attributes": {
+        "direction": "forward_only",
+        "gates": [
+          "schema_validation",
+          "near_duplicate",
+          "constraint_check"
+        ],
+        "immutable": true,
+        "boot_priority": 3,
+        "source": "lev-os/leviathan/core/flowmind/system/"
+      },
+      "codex_ratchet_mapping": "v4_skill::ratchet_integrator"
+    },
+    "translator-boundary": {
+      "boot_priority": 4,
+      "description": "Probabilistic/deterministic boundary. LLM output is probabilistic; system state is deterministic.",
+      "attributes": {
+        "boundary_rule": "probabilistic_to_deterministic",
+        "immutable": true,
+        "boot_priority": 4,
+        "source": "lev-os/leviathan/core/flowmind/system/"
+      },
+      "codex_ratchet_mapping": "v4_skill::a1_stripped_graph_builder"
+    },
+    "perception-frame": {
+      "boot_priority": 5,
+      "description": "Observation sources: terminal, filesystem, events. Frame assembly with sliding window.",
+      "attributes": {
+        "sources": [
+          "terminal",
+          "filesystem",
+          "kernel_events"
+        ],
+        "frame_rate": "1000ms",
+        "immutable": false,
+        "boot_priority": 5,
+        "source": "lev-os/leviathan/core/flowmind/system/"
+      },
+      "codex_ratchet_mapping": "v4_skill::a2_graph_refinery"
+    },
+    "telo-cycle": {
+      "boot_priority": 6,
+      "description": "Trial-Error-Learn-Optimize. Self-observing learning loop. Tightens constraints via ratchet.",
+      "attributes": {
+        "phases": [
+          "trial",
+          "error",
+          "learn",
+          "optimize"
+        ],
+        "immutable": false,
+        "boot_priority": 6,
+        "source": "lev-os/leviathan/core/flowmind/system/"
+      },
+      "codex_ratchet_mapping": "v4_skill::a2_brain_refresh"
+    }
+  },
+  "compilation_pipeline": {
+    "input": "natural language / conversation / existing YAML",
+    "ir": "FlowMind YAML",
+    "targets": [
+      "smartdown",
+      "openprose",
+      "system_prompt",
+      "prompt_gen",
+      "schedule",
+      "hooks"
+    ],
+    "assembler": "concept \u2192 flowmind.yaml",
+    "compiler": "flowmind.yaml \u2192 target",
+    "decompiler": "working_system \u2192 flowmind.yaml (planned)"
+  },
+  "flowmind_schemas": {
+    "types": "cascading/convergence/job/throttle schemas define the FlowMind type system",
+    "system": "7 system FlowMinds form boot-ordered kernel DAG",
+    "convergence": "10 buckets: security, compiler, runtime, schemas, protocols, ui, lifecycle, observability, testing, storage"
+  },
+  "shared_axioms_with_codex_ratchet": {
+    "C1_FINITUDE": "Every structure must have a finite encoding",
+    "C2_NON_COMMUTATION": "Step ordering matters \u2014 cycles are violations",
+    "RATCHET": "Constraints only tighten (forward_only)",
+    "APPEND_ONLY": "Provenance is never overwritten",
+    "FAIL_CLOSED": "On evaluation failure, deny (never silently allow)"
+  }
+}

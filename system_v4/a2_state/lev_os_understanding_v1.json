@@ -135,5 +135,53 @@
     "RATCHET": "Constraints only tighten (forward_only)",
     "APPEND_ONLY": "Provenance is never overwritten",
     "FAIL_CLOSED": "On evaluation failure, deny (never silently allow)"
-  }
+  },
+  "three_primitives": {
+    "behavior_schema": {
+      "what": "How things behave",
+      "file": "context/lev-core/behavior-schema.yaml",
+      "properties": [
+        "streaming",
+        "parallel",
+        "adaptive",
+        "memory",
+        "feedback",
+        "pipeline"
+      ],
+      "triggers": [
+        "event",
+        "condition",
+        "schedule",
+        "after_n_occurrences"
+      ],
+      "compile_targets": [
+        "smartdown",
+        "openprose",
+        "system_prompt",
+        "prompt_gen",
+        "schedule",
+        "hooks"
+      ]
+    },
+    "self_proposals": {
+      "what": "How things improve",
+      "file": "context/lev-self/proposals.yaml",
+      "types": [
+        "hook_modification",
+        "skill_evolution",
+        "workflow_optimization",
+        "context_enrichment"
+      ],
+      "detection": "pattern threshold detection \u2192 auto-propose \u2192 confidence routing",
+      "safety": "never_auto_apply destructive ops, max 5/session 10/day"
+    },
+    "flowmind_types": {
+      "what": "What things are",
+      "file": "context/schemas/flowmind-types.yaml",
+      "entity_count": 21,
+      "uri_scheme": "flowmind://<type>/<id>"
+    }
+  },
+  "jp_key_insight": "YAML as IR works better than markdown for LLM enforcement. The 5 YAML files (behavior-schema + proposals + flowmind-types + flowmind compilation + system-flowmind schema) ARE the first principles. Drop the context packet in and the LLM builds from first principles.",
+  "evals_approach": "Deterministic runs: input/output/result audit logging. Results determined by separate context window (different agent) for non-biased evaluation. Proof the YAML approach works: re-ran skills after YAML rewrite, measurably better."
 }

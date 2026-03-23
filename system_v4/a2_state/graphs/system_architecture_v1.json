@@ -5525,6 +5525,80 @@
         "direction": "concept \u2192 flowmind.yaml",
         "source": "lev-os"
       }
+    },
+    "bbac3752c9ffeabd": {
+      "node_type": "LEV_PRIMITIVE",
+      "name": "BEHAVIOR_SCHEMA",
+      "state": "accepted",
+      "attributes": {
+        "properties": [
+          "streaming",
+          "parallel",
+          "adaptive",
+          "memory",
+          "feedback",
+          "pipeline"
+        ],
+        "compile_targets": [
+          "smartdown",
+          "openprose",
+          "system_prompt",
+          "prompt_gen",
+          "schedule",
+          "hooks"
+        ],
+        "source": "lev-os/context/lev-core/behavior-schema.yaml"
+      }
+    },
+    "67a5c993b707258f": {
+      "node_type": "LEV_PRIMITIVE",
+      "name": "SELF_PROPOSALS",
+      "state": "accepted",
+      "attributes": {
+        "proposal_types": [
+          "hook_modification",
+          "skill_evolution",
+          "workflow_optimization",
+          "context_enrichment"
+        ],
+        "detection": "pattern threshold \u2192 auto-propose",
+        "routing": "high\u2192present, medium\u2192log, low\u2192store",
+        "source": "lev-os/context/lev-self/proposals.yaml"
+      }
+    },
+    "3e5657bdcf9b56d1": {
+      "node_type": "LEV_PRIMITIVE",
+      "name": "FLOWMIND_TYPES",
+      "state": "accepted",
+      "attributes": {
+        "entity_count": 21,
+        "uri_scheme": "flowmind://<type>/<id>",
+        "types": [
+          "ephemeral",
+          "handoff",
+          "checkpoint",
+          "report",
+          "proposal",
+          "hook",
+          "approach",
+          "decision",
+          "review",
+          "doc",
+          "design",
+          "spec",
+          "research",
+          "conversation",
+          "voice",
+          "workflow",
+          "schema",
+          "prompt",
+          "job",
+          "integration",
+          "plan",
+          "memory"
+        ],
+        "source": "lev-os/context/schemas/flowmind-types.yaml"
+      }
     }
   },
   "edges": [
@@ -11415,6 +11489,73 @@
       "source": "25d132ca5d5dea7d",
       "target": "v4_skill::intent_control_surface_builder",
       "relation": "MAPS_TO",
+      "state": "accepted",
+      "attributes": {
+        "cross_system": "lev-os \u2192 codex-ratchet"
+      }
+    },
+    {
+      "source": "bbac3752c9ffeabd",
+      "target": "67a5c993b707258f",
+      "relation": "ENABLES",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "3e5657bdcf9b56d1",
+      "target": "bbac3752c9ffeabd",
+      "relation": "TYPES_USED_BY",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "67a5c993b707258f",
+      "target": "3e5657bdcf9b56d1",
+      "relation": "PRODUCES",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "bbac3752c9ffeabd",
+      "target": "b15358544f7052e5",
+      "relation": "GOVERNED_BY",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "67a5c993b707258f",
+      "target": "d7caa020b23f741f",
+      "relation": "GATED_BY",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "67a5c993b707258f",
+      "target": "89749b4c0152e157",
+      "relation": "FEEDS",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "3e5657bdcf9b56d1",
+      "target": "48d60d59b66393ad",
+      "relation": "LOGGED_BY",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "67a5c993b707258f",
+      "target": "v4_skill::a2_brain_refresh",
+      "relation": "ANALOGOUS_TO",
+      "state": "accepted",
+      "attributes": {
+        "cross_system": "lev-os \u2192 codex-ratchet"
+      }
+    },
+    {
+      "source": "3e5657bdcf9b56d1",
+      "target": "v4_skill::skill_registry",
+      "relation": "ANALOGOUS_TO",
       "state": "accepted",
       "attributes": {
         "cross_system": "lev-os \u2192 codex-ratchet"

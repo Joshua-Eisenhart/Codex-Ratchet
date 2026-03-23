@@ -1,0 +1,139 @@
+# Codex Ratchet — Vernacular (Term Dictionary)
+# Adapted from lev-os ctx/vernacular.yaml
+# Every concept named and defined in one place.
+
+version: 0.1.0
+
+# ─── Core Terms ───────────────────────────────────────────────────────
+core:
+  a2_brain:
+    meaning: "Persistent cognitive layer. Graph-backed. Proposal-first."
+    path: system_v4/skills/a2_persistent_brain.py
+
+  a1_kernel:
+    meaning: "Deterministic execution layer. Below translator boundary."
+    path: system_v4/a1_state/
+    status: "empty — bridge not yet functional"
+
+  graph_intent_runtime:
+    meaning: "The proposal engine. All graph mutations flow through proposals."
+    path: system_v4/skills/graph_intent_runtime.py
+
+  translator_boundary:
+    meaning: "Hard cut between probabilistic (A2/LLM) and deterministic (A1/kernel)."
+    source: lev-os proposal-flowmind-ratchet.md
+
+  tick:
+    meaning: "One cycle: INGEST → OBSERVE → PROPOSE → GATE → APPLY → UPDATE → EMIT."
+    source: lev-os graph-primitives.md
+
+  compositor:
+    meaning: "Graph write pipeline. All mutations: extract → classify → validate → apply."
+    source: lev-os graph.yaml
+
+# ─── Graph Primitives ────────────────────────────────────────────────
+primitives:
+  entity:
+    meaning: "A node in the graph. Everything is an entity."
+    impl: "graph_intent_runtime.Entity"
+
+  claim:
+    meaning: "Atomic assertion about an entity. Has truth_state (proposed|accepted|contested|refuted|superseded)."
+    impl: "NOT YET IMPLEMENTED — gap from lev-os"
+
+  evidence:
+    meaning: "Proof for a claim. Append-only. Kinds: observation, log, measurement, attestation, derived."
+    impl: "NOT YET IMPLEMENTED — gap from lev-os"
+
+  proposal:
+    meaning: "Candidate graph mutation. Status: proposed|accepted|rejected."
+    impl: "graph_intent_runtime.Proposal"
+
+  gate:
+    meaning: "Evaluator that allows/amends/rejects proposals."
+    impl: "NOT YET IMPLEMENTED — uses auto-accept"
+
+  view:
+    meaning: "Materialized projection. Lossy, scoped, time-bounded."
+    impl: "NOT YET IMPLEMENTED"
+
+  intent:
+    meaning: "Inferred directional pressure. Vectors: exploration, clarification, synthesis, execution, validation."
+    impl: "graph_intent_runtime.IntentVector"
+
+# ─── Layer Terms ─────────────────────────────────────────────────────
+layers:
+  HIGH_INTAKE:
+    meaning: "A2 layer. Raw ingestion — skills, files, user input arrive here."
+
+  MID_REFINEMENT:
+    meaning: "A2 layer. Distillation — strip jargon, reduce entropy, connect."
+
+  LOW_CONTROL:
+    meaning: "A2 layer. Deterministic output — emit cartridges for A1."
+
+  JARGONED:
+    meaning: "A1 layer. Domain-specific language preserved."
+
+  STRIPPED:
+    meaning: "A1 layer. Entropy-reduced, concept-pure."
+
+  CARTRIDGE:
+    meaning: "A1 layer. Execution-ready packages. Boots the kernel."
+
+# ─── Constraint Terms ────────────────────────────────────────────────
+constraints:
+  C1_finitude:
+    meaning: "All resources are finite. Every operation must be bounded."
+    violation: FATAL
+
+  C2_non_commutation:
+    meaning: "Order matters. History is irreversible. Append-only."
+    violation: FATAL
+
+  C3_nominalized_reality:
+    meaning: "Only validated entities execute."
+    violation: ERROR
+
+  C4_ratchet_convergence:
+    meaning: "State transitions converge. Append-only."
+    violation: ERROR
+
+  C5_locality:
+    meaning: "Every step has explicit scope."
+    violation: ERROR
+
+# ─── Lev OS Cross-References ────────────────────────────────────────
+lev_os_mapping:
+  flowmind:
+    meaning: "Declaration + compilation kernel. NL → YAML IR → executable targets."
+    cr_equivalent: "graph_intent_runtime + a2_persistent_brain"
+
+  system_flowmind:
+    meaning: "Immutable kernel-boot declaration. 7 types: constraint-manifold, abac, provenance, ratchet-admission, translator, perception, telo."
+    cr_equivalent: "v4 skills (partial)"
+
+  jepa2_world_model:
+    meaning: "Temporal prediction with circular buffer, zero-shot adaptation, cognitive parliament routing."
+    cr_equivalent: "NO EQUIVALENT — future feature"
+
+  agent_guard:
+    meaning: "Scoped permission policy. Time-bounded. Enforced by gates."
+    cr_equivalent: "NO EQUIVALENT — future feature"
+
+# ─── Entity Lifecycle ────────────────────────────────────────────────
+entity_lifecycle:
+  ephemeral:    "Exists only in this turn. No persistence."
+  proposed:     "Suggested, not applied. Awaiting acceptance."
+  accepted:     "Committed to graph. Persisted."
+  stale:        "Valid but outdated. Needs refresh."
+  rejected:     "Discarded. Logged to provenance."
+
+# ─── JP Graph Prompt Terms ───────────────────────────────────────────
+jp_graph_prompt:
+  message:        "Raw user input. An observation, NOT a fact."
+  intent_vector:  "Inferred directional pressure: exploration, clarification, synthesis, execution, validation."
+  proposal:       "Suggested graph change. Not final until accepted."
+  patch:          "Concrete graph mutation. Only after acceptance."
+  action_surface: "Interface where intent enters (chat, CLI, UI)."
+  debug_footer:   "Machine-facing response metadata. Entities touched, proposals made, next ticks."

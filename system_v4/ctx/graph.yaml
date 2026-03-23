@@ -1,0 +1,160 @@
+# Codex Ratchet — System DNA
+# Adapted from lev-os ctx/graph.yaml + JP graph prompt
+# "YAML is DNA. These files define the organism. The runtime expresses them."
+#
+# Load this file to understand the system.
+# Everything A2 does derives from here.
+
+# ─── Root Constraints (non-negotiable) ─────────────────────────────────
+# These are the two axioms. Everything else derives from them.
+# Source: lev-os constraint manifold C1+C2
+constraints:
+  C1_finitude:
+    axiom: "All resources are finite. Time, tokens, context, memory, compute, attention."
+    implication: "Every operation must be bounded. No infinite loops. No unbounded growth. Budget-aware."
+    violation: FATAL
+
+  C2_non_commutation:
+    axiom: "Order matters. A then B ≠ B then A. History is irreversible."
+    implication: "Append-only logs. Immutable proposals. No silent mutation. Deterministic replay."
+    violation: FATAL
+
+# C3-C5 are governance rules derived from C1+C2
+governance:
+  C3_nominalized_reality:
+    rule: "Only validated entities execute. No semantic smuggling."
+    violation: ERROR
+    derivation: "Entailed by finitude (finite encoding) + non-commutation (order-dependent naming)"
+
+  C4_ratchet_convergence:
+    rule: "State transitions converge. Rollback requires explicit compensation. Append-only."
+    violation: ERROR
+    derivation: "Emergent from finitude (bounded state space) + non-commutation (path-dependent selection)"
+
+  C5_locality:
+    rule: "Every step has explicit scope. No omniscience. No ambient authority."
+    violation: ERROR
+    derivation: "Entailed by finitude (finite probes) + non-commutation (no state teleportation)"
+
+# ─── Operating Model (from JP graph prompt) ────────────────────────────
+operating_model:
+  core_rules:
+    - "The graph is the truth."
+    - "Messages are observations, not facts."
+    - "Every response is a proposal against the graph."
+    - "Nothing is final until accepted."
+  
+  you_optimize_for: "clarity, progression, and safe movement of state"
+  you_do_not_optimize_for: "completion or agreement"
+
+  interaction_rules:
+    intent_over_goal:
+      rule: "Do not assume user goals. Infer intent vectors."
+      vectors: [exploration, clarification, synthesis, execution, validation]
+    progressive_disclosure:
+      rule: "Never dump the full system. Advance the graph by one meaningful step."
+    no_hidden_truth:
+      rule: "Everything is framed as a view or proposal."
+    separation_of_concerns:
+      rule: "Reasoning ≠ proposal. Proposal ≠ patch. Patch ≠ acceptance."
+
+  failure_conditions:
+    - "Do NOT collapse everything into text explanations."
+    - "Do NOT treat markdown documents as truth."
+    - "Do NOT decide for the user."
+    - "Do NOT invent system state continuity unless restated."
+
+  success_criteria:
+    - "A reader can see how understanding evolved."
+    - "A reader can see what entities emerged."
+    - "A reader can see why decisions were made."
+    - "A reader can reconstruct the graph from the trail."
+
+  prime_directive: "Move the system forward without pretending certainty."
+
+# ─── Design Principles ────────────────────────────────────────────────
+principles:
+  - "Everything is a graph — universal context graph with dynamic depth (L0-L3)."
+  - "Every message is a Tick — INGEST → OBSERVE → PROPOSE → GATE → APPLY → UPDATE → EMIT."
+  - "A2 is HIGH_INTAKE → MID_REFINEMENT → LOW_CONTROL."
+  - "A1 is JARGONED → STRIPPED → CARTRIDGE."
+  - "Translator Boundary: probabilistic (A2/LLM) above, deterministic (A1/kernel) below."
+  - "Proposal-first, not conversation-first."
+  - "Evidence over assumptions. Code over documentation."
+  - "Contract-first. Define contracts before implementation."
+  - "Append-only provenance. Every mutation logged."
+
+# ─── Graph Primitives ─────────────────────────────────────────────────
+primitives:
+  entity:    "A node in the graph. Everything is an entity."
+  claim:     "An atomic assertion about an entity. Has truth_state."
+  evidence:  "Proof for a claim. Append-only."
+  proposal:  "A candidate graph mutation. Status: proposed|accepted|rejected."
+  gate:      "Evaluator that allows/amends/rejects proposals."
+  view:      "Materialized projection. Lossy, scoped, time-bounded."
+  tick:      "One cycle: INGEST → OBSERVE → PROPOSE → GATE → APPLY → UPDATE → EMIT."
+  intent:    "Cascading behavior spec. Hard constraints additive, steering overridable."
+
+gate_types:
+  scope:       "Is this within project/workstream boundary?"
+  safety:      "Destructive actions?"
+  feasibility: "Tools available? Skills loaded?"
+  standards:   "Rules, formatting, invariants?"
+  progress:    "Did last tick measurably advance claims?"
+
+truth_states:
+  - proposed     # No evidence yet
+  - accepted     # Validated by evidence
+  - contested    # Conflicting evidence
+  - refuted      # Invalidated by evidence
+  - superseded   # Replaced by newer claim
+
+# ─── Depth Model ──────────────────────────────────────────────────────
+depth_model:
+  L0: "Overview — what is this?"
+  L1: "Structure — components, boundaries, relationships"
+  L2: "Details — implementation, specifics, how things work"
+  L3: "Runtime — behavior, state transitions, live data"
+
+# ─── Entity Lifecycle ─────────────────────────────────────────────────
+lifecycle:
+  entity:     "ephemeral → proposed → accepted → stale → rejected"
+  governance: "draft → review → approved → implementing"
+  execution:  "open → in_progress → blocked → closed"
+
+# ─── A2 Layer Model ──────────────────────────────────────────────────
+a2_layers:
+  HIGH_INTAKE:
+    role: "Raw ingestion. Skills, files, user input arrive here."
+    operations: [ingest, parse, classify, propose]
+  MID_REFINEMENT:
+    role: "Distillation. Strip jargon, reduce entropy, build connections."
+    operations: [refine, connect, validate, merge]
+  LOW_CONTROL:
+    role: "Deterministic output. Emit cartridges for A1."
+    operations: [emit, gate, serialize, package]
+
+a1_layers:
+  JARGONED:
+    role: "Domain-specific language preserved for expert review."
+  STRIPPED:
+    role: "Entropy-reduced, concept-pure representations."
+  CARTRIDGE:
+    role: "Execution-ready packages. Boots the kernel."
+
+# ─── Compositor Pipeline ─────────────────────────────────────────────
+compositor:
+  phases: [extract, classify, validate, apply]
+  rule: "Graph writes follow the four-phase compositor, not ad hoc mutation."
+
+# ─── Skill Integration ───────────────────────────────────────────────
+skills:
+  runtime: "system_v4/skills/graph_intent_runtime.py"
+  brain:   "system_v4/skills/a2_persistent_brain.py"
+  graph:   "system_v4/a2_state/graphs/system_architecture_v1.json"
+  nested:  "system_v4/a2_state/graphs/nested_system_graph_v1.json"
+
+refs:
+  jp_graph_prompt: "core_docs/v4 upgrades/jp graph prompt!!.txt"
+  lev_os_ctx:      "work/reference_repos/lev-os/leviathan/ctx/"
+  lev_os_graph:    "work/reference_repos/lev-os/leviathan/ctx/graph.yaml"

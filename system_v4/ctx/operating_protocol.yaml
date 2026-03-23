@@ -1,0 +1,182 @@
+# Codex Ratchet — A2 Operating Protocol
+# HOW to use the system. Concrete procedures and patterns.
+# This file bridges graph.yaml (WHAT) and vernacular.yaml (NAMES) with HOW-TO.
+#
+# Source: JP graph prompt + lev-os design docs + v4 skills
+
+version: 0.1.0
+
+# ─── Boot Sequence ────────────────────────────────────────────────────
+# When A2 starts, it loads these files in order.
+boot:
+  1_load_dna:     "Load system_v4/ctx/graph.yaml — root constraints, primitives, operating model."
+  2_load_vocab:   "Load system_v4/ctx/vernacular.yaml — term dictionary."
+  3_load_graph:   "Load system_v4/a2_state/graphs/system_architecture_v1.json — current graph truth."
+  4_load_nested:  "Load system_v4/a2_state/graphs/nested_system_graph_v1.json — A2/A1 layer model."
+  5_load_skills:  "Import system_v4/skills/graph_intent_runtime.py — proposal engine."
+  6_load_brain:   "Import system_v4/skills/a2_persistent_brain.py — persistent memory."
+  7_run_protocol: "Follow this file for interaction patterns."
+
+# ─── Per-Message Processing (the Tick) ────────────────────────────────
+tick_protocol:
+  description: "Every user message IS a tick. Follow these 7 phases."
+  phases:
+    1_INGEST:
+      action: "Receive the message. Parse files, context, user state."
+      output: "Raw observations (NOT facts)."
+
+    2_OBSERVE:
+      action: "Read current graph state. What entities exist? What's stale?"
+      query: "runtime.load_graph() → check nodes, edges, states."
+
+    3_PROPOSE:
+      action: "Generate proposals based on inferred intent."
+      method: |
+        intents = runtime.infer_intent(message)
+        # For each intent vector, propose relevant graph changes:
+        #   exploration → propose_add_entity for new concepts
+        #   clarification → propose_update with refined attributes
+        #   synthesis → propose_add_relation to connect concepts
+        #   execution → propose_add_entity for implementation artifacts
+        #   validation → propose_update with evidence/claims
+
+    4_GATE:
+      action: "Evaluate proposals against constraints."
+      gates:
+        scope:       "Is this within current workstream?"
+        safety:      "Any destructive mutations?"
+        feasibility: "Can we actually do this?"
+        standards:   "Does it follow conventions?"
+        progress:    "Does this advance understanding?"
+      note: "Currently auto-accepts. Future: implement real gates."
+
+    5_APPLY:
+      action: "Apply accepted proposals as patches to the graph."
+      method: "runtime.tick(message) → patches_applied"
+
+    6_UPDATE:
+      action: "Refresh affected views. Update nested graph if layers changed."
+      method: "runtime.save_graph()"
+
+    7_EMIT:
+      action: "Produce human-facing response + machine-facing debug footer."
+      format: |
+        Response: Clear, direct, minimal. Focus on what moved forward.
+        
+        Debug Footer: runtime.debug_footer(message, entities_touched, next_ticks)
+        - Observed: message summary
+        - Inferred Intent: vectors
+        - Entities Touched: names + states
+        - Proposed Changes: type, target, rationale
+        - Patch Status: proposed|accepted|rejected|deferred
+        - Next Possible Ticks: logical next steps
+
+# ─── Intent Inference Patterns ────────────────────────────────────────
+intent_patterns:
+  exploration:
+    triggers: ["what", "how", "where", "explore", "understand", "dig", "read", "find"]
+    response_style: "Progressive disclosure. Don't dump everything."
+    graph_ops: [propose_add_entity, propose_add_relation]
+
+  clarification:
+    triggers: ["why", "explain", "clarify", "mean", "difference"]
+    response_style: "Refine existing knowledge. Update, don't create."
+    graph_ops: [propose_update, propose_add_relation]
+
+  synthesis:
+    triggers: ["build", "create", "make", "wire", "connect", "integrate", "process", "graph"]
+    response_style: "Connect concepts. Build structure."
+    graph_ops: [propose_add_entity, propose_add_relation, propose_update]
+
+  execution:
+    triggers: ["run", "execute", "do", "implement", "fix", "deploy", "push", "commit"]
+    response_style: "Act. Make changes. Produce artifacts."
+    graph_ops: [propose_add_entity, propose_update]
+
+  validation:
+    triggers: ["test", "verify", "check", "audit", "validate", "prove"]
+    response_style: "Verify claims. Produce evidence. Update truth states."
+    graph_ops: [propose_update, propose_mark_stale]
+
+# ─── Graph Mutation Patterns ─────────────────────────────────────────
+mutation_patterns:
+  ingest_new_concept:
+    description: "When encountering a new concept from files, docs, or user input."
+    steps:
+      - "Propose entity with type, rationale, and attributes."
+      - "Propose relations to existing entities."
+      - "Tick to apply."
+    example: |
+      entity = runtime.propose_add_entity("JEPA2", "CONCEPT",
+        "Temporal prediction model from Go kernel",
+        {"source": "jepa_world_model.go", "lines": 621})
+      runtime.propose_add_relation(entity_id, existing_id, "IMPLEMENTS",
+        "JEPA2 implements temporal prediction")
+      runtime.tick("process JEPA2 concept")
+
+  connect_systems:
+    description: "When mapping concepts between systems (e.g., lev-os → Codex Ratchet)."
+    steps:
+      - "Identify source and target entities."
+      - "Propose MAPS_TO, ANALOGOUS_TO, or IMPLEMENTS relations."
+      - "Add cross-reference attributes."
+    relation_types:
+      MAPS_TO:       "Direct 1:1 mapping between systems."
+      ANALOGOUS_TO:  "Similar concept, different implementation."
+      IMPLEMENTS:    "One system implements the other's spec."
+      SUPERSEDES:    "Newer version replaces older."
+      GOVERNED_BY:   "Entity governed by constraint/policy."
+      GATED_BY:      "Entity requires gate approval."
+
+  refine_understanding:
+    description: "When processing upgrade docs, new info, or corrections."
+    steps:
+      - "Find existing entities."
+      - "Propose updates with new attributes."
+      - "Mark stale entities that are outdated."
+      - "Add evidence links."
+
+# ─── A2→A1 Bridge Protocol ───────────────────────────────────────────
+bridge_protocol:
+  description: "How refined A2 knowledge becomes A1 cartridges."
+  status: "NOT YET FUNCTIONAL — A1 layers are empty."
+  
+  translator_boundary:
+    above: "Probabilistic. LLM reasoning. Proposals. Intent inference."
+    below: "Deterministic. Validated schemas. Executable cartridges."
+    rule: "Nothing crosses the boundary without going through a gate."
+
+  cartridge_format:
+    description: "What A1 expects from A2."
+    requirements:
+      - "JARGONED: Domain-specific but structured."
+      - "STRIPPED: Entropy-reduced. No ambiguity."
+      - "CARTRIDGE: Execution-ready. Valid YAML/JSON schema."
+
+# ─── Skill Integration ───────────────────────────────────────────────
+skill_usage:
+  graph_intent_runtime:
+    import: "from system_v4.skills.graph_intent_runtime import GraphIntentRuntime, IntentVector"
+    init: "runtime = GraphIntentRuntime('.')"
+    load: "runtime.load_graph()"
+    propose: "runtime.propose_add_entity(...) / propose_add_relation(...) / propose_update(...)"
+    execute: "runtime.tick(message)"
+    persist: "runtime.save_graph()"
+
+  a2_persistent_brain:
+    import: "from system_v4.skills.a2_persistent_brain import A2PersistentBrain"
+    init: "brain = A2PersistentBrain('.')"
+    query: "brain.find_skill(...) / brain.get_nested_graph() / brain.find_explanations(...)"
+
+# ─── When to Use This Protocol ───────────────────────────────────────
+when_to_use:
+  always:
+    - "Processing new information (docs, files, user input)"
+    - "Building or extending the graph"
+    - "Mapping systems to each other"
+    - "Any mutation to system state"
+
+  skip_for:
+    - "Simple questions that don't change understanding"
+    - "One-off commands (git push, etc.)"
+    - "Answers that don't create new entities"

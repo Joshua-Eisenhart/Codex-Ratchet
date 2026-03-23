@@ -5719,6 +5719,65 @@
         "lines": 234,
         "role": "term_dictionary"
       }
+    },
+    "1e3179d2829e12fd": {
+      "node_type": "CR_CTX",
+      "name": "CR_CTX_GRAPH_YAML",
+      "state": "accepted",
+      "attributes": {
+        "file": "system_v4/ctx/graph.yaml",
+        "role": "system_dna",
+        "sources": [
+          "lev-os ctx/graph.yaml",
+          "jp graph prompt!!.txt",
+          "v4 skills"
+        ],
+        "key_content": [
+          "C1+C2 axioms",
+          "operating model",
+          "primitives",
+          "depth model",
+          "A2 layers"
+        ]
+      }
+    },
+    "7456c7a3ec6cfeef": {
+      "node_type": "CR_CTX",
+      "name": "CR_CTX_VERNACULAR_YAML",
+      "state": "accepted",
+      "attributes": {
+        "file": "system_v4/ctx/vernacular.yaml",
+        "role": "term_dictionary",
+        "gaps_identified": [
+          "claim",
+          "evidence",
+          "gate",
+          "view",
+          "agent_guard",
+          "jepa2"
+        ]
+      }
+    },
+    "88c5b18576e3ae18": {
+      "node_type": "CR_CTX",
+      "name": "CR_CTX_OPERATING_PROTOCOL_YAML",
+      "state": "accepted",
+      "attributes": {
+        "file": "system_v4/ctx/operating_protocol.yaml",
+        "role": "operating_protocol",
+        "tick_phases": [
+          "INGEST",
+          "OBSERVE",
+          "PROPOSE",
+          "GATE",
+          "APPLY",
+          "UPDATE",
+          "EMIT"
+        ],
+        "boot_steps": 7,
+        "intent_patterns": 5,
+        "mutation_patterns": 3
+      }
     }
   },
   "edges": [
@@ -11719,6 +11778,34 @@
       "attributes": {
         "source": "upstream/main"
       }
+    },
+    {
+      "source": "1e3179d2829e12fd",
+      "target": "27cee9f623f7c79c",
+      "relation": "DERIVED_FROM",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "7456c7a3ec6cfeef",
+      "target": "a8e949e601e8eccd",
+      "relation": "DERIVED_FROM",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "88c5b18576e3ae18",
+      "target": "27cee9f623f7c79c",
+      "relation": "OPERATIONALIZES",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "88c5b18576e3ae18",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "GOVERNS",
+      "state": "accepted",
+      "attributes": {}
     }
   ]
 }

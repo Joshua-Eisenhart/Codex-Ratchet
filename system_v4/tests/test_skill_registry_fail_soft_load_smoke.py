@@ -50,7 +50,7 @@ def _build_skill(skill_id: str, description: str) -> dict[str, object]:
 
 def main() -> None:
     reg = SkillRegistry(".")
-    _assert(len(reg.skills) == 88, f"expected 88 live skills, got {len(reg.skills)}")
+    _assert(len(reg.skills) == 123, f"expected 123 live skills, got {len(reg.skills)}")
     _assert(reg.load_issues == [], f"expected clean live load, got {reg.load_issues!r}")
 
     with tempfile.TemporaryDirectory() as tmpdir:

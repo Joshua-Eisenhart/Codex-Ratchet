@@ -3,8 +3,8 @@
   "generated_utc": "2026-03-22T21:33:08Z",
   "description": "Real system architecture graph traced from code imports, specs, tests, and probes",
   "stats": {
-    "total_nodes": 806,
-    "total_edges": 1822,
+    "total_nodes": 826,
+    "total_edges": 2716,
     "nodes_by_type": {
       "V4_SKILL": 131,
       "V4_RUNNER": 18,
@@ -5838,6 +5838,95 @@
       "name": "A1 Execution Layer",
       "description": "A1 wiggle lanes, doc queue generation",
       "authority": "V3 A1 specs + V4 overlay"
+    },
+    "state::memory_jsonl": {
+      "node_type": "CANONICAL_STATE",
+      "name": "Canonical A2 Memory",
+      "file": "memory.jsonl"
+    },
+    "state::doc_index": {
+      "node_type": "CANONICAL_STATE",
+      "name": "Canonical Doc Index",
+      "file": "doc_index.json"
+    },
+    "state::fuel_queue": {
+      "node_type": "CANONICAL_STATE",
+      "name": "Canonical Fuel Queue",
+      "file": "fuel_queue.json"
+    },
+    "state::rosetta": {
+      "node_type": "CANONICAL_STATE",
+      "name": "Canonical Rosetta Mappings",
+      "file": "rosetta.json"
+    },
+    "state::constraint_surface": {
+      "node_type": "CANONICAL_STATE",
+      "name": "Canonical Constraint Surface",
+      "file": "constraint_surface.json"
+    },
+    "state::daemon_state": {
+      "node_type": "CANONICAL_STATE",
+      "name": "Daemon State",
+      "file": "daemon_state.json"
+    },
+    "state::intent_control": {
+      "node_type": "CANONICAL_STATE",
+      "name": "Intent Control State",
+      "file": "A2_INTENT_CONTROL__CURRENT__v1.json"
+    },
+    "state::witness_corpus": {
+      "node_type": "CANONICAL_STATE",
+      "name": "Witness Corpus",
+      "file": "witness_corpus_v1.json"
+    },
+    "state::graph_system_arch": {
+      "node_type": "CANONICAL_STATE",
+      "name": "System Architecture Graph",
+      "file": "system_architecture_v1.json"
+    },
+    "layer::b_kernel": {
+      "node_type": "SYSTEM_LAYER",
+      "name": "B Kernel"
+    },
+    "layer::a0_compiler": {
+      "node_type": "SYSTEM_LAYER",
+      "name": "A0 Compiler"
+    },
+    "layer::a1_strategy": {
+      "node_type": "SYSTEM_LAYER",
+      "name": "A1 Strategy"
+    },
+    "layer::a2_operations": {
+      "node_type": "SYSTEM_LAYER",
+      "name": "A2 Operations"
+    },
+    "layer::sim_evidence": {
+      "node_type": "SYSTEM_LAYER",
+      "name": "SIM Evidence"
+    },
+    "layer::infrastructure": {
+      "node_type": "SYSTEM_LAYER",
+      "name": "Infrastructure"
+    },
+    "layer::graph": {
+      "node_type": "SYSTEM_LAYER",
+      "name": "Graph Layer"
+    },
+    "layer::external": {
+      "node_type": "SYSTEM_LAYER",
+      "name": "External/Imported"
+    },
+    "layer::browser": {
+      "node_type": "SYSTEM_LAYER",
+      "name": "Browser/UI"
+    },
+    "layer::memory": {
+      "node_type": "SYSTEM_LAYER",
+      "name": "Memory/Witness"
+    },
+    "layer::graveyard": {
+      "node_type": "SYSTEM_LAYER",
+      "name": "Graveyard/Evidence"
     }
   },
   "edges": [
@@ -17493,6 +17582,5703 @@
       "relation": "FEEDS",
       "layer": "RATCHET_PIPELINE",
       "description": "Surface refresh feeds brain refresh"
+    },
+    {
+      "source": "v3_tool::a1_brain_append_event",
+      "target": "v4_skill::a1_brain",
+      "relation": "EVOLVED_INTO",
+      "layer": "TOOL_SKILL_LINEAGE"
+    },
+    {
+      "source": "v3_tool::a1_entropy_engine_campaign_runner",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "RELATED_TO",
+      "layer": "TOKEN_SIMILARITY",
+      "shared_tokens": [
+        "campaign",
+        "entropy"
+      ]
+    },
+    {
+      "source": "v3_tool::audit_a1_current_queue_note_alignment",
+      "target": "v4_skill::a2_substrate_base_queue_pivot_audit",
+      "relation": "RELATED_TO",
+      "layer": "TOKEN_SIMILARITY",
+      "shared_tokens": [
+        "audit",
+        "queue"
+      ]
+    },
+    {
+      "source": "v3_tool::audit_a1_queue_surfaces_pydantic",
+      "target": "v4_skill::a2_substrate_base_queue_pivot_audit",
+      "relation": "RELATED_TO",
+      "layer": "TOKEN_SIMILARITY",
+      "shared_tokens": [
+        "audit",
+        "queue"
+      ]
+    },
+    {
+      "source": "v3_tool::audit_first_controller_a1_launch_subset_graph",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_admission_audit_operator",
+      "relation": "RELATED_TO",
+      "layer": "TOKEN_SIMILARITY",
+      "shared_tokens": [
+        "audit",
+        "first"
+      ]
+    },
+    {
+      "source": "v3_tool::export_a1_queue_surfaces_graph",
+      "target": "v4_skill::nested_graph_queue_observation_sync",
+      "relation": "RELATED_TO",
+      "layer": "TOKEN_SIMILARITY",
+      "shared_tokens": [
+        "graph",
+        "queue"
+      ]
+    },
+    {
+      "source": "v3_tool::run_graveyard_first_validity_campaign",
+      "target": "v4_skill::a1_first_entropy_structure_campaign",
+      "relation": "RELATED_TO",
+      "layer": "TOKEN_SIMILARITY",
+      "shared_tokens": [
+        "campaign",
+        "first"
+      ]
+    },
+    {
+      "source": "v3_tool::zip_job_bundle_validator",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "RELATED_TO",
+      "layer": "TOKEN_SIMILARITY",
+      "shared_tokens": [
+        "validator",
+        "zip"
+      ]
+    },
+    {
+      "source": "v4_test::test_a2_research_deliberation_operator_smoke",
+      "target": "v4_skill::runtime_state",
+      "relation": "TESTS",
+      "layer": "TEST_SKILL_COVERAGE"
+    },
+    {
+      "source": "v4_test::test_graveyard_reopen_and_wiggle_smoke",
+      "target": "v4_skill::runtime_state",
+      "relation": "TESTS",
+      "layer": "TEST_SKILL_COVERAGE"
+    },
+    {
+      "source": "v4_test::test_run_real_ratchet_e2e_smoke",
+      "target": "v4_skill::runtime_state",
+      "relation": "TESTS",
+      "layer": "TEST_SKILL_COVERAGE"
+    },
+    {
+      "source": "v4_test::test_run_real_ratchet_procedure_gate",
+      "target": "v4_skill::runtime_state",
+      "relation": "TESTS",
+      "layer": "TEST_SKILL_COVERAGE"
+    },
+    {
+      "source": "v4_test::test_run_real_ratchet_smoke",
+      "target": "v4_skill::runtime_state",
+      "relation": "TESTS",
+      "layer": "TEST_SKILL_COVERAGE"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "state::rosetta",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "state::intent_control",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_graph_builder",
+      "target": "state::rosetta",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_scope_aligner",
+      "target": "state::rosetta",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_mapper",
+      "target": "state::rosetta",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a2_brain_surface_refresher",
+      "target": "state::doc_index",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "state::witness_corpus",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "target": "state::witness_corpus",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "target": "state::witness_corpus",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "state::memory_jsonl",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "state::doc_index",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "state::fuel_queue",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "state::rosetta",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "state::constraint_surface",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "state::daemon_state",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "state::intent_control",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "state::graph_system_arch",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a2_skill_source_intake_operator",
+      "target": "state::doc_index",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::identity_registry_builder",
+      "target": "state::rosetta",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "state::intent_control",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "state::witness_corpus",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::intent_refinement_graph_builder",
+      "target": "state::witness_corpus",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::intent_runtime_policy",
+      "target": "state::intent_control",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::nonlive_overlay_projector",
+      "target": "state::intent_control",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::rosetta_v2",
+      "target": "state::rosetta",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::runtime_context_snapshot",
+      "target": "state::witness_corpus",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::runtime_graph_bridge",
+      "target": "state::witness_corpus",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::wiggle_lane_runner",
+      "target": "state::intent_control",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::witness_evermem_sync",
+      "target": "state::witness_corpus",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::witness_memory_retriever",
+      "target": "state::witness_corpus",
+      "relation": "READS_WRITES",
+      "layer": "STATE_ACCESS"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::identity_registry_builder",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::rosetta_v2",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_graph_builder",
+      "target": "v4_skill::a1_jargoned_scope_aligner",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_graph_builder",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_graph_builder",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_graph_builder",
+      "target": "v4_skill::identity_registry_builder",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_graph_builder",
+      "target": "v4_skill::rosetta_v2",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_scope_aligner",
+      "target": "v4_skill::a1_rosetta_mapper",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_scope_aligner",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_scope_aligner",
+      "target": "v4_skill::identity_registry_builder",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_jargoned_scope_aligner",
+      "target": "v4_skill::rosetta_v2",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_mapper",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_mapper",
+      "target": "v4_skill::identity_registry_builder",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_mapper",
+      "target": "v4_skill::rosetta_v2",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "v4_skill::identity_registry_builder",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "v4_skill::rosetta_v2",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::identity_registry_builder",
+      "target": "v4_skill::rosetta_v2",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::rosetta"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::intent_control_surface_builder",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::intent_control"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::intent_runtime_policy",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::intent_control"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::nonlive_overlay_projector",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::intent_control"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::wiggle_lane_runner",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::intent_control"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "v4_skill::intent_control_surface_builder",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::intent_control"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "v4_skill::intent_runtime_policy",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::intent_control"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "v4_skill::nonlive_overlay_projector",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::intent_control"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "v4_skill::wiggle_lane_runner",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::intent_control"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::intent_runtime_policy",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::intent_control"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::nonlive_overlay_projector",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::intent_control"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::wiggle_lane_runner",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::intent_control"
+    },
+    {
+      "source": "v4_skill::intent_runtime_policy",
+      "target": "v4_skill::nonlive_overlay_projector",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::intent_control"
+    },
+    {
+      "source": "v4_skill::intent_runtime_policy",
+      "target": "v4_skill::wiggle_lane_runner",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::intent_control"
+    },
+    {
+      "source": "v4_skill::nonlive_overlay_projector",
+      "target": "v4_skill::wiggle_lane_runner",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::intent_control"
+    },
+    {
+      "source": "v4_skill::a2_brain_surface_refresher",
+      "target": "v4_skill::a2_persistent_brain",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::doc_index"
+    },
+    {
+      "source": "v4_skill::a2_brain_surface_refresher",
+      "target": "v4_skill::a2_skill_source_intake_operator",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::doc_index"
+    },
+    {
+      "source": "v4_skill::a2_persistent_brain",
+      "target": "v4_skill::a2_skill_source_intake_operator",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::doc_index"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "v4_skill::intent_control_surface_builder",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "v4_skill::runtime_context_snapshot",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "v4_skill::witness_evermem_sync",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "target": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "target": "v4_skill::intent_control_surface_builder",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "target": "v4_skill::runtime_context_snapshot",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "target": "v4_skill::witness_evermem_sync",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "target": "v4_skill::intent_control_surface_builder",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "target": "v4_skill::runtime_context_snapshot",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "target": "v4_skill::witness_evermem_sync",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::runtime_context_snapshot",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::witness_evermem_sync",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::intent_refinement_graph_builder",
+      "target": "v4_skill::runtime_context_snapshot",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::intent_refinement_graph_builder",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::intent_refinement_graph_builder",
+      "target": "v4_skill::witness_evermem_sync",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::intent_refinement_graph_builder",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::runtime_context_snapshot",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::runtime_context_snapshot",
+      "target": "v4_skill::witness_evermem_sync",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::runtime_context_snapshot",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::runtime_graph_bridge",
+      "target": "v4_skill::witness_evermem_sync",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::runtime_graph_bridge",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v4_skill::witness_evermem_sync",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "CO_ACCESSES",
+      "layer": "STATE_CORRELATION",
+      "shared_state": "state::witness_corpus"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/zip_protocol_v2_validator.py",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "EVOLVED_INTO",
+      "layer": "RUNTIME_SKILL_LINEAGE",
+      "shared_tokens": [
+        "validator",
+        "zip"
+      ]
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/sim_engine.py",
+      "target": "v4_skill::sim_engine",
+      "relation": "EVOLVED_INTO",
+      "layer": "RUNTIME_SKILL_LINEAGE",
+      "shared_tokens": [
+        "engine",
+        "sim"
+      ]
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/sim_engine.py",
+      "target": "v4_skill::sim_holodeck_engine",
+      "relation": "EVOLVED_INTO",
+      "layer": "RUNTIME_SKILL_LINEAGE",
+      "shared_tokens": [
+        "engine",
+        "sim"
+      ]
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_audit_a1_current_queue_note_alignment.py",
+      "target": "v4_skill::a2_substrate_base_queue_pivot_audit",
+      "relation": "EVOLVED_INTO",
+      "layer": "RUNTIME_SKILL_LINEAGE",
+      "shared_tokens": [
+        "audit",
+        "queue"
+      ]
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_zip_protocol_v2_validator.py",
+      "target": "v4_skill::zip_subagent_validator",
+      "relation": "EVOLVED_INTO",
+      "layer": "RUNTIME_SKILL_LINEAGE",
+      "shared_tokens": [
+        "validator",
+        "zip"
+      ]
+    },
+    {
+      "source": "v3_spec::03_B_KERNEL_SPEC",
+      "target": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES",
+      "relation": "SHARES_REQUIREMENTS",
+      "layer": "SPEC_CORRELATION",
+      "shared_requirements": [
+        "RQ-001",
+        "RQ-002"
+      ]
+    },
+    {
+      "source": "v3_spec::06_SIM_EVIDENCE_AND_TIERS_SPEC",
+      "target": "v3_spec::72_SIM_CAMPAIGN_AND_SUITE_MODES__v1",
+      "relation": "SHARES_REQUIREMENTS",
+      "layer": "SPEC_CORRELATION",
+      "shared_requirements": [
+        "RQ-053",
+        "RQ-054",
+        "RQ-055",
+        "RQ-056",
+        "RQ-057",
+        "RQ-058",
+        "RQ-059",
+        "RQ-064"
+      ]
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "relation": "SHARES_REQUIREMENTS",
+      "layer": "SPEC_CORRELATION",
+      "shared_requirements": [
+        "RQ-145",
+        "RQ-146",
+        "RQ-147"
+      ]
+    },
+    {
+      "source": "v3_spec::05_A1_STRATEGY_AND_REPAIR_SPEC",
+      "target": "v3_spec::18_A1_WIGGLE_EXECUTION_CONTRACT",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 3
+    },
+    {
+      "source": "v3_spec::26_BOOTPACK_A1_WIGGLE__v1",
+      "target": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 5
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 7
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 3
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 5
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_spec::34_A1_READY_PACKET__v1",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 5
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 3
+    },
+    {
+      "source": "v3_spec::30_A2_TO_A1_HANDOFF_CONTRACT__v1",
+      "target": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 4
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 6
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v3_spec::34_A1_READY_PACKET__v1",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 5
+    },
+    {
+      "source": "v3_spec::31_A1_THREAD_BOOT__v1",
+      "target": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 3
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 3
+    },
+    {
+      "source": "v3_spec::32_A1_QUEUE_STATUS_SURFACE__v1",
+      "target": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 3
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v3_spec::34_A1_READY_PACKET__v1",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 5
+    },
+    {
+      "source": "v3_spec::33_A2_VS_A1_ROLE_SPLIT__v1",
+      "target": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 3
+    },
+    {
+      "source": "v3_spec::07_A2_OPERATIONS_SPEC",
+      "target": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 4
+    },
+    {
+      "source": "v3_spec::28_A2_THREAD_BOOT__v1",
+      "target": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 3
+    },
+    {
+      "source": "v3_spec::09_CONFORMANCE_AND_REDUNDANCY_GATES",
+      "target": "v3_spec::20_CONTROLLED_TUNING_AND_UPGRADE_CONTRACT",
+      "relation": "SHARES_CONCEPTS",
+      "layer": "CONCEPT_CORRELATION",
+      "shared_count": 3
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::a1_cartridge_assembler",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::a2_v3_to_v4_graphification_ingestor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::b_adjudicator",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::graveyard_router",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::nonlive_overlay_projector",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::sim_holodeck_engine",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a0_compiler",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::a2_v3_to_v4_graphification_ingestor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::b_adjudicator",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::graveyard_router",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::nonlive_overlay_projector",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::sim_holodeck_engine",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a1_cartridge_assembler",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_stripper",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_stripper",
+      "target": "v4_skill::a2_v3_to_v4_graphification_ingestor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_stripper",
+      "target": "v4_skill::b_adjudicator",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_stripper",
+      "target": "v4_skill::graveyard_router",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_stripper",
+      "target": "v4_skill::nonlive_overlay_projector",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_stripper",
+      "target": "v4_skill::sim_holodeck_engine",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a1_rosetta_stripper",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "v4_skill::a2_v3_to_v4_graphification_ingestor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "v4_skill::b_adjudicator",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "v4_skill::graveyard_router",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "v4_skill::nonlive_overlay_projector",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "v4_skill::sim_holodeck_engine",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a2_v3_to_v4_graphification_ingestor",
+      "target": "v4_skill::b_adjudicator",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a2_v3_to_v4_graphification_ingestor",
+      "target": "v4_skill::graveyard_router",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a2_v3_to_v4_graphification_ingestor",
+      "target": "v4_skill::nonlive_overlay_projector",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a2_v3_to_v4_graphification_ingestor",
+      "target": "v4_skill::sim_holodeck_engine",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a2_v3_to_v4_graphification_ingestor",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::b_adjudicator",
+      "target": "v4_skill::graveyard_router",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::b_adjudicator",
+      "target": "v4_skill::nonlive_overlay_projector",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::b_adjudicator",
+      "target": "v4_skill::sim_holodeck_engine",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::b_adjudicator",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::graveyard_router",
+      "target": "v4_skill::nonlive_overlay_projector",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::graveyard_router",
+      "target": "v4_skill::sim_holodeck_engine",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::graveyard_router",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::nonlive_overlay_projector",
+      "target": "v4_skill::sim_holodeck_engine",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::nonlive_overlay_projector",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::sim_holodeck_engine",
+      "target": "v4_skill::system_v3_full_graph_ingestor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "v4_graph_builder"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::a2_boot",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a2_graph_refinery"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::b_kernel",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a2_graph_refinery"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::generate_doc_queue",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a2_graph_refinery"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::graph_capability_auditor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a2_graph_refinery"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a2_graph_refinery"
+    },
+    {
+      "source": "v4_skill::a2_boot",
+      "target": "v4_skill::b_kernel",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a2_graph_refinery"
+    },
+    {
+      "source": "v4_skill::a2_boot",
+      "target": "v4_skill::generate_doc_queue",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a2_graph_refinery"
+    },
+    {
+      "source": "v4_skill::a2_boot",
+      "target": "v4_skill::graph_capability_auditor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a2_graph_refinery"
+    },
+    {
+      "source": "v4_skill::a2_boot",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a2_graph_refinery"
+    },
+    {
+      "source": "v4_skill::b_kernel",
+      "target": "v4_skill::generate_doc_queue",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a2_graph_refinery"
+    },
+    {
+      "source": "v4_skill::b_kernel",
+      "target": "v4_skill::graph_capability_auditor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a2_graph_refinery"
+    },
+    {
+      "source": "v4_skill::b_kernel",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a2_graph_refinery"
+    },
+    {
+      "source": "v4_skill::generate_doc_queue",
+      "target": "v4_skill::graph_capability_auditor",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a2_graph_refinery"
+    },
+    {
+      "source": "v4_skill::generate_doc_queue",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a2_graph_refinery"
+    },
+    {
+      "source": "v4_skill::graph_capability_auditor",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a2_graph_refinery"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::intent_control_surface_builder",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "intent_runtime_policy"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::wiggle_lane_runner",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "intent_runtime_policy"
+    },
+    {
+      "source": "v4_skill::intent_control_surface_builder",
+      "target": "v4_skill::wiggle_lane_runner",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "intent_runtime_policy"
+    },
+    {
+      "source": "v4_skill::a1_brain",
+      "target": "v4_skill::graveyard_lawyer",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a1_routing_state"
+    },
+    {
+      "source": "v4_skill::a1_stripped_exact_term_aligner",
+      "target": "v4_skill::a1_stripped_term_plan_aligner",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a1_stripped_graph_builder"
+    },
+    {
+      "source": "v4_skill::a2_graph_refinery",
+      "target": "v4_skill::runtime_context_snapshot",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "witness_recorder"
+    },
+    {
+      "source": "v4_skill::a2_next_state_first_target_context_consumer_proof_operator",
+      "target": "v4_skill::a2_skill_improver_dry_run_operator",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "skill_improver_operator"
+    },
+    {
+      "source": "v4_skill::a2_next_state_first_target_context_consumer_proof_operator",
+      "target": "v4_skill::a2_skill_improver_first_target_proof_operator",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "skill_improver_operator"
+    },
+    {
+      "source": "v4_skill::a2_skill_improver_dry_run_operator",
+      "target": "v4_skill::a2_skill_improver_first_target_proof_operator",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "skill_improver_operator"
+    },
+    {
+      "source": "v4_skill::b_kernel",
+      "target": "v4_skill::sim_engine",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "runtime_state"
+    },
+    {
+      "source": "v4_skill::b_kernel",
+      "target": "v4_skill::wiggle_lane_runner",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a1_brain"
+    },
+    {
+      "source": "v4_skill::sim_engine",
+      "target": "v4_skill::wiggle_lane_runner",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "a1_brain"
+    },
+    {
+      "source": "v4_skill::pimono_evermem_adapter",
+      "target": "v4_skill::witness_evermem_sync",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "evermem_adapter"
+    },
+    {
+      "source": "v4_skill::pimono_evermem_adapter",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "evermem_adapter"
+    },
+    {
+      "source": "v4_skill::witness_evermem_sync",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "CO_IMPORTS",
+      "layer": "IMPORT_CORRELATION",
+      "shared_module": "evermem_adapter"
+    },
+    {
+      "source": "v4_runner::run_a1_cartridge_assembly_pass",
+      "target": "v4_skill::a1_cartridge_assembler",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_a1_cartridge_assembly_pass",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_a1_eval_slice",
+      "target": "v4_skill::a1_brain",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_a1_eval_slice",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_a1_rosetta_stripper_pass",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_a1_rosetta_stripper_pass",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_contradiction_scan",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_contradiction_scan",
+      "target": "v4_skill::a2_thermodynamic_purge",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_graph_crosslinker",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_graph_crosslinker",
+      "target": "v4_skill::v4_graph_builder",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_high_entropy_intake",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_lower_entropy_intake",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_megaboot_intake",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_opus_audit_wave_0_1",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_promotion_audit",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_proto_holodeck_loop",
+      "target": "v4_skill::a0_compiler",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_proto_holodeck_loop",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_proto_holodeck_loop",
+      "target": "v4_skill::b_adjudicator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_proto_holodeck_loop",
+      "target": "v4_skill::ratchet_integrator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_proto_holodeck_loop",
+      "target": "v4_skill::sim_holodeck_engine",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_proto_loop",
+      "target": "v4_skill::a0_compiler",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_proto_loop",
+      "target": "v4_skill::a1_cartridge_assembler",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_proto_loop",
+      "target": "v4_skill::a1_rosetta_stripper",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_proto_loop",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_proto_loop",
+      "target": "v4_skill::b_adjudicator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_proto_loop",
+      "target": "v4_skill::sim_holodeck_engine",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a1_brain",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a1_cartridge_graph_builder",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a1_jargoned_graph_builder",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a1_routing_state",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a1_stripped_graph_builder",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_append_safe_context_shell_audit_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_autoresearch_council_runtime_proof_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_brain_surface_refresher",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_context_spec_workflow_follow_on_selector_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_context_spec_workflow_pattern_audit_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_context_spec_workflow_post_shell_selector_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_evermem_backend_reachability_audit_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_high_intake_graph_builder",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_lev_agents_promotion_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_lev_architecture_fitness_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_lev_autodev_loop_audit_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_lev_builder_formalization_proposal_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_lev_builder_formalization_skeleton_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_lev_builder_placement_audit_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_disposition_audit_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_follow_on_selector_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_future_lane_existence_audit_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_readiness_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_low_control_graph_builder",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_mid_refinement_graph_builder",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_admission_audit_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_proof_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_next_state_signal_adaptation_audit_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_research_deliberation_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_skill_improver_dry_run_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_skill_improver_first_target_proof_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_skill_improver_readiness_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_skill_improver_second_target_admission_audit_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_skill_improver_target_selector_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_skill_source_intake_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_source_family_lane_selector_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_tracked_work_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::a2_workshop_analysis_gate_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::autoresearch_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::b_kernel",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::bounded_improve_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::evermem_adapter",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::graveyard_lawyer",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::intent_control_surface_builder",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::intent_refinement_graph_builder",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::intent_runtime_policy",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::llm_council_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::outer_session_ledger",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::outside_control_shell_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::pimono_evermem_adapter",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::ratchet_overseer",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::ratchet_prompt_stack",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::runtime_graph_bridge",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::runtime_state",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::runtime_state_kernel",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::sim_engine",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::skill_improver_operator",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::skill_registry",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::v4_tape_writer",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::wiggle_lane_runner",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::witness_evermem_sync",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::witness_memory_retriever",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::witness_recorder",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_real_ratchet",
+      "target": "v4_skill::z3_constraint_checker",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_refinery_daemon",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_specs_and_boots_intake",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_thermodynamic_purge_pass",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_thermodynamic_purge_pass",
+      "target": "v4_skill::a2_thermodynamic_purge",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_unified_extraction",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_v3_runtime_ingestion",
+      "target": "v4_skill::a0_compiler",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_v3_runtime_ingestion",
+      "target": "v4_skill::a2_graph_refinery",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_v3_runtime_ingestion",
+      "target": "v4_skill::b_kernel",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_runner::run_v3_runtime_ingestion",
+      "target": "v4_skill::sim_engine",
+      "relation": "USES",
+      "layer": "RUNNER_SKILL"
+    },
+    {
+      "source": "v4_test::test_a2_skill_improver_readiness_operator_candidate_smoke",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_probe::community_layer_alignment_analyzer",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_probe::cross_graph_overlap_analyzer",
+      "target": "layer::graph",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_probe::dotmotif_pattern_catalog",
+      "target": "layer::graph",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_probe::egglog_graph_rewrite_probe",
+      "target": "layer::graph",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_probe::egglog_promotion_auditor",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_probe::graph_health_check",
+      "target": "layer::graph",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_probe::graph_policy_checker",
+      "target": "layer::graph",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_probe::phase1_first_experiments",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_probe::probe_topology_all",
+      "target": "layer::graph",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_probe::smt_graph_legality",
+      "target": "layer::graph",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_probe::test_graph_invariants_deep",
+      "target": "layer::graph",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::a1-from-a2-distillation",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::a2-a1-memory-admission-guard",
+      "target": "layer::memory",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::a2-lev-builder-post-skeleton-admissibility-audit-operator",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::a2-openclaw-next-state-audit-operator",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::a2-skill-improver-target-selection-operator",
+      "target": "layer::graveyard",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::automation-controller",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::brain-delta-consolidation",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::browser-automation",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::closeout-result-ingest",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::external-research-refinery-launcher",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::external-research-return-ingest",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::pro-return-instant-audit",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::ratchet-a2-a1",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::safe-run-maintenance",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::thread-closeout-auditor",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::thread-dispatch-controller",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v4_spec::thread-run-monitor",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/zip_communication_protocol.py",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_wiggle_autopilot.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_send_text_companion_pydantic_stack.py",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_worker_launch_handoff_pydantic_stack.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a1_wiggle_controller_result.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_worker_launch_gate_result_pydantic_stack.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a1_autoratchet_controller_result.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_real_loop_recovery_cycle.py",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_cold_core_strip.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_operational_integrity_audit.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_surface_pydantic_stack.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_thread_closeout_extractor.py",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_worker_launch_spine_pydantic_stack.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a1_worker_launch_packet_from_family_slice.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_worker_launch_packet_pydantic_stack.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_worker_launch_packet.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_refresh_active_current_a1_queue_state.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_launch_packet_pydantic_stack.py",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_rebuild_a2_doc_index_json.py",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_autoratchet_family_slice.py",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_launch_spine_pydantic_stack.py",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_bridge_determinism_pair.py",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_candidate_registry.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a2_controller_send_text_from_packet.py",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_exchange_warning_compaction.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_semantic_and_math_substance_gate.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_worker_send_text_companion_pydantic_stack.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_state_persist_tick.py",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_save_profile_zip.py",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_current_a1_queue_status_from_candidates.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_wiggle_control_cycle.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_status_packet.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_launch_gate_result_pydantic_stack.py",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_real_loop.py",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_launch_handoff_pydantic_stack.py",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_real_loop_bridge_from_work.py",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_to_a1_family_slice_pydantic_stack.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_wiggle_soak_audit.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_queue_status_surfaces.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_refresh_active_current_a2_controller_launch_spine.py",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_launch_bundle_from_family_slice.py",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_spec::47_AUTO_GO_ON_CYCLE_PACKET__v1",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_spec::52_BROWSER_GO_ON_PLAYWRIGHT_BRIDGE__v1",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_spec::55_BROWSER_CAPTURE_RECORD_TO_TARGET__v1",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_spec::59_FIRST_LIVE_BROWSER_THREAD_CAPTURE_PROCEDURE__v1",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_spec::61_BROWSER_REAL_SEND_PLAYWRIGHT_BRIDGE__v1",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_spec::62_BROWSER_GO_ON_PLAYWRIGHT_EXECUTION__v1",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_spec::65_BROWSER_LIVE_CAPTURE_ENVIRONMENT_BLOCKER__v1",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_spec::ZIP_PROTOCOL_v2",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_autogen_role_outputs_attractor",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_cold_core_strip",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_exchange_serial_runner",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_external_memo_batch_driver",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_external_memo_provider_exchange_bridge",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_external_memo_provider_stub",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_lawyer_pack",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_lawyer_sink",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_llm_lane_driver",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_llm_lane_local_ollama_runner",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_memo_quality_gate",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_queue_ready_integrity",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_queue_surface_models",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_request_to_codex_prompt",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_sandbox_only_runner",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_selector_warning_snapshot",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_wiggle_autopilot",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_worker_launch_gate_result_models",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_worker_launch_handoff_models",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_worker_launch_packet_models",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_worker_launch_spine_models",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a1_worker_send_text_companion_models",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a2_append_memory_event",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a2_controller_launch_gate_result_models",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a2_controller_launch_handoff_models",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a2_controller_launch_packet_models",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a2_controller_launch_spine_models",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a2_controller_send_text_companion_models",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a2_state_autosave",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a2_state_persist_tick",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a2_state_snapshot",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a2_state_surfaces",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::a2_to_a1_family_slice_models",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::advance_phase_gate",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::append_thread_closeout_packet",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::archive_guard",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::audit_a1_worker_launch_gate_result_pydantic",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::audit_a1_worker_launch_handoff_pydantic",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::audit_a1_worker_launch_packet_pydantic",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::audit_a1_worker_launch_spine_pydantic",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::audit_a1_worker_send_text_companion_pydantic",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::audit_a2_controller_launch_gate_result_pydantic",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::audit_a2_controller_launch_handoff_pydantic",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::audit_a2_controller_launch_packet_pydantic",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::audit_a2_controller_launch_spine_pydantic",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::audit_a2_controller_send_text_companion_pydantic",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::audit_a2_to_a1_family_slice_pydantic",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::audit_full_plus_save_zip",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::audit_project_save_doc",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::audit_thread_closeout_packets",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::authority_coverage_audit",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::auto_go_on_runner",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::bootpack_sync_audit",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::bootstrap_seeded_continuation_run",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_a1_autoratchet_controller_result",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_a1_queue_status_packet",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_a1_wiggle_controller_result",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_a1_worker_launch_handoff",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_a1_worker_launch_packet_from_family_slice",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_a1_worker_launch_spine",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_a1_worker_send_text_companion",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_a1_worker_send_text_from_packet",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_a2_controller_launch_handoff",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_a2_controller_launch_spine",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_a2_controller_send_text_companion",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_a2_controller_send_text_from_packet",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_a2_worker_launch_handoff",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_a2_worker_send_text_from_packet",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_export_candidate_pack",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_fuel_digest",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_full_plus_save_zip",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_graveyard_failure_topology",
+      "target": "layer::graph",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_instrumentation_report",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_migration_artifacts",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_overlay_save_doc",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_pro_boot_job_zip",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_pro_context_pack",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_project_save_doc",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_rosetta_map",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_save_profile_zip",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::build_tape_summary_report",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::codex_a1_packet_cycle",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::codex_packet_only_campaign_runner",
+      "target": "layer::sim_evidence",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::compact_run_packets",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::compile_first_controller_a1_launch_subset_graph",
+      "target": "layer::a0_compiler",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::content_redundancy_lint",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::create_a1_queue_candidate_registry",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::create_a1_worker_launch_packet",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::create_a2_controller_launch_packet",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::create_a2_worker_launch_packet",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::create_auto_go_on_cycle_packet",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_capture_record",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_target",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::create_browser_target_from_capture_record",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_observed_packet",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_target",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::emit_a1_queue_surface_pydantic_schemas",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::emit_a1_worker_launch_gate_result_pydantic_schema",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::emit_a1_worker_launch_handoff_pydantic_schema",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::emit_a1_worker_launch_packet_pydantic_schema",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::emit_a1_worker_launch_spine_pydantic_schema",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::emit_a1_worker_send_text_companion_pydantic_schema",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::emit_a2_controller_launch_gate_result_pydantic_schema",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::emit_a2_controller_launch_handoff_pydantic_schema",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::emit_a2_controller_launch_packet_pydantic_schema",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::emit_a2_controller_launch_spine_pydantic_schema",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::emit_a2_controller_send_text_companion_pydantic_schema",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::emit_a2_to_a1_family_slice_pydantic_schema",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::establish_explicit_name_alias_surface",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::execute_browser_go_on_playwright_plan",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::export_a1_worker_launch_gate_result_graph",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::export_a1_worker_launch_handoff_graph",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::export_a1_worker_launch_packet_graph",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::export_a1_worker_launch_spine_graph",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::export_a1_worker_send_text_companion_graph",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::export_a2_controller_launch_gate_result_graph",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::export_a2_controller_launch_handoff_graph",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::export_a2_controller_launch_packet_graph",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::export_a2_controller_launch_spine_graph",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::export_a2_controller_send_text_companion_graph",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::export_a2_to_a1_family_slice_graph",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::extract_auto_go_on_thread_result",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::extract_parallel_codex_worker_result",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::extract_thread_closeout_packet",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::extract_thread_s_snapshot_from_semantic_save",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::finalize_current_a1_queue_after_closeout",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::ingest_a2_distillery_zip",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::init_run_surface",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::lean_promote_and_prune",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::lean_prune_large_dirs",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::legacy_extract",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::prepare_a1_launch_bundle_from_family_slice",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::prepare_a1_queue_status_surfaces",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::prepare_b_restore_from_semantic_save",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::prepare_codex_launch_bundle",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::prepare_current_a1_queue_status_from_candidates",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::rebuild_a2_doc_index_json",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::refresh_active_current_a1_queue_state",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::refresh_active_current_a2_controller_launch_spine",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::refresh_first_controller_a1_launch_subset_graph",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::reindex_core_docs_ingest_index_v1",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::render_a1_queue_status_current_note_from_packet",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_a0_compile_gate",
+      "target": "layer::a0_compiler",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_a1_autoratchet_cycle_audit",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_a1_operational_integrity_audit",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_a1_semantic_and_math_substance_gate",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_a1_wiggle_control_cycle",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_a1_wiggle_soak_audit",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_a1_worker_launch_from_packet",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_a2_controller_launch_from_packet",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_a2_worker_launch_from_packet",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_artifact_grammar_gate",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_auto_go_on_cycle",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_auto_go_on_cycle_from_packet",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_auto_go_on_from_metadata",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_bridge_determinism_pair",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_from_observed_packet",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_from_observed_thread",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_conformance_fixture_matrix",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_evidence_ingest_gate",
+      "target": "layer::sim_evidence",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_graveyard_integrity_gate",
+      "target": "layer::graveyard",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_long_run_write_guard_gate",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_loop_health_diagnostic",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_phase_gate_pipeline",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_real_loop",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_real_loop_bridge_from_work",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_real_loop_recovery",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_real_loop_recovery_bridge_from_work",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_real_loop_recovery_cycle",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_release_candidate_gate",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_replay_pair_gate",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::run_spec_lock_gate",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::spec_lint",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::sprawl_guard",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::stage2_schema_gate",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::stage_browser_observed_thread_packet",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::storage_janitor",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::system_bundle_reboot_audit",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::thin_run_dir",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::validate_a1_queue_candidate_registry",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::validate_a1_queue_status_packet",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::validate_a1_worker_launch_packet",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::validate_a2_controller_launch_packet",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::validate_a2_topic_outputs",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::validate_a2_worker_launch_packet",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::validate_codex_thread_launch_handoff",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::validate_codex_thread_launch_observed_packet",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::validate_codex_thread_launch_target",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_tool::zip_job_realize_required_outputs",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "upgrade_doc::BOOTPACK_THREAD_A_v2.60.md",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "upgrade_doc::BOOTPACK_THREAD_B_v3.9.13.md",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "upgrade_doc::DIRECTED_EXTRACTION_ANSWERS.md",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "upgrade_doc::DIRECTED_EXTRACTION_ANSWERS_v2.md",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "upgrade_doc::DIRECTED_EXTRACTION_AUDIT_AND_QUESTIONS.md",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "upgrade_doc::SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "upgrade_doc::SYSTEM_UPGRADE_PLAN_EXTRACT_PASS2.md",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "upgrade_doc::SYSTEM_UPGRADE_PLAN_EXTRACT_PASS3.md",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "upgrade_doc::SYSTEM_UPGRADE_PLAN_EXTRACT_PASS4.md",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "upgrade_doc::SYSTEM_UPGRADE_PLAN_EXTRACT_PASS5.md",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "upgrade_doc::SYSTEM_UPGRADE_PLAN_EXTRACT_PASS6.md",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "upgrade_doc::SYSTEM_UPGRADE_PLAN_EXTRACT_PASS7.md",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "upgrade_doc::SYSTEM_UPGRADE_PLAN_EXTRACT_PASS8.md",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "upgrade_doc::SYSTEM_UPGRADE_PLAN_EXTRACT_PASS9.md",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "state::v4_refinery_batch_index",
+      "target": "layer::a2_operations",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "state::v3_memory",
+      "target": "layer::memory",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "state::v3_doc_index",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "state::v3_fuel_queue",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "state::v3_rosetta",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "state::v3_constraint_surface",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "state::v3_a1_brain",
+      "target": "layer::a1_strategy",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "state::v3_intent_summary",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "state::v3_model_context",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "2335623c373f5d49",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "80b4d1ee35c845ec",
+      "target": "layer::a0_compiler",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "9f3917a80cb1881d",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "layer::b_kernel",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "layer::a0_compiler",
+      "target": "layer::a0_compiler",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "layer::a1_strategy",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "layer::a2_operations",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "layer::sim_evidence",
+      "target": "layer::sim_evidence",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "layer::infrastructure",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "layer::graph",
+      "target": "layer::graph",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "layer::external",
+      "target": "layer::infrastructure",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "layer::browser",
+      "target": "layer::browser",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "layer::memory",
+      "target": "layer::memory",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "layer::graveyard",
+      "target": "layer::sim_evidence",
+      "relation": "BELONGS_TO_LAYER",
+      "layer": "LAYER_ASSIGNMENT"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_wiggle_autopilot.py",
+      "target": "v3_tool::a1_wiggle_autopilot",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a1_wiggle_controller_result.py",
+      "target": "v3_tool::build_a1_wiggle_controller_result",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_pack_selector.py",
+      "target": "v3_tool::a1_pack_selector",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a1_autoratchet_controller_result.py",
+      "target": "v3_tool::build_a1_autoratchet_controller_result",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py",
+      "target": "v3_tool::run_a1_autoratchet_cycle_audit",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_real_loop_recovery_cycle.py",
+      "target": "v3_tool::run_real_loop",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_real_loop_recovery_cycle.py",
+      "target": "v3_tool::run_real_loop_recovery",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_real_loop_recovery_cycle.py",
+      "target": "v3_tool::run_real_loop_recovery_cycle",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_audit_a1_current_queue_note_alignment.py",
+      "target": "v3_tool::audit_a1_current_queue_note_alignment",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_cold_core_strip.py",
+      "target": "v3_tool::a1_cold_core_strip",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a1_worker_launch_packet_from_family_slice.py",
+      "target": "v3_tool::build_a1_worker_launch_packet_from_family_slice",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_refresh_active_current_a1_queue_state.py",
+      "target": "v3_tool::refresh_active_current_a1_queue_state",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_rebuild_a2_doc_index_json.py",
+      "target": "v3_tool::rebuild_a2_doc_index_json",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_bridge_determinism_pair.py",
+      "target": "v3_tool::run_bridge_determinism_pair",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a2_controller_send_text_from_packet.py",
+      "target": "v3_tool::build_a2_controller_send_text_from_packet",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_state_persist_tick.py",
+      "target": "v3_tool::a2_state_persist_tick",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_save_profile_zip.py",
+      "target": "v3_tool::build_save_profile_zip",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_current_a1_queue_status_from_candidates.py",
+      "target": "v3_tool::prepare_current_a1_queue_status_from_candidates",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_wiggle_control_cycle.py",
+      "target": "v3_tool::run_a1_wiggle_control_cycle",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_real_loop.py",
+      "target": "v3_tool::run_real_loop",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_real_loop_bridge_from_work.py",
+      "target": "v3_tool::run_real_loop",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_real_loop_bridge_from_work.py",
+      "target": "v3_tool::run_real_loop_bridge_from_work",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_state_snapshot.py",
+      "target": "v3_tool::a2_state_snapshot",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_queue_status_surfaces.py",
+      "target": "v3_tool::prepare_a1_queue_status_surfaces",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_refresh_active_current_a2_controller_launch_spine.py",
+      "target": "v3_tool::refresh_active_current_a2_controller_launch_spine",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v3_runtime::system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_launch_bundle_from_family_slice.py",
+      "target": "v3_tool::prepare_a1_launch_bundle_from_family_slice",
+      "relation": "TESTS",
+      "layer": "V3_TEST_COVERAGE"
+    },
+    {
+      "source": "v4_spec::a2-a1-memory-admission-guard",
+      "target": "v4_skill::memory_admission_guard",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "admission",
+        "guard",
+        "memory"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-lev-builder-post-skeleton-admissibility-audit-operator",
+      "target": "v4_skill::a2_lev_autodev_loop_audit_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "audit",
+        "lev"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-lev-builder-post-skeleton-admissibility-audit-operator",
+      "target": "v4_skill::a2_lev_builder_formalization_proposal_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "builder",
+        "lev"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-lev-builder-post-skeleton-admissibility-audit-operator",
+      "target": "v4_skill::a2_lev_builder_formalization_skeleton_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "builder",
+        "lev",
+        "skeleton"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-lev-builder-post-skeleton-admissibility-audit-operator",
+      "target": "v4_skill::a2_lev_builder_placement_audit_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "audit",
+        "builder",
+        "lev"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-lev-builder-post-skeleton-admissibility-audit-operator",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_disposition_audit_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "audit",
+        "builder",
+        "lev",
+        "post",
+        "skeleton"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-lev-builder-post-skeleton-admissibility-audit-operator",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_follow_on_selector_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "builder",
+        "lev",
+        "post",
+        "skeleton"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-lev-builder-post-skeleton-admissibility-audit-operator",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_future_lane_existence_audit_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "audit",
+        "builder",
+        "lev",
+        "post",
+        "skeleton"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-lev-builder-post-skeleton-admissibility-audit-operator",
+      "target": "v4_skill::a2_lev_builder_post_skeleton_readiness_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "builder",
+        "lev",
+        "post",
+        "skeleton"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-openclaw-next-state-audit-operator",
+      "target": "v4_skill::a2_next_state_directive_signal_probe_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "next",
+        "state"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-openclaw-next-state-audit-operator",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_admission_audit_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "audit",
+        "next",
+        "state"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-openclaw-next-state-audit-operator",
+      "target": "v4_skill::a2_next_state_first_target_context_consumer_proof_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "next",
+        "state"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-openclaw-next-state-audit-operator",
+      "target": "v4_skill::a2_next_state_improver_context_bridge_audit_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "audit",
+        "next",
+        "state"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-openclaw-next-state-audit-operator",
+      "target": "v4_skill::a2_next_state_signal_adaptation_audit_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "audit",
+        "next",
+        "state"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-skill-improver-target-selection-operator",
+      "target": "v4_skill::a2_skill_improver_dry_run_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "improver",
+        "skill"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-skill-improver-target-selection-operator",
+      "target": "v4_skill::a2_skill_improver_first_target_proof_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "improver",
+        "skill",
+        "target"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-skill-improver-target-selection-operator",
+      "target": "v4_skill::a2_skill_improver_readiness_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "improver",
+        "skill"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-skill-improver-target-selection-operator",
+      "target": "v4_skill::a2_skill_improver_second_target_admission_audit_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "improver",
+        "skill",
+        "target"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-skill-improver-target-selection-operator",
+      "target": "v4_skill::a2_skill_improver_target_selector_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "improver",
+        "skill",
+        "target"
+      ]
+    },
+    {
+      "source": "v4_spec::a2-skill-improver-target-selection-operator",
+      "target": "v4_skill::skill_improver_operator",
+      "relation": "SPECIFIES",
+      "layer": "FUZZY_SPEC_BINDING",
+      "shared_tokens": [
+        "improver",
+        "skill"
+      ]
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::build_browser_go_on_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::create_browser_codex_thread_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::create_browser_codex_thread_target",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::create_browser_target_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::execute_browser_go_on_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::run_browser_go_on_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::run_browser_go_on_from_observed_thread",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::browser_go_on_helper",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::create_browser_codex_thread_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::create_browser_codex_thread_target",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::create_browser_target_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::execute_browser_go_on_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::run_browser_go_on_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::run_browser_go_on_from_observed_thread",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_browser_go_on_playwright_plan",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::create_browser_codex_thread_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::create_browser_codex_thread_target",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::create_browser_target_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::execute_browser_go_on_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::run_browser_go_on_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::run_browser_go_on_from_observed_thread",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::build_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_capture_record",
+      "target": "v3_tool::create_browser_codex_thread_target",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_capture_record",
+      "target": "v3_tool::create_browser_target_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_capture_record",
+      "target": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_capture_record",
+      "target": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_capture_record",
+      "target": "v3_tool::execute_browser_go_on_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_capture_record",
+      "target": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_capture_record",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_capture_record",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_capture_record",
+      "target": "v3_tool::run_browser_go_on_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_capture_record",
+      "target": "v3_tool::run_browser_go_on_from_observed_thread",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_capture_record",
+      "target": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_capture_record",
+      "target": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_capture_record",
+      "target": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_capture_record",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_capture_record",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_target",
+      "target": "v3_tool::create_browser_target_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_target",
+      "target": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_target",
+      "target": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_target",
+      "target": "v3_tool::execute_browser_go_on_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_target",
+      "target": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_target",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_target",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_target",
+      "target": "v3_tool::run_browser_go_on_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_target",
+      "target": "v3_tool::run_browser_go_on_from_observed_thread",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_target",
+      "target": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_target",
+      "target": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_target",
+      "target": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_target",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_codex_thread_target",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_target_from_capture_record",
+      "target": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_target_from_capture_record",
+      "target": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_target_from_capture_record",
+      "target": "v3_tool::execute_browser_go_on_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_target_from_capture_record",
+      "target": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_target_from_capture_record",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_target_from_capture_record",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_target_from_capture_record",
+      "target": "v3_tool::run_browser_go_on_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_target_from_capture_record",
+      "target": "v3_tool::run_browser_go_on_from_observed_thread",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_target_from_capture_record",
+      "target": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_target_from_capture_record",
+      "target": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_target_from_capture_record",
+      "target": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_target_from_capture_record",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_browser_target_from_capture_record",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "target": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "target": "v3_tool::execute_browser_go_on_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "target": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "target": "v3_tool::run_browser_go_on_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "target": "v3_tool::run_browser_go_on_from_observed_thread",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "target": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "target": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "target": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_surface_capture_record",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "target": "v3_tool::execute_browser_go_on_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "target": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "target": "v3_tool::run_browser_go_on_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "target": "v3_tool::run_browser_go_on_from_observed_thread",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "target": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "target": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "target": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::create_codex_thread_launch_target_from_capture_record",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_browser_go_on_playwright_plan",
+      "target": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_browser_go_on_playwright_plan",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_browser_go_on_playwright_plan",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_browser_go_on_playwright_plan",
+      "target": "v3_tool::run_browser_go_on_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_browser_go_on_playwright_plan",
+      "target": "v3_tool::run_browser_go_on_from_observed_thread",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_browser_go_on_playwright_plan",
+      "target": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_browser_go_on_playwright_plan",
+      "target": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_browser_go_on_playwright_plan",
+      "target": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_browser_go_on_playwright_plan",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_browser_go_on_playwright_plan",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::run_browser_go_on_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::run_browser_go_on_from_observed_thread",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::execute_codex_thread_launch_playwright_plan",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle",
+      "target": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle",
+      "target": "v3_tool::run_browser_go_on_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle",
+      "target": "v3_tool::run_browser_go_on_from_observed_thread",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle",
+      "target": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle",
+      "target": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle",
+      "target": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "target": "v3_tool::run_browser_go_on_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "target": "v3_tool::run_browser_go_on_from_observed_thread",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "target": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "target": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "target": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::prepare_codex_browser_launch_bundle_from_observed_surface",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_from_observed_packet",
+      "target": "v3_tool::run_browser_go_on_from_observed_thread",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_from_observed_packet",
+      "target": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_from_observed_packet",
+      "target": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_from_observed_packet",
+      "target": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_from_observed_packet",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_from_observed_packet",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_from_observed_thread",
+      "target": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_from_observed_thread",
+      "target": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_from_observed_thread",
+      "target": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_from_observed_thread",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_from_observed_thread",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "target": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "target": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_browser_go_on_playwright_from_observed_packet",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "target": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_codex_browser_launch_from_capture_record",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "target": "v3_tool::stage_browser_observed_thread_packet",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_codex_browser_launch_from_observed_packet",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::stage_browser_observed_thread_packet",
+      "target": "v3_tool::validate_codex_thread_launch_surface_capture_record",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::codex_packet_only_campaign_runner",
+      "target": "v3_tool::run_evidence_ingest_gate",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::codex_packet_only_campaign_runner",
+      "target": "v3_tool::run_graveyard_first_validity_campaign",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::run_evidence_ingest_gate",
+      "target": "v3_tool::run_graveyard_first_validity_campaign",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "v3_tool::compile_first_controller_a1_launch_subset_graph",
+      "target": "v3_tool::run_a0_compile_gate",
+      "relation": "CO_LAYER",
+      "layer": "TOOL_CLUSTER"
+    },
+    {
+      "source": "upgrade_doc::BOOTPACK_THREAD_A_v2.60.md",
+      "target": "v3_spec::14_A_THREAD_BOOTPACK_PROJECTION",
+      "relation": "REFERENCES",
+      "layer": "UPGRADE_SPEC_REF"
+    },
+    {
+      "source": "upgrade_doc::BOOTPACK_THREAD_A_v2.60.md",
+      "target": "v3_spec::17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1",
+      "relation": "REFERENCES",
+      "layer": "UPGRADE_SPEC_REF"
+    },
+    {
+      "source": "upgrade_doc::BOOTPACK_THREAD_B_v3.9.13.md",
+      "target": "v3_spec::14_A_THREAD_BOOTPACK_PROJECTION",
+      "relation": "REFERENCES",
+      "layer": "UPGRADE_SPEC_REF"
+    },
+    {
+      "source": "upgrade_doc::BOOTPACK_THREAD_B_v3.9.13.md",
+      "target": "v3_spec::17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1",
+      "relation": "REFERENCES",
+      "layer": "UPGRADE_SPEC_REF"
+    },
+    {
+      "source": "state::v3_doc_index",
+      "target": "state::v3_doc_index",
+      "relation": "MIRRORS",
+      "layer": "V3_V4_STATE_MIRROR"
+    },
+    {
+      "source": "state::v3_doc_index",
+      "target": "state::doc_index",
+      "relation": "MIRRORS",
+      "layer": "V3_V4_STATE_MIRROR"
+    },
+    {
+      "source": "state::v3_fuel_queue",
+      "target": "state::v3_fuel_queue",
+      "relation": "MIRRORS",
+      "layer": "V3_V4_STATE_MIRROR"
+    },
+    {
+      "source": "state::v3_fuel_queue",
+      "target": "state::fuel_queue",
+      "relation": "MIRRORS",
+      "layer": "V3_V4_STATE_MIRROR"
+    },
+    {
+      "source": "state::v3_rosetta",
+      "target": "state::v3_rosetta",
+      "relation": "MIRRORS",
+      "layer": "V3_V4_STATE_MIRROR"
+    },
+    {
+      "source": "state::v3_rosetta",
+      "target": "state::rosetta",
+      "relation": "MIRRORS",
+      "layer": "V3_V4_STATE_MIRROR"
+    },
+    {
+      "source": "state::v3_constraint_surface",
+      "target": "state::v3_constraint_surface",
+      "relation": "MIRRORS",
+      "layer": "V3_V4_STATE_MIRROR"
+    },
+    {
+      "source": "state::v3_constraint_surface",
+      "target": "state::constraint_surface",
+      "relation": "MIRRORS",
+      "layer": "V3_V4_STATE_MIRROR"
+    },
+    {
+      "source": "state::v3_a1_brain",
+      "target": "state::v3_a1_brain",
+      "relation": "MIRRORS",
+      "layer": "V3_V4_STATE_MIRROR"
+    },
+    {
+      "source": "state::v3_intent_summary",
+      "target": "state::v3_intent_summary",
+      "relation": "MIRRORS",
+      "layer": "V3_V4_STATE_MIRROR"
+    },
+    {
+      "source": "state::v3_model_context",
+      "target": "state::v3_model_context",
+      "relation": "MIRRORS",
+      "layer": "V3_V4_STATE_MIRROR"
+    },
+    {
+      "source": "2335623c373f5d49",
+      "target": "b15358544f7052e5",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "2335623c373f5d49",
+      "target": "25d132ca5d5dea7d",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "2335623c373f5d49",
+      "target": "48d60d59b66393ad",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "2335623c373f5d49",
+      "target": "d7caa020b23f741f",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "2335623c373f5d49",
+      "target": "0ae527d78785cf8c",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "2335623c373f5d49",
+      "target": "68833516a7a22723",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "2335623c373f5d49",
+      "target": "89749b4c0152e157",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "80b4d1ee35c845ec",
+      "target": "b15358544f7052e5",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "80b4d1ee35c845ec",
+      "target": "25d132ca5d5dea7d",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "80b4d1ee35c845ec",
+      "target": "48d60d59b66393ad",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "80b4d1ee35c845ec",
+      "target": "d7caa020b23f741f",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "80b4d1ee35c845ec",
+      "target": "0ae527d78785cf8c",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "80b4d1ee35c845ec",
+      "target": "68833516a7a22723",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "80b4d1ee35c845ec",
+      "target": "89749b4c0152e157",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "9f3917a80cb1881d",
+      "target": "b15358544f7052e5",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "9f3917a80cb1881d",
+      "target": "25d132ca5d5dea7d",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "9f3917a80cb1881d",
+      "target": "48d60d59b66393ad",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "9f3917a80cb1881d",
+      "target": "d7caa020b23f741f",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "9f3917a80cb1881d",
+      "target": "0ae527d78785cf8c",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "9f3917a80cb1881d",
+      "target": "68833516a7a22723",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
+    },
+    {
+      "source": "9f3917a80cb1881d",
+      "target": "89749b4c0152e157",
+      "relation": "IMPLEMENTS",
+      "layer": "CONCEPT_FLOWMIND"
     }
   ]
 }

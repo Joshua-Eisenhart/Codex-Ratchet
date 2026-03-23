@@ -87,11 +87,13 @@ principles:
 # ─── Graph Primitives ─────────────────────────────────────────────────
 primitives:
   entity:    "A node in the graph. Everything is an entity."
-  claim:     "An atomic assertion about an entity. Has truth_state."
-  evidence:  "Proof for a claim. Append-only."
-  proposal:  "A candidate graph mutation. Status: proposed|accepted|rejected."
-  gate:      "Evaluator that allows/amends/rejects proposals."
+  claim:     "An atomic assertion about an entity. Has truth_state. MULTIPLE CLAIMS COEXIST (§3.4)."
+  evidence:  "Proof for a claim. Append-only (C2). Kinds: observation, log, measurement, attestation, derived."
+  proposal:  "A candidate graph mutation. Constraints ELIMINATE proposals (§3.5), not certify truth."
+  gate:      "Evaluator that eliminates invalid proposals. Types: scope, safety, feasibility, standards, progress."
   view:      "Materialized projection. Lossy, scoped, time-bounded."
+  graveyard: "Active exploration memory. Rejected entities remain queryable and can be resurrected (§7.4)."
+  entropy:   "First-class measure on every entity. Higher entropy = needs refinement. Drives A2 priority (§3.7)."
   tick:      "One cycle: INGEST → OBSERVE → PROPOSE → GATE → APPLY → UPDATE → EMIT."
   intent:    "Cascading behavior spec. Hard constraints additive, steering overridable."
 
@@ -117,10 +119,12 @@ depth_model:
   L3: "Runtime — behavior, state transitions, live data"
 
 # ─── Entity Lifecycle ─────────────────────────────────────────────────
+# NOTE: rejected ≠ deleted. Rejected entities go to GRAVEYARD (§7.4).
 lifecycle:
-  entity:     "ephemeral → proposed → accepted → stale → rejected"
+  entity:     "ephemeral → proposed → accepted → stale → graveyarded | rejected→graveyarded"
   governance: "draft → review → approved → implementing"
   execution:  "open → in_progress → blocked → closed"
+  graveyard:  "graveyarded → revived(→proposed) | permanent_graveyard"
 
 # ─── A2 Layer Model ──────────────────────────────────────────────────
 a2_layers:

@@ -33,8 +33,18 @@ class EntityState(str, Enum):
     EPHEMERAL = "ephemeral"      # exists only in this turn
     PROPOSED = "proposed"        # suggested, not applied
     ACCEPTED = "accepted"        # committed to graph
-    REJECTED = "rejected"        # discarded
+    REJECTED = "rejected"        # discarded — moves to graveyard
     STALE = "stale"              # valid but outdated
+    GRAVEYARDED = "graveyarded"  # in graveyard, can be resurrected
+
+
+class TruthState(str, Enum):
+    """Truth state for claims — elimination over truth."""
+    PROPOSED = "proposed"        # No evidence yet
+    ACCEPTED = "accepted"        # Validated by evidence
+    CONTESTED = "contested"      # Conflicting evidence — MULTIPLE PATHS COEXIST
+    REFUTED = "refuted"          # Invalidated by evidence
+    SUPERSEDED = "superseded"    # Replaced by newer claim
 
 
 class IntentVector(str, Enum):
@@ -51,6 +61,10 @@ class ProposalType(str, Enum):
     LINK = "link"
     MARK_STALE = "mark_stale"
     DELETE = "delete"
+    CLAIM = "claim"              # Assert something about an entity
+    EVIDENCE = "evidence"        # Provide evidence for a claim
+    GRAVEYARD = "graveyard"      # Move to graveyard (NOT delete)
+    REVIVE = "revive"            # Resurrect from graveyard
 
 
 def _utc() -> str:
@@ -60,6 +74,42 @@ def _utc() -> str:
 def _nid(prefix: str, name: str) -> str:
     raw = f"{prefix}::{name}"
     return hashlib.sha256(raw.encode()).hexdigest()[:16]
+
+
+def compute_entropy(entity_data: dict[str, Any]) -> float:
+    """
+    Compute entropy score for an entity. Higher = needs more refinement.
+    Entropy is first-class in this system (Thread §3.7).
+
+    Factors:
+    - Number of contested claims (high entropy)
+    - Depth level (L0 = high, L3 = low)
+    - Staleness (stale = entropy increasing)
+    - Number of attributes (more = more refined = lower entropy)
+    """
+    score = 0.5  # baseline
+
+    # Contested claims increase entropy
+    claims = entity_data.get("attributes", {}).get("claims", [])
+    contested = sum(1 for c in claims if c.get("truth_state") == "contested")
+    score += contested * 0.15
+
+    # Depth reduces entropy
+    depth = entity_data.get("attributes", {}).get("depth", "L0")
+    if isinstance(depth, list):
+        depth = depth[0] if depth else "L0"
+    depth_map = {"L0": 0.3, "L1": 0.1, "L2": -0.1, "L3": -0.3}
+    score += depth_map.get(str(depth), 0)
+
+    # Staleness increases entropy
+    if entity_data.get("state") == "stale":
+        score += 0.2
+
+    # More attributes = more refined = lower entropy
+    attr_count = len(entity_data.get("attributes", {}))
+    score -= min(attr_count * 0.02, 0.3)
+
+    return max(0.0, min(1.0, score))
 
 
 class Entity:
@@ -84,6 +134,63 @@ class Entity:
             "attributes": self.attributes,
             "created_utc": self.created_utc,
             "updated_utc": self.updated_utc,
+        }
+
+
+class Claim:
+    """
+    An atomic assertion about an entity. Has TruthState.
+    Multiple claims about the same entity CAN coexist in CONTESTED state.
+    This is the nonclassical multiplicity — no preferred truth (Thread §3.4).
+    Constraints ELIMINATE claims, they don't certify truth (Thread §3.5).
+    """
+
+    def __init__(self, subject_id: str, predicate: str, object_val: str,
+                 truth_state: TruthState = TruthState.PROPOSED,
+                 evidence_refs: list[str] | None = None):
+        self.claim_id = _nid("CLAIM", f"{subject_id}:{predicate}:{object_val}")
+        self.subject_id = subject_id
+        self.predicate = predicate
+        self.object_val = object_val
+        self.truth_state = truth_state
+        self.evidence_refs = evidence_refs or []
+        self.created_utc = _utc()
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "claim_id": self.claim_id,
+            "subject_id": self.subject_id,
+            "predicate": self.predicate,
+            "object": self.object_val,
+            "truth_state": self.truth_state.value,
+            "evidence_refs": self.evidence_refs,
+            "created_utc": self.created_utc,
+        }
+
+
+class Evidence:
+    """
+    Support for claims. Append-only (C2 Non-Commutation).
+    Kinds: observation, log, measurement, attestation, derived.
+    """
+
+    def __init__(self, kind: str, source: str, payload_ref: str,
+                 reliability: float = 0.5):
+        self.evidence_id = _nid("EVIDENCE", f"{source}:{payload_ref}")
+        self.kind = kind
+        self.source = source
+        self.payload_ref = payload_ref
+        self.reliability = reliability
+        self.created_utc = _utc()
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "evidence_id": self.evidence_id,
+            "kind": self.kind,
+            "source": self.source,
+            "payload_ref": self.payload_ref,
+            "reliability": self.reliability,
+            "created_utc": self.created_utc,
         }
 
 
@@ -246,6 +353,58 @@ class GraphIntentRuntime:
         self._pending_proposals.append(prop)
         return prop
 
+    def propose_claim(self, subject_id: str, predicate: str, object_val: str,
+                      rationale: str, evidence_refs: list[str] | None = None,
+                      intent: IntentVector | None = None) -> Proposal:
+        """
+        Propose a claim about an entity. Claims have truth_state.
+        Multiple claims about the same subject can coexist (§3.4 no preferred truth).
+        """
+        claim = Claim(subject_id, predicate, object_val,
+                      TruthState.PROPOSED, evidence_refs)
+        prop = Proposal(
+            ProposalType.CLAIM, f"claim:{subject_id}:{predicate}", rationale,
+            {"claim": claim.to_dict()}, intent,
+        )
+        self._pending_proposals.append(prop)
+        return prop
+
+    def propose_evidence(self, kind: str, source: str, payload_ref: str,
+                         claim_id: str, rationale: str,
+                         reliability: float = 0.5,
+                         intent: IntentVector | None = None) -> Proposal:
+        """Propose evidence for a claim. Append-only (C2)."""
+        evidence = Evidence(kind, source, payload_ref, reliability)
+        prop = Proposal(
+            ProposalType.EVIDENCE, f"evidence:{claim_id}", rationale,
+            {"evidence": evidence.to_dict(), "claim_id": claim_id}, intent,
+        )
+        self._pending_proposals.append(prop)
+        return prop
+
+    def propose_graveyard(self, entity_name: str, rationale: str,
+                          intent: IntentVector | None = None) -> Proposal:
+        """
+        Move to graveyard, NOT delete. Graveyard is active structure (§7.4).
+        Graveyarded entities remain queryable and maintain lineage.
+        """
+        prop = Proposal(
+            ProposalType.GRAVEYARD, entity_name, rationale,
+            {"new_state": EntityState.GRAVEYARDED.value}, intent,
+        )
+        self._pending_proposals.append(prop)
+        return prop
+
+    def propose_revive(self, entity_name: str, rationale: str,
+                       intent: IntentVector | None = None) -> Proposal:
+        """Resurrect from graveyard. Entities can always come back."""
+        prop = Proposal(
+            ProposalType.REVIVE, entity_name, rationale,
+            {"new_state": EntityState.PROPOSED.value}, intent,
+        )
+        self._pending_proposals.append(prop)
+        return prop
+
     # ── PATCH APPLICATION ─────────────────────────────────────────────────
     def apply_accepted_proposals(self) -> dict[str, Any]:
         """
@@ -383,3 +542,40 @@ class GraphIntentRuntime:
         if self._graph is not None:
             with self.graph_path.open("w", encoding="utf-8") as f:
                 json.dump(self._graph, f, indent=2)
+
+    # ── ENTROPY & GRAVEYARD QUERIES ──────────────────────────────────────
+    def high_entropy_entities(self, top_n: int = 10) -> list[dict[str, Any]]:
+        """
+        Find entities with highest entropy — these need refinement next.
+        Entropy is first-class (Thread §3.7).
+        """
+        graph = self.load_graph()
+        scored = []
+        for nid, ndata in graph["nodes"].items():
+            if ndata.get("state") not in ("rejected", "graveyarded"):
+                entropy = compute_entropy(ndata)
+                scored.append({"id": nid, "entropy": entropy, **ndata})
+        scored.sort(key=lambda x: x["entropy"], reverse=True)
+        return scored[:top_n]
+
+    def graveyarded_entities(self) -> list[dict[str, Any]]:
+        """
+        Graveyard is active structure (Thread §7.4).
+        These remain queryable, maintain lineage, can be resurrected.
+        """
+        return self.entities_by_state(EntityState.GRAVEYARDED)
+
+    def claims_for_entity(self, entity_id: str) -> list[dict[str, Any]]:
+        """
+        Get all claims about an entity.
+        Multiple claims can coexist — no preferred truth (Thread §3.4).
+        """
+        graph = self.load_graph()
+        claims = []
+        for nid, ndata in graph["nodes"].items():
+            if ndata.get("node_type") == "CLAIM":
+                attrs = ndata.get("attributes", {})
+                if attrs.get("subject_id") == entity_id:
+                    claims.append({"id": nid, **ndata})
+        return claims
+

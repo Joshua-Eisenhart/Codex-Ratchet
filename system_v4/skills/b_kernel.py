@@ -125,6 +125,11 @@ class BKernel:
         self.reject_log: List[dict] = []
         self.graveyard: List[GraveyardRecord] = []
         self.accepted_batch_count: int = 0
+        
+        from system_v4.skills.a2_graph_refinery import A2GraphRefinery
+        from system_v4.skills.graveyard_router import GraveyardRouter
+        self.refinery = A2GraphRefinery(a1_brain.repo_root)
+        self.graveyard_router = GraveyardRouter(self.refinery)
 
         self._load_state()
 
@@ -489,6 +494,9 @@ class BKernel:
                         "bound_math_def": cid,
                         "provenance": batch_id,
                     }
+                    
+        # Plumb the B_SURVIVOR structural memory node directly into the graph
+        self.graveyard_router.route_survivor(cid)
 
     def _park(self, candidate: dict, batch_id: str, outcome: BOutcome):
         """Park a candidate (retained for later replay/unpark)."""
@@ -506,6 +514,14 @@ class BKernel:
                 "primary_candidate_id": candidate.get("primary_candidate_id"),
             },
         }
+
+        # Plumb the B_PARKED structural memory node directly into the graph
+        self.graveyard_router.route_parked(
+            candidate_id=cid,
+            reason_tag=outcome.reason_tag,
+            raw_lines=outcome.raw_lines,
+            target_ref=candidate.get("primary_candidate_id") or candidate.get("source_concept_id")
+        )
 
     def _reject(self, candidate: dict, batch_id: str, outcome: BOutcome):
         """Reject a candidate — write graveyard record."""
@@ -542,6 +558,16 @@ class BKernel:
             "source_concept_id": source_concept_id,
             "primary_candidate_id": primary_candidate_id,
         })
+
+        # Plumb the B_KILL structural memory node directly into the graph
+        self.graveyard_router.route_to_graveyard(
+            candidate_id=cid,
+            reason_tag=outcome.reason_tag,
+            failure_class="B_KILL",
+            raw_lines=outcome.raw_lines,
+            sim_evidence={},  # No SIM evidence at B_KILL layer
+            target_ref=target_ref
+        )
 
 
 def main():

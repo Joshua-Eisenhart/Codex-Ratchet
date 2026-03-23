@@ -1,0 +1,15 @@
+---
+id: "A2_3::SOURCE::EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_FOURTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md::10e928d225fb4503"
+type: "SOURCE_DOCUMENT"
+layer: "INDEX"
+authority: "SOURCE_CLAIM"
+---
+
+# EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_FOURTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md
+**Node ID:** `A2_3::SOURCE::EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_FOURTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md::10e928d225fb4503`
+
+## Description
+High-entropy source document ingested at A2-3.
+
+## Outward Relations
+- **SOURCE_MAP_PASS** → [[external_boot_comparative_refresh__post_fep_fourth]]

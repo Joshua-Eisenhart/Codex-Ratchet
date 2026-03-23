@@ -1,0 +1,15 @@
+---
+id: "A2_3::SOURCE::SYSTEM_V3_RUNS__2026_03_15__WAVE15_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE.md::445a9b061cd2b0d7"
+type: "SOURCE_DOCUMENT"
+layer: "INDEX"
+authority: "SOURCE_CLAIM"
+---
+
+# SYSTEM_V3_RUNS__2026_03_15__WAVE15_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE.md
+**Node ID:** `A2_3::SOURCE::SYSTEM_V3_RUNS__2026_03_15__WAVE15_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE.md::445a9b061cd2b0d7`
+
+## Description
+High-entropy source document ingested at A2-3.
+
+## Outward Relations
+- **SOURCE_MAP_PASS** → [[system_v3_runs__2026_03_15__wave15_entropy_bookkee]]

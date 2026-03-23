@@ -1,0 +1,15 @@
+---
+id: "A2_3::SOURCE::SYSTEM_V3_A2_HIGH_ENTROPY_INTAKE_AUTHORITY_SPLIT_DECISION_PACKET__2026_03_15.md::52d8d098e31808f8"
+type: "SOURCE_DOCUMENT"
+layer: "INDEX"
+authority: "SOURCE_CLAIM"
+---
+
+# SYSTEM_V3_A2_HIGH_ENTROPY_INTAKE_AUTHORITY_SPLIT_DECISION_PACKET__2026_03_15.md
+**Node ID:** `A2_3::SOURCE::SYSTEM_V3_A2_HIGH_ENTROPY_INTAKE_AUTHORITY_SPLIT_DECISION_PACKET__2026_03_15.md::52d8d098e31808f8`
+
+## Description
+High-entropy source document ingested at A2-3.
+
+## Outward Relations
+- **SOURCE_MAP_PASS** → [[system_v3_a2_high_entropy_intake_authority_split_d]]

@@ -1,0 +1,15 @@
+---
+id: "A2_3::SOURCE::10_SOURCE_BEARING_EXTRACT__STEADY_STATE_DENSITIES_AND_SUFFICIENT_STATISTICS__v1.md::4c39048d2323e58f"
+type: "SOURCE_DOCUMENT"
+layer: "INDEX"
+authority: "SOURCE_CLAIM"
+---
+
+# 10_SOURCE_BEARING_EXTRACT__STEADY_STATE_DENSITIES_AND_SUFFICIENT_STATISTICS__v1.md
+**Node ID:** `A2_3::SOURCE::10_SOURCE_BEARING_EXTRACT__STEADY_STATE_DENSITIES_AND_SUFFICIENT_STATISTICS__v1.md::4c39048d2323e58f`
+
+## Description
+High-entropy source document ingested at A2-3.
+
+## Outward Relations
+- **SOURCE_MAP_PASS** → [[10_source_bearing_extract__steady_state_densities_]]

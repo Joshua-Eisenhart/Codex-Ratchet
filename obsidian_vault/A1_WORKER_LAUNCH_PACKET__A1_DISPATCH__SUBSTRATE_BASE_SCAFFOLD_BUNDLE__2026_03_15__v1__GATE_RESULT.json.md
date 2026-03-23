@@ -1,0 +1,15 @@
+---
+id: "A2_3::SOURCE::A1_WORKER_LAUNCH_PACKET__A1_DISPATCH__SUBSTRATE_BASE_SCAFFOLD_BUNDLE__2026_03_15__v1__GATE_RESULT.json::a0b8142049c2ca3e"
+type: "SOURCE_DOCUMENT"
+layer: "INDEX"
+authority: "SOURCE_CLAIM"
+---
+
+# A1_WORKER_LAUNCH_PACKET__A1_DISPATCH__SUBSTRATE_BASE_SCAFFOLD_BUNDLE__2026_03_15__v1__GATE_RESULT.json
+**Node ID:** `A2_3::SOURCE::A1_WORKER_LAUNCH_PACKET__A1_DISPATCH__SUBSTRATE_BASE_SCAFFOLD_BUNDLE__2026_03_15__v1__GATE_RESULT.json::a0b8142049c2ca3e`
+
+## Description
+High-entropy source document ingested at A2-3.
+
+## Outward Relations
+- **OVERLAPS** → [[a1_worker_launch_packet__a1_dispatch__substrate_ba]]

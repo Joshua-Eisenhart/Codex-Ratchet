@@ -1,0 +1,53 @@
+### A1_READY_PACKET__v1
+**STATUS:** ACTIVE / CURRENT DISPATCH
+**AUTHORITY:** A2_CONTROLLER
+
+**model:** Operator-Assigned Model (Pro/Opus/GPT-4)
+**thread_class:** A1_WORKER
+**mode:** PROPOSAL_ONLY
+**dispatch_id:** DISPATCH_A1_THERMODYNAMIC_VARIANCE_SIM_PASS_02
+**queue_status:** READY_FROM_EXISTING_FUEL
+**target_a1_role:** A1_PROPOSAL
+**required_a1_boot:** system_v3/specs/31_A1_THREAD_BOOT__v1.md
+**a1_reload_artifacts:**
+- system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md
+**source_a2_artifacts:**
+- S_THERMODYNAMIC_VARIANCE_DEDUCTIVE_MATH_DEF
+- S_THERMODYNAMIC_VARIANCE_INDUCTIVE_MATH_DEF
+- S_NON_COMMUTING_POLARITY_SELECTOR_MATH_DEF
+**bounded_scope:** Generate strict QIT `SIM_SPEC` payloads to empirically test Thermodynamic Direction, specifically validating the non-commuting variance trajectories of Deductive (constraint-first) versus Inductive (release-first) loop orderings. 
+**go_on_count:** 0
+**go_on_budget:** 1
+**stop_rule:** Stop after producing exactly one complete `A1_STRATEGY_v1` proposal packet containing the requested `SIM_SPEC` objects.
+
+#### prompt_to_send
+```text
+ROLE_LABEL: A1_PROPOSAL
+ROLE_TYPE: A1_WORKER
+ROLE_SCOPE: Thermodynamic Variance Sweep SIM_SPEC Generation
+
+You are running under the exact constraints of system_v3/specs/31_A1_THREAD_BOOT__v1.md. 
+You must strictly follow the live packet profile defined in 77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md.
+
+FUEL:
+You are equipped with the A2 distilled mathematical definitions for the operator algebras:
+- `S_THERMODYNAMIC_VARIANCE_DEDUCTIVE_MATH_DEF` (Deductive: dissipative Lindbladian precedes unitary constraint).
+- `S_THERMODYNAMIC_VARIANCE_INDUCTIVE_MATH_DEF` (Inductive: unitary driving precedes dissipative storage).
+- `S_NON_COMMUTING_POLARITY_SELECTOR_MATH_DEF` (Binary selector between the two non-commuting compositions).
+
+TASK:
+Produce one `A1_STRATEGY_v1` JSON packet targeted at `A0_COMPILER`. You must draft the following `SIM_SPEC` candidates:
+1. STEELMAN (Positive): A `SIM_SPEC` named `S_SIM_VARIANCE_TRAJECTORY_NON_COMMUTE_CHECK_V1` designed to verify that the Deductive and Inductive composite sequences produce distinct variance monotone trajectories.
+2. ADVERSARIAL_NEG (Falsification): A `SIM_SPEC` explicitly designed to fail (`KILL_IF`) if the entropy production behaves identically regardless of the applied operator precedence (i.e., if non-commutation collapses).
+
+HARD RULES:
+- WARNING: Jungian terminology (e.g., "FeTi", "TeFi", "Jung", "MBTI") AND A2 domain labels (e.g., "Axis", "Axes") are illegal variance leaks. Any inclusion of these metaphorical abbreviations or classification labels as structural constraint keys or in B-scanned fields will result in immediate Thread B execution failure (`REJECT_AND_HALT`). You must use pure physical/geometrical descriptors.
+- Do not perform broad A2 source refinery. You are operating from bounded fuel.
+- Do not assert lower-loop canon truth. You are proposing testable constraints.
+- Strip all psychological, teleological, and classical metaphors (e.g., "heating/cooling"). Use strict QIT geometric equivalents (Lindbladian, trace, CPTP channel, variance monotones).
+- Every `SIM_SPEC` candidate must declare explicit `REQUIRES_EVIDENCE` tokens and expected failure classes.
+- BARE values must be restricted to kernel-safe tokens (IDs, token-like atoms); any free English must be placed in `LABEL_QUOTED` or `FORMULA_QUOTED`.
+
+STOP RULE:
+Stop after producing the complete, compile-ready `A1_STRATEGY_v1` JSON block. Output nothing further.
+```

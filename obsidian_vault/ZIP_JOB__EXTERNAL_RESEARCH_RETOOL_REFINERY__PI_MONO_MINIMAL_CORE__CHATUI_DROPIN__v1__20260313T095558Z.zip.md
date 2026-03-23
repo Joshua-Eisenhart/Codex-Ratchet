@@ -1,0 +1,15 @@
+---
+id: "A2_3::SOURCE::ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__PI_MONO_MINIMAL_CORE__CHATUI_DROPIN__v1__20260313T095558Z.zip::7d2f4bca98ecf64c"
+type: "SOURCE_DOCUMENT"
+layer: "INDEX"
+authority: "SOURCE_CLAIM"
+---
+
+# ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__PI_MONO_MINIMAL_CORE__CHATUI_DROPIN__v1__20260313T095558Z.zip
+**Node ID:** `A2_3::SOURCE::ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__PI_MONO_MINIMAL_CORE__CHATUI_DROPIN__v1__20260313T095558Z.zip::7d2f4bca98ecf64c`
+
+## Description
+High-entropy source document ingested at A2-3.
+
+## Outward Relations
+- **SOURCE_MAP_PASS** → [[zip_job__external_research_retool_refinery__pi_mon]]

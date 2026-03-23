@@ -46,16 +46,25 @@ class A2PersistentBrain:
 
     def __init__(self, workspace_root: str):
         self.workspace_root = Path(workspace_root).resolve()
+        
+        # Per V4 Spec (Job 003 Audit): Canonical A2 persistent state MUST anchor
+        # to system_v3/a2_state/, not system_v4/a2_state/. 
+        self.v3_anchor_dir = self.workspace_root / "system_v3" / "a2_state"
         self.a2_state_dir = self.workspace_root / "system_v4" / "a2_state"
-        self.memory_log_path = self.a2_state_dir / "memory.jsonl"
-        self.seal_log_path = self.a2_state_dir / "thread_seals.000.jsonl"
-        self.doc_index_path = self.a2_state_dir / "doc_index_v4.json"
-        self.system_state_path = self.a2_state_dir / "system_state_report.json"
+        
+        self.memory_log_path = self.v3_anchor_dir / "memory.jsonl"
+        self.seal_log_path = self.v3_anchor_dir / "thread_seals.000.jsonl"
+        self.doc_index_path = self.v3_anchor_dir / "doc_index_v4.json"
+        self.system_state_path = self.v3_anchor_dir / "system_state_report.json"
+        
+        # Graph paths can remain in v4 since they are structural outputs, 
+        # but the master control logs must be in v3.
         self.system_graph_path = (
             self.a2_state_dir / "graphs" / "system_architecture_v1.json"
         )
 
         self.a2_state_dir.mkdir(parents=True, exist_ok=True)
+        self.v3_anchor_dir.mkdir(parents=True, exist_ok=True)
 
         # Loaded lazily
         self._system_graph: Optional[Dict[str, Any]] = None
@@ -418,17 +427,34 @@ class A2PersistentBrain:
 
     def get_skill_clusters(self) -> Dict[str, Any]:
         """Return L1: skill clusters with cross-cluster dependencies."""
-        nested = self.load_nested_graph()
-        return nested.get("layers", {}).get("L1_SKILL_CLUSTERS", {})
+        path = self.a2_state_dir / "graphs" / "system_graph_a2_refinery.json"
+        if not path.exists():
+            return {}
+        with path.open() as f:
+            full_graph = json.load(f)
+            
+        clusters = {}
+        for nid, node in full_graph.get("nodes", {}).items():
+            if node.get("layer") == "L1_SKILL_CLUSTERS" or node.get("node_type") == "SKILL_CLUSTER":
+                clusters[nid] = node
+        return {"nodes": clusters}
 
     def get_cluster_for_skill(self, skill_name: str) -> Optional[str]:
-        """Find which cluster a skill belongs to."""
-        clusters = self.get_skill_clusters()
-        for _nid, cdata in clusters.get("nodes", {}).items():
-            if skill_name in cdata.get("skills", []):
-                return cdata.get("name")
-            if skill_name.replace("-", "_") in cdata.get("skills", []):
-                return cdata.get("name")
+        """Find which cluster a skill belongs to via MEMBER_OF edges."""
+        path = self.a2_state_dir / "graphs" / "system_graph_a2_refinery.json"
+        if not path.exists():
+            return None
+        with path.open() as f:
+            full_graph = json.load(f)
+            
+        target_id = f"SKILL::{skill_name}"
+        clusters = self.get_skill_clusters().get("nodes", {})
+        
+        for edge in full_graph.get("edges", []):
+            if edge.get("relation") == "MEMBER_OF" and edge.get("source_id") == target_id:
+                cl_id = edge.get("target_id")
+                if cl_id in clusters:
+                    return clusters[cl_id].get("name")
         return None
 
     # ── 9. V3 BOOT-READ-ORDER PROTOCOL (spec 07 §Boot Order) ───────────────
@@ -786,16 +812,38 @@ class A2PersistentBrain:
         ]
         unchanged = len(curr_index) - len(added) - len(modified)
 
-        has_changes = bool(added or removed or modified)
+        # Graph structural diff
+        graph_deltas = {"node_delta": 0, "edge_delta": 0}
+        curr_graph = self.load_system_graph()
+        
+        # Load previous architecture graph safely
+        prev_graph_path = self.a2_state_dir / "graphs" / "system_architecture_v1_prev.json" 
+        if prev_graph_path.exists():
+            try:
+                prev_graph = json.loads(prev_graph_path.read_text())
+                graph_deltas["node_delta"] = len(curr_graph.get("nodes", {})) - len(prev_graph.get("nodes", {}))
+                graph_deltas["edge_delta"] = len(curr_graph.get("edges", [])) - len(prev_graph.get("edges", []))
+            except (json.JSONDecodeError, OSError):
+                pass
+                
+        # Persist current as prev for next cycle
+        if self.system_graph_path.exists():
+            try:
+                prev_graph_path.write_text(self.system_graph_path.read_text())
+            except Exception:
+                pass
+
+        has_changes = bool(added or removed or modified or graph_deltas["node_delta"] != 0)
 
         return {
-            "summary": f"Diff: +{len(added)} -{len(removed)} ~{len(modified)} ={unchanged}",
+            "summary": f"Diff: +{len(added)} -{len(removed)} ~{len(modified)} [Graph N:{graph_deltas['node_delta']:+d} E:{graph_deltas['edge_delta']:+d}]",
             "has_changes": has_changes,
             "deltas": {
                 "added": added,
                 "removed": removed,
                 "modified": modified,
                 "unchanged_count": unchanged,
+                "graph_structural": graph_deltas,
             },
         }
 
@@ -851,6 +899,15 @@ class A2PersistentBrain:
                     "gap": gov_coverage["total_skills"] - gov_coverage["governed"],
                 },
             })
+            
+        # Packet 5: Structural Context Extraction (First-Class PACKETIZE)
+        # Slices the core system graph elements to physically pass the context
+        sys_core = self.get_system_core()
+        packets.append({
+            "packet_type": "A2_CORE_CONTEXT_EXTRACT",
+            "ts_utc": self._utc_iso(),
+            "content": {"system_core_nodes": len(sys_core.get("nodes", {}))}
+        })
 
         # Write packets to a2_state for A1 pickup
         packet_path = self.a2_state_dir / "a1_packets_current.json"

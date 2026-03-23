@@ -1,0 +1,84 @@
+{
+  "item_class": "A1_STRATEGY_v1",
+  "compile_target": "A0_COMPILER",
+  "strategy_canonical": [
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S_ENTROPIC_GRADIENT_MATH",
+      "kind": "MATH_DEF",
+      "requires": [
+        "F01_FINITUDE",
+        "N01_NONCOMMUTATION"
+      ],
+      "def_fields": {
+        "OBJECTS": "density_matrix_rho survivorship_functional_Phi",
+        "OPERATIONS": "gradient_evaluation partition_classes",
+        "DOMAIN": "finite_dimensional_density_matrices",
+        "CODOMAIN": "entropic_gradient_values",
+        "INVARIANTS": "finitude_bound non_commutation_preserved",
+        "FORMULA": "Phi_evaluated_under_non_commutative_constraints"
+      },
+      "asserts": {
+        "EXISTS": "MATH_TOKEN ENTROPIC_GRADIENT"
+      }
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S_VARIANCE_DIRECTION_MATH",
+      "kind": "MATH_DEF",
+      "requires": [
+        "F01_FINITUDE",
+        "N01_NONCOMMUTATION"
+      ],
+      "def_fields": {
+        "OBJECTS": "loop_variance constraint_operator release_operator",
+        "OPERATIONS": "deductive_composition inductive_composition",
+        "DOMAIN": "cptp_channel_sequences",
+        "CODOMAIN": "variance_monotones",
+        "INVARIANTS": "variance_ordering_preserved",
+        "FORMULA": "deductive_constraint_first_vs_inductive_release_first"
+      },
+      "asserts": {
+        "EXISTS": "MATH_TOKEN VARIANCE_DIRECTION"
+      }
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S_COUPLING_REGIME_MATH",
+      "kind": "MATH_DEF",
+      "requires": [
+        "F01_FINITUDE"
+      ],
+      "def_fields": {
+        "OBJECTS": "system_state bath_environment",
+        "OPERATIONS": "isothermal_cptp_exchange adiabatic_unitary_insulation",
+        "DOMAIN": "finite_dimensional_density_matrices",
+        "CODOMAIN": "finite_dimensional_density_matrices",
+        "INVARIANTS": "trace_preservation",
+        "FORMULA": "isothermal_open_bath_vs_adiabatic_insulated"
+      },
+      "asserts": {
+        "EXISTS": "MATH_TOKEN COUPLING_REGIME"
+      }
+    },
+    {
+      "item_class": "SPEC_HYP",
+      "id": "S_FRAME_REPRESENTATION_MATH",
+      "kind": "MATH_DEF",
+      "requires": [
+        "F01_FINITUDE"
+      ],
+      "def_fields": {
+        "OBJECTS": "eulerian_field_boundary lagrangian_particle_boundary",
+        "OPERATIONS": "open_boundary_interaction closed_boundary_tracking",
+        "DOMAIN": "state_manifolds",
+        "CODOMAIN": "coordinate_charts",
+        "INVARIANTS": "topological_invariance",
+        "FORMULA": "eulerian_field_vs_lagrangian_particle"
+      },
+      "asserts": {
+        "EXISTS": "MATH_TOKEN FRAME_REPRESENTATION"
+      }
+    }
+  ]
+}

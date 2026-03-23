@@ -1,0 +1,15 @@
+---
+id: "A2_3::SOURCE::09_SOURCE_BEARING_EXTRACT__CONTROL_SYSTEM_AND_REPRESENTATIONAL_BOUNDARY__v1.md::0364f119e0bf30ac"
+type: "SOURCE_DOCUMENT"
+layer: "INDEX"
+authority: "SOURCE_CLAIM"
+---
+
+# 09_SOURCE_BEARING_EXTRACT__CONTROL_SYSTEM_AND_REPRESENTATIONAL_BOUNDARY__v1.md
+**Node ID:** `A2_3::SOURCE::09_SOURCE_BEARING_EXTRACT__CONTROL_SYSTEM_AND_REPRESENTATIONAL_BOUNDARY__v1.md::0364f119e0bf30ac`
+
+## Description
+High-entropy source document ingested at A2-3.
+
+## Outward Relations
+- **SOURCE_MAP_PASS** → [[09_source_bearing_extract__control_system_and_repr]]

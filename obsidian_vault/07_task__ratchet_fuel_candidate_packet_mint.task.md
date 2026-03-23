@@ -1,0 +1,49 @@
+---
+id: "A2_3::SOURCE_MAP_PASS::07_task__ratchet_fuel_candidate_packet_mint.task::1ae9ae0adab12348"
+type: "KERNEL_CONCEPT"
+layer: "A1_JARGONED"
+authority: "CROSS_VALIDATED"
+---
+
+# 07_task__ratchet_fuel_candidate_packet_mint.task
+**Node ID:** `A2_3::SOURCE_MAP_PASS::07_task__ratchet_fuel_candidate_packet_mint.task::1ae9ae0adab12348`
+
+## Description
+Archived Work File: TASK_ID: TSK_RATCHET_FUEL_CANDIDATE_PACKET_MINT
+
+## Properties
+- **source_line_range**: 
+- **extraction_mode**: SOURCE_MAP_PASS
+- **promoted_by**: CROSS_VALIDATION_PASS_001
+- **promoted_reason**: CROSS_VAL: 22 sources, 22 batches, 23 edges
+- **promoted_from**: A2_3_INTAKE
+
+## Outward Relations
+- **DEPENDS_ON** → [[packet]]
+- **ROSETTA_MAP** → [[07_TASK_RATCHET_FUEL_CANDIDATE_PACKET_MINT_TASK]]
+
+## Inward Relations
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **SOURCE_MAP_PASS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[07_TASK__RATCHET_FUEL_CANDIDATE_PACKET_MINT.task.md]] → **OVERLAPS**
+- [[zip_dropins_07_task__ratchet_fuel_candidate_pac]] → **DEPENDS_ON**
+- [[07_TASK_RATCHET_FUEL_CANDIDATE_PACKET_MINT_TASK]] → **STRIPPED_FROM**

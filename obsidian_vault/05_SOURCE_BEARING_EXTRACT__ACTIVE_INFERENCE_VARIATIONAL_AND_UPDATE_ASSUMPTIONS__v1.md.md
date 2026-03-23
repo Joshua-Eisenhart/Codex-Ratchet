@@ -1,0 +1,15 @@
+---
+id: "A2_3::SOURCE::05_SOURCE_BEARING_EXTRACT__ACTIVE_INFERENCE_VARIATIONAL_AND_UPDATE_ASSUMPTIONS__v1.md::76b5e52fde50014c"
+type: "SOURCE_DOCUMENT"
+layer: "INDEX"
+authority: "SOURCE_CLAIM"
+---
+
+# 05_SOURCE_BEARING_EXTRACT__ACTIVE_INFERENCE_VARIATIONAL_AND_UPDATE_ASSUMPTIONS__v1.md
+**Node ID:** `A2_3::SOURCE::05_SOURCE_BEARING_EXTRACT__ACTIVE_INFERENCE_VARIATIONAL_AND_UPDATE_ASSUMPTIONS__v1.md::76b5e52fde50014c`
+
+## Description
+High-entropy source document ingested at A2-3.
+
+## Outward Relations
+- **SOURCE_MAP_PASS** → [[05_source_bearing_extract__active_inference_variat]]

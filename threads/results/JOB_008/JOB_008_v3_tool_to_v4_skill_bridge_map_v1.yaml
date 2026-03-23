@@ -1,0 +1,19 @@
+# JOB_008_v3_tool_to_v4_skill_bridge_map_v1.yaml
+# Mock subset for structural verification until the user downloads the real file
+
+DIRECT_PORT:
+  - legacy_tool: "a0_base.py"
+    v4_targets: ["a2_boot.py"]
+  - legacy_tool: "cross_graph_overlap.py"
+    v4_targets: ["graph_capability_auditor.py"]
+
+ABSORBED_INTO:
+  - legacy_tool: "v3_bootpack_runner.py"
+    v4_targets: ["a2_persistent_brain.py"]
+  - legacy_tool: "v3_tool_discovery.py"
+    v4_targets: ["a2_skill_source_intake_operator.py"]
+
+SPLIT_INTO:
+  - legacy_tool: "v3_graph_intent_router.py"
+    v4_targets: ["a2_low_control_graph_builder.py", "a1_jargoned_graph_builder.py"]
+    low_confidence: true

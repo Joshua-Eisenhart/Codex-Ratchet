@@ -138,7 +138,7 @@ class GraveyardRouter:
 
         builder.add_node(GraphNode(
             id=graveyard_id,
-            node_type="GRAVEYARD_RECORD",
+            node_type=failure_class,  # Write SIM_KILL or B_KILL directly, not GRAVEYARD_RECORD
             name=f"{candidate_name}_GRAVEYARD",
             description=f"Failed: {reason_tag} ({failure_class})",
             layer="GRAVEYARD",
@@ -168,6 +168,65 @@ class GraveyardRouter:
         )
         self.refinery._save()
         return graveyard_id
+
+    def route_parked(
+        self,
+        candidate_id: str,
+        reason_tag: str,
+        raw_lines: List[str],
+        target_ref: Optional[str] = None
+    ) -> str:
+        """Explicitly tracks and deposits B_PARKED nodes into structural memory."""
+        from system_v4.skills.v4_graph_builder import GraphNode, GraphEdge
+        builder = self.refinery.builder
+        node_id = f"PARKED::{candidate_id}"
+        
+        builder.add_node(GraphNode(
+            id=node_id,
+            node_type="B_PARKED",
+            name=f"{candidate_id}_PARKED",
+            description=f"Parked: {reason_tag}",
+            layer="GRAVEYARD",
+            trust_zone="GRAVEYARD",
+            authority="B_PARKED",
+            properties={
+                "candidate_id": candidate_id,
+                "reason_tag": reason_tag,
+                "target_ref": target_ref or "",
+                "raw_lines": json.dumps(raw_lines)
+            }
+        ))
+        # Point park back to candidate
+        from system_v4.skills.v4_graph_builder import GraphEdge
+        builder.add_edge(GraphEdge(
+            source_id=node_id, target_id=candidate_id,
+            relation="PARKED_VERSION_OF", attributes={}
+        ))
+        self.refinery._save()
+        return node_id
+
+    def route_survivor(self, candidate_id: str) -> str:
+        """Explicitly tracks B_SURVIVOR nodes into structural memory."""
+        from system_v4.skills.v4_graph_builder import GraphNode, GraphEdge
+        builder = self.refinery.builder
+        node_id = f"SURVIVOR::{candidate_id}"
+        builder.add_node(GraphNode(
+            id=node_id,
+            node_type="B_SURVIVOR",
+            name=f"{candidate_id}_SURVIVOR",
+            description=f"Survivor: Admitted to B Kernel",
+            layer="B_ADJUDICATED",
+            trust_zone="B_ADJUDICATED",
+            authority="B_ACCEPTED",
+            properties={"candidate_id": candidate_id}
+        ))
+        from system_v4.skills.v4_graph_builder import GraphEdge
+        builder.add_edge(GraphEdge(
+            source_id=node_id, target_id=candidate_id,
+            relation="SURVIVOR_VERSION_OF", attributes={}
+        ))
+        self.refinery._save()
+        return node_id
 
     # ─── LINKING: Connect survivors to graveyard ────────────────────────
 

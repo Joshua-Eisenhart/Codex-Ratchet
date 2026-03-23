@@ -1,0 +1,136 @@
+{
+  "schema": "A2_SYSTEM_STATE_REPORT_v1",
+  "generated_utc": "2026-03-23T07:12:37Z",
+  "system_topology": {
+    "total_nodes": 826,
+    "total_edges": 2931,
+    "connected_nodes": 457,
+    "isolated_nodes": 314,
+    "nodes_by_type": {
+      "V4_SKILL": 131,
+      "V4_RUNNER": 18,
+      "V4_TEST": 93,
+      "V4_PROBE": 12,
+      "V4_SKILL_SPEC": 88,
+      "V3_RUNTIME": 92,
+      "V3_SPEC": 86,
+      "V3_TOOL": 215,
+      "UPGRADE_DOC": 14,
+      "V4_STATE": 8,
+      "V3_STATE": 8,
+      "V3_SYSTEM_LAYER": 6
+    },
+    "edges_by_type": {
+      "IMPORTS": 219,
+      "TESTS": 184,
+      "PROBES": 1,
+      "SPECIFIES": 71,
+      "READS_STATE": 29,
+      "EVOLVED_INTO": 219,
+      "PORTED_TO": 37,
+      "REFERENCES": 296,
+      "BELONGS_TO_LAYER": 22,
+      "IMPLEMENTED_IN_V4_BY": 46,
+      "DISTILLS_TO": 1,
+      "PACKAGES_FOR": 1,
+      "COMPILES_TO": 1,
+      "TESTED_BY": 1,
+      "USES": 2
+    },
+    "hubs": [
+      {
+        "id": "v4_gov::ratchet_core",
+        "name": "Ratchet Core",
+        "type": "V4_GOVERNANCE",
+        "degree": 219
+      },
+      {
+        "id": "v4_runner::run_real_ratchet",
+        "name": "run_real_ratchet",
+        "type": "V4_RUNNER",
+        "degree": 120
+      },
+      {
+        "id": "layer::infrastructure",
+        "name": "Infrastructure",
+        "type": "SYSTEM_LAYER",
+        "degree": 118
+      },
+      {
+        "id": "layer::a1_strategy",
+        "name": "A1 Strategy",
+        "type": "SYSTEM_LAYER",
+        "degree": 99
+      },
+      {
+        "id": "v4_skill::a2_graph_refinery",
+        "name": "a2_graph_refinery",
+        "type": "V4_SKILL",
+        "degree": 80
+      },
+      {
+        "id": "v4_skill::a1_brain",
+        "name": "a1_brain",
+        "type": "V4_SKILL",
+        "degree": 79
+      },
+      {
+        "id": "v3_spec::28_A2_THREAD_BOOT__v1",
+        "name": "28_A2_THREAD_BOOT__v1",
+        "type": "V3_SPEC",
+        "degree": 69
+      },
+      {
+        "id": "v3_spec::07_A2_OPERATIONS_SPEC",
+        "name": "07_A2_OPERATIONS_SPEC",
+        "type": "V3_SPEC",
+        "degree": 64
+      },
+      {
+        "id": "v3_spec::71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+        "name": "71_A2_CONTROLLER_LAUNCH_PACKET__v1",
+        "type": "V3_SPEC",
+        "degree": 61
+      },
+      {
+        "id": "v4_skill::a2_persistent_brain",
+        "name": "a2_persistent_brain",
+        "type": "V4_SKILL",
+        "degree": 57
+      }
+    ]
+  },
+  "skill_count": 131,
+  "test_count": 93,
+  "spec_count": 88,
+  "memory_entries": 329,
+  "latest_seal": null,
+  "state_files_health": {
+    "memory.jsonl": {
+      "exists": true,
+      "size_bytes": 222675
+    },
+    "thread_seals": {
+      "exists": false,
+      "size_bytes": 0
+    },
+    "doc_index_v4.json": {
+      "exists": false,
+      "size_bytes": 0
+    },
+    "system_architecture_graph": {
+      "exists": true,
+      "size_bytes": 868985
+    },
+    "intent_control": {
+      "exists": true,
+      "size_bytes": 106068
+    },
+    "daemon_state": {
+      "exists": true,
+      "size_bytes": 5786
+    }
+  },
+  "pending_actions": [],
+  "next_read_set": []
+}

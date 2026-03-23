@@ -1,0 +1,15 @@
+---
+id: "A2_3::SOURCE::A2_WORKER_PROMPT__STAGE1_OPERATORIZED_ENTROPY_HEAD__STRICT_RETURN__2026_03_17__v1.txt::6034969337414b03"
+type: "SOURCE_DOCUMENT"
+layer: "INDEX"
+authority: "SOURCE_CLAIM"
+---
+
+# A2_WORKER_PROMPT__STAGE1_OPERATORIZED_ENTROPY_HEAD__STRICT_RETURN__2026_03_17__v1.txt
+**Node ID:** `A2_3::SOURCE::A2_WORKER_PROMPT__STAGE1_OPERATORIZED_ENTROPY_HEAD__STRICT_RETURN__2026_03_17__v1.txt::6034969337414b03`
+
+## Description
+High-entropy source document ingested at A2-3.
+
+## Outward Relations
+- **SOURCE_MAP_PASS** → [[a2_worker_prompt__stage1_operatorized_entropy_head]]

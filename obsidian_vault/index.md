@@ -1,0 +1,163 @@
+---
+id: "A2_3::SOURCE_MAP_PASS::index::1bc04b5291c26a46"
+type: "EXTRACTED_CONCEPT"
+layer: "GRAVEYARD"
+authority: "NONCANON"
+---
+
+# index
+**Node ID:** `A2_3::SOURCE_MAP_PASS::index::1bc04b5291c26a46`
+
+## Description
+Archived Work File: Koffi is a **fast and easy-to-use C FFI module for Node.js**, featuring:
+
+## Properties
+- **source_line_range**: 
+- **extraction_mode**: SOURCE_MAP_PASS
+- **graveyard_reason**: GARBAGE_SHALLOW_EXTRACTION
+- **graveyard_timestamp**: 2026-03-18T17:40:43Z
+
+## Inward Relations
+- [[index.md]] → **SOURCE_MAP_PASS**
+- [[a2_persistent_brain]] → **DEPENDS_ON**
+- [[a2_canonical_schemas]] → **DEPENDS_ON**
+- [[a2_deterministic_tick_sequence]] → **DEPENDS_ON**
+- [[a2_refinery_bootpack_execution_contract]] → **DEPENDS_ON**
+- [[full_plus_semantic_save_zip]] → **DEPENDS_ON**
+- [[constraint_manifold_formal_derivation]] → **DEPENDS_ON**
+- [[system_v4_boot_and_reference]] → **DEPENDS_ON**
+- [[refinery_batch_index_data]] → **DEPENDS_ON**
+- [[thread_s_dump_index]] → **DEPENDS_ON**
+- [[thread_s_sha256sums]] → **DEPENDS_ON**
+- [[upgrade_docs_bootpack_thread_s_v164]] → **DEPENDS_ON**
+- [[archived_runtime_full_read_log_pass_4]] → **DEPENDS_ON**
+- [[archived_runtime_zip_index_v1]] → **DEPENDS_ON**
+- [[a1_state_a1_rosetta_batch__active_family_index__v]] → **DEPENDS_ON**
+- [[derived_indices_doc_index_backup__20260224t083702z]] → **DEPENDS_ON**
+- [[derived_indices_doc_index_backup__20260224t233203z]] → **DEPENDS_ON**
+- [[derived_indices_doc_index_backup__20260224t234312z]] → **DEPENDS_ON**
+- [[derived_indices_doc_index_backup__20260224t235943z]] → **DEPENDS_ON**
+- [[derived_indices_doc_index_backup__20260225t001913z]] → **DEPENDS_ON**
+- [[derived_indices_doc_index_backup__20260225t004553z]] → **DEPENDS_ON**
+- [[derived_indices_doc_index_backup__20260225t012743z]] → **DEPENDS_ON**
+- [[derived_indices_doc_index_backup__20260225t212001z]] → **DEPENDS_ON**
+- [[derived_indices_doc_index_backup__20260306t073718z]] → **DEPENDS_ON**
+- [[a2_state_v3_a2_worker_dispatch_packet__a2_intake_col]] → **DEPENDS_ON**
+- [[a2_state_v3_a2_worker_prompt__a2_intake_cold_index_a]] → **DEPENDS_ON**
+- [[a2_state_v3_a2_worker_prompt__a2_intake_cold_index_e]] → **DEPENDS_ON**
+- [[a2_state_v3_a2_worker_prompt__a2_intake_cold_index_p]] → **DEPENDS_ON**
+- [[a2_state_v3_doc_index_status_caution__v1]] → **DEPENDS_ON**
+- [[a2_state_v3_core_docs_ingest_index_v1]] → **DEPENDS_ON**
+- [[a2_state_v3_doc_index]] → **DEPENDS_ON**
+- [[a2_state_v3_index_v1]] → **DEPENDS_ON**
+- [[v3surf_batch_index__v1]] → **DEPENDS_ON**
+- [[v3surf_controller_cold_index__v1]] → **DEPENDS_ON**
+- [[v4_build_w2_02_v4_typed_registry_schema_seed__2]] → **DEPENDS_ON**
+- [[zip_dropins_a2_brain_update_packet_stage2__a2_a]] → **DEPENDS_ON**
+- [[zip_dropins_document_topic_index__a2_a1_ratchet]] → **DEPENDS_ON**
+- [[zip_dropins_document_topic_index__a2_doc_layere]] → **DEPENDS_ON**
+- [[zip_dropins_topic_term_index__a2_topic_packet__]] → **DEPENDS_ON**
+- [[zip_dropins_02_task__topic_index_and_topic_dire]] → **DEPENDS_ON**
+- [[zip_dropins_03_task__topic_layered_extraction_f]] → **DEPENDS_ON**
+- [[zip_dropins_05_task__document_level_meta_manife]] → **DEPENDS_ON**
+- [[zip_dropins_06_task__a2_a1_brain_update_packets]] → **DEPENDS_ON**
+- [[zip_dropins_07_task__quality_gate__layered_extr]] → **DEPENDS_ON**
+- [[zip_dropins_a2_brain_update_packet_stage2out]] → **DEPENDS_ON**
+- [[zip_dropins_document_topic_indexout]] → **DEPENDS_ON**
+- [[zip_dropins_topic_term_indexout]] → **DEPENDS_ON**
+- [[zip_dropins_full_read_log_pass_4]] → **DEPENDS_ON**
+- [[zip_dropins_dump_index]] → **DEPENDS_ON**
+- [[zip_dropins_payload_file_list__batch_10_of_10__]] → **DEPENDS_ON**
+- [[zip_dropins_06_task__document_level_meta_manife]] → **DEPENDS_ON**
+- [[zip_dropins_07_task__a2_a1_brain_update_packets]] → **DEPENDS_ON**
+- [[zip_dropins_08_task__quality_gate__layered_extr]] → **DEPENDS_ON**
+- [[zip_dropins_01_task__authority_header_quotesta]] → **DEPENDS_ON**
+- [[zip_dropins_source_and_method_mapout]] → **DEPENDS_ON**
+- [[zip_dropins_00_run_me_first__pro_boot_job__v1]] → **DEPENDS_ON**
+- [[zip_dropins_local_source_pack_index__v1]] → **DEPENDS_ON**
+- [[zip_dropins_00_packet_index__v1]] → **DEPENDS_ON**
+- [[sysrepair_v2_run_document_audit]] → **DEPENDS_ON**
+- [[sysrepair_v2_run_contract_v1]] → **DEPENDS_ON**
+- [[sysrepair_v2_verify]] → **DEPENDS_ON**
+- [[sysrepair_v2_dump_index]] → **DEPENDS_ON**
+- [[sysrepair_v2_sha256sums]] → **DEPENDS_ON**
+- [[sysrepair_v2_zip_index_v1]] → **DEPENDS_ON**
+- [[sysrepair_v2_doc_index_backup__20260224t083]] → **DEPENDS_ON**
+- [[sysrepair_v2_doc_index_backup__20260224t233]] → **DEPENDS_ON**
+- [[sysrepair_v2_doc_index_backup__20260224t234]] → **DEPENDS_ON**
+- [[sysrepair_v2_doc_index_backup__20260224t235]] → **DEPENDS_ON**
+- [[sysrepair_v2_doc_index_backup__20260225t001]] → **DEPENDS_ON**
+- [[sysrepair_v2_doc_index_backup__20260225t004]] → **DEPENDS_ON**
+- [[sysrepair_v2_doc_index_backup__20260225t012]] → **DEPENDS_ON**
+- [[sysrepair_v2_doc_index_backup__20260225t212]] → **DEPENDS_ON**
+- [[sysrepair_v2_core_docs_ingest_index_v1]] → **DEPENDS_ON**
+- [[sysrepair_v2_doc_index]] → **DEPENDS_ON**
+- [[sysrepair_v2_index_v1]] → **DEPENDS_ON**
+- [[sysrepair_v3_run_document_audit]] → **DEPENDS_ON**
+- [[sysrepair_v3_run_contract_v1]] → **DEPENDS_ON**
+- [[sysrepair_v3_verify]] → **DEPENDS_ON**
+- [[sysrepair_v3_dump_index]] → **DEPENDS_ON**
+- [[sysrepair_v3_sha256sums]] → **DEPENDS_ON**
+- [[sysrepair_v3_zip_index_v1]] → **DEPENDS_ON**
+- [[sysrepair_v3_doc_index_backup__20260224t083]] → **DEPENDS_ON**
+- [[sysrepair_v3_doc_index_backup__20260224t233]] → **DEPENDS_ON**
+- [[sysrepair_v3_doc_index_backup__20260224t234]] → **DEPENDS_ON**
+- [[sysrepair_v3_doc_index_backup__20260224t235]] → **DEPENDS_ON**
+- [[sysrepair_v3_doc_index_backup__20260225t001]] → **DEPENDS_ON**
+- [[sysrepair_v3_doc_index_backup__20260225t004]] → **DEPENDS_ON**
+- [[sysrepair_v3_doc_index_backup__20260225t012]] → **DEPENDS_ON**
+- [[sysrepair_v3_doc_index_backup__20260225t212]] → **DEPENDS_ON**
+- [[sysrepair_v3_core_docs_ingest_index_v1]] → **DEPENDS_ON**
+- [[sysrepair_v3_doc_index]] → **DEPENDS_ON**
+- [[sysrepair_v3_index_v1]] → **DEPENDS_ON**
+- [[sysrepair_v4_run_document_audit]] → **DEPENDS_ON**
+- [[sysrepair_v4_run_contract_v1]] → **DEPENDS_ON**
+- [[sysrepair_v4_verify]] → **DEPENDS_ON**
+- [[sysrepair_v4_dump_index]] → **DEPENDS_ON**
+- [[sysrepair_v4_sha256sums]] → **DEPENDS_ON**
+- [[sysrepair_v4_zip_index_v1]] → **DEPENDS_ON**
+- [[sysrepair_v4_doc_index_backup__20260224t083]] → **DEPENDS_ON**
+- [[sysrepair_v4_doc_index_backup__20260224t233]] → **DEPENDS_ON**
+- [[sysrepair_v4_doc_index_backup__20260224t234]] → **DEPENDS_ON**
+- [[sysrepair_v4_doc_index_backup__20260224t235]] → **DEPENDS_ON**
+- [[sysrepair_v4_doc_index_backup__20260225t001]] → **DEPENDS_ON**
+- [[sysrepair_v4_doc_index_backup__20260225t004]] → **DEPENDS_ON**
+- [[sysrepair_v4_doc_index_backup__20260225t012]] → **DEPENDS_ON**
+- [[sysrepair_v4_doc_index_backup__20260225t212]] → **DEPENDS_ON**
+- [[sysrepair_v4_core_docs_ingest_index_v1]] → **DEPENDS_ON**
+- [[sysrepair_v4_doc_index]] → **DEPENDS_ON**
+- [[sysrepair_v4_index_v1]] → **DEPENDS_ON**
+- [[v3_tools_rebuild_a2_doc_index_json]] → **DEPENDS_ON**
+- [[v3_tools_reindex_core_docs_ingest_index_v1]] → **DEPENDS_ON**
+- [[state_objects_definition]] → **DEPENDS_ON**
+- [[runtime_state_schema]] → **DEPENDS_ON**
+- [[a2_refinery_bootpack_execution_contract]] → **DEPENDS_ON**
+- [[a1_rosetta_batch__active_family_index__v1]] → **DEPENDS_ON**
+- [[system_v3_a2_high_entropy_intake_active_manifest_s]] → **DEPENDS_ON**
+- [[system_v3_a2_high_entropy_intake_index_delta__acti]] → **DEPENDS_ON**
+- [[system_v3_a2_high_entropy_intake_index_delta__grap]] → **DEPENDS_ON**
+- [[system_v3_a2_high_entropy_intake_index_delta__refi]] → **DEPENDS_ON**
+- [[system_v3_a2_high_entropy_intake_index_delta__thre]] → **DEPENDS_ON**
+- [[controller_cold_index__v1]] → **DEPENDS_ON**
+- [[a2_worker__a2_intake_cold_index_application_plan__]] → **DEPENDS_ON**
+- [[a2_worker__a2_intake_cold_index_execution__2026_03]] → **DEPENDS_ON**
+- [[dump_index]] → **DEPENDS_ON**
+- [[sha256sums]] → **DEPENDS_ON**
+- [[prefixing]] → **DEPENDS_ON**
+- [[02_task__topic_index_and_topic_directory_plan.task]] → **DEPENDS_ON**
+- [[02_task__topic_index.task]] → **DEPENDS_ON**
+- [[rebuild_a2_doc_index_json_py]] → **DEPENDS_ON**
+- [[reindex_core_docs_ingest_index_v1_py]] → **DEPENDS_ON**
+- [[doc_index_backup__20260224t083702z_json]] → **DEPENDS_ON**
+- [[doc_index_backup__20260225t212001z_json]] → **DEPENDS_ON**
+- [[doc_index_backup__20260225t001913z_json]] → **DEPENDS_ON**
+- [[doc_index_backup__20260224t234312z_json]] → **DEPENDS_ON**
+- [[doc_index_backup__20260225t004553z_json]] → **DEPENDS_ON**
+- [[doc_index_backup__20260224t235943z_json]] → **DEPENDS_ON**
+- [[doc_index_backup__20260225t012743z_json]] → **DEPENDS_ON**
+- [[doc_index_backup__20260224t233203z_json]] → **DEPENDS_ON**
+- [[doc_index_json]] → **DEPENDS_ON**
+- [[core_docs_ingest_index_v1_sha256]] → **DEPENDS_ON**
+- [[core_docs_ingest_index_v1_json]] → **DEPENDS_ON**
+- [[index_v1_json]] → **DEPENDS_ON**
+- [[index_v1_sha256]] → **DEPENDS_ON**

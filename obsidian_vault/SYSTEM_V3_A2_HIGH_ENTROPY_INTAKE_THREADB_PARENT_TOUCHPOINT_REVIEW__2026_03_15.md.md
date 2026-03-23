@@ -1,0 +1,15 @@
+---
+id: "A2_3::SOURCE::SYSTEM_V3_A2_HIGH_ENTROPY_INTAKE_THREADB_PARENT_TOUCHPOINT_REVIEW__2026_03_15.md::3403f45afd2a0257"
+type: "SOURCE_DOCUMENT"
+layer: "INDEX"
+authority: "SOURCE_CLAIM"
+---
+
+# SYSTEM_V3_A2_HIGH_ENTROPY_INTAKE_THREADB_PARENT_TOUCHPOINT_REVIEW__2026_03_15.md
+**Node ID:** `A2_3::SOURCE::SYSTEM_V3_A2_HIGH_ENTROPY_INTAKE_THREADB_PARENT_TOUCHPOINT_REVIEW__2026_03_15.md::3403f45afd2a0257`
+
+## Description
+High-entropy source document ingested at A2-3.
+
+## Outward Relations
+- **SOURCE_MAP_PASS** → [[system_v3_a2_high_entropy_intake_threadb_parent_to]]

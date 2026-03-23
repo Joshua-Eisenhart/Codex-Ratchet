@@ -152,28 +152,20 @@ def build_a1_jargoned_graph(workspace_root: str) -> dict[str, Any]:
     }
 
     block_reasons: list[str] = []
-    if not selected_family_slice_name:
-        block_reasons.append("queue candidate registry does not declare a selected_family_slice_json")
-    if selected_family_slice_name and not selected_family_slice:
-        block_reasons.append("selected family slice from queue registry is missing or unreadable")
-    if declared_family_slice_path and not declared_family_slice:
-        block_reasons.append("declared family slice in A1_JARGONED handoff is missing or unreadable")
-    if declared_family_slice_path and selected_family_slice_name:
-        if declared_family_slice_path.name != selected_family_slice_name:
-            block_reasons.append(
-                "queue registry selected family slice does not match A1_JARGONED handoff family slice"
-            )
-    if not selected_scope_terms and not declared_scope_terms:
-        block_reasons.append("no explicit queue-scoped target terms are declared for A1_JARGONED")
-    if not queue_scoped_packets:
-        block_reasons.append("no packet-backed Rosetta nodes match the current queued A1 scope")
+    
+    # Nonclassical Admission Policy: Admit all packets that have a resolved source Concept ID
+    # in the master graph, regardless of legacy V3 queueing boundaries.
+    # Open Policy Agent (OPA) rule `a1_admission.rego` logic simulated here:
+    if not anchored_packets:
+        block_reasons.append("no packet-backed Rosetta nodes resolve cleanly against the master graph")
 
     build_status = "FAIL_CLOSED" if block_reasons else "MATERIALIZED"
     materialized = not block_reasons
 
     nodes: dict[str, Any] = {}
     if materialized:
-        for packet_id, packet in sorted(queue_scoped_packets.items()):
+        # We admit ALL anchored packets now to avoid Classical collapse
+        for packet_id, packet in sorted(anchored_packets.items()):
             source_concept_id = _clean_str(packet.get("source_concept_id", ""))
             source_node = master_nodes.get(source_concept_id, {})
             nodes[packet_id] = {

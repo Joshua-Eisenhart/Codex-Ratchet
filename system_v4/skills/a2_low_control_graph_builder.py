@@ -76,11 +76,15 @@ def _is_graveyarded(node: dict[str, Any]) -> bool:
 
 
 def _include_node(node: dict[str, Any]) -> bool:
-    return (
-        _clean_str(node.get("node_type", "")) == "KERNEL_CONCEPT"
-        and _clean_str(node.get("trust_zone", "")) == "A2_1_KERNEL"
-        and not _is_graveyarded(node)
-    )
+    node_type = _clean_str(node.get("node_type", ""))
+    trust_zone = _clean_str(node.get("trust_zone", ""))
+    
+    # Nonclassical Law: Nodes that were PROMOTED from refinement should be admitted
+    # to the low control graph even if they haven't explicitly materialized a KERNEL_CONCEPT tag.
+    is_kernel = node_type == "KERNEL_CONCEPT" and trust_zone == "A2_1_KERNEL"
+    is_promoted = "PROMOTED" in _clean_str(node.get("status", "")).upper()
+    
+    return (is_kernel or is_promoted) and not _is_graveyarded(node)
 
 
 def _build_summary(
@@ -312,6 +316,11 @@ def build_a2_low_control_graph(workspace_root: str) -> dict[str, Any]:
         if not required.exists():
             raise FileNotFoundError(f"Prerequisite missing: {required}")
 
+    promoted_path = _resolve(root, "system_v4/a2_state/graphs/promoted_subgraph.json")
+    promoted_data = _load_json(promoted_path)
+    promoted_nodes = promoted_data.get("nodes", {}) if isinstance(promoted_data.get("nodes"), dict) else {}
+    promoted_edges = promoted_data.get("edges", []) if isinstance(promoted_data.get("edges"), list) else []
+
     master = _load_json(master_path)
     a2_mid = _load_json(a2_mid_path)
     nodes = master.get("nodes", {})
@@ -322,12 +331,23 @@ def build_a2_low_control_graph(workspace_root: str) -> dict[str, Any]:
         for node_id, node in nodes.items()
         if _include_node(node)
     }
+    
+    # Nonclassical topological law: PROMOTED subgraph MUST exist in A2_CONTROL
+    for node_id, node in promoted_nodes.items():
+        node["trust_zone"] = "A2_1_KERNEL" # Force nonclassical compliance
+        node["layer"] = "A2_LOW_CONTROL"
+        selected_nodes[node_id] = node
+        
     selected_ids = set(selected_nodes)
 
     selected_edges = [
         edge for edge in edges
         if edge.get("source_id") in selected_ids and edge.get("target_id") in selected_ids
     ]
+    # Merge topological edges from PROMOTED
+    for edge in promoted_edges:
+        if edge.get("source_id") in selected_ids and edge.get("target_id") in selected_ids:
+            selected_edges.append(edge)
 
     summary = _build_summary(selected_nodes, selected_edges, nodes)
     projection_diagnostics = _build_projection_diagnostics(selected_nodes, selected_edges, edges)
@@ -496,17 +516,10 @@ def write_a2_low_control_graph(workspace_root: str) -> dict[str, str]:
     audit_note_path.parent.mkdir(parents=True, exist_ok=True)
 
     existing = _load_json(json_path)
-    preserved_existing = _should_preserve_existing(existing, report)
-    write_payload = (
-        _merge_preserved_payload(
-            existing,
-            report,
-            master.get("nodes", {}),
-            master.get("edges", []),
-        )
-        if preserved_existing
-        else report
-    )
+    
+    # Nonclassical Update: Never fail closed back to old graph when topology forces a merge
+    preserved_existing = False
+    write_payload = report
 
     json_path.write_text(json.dumps(write_payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 

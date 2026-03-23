@@ -1,0 +1,19 @@
+---
+id: "A2_3::SOURCE_MAP_PASS::v3_runtime_test_a1_queue_surface_pydantic_stac::e1e1d6da75adb0de"
+type: "EXTRACTED_CONCEPT"
+layer: "A2_HIGH_INTAKE"
+authority: "SOURCE_CLAIM"
+---
+
+# v3_runtime_test_a1_queue_surface_pydantic_stac
+**Node ID:** `A2_3::SOURCE_MAP_PASS::v3_runtime_test_a1_queue_surface_pydantic_stac::e1e1d6da75adb0de`
+
+## Description
+test_a1_queue_surface_pydantic_stack.py (11433B): from __future__ import annotations  import json import subprocess import sys import tempfile import unittest from pathlib import Path  BASE = Path(__file__).resolve().parents[3] TOOLS = BASE / "tools" A2_STATE = BASE / "a2_state" SPEC_DRAFTS = BASE.p
+
+## Properties
+- **source_line_range**: 
+- **extraction_mode**: SOURCE_MAP_PASS
+
+## Inward Relations
+- [[test_a1_queue_status_packet.py]] → **SOURCE_MAP_PASS**

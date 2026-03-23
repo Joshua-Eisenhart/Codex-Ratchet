@@ -1,0 +1,23 @@
+---
+id: "A1_STRIPPED::ZIP_DROPINS_CANON_GEOMETRY_CONSTRAINT_MANIFOLD"
+type: "REFINED_CONCEPT"
+layer: "A1_STRIPPED"
+authority: "CROSS_VALIDATED"
+---
+
+# ZIP_DROPINS_CANON_GEOMETRY_CONSTRAINT_MANIFOLD
+**Node ID:** `A1_STRIPPED::ZIP_DROPINS_CANON_GEOMETRY_CONSTRAINT_MANIFOLD`
+
+## Description
+CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md (1574B): # CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC v1.0  DATE_UTC: 2026-02-02T00:00:00Z AUTHORITY: CANON  LOCKS (HARD) - Geometry is a CONSTRAINT MANIFO
+
+## Properties
+- **dropped_jargon**: []
+- **required_anchors**: ["UNVERIFIED"]
+
+## Outward Relations
+- **STRIPPED_FROM** → [[zip_dropins_canon_geometry_constraint_manifold_]]
+
+## Inward Relations
+- [[zip_dropins_canon_geometry_constraint_manifold_]] → **ROSETTA_MAP**
+- [[ZIP_DROPINS_CANON_GEOMETRY_CONSTRAINT_MANIFOLD_CARTRIDGE]] → **PACKAGED_FROM**

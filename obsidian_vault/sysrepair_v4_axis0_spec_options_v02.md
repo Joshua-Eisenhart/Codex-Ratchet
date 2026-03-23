@@ -1,0 +1,23 @@
+---
+id: "A2_3::SOURCE_MAP_PASS::sysrepair_v4_axis0_spec_options_v02::f4bef61bfc59014d"
+type: "EXTRACTED_CONCEPT"
+layer: "A2_HIGH_INTAKE"
+authority: "NONCANON"
+---
+
+# sysrepair_v4_axis0_spec_options_v02
+**Node ID:** `A2_3::SOURCE_MAP_PASS::sysrepair_v4_axis0_spec_options_v02::f4bef61bfc59014d`
+
+## Description
+AXIS0_SPEC_OPTIONS_v0.2.md (8774B): # AXIS0_SPEC_OPTIONS_v0.2  DATE_UTC: 2026-01-31 STATUS: DRAFT (ROSETTA / THREAD-A ONLY; NOT THREAD-B CANON)  Purpose - Provide **explicit, testable candidate definitions** for Axis-0 using standard qu
+
+## Properties
+- **source_line_range**: 
+- **extraction_mode**: SOURCE_MAP_PASS
+
+## Outward Relations
+- **DEPENDS_ON** → [[axis0_spec_options_v0.2]]
+- **DEPENDS_ON** → [[axis_0]]
+
+## Inward Relations
+- [[SIM_RATCHET_PROTOCOL_v1.md]] → **SOURCE_MAP_PASS**

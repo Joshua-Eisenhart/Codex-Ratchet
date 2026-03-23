@@ -121,20 +121,29 @@ class SystemGraphBuilder:
 
     def _export_graph_for_graphml(self) -> nx.MultiDiGraph:
         """Return a GraphML-safe export copy with nested attrs stringified."""
+        import re
+        # XML 1.0 valid characters (preventing ValueError in networkx write_graphml)
+        _illegal_xml_chars_RE = re.compile(r'[\x00-\x08\x0b-\x0c\x0e-\x1f\x7f-\x84\x86-\x9f]')
+
+        def sanitize(val: Any) -> str:
+            if val is None:
+                return ""
+            if isinstance(val, (dict, list)):
+                s = json.dumps(val)
+            else:
+                s = str(val)
+            return _illegal_xml_chars_RE.sub('', s)
+
         export_graph = self.graph.copy()
+        
         for node, data in export_graph.nodes(data=True):
             for k, v in data.items():
-                if v is None:
-                    export_graph.nodes[node][k] = ""
-                elif isinstance(v, (dict, list)):
-                    export_graph.nodes[node][k] = json.dumps(v)
+                export_graph.nodes[node][k] = sanitize(v)
 
         for u, v, k, data in export_graph.edges(data=True, keys=True):
             for attr_k, attr_v in data.items():
-                if attr_v is None:
-                    export_graph.edges[u, v, k][attr_k] = ""
-                elif isinstance(attr_v, (dict, list)):
-                    export_graph.edges[u, v, k][attr_k] = json.dumps(attr_v)
+                export_graph.edges[u, v, k][attr_k] = sanitize(attr_v)
+                
         return export_graph
 
     def load_graph_json_path(self, json_path: str | Path) -> bool:

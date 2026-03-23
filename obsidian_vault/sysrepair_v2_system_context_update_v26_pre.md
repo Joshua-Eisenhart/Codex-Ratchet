@@ -1,0 +1,22 @@
+---
+id: "A2_3::SOURCE_MAP_PASS::sysrepair_v2_system_context_update_v26_pre::1815a9d5ac3c5b51"
+type: "EXTRACTED_CONCEPT"
+layer: "A2_HIGH_INTAKE"
+authority: "NONCANON"
+---
+
+# sysrepair_v2_system_context_update_v26_pre
+**Node ID:** `A2_3::SOURCE_MAP_PASS::sysrepair_v2_system_context_update_v26_pre::1815a9d5ac3c5b51`
+
+## Description
+SYSTEM_CONTEXT_UPDATE_v2.6_PREP.md (2560B): # SYSTEM_CONTEXT_UPDATE_v2.6_PREP  This document records a system context directive for the control-plane bundle.  ## ARCHITECTURAL INVARIANTS - A2 → A1 → A0 → B - Feedback via SIM and SAVE ladder. - 
+
+## Properties
+- **source_line_range**: 
+- **extraction_mode**: SOURCE_MAP_PASS
+
+## Outward Relations
+- **DEPENDS_ON** → [[system_context_update_v2.6_prep]]
+
+## Inward Relations
+- [[FIX_FORMULA_001_GLYPH_REJECT.txt]] → **SOURCE_MAP_PASS**

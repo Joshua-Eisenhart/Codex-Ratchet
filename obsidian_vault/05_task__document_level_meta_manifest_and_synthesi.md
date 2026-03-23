@@ -1,0 +1,60 @@
+---
+id: "A2_3::SOURCE_MAP_PASS::05_task__document_level_meta_manifest_and_synthesi::0066ab98f1c85418"
+type: "KERNEL_CONCEPT"
+layer: "A1_JARGONED"
+authority: "CROSS_VALIDATED"
+---
+
+# 05_task__document_level_meta_manifest_and_synthesi
+**Node ID:** `A2_3::SOURCE_MAP_PASS::05_task__document_level_meta_manifest_and_synthesi::0066ab98f1c85418`
+
+## Description
+Archived Work File: TASK_ID: TSK_DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS
+
+## Properties
+- **source_line_range**: 
+- **extraction_mode**: SOURCE_MAP_PASS
+- **promoted_by**: CROSS_VALIDATION_PASS_001
+- **promoted_reason**: CROSS_VAL: 27 sources, 27 batches, 32 edges
+- **promoted_from**: A2_3_INTAKE
+
+## Outward Relations
+- **STRUCTURALLY_RELATED** → [[06_task__document_level_meta_manifest_and_synthesi]]
+- **STRUCTURALLY_RELATED** → [[zip_dropins_05_task__document_level_meta_manife]]
+- **STRUCTURALLY_RELATED** → [[zip_dropins_06_task__document_level_meta_manife]]
+- **EXCLUDES** → [[zip_dropins_document_meta_manifest__a2_a1_ratch]]
+- **EXCLUDES** → [[zip_dropins_document_meta_manifest__a2_doc_laye]]
+- **EXCLUDES** → [[zip_dropins_document_meta_manifestout]]
+- **ROSETTA_MAP** → [[05_TASK_DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESI]]
+
+## Inward Relations
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **SOURCE_MAP_PASS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[05_TASK__DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESIS.task.md]] → **OVERLAPS**
+- [[zip_dropins_05_task__document_level_meta_manife]] → **DEPENDS_ON**
+- [[04_task__document_level_meta_manifest_and_synthesi]] → **STRUCTURALLY_RELATED**
+- [[05_TASK_DOCUMENT_LEVEL_META_MANIFEST_AND_SYNTHESI]] → **STRIPPED_FROM**

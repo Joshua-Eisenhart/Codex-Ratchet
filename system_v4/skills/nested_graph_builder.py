@@ -283,6 +283,39 @@ def _build_pyg_layer_graph(root: Path, layers: list[dict], cross_edges: list[dic
     }
 
 
+def _build_gudhi_homology(root: Path, cross_edges: list[dict]) -> dict[str, Any]:
+    """Compute topological persistence using GUDHI to track nonclassical loops."""
+    try:
+        import gudhi
+    except ImportError:
+        return {"available": False, "error": "GUDHI not available in current interpreter"}
+
+    st = gudhi.SimplexTree()
+    node_to_idx = {}
+    
+    def get_idx(nid: str) -> int:
+        if nid not in node_to_idx:
+            node_to_idx[nid] = len(node_to_idx)
+        return node_to_idx[nid]
+
+    # Insert edges (1-simplices)
+    for ce in cross_edges:
+        s = get_idx(ce['source_id'])
+        t = get_idx(ce['target_id'])
+        st.insert([s, t])
+
+    # Compute persistence to find true structural loops vs collapsed diamonds
+    st.compute_persistence()
+    betti = st.betti_numbers()
+
+    return {
+        "available": True,
+        "betti_numbers": betti,  # [components, holes/loops, voids]
+        "total_simplices": st.num_simplices(),
+        "num_vertices": st.num_vertices(),
+    }
+
+
 def build_nested_graph(repo_root: str | Path) -> dict[str, Any]:
     """Build the nested graph structure from the layer graphs."""
     root = Path(repo_root).resolve()
@@ -310,6 +343,9 @@ def build_nested_graph(repo_root: str | Path) -> dict[str, Any]:
     # 5. Try PyG layer graph
     pyg_result = _build_pyg_layer_graph(root, layers, cross_edges)
 
+    # 5b. Compute Topological Persistence (GUDHI)
+    gudhi_result = _build_gudhi_homology(root, cross_edges)
+
     # 6. Build the nested graph JSON
     nested_graph = {
         "schema": "NESTED_GRAPH_v1",
@@ -336,6 +372,7 @@ def build_nested_graph(repo_root: str | Path) -> dict[str, Any]:
         "topology": {
             "toponetx": tnx_result,
             "pyg": pyg_result,
+            "gudhi": gudhi_result,
         },
         "hierarchy": [
             {"from": "A2_HIGH_INTAKE", "to": "A2_MID_REFINEMENT", "relation": "REFINES_DOWN"},
@@ -361,6 +398,8 @@ def build_nested_graph(repo_root: str | Path) -> dict[str, Any]:
         "toponetx_shape": tnx_result.get("shape", []),
         "pyg_available": pyg_result.get("available", False),
         "pyg_cross_layer_edges": pyg_result.get("total_cross_layer_edges", 0),
+        "gudhi_available": gudhi_result.get("available", False),
+        "gudhi_betti_numbers": gudhi_result.get("betti_numbers", []),
         "layers": [
             {
                 "id": l["layer_id"],
@@ -398,6 +437,8 @@ def _render_markdown(report: dict[str, Any]) -> str:
         f"- toponetx_available: `{report['toponetx_available']}`",
         f"- toponetx_shape: `{report['toponetx_shape']}`",
         f"- pyg_available: `{report['pyg_available']}`",
+        f"- gudhi_available: `{report['gudhi_available']}`",
+        f"- gudhi_betti_numbers: `{report['gudhi_betti_numbers']}`",
         "",
         "## Layers",
         "",

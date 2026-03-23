@@ -1,0 +1,24 @@
+---
+id: "A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_update_note__first_wave_external_pack::27701e3327aebc8e"
+type: "EXTRACTED_CONCEPT"
+layer: "A2_HIGH_INTAKE"
+authority: "SOURCE_CLAIM"
+---
+
+# a2_state_v3_a2_update_note__first_wave_external_pack
+**Node ID:** `A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_update_note__first_wave_external_pack::27701e3327aebc8e`
+
+## Description
+A2_UPDATE_NOTE__FIRST_WAVE_EXTERNAL_PACKET_COMPARATIVE_REFRESH__2026_03_12__v1.md (4135B): # A2_UPDATE_NOTE__FIRST_WAVE_EXTERNAL_PACKET_COMPARATIVE_REFRESH__2026_03_12__v1  Status: DRAFT / NONCANON / A2 UPDATE NOTE Date: 2026-03-12 Role: bounded comparative refresh over the first source-bearing external packet wave  ## 1) Scope  This note compares the first three external packet families 
+
+## Properties
+- **source_line_range**: 
+- **extraction_mode**: SOURCE_MAP_PASS
+
+## Outward Relations
+- **DEPENDS_ON** → [[a2_update_note__first_wave_external_packet_compara]]
+- **DEPENDS_ON** → [[external]]
+- **DEPENDS_ON** → [[packet]]
+
+## Inward Relations
+- [[A2_UPDATE_NOTE__ENTROPY_LOCAL_PACK_RETURN__2026_03_11__v1.md]] → **SOURCE_MAP_PASS**

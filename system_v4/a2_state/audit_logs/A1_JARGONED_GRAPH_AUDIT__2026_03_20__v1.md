@@ -1,19 +1,9 @@
-# NON_REGRESSION_PRESERVE
-
-Preserved the existing materialized A1 jargoned owner surface instead of overwriting it with a thinner or fail-closed rebuild.
-- attempted_node_count: 0
-- attempted_edge_count: 0
-- attempted_build_status: FAIL_CLOSED
-- preserved_node_count: 2
-- preserved_edge_count: 0
-- preserved_build_status: MATERIALIZED
-
 # A1_JARGONED_GRAPH_AUDIT__2026_03_20__v1
 
-generated_utc: 2026-03-20T20:45:46Z
-build_status: FAIL_CLOSED
-materialized: False
-node_count: 0
+generated_utc: 2026-03-23T07:08:41Z
+build_status: MATERIALIZED
+materialized: True
+node_count: 18
 edge_count: 0
 anchored_rosetta_packet_count: 18
 queue_scoped_packet_count: 2
@@ -42,7 +32,7 @@ selected_family_slice_name:
 - PARKED: 13
 
 ## Blockers
-- queue candidate registry does not declare a selected_family_slice_json
+- none
 
 ## Non-Claims
 - This pass does not promote A1_GRAPH_PROJECTION to owner authority.

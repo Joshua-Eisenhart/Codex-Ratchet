@@ -1,0 +1,15 @@
+---
+id: "A2_3::SOURCE::SYSTEM_V3_A2_THREADB_CONSEQUENCE_SUBSET_REPLACEMENT_PACKET__ADMISSION_REVIEW__2026_03_15.md::fc86b0fa0b730fb9"
+type: "SOURCE_DOCUMENT"
+layer: "INDEX"
+authority: "SOURCE_CLAIM"
+---
+
+# SYSTEM_V3_A2_THREADB_CONSEQUENCE_SUBSET_REPLACEMENT_PACKET__ADMISSION_REVIEW__2026_03_15.md
+**Node ID:** `A2_3::SOURCE::SYSTEM_V3_A2_THREADB_CONSEQUENCE_SUBSET_REPLACEMENT_PACKET__ADMISSION_REVIEW__2026_03_15.md::fc86b0fa0b730fb9`
+
+## Description
+High-entropy source document ingested at A2-3.
+
+## Outward Relations
+- **SOURCE_MAP_PASS** → [[system_v3_a2_threadb_consequence_subset_replacemen]]

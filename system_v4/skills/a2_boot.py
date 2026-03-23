@@ -166,7 +166,7 @@ def a2_boot(workspace: Path = WORKSPACE, session_name: str = "") -> dict:
     print("  Principle: Every layer manages entropy bidirectionally")
     print()
 
-    # ── 7. Start Session ─────────────────────────────────────────────
+    # ── 7. Start Session & Seal Persistent Brain ─────────────────────
     if not session_name:
         ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S")
         session_name = f"A2_BOOT_{ts}"
@@ -174,6 +174,23 @@ def a2_boot(workspace: Path = WORKSPACE, session_name: str = "") -> dict:
     sid = r.start_session(session_name)
     r.log_finding(f"A2 boot completed: {total_nodes} nodes, {total_edges} edges")
     print(f"Session started: {session_name}")
+    
+    # Instantiate and seal boot state per JOB_003 Audit
+    try:
+        from system_v4.skills.a2_persistent_brain import A2PersistentBrain
+        pb = A2PersistentBrain(str(workspace))
+        boot_report = pb.generate_boot_state_report()
+        state_hash = pb._sha256_dict(boot_report)
+        pb.seal_context(
+            source_thread_id=session_name,
+            pending_actions=["CONTINUE_REFINEMENT"],
+            next_read_set=[],
+            state_digest_hash=state_hash
+        )
+        print(f"Persistent Brain: Boot State Sealed ({state_hash[:8]})")
+    except Exception as e:
+        print(f"Persistent Brain: Failed to seal ({e})")
+        
     print("=" * 70)
     print()
 

@@ -1,0 +1,15 @@
+---
+id: "A2_3::SOURCE::SYSTEM_V3_RUNS__2026_03_15__WAVE10_CORRELATION_POLARITY_LOCAL_PARTIAL.md::2ff6fd657011f3e5"
+type: "SOURCE_DOCUMENT"
+layer: "INDEX"
+authority: "SOURCE_CLAIM"
+---
+
+# SYSTEM_V3_RUNS__2026_03_15__WAVE10_CORRELATION_POLARITY_LOCAL_PARTIAL.md
+**Node ID:** `A2_3::SOURCE::SYSTEM_V3_RUNS__2026_03_15__WAVE10_CORRELATION_POLARITY_LOCAL_PARTIAL.md::2ff6fd657011f3e5`
+
+## Description
+High-entropy source document ingested at A2-3.
+
+## Outward Relations
+- **SOURCE_MAP_PASS** → [[system_v3_runs__2026_03_15__wave10_correlation_pol]]

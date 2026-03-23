@@ -1,0 +1,23 @@
+---
+id: "A1_STRIPPED::V3SURF_A2_SELECTIVE_PROMOTION_NOTE_CONTROLLER"
+type: "REFINED_CONCEPT"
+layer: "A1_STRIPPED"
+authority: "CROSS_VALIDATED"
+---
+
+# V3SURF_A2_SELECTIVE_PROMOTION_NOTE_CONTROLLER
+**Node ID:** `A1_STRIPPED::V3SURF_A2_SELECTIVE_PROMOTION_NOTE_CONTROLLER`
+
+## Description
+A2_SELECTIVE_PROMOTION_NOTE__CONTROLLER_BOUNDARIES_TRIO__v1.md (5543B): # A2_SELECTIVE_PROMOTION_NOTE__CONTROLLER_BOUNDARIES_TRIO__v1 Status: PROPOSED / NONCANONICAL / CONTROLLER REVIEW NOTE Date: 202
+
+## Properties
+- **dropped_jargon**: []
+- **required_anchors**: ["UNVERIFIED"]
+
+## Outward Relations
+- **STRIPPED_FROM** → [[v3surf_a2_selective_promotion_note__controller_]]
+
+## Inward Relations
+- [[v3surf_a2_selective_promotion_note__controller_]] → **ROSETTA_MAP**
+- [[V3SURF_A2_SELECTIVE_PROMOTION_NOTE_CONTROLLER_CARTRIDGE]] → **PACKAGED_FROM**

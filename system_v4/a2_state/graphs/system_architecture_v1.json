@@ -5309,6 +5309,78 @@
       "node_type": "V3_SYSTEM_LAYER",
       "name": "INFRASTRUCTURE",
       "description": "V3 system layer: INFRASTRUCTURE"
+    },
+    "6fb8450a1fd9ad19": {
+      "node_type": "SYSTEM_LAYER",
+      "name": "A2_ENTROPY_REFINERY",
+      "state": "accepted",
+      "attributes": {
+        "entropy_direction": "HIGH\u2192LOW",
+        "layers": [
+          "HIGH_INTAKE",
+          "MID_REFINEMENT",
+          "LOW_CONTROL"
+        ]
+      }
+    },
+    "88ba3d41699613a9": {
+      "node_type": "SYSTEM_LAYER",
+      "name": "A1_EXECUTION_REFINERY",
+      "state": "accepted",
+      "attributes": {
+        "entropy_direction": "JARGONED\u2192STRIPPED\u2192CARTRIDGE",
+        "layers": [
+          "JARGONED",
+          "STRIPPED",
+          "CARTRIDGE"
+        ]
+      }
+    },
+    "71633773abc17d9d": {
+      "node_type": "SYSTEM_BRIDGE",
+      "name": "A2_A1_ROSETTA_BRIDGE",
+      "state": "accepted",
+      "attributes": {
+        "status": "BROKEN",
+        "mechanism": "Rosetta v2 translation",
+        "bottleneck": "a1_jargoned_graph_builder needs real data"
+      }
+    },
+    "896c719e04e0993b": {
+      "node_type": "RUNTIME_PRIMITIVE",
+      "name": "GRAPH_INTENT_RUNTIME",
+      "state": "accepted",
+      "attributes": {
+        "primitives": [
+          "Entity",
+          "Intent",
+          "Relation",
+          "Proposal",
+          "Patch",
+          "Tick"
+        ]
+      }
+    },
+    "68b6eb315bd365f5": {
+      "node_type": "GRAPH_STRUCTURE",
+      "name": "NESTED_3x2_GRAPH",
+      "state": "accepted",
+      "attributes": {
+        "a2_layers": 3,
+        "a1_layers": 3,
+        "total": 6,
+        "cross_layer_edges": "hierarchy + Rosetta"
+      }
+    },
+    "b297241cfda66eba": {
+      "node_type": "SYSTEM_CAPABILITY",
+      "name": "SKILL_INTEGRATION_MESH",
+      "state": "accepted",
+      "attributes": {
+        "total_skills": 131,
+        "avg_integration": 5.3,
+        "clusters": 16
+      }
     }
   },
   "edges": [
@@ -11051,6 +11123,48 @@
       "target": "v3_layer::INFRASTRUCTURE",
       "relation": "USES",
       "layer": "V3_PIPELINE"
+    },
+    {
+      "source": "6fb8450a1fd9ad19",
+      "target": "71633773abc17d9d",
+      "relation": "DISTILLS_INTO",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "71633773abc17d9d",
+      "target": "88ba3d41699613a9",
+      "relation": "FEEDS",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "896c719e04e0993b",
+      "target": "6fb8450a1fd9ad19",
+      "relation": "OPERATES_ON",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "68b6eb315bd365f5",
+      "target": "6fb8450a1fd9ad19",
+      "relation": "CONTAINS",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "68b6eb315bd365f5",
+      "target": "88ba3d41699613a9",
+      "relation": "CONTAINS",
+      "state": "accepted",
+      "attributes": {}
+    },
+    {
+      "source": "b297241cfda66eba",
+      "target": "896c719e04e0993b",
+      "relation": "USES",
+      "state": "accepted",
+      "attributes": {}
     }
   ]
 }

@@ -182,7 +182,7 @@ def sim_entropic_monism(d: int = 4, n_trials: int = 500):
     
     print(f"  Correlation (|ΔS| vs trace_dist): {correlation:.4f}")
     print(f"  Max state_dispersion states → max trace distance:")
-    print(f"    ΔS = {max_state_dispersion_diff:.6f}")
+    print(f"    ΔS = {max_entropy_diff:.6f}")
     print(f"    trace_dist = {max_trace_dist:.6f}")
     
     # The monism test: can two states with IDENTICAL state_dispersion be
@@ -193,7 +193,7 @@ def sim_entropic_monism(d: int = 4, n_trials: int = 500):
     close_entropy_pairs = [(ed, td) for ed, td in zip(entropy_diffs, trace_dists) if ed < 0.1]
     if close_entropy_pairs:
         avg_td_close_S = np.mean([td for _, td in close_entropy_pairs])
-        print(f"  Pairs with |ΔS| < 0.1: {len(close_state_dispersion_pairs)}")
+        print(f"  Pairs with |ΔS| < 0.1: {len(close_entropy_pairs)}")
         print(f"    Their avg trace_dist: {avg_td_close_S:.6f}")
         print(f"  → Equal global state_dispersion ≠ identical states")
         print(f"  → But subsystem entropies (partial traces) resolve the rest")
@@ -316,7 +316,7 @@ def sim_math_physics_fusion(d: int = 4, n_trials: int = 100):
             all_fused = False
             print(f"  Trial {trial}: FAILED — anti_herm={is_anti_hermitian}, "
                   f"imag={has_imaginary}, discrete={is_discrete}, "
-                  f"chiral={has_chirality}, gradient={has_state_dispersion_gradient}")
+                  f"chiral={has_chirality}, gradient={has_entropy_gradient}")
     
     if all_fused:
         print(f"  All {n_trials} trials: math AND physics emerge together from F01+N01")

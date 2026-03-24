@@ -20,51 +20,87 @@ from pathlib import Path
 PROBES_DIR = Path(__file__).parent
 RESULTS_DIR = PROBES_DIR / "a2_state" / "sim_results"
 
-SIM_FILES = [
-    "foundations_sim.py",
-    "math_foundations_sim.py",
-    "deep_math_foundations_sim.py",
-    "arithmetic_gravity_sim.py",
-    "proof_cost_sim.py",
-    "navier_stokes_complexity_sim.py",
-    "complexity_gap_v2_sim.py",
-    "topology_operator_sim.py",
-    "engine_terrain_sim.py",
-    "godel_stall_sim.py",
-    "dual_weyl_spinor_engine_sim.py",
-    "full_8stage_engine_sim.py",
-    "rock_falsifier_sim.py",
-    "constraint_gap_sim.py",
-    "szilard_64stage_v2_sim.py",
-    "nlm_batch2_sim.py",
-    # Pro Thread Dispatch SIMs
-    "gain_calibration_v2_sim.py",
-    "demon_fixed_sim.py",
-    "type2_engine_sim.py",
-    "riemann_zeta_sim.py",
-    "p_vs_np_sim.py",
-    "navier_stokes_qit_sim.py",
-    "consciousness_sim.py",
-    "alignment_sim.py",
-    "abiogenesis_v2_sim.py",
-    "quantum_gravity_sim.py",
-    "yang_mills_sim.py",
-    "scale_testing_sim.py",
-    "chemistry_sim.py",
-    "world_model_sim.py",
-    "scientific_method_sim.py",
-    "navier_stokes_formal_sim.py",
-    "rock_falsifier_enhanced_sim.py",
-    "tier_3_mega_sim.py",
-    "sim_moloch_trap_field.py",
-    "axis_6_precedence_sim.py",
-    "i_scalar_filtration_sim.py",
-    "axis3_orthogonality_sim.py",
-    "axis0_correlation_sim.py",
-    "axis0_path_integral_sim.py",
-    "axis_relations_sim.py",
-    "qit_topology_parity_sim.py",
-]
+# ── TIERED SIM EXECUTION ORDER ──
+# T0: Root axioms (halt pipeline if KILL)
+# T1: Derived constraints (halt pipeline if KILL)
+# T2-T6: Higher tiers (run regardless, but flag KILLs)
+
+TIERED_SIMS = {
+    "T0_AXIOMS": [
+        "foundations_sim.py",
+        "math_foundations_sim.py",
+        "deep_math_foundations_sim.py",
+    ],
+    "T1_CONSTRAINTS": [
+        "proof_cost_sim.py",
+        "constraint_gap_sim.py",
+        "godel_stall_sim.py",
+        # Negative SIMs (must KILL to pass)
+        "neg_commutative_engine_sim.py",
+        "neg_infinite_d_sim.py",
+        "neg_single_loop_sim.py",
+        "neg_classical_probability_sim.py",
+        "neg_no_dissipation_sim.py",
+    ],
+    "T2_ARITHMETIC": [
+        "arithmetic_gravity_sim.py",
+    ],
+    "T3_PHYSICS": [
+        "navier_stokes_complexity_sim.py",
+        "navier_stokes_qit_sim.py",
+        "navier_stokes_formal_sim.py",
+        "quantum_gravity_sim.py",
+        "yang_mills_sim.py",
+        "chemistry_sim.py",
+    ],
+    "T4_ENGINE": [
+        "topology_operator_sim.py",
+        "engine_terrain_sim.py",
+        "dual_weyl_spinor_engine_sim.py",
+        "full_8stage_engine_sim.py",
+        "type2_engine_sim.py",
+        "szilard_64stage_v2_sim.py",
+        "complexity_gap_v2_sim.py",
+        "gain_calibration_v2_sim.py",
+        "demon_fixed_sim.py",
+        "abiogenesis_v2_sim.py",
+        "axis_6_precedence_sim.py",
+        "i_scalar_filtration_sim.py",
+    ],
+    "T5_ORTHOGONALITY": [
+        "axis_orthogonality_suite.py",
+        "axis3_orthogonality_sim.py",
+        "axis_relations_sim.py",
+        "axis0_correlation_sim.py",
+        "axis0_path_integral_sim.py",
+        "qit_topology_parity_sim.py",
+        "egglog_graph_rewrite_probe.py",
+    ],
+    "T6_ADVANCED": [
+        "nlm_batch2_sim.py",
+        "rock_falsifier_sim.py",
+        "rock_falsifier_enhanced_sim.py",
+        "scale_testing_sim.py",
+        "riemann_zeta_sim.py",
+        "p_vs_np_sim.py",
+        "consciousness_sim.py",
+        "alignment_sim.py",
+        "world_model_sim.py",
+        "scientific_method_sim.py",
+        "tier_3_mega_sim.py",
+        "sim_moloch_trap_field.py",
+        "deep_graveyard_battery.py",
+        "extended_graveyard_battery.py",
+    ],
+}
+
+# Flatten for backward compatibility
+SIM_FILES = []
+for tier_sims in TIERED_SIMS.values():
+    SIM_FILES.extend(tier_sims)
+
+# Tiers that gate execution (pipeline halts on unexpected KILL)
+GATING_TIERS = {"T0_AXIOMS", "T1_CONSTRAINTS"}
 
 
 def run_sim(filename: str) -> dict:
@@ -93,23 +129,23 @@ def run_sim(filename: str) -> dict:
             "complexity_gap_v2_sim.py": "complexity_gap_v2_results.json",
             "topology_operator_sim.py": "topology_operator_results.json",
             "igt_game_theory_sim.py": "igt_results.json",
-            "engine_terrain_sim.py": "engine_terrain_results.json",
+            "engine_terrain_sim.py": "process_cycle_terrain_results.json",
             "igt_advanced_sim.py": "igt_advanced_results.json",
             "godel_stall_sim.py": "godel_stall_results.json",
             "dual_weyl_spinor_engine_sim.py": "dual_weyl_results.json",
             "full_8stage_engine_sim.py": "full_8stage_results.json",
             "rock_falsifier_sim.py": "rock_falsifier_results.json",
-            "constraint_gap_sim.py": "constraint_gap_results.json",
+            "constraint_gap_sim.py": "operator_bound_gap_results.json",
             "szilard_64stage_v2_sim.py": "szilard_64stage_v2_results.json",
             "nlm_batch2_sim.py": "nlm_batch2_results.json",
             # Pro Thread Dispatch SIMs
             "gain_calibration_v2_sim.py": "gain_calibration_v2_results.json",
             "demon_fixed_sim.py": "demon_fixed_results.json",
-            "type2_engine_sim.py": "type2_engine_results.json",
+            "type2_engine_sim.py": "type2_process_cycle_results.json",
             "riemann_zeta_sim.py": "riemann_zeta_results.json",
             "p_vs_np_sim.py": "p_vs_np_results.json",
             "navier_stokes_qit_sim.py": "navier_stokes_qit_results.json",
-            "consciousness_sim.py": "consciousness_results.json",
+            "consciousness_sim.py": "recursive_state_results.json",
             "alignment_sim.py": "alignment_results.json",
             "abiogenesis_v2_sim.py": "abiogenesis_v2_results.json",
             "quantum_gravity_sim.py": "quantum_gravity_results.json",
@@ -121,7 +157,7 @@ def run_sim(filename: str) -> dict:
             "navier_stokes_formal_sim.py": "navier_stokes_formal_results.json",
             "rock_falsifier_enhanced_sim.py": "rock_falsifier_enhanced_results.json",
             "tier_3_mega_sim.py": "tier_3_mega_results.json",
-            "sim_moloch_trap_field.py": "moloch_trap_results.json",
+            "sim_moloch_trap_field.py": "moloch_trap_field_results.json",
             "axis_6_precedence_sim.py": "axis_6_precedence_results.json",
             "i_scalar_filtration_sim.py": "iscalar_filtration_results.json",
             "axis3_orthogonality_sim.py": "axis3_orthogonality_results.json",
@@ -129,6 +165,16 @@ def run_sim(filename: str) -> dict:
             "axis0_path_integral_sim.py": "axis0_path_integral_results.json",
             "axis_relations_sim.py": "axis_relations_results.json",
             "qit_topology_parity_sim.py": "qit_topology_parity_results.json",
+            # New: Graveyard & Orthogonality
+            "deep_graveyard_battery.py": "deep_graveyard_results.json",
+            "extended_graveyard_battery.py": "extended_graveyard_results.json",
+            "axis_orthogonality_suite.py": "axis_orthogonality_v3_results.json",
+            "egglog_graph_rewrite_probe.py": "egglog_rewrite_results.json",
+            "neg_commutative_engine_sim.py": "neg_commutative_results.json",
+            "neg_infinite_d_sim.py": "neg_infinite_d_results.json",
+            "neg_single_loop_sim.py": "neg_single_loop_results.json",
+            "neg_classical_probability_sim.py": "neg_classical_prob_results.json",
+            "neg_no_dissipation_sim.py": "neg_no_dissipation_results.json",
         }
         
         tokens = []
@@ -138,7 +184,8 @@ def run_sim(filename: str) -> dict:
             if rpath.exists():
                 with open(rpath) as f:
                     data = json.load(f)
-                    tokens = data.get("evidence_ledger", [])
+                    # Accept both schema variants
+                    tokens = data.get("evidence_ledger", data.get("tokens", []))
         
         status = "PASS" if result.returncode == 0 else "FAIL"
         
@@ -236,22 +283,48 @@ def main():
     all_results = []
     all_tokens = []
     
-    for sim_file in SIM_FILES:
-        print(f"\n{'─'*40}")
-        print(f"  Running: {sim_file}")
-        print(f"{'─'*40}")
+    for tier_name, tier_sims in TIERED_SIMS.items():
+        print(f"\n{'═'*60}")
+        print(f"  TIER: {tier_name}")
+        print(f"{'═'*60}")
         
-        result = run_sim(sim_file)
-        all_results.append(result)
-        # Stamp source_file on each token so downstream consumers
-        # (materializer, heartbeat) can link tokens back to their producer
-        for t in result["tokens"]:
-            t["source_file"] = sim_file
-        all_tokens.extend(result["tokens"])
+        tier_kills = 0
+        tier_unexpected_passes = 0
+        is_neg_tier = (tier_name == "T1_CONSTRAINTS")
         
-        n_pass = sum(1 for t in result["tokens"] if t.get("status") == "PASS")
-        n_kill = sum(1 for t in result["tokens"] if t.get("status") == "KILL")
-        print(f"  → {result['status']} | {n_pass} PASS | {n_kill} KILL")
+        for sim_file in tier_sims:
+            print(f"\n{'─'*40}")
+            print(f"  Running: {sim_file}")
+            print(f"{'─'*40}")
+            
+            result = run_sim(sim_file)
+            all_results.append(result)
+            for t in result["tokens"]:
+                t["source_file"] = sim_file
+            all_tokens.extend(result["tokens"])
+            
+            n_pass = sum(1 for t in result["tokens"] if t.get("status") == "PASS")
+            n_kill = sum(1 for t in result["tokens"] if t.get("status") == "KILL")
+            print(f"  → {result['status']} | {n_pass} PASS | {n_kill} KILL")
+            
+            # For negative SIMs in T1, KILL is the EXPECTED outcome
+            is_neg_sim = sim_file.startswith("neg_")
+            if is_neg_sim:
+                if n_kill == 0 and n_pass > 0:
+                    tier_unexpected_passes += 1
+                    print(f"  ⚠ UNEXPECTED_PASS: Negative SIM should KILL!")
+            else:
+                tier_kills += n_kill
+        
+        # TIER GATING: halt if a gating tier has unexpected failures
+        if tier_name in GATING_TIERS:
+            if tier_kills > 0:
+                print(f"\n  ⛔ TIER GATE HALT: {tier_name} has {tier_kills} KILL tokens")
+                print(f"     Pipeline cannot proceed past {tier_name}.")
+                print(f"     Fix root axiom failures before running higher tiers.")
+                break  # Stop execution
+            if tier_unexpected_passes > 0:
+                print(f"\n  ⚠ TIER WARNING: {tier_name} has {tier_unexpected_passes} negative SIMs that passed unexpectedly")
     
     # Build evidence graph
     graph = build_evidence_graph(all_tokens)

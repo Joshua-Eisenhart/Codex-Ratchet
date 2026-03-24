@@ -171,7 +171,7 @@ OPERATOR_MAP = {
 def run_engine(terrains, engine_name, d=4, n_cycles=20):
     """Run a full process_cycle cycle and measure ΔΦ per terrain."""
     print(f"\n{'='*60}")
-    print(f"PROCESS_CYCLE: {process_cycle_name}")
+    print(f"PROCESS_CYCLE: {engine_name}")
     print(f"  d={d}, cycles={n_cycles}")
     print(f"{'='*60}")
     

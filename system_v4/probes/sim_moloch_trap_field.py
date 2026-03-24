@@ -1,210 +1,269 @@
-#!/usr/bin/env python3
 """
-SIM: Moloch Trap Field (N-Agent IGT)
-=====================================
-Tests the assertion that a constrained N-agent mimetic manifold populated 
-exclusively by Maximax (WIN-only) extractors will inevitably reach 
-thermal death (I/d) due to shared environmental state_dispersion saturation.
+PRO-15: N-AGENT MOLOCH FIELD SIM
+================================
+Expands the IGT Moloch Trap to a multi-agent field manifold.
 
-Conversely, a manifold utilizing Irrational Game Theory (IGT)—where agents
-intentionally execute LOSE strokes to cool the shared bath via Landauer
-erasure—sustains a Non-Equilibrium Steady State (NESS).
+Classical Agents: WIN-only, using only +Te/+Ti gradient ascent operators.
+  These agents greedily extract negentropy without paying Landauer costs.
+  
+Dual-Loop Agents: Execute the necessary LOSE -Fe/-Fi dissipation cycles.
+  These agents maintain sustainable NESS by venting entropy to the bath.
+
+Target: Prove that Classical Agents saturate their phase space and
+thermalize to I/d (maximal mixedness), while Dual-Loop Agents establish
+a stable Non-Equilibrium Steady State (NESS) with phi > 0.
 """
 
 import numpy as np
 import json
 import os
-import sys
-from datetime import datetime
-try:
-    from datetime import UTC
-except ImportError:
-    from datetime import timezone
-    UTC = timezone.utc
+from datetime import datetime, UTC
 
+import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from proto_ratchet_sim_runner import (
     make_random_density_matrix,
     make_random_unitary,
     von_neumann_entropy,
-    trace_distance,
     EvidenceToken,
 )
 
+
 def negentropy(rho, d):
-    S = von_neumann_entropy(rho) * np.log(2)
-    return np.log(d) - S
+    S = von_neumann_entropy(rho)
+    return max(0.0, 1.0 - S / np.log2(d))
 
-def ensure_valid(rho):
-    rho = (rho + rho.conj().T) / 2
-    eigvals = np.maximum(np.real(np.linalg.eigvalsh(rho)), 1e-12)
-    V = np.linalg.eigh(rho)[1]
-    rho = V @ np.diag(eigvals.astype(complex)) @ V.conj().T
-    return rho / np.trace(rho)
 
-def partial_trace(rho_joint, d_A=2, d_E=4):
-    """Traces out Env to yield Agent, and Agent to yield Env"""
-    rho_A = np.zeros((d_A, d_A), dtype=complex)
-    for i in range(d_A):
-        for j in range(d_A):
-            for k in range(d_E):
-                rho_A[i, j] += rho_joint[i * d_E + k, j * d_E + k]
-                
-    rho_E = np.zeros((d_E, d_E), dtype=complex)
-    for i in range(d_E):
-        for j in range(d_E):
-            for k in range(d_A):
-                rho_E[i, j] += rho_joint[k * d_E + i, k * d_E + j]
-                
-    return ensure_valid(rho_A), ensure_valid(rho_E)
+def purity(rho):
+    return np.real(np.trace(rho @ rho))
 
-def apply_win_stroke(rho_A, rho_E, d_A=2, d_E=4):
-    """
-    WIN (Extract Gradient): Appies an entangling unitary that pumps 
-    negentropy into the Agent and dumps entropy into the Env.
-    """
-    rho_joint = np.kron(rho_A, rho_E)
-    
-    # We construct a swap-like unitary that favors ground state for Agent
-    U = np.eye(d_A * d_E, dtype=complex)
-    # Target state: Agent approaches |0><0| by shifting excitation to Env
-    # If agent is |1> and env is |0>, swap them so agent becomes |0> and env becomes |1>
-    idx1 = 1 * d_E + 0  # |1>_A |0>_E
-    idx2 = 0 * d_E + 1  # |0>_A |1>_E
-    
-    # We apply a partial rotation favoring idx2 over idx1
-    # Actually just a random unitary highly biased toward moving A to |0><0|
-    # To keep it generic QIT without hardcoding classical bits, we use a random thermalizing CPTP map
-    
-    # Simply doing a coherent thermal contact where Env acts as a hot bath unless it is exhausted.
-    # If Env is maximally mixed, A becomes maximally mixed (thermal death).
-    
-    # Let's rigidly define WIN: Agent A swaps its state with a random qubit of E
-    sub_E = partial_trace(rho_joint, d_A=2, d_E=d_E)[1]
-    
-    # We simulate this coarsely without massive tensor overhead:
-    # A's new state is a blend of its current structure and the Env's thermal noise.
-    # But because A "wins", A executes a projection (Ti) locally, which DISSIPATES into the Env globally.
-    
-    # Local Ti on A
-    P0 = np.array([[1,0],[0,0]], dtype=complex)
-    P1 = np.array([[0,0],[0,1]], dtype=complex)
-    rho_A_new = P0 @ rho_A @ P0 + P1 @ rho_A @ P1
-    
-    # Cost to Env
-    loss_factor = 0.05
-    sigma_E = np.eye(d_E, dtype=complex) / d_E
-    rho_E_new = (1 - loss_factor) * rho_E + loss_factor * sigma_E
-    
-    return ensure_valid(rho_A_new), ensure_valid(rho_E_new)
 
-def apply_lose_stroke(rho_A, rho_E, d_A=2, d_E=4):
-    """
-    LOSE (Maintenance/Sacrifice): Agent intentionally depolarizes itself
-    to inject structure (cool) back into the shared Env.
-    """
-    # Local complete depolarization of A
-    sigma_A = np.eye(d_A, dtype=complex) / d_A
-    rho_A_new = (1 - 0.5) * rho_A + 0.5 * sigma_A
+class ClassicalAgent:
+    """WIN-only agent: uses gradient ascent (Te/Ti) without dissipation."""
     
-    # Recovery in Env (structuralizing the bath)
-    # We use A's sacrificed structure to purify E
-    eigvals, V = np.linalg.eigh(rho_E)
-    # Push highest probability slightly higher
-    eigvals[-1] += 0.05
-    eigvals = np.maximum(eigvals, 0)
-    rho_E_new = V @ np.diag(eigvals) @ V.conj().T
+    def __init__(self, d, agent_id):
+        self.d = d
+        self.agent_id = agent_id
+        np.random.seed(100 + agent_id)
+        self.rho = make_random_density_matrix(d)
+        H_raw = np.random.randn(d, d) + 1j * np.random.randn(d, d)
+        self.H = (H_raw + H_raw.conj().T) / 2
+        self.observable = np.diag(np.linspace(0.1, 1.0, d).astype(complex))
     
-    return ensure_valid(rho_A_new), ensure_valid(rho_E_new)
+    def step(self, shared_bath):
+        d = self.d
+        # Te: Hamiltonian unitary drive (WIN extraction)
+        dt = 0.05
+        U = np.eye(d, dtype=complex) - 1j * self.H * dt
+        u, _, vh = np.linalg.svd(U)
+        U = u @ vh
+        self.rho = U @ self.rho @ U.conj().T
+        
+        # Ti: Gradient ascent (greedy extraction)
+        grad = self.observable @ self.rho - self.rho @ self.observable
+        self.rho = self.rho + 0.03 * grad
+        # Enforce Hermiticity and positive semi-definiteness
+        self.rho = (self.rho + self.rho.conj().T) / 2
+        evals, evecs = np.linalg.eigh(self.rho)
+        evals = np.maximum(evals, 0)  # Clamp negative eigenvalues
+        self.rho = evecs @ np.diag(evals) @ evecs.conj().T
+        self.rho /= np.trace(self.rho)
+        
+        # Extract from shared bath (take heat without giving back)
+        extraction = 0.02 * (self.rho - shared_bath)
+        self.rho = self.rho + extraction
+        self.rho = (self.rho + self.rho.conj().T) / 2
+        evals, evecs = np.linalg.eigh(self.rho)
+        evals = np.maximum(evals, 0)
+        self.rho = evecs @ np.diag(evals) @ evecs.conj().T
+        self.rho /= np.trace(self.rho)
+        
+        return self.rho
 
-def sim_moloch_trap():
+
+class DualLoopAgent:
+    """Dual-loop agent: executes both WIN (Te/Ti) and LOSE (Fe/Fi) cycles."""
+    
+    def __init__(self, d, agent_id):
+        self.d = d
+        self.agent_id = agent_id
+        np.random.seed(200 + agent_id)
+        self.rho = make_random_density_matrix(d)
+        H_raw = np.random.randn(d, d) + 1j * np.random.randn(d, d)
+        self.H = (H_raw + H_raw.conj().T) / 2
+        L_raw = np.random.randn(d, d) + 1j * np.random.randn(d, d)
+        self.L = L_raw / np.linalg.norm(L_raw) * 2.0
+        self.observable = np.diag(np.linspace(0.1, 1.0, d).astype(complex))
+    
+    def step(self, shared_bath):
+        d = self.d
+        dt = 0.05
+        
+        # ── WIN STROKE (Te/Ti): Extract negentropy ──
+        U = np.eye(d, dtype=complex) - 1j * self.H * dt
+        u, _, vh = np.linalg.svd(U)
+        U = u @ vh
+        self.rho = U @ self.rho @ U.conj().T
+        
+        # Ti: Measurement-guided convergence
+        probs = np.abs(np.diagonal(self.rho))
+        probs /= max(np.sum(probs), 1e-12)
+        rho_meas = np.diag(probs.astype(complex))
+        self.rho = 0.8 * self.rho + 0.2 * rho_meas
+        
+        # ── LOSE STROKE (Fe/Fi): Pay Landauer costs ──
+        # Fe: Lindbladian dissipation (entropy export to bath)
+        L = self.L
+        LdL = L.conj().T @ L
+        drho = L @ self.rho @ L.conj().T - 0.5 * (LdL @ self.rho + self.rho @ LdL)
+        self.rho = self.rho + drho * dt
+        
+        # Fi: Fourier spectral smoothing (structural cooling)
+        F = np.zeros((d, d), dtype=complex)
+        for j in range(d):
+            for k in range(d):
+                F[j, k] = np.exp(2j * np.pi * j * k / d) / np.sqrt(d)
+        rho_fourier = F @ self.rho @ F.conj().T
+        self.rho = 0.9 * self.rho + 0.1 * rho_fourier
+        
+        # Cooperate with bath (give AND take)
+        coupling = 0.03
+        self.rho = (1 - coupling) * self.rho + coupling * shared_bath
+        self.rho = (self.rho + self.rho.conj().T) / 2
+        self.rho /= np.trace(self.rho)
+        
+        return self.rho
+
+
+def run_moloch_field(d=4, n_classical=5, n_dualloop=5, n_cycles=100):
+    """Execute the N-agent Moloch Field simulation."""
+    print("=" * 70)
+    print("PRO-15: N-AGENT MOLOCH FIELD SIM")
+    print(f"  d={d}, classical={n_classical}, dual-loop={n_dualloop}")
+    print(f"  cycles={n_cycles}")
+    print("=" * 70)
+    
+    # Initialize agents
+    classical_agents = [ClassicalAgent(d, i) for i in range(n_classical)]
+    dualloop_agents = [DualLoopAgent(d, i) for i in range(n_dualloop)]
+    
+    # Shared thermal bath (starts at I/d)
+    shared_bath = np.eye(d, dtype=complex) / d
+    
+    # Trajectories
+    classical_phi = {i: [negentropy(a.rho, d)] for i, a in enumerate(classical_agents)}
+    dualloop_phi = {i: [negentropy(a.rho, d)] for i, a in enumerate(dualloop_agents)}
+    bath_entropy = [von_neumann_entropy(shared_bath)]
+    
+    for cycle in range(n_cycles):
+        # All agents act on the shared bath
+        all_rhos = []
+        
+        for i, agent in enumerate(classical_agents):
+            rho = agent.step(shared_bath)
+            all_rhos.append(rho)
+            classical_phi[i].append(negentropy(rho, d))
+        
+        for i, agent in enumerate(dualloop_agents):
+            rho = agent.step(shared_bath)
+            all_rhos.append(rho)
+            dualloop_phi[i].append(negentropy(rho, d))
+        
+        # Update shared bath: average of all agent states (thermalization)
+        shared_bath = np.mean(all_rhos, axis=0)
+        shared_bath = (shared_bath + shared_bath.conj().T) / 2
+        shared_bath /= np.trace(shared_bath)
+        bath_entropy.append(von_neumann_entropy(shared_bath))
+        
+        if cycle % 20 == 0:
+            avg_c = np.mean([classical_phi[i][-1] for i in range(n_classical)])
+            avg_d = np.mean([dualloop_phi[i][-1] for i in range(n_dualloop)])
+            print(f"  Cycle {cycle:3d}: "
+                  f"classical_avg_phi={avg_c:.4f} "
+                  f"dualloop_avg_phi={avg_d:.4f} "
+                  f"bath_S={bath_entropy[-1]:.4f}")
+    
+    # ── VERDICT ──
+    avg_classical_final = np.mean([classical_phi[i][-1] for i in range(n_classical)])
+    avg_dualloop_final = np.mean([dualloop_phi[i][-1] for i in range(n_dualloop)])
+    classical_collapsed = avg_classical_final < 0.05
+    dualloop_ness = avg_dualloop_final > 0.01
+    
     print(f"\n{'='*70}")
-    print(f"SIM: MOLOCH TRAP FIELD (N-AGENT MANIFOLD THERMAL DEATH)")
+    print(f"MOLOCH FIELD VERDICT")
     print(f"{'='*70}")
+    print(f"  Classical agents avg phi: {avg_classical_final:.4f} "
+          f"({'THERMALIZED' if classical_collapsed else 'ALIVE'})")
+    print(f"  Dual-loop agents avg phi: {avg_dualloop_final:.4f} "
+          f"({'NESS' if dualloop_ness else 'COLLAPSED'})")
+    print(f"  Bath entropy: {bath_entropy[-1]:.4f} / {np.log2(d):.4f}")
     
-    d_A = 2
-    d_E = 16
-    N_agents = 5
-    rounds = 100
+    evidence = []
     
-    tokens = []
-    
-    # -------------------------------------------------------------
-    # RUN 1: MOLOCH TRAP (WIN-ONLY)
-    # -------------------------------------------------------------
-    np.random.seed(42)
-    rho_E_moloch = np.zeros((d_E, d_E), dtype=complex)
-    rho_E_moloch[0, 0] = 1.0  # Perfectly structured pristine environment
-    
-    agents_moloch = [make_random_density_matrix(d_A) for _ in range(N_agents)]
-    
-    for r in range(rounds):
-        for i in range(N_agents):
-            agents_moloch[i], rho_E_moloch = apply_win_stroke(agents_moloch[i], rho_E_moloch, d_A, d_E)
-    
-    phi_env_moloch = negentropy(rho_E_moloch, d_E)
-    phi_agents_moloch = [negentropy(a, d_A) for a in agents_moloch]
-    avg_phi_moloch = sum(phi_agents_moloch) / N_agents
-    
-    print(f"  [MOLOCH MANIFOLD - WIN ONLY]")
-    print(f"    Env Final Φ: {phi_env_moloch:.6f} / {np.log(d_E):.6f}")
-    print(f"    Agents Avg Final Φ: {avg_phi_moloch:.6f} / {np.log(d_A):.6f}")
-    
-    is_thermal_death = phi_env_moloch < 1e-2
-    
-    # -------------------------------------------------------------
-    # RUN 2: IGT MANIFOLD (WIN + LOSE STROKES)
-    # -------------------------------------------------------------
-    np.random.seed(42)
-    rho_E_igt = np.zeros((d_E, d_E), dtype=complex)
-    rho_E_igt[0, 0] = 1.0
-    
-    agents_igt = [make_random_density_matrix(d_A) for _ in range(N_agents)]
-    
-    for r in range(rounds):
-        for i in range(N_agents):
-            # Agent strategy: 3 WINs, then 1 LOSE to maintain the bath
-            action_cycle = r % 4
-            if action_cycle < 3:
-                agents_igt[i], rho_E_igt = apply_win_stroke(agents_igt[i], rho_E_igt, d_A, d_E)
-            else:
-                agents_igt[i], rho_E_igt = apply_lose_stroke(agents_igt[i], rho_E_igt, d_A, d_E)
-                
-    phi_env_igt = negentropy(rho_E_igt, d_E)
-    phi_agents_igt = [negentropy(a, d_A) for a in agents_igt]
-    avg_phi_igt = sum(phi_agents_igt) / N_agents
-    
-    print(f"\n  [IGT MANIFOLD - WIN + LOSE]")
-    print(f"    Env Final Φ: {phi_env_igt:.6f} / {np.log(d_E):.6f}")
-    print(f"    Agents Avg Final Φ: {avg_phi_igt:.6f} / {np.log(d_A):.6f}")
-    
-    is_ness_sustained = phi_env_igt > 0.1
-    
-    if is_thermal_death and is_ness_sustained:
-        print(f"\n  ✓ MOLOCH TRAP AVOIDED. IGT SACRIFICE SUSTAINS THE FIELD.")
-        tokens.append(EvidenceToken(
-            "E_SIM_MOLOCH_TRAP_OK", "S_SIM_MOLOCH_TRAP_V1", "PASS", avg_phi_igt
+    # Classical thermalization check
+    if classical_collapsed:
+        print(f"  MOLOCH TRAP: Classical agents → I/d (thermal death)")
+        evidence.append(EvidenceToken(
+            token_id="E_MOLOCH_CLASSICAL_THERMAL_DEATH",
+            sim_spec_id="S_MOLOCH_FIELD_V1",
+            status="PASS",
+            measured_value=avg_classical_final,
         ))
     else:
-        print(f"\n  ✗ SYSTEM FAILED TO PROVE MOLOCH TRAP BEHAVIOR.")
-        tokens.append(EvidenceToken(
-            "", "S_SIM_MOLOCH_TRAP_V1", "KILL", 0.0, "TRAGEDY_OF_COMMONS_FAILED"
+        evidence.append(EvidenceToken(
+            token_id="E_MOLOCH_CLASSICAL_SURVIVED",
+            sim_spec_id="S_MOLOCH_FIELD_V1",
+            status="KILL",
+            measured_value=avg_classical_final,
+            kill_reason="CLASSICAL_AGENTS_SURVIVED_UNEXPECTEDLY",
         ))
-
-    out_file = os.path.join(
-        os.path.dirname(os.path.abspath(__file__)),
-        "a2_state", "sim_results", "moloch_trap_results.json"
-    )
-    os.makedirs(os.path.dirname(out_file), exist_ok=True)
     
-    with open(out_file, "w") as f:
+    # Dual-loop NESS check
+    if dualloop_ness:
+        print(f"  NESS: Dual-loop agents sustain local gradients")
+        evidence.append(EvidenceToken(
+            token_id="E_MOLOCH_DUALLOOP_NESS_PASS",
+            sim_spec_id="S_MOLOCH_DUALLOOP_NESS_V1",
+            status="PASS",
+            measured_value=avg_dualloop_final,
+        ))
+    else:
+        evidence.append(EvidenceToken(
+            token_id="",
+            sim_spec_id="S_MOLOCH_DUALLOOP_NESS_V1",
+            status="KILL",
+            measured_value=avg_dualloop_final,
+            kill_reason="DUALLOOP_AGENTS_COLLAPSED",
+        ))
+    
+    # Save
+    base = os.path.dirname(os.path.abspath(__file__))
+    results_dir = os.path.join(base, "a2_state", "sim_results")
+    os.makedirs(results_dir, exist_ok=True)
+    outpath = os.path.join(results_dir, "moloch_trap_field_results.json")
+    
+    with open(outpath, "w") as f:
         json.dump({
-            "schema": "SIM_EVIDENCE_v1",
-            "file": os.path.basename(__file__),
-            "timestamp": datetime.now(UTC).isoformat() + "Z",
-            "evidence_ledger": [t.__dict__ for t in tokens],
+            "timestamp": datetime.now(UTC).isoformat(),
+            "d": d,
+            "n_classical": n_classical,
+            "n_dualloop": n_dualloop,
+            "n_cycles": n_cycles,
+            "classical_final_phi": float(avg_classical_final),
+            "dualloop_final_phi": float(avg_dualloop_final),
+            "classical_thermalized": bool(classical_collapsed),
+            "dualloop_ness": bool(dualloop_ness),
+            "bath_final_entropy": float(bath_entropy[-1]),
+            "evidence_ledger": [
+                {"token_id": e.token_id, "sim_spec_id": e.sim_spec_id,
+                 "status": e.status, "measured_value": e.measured_value,
+                 "kill_reason": e.kill_reason} for e in evidence
+            ],
         }, f, indent=2)
-    print(f"  Results saved to: {out_file}")
+    
+    print(f"\n  Results saved: {outpath}")
+    return evidence
+
 
 if __name__ == "__main__":
-    sim_moloch_trap()
+    run_moloch_field(d=4, n_classical=5, n_dualloop=5, n_cycles=100)

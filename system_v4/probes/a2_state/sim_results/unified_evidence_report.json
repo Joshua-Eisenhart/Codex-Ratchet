@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-03-24T23:16:43.905598+00:00",
-  "total_tokens": 135,
-  "pass_count": 135,
-  "kill_count": 0,
+  "timestamp": "2026-03-24T23:38:11.318085+00:00",
+  "total_tokens": 146,
+  "pass_count": 128,
+  "kill_count": 18,
   "layers": {
     "0": [
       {
@@ -219,7 +219,7 @@
         "status": "PASS",
         "measured_value": 4.1588830833596715,
         "kill_reason": null,
-        "timestamp": "2026-03-24T23:16:20.555990",
+        "timestamp": "2026-03-24T23:35:55.660826",
         "source_file": "complexity_gap_v2_sim.py"
       }
     ],
@@ -292,6 +292,14 @@
     "6": [],
     "7": [
       {
+        "token_id": "E_SIM_CHIRAL_CHEMISTRY_OK",
+        "sim_spec_id": "S_SIM_CHEMISTRY_CHIRALITY_V1",
+        "status": "PASS",
+        "measured_value": 3.256613331040314,
+        "kill_reason": null,
+        "source_file": "chemistry_sim.py"
+      },
+      {
         "token_id": "E_SIM_TYPE1_STRUCTURAL_PASS",
         "sim_spec_id": "S_SIM_TYPE1_V1",
         "status": "PASS",
@@ -322,22 +330,6 @@
         "measured_value": 1.7428638726224164,
         "kill_reason": null,
         "source_file": "dual_weyl_spinor_engine_sim.py"
-      },
-      {
-        "token_id": "E_SIM_TYPE2_CHIRALITY_OK",
-        "sim_spec_id": "S_SIM_TYPE2_ENGINE_V1",
-        "status": "PASS",
-        "measured_value": 0.021316616777975264,
-        "kill_reason": null,
-        "source_file": "type2_engine_sim.py"
-      },
-      {
-        "token_id": "E_SIM_CHIRAL_CHEMISTRY_OK",
-        "sim_spec_id": "S_SIM_CHEMISTRY_CHIRALITY_V1",
-        "status": "PASS",
-        "measured_value": 3.256613331040314,
-        "kill_reason": null,
-        "source_file": "chemistry_sim.py"
       }
     ],
     "8": [
@@ -406,14 +398,6 @@
         "source_file": "math_foundations_sim.py"
       },
       {
-        "token_id": "E_SIM_ENTROPIC_GRAVITY_OK",
-        "sim_spec_id": "S_SIM_GRAVITY_V1",
-        "status": "PASS",
-        "measured_value": -0.4122566151666921,
-        "kill_reason": null,
-        "source_file": "arithmetic_gravity_sim.py"
-      },
-      {
         "token_id": "E_SIM_IDENTITY_COST_D2_OK",
         "sim_spec_id": "S_SIM_IDENTITY_COST_V1",
         "status": "PASS",
@@ -438,15 +422,6 @@
         "source_file": "proof_cost_sim.py"
       },
       {
-        "token_id": "E_SIM_CONVERGENT_SUBSET_DEPTH_V2_OK",
-        "sim_spec_id": "S_SIM_CONVERGENT_SUBSET_DEPTH_V1",
-        "status": "PASS",
-        "measured_value": 0.968876212495412,
-        "kill_reason": null,
-        "timestamp": "2026-03-24T23:16:20.571987",
-        "source_file": "complexity_gap_v2_sim.py"
-      },
-      {
         "token_id": "E_SIM_TURING_STALL_OK",
         "sim_spec_id": "S_SIM_GODEL_STALL_V1",
         "status": "PASS",
@@ -469,6 +444,118 @@
         "measured_value": 0.0,
         "kill_reason": null,
         "source_file": "godel_stall_sim.py"
+      },
+      {
+        "token_id": "E_SIM_ENTROPIC_GRAVITY_OK",
+        "sim_spec_id": "S_SIM_GRAVITY_V1",
+        "status": "PASS",
+        "measured_value": -0.4122566151666921,
+        "kill_reason": null,
+        "source_file": "arithmetic_gravity_sim.py"
+      },
+      {
+        "token_id": "E_SIM_NS_SMOOTH_OK",
+        "sim_spec_id": "S_SIM_NS_QIT_V1",
+        "status": "PASS",
+        "measured_value": 4.0,
+        "kill_reason": null,
+        "source_file": "navier_stokes_qit_sim.py"
+      },
+      {
+        "token_id": "E_SIM_NS_FORMAL_CPTP_CHANNEL_OK",
+        "sim_spec_id": "S_SIM_NS_CPTP_CHANNEL_V1",
+        "status": "PASS",
+        "measured_value": 16.0,
+        "kill_reason": null,
+        "source_file": "navier_stokes_formal_sim.py"
+      },
+      {
+        "token_id": "E_SIM_NS_GRADIENT_BOUND_OK",
+        "sim_spec_id": "S_SIM_NS_GRADIENT_BOUND_V1",
+        "status": "PASS",
+        "measured_value": 1.4978749490625827,
+        "kill_reason": null,
+        "source_file": "navier_stokes_formal_sim.py"
+      },
+      {
+        "token_id": "E_SIM_NS_ENSTROPHY_BOUND_OK",
+        "sim_spec_id": "S_SIM_NS_ENSTROPHY_BOUND_V1",
+        "status": "PASS",
+        "measured_value": 0.06547037802125234,
+        "kill_reason": null,
+        "source_file": "navier_stokes_formal_sim.py"
+      },
+      {
+        "token_id": "E_SIM_NS_SCALING_DIVERGE_OK",
+        "sim_spec_id": "S_SIM_NS_SCALING_V1",
+        "status": "PASS",
+        "measured_value": 0.6702338739993848,
+        "kill_reason": null,
+        "source_file": "navier_stokes_formal_sim.py"
+      },
+      {
+        "token_id": "E_SIM_NS_REGULARISER_OK",
+        "sim_spec_id": "S_SIM_NS_REGULARISER_V1",
+        "status": "PASS",
+        "measured_value": 0.9999999999999974,
+        "kill_reason": null,
+        "source_file": "navier_stokes_formal_sim.py"
+      },
+      {
+        "token_id": "E_SIM_NS_REYNOLDS_OK",
+        "sim_spec_id": "S_SIM_NS_REYNOLDS_V1",
+        "status": "PASS",
+        "measured_value": 100.0,
+        "kill_reason": null,
+        "source_file": "navier_stokes_formal_sim.py"
+      },
+      {
+        "token_id": "E_SIM_GRAV_GRADIENT_OK",
+        "sim_spec_id": "S_SIM_QUANTUM_GRAVITY_V1",
+        "status": "PASS",
+        "measured_value": 0.04631595171662199,
+        "kill_reason": null,
+        "source_file": "quantum_gravity_sim.py"
+      },
+      {
+        "token_id": "E_SIM_METRIC_CURVATURE_OK",
+        "sim_spec_id": "S_SIM_GRAV_METRIC_V1",
+        "status": "PASS",
+        "measured_value": 0.084085293405025,
+        "kill_reason": null,
+        "source_file": "quantum_gravity_sim.py"
+      },
+      {
+        "token_id": "E_SIM_MASS_GAP_PERSISTS_OK",
+        "sim_spec_id": "S_SIM_YANG_MILLS_V1",
+        "status": "PASS",
+        "measured_value": 0.3277328609187222,
+        "kill_reason": null,
+        "source_file": "yang_mills_sim.py"
+      },
+      {
+        "token_id": "E_SIM_WILSON_ACTION_OK",
+        "sim_spec_id": "S_SIM_WILSON_V1",
+        "status": "PASS",
+        "measured_value": 8.82447049701804,
+        "kill_reason": null,
+        "source_file": "yang_mills_sim.py"
+      },
+      {
+        "token_id": "E_SIM_REACTION_OK",
+        "sim_spec_id": "S_SIM_CHEMISTRY_REACTION_V1",
+        "status": "PASS",
+        "measured_value": 1.0109201004199038,
+        "kill_reason": null,
+        "source_file": "chemistry_sim.py"
+      },
+      {
+        "token_id": "E_SIM_CATALYSIS_OK",
+        "sim_spec_id": "S_SIM_CHEMISTRY_CATALYSIS_V1",
+        "status": "PASS",
+        "measured_value": 0.9616820104974433,
+        "kill_reason": null,
+        "source_file": "chemistry_sim.py"
       },
       {
         "token_id": "E_TYPE1_CONVERGENT_OK",
@@ -511,84 +598,22 @@
         "source_file": "full_8stage_engine_sim.py"
       },
       {
-        "token_id": "E_SIM_ROCK_FALSIFIER_CROSSOVER_OK",
-        "sim_spec_id": "S_SIM_ROCK_FALSIFIER_V1",
+        "token_id": "E_SIM_DUAL_SZILARD_V2_OK",
+        "sim_spec_id": "S_SIM_DUAL_SZILARD_V2",
         "status": "PASS",
-        "measured_value": 2.0,
+        "measured_value": -0.1930536164873714,
         "kill_reason": null,
-        "source_file": "rock_falsifier_sim.py"
+        "timestamp": "2026-03-24T23:35:55.509587",
+        "source_file": "szilard_64stage_v2_sim.py"
       },
       {
-        "token_id": "E_SIM_CAS04_OPEQUIV_OK",
-        "sim_spec_id": "S_SIM_CAS04_V1",
+        "token_id": "E_SIM_CONVERGENT_SUBSET_DEPTH_V2_OK",
+        "sim_spec_id": "S_SIM_CONVERGENT_SUBSET_DEPTH_V1",
         "status": "PASS",
-        "measured_value": 0.7646603562604997,
+        "measured_value": 0.9688762124954119,
         "kill_reason": null,
-        "source_file": "constraint_gap_sim.py"
-      },
-      {
-        "token_id": "E_SIM_GZ1_ISOLATION_OK",
-        "sim_spec_id": "S_SIM_GZ1_V1",
-        "status": "PASS",
-        "measured_value": 0.0,
-        "kill_reason": null,
-        "source_file": "constraint_gap_sim.py"
-      },
-      {
-        "token_id": "E_SIM_NET_RATCHET_OK",
-        "sim_spec_id": "S_SIM_NET_RATCHET_V1",
-        "status": "PASS",
-        "measured_value": 0.9015960089280014,
-        "kill_reason": null,
-        "source_file": "constraint_gap_sim.py"
-      },
-      {
-        "token_id": "E_SIM_R2_NONCOMM_OK",
-        "sim_spec_id": "S_SIM_R2_V1",
-        "status": "PASS",
-        "measured_value": 0.06550236141622735,
-        "kill_reason": null,
-        "source_file": "constraint_gap_sim.py"
-      },
-      {
-        "token_id": "E_SIM_E4_STABILITY_OK",
-        "sim_spec_id": "S_SIM_E4_V1",
-        "status": "PASS",
-        "measured_value": 0.15267480712910456,
-        "kill_reason": null,
-        "source_file": "constraint_gap_sim.py"
-      },
-      {
-        "token_id": "E_SIM_HOLODECK_FP_OK",
-        "sim_spec_id": "S_SIM_HOLODECK_V1",
-        "status": "PASS",
-        "measured_value": 0.004864565550810567,
-        "kill_reason": null,
-        "source_file": "nlm_batch2_sim.py"
-      },
-      {
-        "token_id": "E_SIM_QIT_FEP_OK",
-        "sim_spec_id": "S_SIM_FEP_V1",
-        "status": "PASS",
-        "measured_value": 0.4484487001872529,
-        "kill_reason": null,
-        "source_file": "nlm_batch2_sim.py"
-      },
-      {
-        "token_id": "E_SIM_MOLOCH_OK",
-        "sim_spec_id": "S_SIM_MOLOCH_V1",
-        "status": "PASS",
-        "measured_value": 0.75,
-        "kill_reason": null,
-        "source_file": "nlm_batch2_sim.py"
-      },
-      {
-        "token_id": "E_SIM_DEMON_OK",
-        "sim_spec_id": "S_SIM_DEMON_V1",
-        "status": "PASS",
-        "measured_value": -0.450189758809879,
-        "kill_reason": null,
-        "source_file": "nlm_batch2_sim.py"
+        "timestamp": "2026-03-24T23:35:55.691531",
+        "source_file": "complexity_gap_v2_sim.py"
       },
       {
         "token_id": "E_SIM_GAIN_PHASE_DIAGRAM_V2_OK",
@@ -623,100 +648,12 @@
         "source_file": "demon_fixed_sim.py"
       },
       {
-        "token_id": "E_SIM_ALTERNATION_EFFECT_OK",
-        "sim_spec_id": "S_SIM_ALTERNATION_V1",
-        "status": "PASS",
-        "measured_value": -0.352618088934063,
-        "kill_reason": null,
-        "source_file": "type2_engine_sim.py"
-      },
-      {
-        "token_id": "E_SIM_RIEMANN_GUE_OK",
-        "sim_spec_id": "S_SIM_RIEMANN_ZETA_V1",
-        "status": "PASS",
-        "measured_value": 0.602054254866366,
-        "kill_reason": null,
-        "source_file": "riemann_zeta_sim.py"
-      },
-      {
-        "token_id": "E_SIM_RIEMANN_SCALING_OK",
-        "sim_spec_id": "S_SIM_RIEMANN_SCALING_V1",
-        "status": "PASS",
-        "measured_value": 3.0,
-        "kill_reason": null,
-        "source_file": "riemann_zeta_sim.py"
-      },
-      {
-        "token_id": "E_SIM_P_VERIFY_POLY_OK",
-        "sim_spec_id": "S_SIM_P_VS_NP_VERIFY_V1",
-        "status": "PASS",
-        "measured_value": 6.0,
-        "kill_reason": null,
-        "source_file": "p_vs_np_sim.py"
-      },
-      {
-        "token_id": "E_SIM_NP_GENERATE_EXP_OK",
-        "sim_spec_id": "S_SIM_P_VS_NP_GENERATE_V1",
-        "status": "PASS",
-        "measured_value": 640.0,
-        "kill_reason": null,
-        "source_file": "p_vs_np_sim.py"
-      },
-      {
-        "token_id": "E_SIM_P_NP_GAP_SCALES_OK",
-        "sim_spec_id": "S_SIM_P_VS_NP_GAP_V1",
-        "status": "PASS",
-        "measured_value": 106.66666666666667,
-        "kill_reason": null,
-        "source_file": "p_vs_np_sim.py"
-      },
-      {
-        "token_id": "E_SIM_NS_SMOOTH_OK",
-        "sim_spec_id": "S_SIM_NS_QIT_V1",
-        "status": "PASS",
-        "measured_value": 4.0,
-        "kill_reason": null,
-        "source_file": "navier_stokes_qit_sim.py"
-      },
-      {
-        "token_id": "E_SIM_NESTED_FP_OK",
-        "sim_spec_id": "S_SIM_CONSCIOUSNESS_V1",
-        "status": "PASS",
-        "measured_value": 0.0715317437177567,
-        "kill_reason": null,
-        "source_file": "consciousness_sim.py"
-      },
-      {
-        "token_id": "E_SIM_STRANGE_LOOP_OK",
-        "sim_spec_id": "S_SIM_STRANGE_LOOP_V1",
-        "status": "PASS",
-        "measured_value": 0.2631585438965367,
-        "kill_reason": null,
-        "source_file": "consciousness_sim.py"
-      },
-      {
-        "token_id": "E_SIM_ALIGNED_CONVERGES_OK",
-        "sim_spec_id": "S_SIM_ALIGNMENT_V1",
-        "status": "PASS",
-        "measured_value": 0.2535165495044196,
-        "kill_reason": null,
-        "source_file": "alignment_sim.py"
-      },
-      {
-        "token_id": "E_SIM_CONSTITUTIONAL_OK",
-        "sim_spec_id": "S_SIM_CONSTITUTIONAL_V1",
-        "status": "PASS",
-        "measured_value": 0.47330231791589594,
-        "kill_reason": null,
-        "source_file": "alignment_sim.py"
-      },
-      {
         "token_id": "E_SIM_ABIOGENESIS_TYPE1_OK",
         "sim_spec_id": "S_SIM_ABIOGENESIS_V2",
         "status": "PASS",
         "measured_value": 1.0,
         "kill_reason": null,
-        "timestamp": "2026-03-24T23:16:25.771281",
+        "timestamp": "2026-03-24T23:35:57.720742",
         "source_file": "abiogenesis_v2_sim.py"
       },
       {
@@ -725,7 +662,7 @@
         "status": "PASS",
         "measured_value": 1.0,
         "kill_reason": null,
-        "timestamp": "2026-03-24T23:16:25.771441",
+        "timestamp": "2026-03-24T23:35:57.721303",
         "source_file": "abiogenesis_v2_sim.py"
       },
       {
@@ -734,40 +671,119 @@
         "status": "PASS",
         "measured_value": 1.0,
         "kill_reason": null,
-        "timestamp": "2026-03-24T23:16:25.771445",
+        "timestamp": "2026-03-24T23:35:57.721307",
         "source_file": "abiogenesis_v2_sim.py"
       },
       {
-        "token_id": "E_SIM_GRAV_GRADIENT_OK",
-        "sim_spec_id": "S_SIM_QUANTUM_GRAVITY_V1",
+        "token_id": "E_SIM_AXIS6_PRECEDENCE_OK",
+        "sim_spec_id": "S_SIM_AXIS6_PRECEDENCE_V1",
         "status": "PASS",
-        "measured_value": 0.04631595171662199,
+        "measured_value": 1.0,
         "kill_reason": null,
-        "source_file": "quantum_gravity_sim.py"
+        "timestamp": "2026-03-24T23:35:57.884440",
+        "source_file": "axis_6_precedence_sim.py"
       },
       {
-        "token_id": "E_SIM_METRIC_CURVATURE_OK",
-        "sim_spec_id": "S_SIM_GRAV_METRIC_V1",
+        "token_id": "E_SIM_ISCALAR_FILTRATION_OK",
+        "sim_spec_id": "S_SIM_ISCALAR_FILTRATION_V1",
         "status": "PASS",
-        "measured_value": 0.084085293405025,
+        "measured_value": 0.0,
         "kill_reason": null,
-        "source_file": "quantum_gravity_sim.py"
+        "timestamp": "2026-03-24T23:35:58.375371",
+        "source_file": "i_scalar_filtration_sim.py"
       },
       {
-        "token_id": "E_SIM_MASS_GAP_PERSISTS_OK",
-        "sim_spec_id": "S_SIM_YANG_MILLS_V1",
+        "token_id": "E_SIM_AXIS3_ENGINE_ORTHOGONAL_OK",
+        "sim_spec_id": "S_SIM_AXIS3_ORTHOGONALITY_V1",
         "status": "PASS",
-        "measured_value": 0.3277328609187222,
+        "measured_value": 0.0,
         "kill_reason": null,
-        "source_file": "yang_mills_sim.py"
+        "timestamp": "2026-03-24T23:37:59.108312",
+        "source_file": "axis3_orthogonality_sim.py"
       },
       {
-        "token_id": "E_SIM_WILSON_ACTION_OK",
-        "sim_spec_id": "S_SIM_WILSON_V1",
+        "token_id": "E_SIM_AXIS_RELATIONS_OK",
+        "sim_spec_id": "S_SIM_AXIS_RELATIONS_V1",
         "status": "PASS",
-        "measured_value": 8.82447049701804,
+        "measured_value": 0.0,
         "kill_reason": null,
-        "source_file": "yang_mills_sim.py"
+        "timestamp": "2026-03-24T23:37:59.370418",
+        "source_file": "axis_relations_sim.py"
+      },
+      {
+        "token_id": "E_SIM_AXIS0_GRADIENT_OK",
+        "sim_spec_id": "S_SIM_AXIS0_CORRELATION_V1",
+        "status": "PASS",
+        "measured_value": 0.16921962741857888,
+        "kill_reason": null,
+        "timestamp": "2026-03-24T23:37:59.530726",
+        "source_file": "axis0_correlation_sim.py"
+      },
+      {
+        "token_id": "E_SIM_NESTED_HOPF_TORI_OK",
+        "sim_spec_id": "S_SIM_PATH_INTEGRAL_AXIS0",
+        "status": "PASS",
+        "measured_value": 0.9712635241725132,
+        "kill_reason": null,
+        "timestamp": "2026-03-24T23:37:59.805270",
+        "source_file": "axis0_path_integral_sim.py"
+      },
+      {
+        "token_id": "E_SIM_QIT_PARITY_OK",
+        "sim_spec_id": "S_SIM_QIT_TOPOLOGY_PARITY",
+        "status": "PASS",
+        "measured_value": 0.04304075127561946,
+        "kill_reason": null,
+        "timestamp": "2026-03-24T23:37:59.999607",
+        "source_file": "qit_topology_parity_sim.py"
+      },
+      {
+        "token_id": "E_SIM_HOLODECK_FP_OK",
+        "sim_spec_id": "S_SIM_HOLODECK_V1",
+        "status": "PASS",
+        "measured_value": 0.004864565550810567,
+        "kill_reason": null,
+        "source_file": "nlm_batch2_sim.py"
+      },
+      {
+        "token_id": "E_SIM_QIT_FEP_OK",
+        "sim_spec_id": "S_SIM_FEP_V1",
+        "status": "PASS",
+        "measured_value": 0.4484487001872529,
+        "kill_reason": null,
+        "source_file": "nlm_batch2_sim.py"
+      },
+      {
+        "token_id": "E_SIM_MOLOCH_OK",
+        "sim_spec_id": "S_SIM_MOLOCH_V1",
+        "status": "PASS",
+        "measured_value": 0.75,
+        "kill_reason": null,
+        "source_file": "nlm_batch2_sim.py"
+      },
+      {
+        "token_id": "E_SIM_DEMON_OK",
+        "sim_spec_id": "S_SIM_DEMON_V1",
+        "status": "PASS",
+        "measured_value": -0.450189758809879,
+        "kill_reason": null,
+        "source_file": "nlm_batch2_sim.py"
+      },
+      {
+        "token_id": "E_SIM_ROCK_FALSIFIER_CROSSOVER_OK",
+        "sim_spec_id": "S_SIM_ROCK_FALSIFIER_V1",
+        "status": "PASS",
+        "measured_value": 2.0,
+        "kill_reason": null,
+        "source_file": "rock_falsifier_sim.py"
+      },
+      {
+        "token_id": "E_SIM_ROCK_FALSIFIER_ENHANCED_OK",
+        "sim_spec_id": "S_SIM_ROCK_FALSIFIER_ENHANCED_V1",
+        "status": "PASS",
+        "measured_value": 1.0,
+        "kill_reason": null,
+        "source_file": "rock_falsifier_enhanced_sim.py"
       },
       {
         "token_id": "E_SCALE_SIM01_F01_FINITUDE_OK",
@@ -914,20 +930,60 @@
         "source_file": "scale_testing_sim.py"
       },
       {
-        "token_id": "E_SIM_REACTION_OK",
-        "sim_spec_id": "S_SIM_CHEMISTRY_REACTION_V1",
+        "token_id": "E_SIM_RIEMANN_GUE_OK",
+        "sim_spec_id": "S_SIM_RIEMANN_ZETA_V1",
         "status": "PASS",
-        "measured_value": 1.0109201004199038,
+        "measured_value": 0.602054254866366,
         "kill_reason": null,
-        "source_file": "chemistry_sim.py"
+        "source_file": "riemann_zeta_sim.py"
       },
       {
-        "token_id": "E_SIM_CATALYSIS_OK",
-        "sim_spec_id": "S_SIM_CHEMISTRY_CATALYSIS_V1",
+        "token_id": "E_SIM_RIEMANN_SCALING_OK",
+        "sim_spec_id": "S_SIM_RIEMANN_SCALING_V1",
         "status": "PASS",
-        "measured_value": 0.9616820104974433,
+        "measured_value": 3.0,
         "kill_reason": null,
-        "source_file": "chemistry_sim.py"
+        "source_file": "riemann_zeta_sim.py"
+      },
+      {
+        "token_id": "E_SIM_P_VERIFY_POLY_OK",
+        "sim_spec_id": "S_SIM_P_VS_NP_VERIFY_V1",
+        "status": "PASS",
+        "measured_value": 6.0,
+        "kill_reason": null,
+        "source_file": "p_vs_np_sim.py"
+      },
+      {
+        "token_id": "E_SIM_NP_GENERATE_EXP_OK",
+        "sim_spec_id": "S_SIM_P_VS_NP_GENERATE_V1",
+        "status": "PASS",
+        "measured_value": 640.0,
+        "kill_reason": null,
+        "source_file": "p_vs_np_sim.py"
+      },
+      {
+        "token_id": "E_SIM_P_NP_GAP_SCALES_OK",
+        "sim_spec_id": "S_SIM_P_VS_NP_GAP_V1",
+        "status": "PASS",
+        "measured_value": 106.66666666666667,
+        "kill_reason": null,
+        "source_file": "p_vs_np_sim.py"
+      },
+      {
+        "token_id": "E_SIM_ALIGNED_CONVERGES_OK",
+        "sim_spec_id": "S_SIM_ALIGNMENT_V1",
+        "status": "PASS",
+        "measured_value": 0.2535165495044196,
+        "kill_reason": null,
+        "source_file": "alignment_sim.py"
+      },
+      {
+        "token_id": "E_SIM_CONSTITUTIONAL_OK",
+        "sim_spec_id": "S_SIM_CONSTITUTIONAL_V1",
+        "status": "PASS",
+        "measured_value": 0.47330231791589594,
+        "kill_reason": null,
+        "source_file": "alignment_sim.py"
       },
       {
         "token_id": "E_SIM_WORLD_MODEL_STRUCTURE_OK",
@@ -978,62 +1034,6 @@
         "source_file": "scientific_method_sim.py"
       },
       {
-        "token_id": "E_SIM_NS_FORMAL_CPTP_CHANNEL_OK",
-        "sim_spec_id": "S_SIM_NS_CPTP_CHANNEL_V1",
-        "status": "PASS",
-        "measured_value": 16.0,
-        "kill_reason": null,
-        "source_file": "navier_stokes_formal_sim.py"
-      },
-      {
-        "token_id": "E_SIM_NS_GRADIENT_BOUND_OK",
-        "sim_spec_id": "S_SIM_NS_GRADIENT_BOUND_V1",
-        "status": "PASS",
-        "measured_value": 1.4978749490625827,
-        "kill_reason": null,
-        "source_file": "navier_stokes_formal_sim.py"
-      },
-      {
-        "token_id": "E_SIM_NS_ENSTROPHY_BOUND_OK",
-        "sim_spec_id": "S_SIM_NS_ENSTROPHY_BOUND_V1",
-        "status": "PASS",
-        "measured_value": 0.06547037802125234,
-        "kill_reason": null,
-        "source_file": "navier_stokes_formal_sim.py"
-      },
-      {
-        "token_id": "E_SIM_NS_SCALING_DIVERGE_OK",
-        "sim_spec_id": "S_SIM_NS_SCALING_V1",
-        "status": "PASS",
-        "measured_value": 0.6702338739993848,
-        "kill_reason": null,
-        "source_file": "navier_stokes_formal_sim.py"
-      },
-      {
-        "token_id": "E_SIM_NS_REGULARISER_OK",
-        "sim_spec_id": "S_SIM_NS_REGULARISER_V1",
-        "status": "PASS",
-        "measured_value": 0.9999999999999974,
-        "kill_reason": null,
-        "source_file": "navier_stokes_formal_sim.py"
-      },
-      {
-        "token_id": "E_SIM_NS_REYNOLDS_OK",
-        "sim_spec_id": "S_SIM_NS_REYNOLDS_V1",
-        "status": "PASS",
-        "measured_value": 100.0,
-        "kill_reason": null,
-        "source_file": "navier_stokes_formal_sim.py"
-      },
-      {
-        "token_id": "E_SIM_ROCK_FALSIFIER_ENHANCED_OK",
-        "sim_spec_id": "S_SIM_ROCK_FALSIFIER_ENHANCED_V1",
-        "status": "PASS",
-        "measured_value": 1.0,
-        "kill_reason": null,
-        "source_file": "rock_falsifier_enhanced_sim.py"
-      },
-      {
         "token_id": "E_TIER3_NO_SIGNALING_PASS",
         "sim_spec_id": "S_TIER3_MEGA_SIM_V1",
         "status": "PASS",
@@ -1050,74 +1050,27 @@
         "source_file": "tier_3_mega_sim.py"
       },
       {
-        "token_id": "E_SIM_MOLOCH_TRAP_OK",
-        "sim_spec_id": "S_SIM_MOLOCH_TRAP_V1",
-        "status": "PASS",
-        "measured_value": 1.1102230246251565e-16,
-        "kill_reason": null,
-        "timestamp": "2026-03-24T11:08:48.656742",
+        "token_id": "E_MOLOCH_CLASSICAL_SURVIVED",
+        "sim_spec_id": "S_MOLOCH_FIELD_V1",
+        "status": "KILL",
+        "measured_value": 0.8775150311806226,
+        "kill_reason": "CLASSICAL_AGENTS_SURVIVED_UNEXPECTEDLY",
         "source_file": "sim_moloch_trap_field.py"
       },
       {
-        "token_id": "E_SIM_AXIS6_PRECEDENCE_OK",
-        "sim_spec_id": "S_SIM_AXIS6_PRECEDENCE_V1",
+        "token_id": "E_MOLOCH_DUALLOOP_NESS_PASS",
+        "sim_spec_id": "S_MOLOCH_DUALLOOP_NESS_V1",
         "status": "PASS",
-        "measured_value": 1.0,
+        "measured_value": 0.01257654155364194,
         "kill_reason": null,
-        "timestamp": "2026-03-24T23:16:41.433722",
-        "source_file": "axis_6_precedence_sim.py"
-      },
-      {
-        "token_id": "E_SIM_ISCALAR_FILTRATION_OK",
-        "sim_spec_id": "S_SIM_ISCALAR_FILTRATION_V1",
-        "status": "PASS",
-        "measured_value": 0.0,
-        "kill_reason": null,
-        "timestamp": "2026-03-24T23:16:41.796741",
-        "source_file": "i_scalar_filtration_sim.py"
-      },
-      {
-        "token_id": "E_SIM_AXIS3_ENGINE_ORTHOGONAL_OK",
-        "sim_spec_id": "S_SIM_AXIS3_ORTHOGONALITY_V1",
-        "status": "PASS",
-        "measured_value": 0.0,
-        "kill_reason": null,
-        "timestamp": "2026-03-24T23:16:42.600109",
-        "source_file": "axis3_orthogonality_sim.py"
-      },
-      {
-        "token_id": "E_SIM_AXIS0_GRADIENT_OK",
-        "sim_spec_id": "S_SIM_AXIS0_CORRELATION_V1",
-        "status": "PASS",
-        "measured_value": 0.17482595370992415,
-        "kill_reason": null,
-        "timestamp": "2026-03-24T23:16:42.837117",
-        "source_file": "axis0_correlation_sim.py"
-      },
-      {
-        "token_id": "E_SIM_NESTED_HOPF_TORI_OK",
-        "sim_spec_id": "S_SIM_PATH_INTEGRAL_AXIS0",
-        "status": "PASS",
-        "measured_value": 0.7293028775851522,
-        "kill_reason": null,
-        "timestamp": "2026-03-24T23:16:43.174221",
-        "source_file": "axis0_path_integral_sim.py"
-      },
-      {
-        "token_id": "E_SIM_AXIS_RELATIONS_OK",
-        "sim_spec_id": "S_SIM_AXIS_RELATIONS_V1",
-        "status": "PASS",
-        "measured_value": 0.0,
-        "kill_reason": null,
-        "timestamp": "2026-03-24T23:16:43.615263",
-        "source_file": "axis_relations_sim.py"
+        "source_file": "sim_moloch_trap_field.py"
       }
     ]
   },
   "sim_results": [
     {
       "file": "foundations_sim.py",
-      "process_status": "FAIL",
+      "process_status": "PASS",
       "evidence_status": "ALL_PASS",
       "token_count": 5,
       "pass_count": 5,
@@ -1140,19 +1093,75 @@
       "kill_count": 0
     },
     {
-      "file": "arithmetic_gravity_sim.py",
-      "process_status": "PASS",
-      "evidence_status": "ALL_PASS",
-      "token_count": 9,
-      "pass_count": 9,
-      "kill_count": 0
-    },
-    {
       "file": "proof_cost_sim.py",
       "process_status": "PASS",
       "evidence_status": "ALL_PASS",
       "token_count": 4,
       "pass_count": 4,
+      "kill_count": 0
+    },
+    {
+      "file": "constraint_gap_sim.py",
+      "process_status": "FAIL",
+      "evidence_status": "NO_TOKENS",
+      "token_count": 0,
+      "pass_count": 0,
+      "kill_count": 0
+    },
+    {
+      "file": "godel_stall_sim.py",
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "token_count": 3,
+      "pass_count": 3,
+      "kill_count": 0
+    },
+    {
+      "file": "neg_commutative_engine_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "NO_TOKENS",
+      "token_count": 0,
+      "pass_count": 0,
+      "kill_count": 0
+    },
+    {
+      "file": "neg_infinite_d_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "KILL_PRESENT",
+      "token_count": 1,
+      "pass_count": 0,
+      "kill_count": 1
+    },
+    {
+      "file": "neg_single_loop_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "KILL_PRESENT",
+      "token_count": 1,
+      "pass_count": 0,
+      "kill_count": 1
+    },
+    {
+      "file": "neg_classical_probability_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "NO_TOKENS",
+      "token_count": 0,
+      "pass_count": 0,
+      "kill_count": 0
+    },
+    {
+      "file": "neg_no_dissipation_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "KILL_PRESENT",
+      "token_count": 1,
+      "pass_count": 0,
+      "kill_count": 1
+    },
+    {
+      "file": "arithmetic_gravity_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "token_count": 9,
+      "pass_count": 9,
       "kill_count": 0
     },
     {
@@ -1164,11 +1173,43 @@
       "kill_count": 0
     },
     {
-      "file": "complexity_gap_v2_sim.py",
+      "file": "navier_stokes_qit_sim.py",
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "token_count": 2,
+      "pass_count": 2,
+      "kill_count": 0
+    },
+    {
+      "file": "navier_stokes_formal_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "token_count": 6,
+      "pass_count": 6,
+      "kill_count": 0
+    },
+    {
+      "file": "quantum_gravity_sim.py",
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "token_count": 2,
+      "pass_count": 2,
+      "kill_count": 0
+    },
+    {
+      "file": "yang_mills_sim.py",
       "process_status": "PASS",
       "evidence_status": "ALL_PASS",
       "token_count": 2,
       "pass_count": 2,
+      "kill_count": 0
+    },
+    {
+      "file": "chemistry_sim.py",
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "token_count": 3,
+      "pass_count": 3,
       "kill_count": 0
     },
     {
@@ -1181,15 +1222,7 @@
     },
     {
       "file": "engine_terrain_sim.py",
-      "process_status": "FAIL",
-      "evidence_status": "ALL_PASS",
-      "token_count": 3,
-      "pass_count": 3,
-      "kill_count": 0
-    },
-    {
-      "file": "godel_stall_sim.py",
-      "process_status": "FAIL",
+      "process_status": "PASS",
       "evidence_status": "ALL_PASS",
       "token_count": 3,
       "pass_count": 3,
@@ -1212,23 +1245,7 @@
       "kill_count": 0
     },
     {
-      "file": "rock_falsifier_sim.py",
-      "process_status": "PASS",
-      "evidence_status": "ALL_PASS",
-      "token_count": 1,
-      "pass_count": 1,
-      "kill_count": 0
-    },
-    {
-      "file": "constraint_gap_sim.py",
-      "process_status": "FAIL",
-      "evidence_status": "ALL_PASS",
-      "token_count": 5,
-      "pass_count": 5,
-      "kill_count": 0
-    },
-    {
-      "file": "szilard_64stage_v2_sim.py",
+      "file": "type2_engine_sim.py",
       "process_status": "PASS",
       "evidence_status": "NO_TOKENS",
       "token_count": 0,
@@ -1236,11 +1253,19 @@
       "kill_count": 0
     },
     {
-      "file": "nlm_batch2_sim.py",
-      "process_status": "FAIL",
+      "file": "szilard_64stage_v2_sim.py",
+      "process_status": "PASS",
       "evidence_status": "ALL_PASS",
-      "token_count": 4,
-      "pass_count": 4,
+      "token_count": 1,
+      "pass_count": 1,
+      "kill_count": 0
+    },
+    {
+      "file": "complexity_gap_v2_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "token_count": 2,
+      "pass_count": 2,
       "kill_count": 0
     },
     {
@@ -1260,139 +1285,11 @@
       "kill_count": 0
     },
     {
-      "file": "type2_engine_sim.py",
-      "process_status": "PASS",
-      "evidence_status": "ALL_PASS",
-      "token_count": 2,
-      "pass_count": 2,
-      "kill_count": 0
-    },
-    {
-      "file": "riemann_zeta_sim.py",
-      "process_status": "PASS",
-      "evidence_status": "ALL_PASS",
-      "token_count": 2,
-      "pass_count": 2,
-      "kill_count": 0
-    },
-    {
-      "file": "p_vs_np_sim.py",
-      "process_status": "PASS",
-      "evidence_status": "ALL_PASS",
-      "token_count": 3,
-      "pass_count": 3,
-      "kill_count": 0
-    },
-    {
-      "file": "navier_stokes_qit_sim.py",
-      "process_status": "FAIL",
-      "evidence_status": "ALL_PASS",
-      "token_count": 2,
-      "pass_count": 2,
-      "kill_count": 0
-    },
-    {
-      "file": "consciousness_sim.py",
-      "process_status": "FAIL",
-      "evidence_status": "ALL_PASS",
-      "token_count": 2,
-      "pass_count": 2,
-      "kill_count": 0
-    },
-    {
-      "file": "alignment_sim.py",
-      "process_status": "PASS",
-      "evidence_status": "ALL_PASS",
-      "token_count": 2,
-      "pass_count": 2,
-      "kill_count": 0
-    },
-    {
       "file": "abiogenesis_v2_sim.py",
       "process_status": "PASS",
       "evidence_status": "ALL_PASS",
       "token_count": 3,
       "pass_count": 3,
-      "kill_count": 0
-    },
-    {
-      "file": "quantum_gravity_sim.py",
-      "process_status": "FAIL",
-      "evidence_status": "ALL_PASS",
-      "token_count": 2,
-      "pass_count": 2,
-      "kill_count": 0
-    },
-    {
-      "file": "yang_mills_sim.py",
-      "process_status": "PASS",
-      "evidence_status": "ALL_PASS",
-      "token_count": 2,
-      "pass_count": 2,
-      "kill_count": 0
-    },
-    {
-      "file": "scale_testing_sim.py",
-      "process_status": "PASS",
-      "evidence_status": "ALL_PASS",
-      "token_count": 18,
-      "pass_count": 18,
-      "kill_count": 0
-    },
-    {
-      "file": "chemistry_sim.py",
-      "process_status": "FAIL",
-      "evidence_status": "ALL_PASS",
-      "token_count": 3,
-      "pass_count": 3,
-      "kill_count": 0
-    },
-    {
-      "file": "world_model_sim.py",
-      "process_status": "PASS",
-      "evidence_status": "ALL_PASS",
-      "token_count": 3,
-      "pass_count": 3,
-      "kill_count": 0
-    },
-    {
-      "file": "scientific_method_sim.py",
-      "process_status": "PASS",
-      "evidence_status": "ALL_PASS",
-      "token_count": 3,
-      "pass_count": 3,
-      "kill_count": 0
-    },
-    {
-      "file": "navier_stokes_formal_sim.py",
-      "process_status": "PASS",
-      "evidence_status": "ALL_PASS",
-      "token_count": 6,
-      "pass_count": 6,
-      "kill_count": 0
-    },
-    {
-      "file": "rock_falsifier_enhanced_sim.py",
-      "process_status": "FAIL",
-      "evidence_status": "ALL_PASS",
-      "token_count": 1,
-      "pass_count": 1,
-      "kill_count": 0
-    },
-    {
-      "file": "tier_3_mega_sim.py",
-      "process_status": "PASS",
-      "evidence_status": "ALL_PASS",
-      "token_count": 2,
-      "pass_count": 2,
-      "kill_count": 0
-    },
-    {
-      "file": "sim_moloch_trap_field.py",
-      "process_status": "PASS",
-      "evidence_status": "ALL_PASS",
-      "token_count": 1,
-      "pass_count": 1,
       "kill_count": 0
     },
     {
@@ -1412,7 +1309,23 @@
       "kill_count": 0
     },
     {
+      "file": "axis_orthogonality_suite.py",
+      "process_status": "TIMEOUT",
+      "evidence_status": "NO_TOKENS",
+      "token_count": 0,
+      "pass_count": 0,
+      "kill_count": 0
+    },
+    {
       "file": "axis3_orthogonality_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "token_count": 1,
+      "pass_count": 1,
+      "kill_count": 0
+    },
+    {
+      "file": "axis_relations_sim.py",
       "process_status": "PASS",
       "evidence_status": "ALL_PASS",
       "token_count": 1,
@@ -1436,7 +1349,7 @@
       "kill_count": 0
     },
     {
-      "file": "axis_relations_sim.py",
+      "file": "qit_topology_parity_sim.py",
       "process_status": "PASS",
       "evidence_status": "ALL_PASS",
       "token_count": 1,
@@ -1444,12 +1357,124 @@
       "kill_count": 0
     },
     {
-      "file": "qit_topology_parity_sim.py",
-      "process_status": "PASS",
+      "file": "egglog_graph_rewrite_probe.py",
+      "process_status": "FAIL",
       "evidence_status": "NO_TOKENS",
       "token_count": 0,
       "pass_count": 0,
       "kill_count": 0
+    },
+    {
+      "file": "nlm_batch2_sim.py",
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "token_count": 4,
+      "pass_count": 4,
+      "kill_count": 0
+    },
+    {
+      "file": "rock_falsifier_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "token_count": 1,
+      "pass_count": 1,
+      "kill_count": 0
+    },
+    {
+      "file": "rock_falsifier_enhanced_sim.py",
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "token_count": 1,
+      "pass_count": 1,
+      "kill_count": 0
+    },
+    {
+      "file": "scale_testing_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "token_count": 18,
+      "pass_count": 18,
+      "kill_count": 0
+    },
+    {
+      "file": "riemann_zeta_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "token_count": 2,
+      "pass_count": 2,
+      "kill_count": 0
+    },
+    {
+      "file": "p_vs_np_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "token_count": 3,
+      "pass_count": 3,
+      "kill_count": 0
+    },
+    {
+      "file": "consciousness_sim.py",
+      "process_status": "FAIL",
+      "evidence_status": "NO_TOKENS",
+      "token_count": 0,
+      "pass_count": 0,
+      "kill_count": 0
+    },
+    {
+      "file": "alignment_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "token_count": 2,
+      "pass_count": 2,
+      "kill_count": 0
+    },
+    {
+      "file": "world_model_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "token_count": 3,
+      "pass_count": 3,
+      "kill_count": 0
+    },
+    {
+      "file": "scientific_method_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "token_count": 3,
+      "pass_count": 3,
+      "kill_count": 0
+    },
+    {
+      "file": "tier_3_mega_sim.py",
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "token_count": 2,
+      "pass_count": 2,
+      "kill_count": 0
+    },
+    {
+      "file": "sim_moloch_trap_field.py",
+      "process_status": "PASS",
+      "evidence_status": "KILL_PRESENT",
+      "token_count": 2,
+      "pass_count": 1,
+      "kill_count": 1
+    },
+    {
+      "file": "deep_graveyard_battery.py",
+      "process_status": "PASS",
+      "evidence_status": "KILL_PRESENT",
+      "token_count": 8,
+      "pass_count": 0,
+      "kill_count": 8
+    },
+    {
+      "file": "extended_graveyard_battery.py",
+      "process_status": "PASS",
+      "evidence_status": "KILL_PRESENT",
+      "token_count": 6,
+      "pass_count": 0,
+      "kill_count": 6
     }
   ],
   "all_tokens": [
@@ -1590,6 +1615,86 @@
       "source_file": "deep_math_foundations_sim.py"
     },
     {
+      "token_id": "E_SIM_PROOF_COST_SCALING_OK",
+      "sim_spec_id": "S_SIM_PROOF_COST_V1",
+      "status": "PASS",
+      "measured_value": 500.0,
+      "kill_reason": null,
+      "source_file": "proof_cost_sim.py"
+    },
+    {
+      "token_id": "E_SIM_IDENTITY_COST_D2_OK",
+      "sim_spec_id": "S_SIM_IDENTITY_COST_V1",
+      "status": "PASS",
+      "measured_value": 64.0,
+      "kill_reason": null,
+      "source_file": "proof_cost_sim.py"
+    },
+    {
+      "token_id": "E_SIM_REFINEMENT_PREORDER_OK",
+      "sim_spec_id": "S_SIM_REFINEMENT_V1",
+      "status": "PASS",
+      "measured_value": 30.0,
+      "kill_reason": null,
+      "source_file": "proof_cost_sim.py"
+    },
+    {
+      "token_id": "E_SIM_SCALAR_POTENTIAL_OK",
+      "sim_spec_id": "S_SIM_SCALAR_POTENTIAL_V1",
+      "status": "PASS",
+      "measured_value": 1.3862943611198906,
+      "kill_reason": null,
+      "source_file": "proof_cost_sim.py"
+    },
+    {
+      "token_id": "E_SIM_TURING_STALL_OK",
+      "sim_spec_id": "S_SIM_GODEL_STALL_V1",
+      "status": "PASS",
+      "measured_value": 0.27904723744683885,
+      "kill_reason": null,
+      "source_file": "godel_stall_sim.py"
+    },
+    {
+      "token_id": "E_SIM_ENGINE_RESOLVES_GODEL_OK",
+      "sim_spec_id": "S_SIM_GODEL_RESOLUTION_V1",
+      "status": "PASS",
+      "measured_value": 0.0,
+      "kill_reason": null,
+      "source_file": "godel_stall_sim.py"
+    },
+    {
+      "token_id": "E_SIM_STALL_DETECTION_OK",
+      "sim_spec_id": "S_SIM_STALL_DETECTION_V1",
+      "status": "PASS",
+      "measured_value": 0.0,
+      "kill_reason": null,
+      "source_file": "godel_stall_sim.py"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_INFINITE_D_V1",
+      "status": "KILL",
+      "measured_value": -9.770439418025208e-08,
+      "kill_reason": "INFINITE_D_DIVERGENCE",
+      "source_file": "neg_infinite_d_sim.py"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_SINGLE_LOOP_V1",
+      "status": "KILL",
+      "measured_value": -0.17399222545968893,
+      "kill_reason": "SINGLE_LOOP_SATURATES",
+      "source_file": "neg_single_loop_sim.py"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_NO_DISSIPATION_V2",
+      "status": "KILL",
+      "measured_value": -0.2661647379278897,
+      "kill_reason": "NO_DISSIPATION_THERMAL_DEATH",
+      "source_file": "neg_no_dissipation_sim.py"
+    },
+    {
       "token_id": "E_SIM_COUNTING_OK",
       "sim_spec_id": "S_SIM_COUNTING_V1",
       "status": "PASS",
@@ -1662,38 +1767,6 @@
       "source_file": "arithmetic_gravity_sim.py"
     },
     {
-      "token_id": "E_SIM_PROOF_COST_SCALING_OK",
-      "sim_spec_id": "S_SIM_PROOF_COST_V1",
-      "status": "PASS",
-      "measured_value": 500.0,
-      "kill_reason": null,
-      "source_file": "proof_cost_sim.py"
-    },
-    {
-      "token_id": "E_SIM_IDENTITY_COST_D2_OK",
-      "sim_spec_id": "S_SIM_IDENTITY_COST_V1",
-      "status": "PASS",
-      "measured_value": 64.0,
-      "kill_reason": null,
-      "source_file": "proof_cost_sim.py"
-    },
-    {
-      "token_id": "E_SIM_REFINEMENT_PREORDER_OK",
-      "sim_spec_id": "S_SIM_REFINEMENT_V1",
-      "status": "PASS",
-      "measured_value": 30.0,
-      "kill_reason": null,
-      "source_file": "proof_cost_sim.py"
-    },
-    {
-      "token_id": "E_SIM_SCALAR_POTENTIAL_OK",
-      "sim_spec_id": "S_SIM_SCALAR_POTENTIAL_V1",
-      "status": "PASS",
-      "measured_value": 1.3862943611198906,
-      "kill_reason": null,
-      "source_file": "proof_cost_sim.py"
-    },
-    {
       "token_id": "E_SIM_VISCOSITY_OK",
       "sim_spec_id": "S_SIM_VISCOSITY_V1",
       "status": "PASS",
@@ -1734,22 +1807,124 @@
       "source_file": "navier_stokes_complexity_sim.py"
     },
     {
-      "token_id": "E_SIM_GAP_SCALES_V2_OK",
-      "sim_spec_id": "S_SIM_GAP_SCALING_V2",
+      "token_id": "E_SIM_NS_SMOOTH_OK",
+      "sim_spec_id": "S_SIM_NS_QIT_V1",
       "status": "PASS",
-      "measured_value": 4.1588830833596715,
+      "measured_value": 4.0,
       "kill_reason": null,
-      "timestamp": "2026-03-24T23:16:20.555990",
-      "source_file": "complexity_gap_v2_sim.py"
+      "source_file": "navier_stokes_qit_sim.py"
     },
     {
-      "token_id": "E_SIM_CONVERGENT_SUBSET_DEPTH_V2_OK",
-      "sim_spec_id": "S_SIM_CONVERGENT_SUBSET_DEPTH_V1",
+      "token_id": "E_SIM_F01_PREVENTS_BLOWUP_OK",
+      "sim_spec_id": "S_SIM_NS_F01_V1",
       "status": "PASS",
-      "measured_value": 0.968876212495412,
+      "measured_value": 32.0,
       "kill_reason": null,
-      "timestamp": "2026-03-24T23:16:20.571987",
-      "source_file": "complexity_gap_v2_sim.py"
+      "source_file": "navier_stokes_qit_sim.py"
+    },
+    {
+      "token_id": "E_SIM_NS_FORMAL_CPTP_CHANNEL_OK",
+      "sim_spec_id": "S_SIM_NS_CPTP_CHANNEL_V1",
+      "status": "PASS",
+      "measured_value": 16.0,
+      "kill_reason": null,
+      "source_file": "navier_stokes_formal_sim.py"
+    },
+    {
+      "token_id": "E_SIM_NS_GRADIENT_BOUND_OK",
+      "sim_spec_id": "S_SIM_NS_GRADIENT_BOUND_V1",
+      "status": "PASS",
+      "measured_value": 1.4978749490625827,
+      "kill_reason": null,
+      "source_file": "navier_stokes_formal_sim.py"
+    },
+    {
+      "token_id": "E_SIM_NS_ENSTROPHY_BOUND_OK",
+      "sim_spec_id": "S_SIM_NS_ENSTROPHY_BOUND_V1",
+      "status": "PASS",
+      "measured_value": 0.06547037802125234,
+      "kill_reason": null,
+      "source_file": "navier_stokes_formal_sim.py"
+    },
+    {
+      "token_id": "E_SIM_NS_SCALING_DIVERGE_OK",
+      "sim_spec_id": "S_SIM_NS_SCALING_V1",
+      "status": "PASS",
+      "measured_value": 0.6702338739993848,
+      "kill_reason": null,
+      "source_file": "navier_stokes_formal_sim.py"
+    },
+    {
+      "token_id": "E_SIM_NS_REGULARISER_OK",
+      "sim_spec_id": "S_SIM_NS_REGULARISER_V1",
+      "status": "PASS",
+      "measured_value": 0.9999999999999974,
+      "kill_reason": null,
+      "source_file": "navier_stokes_formal_sim.py"
+    },
+    {
+      "token_id": "E_SIM_NS_REYNOLDS_OK",
+      "sim_spec_id": "S_SIM_NS_REYNOLDS_V1",
+      "status": "PASS",
+      "measured_value": 100.0,
+      "kill_reason": null,
+      "source_file": "navier_stokes_formal_sim.py"
+    },
+    {
+      "token_id": "E_SIM_GRAV_GRADIENT_OK",
+      "sim_spec_id": "S_SIM_QUANTUM_GRAVITY_V1",
+      "status": "PASS",
+      "measured_value": 0.04631595171662199,
+      "kill_reason": null,
+      "source_file": "quantum_gravity_sim.py"
+    },
+    {
+      "token_id": "E_SIM_METRIC_CURVATURE_OK",
+      "sim_spec_id": "S_SIM_GRAV_METRIC_V1",
+      "status": "PASS",
+      "measured_value": 0.084085293405025,
+      "kill_reason": null,
+      "source_file": "quantum_gravity_sim.py"
+    },
+    {
+      "token_id": "E_SIM_MASS_GAP_PERSISTS_OK",
+      "sim_spec_id": "S_SIM_YANG_MILLS_V1",
+      "status": "PASS",
+      "measured_value": 0.3277328609187222,
+      "kill_reason": null,
+      "source_file": "yang_mills_sim.py"
+    },
+    {
+      "token_id": "E_SIM_WILSON_ACTION_OK",
+      "sim_spec_id": "S_SIM_WILSON_V1",
+      "status": "PASS",
+      "measured_value": 8.82447049701804,
+      "kill_reason": null,
+      "source_file": "yang_mills_sim.py"
+    },
+    {
+      "token_id": "E_SIM_REACTION_OK",
+      "sim_spec_id": "S_SIM_CHEMISTRY_REACTION_V1",
+      "status": "PASS",
+      "measured_value": 1.0109201004199038,
+      "kill_reason": null,
+      "source_file": "chemistry_sim.py"
+    },
+    {
+      "token_id": "E_SIM_CATALYSIS_OK",
+      "sim_spec_id": "S_SIM_CHEMISTRY_CATALYSIS_V1",
+      "status": "PASS",
+      "measured_value": 0.9616820104974433,
+      "kill_reason": null,
+      "source_file": "chemistry_sim.py"
+    },
+    {
+      "token_id": "E_SIM_CHIRAL_CHEMISTRY_OK",
+      "sim_spec_id": "S_SIM_CHEMISTRY_CHIRALITY_V1",
+      "status": "PASS",
+      "measured_value": 3.256613331040314,
+      "kill_reason": null,
+      "source_file": "chemistry_sim.py"
     },
     {
       "token_id": "E_SIM_TOROIDAL_OK",
@@ -1840,30 +2015,6 @@
       "source_file": "engine_terrain_sim.py"
     },
     {
-      "token_id": "E_SIM_TURING_STALL_OK",
-      "sim_spec_id": "S_SIM_GODEL_STALL_V1",
-      "status": "PASS",
-      "measured_value": 0.27904723744683885,
-      "kill_reason": null,
-      "source_file": "godel_stall_sim.py"
-    },
-    {
-      "token_id": "E_SIM_ENGINE_RESOLVES_GODEL_OK",
-      "sim_spec_id": "S_SIM_GODEL_RESOLUTION_V1",
-      "status": "PASS",
-      "measured_value": 0.0,
-      "kill_reason": null,
-      "source_file": "godel_stall_sim.py"
-    },
-    {
-      "token_id": "E_SIM_STALL_DETECTION_OK",
-      "sim_spec_id": "S_SIM_STALL_DETECTION_V1",
-      "status": "PASS",
-      "measured_value": 0.0,
-      "kill_reason": null,
-      "source_file": "godel_stall_sim.py"
-    },
-    {
       "token_id": "E_TYPE1_CONVERGENT_OK",
       "sim_spec_id": "S_TYPE1_PROCESS_CYCLE",
       "status": "PASS",
@@ -1912,84 +2063,31 @@
       "source_file": "full_8stage_engine_sim.py"
     },
     {
-      "token_id": "E_SIM_ROCK_FALSIFIER_CROSSOVER_OK",
-      "sim_spec_id": "S_SIM_ROCK_FALSIFIER_V1",
+      "token_id": "E_SIM_DUAL_SZILARD_V2_OK",
+      "sim_spec_id": "S_SIM_DUAL_SZILARD_V2",
       "status": "PASS",
-      "measured_value": 2.0,
+      "measured_value": -0.1930536164873714,
       "kill_reason": null,
-      "source_file": "rock_falsifier_sim.py"
+      "timestamp": "2026-03-24T23:35:55.509587",
+      "source_file": "szilard_64stage_v2_sim.py"
     },
     {
-      "token_id": "E_SIM_CAS04_OPEQUIV_OK",
-      "sim_spec_id": "S_SIM_CAS04_V1",
+      "token_id": "E_SIM_GAP_SCALES_V2_OK",
+      "sim_spec_id": "S_SIM_GAP_SCALING_V2",
       "status": "PASS",
-      "measured_value": 0.7646603562604997,
+      "measured_value": 4.1588830833596715,
       "kill_reason": null,
-      "source_file": "constraint_gap_sim.py"
+      "timestamp": "2026-03-24T23:35:55.660826",
+      "source_file": "complexity_gap_v2_sim.py"
     },
     {
-      "token_id": "E_SIM_GZ1_ISOLATION_OK",
-      "sim_spec_id": "S_SIM_GZ1_V1",
+      "token_id": "E_SIM_CONVERGENT_SUBSET_DEPTH_V2_OK",
+      "sim_spec_id": "S_SIM_CONVERGENT_SUBSET_DEPTH_V1",
       "status": "PASS",
-      "measured_value": 0.0,
+      "measured_value": 0.9688762124954119,
       "kill_reason": null,
-      "source_file": "constraint_gap_sim.py"
-    },
-    {
-      "token_id": "E_SIM_NET_RATCHET_OK",
-      "sim_spec_id": "S_SIM_NET_RATCHET_V1",
-      "status": "PASS",
-      "measured_value": 0.9015960089280014,
-      "kill_reason": null,
-      "source_file": "constraint_gap_sim.py"
-    },
-    {
-      "token_id": "E_SIM_R2_NONCOMM_OK",
-      "sim_spec_id": "S_SIM_R2_V1",
-      "status": "PASS",
-      "measured_value": 0.06550236141622735,
-      "kill_reason": null,
-      "source_file": "constraint_gap_sim.py"
-    },
-    {
-      "token_id": "E_SIM_E4_STABILITY_OK",
-      "sim_spec_id": "S_SIM_E4_V1",
-      "status": "PASS",
-      "measured_value": 0.15267480712910456,
-      "kill_reason": null,
-      "source_file": "constraint_gap_sim.py"
-    },
-    {
-      "token_id": "E_SIM_HOLODECK_FP_OK",
-      "sim_spec_id": "S_SIM_HOLODECK_V1",
-      "status": "PASS",
-      "measured_value": 0.004864565550810567,
-      "kill_reason": null,
-      "source_file": "nlm_batch2_sim.py"
-    },
-    {
-      "token_id": "E_SIM_QIT_FEP_OK",
-      "sim_spec_id": "S_SIM_FEP_V1",
-      "status": "PASS",
-      "measured_value": 0.4484487001872529,
-      "kill_reason": null,
-      "source_file": "nlm_batch2_sim.py"
-    },
-    {
-      "token_id": "E_SIM_MOLOCH_OK",
-      "sim_spec_id": "S_SIM_MOLOCH_V1",
-      "status": "PASS",
-      "measured_value": 0.75,
-      "kill_reason": null,
-      "source_file": "nlm_batch2_sim.py"
-    },
-    {
-      "token_id": "E_SIM_DEMON_OK",
-      "sim_spec_id": "S_SIM_DEMON_V1",
-      "status": "PASS",
-      "measured_value": -0.450189758809879,
-      "kill_reason": null,
-      "source_file": "nlm_batch2_sim.py"
+      "timestamp": "2026-03-24T23:35:55.691531",
+      "source_file": "complexity_gap_v2_sim.py"
     },
     {
       "token_id": "E_SIM_GAIN_PHASE_DIAGRAM_V2_OK",
@@ -2032,116 +2130,12 @@
       "source_file": "demon_fixed_sim.py"
     },
     {
-      "token_id": "E_SIM_TYPE2_CHIRALITY_OK",
-      "sim_spec_id": "S_SIM_TYPE2_ENGINE_V1",
-      "status": "PASS",
-      "measured_value": 0.021316616777975264,
-      "kill_reason": null,
-      "source_file": "type2_engine_sim.py"
-    },
-    {
-      "token_id": "E_SIM_ALTERNATION_EFFECT_OK",
-      "sim_spec_id": "S_SIM_ALTERNATION_V1",
-      "status": "PASS",
-      "measured_value": -0.352618088934063,
-      "kill_reason": null,
-      "source_file": "type2_engine_sim.py"
-    },
-    {
-      "token_id": "E_SIM_RIEMANN_GUE_OK",
-      "sim_spec_id": "S_SIM_RIEMANN_ZETA_V1",
-      "status": "PASS",
-      "measured_value": 0.602054254866366,
-      "kill_reason": null,
-      "source_file": "riemann_zeta_sim.py"
-    },
-    {
-      "token_id": "E_SIM_RIEMANN_SCALING_OK",
-      "sim_spec_id": "S_SIM_RIEMANN_SCALING_V1",
-      "status": "PASS",
-      "measured_value": 3.0,
-      "kill_reason": null,
-      "source_file": "riemann_zeta_sim.py"
-    },
-    {
-      "token_id": "E_SIM_P_VERIFY_POLY_OK",
-      "sim_spec_id": "S_SIM_P_VS_NP_VERIFY_V1",
-      "status": "PASS",
-      "measured_value": 6.0,
-      "kill_reason": null,
-      "source_file": "p_vs_np_sim.py"
-    },
-    {
-      "token_id": "E_SIM_NP_GENERATE_EXP_OK",
-      "sim_spec_id": "S_SIM_P_VS_NP_GENERATE_V1",
-      "status": "PASS",
-      "measured_value": 640.0,
-      "kill_reason": null,
-      "source_file": "p_vs_np_sim.py"
-    },
-    {
-      "token_id": "E_SIM_P_NP_GAP_SCALES_OK",
-      "sim_spec_id": "S_SIM_P_VS_NP_GAP_V1",
-      "status": "PASS",
-      "measured_value": 106.66666666666667,
-      "kill_reason": null,
-      "source_file": "p_vs_np_sim.py"
-    },
-    {
-      "token_id": "E_SIM_NS_SMOOTH_OK",
-      "sim_spec_id": "S_SIM_NS_QIT_V1",
-      "status": "PASS",
-      "measured_value": 4.0,
-      "kill_reason": null,
-      "source_file": "navier_stokes_qit_sim.py"
-    },
-    {
-      "token_id": "E_SIM_F01_PREVENTS_BLOWUP_OK",
-      "sim_spec_id": "S_SIM_NS_F01_V1",
-      "status": "PASS",
-      "measured_value": 32.0,
-      "kill_reason": null,
-      "source_file": "navier_stokes_qit_sim.py"
-    },
-    {
-      "token_id": "E_SIM_NESTED_FP_OK",
-      "sim_spec_id": "S_SIM_CONSCIOUSNESS_V1",
-      "status": "PASS",
-      "measured_value": 0.0715317437177567,
-      "kill_reason": null,
-      "source_file": "consciousness_sim.py"
-    },
-    {
-      "token_id": "E_SIM_STRANGE_LOOP_OK",
-      "sim_spec_id": "S_SIM_STRANGE_LOOP_V1",
-      "status": "PASS",
-      "measured_value": 0.2631585438965367,
-      "kill_reason": null,
-      "source_file": "consciousness_sim.py"
-    },
-    {
-      "token_id": "E_SIM_ALIGNED_CONVERGES_OK",
-      "sim_spec_id": "S_SIM_ALIGNMENT_V1",
-      "status": "PASS",
-      "measured_value": 0.2535165495044196,
-      "kill_reason": null,
-      "source_file": "alignment_sim.py"
-    },
-    {
-      "token_id": "E_SIM_CONSTITUTIONAL_OK",
-      "sim_spec_id": "S_SIM_CONSTITUTIONAL_V1",
-      "status": "PASS",
-      "measured_value": 0.47330231791589594,
-      "kill_reason": null,
-      "source_file": "alignment_sim.py"
-    },
-    {
       "token_id": "E_SIM_ABIOGENESIS_TYPE1_OK",
       "sim_spec_id": "S_SIM_ABIOGENESIS_V2",
       "status": "PASS",
       "measured_value": 1.0,
       "kill_reason": null,
-      "timestamp": "2026-03-24T23:16:25.771281",
+      "timestamp": "2026-03-24T23:35:57.720742",
       "source_file": "abiogenesis_v2_sim.py"
     },
     {
@@ -2150,7 +2144,7 @@
       "status": "PASS",
       "measured_value": 1.0,
       "kill_reason": null,
-      "timestamp": "2026-03-24T23:16:25.771441",
+      "timestamp": "2026-03-24T23:35:57.721303",
       "source_file": "abiogenesis_v2_sim.py"
     },
     {
@@ -2159,40 +2153,119 @@
       "status": "PASS",
       "measured_value": 1.0,
       "kill_reason": null,
-      "timestamp": "2026-03-24T23:16:25.771445",
+      "timestamp": "2026-03-24T23:35:57.721307",
       "source_file": "abiogenesis_v2_sim.py"
     },
     {
-      "token_id": "E_SIM_GRAV_GRADIENT_OK",
-      "sim_spec_id": "S_SIM_QUANTUM_GRAVITY_V1",
+      "token_id": "E_SIM_AXIS6_PRECEDENCE_OK",
+      "sim_spec_id": "S_SIM_AXIS6_PRECEDENCE_V1",
       "status": "PASS",
-      "measured_value": 0.04631595171662199,
+      "measured_value": 1.0,
       "kill_reason": null,
-      "source_file": "quantum_gravity_sim.py"
+      "timestamp": "2026-03-24T23:35:57.884440",
+      "source_file": "axis_6_precedence_sim.py"
     },
     {
-      "token_id": "E_SIM_METRIC_CURVATURE_OK",
-      "sim_spec_id": "S_SIM_GRAV_METRIC_V1",
+      "token_id": "E_SIM_ISCALAR_FILTRATION_OK",
+      "sim_spec_id": "S_SIM_ISCALAR_FILTRATION_V1",
       "status": "PASS",
-      "measured_value": 0.084085293405025,
+      "measured_value": 0.0,
       "kill_reason": null,
-      "source_file": "quantum_gravity_sim.py"
+      "timestamp": "2026-03-24T23:35:58.375371",
+      "source_file": "i_scalar_filtration_sim.py"
     },
     {
-      "token_id": "E_SIM_MASS_GAP_PERSISTS_OK",
-      "sim_spec_id": "S_SIM_YANG_MILLS_V1",
+      "token_id": "E_SIM_AXIS3_ENGINE_ORTHOGONAL_OK",
+      "sim_spec_id": "S_SIM_AXIS3_ORTHOGONALITY_V1",
       "status": "PASS",
-      "measured_value": 0.3277328609187222,
+      "measured_value": 0.0,
       "kill_reason": null,
-      "source_file": "yang_mills_sim.py"
+      "timestamp": "2026-03-24T23:37:59.108312",
+      "source_file": "axis3_orthogonality_sim.py"
     },
     {
-      "token_id": "E_SIM_WILSON_ACTION_OK",
-      "sim_spec_id": "S_SIM_WILSON_V1",
+      "token_id": "E_SIM_AXIS_RELATIONS_OK",
+      "sim_spec_id": "S_SIM_AXIS_RELATIONS_V1",
       "status": "PASS",
-      "measured_value": 8.82447049701804,
+      "measured_value": 0.0,
       "kill_reason": null,
-      "source_file": "yang_mills_sim.py"
+      "timestamp": "2026-03-24T23:37:59.370418",
+      "source_file": "axis_relations_sim.py"
+    },
+    {
+      "token_id": "E_SIM_AXIS0_GRADIENT_OK",
+      "sim_spec_id": "S_SIM_AXIS0_CORRELATION_V1",
+      "status": "PASS",
+      "measured_value": 0.16921962741857888,
+      "kill_reason": null,
+      "timestamp": "2026-03-24T23:37:59.530726",
+      "source_file": "axis0_correlation_sim.py"
+    },
+    {
+      "token_id": "E_SIM_NESTED_HOPF_TORI_OK",
+      "sim_spec_id": "S_SIM_PATH_INTEGRAL_AXIS0",
+      "status": "PASS",
+      "measured_value": 0.9712635241725132,
+      "kill_reason": null,
+      "timestamp": "2026-03-24T23:37:59.805270",
+      "source_file": "axis0_path_integral_sim.py"
+    },
+    {
+      "token_id": "E_SIM_QIT_PARITY_OK",
+      "sim_spec_id": "S_SIM_QIT_TOPOLOGY_PARITY",
+      "status": "PASS",
+      "measured_value": 0.04304075127561946,
+      "kill_reason": null,
+      "timestamp": "2026-03-24T23:37:59.999607",
+      "source_file": "qit_topology_parity_sim.py"
+    },
+    {
+      "token_id": "E_SIM_HOLODECK_FP_OK",
+      "sim_spec_id": "S_SIM_HOLODECK_V1",
+      "status": "PASS",
+      "measured_value": 0.004864565550810567,
+      "kill_reason": null,
+      "source_file": "nlm_batch2_sim.py"
+    },
+    {
+      "token_id": "E_SIM_QIT_FEP_OK",
+      "sim_spec_id": "S_SIM_FEP_V1",
+      "status": "PASS",
+      "measured_value": 0.4484487001872529,
+      "kill_reason": null,
+      "source_file": "nlm_batch2_sim.py"
+    },
+    {
+      "token_id": "E_SIM_MOLOCH_OK",
+      "sim_spec_id": "S_SIM_MOLOCH_V1",
+      "status": "PASS",
+      "measured_value": 0.75,
+      "kill_reason": null,
+      "source_file": "nlm_batch2_sim.py"
+    },
+    {
+      "token_id": "E_SIM_DEMON_OK",
+      "sim_spec_id": "S_SIM_DEMON_V1",
+      "status": "PASS",
+      "measured_value": -0.450189758809879,
+      "kill_reason": null,
+      "source_file": "nlm_batch2_sim.py"
+    },
+    {
+      "token_id": "E_SIM_ROCK_FALSIFIER_CROSSOVER_OK",
+      "sim_spec_id": "S_SIM_ROCK_FALSIFIER_V1",
+      "status": "PASS",
+      "measured_value": 2.0,
+      "kill_reason": null,
+      "source_file": "rock_falsifier_sim.py"
+    },
+    {
+      "token_id": "E_SIM_ROCK_FALSIFIER_ENHANCED_OK",
+      "sim_spec_id": "S_SIM_ROCK_FALSIFIER_ENHANCED_V1",
+      "status": "PASS",
+      "measured_value": 1.0,
+      "kill_reason": null,
+      "source_file": "rock_falsifier_enhanced_sim.py"
     },
     {
       "token_id": "E_SCALE_SIM01_F01_FINITUDE_OK",
@@ -2339,28 +2412,60 @@
       "source_file": "scale_testing_sim.py"
     },
     {
-      "token_id": "E_SIM_REACTION_OK",
-      "sim_spec_id": "S_SIM_CHEMISTRY_REACTION_V1",
+      "token_id": "E_SIM_RIEMANN_GUE_OK",
+      "sim_spec_id": "S_SIM_RIEMANN_ZETA_V1",
       "status": "PASS",
-      "measured_value": 1.0109201004199038,
+      "measured_value": 0.602054254866366,
       "kill_reason": null,
-      "source_file": "chemistry_sim.py"
+      "source_file": "riemann_zeta_sim.py"
     },
     {
-      "token_id": "E_SIM_CATALYSIS_OK",
-      "sim_spec_id": "S_SIM_CHEMISTRY_CATALYSIS_V1",
+      "token_id": "E_SIM_RIEMANN_SCALING_OK",
+      "sim_spec_id": "S_SIM_RIEMANN_SCALING_V1",
       "status": "PASS",
-      "measured_value": 0.9616820104974433,
+      "measured_value": 3.0,
       "kill_reason": null,
-      "source_file": "chemistry_sim.py"
+      "source_file": "riemann_zeta_sim.py"
     },
     {
-      "token_id": "E_SIM_CHIRAL_CHEMISTRY_OK",
-      "sim_spec_id": "S_SIM_CHEMISTRY_CHIRALITY_V1",
+      "token_id": "E_SIM_P_VERIFY_POLY_OK",
+      "sim_spec_id": "S_SIM_P_VS_NP_VERIFY_V1",
       "status": "PASS",
-      "measured_value": 3.256613331040314,
+      "measured_value": 6.0,
       "kill_reason": null,
-      "source_file": "chemistry_sim.py"
+      "source_file": "p_vs_np_sim.py"
+    },
+    {
+      "token_id": "E_SIM_NP_GENERATE_EXP_OK",
+      "sim_spec_id": "S_SIM_P_VS_NP_GENERATE_V1",
+      "status": "PASS",
+      "measured_value": 640.0,
+      "kill_reason": null,
+      "source_file": "p_vs_np_sim.py"
+    },
+    {
+      "token_id": "E_SIM_P_NP_GAP_SCALES_OK",
+      "sim_spec_id": "S_SIM_P_VS_NP_GAP_V1",
+      "status": "PASS",
+      "measured_value": 106.66666666666667,
+      "kill_reason": null,
+      "source_file": "p_vs_np_sim.py"
+    },
+    {
+      "token_id": "E_SIM_ALIGNED_CONVERGES_OK",
+      "sim_spec_id": "S_SIM_ALIGNMENT_V1",
+      "status": "PASS",
+      "measured_value": 0.2535165495044196,
+      "kill_reason": null,
+      "source_file": "alignment_sim.py"
+    },
+    {
+      "token_id": "E_SIM_CONSTITUTIONAL_OK",
+      "sim_spec_id": "S_SIM_CONSTITUTIONAL_V1",
+      "status": "PASS",
+      "measured_value": 0.47330231791589594,
+      "kill_reason": null,
+      "source_file": "alignment_sim.py"
     },
     {
       "token_id": "E_SIM_WORLD_MODEL_STRUCTURE_OK",
@@ -2411,62 +2516,6 @@
       "source_file": "scientific_method_sim.py"
     },
     {
-      "token_id": "E_SIM_NS_FORMAL_CPTP_CHANNEL_OK",
-      "sim_spec_id": "S_SIM_NS_CPTP_CHANNEL_V1",
-      "status": "PASS",
-      "measured_value": 16.0,
-      "kill_reason": null,
-      "source_file": "navier_stokes_formal_sim.py"
-    },
-    {
-      "token_id": "E_SIM_NS_GRADIENT_BOUND_OK",
-      "sim_spec_id": "S_SIM_NS_GRADIENT_BOUND_V1",
-      "status": "PASS",
-      "measured_value": 1.4978749490625827,
-      "kill_reason": null,
-      "source_file": "navier_stokes_formal_sim.py"
-    },
-    {
-      "token_id": "E_SIM_NS_ENSTROPHY_BOUND_OK",
-      "sim_spec_id": "S_SIM_NS_ENSTROPHY_BOUND_V1",
-      "status": "PASS",
-      "measured_value": 0.06547037802125234,
-      "kill_reason": null,
-      "source_file": "navier_stokes_formal_sim.py"
-    },
-    {
-      "token_id": "E_SIM_NS_SCALING_DIVERGE_OK",
-      "sim_spec_id": "S_SIM_NS_SCALING_V1",
-      "status": "PASS",
-      "measured_value": 0.6702338739993848,
-      "kill_reason": null,
-      "source_file": "navier_stokes_formal_sim.py"
-    },
-    {
-      "token_id": "E_SIM_NS_REGULARISER_OK",
-      "sim_spec_id": "S_SIM_NS_REGULARISER_V1",
-      "status": "PASS",
-      "measured_value": 0.9999999999999974,
-      "kill_reason": null,
-      "source_file": "navier_stokes_formal_sim.py"
-    },
-    {
-      "token_id": "E_SIM_NS_REYNOLDS_OK",
-      "sim_spec_id": "S_SIM_NS_REYNOLDS_V1",
-      "status": "PASS",
-      "measured_value": 100.0,
-      "kill_reason": null,
-      "source_file": "navier_stokes_formal_sim.py"
-    },
-    {
-      "token_id": "E_SIM_ROCK_FALSIFIER_ENHANCED_OK",
-      "sim_spec_id": "S_SIM_ROCK_FALSIFIER_ENHANCED_V1",
-      "status": "PASS",
-      "measured_value": 1.0,
-      "kill_reason": null,
-      "source_file": "rock_falsifier_enhanced_sim.py"
-    },
-    {
       "token_id": "E_TIER3_NO_SIGNALING_PASS",
       "sim_spec_id": "S_TIER3_MEGA_SIM_V1",
       "status": "PASS",
@@ -2483,67 +2532,132 @@
       "source_file": "tier_3_mega_sim.py"
     },
     {
-      "token_id": "E_SIM_MOLOCH_TRAP_OK",
-      "sim_spec_id": "S_SIM_MOLOCH_TRAP_V1",
-      "status": "PASS",
-      "measured_value": 1.1102230246251565e-16,
-      "kill_reason": null,
-      "timestamp": "2026-03-24T11:08:48.656742",
+      "token_id": "E_MOLOCH_CLASSICAL_SURVIVED",
+      "sim_spec_id": "S_MOLOCH_FIELD_V1",
+      "status": "KILL",
+      "measured_value": 0.8775150311806226,
+      "kill_reason": "CLASSICAL_AGENTS_SURVIVED_UNEXPECTEDLY",
       "source_file": "sim_moloch_trap_field.py"
     },
     {
-      "token_id": "E_SIM_AXIS6_PRECEDENCE_OK",
-      "sim_spec_id": "S_SIM_AXIS6_PRECEDENCE_V1",
+      "token_id": "E_MOLOCH_DUALLOOP_NESS_PASS",
+      "sim_spec_id": "S_MOLOCH_DUALLOOP_NESS_V1",
       "status": "PASS",
-      "measured_value": 1.0,
+      "measured_value": 0.01257654155364194,
       "kill_reason": null,
-      "timestamp": "2026-03-24T23:16:41.433722",
-      "source_file": "axis_6_precedence_sim.py"
+      "source_file": "sim_moloch_trap_field.py"
     },
     {
-      "token_id": "E_SIM_ISCALAR_FILTRATION_OK",
-      "sim_spec_id": "S_SIM_ISCALAR_FILTRATION_V1",
-      "status": "PASS",
+      "token_id": "",
+      "sim_spec_id": "S_NEG_C3",
+      "status": "KILL",
+      "measured_value": -0.277460567551271,
+      "kill_reason": "CPTP Violation",
+      "source_file": "deep_graveyard_battery.py"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_X2",
+      "status": "KILL",
+      "measured_value": -0.2784034282988051,
+      "kill_reason": "Chirality Swap",
+      "source_file": "deep_graveyard_battery.py"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_Ti",
+      "status": "KILL",
+      "measured_value": -0.23965068527904024,
+      "kill_reason": "No Measurement",
+      "source_file": "deep_graveyard_battery.py"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_Te",
+      "status": "KILL",
+      "measured_value": -0.27747567342869456,
+      "kill_reason": "No Unitary Drive",
+      "source_file": "deep_graveyard_battery.py"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_Fi",
+      "status": "KILL",
+      "measured_value": -0.2586276818050427,
+      "kill_reason": "No Spectral Proj",
+      "source_file": "deep_graveyard_battery.py"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_C4",
+      "status": "KILL",
       "measured_value": 0.0,
-      "kill_reason": null,
-      "timestamp": "2026-03-24T23:16:41.796741",
-      "source_file": "i_scalar_filtration_sim.py"
+      "kill_reason": "Force Identity",
+      "source_file": "deep_graveyard_battery.py"
     },
     {
-      "token_id": "E_SIM_AXIS3_ENGINE_ORTHOGONAL_OK",
-      "sim_spec_id": "S_SIM_AXIS3_ORTHOGONALITY_V1",
-      "status": "PASS",
-      "measured_value": 0.0,
-      "kill_reason": null,
-      "timestamp": "2026-03-24T23:16:42.600109",
-      "source_file": "axis3_orthogonality_sim.py"
+      "token_id": "",
+      "sim_spec_id": "S_CMP_F01_N01",
+      "status": "KILL",
+      "measured_value": -0.27847228091606213,
+      "kill_reason": "COMMUTATIVE_BLOCKS_AXIS6_PRECEDENCE",
+      "source_file": "deep_graveyard_battery.py"
     },
     {
-      "token_id": "E_SIM_AXIS0_GRADIENT_OK",
-      "sim_spec_id": "S_SIM_AXIS0_CORRELATION_V1",
-      "status": "PASS",
-      "measured_value": 0.17482595370992415,
-      "kill_reason": null,
-      "timestamp": "2026-03-24T23:16:42.837117",
-      "source_file": "axis0_correlation_sim.py"
+      "token_id": "",
+      "sim_spec_id": "S_CMP_C6_C8",
+      "status": "KILL",
+      "measured_value": -0.23765825509762362,
+      "kill_reason": "SINGLE_LOOP_FAILS_NET_RATCHET_720",
+      "source_file": "deep_graveyard_battery.py"
     },
     {
-      "token_id": "E_SIM_NESTED_HOPF_TORI_OK",
-      "sim_spec_id": "S_SIM_PATH_INTEGRAL_AXIS0",
-      "status": "PASS",
-      "measured_value": 0.7293028775851522,
-      "kill_reason": null,
-      "timestamp": "2026-03-24T23:16:43.174221",
-      "source_file": "axis0_path_integral_sim.py"
+      "token_id": "",
+      "sim_spec_id": "S_CMP_3",
+      "status": "KILL",
+      "measured_value": -0.27847228091543397,
+      "kill_reason": "C3\u2227C5 Entropy Order",
+      "source_file": "extended_graveyard_battery.py"
     },
     {
-      "token_id": "E_SIM_AXIS_RELATIONS_OK",
-      "sim_spec_id": "S_SIM_AXIS_RELATIONS_V1",
-      "status": "PASS",
-      "measured_value": 0.0,
-      "kill_reason": null,
-      "timestamp": "2026-03-24T23:16:43.615263",
-      "source_file": "axis_relations_sim.py"
+      "token_id": "",
+      "sim_spec_id": "S_CMP_4",
+      "status": "KILL",
+      "measured_value": -0.2784722809157282,
+      "kill_reason": "F01\u2227N01\u2227C3 TripleLock",
+      "source_file": "extended_graveyard_battery.py"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_CMP_5",
+      "status": "KILL",
+      "measured_value": -0.27847228091606213,
+      "kill_reason": "C6\u2227X2 DualLoop+Chiral",
+      "source_file": "extended_graveyard_battery.py"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_SCRAMBLE",
+      "status": "KILL",
+      "measured_value": -0.2738104378056942,
+      "kill_reason": "Random Order",
+      "source_file": "extended_graveyard_battery.py"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_SYMMETRIC",
+      "status": "KILL",
+      "measured_value": -0.2784722809160618,
+      "kill_reason": "Self-Adjoint",
+      "source_file": "extended_graveyard_battery.py"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_DECOHERE",
+      "status": "KILL",
+      "measured_value": -0.2777921852119998,
+      "kill_reason": "Max Decoherence",
+      "source_file": "extended_graveyard_battery.py"
     }
   ]
 }

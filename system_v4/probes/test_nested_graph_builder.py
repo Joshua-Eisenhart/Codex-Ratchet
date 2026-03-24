@@ -138,7 +138,7 @@ class TestBuildNestedGraph:
         assert isinstance(nested_result["cross_edges"], list)
 
     def test_report_has_status(self, nested_result):
-        """Report has status field."""
+        """Report has status continuous_operator."""
         assert nested_result["report"]["status"] == "built"
 
 

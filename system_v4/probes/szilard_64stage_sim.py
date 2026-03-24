@@ -1,18 +1,18 @@
 """
-64-Stage Dual Szilard Engine SIM
+64-Stage Dual Szilard Process_Cycle SIM
 ==================================
 NLM-verified architecture: 8 stages × 4 operators per stage = 32 per type.
 Type-1 + Type-2 = 64 total microstates.
 
 KEY DISTINCTION (user-corrected):
-  Engine A = Deductive / Cooling / FeTi (the refrigerator)
-  Engine B = Inductive / Heating / TeFi (the heat engine)
+  Process_Cycle A = Deductive / Cooling / FeTi (the refrigerator)
+  Process_Cycle B = Inductive / Heating / TeFi (the heat process_cycle)
   Type 1 = A outer (major), B inner (minor)
   Type 2 = B outer (major), A inner (minor)
 
 Each stage runs ALL 4 operators simultaneously as a Lindblad master equation.
 The DOMINANT operator has the highest coupling strength.
-All 4 operators share the same Axis 6 polarity (+/- mode).
+All 4 operators share the same Generator_Basis 6 polarity (+/- mode).
 
 Math: ρ̇ = -i[H,ρ] + Σ_k γ_k (L_k ρ L_k† - ½{L_k†L_k, ρ})
   H = Te contribution (Hamiltonian flow)
@@ -72,7 +72,7 @@ def build_Ti_ops_eigenbasis(rho, d):
 
 
 def build_Fe_ops_asymmetric(rho, d):
-    """Fe: asymmetric damping — drives toward structured (low-entropy) state.
+    """Fe: asymmetric damping — drives toward structured (low-state_dispersion) state.
     
     NLM fix: symmetric transitions drove ρ → I/d (heat death).
     Asymmetric: transitions FROM low-occupation TO high-occupation states
@@ -118,7 +118,7 @@ def apply_lindblad_stage(rho, d, dominant_op, axis6_up, γ_sub=0.5,
     Apply one stage: all 4 operators simultaneously via Lindblad master equation.
     
     dominant_op: 'Ti', 'Te', 'Fi', 'Fe' — gets γ_dominant
-    axis6_up: True = (+) source mode, False = (-) sink mode
+    generator_basis6_up: True = (+) source mode, False = (-) sink mode
     γ_sub: subordinate operator coupling strength (CALIBRATION TARGET)
     γ_dom: dominant operator coupling strength
     
@@ -153,7 +153,7 @@ def apply_lindblad_stage(rho, d, dominant_op, axis6_up, γ_sub=0.5,
         # Fe Lindblad (asymmetric dissipation)
         for L in Fe_ops:
             LdL = L.conj().T @ L
-            drho += γ_Fe * 0.1 * (L @ rho @ L.conj().T - 0.5 * (LdL @ rho + rho @ LdL))
+            drho += γ_Fe * (L @ rho @ L.conj().T - 0.5 * (LdL @ rho + rho @ LdL))
         
         rho = rho + dt * drho
         
@@ -169,19 +169,19 @@ def apply_lindblad_stage(rho, d, dominant_op, axis6_up, γ_sub=0.5,
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Type-1 Engine: 8 stages × 4 sub-stages = 32
+# Type-1 Process_Cycle: 8 stages × 4 sub-stages = 32
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 # NLM-verified Type-1 stage order:
-# Major loop (Engine A = Deductive/Cooling):
+# Major loop (Process_Cycle A = Deductive/Cooling):
 #   1. Ne/Ti/WIN/DOWN   2. Si/Fe/WIN/UP
 #   3. Se/Ti/LOSE/UP    4. Ni/Fe/LOSE/DOWN
-# Minor loop (Engine B = Inductive/Heating):
+# Minor loop (Process_Cycle B = Inductive/Heating):
 #   5. Se/Fi/win/DOWN   6. Si/Te/win/DOWN
 #   7. Ne/Fi/lose/UP    8. Ni/Te/lose/UP
 
 TYPE1_STAGES = [
-    # (stage, topo, dominant, label, axis6_up, loop)
+    # (stage, topo, dominant, label, generator_basis6_up, loop)
     (1, "Ne", "Ti", "WIN",  False, "A-outer"),
     (2, "Si", "Fe", "WIN",  True,  "A-outer"),
     (3, "Se", "Ti", "LOSE", True,  "A-outer"),
@@ -198,13 +198,13 @@ def sim_64_stage_engine(d: int = 4, n_cycles: int = 5, γ_sub: float = 0.5,
     """
     Run the full 64-stage architecture.
     Each of the 8 stages runs all 4 operators simultaneously.
-    4 sub-stages per stage = 32 microstates per engine type.
+    4 sub-stages per stage = 32 microstates per process_cycle type.
     
     γ_sub: subordinate operator coupling strength (calibration target)
     """
     if verbose:
         print(f"\n{'='*70}")
-        print(f"64-STAGE DUAL SZILARD ENGINE (Type-1)")
+        print(f"64-STAGE DUAL SZILARD PROCESS_CYCLE (Type-1)")
         print(f"  d={d}, cycles={n_cycles}")
         print(f"  Each stage: 4 operators simultaneous (Lindblad)")
         print(f"  Dominant γ=5.0, subordinate γ={γ_sub}")
@@ -316,7 +316,7 @@ def sim_gamma_sweep(d: int = 4, n_cycles: int = 5):
 
 def sim_dual_szilard_coupling(d: int = 4, γ_sub: float = 0.5):
     """
-    Test that Engine A output feeds Engine B input.
+    Test that Process_Cycle A output feeds Process_Cycle B input.
     The Berry phase at 360° is the coupling mechanism.
     """
     print(f"\n{'='*70}")
@@ -327,13 +327,13 @@ def sim_dual_szilard_coupling(d: int = 4, γ_sub: float = 0.5):
     np.random.seed(42)
     rho = make_random_density_matrix(d)
     
-    # Engine A only (stages 1-4: deductive/cooling)
+    # Process_Cycle A only (stages 1-4: deductive/cooling)
     rho_A = rho.copy()
     for stage_num, topo, dominant, label, axis6_up, loop in TYPE1_STAGES[:4]:
         rho_A = apply_lindblad_stage(rho_A, d, dominant, axis6_up, γ_sub=γ_sub)
     phi_A = negentropy(rho_A, d)
     
-    # Engine B only (stages 5-8: inductive/heating, starting from SAME init)
+    # Process_Cycle B only (stages 5-8: inductive/heating, starting from SAME init)
     rho_B = rho.copy()
     for stage_num, topo, dominant, label, axis6_up, loop in TYPE1_STAGES[4:]:
         rho_B = apply_lindblad_stage(rho_B, d, dominant, axis6_up, γ_sub=γ_sub)
@@ -349,8 +349,8 @@ def sim_dual_szilard_coupling(d: int = 4, γ_sub: float = 0.5):
     dist_vs_A = trace_distance(rho_AB, rho_A)
     dist_vs_B = trace_distance(rho_AB, rho_B)
     
-    print(f"  Engine A alone (deductive): Φ={phi_A:.4f}")
-    print(f"  Engine B alone (inductive): Φ={phi_B:.4f}")
+    print(f"  Process_Cycle A alone (deductive): Φ={phi_A:.4f}")
+    print(f"  Process_Cycle B alone (inductive): Φ={phi_B:.4f}")
     print(f"  Full coupled A→B:           Φ={phi_AB:.4f}")
     print(f"  dist(A→B, A alone) = {dist_vs_A:.4f}")
     print(f"  dist(A→B, B alone) = {dist_vs_B:.4f}")
@@ -378,7 +378,7 @@ if __name__ == "__main__":
     
     results = []
     
-    # C8 check: net ratchet gain ΔΦ > 0
+    # C8 check: net directional_accumulator gain ΔΦ > 0
     if total_dphi > 0:
         results.append(EvidenceToken(
             token_id="E_SIM_64STAGE_CYCLE_OK",
@@ -388,7 +388,7 @@ if __name__ == "__main__":
         ))
     else:
         results.append(EvidenceToken("", "S_SIM_64STAGE_V2", "KILL", total_dphi,
-                                     "CYCLE_COLLAPSE"))
+                                     "CYCLE_STATE_REDUCTION"))
     
     if non_additive:
         results.append(EvidenceToken(

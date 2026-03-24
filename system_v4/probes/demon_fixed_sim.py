@@ -2,8 +2,8 @@
 Demon Fixed SIM — Pro Thread 2
 ================================
 Fixes the Maxwell's Demon KILL by implementing adaptive eigenbasis
-measurement. The demon measures in ρ's eigenbasis (not computational),
-preserving coherence while extracting information.
+trace_projection. The demon measures in ρ's eigenbasis (not computational),
+preserving coherence while extracting state_distinction.
 
 KILL being fixed: Maxwell's Demon dephasing (ΔΦ = -0.35)
 Root cause: Ti projects in computational basis, not eigenbasis
@@ -40,23 +40,23 @@ def ensure_valid(rho):
 
 def sim_demon_fixed(d=4, n_cycles=20):
     """
-    Fixed Maxwell's Demon with adaptive eigenbasis measurement.
+    Fixed Maxwell's Demon with adaptive eigenbasis trace_projection.
 
     Key fix: diagonalize ρ FIRST, then project in eigenbasis.
-    This preserves the state while extracting maximal information.
+    This preserves the state while extracting maximal state_distinction.
 
     Cycle: measure(Ti, eigenbasis) → erase(Fe, Landauer)
     Expected: measure gain ≥ 0, erase cost ≤ 0, net ΔΦ ≈ 0
     """
     print(f"\n{'='*60}")
-    print(f"DEMON FIXED — EIGENBASIS ADAPTIVE MEASUREMENT")
+    print(f"DEMON FIXED — EIGENBASIS ADAPTIVE TRACE_PROJECTION")
     print(f"  d={d}, cycles={n_cycles}")
     print(f"{'='*60}")
 
     np.random.seed(42)
     rho = make_random_density_matrix(d)
 
-    # FIXED Ti: eigenbasis measurement (not computational basis)
+    # FIXED Ti: eigenbasis trace_projection (not computational basis)
     def measure_eigenbasis(rho):
         eigvals, V = np.linalg.eigh(rho)
         # Lüders projection in eigenbasis: Σ |λ_k⟩⟨λ_k| ρ |λ_k⟩⟨λ_k|
@@ -77,7 +77,7 @@ def sim_demon_fixed(d=4, n_cycles=20):
         return (1 - strength) * rho + strength * sigma
 
     # Run FIXED demon cycle
-    print(f"\n  --- FIXED DEMON (eigenbasis measurement) ---")
+    print(f"\n  --- FIXED DEMON (eigenbasis trace_projection) ---")
     rho_fixed = rho.copy()
     phi_start_fixed = negentropy(rho_fixed, d)
     fixed_gains = []
@@ -139,7 +139,7 @@ def sim_demon_fixed(d=4, n_cycles=20):
     print(f"  Fixed: avg gain={avg_gain_fixed:+.6f}, avg cost={avg_cost_fixed:+.6f}, "
           f"total ΔΦ={fixed_total:+.6f}")
     print(f"  Broken: avg gain={avg_gain_broken:+.6f}, total ΔΦ={broken_total:+.6f}")
-    print(f"  → Eigenbasis measurement preserves coherence")
+    print(f"  → Eigenbasis trace_projection preserves coherence")
     print(f"  → Computational basis destroys it (the KILL)")
 
     results = []

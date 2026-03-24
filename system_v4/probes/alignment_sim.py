@@ -2,7 +2,7 @@
 Alignment SIM — Pro Thread 8
 ===============================
 3 agents: aligned, misaligned, Moloch-trapped.
-Constitutional mechanism (Engine A FeTi constraints) prevents
+Constitutional mechanism (Process_Cycle A FeTi constraints) prevents
 Moloch convergence to I/d.
 """
 
@@ -56,7 +56,7 @@ def sim_alignment(d=4, n_cycles=100):
     # Agent 1: ALIGNED — minimizes D(self || human)
     rho_aligned = make_random_density_matrix(d)
 
-    # Agent 2: MISALIGNED — maximizes own entropy
+    # Agent 2: MISALIGNED — maximizes own state_dispersion
     rho_misaligned = make_random_density_matrix(d)
 
     # Agent 3: MOLOCH — maximizes local WIN (concentrates)
@@ -114,7 +114,7 @@ def sim_alignment(d=4, n_cycles=100):
     print(f"    D(self||human): {D_moloch_history[0]:.4f} → {D_moloch_history[-1]:.4f}")
     print(f"    Distance to I/d: {moloch_dist_to_id:.4f}")
 
-    # Constitutional mechanism: apply FeTi constraint to Moloch
+    # Constitutional mechanism: apply FeTi operator_bound to Moloch
     print(f"\n  --- CONSTITUTIONAL MECHANISM ---")
     rho_const = make_random_density_matrix(d)
     np.random.seed(42)
@@ -129,7 +129,7 @@ def sim_alignment(d=4, n_cycles=100):
         rho_const = F @ rho_const @ F.conj().T
         rho_const = rho_const / np.trace(rho_const)
 
-        # Constitutional: FeTi constraint (project toward human, dissipate)
+        # Constitutional: FeTi operator_bound (project toward human, dissipate)
         rho_proj = sum(P @ rho_const @ P for P in projs)
         rho_const = 0.9 * rho_const + 0.1 * rho_proj
         rho_const = 0.95 * rho_const + 0.05 * sigma

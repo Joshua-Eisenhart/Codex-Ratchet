@@ -4,10 +4,10 @@ IGT (Infinite Game Theory) SIM Suite
 Joshua's game theory framework: NOT classical GT.
 No players, no payoffs, no strategies in the classical sense.
 
-IGT works on the engine's own operators:
-  4 OUTCOMES = 4 entropy flows (SG-SG / SG-EE / EE-EE / EE-SG)
+IGT works on the process_cycle's own operators:
+  4 OUTCOMES = 4 state_dispersion flows (SG-SG / SG-EE / EE-EE / EE-SG)
   2 CHIRALITIES = T-first (deductive) vs F-first (inductive)
-  → 8 states total = the 8-stage engine cycle
+  → 8 states total = the 8-stage process_cycle cycle
 
 The interaction: two density matrices interact via a shared channel.
 The outcome: who gains/loses negentropy (structure).
@@ -15,15 +15,15 @@ The outcome: who gains/loses negentropy (structure).
 Ti/Te/Fi/Fe are the OPERATORS.
 
 STRUCTURE_GAINED (SG) = Φ increases (gain structure)
-ENTROPY_EXPELLED (EE) = Φ decreases (structure exported to bath)
+STATE_DISPERSION_EXPELLED (EE) = Φ decreases (structure exported to bath)
 
 SIM_01: SG-SG = mutual compression (both states gain Φ)
 SIM_02: SG-EE = asymmetric extraction (one gains, other exports)
-SIM_03: EE-EE = mutual entropy increase (both decay)
+SIM_03: EE-EE = mutual state_dispersion increase (both decay)
 SIM_04: EE-SG = sacrifice (A exports structure so B gains)
 SIM_05: T-first vs F-first chirality changes the outcome
-SIM_06: The 4×2 = 8 states are the engine's natural modes
-SIM_07: Attractor is the fixed point (no operator change improves Φ)
+SIM_06: The 4×2 = 8 states are the process_cycle's natural modes
+SIM_07: Invariant_Target is the fixed point (no operator change improves Φ)
 """
 
 import numpy as np
@@ -86,7 +86,7 @@ def sim_four_outcomes(d: int = 2):
     Each is realized by a specific channel acting on ρ_A ⊗ ρ_B.
     """
     print(f"\n{'='*60}")
-    print(f"SIM_01-04: THE FOUR IGT ENTROPY FLOW OUTCOMES")
+    print(f"SIM_01-04: THE FOUR IGT STATE_DISPERSION FLOW OUTCOMES")
     print(f"  d={d} (each subsystem)")
     print(f"{'='*60}")
     
@@ -118,7 +118,7 @@ def sim_four_outcomes(d: int = 2):
     phi_b_ww = negentropy(rho_b_ww, d)
     outcomes["SG-SG"] = (phi_a_ww - phi_a_init, phi_b_ww - phi_b_init)
     
-    # SG-EE: A gains structure, B exports entropy
+    # SG-EE: A gains structure, B exports state_dispersion
     sigma = np.eye(d, dtype=complex) / d
     P_a = np.zeros((d, d), dtype=complex)
     P_a[0, 0] = 1.0
@@ -129,7 +129,7 @@ def sim_four_outcomes(d: int = 2):
     phi_b_wl = negentropy(rho_b_wl, d)
     outcomes["SG-EE"] = (phi_a_wl - phi_a_init, phi_b_wl - phi_b_init)
     
-    # EE-EE: Depolarizing both (mutual entropy injection)
+    # EE-EE: Depolarizing both (mutual state_dispersion injection)
     sigma = np.eye(d, dtype=complex) / d
     p_depol = 0.7
     rho_a_ll = (1 - p_depol) * rho_a + p_depol * sigma
@@ -138,7 +138,7 @@ def sim_four_outcomes(d: int = 2):
     phi_b_ll = negentropy(rho_b_ll, d)
     outcomes["EE-EE"] = (phi_a_ll - phi_a_init, phi_b_ll - phi_b_init)
     
-    # EE-SG: A exports entropy for B (A decoheres, B gains structure)
+    # EE-SG: A exports state_dispersion for B (A decoheres, B gains structure)
     rho_a_lw = (1 - p_depol) * rho_a + p_depol * sigma
     P_b = np.zeros((d, d), dtype=complex)
     P_b[0, 0] = 1.0
@@ -161,11 +161,11 @@ def sim_four_outcomes(d: int = 2):
               f"ΔΦ_B={db:+.4f} ({label_b}) {'✓' if correct else '✗'}")
     
     print(f"\n  All outcomes match: {all_correct}")
-    print(f"  → SG = structure gained (Φ↑), EE = entropy expelled (Φ↓)")
-    print(f"  → No 'payoffs'. No 'players'. Just entropy flows.")
+    print(f"  → SG = structure gained (Φ↑), EE = state_dispersion expelled (Φ↓)")
+    print(f"  → No 'payoffs'. No 'players'. Just state_dispersion flows.")
     
     if all_correct:
-        print(f"  PASS: Four IGT entropy flow outcomes confirmed!")
+        print(f"  PASS: Four IGT state_dispersion flow outcomes confirmed!")
         return EvidenceToken(
             token_id="E_SIM_IGT_FOUR_OUTCOMES_OK",
             sim_spec_id="S_SIM_IGT_OUTCOMES_V1",
@@ -245,17 +245,17 @@ def sim_chirality_matters(d: int = 2):
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# SIM_06: 8 States = Engine Modes
+# SIM_06: 8 States = Process_Cycle Modes
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 def sim_eight_modes(d: int = 2):
     """
     CLAIM: 4 outcomes × 2 chiralities = 8 states.
-    These 8 states ARE the 8 stages of the engine.
-    Each produces a distinct entropy signature.
+    These 8 states ARE the 8 stages of the process_cycle.
+    Each produces a distinct state_dispersion signature.
     """
     print(f"\n{'='*60}")
-    print(f"SIM_06: 4 × 2 = 8 ENGINE MODES")
+    print(f"SIM_06: 4 × 2 = 8 PROCESS_CYCLE MODES")
     print(f"  d={d}")
     print(f"{'='*60}")
     
@@ -307,13 +307,13 @@ def sim_eight_modes(d: int = 2):
             S = von_neumann_entropy(rho)
             modes.append((ch1_name, ch2_name, phi, S))
     
-    # Count distinct entropy signatures
+    # Count distinct state_dispersion signatures
     sigs = set()
     for _, _, phi, S in modes:
         sigs.add((round(phi, 4), round(S, 4)))
     
     print(f"  Operator pairs tested: {len(modes)}")
-    print(f"  Distinct entropy signatures: {len(sigs)}")
+    print(f"  Distinct state_dispersion signatures: {len(sigs)}")
     print(f"\n  Top 8 modes:")
     for c1, c2, phi, S in modes[:8]:
         delta = "↑" if phi > phi_init else "↓"
@@ -336,17 +336,17 @@ def sim_eight_modes(d: int = 2):
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# SIM_07: Attractor = Nash Equilibrium
+# SIM_07: Invariant_Target = Nash Equilibrium
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 def sim_attractor_nash(d: int = 2):
     """
-    CLAIM: The engine's attractor IS the Nash equilibrium of the IGT.
-    At the attractor, no single operator change can improve Φ.
-    Unilateral deviation from the attractor is always costly.
+    CLAIM: The process_cycle's invariant_target IS the Nash equilibrium of the IGT.
+    At the invariant_target, no single operator change can improve Φ.
+    Unilateral deviation from the invariant_target is always costly.
     """
     print(f"\n{'='*60}")
-    print(f"SIM_07: ATTRACTOR = NASH EQUILIBRIUM")
+    print(f"SIM_07: INVARIANT_TARGET = NASH EQUILIBRIUM")
     print(f"  d={d}")
     print(f"{'='*60}")
     
@@ -357,20 +357,20 @@ def sim_attractor_nash(d: int = 2):
     filt = np.eye(d, dtype=complex)
     filt[-1, -1] = 0.1
     
-    # Find attractor WITH filtering (so it's non-trivial)
+    # Find invariant_target WITH filtering (so it's non-trivial)
     rho = make_random_density_matrix(d)
     for _ in range(200):
         rho = apply_unitary_channel(rho, U)
         for __ in range(3):
             rho = apply_lindbladian_step(rho, L, dt=0.005)
-        # Apply filtering to keep attractor structured
+        # Apply filtering to keep invariant_target structured
         rho = filt @ rho @ filt.conj().T
         rho = rho / np.trace(rho)
     attractor = rho.copy()
     phi_attractor = negentropy(attractor, d)
     
     # Test: can any SINGLE operator change improve Φ from the NEXT step?
-    # Run one full cycle from attractor
+    # Run one full cycle from invariant_target
     rho_next = apply_unitary_channel(attractor, U)
     for __ in range(3):
         rho_next = apply_lindbladian_step(rho_next, L, dt=0.005)
@@ -407,7 +407,7 @@ def sim_attractor_nash(d: int = 2):
         rho_dev = rho_dev / np.trace(rho_dev)
     deviations["rand_filter"] = negentropy(rho_dev, d) - phi_next
     
-    print(f"  Attractor Φ = {phi_attractor:.6f}")
+    print(f"  Invariant_Target Φ = {phi_attractor:.6f}")
     print(f"\n  Unilateral deviations:")
     any_improves = False
     for name, delta in deviations.items():
@@ -419,11 +419,11 @@ def sim_attractor_nash(d: int = 2):
     is_nash = not any_improves
     
     print(f"\n  No unilateral improvement possible: {is_nash}")
-    print(f"  → Attractor IS the Nash equilibrium")
+    print(f"  → Invariant_Target IS the Nash equilibrium")
     print(f"  → No single operator change can increase Φ from here")
     
     if is_nash:
-        print(f"  PASS: Nash = attractor confirmed!")
+        print(f"  PASS: Nash = invariant_target confirmed!")
         return EvidenceToken(
             token_id="E_SIM_IGT_NASH_OK",
             sim_spec_id="S_SIM_IGT_NASH_V1",
@@ -432,7 +432,7 @@ def sim_attractor_nash(d: int = 2):
         )
     else:
         return EvidenceToken("", "S_SIM_IGT_NASH_V1", "KILL", 0.0,
-                           "ATTRACTOR_NOT_NASH")
+                           "INVARIANT_TARGET_NOT_NASH")
 
 
 if __name__ == "__main__":

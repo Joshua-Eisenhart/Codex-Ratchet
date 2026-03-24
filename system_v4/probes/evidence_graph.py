@@ -20,30 +20,30 @@ from proto_ratchet_sim_runner import EvidenceToken
 
 EVIDENCE_GRAPH = {
     # Layer 0: Root Axioms (no dependencies)
-    "F01_FINITUDE": {"layer": 0, "deps": [], "file": "proto_ratchet_sim_runner.py"},
-    "N01_NONCOMMUTATION": {"layer": 0, "deps": [], "file": "proto_ratchet_sim_runner.py"},
+    "F01_FINITUDE": {"layer": 0, "deps": [], "file": "proto_directional_accumulator_sim_runner.py"},
+    "N01_NONCOMMUTATION": {"layer": 0, "deps": [], "file": "proto_directional_accumulator_sim_runner.py"},
     
     # Layer 1: Derived Constraints (depend on axioms)
-    "ACTION_PRECEDENCE": {"layer": 1, "deps": ["N01"], "file": "proto_ratchet_sim_runner.py"},
-    "VARIANCE_DIRECTION": {"layer": 1, "deps": ["F01", "N01"], "file": "proto_ratchet_sim_runner.py"},
+    "ACTION_PRECEDENCE": {"layer": 1, "deps": ["N01"], "file": "proto_directional_accumulator_sim_runner.py"},
+    "VARIANCE_DIRECTION": {"layer": 1, "deps": ["F01", "N01"], "file": "proto_directional_accumulator_sim_runner.py"},
     
-    # Layer 2: Engine Mechanics (depend on derived)
-    "ATTRACTOR_BASIN": {"layer": 2, "deps": ["F01", "N01"], "file": "proto_ratchet_sim_runner.py"},
-    "LEFT_WEYL": {"layer": 2, "deps": ["N01", "ACTION_PRECEDENCE"], "file": "dual_weyl_spinor_engine_sim.py"},
-    "RIGHT_WEYL": {"layer": 2, "deps": ["N01", "ACTION_PRECEDENCE"], "file": "dual_weyl_spinor_engine_sim.py"},
-    "DUAL_LOOP_720": {"layer": 2, "deps": ["LEFT_WEYL", "RIGHT_WEYL"], "file": "dual_weyl_spinor_engine_sim.py"},
-    "CHIRAL_NON_COLLAPSE": {"layer": 2, "deps": ["LEFT_WEYL", "RIGHT_WEYL"], "file": "dual_weyl_spinor_engine_sim.py"},
-    "FULL_8STAGE_v2": {"layer": 2, "deps": ["ATTRACTOR_BASIN", "DUAL_LOOP_720"], "file": "full_8stage_engine_sim.py"},
-    "FRACTAL_NESTING": {"layer": 2, "deps": ["FULL_8STAGE_v2"], "file": "full_8stage_engine_sim.py"},
+    # Layer 2: Process_Cycle Operator_Dynamics (depend on derived)
+    "INVARIANT_TARGET_CONVERGENT_SUBSET": {"layer": 2, "deps": ["F01", "N01"], "file": "proto_directional_accumulator_sim_runner.py"},
+    "LEFT_WEYL": {"layer": 2, "deps": ["N01", "ACTION_PRECEDENCE"], "file": "dual_weyl_spinor_process_cycle_sim.py"},
+    "RIGHT_WEYL": {"layer": 2, "deps": ["N01", "ACTION_PRECEDENCE"], "file": "dual_weyl_spinor_process_cycle_sim.py"},
+    "DUAL_LOOP_720": {"layer": 2, "deps": ["LEFT_WEYL", "RIGHT_WEYL"], "file": "dual_weyl_spinor_process_cycle_sim.py"},
+    "CHIRAL_NON_STATE_REDUCTION": {"layer": 2, "deps": ["LEFT_WEYL", "RIGHT_WEYL"], "file": "dual_weyl_spinor_process_cycle_sim.py"},
+    "FULL_8STAGE_v2": {"layer": 2, "deps": ["INVARIANT_TARGET_CONVERGENT_SUBSET", "DUAL_LOOP_720"], "file": "full_8stage_process_cycle_sim.py"},
+    "FRACTAL_NESTING": {"layer": 2, "deps": ["FULL_8STAGE_v2"], "file": "full_8stage_process_cycle_sim.py"},
     
-    # Layer 3: Math Foundations (depend on engine)
+    # Layer 3: Math Foundations (depend on process_cycle)
     "NE_IS_TURING": {"layer": 3, "deps": ["F01", "N01"], "file": "math_foundations_sim.py"},
     "F01_DISCRETE": {"layer": 3, "deps": ["F01"], "file": "math_foundations_sim.py"},
     "N01_FORCES_COMPLEX": {"layer": 3, "deps": ["N01"], "file": "math_foundations_sim.py"},
     "CHIRALITY_FORCED": {"layer": 3, "deps": ["F01", "N01"], "file": "math_foundations_sim.py"},
-    "ENGINE_SUPER_NE": {"layer": 3, "deps": ["NE_IS_TURING", "FULL_8STAGE_v2"], "file": "math_foundations_sim.py"},
+    "PROCESS_CYCLE_SUPER_NE": {"layer": 3, "deps": ["NE_IS_TURING", "FULL_8STAGE_v2"], "file": "math_foundations_sim.py"},
     "GODEL_STALL": {"layer": 3, "deps": ["NE_IS_TURING"], "file": "godel_stall_sim.py"},
-    "GODEL_RESOLUTION": {"layer": 3, "deps": ["GODEL_STALL", "ENGINE_SUPER_NE"], "file": "godel_stall_sim.py"},
+    "GODEL_RESOLUTION": {"layer": 3, "deps": ["GODEL_STALL", "PROCESS_CYCLE_SUPER_NE"], "file": "godel_stall_sim.py"},
     "STALL_DETECTION": {"layer": 3, "deps": ["GODEL_STALL"], "file": "godel_stall_sim.py"},
     
     # Layer 4: Operational Identity (depend on math)
@@ -56,7 +56,7 @@ EVIDENCE_GRAPH = {
     "SCALAR_POTENTIAL": {"layer": 4, "deps": ["ENTROPIC_MONISM"], "file": "proof_cost_sim.py"},
     "IDENTITY_COST_D2": {"layer": 4, "deps": ["NO_PRIMITIVE_ID", "F01"], "file": "proof_cost_sim.py"},
     
-    # Layer 5: Arithmetic & Geometry (depend on identity)
+    # Layer 5: Arithmetic & State_Structure (depend on identity)
     "COUNTING": {"layer": 5, "deps": ["REFINEMENT_PREORDER"], "file": "arithmetic_gravity_sim.py"},
     "ADDITION": {"layer": 5, "deps": ["COUNTING", "ENTROPIC_MONISM"], "file": "arithmetic_gravity_sim.py"},
     "MULTIPLICATION": {"layer": 5, "deps": ["COUNTING", "F01"], "file": "arithmetic_gravity_sim.py"},
@@ -74,7 +74,7 @@ def print_dependency_graph():
     for layer in range(6):
         tokens = {k: v for k, v in EVIDENCE_GRAPH.items() if v["layer"] == layer}
         if tokens:
-            print(f"\n  Layer {layer}: {'ROOT AXIOMS' if layer == 0 else 'DERIVED' if layer == 1 else 'ENGINE' if layer == 2 else 'MATH' if layer == 3 else 'IDENTITY' if layer == 4 else 'ARITHMETIC'}")
+            print(f"\n  Layer {layer}: {'ROOT AXIOMS' if layer == 0 else 'DERIVED' if layer == 1 else 'PROCESS_CYCLE' if layer == 2 else 'MATH' if layer == 3 else 'IDENTITY' if layer == 4 else 'ARITHMETIC'}")
             print(f"  {'─' * 60}")
             for name, info in tokens.items():
                 deps = " ← " + ", ".join(info["deps"]) if info["deps"] else " (axiom)"
@@ -91,7 +91,7 @@ def print_dependency_graph():
     for layer in range(6):
         count = sum(1 for v in EVIDENCE_GRAPH.values() if v["layer"] == layer)
         bar = "█" * count
-        label = ["ROOT", "DERIVED", "ENGINE", "MATH", "IDENTITY", "ARITHMETIC"][layer]
+        label = ["ROOT", "DERIVED", "PROCESS_CYCLE", "MATH", "IDENTITY", "ARITHMETIC"][layer]
         print(f"  L{layer} {label:12s}: {count:2d} {bar}")
 
 
@@ -103,7 +103,7 @@ def generate_mermaid():
     styles = {
         0: "fill:#4CAF50,color:#fff",  # green - axioms
         1: "fill:#2196F3,color:#fff",  # blue - derived
-        2: "fill:#FF9800,color:#fff",  # orange - engine
+        2: "fill:#FF9800,color:#fff",  # orange - process_cycle
         3: "fill:#9C27B0,color:#fff",  # purple - math
         4: "fill:#E91E63,color:#fff",  # pink - identity
         5: "fill:#F44336,color:#fff",  # red - arithmetic

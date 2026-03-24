@@ -1,12 +1,12 @@
 """
 Navier-Stokes & Complexity SIM Suite
 ======================================
-Tests the Navier-Stokes ↔ Lindblad mapping and P vs NP as attractor geometry.
+Tests the Navier-Stokes ↔ Lindblad mapping and P vs NP as invariant_target state_structure.
 
 SIM_01: Viscosity = Lindblad dissipation rate
 SIM_02: Turbulence = winding saturation (inductive beats dissipative)
-SIM_03: P = within-basin convergence (cheap)
-SIM_04: NP = between-basin transition (expensive, requires work)
+SIM_03: P = within-convergent_subset convergence (cheap)
+SIM_04: NP = between-convergent_subset transition (expensive, requires work)
 SIM_05: Smoothness — can dissipation always prevent blowup in finite d?
 """
 
@@ -40,7 +40,7 @@ def negentropy(rho, d):
 def sim_viscosity_dissipation(d: int = 4):
     """
     CLAIM: Viscosity ν in fluid dynamics corresponds to the Lindblad
-    dissipation rate. Higher ν → faster entropy production → faster
+    dissipation rate. Higher ν → faster state_dispersion production → faster
     convergence to thermal equilibrium.
     
     TEST: Vary the Lindblad coupling strength (analogous to ν).
@@ -131,10 +131,10 @@ def sim_turbulence_stall(d: int = 4):
     """
     CLAIM: Turbulence occurs when inductive (expansive) dynamics
     outpace dissipative (contractive) dynamics. The system can't
-    smooth fast enough → entropy production explodes → stall.
+    smooth fast enough → state_dispersion production explodes → stall.
     
     TEST: Race a strong unitary (inductive) against a weak Lindblad
-    (dissipative). When unitary dominates → entropy oscillates wildly
+    (dissipative). When unitary dominates → state_dispersion oscillates wildly
     (turbulence). When Lindblad dominates → smooth convergence (laminar).
     """
     print(f"\n{'='*60}")
@@ -164,7 +164,7 @@ def sim_turbulence_stall(d: int = 4):
             
             entropy_history.append(von_neumann_entropy(rho))
         
-        # Measure "turbulence" = variance of entropy over time
+        # Measure "turbulence" = variance of state_dispersion over time
         S_var = np.var(entropy_history[-50:])
         S_mean = np.mean(entropy_history[-50:])
         
@@ -185,20 +185,20 @@ def sim_turbulence_stall(d: int = 4):
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# SIM_03: P = Within-Basin (Cheap)
+# SIM_03: P = Within-Convergent_Subset (Cheap)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 def sim_p_within_basin(d: int = 4):
     """
     CLAIM: P-class problems correspond to convergence WITHIN the
-    current attractor basin. No topological reconfiguration needed.
+    current invariant_target convergent_subset. No structural reconfiguration needed.
     Fast, cheap, gradient descent.
     
-    TEST: Start at attractor, perturb slightly. Verify fast convergence
-    back to attractor with minimal work.
+    TEST: Start at invariant_target, perturb slightly. Verify fast convergence
+    back to invariant_target with minimal work.
     """
     print(f"\n{'='*60}")
-    print(f"SIM_03: P = WITHIN-BASIN CONVERGENCE")
+    print(f"SIM_03: P = WITHIN-CONVERGENT_SUBSET CONVERGENCE")
     print(f"  d={d}")
     print(f"{'='*60}")
     
@@ -207,7 +207,7 @@ def sim_p_within_basin(d: int = 4):
     L_base = np.random.randn(d, d) + 1j * np.random.randn(d, d)
     L = L_base / np.linalg.norm(L_base) * 3.0
     
-    # Find attractor
+    # Find invariant_target
     rho = make_random_density_matrix(d)
     for _ in range(200):
         rho = apply_unitary_channel(rho, U)
@@ -215,7 +215,7 @@ def sim_p_within_basin(d: int = 4):
             rho = apply_lindbladian_step(rho, L, dt=0.01)
     attractor = rho.copy()
     
-    # Small perturbation (within basin)
+    # Small perturbation (within convergent_subset)
     perturb = np.random.randn(d, d) + 1j * np.random.randn(d, d)
     perturb = (perturb + perturb.conj().T) / 2
     rho_perturbed = attractor + 0.05 * perturb
@@ -240,54 +240,54 @@ def sim_p_within_basin(d: int = 4):
     
     final_dist = trace_distance(rho, attractor)
     
-    print(f"  Initial distance from attractor: {initial_dist:.6f}")
+    print(f"  Initial distance from invariant_target: {initial_dist:.6f}")
     print(f"  Recovery in {recovery_step} steps")
     print(f"  Final distance: {final_dist:.6f}")
-    print(f"  → Within-basin perturbation recovers FAST")
+    print(f"  → Within-convergent_subset perturbation recovers FAST")
     print(f"  → This is P: gradient descent, cheap verification")
     
     fast_recovery = recovery_step >= 0 and recovery_step < 50
     
     if fast_recovery:
-        print(f"  PASS: P = within-basin convergence!")
+        print(f"  PASS: P = within-convergent_subset convergence!")
         return EvidenceToken(
-            token_id="E_SIM_P_WITHIN_BASIN_OK",
-            sim_spec_id="S_SIM_P_BASIN_V1",
+            token_id="E_SIM_P_WITHIN_CONVERGENT_SUBSET_OK",
+            sim_spec_id="S_SIM_P_CONVERGENT_SUBSET_V1",
             status="PASS",
             measured_value=float(recovery_step)
         )
     else:
         return EvidenceToken(
             token_id="",
-            sim_spec_id="S_SIM_P_BASIN_V1",
+            sim_spec_id="S_SIM_P_CONVERGENT_SUBSET_V1",
             status="KILL",
             measured_value=float(recovery_step),
-            kill_reason="WITHIN_BASIN_RECOVERY_SLOW"
+            kill_reason="WITHIN_CONVERGENT_SUBSET_RECOVERY_SLOW"
         )
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# SIM_04: NP = Between-Basin (Expensive)
+# SIM_04: NP = Between-Convergent_Subset (Expensive)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 def sim_np_between_basins(d: int = 4):
     """
     CLAIM: NP-class problems require transitioning BETWEEN different
-    attractor basins. This requires topological reconfiguration and
+    invariant_target basins. This requires structural reconfiguration and
     costs significantly more thermodynamic work.
     
     TEST: Create TWO different attractors (different operators).
-    Try to move from one attractor to the other. Compare cost to
-    within-basin recovery.
+    Try to move from one invariant_target to the other. Compare cost to
+    within-convergent_subset recovery.
     """
     print(f"\n{'='*60}")
-    print(f"SIM_04: NP = BETWEEN-BASIN TRANSITION (EXPENSIVE)")
+    print(f"SIM_04: NP = BETWEEN-CONVERGENT_SUBSET TRANSITION (EXPENSIVE)")
     print(f"  d={d}")
     print(f"{'='*60}")
     
     np.random.seed(42)
     
-    # System A: one attractor
+    # System A: one invariant_target
     U_a = make_random_unitary(d)
     L_a_base = np.random.randn(d, d) + 1j * np.random.randn(d, d)
     L_a = L_a_base / np.linalg.norm(L_a_base) * 3.0
@@ -299,7 +299,7 @@ def sim_np_between_basins(d: int = 4):
             rho = apply_lindbladian_step(rho, L_a, dt=0.01)
     attractor_a = rho.copy()
     
-    # System B: different attractor
+    # System B: different invariant_target
     np.random.seed(999)
     U_b = make_random_unitary(d)
     L_b_base = np.random.randn(d, d) + 1j * np.random.randn(d, d)
@@ -314,7 +314,7 @@ def sim_np_between_basins(d: int = 4):
     
     basin_dist = trace_distance(attractor_a, attractor_b)
     
-    # Try to reach attractor_b starting from attractor_a using system B dynamics
+    # Try to reach invariant_target_b starting from invariant_target_a using system B dynamics
     rho = attractor_a.copy()
     transition_step = -1
     for step in range(500):
@@ -330,9 +330,9 @@ def sim_np_between_basins(d: int = 4):
     
     print(f"  Distance between basins: {basin_dist:.6f}")
     print(f"  Transition took: {transition_step} steps")
-    print(f"  Final distance to target basin: {final_dist:.6f}")
+    print(f"  Final distance to target convergent_subset: {final_dist:.6f}")
     
-    # Compare: within-basin was ~5 steps, between-basin should be much more
+    # Compare: within-convergent_subset was ~5 steps, between-convergent_subset should be much more
     np.random.seed(42)
     rho_p = attractor_a + 0.05 * (make_random_density_matrix(d) - attractor_a)
     rho_p = rho_p / np.trace(rho_p)
@@ -344,25 +344,25 @@ def sim_np_between_basins(d: int = 4):
         if trace_distance(rho_p, attractor_a) < 0.01 and p_step == -1:
             p_step = step
     
-    print(f"\n  P (within-basin recovery): {p_step} steps")
-    print(f"  NP (between-basin transition): {transition_step} steps")
+    print(f"\n  P (within-convergent_subset recovery): {p_step} steps")
+    print(f"  NP (between-convergent_subset transition): {transition_step} steps")
     
     np_harder = transition_step > p_step if (transition_step > 0 and p_step > 0) else transition_step == -1
     
     if np_harder or transition_step > p_step:
         print(f"  → NP transitions cost MORE than P verifications")
-        print(f"  → Complexity gap is geometric (attractor basin distance)")
-        print(f"  PASS: NP = between-basin transition confirmed!")
+        print(f"  → Complexity gap is structural_shape (invariant_target convergent_subset distance)")
+        print(f"  PASS: NP = between-convergent_subset transition confirmed!")
         return EvidenceToken(
-            token_id="E_SIM_NP_BETWEEN_BASIN_OK",
-            sim_spec_id="S_SIM_NP_BASIN_V1",
+            token_id="E_SIM_NP_BETWEEN_CONVERGENT_SUBSET_OK",
+            sim_spec_id="S_SIM_NP_CONVERGENT_SUBSET_V1",
             status="PASS",
             measured_value=float(transition_step)
         )
     else:
         return EvidenceToken(
             token_id="",
-            sim_spec_id="S_SIM_NP_BASIN_V1",
+            sim_spec_id="S_SIM_NP_CONVERGENT_SUBSET_V1",
             status="KILL",
             measured_value=0.0,
             kill_reason="NP_NOT_HARDER_THAN_P"
@@ -375,12 +375,12 @@ def sim_np_between_basins(d: int = 4):
 
 def sim_smoothness_finite_d(d_values: list = [2, 4, 8, 16], n_steps: int = 200):
     """
-    CLAIM: In finite d, entropy production is always bounded.
+    CLAIM: In finite d, state_dispersion production is always bounded.
     The Lindblad equation cannot blow up because S_max = ln(d).
     Gradients are bounded. No singularity possible.
     
     TEST: Push the system with maximal unitary dynamics and verify
-    that entropy ALWAYS stays within [0, ln(d)]. For all d values.
+    that state_dispersion ALWAYS stays within [0, ln(d)]. For all d values.
     """
     print(f"\n{'='*60}")
     print(f"SIM_05: SMOOTHNESS — FINITE d PREVENTS BLOWUP")
@@ -419,7 +419,7 @@ def sim_smoothness_finite_d(d_values: list = [2, 4, 8, 16], n_steps: int = 200):
               f"S_max_theory={S_max_theory:.4f}, bounded={bounded}")
     
     print(f"\n  All bounded: {all_bounded}")
-    print(f"  → Finite d guarantees bounded entropy production")
+    print(f"  → Finite d guarantees bounded state_dispersion production")
     print(f"  → No singularity possible. Smoothness holds in finite d.")
     print(f"  → The Navier-Stokes smoothness question reduces to: does F01 hold?")
     
@@ -437,7 +437,7 @@ def sim_smoothness_finite_d(d_values: list = [2, 4, 8, 16], n_steps: int = 200):
             sim_spec_id="S_SIM_SMOOTHNESS_V1",
             status="KILL",
             measured_value=0.0,
-            kill_reason="ENTROPY_EXCEEDED_BOUNDS"
+            kill_reason="STATE_DISPERSION_EXCEEDED_BOUNDS"
         )
 
 
@@ -460,7 +460,7 @@ if __name__ == "__main__":
     base = os.path.dirname(os.path.abspath(__file__))
     results_dir = os.path.join(base, "a2_state", "sim_results")
     os.makedirs(results_dir, exist_ok=True)
-    outpath = os.path.join(results_dir, "navier_stokes_complexity_results.json")
+    outpath = os.path.join(results_dir, "navier_stokes_results.json")
     with open(outpath, "w") as f:
         json.dump({
             "timestamp": datetime.now(UTC).isoformat(),

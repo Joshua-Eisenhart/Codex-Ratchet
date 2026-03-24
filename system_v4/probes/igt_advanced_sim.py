@@ -3,11 +3,11 @@ IGT Advanced Theory SIM Suite
 =================================
 Tests the deep claims of Irrational Game Theory:
 
-SIM_01: SG-Only Stall — agents that never export entropy accumulate debt → collapse
+SIM_01: SG-Only Stall — agents that never export state_dispersion accumulate debt → state_reduction
 SIM_02: 720° Cycle — state needs 8 stages (not 4) to return (spinor, not vector)
 SIM_03: Conservative > Aggressive — minimizing worst-case beats maximizing best-case
 SIM_04: Dual-Loop > Single-Loop — deductive+inductive outperforms either alone
-SIM_05: Irrational Escape — temporary entropy increase enables escape from local minimum
+SIM_05: Irrational Escape — temporary state_dispersion increase enables escape from local minimum
 """
 
 import numpy as np
@@ -33,13 +33,13 @@ def negentropy(rho, d):
     return np.log(d) - S
 
 
-# Import operator kernels from engine_terrain_sim
+# Import operator kernels from process_cycle_terrain_sim
 def apply_Ti(rho, d, polarity_up=True, context="isothermal"):
     """
-    Ti operator: Projective/Constraint.
+    Ti operator: Projective/Operator_Bound.
     Context-aware per NLM-17:
       - isothermal (-Ti / TiSe stage): computational basis (environment imposes pointer basis)
-      - adiabatic (+Ti / NeTi stage): eigenbasis-adaptive (system insulated, coherent constraint)
+      - adiabatic (+Ti / NeTi stage): eigenbasis-adaptive (system insulated, coherent operator_bound)
     """
     if context == "adiabatic":
         # Project in rho's own eigenbasis (preserves coherent structure)
@@ -130,7 +130,7 @@ def sim_win_only_stall(d: int = 4, n_rounds: int = 50):
     trajectory sustains operation indefinitely.
     """
     print(f"\n{'='*60}")
-    print(f"SIM_01: SG-ONLY AGENTS STALL (ENTROPY DEBT ACCUMULATION)")
+    print(f"SIM_01: SG-ONLY AGENTS STALL (STATE_DISPERSION DEBT ACCUMULATION)")
     print(f"  d={d}, rounds={n_rounds}")
     print(f"{'='*60}")
     
@@ -146,7 +146,7 @@ def sim_win_only_stall(d: int = 4, n_rounds: int = 50):
         rho_win = ensure_valid(rho_win)
         phi_win_history.append(negentropy(rho_win, d))
     
-    # Strategy B: Balanced SG/EE (structure gain then entropy export, repeat)
+    # Strategy B: Balanced SG/EE (structure gain then state_dispersion export, repeat)
     rho_bal = rho_init.copy()
     phi_bal_history = [negentropy(rho_bal, d)]
     
@@ -179,7 +179,7 @@ def sim_win_only_stall(d: int = 4, n_rounds: int = 50):
     balanced_alive = phi_bal_variance > 0.001 or phi_bal_still_moving
     
     if win_stalled:
-        print(f"  PASS: SG-only stalls! Balanced engine stays alive.")
+        print(f"  PASS: SG-only stalls! Balanced process_cycle stays alive.")
         return EvidenceToken(
             token_id="E_SIM_WIN_STALL_OK",
             sim_spec_id="S_SIM_WIN_STALL_V1",
@@ -196,9 +196,9 @@ def sim_win_only_stall(d: int = 4, n_rounds: int = 50):
 
 def sim_720_cycle(d: int = 4):
     """
-    CLAIM: The full engine cycle requires 8 stages (720°), 
+    CLAIM: The full process_cycle cycle requires 8 stages (720°), 
     not 4 stages (360°). At 4 stages (half-cycle), the state
-    has NOT returned. At 8 stages, it has the SAME entropy signature.
+    has NOT returned. At 8 stages, it has the SAME state_dispersion signature.
     
     This is the spinor double-cover: vectors return at 360°,
     spinors need 720°.
@@ -211,7 +211,7 @@ def sim_720_cycle(d: int = 4):
     np.random.seed(42)
     rho_init = make_random_density_matrix(d)
     
-    # Full 8-stage cycle (Type-1 engine)
+    # Full 8-stage cycle (Type-1 process_cycle)
     # Ti context follows Bit-1: isothermal for TiSe stages, adiabatic for NeTi stages
     ops = [
         (apply_Ti, True, {"context": "isothermal"}),   # Stage 1: TiSe (isothermal)
@@ -274,11 +274,11 @@ def sim_720_cycle(d: int = 4):
 
 def sim_minimin_vs_maximax(d: int = 4, n_rounds: int = 100):
     """
-    CLAIM: Conservative strategy (minimize worst-case collapse) outperforms
+    CLAIM: Conservative strategy (minimize worst-case state_reduction) outperforms
     Aggressive strategy (maximize best-case gain) for long-term solvency.
     
     Aggressive = always seek STRUCTURE_GAINED as hard as possible.
-    Conservative = ensure you never catastrophically export entropy.
+    Conservative = ensure you never catastrophically export state_dispersion.
     """
     print(f"\n{'='*60}")
     print(f"SIM_03: MINIMIN > MAXIMAX (LONG-TERM SOLVENCY)")
@@ -306,7 +306,7 @@ def sim_minimin_vs_maximax(d: int = 4, n_rounds: int = 100):
                 max_collapse_round = i
                 max_collapsed = True
     
-    # Minimin: conservative — alternate WIN/LOSE to prevent collapse
+    # Minimin: conservative — alternate WIN/LOSE to prevent state_reduction
     rho_min = rho_init.copy()
     phi_min_history = []
     min_collapsed = False
@@ -358,8 +358,8 @@ def sim_minimin_vs_maximax(d: int = 4, n_rounds: int = 100):
 
 def sim_dual_vs_single(d: int = 4, n_rounds: int = 50):
     """
-    CLAIM: A dual-loop engine (deductive + inductive) outperforms
-    a single-loop engine (deductive only OR inductive only).
+    CLAIM: A dual-loop process_cycle (deductive + inductive) outperforms
+    a single-loop process_cycle (deductive only OR inductive only).
     
     Single deductive: Ti+Fe only → collapses to fixed point
     Single inductive: Te+Fi only → expands indefinitely, no anchor
@@ -442,13 +442,13 @@ def sim_dual_vs_single(d: int = 4, n_rounds: int = 50):
 
 def sim_irrational_escape(d: int = 4, n_gradient_steps: int = 100):
     """
-    CLAIM: An "irrational" move (temporarily increasing entropy)
+    CLAIM: An "irrational" move (temporarily increasing state_dispersion)
     enables escape from a local minimum that pure gradient descent
     cannot escape.
     
     This is the Oracle vs Turing Machine distinction.
     Gradient descent = Turing (deductive, local).
-    IGT oracle move = topological jump (Z-axis shift).
+    IGT oracle move = structural jump (Z-generator_basis shift).
     """
     print(f"\n{'='*60}")
     print(f"SIM_05: IRRATIONAL ESCAPE (ORACLE vs TURING)")
@@ -456,7 +456,7 @@ def sim_irrational_escape(d: int = 4, n_gradient_steps: int = 100):
     print(f"{'='*60}")
     
     np.random.seed(42)
-    # Create a state near a local attractor
+    # Create a state near a local invariant_target
     U = make_random_unitary(d)
     L_base = np.random.randn(d, d) + 1j * np.random.randn(d, d)
     L = L_base / np.linalg.norm(L_base) * 3.0
@@ -469,7 +469,7 @@ def sim_irrational_escape(d: int = 4, n_gradient_steps: int = 100):
     trapped = rho.copy()
     phi_trapped = negentropy(trapped, d)
     
-    # Strategy 1: Pure gradient descent (keep applying same attractor dynamics)
+    # Strategy 1: Pure gradient descent (keep applying same invariant_target dynamics)
     rho_grad = trapped.copy()
     for _ in range(n_gradient_steps):
         rho_grad = apply_unitary_channel(rho_grad, U)
@@ -477,14 +477,14 @@ def sim_irrational_escape(d: int = 4, n_gradient_steps: int = 100):
             rho_grad = apply_lindbladian_step(rho_grad, L, dt=0.01)
     phi_grad = negentropy(rho_grad, d)
     
-    # Strategy 2: Irrational move first (inject entropy), then new dynamics
+    # Strategy 2: Irrational move first (inject state_dispersion), then new dynamics
     rho_oracle = trapped.copy()
     # The "irrational" move: DEPOLARIZE (temporarily lose structure)
     sigma = np.eye(d, dtype=complex) / d
     rho_oracle = 0.3 * rho_oracle + 0.7 * sigma
     phi_after_irrational = negentropy(rho_oracle, d)
     
-    # Then apply DIFFERENT dynamics (escape to a new basin)
+    # Then apply DIFFERENT dynamics (escape to a new convergent_subset)
     np.random.seed(999)
     U_new = make_random_unitary(d)
     L_new = np.random.randn(d, d) + 1j * np.random.randn(d, d)
@@ -504,7 +504,7 @@ def sim_irrational_escape(d: int = 4, n_gradient_steps: int = 100):
     print(f"  Gradient descent final: Φ = {phi_grad:.6f}")
     print(f"  Oracle escape final: Φ = {phi_oracle:.6f}")
     print(f"  States different: {escaped} (dist={trace_distance(rho_oracle, rho_grad):.4f})")
-    print(f"  → Temporary entropy injection enabled escape to NEW basin!")
+    print(f"  → Temporary state_dispersion injection enabled escape to NEW convergent_subset!")
     
     if escaped:
         print(f"  PASS: Irrational escape confirmed!")

@@ -1,12 +1,12 @@
 """
-Type-2 Engine SIM — Reversed Chirality
+Type-2 Process_Cycle SIM — Reversed Chirality
 ========================================
 8 stages × 4 operators per stage, Lindblad architecture.
 Same framework as szilard_64stage_sim.py but with REVERSED CHIRALITY.
 
 KEY DISTINCTION:
-  Type-1: Engine A outer (FeTi deductive major), Engine B inner (TeFi inductive minor)
-  Type-2: Engine B outer (TeFi inductive major), Engine A inner (FeTi deductive minor)
+  Type-1: Process_Cycle A outer (FeTi deductive major), Process_Cycle B inner (TeFi inductive minor)
+  Type-2: Process_Cycle B outer (TeFi inductive major), Process_Cycle A inner (FeTi deductive minor)
 
 Type-2 Sequence (from NLM-04):
   Major loop (Inductive/Heating = TeFi):
@@ -18,7 +18,7 @@ Math: ρ̇ = -i[H,ρ] + Σ_k γ_k (L_k ρ L_k† - ½{L_k†L_k, ρ})
   Reversed chirality = inductive operators dominate the outer (major) loop,
   deductive operators dominate the inner (minor) loop.
 
-Comparison: overlay ΔΦ trajectories against Type-1 to test
+Comparison: conceptual_layer ΔΦ trajectories against Type-1 to test
   whether Chern number (±1) produces measurably distinct dynamics.
 """
 
@@ -103,7 +103,7 @@ def apply_lindblad_stage(rho, d, dominant_op, axis6_up, dt=0.005, n_steps=5):
     Apply one stage: all 4 operators simultaneously via Lindblad master equation.
 
     dominant_op: 'Ti', 'Te', 'Fi', 'Fe' — gets γ_dominant = 5.0
-    axis6_up: True = (+) source mode, False = (-) sink mode
+    generator_basis6_up: True = (+) source mode, False = (-) sink mode
     subordinate operators get γ_sub = 0.5
     """
     γ_dom = 5.0
@@ -135,7 +135,7 @@ def apply_lindblad_stage(rho, d, dominant_op, axis6_up, dt=0.005, n_steps=5):
         # Fe Lindblad (dissipation)
         for L in Fe_ops:
             LdL = L.conj().T @ L
-            drho += γ_Fe * 0.1 * (L @ rho @ L.conj().T - 0.5 * (LdL @ rho + rho @ LdL))
+            drho += γ_Fe * (L @ rho @ L.conj().T - 0.5 * (LdL @ rho + rho @ LdL))
 
         rho = rho + dt * drho
 
@@ -155,15 +155,15 @@ def apply_lindblad_stage(rho, d, dominant_op, axis6_up, dt=0.005, n_steps=5):
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 # TYPE-1 sequence (from szilard_64stage_sim.py):
-# Major loop (Engine A = Deductive/Cooling = FeTi):
+# Major loop (Process_Cycle A = Deductive/Cooling = FeTi):
 #   1. Ne/Ti/WIN/DOWN   2. Si/Fe/WIN/UP
 #   3. Se/Ti/LOSE/UP    4. Ni/Fe/LOSE/DOWN
-# Minor loop (Engine B = Inductive/Heating = TeFi):
+# Minor loop (Process_Cycle B = Inductive/Heating = TeFi):
 #   5. Se/Fi/win/DOWN   6. Si/Te/win/DOWN
 #   7. Ne/Fi/lose/UP    8. Ni/Te/lose/UP
 
 TYPE1_STAGES = [
-    # (stage, topo, dominant, label, axis6_up, loop)
+    # (stage, topo, dominant, label, generator_basis6_up, loop)
     (1, "Ne", "Ti", "WIN",  False, "A-outer"),
     (2, "Si", "Fe", "WIN",  True,  "A-outer"),
     (3, "Se", "Ti", "LOSE", True,  "A-outer"),
@@ -177,18 +177,18 @@ TYPE1_STAGES = [
 # TYPE-2 sequence (REVERSED CHIRALITY from NLM-04):
 #   NeFi → NiTe → FiSe → TeSi (Major Inductive) → TiNe → SiFe → SeTi → FeNi (Minor Deductive)
 #
-# Major loop (Engine B = Inductive/Heating = TeFi):
+# Major loop (Process_Cycle B = Inductive/Heating = TeFi):
 #   1. Ne/Fi/WIN/DOWN   2. Ni/Te/WIN/UP
 #   3. Fi/Se/LOSE/UP    4. Te/Si/LOSE/DOWN
-# Minor loop (Engine A = Deductive/Cooling = FeTi):
+# Minor loop (Process_Cycle A = Deductive/Cooling = FeTi):
 #   5. Ti/Ne/win/DOWN   6. Si/Fe/win/DOWN
 #   7. Se/Ti/lose/UP    8. Fe/Ni/lose/UP
 #
-# Chirality reversal: axis6 polarities are FLIPPED relative to Type-1
+# Chirality reversal: generator_basis6 polarities are FLIPPED relative to Type-1
 # at corresponding stages (the Chern number sign flip).
 
 TYPE2_STAGES = [
-    # (stage, topo, dominant, label, axis6_up, loop)
+    # (stage, topo, dominant, label, generator_basis6_up, loop)
     (1, "Ne", "Fi", "WIN",  True,  "B-outer"),   # was -/Ti → +/Fi
     (2, "Ni", "Te", "WIN",  False, "B-outer"),    # was +/Fe → -/Te
     (3, "Se", "Fi", "LOSE", False, "B-outer"),     # was +/Ti → -/Fi
@@ -201,12 +201,12 @@ TYPE2_STAGES = [
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Engine runner (parametric on stage table)
+# Process_Cycle runner (parametric on stage table)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 def run_engine(stage_table, label, d, n_cycles, rho_init, verbose=True):
     """
-    Run 8-stage × 4-operator Lindblad engine for n_cycles.
+    Run 8-stage × 4-operator Lindblad process_cycle for n_cycles.
     Returns (final_rho, total_dphi, per_cycle_deltas, per_stage_trajectory).
     """
     rho = rho_init.copy()
@@ -218,7 +218,7 @@ def run_engine(stage_table, label, d, n_cycles, rho_init, verbose=True):
 
     if verbose:
         print(f"\n{'='*70}")
-        print(f"ENGINE: {label}")
+        print(f"PROCESS_CYCLE: {label}")
         print(f"  d={d}, cycles={n_cycles}")
         print(f"  Each stage: 4 operators simultaneous (Lindblad)")
         print(f"  Dominant γ=5.0, subordinate γ=0.5")
@@ -270,7 +270,7 @@ def run_engine(stage_table, label, d, n_cycles, rho_init, verbose=True):
 
 def compare_type1_vs_type2(d=4, n_cycles=10):
     """
-    Run both engine types from IDENTICAL initial state.
+    Run both process_cycle types from IDENTICAL initial state.
     Compare ΔΦ trajectories to test chirality reversal effects.
     """
     np.random.seed(42)
@@ -386,20 +386,20 @@ if __name__ == "__main__":
     if results["chirality_distinct"]:
         evidence.append(EvidenceToken(
             token_id="E_SIM_TYPE2_CHIRALITY_DISTINCT",
-            sim_spec_id="S_SIM_TYPE2_ENGINE_V1",
+            sim_spec_id="S_SIM_TYPE2_PROCESS_CYCLE_V1",
             status="PASS",
             measured_value=results["trace_distance"],
         ))
     else:
         evidence.append(EvidenceToken(
             token_id="",
-            sim_spec_id="S_SIM_TYPE2_ENGINE_V1",
+            sim_spec_id="S_SIM_TYPE2_PROCESS_CYCLE_V1",
             status="KILL",
             measured_value=results["trace_distance"],
             kill_reason="CHIRALITY_REVERSAL_COLLAPSED",
         ))
 
-    # Net ratchet test for Type-2
+    # Net directional_accumulator test for Type-2
     t2_dphi = results["type2"]["total_dphi"]
     if t2_dphi > -1.0:
         evidence.append(EvidenceToken(
@@ -414,11 +414,11 @@ if __name__ == "__main__":
             sim_spec_id="S_SIM_TYPE2_CYCLE_V1",
             status="KILL",
             measured_value=t2_dphi,
-            kill_reason="TYPE2_CYCLE_COLLAPSE",
+            kill_reason="TYPE2_CYCLE_STATE_REDUCTION",
         ))
 
     print(f"\n{'='*70}")
-    print(f"TYPE-2 ENGINE SUITE RESULTS")
+    print(f"TYPE-2 PROCESS_CYCLE SUITE RESULTS")
     print(f"{'='*70}")
     for e in evidence:
         icon = "✓" if e.status == "PASS" else "✗"
@@ -428,7 +428,7 @@ if __name__ == "__main__":
     base = os.path.dirname(os.path.abspath(__file__))
     results_dir = os.path.join(base, "..", "a2_state", "sim_results")
     os.makedirs(results_dir, exist_ok=True)
-    outpath = os.path.join(results_dir, "type2_engine_results.json")
+    outpath = os.path.join(results_dir, "type2_process_cycle_results.json")
 
     # Serialize (convert numpy to python types)
     def to_native(obj):

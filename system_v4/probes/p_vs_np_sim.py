@@ -37,7 +37,7 @@ def sim_p_vs_np(problem_sizes=None):
         d = 2 ** n  # state space grows exponentially
         np.random.seed(42 + n)
 
-        # Create a "witness" state (structured, low entropy)
+        # Create a "witness" state (structured, low state_dispersion)
         rho_witness = np.zeros((d, d), dtype=complex)
         rho_witness[0, 0] = 0.5
         rho_witness[1, 1] = 0.3

@@ -121,7 +121,7 @@ def sim03_operational_equivalence(d):
     return ("PASS", 1.0) if eig_match and S_match else ("KILL", "equiv_fail")
 
 def sim04_entropic_monism(d):
-    """Entropy is basis-invariant: S(VρV†) = S(ρ)."""
+    """State_Dispersion is basis-invariant: S(VρV†) = S(ρ)."""
     np.random.seed(42)
     rho = make_random_density_matrix(d)
     eigvals = np.sort(np.real(np.linalg.eigvalsh(rho)))[::-1]
@@ -129,10 +129,10 @@ def sim04_entropic_monism(d):
     rho1 = V1 @ np.diag(eigvals.astype(complex)) @ V1.conj().T
     rho2 = V2 @ np.diag(eigvals.astype(complex)) @ V2.conj().T
     ok = abs(von_neumann_entropy(rho1) - von_neumann_entropy(rho2)) < 1e-10
-    return ("PASS", 1.0) if ok else ("KILL", "entropy_not_invariant")
+    return ("PASS", 1.0) if ok else ("KILL", "state_dispersion_not_invariant")
 
 def sim05_math_physics_fusion(d):
-    """F01+N01 force complex numbers + chirality simultaneously."""
+    """F01+N01 generator_bias complex numbers + chirality simultaneously."""
     np.random.seed(42)
     A = np.random.randn(d, d) + 1j * np.random.randn(d, d); A = (A + A.conj().T) / 2
     B = np.random.randn(d, d) + 1j * np.random.randn(d, d); B = (B + B.conj().T) / 2
@@ -156,7 +156,7 @@ def sim06_action_precedence(d):
     return ("PASS", dc/30) if dc > 0 else ("KILL", "precedence_collapsed")
 
 def sim07_variance_direction(d):
-    """Deductive vs inductive produce distinct entropy trajectories."""
+    """Deductive vs inductive produce distinct state_dispersion trajectories."""
     np.random.seed(42)
     rho_init = make_random_density_matrix(d)
     U = make_random_unitary(d)
@@ -231,7 +231,7 @@ def sim11_dual_vs_single(d):
     return ("PASS", r_d) if r_d >= r_s * 0.5 else ("KILL", "dual_not_richer")
 
 def sim12_irrational_escape(d):
-    """Temporary entropy increase enables basin escape."""
+    """Temporary state_dispersion increase enables convergent_subset escape."""
     np.random.seed(42)
     U = make_random_unitary(d)
     L = (np.random.randn(d, d) + 1j * np.random.randn(d, d))
@@ -270,10 +270,10 @@ def sim13_net_ratchet(d):
     for _ in range(5):
         for fn in stages: rho = ensure_valid(fn(rho))
     total = negentropy(rho, d) - phi_start
-    return ("PASS", total) if total > -0.5 else ("KILL", f"collapse={total:.4f}")
+    return ("PASS", total) if total > -0.5 else ("KILL", f"state_reduction={total:.4f}")
 
 def sim14_holodeck_fp(d):
-    """Observer fixed-point E(ρ*)=ρ*."""
+    """Reference_Frame fixed-point E(ρ*)=ρ*."""
     np.random.seed(42)
     rho = make_random_density_matrix(d)
     U = make_random_unitary(d)
@@ -355,7 +355,7 @@ def sim18_finite_stability(d):
         rho_s = apply_unitary_channel(rho_s, U)
         for __ in range(n_diss): rho_s = apply_lindbladian_step(rho_s, L, 0.01)
     sd = trace_distance(rho_s, att)
-    # Large kick — use DIFFERENT dynamics so it finds a different basin
+    # Large kick — use DIFFERENT dynamics so it finds a different convergent_subset
     rho_l = ensure_valid(0.2 * att + 0.8 * np.eye(d, dtype=complex) / d)
     np.random.seed(500); U2 = make_random_unitary(d)
     L2 = np.random.randn(d, d) + 1j * np.random.randn(d, d); L2 = L2 / np.linalg.norm(L2) * gamma
@@ -369,7 +369,7 @@ def sim18_finite_stability(d):
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# 16 CONSTRAINT VALIDATORS (C1-C8, X1-X8)
+# 16 OPERATOR_BOUND VALIDATORS (C1-C8, X1-X8)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 ALL_SIMS = [
@@ -380,37 +380,37 @@ ALL_SIMS = [
     ("SIM05_MATH_PHYSICS_FUSION",    sim05_math_physics_fusion),
     ("SIM06_ACTION_PRECEDENCE",      sim06_action_precedence),
     ("SIM07_VARIANCE_DIRECTION",     sim07_variance_direction),
-    ("SIM08_ATTRACTOR_BASIN",        sim08_attractor_basin),
+    ("SIM08_INVARIANT_TARGET_CONVERGENT_SUBSET",        sim08_attractor_basin),
     ("SIM09_720_CYCLE",              sim09_720_cycle),
     ("SIM10_WIN_ONLY_STALL",         sim10_win_only_stall),
     ("SIM11_DUAL_VS_SINGLE",         sim11_dual_vs_single),
     ("SIM12_IRRATIONAL_ESCAPE",      sim12_irrational_escape),
-    ("SIM13_NET_RATCHET",            sim13_net_ratchet),
-    ("SIM14_HOLODECK_FP",            sim14_holodeck_fp),
+    ("SIM13_NET_DIRECTIONAL_ACCUMULATOR",            sim13_net_ratchet),
+    ("SIM14_SIMULATION_MATRIX_FP",            sim14_holodeck_fp),
     ("SIM15_QIT_FEP",                sim15_qit_fep),
     ("SIM16_GT_ISOLATION",           sim16_gt_isolation),
     ("SIM17_REFINEMENT_NONCOMM",     sim17_refinement_noncomm),
     ("SIM18_FINITE_STABILITY",       sim18_finite_stability),
 ]
 
-# Constraint → SIM mapping
+# Operator_Bound → SIM mapping
 CONSTRAINT_MAP = {
     "C1_FINITUDE":           ["SIM01_F01_FINITUDE"],
     "C2_NONCOMMUTATION":     ["SIM02_N01_NONCOMMUTE"],
     "C3_OPERATIONAL_ID":     ["SIM03_CAS04_OPEQUIV"],
     "C4_LANDAUER":           ["SIM04_ENTROPIC_MONISM"],
-    "C5_ENTROPY_FLOW":       ["SIM07_VARIANCE_DIRECTION"],
+    "C5_STATE_DISPERSION_FLOW":       ["SIM07_VARIANCE_DIRECTION"],
     "C6_DUAL_LOOP":          ["SIM11_DUAL_VS_SINGLE"],
     "C7_720_SPINOR":         ["SIM09_720_CYCLE"],
-    "C8_RATCHET_GAIN":       ["SIM13_NET_RATCHET"],
+    "C8_DIRECTIONAL_ACCUMULATOR_GAIN":       ["SIM13_NET_DIRECTIONAL_ACCUMULATOR"],
     "X1_MATH_PHYSICS":       ["SIM05_MATH_PHYSICS_FUSION"],
     "X2_ACTION_PRECEDENCE":  ["SIM06_ACTION_PRECEDENCE"],
-    "X3_NASH_ATTRACTOR":     ["SIM08_ATTRACTOR_BASIN"],
+    "X3_NASH_INVARIANT_TARGET":     ["SIM08_INVARIANT_TARGET_CONVERGENT_SUBSET"],
     "X4_WIN_ONLY_STALLS":    ["SIM10_WIN_ONLY_STALL"],
     "X5_IRRATIONAL_ESCAPE":  ["SIM12_IRRATIONAL_ESCAPE"],
     "X6_REFINEMENT_NONCOMM": ["SIM17_REFINEMENT_NONCOMM"],
     "X7_GT_ISOLATION":       ["SIM16_GT_ISOLATION"],
-    "X8_HOLODECK_FP":        ["SIM14_HOLODECK_FP", "SIM15_QIT_FEP", "SIM18_FINITE_STABILITY"],
+    "X8_SIMULATION_MATRIX_FP":        ["SIM14_SIMULATION_MATRIX_FP", "SIM15_QIT_FEP", "SIM18_FINITE_STABILITY"],
 }
 
 
@@ -452,9 +452,9 @@ def run_dimension_sweep(dimensions=(4, 8, 16, 32)):
         n_total = len(results[d])
         print(f"\n  d={d} summary: {n_pass}/{n_total} PASS in {elapsed:.1f}s")
 
-    # ━━━━ CONSTRAINT VERIFICATION ━━━━
+    # ━━━━ OPERATOR_BOUND VERIFICATION ━━━━
     print(f"\n{'#'*70}")
-    print(f"  CONSTRAINT VERIFICATION (C1-C8, X1-X8)")
+    print(f"  OPERATOR_BOUND VERIFICATION (C1-C8, X1-X8)")
     print(f"{'#'*70}")
 
     constraint_results: Dict[str, Dict[int, str]] = {}
@@ -469,8 +469,8 @@ def run_dimension_sweep(dimensions=(4, 8, 16, 32)):
             if not holds:
                 all_hold = False
 
-    # Print constraint table
-    header = f"  {'Constraint':28s}" + "".join(f"  d={d:3d}" for d in dimensions)
+    # Print operator_bound table
+    header = f"  {'Operator_Bound':28s}" + "".join(f"  d={d:3d}" for d in dimensions)
     print(header)
     print("  " + "─" * (28 + 7 * len(dimensions)))
     for cname in CONSTRAINT_MAP:
@@ -510,6 +510,29 @@ def run_dimension_sweep(dimensions=(4, 8, 16, 32)):
     results_dir = os.path.join(base, "a2_state", "sim_results")
     os.makedirs(results_dir, exist_ok=True)
 
+    # ━━━━ BUILD EVIDENCE LEDGER ━━━━
+    # Build EvidenceToken-compatible entries from the baseline dimension (smallest d)
+    baseline_d = dimensions[0]
+    evidence_ledger = []
+    for sim_name, _ in ALL_SIMS:
+        status, value = results[baseline_d].get(sim_name, ("MISSING", 0))
+        # Check if this SIM passed at ALL dimensions
+        all_pass = all(results[dd].get(sim_name, ("MISSING", 0))[0] == "PASS"
+                       for dd in dimensions)
+        final_status = "PASS" if all_pass else status
+        measured = value if isinstance(value, (int, float)) else 0.0
+        token_id = f"E_SCALE_{sim_name}_OK" if final_status == "PASS" else ""
+        kill_reason = None if final_status == "PASS" else (
+            value if isinstance(value, str) else f"FAIL_AT_SOME_D"
+        )
+        evidence_ledger.append({
+            "token_id": token_id,
+            "sim_spec_id": f"S_SCALE_{sim_name}",
+            "status": final_status,
+            "measured_value": float(measured) if isinstance(measured, (int, float)) else 0.0,
+            "kill_reason": kill_reason,
+        })
+
     report = {
         "timestamp": datetime.now(UTC).isoformat(),
         "dimensions": list(dimensions),
@@ -518,13 +541,14 @@ def run_dimension_sweep(dimensions=(4, 8, 16, 32)):
                      for sn, (s, v) in results[d].items()}
             for d in dimensions
         },
-        "constraint_verification": {
+        "operator_bound_verification": {
             c: {str(d): s for d, s in dmap.items()}
             for c, dmap in constraint_results.items()
         },
         "timings": {str(d): t for d, t in timings.items()},
         "all_constraints_hold": all_hold,
         "constraints_holding": n_constraints_hold,
+        "evidence_ledger": evidence_ledger,
     }
 
     outpath = os.path.join(results_dir, "scale_testing_results.json")

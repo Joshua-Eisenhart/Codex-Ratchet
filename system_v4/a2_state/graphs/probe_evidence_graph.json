@@ -3,11 +3,11 @@
   "build_status": "MATERIALIZED",
   "materialized": true,
   "summary": {
-    "total_nodes": 142,
-    "total_edges": 107,
-    "total_tokens": 107,
-    "pass_count": 102,
-    "kill_count": 5
+    "total_nodes": 171,
+    "total_edges": 129,
+    "total_tokens": 129,
+    "pass_count": 128,
+    "kill_count": 1
   },
   "blockers": [],
   "nodes": {
@@ -20,7 +20,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 5,
       "kill_count": 0,
@@ -35,7 +35,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 5,
       "kill_count": 0,
@@ -50,7 +50,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 7,
       "kill_count": 0,
@@ -65,7 +65,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 6,
       "kill_count": 0,
@@ -80,7 +80,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 4,
       "kill_count": 0,
@@ -88,33 +88,33 @@
     },
     "probe:navier_stokes_complexity_sim": {
       "name": "navier_stokes_complexity_sim.py",
-      "description": "QIT probe: NO_TOKENS, 0P/0K",
+      "description": "QIT probe: ALL_PASS, 5P/0K",
       "type": "probe_evidence",
       "tags": [
         "probe",
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
-      "evidence_status": "NO_TOKENS",
-      "pass_count": 0,
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 5,
       "kill_count": 0,
-      "token_count": 0
+      "token_count": 5
     },
-    "probe:complexity_gap_sim": {
-      "name": "complexity_gap_sim.py",
-      "description": "QIT probe: KILL_PRESENT, 2P/1K",
+    "probe:complexity_gap_v2_sim": {
+      "name": "complexity_gap_v2_sim.py",
+      "description": "QIT probe: ALL_PASS, 2P/0K",
       "type": "probe_evidence",
       "tags": [
         "probe",
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
-      "evidence_status": "KILL_PRESENT",
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
       "pass_count": 2,
-      "kill_count": 1,
-      "token_count": 3
+      "kill_count": 0,
+      "token_count": 2
     },
     "probe:topology_operator_sim": {
       "name": "topology_operator_sim.py",
@@ -125,26 +125,11 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 8,
       "kill_count": 0,
       "token_count": 8
-    },
-    "probe:igt_game_theory_sim": {
-      "name": "igt_game_theory_sim.py",
-      "description": "QIT probe: ALL_PASS, 4P/0K",
-      "type": "probe_evidence",
-      "tags": [
-        "probe",
-        "qit",
-        "evidence"
-      ],
-      "process_status": "PASS",
-      "evidence_status": "ALL_PASS",
-      "pass_count": 4,
-      "kill_count": 0,
-      "token_count": 4
     },
     "probe:engine_terrain_sim": {
       "name": "engine_terrain_sim.py",
@@ -155,26 +140,11 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 3,
       "kill_count": 0,
       "token_count": 3
-    },
-    "probe:igt_advanced_sim": {
-      "name": "igt_advanced_sim.py",
-      "description": "QIT probe: ALL_PASS, 5P/0K",
-      "type": "probe_evidence",
-      "tags": [
-        "probe",
-        "qit",
-        "evidence"
-      ],
-      "process_status": "PASS",
-      "evidence_status": "ALL_PASS",
-      "pass_count": 5,
-      "kill_count": 0,
-      "token_count": 5
     },
     "probe:godel_stall_sim": {
       "name": "godel_stall_sim.py",
@@ -185,7 +155,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 3,
       "kill_count": 0,
@@ -193,18 +163,18 @@
     },
     "probe:dual_weyl_spinor_engine_sim": {
       "name": "dual_weyl_spinor_engine_sim.py",
-      "description": "QIT probe: NO_TOKENS, 0P/0K",
+      "description": "QIT probe: ALL_PASS, 4P/0K",
       "type": "probe_evidence",
       "tags": [
         "probe",
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
-      "evidence_status": "NO_TOKENS",
-      "pass_count": 0,
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 4,
       "kill_count": 0,
-      "token_count": 0
+      "token_count": 4
     },
     "probe:full_8stage_engine_sim": {
       "name": "full_8stage_engine_sim.py",
@@ -215,7 +185,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 2,
       "kill_count": 0,
@@ -230,7 +200,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 1,
       "kill_count": 0,
@@ -245,26 +215,26 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 5,
       "kill_count": 0,
       "token_count": 5
     },
-    "probe:szilard_64stage_sim": {
-      "name": "szilard_64stage_sim.py",
-      "description": "QIT probe: KILL_PRESENT, 2P/1K",
+    "probe:szilard_64stage_v2_sim": {
+      "name": "szilard_64stage_v2_sim.py",
+      "description": "QIT probe: NO_TOKENS, 0P/0K",
       "type": "probe_evidence",
       "tags": [
         "probe",
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
-      "evidence_status": "KILL_PRESENT",
-      "pass_count": 2,
-      "kill_count": 1,
-      "token_count": 3
+      "process_status": "FAIL",
+      "evidence_status": "NO_TOKENS",
+      "pass_count": 0,
+      "kill_count": 0,
+      "token_count": 0
     },
     "probe:nlm_batch2_sim": {
       "name": "nlm_batch2_sim.py",
@@ -275,26 +245,26 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 4,
       "kill_count": 0,
       "token_count": 4
     },
-    "probe:gain_calibration_sim": {
-      "name": "gain_calibration_sim.py",
-      "description": "QIT probe: KILL_PRESENT, 0P/2K",
+    "probe:gain_calibration_v2_sim": {
+      "name": "gain_calibration_v2_sim.py",
+      "description": "QIT probe: ALL_PASS, 1P/0K",
       "type": "probe_evidence",
       "tags": [
         "probe",
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
-      "evidence_status": "KILL_PRESENT",
-      "pass_count": 0,
-      "kill_count": 2,
-      "token_count": 2
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 1,
+      "kill_count": 0,
+      "token_count": 1
     },
     "probe:demon_fixed_sim": {
       "name": "demon_fixed_sim.py",
@@ -305,7 +275,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 3,
       "kill_count": 0,
@@ -320,7 +290,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 2,
       "kill_count": 0,
@@ -335,7 +305,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 2,
       "kill_count": 0,
@@ -350,7 +320,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 3,
       "kill_count": 0,
@@ -365,7 +335,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 2,
       "kill_count": 0,
@@ -380,7 +350,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 2,
       "kill_count": 0,
@@ -395,26 +365,26 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 2,
       "kill_count": 0,
       "token_count": 2
     },
-    "probe:abiogenesis_sim": {
-      "name": "abiogenesis_sim.py",
-      "description": "QIT probe: KILL_PRESENT, 1P/1K",
+    "probe:abiogenesis_v2_sim": {
+      "name": "abiogenesis_v2_sim.py",
+      "description": "QIT probe: ALL_PASS, 1P/0K",
       "type": "probe_evidence",
       "tags": [
         "probe",
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
-      "evidence_status": "KILL_PRESENT",
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
       "pass_count": 1,
-      "kill_count": 1,
-      "token_count": 2
+      "kill_count": 0,
+      "token_count": 1
     },
     "probe:quantum_gravity_sim": {
       "name": "quantum_gravity_sim.py",
@@ -425,7 +395,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 2,
       "kill_count": 0,
@@ -440,7 +410,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 2,
       "kill_count": 0,
@@ -448,18 +418,18 @@
     },
     "probe:scale_testing_sim": {
       "name": "scale_testing_sim.py",
-      "description": "QIT probe: NO_TOKENS, 0P/0K",
+      "description": "QIT probe: ALL_PASS, 18P/0K",
       "type": "probe_evidence",
       "tags": [
         "probe",
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
-      "evidence_status": "NO_TOKENS",
-      "pass_count": 0,
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 18,
       "kill_count": 0,
-      "token_count": 0
+      "token_count": 18
     },
     "probe:chemistry_sim": {
       "name": "chemistry_sim.py",
@@ -470,7 +440,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 3,
       "kill_count": 0,
@@ -485,7 +455,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 3,
       "kill_count": 0,
@@ -500,7 +470,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 3,
       "kill_count": 0,
@@ -515,7 +485,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "ALL_PASS",
       "pass_count": 6,
       "kill_count": 0,
@@ -523,6 +493,141 @@
     },
     "probe:rock_falsifier_enhanced_sim": {
       "name": "rock_falsifier_enhanced_sim.py",
+      "description": "QIT probe: ALL_PASS, 1P/0K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 1,
+      "kill_count": 0,
+      "token_count": 1
+    },
+    "probe:tier_3_mega_sim": {
+      "name": "tier_3_mega_sim.py",
+      "description": "QIT probe: ALL_PASS, 2P/0K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 2,
+      "kill_count": 0,
+      "token_count": 2
+    },
+    "probe:sim_moloch_trap_field": {
+      "name": "sim_moloch_trap_field.py",
+      "description": "QIT probe: ALL_PASS, 1P/0K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 1,
+      "kill_count": 0,
+      "token_count": 1
+    },
+    "probe:axis_6_precedence_sim": {
+      "name": "axis_6_precedence_sim.py",
+      "description": "QIT probe: ALL_PASS, 1P/0K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 1,
+      "kill_count": 0,
+      "token_count": 1
+    },
+    "probe:i_scalar_filtration_sim": {
+      "name": "i_scalar_filtration_sim.py",
+      "description": "QIT probe: ALL_PASS, 1P/0K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 1,
+      "kill_count": 0,
+      "token_count": 1
+    },
+    "probe:axis3_orthogonality_sim": {
+      "name": "axis3_orthogonality_sim.py",
+      "description": "QIT probe: KILL_PRESENT, 0P/1K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "FAIL",
+      "evidence_status": "KILL_PRESENT",
+      "pass_count": 0,
+      "kill_count": 1,
+      "token_count": 1
+    },
+    "probe:axis0_correlation_sim": {
+      "name": "axis0_correlation_sim.py",
+      "description": "QIT probe: ALL_PASS, 1P/0K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 1,
+      "kill_count": 0,
+      "token_count": 1
+    },
+    "probe:axis0_path_integral_sim": {
+      "name": "axis0_path_integral_sim.py",
+      "description": "QIT probe: ALL_PASS, 1P/0K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 1,
+      "kill_count": 0,
+      "token_count": 1
+    },
+    "probe:axis_relations_sim": {
+      "name": "axis_relations_sim.py",
+      "description": "QIT probe: ALL_PASS, 1P/0K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "FAIL",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 1,
+      "kill_count": 0,
+      "token_count": 1
+    },
+    "probe:qit_topology_parity_sim": {
+      "name": "qit_topology_parity_sim.py",
       "description": "QIT probe: NO_TOKENS, 0P/0K",
       "type": "probe_evidence",
       "tags": [
@@ -530,7 +635,7 @@
         "qit",
         "evidence"
       ],
-      "process_status": "PASS",
+      "process_status": "FAIL",
       "evidence_status": "NO_TOKENS",
       "pass_count": 0,
       "kill_count": 0,
@@ -860,41 +965,89 @@
       "measured_value": 1.3862943611198906,
       "source_file": "proof_cost_sim.py"
     },
-    "token:E_SIM_GAP_SCALES_OK": {
-      "name": "E_SIM_GAP_SCALES_OK",
-      "description": "PASS: S_SIM_GAP_SCALING_V1",
+    "token:E_SIM_VISCOSITY_OK": {
+      "name": "E_SIM_VISCOSITY_OK",
+      "description": "PASS: S_SIM_VISCOSITY_V1",
       "type": "evidence_token",
       "tags": [
         "token",
         "pass"
       ],
       "status": "PASS",
-      "measured_value": 3.347826086956522,
-      "source_file": "complexity_gap_sim.py"
+      "measured_value": 5.0,
+      "source_file": "navier_stokes_complexity_sim.py"
     },
-    "token:UNNAMED_TOKEN_1_KILL": {
-      "name": "UNNAMED_TOKEN_1_KILL",
-      "description": "KILL: S_SIM_BASIN_DEPTH_V1",
-      "type": "evidence_token",
-      "tags": [
-        "token",
-        "kill"
-      ],
-      "status": "KILL",
-      "measured_value": -0.8238601453043721,
-      "source_file": "complexity_gap_sim.py"
-    },
-    "token:E_SIM_CONTINUUM_STALL_OK": {
-      "name": "E_SIM_CONTINUUM_STALL_OK",
-      "description": "PASS: S_SIM_CONTINUUM_V1",
+    "token:E_SIM_TURBULENCE_OK": {
+      "name": "E_SIM_TURBULENCE_OK",
+      "description": "PASS: S_SIM_TURBULENCE_V1",
       "type": "evidence_token",
       "tags": [
         "token",
         "pass"
       ],
       "status": "PASS",
-      "measured_value": 709.0895657128241,
-      "source_file": "complexity_gap_sim.py"
+      "measured_value": 20.0,
+      "source_file": "navier_stokes_complexity_sim.py"
+    },
+    "token:E_SIM_P_WITHIN_CONVERGENT_SUBSET_OK": {
+      "name": "E_SIM_P_WITHIN_CONVERGENT_SUBSET_OK",
+      "description": "PASS: S_SIM_P_CONVERGENT_SUBSET_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 38.0,
+      "source_file": "navier_stokes_complexity_sim.py"
+    },
+    "token:E_SIM_NP_BETWEEN_CONVERGENT_SUBSET_OK": {
+      "name": "E_SIM_NP_BETWEEN_CONVERGENT_SUBSET_OK",
+      "description": "PASS: S_SIM_NP_CONVERGENT_SUBSET_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 90.0,
+      "source_file": "navier_stokes_complexity_sim.py"
+    },
+    "token:E_SIM_SMOOTHNESS_OK": {
+      "name": "E_SIM_SMOOTHNESS_OK",
+      "description": "PASS: S_SIM_SMOOTHNESS_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 16.0,
+      "source_file": "navier_stokes_complexity_sim.py"
+    },
+    "token:E_SIM_GAP_SCALES_V2_OK": {
+      "name": "E_SIM_GAP_SCALES_V2_OK",
+      "description": "PASS: S_SIM_GAP_SCALING_V2",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 4.1588830833596715,
+      "source_file": "complexity_gap_v2_sim.py"
+    },
+    "token:E_SIM_CONVERGENT_SUBSET_DEPTH_V2_OK": {
+      "name": "E_SIM_CONVERGENT_SUBSET_DEPTH_V2_OK",
+      "description": "PASS: S_SIM_CONVERGENT_SUBSET_DEPTH_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.9688762124954116,
+      "source_file": "complexity_gap_v2_sim.py"
     },
     "token:E_SIM_TOROIDAL_OK": {
       "name": "E_SIM_TOROIDAL_OK",
@@ -920,8 +1073,8 @@
       "measured_value": 0.3967432338212412,
       "source_file": "topology_operator_sim.py"
     },
-    "token:E_SIM_SINGULAR_ATTRACTOR_OK": {
-      "name": "E_SIM_SINGULAR_ATTRACTOR_OK",
+    "token:E_SIM_SINGULAR_INVARIANT_TARGET_OK": {
+      "name": "E_SIM_SINGULAR_INVARIANT_TARGET_OK",
       "description": "PASS: S_SIM_SINGULAR_V1",
       "type": "evidence_token",
       "tags": [
@@ -932,9 +1085,9 @@
       "measured_value": 2.6459752240906276e-05,
       "source_file": "topology_operator_sim.py"
     },
-    "token:E_SIM_STABLE_BASIN_OK": {
-      "name": "E_SIM_STABLE_BASIN_OK",
-      "description": "PASS: S_SIM_BASIN_V1",
+    "token:E_SIM_STABLE_CONVERGENT_SUBSET_OK": {
+      "name": "E_SIM_STABLE_CONVERGENT_SUBSET_OK",
+      "description": "PASS: S_SIM_CONVERGENT_SUBSET_V1",
       "type": "evidence_token",
       "tags": [
         "token",
@@ -992,54 +1145,6 @@
       "measured_value": 1.1184391816896102,
       "source_file": "topology_operator_sim.py"
     },
-    "token:E_SIM_IGT_FOUR_OUTCOMES_OK": {
-      "name": "E_SIM_IGT_FOUR_OUTCOMES_OK",
-      "description": "PASS: S_SIM_IGT_OUTCOMES_V1",
-      "type": "evidence_token",
-      "tags": [
-        "token",
-        "pass"
-      ],
-      "status": "PASS",
-      "measured_value": 4.0,
-      "source_file": "igt_game_theory_sim.py"
-    },
-    "token:E_SIM_IGT_CHIRALITY_OK": {
-      "name": "E_SIM_IGT_CHIRALITY_OK",
-      "description": "PASS: S_SIM_IGT_CHIRALITY_V1",
-      "type": "evidence_token",
-      "tags": [
-        "token",
-        "pass"
-      ],
-      "status": "PASS",
-      "measured_value": 0.499034307396792,
-      "source_file": "igt_game_theory_sim.py"
-    },
-    "token:E_SIM_IGT_8MODES_OK": {
-      "name": "E_SIM_IGT_8MODES_OK",
-      "description": "PASS: S_SIM_IGT_8MODES_V1",
-      "type": "evidence_token",
-      "tags": [
-        "token",
-        "pass"
-      ],
-      "status": "PASS",
-      "measured_value": 8.0,
-      "source_file": "igt_game_theory_sim.py"
-    },
-    "token:E_SIM_IGT_NASH_OK": {
-      "name": "E_SIM_IGT_NASH_OK",
-      "description": "PASS: S_SIM_IGT_NASH_V1",
-      "type": "evidence_token",
-      "tags": [
-        "token",
-        "pass"
-      ],
-      "status": "PASS",
-      "measured_value": 0.6416609802232635,
-      "source_file": "igt_game_theory_sim.py"
-    },
     "token:E_SIM_TYPE1_STRUCTURAL_PASS": {
       "name": "E_SIM_TYPE1_STRUCTURAL_PASS",
       "description": "PASS: S_SIM_TYPE1_V1",
@@ -1076,66 +1181,6 @@
       "measured_value": 0.5740124026455449,
       "source_file": "engine_terrain_sim.py"
     },
-    "token:E_SIM_WIN_STALL_OK": {
-      "name": "E_SIM_WIN_STALL_OK",
-      "description": "PASS: S_SIM_WIN_STALL_V1",
-      "type": "evidence_token",
-      "tags": [
-        "token",
-        "pass"
-      ],
-      "status": "PASS",
-      "measured_value": 0.0,
-      "source_file": "igt_advanced_sim.py"
-    },
-    "token:E_SIM_720_CYCLE_OK": {
-      "name": "E_SIM_720_CYCLE_OK",
-      "description": "PASS: S_SIM_720_V1",
-      "type": "evidence_token",
-      "tags": [
-        "token",
-        "pass"
-      ],
-      "status": "PASS",
-      "measured_value": 0.3780883499571909,
-      "source_file": "igt_advanced_sim.py"
-    },
-    "token:E_SIM_MINIMIN_OK": {
-      "name": "E_SIM_MINIMIN_OK",
-      "description": "PASS: S_SIM_MINIMIN_V1",
-      "type": "evidence_token",
-      "tags": [
-        "token",
-        "pass"
-      ],
-      "status": "PASS",
-      "measured_value": 12.0,
-      "source_file": "igt_advanced_sim.py"
-    },
-    "token:E_SIM_DUAL_LOOP_OK": {
-      "name": "E_SIM_DUAL_LOOP_OK",
-      "description": "PASS: S_SIM_DUAL_LOOP_V1",
-      "type": "evidence_token",
-      "tags": [
-        "token",
-        "pass"
-      ],
-      "status": "PASS",
-      "measured_value": 1.1550709361279696,
-      "source_file": "igt_advanced_sim.py"
-    },
-    "token:E_SIM_IRRATIONAL_ESCAPE_OK": {
-      "name": "E_SIM_IRRATIONAL_ESCAPE_OK",
-      "description": "PASS: S_SIM_IRRATIONAL_V1",
-      "type": "evidence_token",
-      "tags": [
-        "token",
-        "pass"
-      ],
-      "status": "PASS",
-      "measured_value": 0.2280116087720963,
-      "source_file": "igt_advanced_sim.py"
-    },
     "token:E_SIM_TURING_STALL_OK": {
       "name": "E_SIM_TURING_STALL_OK",
       "description": "PASS: S_SIM_GODEL_STALL_V1",
@@ -1171,6 +1216,54 @@
       "status": "PASS",
       "measured_value": 0.0,
       "source_file": "godel_stall_sim.py"
+    },
+    "token:E_TYPE1_CONVERGENT_OK": {
+      "name": "E_TYPE1_CONVERGENT_OK",
+      "description": "PASS: S_TYPE1_PROCESS_CYCLE",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.9958452761765141,
+      "source_file": "dual_weyl_spinor_engine_sim.py"
+    },
+    "token:E_TYPE2_DIVERGENT_OK": {
+      "name": "E_TYPE2_DIVERGENT_OK",
+      "description": "PASS: S_TYPE2_PROCESS_CYCLE",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.0,
+      "source_file": "dual_weyl_spinor_engine_sim.py"
+    },
+    "token:E_SIM_TYPE1_WEYL_720_NON_STATE_REDUCTION_OK": {
+      "name": "E_SIM_TYPE1_WEYL_720_NON_STATE_REDUCTION_OK",
+      "description": "PASS: S_SIM_TYPE1_WEYL_720_NON_STATE_REDUCTION_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.7428638726224164,
+      "source_file": "dual_weyl_spinor_engine_sim.py"
+    },
+    "token:E_SIM_NESTED_TORI_NON_STATE_REDUCTION_OK": {
+      "name": "E_SIM_NESTED_TORI_NON_STATE_REDUCTION_OK",
+      "description": "PASS: S_SIM_STRUCTURAL_NON_STATE_REDUCTION_FALSIFY",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.2914248502813508,
+      "source_file": "dual_weyl_spinor_engine_sim.py"
     },
     "token:E_SIM_FULL_8STAGE_CYCLE_OK": {
       "name": "E_SIM_FULL_8STAGE_CYCLE_OK",
@@ -1268,42 +1361,6 @@
       "measured_value": 0.15267480712910456,
       "source_file": "constraint_gap_sim.py"
     },
-    "token:E_SIM_64STAGE_CYCLE_OK": {
-      "name": "E_SIM_64STAGE_CYCLE_OK",
-      "description": "PASS: S_SIM_64STAGE_V2",
-      "type": "evidence_token",
-      "tags": [
-        "token",
-        "pass"
-      ],
-      "status": "PASS",
-      "measured_value": 0.14834803094284588,
-      "source_file": "szilard_64stage_sim.py"
-    },
-    "token:UNNAMED_TOKEN_2_KILL": {
-      "name": "UNNAMED_TOKEN_2_KILL",
-      "description": "KILL: S_SIM_DUAL_SZILARD_V1",
-      "type": "evidence_token",
-      "tags": [
-        "token",
-        "kill"
-      ],
-      "status": "KILL",
-      "measured_value": 0.0,
-      "source_file": "szilard_64stage_sim.py"
-    },
-    "token:E_SIM_GAMMA_SWEEP_OK": {
-      "name": "E_SIM_GAMMA_SWEEP_OK",
-      "description": "PASS: S_SIM_GAMMA_SWEEP_V1",
-      "type": "evidence_token",
-      "tags": [
-        "token",
-        "pass"
-      ],
-      "status": "PASS",
-      "measured_value": 1.0,
-      "source_file": "szilard_64stage_sim.py"
-    },
     "token:E_SIM_HOLODECK_FP_OK": {
       "name": "E_SIM_HOLODECK_FP_OK",
       "description": "PASS: S_SIM_HOLODECK_V1",
@@ -1352,29 +1409,17 @@
       "measured_value": -0.450189758809879,
       "source_file": "nlm_batch2_sim.py"
     },
-    "token:UNNAMED_TOKEN_3_KILL": {
-      "name": "UNNAMED_TOKEN_3_KILL",
-      "description": "KILL: S_SIM_GAIN_CALIBRATION_V1",
+    "token:E_SIM_GAIN_CALIBRATION_V2_OK": {
+      "name": "E_SIM_GAIN_CALIBRATION_V2_OK",
+      "description": "PASS: S_SIM_GAIN_CALIBRATION_V2",
       "type": "evidence_token",
       "tags": [
         "token",
-        "kill"
+        "pass"
       ],
-      "status": "KILL",
-      "measured_value": -0.4111963810985836,
-      "source_file": "gain_calibration_sim.py"
-    },
-    "token:UNNAMED_TOKEN_4_KILL": {
-      "name": "UNNAMED_TOKEN_4_KILL",
-      "description": "KILL: S_SIM_CALIBRATED_ENGINE_V1",
-      "type": "evidence_token",
-      "tags": [
-        "token",
-        "kill"
-      ],
-      "status": "KILL",
-      "measured_value": -0.4111963810985836,
-      "source_file": "gain_calibration_sim.py"
+      "status": "PASS",
+      "measured_value": 0.3333710534533708,
+      "source_file": "gain_calibration_v2_sim.py"
     },
     "token:E_SIM_DEMON_EIGENBASIS_OK": {
       "name": "E_SIM_DEMON_EIGENBASIS_OK",
@@ -1568,29 +1613,17 @@
       "measured_value": 0.47330231791589594,
       "source_file": "alignment_sim.py"
     },
-    "token:UNNAMED_TOKEN_5_KILL": {
-      "name": "UNNAMED_TOKEN_5_KILL",
-      "description": "KILL: S_SIM_ABIOGENESIS_V1",
-      "type": "evidence_token",
-      "tags": [
-        "token",
-        "kill"
-      ],
-      "status": "KILL",
-      "measured_value": 0.0,
-      "source_file": "abiogenesis_sim.py"
-    },
-    "token:E_SIM_THERMAL_DEATH_DOMINANT_OK": {
-      "name": "E_SIM_THERMAL_DEATH_DOMINANT_OK",
-      "description": "PASS: S_SIM_THERMAL_DEATH_V1",
+    "token:E_SIM_DIRECTIONAL_ACCUMULATOR_ABIOGENESIS_OK": {
+      "name": "E_SIM_DIRECTIONAL_ACCUMULATOR_ABIOGENESIS_OK",
+      "description": "PASS: S_SIM_ABIOGENESIS_V2",
       "type": "evidence_token",
       "tags": [
         "token",
         "pass"
       ],
       "status": "PASS",
-      "measured_value": 1.0,
-      "source_file": "abiogenesis_sim.py"
+      "measured_value": 1.1991281581485949,
+      "source_file": "abiogenesis_v2_sim.py"
     },
     "token:E_SIM_GRAV_GRADIENT_OK": {
       "name": "E_SIM_GRAV_GRADIENT_OK",
@@ -1639,6 +1672,222 @@
       "status": "PASS",
       "measured_value": 8.82447049701804,
       "source_file": "yang_mills_sim.py"
+    },
+    "token:E_SCALE_SIM01_F01_FINITUDE_OK": {
+      "name": "E_SCALE_SIM01_F01_FINITUDE_OK",
+      "description": "PASS: S_SCALE_SIM01_F01_FINITUDE",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.0,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM02_N01_NONCOMMUTE_OK": {
+      "name": "E_SCALE_SIM02_N01_NONCOMMUTE_OK",
+      "description": "PASS: S_SCALE_SIM02_N01_NONCOMMUTE",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.0,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM03_CAS04_OPEQUIV_OK": {
+      "name": "E_SCALE_SIM03_CAS04_OPEQUIV_OK",
+      "description": "PASS: S_SCALE_SIM03_CAS04_OPEQUIV",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.0,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM04_ENTROPIC_MONISM_OK": {
+      "name": "E_SCALE_SIM04_ENTROPIC_MONISM_OK",
+      "description": "PASS: S_SCALE_SIM04_ENTROPIC_MONISM",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.0,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM05_MATH_PHYSICS_FUSION_OK": {
+      "name": "E_SCALE_SIM05_MATH_PHYSICS_FUSION_OK",
+      "description": "PASS: S_SCALE_SIM05_MATH_PHYSICS_FUSION",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.0,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM06_ACTION_PRECEDENCE_OK": {
+      "name": "E_SCALE_SIM06_ACTION_PRECEDENCE_OK",
+      "description": "PASS: S_SCALE_SIM06_ACTION_PRECEDENCE",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.0,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM07_VARIANCE_DIRECTION_OK": {
+      "name": "E_SCALE_SIM07_VARIANCE_DIRECTION_OK",
+      "description": "PASS: S_SCALE_SIM07_VARIANCE_DIRECTION",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.0006540086138027146,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM08_INVARIANT_TARGET_CONVERGENT_SUBSET_OK": {
+      "name": "E_SCALE_SIM08_INVARIANT_TARGET_CONVERGENT_SUBSET_OK",
+      "description": "PASS: S_SCALE_SIM08_INVARIANT_TARGET_CONVERGENT_SUBSET",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 2.556820345182541e-11,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM09_720_CYCLE_OK": {
+      "name": "E_SCALE_SIM09_720_CYCLE_OK",
+      "description": "PASS: S_SCALE_SIM09_720_CYCLE",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.3780883499571909,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM10_WIN_ONLY_STALL_OK": {
+      "name": "E_SCALE_SIM10_WIN_ONLY_STALL_OK",
+      "description": "PASS: S_SCALE_SIM10_WIN_ONLY_STALL",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.3862943611198906,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM11_DUAL_VS_SINGLE_OK": {
+      "name": "E_SCALE_SIM11_DUAL_VS_SINGLE_OK",
+      "description": "PASS: S_SCALE_SIM11_DUAL_VS_SINGLE",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.1546403161083847,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM12_IRRATIONAL_ESCAPE_OK": {
+      "name": "E_SCALE_SIM12_IRRATIONAL_ESCAPE_OK",
+      "description": "PASS: S_SCALE_SIM12_IRRATIONAL_ESCAPE",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.21804875995372808,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM13_NET_DIRECTIONAL_ACCUMULATOR_OK": {
+      "name": "E_SCALE_SIM13_NET_DIRECTIONAL_ACCUMULATOR_OK",
+      "description": "PASS: S_SCALE_SIM13_NET_DIRECTIONAL_ACCUMULATOR",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.8551178594744561,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM14_SIMULATION_MATRIX_FP_OK": {
+      "name": "E_SCALE_SIM14_SIMULATION_MATRIX_FP_OK",
+      "description": "PASS: S_SCALE_SIM14_SIMULATION_MATRIX_FP",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.00024514044509604,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM15_QIT_FEP_OK": {
+      "name": "E_SCALE_SIM15_QIT_FEP_OK",
+      "description": "PASS: S_SCALE_SIM15_QIT_FEP",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.4457503389664147,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM16_GT_ISOLATION_OK": {
+      "name": "E_SCALE_SIM16_GT_ISOLATION_OK",
+      "description": "PASS: S_SCALE_SIM16_GT_ISOLATION",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.0,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM17_REFINEMENT_NONCOMM_OK": {
+      "name": "E_SCALE_SIM17_REFINEMENT_NONCOMM_OK",
+      "description": "PASS: S_SCALE_SIM17_REFINEMENT_NONCOMM",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.06550236141622735,
+      "source_file": "scale_testing_sim.py"
+    },
+    "token:E_SCALE_SIM18_FINITE_STABILITY_OK": {
+      "name": "E_SCALE_SIM18_FINITE_STABILITY_OK",
+      "description": "PASS: S_SCALE_SIM18_FINITE_STABILITY",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.25126660933372114,
+      "source_file": "scale_testing_sim.py"
     },
     "token:E_SIM_REACTION_OK": {
       "name": "E_SIM_REACTION_OK",
@@ -1819,6 +2068,126 @@
       "status": "PASS",
       "measured_value": 100.0,
       "source_file": "navier_stokes_formal_sim.py"
+    },
+    "token:E_SIM_ROCK_FALSIFIER_ENHANCED_OK": {
+      "name": "E_SIM_ROCK_FALSIFIER_ENHANCED_OK",
+      "description": "PASS: S_SIM_ROCK_FALSIFIER_ENHANCED_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.0,
+      "source_file": "rock_falsifier_enhanced_sim.py"
+    },
+    "token:E_SIM_MEGA_ENTRAINMENT_OK": {
+      "name": "E_SIM_MEGA_ENTRAINMENT_OK",
+      "description": "PASS: S_SIM_MEGA_ENTRAINMENT_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.12892971272242337,
+      "source_file": "tier_3_mega_sim.py"
+    },
+    "token:E_SIM_NO_SIGNALING_OK": {
+      "name": "E_SIM_NO_SIGNALING_OK",
+      "description": "PASS: S_SIM_NO_SIGNALING_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.9999999999999993,
+      "source_file": "tier_3_mega_sim.py"
+    },
+    "token:E_SIM_MOLOCH_TRAP_OK": {
+      "name": "E_SIM_MOLOCH_TRAP_OK",
+      "description": "PASS: S_SIM_MOLOCH_TRAP_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.1102230246251565e-16,
+      "source_file": "sim_moloch_trap_field.py"
+    },
+    "token:E_SIM_AXIS6_PRECEDENCE_OK": {
+      "name": "E_SIM_AXIS6_PRECEDENCE_OK",
+      "description": "PASS: S_SIM_AXIS6_PRECEDENCE_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.0,
+      "source_file": "axis_6_precedence_sim.py"
+    },
+    "token:E_SIM_ISCALAR_FILTRATION_OK": {
+      "name": "E_SIM_ISCALAR_FILTRATION_OK",
+      "description": "PASS: S_SIM_ISCALAR_FILTRATION_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.0,
+      "source_file": "i_scalar_filtration_sim.py"
+    },
+    "token:UNNAMED_TOKEN_1_KILL": {
+      "name": "UNNAMED_TOKEN_1_KILL",
+      "description": "KILL: S_SIM_AXIS3_ORTHOGONALITY_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": 0.43903314869653987,
+      "source_file": "axis3_orthogonality_sim.py"
+    },
+    "token:E_SIM_AXIS0_GRADIENT_OK": {
+      "name": "E_SIM_AXIS0_GRADIENT_OK",
+      "description": "PASS: S_SIM_AXIS0_CORRELATION_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.16097450710270422,
+      "source_file": "axis0_correlation_sim.py"
+    },
+    "token:E_SIM_NESTED_HOPF_TORI_OK": {
+      "name": "E_SIM_NESTED_HOPF_TORI_OK",
+      "description": "PASS: S_SIM_PATH_INTEGRAL_AXIS0",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.1672809551073307,
+      "source_file": "axis0_path_integral_sim.py"
+    },
+    "token:E_SIM_AXIS_RELATIONS_OK": {
+      "name": "E_SIM_AXIS_RELATIONS_OK",
+      "description": "PASS: S_SIM_AXIS_RELATIONS_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.0,
+      "source_file": "axis_relations_sim.py"
     }
   },
   "edges": [
@@ -1958,18 +2327,38 @@
       "type": "produces"
     },
     {
-      "source": "probe:complexity_gap_sim",
-      "target": "token:E_SIM_GAP_SCALES_OK",
+      "source": "probe:navier_stokes_complexity_sim",
+      "target": "token:E_SIM_VISCOSITY_OK",
       "type": "produces"
     },
     {
-      "source": "probe:complexity_gap_sim",
-      "target": "token:UNNAMED_TOKEN_1_KILL",
+      "source": "probe:navier_stokes_complexity_sim",
+      "target": "token:E_SIM_TURBULENCE_OK",
       "type": "produces"
     },
     {
-      "source": "probe:complexity_gap_sim",
-      "target": "token:E_SIM_CONTINUUM_STALL_OK",
+      "source": "probe:navier_stokes_complexity_sim",
+      "target": "token:E_SIM_P_WITHIN_CONVERGENT_SUBSET_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:navier_stokes_complexity_sim",
+      "target": "token:E_SIM_NP_BETWEEN_CONVERGENT_SUBSET_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:navier_stokes_complexity_sim",
+      "target": "token:E_SIM_SMOOTHNESS_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:complexity_gap_v2_sim",
+      "target": "token:E_SIM_GAP_SCALES_V2_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:complexity_gap_v2_sim",
+      "target": "token:E_SIM_CONVERGENT_SUBSET_DEPTH_V2_OK",
       "type": "produces"
     },
     {
@@ -1984,12 +2373,12 @@
     },
     {
       "source": "probe:topology_operator_sim",
-      "target": "token:E_SIM_SINGULAR_ATTRACTOR_OK",
+      "target": "token:E_SIM_SINGULAR_INVARIANT_TARGET_OK",
       "type": "produces"
     },
     {
       "source": "probe:topology_operator_sim",
-      "target": "token:E_SIM_STABLE_BASIN_OK",
+      "target": "token:E_SIM_STABLE_CONVERGENT_SUBSET_OK",
       "type": "produces"
     },
     {
@@ -2013,26 +2402,6 @@
       "type": "produces"
     },
     {
-      "source": "probe:igt_game_theory_sim",
-      "target": "token:E_SIM_IGT_FOUR_OUTCOMES_OK",
-      "type": "produces"
-    },
-    {
-      "source": "probe:igt_game_theory_sim",
-      "target": "token:E_SIM_IGT_CHIRALITY_OK",
-      "type": "produces"
-    },
-    {
-      "source": "probe:igt_game_theory_sim",
-      "target": "token:E_SIM_IGT_8MODES_OK",
-      "type": "produces"
-    },
-    {
-      "source": "probe:igt_game_theory_sim",
-      "target": "token:E_SIM_IGT_NASH_OK",
-      "type": "produces"
-    },
-    {
       "source": "probe:engine_terrain_sim",
       "target": "token:E_SIM_TYPE1_STRUCTURAL_PASS",
       "type": "produces"
@@ -2048,31 +2417,6 @@
       "type": "produces"
     },
     {
-      "source": "probe:igt_advanced_sim",
-      "target": "token:E_SIM_WIN_STALL_OK",
-      "type": "produces"
-    },
-    {
-      "source": "probe:igt_advanced_sim",
-      "target": "token:E_SIM_720_CYCLE_OK",
-      "type": "produces"
-    },
-    {
-      "source": "probe:igt_advanced_sim",
-      "target": "token:E_SIM_MINIMIN_OK",
-      "type": "produces"
-    },
-    {
-      "source": "probe:igt_advanced_sim",
-      "target": "token:E_SIM_DUAL_LOOP_OK",
-      "type": "produces"
-    },
-    {
-      "source": "probe:igt_advanced_sim",
-      "target": "token:E_SIM_IRRATIONAL_ESCAPE_OK",
-      "type": "produces"
-    },
-    {
       "source": "probe:godel_stall_sim",
       "target": "token:E_SIM_TURING_STALL_OK",
       "type": "produces"
@@ -2085,6 +2429,26 @@
     {
       "source": "probe:godel_stall_sim",
       "target": "token:E_SIM_STALL_DETECTION_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:dual_weyl_spinor_engine_sim",
+      "target": "token:E_TYPE1_CONVERGENT_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:dual_weyl_spinor_engine_sim",
+      "target": "token:E_TYPE2_DIVERGENT_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:dual_weyl_spinor_engine_sim",
+      "target": "token:E_SIM_TYPE1_WEYL_720_NON_STATE_REDUCTION_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:dual_weyl_spinor_engine_sim",
+      "target": "token:E_SIM_NESTED_TORI_NON_STATE_REDUCTION_OK",
       "type": "produces"
     },
     {
@@ -2128,21 +2492,6 @@
       "type": "produces"
     },
     {
-      "source": "probe:szilard_64stage_sim",
-      "target": "token:E_SIM_64STAGE_CYCLE_OK",
-      "type": "produces"
-    },
-    {
-      "source": "probe:szilard_64stage_sim",
-      "target": "token:UNNAMED_TOKEN_2_KILL",
-      "type": "produces"
-    },
-    {
-      "source": "probe:szilard_64stage_sim",
-      "target": "token:E_SIM_GAMMA_SWEEP_OK",
-      "type": "produces"
-    },
-    {
       "source": "probe:nlm_batch2_sim",
       "target": "token:E_SIM_HOLODECK_FP_OK",
       "type": "produces"
@@ -2163,13 +2512,8 @@
       "type": "produces"
     },
     {
-      "source": "probe:gain_calibration_sim",
-      "target": "token:UNNAMED_TOKEN_3_KILL",
-      "type": "produces"
-    },
-    {
-      "source": "probe:gain_calibration_sim",
-      "target": "token:UNNAMED_TOKEN_4_KILL",
+      "source": "probe:gain_calibration_v2_sim",
+      "target": "token:E_SIM_GAIN_CALIBRATION_V2_OK",
       "type": "produces"
     },
     {
@@ -2253,13 +2597,8 @@
       "type": "produces"
     },
     {
-      "source": "probe:abiogenesis_sim",
-      "target": "token:UNNAMED_TOKEN_5_KILL",
-      "type": "produces"
-    },
-    {
-      "source": "probe:abiogenesis_sim",
-      "target": "token:E_SIM_THERMAL_DEATH_DOMINANT_OK",
+      "source": "probe:abiogenesis_v2_sim",
+      "target": "token:E_SIM_DIRECTIONAL_ACCUMULATOR_ABIOGENESIS_OK",
       "type": "produces"
     },
     {
@@ -2280,6 +2619,96 @@
     {
       "source": "probe:yang_mills_sim",
       "target": "token:E_SIM_WILSON_ACTION_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM01_F01_FINITUDE_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM02_N01_NONCOMMUTE_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM03_CAS04_OPEQUIV_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM04_ENTROPIC_MONISM_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM05_MATH_PHYSICS_FUSION_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM06_ACTION_PRECEDENCE_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM07_VARIANCE_DIRECTION_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM08_INVARIANT_TARGET_CONVERGENT_SUBSET_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM09_720_CYCLE_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM10_WIN_ONLY_STALL_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM11_DUAL_VS_SINGLE_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM12_IRRATIONAL_ESCAPE_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM13_NET_DIRECTIONAL_ACCUMULATOR_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM14_SIMULATION_MATRIX_FP_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM15_QIT_FEP_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM16_GT_ISOLATION_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM17_REFINEMENT_NONCOMM_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:scale_testing_sim",
+      "target": "token:E_SCALE_SIM18_FINITE_STABILITY_OK",
       "type": "produces"
     },
     {
@@ -2356,7 +2785,57 @@
       "source": "probe:navier_stokes_formal_sim",
       "target": "token:E_SIM_NS_REYNOLDS_OK",
       "type": "produces"
+    },
+    {
+      "source": "probe:rock_falsifier_enhanced_sim",
+      "target": "token:E_SIM_ROCK_FALSIFIER_ENHANCED_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:tier_3_mega_sim",
+      "target": "token:E_SIM_MEGA_ENTRAINMENT_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:tier_3_mega_sim",
+      "target": "token:E_SIM_NO_SIGNALING_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:sim_moloch_trap_field",
+      "target": "token:E_SIM_MOLOCH_TRAP_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_6_precedence_sim",
+      "target": "token:E_SIM_AXIS6_PRECEDENCE_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:i_scalar_filtration_sim",
+      "target": "token:E_SIM_ISCALAR_FILTRATION_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis3_orthogonality_sim",
+      "target": "token:UNNAMED_TOKEN_1_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis0_correlation_sim",
+      "target": "token:E_SIM_AXIS0_GRADIENT_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis0_path_integral_sim",
+      "target": "token:E_SIM_NESTED_HOPF_TORI_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_relations_sim",
+      "target": "token:E_SIM_AXIS_RELATIONS_OK",
+      "type": "produces"
     }
   ],
-  "timestamp": "2026-03-23T23:04:18.101513+00:00"
+  "timestamp": "2026-03-24T11:19:12.146735+00:00"
 }

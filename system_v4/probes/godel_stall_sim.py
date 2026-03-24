@@ -5,11 +5,11 @@ Tests the claim that Gödel incompleteness and the Halting Problem
 are EQUIVALENT to thermodynamic stall (Winding Limit Saturation)
 inside pure Ne (unitary/deterministic/adiabatic computation).
 
-The engine resolves the stall by engaging the inductive loop
-(isothermal strokes) to inject new degrees of freedom.
+The process_cycle resolves the stall by engaging the inductive loop
+(isothermal strokes) to inject new state_dimensions of state_variables.
 
 SIM_01: Pure Ne hits stall (Turing cycles without convergence)
-SIM_02: Engine resolves stall via isothermal injection
+SIM_02: Process_Cycle resolves stall via isothermal injection
 SIM_03: Stall detection — when does the system notice it's stuck?
 """
 
@@ -43,8 +43,8 @@ def sim_turing_stall(d: int = 4, max_cycles: int = 500):
     SIM: Pure Ne (Turing/unitary) hits a stall.
     
     A Turing machine computes by applying the same unitary repeatedly.
-    Because it's reversible and entropy-preserving, it can NEVER converge
-    to an attractor — it orbits forever. This IS the halting problem:
+    Because it's reversible and state_dispersion-preserving, it can NEVER converge
+    to an invariant_target — it orbits forever. This IS the halting problem:
     the machine cannot know if it will ever reach a fixed point because
     there IS no fixed point in pure unitary evolution.
     """
@@ -96,7 +96,7 @@ def sim_turing_stall(d: int = 4, max_cycles: int = 500):
     print(f"  Avg distance last 100:  {avg_last:.6f}")
     print(f"  Std last 100: {std_last:.6f}")
     print(f"  Min recurrence to init: {min_recurrence:.6f}")
-    print(f"  Entropy (constant): {von_neumann_entropy(rho):.8f}")
+    print(f"  State_Dispersion (constant): {von_neumann_state_dispersion(rho):.8f}")
     
     # The Turing machine orbits — it never converges
     converged = min_dist < 0.01
@@ -131,17 +131,17 @@ def sim_turing_stall(d: int = 4, max_cycles: int = 500):
 
 def sim_engine_resolves_stall(d: int = 4, max_cycles: int = 200):
     """
-    SIM: The full engine resolves the Gödel stall.
+    SIM: The full process_cycle resolves the Gödel stall.
     
-    The engine doesn't converge to arbitrary targets — it creates its
-    OWN attractor. The "new axiom" is the steady state that EMERGES
+    The process_cycle doesn't converge to arbitrary targets — it creates its
+    OWN invariant_target. The "new axiom" is the steady state that EMERGES
     from the thermodynamic dynamics.
     
     Compare: Turing never finds a fixed point (orbits forever)
-    vs Engine converges to its own attractor (creates new structure).
+    vs Process_Cycle converges to its own invariant_target (creates new structure).
     """
     print(f"\n{'='*60}")
-    print(f"SIM: ENGINE RESOLVES STALL (Emergent Axiom via Thermodynamic Work)")
+    print(f"SIM: PROCESS_CYCLE RESOLVES STALL (Emergent Axiom via Thermodynamic Work)")
     print(f"  d={d}, max_cycles={max_cycles}")
     print(f"{'='*60}")
     
@@ -164,7 +164,7 @@ def sim_engine_resolves_stall(d: int = 4, max_cycles: int = 200):
         turing_successive_dists.append(trace_distance(rho_prev, rho_turing))
         rho_prev = rho_turing.copy()
     
-    # Full Engine: does it converge to a fixed point?
+    # Full Process_Cycle: does it converge to a fixed point?
     rho_engine = rho_init.copy()
     engine_successive_dists = []
     rho_prev = rho_engine.copy()
@@ -179,7 +179,7 @@ def sim_engine_resolves_stall(d: int = 4, max_cycles: int = 200):
         rho_prev = rho_engine.copy()
     
     # Turing: successive distances never → 0 (always changing, orbiting)
-    # Engine: successive distances → 0 (converging to fixed point)
+    # Process_Cycle: successive distances → 0 (converging to fixed point)
     turing_final_rate = np.mean(turing_successive_dists[-20:])
     engine_final_rate = np.mean(engine_successive_dists[-20:])
     
@@ -188,20 +188,20 @@ def sim_engine_resolves_stall(d: int = 4, max_cycles: int = 200):
     print(f"  Turing (Ne only):")
     print(f"    Avg successive distance (last 20): {turing_final_rate:.8f}")
     print(f"    Converging: {'YES' if turing_final_rate < 0.001 else 'NO'}")
-    print(f"  Full Engine:")
-    print(f"    Avg successive distance (last 20): {engine_final_rate:.8f}")
-    print(f"    Converging: {'YES' if engine_final_rate < 0.001 else 'NO'}")
+    print(f"  Full Process_Cycle:")
+    print(f"    Avg successive distance (last 20): {process_cycle_final_rate:.8f}")
+    print(f"    Converging: {'YES' if process_cycle_final_rate < 0.001 else 'NO'}")
     print(f"    Landauer cost paid: {landauer['landauer_cost_nats']:.4f} nats")
-    print(f"    Emergent attractor eigenvalues: {np.sort(np.real(np.linalg.eigvalsh(rho_engine)))[::-1]}")
+    print(f"    Emergent invariant_target eigenvalues: {np.sort(np.real(np.linalg.eigvalsh(rho_process_cycle)))[::-1]}")
     
     turing_orbits = turing_final_rate > 0.01
     engine_converges = engine_final_rate < 0.01
     
     if turing_orbits and engine_converges:
-        print(f"  PASS: Turing orbits (Gödel), Engine converges (new axiom)!")
-        print(f"  → The attractor IS the unprovable truth, purchased at {landauer['landauer_cost_nats']:.4f} nats")
+        print(f"  PASS: Turing orbits (Gödel), Process_Cycle converges (new axiom)!")
+        print(f"  → The invariant_target IS the unprovable truth, purchased at {landauer['landauer_cost_nats']:.4f} nats")
         return EvidenceToken(
-            token_id="E_SIM_ENGINE_RESOLVES_GODEL_OK",
+            token_id="E_SIM_PROCESS_CYCLE_RESOLVES_GODEL_OK",
             sim_spec_id="S_SIM_GODEL_RESOLUTION_V1",
             status="PASS",
             measured_value=engine_final_rate
@@ -211,7 +211,7 @@ def sim_engine_resolves_stall(d: int = 4, max_cycles: int = 200):
         if not turing_orbits:
             reason = "TURING_CONVERGED"
         elif not engine_converges:
-            reason = "ENGINE_FAILED_TO_CONVERGE"
+            reason = "PROCESS_CYCLE_FAILED_TO_CONVERGE"
         return EvidenceToken(
             token_id="",
             sim_spec_id="S_SIM_GODEL_RESOLUTION_V1",
@@ -225,9 +225,9 @@ def sim_stall_detection(d: int = 4, window: int = 20):
     """
     SIM: When does a system detect it's stalled?
     
-    A Turing machine in orbit has zero entropy change — 
+    A Turing machine in orbit has zero state_dispersion change — 
     it can detect the stall by measuring ΔS = 0 over a window.
-    The engine can then decide to engage isothermal strokes.
+    The process_cycle can then decide to engage isothermal strokes.
     """
     print(f"\n{'='*60}")
     print(f"SIM: STALL DETECTION (When Does Ne Know It's Stuck?)")
@@ -243,7 +243,7 @@ def sim_stall_detection(d: int = 4, window: int = 20):
         rho = apply_unitary_channel(rho, U)
         entropy_history.append(von_neumann_entropy(rho))
     
-    # Stall detection: if entropy variance in window ≈ 0, system is stalled
+    # Stall detection: if state_dispersion variance in window ≈ 0, system is stalled
     stall_detected = False
     stall_step = -1
     for i in range(window, len(entropy_history)):
@@ -254,10 +254,10 @@ def sim_stall_detection(d: int = 4, window: int = 20):
             stall_step = i - window
             break
     
-    print(f"  Entropy variance over window: {np.var(entropy_history):.2e}")
+    print(f"  State_Dispersion variance over window: {np.var(state_dispersion_history):.2e}")
     print(f"  Stall detected: {stall_detected}" + 
           (f" at step {stall_step}" if stall_detected else ""))
-    print(f"  → Zero entropy change = system is in Gödel orbit")
+    print(f"  → Zero state_dispersion change = system is in Gödel orbit")
     print(f"  → This is the 'Halting Problem' from INSIDE the machine")
     print(f"  → The machine knows it's stuck but cannot break out alone")
     

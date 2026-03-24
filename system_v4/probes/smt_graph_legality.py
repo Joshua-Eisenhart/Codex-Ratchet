@@ -9,8 +9,8 @@ from pysmt.shortcuts import (
 from pysmt.typing import INT, BOOL, STRING
 
 # --- Configuration & Paths ---
-GRAPH_PATH = "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_low_control_graph_v1.json"
-REPORT_PATH = "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/SMT_GRAPH_LEGALITY_LIBRARY__v1.md"
+GRAPH_PATH = "/Users/joshuaeisenhart/Desktop/Codex Directional_Accumulator/system_v4/a2_state/graphs/a2_low_control_graph_v1.json"
+REPORT_PATH = "/Users/joshuaeisenhart/Desktop/Codex Directional_Accumulator/system_v4/a2_state/audit_logs/SMT_GRAPH_LEGALITY_LIBRARY__v1.md"
 
 def load_graph():
     print(f"Loading graph from {GRAPH_PATH}...")
@@ -53,7 +53,7 @@ def main():
     # 1. Layer membership: Count nodes with exactly 1 layer
     nodes_with_1_layer = sum(1 for n in nodes.values() if n.get("layer"))
     
-    # 2. Edge symmetry: RELATED_TO
+    # 2. Edge generator_invariance: RELATED_TO
     related_edges = [(e["source_id"], e["target_id"]) for e in edges if e["relation"] == "RELATED_TO"]
     symmetric_count = 0
     edge_set = set(related_edges)
@@ -128,10 +128,10 @@ def main():
             Equals(layer_ok_sym, Int(nodes_with_1_layer)),
             Equals(total_nodes_sym, layer_ok_sym)
         ),
-        "2_edge_symmetry": And(
+        "2_edge_generator_invariance": And(
             Equals(total_related_sym, Int(len(related_edges))),
             Equals(symmetric_sym, Int(symmetric_count)),
-            GT(symmetric_sym, Int(0)) # At least some symmetry exists
+            GT(symmetric_sym, Int(0)) # At least some generator_invariance exists
         ),
         "3_trust_monotonicity": And(
             Equals(kernel_total_sym, Int(len(kernel_nodes))),

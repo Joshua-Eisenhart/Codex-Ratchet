@@ -1,12 +1,12 @@
 """
-Full 8-Stage Engine Cycle SIM
+Full 8-Stage Process_Cycle Cycle SIM
 ==============================
-Implements the complete engine cycle with all 8 stages, Berry phase
+Implements the complete process_cycle cycle with all 8 stages, Berry phase
 tracking, survivorship functional computation, and fractal nesting test.
 
 A2 Fuel Source (NotebookLM 240 sources):
   PHASE A (MAJOR LOOP / Deductive / S↓):
-    Stage 1: CPTP projective measurement (isothermal, bath-coupled)
+    Stage 1: CPTP projective trace_projection (isothermal, bath-coupled)
     Stage 2: Laplacian diffusion damping (adiabatic, insulated)
     Stage 3: Boundary-pruned unitary expansion (adiabatic, insulated)
     Stage 4: Kuramoto phase-lock entrainment (isothermal, bath-coupled)
@@ -16,7 +16,7 @@ A2 Fuel Source (NotebookLM 240 sources):
     Stage 7: Spectral synthesis emission (adiabatic, insulated)
     Stage 8: Gradient ascent propulsion (isothermal, bath-coupled)
 
-All stage labels use pure QIT math names (Rosetta-translated).
+All stage labels use pure QIT math names (Translation_Map-translated).
 """
 
 import numpy as np
@@ -67,7 +67,7 @@ def survivorship_functional(rho: np.ndarray, sigma_bath: np.ndarray,
     """
     Compute Φ(ρ) := D(ρ||σ_B) - D(ρ||σ_A)
     
-    Φ > 0: state is closer to attractor than noise (surviving)
+    Φ > 0: state is closer to invariant_target than noise (surviving)
     Φ < 0: state is dissolving into noise (dead branch)
     """
     d_bath = quantum_kl_divergence(rho, sigma_bath)
@@ -80,7 +80,7 @@ def survivorship_functional(rho: np.ndarray, sigma_bath: np.ndarray,
 # ─────────────────────────────────────────────
 
 def stage1_measurement_projection(rho: np.ndarray, d: int) -> np.ndarray:
-    """Stage 1: CPTP projective measurement (isothermal, bath-coupled).
+    """Stage 1: CPTP projective trace_projection (isothermal, bath-coupled).
     ρ' = Σ_k P_k ρ P_k†  (dephasing in computational basis)"""
     result = np.zeros_like(rho)
     for k in range(d):
@@ -104,7 +104,7 @@ def stage3_constrained_expansion(rho: np.ndarray, U: np.ndarray,
     """Stage 3: Boundary-pruned unitary expansion (adiabatic, insulated).
     ρ' = Π_C(U ρ U†) — free expansion pruned by boundary constraints."""
     rho_expanded = apply_unitary_channel(rho, U)
-    # Project onto constraint subspace and renormalize
+    # Project onto operator_bound subspace and renormalize
     rho_pruned = projector @ rho_expanded @ projector.conj().T
     tr = np.real(np.trace(rho_pruned))
     if tr > 1e-12:
@@ -117,7 +117,7 @@ def stage3_constrained_expansion(rho: np.ndarray, U: np.ndarray,
 def stage4_entrainment_lock(rho: np.ndarray, target: np.ndarray, 
                              coupling: float = 0.3) -> np.ndarray:
     """Stage 4: Kuramoto-style phase-lock entrainment (isothermal, bath-coupled).
-    Drives ρ toward target attractor with coupling strength K."""
+    Drives ρ toward target invariant_target with coupling strength K."""
     rho_new = (1 - coupling) * rho + coupling * target
     rho_new = rho_new / np.trace(rho_new)
     return rho_new
@@ -126,7 +126,7 @@ def stage4_entrainment_lock(rho: np.ndarray, target: np.ndarray,
 def stage5_gradient_descent(rho: np.ndarray, observable: np.ndarray, 
                              eta: float = 0.05) -> np.ndarray:
     """Stage 5: Gradient descent work extraction (isothermal, bath-coupled).
-    Move ρ along the gradient of an observable to minimize energy."""
+    Move ρ along the gradient of an observable to minimize hamiltonian_norm."""
     grad = observable @ rho + rho @ observable
     rho_new = rho - eta * grad
     # Re-enforce density matrix constraints
@@ -153,10 +153,10 @@ def stage6_matched_filtering(rho: np.ndarray, filter_projector: np.ndarray) -> n
 def stage7_spectral_emission(rho: np.ndarray, U_emit: np.ndarray, 
                               noise_scale: float = 0.1) -> np.ndarray:
     """Stage 7: Spectral synthesis emission (adiabatic, insulated).
-    Generate propagating waveform — increases entropy by mixing."""
+    Generate propagating waveform — increases state_dispersion by mixing."""
     d = rho.shape[0]
     rho_rotated = apply_unitary_channel(rho, U_emit)
-    # Add controlled noise (entropy production)
+    # Add controlled noise (state_dispersion production)
     noise = make_random_density_matrix(d)
     rho_emitted = (1 - noise_scale) * rho_rotated + noise_scale * noise
     rho_emitted = rho_emitted / np.trace(rho_emitted)
@@ -166,7 +166,7 @@ def stage7_spectral_emission(rho: np.ndarray, U_emit: np.ndarray,
 def stage8_gradient_ascent(rho: np.ndarray, observable: np.ndarray, 
                             eta: float = 0.05) -> np.ndarray:
     """Stage 8: Gradient ascent propulsion (isothermal, bath-coupled).
-    Maximize objective against resistance — max entropy output."""
+    Maximize objective against resistance — max state_dispersion output."""
     grad = observable @ rho + rho @ observable
     rho_new = rho + eta * grad  # ASCENT (opposite of stage 5)
     rho_new = (rho_new + rho_new.conj().T) / 2
@@ -178,7 +178,7 @@ def stage8_gradient_ascent(rho: np.ndarray, observable: np.ndarray,
 
 
 # ─────────────────────────────────────────────
-# Full 8-Stage Engine Cycle
+# Full 8-Stage Process_Cycle Cycle
 # ─────────────────────────────────────────────
 
 def compute_holonomy_proxy(rho_sequence: list) -> float:
@@ -214,8 +214,8 @@ def compute_landauer_cost(rho: np.ndarray, d: int) -> dict:
     # kT ln 2 ≈ 2.87e-21 J at room temp (300K), but we track in natural units
     cost_natural = bits_erased * np.log(2)  # nats
     return {
-        "entropy_bits": S,
-        "max_entropy_bits": S_max,
+        "state_dispersion_bits": S,
+        "max_state_dispersion_bits": S_max,
         "bits_erased": bits_erased,
         "landauer_cost_nats": cost_natural,
     }
@@ -236,15 +236,15 @@ def run_one_cycle(rho, d, U1, U2, L, proj, filt, observable, sigma_attractor):
 
 def run_full_8stage_cycle(d: int = 4, n_full_cycles: int = 4):
     """
-    Run the complete 8-stage engine cycle and track:
-    - Entropy at each stage
-    - Survivorship functional Φ(ρ) at each stage (CYCLE-SPECIFIC attractor)
+    Run the complete 8-stage process_cycle cycle and track:
+    - State_Dispersion at each stage
+    - Survivorship functional Φ(ρ) at each stage (CYCLE-SPECIFIC invariant_target)
     - Berry phase accumulation via holonomy proxy
     - Landauer erasure cost per cycle
     - Chern number proxy
     """
     print(f"{'='*60}")
-    print(f"FULL 8-STAGE ENGINE CYCLE (v2: cycle-specific attractor)")
+    print(f"FULL 8-STAGE PROCESS_CYCLE CYCLE (v2: cycle-specific invariant_target)")
     print(f"  d={d}, full_cycles={n_full_cycles} (each = 8 stages)")
     print(f"  720° = 2 full cycles")
     print(f"{'='*60}")
@@ -258,9 +258,9 @@ def run_full_8stage_cycle(d: int = 4, n_full_cycles: int = 4):
     L_base = np.random.randn(d, d) + 1j * np.random.randn(d, d)
     L = L_base / np.linalg.norm(L_base) * 3.0  # γ=3.0 (proven critical damping)
     
-    # Constraint projector (project onto top 3 eigenstates)
+    # Operator_Bound projector (project onto top 3 eigenstates)
     proj = np.eye(d, dtype=complex)
-    proj[-1, -1] = 0.2  # Soft constraint on lowest eigenstate
+    proj[-1, -1] = 0.2  # Soft operator_bound on lowest eigenstate
     
     # Filter (keep dominant modes)
     filt = np.eye(d, dtype=complex)
@@ -273,21 +273,21 @@ def run_full_8stage_cycle(d: int = 4, n_full_cycles: int = 4):
     # Reference states for survivorship
     sigma_bath = np.eye(d, dtype=complex) / d  # maximally mixed
     
-    # ── WARM-UP: Find the CYCLE-SPECIFIC attractor ──
-    # Run 4 warm-up cycles to find this engine's own steady state
-    print(f"\n  ── WARM-UP: Finding cycle-specific attractor ──")
+    # ── WARM-UP: Find the CYCLE-SPECIFIC invariant_target ──
+    # Run 4 warm-up cycles to find this process_cycle's own steady state
+    print(f"\n  ── WARM-UP: Finding cycle-specific invariant_target ──")
     rho_warmup = make_random_density_matrix(d)
-    # Use a temporary attractor for warm-up (maximally mixed → no pull)
+    # Use a temporary invariant_target for warm-up (maximally mixed → no pull)
     sigma_temp = sigma_bath.copy()
     for _ in range(4):
         rho_warmup = run_one_cycle(rho_warmup, d, U1, U2, L, proj, filt, observable, sigma_temp)
     
-    # The warm-up steady state IS our cycle-specific attractor
+    # The warm-up steady state IS our cycle-specific invariant_target
     sigma_attractor = rho_warmup.copy()
     S_attractor = von_neumann_entropy(sigma_attractor)
     eig_attractor = np.sort(np.real(np.linalg.eigvalsh(sigma_attractor)))[::-1]
-    print(f"  Cycle-specific attractor: S={S_attractor:.6f}")
-    print(f"  Attractor eigenvalues: {eig_attractor}")
+    print(f"  Cycle-specific invariant_target: S={S_invariant_target:.6f}")
+    print(f"  Invariant_Target eigenvalues: {eig_invariant_target}")
     landauer = compute_landauer_cost(sigma_attractor, d)
     print(f"  Bits erased per cycle: {landauer['bits_erased']:.4f}")
     print(f"  Landauer cost (nats): {landauer['landauer_cost_nats']:.4f}")
@@ -318,7 +318,7 @@ def run_full_8stage_cycle(d: int = 4, n_full_cycles: int = 4):
         print(f"\n  ─── Cycle {cycle+1}/{n_full_cycles} {'(Major=360°)' if cycle % 2 == 0 else '(Minor=360°)'} ───")
         
         # PHASE A: Major Loop (Deductive / S↓)
-        # Stage 1: Measurement Projection (isothermal)
+        # Stage 1: Trace_Projection Projection (isothermal)
         rho = stage1_measurement_projection(rho, d)
         S = von_neumann_entropy(rho)
         Phi = survivorship_functional(rho, sigma_bath, sigma_attractor)
@@ -407,11 +407,11 @@ def run_full_8stage_cycle(d: int = 4, n_full_cycles: int = 4):
     # ─── LANDAUER COST ───
     final_landauer = compute_landauer_cost(rho, d)
     print(f"\n  ─── LANDAUER COST ───")
-    print(f"    Final S = {final_landauer['entropy_bits']:.4f} bits (max: {final_landauer['max_entropy_bits']:.4f})")
+    print(f"    Final S = {final_landauer['state_dispersion_bits']:.4f} bits (max: {final_landauer['max_state_dispersion_bits']:.4f})")
     print(f"    Bits erased: {final_landauer['bits_erased']:.4f}")
     print(f"    Landauer cost: {final_landauer['landauer_cost_nats']:.4f} nats")
     
-    # Work budget: entropy gradient S(stage1) - S(stage6)
+    # Work budget: state_dispersion gradient S(stage1) - S(stage6)
     s_values = [s for _, s in stage_entropies if 'MEASURE_PROJECT' in _ or 'MATCH_FILTER' in _]
     if len(s_values) >= 4:
         avg_s1 = np.mean([s_values[i] for i in range(0, len(s_values), 2)])
@@ -428,11 +428,11 @@ def run_full_8stage_cycle(d: int = 4, n_full_cycles: int = 4):
     positive_count = sum(1 for p in phi_values if p > 0)
     print(f"    Positive Φ stages: {positive_count}/{len(phi_values)}")
     
-    # ─── NON-COLLAPSE CHECK ───
+    # ─── NON-STATE_REDUCTION CHECK ───
     final_entropy = von_neumann_entropy(rho)
     max_entropy = np.log2(d)
-    print(f"\n  ─── NON-COLLAPSE CHECK ───")
-    print(f"    Final entropy: {final_entropy:.6f} (max: {max_entropy:.4f})")
+    print(f"\n  ─── NON-STATE_REDUCTION CHECK ───")
+    print(f"    Final state_dispersion: {final_state_dispersion:.6f} (max: {max_state_dispersion:.4f})")
     print(f"    Final eigenvalues: {np.sort(np.real(np.linalg.eigvalsh(rho)))[::-1]}")
     
     if final_entropy >= max_entropy * 0.99:
@@ -445,7 +445,7 @@ def run_full_8stage_cycle(d: int = 4, n_full_cycles: int = 4):
             kill_reason="THERMAL_DEATH"
         ), stage_entropies, stage_survivorship
     
-    print(f"    PASS: Non-trivial 8-stage engine cycle verified!")
+    print(f"    PASS: Non-trivial 8-stage process_cycle cycle verified!")
     return EvidenceToken(
         token_id="E_SIM_FULL_8STAGE_CYCLE_OK",
         sim_spec_id="S_SIM_FULL_8STAGE_CYCLE_V1",
@@ -462,9 +462,9 @@ def sim_fractal_nesting(d_inner: int = 4, d_outer: int = 2, n_cycles: int = 4):
     """
     SIM: FRACTAL NESTING — inner torus output feeds outer torus input.
     
-    Inner engine runs at dimension d_inner² (high resolution).
-    Partial trace reduces to d_outer for the outer engine.
-    Verifies: trace=1, positivity, and topological non-collapse across boundary.
+    Inner process_cycle runs at dimension d_inner² (high resolution).
+    Partial trace reduces to d_outer for the outer process_cycle.
+    Verifies: trace=1, positivity, and structural non-state_reduction across boundary.
     """
     print(f"\n{'='*60}")
     print(f"SIM: FRACTAL NESTING TEST")
@@ -474,12 +474,12 @@ def sim_fractal_nesting(d_inner: int = 4, d_outer: int = 2, n_cycles: int = 4):
     
     np.random.seed(88)
     
-    # Inner engine operators
+    # Inner process_cycle operators
     U_inner = make_random_unitary(d_inner)
     L_inner_base = np.random.randn(d_inner, d_inner) + 1j * np.random.randn(d_inner, d_inner)
     L_inner = L_inner_base / np.linalg.norm(L_inner_base) * 3.0
     
-    # Run inner engine to steady state
+    # Run inner process_cycle to steady state
     rho_inner = make_random_density_matrix(d_inner)
     for _ in range(200):
         for __ in range(3):
@@ -487,7 +487,7 @@ def sim_fractal_nesting(d_inner: int = 4, d_outer: int = 2, n_cycles: int = 4):
         rho_inner = apply_unitary_channel(rho_inner, U_inner)
     
     inner_entropy = von_neumann_entropy(rho_inner)
-    print(f"  Inner engine steady state: S={inner_entropy:.6f}")
+    print(f"  Inner process_cycle steady state: S={inner_state_dispersion:.6f}")
     print(f"  Inner eigenvalues: {np.sort(np.real(np.linalg.eigvalsh(rho_inner)))[::-1]}")
     
     # Partial trace: reduce inner (d_inner) to outer (d_outer)
@@ -517,9 +517,9 @@ def sim_fractal_nesting(d_inner: int = 4, d_outer: int = 2, n_cycles: int = 4):
     print(f"    Positivity: {'OK' if positivity_ok else 'VIOLATED'}")
     
     outer_entropy = von_neumann_entropy(rho_outer)
-    print(f"    Outer entropy: {outer_entropy:.6f}")
+    print(f"    Outer state_dispersion: {outer_state_dispersion:.6f}")
     
-    # Run outer engine with this as input
+    # Run outer process_cycle with this as input
     U_outer = make_random_unitary(d_outer)
     L_outer_base = np.random.randn(d_outer, d_outer) + 1j * np.random.randn(d_outer, d_outer)
     L_outer = L_outer_base / np.linalg.norm(L_outer_base) * 3.0
@@ -534,10 +534,10 @@ def sim_fractal_nesting(d_inner: int = 4, d_outer: int = 2, n_cycles: int = 4):
     final_outer_entropy = outer_trajectories[-1]
     max_outer_entropy = np.log2(d_outer)
     
-    print(f"\n  Outer engine final: S={final_outer_entropy:.6f} (max: {max_outer_entropy:.4f})")
+    print(f"\n  Outer process_cycle final: S={final_outer_state_dispersion:.6f} (max: {max_outer_state_dispersion:.4f})")
     print(f"  Outer eigenvalues: {np.sort(np.real(np.linalg.eigvalsh(rho_outer)))[::-1]}")
     
-    # Check non-collapse: outer engine should not be trivially maximally mixed
+    # Check non-state_reduction: outer process_cycle should not be trivially maximally mixed
     nested_lag_loss = abs(final_outer_entropy - max_outer_entropy) < 0.01
     
     if not positivity_ok or not np.isclose(tr_outer, 1.0, atol=1e-6):
@@ -560,7 +560,7 @@ def sim_fractal_nesting(d_inner: int = 4, d_outer: int = 2, n_cycles: int = 4):
 
 
 if __name__ == "__main__":
-    # Run full 8-stage engine
+    # Run full 8-stage process_cycle
     e_8stage, entropies, survivorship = run_full_8stage_cycle(d=4, n_full_cycles=4)
     
     # Run fractal nesting test
@@ -568,7 +568,7 @@ if __name__ == "__main__":
     
     # Final summary
     print(f"\n{'='*60}")
-    print(f"FULL ENGINE SUITE RESULTS")
+    print(f"FULL PROCESS_CYCLE SUITE RESULTS")
     print(f"{'='*60}")
     results = [e_8stage, e_nesting]
     for e in results:

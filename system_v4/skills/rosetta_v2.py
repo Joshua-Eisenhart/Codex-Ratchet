@@ -426,6 +426,14 @@ class RosettaStore:
         return [p for p in self.packets.values()
                 if p.source_concept_id == source_concept_id]
 
+    def get_kernel_translation(self, overlay_term: str) -> Optional[str]:
+        """Check if an overlay term has a BOUND or ALIASED translation."""
+        pkts = self.get_by_source_term(overlay_term)
+        for p in pkts:
+            if p.status in ("BOUND", "ALIASED") and p.kernel_targets:
+                return p.kernel_targets[0]
+        return None
+
     def upsert_diversion(self, *,
                           source_concept_id: str,
                           source_term: str,

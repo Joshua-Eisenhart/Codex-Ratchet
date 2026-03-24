@@ -1,9 +1,9 @@
 """
 Scientific Method SIM — Pro Thread 15
 ========================================
-The scientific method as a coupled engine:
-  Engine A (deductive): hypothesis → Ti refinement → truth
-  Engine B (inductive): data → Te generalization → theory
+The scientific method as a coupled process_cycle:
+  Process_Cycle A (deductive): hypothesis → Ti refinement → truth
+  Process_Cycle B (inductive): data → Te generalization → theory
 Neither alone converges; coupled A→B→A does.
 Measures Berry phase at each handoff.
 """
@@ -48,7 +48,7 @@ def quantum_relative_entropy(rho, sigma, eps=1e-12):
 
 def sim_scientific_method(d=8, n_cycles=100):
     print(f"\n{'='*60}")
-    print(f"SCIENTIFIC METHOD — COUPLED ENGINE")
+    print(f"SCIENTIFIC METHOD — COUPLED PROCESS_CYCLE")
     print(f"  d={d}, cycles={n_cycles}")
     print(f"{'='*60}")
 
@@ -61,7 +61,7 @@ def sim_scientific_method(d=8, n_cycles=100):
     V_truth = make_random_unitary(d)
     rho_truth = V_truth @ np.diag(eigvals_truth.astype(complex)) @ V_truth.conj().T
 
-    # Engine A (deductive): starts from hypothesis, refines via Ti
+    # Process_Cycle A (deductive): starts from hypothesis, refines via Ti
     rho_A = make_random_density_matrix(d)
     D_A_history = []
 
@@ -73,10 +73,10 @@ def sim_scientific_method(d=8, n_cycles=100):
         rho_A = ensure_valid(rho_A)
         D_A_history.append(quantum_relative_entropy(rho_A, rho_truth))
 
-    print(f"\n  Engine A (deductive only):")
+    print(f"\n  Process_Cycle A (deductive only):")
     print(f"    D(A||truth): {D_A_history[0]:.4f} → {D_A_history[-1]:.4f}")
 
-    # Engine B (inductive): starts from data, generalizes via Te
+    # Process_Cycle B (inductive): starts from data, generalizes via Te
     rho_B = make_random_density_matrix(d)
     D_B_history = []
 
@@ -87,7 +87,7 @@ def sim_scientific_method(d=8, n_cycles=100):
         rho_B = ensure_valid(rho_B)
         D_B_history.append(quantum_relative_entropy(rho_B, rho_truth))
 
-    print(f"\n  Engine B (inductive only):")
+    print(f"\n  Process_Cycle B (inductive only):")
     print(f"    D(B||truth): {D_B_history[0]:.4f} → {D_B_history[-1]:.4f}")
 
     # Coupled A→B→A: alternating deductive and inductive
@@ -96,7 +96,7 @@ def sim_scientific_method(d=8, n_cycles=100):
     berry_phases = []
 
     for cycle in range(n_cycles):
-        # Engine A phase: deductive Ti
+        # Process_Cycle A phase: deductive Ti
         eigvals_t, V_t = np.linalg.eigh(rho_truth)
         projs = [V_t[:, k:k+1] @ V_t[:, k:k+1].conj().T for k in range(d)]
         rho_proj = sum(P @ rho_coupled @ P for P in projs)
@@ -105,7 +105,7 @@ def sim_scientific_method(d=8, n_cycles=100):
 
         rho_mid = rho_coupled.copy()
 
-        # Engine B phase: inductive Te
+        # Process_Cycle B phase: inductive Te
         H_data = rho_truth
         U_gen, _ = np.linalg.qr(np.eye(d, dtype=complex) - 1j * 0.02 * H_data)
         rho_coupled = apply_unitary_channel(rho_coupled, U_gen)

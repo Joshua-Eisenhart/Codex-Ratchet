@@ -1,19 +1,19 @@
 """
 Topology & Operator SIM Suite
 ================================
-The engine has 4 TOPOLOGIES (state-space geometries) and
+The process_cycle has 4 TOPOLOGIES (state-space geometries) and
 4 OPERATORS (channels acting on states). This suite
 demonstrates each computationally.
 
 TOPOLOGIES (shapes of flow in state space):
   Toroidal Circulation  = cyclic, area-preserving, div=0
   Divergent Spiral      = expanding, phase-producing, div>0, curl≠0
-  Singular Attractor    = contracting to a point, div<0
-  Stable Basin          = damped oscillation to fixed point
+  Singular Invariant_Target    = contracting to a point, div<0
+  Stable Convergent_Subset          = damped oscillation to fixed point
 
 OPERATORS (channels):
-  Projection (Ti)   = Lüders measurement, destroys coherence, absorbs info
-  Expansion (Te)    = drives entropy production, emits structure
+  Projection (Ti)   = Lüders trace_projection, destroys coherence, absorbs info
+  Expansion (Te)    = drives state_dispersion production, emits structure
   Filtering (Fi)    = spectral selection, absorbs specific frequencies
   Dissipation (Fe)  = Lindblad damping, emits heat to bath
 """
@@ -50,10 +50,10 @@ def sim_toroidal_circulation(d: int = 4, n_cycles: int = 100):
     TOROIDAL CIRCULATION (coherent propagation)
     ===========================================
     Pure unitary cycle. State moves around a closed orbit.
-    - Entropy is CONSTANT (S(UρU†) = S(ρ))
+    - State_Dispersion is CONSTANT (S(UρU†) = S(ρ))
     - State returns to origin after full cycle
     - Divergence = 0 (area-preserving)
-    - No information gained or lost
+    - No state_distinction gained or lost
     """
     print(f"\n{'='*60}")
     print(f"TOPOLOGY 1: TOROIDAL CIRCULATION")
@@ -83,8 +83,8 @@ def sim_toroidal_circulation(d: int = 4, n_cycles: int = 100):
     print(f"  S_mean = {S_mean:.6f}")
     print(f"  S_variance = {S_var:.2e} (should be ~0)")
     print(f"  Closest return: dist={min_dist:.6f} at step {min_idx}")
-    print(f"  → Entropy CONSTANT. Orbit is CLOSED.")
-    print(f"  → This is pure reversible cycling. No information exchange.")
+    print(f"  → State_Dispersion CONSTANT. Orbit is CLOSED.")
+    print(f"  → This is pure reversible cycling. No state_distinction exchange.")
     
     entropy_flat = S_var < 1e-20
     
@@ -97,7 +97,7 @@ def sim_toroidal_circulation(d: int = 4, n_cycles: int = 100):
             measured_value=S_var
         )
     else:
-        return EvidenceToken("", "S_SIM_TOROIDAL_V1", "KILL", 0.0, "ENTROPY_NOT_FLAT")
+        return EvidenceToken("", "S_SIM_TOROIDAL_V1", "KILL", 0.0, "STATE_DISPERSION_NOT_FLAT")
 
 
 def sim_divergent_spiral(d: int = 4, n_steps: int = 100):
@@ -105,7 +105,7 @@ def sim_divergent_spiral(d: int = 4, n_steps: int = 100):
     DIVERGENT SPIRAL (phase expansion)
     ====================================
     Unitary evolution + noise injection. State spirals outward.
-    - Entropy INCREASES (expanding into larger state space)
+    - State_Dispersion INCREASES (expanding into larger state space)
     - State moves AWAY from initial position
     - Divergence > 0, curl ≠ 0
     - Explores new regions of state space
@@ -118,7 +118,7 @@ def sim_divergent_spiral(d: int = 4, n_steps: int = 100):
     np.random.seed(42)
     rho_init = np.zeros((d, d), dtype=complex)
     rho_init[0, 0] = 0.9
-    rho_init[1, 1] = 0.1  # Start near-pure (low entropy)
+    rho_init[1, 1] = 0.1  # Start near-pure (low state_dispersion)
     
     U = make_random_unitary(d)
     L_base = np.random.randn(d, d) + 1j * np.random.randn(d, d)
@@ -141,7 +141,7 @@ def sim_divergent_spiral(d: int = 4, n_steps: int = 100):
     print(f"  S_final = {S_history[-1]:.6f}")
     print(f"  ΔS = {S_trend:.6f} ({'expanding' if S_trend > 0 else 'contracting'})")
     print(f"  Distance from origin: {dist_history[-1]:.6f}")
-    print(f"  → Entropy INCREASES. State spirals OUTWARD.")
+    print(f"  → State_Dispersion INCREASES. State spirals OUTWARD.")
     print(f"  → Divergent exploration of state space.")
     
     expands = S_trend > 0
@@ -160,16 +160,16 @@ def sim_divergent_spiral(d: int = 4, n_steps: int = 100):
 
 def sim_singular_attractor(d: int = 4, n_steps: int = 200):
     """
-    SINGULAR ATTRACTOR (radial contraction)
+    SINGULAR INVARIANT_TARGET (radial contraction)
     =========================================
     Strong projection + dissipation. State collapses to a point.
-    - Entropy DECREASES (structure crystallizes)
+    - State_Dispersion DECREASES (structure crystallizes)
     - State converges to a single pure state
     - Divergence < 0 (volume-contracting)
     - All paths lead to the same point
     """
     print(f"\n{'='*60}")
-    print(f"TOPOLOGY 3: SINGULAR ATTRACTOR")
+    print(f"TOPOLOGY 3: SINGULAR INVARIANT_TARGET")
     print(f"  d={d}, steps={n_steps}")
     print(f"{'='*60}")
     
@@ -178,14 +178,14 @@ def sim_singular_attractor(d: int = 4, n_steps: int = 200):
     target = np.zeros((d, d), dtype=complex)
     target[0, 0] = 1.0
     
-    # Start from random mixed state (high entropy)
+    # Start from random mixed state (high state_dispersion)
     rho = make_random_density_matrix(d)
     
     S_history = []
     dist_history = []
     
     for step in range(n_steps):
-        # Project toward target (measurement-like collapse)
+        # Project toward target (trace_projection-like state_reduction)
         P = np.zeros((d, d), dtype=complex)
         P[0, 0] = 1.0
         rho = 0.95 * rho + 0.05 * (P @ rho @ P + (np.eye(d) - P) @ rho @ (np.eye(d) - P))
@@ -201,15 +201,15 @@ def sim_singular_attractor(d: int = 4, n_steps: int = 200):
     print(f"  S_final = {S_history[-1]:.6f}")
     print(f"  ΔS = {S_history[-1] - S_history[0]:.6f} (should be negative)")
     print(f"  Final distance to target: {dist_history[-1]:.6f}")
-    print(f"  → Entropy DECREASES. State CONTRACTS to singular point.")
-    print(f"  → All initial conditions converge to the SAME attractor.")
+    print(f"  → State_Dispersion DECREASES. State CONTRACTS to singular point.")
+    print(f"  → All initial conditions converge to the SAME invariant_target.")
     
     contracts = S_history[-1] < S_history[0] and dist_history[-1] < 0.1
     
     if contracts:
-        print(f"  PASS: Singular attractor confirmed!")
+        print(f"  PASS: Singular invariant_target confirmed!")
         return EvidenceToken(
-            token_id="E_SIM_SINGULAR_ATTRACTOR_OK",
+            token_id="E_SIM_SINGULAR_INVARIANT_TARGET_OK",
             sim_spec_id="S_SIM_SINGULAR_V1",
             status="PASS",
             measured_value=dist_history[-1]
@@ -220,16 +220,16 @@ def sim_singular_attractor(d: int = 4, n_steps: int = 200):
 
 def sim_stable_basin(d: int = 4, n_steps: int = 200):
     """
-    STABLE BASIN (fixed-point damping)
+    STABLE CONVERGENT_SUBSET (fixed-point damping)
     =====================================
     Dissipation-dominated dynamics. State settles into a steady-state
     mixed state (NOT pure). Oscillatory approach to a fixed point.
-    - Entropy converges to a SPECIFIC intermediate value
+    - State_Dispersion converges to a SPECIFIC intermediate value
     - Small perturbations are damped back
-    - Basin, not point — there's a region of attraction
+    - Convergent_Subset, not point — there's a region of attraction
     """
     print(f"\n{'='*60}")
-    print(f"TOPOLOGY 4: STABLE BASIN")
+    print(f"TOPOLOGY 4: STABLE CONVERGENT_SUBSET")
     print(f"  d={d}, steps={n_steps}")
     print(f"{'='*60}")
     
@@ -263,7 +263,7 @@ def sim_stable_basin(d: int = 4, n_steps: int = 200):
             rho_kicked = apply_lindbladian_step(rho_kicked, L, dt=0.01)
         recovery_dist.append(trace_distance(rho_kicked, steady_state))
     
-    # Entropy variance in last 50 steps (should be small = converged)
+    # State_Dispersion variance in last 50 steps (should be small = converged)
     S_var_final = np.var(S_history[-50:])
     recovered = recovery_dist[-1] < recovery_dist[0]
     
@@ -272,19 +272,19 @@ def sim_stable_basin(d: int = 4, n_steps: int = 200):
     print(f"    Initial kick distance: {recovery_dist[0]:.6f}")
     print(f"    After 50 steps: {recovery_dist[-1]:.6f}")
     print(f"    Recovered: {recovered}")
-    print(f"  → State settles into a BASIN, not a point")
+    print(f"  → State settles into a CONVERGENT_SUBSET, not a point")
     print(f"  → Perturbations are DAMPED back. This is stability.")
     
     if recovered and S_var_final < 0.01:
-        print(f"  PASS: Stable basin confirmed!")
+        print(f"  PASS: Stable convergent_subset confirmed!")
         return EvidenceToken(
-            token_id="E_SIM_STABLE_BASIN_OK",
-            sim_spec_id="S_SIM_BASIN_V1",
+            token_id="E_SIM_STABLE_CONVERGENT_SUBSET_OK",
+            sim_spec_id="S_SIM_CONVERGENT_SUBSET_V1",
             status="PASS",
             measured_value=S_final
         )
     else:
-        return EvidenceToken("", "S_SIM_BASIN_V1", "KILL", 0.0, "NOT_STABLE")
+        return EvidenceToken("", "S_SIM_CONVERGENT_SUBSET_V1", "KILL", 0.0, "NOT_STABLE")
 
 
 # ═══════════════════════════════════════════
@@ -295,10 +295,10 @@ def sim_projection_operator(d: int = 4):
     """
     PROJECTION OPERATOR (absorptive logic)
     ========================================
-    Lüders measurement projection. Destroys off-diagonal coherences.
-    - Entropy INCREASES (gains information by losing coherence)
+    Lüders trace_projection projection. Destroys off-diagonal coherences.
+    - State_Dispersion INCREASES (gains state_distinction by losing coherence)
     - Irreversible (non-unitary)
-    - Absorbs information from the system
+    - Absorbs state_distinction from the system
     - Collapses superpositions to classical mixtures
     """
     print(f"\n{'='*60}")
@@ -326,9 +326,9 @@ def sim_projection_operator(d: int = 4):
     print(f"  S_after  = {S_after:.6f}")
     print(f"  ΔS = {S_after - S_before:.6f}")
     print(f"  Off-diagonal residual: {off_diag:.2e}")
-    print(f"  → Measurement DESTROYS coherence (off-diag → 0)")
-    print(f"  → Entropy increases: superposition → classical mixture")
-    print(f"  → Information is ABSORBED (system pays Landauer cost)")
+    print(f"  → Trace_Projection DESTROYS coherence (off-diag → 0)")
+    print(f"  → State_Dispersion increases: superposition → classical mixture")
+    print(f"  → State_Distinction is ABSORBED (system pays Landauer cost)")
     
     coherence_killed = off_diag < 1e-15
     entropy_up = S_after >= S_before - 1e-10
@@ -349,9 +349,9 @@ def sim_expansion_operator(d: int = 4):
     """
     EXPANSION OPERATOR (emissive logic)
     ======================================
-    Drives entropy PRODUCTION. Takes a low-entropy state and
+    Drives state_dispersion PRODUCTION. Takes a low-state_dispersion state and
     expands it into a larger portion of state space.
-    - Entropy INCREASES
+    - State_Dispersion INCREASES
     - Emits structure into the environment
     - Maps to the inductive/divergent stroke
     """
@@ -361,7 +361,7 @@ def sim_expansion_operator(d: int = 4):
     print(f"{'='*60}")
     
     np.random.seed(42)
-    # Start near-pure (low entropy)
+    # Start near-pure (low state_dispersion)
     rho = np.zeros((d, d), dtype=complex)
     rho[0, 0] = 0.95
     rho[1, 1] = 0.05
@@ -402,7 +402,7 @@ def sim_filtering_operator(d: int = 4):
     ========================================
     Spectral band-pass. Selects specific eigenfrequencies,
     suppresses others.
-    - Entropy DECREASES in the selected band
+    - State_Dispersion DECREASES in the selected band
     - Absorbs specific spectral components
     - Acts as a high-Q resonance intake
     """

@@ -110,7 +110,7 @@ class GraphPolicyChecker:
 
 def generate_report(results: Dict[str, Any], output_path: str):
     with open(output_path, 'w') as f:
-        f.write("# POLICY ENGINE EVALUATION REPORT - v1\n\n")
+        f.write("# POLICY PROCESS_CYCLE EVALUATION REPORT - v1\n\n")
         f.write("## Executive Summary\n\n")
         
         # Summary Table
@@ -161,7 +161,7 @@ if __name__ == "__main__":
     checker = GraphPolicyChecker(graph_files)
     all_results = checker.run_policies()
     
-    report_path = "system_v4/a2_state/audit_logs/POLICY_ENGINE_EVALUATION_REPORT__v1.md"
+    report_path = "system_v4/a2_state/audit_logs/POLICY_PROCESS_CYCLE_EVALUATION_REPORT__v1.md"
     os.makedirs(os.path.dirname(report_path), exist_ok=True)
     generate_report(all_results, report_path)
     print(f"Report generated at {report_path}")

@@ -1,11 +1,11 @@
 """
-Constraint Gap SIM Suite
+Operator_Bound Gap SIM Suite
 =========================
-Fills the gaps identified by NLM constraint cross-validation.
+Fills the gaps identified by NLM operator_bound cross-validation.
 
 SIM_01: CAS04 — Operational equivalence (no primitive identity a=a)
 SIM_02: GZ1 — GT overlays don't modify kernel admissibility
-SIM_03: NET_RATCHET — 720° cycle has net ΔΦ > 0 (the ratchet gains)
+SIM_03: NET_DIRECTIONAL_ACCUMULATOR — 720° cycle has net ΔΦ > 0 (the directional_accumulator gains)
 SIM_04: R2 — Refinement operators are non-commutative, non-idempotent
 SIM_05: E4 — Stability predicates scoped to finite perturbations
 """
@@ -54,7 +54,7 @@ def sim_operational_equivalence(d: int = 4):
     under all admissible probes.
     
     Two different density matrices can be operationally equivalent
-    if no finite measurement distinguishes them.
+    if no finite trace_projection distinguishes them.
     """
     print(f"\n{'='*60}")
     print(f"SIM_01: CAS04 — OPERATIONAL EQUIVALENCE")
@@ -73,7 +73,7 @@ def sim_operational_equivalence(d: int = 4):
     # They are different matrices
     matrix_diff = np.linalg.norm(rho_a - rho_b)
     
-    # But they have the SAME eigenvalues → same entropy
+    # But they have the SAME eigenvalues → same state_dispersion
     eigvals_a = sorted(np.real(np.linalg.eigvalsh(rho_a)))
     eigvals_b = sorted(np.real(np.linalg.eigvalsh(rho_b)))
     eigenvalue_match = np.allclose(eigvals_a, eigvals_b, atol=1e-10)
@@ -82,7 +82,7 @@ def sim_operational_equivalence(d: int = 4):
     S_b = von_neumann_entropy(rho_b)
     entropy_match = abs(S_a - S_b) < 1e-10
     
-    # Under basis-independent probes (entropy, purity, rank), they are
+    # Under basis-independent probes (state_dispersion, purity, rank), they are
     # OPERATIONALLY EQUIVALENT even though a ≠ b as matrices
     purity_a = np.real(np.trace(rho_a @ rho_a))
     purity_b = np.real(np.trace(rho_b @ rho_b))
@@ -97,7 +97,7 @@ def sim_operational_equivalence(d: int = 4):
     
     print(f"  Matrix difference: {matrix_diff:.6f} (NOT zero)")
     print(f"  Eigenvalues match: {eigenvalue_match}")
-    print(f"  Entropy match: {entropy_match} (S_a={S_a:.6f}, S_b={S_b:.6f})")
+    print(f"  State_Dispersion match: {state_dispersion_match} (S_a={S_a:.6f}, S_b={S_b:.6f})")
     print(f"  Purity match: {purity_match}")
     print(f"  Basis-dependent differs: {basis_dependent_differ}")
     print(f"  → a ≠ b as matrices, but a ~ b under invariant probes")
@@ -116,7 +116,7 @@ def sim_operational_equivalence(d: int = 4):
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# SIM_02: GZ1 — GT Overlay Isolation
+# SIM_02: GZ1 — GT Conceptual_Layer Isolation
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 def sim_gt_isolation(d: int = 4):
@@ -128,14 +128,14 @@ def sim_gt_isolation(d: int = 4):
     matrix evolution. The labels are annotations, not operators.
     """
     print(f"\n{'='*60}")
-    print(f"SIM_02: GZ1 — GT OVERLAY ISOLATION")
+    print(f"SIM_02: GZ1 — GT CONCEPTUAL_LAYER ISOLATION")
     print(f"  d={d}")
     print(f"{'='*60}")
     
     np.random.seed(42)
     rho_init = make_random_density_matrix(d)
     
-    # Run engine WITHOUT labels
+    # Run process_cycle WITHOUT labels
     U = make_random_unitary(d)
     L = np.random.randn(d, d) + 1j * np.random.randn(d, d)
     L = L / np.linalg.norm(L) * 2.0
@@ -146,7 +146,7 @@ def sim_gt_isolation(d: int = 4):
         for __ in range(3):
             rho_no_labels = apply_lindbladian_step(rho_no_labels, L, dt=0.01)
     
-    # Run engine WITH labels (same operations, just annotated)
+    # Run process_cycle WITH labels (same operations, just annotated)
     labels = ["WIN", "LOSE", "win", "lose"] * 13  # 52 labels for 50 steps
     rho_with_labels = rho_init.copy()
     for i in range(50):
@@ -184,20 +184,20 @@ def sim_gt_isolation(d: int = 4):
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# SIM_03: NET RATCHET — ΔΦ > 0 per cycle
+# SIM_03: NET DIRECTIONAL_ACCUMULATOR — ΔΦ > 0 per cycle
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 def sim_net_ratchet(d: int = 4, n_cycles: int = 10):
     """
     CLAIM: The full 720° cycle has a net ΔΦ > 0.
     The system CLIMBS the complexity gradient over macro-time.
-    This is the ratchet — it only goes forward.
+    This is the directional_accumulator — it only goes forward.
     
     NLM confirmed: "The net entropy budget is NOT zero.
     There is a small net gain (the ratchet)."
     """
     print(f"\n{'='*60}")
-    print(f"SIM_03: NET RATCHET — ΔΦ > 0 PER CYCLE")
+    print(f"SIM_03: NET DIRECTIONAL_ACCUMULATOR — ΔΦ > 0 PER CYCLE")
     print(f"  d={d}, cycles={n_cycles}")
     print(f"{'='*60}")
     
@@ -280,22 +280,22 @@ def sim_net_ratchet(d: int = 4, n_cycles: int = 10):
     print(f"\n  Cycles with ΔΦ > 0: {net_gain}/{n_cycles}")
     print(f"  Average ΔΦ per cycle: {avg_delta:+.6f}")
     print(f"  Total ΔΦ over {n_cycles} cycles: {total_delta:+.6f}")
-    print(f"  → Net ΔΦ ≠ 0: the ratchet CLIMBS!")
+    print(f"  → Net ΔΦ ≠ 0: the directional_accumulator CLIMBS!")
     
-    # The ratchet: either consistently positive or the engine gains overall
-    ratchets = total_delta > -0.5  # allowing for some loss, the cycle shouldn't collapse
+    # The directional_accumulator: either consistently positive or the process_cycle gains overall
+    ratchets = total_delta > -0.5  # allowing for some loss, the cycle shouldn't state_reduction
     
     if ratchets:
-        print(f"  PASS: Net ratchet confirmed!")
+        print(f"  PASS: Net directional_accumulator confirmed!")
         return EvidenceToken(
-            token_id="E_SIM_NET_RATCHET_OK",
-            sim_spec_id="S_SIM_NET_RATCHET_V1",
+            token_id="E_SIM_NET_DIRECTIONAL_ACCUMULATOR_OK",
+            sim_spec_id="S_SIM_NET_DIRECTIONAL_ACCUMULATOR_V1",
             status="PASS",
             measured_value=total_delta
         )
     else:
-        return EvidenceToken("", "S_SIM_NET_RATCHET_V1", "KILL", 0.0,
-                           "RATCHET_COLLAPSES")
+        return EvidenceToken("", "S_SIM_NET_DIRECTIONAL_ACCUMULATOR_V1", "KILL", 0.0,
+                           "DIRECTIONAL_ACCUMULATOR_COLLAPSES")
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -324,7 +324,7 @@ def sim_refinement_noncommutative(d: int = 4):
     U2 = make_random_unitary(d)
     P2 = [U2[:, k:k+1] @ U2[:, k:k+1].conj().T for k in range(d)]
     
-    # Refinement = projective measurement
+    # Refinement = projective trace_projection
     def refine(rho, projs):
         return sum(P @ rho @ P for P in projs)
     
@@ -333,8 +333,8 @@ def sim_refinement_noncommutative(d: int = 4):
     rho_21 = refine(refine(rho, P2), P1)
     dist_noncomm = trace_distance(rho_12, rho_21)
     
-    # Non-idempotency: R(R(ρ)) may ≠ R(ρ) when R involves non-orthogonal probes
-    # Actually projective measurement IS idempotent in same basis
+    # Non-idempotency: R(R(ρ)) may ≠ R(ρ) when R involves non-mutually_exclusive probes
+    # Actually projective trace_projection IS idempotent in same basis
     # So test with DIFFERENT basis each time (like adding a new probe)
     rho_once = refine(rho, P1)
     rho_twice = refine(refine(rho, P1), P2)  # second refinement adds new info
@@ -364,11 +364,11 @@ def sim_refinement_noncommutative(d: int = 4):
 def sim_finite_stability(d: int = 4, n_kicks: int = 20):
     """
     CLAIM (E4): Stability predicates must be scoped to FINITE
-    perturbations. An attractor is stable only against kicks
+    perturbations. An invariant_target is stable only against kicks
     of bounded size.
     
-    Small kicks: returns to attractor.
-    Large kicks: escapes to new basin.
+    Small kicks: returns to invariant_target.
+    Large kicks: escapes to new convergent_subset.
     """
     print(f"\n{'='*60}")
     print(f"SIM_05: E4 — FINITE PERTURBATION STABILITY")
@@ -380,7 +380,7 @@ def sim_finite_stability(d: int = 4, n_kicks: int = 20):
     L = np.random.randn(d, d) + 1j * np.random.randn(d, d)
     L = L / np.linalg.norm(L) * 2.0
     
-    # Find attractor
+    # Find invariant_target
     rho = make_random_density_matrix(d)
     for _ in range(200):
         rho = apply_unitary_channel(rho, U)
@@ -428,7 +428,7 @@ def sim_finite_stability(d: int = 4, n_kicks: int = 20):
     print(f"  Small kicks avg return distance: {small_return:.6f}")
     print(f"  Large kicks avg escape distance: {large_escape:.6f}")
     print(f"  → Small kicks: attracted back (stable)")
-    print(f"  → Large kicks: escape to new basin (finite scope)")
+    print(f"  → Large kicks: escape to new convergent_subset (finite scope)")
     
     stability_scoped = small_return < 0.1 and large_escape > small_return
     
@@ -454,7 +454,7 @@ if __name__ == "__main__":
     results.append(sim_finite_stability())
     
     print(f"\n{'='*60}")
-    print(f"CONSTRAINT GAP SUITE RESULTS")
+    print(f"OPERATOR_BOUND GAP SUITE RESULTS")
     print(f"{'='*60}")
     for e in results:
         icon = "✓" if e.status == "PASS" else "✗"
@@ -463,7 +463,7 @@ if __name__ == "__main__":
     base = os.path.dirname(os.path.abspath(__file__))
     results_dir = os.path.join(base, "a2_state", "sim_results")
     os.makedirs(results_dir, exist_ok=True)
-    outpath = os.path.join(results_dir, "constraint_gap_results.json")
+    outpath = os.path.join(results_dir, "operator_bound_gap_results.json")
     with open(outpath, "w") as f:
         json.dump({
             "timestamp": datetime.now(UTC).isoformat(),

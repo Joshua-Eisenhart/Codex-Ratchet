@@ -21,6 +21,6 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo "LAUNCHD TRIGGER: $(date -u '+%Y-%m-%dT%H:%M:%SZ')" >> "$LOG_DIR/heartbeat.log"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" >> "$LOG_DIR/heartbeat.log"
 
-/usr/bin/python3 "$DAEMON" "$@" >> "$LOG_DIR/heartbeat.log" 2>> "$LOG_DIR/heartbeat_error.log"
+/opt/homebrew/bin/python3 "$DAEMON" "$@" >> "$LOG_DIR/heartbeat.log" 2>> "$LOG_DIR/heartbeat_error.log"
 
 echo "EXIT: $? at $(date -u '+%Y-%m-%dT%H:%M:%SZ')" >> "$LOG_DIR/heartbeat.log"

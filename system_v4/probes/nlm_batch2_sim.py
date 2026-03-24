@@ -3,8 +3,8 @@ NLM Batch 2 SIM Suite
 ======================
 Turns the remaining NLM extractions into executable tests.
 
-SIM_01: HOLODECK — Observer fixed-point E(ρ*) = ρ*
-SIM_02: QIT_FEP — Quantum relative entropy minimization
+SIM_01: SIMULATION_MATRIX — Reference_Frame fixed-point E(ρ*) = ρ*
+SIM_02: QIT_FEP — Quantum relative state_dispersion minimization
 SIM_03: MOLOCH — WIN-only Nash trap → I/d thermal death
 SIM_04: MAXWELL_DEMON — FeTi cycle: measure→store→sort→erase
 """
@@ -54,12 +54,12 @@ def quantum_relative_entropy(rho, sigma, eps=1e-12):
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# SIM_01: HOLODECK — Observer Fixed-Point
+# SIM_01: SIMULATION_MATRIX — Reference_Frame Fixed-Point
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 def sim_holodeck_fixed_point(d: int = 4, n_steps: int = 300):
     """
-    NLM claim: A self-referential observer embedded in its own
+    NLM claim: A self-referential reference_frame embedded in its own
     output must find a fixed-point ρ* where E(ρ*) = ρ*.
 
     Test: Repeatedly apply a CPTP map. The state converges to
@@ -67,7 +67,7 @@ def sim_holodeck_fixed_point(d: int = 4, n_steps: int = 300):
     self-model."
     """
     print(f"\n{'='*60}")
-    print(f"SIM_01: HOLODECK — OBSERVER FIXED-POINT")
+    print(f"SIM_01: SIMULATION_MATRIX — REFERENCE_FRAME FIXED-POINT")
     print(f"  d={d}, steps={n_steps}")
     print(f"{'='*60}")
 
@@ -108,25 +108,25 @@ def sim_holodeck_fixed_point(d: int = 4, n_steps: int = 300):
     print(f"  Fixed-point dist E(ρ*) vs ρ*:  {fp_dist:.2e}")
     print(f"  Kick recovery dist:             {return_dist:.2e}")
     print(f"  → State converges to ρ* where E(ρ*) ≈ ρ*")
-    print(f"  → Kicked state returns to ρ* (attractor)")
+    print(f"  → Kicked state returns to ρ* (invariant_target)")
 
     is_fp = fp_dist < 0.01 and return_dist < 0.01
     if is_fp:
-        print(f"  PASS: Observer fixed-point confirmed!")
-        return EvidenceToken("E_SIM_HOLODECK_FP_OK", "S_SIM_HOLODECK_V1",
+        print(f"  PASS: Reference_Frame fixed-point confirmed!")
+        return EvidenceToken("E_SIM_SIMULATION_MATRIX_FP_OK", "S_SIM_SIMULATION_MATRIX_V1",
                            "PASS", fp_dist)
     else:
-        return EvidenceToken("", "S_SIM_HOLODECK_V1", "KILL", 0.0,
+        return EvidenceToken("", "S_SIM_SIMULATION_MATRIX_V1", "KILL", 0.0,
                            f"FP={fp_dist:.4f}")
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# SIM_02: QIT FEP — Free Energy Minimization
+# SIM_02: QIT FEP — Free Hamiltonian_Norm Minimization
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 def sim_qit_fep(d: int = 4, n_steps: int = 100):
     """
-    NLM claim: Agent minimizes quantum relative entropy
+    NLM claim: Agent minimizes quantum relative state_dispersion
     D(ρ_agent || ρ_env). Perceptual inference (Ti) updates
     the agent. Active inference (Te) updates the environment.
 
@@ -135,7 +135,7 @@ def sim_qit_fep(d: int = 4, n_steps: int = 100):
     Prediction error = commutator [ρ_agent, ρ_env].
     """
     print(f"\n{'='*60}")
-    print(f"SIM_02: QIT FEP — FREE ENERGY MINIMIZATION")
+    print(f"SIM_02: QIT FEP — FREE HAMILTONIAN_NORM MINIMIZATION")
     print(f"  d={d}, steps={n_steps}")
     print(f"{'='*60}")
 
@@ -143,7 +143,7 @@ def sim_qit_fep(d: int = 4, n_steps: int = 100):
     rho_agent = make_random_density_matrix(d)
     rho_env = make_random_density_matrix(d)
 
-    D_initial = quantum_relative_entropy(rho_agent, rho_env)
+    D_initial = quantum_relative_state_dispersion(rho_agent, rho_env)
     comm_initial = np.linalg.norm(rho_agent @ rho_env - rho_env @ rho_agent)
 
     print(f"  Initial D(agent||env) = {D_initial:.6f}")
@@ -200,12 +200,12 @@ def sim_qit_fep(d: int = 4, n_steps: int = 100):
 
 def sim_moloch_trap(d: int = 4, n_agents: int = 5, n_rounds: int = 50):
     """
-    NLM claim: Moloch = the attractor of a WIN-only system.
+    NLM claim: Moloch = the invariant_target of a WIN-only system.
     Every agent maximizes local ΔΦ. The collective state
     converges to I/d (maximally mixed = thermal death).
 
     Counter-strategy: one agent plays LOSE (Fe dissipation)
-    to prevent collapse.
+    to prevent state_reduction.
     """
     print(f"\n{'='*60}")
     print(f"SIM_03: MOLOCH — NASH TRAP = THERMAL DEATH")
@@ -276,9 +276,9 @@ def sim_maxwell_demon(d: int = 4, n_cycles: int = 10):
     NLM claim: Maxwell's demon = the FeTi deductive loop.
     Cycle: measure (Ti) → store (Fe/Si) → sort (Ti) → erase (Fe)
     
-    The demon gains info (ΔΦ > 0) via measurement,
+    The demon gains info (ΔΦ > 0) via trace_projection,
     then must erase memory (ΔΦ < 0) paying Landauer cost.
-    Net should be small positive (the ratchet) or zero.
+    Net should be small positive (the directional_accumulator) or zero.
     """
     print(f"\n{'='*60}")
     print(f"SIM_04: MAXWELL'S DEMON — FeTi CYCLE")
@@ -288,7 +288,7 @@ def sim_maxwell_demon(d: int = 4, n_cycles: int = 10):
     np.random.seed(42)
     rho = make_random_density_matrix(d)
     
-    # Ti: measurement/projection
+    # Ti: trace_projection/projection
     def measure(rho):
         # Diagonalize ρ to get its eigenbasis — project there, not computational basis
         eigvals, V = np.linalg.eigh(rho)

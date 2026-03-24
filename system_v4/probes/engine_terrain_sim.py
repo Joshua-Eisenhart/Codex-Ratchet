@@ -1,12 +1,12 @@
 """
-Complete 8-Terrain Engine SIM
+Complete 8-Terrain Process_Cycle SIM
 =================================
 Both Type-1 and Type-2 engines running their full cycles
 with the exact SG/EE patterns from the canonical tables.
 
 Each terrain = (topology, operator, loop, polarity)
 SG  = ΔΦ > 0 (Structure Gained)
-EE  = ΔΦ < 0 (Entropy Emitted)
+EE  = ΔΦ < 0 (State_Dispersion Emitted)
 BIG = outer/major loop (larger magnitude)
 small = inner/minor loop (smaller magnitude)
 
@@ -51,7 +51,7 @@ def negentropy(rho, d):
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 def apply_Ti(rho, d, polarity_up=True):
-    """Ti = Projective/constraint kernel. Σ P_i ρ P_i.
+    """Ti = Projective/operator_bound kernel. Σ P_i ρ P_i.
     UP = hard projection (operator-first). DOWN = soft POVM."""
     projectors = [np.zeros((d, d), dtype=complex) for _ in range(d)]
     for k in range(d):
@@ -134,7 +134,7 @@ def apply_Fi(rho, d, polarity_up=True):
 # The Terrain Definitions
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-# SG = Structure Gained (ΔΦ > 0), EE = Entropy Emitted (ΔΦ < 0)
+# SG = Structure Gained (ΔΦ > 0), EE = State_Dispersion Emitted (ΔΦ < 0)
 # CAPS = outer/BIG loop, lower = inner/small loop
 # From the NLM-verified tables:
 TYPE1_TERRAINS = [
@@ -169,9 +169,9 @@ OPERATOR_MAP = {
 
 
 def run_engine(terrains, engine_name, d=4, n_cycles=20):
-    """Run a full engine cycle and measure ΔΦ per terrain."""
+    """Run a full process_cycle cycle and measure ΔΦ per terrain."""
     print(f"\n{'='*60}")
-    print(f"ENGINE: {engine_name}")
+    print(f"PROCESS_CYCLE: {process_cycle_name}")
     print(f"  d={d}, cycles={n_cycles}")
     print(f"{'='*60}")
     
@@ -242,7 +242,7 @@ def run_engine(terrains, engine_name, d=4, n_cycles=20):
 
 
 def _collect_mismatches(results):
-    """Extract mismatch details from engine results."""
+    """Extract mismatch details from process_cycle results."""
     mismatches = []
     for r in results:
         if not r["matches"]:
@@ -254,7 +254,7 @@ def _collect_mismatches(results):
 
 
 def sim_type1_engine(d=4):
-    """TYPE-1 ENGINE: outer=deductive FeTi, inner=inductive TeFi"""
+    """TYPE-1 PROCESS_CYCLE: outer=deductive FeTi, inner=inductive TeFi"""
     results = run_engine(TYPE1_TERRAINS, "TYPE-1 (Deductive outer, Inductive inner)", d)
     
     # Verify pattern: Se=EE_sg, Si=SG_sg, Ne=SG_ee, Ni=EE_ee
@@ -317,7 +317,7 @@ def sim_type1_engine(d=4):
 
 
 def sim_type2_engine(d=4):
-    """TYPE-2 ENGINE: outer=inductive TeFi, inner=deductive FeTi"""
+    """TYPE-2 PROCESS_CYCLE: outer=inductive TeFi, inner=deductive FeTi"""
     results = run_engine(TYPE2_TERRAINS, "TYPE-2 (Inductive outer, Deductive inner)", d)
     
     matches = sum(1 for r in results if r["matches"])
@@ -439,7 +439,7 @@ if __name__ == "__main__":
     all_tokens.extend(sim_chiral_mirror())
     
     print(f"\n{'='*60}")
-    print(f"8-TERRAIN ENGINE SUITE RESULTS")
+    print(f"8-TERRAIN PROCESS_CYCLE SUITE RESULTS")
     print(f"{'='*60}")
     for e in all_tokens:
         icon = "✓" if e.status == "PASS" else "✗"
@@ -452,7 +452,7 @@ if __name__ == "__main__":
     base = os.path.dirname(os.path.abspath(__file__))
     results_dir = os.path.join(base, "a2_state", "sim_results")
     os.makedirs(results_dir, exist_ok=True)
-    outpath = os.path.join(results_dir, "engine_terrain_results.json")
+    outpath = os.path.join(results_dir, "process_cycle_terrain_results.json")
     with open(outpath, "w") as f:
         json.dump({
             "timestamp": datetime.now(UTC).isoformat(),

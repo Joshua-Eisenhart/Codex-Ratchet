@@ -95,7 +95,7 @@ def run_engine_cycle(rho, d, gamma_dom, gamma_sub, Ti_ops, Fe_ops, H, Fi,
 
             for L in Fe_ops:
                 LdL = L.conj().T @ L
-                drho += g_Fe * 0.1 * (L @ rho @ L.conj().T - 0.5 * (LdL @ rho + rho @ LdL))
+                drho += g_Fe * (L @ rho @ L.conj().T - 0.5 * (LdL @ rho + rho @ LdL))
 
             rho = rho + dt * drho
 
@@ -162,7 +162,7 @@ def sim_gain_calibration(d=4, n_cycles=10):
         threshold_ratio = float('inf')
         print(f"\n  WARNING: No γ_sub produces ΔΦ > 0 at γ_dom={gamma_dom}")
 
-    # Run calibrated engine with best γ_sub
+    # Run calibrated process_cycle with best γ_sub
     best_sub = min(r['gamma_sub'] for r in sweep_results
                    if r == min(sweep_results, key=lambda x: -x['total_dphi']))
     best_dphi = max(r['total_dphi'] for r in sweep_results)
@@ -184,15 +184,15 @@ def sim_gain_calibration(d=4, n_cycles=10):
             f"NO_POSITIVE_DPHI_IN_SWEEP"
         ))
 
-    # Token: calibrated engine ratchets?
+    # Token: calibrated process_cycle ratchets?
     if best_dphi > 0:
         results.append(EvidenceToken(
-            "E_SIM_CALIBRATED_RATCHET_OK", "S_SIM_CALIBRATED_ENGINE_V1",
+            "E_SIM_CALIBRATED_DIRECTIONAL_ACCUMULATOR_OK", "S_SIM_CALIBRATED_PROCESS_CYCLE_V1",
             "PASS", best_dphi
         ))
     else:
         results.append(EvidenceToken(
-            "", "S_SIM_CALIBRATED_ENGINE_V1",
+            "", "S_SIM_CALIBRATED_PROCESS_CYCLE_V1",
             "KILL", best_dphi,
             f"BEST_DPHI={best_dphi:.6f}_STILL_NEGATIVE"
         ))

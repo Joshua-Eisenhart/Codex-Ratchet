@@ -264,6 +264,13 @@ class A1Brain:
             self.graveyard_terms = state.get("graveyard_terms", {})
             self._id_counters = state.get("id_counters", self._id_counters)
 
+    def _get_rosetta_translation(self, w: str) -> Optional[str]:
+        mapped = self.rosetta.get_kernel_translation(w)
+        if mapped:
+            return mapped
+        # Check v2
+        return self.rosetta_v2.get_kernel_translation(w)
+
     def save_state(self):
         state = {
             "term_registry": self.term_registry,
@@ -527,7 +534,7 @@ class A1Brain:
         rosetta_hits = 0
         name_rosetta_hits = 0
         for w in all_words:
-            mapped = self.rosetta.get_kernel_translation(w)
+            mapped = self._get_rosetta_translation(w)
             if mapped and mapped.startswith("S_TERM_"):
                 rosetta_hits += 1
                 if w in name_words:
@@ -650,7 +657,7 @@ class A1Brain:
         # Check all raw words (not just L0) against active Rosetta mappings
         # to pull in jargon that translates to kernel IDs
         for w in words:
-            mapped_kernel_target = self.rosetta.get_kernel_translation(w)
+            mapped_kernel_target = self._get_rosetta_translation(w)
             # Remove the S_TERM_ prefix so a1_brain treats it as a structural token, not a full ID yet
             if mapped_kernel_target and mapped_kernel_target.startswith("S_TERM_"):
                 translated_token = mapped_kernel_target[7:].lower() # e.g. S_TERM_OBSERVABLE -> observable

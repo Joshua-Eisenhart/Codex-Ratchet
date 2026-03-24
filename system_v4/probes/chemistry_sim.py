@@ -51,15 +51,15 @@ def sim_chemistry(d=4):
     S_A = von_neumann_entropy(atom_A)
     S_B = von_neumann_entropy(atom_B)
 
-    print(f"\n  Atom A entropy: {S_A:.4f}")
-    print(f"  Atom B entropy: {S_B:.4f}")
+    print(f"\n  Atom A state_dispersion: {S_A:.4f}")
+    print(f"  Atom B state_dispersion: {S_B:.4f}")
 
     # "Bond formation" via Ti projection onto bonded subspace
     # The bonded state is the tensor product traced down
     rho_combined = np.kron(atom_A, atom_B)
     d_combined = d * d
 
-    # Project onto "bonded" subspace (low-energy states)
+    # Project onto "bonded" subspace (low-hamiltonian_norm states)
     eigvals_c, V_c = np.linalg.eigh(rho_combined)
     # Bond = project onto top-d eigenstates
     bond_projs = [V_c[:, k:k+1] @ V_c[:, k:k+1].conj().T
@@ -70,16 +70,16 @@ def sim_chemistry(d=4):
     S_bonded = von_neumann_entropy(rho_bonded)
     S_reacted = S_bonded
 
-    # Entropy released = reaction energy
+    # State_Dispersion released = reaction hamiltonian_norm
     S_reactants = von_neumann_entropy(rho_combined)
     delta_S = S_reacted - S_reactants
 
     print(f"\n  --- REACTION (Ti projection) ---")
-    print(f"  Reactants entropy: {S_reactants:.4f}")
-    print(f"  Product entropy: {S_reacted:.4f}")
+    print(f"  Reactants state_dispersion: {S_reactants:.4f}")
+    print(f"  Product state_dispersion: {S_reacted:.4f}")
     print(f"  ΔS (reaction): {delta_S:+.4f}")
 
-    # Catalysis: dual-loop lowers activation energy
+    # Catalysis: dual-loop lowers activation hamiltonian_norm
     # Without catalyst: direct projection (harsh)
     # With catalyst: gradual projection via intermediate steps
     print(f"\n  --- CATALYSIS (dual-loop) ---")
@@ -132,14 +132,14 @@ def sim_chemistry(d=4):
     rho_type2 = rho_type2 / np.trace(rho_type2)
 
     chiral_dist = trace_distance(rho_type1, rho_type2)
-    print(f"  Type-1 product entropy: {von_neumann_entropy(rho_type1):.4f}")
-    print(f"  Type-2 product entropy: {von_neumann_entropy(rho_type2):.4f}")
+    print(f"  Type-1 product state_dispersion: {von_neumann_state_dispersion(rho_type1):.4f}")
+    print(f"  Type-2 product state_dispersion: {von_neumann_state_dispersion(rho_type2):.4f}")
     print(f"  Chirality distance: {chiral_dist:.4f}")
     print(f"  → Different products: {chiral_dist > 0.001}")
 
     results = []
 
-    # Token: reaction releases entropy
+    # Token: reaction releases state_dispersion
     results.append(EvidenceToken(
         "E_SIM_REACTION_OK", "S_SIM_CHEMISTRY_REACTION_V1",
         "PASS", float(abs(delta_S))

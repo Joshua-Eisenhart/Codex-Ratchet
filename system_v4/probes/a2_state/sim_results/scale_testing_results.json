@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-23T23:03:56.376272+00:00",
+  "timestamp": "2026-03-24T11:08:41.183438+00:00",
   "dimensions": [
     4,
     8,
@@ -36,7 +36,7 @@
         "status": "PASS",
         "value": 0.0006540086138027146
       },
-      "SIM08_ATTRACTOR_BASIN": {
+      "SIM08_INVARIANT_TARGET_CONVERGENT_SUBSET": {
         "status": "PASS",
         "value": 2.556820345182541e-11
       },
@@ -56,11 +56,11 @@
         "status": "PASS",
         "value": 0.21804875995372808
       },
-      "SIM13_NET_RATCHET": {
+      "SIM13_NET_DIRECTIONAL_ACCUMULATOR": {
         "status": "PASS",
         "value": 0.8551178594744561
       },
-      "SIM14_HOLODECK_FP": {
+      "SIM14_SIMULATION_MATRIX_FP": {
         "status": "PASS",
         "value": 0.00024514044509604
       },
@@ -110,7 +110,7 @@
         "status": "PASS",
         "value": 9.75415300974447e-07
       },
-      "SIM08_ATTRACTOR_BASIN": {
+      "SIM08_INVARIANT_TARGET_CONVERGENT_SUBSET": {
         "status": "PASS",
         "value": 3.4972153468255034e-12
       },
@@ -130,11 +130,11 @@
         "status": "PASS",
         "value": 0.10963323898962088
       },
-      "SIM13_NET_RATCHET": {
+      "SIM13_NET_DIRECTIONAL_ACCUMULATOR": {
         "status": "PASS",
         "value": 1.2875382967961655
       },
-      "SIM14_HOLODECK_FP": {
+      "SIM14_SIMULATION_MATRIX_FP": {
         "status": "PASS",
         "value": 1.685324185920854e-05
       },
@@ -184,7 +184,7 @@
         "status": "PASS",
         "value": 6.80710059692835e-05
       },
-      "SIM08_ATTRACTOR_BASIN": {
+      "SIM08_INVARIANT_TARGET_CONVERGENT_SUBSET": {
         "status": "PASS",
         "value": 2.535582749807721e-16
       },
@@ -204,11 +204,11 @@
         "status": "PASS",
         "value": 0.15425185331269142
       },
-      "SIM13_NET_RATCHET": {
+      "SIM13_NET_DIRECTIONAL_ACCUMULATOR": {
         "status": "PASS",
         "value": 0.668159549094016
       },
-      "SIM14_HOLODECK_FP": {
+      "SIM14_SIMULATION_MATRIX_FP": {
         "status": "PASS",
         "value": 2.0054223479497652e-09
       },
@@ -258,7 +258,7 @@
         "status": "PASS",
         "value": 1.0003546584869127e-05
       },
-      "SIM08_ATTRACTOR_BASIN": {
+      "SIM08_INVARIANT_TARGET_CONVERGENT_SUBSET": {
         "status": "PASS",
         "value": 2.925461679801916e-16
       },
@@ -278,11 +278,11 @@
         "status": "PASS",
         "value": 0.14937283502820667
       },
-      "SIM13_NET_RATCHET": {
+      "SIM13_NET_DIRECTIONAL_ACCUMULATOR": {
         "status": "PASS",
         "value": -0.2390980400690359
       },
-      "SIM14_HOLODECK_FP": {
+      "SIM14_SIMULATION_MATRIX_FP": {
         "status": "PASS",
         "value": 4.042498701067792e-16
       },
@@ -304,7 +304,7 @@
       }
     }
   },
-  "constraint_verification": {
+  "operator_bound_verification": {
     "C1_FINITUDE": {
       "4": "HOLD",
       "8": "HOLD",
@@ -329,7 +329,7 @@
       "16": "HOLD",
       "32": "HOLD"
     },
-    "C5_ENTROPY_FLOW": {
+    "C5_STATE_DISPERSION_FLOW": {
       "4": "HOLD",
       "8": "HOLD",
       "16": "HOLD",
@@ -347,7 +347,7 @@
       "16": "HOLD",
       "32": "HOLD"
     },
-    "C8_RATCHET_GAIN": {
+    "C8_DIRECTIONAL_ACCUMULATOR_GAIN": {
       "4": "HOLD",
       "8": "HOLD",
       "16": "HOLD",
@@ -365,7 +365,7 @@
       "16": "HOLD",
       "32": "HOLD"
     },
-    "X3_NASH_ATTRACTOR": {
+    "X3_NASH_INVARIANT_TARGET": {
       "4": "HOLD",
       "8": "HOLD",
       "16": "HOLD",
@@ -395,7 +395,7 @@
       "16": "HOLD",
       "32": "HOLD"
     },
-    "X8_HOLODECK_FP": {
+    "X8_SIMULATION_MATRIX_FP": {
       "4": "HOLD",
       "8": "HOLD",
       "16": "HOLD",
@@ -403,11 +403,139 @@
     }
   },
   "timings": {
-    "4": 0.1216740608215332,
-    "8": 0.2162489891052246,
-    "16": 0.6919939517974854,
-    "32": 3.5317649841308594
+    "4": 0.13764405250549316,
+    "8": 0.3932790756225586,
+    "16": 0.7098093032836914,
+    "32": 4.189910650253296
   },
   "all_constraints_hold": true,
-  "constraints_holding": 16
+  "constraints_holding": 16,
+  "evidence_ledger": [
+    {
+      "token_id": "E_SCALE_SIM01_F01_FINITUDE_OK",
+      "sim_spec_id": "S_SCALE_SIM01_F01_FINITUDE",
+      "status": "PASS",
+      "measured_value": 1.0,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM02_N01_NONCOMMUTE_OK",
+      "sim_spec_id": "S_SCALE_SIM02_N01_NONCOMMUTE",
+      "status": "PASS",
+      "measured_value": 1.0,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM03_CAS04_OPEQUIV_OK",
+      "sim_spec_id": "S_SCALE_SIM03_CAS04_OPEQUIV",
+      "status": "PASS",
+      "measured_value": 1.0,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM04_ENTROPIC_MONISM_OK",
+      "sim_spec_id": "S_SCALE_SIM04_ENTROPIC_MONISM",
+      "status": "PASS",
+      "measured_value": 1.0,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM05_MATH_PHYSICS_FUSION_OK",
+      "sim_spec_id": "S_SCALE_SIM05_MATH_PHYSICS_FUSION",
+      "status": "PASS",
+      "measured_value": 1.0,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM06_ACTION_PRECEDENCE_OK",
+      "sim_spec_id": "S_SCALE_SIM06_ACTION_PRECEDENCE",
+      "status": "PASS",
+      "measured_value": 1.0,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM07_VARIANCE_DIRECTION_OK",
+      "sim_spec_id": "S_SCALE_SIM07_VARIANCE_DIRECTION",
+      "status": "PASS",
+      "measured_value": 0.0006540086138027146,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM08_INVARIANT_TARGET_CONVERGENT_SUBSET_OK",
+      "sim_spec_id": "S_SCALE_SIM08_INVARIANT_TARGET_CONVERGENT_SUBSET",
+      "status": "PASS",
+      "measured_value": 2.556820345182541e-11,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM09_720_CYCLE_OK",
+      "sim_spec_id": "S_SCALE_SIM09_720_CYCLE",
+      "status": "PASS",
+      "measured_value": 0.3780883499571909,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM10_WIN_ONLY_STALL_OK",
+      "sim_spec_id": "S_SCALE_SIM10_WIN_ONLY_STALL",
+      "status": "PASS",
+      "measured_value": 1.3862943611198906,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM11_DUAL_VS_SINGLE_OK",
+      "sim_spec_id": "S_SCALE_SIM11_DUAL_VS_SINGLE",
+      "status": "PASS",
+      "measured_value": 1.1546403161083847,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM12_IRRATIONAL_ESCAPE_OK",
+      "sim_spec_id": "S_SCALE_SIM12_IRRATIONAL_ESCAPE",
+      "status": "PASS",
+      "measured_value": 0.21804875995372808,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM13_NET_DIRECTIONAL_ACCUMULATOR_OK",
+      "sim_spec_id": "S_SCALE_SIM13_NET_DIRECTIONAL_ACCUMULATOR",
+      "status": "PASS",
+      "measured_value": 0.8551178594744561,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM14_SIMULATION_MATRIX_FP_OK",
+      "sim_spec_id": "S_SCALE_SIM14_SIMULATION_MATRIX_FP",
+      "status": "PASS",
+      "measured_value": 0.00024514044509604,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM15_QIT_FEP_OK",
+      "sim_spec_id": "S_SCALE_SIM15_QIT_FEP",
+      "status": "PASS",
+      "measured_value": 0.4457503389664147,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM16_GT_ISOLATION_OK",
+      "sim_spec_id": "S_SCALE_SIM16_GT_ISOLATION",
+      "status": "PASS",
+      "measured_value": 0.0,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM17_REFINEMENT_NONCOMM_OK",
+      "sim_spec_id": "S_SCALE_SIM17_REFINEMENT_NONCOMM",
+      "status": "PASS",
+      "measured_value": 0.06550236141622735,
+      "kill_reason": null
+    },
+    {
+      "token_id": "E_SCALE_SIM18_FINITE_STABILITY_OK",
+      "sim_spec_id": "S_SCALE_SIM18_FINITE_STABILITY",
+      "status": "PASS",
+      "measured_value": 0.25126660933372114,
+      "kill_reason": null
+    }
+  ]
 }

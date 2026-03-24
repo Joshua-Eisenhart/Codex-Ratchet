@@ -199,10 +199,10 @@ try:
     slv.assertFormula(slv.mkTerm(cvc5.Kind.GEQ, ec, slv.mkInteger(0)))
     slv.assertFormula(slv.mkTerm(cvc5.Kind.EQUAL, ec, slv.mkTerm(cvc5.Kind.SUB, nc, slv.mkInteger(1))))
     r = slv.checkSat()
-    record("cvc5_constraint", "PASS",
-           f"Tree constraint SAT: {r.isSat()}, model: nc={slv.getValue(nc)}, ec={slv.getValue(ec)}")
+    record("cvc5_operator_bound", "PASS",
+           f"Tree operator_bound SAT: {r.isSat()}, model: nc={slv.getValue(nc)}, ec={slv.getValue(ec)}")
 except Exception as e:
-    record("cvc5_constraint", "FAIL", str(e))
+    record("cvc5_operator_bound", "FAIL", str(e))
 
 # ── SUMMARY ──
 print("\n" + "="*60)

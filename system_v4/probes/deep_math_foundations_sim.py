@@ -47,7 +47,7 @@ def sim_zero_emergence(d: int = 4):
     of the additive structure — the maximally mixed state σ = I/d.
     
     Properties:
-    - S(I/d) = ln(d) = maximum entropy (no structure = nothing to add)
+    - S(I/d) = ln(d) = maximum state_dispersion (no structure = nothing to add)
     - Φ(I/d) = 0 (zero negentropy = zero structural content)
     - For any ρ: the mixture ρ + I/d (convex combo) doesn't reduce S below S(ρ)
     - I/d is the unique fixed point of full thermalization
@@ -129,7 +129,7 @@ def sim_negation_adjoint(d: int = 4):
     operation. For unitary U, the "negative" is U†.
     
     U·U† = I (identity). This IS x + (-x) = 0.
-    In entropy: applying U then U† returns to the original state,
+    In state_dispersion: applying U then U† returns to the original state,
     net effect = zero change.
     """
     print(f"\n{'='*60}")
@@ -152,7 +152,7 @@ def sim_negation_adjoint(d: int = 4):
     product = U @ U_adj
     identity_error = np.linalg.norm(product - np.eye(d))
     
-    # Entropy is preserved in both directions
+    # State_Dispersion is preserved in both directions
     S_orig = von_neumann_entropy(rho)
     S_forward = von_neumann_entropy(rho_forward)
     S_roundtrip = von_neumann_entropy(rho_roundtrip)
@@ -254,7 +254,7 @@ def sim_division_partial_trace(d_a: int = 2, d_b: int = 3):
     Tr_B(ρ_AB) recovers ρ_A from the joint system ρ_A ⊗ ρ_B.
     
     This only works perfectly for PRODUCT states (no entanglement).
-    For entangled states, division loses information → remainder.
+    For entangled states, division loses state_distinction → remainder.
     """
     print(f"\n{'='*60}")
     print(f"SIM_04: DIVISION = PARTIAL TRACE")
@@ -279,7 +279,7 @@ def sim_division_partial_trace(d_a: int = 2, d_b: int = 3):
     
     recovery_dist = trace_distance(rho_a, rho_a_recovered)
     
-    # Entropy check: S(Tr_B(ρ_A⊗ρ_B)) = S(ρ_A)
+    # State_Dispersion check: S(Tr_B(ρ_A⊗ρ_B)) = S(ρ_A)
     S_a_orig = von_neumann_entropy(rho_a)
     S_a_recovered = von_neumann_entropy(rho_a_recovered)
     
@@ -342,7 +342,7 @@ def sim_fractions_mixed_states(d: int = 4):
     monotone = all(entropies[i] <= entropies[i+1] + 1e-10
                    for i in range(len(entropies)-1))
     
-    print(f"\n  Entropy monotone: {monotone}")
+    print(f"\n  State_Dispersion monotone: {monotone}")
     print(f"  → p IS the fraction of structure")
     print(f"  → p=1: full, p=0.5: half, p=0: zero")
     print(f"  → Fractions are NOT axioms. They emerge from convex mixing.")

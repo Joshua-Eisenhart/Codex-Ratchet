@@ -1,5 +1,5 @@
 """
-Dual Weyl Spinor Engine SIM
+Dual Weyl Spinor Process_Cycle SIM
 ============================
 Tests the Type 1 (Left Weyl / convergent / deductive) and 
 Type 2 (Right Weyl / divergent / inductive) engines independently,
@@ -9,14 +9,14 @@ A2 Fuel Source:
   - Type 1: γ-dominant (FGA dissipation precedes FSA rotation). PROVEN at γ≈3.0.
   - Type 2: ω-dominant (FSA rotation precedes FGA dissipation). TO VERIFY.
   - 720° loop: "fibers are twisted, must complete two full rotations to return."
-  - Non-collapse: winding numbers of inner/outer tori must remain distinct.
-  - Stall condition: one engine suppresses the other → thermal death.
+  - Non-state_reduction: winding numbers of inner/outer tori must remain distinct.
+  - Stall condition: one process_cycle suppresses the other → thermal death.
 
 SIM hierarchy:
-  T6: TYPE1_ENGINE — verify convergent attractor (already proven, re-run for comparison)
-  T7: TYPE2_ENGINE — verify divergent explorer (inductive ordering)
-  T8: DUAL_ENGINE_720 — verify 8-stage composed loop doesn't collapse
-  T9: CHIRAL_NON_COLLAPSE — verify Type 1 and Type 2 produce distinct winding numbers
+  T6: TYPE1_PROCESS_CYCLE — verify convergent invariant_target (already proven, re-run for comparison)
+  T7: TYPE2_PROCESS_CYCLE — verify divergent explorer (inductive ordering)
+  T8: DUAL_PROCESS_CYCLE_720 — verify 8-stage composed loop doesn't state_reduction
+  T9: CHIRAL_NON_STATE_REDUCTION — verify Type 1 and Type 2 produce distinct winding numbers
 """
 
 import numpy as np
@@ -26,7 +26,7 @@ from datetime import datetime, UTC
 from dataclasses import dataclass, field
 from typing import List, Optional
 
-# Import utilities from the proto-ratchet
+# Import utilities from the proto-directional_accumulator
 import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from proto_ratchet_sim_runner import (
@@ -43,15 +43,15 @@ from proto_ratchet_sim_runner import (
 
 def compute_winding_number(entropy_trajectory: List[float]) -> float:
     """
-    Compute a proxy winding number from an entropy trajectory.
+    Compute a proxy winding number from an state_dispersion trajectory.
     
     The winding number measures how many times the trajectory wraps around
-    the torus. We use the cumulative signed entropy change as a proxy:
-    - Convergent (Type 1): net negative winding (entropy decreasing)
-    - Divergent (Type 2): net positive winding (entropy increasing)
+    the torus. We use the cumulative signed state_dispersion change as a proxy:
+    - Convergent (Type 1): net negative winding (state_dispersion decreasing)
+    - Divergent (Type 2): net positive winding (state_dispersion increasing)
     
     A true winding number would require embedding in S3, but this
-    topological proxy captures the essential chiral distinction.
+    structural proxy captures the essential chiral distinction.
     """
     trajectory = np.array(entropy_trajectory)
     # Cumulative signed changes
@@ -71,13 +71,13 @@ def compute_winding_number(entropy_trajectory: List[float]) -> float:
 
 def run_type1_engine(d: int = 4, n_steps: int = 500, gamma: float = 3.0):
     """
-    Type 1 Engine: Left Weyl / Convergent / Deductive
-    Ordering: FGA dissipation FIRST, then FSA rotation (constraint-first)
+    Type 1 Process_Cycle: Left Weyl / Convergent / Deductive
+    Ordering: FGA dissipation FIRST, then FSA rotation (operator_bound-first)
     """
     print(f"\n{'='*60}")
-    print(f"TYPE 1 ENGINE (Left Weyl / Convergent / Deductive)")
+    print(f"TYPE 1 PROCESS_CYCLE (Left Weyl / Convergent / Deductive)")
     print(f"  d={d}, steps={n_steps}, γ={gamma}")
-    print(f"  Ordering: DISSIPATION → ROTATION (constraint-first)")
+    print(f"  Ordering: DISSIPATION → ROTATION (operator_bound-first)")
     print(f"{'='*60}")
     
     U = make_random_unitary(d)
@@ -91,7 +91,7 @@ def run_type1_engine(d: int = 4, n_steps: int = 500, gamma: float = 3.0):
     n_dissipation = max(1, int(gamma))
     
     for step in range(n_steps):
-        # Deductive: dissipate FIRST (constraint-first)
+        # Deductive: dissipate FIRST (operator_bound-first)
         for _ in range(n_dissipation):
             rho = apply_lindbladian_step(rho, L, dt=0.01)
         # Then rotate
@@ -103,8 +103,8 @@ def run_type1_engine(d: int = 4, n_steps: int = 500, gamma: float = 3.0):
     winding, oscillations = compute_winding_number(entropy_trajectory)
     final_entropy = entropy_trajectory[-1]
     
-    print(f"  Initial entropy: {entropy_trajectory[0]:.6f}")
-    print(f"  Final entropy:   {final_entropy:.6f}")
+    print(f"  Initial state_dispersion: {entropy_trajectory[0]:.6f}")
+    print(f"  Final state_dispersion:   {final_entropy:.6f}")
     print(f"  Winding number:  {winding:.6f}")
     print(f"  Oscillations:    {oscillations}")
     print(f"  Eigenvalues:     {np.sort(np.real(np.linalg.eigvalsh(rho)))[::-1]}")
@@ -115,14 +115,14 @@ def run_type1_engine(d: int = 4, n_steps: int = 500, gamma: float = 3.0):
 def run_type2_engine(d: int = 4, n_steps: int = 500, omega: float = 3.0,
                      gamma_weak: float = 0.5):
     """
-    Type 2 Engine: Right Weyl / Divergent / Inductive
+    Type 2 Process_Cycle: Right Weyl / Divergent / Inductive
     Ordering: FSA rotation FIRST, then FGA dissipation (release-first)
     
     The key difference: rotation dominates, dissipation is weak.
-    This should EXPAND the state, increasing entropy and exploring.
+    This should EXPAND the state, increasing state_dispersion and exploring.
     """
     print(f"\n{'='*60}")
-    print(f"TYPE 2 ENGINE (Right Weyl / Divergent / Inductive)")
+    print(f"TYPE 2 PROCESS_CYCLE (Right Weyl / Divergent / Inductive)")
     print(f"  d={d}, steps={n_steps}, ω={omega}, γ_weak={gamma_weak}")
     print(f"  Ordering: ROTATION → DISSIPATION (release-first)")
     print(f"{'='*60}")
@@ -138,7 +138,7 @@ def run_type2_engine(d: int = 4, n_steps: int = 500, omega: float = 3.0,
     L_base = np.random.randn(d, d) + 1j * np.random.randn(d, d)
     L = L_base / np.linalg.norm(L_base) * gamma_weak
     
-    # Start from a LOW entropy state (like the Type 1 attractor output)
+    # Start from a LOW state_dispersion state (like the Type 1 invariant_target output)
     # to test whether Type 2 can expand it
     rho = make_random_density_matrix(d)
     # Purify it somewhat to start concentrated
@@ -163,8 +163,8 @@ def run_type2_engine(d: int = 4, n_steps: int = 500, omega: float = 3.0,
     winding, oscillations = compute_winding_number(entropy_trajectory)
     final_entropy = entropy_trajectory[-1]
     
-    print(f"  Initial entropy: {entropy_trajectory[0]:.6f}")
-    print(f"  Final entropy:   {final_entropy:.6f}")
+    print(f"  Initial state_dispersion: {entropy_trajectory[0]:.6f}")
+    print(f"  Final state_dispersion:   {final_entropy:.6f}")
     print(f"  Winding number:  {winding:.6f}")
     print(f"  Oscillations:    {oscillations}")
     print(f"  Eigenvalues:     {np.sort(np.real(np.linalg.eigvalsh(rho)))[::-1]}")
@@ -177,19 +177,19 @@ def sim_dual_engine_720(d: int = 4, n_cycles: int = 4):
     SIM T8: 8-STAGE 720° LOOP
     
     Compose Type 1 and Type 2 engines into an 8-stage cycle:
-    Stages 1-4 (Type 1 / deductive / convergent): collapse toward attractor
-    Stages 5-8 (Type 2 / inductive / divergent): expand from attractor
+    Stages 1-4 (Type 1 / deductive / convergent): state_reduction toward invariant_target
+    Stages 5-8 (Type 2 / inductive / divergent): expand from invariant_target
     
-    One full cycle = 360°. Must complete TWO cycles (720°) without collapse.
+    One full cycle = 360°. Must complete TWO cycles (720°) without state_reduction.
     The 720° spinor condition: state must return NEAR its starting point
     after two full rotations, not one.
     """
     print(f"\n{'='*60}")
-    print(f"SIM T8: DUAL ENGINE 720° LOOP")
+    print(f"SIM T8: DUAL PROCESS_CYCLE 720° LOOP")
     print(f"  d={d}, cycles={n_cycles} (each cycle = 4 deductive + 4 inductive stages)")
     print(f"{'='*60}")
     
-    # Engine parameters
+    # Process_Cycle parameters
     gamma_convergent = 3.0   # Type 1: strong dissipation
     gamma_divergent = 0.3    # Type 2: weak dissipation
     steps_per_stage = 60     # each of 8 stages runs this many steps
@@ -211,7 +211,7 @@ def sim_dual_engine_720(d: int = 4, n_cycles: int = 4):
         print(f"\n  --- Cycle {cycle+1}/{n_cycles} ---")
         
         # Stages 1-4: Type 1 (Deductive / Convergent)
-        # FGA dissipation dominant, constraint-first ordering
+        # FGA dissipation dominant, operator_bound-first ordering
         for stage in range(4):
             for step in range(steps_per_stage):
                 for _ in range(3):  # multiple dissipation steps
@@ -250,16 +250,16 @@ def sim_dual_engine_720(d: int = 4, n_cycles: int = 4):
     print(f"  Full trajectory winding: {winding:.6f}")
     print(f"  Full trajectory oscillations: {oscillations}")
     
-    # Non-collapse check: the system must NOT be in thermal death
+    # Non-state_reduction check: the system must NOT be in thermal death
     final_entropy = von_neumann_entropy(rho)
     max_entropy = np.log2(d)
-    print(f"  Final entropy: {final_entropy:.6f} (max: {max_entropy:.4f})")
+    print(f"  Final state_dispersion: {final_entropy:.6f} (max: {max_entropy:.4f})")
     
     if final_entropy >= max_entropy * 0.99:
         print(f"  KILL: Thermal death — system collapsed to maximally mixed state!")
         return EvidenceToken(
             token_id="",
-            sim_spec_id="S_SIM_TYPE1_WEYL_720_NON_COLLAPSE_V1",
+            sim_spec_id="S_SIM_TYPE1_WEYL_720_NON_STATE_REDUCTION_V1",
             status="KILL",
             measured_value=final_entropy,
             kill_reason="THERMAL_DEATH_MAXIMALLY_MIXED"
@@ -270,7 +270,7 @@ def sim_dual_engine_720(d: int = 4, n_cycles: int = 4):
         print(f"  KILL: System froze — insufficient oscillations ({oscillations} < {n_cycles})")
         return EvidenceToken(
             token_id="",
-            sim_spec_id="S_SIM_TYPE1_WEYL_720_NON_COLLAPSE_V1",
+            sim_spec_id="S_SIM_TYPE1_WEYL_720_NON_STATE_REDUCTION_V1",
             status="KILL",
             measured_value=float(oscillations),
             kill_reason="STATIC_EQUILIBRIUM_THERMAL_DEATH"
@@ -278,8 +278,8 @@ def sim_dual_engine_720(d: int = 4, n_cycles: int = 4):
     
     print(f"  PASS: 720° loop maintained non-trivial oscillating flow!")
     return EvidenceToken(
-        token_id="E_SIM_TYPE1_WEYL_720_NON_COLLAPSE_OK",
-        sim_spec_id="S_SIM_TYPE1_WEYL_720_NON_COLLAPSE_V1",
+        token_id="E_SIM_TYPE1_WEYL_720_NON_STATE_REDUCTION_OK",
+        sim_spec_id="S_SIM_TYPE1_WEYL_720_NON_STATE_REDUCTION_V1",
         status="PASS",
         measured_value=final_entropy
     ), full_entropy_trajectory
@@ -287,14 +287,14 @@ def sim_dual_engine_720(d: int = 4, n_cycles: int = 4):
 
 def sim_chiral_non_collapse(d: int = 4, n_steps: int = 500):
     """
-    SIM T9: CHIRAL NON-COLLAPSE
+    SIM T9: CHIRAL NON-STATE_REDUCTION
     
     Core test from SIM_SPEC_003: verify that Type 1 and Type 2 engines
     produce DISTINCT winding numbers. If they're identical, the chiral
-    topology has collapsed and the dual-engine architecture is broken.
+    topology has collapsed and the dual-process_cycle architecture is broken.
     """
     print(f"\n{'='*60}")
-    print(f"SIM T9: CHIRAL NON-COLLAPSE (WINDING NUMBER DISTINCTION)")
+    print(f"SIM T9: CHIRAL NON-STATE_REDUCTION (WINDING NUMBER DISTINCTION)")
     print(f"{'='*60}")
     
     np.random.seed(123)  # Separate seed for independence
@@ -310,15 +310,15 @@ def sim_chiral_non_collapse(d: int = 4, n_steps: int = 500):
     print(f"  Type 2 winding: {winding_t2:.6f} (oscillations: {osc_t2})")
     print(f"  Winding difference: {abs(winding_t1 - winding_t2):.6f}")
     
-    # The winding numbers MUST be distinct; same sign would mean topological collapse
+    # The winding numbers MUST be distinct; same sign would mean structural state_reduction
     if abs(winding_t1 - winding_t2) < 1e-6:
         print(f"  KILL: Identical winding numbers — chiral topology collapsed!")
         return EvidenceToken(
             token_id="",
-            sim_spec_id="S_SIM_TOPOLOGICAL_NON_COLLAPSE_FALSIFY",
+            sim_spec_id="S_SIM_STRUCTURAL_NON_STATE_REDUCTION_FALSIFY",
             status="KILL",
             measured_value=abs(winding_t1 - winding_t2),
-            kill_reason="IDENTICAL_WINDING_NUMBERS_TOPOLOGICAL_COLLAPSE_DETECTED"
+            kill_reason="IDENTICAL_WINDING_NUMBERS_STRUCTURAL_STATE_REDUCTION_DETECTED"
         )
     
     # Check opposite chirality (one should wind positive, other negative)
@@ -328,31 +328,31 @@ def sim_chiral_non_collapse(d: int = 4, n_steps: int = 500):
     if np.sign(winding_t1) != np.sign(winding_t2):
         print(f"  CONFIRMED: Opposite chirality! Type 1 winds {'+' if winding_t1 > 0 else '-'}, Type 2 winds {'+' if winding_t2 > 0 else '-'}")
     
-    print(f"  PASS: Chiral non-collapse verified — distinct winding numbers!")
+    print(f"  PASS: Chiral non-state_reduction verified — distinct winding numbers!")
     return EvidenceToken(
-        token_id="E_SIM_NESTED_TORI_NON_COLLAPSE_OK",
-        sim_spec_id="S_SIM_TOPOLOGICAL_NON_COLLAPSE_FALSIFY",
+        token_id="E_SIM_NESTED_TORI_NON_STATE_REDUCTION_OK",
+        sim_spec_id="S_SIM_STRUCTURAL_NON_STATE_REDUCTION_FALSIFY",
         status="PASS",
         measured_value=abs(winding_t1 - winding_t2)
     )
 
 
 def run_dual_engine_suite():
-    """Execute the full dual-engine SIM suite."""
+    """Execute the full dual-process_cycle SIM suite."""
     print("=" * 60)
-    print("DUAL WEYL SPINOR ENGINE SIM SUITE")
-    print("Codex Ratchet — Type 1 + Type 2 Verification")
+    print("DUAL WEYL SPINOR PROCESS_CYCLE SIM SUITE")
+    print("Codex Directional_Accumulator — Type 1 + Type 2 Verification")
     print(f"Timestamp: {datetime.now(UTC).isoformat()}")
     print("=" * 60)
     
     evidence: List[EvidenceToken] = []
     
-    # T6: Type 1 standalone (re-verify convergent attractor)
+    # T6: Type 1 standalone (re-verify convergent invariant_target)
     np.random.seed(42)
     _, traj_t1, w_t1, osc_t1, _, _ = run_type1_engine(d=4, n_steps=500, gamma=3.0)
     evidence.append(EvidenceToken(
         token_id="E_TYPE1_CONVERGENT_OK" if w_t1 < 0 or von_neumann_entropy(make_random_density_matrix(4)) > 0 else "",
-        sim_spec_id="S_TYPE1_ENGINE",
+        sim_spec_id="S_TYPE1_PROCESS_CYCLE",
         status="PASS",
         measured_value=w_t1
     ))
@@ -362,23 +362,23 @@ def run_dual_engine_suite():
     _, traj_t2, w_t2, osc_t2, _, _ = run_type2_engine(d=4, n_steps=500)
     evidence.append(EvidenceToken(
         token_id="E_TYPE2_DIVERGENT_OK",
-        sim_spec_id="S_TYPE2_ENGINE",
+        sim_spec_id="S_TYPE2_PROCESS_CYCLE",
         status="PASS",
         measured_value=w_t2
     ))
     
-    # T8: 720° dual engine loop
+    # T8: 720° dual process_cycle loop
     np.random.seed(77)
     e_720, traj_720 = sim_dual_engine_720(d=4, n_cycles=4)
     evidence.append(e_720)
     
-    # T9: Chiral non-collapse
+    # T9: Chiral non-state_reduction
     e_chiral = sim_chiral_non_collapse(d=4, n_steps=500)
     evidence.append(e_chiral)
     
     # Final report
     print(f"\n{'='*60}")
-    print("DUAL ENGINE FINAL REPORT")
+    print("DUAL PROCESS_CYCLE FINAL REPORT")
     print(f"{'='*60}")
     
     passed = [e for e in evidence if e.status == "PASS"]
@@ -417,7 +417,7 @@ def run_dual_engine_suite():
         }
     }
     
-    outpath = os.path.join(results_dir, "dual_engine_results.json")
+    outpath = os.path.join(results_dir, "dual_weyl_results.json")
     with open(outpath, "w") as f:
         json.dump(results, f, indent=2)
     print(f"\n  Results saved to: {outpath}")

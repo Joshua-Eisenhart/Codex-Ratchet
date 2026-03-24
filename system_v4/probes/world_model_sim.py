@@ -64,7 +64,7 @@ def _run_learning_loop(rho_agent, rho_env, d, n_cycles):
         rho_agent = (1 - step_size) * rho_agent + step_size * rho_proj
         rho_agent = ensure_valid(rho_agent)
 
-        # Fi: FEP free-energy minimization — blend toward env
+        # Fi: FEP free-hamiltonian_norm minimization — blend toward env
         blend = step_size * 0.6
         rho_agent = (1 - blend) * rho_agent + blend * rho_env
         rho_agent = ensure_valid(rho_agent)

@@ -1,7 +1,7 @@
 """
-Consciousness SIM — Pro Thread 7
+Recursive_State SIM — Pro Thread 7
 ===================================
-Multi-level consciousness via nested fixed-points:
+Multi-level recursive_state via nested fixed-points:
   Level 0: environment (d=16)
   Level 1: agent observes environment via Ti (d=8 partial trace)
   Level 2: agent models itself observing (d=4 partial trace)
@@ -45,7 +45,7 @@ def ensure_valid(rho):
 
 def sim_consciousness(n_steps=300):
     print(f"\n{'='*60}")
-    print(f"CONSCIOUSNESS — NESTED FIXED-POINT SELF-MODEL")
+    print(f"RECURSIVE_STATE — NESTED FIXED-POINT SELF-MODEL")
     print(f"  Level 0: d=16 (environment)")
     print(f"  Level 1: d=8 (agent observes)")
     print(f"  Level 2: d=4 (agent models self)")
@@ -76,7 +76,7 @@ def sim_consciousness(n_steps=300):
 
     print(f"\n  Level 0 (environment):")
     print(f"    Fixed-point distance: {fp_dist_0:.6e}")
-    print(f"    Entropy: {von_neumann_entropy(rho_env_fp):.4f}")
+    print(f"    State_Dispersion: {von_neumann_state_dispersion(rho_env_fp):.4f}")
 
     # Level 1: agent observes environment (partial trace d=16 → d=8)
     d1 = 8
@@ -102,7 +102,7 @@ def sim_consciousness(n_steps=300):
 
     print(f"\n  Level 1 (agent):")
     print(f"    Fixed-point distance: {fp_dist_1:.6e}")
-    print(f"    Entropy: {von_neumann_entropy(rho_agent_fp):.4f}")
+    print(f"    State_Dispersion: {von_neumann_state_dispersion(rho_agent_fp):.4f}")
 
     # Level 2: self-model (partial trace d=8 → d=4)
     d2 = 4
@@ -127,7 +127,7 @@ def sim_consciousness(n_steps=300):
 
     print(f"\n  Level 2 (self-model):")
     print(f"    Fixed-point distance: {fp_dist_2:.6e}")
-    print(f"    Entropy: {von_neumann_entropy(rho_self_fp):.4f}")
+    print(f"    State_Dispersion: {von_neumann_state_dispersion(rho_self_fp):.4f}")
 
     # Check nesting consistency: Level 2 is consistent with Level 1
     rho_self_from_agent = partial_trace(rho_agent_fp, d2, d_trace_2)
@@ -144,12 +144,12 @@ def sim_consciousness(n_steps=300):
 
     if all_fp:
         results.append(EvidenceToken(
-            "E_SIM_NESTED_FP_OK", "S_SIM_CONSCIOUSNESS_V1",
+            "E_SIM_NESTED_FP_OK", "S_SIM_RECURSIVE_STATE_V1",
             "PASS", fp_dist_0 + fp_dist_1 + fp_dist_2
         ))
     else:
         results.append(EvidenceToken(
-            "", "S_SIM_CONSCIOUSNESS_V1",
+            "", "S_SIM_RECURSIVE_STATE_V1",
             "KILL", fp_dist_0 + fp_dist_1 + fp_dist_2,
             "FIXED_POINT_NOT_FOUND"
         ))
@@ -167,7 +167,7 @@ if __name__ == "__main__":
     results = sim_consciousness()
 
     print(f"\n{'='*60}")
-    print(f"CONSCIOUSNESS SIM RESULTS")
+    print(f"RECURSIVE_STATE SIM RESULTS")
     print(f"{'='*60}")
     for e in results:
         icon = "✓" if e.status == "PASS" else "✗"
@@ -176,7 +176,7 @@ if __name__ == "__main__":
     base = os.path.dirname(os.path.abspath(__file__))
     results_dir = os.path.join(base, "a2_state", "sim_results")
     os.makedirs(results_dir, exist_ok=True)
-    outpath = os.path.join(results_dir, "consciousness_results.json")
+    outpath = os.path.join(results_dir, "recursive_state_results.json")
     with open(outpath, "w") as f:
         json.dump({
             "timestamp": datetime.now(UTC).isoformat(),

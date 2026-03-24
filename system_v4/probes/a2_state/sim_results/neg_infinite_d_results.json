@@ -1,0 +1,83 @@
+{
+  "timestamp": "2026-03-24T08:48:32.714451+00:00",
+  "hypothesis": "The process_cycle works better as d approaches infinity",
+  "expected_result": "KILL",
+  "results": [
+    {
+      "d": 2,
+      "solvency_init": 0.8846450752578956,
+      "solvency_final": 0.8259317989072773,
+      "delta_phi": -0.05871327635061829,
+      "landauer_cost_per_cycle": 16.635532333438686,
+      "total_landauer_cost": 831.7766166719343,
+      "efficiency": -7.058779385448355e-05,
+      "S_init": 0.1153549247421044,
+      "S_final": 0.17406820109272267
+    },
+    {
+      "d": 4,
+      "solvency_init": 0.3250121387870394,
+      "solvency_final": 0.27047913644037636,
+      "delta_phi": -0.05453300234666303,
+      "landauer_cost_per_cycle": 83.17766166719343,
+      "total_landauer_cost": 4158.883083359671,
+      "efficiency": -1.3112415341719494e-05,
+      "S_init": 1.3499757224259212,
+      "S_final": 1.4590417271192473
+    },
+    {
+      "d": 8,
+      "solvency_init": 0.25300388951152775,
+      "solvency_final": 0.11368752543914751,
+      "delta_phi": -0.13931636407238024,
+      "landauer_cost_per_cycle": 349.3461790022124,
+      "total_landauer_cost": 17467.30895011062,
+      "efficiency": -7.975834427059696e-06,
+      "S_init": 2.2409883314654166,
+      "S_final": 2.6589374236825574
+    },
+    {
+      "d": 16,
+      "solvency_init": 0.17074011629265062,
+      "solvency_final": 0.03959159445199101,
+      "delta_phi": -0.13114852184065962,
+      "landauer_cost_per_cycle": 1414.0202483422884,
+      "total_landauer_cost": 70701.01241711441,
+      "efficiency": -1.8549737458768387e-06,
+      "S_init": 3.3170395348293975,
+      "S_final": 3.841633622192036
+    },
+    {
+      "d": 32,
+      "solvency_init": 0.13741959289419658,
+      "solvency_final": 0.017156509463498226,
+      "delta_phi": -0.12026308343069836,
+      "landauer_cost_per_cycle": 5672.716525702593,
+      "total_landauer_cost": 283635.82628512965,
+      "efficiency": -4.240052640945361e-07,
+      "S_init": 4.312902035529017,
+      "S_final": 4.914217452682509
+    },
+    {
+      "d": 64,
+      "solvency_init": 0.11836389459545804,
+      "solvency_final": 0.007432760065017585,
+      "delta_phi": -0.11093113453044046,
+      "landauer_cost_per_cycle": 22707.501635143806,
+      "total_landauer_cost": 1135375.0817571904,
+      "efficiency": -9.770439418025208e-08,
+      "S_init": 5.289816632427252,
+      "S_final": 5.955403439609895
+    }
+  ],
+  "verdict": "KILL",
+  "evidence_ledger": [
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_INFINITE_D_V1",
+      "status": "KILL",
+      "measured_value": -9.770439418025208e-08,
+      "kill_reason": "INFINITE_D_DIVERGENCE"
+    }
+  ]
+}

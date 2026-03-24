@@ -10,7 +10,7 @@ THESIS (from NLM-08 / NLM-13):
 
 PROOF STRATEGY:
   Map Navier-Stokes primitives → QIT primitives on d-dimensional Hilbert space:
-    velocity field u(x)    →  ρ (density matrix)
+    velocity continuous_operator u(x)    →  ρ (density matrix)
     viscosity ν            →  γ (Lindblad coupling)
     enstrophy ∫|∇×u|²     →  Tr(ρ²) (purity)
     gradient ∇u            →  [H, ρ] (commutator = state-space gradient)
@@ -208,13 +208,13 @@ def sim_01_cptp_channel_validity(d_values=[8, 16], n_trials=10):
     if all_ok:
         print(f"  PASS: Hamiltonian+Lindblad IS a valid CPTP fluid channel!")
         return EvidenceToken(
-            token_id="E_SIM_NS_CPTP_CHANNEL_OK",
+            token_id="E_SIM_NS_FORMAL_CPTP_CHANNEL_OK",
             sim_spec_id="S_SIM_NS_CPTP_CHANNEL_V1",
             status="PASS",
             measured_value=float(max(d_values))
         )
     else:
-        return EvidenceToken("", "S_SIM_NS_CPTP_CHANNEL_V1", "KILL", 0.0,
+        return EvidenceToken("", "E_SIM_NS_FORMAL_CPTP_CHANNEL_OK", "KILL", 0.0,
                              "CPTP_VIOLATION")
 
 
@@ -293,7 +293,7 @@ def sim_02_gradient_bound(d_values=[8, 16, 32], n_trials=20, n_steps=100):
             measured_value=float(max_grad)
         )
     else:
-        return EvidenceToken("", "S_SIM_NS_GRADIENT_BOUND_V1", "KILL", 0.0,
+        return EvidenceToken("", "E_SIM_NS_GRADIENT_BOUND_OK", "KILL", 0.0,
                              "GRADIENT_EXCEEDED_BOUND")
 
 
@@ -375,7 +375,7 @@ def sim_03_enstrophy_bound(d_values=[8, 16, 32], n_trials=20, n_steps=100):
             measured_value=float(max_pur)
         )
     else:
-        return EvidenceToken("", "S_SIM_NS_ENSTROPHY_BOUND_V1", "KILL", 0.0,
+        return EvidenceToken("", "E_SIM_NS_ENSTROPHY_BOUND_OK", "KILL", 0.0,
                              "ENSTROPHY_EXCEEDED_BOUNDS")
 
 
@@ -394,7 +394,7 @@ def sim_04_scaling_to_infinity(d_values=[4, 8, 16, 32, 64], n_trials=10, n_steps
 
     PHYSICAL SCALING (Wigner semicircle law):
       For a random d×d Hermitian matrix, the operator norm grows as ~2√d.
-      This corresponds to physical energy density scaling with spatial modes.
+      This corresponds to physical hamiltonian_norm density scaling with spatial modes.
       We use UNNORMALISED random H to get this natural scaling.
 
     DIVERGENT METRICS (must grow with d):
@@ -500,7 +500,7 @@ def sim_04_scaling_to_infinity(d_values=[4, 8, 16, 32, 64], n_trials=10, n_steps
         )
     else:
         print(f"  KILL: Insufficient scaling evidence")
-        return EvidenceToken("", "S_SIM_NS_SCALING_V1", "KILL", float(alpha_H),
+        return EvidenceToken("", "E_SIM_NS_SCALING_DIVERGE_OK", "KILL", float(alpha_H),
                              "NO_SCALING_DIVERGENCE")
 
 
@@ -512,7 +512,7 @@ def sim_05_lindblad_regulariser(d_values=[8, 16, 32], n_trials=10, n_steps=100):
     """
     CLAIM: Lindblad dissipation IS the viscous regulariser that prevents blowup.
     Without it (pure unitary), gradients persist indefinitely.
-    With it, all states converge to attractor.
+    With it, all states converge to invariant_target.
 
     PROOF:
       1. Run IDENTICAL initial conditions under two dynamics:
@@ -520,7 +520,7 @@ def sim_05_lindblad_regulariser(d_values=[8, 16, 32], n_trials=10, n_steps=100):
          B) Unitary + Lindblad (γ>0): dissipation damps gradients to zero
 
       2. Measure: final gradient (should be ~0 for B, >0 for A)
-                  convergence to attractor (B converges, A doesn't)
+                  convergence to invariant_target (B converges, A doesn't)
 
     KILL_IF: unitary-only also damps gradients (would mean dissipation unnecessary)
              OR Lindblad fails to damp (would mean dissipation isn't sufficient)
@@ -578,7 +578,7 @@ def sim_05_lindblad_regulariser(d_values=[8, 16, 32], n_trials=10, n_steps=100):
         print(f"    Unitary-only  final ‖∇‖ = {mean_u:.4f}  (persistent oscillation)")
         print(f"    With Lindblad final ‖∇‖ = {mean_d:.4f}  (damped)")
         print(f"    Gradient reduction: {reduction:.1%}")
-        print(f"    Converged to attractor: {converge_rate:.0%}")
+        print(f"    Converged to invariant_target: {converge_rate:.0%}")
         print(f"    → {'PASS' if ok else 'KILL'}")
 
     print(f"\n  → Lindblad dissipation is the NECESSARY and SUFFICIENT regulariser: {all_ok}")
@@ -592,7 +592,7 @@ def sim_05_lindblad_regulariser(d_values=[8, 16, 32], n_trials=10, n_steps=100):
             measured_value=float(reduction)
         )
     else:
-        return EvidenceToken("", "S_SIM_NS_REGULARISER_V1", "KILL", 0.0,
+        return EvidenceToken("", "E_SIM_NS_REGULARISER_OK", "KILL", 0.0,
                              "REGULARISATION_INSUFFICIENT")
 
 
@@ -607,7 +607,7 @@ def sim_06_reynolds_phase_diagram(d_values=[8, 16, 32], n_steps=100):
 
     MAP:
       Re = ‖H‖_op / γ = (convective strength) / (viscous strength)
-      Low  Re → LAMINAR  (smooth convergence to attractor)
+      Low  Re → LAMINAR  (smooth convergence to invariant_target)
       High Re → TURBULENT (bounded oscillation in purity)
       Re → ∞  → BLOW-UP? ... NO at finite d. ALWAYS bounded.
 
@@ -682,7 +682,7 @@ def sim_06_reynolds_phase_diagram(d_values=[8, 16, 32], n_steps=100):
             measured_value=float(max(Re_values))
         )
     else:
-        return EvidenceToken("", "S_SIM_NS_REYNOLDS_V1", "KILL", 0.0,
+        return EvidenceToken("", "E_SIM_NS_REYNOLDS_OK", "KILL", 0.0,
                              "BLOWUP_AT_FINITE_D")
 
 

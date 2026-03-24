@@ -53,7 +53,7 @@ def normalize_evidence(
     output_hash: str,
     evidence_token: str,
     metrics: Dict[str, Any],
-    branch_id: str = "PROTO_RATCHET_V1",
+    branch_id: str = "PROTO_DIRECTIONAL_ACCUMULATOR_V1",
     batch_id: str = "BATCH_001",
 ) -> Optional[str]:
     """
@@ -106,7 +106,7 @@ def normalize_evidence(
 def emit_sim_evidence_pack(
     results_filepath: str,
     code_filepath: str,
-    branch_id: str = "PROTO_RATCHET_V1",
+    branch_id: str = "PROTO_DIRECTIONAL_ACCUMULATOR_V1",
     batch_id: str = "BATCH_001",
 ) -> str:
     """
@@ -203,7 +203,7 @@ def emit_sim_evidence_pack(
 
 
 def normalize_all_results():
-    """Normalize both proto-ratchet and dual-engine results."""
+    """Normalize both proto-directional_accumulator and dual-process_cycle results."""
     base = os.path.dirname(os.path.abspath(__file__))
     results_dir = os.path.join(base, "a2_state", "sim_results")
     output_dir = os.path.join(base, "..", "a2_state", "sim_evidence")
@@ -211,21 +211,21 @@ def normalize_all_results():
     
     packs = []
     
-    # Proto-ratchet results
-    proto_results = os.path.join(results_dir, "proto_ratchet_results.json")
-    proto_code = os.path.join(base, "proto_ratchet_sim_runner.py")
+    # Proto-directional_accumulator results
+    proto_results = os.path.join(results_dir, "proto_directional_accumulator_results.json")
+    proto_code = os.path.join(base, "proto_directional_accumulator_sim_runner.py")
     if os.path.exists(proto_results):
         pack = emit_sim_evidence_pack(
             proto_results, proto_code,
-            branch_id="PROTO_RATCHET_V1",
+            branch_id="PROTO_DIRECTIONAL_ACCUMULATOR_V1",
             batch_id="BATCH_PROTO_001",
         )
         if pack:
             packs.append(pack)
     
-    # Dual engine results
-    dual_results = os.path.join(results_dir, "dual_engine_results.json")
-    dual_code = os.path.join(base, "dual_weyl_spinor_engine_sim.py")
+    # Dual process_cycle results
+    dual_results = os.path.join(results_dir, "dual_process_cycle_results.json")
+    dual_code = os.path.join(base, "dual_weyl_spinor_process_cycle_sim.py")
     if os.path.exists(dual_results):
         pack = emit_sim_evidence_pack(
             dual_results, dual_code,

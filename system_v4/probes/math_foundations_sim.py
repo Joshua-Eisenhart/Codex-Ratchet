@@ -1,14 +1,14 @@
 """
 Mathematical Foundations SIM Suite
 ====================================
-Computationally verify that the root axioms (F01 + N01) force
+Computationally verify that the root axioms (F01 + N01) generator_bias
 specific mathematical structures to exist.
 
 SIM_01: Ne IS a Turing machine (reversible, deterministic, adiabatic)
 SIM_02: F01 forces discrete eigenvalue spectrum (no continuum)
 SIM_03: N01 forces complex numbers (real-only operators can't non-commute in d≥2)
-SIM_04: F01+N01 forces chirality preference (symmetry breaking is inevitable)
-SIM_05: Isothermal strokes give super-Ne power (engine > Turing)
+SIM_04: F01+N01 forces chirality preference (generator_invariance breaking is inevitable)
+SIM_05: Isothermal strokes give super-Ne power (process_cycle > Turing)
 """
 
 import numpy as np
@@ -46,7 +46,7 @@ def sim_ne_is_turing(d: int = 4, n_steps: int = 100):
     TEST: Apply only unitary evolution (Q=0, no bath coupling).
     Verify: 
       1. Perfect reversibility (can undo every step)
-      2. Information preservation (entropy constant)
+      2. State_Distinction preservation (state_dispersion constant)
       3. Determinism (same input → same output)
     """
     print(f"\n{'='*60}")
@@ -78,7 +78,7 @@ def sim_ne_is_turing(d: int = 4, n_steps: int = 100):
     # Check reversibility
     reverse_dist = trace_distance(rho_init, rho)
     
-    # Check entropy preservation (Turing = no information loss)
+    # Check state_dispersion preservation (Turing = no state_distinction loss)
     entropy_drift = max(entropies) - min(entropies)
     
     # Check determinism (run again with same input)
@@ -87,8 +87,8 @@ def sim_ne_is_turing(d: int = 4, n_steps: int = 100):
         rho2 = apply_unitary_channel(rho2, U)
     determinism_dist = trace_distance(rho_forward, rho2)
     
-    print(f"  Entropy: init={S_init:.8f}, final={S_final_forward:.8f}")
-    print(f"  Entropy drift (max-min): {entropy_drift:.12f}")
+    print(f"  State_Dispersion: init={S_init:.8f}, final={S_final_forward:.8f}")
+    print(f"  State_Dispersion drift (max-min): {state_dispersion_drift:.12f}")
     print(f"  Reversibility (trace dist after undo): {reverse_dist:.12f}")
     print(f"  Determinism (trace dist same-input reruns): {determinism_dist:.12f}")
     
@@ -273,13 +273,13 @@ def sim_n01_forces_complex(d: int = 4, n_trials: int = 1000):
 
 def sim_chirality_forced(d: int = 4, n_trials: int = 100):
     """
-    CLAIM: In a finite non-commutative system, perfect chiral symmetry
+    CLAIM: In a finite non-commutative system, perfect chiral generator_invariance
     is impossible. One chirality must dominate.
     
     TEST: Generate pairs of "left" and "right" engines from the SAME
     random seed with OPPOSITE operator ordering. Measure whether they
     produce identical attractors (symmetric) or distinct attractors
-    (symmetry broken).
+    (generator_invariance broken).
     """
     print(f"\n{'='*60}")
     print(f"SIM_04: F01+N01 FORCES CHIRALITY PREFERENCE")
@@ -298,14 +298,14 @@ def sim_chirality_forced(d: int = 4, n_trials: int = 100):
         
         rho_init = make_random_density_matrix(d)
         
-        # LEFT engine: unitary THEN dissipation
+        # LEFT process_cycle: unitary THEN dissipation
         rho_left = rho_init.copy()
         for _ in range(200):
             rho_left = apply_unitary_channel(rho_left, U)
             for __ in range(3):
                 rho_left = apply_lindbladian_step(rho_left, L, dt=0.01)
         
-        # RIGHT engine: dissipation THEN unitary (reversed order)
+        # RIGHT process_cycle: dissipation THEN unitary (reversed order)
         rho_right = rho_init.copy()
         for _ in range(200):
             for __ in range(3):
@@ -318,10 +318,10 @@ def sim_chirality_forced(d: int = 4, n_trials: int = 100):
     
     symmetry_broken_pct = (distinct_attractors / n_trials) * 100
     
-    print(f"  Distinct attractors (symmetry broken): {distinct_attractors}/{n_trials} ({symmetry_broken_pct:.1f}%)")
+    print(f"  Distinct attractors (generator_invariance broken): {distinct_attractors}/{n_trials} ({generator_invariance_broken_pct:.1f}%)")
     
     if symmetry_broken_pct > 90:
-        print(f"  PASS: F01+N01 forces chirality — symmetry breaking is >90% inevitable!")
+        print(f"  PASS: F01+N01 forces chirality — generator_invariance breaking is >90% inevitable!")
         return EvidenceToken(
             token_id="E_SIM_CHIRALITY_FORCED_OK",
             sim_spec_id="S_SIM_CHIRALITY_FORCED_V1",
@@ -335,25 +335,25 @@ def sim_chirality_forced(d: int = 4, n_trials: int = 100):
             sim_spec_id="S_SIM_CHIRALITY_FORCED_V1",
             status="KILL",
             measured_value=symmetry_broken_pct,
-            kill_reason="CHIRAL_SYMMETRY_NOT_BROKEN"
+            kill_reason="CHIRAL_GENERATOR_INVARIANCE_NOT_BROKEN"
         )
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# SIM_05: Engine > Turing (Super-Ne)
+# SIM_05: Process_Cycle > Turing (Super-Ne)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 def sim_engine_beats_turing(d: int = 4, n_steps: int = 100):
     """
-    CLAIM: The full 8-stage engine can do things pure Ne (Turing) cannot:
-    1. REDUCE entropy (Turing preserves it)
+    CLAIM: The full 8-stage process_cycle can do things pure Ne (Turing) cannot:
+    1. REDUCE state_dispersion (Turing preserves it)
     2. Create irreversible structure (Turing is reversible)
     3. Build attractors (Turing orbits forever)
     
-    TEST: Compare pure unitary (Ne/Turing) vs engine with isothermal strokes.
+    TEST: Compare pure unitary (Ne/Turing) vs process_cycle with isothermal strokes.
     """
     print(f"\n{'='*60}")
-    print(f"SIM_05: ENGINE BEATS TURING (SUPER-Ne)")
+    print(f"SIM_05: PROCESS_CYCLE BEATS TURING (SUPER-Ne)")
     print(f"  d={d}, steps={n_steps}")
     print(f"{'='*60}")
     
@@ -370,7 +370,7 @@ def sim_engine_beats_turing(d: int = 4, n_steps: int = 100):
         rho_turing = apply_unitary_channel(rho_turing, U)
         S_turing.append(von_neumann_entropy(rho_turing))
     
-    # --- Full Engine: complete 8-stage cycle ---
+    # --- Full Process_Cycle: complete 8-stage cycle ---
     from full_8stage_engine_sim import run_one_cycle
     
     proj = np.eye(d, dtype=complex)
@@ -394,40 +394,40 @@ def sim_engine_beats_turing(d: int = 4, n_steps: int = 100):
     S_engine_final = S_engine[-1]
     S_turing_final = S_turing[-1]
     
-    # Turing: entropy is CONSTANT (reversible)
-    # Engine: entropy CHANGES (irreversible structure creation)
+    # Turing: state_dispersion is CONSTANT (reversible)
+    # Process_Cycle: state_dispersion CHANGES (irreversible structure creation)
     print(f"  Turing (Ne only):")
-    print(f"    Entropy range: {S_turing_range:.10f} (should be ~0)")
+    print(f"    State_Dispersion range: {S_turing_range:.10f} (should be ~0)")
     print(f"    Final S: {S_turing_final:.6f}")
-    print(f"  Full Engine (8-stage cycle):")
-    print(f"    Entropy range: {S_engine_range:.6f} (should be large)")
-    print(f"    Final S: {S_engine_final:.6f}")
+    print(f"  Full Process_Cycle (8-stage cycle):")
+    print(f"    State_Dispersion range: {S_process_cycle_range:.6f} (should be large)")
+    print(f"    Final S: {S_process_cycle_final:.6f}")
     
     final_eigvals = np.sort(np.real(np.linalg.eigvalsh(rho_engine)))[::-1]
     dominant = final_eigvals[0]
     attractors_found = dominant > 0.30
     
-    print(f"  Engine attractor eigenvalues: {final_eigvals}")
-    print(f"  Dominant: {dominant:.4f} (attractor found: {attractors_found})")
+    print(f"  Process_Cycle invariant_target eigenvalues: {final_eigvals}")
+    print(f"  Dominant: {dominant:.4f} (invariant_target found: {attractors_found})")
     
     turing_preserves = S_turing_range < 1e-8
     engine_reduces = S_engine_range > 0.1
     
     if turing_preserves and engine_reduces and attractors_found:
-        print(f"  PASS: Engine creates irreversible structure; Turing cannot!")
+        print(f"  PASS: Process_Cycle creates irreversible structure; Turing cannot!")
         return EvidenceToken(
-            token_id="E_SIM_ENGINE_BEATS_TURING_OK",
-            sim_spec_id="S_SIM_ENGINE_SUPER_NE_V1",
+            token_id="E_SIM_PROCESS_CYCLE_BEATS_TURING_OK",
+            sim_spec_id="S_SIM_PROCESS_CYCLE_SUPER_NE_V1",
             status="PASS",
             measured_value=S_engine_range
         )
     else:
         return EvidenceToken(
             token_id="",
-            sim_spec_id="S_SIM_ENGINE_SUPER_NE_V1",
+            sim_spec_id="S_SIM_PROCESS_CYCLE_SUPER_NE_V1",
             status="KILL",
             measured_value=0.0,
-            kill_reason="ENGINE_NOT_SUPERIOR_TO_TURING"
+            kill_reason="PROCESS_CYCLE_NOT_SUPERIOR_TO_TURING"
         )
 
 

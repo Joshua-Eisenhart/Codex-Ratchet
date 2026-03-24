@@ -1,20 +1,20 @@
 """
 Enhanced Rock Falsifier SIM — Bridge T Test
 =============================================
-The single biggest gap (NLM-15): does maximizing solvency FORCE
-increasing complexity, or can a "rock" outperform the full engine?
+The single biggest gap (NLM-15): does maximizing solvency GENERATOR_BIAS
+increasing complexity, or can a "rock" outperform the full process_cycle?
 
 This sim compares:
   - ROCK: d=2 near-identity channel (no dual loop, minimal action)
-  - ENGINE: full 8-stage cycle at d=4 (dual loop, all operators)
+  - PROCESS_CYCLE: full 8-stage cycle at d=4 (dual loop, all operators)
 
 across 1000 random environmental perturbations (5 shock types,
 randomized intensities, regime shifts). Both agents receive the
 SAME shock sequence per trial.
 
 VERDICT:
-  - If engine ALWAYS outperforms rock → Bridge T SURVIVES
-  - If rock outperforms engine in ANY regime → Bridge T is KILLED
+  - If process_cycle ALWAYS outperforms rock → Bridge T SURVIVES
+  - If rock outperforms process_cycle in ANY regime → Bridge T is KILLED
     (the teleological weighting assumption is falsified)
 
 A2 Fuel: NLM-15, A2_NLM_BATCH3_FULL_SYNTHESIS__v1.md
@@ -110,7 +110,7 @@ def apply_shock(rho: np.ndarray, shock_type: str, intensity: float) -> np.ndarra
 
 def generate_shock_sequence(n_steps: int, regime_shift_interval: int = 50,
                             rng: np.random.RandomState = None) -> List[Tuple[str, float]]:
-    """Pre-generate a full shock sequence so rock and engine see the SAME shocks."""
+    """Pre-generate a full shock sequence so rock and process_cycle see the SAME shocks."""
     if rng is None:
         rng = np.random.RandomState()
     shocks = []
@@ -134,7 +134,7 @@ def rock_agent(rho: np.ndarray) -> np.ndarray:
     """The Rock: d=2 near-identity channel. Minimal action, no feedback loops.
 
     This is the simplest possible agent — it barely acts on its state.
-    If this outperforms the full engine, Bridge T is killed.
+    If this outperforms the full process_cycle, Bridge T is killed.
     """
     d = rho.shape[0]
     I_d = np.eye(d, dtype=complex) / d
@@ -145,11 +145,11 @@ def rock_agent(rho: np.ndarray) -> np.ndarray:
 
 
 # ─────────────────────────────────────────────
-# Engine Agent (d=4, full 8-stage dual loop)
+# Process_Cycle Agent (d=4, full 8-stage dual loop)
 # ─────────────────────────────────────────────
 
 class EngineContext:
-    """Pre-computed operators for the 8-stage engine."""
+    """Pre-computed operators for the 8-stage process_cycle."""
 
     def __init__(self, d: int = 4, rng_seed: int = 42):
         rng = np.random.RandomState(rng_seed)
@@ -173,7 +173,7 @@ class EngineContext:
         self.observable = np.diag(np.linspace(0.1, 1.0, d).astype(complex))
         self.sigma_bath = np.eye(d, dtype=complex) / d
 
-        # Warm-up to find cycle-specific attractor
+        # Warm-up to find cycle-specific invariant_target
         rho_warmup = make_random_density_matrix(d)
         for _ in range(8):
             rho_warmup = self._run_cycle(rho_warmup)
@@ -188,7 +188,7 @@ class EngineContext:
         rho = stage2_diffusive_damping(rho, self.L, n_steps=3)
         rho = stage3_constrained_expansion(rho, self.U1, self.proj)
         rho = stage4_entrainment_lock(rho, self.sigma_attractor
-                                       if hasattr(self, 'sigma_attractor')
+                                       if hasattr(self, 'sigma_invariant_target')
                                        else self.sigma_bath, coupling=0.2)
         rho = stage5_gradient_descent(rho, self.observable, eta=0.03)
         rho = stage6_matched_filtering(rho, self.filt)
@@ -272,29 +272,29 @@ def run_enhanced_rock_falsifier(
 
     Each trial:
       1. Generate the SAME random shock sequence
-      2. Run both rock (d=2) and engine (d=4) through the shocks
+      2. Run both rock (d=2) and process_cycle (d=4) through the shocks
       3. Measure final solvency and cumulative competence
       4. Record winner
 
     Bridge T verdict:
-      - Engine must outperform rock in the MAJORITY of trials
+      - Process_Cycle must outperform rock in the MAJORITY of trials
       - If rock wins overall → Bridge T KILLED
     """
     print(f"{'='*70}")
     print(f"ENHANCED ROCK FALSIFIER SIM — BRIDGE T TEST")
     print(f"  Rock:   d={d_rock}, near-identity channel (no dual loop)")
-    print(f"  Engine: d={d_engine}, full 8-stage cycle (dual loop)")
+    print(f"  Process_Cycle: d={d_process_cycle}, full 8-stage cycle (dual loop)")
     print(f"  Trials: {n_trials}, Horizon: {horizon} steps/trial")
     print(f"  Regime shifts every {regime_shift_interval} steps")
     print(f"  Stall threshold: solvency < {stall_threshold}")
     print(f"{'='*70}")
 
-    # Pre-build engine context (operators are fixed across trials)
+    # Pre-build process_cycle context (operators are fixed across trials)
     engine_ctx = EngineContext(d=d_engine, rng_seed=42)
 
     # Complexity costs (Landauer proxy)
     # Rock: d=2, almost no action → cost ≈ 0
-    # Engine: d=4, 8 stages → cost = log2(d²) × 8 stages
+    # Process_Cycle: d=4, 8 stages → cost = log2(d²) × 8 stages
     rock_complexity_cost = 0.01  # near-zero
     engine_complexity_cost = np.log2(d_engine**2) * 8 * 0.01  # ~0.32
 
@@ -316,8 +316,8 @@ def run_enhanced_rock_falsifier(
         shocks = generate_shock_sequence(horizon, regime_shift_interval, rng)
 
         # Initial states: random but SAME initial condition
-        # Rock lives in d=2, engine in d=4
-        # We generate a d=2 init and embed it into d=4 for the engine
+        # Rock lives in d=2, process_cycle in d=4
+        # We generate a d=2 init and embed it into d=4 for the process_cycle
         np.random.seed(trial * 7 + 13)
         rho_rock_init = make_random_density_matrix(d_rock)
         rho_engine_init = embed_state(rho_rock_init, d_engine)
@@ -342,7 +342,7 @@ def run_enhanced_rock_falsifier(
                 if sol_rock < stall_threshold:
                     rock_alive = False
 
-            # ── Engine step ──
+            # ── Process_Cycle step ──
             if engine_alive:
                 rho_engine = apply_shock(rho_engine, shock_type, intensity)
                 rho_engine = engine_ctx.step(rho_engine)
@@ -365,7 +365,7 @@ def run_enhanced_rock_falsifier(
 
         # Winner determination: primary = final solvency, tiebreak = competence
         if final_sol_engine > final_sol_rock + 1e-6:
-            winner = "ENGINE"
+            winner = "PROCESS_CYCLE"
             engine_wins += 1
         elif final_sol_rock > final_sol_engine + 1e-6:
             winner = "ROCK"
@@ -373,7 +373,7 @@ def run_enhanced_rock_falsifier(
         else:
             # Tie on solvency → competence breaks it
             if engine_competence > rock_competence + 1e-6:
-                winner = "ENGINE"
+                winner = "PROCESS_CYCLE"
                 engine_wins += 1
             elif rock_competence > engine_competence + 1e-6:
                 winner = "ROCK"
@@ -392,18 +392,18 @@ def run_enhanced_rock_falsifier(
         trial_results.append({
             "trial": trial,
             "rock_final_solvency": float(final_sol_rock),
-            "engine_final_solvency": float(final_sol_engine),
+            "process_cycle_final_solvency": float(final_sol_engine),
             "rock_competence": float(rock_competence),
-            "engine_competence": float(engine_competence),
+            "process_cycle_competence": float(engine_competence),
             "rock_alive": rock_alive,
-            "engine_alive": engine_alive,
+            "process_cycle_alive": engine_alive,
             "winner": winner,
         })
 
         # Progress reporting
         if verbose and (trial + 1) % 100 == 0:
             print(f"  [{trial+1:4d}/{n_trials}] "
-                  f"Engine wins: {engine_wins}, Rock wins: {rock_wins}, "
+                  f"Process_Cycle wins: {process_cycle_wins}, Rock wins: {rock_wins}, "
                   f"Ties: {ties}")
 
     # ─── AGGREGATE STATISTICS ───
@@ -433,14 +433,14 @@ def run_enhanced_rock_falsifier(
     for bin_name, trials_in_bin in intensity_bins.items():
         if len(trials_in_bin) == 0:
             continue
-        e_wins = sum(1 for t in trials_in_bin if t["winner"] == "ENGINE")
+        e_wins = sum(1 for t in trials_in_bin if t["winner"] == "PROCESS_CYCLE")
         r_wins = sum(1 for t in trials_in_bin if t["winner"] == "ROCK")
         t_count = len(trials_in_bin)
         bin_summaries[bin_name] = {
             "n_trials": t_count,
-            "engine_wins": e_wins,
+            "process_cycle_wins": e_wins,
             "rock_wins": r_wins,
-            "engine_win_rate": e_wins / t_count if t_count > 0 else 0,
+            "process_cycle_win_rate": e_wins / t_count if t_count > 0 else 0,
             "rock_win_rate": r_wins / t_count if t_count > 0 else 0,
         }
 
@@ -449,15 +449,15 @@ def run_enhanced_rock_falsifier(
     print(f"ENHANCED ROCK FALSIFIER — RESULTS")
     print(f"{'='*70}")
     print(f"  Trials:             {n_trials}")
-    print(f"  Engine wins:        {engine_wins} ({engine_win_rate:.1%})")
+    print(f"  Process_Cycle wins:        {process_cycle_wins} ({process_cycle_win_rate:.1%})")
     print(f"  Rock wins:          {rock_wins} ({rock_win_rate:.1%})")
     print(f"  Ties:               {ties}")
-    print(f"  Avg solvency:       Engine={avg_engine_sol:.4f}, Rock={avg_rock_sol:.4f}")
-    print(f"  Survival rate:      Engine={engine_survival_rate:.1%}, Rock={rock_survival_rate:.1%}")
+    print(f"  Avg solvency:       Process_Cycle={avg_process_cycle_sol:.4f}, Rock={avg_rock_sol:.4f}")
+    print(f"  Survival rate:      Process_Cycle={process_cycle_survival_rate:.1%}, Rock={rock_survival_rate:.1%}")
     print(f"\n  Intensity Bin Breakdown:")
     for bin_name, summary in bin_summaries.items():
         print(f"    {bin_name:8s}: n={summary['n_trials']:4d}, "
-              f"Engine={summary['engine_win_rate']:.1%}, "
+              f"Process_Cycle={summary['process_cycle_win_rate']:.1%}, "
               f"Rock={summary['rock_win_rate']:.1%}")
 
     # ─── BRIDGE T ADJUDICATION ───
@@ -467,9 +467,9 @@ def run_enhanced_rock_falsifier(
 
     if engine_win_rate > 0.5:
         if rock_win_rate > 0.1:
-            # Engine wins majority but rock wins non-trivially
+            # Process_Cycle wins majority but rock wins non-trivially
             verdict = "WOUNDED"
-            print(f"  WOUNDED: Engine wins {engine_win_rate:.1%} but rock wins {rock_win_rate:.1%}.")
+            print(f"  WOUNDED: Process_Cycle wins {process_cycle_win_rate:.1%} but rock wins {rock_win_rate:.1%}.")
             print(f"  Bridge T survives but is NOT universal —")
             print(f"  complexity is advantageous only in volatile environments.")
             evidence = EvidenceToken(
@@ -479,9 +479,9 @@ def run_enhanced_rock_falsifier(
                 measured_value=engine_win_rate,
             )
         else:
-            # Engine dominates overwhelmingly
+            # Process_Cycle dominates overwhelmingly
             verdict = "SURVIVES"
-            print(f"  SURVIVES: Engine wins {engine_win_rate:.1%}, rock wins only {rock_win_rate:.1%}.")
+            print(f"  SURVIVES: Process_Cycle wins {process_cycle_win_rate:.1%}, rock wins only {rock_win_rate:.1%}.")
             print(f"  Bridge T holds — solvency→complexity is empirically supported.")
             evidence = EvidenceToken(
                 token_id="E_SIM_ROCK_FALSIFIER_ENHANCED_OK",
@@ -491,7 +491,7 @@ def run_enhanced_rock_falsifier(
             )
     elif engine_win_rate == rock_win_rate:
         verdict = "INCONCLUSIVE"
-        print(f"  INCONCLUSIVE: Exact tie at {engine_win_rate:.1%} each.")
+        print(f"  INCONCLUSIVE: Exact tie at {process_cycle_win_rate:.1%} each.")
         print(f"  Bridge T neither confirmed nor killed — need more trials or varied conditions.")
         evidence = EvidenceToken(
             token_id="",
@@ -503,16 +503,16 @@ def run_enhanced_rock_falsifier(
     else:
         # Rock wins majority
         verdict = "KILLED"
-        print(f"  KILLED: Rock wins {rock_win_rate:.1%} > Engine {engine_win_rate:.1%}!")
+        print(f"  KILLED: Rock wins {rock_win_rate:.1%} > Process_Cycle {process_cycle_win_rate:.1%}!")
         print(f"  Bridge T is FALSIFIED — a low-action rock outperforms the")
-        print(f"  full 8-stage engine. The teleological assumption that")
+        print(f"  full 8-stage process_cycle. The teleological assumption that")
         print(f"  solvency forces complexity is WRONG.")
         evidence = EvidenceToken(
             token_id="",
             sim_spec_id="S_SIM_ROCK_FALSIFIER_ENHANCED_V1",
             status="KILL",
             measured_value=rock_win_rate,
-            kill_reason="ROCK_OUTPERFORMS_ENGINE_BRIDGE_T_FALSIFIED",
+            kill_reason="ROCK_OUTPERFORMS_PROCESS_CYCLE_BRIDGE_T_FALSIFIED",
         )
 
     # ─── SAVE RESULTS ───
@@ -525,23 +525,23 @@ def run_enhanced_rock_falsifier(
         "timestamp": datetime.now(UTC).isoformat(),
         "config": {
             "d_rock": d_rock,
-            "d_engine": d_engine,
+            "d_process_cycle": d_engine,
             "horizon": horizon,
             "n_trials": n_trials,
             "regime_shift_interval": regime_shift_interval,
             "stall_threshold": stall_threshold,
             "rock_complexity_cost": rock_complexity_cost,
-            "engine_complexity_cost": engine_complexity_cost,
+            "process_cycle_complexity_cost": engine_complexity_cost,
         },
         "aggregate": {
-            "engine_wins": engine_wins,
+            "process_cycle_wins": engine_wins,
             "rock_wins": rock_wins,
             "ties": ties,
-            "engine_win_rate": engine_win_rate,
+            "process_cycle_win_rate": engine_win_rate,
             "rock_win_rate": rock_win_rate,
-            "avg_engine_solvency": avg_engine_sol,
+            "avg_process_cycle_solvency": avg_engine_sol,
             "avg_rock_solvency": avg_rock_sol,
-            "engine_survival_rate": engine_survival_rate,
+            "process_cycle_survival_rate": engine_survival_rate,
             "rock_survival_rate": rock_survival_rate,
         },
         "intensity_bins": bin_summaries,
@@ -553,6 +553,14 @@ def run_enhanced_rock_falsifier(
             "measured_value": evidence.measured_value,
             "kill_reason": evidence.kill_reason,
         },
+        # evidence_ledger: the key that run_all_sims.py reads for token collection
+        "evidence_ledger": [{
+            "token_id": evidence.token_id,
+            "sim_spec_id": evidence.sim_spec_id,
+            "status": evidence.status,
+            "measured_value": evidence.measured_value,
+            "kill_reason": evidence.kill_reason,
+        }],
         # Save first 50 trial details (full 1000 is too large)
         "sample_trials": trial_results[:50],
     }

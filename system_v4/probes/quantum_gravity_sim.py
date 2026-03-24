@@ -3,7 +3,7 @@ Quantum Gravity SIM — Pro Thread 10
 ======================================
 Discrete lattice gravity: metric = trace distance between neighbors,
 Fe dissipation produces gravitational gradient, analog of Einstein's
-equations from thermodynamics (Jacobson's result).
+equations from dissipative_dynamics (Jacobson's result).
 """
 
 import numpy as np
@@ -64,7 +64,7 @@ def sim_quantum_gravity(d=8, n_sites=6, n_steps=100):
         return metric
 
     def compute_entropy_gradient(sites, d):
-        """Compute entropy gradient ∇Φ at each site."""
+        """Compute state_dispersion gradient ∇Φ at each site."""
         grads = np.zeros(n_sites)
         for i in range(n_sites):
             phi_i = negentropy(sites[i], d)
@@ -81,7 +81,7 @@ def sim_quantum_gravity(d=8, n_sites=6, n_steps=100):
 
     print(f"\n  Initial state:")
     print(f"    Entropies: {[f'{s:.3f}' for s in entropies_init]}")
-    print(f"    Entropy gradients: {[f'{g:+.3f}' for g in grad_init]}")
+    print(f"    State_Dispersion gradients: {[f'{g:+.3f}' for g in grad_init]}")
 
     # Evolve: Fe dissipation creates gravitational gradient
     for step in range(n_steps):
@@ -89,7 +89,7 @@ def sim_quantum_gravity(d=8, n_sites=6, n_steps=100):
             sites[i] = apply_lindbladian_step(sites[i], L_ops[i], dt=0.005)
             sites[i] = ensure_valid(sites[i])
 
-        # Nearest-neighbor coupling: states flow toward higher entropy
+        # Nearest-neighbor coupling: states flow toward higher state_dispersion
         for i in range(n_sites - 1):
             coupling = 0.02
             mixed = coupling * sites[i] + coupling * sites[i+1]
@@ -104,19 +104,19 @@ def sim_quantum_gravity(d=8, n_sites=6, n_steps=100):
 
     print(f"\n  Final state:")
     print(f"    Entropies: {[f'{s:.3f}' for s in entropies_final]}")
-    print(f"    Entropy gradients: {[f'{g:+.3f}' for g in grad_final]}")
+    print(f"    State_Dispersion gradients: {[f'{g:+.3f}' for g in grad_final]}")
 
-    # Check gravitational gradient: states flow toward higher entropy
+    # Check gravitational gradient: states flow toward higher state_dispersion
     entropy_increased = sum(1 for i in range(n_sites)
                            if entropies_final[i] >= entropies_init[i] - 0.01)
     gradient_reduced = np.std(grad_final) < np.std(grad_init) + 0.1
 
-    # "Einstein equations" analog: G_μν ~ entropy gradient tensor
+    # "Einstein equations" analog: G_μν ~ state_dispersion gradient tensor
     # Check if metric encodes curvature (non-uniform distances)
     metric_non_trivial = np.std(metric_final) > 0.001
 
     print(f"\n  Gravitational dynamics:")
-    print(f"    Sites with entropy ≥ initial: {entropy_increased}/{n_sites}")
+    print(f"    Sites with state_dispersion ≥ initial: {state_dispersion_increased}/{n_sites}")
     print(f"    Metric non-trivial: {metric_non_trivial}")
     print(f"    Gradient standard deviation reduced: {gradient_reduced}")
 

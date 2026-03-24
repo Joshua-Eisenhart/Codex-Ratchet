@@ -1,10 +1,10 @@
 """
-Proto-Ratchet SIM Runner
+Proto-Directional_Accumulator SIM Runner
 ========================
-Computational verification of the Codex Ratchet engine constraints.
+Computational verification of the Codex Directional_Accumulator process_cycle constraints.
 Tests whether the mathematical model produces real, measurable results.
 
-This is a proto-B ratchet: it runs actual numerical experiments on density
+This is a proto-B directional_accumulator: it runs actual numerical experiments on density
 matrices and CPTP maps to verify or kill the base axioms and derived claims.
 
 SIM hierarchy:
@@ -13,7 +13,7 @@ SIM hierarchy:
   T2: ACTION_PRECEDENCE — verify left vs right composition yields distinct observables
   T3: VARIANCE_DIRECTION — verify deductive vs inductive produce distinct variance trajectories
   T4: CHIRAL_FLUX — verify convergent vs divergent flows are topologically distinct
-  T5: PROTO_ATTRACTOR_BASIN — verify a basin forms under iterated CPTP application
+  T5: PROTO_INVARIANT_TARGET_CONVERGENT_SUBSET — verify a convergent_subset forms under iterated CPTP application
 """
 
 import numpy as np
@@ -90,7 +90,7 @@ def apply_lindbladian_step(rho: np.ndarray, L: np.ndarray, dt: float = 0.01) -> 
 
 
 def von_neumann_entropy(rho: np.ndarray) -> float:
-    """Compute von Neumann entropy: S = -Tr(rho * log(rho))"""
+    """Compute von Neumann state_dispersion: S = -Tr(rho * log(rho))"""
     eigenvalues = np.real(np.linalg.eigvalsh(rho))
     eigenvalues = eigenvalues[eigenvalues > 1e-12]  # filter zeros
     return float(-np.sum(eigenvalues * np.log2(eigenvalues)))
@@ -274,13 +274,13 @@ def sim_action_precedence(d: int = 4, n_trials: int = 50) -> EvidenceToken:
 def sim_variance_direction(d: int = 4, n_steps: int = 200) -> EvidenceToken:
     """
     SIM T3: VARIANCE_DIRECTION — verify deductive vs inductive produce 
-    distinct entropy trajectories.
+    distinct state_dispersion trajectories.
     
     Test: Apply two different operator orderings to the same initial state:
-    - Deductive (constraint-first): Lindbladian dissipation THEN unitary rotation
+    - Deductive (operator_bound-first): Lindbladian dissipation THEN unitary rotation
     - Inductive (release-first): Unitary rotation THEN Lindbladian dissipation
     
-    Verify the entropy trajectories diverge.
+    Verify the state_dispersion trajectories diverge.
     """
     print(f"\n{'='*60}")
     print(f"SIM T3: VARIANCE_DIRECTION FALSIFICATION")
@@ -292,11 +292,11 @@ def sim_variance_direction(d: int = 4, n_steps: int = 200) -> EvidenceToken:
     L = np.random.randn(d, d) + 1j * np.random.randn(d, d)
     L = L / np.linalg.norm(L) * 0.5  # scale down for stability
     
-    # Deductive trajectory: constraint (Lindbladian) first, then unitary
+    # Deductive trajectory: operator_bound (Lindbladian) first, then unitary
     rho_ded = rho_init.copy()
     entropy_deductive = [von_neumann_entropy(rho_ded)]
     
-    # Inductive trajectory: unitary first, then constraint (Lindbladian)
+    # Inductive trajectory: unitary first, then operator_bound (Lindbladian)
     rho_ind = rho_init.copy()
     entropy_inductive = [von_neumann_entropy(rho_ind)]
     
@@ -317,9 +317,9 @@ def sim_variance_direction(d: int = 4, n_steps: int = 200) -> EvidenceToken:
     trajectory_divergence = np.max(np.abs(entropy_ded - entropy_ind))
     final_state_distance = trace_distance(rho_ded, rho_ind)
     
-    print(f"  Initial entropy: {entropy_deductive[0]:.6f}")
-    print(f"  Deductive final entropy: {entropy_deductive[-1]:.6f}")
-    print(f"  Inductive final entropy: {entropy_inductive[-1]:.6f}")
+    print(f"  Initial state_dispersion: {state_dispersion_deductive[0]:.6f}")
+    print(f"  Deductive final state_dispersion: {state_dispersion_deductive[-1]:.6f}")
+    print(f"  Inductive final state_dispersion: {state_dispersion_inductive[-1]:.6f}")
     print(f"  Max trajectory divergence: {trajectory_divergence:.6f}")
     print(f"  Final state trace distance: {final_state_distance:.6f}")
     
@@ -344,8 +344,8 @@ def sim_variance_direction(d: int = 4, n_steps: int = 200) -> EvidenceToken:
 
 def sim_proto_attractor_basin(d: int = 4, n_steps: int = 500, n_initial_states: int = 20) -> EvidenceToken:
     """
-    SIM T5: PROTO ATTRACTOR BASIN — verify that iterated CPTP application
-    drives diverse initial states toward a common fixed point (attractor).
+    SIM T5: PROTO INVARIANT_TARGET CONVERGENT_SUBSET — verify that iterated CPTP application
+    drives diverse initial states toward a common fixed point (invariant_target).
     
     A2 FUEL DIAGNOSIS (from source mining):
       The damped harmonic oscillator equation governs convergence:
@@ -355,16 +355,16 @@ def sim_proto_attractor_basin(d: int = 4, n_steps: int = 500, n_initial_states: 
       Critical damping requires γ ≥ 2ω. Previous run had γ << ω (underdamped).
       
       FIX: Scale up Lindbladian amplitude and apply MULTIPLE dissipation
-      steps per unitary rotation (deductive ordering: constraint-first).
+      steps per unitary rotation (deductive ordering: operator_bound-first).
       FSA "Cannot create dissipative attractors" — only FGA can.
     """
     print(f"\n{'='*60}")
-    print(f"SIM T5: PROTO ATTRACTOR BASIN (A2-CORRECTED)")
+    print(f"SIM T5: PROTO INVARIANT_TARGET CONVERGENT_SUBSET (A2-CORRECTED)")
     print(f"  d={d}, steps={n_steps}, initial_states={n_initial_states}")
     print(f"  Model: φ̈ + γφ̇ + ω²φ = 0 (targeting critical damping)")
     print(f"{'='*60}")
     
-    # Create the FSA component (unitary rotation — coherent, entropy-preserving)
+    # Create the FSA component (unitary rotation — coherent, state_dispersion-preserving)
     U = make_random_unitary(d)
     
     # Sweep γ values to find the critical damping threshold
@@ -372,11 +372,11 @@ def sim_proto_attractor_basin(d: int = 4, n_steps: int = 500, n_initial_states: 
     sweep_results = []
     
     for gamma in gamma_values:
-        # Create FGA component (Lindbladian dissipation — entropy-producing)
+        # Create FGA component (Lindbladian dissipation — state_dispersion-producing)
         L_base = np.random.randn(d, d) + 1j * np.random.randn(d, d)
         L = L_base / np.linalg.norm(L_base) * gamma
         
-        # Deductive ordering: dissipation FIRST (constraint-first), then rotation
+        # Deductive ordering: dissipation FIRST (operator_bound-first), then rotation
         # Apply multiple dissipation steps per unitary step (FGA dominance)
         n_dissipation_steps = max(1, int(gamma))  # more dissipation at higher γ
         
@@ -384,7 +384,7 @@ def sim_proto_attractor_basin(d: int = 4, n_steps: int = 500, n_initial_states: 
         for s in range(n_initial_states):
             rho = make_random_density_matrix(d)
             for step in range(n_steps):
-                # FGA: multiple dissipation steps (constraint-first / deductive)
+                # FGA: multiple dissipation steps (operator_bound-first / deductive)
                 for _ in range(n_dissipation_steps):
                     rho = apply_lindbladian_step(rho, L, dt=0.01)
                 # FSA: single unitary rotation
@@ -421,27 +421,27 @@ def sim_proto_attractor_basin(d: int = 4, n_steps: int = 500, n_initial_states: 
     CONVERGENCE_THRESHOLD = 0.01
     if best_gamma is not None:
         print(f"  Critical damping threshold: γ ≈ {best_gamma:.1f}")
-        print(f"  PASS: Attractor basin detected at γ={best_gamma:.1f}!")
+        print(f"  PASS: Invariant_Target convergent_subset detected at γ={best_gamma:.1f}!")
         print(f"         {n_initial_states} diverse states converged to trace dist {best_mean:.8f}")
         
-        # Characterize the attractor
+        # Characterize the invariant_target
         attractor = np.mean(best_states, axis=0)
         attractor = attractor / np.trace(attractor)
         attractor_entropy = von_neumann_entropy(attractor)
         eigvals = np.sort(np.real(np.linalg.eigvalsh(attractor)))[::-1]
-        print(f"  Attractor entropy: {attractor_entropy:.6f}")
-        print(f"  Attractor eigenvalues: {eigvals}")
+        print(f"  Invariant_Target state_dispersion: {invariant_target_state_dispersion:.6f}")
+        print(f"  Invariant_Target eigenvalues: {eigvals}")
         
-        # Verify attractor is not maximally mixed (not trivial)
+        # Verify invariant_target is not maximally mixed (not trivial)
         max_entropy = np.log2(d)
         if attractor_entropy < max_entropy * 0.99:
-            print(f"  Attractor is NON-TRIVIAL (S={attractor_entropy:.4f} < S_max={max_entropy:.4f})")
+            print(f"  Invariant_Target is NON-TRIVIAL (S={invariant_target_state_dispersion:.4f} < S_max={max_state_dispersion:.4f})")
         else:
-            print(f"  WARNING: Attractor is near maximally mixed (trivial)")
+            print(f"  WARNING: Invariant_Target is near maximally mixed (trivial)")
         
         return EvidenceToken(
-            token_id="E_SIM_PROTO_ATTRACTOR_BASIN_OK",
-            sim_spec_id="S_PROTO_ATTRACTOR_BASIN",
+            token_id="E_SIM_PROTO_INVARIANT_TARGET_CONVERGENT_SUBSET_OK",
+            sim_spec_id="S_PROTO_INVARIANT_TARGET_CONVERGENT_SUBSET",
             status="PASS",
             measured_value=best_mean
         )
@@ -451,23 +451,23 @@ def sim_proto_attractor_basin(d: int = 4, n_steps: int = 500, n_initial_states: 
         print(f"  KILL: No convergence even at γ={worst[0]:.1f} (mean dist={worst[1]:.6f})")
         return EvidenceToken(
             token_id="",
-            sim_spec_id="S_PROTO_ATTRACTOR_BASIN",
+            sim_spec_id="S_PROTO_INVARIANT_TARGET_CONVERGENT_SUBSET",
             status="KILL",
             measured_value=worst[1],
-            kill_reason="NO_ATTRACTOR_BASIN_CONVERGENCE"
+            kill_reason="NO_INVARIANT_TARGET_CONVERGENT_SUBSET_CONVERGENCE"
         )
 
 
 # ─────────────────────────────────────────────
-# MAIN: Run the Proto-Ratchet
+# MAIN: Run the Proto-Directional_Accumulator
 # ─────────────────────────────────────────────
 
 def run_proto_ratchet():
-    """Execute the full proto-ratchet SIM suite from base constraints up."""
+    """Execute the full proto-directional_accumulator SIM suite from base constraints up."""
     
     print("=" * 60)
-    print("PROTO-RATCHET SIM RUNNER")
-    print("Codex Ratchet — Computational Verification")
+    print("PROTO-DIRECTIONAL_ACCUMULATOR SIM RUNNER")
+    print("Codex Directional_Accumulator — Computational Verification")
     print(f"Timestamp: {datetime.utcnow().isoformat()}")
     print("=" * 60)
     
@@ -483,10 +483,10 @@ def run_proto_ratchet():
     e_n01 = sim_n01_noncommutation(d=4, n_trials=100)
     evidence_ledger.append(e_n01)
     
-    # Gate: if base constraints fail, the entire ratchet is dead
+    # Gate: if base constraints fail, the entire directional_accumulator is dead
     if e_f01.status == "KILL" or e_n01.status == "KILL":
         print("\n" + "!" * 60)
-        print("RATCHET HALTED: Base constraints failed!")
+        print("DIRECTIONAL_ACCUMULATOR HALTED: Base constraints failed!")
         print("Cannot proceed to derived constraints.")
         print("!" * 60)
         _save_results(evidence_ledger, graveyard)
@@ -502,13 +502,13 @@ def run_proto_ratchet():
     e_vd = sim_variance_direction(d=4, n_steps=200)
     evidence_ledger.append(e_vd)
     
-    # ─── TIER 5: PROTO ATTRACTOR BASIN ───
+    # ─── TIER 5: PROTO INVARIANT_TARGET CONVERGENT_SUBSET ───
     e_ab = sim_proto_attractor_basin(d=4, n_steps=500, n_initial_states=20)
     evidence_ledger.append(e_ab)
     
     # ─── FINAL REPORT ───
     print("\n" + "=" * 60)
-    print("PROTO-RATCHET FINAL REPORT")
+    print("PROTO-DIRECTIONAL_ACCUMULATOR FINAL REPORT")
     print("=" * 60)
     
     passed = [e for e in evidence_ledger if e.status == "PASS"]
@@ -535,7 +535,7 @@ def run_proto_ratchet():
 
 
 def _save_results(evidence: List[EvidenceToken], graveyard: List[GraveyardRecord]):
-    """Save proto-ratchet results to the a2_state directory."""
+    """Save proto-directional_accumulator results to the a2_state directory."""
     base = os.path.dirname(os.path.abspath(__file__))
     results_dir = os.path.join(base, "a2_state", "sim_results")
     os.makedirs(results_dir, exist_ok=True)
@@ -571,7 +571,7 @@ def _save_results(evidence: List[EvidenceToken], graveyard: List[GraveyardRecord
         }
     }
     
-    outpath = os.path.join(results_dir, "proto_ratchet_results.json")
+    outpath = os.path.join(results_dir, "proto_directional_accumulator_results.json")
     with open(outpath, "w") as f:
         json.dump(results, f, indent=2)
     print(f"\n  Results saved to: {outpath}")

@@ -44,6 +44,44 @@ def run_probes():
     return result.returncode == 0, result.stdout, result.stderr
 
 
+def ingest_sim_evidence():
+    print(f"  Ingesting SIM Evidence Pack to B-Kernel...")
+    
+    pack_path = os.path.join(REPO, "system_v4/probes/a2_state/sim_results/SIM_EVIDENCE_PACK.txt")
+    if not os.path.exists(pack_path):
+        print(f"    ✗ NO EVIDENCE PACK FOUND")
+        return False
+
+    with open(pack_path) as f:
+        pack_text = f.read()
+        
+    try:
+        from system_v4.skills.a1_brain import A1Brain
+        from system_v4.skills.b_kernel import BKernel
+        
+        brain = A1Brain(REPO)
+        kernel = BKernel(brain)
+        
+        pre_kills = len(kernel.graveyard)
+        pre_active = sum(1 for s in kernel.survivor_ledger.values() if s.get("status") == "ACTIVE")
+        pre_pending = sum(1 for s in kernel.survivor_ledger.values() if s.get("status") == "EVIDENCE_PENDING")
+        
+        kernel.ingest_sim_evidence_pack(pack_text)
+        
+        post_kills = len(kernel.graveyard)
+        post_active = sum(1 for s in kernel.survivor_ledger.values() if s.get("status") == "ACTIVE")
+        post_pending = sum(1 for s in kernel.survivor_ledger.values() if s.get("status") == "EVIDENCE_PENDING")
+        
+        print(f"    ✓ Evidence applied. ACTIVE: {post_active} (Δ{post_active-pre_active:+d}), PENDING: {post_pending} (Δ{post_pending-pre_pending:+d}), KILLS: {post_kills} (Δ{post_kills-pre_kills:+d})")
+        
+        kernel.save_state()
+        brain.save_state()
+        return True
+    except Exception as e:
+        print(f"    ✗ B-Kernel ingestion failed: {e}")
+        return False
+
+
 def bridge_evidence():
     """Run the evidence → witness bridge."""
     import subprocess
@@ -225,6 +263,9 @@ def run_tick(spawn_codex: bool = True):
         print(f"  ACTION: ATTENTION_REQUIRED")
         return
     print(f"  RUNNER STATUS: ✓ OK")
+    
+    # 2.5 Ingest SIM evidence to B-kernel
+    ingest_sim_evidence()
     
     # 3. Bridge evidence → witnesses
     print(f"  Bridging evidence → witnesses...")

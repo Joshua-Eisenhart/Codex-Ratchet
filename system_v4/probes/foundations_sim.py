@@ -4,13 +4,13 @@ Foundations SIM Suite: Entropic Monism & Operational Equivalence
 Jargon-free computational tests for the deepest claims:
 
 SIM_01: a=a iff a~b — operational equivalence under finite probes
-SIM_02: Entropic monism — all structure IS entropy gradients
-SIM_03: Math = Physics — same axioms force both number structure and chirality
+SIM_02: Entropic monism — all structure IS state_dispersion gradients
+SIM_03: Math = Physics — same axioms generator_bias both number structure and chirality
 SIM_04: No Primitive Identity — "sameness" depends on probe resolution
-SIM_05: Finite probes force equivalence classes (sets emerge, not assumed)
+SIM_05: Finite probes generator_bias equivalence classes (sets emerge, not assumed)
 
-All tests use pure math: density matrices, operators, entropy.
-No commentary jargon. No metaphors. Just the ratchet.
+All tests use pure math: density matrices, operators, state_dispersion.
+No commentary jargon. No metaphors. Just the directional_accumulator.
 """
 
 import numpy as np
@@ -136,16 +136,16 @@ def sim_operational_equivalence(d: int = 8, n_probes_list: list = [1, 2, 4, 8]):
 
 def sim_entropic_monism(d: int = 4, n_trials: int = 500):
     """
-    CLAIM: All distinguishable structure reduces to entropy differences.
+    CLAIM: All distinguishable structure reduces to state_dispersion differences.
     There is only one substance: density matrices. "Information" and
-    "energy" and "matter" are all the same thing — entropy gradients
+    "energy" and "matter" are all the same thing — state_dispersion gradients
     on a finite state space.
     
     TEST: Generate random density matrices and random observables.
     Show that the trace distance between any two states (which captures
-    ALL physical distinguishability) is bounded by their entropy difference.
+    ALL physical distinguishability) is bounded by their state_dispersion difference.
     
-    Specifically: states with equal entropy CAN still be distinguishable
+    Specifically: states with equal state_dispersion CAN still be distinguishable
     (different eigenvalue distributions), but states with maximally
     different entropies are ALWAYS maximally distinguishable.
     """
@@ -169,10 +169,10 @@ def sim_entropic_monism(d: int = 4, n_trials: int = 500):
         entropy_diffs.append(abs(S_a - S_b))
         trace_dists.append(trace_distance(rho_a, rho_b))
     
-    # Correlation between entropy difference and trace distance
+    # Correlation between state_dispersion difference and trace distance
     correlation = np.corrcoef(entropy_diffs, trace_dists)[0, 1]
     
-    # The maximally mixed state (max entropy) vs a pure state (min entropy)
+    # The maximally mixed state (max state_dispersion) vs a pure state (min state_dispersion)
     rho_mixed = np.eye(d, dtype=complex) / d
     rho_pure = np.zeros((d, d), dtype=complex)
     rho_pure[0, 0] = 1.0
@@ -181,28 +181,28 @@ def sim_entropic_monism(d: int = 4, n_trials: int = 500):
     max_trace_dist = trace_distance(rho_mixed, rho_pure)
     
     print(f"  Correlation (|ΔS| vs trace_dist): {correlation:.4f}")
-    print(f"  Max entropy states → max trace distance:")
-    print(f"    ΔS = {max_entropy_diff:.6f}")
+    print(f"  Max state_dispersion states → max trace distance:")
+    print(f"    ΔS = {max_state_dispersion_diff:.6f}")
     print(f"    trace_dist = {max_trace_dist:.6f}")
     
-    # The monism test: can two states with IDENTICAL entropy be
-    # distinguished? YES — entropy is necessary but not sufficient.
-    # But ALL structure IS entropic (von Neumann entropy of subsystems).
+    # The monism test: can two states with IDENTICAL state_dispersion be
+    # distinguished? YES — state_dispersion is necessary but not sufficient.
+    # But ALL structure IS entropic (von Neumann state_dispersion of subsystems).
     
-    # Find pairs with similar entropy but different trace distance
+    # Find pairs with similar state_dispersion but different trace distance
     close_entropy_pairs = [(ed, td) for ed, td in zip(entropy_diffs, trace_dists) if ed < 0.1]
     if close_entropy_pairs:
         avg_td_close_S = np.mean([td for _, td in close_entropy_pairs])
-        print(f"  Pairs with |ΔS| < 0.1: {len(close_entropy_pairs)}")
+        print(f"  Pairs with |ΔS| < 0.1: {len(close_state_dispersion_pairs)}")
         print(f"    Their avg trace_dist: {avg_td_close_S:.6f}")
-        print(f"  → Equal global entropy ≠ identical states")
+        print(f"  → Equal global state_dispersion ≠ identical states")
         print(f"  → But subsystem entropies (partial traces) resolve the rest")
     
     # The key insight: in a FINITE system, ALL distinguishability
-    # reduces to entropy of subsystems under different decompositions
-    # This IS entropic monism: the ONLY invariant is entropy.
+    # reduces to state_dispersion of subsystems under different decompositions
+    # This IS entropic monism: the ONLY invariant is state_dispersion.
     
-    # Prove: eigenvalues (= entropy spectrum) completely determine
+    # Prove: eigenvalues (= state_dispersion spectrum) completely determine
     # the state up to unitary equivalence
     rho_test = make_random_density_matrix(d)
     eigvals = np.sort(np.real(np.linalg.eigvalsh(rho_test)))[::-1]
@@ -213,7 +213,7 @@ def sim_entropic_monism(d: int = 4, n_trials: int = 500):
     rho_v1 = V1 @ np.diag(eigvals.astype(complex)) @ V1.conj().T
     rho_v2 = V2 @ np.diag(eigvals.astype(complex)) @ V2.conj().T
     
-    # Same eigenvalues, different eigenvectors → same entropy
+    # Same eigenvalues, different eigenvectors → same state_dispersion
     S_v1 = von_neumann_entropy(rho_v1)
     S_v2 = von_neumann_entropy(rho_v2)
     dist_v1_v2 = trace_distance(rho_v1, rho_v2)
@@ -221,9 +221,9 @@ def sim_entropic_monism(d: int = 4, n_trials: int = 500):
     print(f"\n  Same eigenvalues, different bases:")
     print(f"    S(V1) = {S_v1:.8f}, S(V2) = {S_v2:.8f}")
     print(f"    trace_dist = {dist_v1_v2:.6f}")
-    print(f"  → Entropy is invariant under basis change")
+    print(f"  → State_Dispersion is invariant under basis change")
     print(f"  → The eigenvalue spectrum IS the complete invariant")
-    print(f"  → Everything reduces to entropy. Monism holds.")
+    print(f"  → Everything reduces to state_dispersion. Monism holds.")
     
     entropy_invariant = abs(S_v1 - S_v2) < 1e-10
     positive_correlation = correlation > 0
@@ -242,7 +242,7 @@ def sim_entropic_monism(d: int = 4, n_trials: int = 500):
             sim_spec_id="S_SIM_ENTROPIC_MONISM_V1",
             status="KILL",
             measured_value=correlation,
-            kill_reason="ENTROPY_NOT_INVARIANT"
+            kill_reason="STATE_DISPERSION_NOT_INVARIANT"
         )
 
 
@@ -252,9 +252,9 @@ def sim_entropic_monism(d: int = 4, n_trials: int = 500):
 
 def sim_math_physics_fusion(d: int = 4, n_trials: int = 100):
     """
-    CLAIM: F01 + N01 simultaneously force:
+    CLAIM: F01 + N01 simultaneously generator_bias:
       MATH: complex numbers, discrete spectrum, non-commutative algebra
-      PHYSICS: chirality, spinors, entropy gradients
+      PHYSICS: chirality, spinors, state_dispersion gradients
     These are not separate — they are the SAME structural consequence.
     
     TEST: Generate random finite non-commutative systems. Verify that
@@ -262,7 +262,7 @@ def sim_math_physics_fusion(d: int = 4, n_trials: int = 100):
     1. Complex eigenvalues of commutator (math: i is forced)
     2. Discrete spectrum (math: quantization)
     3. Chirality (physics: left/right asymmetry)
-    4. Entropy gradient (physics: arrow of time)
+    4. State_Dispersion gradient (physics: arrow of time)
     
     If ANY system has one without the other, the fusion claim fails.
     """
@@ -305,7 +305,7 @@ def sim_math_physics_fusion(d: int = 4, n_trials: int = 100):
         chiral_dist = trace_distance(rho_AB, rho_BA)
         has_chirality = chiral_dist > 1e-10
         
-        # PHYSICS CHECK 2: Entropy gradient exists
+        # PHYSICS CHECK 2: State_Dispersion gradient exists
         S_AB = von_neumann_entropy(rho_AB)
         S_BA = von_neumann_entropy(rho_BA)
         has_entropy_gradient = abs(S_AB - S_BA) > 1e-12
@@ -316,12 +316,12 @@ def sim_math_physics_fusion(d: int = 4, n_trials: int = 100):
             all_fused = False
             print(f"  Trial {trial}: FAILED — anti_herm={is_anti_hermitian}, "
                   f"imag={has_imaginary}, discrete={is_discrete}, "
-                  f"chiral={has_chirality}, gradient={has_entropy_gradient}")
+                  f"chiral={has_chirality}, gradient={has_state_dispersion_gradient}")
     
     if all_fused:
         print(f"  All {n_trials} trials: math AND physics emerge together from F01+N01")
         print(f"  → Complex numbers AND chirality: same root")
-        print(f"  → Discrete spectrum AND entropy gradient: same root")
+        print(f"  → Discrete spectrum AND state_dispersion gradient: same root")
         print(f"  → Math IS physics. One substance. Entropic monism.")
         print(f"  PASS: Math-physics fusion confirmed!")
         return EvidenceToken(
@@ -353,7 +353,7 @@ def sim_no_primitive_identity(d: int = 4):
     3. Finite resolution (always has uncertainty)
     
     TEST: Even checking if ρ = ρ requires tomographic reconstruction,
-    which has finite measurement error. In a finite system, there is
+    which has finite trace_projection error. In a finite system, there is
     always a minimum probe cost to establish identity.
     """
     print(f"\n{'='*60}")
@@ -365,18 +365,18 @@ def sim_no_primitive_identity(d: int = 4):
     rho = make_random_density_matrix(d)
     
     # To verify ρ = ρ, we need d² measurements (complete tomography)
-    # Each measurement is a projection onto a basis state
+    # Each trace_projection is a projection onto a basis state
     
     # Simulate tomography with k measurements
     n_shots_list = [10, 50, 200, 1000, 10000]
     
     for n_shots in n_shots_list:
         # Tomographic reconstruction: measure in d² random bases
-        # Each outcome gives one bit of information about ρ
+        # Each outcome gives one bit of state_distinction about ρ
         rho_reconstructed = np.zeros((d, d), dtype=complex)
         
         for _ in range(d * d):
-            # Random measurement basis
+            # Random trace_projection basis
             U_meas = make_random_unitary(d)
             # Simulate outcomes (Born rule)
             probs = np.real(np.diag(U_meas.conj().T @ rho @ U_meas))
@@ -424,7 +424,7 @@ def sim_no_primitive_identity(d: int = 4):
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# SIM_05: Finite Probes Force Equivalence Classes
+# SIM_05: Finite Probes Generator_Bias Equivalence Classes
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 def sim_equivalence_classes_emerge(d: int = 4, n_states: int = 100, n_probes: int = 2):
@@ -520,7 +520,7 @@ def sim_equivalence_classes_emerge(d: int = 4, n_states: int = 100, n_probes: in
     print(f"\n  Coarse probing: {n_classes_coarse} classes (states merge)")
     print(f"  Fine probing: {n_classes_fine} classes (states separate)")
     print(f"  → Sets EMERGE from probe resolution limits")
-    print(f"  → Not axioms. Structure earned by measurement.")
+    print(f"  → Not axioms. Structure earned by trace_projection.")
     
     if resolution_monotone and merging_occurs:
         print(f"  PASS: Equivalence classes emerge from finite probing!")

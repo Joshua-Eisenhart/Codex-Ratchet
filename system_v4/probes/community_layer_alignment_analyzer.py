@@ -5,7 +5,7 @@ import leidenalg
 from collections import Counter, defaultdict
 
 # Paths to the 5 layer graphs
-GRAPH_DIR = "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/"
+GRAPH_DIR = "/Users/joshuaeisenhart/Desktop/Codex Directional_Accumulator/system_v4/a2_state/graphs/"
 LAYERS = {
     "HIGH_INTAKE": "a2_high_intake_graph_v1.json",
     "MID_REFINEMENT": "a2_mid_refinement_graph_v1.json",
@@ -114,7 +114,7 @@ def analyze():
     multi_layer_nodes = {nid: list(layers) for nid, layers in node_layer_map.items() if len(layers) > 1}
     
     # Output to Markdown
-    output_path = "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/COMMUNITY_LAYER_ALIGNMENT_AUDIT__v1.md"
+    output_path = "/Users/joshuaeisenhart/Desktop/Codex Directional_Accumulator/system_v4/a2_state/audit_logs/COMMUNITY_LAYER_ALIGNMENT_AUDIT__v1.md"
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     
     with open(output_path, 'w') as f:
@@ -154,7 +154,7 @@ def analyze():
         
         avg_purity = sum(s['purity'] for s in layer_stats.values()) / len(layer_stats)
         if avg_purity > 80:
-            f.write(f"**Strong Alignment:** Average layer purity is {avg_purity:.2f}%. Manual layers largely correspond to topological communities.\n")
+            f.write(f"**Strong Alignment:** Average layer purity is {avg_purity:.2f}%. Manual layers largely correspond to structural communities.\n")
         elif avg_purity > 50:
             f.write(f"**Moderate Alignment:** Average layer purity is {avg_purity:.2f}%. Some layers are internally fragmented.\n")
         else:

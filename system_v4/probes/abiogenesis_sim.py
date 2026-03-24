@@ -3,7 +3,7 @@ Abiogenesis SIM — Pro Thread 9
 =================================
 Spontaneous life from I/d (maximally mixed / thermal equilibrium).
 Random CPTP perturbations; small fraction finds the dual-loop
-attractor and maintains ΔΦ > 0 indefinitely.
+invariant_target and maintains ΔΦ > 0 indefinitely.
 """
 
 import numpy as np
@@ -77,7 +77,7 @@ def sim_abiogenesis(dims=None, n_trajectories=50, n_steps=200):
                 rho = apply_lindbladian_step(rho, L, dt=0.01)
                 rho = ensure_valid(rho)
 
-                # Dual-loop check: if structure forms, apply ratchet
+                # Dual-loop check: if structure forms, apply directional_accumulator
                 phi = negentropy(rho, d)
                 if phi > 0.01:  # structure detected
                     # Self-maintenance: project to eigenbasis (Ti)

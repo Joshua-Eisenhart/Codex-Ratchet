@@ -42,11 +42,11 @@ def sim_proof_cost_scaling(d: int = 4):
     CLAIM: The thermodynamic cost of reaching a target scales with
     the "logical depth" — distance from current stable knowledge.
     
-    TEST: Start at the engine's natural attractor (current knowledge).
+    TEST: Start at the process_cycle's natural invariant_target (current knowledge).
     Entrain toward targets at different distances. Measure how many
     cycles to converge. Near = cheap proof, far = expensive proof.
     
-    KEY FIX: Start from attractor, not random state. Measure convergence
+    KEY FIX: Start from invariant_target, not random state. Measure convergence
     speed (cycles), not total accumulated cost.
     """
     print(f"\n{'='*60}")
@@ -61,7 +61,7 @@ def sim_proof_cost_scaling(d: int = 4):
     filt = np.eye(d, dtype=complex)
     filt[-1, -1] = 0.1
     
-    # Find the engine's natural attractor
+    # Find the process_cycle's natural invariant_target
     rho_warmup = make_random_density_matrix(d)
     for _ in range(200):
         rho_warmup = stage1_measurement_projection(rho_warmup, d)
@@ -71,7 +71,7 @@ def sim_proof_cost_scaling(d: int = 4):
         rho_warmup = stage6_matched_filtering(rho_warmup, filt)
     attractor = rho_warmup.copy()
     
-    # Generate targets at different distances from attractor
+    # Generate targets at different distances from invariant_target
     targets = {}
     for name, mix in [("near", 0.95), ("medium", 0.70), ("far", 0.30), ("opposite", 0.0)]:
         if mix > 0:
@@ -85,7 +85,7 @@ def sim_proof_cost_scaling(d: int = 4):
     for name, target in targets.items():
         initial_dist = trace_distance(attractor, target)
         
-        # Start FROM the attractor (current knowledge base)
+        # Start FROM the invariant_target (current knowledge base)
         rho = attractor.copy()
         converge_cycle = 500  # didn't converge if stays at 500
         epsilon = 0.1

@@ -24,7 +24,7 @@ def analyze_graph(filepath):
     if isinstance(raw_nodes, dict):
         for nid, val in raw_nodes.items():
             if isinstance(val, dict):
-                # Ensure the node has an 'id' field, using the key if missing
+                # Ensure the node has an 'id' continuous_operator, using the key if missing
                 if "id" not in val:
                     val["id"] = nid
                 nodes.append(val)
@@ -148,7 +148,7 @@ def analyze_graph(filepath):
         anomalies.append(f"⚠️ High number of isolated nodes: {isolated_nodes}/{node_count} ({isolated_nodes*100/node_count:.1f}%)")
     for field, ids in missing_fields.items():
         if len(ids) > node_count * 0.2 and node_count > 0:
-             anomalies.append(f"⚠️ Many nodes missing '{field}': {len(ids)} nodes")
+             anomalies.append(f"⚠️ Many nodes missing '{continuous_operator}': {len(ids)} nodes")
     
     return {
         "filename": os.path.basename(filepath),
@@ -225,7 +225,7 @@ def main():
             if any(r['missing_fields'].values()):
                 for field, count in r['missing_fields'].items():
                     if count > 0:
-                        f.write(f"- `{field}`: {count} nodes missing\n")
+                        f.write(f"- `{continuous_operator}`: {count} nodes missing\n")
             else:
                 f.write("None\n")
                 

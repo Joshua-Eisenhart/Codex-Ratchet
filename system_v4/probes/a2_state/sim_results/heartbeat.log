@@ -12,3 +12,79 @@
     S_SIM_WORLD_MODEL_V1: D_NOT_DECREASING (agent Ti influence outpaced by Te env drift)
     S_SIM_STRUCTURE_V1: NO_STRUCTURE_FOUND (agent max eigenvalue ~0.125 = uniform at d=8)
   ALL_SIMS_PASS_RUNNER: YES (33/33 exit code 0)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LAUNCHD TRIGGER: 2026-03-24T07:11:43Z
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+EXIT: 1 at 2026-03-24T07:11:44Z
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+LAUNCHD TRIGGER: 2026-03-24T07:12:46Z
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+============================================================
+HEARTBEAT TICK: 2026-03-24T07:12:46.915046+00:00
+============================================================
+  DNA loaded: v1.0, 40 probes
+  Known open KILLs: 9
+  Running probes...
+  RUNNER STATUS: ✓ OK
+  Ingesting SIM Evidence Pack to B-Kernel...
+    ✓ Evidence applied. ACTIVE: 78 (Δ+0), PENDING: 0 (Δ+0), KILLS: 111 (Δ+0)
+  Bridging evidence → witnesses...
+  ✓ Bridge completed
+
+  ──────────────────────────────────────────────────
+  EVIDENCE ASSESSMENT
+  ──────────────────────────────────────────────────
+    Runner status:   OK
+    Evidence status: KNOWN_ISSUES
+    PASS tokens:     131 (Δ+0)
+    KILL tokens:     9 (Δ+0)
+    Trend:           STABLE
+    Action:          ATTENTION_REQUIRED
+
+    SIMs clean:       32
+    SIMs with KILLs:  8
+    SIMs no tokens:   0
+
+    SIMS WITH KILLS:
+      ⚠ complexity_gap_sim.py: 1K
+      ⚠ szilard_64stage_sim.py: 1K
+      ⚠ gain_calibration_sim.py: 2K
+      ⚠ abiogenesis_sim.py: 1K
+      ⚠ neg_commutative_engine_sim.py: 1K
+      ⚠ neg_single_loop_sim.py: 1K
+      ⚠ neg_infinite_d_sim.py: 1K
+      ⚠ neg_classical_probability_sim.py: 1K
+
+    KNOWN OPEN KILLS (allowlisted):
+      ○ S_NEG_CLASSICAL_PROBABILITY_V1
+      ○ S_NEG_COMMUTATIVE_ENGINE_V1
+      ○ S_NEG_INFINITE_D_V1
+      ○ S_NEG_SINGLE_LOOP_V1
+      ○ S_SIM_ABIOGENESIS_V1
+      ○ S_SIM_BASIN_DEPTH_V1
+      ○ S_SIM_CALIBRATED_ENGINE_V1
+      ○ S_SIM_DUAL_SZILARD_V1
+      ○ S_SIM_GAIN_CALIBRATION_V1
+
+  DNA version snapshot saved
+
+  CONSTRAINT MANIFOLD:
+    Total constraints: 16
+    With SIM coverage: 16
+    Coverage: 100%
+
+  WORKSTREAMS:
+    Active: 7/7
+    Total tokens: 66
+    Total kills: 2
+
+  GRAPH MATERIALIZED: probe evidence → run_real_ratchet fuel ✓
+
+  ──────────────────────────────────────────────────
+  ⚠ Heartbeat tick complete.
+    Runner: OK | Evidence: KNOWN_ISSUES | Action: ATTENTION_REQUIRED
+  ──────────────────────────────────────────────────
+EXIT: 0 at 2026-03-24T07:13:30Z

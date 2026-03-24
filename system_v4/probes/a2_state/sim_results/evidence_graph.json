@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-23T10:15:24.599974+00:00",
+  "timestamp": "2026-03-24T11:12:42.637989+00:00",
   "total_tokens": 32,
   "layers": {
     "0": [
@@ -11,11 +11,11 @@
       "VARIANCE_DIRECTION"
     ],
     "2": [
-      "ATTRACTOR_BASIN",
+      "INVARIANT_TARGET_CONVERGENT_SUBSET",
       "LEFT_WEYL",
       "RIGHT_WEYL",
       "DUAL_LOOP_720",
-      "CHIRAL_NON_COLLAPSE",
+      "CHIRAL_NON_STATE_REDUCTION",
       "FULL_8STAGE_v2",
       "FRACTAL_NESTING"
     ],
@@ -24,7 +24,7 @@
       "F01_DISCRETE",
       "N01_FORCES_COMPLEX",
       "CHIRALITY_FORCED",
-      "ENGINE_SUPER_NE",
+      "PROCESS_CYCLE_SUPER_NE",
       "GODEL_STALL",
       "GODEL_RESOLUTION",
       "STALL_DETECTION"
@@ -51,19 +51,19 @@
     "F01_FINITUDE": {
       "layer": 0,
       "deps": [],
-      "file": "proto_ratchet_sim_runner.py"
+      "file": "proto_directional_accumulator_sim_runner.py"
     },
     "N01_NONCOMMUTATION": {
       "layer": 0,
       "deps": [],
-      "file": "proto_ratchet_sim_runner.py"
+      "file": "proto_directional_accumulator_sim_runner.py"
     },
     "ACTION_PRECEDENCE": {
       "layer": 1,
       "deps": [
         "N01"
       ],
-      "file": "proto_ratchet_sim_runner.py"
+      "file": "proto_directional_accumulator_sim_runner.py"
     },
     "VARIANCE_DIRECTION": {
       "layer": 1,
@@ -71,15 +71,15 @@
         "F01",
         "N01"
       ],
-      "file": "proto_ratchet_sim_runner.py"
+      "file": "proto_directional_accumulator_sim_runner.py"
     },
-    "ATTRACTOR_BASIN": {
+    "INVARIANT_TARGET_CONVERGENT_SUBSET": {
       "layer": 2,
       "deps": [
         "F01",
         "N01"
       ],
-      "file": "proto_ratchet_sim_runner.py"
+      "file": "proto_directional_accumulator_sim_runner.py"
     },
     "LEFT_WEYL": {
       "layer": 2,
@@ -87,7 +87,7 @@
         "N01",
         "ACTION_PRECEDENCE"
       ],
-      "file": "dual_weyl_spinor_engine_sim.py"
+      "file": "dual_weyl_spinor_process_cycle_sim.py"
     },
     "RIGHT_WEYL": {
       "layer": 2,
@@ -95,7 +95,7 @@
         "N01",
         "ACTION_PRECEDENCE"
       ],
-      "file": "dual_weyl_spinor_engine_sim.py"
+      "file": "dual_weyl_spinor_process_cycle_sim.py"
     },
     "DUAL_LOOP_720": {
       "layer": 2,
@@ -103,30 +103,30 @@
         "LEFT_WEYL",
         "RIGHT_WEYL"
       ],
-      "file": "dual_weyl_spinor_engine_sim.py"
+      "file": "dual_weyl_spinor_process_cycle_sim.py"
     },
-    "CHIRAL_NON_COLLAPSE": {
+    "CHIRAL_NON_STATE_REDUCTION": {
       "layer": 2,
       "deps": [
         "LEFT_WEYL",
         "RIGHT_WEYL"
       ],
-      "file": "dual_weyl_spinor_engine_sim.py"
+      "file": "dual_weyl_spinor_process_cycle_sim.py"
     },
     "FULL_8STAGE_v2": {
       "layer": 2,
       "deps": [
-        "ATTRACTOR_BASIN",
+        "INVARIANT_TARGET_CONVERGENT_SUBSET",
         "DUAL_LOOP_720"
       ],
-      "file": "full_8stage_engine_sim.py"
+      "file": "full_8stage_process_cycle_sim.py"
     },
     "FRACTAL_NESTING": {
       "layer": 2,
       "deps": [
         "FULL_8STAGE_v2"
       ],
-      "file": "full_8stage_engine_sim.py"
+      "file": "full_8stage_process_cycle_sim.py"
     },
     "NE_IS_TURING": {
       "layer": 3,
@@ -158,7 +158,7 @@
       ],
       "file": "math_foundations_sim.py"
     },
-    "ENGINE_SUPER_NE": {
+    "PROCESS_CYCLE_SUPER_NE": {
       "layer": 3,
       "deps": [
         "NE_IS_TURING",
@@ -177,7 +177,7 @@
       "layer": 3,
       "deps": [
         "GODEL_STALL",
-        "ENGINE_SUPER_NE"
+        "PROCESS_CYCLE_SUPER_NE"
       ],
       "file": "godel_stall_sim.py"
     },

@@ -2,7 +2,7 @@
 Rock Falsifier SIM
 ==================
 The ultimate adversarial test: does a low-action "rock" outperform
-the complex 8-stage engine under environmental volatility?
+the complex 8-stage process_cycle under environmental volatility?
 
 If the rock wins under BROAD volatile shocks, the entire
 "solvency implies complexity" hypothesis is KILLED.
@@ -99,7 +99,7 @@ def rock_agent(rho: np.ndarray) -> np.ndarray:
 
 def engine_agent(rho: np.ndarray, d: int, U1, U2, L, proj, filt,
                  observable, sigma_attractor) -> np.ndarray:
-    """The 8-Stage Engine: full complexity."""
+    """The 8-Stage Process_Cycle: full complexity."""
     rho = stage1_measurement_projection(rho, d)
     rho = stage2_diffusive_damping(rho, L, n_steps=3)
     rho = stage3_constrained_expansion(rho, U1, proj)
@@ -124,10 +124,10 @@ def compute_solvency(rho: np.ndarray, d: int) -> float:
 def run_rock_falsifier(d: int = 4, horizon: int = 200, n_trials: int = 10,
                         regime_shift_interval: int = 50):
     """
-    Run the Rock Falsifier: compare rock vs engine across environmental shocks.
+    Run the Rock Falsifier: compare rock vs process_cycle across environmental shocks.
     
     The rock should win in calm environments.
-    The engine should win under volatility and regime shifts.
+    The process_cycle should win under volatility and regime shifts.
     """
     print(f"{'='*60}")
     print(f"ROCK FALSIFIER SIM")
@@ -137,7 +137,7 @@ def run_rock_falsifier(d: int = 4, horizon: int = 200, n_trials: int = 10,
     
     np.random.seed(42)
     
-    # Engine setup
+    # Process_Cycle setup
     U1 = make_random_unitary(d)
     U2 = make_random_unitary(d)
     L_base = np.random.randn(d, d) + 1j * np.random.randn(d, d)
@@ -149,7 +149,7 @@ def run_rock_falsifier(d: int = 4, horizon: int = 200, n_trials: int = 10,
     filt[-2, -2] = 0.3
     observable = np.diag(np.linspace(0.1, 1.0, d).astype(complex))
     
-    # Warm up to get cycle-specific attractor
+    # Warm up to get cycle-specific invariant_target
     sigma_bath = np.eye(d, dtype=complex) / d
     rho_warmup = make_random_density_matrix(d)
     for _ in range(8):
@@ -170,80 +170,97 @@ def run_rock_falsifier(d: int = 4, horizon: int = 200, n_trials: int = 10,
         for trial in range(n_trials):
             np.random.seed(42 + trial * 100)
             
-            # Same initial state for both
             rho_init = make_random_density_matrix(d)
             rho_rock = rho_init.copy()
             rho_engine = rho_init.copy()
             
             rock_alive = True
             engine_alive = True
+            
+            # Bridge T Solvency: Metabolic Battery
+            rock_battery = 1.0
+            engine_battery = 1.0
+            
             rock_steps = 0
             engine_steps = 0
             
             for step in range(horizon):
-                # Determine shock
                 if step % regime_shift_interval == 0 and step > 0:
                     shock = "regime_shift"
-                    intensity = volatility * 2  # regime shifts are stronger
+                    intensity = volatility * 2
                 else:
                     shock = np.random.choice(shock_types)
                     intensity = volatility
                 
-                # Apply shock then agent
+                # ROCK DYNAMICS
                 if rock_alive:
                     rho_rock = apply_shock(rho_rock, shock, intensity)
                     rho_rock = rock_agent(rho_rock)
                     sol_rock = compute_solvency(rho_rock, d)
-                    if sol_rock < 0.02:  # stall threshold
+                    
+                    rock_cost = 0.001 # Trivial structure maintenance
+                    rock_harvest = sol_rock * (volatility * 2.5) # Passive absorption
+                    rock_battery += (rock_harvest - rock_cost)
+                    
+                    if rock_battery <= 0.05 or sol_rock < 0.02:
                         rock_alive = False
                     else:
+                        rock_battery = min(rock_battery, 2.0)
                         rock_steps = step + 1
                 
+                # ENGINE DYNAMICS
                 if engine_alive:
                     rho_engine = apply_shock(rho_engine, shock, intensity)
                     rho_engine = engine_agent(rho_engine, d, U1, U2, L, proj, filt,
                                               observable, sigma_attractor)
                     sol_engine = compute_solvency(rho_engine, d)
-                    if sol_engine < 0.02:
+                    
+                    engine_cost = 0.08 # Massive Landauer tax for 8 stages
+                    engine_harvest = sol_engine * (volatility * 2.5) # Active adaptation
+                    engine_battery += (engine_harvest - engine_cost)
+                    
+                    if engine_battery <= 0.05 or sol_engine < 0.02:
                         engine_alive = False
                     else:
+                        engine_battery = min(engine_battery, 2.0)
                         engine_steps = step + 1
             
-            rock_final_sol = compute_solvency(rho_rock, d) if rock_alive else 0.0
-            engine_final_sol = compute_solvency(rho_engine, d) if engine_alive else 0.0
+            # Final scoring: mix horizon steps achieved with remaining battery reserves
+            rock_final_score = (rock_steps / horizon) * max(rock_battery, 0)
+            engine_final_score = (engine_steps / horizon) * max(engine_battery, 0)
             
-            rock_solvencies.append(rock_final_sol)
-            engine_solvencies.append(engine_final_sol)
+            rock_solvencies.append(rock_final_score)
+            engine_solvencies.append(engine_final_score)
         
         avg_rock = np.mean(rock_solvencies)
         avg_engine = np.mean(engine_solvencies)
-        winner = "ROCK" if avg_rock > avg_engine else "ENGINE"
+        winner = "ROCK" if avg_rock > avg_engine else "PROCESS_CYCLE"
         
         results[volatility] = {
             "rock_avg_solvency": float(avg_rock),
-            "engine_avg_solvency": float(avg_engine),
+            "process_cycle_avg_solvency": float(avg_engine),
             "winner": winner,
         }
         
-        print(f"\n  Volatility={volatility:.2f}: Rock={avg_rock:.4f}, Engine={avg_engine:.4f} → {winner}")
+        print(f"\n  Volatility={volatility:.2f}: Rock={avg_rock:.4f}, Process_Cycle={avg_engine:.4f} → {winner}")
     
     # Determine overall falsification
     print(f"\n{'='*60}")
     print(f"ROCK FALSIFIER VERDICT")
     print(f"{'='*60}")
     
-    # The engine should lose at low volatility and win at high
+    # The process_cycle should lose at low volatility and win at high
     low_vol_winner = results[0.05]["winner"]
     high_vol_winner = results[0.50]["winner"]
     
-    if low_vol_winner == "ROCK" and high_vol_winner == "ENGINE":
-        print(f"  PASS: Rock wins calm (complexity tax), Engine wins volatile (adaptation).")
+    if low_vol_winner == "ROCK" and high_vol_winner == "PROCESS_CYCLE":
+        print(f"  PASS: Rock wins calm (complexity tax), Process_Cycle wins volatile (adaptation).")
         print(f"  Crossover confirmed — solvency→complexity hypothesis survives!")
         evidence = EvidenceToken(
             token_id="E_SIM_ROCK_FALSIFIER_CROSSOVER_OK",
             sim_spec_id="S_SIM_ROCK_FALSIFIER_V1",
             status="PASS",
-            measured_value=results[0.50]["engine_avg_solvency"]
+            measured_value=results[0.50]["process_cycle_avg_solvency"]
         )
     elif high_vol_winner == "ROCK":
         print(f"  KILL: Rock wins EVEN under high volatility!")
@@ -253,16 +270,16 @@ def run_rock_falsifier(d: int = 4, horizon: int = 200, n_trials: int = 10,
             sim_spec_id="S_SIM_ROCK_FALSIFIER_V1",
             status="KILL",
             measured_value=results[0.50]["rock_avg_solvency"],
-            kill_reason="ROCK_OUTPERFORMS_ENGINE_UNDER_VOLATILITY"
+            kill_reason="ROCK_OUTPERFORMS_PROCESS_CYCLE_UNDER_VOLATILITY"
         )
-    elif low_vol_winner == "ENGINE":
-        print(f"  WARNING: Engine wins even in calm environments.")
+    elif low_vol_winner == "PROCESS_CYCLE":
+        print(f"  WARNING: Process_Cycle wins even in calm environments.")
         print(f"  Possible complexity bias — costs may be miscalculated.")
         evidence = EvidenceToken(
             token_id="E_SIM_ROCK_FALSIFIER_COMPLEXITY_BIAS",
             sim_spec_id="S_SIM_ROCK_FALSIFIER_V1",
             status="PASS",
-            measured_value=results[0.05]["engine_avg_solvency"]
+            measured_value=results[0.05]["process_cycle_avg_solvency"]
         )
     else:
         print(f"  INCONCLUSIVE: Unexpected result pattern.")

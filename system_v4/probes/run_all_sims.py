@@ -109,12 +109,19 @@ def run_sim(filename: str) -> dict:
     if not filepath.exists():
         return {"file": filename, "status": "MISSING", "tokens": []}
     
+    # Per-SIM timeout overrides (default 120s)
+    timeout_overrides = {
+        "axis_orthogonality_suite.py": 600,  # Full 15-pair × 4-dim suite
+        "tier_3_mega_sim.py": 300,
+    }
+    sim_timeout = timeout_overrides.get(filename, 120)
+    
     try:
         result = subprocess.run(
             [sys.executable, str(filepath)],
             capture_output=True,
             text=True,
-            timeout=120,
+            timeout=sim_timeout,
             cwd=str(PROBES_DIR)
         )
         
@@ -170,10 +177,10 @@ def run_sim(filename: str) -> dict:
             "extended_graveyard_battery.py": "extended_graveyard_results.json",
             "axis_orthogonality_suite.py": "axis_orthogonality_v3_results.json",
             "egglog_graph_rewrite_probe.py": "egglog_rewrite_results.json",
-            "neg_commutative_engine_sim.py": "neg_commutative_results.json",
+            "neg_commutative_engine_sim.py": "neg_commutative_process_cycle_results.json",
             "neg_infinite_d_sim.py": "neg_infinite_d_results.json",
             "neg_single_loop_sim.py": "neg_single_loop_results.json",
-            "neg_classical_probability_sim.py": "neg_classical_prob_results.json",
+            "neg_classical_probability_sim.py": "neg_classical_results.json",
             "neg_no_dissipation_sim.py": "neg_no_dissipation_results.json",
         }
         

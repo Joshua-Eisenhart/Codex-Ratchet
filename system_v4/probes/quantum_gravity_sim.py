@@ -116,7 +116,7 @@ def sim_quantum_gravity(d=8, n_sites=6, n_steps=100):
     metric_non_trivial = np.std(metric_final) > 0.001
 
     print(f"\n  Gravitational dynamics:")
-    print(f"    Sites with state_dispersion ≥ initial: {state_dispersion_increased}/{n_sites}")
+    print(f"    Sites with state_dispersion ≥ initial: {entropy_increased}/{n_sites}")
     print(f"    Metric non-trivial: {metric_non_trivial}")
     print(f"    Gradient standard deviation reduced: {gradient_reduced}")
 

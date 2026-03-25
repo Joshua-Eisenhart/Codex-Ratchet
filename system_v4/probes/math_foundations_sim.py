@@ -88,7 +88,7 @@ def sim_ne_is_turing(d: int = 4, n_steps: int = 100):
     determinism_dist = trace_distance(rho_forward, rho2)
     
     print(f"  State_Dispersion: init={S_init:.8f}, final={S_final_forward:.8f}")
-    print(f"  State_Dispersion drift (max-min): {state_dispersion_drift:.12f}")
+    print(f"  State_Dispersion drift (max-min): {entropy_drift:.12f}")
     print(f"  Reversibility (trace dist after undo): {reverse_dist:.12f}")
     print(f"  Determinism (trace dist same-input reruns): {determinism_dist:.12f}")
     
@@ -318,7 +318,7 @@ def sim_chirality_forced(d: int = 4, n_trials: int = 100):
     
     symmetry_broken_pct = (distinct_attractors / n_trials) * 100
     
-    print(f"  Distinct attractors (generator_invariance broken): {distinct_attractors}/{n_trials} ({generator_invariance_broken_pct:.1f}%)")
+    print(f"  Distinct attractors (generator_invariance broken): {distinct_attractors}/{n_trials} ({symmetry_broken_pct:.1f}%)")
     
     if symmetry_broken_pct > 90:
         print(f"  PASS: F01+N01 forces chirality — generator_invariance breaking is >90% inevitable!")
@@ -400,8 +400,8 @@ def sim_engine_beats_turing(d: int = 4, n_steps: int = 100):
     print(f"    State_Dispersion range: {S_turing_range:.10f} (should be ~0)")
     print(f"    Final S: {S_turing_final:.6f}")
     print(f"  Full Process_Cycle (8-stage cycle):")
-    print(f"    State_Dispersion range: {S_process_cycle_range:.6f} (should be large)")
-    print(f"    Final S: {S_process_cycle_final:.6f}")
+    print(f"    State_Dispersion range: {S_engine_range:.6f} (should be large)")
+    print(f"    Final S: {S_engine_final:.6f}")
     
     final_eigvals = np.sort(np.real(np.linalg.eigvalsh(rho_engine)))[::-1]
     dominant = final_eigvals[0]

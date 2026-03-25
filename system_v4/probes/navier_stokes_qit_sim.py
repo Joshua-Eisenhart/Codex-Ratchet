@@ -107,8 +107,8 @@ def sim_navier_stokes_qit(dims=None, n_steps=200):
         smooth = not singular and trace_bounded and eig_bounded
 
         print(f"\n  d={d}:")
-        print(f"    Steps completed: {len(state_dispersion_history)-1}/{n_steps}")
-        print(f"    State_Dispersion: {state_dispersion_history[0]:.4f} → {state_dispersion_history[-1]:.4f}")
+        print(f"    Steps completed: {len(entropy_history)-1}/{n_steps}")
+        print(f"    State_Dispersion: {entropy_history[0]:.4f} → {entropy_history[-1]:.4f}")
         print(f"    Trace bounded: {trace_bounded}")
         print(f"    Eigenvalues bounded: {eig_bounded}")
         print(f"    Smooth (no singularity): {smooth}")
@@ -121,7 +121,7 @@ def sim_navier_stokes_qit(dims=None, n_steps=200):
 
     # All dimensions should be smooth (F01 prevents singularity)
     all_smooth = all(r['smooth'] for r in results_data)
-    avg_purity_loss = np.mean([r['avg_purity_loss'] for r in results_data])
+    avg_entropy_delta = np.mean([abs(r['state_dispersion_end'] - r['state_dispersion_start']) for r in results_data])
 
     results = []
 
@@ -130,7 +130,7 @@ def sim_navier_stokes_qit(dims=None, n_steps=200):
             "Navier_Stokes_QIT",
             "E_SIM_NS_QIT_CPTP_CHANNEL_OK",
             "PASS",
-            float(avg_purity_loss),
+            float(avg_entropy_delta),
             "Trace and full CPTP compliance empirically maintained across state deformations."
         ))
     else:

@@ -143,7 +143,7 @@ def sim_qit_fep(d: int = 4, n_steps: int = 100):
     rho_agent = make_random_density_matrix(d)
     rho_env = make_random_density_matrix(d)
 
-    D_initial = quantum_relative_state_dispersion(rho_agent, rho_env)
+    D_initial = quantum_relative_entropy(rho_agent, rho_env)
     comm_initial = np.linalg.norm(rho_agent @ rho_env - rho_env @ rho_agent)
 
     print(f"  Initial D(agent||env) = {D_initial:.6f}")

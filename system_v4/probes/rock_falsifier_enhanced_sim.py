@@ -283,7 +283,7 @@ def run_enhanced_rock_falsifier(
     print(f"{'='*70}")
     print(f"ENHANCED ROCK FALSIFIER SIM — BRIDGE T TEST")
     print(f"  Rock:   d={d_rock}, near-identity channel (no dual loop)")
-    print(f"  Process_Cycle: d={d_process_cycle}, full 8-stage cycle (dual loop)")
+    print(f"  Process_Cycle: d={d_engine}, full 8-stage cycle (dual loop)")
     print(f"  Trials: {n_trials}, Horizon: {horizon} steps/trial")
     print(f"  Regime shifts every {regime_shift_interval} steps")
     print(f"  Stall threshold: solvency < {stall_threshold}")
@@ -403,7 +403,7 @@ def run_enhanced_rock_falsifier(
         # Progress reporting
         if verbose and (trial + 1) % 100 == 0:
             print(f"  [{trial+1:4d}/{n_trials}] "
-                  f"Process_Cycle wins: {process_cycle_wins}, Rock wins: {rock_wins}, "
+                  f"Process_Cycle wins: {engine_wins}, Rock wins: {rock_wins}, "
                   f"Ties: {ties}")
 
     # ─── AGGREGATE STATISTICS ───
@@ -449,11 +449,11 @@ def run_enhanced_rock_falsifier(
     print(f"ENHANCED ROCK FALSIFIER — RESULTS")
     print(f"{'='*70}")
     print(f"  Trials:             {n_trials}")
-    print(f"  Process_Cycle wins:        {process_cycle_wins} ({process_cycle_win_rate:.1%})")
+    print(f"  Process_Cycle wins:        {engine_wins} ({engine_win_rate:.1%})")
     print(f"  Rock wins:          {rock_wins} ({rock_win_rate:.1%})")
     print(f"  Ties:               {ties}")
-    print(f"  Avg solvency:       Process_Cycle={avg_process_cycle_sol:.4f}, Rock={avg_rock_sol:.4f}")
-    print(f"  Survival rate:      Process_Cycle={process_cycle_survival_rate:.1%}, Rock={rock_survival_rate:.1%}")
+    print(f"  Avg solvency:       Process_Cycle={avg_engine_sol:.4f}, Rock={avg_rock_sol:.4f}")
+    print(f"  Survival rate:      Process_Cycle={engine_survival_rate:.1%}, Rock={rock_survival_rate:.1%}")
     print(f"\n  Intensity Bin Breakdown:")
     for bin_name, summary in bin_summaries.items():
         print(f"    {bin_name:8s}: n={summary['n_trials']:4d}, "
@@ -469,7 +469,7 @@ def run_enhanced_rock_falsifier(
         if rock_win_rate > 0.1:
             # Process_Cycle wins majority but rock wins non-trivially
             verdict = "WOUNDED"
-            print(f"  WOUNDED: Process_Cycle wins {process_cycle_win_rate:.1%} but rock wins {rock_win_rate:.1%}.")
+            print(f"  WOUNDED: Process_Cycle wins {engine_win_rate:.1%} but rock wins {rock_win_rate:.1%}.")
             print(f"  Bridge T survives but is NOT universal —")
             print(f"  complexity is advantageous only in volatile environments.")
             evidence = EvidenceToken(
@@ -481,7 +481,7 @@ def run_enhanced_rock_falsifier(
         else:
             # Process_Cycle dominates overwhelmingly
             verdict = "SURVIVES"
-            print(f"  SURVIVES: Process_Cycle wins {process_cycle_win_rate:.1%}, rock wins only {rock_win_rate:.1%}.")
+            print(f"  SURVIVES: Process_Cycle wins {engine_win_rate:.1%}, rock wins only {rock_win_rate:.1%}.")
             print(f"  Bridge T holds — solvency→complexity is empirically supported.")
             evidence = EvidenceToken(
                 token_id="E_SIM_ROCK_FALSIFIER_ENHANCED_OK",
@@ -491,7 +491,7 @@ def run_enhanced_rock_falsifier(
             )
     elif engine_win_rate == rock_win_rate:
         verdict = "INCONCLUSIVE"
-        print(f"  INCONCLUSIVE: Exact tie at {process_cycle_win_rate:.1%} each.")
+        print(f"  INCONCLUSIVE: Exact tie at {engine_win_rate:.1%} each.")
         print(f"  Bridge T neither confirmed nor killed — need more trials or varied conditions.")
         evidence = EvidenceToken(
             token_id="",
@@ -503,7 +503,7 @@ def run_enhanced_rock_falsifier(
     else:
         # Rock wins majority
         verdict = "KILLED"
-        print(f"  KILLED: Rock wins {rock_win_rate:.1%} > Process_Cycle {process_cycle_win_rate:.1%}!")
+        print(f"  KILLED: Rock wins {rock_win_rate:.1%} > Process_Cycle {engine_win_rate:.1%}!")
         print(f"  Bridge T is FALSIFIED — a low-action rock outperforms the")
         print(f"  full 8-stage process_cycle. The teleological assumption that")
         print(f"  solvency forces complexity is WRONG.")

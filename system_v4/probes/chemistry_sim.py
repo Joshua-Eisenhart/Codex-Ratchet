@@ -132,8 +132,8 @@ def sim_chemistry(d=4):
     rho_type2 = rho_type2 / np.trace(rho_type2)
 
     chiral_dist = trace_distance(rho_type1, rho_type2)
-    print(f"  Type-1 product state_dispersion: {von_neumann_state_dispersion(rho_type1):.4f}")
-    print(f"  Type-2 product state_dispersion: {von_neumann_state_dispersion(rho_type2):.4f}")
+    print(f"  Type-1 product state_dispersion: {von_neumann_entropy(rho_type1):.4f}")
+    print(f"  Type-2 product state_dispersion: {von_neumann_entropy(rho_type2):.4f}")
     print(f"  Chirality distance: {chiral_dist:.4f}")
     print(f"  → Different products: {chiral_dist > 0.001}")
 

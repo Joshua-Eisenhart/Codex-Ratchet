@@ -127,15 +127,29 @@ def A2_frame_representation(rho, d):
 # ═══════════════════════════════════════════════════════════════════
 
 def A3_chiral_flux(rho, d):
-    out = np.zeros_like(rho)
+    out = rho.copy().astype(complex)
+    # Type-1 (inward/left-handed): rotate upper off-diagonals by +π/4
+    # Type-2 (outward/right-handed): rotate lower off-diagonals by -π/4
+    # Combined: both chiralities applied simultaneously
+    phase_pos = np.exp(1j * np.pi / 4)  # +45° rotation
+    phase_neg = np.exp(-1j * np.pi / 4)  # -45° rotation
     for i in range(d):
         for j in range(d):
-            if i != j:
-                # Type-1 (inward): +Im sector
-                # Type-2 (outward): -Im sector
-                # Combined: preserve imaginary structure with sign
-                phase = 1j if i < j else -1j
-                out[i, j] = phase * np.imag(rho[i, j])
+            if i < j:
+                out[i, j] = rho[i, j] * phase_pos  # upper: Type-1
+            elif i > j:
+                out[i, j] = rho[i, j] * phase_neg  # lower: Type-2
+    # Enforce Hermiticity: (out + out†)/2
+    out = (out + out.conj().T) / 2
+    # Enforce PSD + trace normalization
+    evals, evecs = np.linalg.eigh(out)
+    evals = np.maximum(evals, 0)
+    out = evecs @ np.diag(evals.astype(complex)) @ evecs.conj().T
+    tr = np.real(np.trace(out))
+    if tr > 1e-12:
+        out /= tr
+    else:
+        out = np.eye(d, dtype=complex) / d
     return out
 
 

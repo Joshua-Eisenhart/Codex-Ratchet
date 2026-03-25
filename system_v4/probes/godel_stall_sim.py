@@ -96,7 +96,7 @@ def sim_turing_stall(d: int = 4, max_cycles: int = 500):
     print(f"  Avg distance last 100:  {avg_last:.6f}")
     print(f"  Std last 100: {std_last:.6f}")
     print(f"  Min recurrence to init: {min_recurrence:.6f}")
-    print(f"  State_Dispersion (constant): {von_neumann_state_dispersion(rho):.8f}")
+    print(f"  State_Dispersion (constant): {von_neumann_entropy(rho):.8f}")
     
     # The Turing machine orbits — it never converges
     converged = min_dist < 0.01
@@ -189,10 +189,10 @@ def sim_engine_resolves_stall(d: int = 4, max_cycles: int = 200):
     print(f"    Avg successive distance (last 20): {turing_final_rate:.8f}")
     print(f"    Converging: {'YES' if turing_final_rate < 0.001 else 'NO'}")
     print(f"  Full Process_Cycle:")
-    print(f"    Avg successive distance (last 20): {process_cycle_final_rate:.8f}")
-    print(f"    Converging: {'YES' if process_cycle_final_rate < 0.001 else 'NO'}")
+    print(f"    Avg successive distance (last 20): {engine_final_rate:.8f}")
+    print(f"    Converging: {'YES' if engine_final_rate < 0.001 else 'NO'}")
     print(f"    Landauer cost paid: {landauer['landauer_cost_nats']:.4f} nats")
-    print(f"    Emergent invariant_target eigenvalues: {np.sort(np.real(np.linalg.eigvalsh(rho_process_cycle)))[::-1]}")
+    print(f"    Emergent invariant_target eigenvalues: {np.sort(np.real(np.linalg.eigvalsh(rho_engine)))[::-1]}")
     
     turing_orbits = turing_final_rate > 0.01
     engine_converges = engine_final_rate < 0.01
@@ -254,7 +254,7 @@ def sim_stall_detection(d: int = 4, window: int = 20):
             stall_step = i - window
             break
     
-    print(f"  State_Dispersion variance over window: {np.var(state_dispersion_history):.2e}")
+    print(f"  State_Dispersion variance over window: {np.var(entropy_history):.2e}")
     print(f"  Stall detected: {stall_detected}" + 
           (f" at step {stall_step}" if stall_detected else ""))
     print(f"  → Zero state_dispersion change = system is in Gödel orbit")

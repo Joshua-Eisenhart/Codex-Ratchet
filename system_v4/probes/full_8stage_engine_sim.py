@@ -286,8 +286,8 @@ def run_full_8stage_cycle(d: int = 4, n_full_cycles: int = 4):
     sigma_attractor = rho_warmup.copy()
     S_attractor = von_neumann_entropy(sigma_attractor)
     eig_attractor = np.sort(np.real(np.linalg.eigvalsh(sigma_attractor)))[::-1]
-    print(f"  Cycle-specific invariant_target: S={S_invariant_target:.6f}")
-    print(f"  Invariant_Target eigenvalues: {eig_invariant_target}")
+    print(f"  Cycle-specific invariant_target: S={S_attractor:.6f}")
+    print(f"  Invariant_Target eigenvalues: {eig_attractor}")
     landauer = compute_landauer_cost(sigma_attractor, d)
     print(f"  Bits erased per cycle: {landauer['bits_erased']:.4f}")
     print(f"  Landauer cost (nats): {landauer['landauer_cost_nats']:.4f}")
@@ -432,7 +432,7 @@ def run_full_8stage_cycle(d: int = 4, n_full_cycles: int = 4):
     final_entropy = von_neumann_entropy(rho)
     max_entropy = np.log2(d)
     print(f"\n  ─── NON-STATE_REDUCTION CHECK ───")
-    print(f"    Final state_dispersion: {final_state_dispersion:.6f} (max: {max_state_dispersion:.4f})")
+    print(f"    Final state_dispersion: {final_entropy:.6f} (max: {max_entropy:.4f})")
     print(f"    Final eigenvalues: {np.sort(np.real(np.linalg.eigvalsh(rho)))[::-1]}")
     
     if final_entropy >= max_entropy * 0.99:
@@ -487,7 +487,7 @@ def sim_fractal_nesting(d_inner: int = 4, d_outer: int = 2, n_cycles: int = 4):
         rho_inner = apply_unitary_channel(rho_inner, U_inner)
     
     inner_entropy = von_neumann_entropy(rho_inner)
-    print(f"  Inner process_cycle steady state: S={inner_state_dispersion:.6f}")
+    print(f"  Inner process_cycle steady state: S={inner_entropy:.6f}")
     print(f"  Inner eigenvalues: {np.sort(np.real(np.linalg.eigvalsh(rho_inner)))[::-1]}")
     
     # Partial trace: reduce inner (d_inner) to outer (d_outer)
@@ -517,7 +517,7 @@ def sim_fractal_nesting(d_inner: int = 4, d_outer: int = 2, n_cycles: int = 4):
     print(f"    Positivity: {'OK' if positivity_ok else 'VIOLATED'}")
     
     outer_entropy = von_neumann_entropy(rho_outer)
-    print(f"    Outer state_dispersion: {outer_state_dispersion:.6f}")
+    print(f"    Outer state_dispersion: {outer_entropy:.6f}")
     
     # Run outer process_cycle with this as input
     U_outer = make_random_unitary(d_outer)
@@ -534,7 +534,7 @@ def sim_fractal_nesting(d_inner: int = 4, d_outer: int = 2, n_cycles: int = 4):
     final_outer_entropy = outer_trajectories[-1]
     max_outer_entropy = np.log2(d_outer)
     
-    print(f"\n  Outer process_cycle final: S={final_outer_state_dispersion:.6f} (max: {max_outer_state_dispersion:.4f})")
+    print(f"\n  Outer process_cycle final: S={final_outer_entropy:.6f} (max: {max_outer_entropy:.4f})")
     print(f"  Outer eigenvalues: {np.sort(np.real(np.linalg.eigvalsh(rho_outer)))[::-1]}")
     
     # Check non-state_reduction: outer process_cycle should not be trivially maximally mixed

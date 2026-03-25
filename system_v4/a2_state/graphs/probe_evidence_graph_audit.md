@@ -1,10 +1,10 @@
 # Probe Evidence Graph — Materialization Audit
-Timestamp: 2026-03-25T00:48:13.637695+00:00
+Timestamp: 2026-03-25T05:08:12.109301+00:00
 
 ## Summary
-- Nodes: 208
-- Edges: 159
-- Tokens: 159 (138 PASS, 21 KILL)
+- Nodes: 261
+- Edges: 202
+- Tokens: 202 (153 PASS, 49 KILL)
 
 ## Node List
 - `probe:foundations_sim`: QIT probe: ALL_PASS, 5P/0K
@@ -38,10 +38,16 @@ Timestamp: 2026-03-25T00:48:13.637695+00:00
 - `probe:axis_6_precedence_sim`: QIT probe: ALL_PASS, 1P/0K
 - `probe:i_scalar_filtration_sim`: QIT probe: ALL_PASS, 1P/0K
 - `probe:axis_orthogonality_suite`: QIT probe: ALL_PASS, 1P/0K
+- `probe:axis_triplet_orthogonality_sim`: QIT probe: KILL_PRESENT, 10P/10K
 - `probe:axis3_orthogonality_sim`: QIT probe: ALL_PASS, 1P/0K
 - `probe:axis_relations_sim`: QIT probe: ALL_PASS, 1P/0K
 - `probe:axis0_correlation_sim`: QIT probe: ALL_PASS, 1P/0K
 - `probe:axis0_path_integral_sim`: QIT probe: ALL_PASS, 1P/0K
+- `probe:orthogonality_axis0_axis1_sim`: QIT probe: ALL_PASS, 1P/0K
+- `probe:orthogonality_axis0_axis2_sim`: QIT probe: ALL_PASS, 1P/0K
+- `probe:orthogonality_axis0_axis4_sim`: QIT probe: ALL_PASS, 1P/0K
+- `probe:orthogonality_axis0_axis5_sim`: QIT probe: ALL_PASS, 1P/0K
+- `probe:orthogonality_axis0_axis6_sim`: QIT probe: ALL_PASS, 1P/0K
 - `probe:qit_topology_parity_sim`: QIT probe: ALL_PASS, 1P/0K
 - `probe:egglog_graph_rewrite_probe`: QIT probe: KILL_PRESENT, 0P/1K
 - `probe:nlm_batch2_sim`: QIT probe: ALL_PASS, 4P/0K
@@ -56,8 +62,12 @@ Timestamp: 2026-03-25T00:48:13.637695+00:00
 - `probe:scientific_method_sim`: QIT probe: ALL_PASS, 3P/0K
 - `probe:tier_3_mega_sim`: QIT probe: ALL_PASS, 2P/0K
 - `probe:sim_moloch_trap_field`: QIT probe: KILL_PRESENT, 1P/1K
+- `probe:neg_scrambled_sequence_sim`: QIT probe: KILL_PRESENT, 0P/1K
+- `probe:neg_inverted_major_loop_sim`: QIT probe: KILL_PRESENT, 0P/1K
 - `probe:deep_graveyard_battery`: QIT probe: KILL_PRESENT, 0P/8K
 - `probe:extended_graveyard_battery`: QIT probe: KILL_PRESENT, 0P/6K
+- `probe:thermodynamic_graveyard_battery`: QIT probe: KILL_PRESENT, 0P/8K
+- `probe:information_graveyard_battery`: QIT probe: KILL_PRESENT, 0P/8K
 - `token:E_SIM_OPERATIONAL_EQUIVALENCE_OK`: PASS: S_SIM_OP_EQUIV_V1
 - `token:E_SIM_ENTROPIC_MONISM_OK`: PASS: S_SIM_ENTROPIC_MONISM_V1
 - `token:E_SIM_MATH_PHYSICS_FUSION_OK`: PASS: S_SIM_MATH_PHYSICS_V1
@@ -152,12 +162,37 @@ Timestamp: 2026-03-25T00:48:13.637695+00:00
 - `token:E_SIM_AXIS6_PRECEDENCE_OK`: PASS: S_SIM_AXIS6_PRECEDENCE_V1
 - `token:E_SIM_ISCALAR_FILTRATION_OK`: PASS: S_SIM_ISCALAR_FILTRATION_V1
 - `token:E_SIM_ORTHOGONAL_15PAIR_V3`: PASS: S_SIM_AXIS_ORTHOGONALITY_V3
+- `token:UNNAMED_TOKEN_6_KILL`: KILL: S_SIM_TRIPLET_A1_Coupling_A2_Frame_A3_Chirality
+- `token:E_SIM_TRIPLET_A1_Coupling_A2_Frame_A4_Variance_OK`: PASS: S_SIM_TRIPLET_A1_Coupling_A2_Frame_A4_Variance
+- `token:E_SIM_TRIPLET_A1_Coupling_A2_Frame_A5_Texture_OK`: PASS: S_SIM_TRIPLET_A1_Coupling_A2_Frame_A5_Texture
+- `token:E_SIM_TRIPLET_A1_Coupling_A2_Frame_A6_Precedence_OK`: PASS: S_SIM_TRIPLET_A1_Coupling_A2_Frame_A6_Precedence
+- `token:UNNAMED_TOKEN_7_KILL`: KILL: S_SIM_TRIPLET_A1_Coupling_A3_Chirality_A4_Variance
+- `token:UNNAMED_TOKEN_8_KILL`: KILL: S_SIM_TRIPLET_A1_Coupling_A3_Chirality_A5_Texture
+- `token:UNNAMED_TOKEN_9_KILL`: KILL: S_SIM_TRIPLET_A1_Coupling_A3_Chirality_A6_Precedence
+- `token:E_SIM_TRIPLET_A1_Coupling_A4_Variance_A5_Texture_OK`: PASS: S_SIM_TRIPLET_A1_Coupling_A4_Variance_A5_Texture
+- `token:E_SIM_TRIPLET_A1_Coupling_A4_Variance_A6_Precedence_OK`: PASS: S_SIM_TRIPLET_A1_Coupling_A4_Variance_A6_Precedence
+- `token:E_SIM_TRIPLET_A1_Coupling_A5_Texture_A6_Precedence_OK`: PASS: S_SIM_TRIPLET_A1_Coupling_A5_Texture_A6_Precedence
+- `token:UNNAMED_TOKEN_10_KILL`: KILL: S_SIM_TRIPLET_A2_Frame_A3_Chirality_A4_Variance
+- `token:UNNAMED_TOKEN_11_KILL`: KILL: S_SIM_TRIPLET_A2_Frame_A3_Chirality_A5_Texture
+- `token:UNNAMED_TOKEN_12_KILL`: KILL: S_SIM_TRIPLET_A2_Frame_A3_Chirality_A6_Precedence
+- `token:E_SIM_TRIPLET_A2_Frame_A4_Variance_A5_Texture_OK`: PASS: S_SIM_TRIPLET_A2_Frame_A4_Variance_A5_Texture
+- `token:E_SIM_TRIPLET_A2_Frame_A4_Variance_A6_Precedence_OK`: PASS: S_SIM_TRIPLET_A2_Frame_A4_Variance_A6_Precedence
+- `token:E_SIM_TRIPLET_A2_Frame_A5_Texture_A6_Precedence_OK`: PASS: S_SIM_TRIPLET_A2_Frame_A5_Texture_A6_Precedence
+- `token:UNNAMED_TOKEN_13_KILL`: KILL: S_SIM_TRIPLET_A3_Chirality_A4_Variance_A5_Texture
+- `token:UNNAMED_TOKEN_14_KILL`: KILL: S_SIM_TRIPLET_A3_Chirality_A4_Variance_A6_Precedence
+- `token:UNNAMED_TOKEN_15_KILL`: KILL: S_SIM_TRIPLET_A3_Chirality_A5_Texture_A6_Precedence
+- `token:E_SIM_TRIPLET_A4_Variance_A5_Texture_A6_Precedence_OK`: PASS: S_SIM_TRIPLET_A4_Variance_A5_Texture_A6_Precedence
 - `token:E_SIM_AXIS3_ENGINE_ORTHOGONAL_OK`: PASS: S_SIM_AXIS3_ORTHOGONALITY_V1
 - `token:E_SIM_AXIS_RELATIONS_OK`: PASS: S_SIM_AXIS_RELATIONS_V1
 - `token:E_SIM_AXIS0_GRADIENT_OK`: PASS: S_SIM_AXIS0_CORRELATION_V1
 - `token:E_SIM_NESTED_HOPF_TORI_OK`: PASS: S_SIM_PATH_INTEGRAL_AXIS0
+- `token:E_SIM_ORTHO_AXIS0_AXIS1_OK`: PASS: S_SIM_ORT_0_1
+- `token:E_SIM_ORTHO_AXIS0_AXIS2_OK`: PASS: S_SIM_ORT_0_2
+- `token:E_SIM_ORTHO_AXIS0_AXIS4_OK`: PASS: S_SIM_ORT_0_4
+- `token:E_SIM_ORTHO_AXIS0_AXIS5_OK`: PASS: S_SIM_ORT_0_5
+- `token:E_SIM_ORTHO_AXIS0_AXIS6_OK`: PASS: S_SIM_ORT_0_6
 - `token:E_SIM_QIT_PARITY_OK`: PASS: S_SIM_QIT_TOPOLOGY_PARITY
-- `token:UNNAMED_TOKEN_6_KILL`: KILL: S_SIM_EGGLOG_DEFORMATION_V1
+- `token:UNNAMED_TOKEN_16_KILL`: KILL: S_SIM_EGGLOG_DEFORMATION_V1
 - `token:E_SIM_HOLODECK_FP_OK`: PASS: S_SIM_HOLODECK_V1
 - `token:E_SIM_QIT_FEP_OK`: PASS: S_SIM_FEP_V1
 - `token:E_SIM_MOLOCH_OK`: PASS: S_SIM_MOLOCH_V1
@@ -201,17 +236,35 @@ Timestamp: 2026-03-25T00:48:13.637695+00:00
 - `token:E_TIER3_PHASE_LOCK_PASS`: PASS: S_TIER3_KURAMOTO_COUPLING_V1
 - `token:E_MOLOCH_CLASSICAL_SURVIVED`: KILL: S_MOLOCH_FIELD_V1
 - `token:E_MOLOCH_DUALLOOP_NESS_PASS`: PASS: S_MOLOCH_DUALLOOP_NESS_V1
-- `token:UNNAMED_TOKEN_7_KILL`: KILL: S_NEG_C3
-- `token:UNNAMED_TOKEN_8_KILL`: KILL: S_NEG_X2
-- `token:UNNAMED_TOKEN_9_KILL`: KILL: S_NEG_Ti
-- `token:UNNAMED_TOKEN_10_KILL`: KILL: S_NEG_Te
-- `token:UNNAMED_TOKEN_11_KILL`: KILL: S_NEG_Fi
-- `token:UNNAMED_TOKEN_12_KILL`: KILL: S_NEG_C4
-- `token:UNNAMED_TOKEN_13_KILL`: KILL: S_CMP_F01_N01
-- `token:UNNAMED_TOKEN_14_KILL`: KILL: S_CMP_C6_C8
-- `token:UNNAMED_TOKEN_15_KILL`: KILL: S_CMP_3
-- `token:UNNAMED_TOKEN_16_KILL`: KILL: S_CMP_4
-- `token:UNNAMED_TOKEN_17_KILL`: KILL: S_CMP_5
-- `token:UNNAMED_TOKEN_18_KILL`: KILL: S_NEG_SCRAMBLE
-- `token:UNNAMED_TOKEN_19_KILL`: KILL: S_NEG_SYMMETRIC
-- `token:UNNAMED_TOKEN_20_KILL`: KILL: S_NEG_DECOHERE
+- `token:UNNAMED_TOKEN_17_KILL`: KILL: S_NEG_SCRAMBLED_SEQUENCE_V1
+- `token:UNNAMED_TOKEN_18_KILL`: KILL: S_NEG_INVERTED_MAJOR_LOOP_V1
+- `token:UNNAMED_TOKEN_19_KILL`: KILL: S_NEG_C3
+- `token:UNNAMED_TOKEN_20_KILL`: KILL: S_NEG_X2
+- `token:UNNAMED_TOKEN_21_KILL`: KILL: S_NEG_Ti
+- `token:UNNAMED_TOKEN_22_KILL`: KILL: S_NEG_Te
+- `token:UNNAMED_TOKEN_23_KILL`: KILL: S_NEG_Fi
+- `token:UNNAMED_TOKEN_24_KILL`: KILL: S_NEG_C4
+- `token:UNNAMED_TOKEN_25_KILL`: KILL: S_CMP_F01_N01
+- `token:UNNAMED_TOKEN_26_KILL`: KILL: S_CMP_C6_C8
+- `token:UNNAMED_TOKEN_27_KILL`: KILL: S_CMP_3
+- `token:UNNAMED_TOKEN_28_KILL`: KILL: S_CMP_4
+- `token:UNNAMED_TOKEN_29_KILL`: KILL: S_CMP_5
+- `token:UNNAMED_TOKEN_30_KILL`: KILL: S_NEG_SCRAMBLE
+- `token:UNNAMED_TOKEN_31_KILL`: KILL: S_NEG_SYMMETRIC
+- `token:UNNAMED_TOKEN_32_KILL`: KILL: S_NEG_DECOHERE
+- `token:UNNAMED_TOKEN_33_KILL`: KILL: S_NEG_CLONE
+- `token:UNNAMED_TOKEN_34_KILL`: KILL: S_NEG_ZERO_H
+- `token:UNNAMED_TOKEN_35_KILL`: KILL: S_NEG_INF_GAMMA
+- `token:UNNAMED_TOKEN_36_KILL`: KILL: S_NEG_PURE_LOCK
+- `token:UNNAMED_TOKEN_37_KILL`: KILL: S_NEG_DIM1
+- `token:UNNAMED_TOKEN_38_KILL`: KILL: S_NEG_NO_BATH
+- `token:UNNAMED_TOKEN_39_KILL`: KILL: S_NEG_REVERSED
+- `token:UNNAMED_TOKEN_40_KILL`: KILL: S_NEG_DEPOLAR
+- `token:UNNAMED_TOKEN_41_KILL`: KILL: S_NEG_CLASSICAL
+- `token:UNNAMED_TOKEN_42_KILL`: KILL: S_NEG_NO_FEEDBACK
+- `token:UNNAMED_TOKEN_43_KILL`: KILL: S_NEG_DETERMINISTIC
+- `token:UNNAMED_TOKEN_44_KILL`: KILL: S_NEG_MAX_MIXED
+- `token:UNNAMED_TOKEN_45_KILL`: KILL: S_NEG_IDENTICAL_OP
+- `token:UNNAMED_TOKEN_46_KILL`: KILL: S_NEG_PROJ_ONLY
+- `token:UNNAMED_TOKEN_47_KILL`: KILL: S_NEG_FROZEN_BASIS
+- `token:UNNAMED_TOKEN_48_KILL`: KILL: S_NEG_ANTI_RATCHET

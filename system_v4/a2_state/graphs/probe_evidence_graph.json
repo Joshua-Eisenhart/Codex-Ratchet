@@ -3,11 +3,11 @@
   "build_status": "MATERIALIZED",
   "materialized": true,
   "summary": {
-    "total_nodes": 208,
-    "total_edges": 159,
-    "total_tokens": 159,
-    "pass_count": 138,
-    "kill_count": 21
+    "total_nodes": 261,
+    "total_edges": 202,
+    "total_tokens": 202,
+    "pass_count": 153,
+    "kill_count": 49
   },
   "blockers": [],
   "nodes": {
@@ -476,6 +476,21 @@
       "kill_count": 0,
       "token_count": 1
     },
+    "probe:axis_triplet_orthogonality_sim": {
+      "name": "axis_triplet_orthogonality_sim.py",
+      "description": "QIT probe: KILL_PRESENT, 10P/10K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "PASS",
+      "evidence_status": "KILL_PRESENT",
+      "pass_count": 10,
+      "kill_count": 10,
+      "token_count": 20
+    },
     "probe:axis3_orthogonality_sim": {
       "name": "axis3_orthogonality_sim.py",
       "description": "QIT probe: ALL_PASS, 1P/0K",
@@ -523,6 +538,81 @@
     },
     "probe:axis0_path_integral_sim": {
       "name": "axis0_path_integral_sim.py",
+      "description": "QIT probe: ALL_PASS, 1P/0K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 1,
+      "kill_count": 0,
+      "token_count": 1
+    },
+    "probe:orthogonality_axis0_axis1_sim": {
+      "name": "orthogonality_axis0_axis1_sim.py",
+      "description": "QIT probe: ALL_PASS, 1P/0K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 1,
+      "kill_count": 0,
+      "token_count": 1
+    },
+    "probe:orthogonality_axis0_axis2_sim": {
+      "name": "orthogonality_axis0_axis2_sim.py",
+      "description": "QIT probe: ALL_PASS, 1P/0K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 1,
+      "kill_count": 0,
+      "token_count": 1
+    },
+    "probe:orthogonality_axis0_axis4_sim": {
+      "name": "orthogonality_axis0_axis4_sim.py",
+      "description": "QIT probe: ALL_PASS, 1P/0K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 1,
+      "kill_count": 0,
+      "token_count": 1
+    },
+    "probe:orthogonality_axis0_axis5_sim": {
+      "name": "orthogonality_axis0_axis5_sim.py",
+      "description": "QIT probe: ALL_PASS, 1P/0K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "PASS",
+      "evidence_status": "ALL_PASS",
+      "pass_count": 1,
+      "kill_count": 0,
+      "token_count": 1
+    },
+    "probe:orthogonality_axis0_axis6_sim": {
+      "name": "orthogonality_axis0_axis6_sim.py",
       "description": "QIT probe: ALL_PASS, 1P/0K",
       "type": "probe_evidence",
       "tags": [
@@ -746,6 +836,36 @@
       "kill_count": 1,
       "token_count": 2
     },
+    "probe:neg_scrambled_sequence_sim": {
+      "name": "neg_scrambled_sequence_sim.py",
+      "description": "QIT probe: KILL_PRESENT, 0P/1K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "PASS",
+      "evidence_status": "KILL_PRESENT",
+      "pass_count": 0,
+      "kill_count": 1,
+      "token_count": 1
+    },
+    "probe:neg_inverted_major_loop_sim": {
+      "name": "neg_inverted_major_loop_sim.py",
+      "description": "QIT probe: KILL_PRESENT, 0P/1K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "PASS",
+      "evidence_status": "KILL_PRESENT",
+      "pass_count": 0,
+      "kill_count": 1,
+      "token_count": 1
+    },
     "probe:deep_graveyard_battery": {
       "name": "deep_graveyard_battery.py",
       "description": "QIT probe: KILL_PRESENT, 0P/8K",
@@ -775,6 +895,36 @@
       "pass_count": 0,
       "kill_count": 6,
       "token_count": 6
+    },
+    "probe:thermodynamic_graveyard_battery": {
+      "name": "thermodynamic_graveyard_battery.py",
+      "description": "QIT probe: KILL_PRESENT, 0P/8K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "PASS",
+      "evidence_status": "KILL_PRESENT",
+      "pass_count": 0,
+      "kill_count": 8,
+      "token_count": 8
+    },
+    "probe:information_graveyard_battery": {
+      "name": "information_graveyard_battery.py",
+      "description": "QIT probe: KILL_PRESENT, 0P/8K",
+      "type": "probe_evidence",
+      "tags": [
+        "probe",
+        "qit",
+        "evidence"
+      ],
+      "process_status": "PASS",
+      "evidence_status": "KILL_PRESENT",
+      "pass_count": 0,
+      "kill_count": 8,
+      "token_count": 8
     },
     "token:E_SIM_OPERATIONAL_EQUIVALENCE_OK": {
       "name": "E_SIM_OPERATIONAL_EQUIVALENCE_OK",
@@ -1769,7 +1919,7 @@
         "pass"
       ],
       "status": "PASS",
-      "measured_value": 0.9688762124954118,
+      "measured_value": 0.9688762124954119,
       "source_file": "complexity_gap_v2_sim.py"
     },
     "token:E_SIM_GAIN_PHASE_DIAGRAM_V2_OK": {
@@ -1904,6 +2054,246 @@
       "measured_value": 20,
       "source_file": "axis_orthogonality_suite.py"
     },
+    "token:UNNAMED_TOKEN_6_KILL": {
+      "name": "UNNAMED_TOKEN_6_KILL",
+      "description": "KILL: S_SIM_TRIPLET_A1_Coupling_A2_Frame_A3_Chirality",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": 9.159044702156876e+29,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:E_SIM_TRIPLET_A1_Coupling_A2_Frame_A4_Variance_OK": {
+      "name": "E_SIM_TRIPLET_A1_Coupling_A2_Frame_A4_Variance_OK",
+      "description": "PASS: S_SIM_TRIPLET_A1_Coupling_A2_Frame_A4_Variance",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 8.818310407082883,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:E_SIM_TRIPLET_A1_Coupling_A2_Frame_A5_Texture_OK": {
+      "name": "E_SIM_TRIPLET_A1_Coupling_A2_Frame_A5_Texture_OK",
+      "description": "PASS: S_SIM_TRIPLET_A1_Coupling_A2_Frame_A5_Texture",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 7.741320635154136,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:E_SIM_TRIPLET_A1_Coupling_A2_Frame_A6_Precedence_OK": {
+      "name": "E_SIM_TRIPLET_A1_Coupling_A2_Frame_A6_Precedence_OK",
+      "description": "PASS: S_SIM_TRIPLET_A1_Coupling_A2_Frame_A6_Precedence",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 5.595606995102357,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:UNNAMED_TOKEN_7_KILL": {
+      "name": "UNNAMED_TOKEN_7_KILL",
+      "description": "KILL: S_SIM_TRIPLET_A1_Coupling_A3_Chirality_A4_Variance",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": 9.111239522647752e+29,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:UNNAMED_TOKEN_8_KILL": {
+      "name": "UNNAMED_TOKEN_8_KILL",
+      "description": "KILL: S_SIM_TRIPLET_A1_Coupling_A3_Chirality_A5_Texture",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": 8.874287382992542e+29,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:UNNAMED_TOKEN_9_KILL": {
+      "name": "UNNAMED_TOKEN_9_KILL",
+      "description": "KILL: S_SIM_TRIPLET_A1_Coupling_A3_Chirality_A6_Precedence",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": 1.0197512890277473e+30,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:E_SIM_TRIPLET_A1_Coupling_A4_Variance_A5_Texture_OK": {
+      "name": "E_SIM_TRIPLET_A1_Coupling_A4_Variance_A5_Texture_OK",
+      "description": "PASS: S_SIM_TRIPLET_A1_Coupling_A4_Variance_A5_Texture",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 6.439767558972892,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:E_SIM_TRIPLET_A1_Coupling_A4_Variance_A6_Precedence_OK": {
+      "name": "E_SIM_TRIPLET_A1_Coupling_A4_Variance_A6_Precedence_OK",
+      "description": "PASS: S_SIM_TRIPLET_A1_Coupling_A4_Variance_A6_Precedence",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 5.51013713426743,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:E_SIM_TRIPLET_A1_Coupling_A5_Texture_A6_Precedence_OK": {
+      "name": "E_SIM_TRIPLET_A1_Coupling_A5_Texture_A6_Precedence_OK",
+      "description": "PASS: S_SIM_TRIPLET_A1_Coupling_A5_Texture_A6_Precedence",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 13.668247809137668,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:UNNAMED_TOKEN_10_KILL": {
+      "name": "UNNAMED_TOKEN_10_KILL",
+      "description": "KILL: S_SIM_TRIPLET_A2_Frame_A3_Chirality_A4_Variance",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": 8.108674546247845e+29,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:UNNAMED_TOKEN_11_KILL": {
+      "name": "UNNAMED_TOKEN_11_KILL",
+      "description": "KILL: S_SIM_TRIPLET_A2_Frame_A3_Chirality_A5_Texture",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": 7.414220685722512e+29,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:UNNAMED_TOKEN_12_KILL": {
+      "name": "UNNAMED_TOKEN_12_KILL",
+      "description": "KILL: S_SIM_TRIPLET_A2_Frame_A3_Chirality_A6_Precedence",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": 1.1301085511834644e+30,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:E_SIM_TRIPLET_A2_Frame_A4_Variance_A5_Texture_OK": {
+      "name": "E_SIM_TRIPLET_A2_Frame_A4_Variance_A5_Texture_OK",
+      "description": "PASS: S_SIM_TRIPLET_A2_Frame_A4_Variance_A5_Texture",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 8.354546601584623,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:E_SIM_TRIPLET_A2_Frame_A4_Variance_A6_Precedence_OK": {
+      "name": "E_SIM_TRIPLET_A2_Frame_A4_Variance_A6_Precedence_OK",
+      "description": "PASS: S_SIM_TRIPLET_A2_Frame_A4_Variance_A6_Precedence",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 11.24964979466196,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:E_SIM_TRIPLET_A2_Frame_A5_Texture_A6_Precedence_OK": {
+      "name": "E_SIM_TRIPLET_A2_Frame_A5_Texture_A6_Precedence_OK",
+      "description": "PASS: S_SIM_TRIPLET_A2_Frame_A5_Texture_A6_Precedence",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 16.660326157440604,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:UNNAMED_TOKEN_13_KILL": {
+      "name": "UNNAMED_TOKEN_13_KILL",
+      "description": "KILL: S_SIM_TRIPLET_A3_Chirality_A4_Variance_A5_Texture",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": 5.739962346146293e+16,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:UNNAMED_TOKEN_14_KILL": {
+      "name": "UNNAMED_TOKEN_14_KILL",
+      "description": "KILL: S_SIM_TRIPLET_A3_Chirality_A4_Variance_A6_Precedence",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": 2.8255311393967475e+17,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:UNNAMED_TOKEN_15_KILL": {
+      "name": "UNNAMED_TOKEN_15_KILL",
+      "description": "KILL: S_SIM_TRIPLET_A3_Chirality_A5_Texture_A6_Precedence",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": 3.103612795954e+17,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
+    "token:E_SIM_TRIPLET_A4_Variance_A5_Texture_A6_Precedence_OK": {
+      "name": "E_SIM_TRIPLET_A4_Variance_A5_Texture_A6_Precedence_OK",
+      "description": "PASS: S_SIM_TRIPLET_A4_Variance_A5_Texture_A6_Precedence",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 15.950354637841997,
+      "source_file": "axis_triplet_orthogonality_sim.py"
+    },
     "token:E_SIM_AXIS3_ENGINE_ORTHOGONAL_OK": {
       "name": "E_SIM_AXIS3_ENGINE_ORTHOGONAL_OK",
       "description": "PASS: S_SIM_AXIS3_ORTHOGONALITY_V1",
@@ -1937,7 +2327,7 @@
         "pass"
       ],
       "status": "PASS",
-      "measured_value": 0.16828048118731953,
+      "measured_value": 0.18883473781004367,
       "source_file": "axis0_correlation_sim.py"
     },
     "token:E_SIM_NESTED_HOPF_TORI_OK": {
@@ -1949,8 +2339,68 @@
         "pass"
       ],
       "status": "PASS",
-      "measured_value": 1.034348451869071,
+      "measured_value": 0.9613786245087024,
       "source_file": "axis0_path_integral_sim.py"
+    },
+    "token:E_SIM_ORTHO_AXIS0_AXIS1_OK": {
+      "name": "E_SIM_ORTHO_AXIS0_AXIS1_OK",
+      "description": "PASS: S_SIM_ORT_0_1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.0,
+      "source_file": "orthogonality_axis0_axis1_sim.py"
+    },
+    "token:E_SIM_ORTHO_AXIS0_AXIS2_OK": {
+      "name": "E_SIM_ORTHO_AXIS0_AXIS2_OK",
+      "description": "PASS: S_SIM_ORT_0_2",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.0,
+      "source_file": "orthogonality_axis0_axis2_sim.py"
+    },
+    "token:E_SIM_ORTHO_AXIS0_AXIS4_OK": {
+      "name": "E_SIM_ORTHO_AXIS0_AXIS4_OK",
+      "description": "PASS: S_SIM_ORT_0_4",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.0,
+      "source_file": "orthogonality_axis0_axis4_sim.py"
+    },
+    "token:E_SIM_ORTHO_AXIS0_AXIS5_OK": {
+      "name": "E_SIM_ORTHO_AXIS0_AXIS5_OK",
+      "description": "PASS: S_SIM_ORT_0_5",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.0,
+      "source_file": "orthogonality_axis0_axis5_sim.py"
+    },
+    "token:E_SIM_ORTHO_AXIS0_AXIS6_OK": {
+      "name": "E_SIM_ORTHO_AXIS0_AXIS6_OK",
+      "description": "PASS: S_SIM_ORT_0_6",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 1.0,
+      "source_file": "orthogonality_axis0_axis6_sim.py"
     },
     "token:E_SIM_QIT_PARITY_OK": {
       "name": "E_SIM_QIT_PARITY_OK",
@@ -1964,8 +2414,8 @@
       "measured_value": 0.04304075127561946,
       "source_file": "qit_topology_parity_sim.py"
     },
-    "token:UNNAMED_TOKEN_6_KILL": {
-      "name": "UNNAMED_TOKEN_6_KILL",
+    "token:UNNAMED_TOKEN_16_KILL": {
+      "name": "UNNAMED_TOKEN_16_KILL",
       "description": "KILL: S_SIM_EGGLOG_DEFORMATION_V1",
       "type": "evidence_token",
       "tags": [
@@ -2492,8 +2942,32 @@
       "measured_value": 0.01257654155364194,
       "source_file": "sim_moloch_trap_field.py"
     },
-    "token:UNNAMED_TOKEN_7_KILL": {
-      "name": "UNNAMED_TOKEN_7_KILL",
+    "token:UNNAMED_TOKEN_17_KILL": {
+      "name": "UNNAMED_TOKEN_17_KILL",
+      "description": "KILL: S_NEG_SCRAMBLED_SEQUENCE_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": -0.3139946066427556,
+      "source_file": "neg_scrambled_sequence_sim.py"
+    },
+    "token:UNNAMED_TOKEN_18_KILL": {
+      "name": "UNNAMED_TOKEN_18_KILL",
+      "description": "KILL: S_NEG_INVERTED_MAJOR_LOOP_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": -0.1758327701084611,
+      "source_file": "neg_inverted_major_loop_sim.py"
+    },
+    "token:UNNAMED_TOKEN_19_KILL": {
+      "name": "UNNAMED_TOKEN_19_KILL",
       "description": "KILL: S_NEG_C3",
       "type": "evidence_token",
       "tags": [
@@ -2504,8 +2978,8 @@
       "measured_value": -0.277460567551271,
       "source_file": "deep_graveyard_battery.py"
     },
-    "token:UNNAMED_TOKEN_8_KILL": {
-      "name": "UNNAMED_TOKEN_8_KILL",
+    "token:UNNAMED_TOKEN_20_KILL": {
+      "name": "UNNAMED_TOKEN_20_KILL",
       "description": "KILL: S_NEG_X2",
       "type": "evidence_token",
       "tags": [
@@ -2516,8 +2990,8 @@
       "measured_value": -0.2784034282988051,
       "source_file": "deep_graveyard_battery.py"
     },
-    "token:UNNAMED_TOKEN_9_KILL": {
-      "name": "UNNAMED_TOKEN_9_KILL",
+    "token:UNNAMED_TOKEN_21_KILL": {
+      "name": "UNNAMED_TOKEN_21_KILL",
       "description": "KILL: S_NEG_Ti",
       "type": "evidence_token",
       "tags": [
@@ -2528,8 +3002,8 @@
       "measured_value": -0.23965068527904024,
       "source_file": "deep_graveyard_battery.py"
     },
-    "token:UNNAMED_TOKEN_10_KILL": {
-      "name": "UNNAMED_TOKEN_10_KILL",
+    "token:UNNAMED_TOKEN_22_KILL": {
+      "name": "UNNAMED_TOKEN_22_KILL",
       "description": "KILL: S_NEG_Te",
       "type": "evidence_token",
       "tags": [
@@ -2540,8 +3014,8 @@
       "measured_value": -0.27747567342869456,
       "source_file": "deep_graveyard_battery.py"
     },
-    "token:UNNAMED_TOKEN_11_KILL": {
-      "name": "UNNAMED_TOKEN_11_KILL",
+    "token:UNNAMED_TOKEN_23_KILL": {
+      "name": "UNNAMED_TOKEN_23_KILL",
       "description": "KILL: S_NEG_Fi",
       "type": "evidence_token",
       "tags": [
@@ -2552,8 +3026,8 @@
       "measured_value": -0.2586276818050427,
       "source_file": "deep_graveyard_battery.py"
     },
-    "token:UNNAMED_TOKEN_12_KILL": {
-      "name": "UNNAMED_TOKEN_12_KILL",
+    "token:UNNAMED_TOKEN_24_KILL": {
+      "name": "UNNAMED_TOKEN_24_KILL",
       "description": "KILL: S_NEG_C4",
       "type": "evidence_token",
       "tags": [
@@ -2564,8 +3038,8 @@
       "measured_value": 0.0,
       "source_file": "deep_graveyard_battery.py"
     },
-    "token:UNNAMED_TOKEN_13_KILL": {
-      "name": "UNNAMED_TOKEN_13_KILL",
+    "token:UNNAMED_TOKEN_25_KILL": {
+      "name": "UNNAMED_TOKEN_25_KILL",
       "description": "KILL: S_CMP_F01_N01",
       "type": "evidence_token",
       "tags": [
@@ -2576,8 +3050,8 @@
       "measured_value": -0.27847228091606213,
       "source_file": "deep_graveyard_battery.py"
     },
-    "token:UNNAMED_TOKEN_14_KILL": {
-      "name": "UNNAMED_TOKEN_14_KILL",
+    "token:UNNAMED_TOKEN_26_KILL": {
+      "name": "UNNAMED_TOKEN_26_KILL",
       "description": "KILL: S_CMP_C6_C8",
       "type": "evidence_token",
       "tags": [
@@ -2588,8 +3062,8 @@
       "measured_value": -0.23765825509762362,
       "source_file": "deep_graveyard_battery.py"
     },
-    "token:UNNAMED_TOKEN_15_KILL": {
-      "name": "UNNAMED_TOKEN_15_KILL",
+    "token:UNNAMED_TOKEN_27_KILL": {
+      "name": "UNNAMED_TOKEN_27_KILL",
       "description": "KILL: S_CMP_3",
       "type": "evidence_token",
       "tags": [
@@ -2600,8 +3074,8 @@
       "measured_value": -0.27847228091543397,
       "source_file": "extended_graveyard_battery.py"
     },
-    "token:UNNAMED_TOKEN_16_KILL": {
-      "name": "UNNAMED_TOKEN_16_KILL",
+    "token:UNNAMED_TOKEN_28_KILL": {
+      "name": "UNNAMED_TOKEN_28_KILL",
       "description": "KILL: S_CMP_4",
       "type": "evidence_token",
       "tags": [
@@ -2612,8 +3086,8 @@
       "measured_value": -0.2784722809157282,
       "source_file": "extended_graveyard_battery.py"
     },
-    "token:UNNAMED_TOKEN_17_KILL": {
-      "name": "UNNAMED_TOKEN_17_KILL",
+    "token:UNNAMED_TOKEN_29_KILL": {
+      "name": "UNNAMED_TOKEN_29_KILL",
       "description": "KILL: S_CMP_5",
       "type": "evidence_token",
       "tags": [
@@ -2624,8 +3098,8 @@
       "measured_value": -0.27847228091606213,
       "source_file": "extended_graveyard_battery.py"
     },
-    "token:UNNAMED_TOKEN_18_KILL": {
-      "name": "UNNAMED_TOKEN_18_KILL",
+    "token:UNNAMED_TOKEN_30_KILL": {
+      "name": "UNNAMED_TOKEN_30_KILL",
       "description": "KILL: S_NEG_SCRAMBLE",
       "type": "evidence_token",
       "tags": [
@@ -2636,8 +3110,8 @@
       "measured_value": -0.2738104378056942,
       "source_file": "extended_graveyard_battery.py"
     },
-    "token:UNNAMED_TOKEN_19_KILL": {
-      "name": "UNNAMED_TOKEN_19_KILL",
+    "token:UNNAMED_TOKEN_31_KILL": {
+      "name": "UNNAMED_TOKEN_31_KILL",
       "description": "KILL: S_NEG_SYMMETRIC",
       "type": "evidence_token",
       "tags": [
@@ -2648,8 +3122,8 @@
       "measured_value": -0.2784722809160618,
       "source_file": "extended_graveyard_battery.py"
     },
-    "token:UNNAMED_TOKEN_20_KILL": {
-      "name": "UNNAMED_TOKEN_20_KILL",
+    "token:UNNAMED_TOKEN_32_KILL": {
+      "name": "UNNAMED_TOKEN_32_KILL",
       "description": "KILL: S_NEG_DECOHERE",
       "type": "evidence_token",
       "tags": [
@@ -2659,6 +3133,198 @@
       "status": "KILL",
       "measured_value": -0.2777921852119998,
       "source_file": "extended_graveyard_battery.py"
+    },
+    "token:UNNAMED_TOKEN_33_KILL": {
+      "name": "UNNAMED_TOKEN_33_KILL",
+      "description": "KILL: S_NEG_CLONE",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": -0.3250121387870394,
+      "source_file": "thermodynamic_graveyard_battery.py"
+    },
+    "token:UNNAMED_TOKEN_34_KILL": {
+      "name": "UNNAMED_TOKEN_34_KILL",
+      "description": "KILL: S_NEG_ZERO_H",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": -0.016525129741868594,
+      "source_file": "thermodynamic_graveyard_battery.py"
+    },
+    "token:UNNAMED_TOKEN_35_KILL": {
+      "name": "UNNAMED_TOKEN_35_KILL",
+      "description": "KILL: S_NEG_INF_GAMMA",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": -0.3250121387870394,
+      "source_file": "thermodynamic_graveyard_battery.py"
+    },
+    "token:UNNAMED_TOKEN_36_KILL": {
+      "name": "UNNAMED_TOKEN_36_KILL",
+      "description": "KILL: S_NEG_PURE_LOCK",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": -1.9984014443252818e-15,
+      "source_file": "thermodynamic_graveyard_battery.py"
+    },
+    "token:UNNAMED_TOKEN_37_KILL": {
+      "name": "UNNAMED_TOKEN_37_KILL",
+      "description": "KILL: S_NEG_DIM1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": 0.0,
+      "source_file": "thermodynamic_graveyard_battery.py"
+    },
+    "token:UNNAMED_TOKEN_38_KILL": {
+      "name": "UNNAMED_TOKEN_38_KILL",
+      "description": "KILL: S_NEG_NO_BATH",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": 1.7763568394002505e-15,
+      "source_file": "thermodynamic_graveyard_battery.py"
+    },
+    "token:UNNAMED_TOKEN_39_KILL": {
+      "name": "UNNAMED_TOKEN_39_KILL",
+      "description": "KILL: S_NEG_REVERSED",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": -0.15924371021715056,
+      "source_file": "thermodynamic_graveyard_battery.py"
+    },
+    "token:UNNAMED_TOKEN_40_KILL": {
+      "name": "UNNAMED_TOKEN_40_KILL",
+      "description": "KILL: S_NEG_DEPOLAR",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": -0.3250121387870394,
+      "source_file": "thermodynamic_graveyard_battery.py"
+    },
+    "token:UNNAMED_TOKEN_41_KILL": {
+      "name": "UNNAMED_TOKEN_41_KILL",
+      "description": "KILL: S_NEG_CLASSICAL",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": -0.15290277979648004,
+      "source_file": "information_graveyard_battery.py"
+    },
+    "token:UNNAMED_TOKEN_42_KILL": {
+      "name": "UNNAMED_TOKEN_42_KILL",
+      "description": "KILL: S_NEG_NO_FEEDBACK",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": -0.24794217430318388,
+      "source_file": "information_graveyard_battery.py"
+    },
+    "token:UNNAMED_TOKEN_43_KILL": {
+      "name": "UNNAMED_TOKEN_43_KILL",
+      "description": "KILL: S_NEG_DETERMINISTIC",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": 2.220446049250313e-16,
+      "source_file": "information_graveyard_battery.py"
+    },
+    "token:UNNAMED_TOKEN_44_KILL": {
+      "name": "UNNAMED_TOKEN_44_KILL",
+      "description": "KILL: S_NEG_MAX_MIXED",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": 0.009284607787720889,
+      "source_file": "information_graveyard_battery.py"
+    },
+    "token:UNNAMED_TOKEN_45_KILL": {
+      "name": "UNNAMED_TOKEN_45_KILL",
+      "description": "KILL: S_NEG_IDENTICAL_OP",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": 0.02575141737452946,
+      "source_file": "information_graveyard_battery.py"
+    },
+    "token:UNNAMED_TOKEN_46_KILL": {
+      "name": "UNNAMED_TOKEN_46_KILL",
+      "description": "KILL: S_NEG_PROJ_ONLY",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": -0.2536013468901449,
+      "source_file": "information_graveyard_battery.py"
+    },
+    "token:UNNAMED_TOKEN_47_KILL": {
+      "name": "UNNAMED_TOKEN_47_KILL",
+      "description": "KILL: S_NEG_FROZEN_BASIS",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": -0.3250121261200801,
+      "source_file": "information_graveyard_battery.py"
+    },
+    "token:UNNAMED_TOKEN_48_KILL": {
+      "name": "UNNAMED_TOKEN_48_KILL",
+      "description": "KILL: S_NEG_ANTI_RATCHET",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "kill"
+      ],
+      "status": "KILL",
+      "measured_value": -0.3230412074089971,
+      "source_file": "information_graveyard_battery.py"
     }
   },
   "edges": [
@@ -3143,6 +3809,106 @@
       "type": "produces"
     },
     {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:UNNAMED_TOKEN_6_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:E_SIM_TRIPLET_A1_Coupling_A2_Frame_A4_Variance_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:E_SIM_TRIPLET_A1_Coupling_A2_Frame_A5_Texture_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:E_SIM_TRIPLET_A1_Coupling_A2_Frame_A6_Precedence_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:UNNAMED_TOKEN_7_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:UNNAMED_TOKEN_8_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:UNNAMED_TOKEN_9_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:E_SIM_TRIPLET_A1_Coupling_A4_Variance_A5_Texture_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:E_SIM_TRIPLET_A1_Coupling_A4_Variance_A6_Precedence_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:E_SIM_TRIPLET_A1_Coupling_A5_Texture_A6_Precedence_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:UNNAMED_TOKEN_10_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:UNNAMED_TOKEN_11_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:UNNAMED_TOKEN_12_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:E_SIM_TRIPLET_A2_Frame_A4_Variance_A5_Texture_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:E_SIM_TRIPLET_A2_Frame_A4_Variance_A6_Precedence_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:E_SIM_TRIPLET_A2_Frame_A5_Texture_A6_Precedence_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:UNNAMED_TOKEN_13_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:UNNAMED_TOKEN_14_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:UNNAMED_TOKEN_15_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:axis_triplet_orthogonality_sim",
+      "target": "token:E_SIM_TRIPLET_A4_Variance_A5_Texture_A6_Precedence_OK",
+      "type": "produces"
+    },
+    {
       "source": "probe:axis3_orthogonality_sim",
       "target": "token:E_SIM_AXIS3_ENGINE_ORTHOGONAL_OK",
       "type": "produces"
@@ -3163,13 +3929,38 @@
       "type": "produces"
     },
     {
+      "source": "probe:orthogonality_axis0_axis1_sim",
+      "target": "token:E_SIM_ORTHO_AXIS0_AXIS1_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:orthogonality_axis0_axis2_sim",
+      "target": "token:E_SIM_ORTHO_AXIS0_AXIS2_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:orthogonality_axis0_axis4_sim",
+      "target": "token:E_SIM_ORTHO_AXIS0_AXIS4_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:orthogonality_axis0_axis5_sim",
+      "target": "token:E_SIM_ORTHO_AXIS0_AXIS5_OK",
+      "type": "produces"
+    },
+    {
+      "source": "probe:orthogonality_axis0_axis6_sim",
+      "target": "token:E_SIM_ORTHO_AXIS0_AXIS6_OK",
+      "type": "produces"
+    },
+    {
       "source": "probe:qit_topology_parity_sim",
       "target": "token:E_SIM_QIT_PARITY_OK",
       "type": "produces"
     },
     {
       "source": "probe:egglog_graph_rewrite_probe",
-      "target": "token:UNNAMED_TOKEN_6_KILL",
+      "target": "token:UNNAMED_TOKEN_16_KILL",
       "type": "produces"
     },
     {
@@ -3388,75 +4179,165 @@
       "type": "produces"
     },
     {
-      "source": "probe:deep_graveyard_battery",
-      "target": "token:UNNAMED_TOKEN_7_KILL",
-      "type": "produces"
-    },
-    {
-      "source": "probe:deep_graveyard_battery",
-      "target": "token:UNNAMED_TOKEN_8_KILL",
-      "type": "produces"
-    },
-    {
-      "source": "probe:deep_graveyard_battery",
-      "target": "token:UNNAMED_TOKEN_9_KILL",
-      "type": "produces"
-    },
-    {
-      "source": "probe:deep_graveyard_battery",
-      "target": "token:UNNAMED_TOKEN_10_KILL",
-      "type": "produces"
-    },
-    {
-      "source": "probe:deep_graveyard_battery",
-      "target": "token:UNNAMED_TOKEN_11_KILL",
-      "type": "produces"
-    },
-    {
-      "source": "probe:deep_graveyard_battery",
-      "target": "token:UNNAMED_TOKEN_12_KILL",
-      "type": "produces"
-    },
-    {
-      "source": "probe:deep_graveyard_battery",
-      "target": "token:UNNAMED_TOKEN_13_KILL",
-      "type": "produces"
-    },
-    {
-      "source": "probe:deep_graveyard_battery",
-      "target": "token:UNNAMED_TOKEN_14_KILL",
-      "type": "produces"
-    },
-    {
-      "source": "probe:extended_graveyard_battery",
-      "target": "token:UNNAMED_TOKEN_15_KILL",
-      "type": "produces"
-    },
-    {
-      "source": "probe:extended_graveyard_battery",
-      "target": "token:UNNAMED_TOKEN_16_KILL",
-      "type": "produces"
-    },
-    {
-      "source": "probe:extended_graveyard_battery",
+      "source": "probe:neg_scrambled_sequence_sim",
       "target": "token:UNNAMED_TOKEN_17_KILL",
       "type": "produces"
     },
     {
-      "source": "probe:extended_graveyard_battery",
+      "source": "probe:neg_inverted_major_loop_sim",
       "target": "token:UNNAMED_TOKEN_18_KILL",
       "type": "produces"
     },
     {
-      "source": "probe:extended_graveyard_battery",
+      "source": "probe:deep_graveyard_battery",
       "target": "token:UNNAMED_TOKEN_19_KILL",
       "type": "produces"
     },
     {
-      "source": "probe:extended_graveyard_battery",
+      "source": "probe:deep_graveyard_battery",
       "target": "token:UNNAMED_TOKEN_20_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:deep_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_21_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:deep_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_22_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:deep_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_23_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:deep_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_24_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:deep_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_25_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:deep_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_26_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:extended_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_27_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:extended_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_28_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:extended_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_29_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:extended_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_30_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:extended_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_31_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:extended_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_32_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:thermodynamic_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_33_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:thermodynamic_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_34_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:thermodynamic_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_35_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:thermodynamic_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_36_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:thermodynamic_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_37_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:thermodynamic_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_38_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:thermodynamic_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_39_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:thermodynamic_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_40_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:information_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_41_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:information_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_42_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:information_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_43_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:information_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_44_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:information_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_45_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:information_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_46_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:information_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_47_KILL",
+      "type": "produces"
+    },
+    {
+      "source": "probe:information_graveyard_battery",
+      "target": "token:UNNAMED_TOKEN_48_KILL",
       "type": "produces"
     }
   ],
-  "timestamp": "2026-03-25T00:48:13.637695+00:00"
+  "timestamp": "2026-03-25T05:08:12.109301+00:00"
 }

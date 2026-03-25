@@ -127,6 +127,20 @@ TIERED_SIMS = {
     "T6_GRAPH_BRIDGE": [
         "evidence_to_graph_bridge_sim.py",
     ],
+    "T6_LEGACY": [
+        "abiogenesis_sim.py",
+        "axis0_gradient_sim.py",
+        "complexity_gap_sim.py",
+        "gain_calibration_sim.py",
+        "hopf_torus_meta_sim.py",
+        "igt_advanced_sim.py",
+        "igt_game_theory_sim.py",
+        "igt_moloch_trap_sim.py",
+        "neg_commutative_process_cycle_sim.py",
+        "orthogonality_sim.py",
+        "symmetry_breaking_sim.py",
+        "szilard_64stage_sim.py",
+    ],
 }
 
 # Flatten for backward compatibility
@@ -235,15 +249,27 @@ def run_sim(filename: str) -> dict:
             "neg_classical_probability_sim.py": "neg_classical_results.json",
             "neg_no_dissipation_sim.py": "neg_no_dissipation_results.json",
             # Phase 14-17 new SIMs
-            "set_theory_correlation_cluster_sim.py": "set_theory_correlation_results.json",
-            "axis5_discrete_calculus_rosetta_sim.py": "axis5_discrete_calculus_results.json",
-            "entropic_curvature_lattice_sim.py": "entropic_curvature_results.json",
+            "set_theory_correlation_cluster_sim.py": "set_theory_cluster_results.json",
+            "axis5_discrete_calculus_rosetta_sim.py": "axis5_discrete_calculus_rosetta_results.json",
+            "entropic_curvature_lattice_sim.py": "entropic_curvature_lattice_results.json",
             "axis_compositional_structure_sim.py": "axis_compositional_structure_results.json",
             "deep_axis_composition_sim.py": "deep_axis_composition_results.json",
-            "axis_7_12_mirror_orthogonality_suite.py": "axis_7_12_mirror_ortho_results.json",
+            "axis_7_12_mirror_orthogonality_suite.py": "axis_7_12_mirror_results.json",
             "axis_7_12_commutator_construction_sim.py": "axis_7_12_commutator_results.json",
             "autoresearch_sim_harness.py": "autoresearch_harness_results.json",
-            "evidence_to_graph_bridge_sim.py": "evidence_graph_bridge_results.json",
+            "evidence_to_graph_bridge_sim.py": "evidence_graph.json",
+            # Phase 19: Legacy orphan SIMs
+            "abiogenesis_sim.py": "abiogenesis_results.json",
+            "axis0_gradient_sim.py": "axis0_gradient_results.json",
+            "complexity_gap_sim.py": "complexity_gap_results.json",
+            "gain_calibration_sim.py": "gain_calibration_results.json",
+            "hopf_torus_meta_sim.py": "hopf_torus_meta_results.json",
+            "igt_game_theory_sim.py": "igt_results.json",
+            "igt_moloch_trap_sim.py": "igt_moloch_trap_results.json",
+            "neg_commutative_process_cycle_sim.py": "neg_commutative_process_cycle_results.json",
+            "orthogonality_sim.py": "orthogonality_results.json",
+            "symmetry_breaking_sim.py": "symmetry_breaking_results.json",
+            "szilard_64stage_sim.py": "szilard_64stage_results.json",
         }
         
         tokens = []

@@ -2,8 +2,10 @@ import sys
 import networkx as nx
 from system_v4.skills.v4_graph_builder import SystemGraphBuilder
 
+from pathlib import Path
+
 print("Starting debug...")
-builder = SystemGraphBuilder("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
+builder = SystemGraphBuilder(str(Path(__file__).resolve().parent))
 builder.load_graph_artifacts(version_label="a2_refinery")
 
 G = builder._export_graph_for_graphml()

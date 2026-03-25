@@ -76,7 +76,7 @@ def sim_consciousness(n_steps=300):
 
     print(f"\n  Level 0 (environment):")
     print(f"    Fixed-point distance: {fp_dist_0:.6e}")
-    print(f"    State_Dispersion: {von_neumann_state_dispersion(rho_env_fp):.4f}")
+    print(f"    State_Dispersion: {von_neumann_entropy(rho_env_fp):.4f}")
 
     # Level 1: agent observes environment (partial trace d=16 → d=8)
     d1 = 8
@@ -102,7 +102,7 @@ def sim_consciousness(n_steps=300):
 
     print(f"\n  Level 1 (agent):")
     print(f"    Fixed-point distance: {fp_dist_1:.6e}")
-    print(f"    State_Dispersion: {von_neumann_state_dispersion(rho_agent_fp):.4f}")
+    print(f"    State_Dispersion: {von_neumann_entropy(rho_agent_fp):.4f}")
 
     # Level 2: self-model (partial trace d=8 → d=4)
     d2 = 4
@@ -127,7 +127,7 @@ def sim_consciousness(n_steps=300):
 
     print(f"\n  Level 2 (self-model):")
     print(f"    Fixed-point distance: {fp_dist_2:.6e}")
-    print(f"    State_Dispersion: {von_neumann_state_dispersion(rho_self_fp):.4f}")
+    print(f"    State_Dispersion: {von_neumann_entropy(rho_self_fp):.4f}")
 
     # Check nesting consistency: Level 2 is consistent with Level 1
     rho_self_from_agent = partial_trace(rho_agent_fp, d2, d_trace_2)

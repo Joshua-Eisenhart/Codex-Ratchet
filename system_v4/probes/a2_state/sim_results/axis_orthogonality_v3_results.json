@@ -1,23 +1,24 @@
 {
-  "timestamp": "2026-03-24T23:20:46.663035+00:00",
+  "timestamp": "2026-03-24T23:55:32.451913+00:00",
   "version": "v3_AXES_MASTER_SPEC",
   "dimensions": [
     4,
     8,
     16,
-    32
+    32,
+    64
   ],
   "epsilon": 1e-05,
-  "total_raw_pass": 20,
-  "total_tests": 60,
+  "total_raw_pass": 25,
+  "total_tests": 75,
   "evidence_ledger": [
     {
       "token_id": "E_SIM_ORTHOGONAL_15PAIR_V3",
       "sim_spec_id": "S_SIM_AXIS_ORTHOGONALITY_V3",
       "status": "PASS",
-      "measured_value": 20,
-      "total_tests": 60,
-      "graveyard_deformations": 40
+      "measured_value": 25,
+      "total_tests": 75,
+      "graveyard_deformations": 50
     }
   ],
   "results_by_dimension": {
@@ -880,6 +881,222 @@
           "label": "Texture \u22a5 Precedence",
           "I_south": 0.8707041060153601,
           "I_north": 0.87070410601536,
+          "delta_I": 1.1102230246251565e-16,
+          "regime": "TRANSPARENT"
+        }
+      ]
+    },
+    "64": {
+      "pairwise": [
+        {
+          "pair": "A1_Coupling x A2_Frame",
+          "label": "Coupling \u22a5 Frame",
+          "overlap": 0.014347131596935637,
+          "status": "KILL"
+        },
+        {
+          "pair": "A1_Coupling x A3_Chirality",
+          "label": "Coupling \u22a5 Chirality",
+          "overlap": 0.0,
+          "status": "PASS"
+        },
+        {
+          "pair": "A1_Coupling x A4_Variance",
+          "label": "Coupling \u22a5 Variance",
+          "overlap": 0.011227485888408412,
+          "status": "KILL"
+        },
+        {
+          "pair": "A1_Coupling x A5_Texture",
+          "label": "Coupling \u22a5 Texture",
+          "overlap": 0.0006437503733388254,
+          "status": "KILL"
+        },
+        {
+          "pair": "A1_Coupling x A6_Precedence",
+          "label": "Coupling \u22a5 Precedence",
+          "overlap": 0.0003487014555240106,
+          "status": "KILL"
+        },
+        {
+          "pair": "A2_Frame x A3_Chirality",
+          "label": "Frame \u22a5 Chirality",
+          "overlap": 0.0,
+          "status": "PASS"
+        },
+        {
+          "pair": "A2_Frame x A4_Variance",
+          "label": "Frame \u22a5 Variance",
+          "overlap": 0.679975302592317,
+          "status": "KILL"
+        },
+        {
+          "pair": "A2_Frame x A5_Texture",
+          "label": "Frame \u22a5 Texture",
+          "overlap": 0.9922841590469251,
+          "status": "KILL"
+        },
+        {
+          "pair": "A2_Frame x A6_Precedence",
+          "label": "Frame \u22a5 Precedence",
+          "overlap": 0.7754125505750549,
+          "status": "KILL"
+        },
+        {
+          "pair": "A3_Chirality x A4_Variance",
+          "label": "Chirality \u22a5 Variance",
+          "overlap": 0.0,
+          "status": "PASS"
+        },
+        {
+          "pair": "A3_Chirality x A5_Texture",
+          "label": "Chirality \u22a5 Texture",
+          "overlap": 0.0,
+          "status": "PASS"
+        },
+        {
+          "pair": "A3_Chirality x A6_Precedence",
+          "label": "Chirality \u22a5 Precedence",
+          "overlap": 0.0,
+          "status": "PASS"
+        },
+        {
+          "pair": "A4_Variance x A5_Texture",
+          "label": "Variance \u22a5 Texture (CRITICAL)",
+          "overlap": 0.6742537478819368,
+          "status": "KILL"
+        },
+        {
+          "pair": "A4_Variance x A6_Precedence",
+          "label": "Variance \u22a5 Precedence",
+          "overlap": 0.532333644767534,
+          "status": "KILL"
+        },
+        {
+          "pair": "A5_Texture x A6_Precedence",
+          "label": "Texture \u22a5 Precedence",
+          "overlap": 0.7813745865828609,
+          "status": "KILL"
+        }
+      ],
+      "axis0_connector": [
+        {
+          "pair": "A1_Coupling x A2_Frame",
+          "label": "Coupling \u22a5 Frame",
+          "I_south": 0.3804401298014366,
+          "I_north": 0.3804401298014366,
+          "delta_I": 0.0,
+          "regime": "TRANSPARENT"
+        },
+        {
+          "pair": "A1_Coupling x A3_Chirality",
+          "label": "Coupling \u22a5 Chirality",
+          "I_south": 0.0,
+          "I_north": 0.0,
+          "delta_I": 0.0,
+          "regime": "TRANSPARENT"
+        },
+        {
+          "pair": "A1_Coupling x A4_Variance",
+          "label": "Coupling \u22a5 Variance",
+          "I_south": 0.33839263494555777,
+          "I_north": 0.33839263494555777,
+          "delta_I": 0.0,
+          "regime": "TRANSPARENT"
+        },
+        {
+          "pair": "A1_Coupling x A5_Texture",
+          "label": "Coupling \u22a5 Texture",
+          "I_south": 0.029270364143666915,
+          "I_north": 0.029270364143666915,
+          "delta_I": 0.0,
+          "regime": "TRANSPARENT"
+        },
+        {
+          "pair": "A1_Coupling x A6_Precedence",
+          "label": "Coupling \u22a5 Precedence",
+          "I_south": 0.02970975724353033,
+          "I_north": 0.029709757243530335,
+          "delta_I": 3.469446951953614e-18,
+          "regime": "TRANSPARENT"
+        },
+        {
+          "pair": "A2_Frame x A3_Chirality",
+          "label": "Frame \u22a5 Chirality",
+          "I_south": 0.0,
+          "I_north": 0.0,
+          "delta_I": 0.0,
+          "regime": "TRANSPARENT"
+        },
+        {
+          "pair": "A2_Frame x A4_Variance",
+          "label": "Frame \u22a5 Variance",
+          "I_south": 0.7387177230862522,
+          "I_north": 0.7387177230862522,
+          "delta_I": 0.0,
+          "regime": "TRANSPARENT"
+        },
+        {
+          "pair": "A2_Frame x A5_Texture",
+          "label": "Frame \u22a5 Texture",
+          "I_south": 0.8187587504969471,
+          "I_north": 0.8187587504969471,
+          "delta_I": 0.0,
+          "regime": "TRANSPARENT"
+        },
+        {
+          "pair": "A2_Frame x A6_Precedence",
+          "label": "Frame \u22a5 Precedence",
+          "I_south": 0.6471370869352975,
+          "I_north": 0.6471370869352975,
+          "delta_I": 0.0,
+          "regime": "TRANSPARENT"
+        },
+        {
+          "pair": "A3_Chirality x A4_Variance",
+          "label": "Chirality \u22a5 Variance",
+          "I_south": 0.0,
+          "I_north": 0.0,
+          "delta_I": 0.0,
+          "regime": "TRANSPARENT"
+        },
+        {
+          "pair": "A3_Chirality x A5_Texture",
+          "label": "Chirality \u22a5 Texture",
+          "I_south": 0.0,
+          "I_north": 0.0,
+          "delta_I": 0.0,
+          "regime": "TRANSPARENT"
+        },
+        {
+          "pair": "A3_Chirality x A6_Precedence",
+          "label": "Chirality \u22a5 Precedence",
+          "I_south": 0.0,
+          "I_north": 0.0,
+          "delta_I": 0.0,
+          "regime": "TRANSPARENT"
+        },
+        {
+          "pair": "A4_Variance x A5_Texture",
+          "label": "Variance \u22a5 Texture (CRITICAL)",
+          "I_south": 0.5974015488630153,
+          "I_north": 0.5974015488630154,
+          "delta_I": 1.1102230246251565e-16,
+          "regime": "TRANSPARENT"
+        },
+        {
+          "pair": "A4_Variance x A6_Precedence",
+          "label": "Variance \u22a5 Precedence",
+          "I_south": 0.48028201235879264,
+          "I_north": 0.48028201235879253,
+          "delta_I": 1.1102230246251565e-16,
+          "regime": "TRANSPARENT"
+        },
+        {
+          "pair": "A5_Texture x A6_Precedence",
+          "label": "Texture \u22a5 Precedence",
+          "I_south": 0.7850237036746525,
+          "I_north": 0.7850237036746524,
           "delta_I": 1.1102230246251565e-16,
           "regime": "TRANSPARENT"
         }

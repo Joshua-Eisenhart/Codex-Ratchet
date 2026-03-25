@@ -25,8 +25,9 @@ from axis_orthogonality_suite import (
     A4_variance_direction,
     A5_generator_algebra,
     build_choi,
-    hs_inner_product,
+    hs_inner,
 )
+from proto_ratchet_sim_runner import EvidenceToken
 
 
 def spectral_deformation(C4, C5, eps=1e-5, max_iter=100):
@@ -84,7 +85,7 @@ def spectral_deformation(C4, C5, eps=1e-5, max_iter=100):
         C5_deformed = (C5_deformed + C5_deformed.conj().T) / 2
     
     # Verify
-    overlap_after = hs_inner_product(C4, C5_deformed)
+    overlap_after = hs_inner(C4, C5_deformed)
     return C5_deformed, overlap_after
 
 
@@ -103,7 +104,7 @@ def run_deformation_probe():
         C4 = build_choi(A4_variance_direction, d)
         C5 = build_choi(A5_generator_algebra, d)
         
-        overlap_before = hs_inner_product(C4, C5)
+        overlap_before = hs_inner(C4, C5)
         print(f"  BEFORE deformation: Tr(A4† A5) = {overlap_before:.6f}")
         
         C5_deformed, overlap_after = spectral_deformation(C4, C5)
@@ -131,11 +132,28 @@ def run_deformation_probe():
         print(f"  {len(reduced)} dimensions only partially reduced.")
         print(f"  Further Z3 SMT constraint solving may be required.")
     
+    # Emit evidence token
+    if all_pass:
+        token = EvidenceToken(
+            token_id="E_SIM_EGGLOG_DEFORMATION_OK",
+            sim_spec_id="S_SIM_EGGLOG_DEFORMATION_V1",
+            status="PASS",
+            measured_value=min(r["overlap_after"] for r in results),
+        )
+    else:
+        token = EvidenceToken(
+            token_id="",
+            sim_spec_id="S_SIM_EGGLOG_DEFORMATION_V1",
+            status="KILL",
+            measured_value=max(r["overlap_after"] for r in results),
+            kill_reason="DEFORMATION_INCOMPLETE",
+        )
+
     # Save results
     base = os.path.dirname(os.path.abspath(__file__))
     results_dir = os.path.join(base, "a2_state", "sim_results")
     os.makedirs(results_dir, exist_ok=True)
-    outpath = os.path.join(results_dir, "a4_a5_deformation_results.json")
+    outpath = os.path.join(results_dir, "egglog_rewrite_results.json")
     
     with open(outpath, "w") as f:
         json.dump({
@@ -143,7 +161,14 @@ def run_deformation_probe():
             "probe": "ANOMALY-B: A4 vs A5 Eigenvalue Deformation",
             "method": "Targeted Spectral Rewrite (egglog-equivalent)",
             "results": results,
-            "all_pass": all_pass
+            "all_pass": all_pass,
+            "evidence_ledger": [{
+                "token_id": token.token_id,
+                "sim_spec_id": token.sim_spec_id,
+                "status": token.status,
+                "measured_value": token.measured_value,
+                "kill_reason": token.kill_reason,
+            }],
         }, f, indent=2)
     
     print(f"  Results saved: {outpath}")

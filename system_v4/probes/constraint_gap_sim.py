@@ -97,7 +97,7 @@ def sim_operational_equivalence(d: int = 4):
     
     print(f"  Matrix difference: {matrix_diff:.6f} (NOT zero)")
     print(f"  Eigenvalues match: {eigenvalue_match}")
-    print(f"  State_Dispersion match: {state_dispersion_match} (S_a={S_a:.6f}, S_b={S_b:.6f})")
+    print(f"  Entropy match: {entropy_match} (S_a={S_a:.6f}, S_b={S_b:.6f})")
     print(f"  Purity match: {purity_match}")
     print(f"  Basis-dependent differs: {basis_dependent_differ}")
     print(f"  → a ≠ b as matrices, but a ~ b under invariant probes")

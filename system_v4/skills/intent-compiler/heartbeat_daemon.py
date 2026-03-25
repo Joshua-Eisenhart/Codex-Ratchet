@@ -39,7 +39,7 @@ def run_probes():
     import subprocess
     result = subprocess.run(
         [sys.executable, os.path.join(REPO, "system_v4/probes/run_all_sims.py")],
-        cwd=REPO, capture_output=True, text=True, timeout=300
+        cwd=REPO, capture_output=True, text=True, timeout=1800  # 30 min for full 51-SIM suite
     )
     return result.returncode == 0, result.stdout, result.stderr
 

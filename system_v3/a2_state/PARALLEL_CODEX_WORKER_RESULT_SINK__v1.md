@@ -14,7 +14,7 @@ threads already share the same workspace.
 ## Sink location
 
 Raw worker result staging directory:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns`
 
 ## Required file convention
 

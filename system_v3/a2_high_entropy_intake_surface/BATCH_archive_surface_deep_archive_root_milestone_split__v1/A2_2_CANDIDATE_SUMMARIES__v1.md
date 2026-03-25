@@ -35,5 +35,5 @@ Extraction mode: `ARCHIVE_DEEP_MILESTONE_ROOT_SPLIT_PASS`
 ## Candidate Summary C5
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT`
   - that pass should stay isolated as its own archive family

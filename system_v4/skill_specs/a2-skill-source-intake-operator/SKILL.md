@@ -34,11 +34,11 @@ canonical A2 indexing need a bounded truth refresh.
 ## Execute Now
 
 1. Read:
-   - [SKILL_SOURCE_CORPUS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md)
-   - [REPO_SKILL_INTEGRATION_TRACKER.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md)
-   - [SKILL_CANDIDATES_BACKLOG.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_CANDIDATES_BACKLOG.md)
-   - [LOCAL_SOURCE_REPO_INVENTORY.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/LOCAL_SOURCE_REPO_INVENTORY.md)
-   - [A2_SKILL_SOURCE_INTAKE_PROCEDURE__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SKILL_SOURCE_INTAKE_PROCEDURE__CURRENT__v1.md)
+   - [SKILL_SOURCE_CORPUS.md](/home/ratchet/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md)
+   - [REPO_SKILL_INTEGRATION_TRACKER.md](/home/ratchet/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md)
+   - [SKILL_CANDIDATES_BACKLOG.md](/home/ratchet/Desktop/Codex%20Ratchet/SKILL_CANDIDATES_BACKLOG.md)
+   - [LOCAL_SOURCE_REPO_INVENTORY.md](/home/ratchet/Desktop/Codex%20Ratchet/LOCAL_SOURCE_REPO_INVENTORY.md)
+   - [A2_SKILL_SOURCE_INTAKE_PROCEDURE__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SKILL_SOURCE_INTAKE_PROCEDURE__CURRENT__v1.md)
 2. Audit the first imported cluster:
    - `lev-intake`
    - `skill-discovery`

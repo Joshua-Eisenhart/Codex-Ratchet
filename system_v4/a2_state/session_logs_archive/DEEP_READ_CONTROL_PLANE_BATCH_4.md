@@ -16,10 +16,10 @@
 - Total: 3942 nodes, 7691 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/flowmind_integration/LEV_MMM_DECENTRALIZATION_AUDIT_v2_1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/validator_contract/SEMANTIC_RATCHET_STRESS_TEST_PLAN_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/validator_contract/ZIP_VALIDATION_MATRIX.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/public_facing_docs/01_PUBLIC_FACING_LAYERED_ARCHITECTURE_AND_ENTROPY_BOUNDARY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/flowmind_integration/LEV_MMM_DECENTRALIZATION_AUDIT_v2_1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/validator_contract/SEMANTIC_RATCHET_STRESS_TEST_PLAN_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/validator_contract/ZIP_VALIDATION_MATRIX.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/public_facing_docs/01_PUBLIC_FACING_LAYERED_ARCHITECTURE_AND_ENTROPY_BOUNDARY_v1.md
 
 ## Batches
 - `AUTO_LEV_MMM_DECENTRALIZATION_AUDIT_v2_1_9249df81c28a2883`

@@ -18,7 +18,7 @@ For each document in the queue:
 **Step 3:** Use `run_command` with this EXACT Python shell snippet to ingest the concepts:
 
 ```bash
-cd "/Users/joshuaeisenhart/Desktop/Codex Ratchet" && python3 -c "
+cd "/home/ratchet/Desktop/Codex Ratchet" && python3 -c "
 import sys
 sys.path.insert(0, '.')
 from system_v4.skills.a2_graph_refinery import A2GraphRefinery
@@ -37,7 +37,7 @@ concepts = [
     # Add more concepts...
 ]
 
-r.process_extracted('/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/YOUR_FILE_NAME.md', concepts)
+r.process_extracted('/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/YOUR_FILE_NAME.md', concepts)
 
 r.log_finding('Deep-read extraction completed for YOUR_FILE_NAME.md')
 r.end_session()

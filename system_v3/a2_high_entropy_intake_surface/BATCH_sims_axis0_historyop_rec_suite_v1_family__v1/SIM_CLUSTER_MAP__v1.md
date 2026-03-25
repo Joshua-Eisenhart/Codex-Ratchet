@@ -7,8 +7,8 @@ Extraction mode: `SIM_AXIS0_HISTORYOP_REC_SUITE_PASS`
 - cluster label:
   - core source pair
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis0_historyop_rec_suite_v1.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis0_historyop_rec_suite_v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis0_historyop_rec_suite_v1.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis0_historyop_rec_suite_v1.json`
 - family role:
   - canonical source-bounded member set for this batch
 - executable-facing read:
@@ -42,8 +42,8 @@ Extraction mode: `SIM_AXIS0_HISTORYOP_REC_SUITE_PASS`
 - cluster label:
   - top-level visibility anchors
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
 - family role:
   - comparison-only visibility and admission cluster
 - executable-facing read:
@@ -56,7 +56,7 @@ Extraction mode: `SIM_AXIS0_HISTORYOP_REC_SUITE_PASS`
 - cluster label:
   - residual campaign continuity
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_residual_inventory_closure_audit__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_residual_inventory_closure_audit__v1/MANIFEST.json`
   - deferred next residual pair:
     - `run_axis0_mi_discrim_branches.py`
     - `results_axis0_mi_discrim_branches.json`

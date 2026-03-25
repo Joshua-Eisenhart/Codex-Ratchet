@@ -9,7 +9,7 @@ authority: "SOURCE_CLAIM"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_worker_prompt__a2_intake_cold_index_p::d369fd1f8464a4aa`
 
 ## Description
-A2_WORKER_PROMPT__A2_INTAKE_COLD_INDEX_PREP__2026_03_16__v1.txt (1833B): Use $ratchet-a2-a1.  Use the current A2 boot: - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md  Run one bounded A2_HIGH_REFINED_FUEL_NON_SIMS pass only.  dispatch_id: A2_WORKER__A2_INTAKE_COLD_INDEX_PREP__2026_03_16__v1 ROLE_LABEL: A2H Refined Fuel Non-Sims ROL
+A2_WORKER_PROMPT__A2_INTAKE_COLD_INDEX_PREP__2026_03_16__v1.txt (1833B): Use $ratchet-a2-a1.  Use the current A2 boot: - /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md  Run one bounded A2_HIGH_REFINED_FUEL_NON_SIMS pass only.  dispatch_id: A2_WORKER__A2_INTAKE_COLD_INDEX_PREP__2026_03_16__v1 ROLE_LABEL: A2H Refined Fuel Non-Sims ROL
 
 ## Properties
 - **source_line_range**: 

@@ -8,7 +8,7 @@ Date: 2026-03-09
 ## 1) Batch Selection
 - selected sources:
   - direct archive object:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS`
   - top-level family entries:
     - `20260225T070252Z`
     - `SYSTEM_V3__CURRENT_STATE_ROTATIONS__20260224T223517Z`
@@ -36,11 +36,11 @@ Date: 2026-03-09
   - the archive value is structural: recursive heat-dump nesting, current-state rotation residue, oversized-run retention, save-export duplication, and a 13-wave demotion ledger that explicitly moved raw runs out of the active tree after witness/anchor rewrites
   - this object is useful for lineage because it shows how older raw run surfaces were demoted from active runtime authority into external heat storage without being deleted
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z`
 
 ## 2) Source Membership
 ### Source 1
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS`
 - source class: archive heat-dump root
 - retained top-level entries:
   - `20260225T070252Z`
@@ -66,7 +66,7 @@ Date: 2026-03-09
   - `HEAT_DUMPS` is a multi-family retention surface, not one homogeneous run corpus
 
 ### Source 2
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z`
 - source class: timestamped mega-dump family
 - family markers:
   - file count: `27615`
@@ -84,7 +84,7 @@ Date: 2026-03-09
   - this is a recursive archive-of-archives heat dump with very high file density and nested moved-out-of-git residue
 
 ### Source 3
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__CURRENT_STATE_ROTATIONS__20260224T223517Z`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__CURRENT_STATE_ROTATIONS__20260224T223517Z`
 - source class: empty current-state rotation placeholder
 - family markers:
   - file count: `0`
@@ -93,7 +93,7 @@ Date: 2026-03-09
   - one rotation surface was created but retained no payload
 
 ### Source 4
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__CURRENT_STATE_ROTATIONS__20260224T223534Z`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__CURRENT_STATE_ROTATIONS__20260224T223534Z`
 - source class: loose-file current-state rotation snapshot
 - family markers:
   - file count: `47`
@@ -105,7 +105,7 @@ Date: 2026-03-09
   - this family preserves numbered loose-file state and sequence snapshots without enclosing manifest or run-root context
 
 ### Source 5
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUNS_OVER_2MB__20260224T224703Z`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUNS_OVER_2MB__20260224T224703Z`
 - source class: oversized-run bucket
 - family markers:
   - file count: `2912`
@@ -122,7 +122,7 @@ Date: 2026-03-09
   - one heat-dump branch is explicitly size-based rather than doctrine-based
 
 ### Source 6
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_SAVE_EXPORTS__20260224T224330Z`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_SAVE_EXPORTS__20260224T224330Z`
 - source class: save-export micro-family
 - family markers:
   - file count: `4`
@@ -136,7 +136,7 @@ Date: 2026-03-09
   - this branch mirrors a tiny save-export retention kit inside `HEAT_DUMPS`
 
 ### Source 7
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_01__20260308T205105Z/RUN_DEMOTION_MANIFEST__v1.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_01__20260308T205105Z/RUN_DEMOTION_MANIFEST__v1.md`
 - source class: first demotion-wave manifest
 - manifest markers:
   - action: archive demotion by move only
@@ -157,7 +157,7 @@ Date: 2026-03-09
   - the first wave frames heat-dump storage as reversible demotion, not deletion, with an explicit keep-set split
 
 ### Source 8
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_02A__20260308T205343Z/RUN_DEMOTION_MANIFEST__v1.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_02A__20260308T205343Z/RUN_DEMOTION_MANIFEST__v1.md`
 - source class: second-wave safe-half manifest
 - manifest markers:
   - action: archive demotion by move only
@@ -169,7 +169,7 @@ Date: 2026-03-09
   - the demotion program split riskier and safer waves rather than moving all history at once
 
 ### Source 9
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_02B__20260308T205508Z/RUN_DEMOTION_MANIFEST__v1.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_02B__20260308T205508Z/RUN_DEMOTION_MANIFEST__v1.md`
 - source class: second-wave bridge-continuation manifest
 - manifest markers:
   - moved runs are older bridge continuation/history runs
@@ -182,7 +182,7 @@ Date: 2026-03-09
   - pinned and anchor-like continuation runs were explicitly spared while adjacent history runs were demoted
 
 ### Source 10
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_03__20260309T050608Z/RUN_DEMOTION_MANIFEST__v1.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_03__20260309T050608Z/RUN_DEMOTION_MANIFEST__v1.md`
 - source class: doctrine-rewrite-gated manifest
 - manifest markers:
   - purpose: stage the third run-demotion batch before moving manifest into external archive heat-dump folder
@@ -195,7 +195,7 @@ Date: 2026-03-09
   - by batch 03, demotion is tightly coupled to archive-path rewrites of active anchor/witness surfaces
 
 ### Source 11
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_04__20260308T235900Z/RUN_DEMOTION_MANIFEST__v1.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_04__20260308T235900Z/RUN_DEMOTION_MANIFEST__v1.md`
 - source class: normalized-anchor continuation manifest
 - manifest markers:
   - purpose: demote rescue/continuation cluster after family-level doctrine was rewritten to normalized anchor and regeneration-witness surfaces
@@ -209,7 +209,7 @@ Date: 2026-03-09
   - even previously pinned or continuation-heavy runs became archive-safe once normalized anchor/witness surfaces took over
 
 ### Source 12
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_05__20260308T222429Z/RUN_DEMOTION_MANIFEST__v1.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_05__20260308T222429Z/RUN_DEMOTION_MANIFEST__v1.md`
 - source class: single-run move-with-witness-rewrite manifest
 - manifest markers:
   - policy: move-with-witness-rewrite
@@ -219,7 +219,7 @@ Date: 2026-03-09
   - the demotion mechanism also handles small single-run corrective waves
 
 ### Source 13
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_06__20260309T054702Z/RUN_DEMOTION_MANIFEST__v1.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_06__20260309T054702Z/RUN_DEMOTION_MANIFEST__v1.md`
 - source class: single-run local-structure demotion manifest
 - manifest markers:
   - type: archive demotion, not deletion
@@ -231,7 +231,7 @@ Date: 2026-03-09
   - by batch 06, even a formerly local keep-set run becomes demotion-safe after witness rewrite
 
 ### Source 14
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_07__20260309T060500Z/RUN_DEMOTION_MANIFEST__v1.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_07__20260309T060500Z/RUN_DEMOTION_MANIFEST__v1.md`
 - source class: residue-broad family demotion manifest
 - manifest markers:
   - moved runs:
@@ -244,7 +244,7 @@ Date: 2026-03-09
   - demotion lineage keeps broad-family residue while shifting active doctrine to normalized family surfaces
 
 ### Source 15
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_DEMOTION_MANIFEST__v1.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_DEMOTION_MANIFEST__v1.md`
 - source class: local/broad pair demotion manifest
 - manifest markers:
   - batch class: `HEAT_DUMP`
@@ -259,7 +259,7 @@ Date: 2026-03-09
   - paired local/broad families were explicitly collapsed into shared anchor/witness surfaces before demotion
 
 ### Source 16
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_09__20260309T070408Z/RUN_DEMOTION_MANIFEST__v1.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_09__20260309T070408Z/RUN_DEMOTION_MANIFEST__v1.md`
 - source class: rate-family demotion manifest
 - manifest markers:
   - batch class: `HEAT_DUMP`
@@ -270,7 +270,7 @@ Date: 2026-03-09
   - later demotion waves extend the same archive-path rewrite policy into entropy-rate families
 
 ### Source 17
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_10__20260309T070854Z/RUN_DEMOTION_MANIFEST__v1.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_10__20260309T070854Z/RUN_DEMOTION_MANIFEST__v1.md`
 - source class: substrate-family demotion manifest
 - manifest markers:
   - moved runs are substrate family exchange smoke runs
@@ -282,7 +282,7 @@ Date: 2026-03-09
   - demotion later becomes coupled not just to run-anchor rewrites but also to doctrine-surface rewrites in active A1/A2 state
 
 ### Source 18
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_11__20260309T071410Z/RUN_DEMOTION_MANIFEST__v1.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_11__20260309T071410Z/RUN_DEMOTION_MANIFEST__v1.md`
 - source class: substrate-enrichment demotion manifest
 - manifest markers:
   - moved runs cover packet smoke, local, bridge, and continuation members of substrate-enrichment families
@@ -294,7 +294,7 @@ Date: 2026-03-09
   - by batch 11, demotion is governed by family-anchor doctrine plus regeneration-witness continuity across multiple active surfaces
 
 ### Source 19
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_12__20260309T071701Z/RUN_DEMOTION_MANIFEST__v1.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_12__20260309T071701Z/RUN_DEMOTION_MANIFEST__v1.md`
 - source class: entropy-structure family demotion manifest
 - manifest markers:
   - moved runs cover local, patch, and seeded entropy-structure families
@@ -306,7 +306,7 @@ Date: 2026-03-09
   - this wave explicitly ties archive demotion to archive-path rewrites inside active control surfaces, not just witness docs
 
 ### Source 20
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_DEMOTION_MANIFEST__v1.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_DEMOTION_MANIFEST__v1.md`
 - source class: packet-smoke and bookkeeping-bridge demotion manifest
 - manifest markers:
   - moved runs cover:

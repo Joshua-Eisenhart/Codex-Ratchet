@@ -16,46 +16,46 @@
 - Total: 500 nodes, 363 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_FUNCTION_ADMISSIBILITY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_SET_ADMISSIBILITY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axes 0 - 6 5 3 - 4 1 2.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 0.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 1 2 topology mathΓÇ¿ΓÇ¿ΓÇ¿Good ΓÇö this is the right point to ask thatΓÇª.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 3 math Hopf fiber loop vs lifted base loop.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 qit mathΓÇ¿ΓÇ¿Good ΓÇö that statement narrows the target exactlyΓÇª.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 vs axis 5. Heating vs cooling is not Hot vs coldΓÇ¿ΓÇ¿YouΓÇÖre rightΓÇª.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Base constraints ledger v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/CANDIDATE_PROPOSAL_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPLETENESS_ADMISSIBILITY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPOSITION_CLASS_ADMISSIBILITY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/CONSTRAINT_MANIFOLD_DERIVATION_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COORDINATE_ADMISSIBILITY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COSMOLOGICALLY_CONSTRAINT_ADMISSIBLE_STRUCTURES_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/CYCLE_CLASS_ADMISSIBILITY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Cognition rosetta v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints. Entropy.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Curvature contract v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DIMENSIONALITY_ADMISSIBILITY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DUALITY_CLASS_ADMISSIBILITY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DYNAMICAL_ADMISSIBILITY_BOUNDARY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Engine contract v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Entropy contract v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/GEOMETRY_ADMISSIBILITY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Game theory rosetta v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/METRIC_ADMISSIBILITY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/OBSTRUCTION_ADMISSIBILITY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/ORTHOGONALITY_ADMISSIBILITY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Path contract v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Physics Rosetta v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/REFINEMENT_CONTRACT_v1.1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/RELATIONAL_TRANSPORT_ADMISSIBILITY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Rosetta contract v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/STATE_ABSTRACTION_ADMISSIBILITY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Simulation protocol v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Topology contract v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Transport contract v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_FUNCTION_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_SET_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axes 0 - 6 5 3 - 4 1 2.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 0.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 1 2 topology mathΓÇ¿ΓÇ¿ΓÇ¿Good ΓÇö this is the right point to ask thatΓÇª.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 3 math Hopf fiber loop vs lifted base loop.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 qit mathΓÇ¿ΓÇ¿Good ΓÇö that statement narrows the target exactlyΓÇª.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 vs axis 5. Heating vs cooling is not Hot vs coldΓÇ¿ΓÇ¿YouΓÇÖre rightΓÇª.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Base constraints ledger v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/CANDIDATE_PROPOSAL_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPLETENESS_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPOSITION_CLASS_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/CONSTRAINT_MANIFOLD_DERIVATION_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COORDINATE_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COSMOLOGICALLY_CONSTRAINT_ADMISSIBLE_STRUCTURES_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/CYCLE_CLASS_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Cognition rosetta v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints. Entropy.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Curvature contract v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DIMENSIONALITY_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DUALITY_CLASS_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DYNAMICAL_ADMISSIBILITY_BOUNDARY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Engine contract v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Entropy contract v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/GEOMETRY_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Game theory rosetta v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/METRIC_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/OBSTRUCTION_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/ORTHOGONALITY_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Path contract v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Physics Rosetta v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/REFINEMENT_CONTRACT_v1.1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/RELATIONAL_TRANSPORT_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Rosetta contract v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/STATE_ABSTRACTION_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Simulation protocol v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Topology contract v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Transport contract v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md
 
 ## Key Findings
 - DEEP CONSTRAINT LADDER: 40 files ingested from core_docs/a1_refined_Ratchet_Fuel/constraint_ladder/

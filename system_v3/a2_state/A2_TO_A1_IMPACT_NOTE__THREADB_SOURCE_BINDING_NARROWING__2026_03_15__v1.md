@@ -6,10 +6,10 @@ Date: 2026-03-15
 ## Change
 
 Active A2 source-binding language in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
 
 was narrowed so the Thread B consequence subset now points to the exact reduction artifacts:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_THREADB_CONSEQUENCE_SUBSET__SOURCE_BOUND_HELPER__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_THREADB_CONSEQUENCE_SUBSET__SOURCE_BOUND_HELPER__2026_03_15__v1.md`
 
 instead of naming the broader Thread B intake parent or its live intake artifacts directly.
 

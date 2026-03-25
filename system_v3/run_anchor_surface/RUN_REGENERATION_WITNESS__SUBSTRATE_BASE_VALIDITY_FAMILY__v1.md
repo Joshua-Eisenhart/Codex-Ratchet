@@ -7,7 +7,7 @@
 
 ## Anchor family
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_BASE_VALIDITY_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_BASE_VALIDITY_FAMILY__v1.md`
 
 ## Why this family matters
 
@@ -25,12 +25,12 @@
 ### Normalized retained triple
 
 - memo witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_BASE_LOCAL_0002/reports/a1_external_memo_batch_driver_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_BASE_LOCAL_0002/reports/a1_external_memo_batch_driver_report.json`
   - witness meaning:
     - compact retained proof that the tighter concept-local substrate-base profile executes one graveyard-first cycle at `9 / 53 / 53 / 80`
 
 - cold-core witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_BASE_LOCAL_0002/a1_sandbox/cold_core/000024_A1_COLD_CORE_PROPOSALS_v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_BASE_LOCAL_0002/a1_sandbox/cold_core/000024_A1_COLD_CORE_PROPOSALS_v1.json`
   - witness meaning:
     - retained concept-local proposal surface showing the narrowed base-family landing on:
       - `trace_one`
@@ -38,7 +38,7 @@
       - `one`
 
 - strategy witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_BASE_LOCAL_0002/a1_sandbox/outgoing/000024_A1_STRATEGY_v1__PACK_SELECTOR.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_BASE_LOCAL_0002/a1_sandbox/outgoing/000024_A1_STRATEGY_v1__PACK_SELECTOR.json`
   - witness meaning:
     - retained selector output showing the same narrowed base-family surface:
       - `one`
@@ -47,17 +47,17 @@
 ## Supporting broad saturation witnesses
 
 - broad memo witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_BASE_0003/reports/a1_external_memo_batch_driver_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_BASE_0003/reports/a1_external_memo_batch_driver_report.json`
   - witness meaning:
     - preserves the exploratory broad-fuel graveyard saturation state at `39 / 153 / 153 / 247`
 
 - broad semantic gate witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_BASE_0003/reports/a1_semantic_and_math_substance_gate_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_BASE_0003/reports/a1_semantic_and_math_substance_gate_report.json`
   - witness meaning:
     - preserves the explicit graveyard-fill semantic/math pass for the broad substrate-base proof
 
 - broad cold-core witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_BASE_0003/a1_sandbox/cold_core/000024_A1_COLD_CORE_PROPOSALS_v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_BASE_0003/a1_sandbox/cold_core/000024_A1_COLD_CORE_PROPOSALS_v1.json`
   - witness meaning:
     - preserves the broader exploratory candidate set that still eventually collapses to the same `one` / `trace_one` selector surface
 

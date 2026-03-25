@@ -37,13 +37,13 @@ loop seam before claiming any recurring execution or runtime import.
 ## Execute Now
 
 1. Read:
-   - [A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.json)
-   - [A2_LEV_AGENTS_PROMOTION_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_PACKET__CURRENT__v1.json)
-   - [A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.json)
-   - [autodev-loop](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/reference_repos/lev-os/agents/skills/autodev-loop/SKILL.md)
-   - [autodev-lev](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/reference_repos/lev-os/agents/skills/autodev-lev/SKILL.md)
-   - [autodev.ts](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/reference_repos/lev-os/leviathan/plugins/core-sdlc/src/commands/autodev.ts)
-   - background only: [lev-plan](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/reference_repos/lev-os/agents/skills/lev-plan/SKILL.md), [stack](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/reference_repos/lev-os/agents/skills/stack/SKILL.md), and [support README](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/reference_repos/lev-os/leviathan/plugins/core-sdlc/support/README.md)
+   - [A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.json)
+   - [A2_LEV_AGENTS_PROMOTION_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_PACKET__CURRENT__v1.json)
+   - [A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.json)
+   - [autodev-loop](/home/ratchet/Desktop/Codex%20Ratchet/work/reference_repos/lev-os/agents/skills/autodev-loop/SKILL.md)
+   - [autodev-lev](/home/ratchet/Desktop/Codex%20Ratchet/work/reference_repos/lev-os/agents/skills/autodev-lev/SKILL.md)
+   - [autodev.ts](/home/ratchet/Desktop/Codex%20Ratchet/work/reference_repos/lev-os/leviathan/plugins/core-sdlc/src/commands/autodev.ts)
+   - background only: [lev-plan](/home/ratchet/Desktop/Codex%20Ratchet/work/reference_repos/lev-os/agents/skills/lev-plan/SKILL.md), [stack](/home/ratchet/Desktop/Codex%20Ratchet/work/reference_repos/lev-os/agents/skills/stack/SKILL.md), and [support README](/home/ratchet/Desktop/Codex%20Ratchet/work/reference_repos/lev-os/leviathan/plugins/core-sdlc/support/README.md)
 2. Keep the slice bounded to loop-shape / validation-boundary / runtime-coupling audit only.
 3. Emit one report and one packet only.
 

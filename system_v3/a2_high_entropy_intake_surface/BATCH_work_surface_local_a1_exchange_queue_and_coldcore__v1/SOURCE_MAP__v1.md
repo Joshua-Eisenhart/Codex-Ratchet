@@ -9,11 +9,11 @@ Scope
 ## Source set A: local external-memo bridge queue
 
 Primary anchors
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_sandbox/codex_exchange/provider_bridge/requests/000001__A1_EXTERNAL_MEMO_REQUEST__20260306T091555Z.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_sandbox/codex_exchange/provider_bridge/requests/000001__A1_EXTERNAL_MEMO_REQUEST__20260306T100007Z.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_sandbox/codex_exchange/provider_bridge/requests/000006__A1_EXTERNAL_MEMO_REQUEST__20260306T090852Z.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_sandbox/codex_exchange/provider_bridge/responses/000006__A1_EXTERNAL_MEMO_RESPONSE__20260306T090852Z.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_sandbox/codex_exchange/provider_bridge/responses/000006__A1_EXTERNAL_MEMO_RESPONSE__20260306T091432Z.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/a1_sandbox/codex_exchange/provider_bridge/requests/000001__A1_EXTERNAL_MEMO_REQUEST__20260306T091555Z.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/a1_sandbox/codex_exchange/provider_bridge/requests/000001__A1_EXTERNAL_MEMO_REQUEST__20260306T100007Z.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/a1_sandbox/codex_exchange/provider_bridge/requests/000006__A1_EXTERNAL_MEMO_REQUEST__20260306T090852Z.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/a1_sandbox/codex_exchange/provider_bridge/responses/000006__A1_EXTERNAL_MEMO_RESPONSE__20260306T090852Z.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/a1_sandbox/codex_exchange/provider_bridge/responses/000006__A1_EXTERNAL_MEMO_RESPONSE__20260306T091432Z.json`
 
 Observed structure
 - `requests/` contains `2655` JSON packets total.
@@ -32,8 +32,8 @@ Useful residue
 ## Source set B: answered sequence-6 response pair
 
 Primary anchors
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_sandbox/codex_exchange/provider_bridge/responses/000006__A1_EXTERNAL_MEMO_RESPONSE__20260306T090852Z.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_sandbox/codex_exchange/provider_bridge/responses/000006__A1_EXTERNAL_MEMO_RESPONSE__20260306T091432Z.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/a1_sandbox/codex_exchange/provider_bridge/responses/000006__A1_EXTERNAL_MEMO_RESPONSE__20260306T090852Z.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/a1_sandbox/codex_exchange/provider_bridge/responses/000006__A1_EXTERNAL_MEMO_RESPONSE__20260306T091432Z.json`
 
 Observed structure
 - Normalized response comparison yields only `1` signature repeated twice.
@@ -58,8 +58,8 @@ Useful residue
 ## Source set C: transient cold-core distillations
 
 Primary anchors
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_transient_cold_core/RUN_GRAVEYARD_VALIDITY_ENTROPY_RATE_LOCAL_0001/cold_core/000001_A1_COLD_CORE_PROPOSALS_v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_transient_cold_core/RUN_SUBSTRATE_FAMILY_EXCHANGE_SMOKE_0011/cold_core/000001_A1_COLD_CORE_PROPOSALS_v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/a1_transient_cold_core/RUN_GRAVEYARD_VALIDITY_ENTROPY_RATE_LOCAL_0001/cold_core/000001_A1_COLD_CORE_PROPOSALS_v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/a1_transient_cold_core/RUN_SUBSTRATE_FAMILY_EXCHANGE_SMOKE_0011/cold_core/000001_A1_COLD_CORE_PROPOSALS_v1.json`
 
 Observed structure
 - entropy-rate cold-core packet:
@@ -89,8 +89,8 @@ Useful residue
 ## Source set D: cache backup residue
 
 Primary anchors
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/cache_backup/.pytest_cache/README.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/cache_backup/.pytest_cache/v/cache/nodeids`
+- `/home/ratchet/Desktop/Codex Ratchet/work/cache_backup/.pytest_cache/README.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/cache_backup/.pytest_cache/v/cache/nodeids`
 
 Observed structure
 - This is ordinary pytest cache residue, not a designed A1 surface.

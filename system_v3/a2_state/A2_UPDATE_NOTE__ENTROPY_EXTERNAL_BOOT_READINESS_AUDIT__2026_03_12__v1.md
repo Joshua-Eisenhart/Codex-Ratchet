@@ -6,10 +6,10 @@ Role: bounded A2 controller audit of the corrected external entropy/Carnot/Szila
 
 ## AUDIT_SCOPE
 - active next-boot controller scaffolds:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_PRO_BOOT_PACKET_SCAFFOLD__ENTROPY_CARNOT_SZILARD__2026_03_11__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_PRO_BOOT_SOURCE_ADDITIONS__ENTROPY_CARNOT_SZILARD__2026_03_11__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_PRO_BOOT_PACKET_SCAFFOLD__ENTROPY_CARNOT_SZILARD__2026_03_11__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_PRO_BOOT_SOURCE_ADDITIONS__ENTROPY_CARNOT_SZILARD__2026_03_11__v1.md`
 - current corrected dropin workspace:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3`
 - launch-facing bundle surfaces:
   - `00_RUN_ME_FIRST__PRO_BOOT_JOB__v1.md`
   - `input/LOCAL_SOURCE_PACK_INDEX__v1.md`

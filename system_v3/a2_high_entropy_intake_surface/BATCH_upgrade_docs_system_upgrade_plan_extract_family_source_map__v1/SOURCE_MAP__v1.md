@@ -7,60 +7,60 @@ Date: 2026-03-08
 
 ## 1) Folder-Order Selection
 - prior completed batch ended at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md`
 - next folder-order sources selected for this bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS2.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS3.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS4.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS5.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS6.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS7.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS8.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS9.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS3.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS4.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS5.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS6.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS7.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS8.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS9.md`
 - reason for family batch:
   - the files are adjacent in folder order and explicitly form one pass-series
   - each pass extracts a different axis of the same upgrade program
   - total size is bounded enough for one compression-side family package
   - first-pass value is the progression map across passes, not isolated treatment of one file at a time
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/jp graph prompt!!.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/jp graph prompt!!.txt`
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md`
   - role: baseline full-state extraction
   - line count: `193`
 - source 2:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS2.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS2.md`
   - role: contradiction / failure-vs-non-attempt / thinking-vs-instant refinement
   - line count: `100`
 - source 3:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS3.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS3.md`
   - role: bulk restatement preserving unresolved items
   - line count: `83`
 - source 4:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS4.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS4.md`
   - role: verbatim-intent restatement plus failure/confusion log
   - line count: `104`
 - source 5:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS5.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS5.md`
   - role: multi-axis split across transport, system topology, A1, SIM, graveyard, and meta failures
   - line count: `95`
 - source 6:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS6.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS6.md`
   - role: process/meta-process and extraction-loop mechanics
   - line count: `131`
 - source 7:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS7.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS7.md`
   - role: SIM approval and deterministic-boundary isolation
   - line count: `119`
 - source 8:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS8.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS8.md`
   - role: A1 mode-control isolation
   - line count: `36`
 - source 9:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS9.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS9.md`
   - role: compact restatement of the extracted upgrade picture
   - line count: `74`
 - family total:

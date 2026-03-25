@@ -33,11 +33,11 @@ repo-held work-state artifact over existing queue/audit surfaces.
 ## Execute Now
 
 1. Read:
-   - [V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md)
-   - [A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.json)
-   - [SYSTEM_SKILL_BUILD_PLAN.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SYSTEM_SKILL_BUILD_PLAN.md)
-   - [NESTED_GRAPH_BUILD_QUEUE_STATUS__CURRENT__2026_03_20__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_QUEUE_STATUS__CURRENT__2026_03_20__v1.md)
-   - [doc_queue.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/doc_queue.json)
+   - [V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md)
+   - [A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.json)
+   - [SYSTEM_SKILL_BUILD_PLAN.md](/home/ratchet/Desktop/Codex%20Ratchet/SYSTEM_SKILL_BUILD_PLAN.md)
+   - [NESTED_GRAPH_BUILD_QUEUE_STATUS__CURRENT__2026_03_20__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_QUEUE_STATUS__CURRENT__2026_03_20__v1.md)
+   - [doc_queue.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/doc_queue.json)
 2. Emit one bounded tracked-work report.
 3. Keep the next move explicit and the non-goals explicit.
 

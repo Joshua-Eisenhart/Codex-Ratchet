@@ -39,4 +39,4 @@ Extraction mode: `MATH_CLASS_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPOSITION_CLASS_ADMISSIBILITY_v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPOSITION_CLASS_ADMISSIBILITY_v1.md`

@@ -16,7 +16,7 @@
 - Total: 3737 nodes, 7551 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/29 thing.txt
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/29 thing.txt
 
 ## Batches
 - `BATCH_V4_DEEP_READ_29_THING`

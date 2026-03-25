@@ -5,7 +5,7 @@ Role: prevent colder entropy helpers from collapsing into isolated seeds by forc
 
 ## 1) Trigger
 Use this pack after:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 
 That run shows:
 - colder witnesses can lead,

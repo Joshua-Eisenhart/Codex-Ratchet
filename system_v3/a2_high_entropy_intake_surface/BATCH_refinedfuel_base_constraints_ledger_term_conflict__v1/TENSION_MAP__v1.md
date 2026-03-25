@@ -7,7 +7,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
 - source markers:
   - source 1: `1-73`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:32-47`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:32-47`
 - tension:
   - the archive manifest classifies this file as `LEGACY`, internally coherent but superseded
   - many of its compact bans clearly survive into later canonical admissibility docs
@@ -18,10 +18,10 @@ Extraction mode: `TERM_CONFLICT_PASS`
 - source markers:
   - source 1: `3-73`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/CONSTRAINT_MANIFOLD_DERIVATION_v1.md:1-40`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_FUNCTION_ADMISSIBILITY_v1.md:1-31`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPOSITION_CLASS_ADMISSIBILITY_v1.md:1-37`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/STATE_ABSTRACTION_ADMISSIBILITY_v1.md:9-67`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/CONSTRAINT_MANIFOLD_DERIVATION_v1.md:1-40`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_FUNCTION_ADMISSIBILITY_v1.md:1-31`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPOSITION_CLASS_ADMISSIBILITY_v1.md:1-37`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/STATE_ABSTRACTION_ADMISSIBILITY_v1.md:9-67`
 - tension:
   - this ledger compresses many base prohibitions into twelve direct BC statements
   - later canon decomposes them into multiple dependency-ordered specs with hard output contracts, tagged statements, and narrower scope
@@ -33,8 +33,8 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `21-31`
   - source 1: `45-49`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/STATE_ABSTRACTION_ADMISSIBILITY_v1.md:17-23`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/STATE_ABSTRACTION_ADMISSIBILITY_v1.md:37-55`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/STATE_ABSTRACTION_ADMISSIBILITY_v1.md:17-23`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/STATE_ABSTRACTION_ADMISSIBILITY_v1.md:37-55`
 - tension:
   - the ledger gives a compact anti-identity / probe-relative identification rule
   - later state-abstraction discipline adds stronger scope fences:
@@ -49,7 +49,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
 - source markers:
   - source 1: `33-43`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPOSITION_CLASS_ADMISSIBILITY_v1.md:5-31`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPOSITION_CLASS_ADMISSIBILITY_v1.md:5-31`
 - tension:
   - the ledger states the guarded-composition posture in simple omnibus language
   - later composition-class canon expands this into:
@@ -66,7 +66,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
 - source markers:
   - source 1: `57-61`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/CONSTRAINT_MANIFOLD_DERIVATION_v1.md:31-40`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/CONSTRAINT_MANIFOLD_DERIVATION_v1.md:31-40`
 - tension:
   - the ledger directly bans metric, distance, norm, and coordinate chart as primitive
   - later canonical docs keep those bans but also open explicit derived-geometry, curvature, and dimensionality extensions under controlled conditions
@@ -77,8 +77,8 @@ Extraction mode: `TERM_CONFLICT_PASS`
 - source markers:
   - source 1: `51-67`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/STATE_ABSTRACTION_ADMISSIBILITY_v1.md:17-23`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_FUNCTION_ADMISSIBILITY_v1.md:27-30`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/STATE_ABSTRACTION_ADMISSIBILITY_v1.md:17-23`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_FUNCTION_ADMISSIBILITY_v1.md:27-30`
 - tension:
   - the ledger treats no-probability and no-optimization as global base-layer bans
   - later docs preserve the bans but localize them within specific surface contracts and open-extension clauses

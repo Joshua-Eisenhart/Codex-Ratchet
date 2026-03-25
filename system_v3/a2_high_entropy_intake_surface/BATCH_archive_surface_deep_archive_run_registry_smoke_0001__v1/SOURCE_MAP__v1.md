@@ -8,7 +8,7 @@ Date: 2026-03-09
 ## 1) Batch Selection
 - selected sources:
   - direct run root:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001`
   - core run-state surfaces:
     - `summary.json`
     - `state.json`
@@ -25,11 +25,11 @@ Date: 2026-03-09
   - the archive value is a compact registry-smoke run that preserves the smallest clean transport surface in this family while still showing headline compression and semantic demotion debt
   - the run is especially useful for archive lineage because it compresses two accepted passes into one headline total, preserves empty-path SIM evidence references, and already shows same-name strategy-packet divergence
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SEMANTIC_SIM_0001`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SEMANTIC_SIM_0001`
 
 ## 2) Source Membership
 ### Source 1
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001`
 - source class: direct smoke run root
 - total files: `20`
 - total directories: `3`
@@ -48,7 +48,7 @@ Date: 2026-03-09
   - no `sim/` directory
 
 ### Source 2
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/summary.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/summary.json`
 - sha256: `defe0b49875bab578b28941d4b3dd9fbe4b6d0d60b0193e6d2456c2252927e9a`
 - size bytes: `830`
 - source class: direct final snapshot summary
@@ -72,7 +72,7 @@ Date: 2026-03-09
     - higher tiers all zero
 
 ### Source 3
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/state.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/state.json`
 - sha256: `a014509a1c76b4ff7b9030c958d32a49f2ba96909d4876e251741649f15d577e`
 - size bytes: `25151`
 - source class: direct final snapshot state
@@ -107,14 +107,14 @@ Date: 2026-03-09
   - all `4` `sim_promotion_status` entries are `PARKED`
 
 ### Source 4
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/state.json.sha256`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/state.json.sha256`
 - source class: state integrity sidecar
 - integrity result:
   - declared hash matches actual `state.json` sha256
   - declared hash matches `summary.json` final state hash
 
 ### Source 5
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/sequence_state.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/sequence_state.json`
 - sha256: `a2cd63aab6f53d01a35b699258a3d285ac69ecb47628f3f6eb78c86c03996da2`
 - size bytes: `90`
 - source class: full run sequence ledger
@@ -126,7 +126,7 @@ Date: 2026-03-09
   - `SIM 4`
 
 ### Source 6
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/a1_inbox/sequence_state.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/a1_inbox/sequence_state.json`
 - sha256: `28aba5ac018fd7004dfab4878163ca638a30e376bdda9194b21a8a983af869f8`
 - size bytes: `33`
 - source class: inbox-local A1 sequence ledger
@@ -137,7 +137,7 @@ Date: 2026-03-09
   - both preserve the same terminal A1 sequence max of `2`
 
 ### Source 7
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/events.jsonl`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/events.jsonl`
 - sha256: `cb11ee28b8854c475c62d9b45c0fd2b055ff67cba1408d4d7733e98d0deda775`
 - size bytes: `3862`
 - line count: `3`
@@ -173,7 +173,7 @@ Date: 2026-03-09
     - `unresolved_promotion_blocker_count 4`
 
 ### Source 8
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/soak_report.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/soak_report.md`
 - sha256: `32d261974502a3c1f250873fc384a502dfbdc930a9fb3a2eec20dd32b47cde81`
 - size bytes: `4269`
 - source class: human-readable soak report
@@ -192,7 +192,7 @@ Date: 2026-03-09
   - all retained `sim_outputs[].path` values are empty strings
 
 ### Source 9
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/zip_packets`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/zip_packets`
 - source class: embedded packet lattice
 - file count: `11`
 - packet kind counts:
@@ -206,7 +206,7 @@ Date: 2026-03-09
   - `000002_A1_TO_A0_STRATEGY_ZIP.zip -> 28ee0dfdf1bb10dc43cd39121d3c4e917b694c8204acc496ae32098db5382729`
 
 ### Source 10
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/a1_inbox/consumed`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_REGISTRY_SMOKE_0001/a1_inbox/consumed`
 - source class: fully consumed strategy residue
 - file count: `2`
 - consumed strategy packet hashes:

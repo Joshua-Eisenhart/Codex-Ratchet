@@ -15,12 +15,12 @@ Date: 2026-02-20
 
 Companion repair targets:
 - staged SIM campaign process:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/72_SIM_CAMPAIGN_AND_SUITE_MODES__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/72_SIM_CAMPAIGN_AND_SUITE_MODES__v1.md`
 - semantic `FULL+` save ZIP:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1.md`
 
 Build-phase companion:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/21_IMPLEMENTATION_BUILD_SEQUENCE_AND_ACCEPTANCE_MATRIX.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/21_IMPLEMENTATION_BUILD_SEQUENCE_AND_ACCEPTANCE_MATRIX.md`
 
 ## State Objects
 - canonical state (B-owned)

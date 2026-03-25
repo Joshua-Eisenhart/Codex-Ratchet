@@ -7,7 +7,7 @@
 
 ## Anchor family
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 
 ## Why this family matters
 
@@ -55,35 +55,35 @@
 ### Normalized retained core
 
 - wrapper witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_CORRELATION_EXECUTABLE_CLUSTER_CLAMP_BROAD_0002/reports/graveyard_first_validity_wrapper_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_CORRELATION_EXECUTABLE_CLUSTER_CLAMP_BROAD_0002/reports/graveyard_first_validity_wrapper_report.json`
   - witness meaning:
     - retained local wrapper shows `PASS__PATH_BUILD_SATURATED`, `executed_cycles = 8`, and `STOPPED__PACK_SELECTOR_FAILED` on the cleaner executable continuation
 
 - memo witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_CORRELATION_EXECUTABLE_CLUSTER_CLAMP_BROAD_0002/reports/a1_external_memo_batch_driver_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_CORRELATION_EXECUTABLE_CLUSTER_CLAMP_BROAD_0002/reports/a1_external_memo_batch_driver_report.json`
   - witness meaning:
     - retained memo/exchange witness for the same executable branch and allowlist state
 
 - cold-core witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_CORRELATION_EXECUTABLE_CLUSTER_CLAMP_BROAD_0002/a1_sandbox/cold_core/000009_A1_COLD_CORE_PROPOSALS_v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_CORRELATION_EXECUTABLE_CLUSTER_CLAMP_BROAD_0002/a1_sandbox/cold_core/000009_A1_COLD_CORE_PROPOSALS_v1.json`
   - witness meaning:
     - retained cold-core witness showing `proposed_terms_raw = ["correlation", "correlation_polarity", "density_entropy"]` with `need_atomic_bootstrap = []`
 
 - strategy witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_CORRELATION_EXECUTABLE_CLUSTER_CLAMP_BROAD_0002/a1_sandbox/outgoing/000008_A1_STRATEGY_v1__PACK_SELECTOR.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_CORRELATION_EXECUTABLE_CLUSTER_CLAMP_BROAD_0002/a1_sandbox/outgoing/000008_A1_STRATEGY_v1__PACK_SELECTOR.json`
   - witness meaning:
     - retained selector surface for the same cluster-clamped executable branch
 
 ## Supporting control witnesses
 
 - first executable proof:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_CORRELATION_EXECUTABLE_BROAD_0002/reports/graveyard_first_validity_wrapper_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_CORRELATION_EXECUTABLE_BROAD_0002/reports/graveyard_first_validity_wrapper_report.json`
 - broad-state floor:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_CORRELATION_EXECUTABLE_BROAD_0002/state.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_CORRELATION_EXECUTABLE_BROAD_0002/state.json`
 - seeded continuation saturation:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_CORRELATION_EXECUTABLE_CLUSTER_CLAMP_BROAD_CONT_0006/reports/graveyard_first_validity_wrapper_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_CORRELATION_EXECUTABLE_CLUSTER_CLAMP_BROAD_CONT_0006/reports/graveyard_first_validity_wrapper_report.json`
 - probe-companion no-advance follow-up:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_CORRELATION_EXECUTABLE_CLUSTER_CLAMP_BROAD_PROBE_COMPANION_0001/reports/graveyard_first_validity_wrapper_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_CORRELATION_EXECUTABLE_CLUSTER_CLAMP_BROAD_PROBE_COMPANION_0001/reports/graveyard_first_validity_wrapper_report.json`
 
 ## Normalized family read
 
@@ -118,6 +118,6 @@
 ## Future refactor consequence
 
 - once direct local run citations are replaced broadly by:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 - the raw local executable-family runs become better archive-first candidates

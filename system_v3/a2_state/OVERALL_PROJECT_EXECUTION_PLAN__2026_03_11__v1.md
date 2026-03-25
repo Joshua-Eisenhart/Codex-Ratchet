@@ -25,13 +25,13 @@ Purpose:
 - role and boundary law is explicit before work begins
 
 Core surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/29_ZIP_BOOT_BINDING_RULES__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/32_A1_QUEUE_STATUS_SURFACE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/33_A2_VS_A1_ROLE_SPLIT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/29_ZIP_BOOT_BINDING_RULES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/32_A1_QUEUE_STATUS_SURFACE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/33_A2_VS_A1_ROLE_SPLIT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md`
 
 ### Layer B: A2 refinery and controller
 Purpose:
@@ -217,7 +217,7 @@ That means the right near-term behavior is:
 ## 12) 2026-03-13 strategic target correction
 
 Source-bound basis:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__WHOLE_SYSTEM_TARGET_AUDIT__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__WHOLE_SYSTEM_TARGET_AUDIT__2026_03_13__v1.md`
 
 Clarification:
 - Layers A/F and the external packet program remain necessary support work
@@ -236,7 +236,7 @@ Current mainline implication:
 ## 13) 2026-03-13 staged main-target order
 
 Source-bound basis:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
 
 Current mainline order:
 1. keep the colder executable base in front:

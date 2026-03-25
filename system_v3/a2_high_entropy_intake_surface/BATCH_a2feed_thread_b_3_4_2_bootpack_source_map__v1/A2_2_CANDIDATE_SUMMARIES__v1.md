@@ -37,4 +37,4 @@ Extraction mode: `SOURCE_MAP_PASS`
 
 ## Candidate Summary C6
 - proposal-only next-step note:
-  - the next bounded folder-order step should inspect `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt` and validate/reuse the existing bounded batch for that source if the hash still matches, rather than duplicating intake output
+  - the next bounded folder-order step should inspect `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt` and validate/reuse the existing bounded batch for that source if the hash still matches, rather than duplicating intake output

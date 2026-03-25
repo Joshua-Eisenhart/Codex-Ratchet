@@ -7,9 +7,9 @@ Date: 2026-03-08
 
 ## 1) Folder-Order Selection
 - prior completed batch ended at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok unified phuysics nov 29th.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok unified phuysics nov 29th.txt`
 - next folder-order source selected for this bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/holodeck docs.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/holodeck docs.md`
 - bounded-doc rule used:
   - this file is large, layered, and internally shifts from speculative memory-model discussion into generated implementation packs
   - earlier active A2 surfaces mention `holodeck` placement, but this file itself had not yet received a standalone bounded intake pass
@@ -23,12 +23,12 @@ Date: 2026-03-08
     - fixed-LLM external memory control vs continual fine-tune / LoRA update lanes
     - Hume emotional-perception architecture vs Klein-consciousness packaging
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt`
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/holodeck docs.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/holodeck docs.md`
   - sha256: `f28a829cf105a69df994d4441b1a2e066768bfa72cea7a78173581cbee44ef42`
   - size bytes: `108333`
   - line count: `2205`

@@ -8,7 +8,7 @@ Date: 2026-03-09
 ## 1) Batch Selection
 - selected sources:
   - direct archive object:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS`
   - representative run-rotation manifests:
     - `RUN_SURFACE_ROTATION__20260225T004921Z/rotation_manifest.json`
     - `RUN_SURFACE_ROTATION_A1_WORKING__20260225T005137Z/rotation_manifest.json`
@@ -30,11 +30,11 @@ Date: 2026-03-09
   - the archive value is structural: this subtree is the actual carrier for recent run/save demotion waves inside the nested mirror
   - the subtree is useful for lineage because it preserves a short-lived sequence of demotion/rotation conventions across path style, family width, and packaging completeness
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS/RUN_SURFACE_ROTATION_A1_WORKING__20260225T005137Z`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS/RUN_SURFACE_ROTATION_A1_WORKING__20260225T005137Z`
 
 ## 2) Source Membership
 ### Source 1
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS`
 - source class: nested heat-dump rotation hub
 - retained markers:
   - subtree size:
@@ -81,8 +81,8 @@ Date: 2026-03-09
     - `SAVE_EXPORT_ROTATION__20260225T011419Z`
   - manifested fields:
     - `schema: SAVE_EXPORT_ROTATION_MANIFEST_v1`
-    - source is `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/_save_exports`
-    - destination is `/Users/joshuaeisenhart/Desktop/Codex Ratchet/archive/...`
+    - source is `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/_save_exports`
+    - destination is `/home/ratchet/Desktop/Codex Ratchet/archive/...`
   - kept/moved progression:
     - `005827Z` keeps `4` newer files and moves `4` older files
     - `010817Z` keeps `4` newer files and moves `4` older files

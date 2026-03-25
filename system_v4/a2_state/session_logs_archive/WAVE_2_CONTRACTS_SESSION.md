@@ -16,8 +16,8 @@
 - Total: 108 nodes, 119 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/16_ZIP_SAVE_AND_TAPES_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/16_ZIP_SAVE_AND_TAPES_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1.md
 
 ## Key Findings
 - Ingested 2 deep contract specs (16, 17)

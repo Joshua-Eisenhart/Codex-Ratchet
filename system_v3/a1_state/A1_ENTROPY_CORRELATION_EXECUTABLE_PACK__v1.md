@@ -14,8 +14,8 @@ It is the current executable entrypoint that remains after:
 
 ## 2) Trigger
 Use this pack after:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md`
 
 These show that the currently admitted entropy-side floor is:
 - `correlation`
@@ -95,8 +95,8 @@ Leave this branch only if one of the following becomes true:
 
 ## 8b) Current Run Proof
 Fresh proof run:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 
 Observed:
 - `wrapper_status = PASS__EXECUTED_CYCLE`
@@ -134,8 +134,8 @@ Interpretation:
 ## 8c) Variant Comparison
 Two narrower follow-up probes were run to test whether helper residue could be stripped without losing the executable branch:
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 
 Observed:
 - both return `PASS__NO_EXECUTED_CYCLE`
@@ -151,8 +151,8 @@ Interpretation:
 ## 8d) Cluster-Clamp Broad Continuation
 The cleaner active continuation for the entropy correlation branch is now:
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 
 Observed:
 - doctrine-local paraphrases often call this continuation `PASS__EXECUTED_CYCLE`
@@ -185,8 +185,8 @@ Interpretation:
 - the next blocker is path-build saturation, not contamination
 
 Seeded continuation saturation update:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 
 Observed:
 - `wrapper_status = PASS__PATH_BUILD_SATURATED`
@@ -200,8 +200,8 @@ Observed:
   - `CORRELATION_POLARITY`
   - `DENSITY_ENTROPY`
 - witness-only probe-companion seeded follow-up:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
   - accepted read:
     - doctrine-local paraphrases sometimes call this follow-up `PASS__EXECUTED_CYCLE` with `executed_cycles = 2`
     - the retained local wrapper says `PASS__PATH_BUILD_SATURATED` with `executed_cycles = 0`

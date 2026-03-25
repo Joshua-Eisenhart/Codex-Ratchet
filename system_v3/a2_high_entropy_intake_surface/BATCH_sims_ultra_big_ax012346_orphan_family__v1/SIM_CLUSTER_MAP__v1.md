@@ -7,7 +7,7 @@ Extraction mode: `SIM_ULTRA_BIG_AX012346_ORPHAN_PASS`
 - cluster label:
   - core orphan family
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_ultra_big_ax012346.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_ultra_big_ax012346.json`
 - family role:
   - canonical source-bounded member set for this batch
 - executable-facing read:
@@ -96,7 +96,7 @@ Extraction mode: `SIM_ULTRA_BIG_AX012346_ORPHAN_PASS`
 - cluster label:
   - ultra3 separation anchor
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_ultra3_full_geometry_stage16_axis0_orphan_family__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_ultra3_full_geometry_stage16_axis0_orphan_family__v1/MANIFEST.json`
 - family role:
   - comparison-only prior ultra orphan anchor
 - executable-facing read:

@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - folder order around this batch:
@@ -19,7 +19,7 @@ Date: 2026-03-09
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DIMENSIONALITY_ADMISSIBILITY_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DIMENSIONALITY_ADMISSIBILITY_v1.md`
 - reason for selection:
   - this is the next unprocessed non-sims `constraint ladder` file in folder order after `Curvature contract v1.md`
   - the file is a compact formal admissibility micro-spec, not a stitched narrative surface
@@ -34,11 +34,11 @@ Date: 2026-03-09
     - bounded axis / coordinate-rank / vector-space extensions remain open only as removable, non-authoritative overlays
   - this makes `MATH_CLASS_PASS` the best fit
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DUALITY_CLASS_ADMISSIBILITY_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DUALITY_CLASS_ADMISSIBILITY_v1.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DIMENSIONALITY_ADMISSIBILITY_v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DIMENSIONALITY_ADMISSIBILITY_v1.md`
   - role in batch: formal admissibility spec for dimensionality-like claims over declared relation families and finite dimension-token registries
   - sha256: `36c5c7648e52496f600348db6b9c2aa885066d45b02af874d06b9f0450882f19`
   - size bytes: `3451`

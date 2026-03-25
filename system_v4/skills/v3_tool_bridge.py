@@ -119,4 +119,4 @@ def run_bridge(workspace_root: str):
         print("Updated v3_v4_governance_map_v1.json")
 
 if __name__ == "__main__":
-    run_bridge("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
+    run_bridge(str(Path(__file__).resolve().parents[2]))

@@ -11,17 +11,17 @@ Date: 2026-03-09
   - `17` prior `BATCH_sims_*` directories already exist
   - those prior batches admit `76` sims files as direct source members
 - selected sources:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
 - reason for bounded closure batch:
   - no later raw-order `simpy` family remains
   - a residual inventory still exists outside source membership
   - this pass is therefore a coverage audit, not a new executable family batch
 - inventory method:
   - filename-level inventory only across:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims`
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy`
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson`
   - prior sims manifests were checked only to distinguish:
     - direct source membership
     - comparison-anchor-only reuse
@@ -31,13 +31,13 @@ Date: 2026-03-09
 
 ## 2) Source Membership
 - Catalog anchor:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md`
   - sha256: `0875a516fe8ed7d7ca5724b6655d13c5b07eb4b580829e598dce97e833254748`
   - size bytes: `7893`
   - line count: `158`
   - source role: top-level sims inventory spine used to confirm residual families are still catalog-visible
 - Evidence-pack anchor:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
   - sha256: `63b7e2029a9a3f5b06294b301ffcc62dd386077bed0ff4a3b9ef561b9f99140a`
   - size bytes: `30407`
   - line count: `663`
@@ -122,10 +122,10 @@ Date: 2026-03-09
 
 ## 4) Comparison Anchors
 - comparison sources:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_ultra_axis0_ab_axis6_sweep_family__v1/MANIFEST.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_sim_suite_v1_descendant_bundle__v1/MANIFEST.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_sim_suite_v2_successor_bundle__v1/MANIFEST.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_ultra_axis0_ab_axis6_sweep_family__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_sim_suite_v1_descendant_bundle__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_sim_suite_v2_successor_bundle__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md`
 - relevant anchors:
   - `BATCH_sims_ultra_axis0_ab_axis6_sweep_family__v1/MANIFEST.json`
   - `BATCH_sims_sim_suite_v1_descendant_bundle__v1/MANIFEST.json:32-40`

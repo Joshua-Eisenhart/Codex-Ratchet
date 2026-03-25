@@ -1,3 +1,4 @@
+import os
 #!/usr/bin/env python3
 from __future__ import annotations
 
@@ -13,7 +14,7 @@ ALLOWED_COMPOSER_READY = {"YES", "NO"}
 ALLOWED_CAPTURE_METHODS = {"MANUAL_OPERATOR", "PLAYWRIGHT_CAPTURE"}
 ALLOWED_READY_HINTS = {"READY", "UNVERIFIED"}
 DEFAULT_SINK_DIR = Path(
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/browser_thread_observations"
+    os.environ.get("CODEX_RATCHET_ROOT", ".") + "/work/audit_tmp/browser_thread_observations"
 )
 
 
@@ -40,7 +41,7 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--composer-ready-observed", required=True, choices=sorted(ALLOWED_COMPOSER_READY))
     parser.add_argument("--capture-method", required=True, choices=sorted(ALLOWED_CAPTURE_METHODS))
     parser.add_argument("--source-note", required=True)
-    parser.add_argument("--workspace-root", default="/Users/joshuaeisenhart/Desktop/Codex Ratchet")
+    parser.add_argument("--workspace-root", default=os.environ.get("CODEX_RATCHET_ROOT", ".") + "")
     parser.add_argument("--composer-ready-hint", required=True, choices=sorted(ALLOWED_READY_HINTS))
     parser.add_argument("--observed-at")
     parser.add_argument("--out-json")

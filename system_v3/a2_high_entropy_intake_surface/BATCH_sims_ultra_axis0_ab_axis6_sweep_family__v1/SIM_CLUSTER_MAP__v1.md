@@ -7,8 +7,8 @@ Extraction mode: `SIM_ULTRA_AXIS0_AB_AXIS6_SWEEP_PASS`
 - cluster label:
   - final ultra sweep shell
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_ultra_axis0_ab_axis6_sweep.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_ultra_axis0_ab_axis6_sweep.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_ultra_axis0_ab_axis6_sweep.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_ultra_axis0_ab_axis6_sweep.json`
 - family role:
   - canonical source-bounded member set for this batch
 - executable-facing read:
@@ -22,8 +22,8 @@ Extraction mode: `SIM_ULTRA_AXIS0_AB_AXIS6_SWEEP_PASS`
 - cluster label:
   - stage16 sweep branch
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_ultra_axis0_ab_axis6_sweep.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_ultra_axis0_ab_axis6_sweep.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_ultra_axis0_ab_axis6_sweep.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_ultra_axis0_ab_axis6_sweep.json`
 - family role:
   - bundled Stage16 sweep strip
 - executable-facing read:
@@ -37,8 +37,8 @@ Extraction mode: `SIM_ULTRA_AXIS0_AB_AXIS6_SWEEP_PASS`
 - cluster label:
   - axis0_ab mixed-record sweep branch
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_ultra_axis0_ab_axis6_sweep.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_ultra_axis0_ab_axis6_sweep.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_ultra_axis0_ab_axis6_sweep.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_ultra_axis0_ab_axis6_sweep.json`
 - family role:
   - bundled Axis0 AB sweep strip
 - executable-facing read:
@@ -51,8 +51,8 @@ Extraction mode: `SIM_ULTRA_AXIS0_AB_AXIS6_SWEEP_PASS`
 - cluster label:
   - ultra4 full-stack comparison anchor
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_ultra4_full_stack.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_ultra4_full_stack.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_ultra4_full_stack.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_ultra4_full_stack.json`
 - family role:
   - preceding full-stack expansion anchor
 - executable-facing read:

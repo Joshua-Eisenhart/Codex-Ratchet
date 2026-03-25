@@ -5,9 +5,9 @@ Surface class: `DERIVED_A2`
 Status: active maintenance note
 
 Source-bound basis:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/SKILL_IMPROVER_FIRST_TARGET_PROOF_REPORT__CURRENT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/SKILL_IMPROVER_SECOND_TARGET_ADMISSION_REPORT__CURRENT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/SKILL_IMPROVER_FIRST_TARGET_PROOF_REPORT__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/SKILL_IMPROVER_SECOND_TARGET_ADMISSION_REPORT__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md`
 
 Bounded update:
 - `SKILL_CLUSTER::a2-skill-truth-maintenance` now has a sixth bounded landed slice:

@@ -36,18 +36,18 @@ Date: 2026-03-08
 
 ## 2) Batch Selection
 - First real doc encountered in overall folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/A0 new thread save before sim run.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/A0 new thread save before sim run.md`
 - Reason for single-doc batch:
   - large dense source doc
   - first bounded batch requirement
   - avoids skipping ahead to cleaner later sources
 - Deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.docx`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.docx`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.txt`
 
 ## 3) Source Membership
 - Primary source:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/A0 new thread save before sim run.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/A0 new thread save before sim run.md`
   - sha256: `028172d4613919efec94bc234d7b78e3dd773d32f0f0295ad99a7aa2bdf99b38`
   - size bytes: `446897`
   - line count: `14807`

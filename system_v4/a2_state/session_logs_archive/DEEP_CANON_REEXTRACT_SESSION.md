@@ -16,13 +16,13 @@
 - Total: 431 nodes, 323 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/CONSTRAINT_MANIFOLD_DERIVATION_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/00_MANIFEST.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/03_B_KERNEL_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/04_A0_COMPILER_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/CONSTRAINT_MANIFOLD_DERIVATION_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/00_MANIFEST.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/03_B_KERNEL_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/04_A0_COMPILER_SPEC.md
 
 ## Key Findings
 - DEEP RE-EXTRACTION: Fine-grained concepts from constraint manifold, canon geometry, and top 5 specs

@@ -7,22 +7,22 @@ Role: single launch packet for the first external entropy / Carnot / Szilard mon
 ## 1) Lane
 
 Use the existing external-research refinery dropin:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1`
 
 Use the existing built job zip:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/builds/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1.zip`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/builds/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1.zip`
 
 ## 2) Exact boot artifact to send
 
 Use this boot zip:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/PRO_BOOT_JOB__ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1__20260309_204341Z.zip`
+- `/home/ratchet/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/PRO_BOOT_JOB__ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1__20260309_204341Z.zip`
 
 Why this one:
 - this is the narrow controller boot build
 - size is bounded and aligned to the intended include-relpath scope
 
 Do not use this earlier oversized build unless a broad boot is explicitly wanted:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/PRO_BOOT_JOB__ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1__20260309_204020Z.zip`
+- `/home/ratchet/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/PRO_BOOT_JOB__ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1__20260309_204020Z.zip`
 
 ## 3) Exact send text
 
@@ -49,10 +49,10 @@ Fail closed if a required file or citation-backed section is missing.
 ## 4) Topic and seed anchors
 
 Topic brief:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1/input/RESEARCH_TOPIC_BRIEF.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1/input/RESEARCH_TOPIC_BRIEF.md`
 
 Seed notes:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1/input/RESEARCH_SEED_NOTES.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1/input/RESEARCH_SEED_NOTES.md`
 
 ## 5) Exact expected return set
 

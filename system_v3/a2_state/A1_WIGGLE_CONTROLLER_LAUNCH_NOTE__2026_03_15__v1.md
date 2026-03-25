@@ -11,16 +11,16 @@ Do not treat the wiggle lane as a separate chat-authored `A1` worker by default.
 The old launch packet / send-text / handoff bundle remains as a legacy wrapper surface only.
 
 Primary executor:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_wiggle_control_cycle.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_wiggle_control_cycle.py`
 
 ## Legacy launch bundle
 
 - launch packet:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_WORKER_LAUNCH_PACKET__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_WORKER_LAUNCH_PACKET__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1.json`
 - send text:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a1_wiggle_soak_controllerled/A1_WORKER_LAUNCH_PACKET__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__SEND_TEXT.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a1_wiggle_soak_controllerled/A1_WORKER_LAUNCH_PACKET__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__SEND_TEXT.md`
 - handoff:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a1_wiggle_soak_controllerled/A1_WORKER_LAUNCH_PACKET__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__HANDOFF.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a1_wiggle_soak_controllerled/A1_WORKER_LAUNCH_PACKET__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__HANDOFF.json`
 
 These are no longer the preferred execution path.
 They are retained only as a repo-held historical bundle for the earlier chat-thread launch method.
@@ -31,12 +31,12 @@ They have been refreshed into the newer `a1_reload_artifacts` launch-packet enve
 Initial run:
 
 ```bash
-python3 /Users/joshuaeisenhart/Desktop/Codex\ Ratchet/system_v3/tools/run_a1_wiggle_control_cycle.py \
+python3 /home/ratchet/Desktop/Codex\ Ratchet/system_v3/tools/run_a1_wiggle_control_cycle.py \
   --dispatch-id A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1 \
   --run-id RUN_A1_WIGGLE_CONTROLLERLED_20260315_01 \
-  --runs-root /Users/joshuaeisenhart/Desktop/Codex\ Ratchet/work/audit_tmp/a1_wiggle_controllerled_runs \
-  --controller-result-json /Users/joshuaeisenhart/Desktop/Codex\ Ratchet/work/audit_tmp/thread_launch_returns/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL__controller_result.json \
-  --family-slice-json /Users/joshuaeisenhart/Desktop/Codex\ Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json \
+  --runs-root /home/ratchet/Desktop/Codex\ Ratchet/work/audit_tmp/a1_wiggle_controllerled_runs \
+  --controller-result-json /home/ratchet/Desktop/Codex\ Ratchet/work/audit_tmp/thread_launch_returns/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL__controller_result.json \
+  --family-slice-json /home/ratchet/Desktop/Codex\ Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json \
   --go-on-budget 6 \
   --cycles 8 \
   --goal-profile refined_fuel \
@@ -49,12 +49,12 @@ python3 /Users/joshuaeisenhart/Desktop/Codex\ Ratchet/system_v3/tools/run_a1_wig
 Continuation:
 
 ```bash
-python3 /Users/joshuaeisenhart/Desktop/Codex\ Ratchet/system_v3/tools/run_a1_wiggle_control_cycle.py \
+python3 /home/ratchet/Desktop/Codex\ Ratchet/system_v3/tools/run_a1_wiggle_control_cycle.py \
   --dispatch-id A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1 \
   --run-id RUN_A1_WIGGLE_CONTROLLERLED_20260315_01 \
-  --runs-root /Users/joshuaeisenhart/Desktop/Codex\ Ratchet/work/audit_tmp/a1_wiggle_controllerled_runs \
-  --controller-result-json /Users/joshuaeisenhart/Desktop/Codex\ Ratchet/work/audit_tmp/thread_launch_returns/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL__controller_result.json \
-  --family-slice-json /Users/joshuaeisenhart/Desktop/Codex\ Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json \
+  --runs-root /home/ratchet/Desktop/Codex\ Ratchet/work/audit_tmp/a1_wiggle_controllerled_runs \
+  --controller-result-json /home/ratchet/Desktop/Codex\ Ratchet/work/audit_tmp/thread_launch_returns/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL__controller_result.json \
+  --family-slice-json /home/ratchet/Desktop/Codex\ Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json \
   --go-on-budget 6 \
   --cycles 8 \
   --goal-profile refined_fuel \
@@ -70,19 +70,19 @@ python3 /Users/joshuaeisenhart/Desktop/Codex\ Ratchet/system_v3/tools/run_a1_wig
 - `thread_class: A1_WORKER`
 - `role_type: A1_PROPOSAL`
 - `run_id: RUN_A1_WIGGLE_CONTROLLERLED_20260315_01`
-- `runs_root: /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/a1_wiggle_controllerled_runs`
-- `run_dir: /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/a1_wiggle_controllerled_runs/RUN_A1_WIGGLE_CONTROLLERLED_20260315_01`
+- `runs_root: /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/a1_wiggle_controllerled_runs`
+- `run_dir: /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/a1_wiggle_controllerled_runs/RUN_A1_WIGGLE_CONTROLLERLED_20260315_01`
 
 ## Repo-held result surfaces
 
 - controller result packet:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_launch_returns/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL__controller_result.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_launch_returns/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL__controller_result.json`
 - cycle audit report:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/a1_wiggle_controllerled_runs/RUN_A1_WIGGLE_CONTROLLERLED_20260315_01/reports/a1_autoratchet_cycle_audit_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/a1_wiggle_controllerled_runs/RUN_A1_WIGGLE_CONTROLLERLED_20260315_01/reports/a1_autoratchet_cycle_audit_report.json`
 - campaign summary:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/a1_wiggle_controllerled_runs/RUN_A1_WIGGLE_CONTROLLERLED_20260315_01/campaign_summary.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/a1_wiggle_controllerled_runs/RUN_A1_WIGGLE_CONTROLLERLED_20260315_01/campaign_summary.json`
 - run summary:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/a1_wiggle_controllerled_runs/RUN_A1_WIGGLE_CONTROLLERLED_20260315_01/summary.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/a1_wiggle_controllerled_runs/RUN_A1_WIGGLE_CONTROLLERLED_20260315_01/summary.json`
 
 ## Controller rule
 

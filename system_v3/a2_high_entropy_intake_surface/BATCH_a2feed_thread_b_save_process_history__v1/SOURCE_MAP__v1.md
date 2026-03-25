@@ -7,22 +7,22 @@ Date: 2026-03-08
 
 ## 1) Folder-Order Selection
 - prior completed batch ended at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt`
 - next folder-order source selected for this bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt`
 - bounded-doc rule used:
   - this is the next folder-order standalone source in the assigned high-entropy feed root
   - the file is not a compact bootpack or a single report; it is a stitched save/history surface containing bootpack copies, actual snapshots, reports, export blocks, sim-evidence blocks, and malformed residue
   - first-pass handling is therefore better as `PROCESS_HISTORY_PASS` than as a broad `SOURCE_MAP_PASS` or a narrow kernel-only reduction
   - later family reconciliation can compare this save artifact against:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt`
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md`
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/x grok chat TOE.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/x grok chat TOE.txt`
 
 ## 2) Source Membership
 - primary source:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt`
   - sha256: `0cc2003d05318806e335c7d9852a22225c6e0c28817c21abebf0413f66ca2fce`
   - size bytes: `413688`
   - line count: `10149`

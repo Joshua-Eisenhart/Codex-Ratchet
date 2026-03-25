@@ -24,10 +24,10 @@ It does **not** start from:
 
 ## 2) Source-Bound Basis
 Active source anchors:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/MODEL_CONTEXT.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ALT_MODEL_MINING_PLAYBOOK.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/MODEL_CONTEXT.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ALT_MODEL_MINING_PLAYBOOK.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
 
 Key anchor statements already in active surfaces:
 - entropy should be processed as formal / operator / correlation language

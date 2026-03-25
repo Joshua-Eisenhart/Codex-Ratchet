@@ -34,7 +34,7 @@ So branch clustering was better than before, but still not fully visible on the 
 ## What changed
 
 Live planner file:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
 
 New emitted behavior:
 - the main baseline SIM branch now emits:
@@ -57,7 +57,7 @@ on the emitted SIM branch set instead of leaving baseline/support track identity
 ## Controller audit impact
 
 Audit file:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
 
 New live audit check:
 - `AUTORATCHET_FAMILY_SLICE_BRANCH_TRACKS_VISIBLE`
@@ -74,7 +74,7 @@ Important detail:
 ## Focused regressions
 
 Planner/runtime:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
 
 Updated expectations:
 - tested family-slice baseline branch emits the family-slice goal track on the SIM branch
@@ -82,7 +82,7 @@ Updated expectations:
 - self-audit now reports both in `branch_tracks_used`
 
 Controller audit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py`
 
 Updated expectations:
 - visible branch-track metadata passes when it matches actual emitted branch tracks

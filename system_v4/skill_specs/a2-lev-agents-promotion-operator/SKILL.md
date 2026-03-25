@@ -35,9 +35,9 @@ Ratchet-native form.
 ## Execute Now
 
 1. Read:
-   - [system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md)
-   - [SKILL_SOURCE_CORPUS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md)
-   - the local `lev-os/agents` curated corpus under [work/reference_repos/lev-os/agents/skills](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/reference_repos/lev-os/agents/skills)
+   - [system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md)
+   - [SKILL_SOURCE_CORPUS.md](/home/ratchet/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md)
+   - the local `lev-os/agents` curated corpus under [work/reference_repos/lev-os/agents/skills](/home/ratchet/Desktop/Codex%20Ratchet/work/reference_repos/lev-os/agents/skills)
 2. Keep this slice audit-only.
 3. Recommend one next cluster and one first bounded slice id.
 

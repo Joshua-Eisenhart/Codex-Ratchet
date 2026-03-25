@@ -20,9 +20,9 @@ Do not use it for:
 
 ## 2) Source Basis
 Primary basis:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BROAD_RESCUE_PACK__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BROAD_RESCUE_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
 
 Observed reason for the split:
 - broad term injection worked
@@ -87,8 +87,8 @@ Its purpose is to test whether the dominant thermal/time basin can be moved with
 
 ## 8) First Run Audit
 Run family:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 
 Observed:
 - `PASS__EXECUTED_CYCLE`

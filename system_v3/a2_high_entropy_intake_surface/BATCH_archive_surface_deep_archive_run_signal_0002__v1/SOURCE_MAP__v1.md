@@ -8,7 +8,7 @@ Date: 2026-03-09
 ## 1) Batch Selection
 - selected sources:
   - direct run root:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002`
   - core run-state surfaces:
     - `summary.json`
     - `state.json`
@@ -25,11 +25,11 @@ Date: 2026-03-09
   - the archive value is a large clean-transport signal run with `50` coherent accepted steps, `300` retained SIM outputs, and zero packet parks or rejects
   - the run is especially useful for demotion lineage because accurate summary counts still end fail-closed on promotion truth, the final state hash is stronger than the retained event-lattice endpoint, no inbox-local sequence ledger survives, and the consumed strategy lane renumbers and diverges from the embedded lane
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0003`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0003`
 
 ## 2) Source Membership
 ### Source 1
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002`
 - source class: direct signal-run root
 - total files: `507`
 - total directories: `3`
@@ -48,7 +48,7 @@ Date: 2026-03-09
   - no local `sim/` directory
 
 ### Source 2
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/summary.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/summary.json`
 - sha256: `390dfceb3878e000581815ddfb5fae39b5c99367a9691713fe431d640594e2fb`
 - size bytes: `838`
 - source class: direct final snapshot summary
@@ -74,7 +74,7 @@ Date: 2026-03-09
     - higher tiers all zero
 
 ### Source 3
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/state.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/state.json`
 - sha256: `3d779f220368f2fb34b84d48cef97d6501035922745e9a72d5788d19e9ccc46b`
 - size bytes: `860999`
 - source class: direct final snapshot state
@@ -116,7 +116,7 @@ Date: 2026-03-09
     - `STRESS`
 
 ### Source 4
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/state.json.sha256`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/state.json.sha256`
 - sha256: `961ea9bf28b563c53204cb0cecf603d1049765615a2fcd57f082086fd58981ca`
 - size bytes: `77`
 - source class: state integrity sidecar
@@ -125,7 +125,7 @@ Date: 2026-03-09
   - declared hash matches `summary.json` final state hash
 
 ### Source 5
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/sequence_state.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/sequence_state.json`
 - sha256: `9bc303e490f8f2b8e0beb1c2bb32d3766d3f4ff51752f39a7d67e34a4164f5ba`
 - size bytes: `87`
 - source class: full run sequence ledger
@@ -137,7 +137,7 @@ Date: 2026-03-09
   - `SIM 300`
 
 ### Source 6
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/a1_inbox`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/a1_inbox`
 - source class: inbox residue without local sequence ledger
 - top-level entries:
   - `consumed/`
@@ -146,7 +146,7 @@ Date: 2026-03-09
   - the inbox retains only the consumed packet lane
 
 ### Source 7
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/events.jsonl`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/events.jsonl`
 - sha256: `a0024c668727c901163f2dca2dcc7f96d7688cba898c8933d1d26c35cc3907d5`
 - size bytes: `172820`
 - line count: `51`
@@ -176,7 +176,7 @@ Date: 2026-03-09
     - final `summary/state` hash is `3d779f220368f2fb34b84d48cef97d6501035922745e9a72d5788d19e9ccc46b`
 
 ### Source 8
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/soak_report.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/soak_report.md`
 - sha256: `d9462ee0ce3a35bd81b4ba817820c6fbccff760b7e8db95360e5de97ebc12918`
 - size bytes: `69205`
 - source class: human-readable soak report
@@ -194,7 +194,7 @@ Date: 2026-03-09
   - runtime-like `sim/sim_evidence_*` paths are preserved in all SIM outputs even though no local `sim/` directory exists
 
 ### Source 9
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/zip_packets`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/zip_packets`
 - source class: embedded packet lattice
 - file count: `451`
 - packet kind counts:
@@ -218,7 +218,7 @@ Date: 2026-03-09
     - `000300_SIM_TO_A0_SIM_RESULT_ZIP.zip`
 
 ### Source 10
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/a1_inbox/consumed`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0002/a1_inbox/consumed`
 - source class: renumbered consumed strategy residue
 - file count: `50`
 - packet range markers:

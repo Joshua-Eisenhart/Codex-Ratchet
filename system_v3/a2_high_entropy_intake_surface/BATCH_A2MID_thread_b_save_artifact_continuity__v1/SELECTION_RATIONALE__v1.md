@@ -21,7 +21,7 @@ Why it is worth a bounded A2-mid pass now:
 
 ## 3) Why The Next Folder-Order Doc Was Deferred
 Deferred next folder-order source:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/x grok chat TOE.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/x grok chat TOE.txt`
 
 Reason for deferral:
 - this thread is still prioritizing refinement of strong existing intake artifacts over starting a fresh raw-source family

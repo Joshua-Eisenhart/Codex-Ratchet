@@ -24,9 +24,9 @@
 - Total: 17366 nodes, 17181 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/PHYSICS_FUEL_DIGEST_v1.0.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/PHYSICS_FUEL_DIGEST_v1.0.md
 
 ## Batches
 - `B_BOOTPACK_DEEP`

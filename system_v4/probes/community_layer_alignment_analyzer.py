@@ -1,11 +1,13 @@
 import json
 import os
+from pathlib import Path
 import igraph as ig
 import leidenalg
 from collections import Counter, defaultdict
 
 # Paths to the 5 layer graphs
-GRAPH_DIR = "/Users/joshuaeisenhart/Desktop/Codex Directional_Accumulator/system_v4/a2_state/graphs/"
+_REPO_ROOT = Path(__file__).resolve().parent.parent.parent
+GRAPH_DIR = str(_REPO_ROOT / "system_v4" / "a2_state" / "graphs") + os.sep
 LAYERS = {
     "HIGH_INTAKE": "a2_high_intake_graph_v1.json",
     "MID_REFINEMENT": "a2_mid_refinement_graph_v1.json",
@@ -114,7 +116,7 @@ def analyze():
     multi_layer_nodes = {nid: list(layers) for nid, layers in node_layer_map.items() if len(layers) > 1}
     
     # Output to Markdown
-    output_path = "/Users/joshuaeisenhart/Desktop/Codex Directional_Accumulator/system_v4/a2_state/audit_logs/COMMUNITY_LAYER_ALIGNMENT_AUDIT__v1.md"
+    output_path = str(_REPO_ROOT / "system_v4" / "a2_state" / "audit_logs" / "COMMUNITY_LAYER_ALIGNMENT_AUDIT__v1.md")
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
     
     with open(output_path, 'w') as f:

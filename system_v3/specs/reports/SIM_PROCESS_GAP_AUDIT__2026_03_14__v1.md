@@ -5,14 +5,14 @@ Date: 2026-03-14
 ## Scope
 
 Audit current SIM process implementation against:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/72_SIM_CAMPAIGN_AND_SUITE_MODES__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/06_SIM_EVIDENCE_AND_TIERS_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/72_SIM_CAMPAIGN_AND_SUITE_MODES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/06_SIM_EVIDENCE_AND_TIERS_SPEC.md`
 
 Audited files:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_dispatcher.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_evidence_ingest_gate.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_replay_pair_gate.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_dispatcher.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_evidence_ingest_gate.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_replay_pair_gate.py`
 
 ## Findings
 
@@ -29,9 +29,9 @@ Current dispatcher blocks stages whose dependency stages still have pending work
 - `replay_from_tape`
 
 Witness:
-- [sim_dispatcher.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_dispatcher.py#L8)
-- [sim_dispatcher.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_dispatcher.py#L12)
-- [sim_dispatcher.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_dispatcher.py#L49)
+- [sim_dispatcher.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_dispatcher.py#L8)
+- [sim_dispatcher.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_dispatcher.py#L12)
+- [sim_dispatcher.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_dispatcher.py#L49)
 
 Gap:
 - stage dependency exists
@@ -45,9 +45,9 @@ Current runner asks the dispatcher for tasks, truncates by `max_sims`, then runs
 - replay from tape/save lineage
 
 Witness:
-- [a1_a0_b_sim_runner.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py#L731)
-- [a1_a0_b_sim_runner.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py#L739)
-- [a1_a0_b_sim_runner.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py#L742)
+- [a1_a0_b_sim_runner.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py#L731)
+- [a1_a0_b_sim_runner.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py#L739)
+- [a1_a0_b_sim_runner.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py#L742)
 
 Gap:
 - budget enforcement exists
@@ -69,9 +69,9 @@ It does not check:
 - graveyard-rescue coverage
 
 Witness:
-- [run_evidence_ingest_gate.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools/run_evidence_ingest_gate.py#L46)
-- [run_evidence_ingest_gate.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools/run_evidence_ingest_gate.py#L71)
-- [run_evidence_ingest_gate.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools/run_evidence_ingest_gate.py#L94)
+- [run_evidence_ingest_gate.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools/run_evidence_ingest_gate.py#L46)
+- [run_evidence_ingest_gate.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools/run_evidence_ingest_gate.py#L71)
+- [run_evidence_ingest_gate.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools/run_evidence_ingest_gate.py#L94)
 
 Gap:
 - signal presence is checked
@@ -86,9 +86,9 @@ Current replay gate compares pass reports and hashes. It does not validate that 
 - campaign reconstruction from tape/save surfaces
 
 Witness:
-- [run_replay_pair_gate.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools/run_replay_pair_gate.py#L44)
-- [run_replay_pair_gate.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools/run_replay_pair_gate.py#L70)
-- [run_replay_pair_gate.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools/run_replay_pair_gate.py#L114)
+- [run_replay_pair_gate.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools/run_replay_pair_gate.py#L44)
+- [run_replay_pair_gate.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools/run_replay_pair_gate.py#L70)
+- [run_replay_pair_gate.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools/run_replay_pair_gate.py#L114)
 
 Gap:
 - deterministic replay equality exists
@@ -96,21 +96,21 @@ Gap:
 
 ## Exact patch targets
 
-1. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_dispatcher.py`
+1. `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_dispatcher.py`
 - add suite-kind aware planning
 - block `engine_suite` and `mega_suite` by explicit closure rules, not just pending dependency stages
 - surface `failure_isolation` and `graveyard_rescue` dispatch entries
 
-2. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py`
+2. `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py`
 - execute by stage/suite group instead of flat task slice
 - add replay-from-lineage mode
 - add failure-isolation branch mode
 - add graveyard-rescue mode
 
-3. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_evidence_ingest_gate.py`
+3. `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_evidence_ingest_gate.py`
 - replace raw token-count sufficiency with campaign sufficiency reporting
 - include stage/family/mega-gate checks
 
-4. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_replay_pair_gate.py`
+4. `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_replay_pair_gate.py`
 - add campaign replay equivalence checks
 - require explicit replay source class

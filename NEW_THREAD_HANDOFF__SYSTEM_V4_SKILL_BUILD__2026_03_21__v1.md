@@ -21,9 +21,9 @@ Use this instead of relying on hidden thread memory.
   - `0` missing
   - `0` stale
 - current graph truth source:
-  - [GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json)
+  - [GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json)
 - current A2 freshness truth:
-  - [A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.json)
+  - [A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.json)
   - current state is `attention_required` because standing A2 owner surfaces still lag latest evidence
   - this is a real maintenance issue, but it does not erase the live graph/registry truth above
 
@@ -70,7 +70,7 @@ The new paper-derived lane now exists, but it is not the main-line next move:
 - current landed slice:
   - `a2-next-state-signal-adaptation-audit-operator`
 - current truth source:
-  - [A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.json)
+  - [A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.json)
 
 Important rule:
 
@@ -82,18 +82,18 @@ Important rule:
 
 Read these first:
 
-1. [NEW_THREAD_HANDOFF__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/NEW_THREAD_HANDOFF__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md)
-2. [NEW_THREAD_PROMPT__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/NEW_THREAD_PROMPT__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md)
-3. [SYSTEM_SKILL_BUILD_PLAN.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SYSTEM_SKILL_BUILD_PLAN.md)
-4. [REPO_SKILL_INTEGRATION_TRACKER.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md)
-5. [SKILL_SOURCE_CORPUS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md)
-6. [SKILL_CANDIDATES_BACKLOG.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_CANDIDATES_BACKLOG.md)
-7. [INTENT_SUMMARY.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/INTENT_SUMMARY.md)
-8. [A2_BRAIN_SLICE__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md)
-9. [A2_KEY_CONTEXT_APPEND_LOG__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md)
-10. [A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.json)
-11. [GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json)
-12. [A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.json)
+1. [NEW_THREAD_HANDOFF__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/NEW_THREAD_HANDOFF__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md)
+2. [NEW_THREAD_PROMPT__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/NEW_THREAD_PROMPT__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md)
+3. [SYSTEM_SKILL_BUILD_PLAN.md](/home/ratchet/Desktop/Codex%20Ratchet/SYSTEM_SKILL_BUILD_PLAN.md)
+4. [REPO_SKILL_INTEGRATION_TRACKER.md](/home/ratchet/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md)
+5. [SKILL_SOURCE_CORPUS.md](/home/ratchet/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md)
+6. [SKILL_CANDIDATES_BACKLOG.md](/home/ratchet/Desktop/Codex%20Ratchet/SKILL_CANDIDATES_BACKLOG.md)
+7. [INTENT_SUMMARY.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/INTENT_SUMMARY.md)
+8. [A2_BRAIN_SLICE__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md)
+9. [A2_KEY_CONTEXT_APPEND_LOG__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md)
+10. [A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.json)
+11. [GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json)
+12. [A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.json)
 
 ## Start-of-Thread Verification
 

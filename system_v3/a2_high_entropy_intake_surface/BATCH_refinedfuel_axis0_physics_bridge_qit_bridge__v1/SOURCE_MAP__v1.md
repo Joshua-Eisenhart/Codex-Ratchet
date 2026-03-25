@@ -7,7 +7,7 @@ Date: 2026-03-08
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
 - nontrivial top-level file count:
   - `8`
 - ignored filesystem noise:
@@ -24,7 +24,7 @@ Date: 2026-03-08
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_PHYSICS_BRIDGE_v0.1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_PHYSICS_BRIDGE_v0.1.md`
 - reason for selection:
   - this is the next nontrivial top-level file in folder order after `AXES_MASTER_SPEC_v0.2.md`
   - the file is compact but more translational than declarative: it explicitly maps physics narrative terms into QIT-native finite-dimensional objects
@@ -35,11 +35,11 @@ Date: 2026-03-08
     - explicit open variables for later sims
   - this makes `QIT_BRIDGE_PASS` a better fit than a pure source map or a pure term-conflict pass
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_PHYSICS_BRIDGE_v0.1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_PHYSICS_BRIDGE_v0.1.md`
   - role in batch: refined-fuel narrative-to-QIT bridge for Axis-0 and shell/bookkeeping language
   - sha256: `fe10368cd757db338919f40eb8fa48ec5c58e1f3fc4c0d5658a419a4023def92`
   - size bytes: `4158`

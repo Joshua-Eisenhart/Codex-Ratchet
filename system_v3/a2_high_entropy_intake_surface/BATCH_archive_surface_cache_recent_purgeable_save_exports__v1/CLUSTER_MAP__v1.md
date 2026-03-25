@@ -58,7 +58,7 @@ Extraction mode: `ARCHIVE_CACHE_SAVE_EXPORT_PASS`
 
 ## Cluster 7: Deferred Next Family
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY`
 - cluster read:
   - the next unread archive-root family moves from purgeable recent cache into low-entropy milestone retention
 - current usefulness:

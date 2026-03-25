@@ -7,38 +7,38 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - assigned root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
 - excluded path:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims`
 - non-sims file count: `56`
 - already represented by existing intake batches: `48`
 - currently unprocessed docs in folder order: `8`
 - unprocessed inventory:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/REFINEMENT_CONTRACT_v1.1.md` `[selected]`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/RELATIONAL_TRANSPORT_ADMISSIBILITY_v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Rosetta contract v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/STATE_ABSTRACTION_ADMISSIBILITY_v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Simulation protocol v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Topology contract v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Transport contract v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/REFINEMENT_CONTRACT_v1.1.md` `[selected]`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/RELATIONAL_TRANSPORT_ADMISSIBILITY_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Rosetta contract v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/STATE_ABSTRACTION_ADMISSIBILITY_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Simulation protocol v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Topology contract v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Transport contract v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md`
 - coverage note:
   - this pass continues directly after `BATCH_refinedfuel_nonsims_physics_rosetta_personality_analogy__v1`
 
 ## 2) Folder-Order Selection
 - first unprocessed doc encountered in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/REFINEMENT_CONTRACT_v1.1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/REFINEMENT_CONTRACT_v1.1.md`
 - reason for single-doc batch:
   - next uncovered gap in folder order after the physics-rosetta pass
   - compact but foundational contract-style source with one dominant refinement-language fence
   - best handled as a `MATH_CLASS_PASS` because it sets the admissible relation/operator/equivalence/order discipline for refinement rather than telling a rosetta or narrative story
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/RELATIONAL_TRANSPORT_ADMISSIBILITY_v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Rosetta contract v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/RELATIONAL_TRANSPORT_ADMISSIBILITY_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Rosetta contract v1.md`
 
 ## 3) Source Membership
 - primary source:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/REFINEMENT_CONTRACT_v1.1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/REFINEMENT_CONTRACT_v1.1.md`
   - sha256: `f70e1598e86223d62ae327e5e0a04077a912979ed5af196e70702a09b1cd24bf`
   - size bytes: `10370`
   - line count: `139`

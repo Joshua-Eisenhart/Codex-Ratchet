@@ -30,4 +30,4 @@ Extraction mode: `UPGRADE_MAP_PASS`
 ## Candidate Summary C4
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/ZIP_INDEX_v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/ZIP_INDEX_v1.md`

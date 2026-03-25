@@ -29,7 +29,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
 ## Candidate Summary C4
 - proposal-only reading:
   - the most important immediate comparison target is the next refined-fuel doc:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md`
 - support:
   - this companion repeatedly leans on manifold-first and derived-geometry language while also colliding with the canon Axis-3 lock
 
@@ -42,4 +42,4 @@ Extraction mode: `TERM_CONFLICT_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md`

@@ -15,8 +15,8 @@ The problem is rescue structure.
 
 ## 2) Operational Trigger
 Use this pack after:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 
 Both show:
 - `PASS__EXECUTED_CYCLE`
@@ -111,8 +111,8 @@ It should be:
 
 ## 8) First Reformulation Audit
 Run:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 
 Observed:
 - `priority_claims` now flow through the live exchange request path

@@ -4,7 +4,7 @@ Corrective note 2026-03-21:
 
 - the live skill/graph counts in this historical planning note are now stale
 - current live state is `88` active registry skills, `88` graphed `SKILL` nodes, `0` missing, `0` stale
-- use [GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md) and the front-door corpus docs for current truth
+- use [GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md) and the front-door corpus docs for current truth
 
 generated_utc: 2026-03-20T23:59:00Z
 surface_class: DERIVED_A2
@@ -25,14 +25,14 @@ This note is a planning and placement surface, not doctrine and not earned runti
 
 Canonical durable owner surface for this concern:
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/SKILL_CANDIDATES_BACKLOG.md`
+- `/home/ratchet/Desktop/Codex Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md`
+- `/home/ratchet/Desktop/Codex Ratchet/SKILL_CANDIDATES_BACKLOG.md`
 
 ## Current Live State
 
 ### Graph / Layer State
 
-- live nested graph currently projects `11` layers in `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/nested_graph_v1.json`
+- live nested graph currently projects `11` layers in `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/nested_graph_v1.json`
   - `INDEX`
   - `A2_HIGH_INTAKE`
   - `A2_MID_REFINEMENT`
@@ -44,12 +44,12 @@ Canonical durable owner surface for this concern:
   - `B_ADJUDICATED`
   - `SIM_EVIDENCED`
   - `GRAVEYARD`
-- current nested build program is paused with `NO_CURRENT_WORK__DIRECT_ENTROPY_EXECUTABLE_PAUSED` in `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json`
+- current nested build program is paused with `NO_CURRENT_WORK__DIRECT_ENTROPY_EXECUTABLE_PAUSED` in `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json`
 
 ### Skill State
 
-- `82` active skills in `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/skill_registry_v1.json`
-- skill graph coverage is now complete in `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json`
+- `82` active skills in `/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/skill_registry_v1.json`
+- skill graph coverage is now complete in `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json`
   - `82` active skills
   - `82` graphed `SKILL` nodes
   - `0` missing
@@ -62,28 +62,28 @@ Canonical durable owner surface for this concern:
 ### Runtime / Verification State
 
 - the nonclassical runtime / Z3 family is real on disk
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/runtime_state_kernel.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/witness_recorder.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/z3_constraint_checker.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/z3_cegis_refiner.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/property_pressure_tester.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/differential_tester.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/structured_fuzzer.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/model_checker.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/bounded_improve_operator.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/fep_regulation_operator.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/frontier_search_operator.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/runtime_state_kernel.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/witness_recorder.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/z3_constraint_checker.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/z3_cegis_refiner.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/property_pressure_tester.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/differential_tester.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/structured_fuzzer.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/model_checker.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/bounded_improve_operator.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/fep_regulation_operator.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/frontier_search_operator.py`
 - intent is first-class across witness -> graph -> control
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/intent_refinement_graph_builder.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/intent_control_surface_builder.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/intent_runtime_policy.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/intent_refinement_graph_builder.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/intent_control_surface_builder.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/intent_runtime_policy.py`
 
 ## Source Bundles And Their Real Status
 
 ### 1. Lev Nonclassical Runtime Design
 
 - source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
 - status:
   - partially landed
 - already expressed as real skills:
@@ -99,8 +99,8 @@ Canonical durable owner surface for this concern:
 ### 2. lev-os/agents
 
 - mapped in:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/EXTERNAL_SKILL_SOURCE_INTEGRATION_MAP__2026_03_20__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/external_skill_admission_staging_v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/EXTERNAL_SKILL_SOURCE_INTEGRATION_MAP__2026_03_20__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/external_skill_admission_staging_v1.json`
 - status:
   - staged only
 - current best use:
@@ -113,8 +113,8 @@ Canonical durable owner surface for this concern:
 ### 3. lev-os/leviathan + JP Vision
 
 - mapped in:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/EXTERNAL_SKILL_SOURCE_INTEGRATION_MAP__2026_03_20__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/external_skill_admission_staging_v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/EXTERNAL_SKILL_SOURCE_INTEGRATION_MAP__2026_03_20__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/external_skill_admission_staging_v1.json`
 - status:
   - staged only
 - current best use:
@@ -125,8 +125,8 @@ Canonical durable owner surface for this concern:
 ### 4. Karpathy Bundle
 
 - mapped in:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/REFERENCE_REPOS.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/external_skill_admission_staging_v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/REFERENCE_REPOS.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/external_skill_admission_staging_v1.json`
 - current local truth:
   - `autoresearch` and `llm-council` exist mainly as patterns, not yet as first-class live skills
   - bounded improve is the closest current runtime expression of the autoresearch loop
@@ -136,20 +136,20 @@ Canonical durable owner surface for this concern:
 ### 5. Z3 / SAT / SMT
 
 - mapped in:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/REFERENCE_REPOS.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/EXTERNAL_SKILL_SOURCE_INTEGRATION_MAP__2026_03_20__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/REFERENCE_REPOS.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/EXTERNAL_SKILL_SOURCE_INTEGRATION_MAP__2026_03_20__v1.md`
 - status:
   - landed as real runtime family
 - strongest current expression:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/z3_constraint_checker.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/z3_cegis_refiner.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/z3_constraint_checker.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/z3_cegis_refiner.py`
 - note:
   - Z3 is the most integrated external method family so far
 
 ### 6. pi-mono
 
 - local sources already ingested via:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/session_logs/DEEP_FUEL_PIMONO_SESSION.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/session_logs/DEEP_FUEL_PIMONO_SESSION.md`
 - source paths already pulled into A2 mining:
   - `~/GitHub/pi-mono/packages/agent/README.md`
   - `~/GitHub/pi-mono/packages/ai/README.md`
@@ -182,9 +182,9 @@ Canonical durable owner surface for this concern:
 ### 8. The 29-Method Source Doc
 
 - the canonical local referent is the source document:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/29 thing.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/29 thing.txt`
 - that document is already graph-ingested and session-tracked:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/session_logs/OPUS_DEEP_READ_29_THING.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/session_logs/OPUS_DEEP_READ_29_THING.md`
 - the live cross-validation cluster is real, but it is separate and must not be substituted for the source doc:
   - `CROSS_VAL: 29 sources, 29 batches, 30 edges`
 - corrected interpretation:

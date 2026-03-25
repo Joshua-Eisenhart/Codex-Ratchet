@@ -11,8 +11,8 @@ The tighter broad entropy route improved helper residue, but exposed a new probl
 - cross-family substrate bleed into the entropy lane.
 
 Observed on:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
 
 ## 2) Observed Shift
 Compared with `_0011`:
@@ -95,7 +95,7 @@ Meaning:
 
 Implementation note:
 - the active broad profile now carries this as a `rescue_allowed_terms` control in
-  `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_graveyard_first_validity_campaign.py`,
+  `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_graveyard_first_validity_campaign.py`,
 - but this exact later-phase fence is not yet empirically exercised in a live rescue step.
 - current validation is:
   - no regression on the active broad route,

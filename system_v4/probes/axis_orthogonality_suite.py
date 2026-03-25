@@ -329,20 +329,40 @@ DIMS = [4, 8, 16, 32]
 
 def run_15_pairwise(d):
     """Phase 1: All 15 C(6,2) pairwise Hilbert-Schmidt tests."""
+    MIN_NORM = 1e-6  # Non-triviality gate: Choi must have nonzero displacement
     print(f"\n  PHASE 1: 15 PAIRWISE ORTHOGONALITY (d={d})")
     choi = {n: build_choi(f, d) for n, f in AXES.items()}
     results = []
     kills = []
 
+    # Non-triviality gate: verify all Choi matrices have sufficient norm
+    for name, C in choi.items():
+        norm_C = float(np.linalg.norm(C, 'fro'))
+        if norm_C < MIN_NORM:
+            print(f"    !! NON-TRIVIAL FAIL: {name} has ‖Choi‖_F = {norm_C:.2e} < {MIN_NORM}")
+        else:
+            print(f"    ‖Choi({name})‖_F = {norm_C:.4f}")
+
     for (n1, n2) in combinations(AXES.keys(), 2):
+        norm1 = float(np.linalg.norm(choi[n1], 'fro'))
+        norm2 = float(np.linalg.norm(choi[n2], 'fro'))
         ov = hs_inner(choi[n1], choi[n2])
         label = PAIR_LABELS.get((n1, n2), f"{n1}x{n2}")
-        status = "PASS" if abs(ov) < EPS else "KILL"
+
+        # KILL if either Choi is null (degenerate proof)
+        if norm1 < MIN_NORM or norm2 < MIN_NORM:
+            status = "KILL"
+            kill_reason = "NULL_CHOI_VECTOR"
+        else:
+            status = "PASS" if abs(ov) < EPS else "KILL"
+            kill_reason = "OVERLAP" if status == "KILL" else ""
+
         results.append({"pair": f"{n1} x {n2}", "label": label,
-                        "overlap": float(ov), "status": status})
+                        "overlap": float(ov), "norm_1": norm1, "norm_2": norm2,
+                        "status": status, "kill_reason": kill_reason})
         if status == "KILL":
             kills.append((n1, n2))
-        print(f"    {label:40s}: {ov:+.2e} [{status}]")
+        print(f"    {label:40s}: {ov:+.2e} [{status}]  ‖C1‖={norm1:.4f} ‖C2‖={norm2:.4f}")
 
     # Graveyard deformation for any KILLs
     if kills:

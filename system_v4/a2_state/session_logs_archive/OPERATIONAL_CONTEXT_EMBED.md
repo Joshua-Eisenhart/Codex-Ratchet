@@ -16,7 +16,7 @@
 - Total: 3759 nodes, 7572 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/GEMINI_DEEP_READ_SOP.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/GEMINI_DEEP_READ_SOP.md
 
 ## Key Findings
 - Operational context (SOP) embedded directly into the A2 Graph for seamless thread portability.

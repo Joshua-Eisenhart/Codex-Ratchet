@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - folder order around this batch:
@@ -19,7 +19,7 @@ Date: 2026-03-09
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/ORTHOGONALITY_ADMISSIBILITY_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/ORTHOGONALITY_ADMISSIBILITY_v1.md`
 - reason for selection:
   - this is the next unprocessed non-sims `constraint ladder` file in folder order after `OBSTRUCTION_ADMISSIBILITY_v1.md`
   - the file is a compact formal admissibility micro-spec rather than a stitched orthogonality narrative
@@ -33,11 +33,11 @@ Date: 2026-03-09
     - inner-product-like, normed-space-like, and Hilbert-like extensions remain open only as later removable overlays
   - this makes `MATH_CLASS_PASS` the best fit
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Path contract v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Path contract v1.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/ORTHOGONALITY_ADMISSIBILITY_v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/ORTHOGONALITY_ADMISSIBILITY_v1.md`
   - role in batch: formal admissibility spec for orthogonality-like relations over admitted axis-like function symbols under frozen carrier, transport, and obstruction structure
   - sha256: `78f7baec33aa535ac0b766c426462961c88d9b3de069415ad8bfa1b808c4b23d`
   - size bytes: `3370`

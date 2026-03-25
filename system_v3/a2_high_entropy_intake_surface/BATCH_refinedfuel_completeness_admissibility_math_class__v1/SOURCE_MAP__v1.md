@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - folder order around this batch:
@@ -19,7 +19,7 @@ Date: 2026-03-09
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPLETENESS_ADMISSIBILITY_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPLETENESS_ADMISSIBILITY_v1.md`
 - reason for selection:
   - this is the next unprocessed non-sims `constraint ladder` file in folder order after `CANDIDATE_PROPOSAL_v1.md`
   - the file is a compact formal admissibility micro-spec, not a narrative note or omnibus ledger
@@ -32,11 +32,11 @@ Date: 2026-03-09
     - bounded open extension clauses
   - this makes `MATH_CLASS_PASS` the best fit
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPOSITION_CLASS_ADMISSIBILITY_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPOSITION_CLASS_ADMISSIBILITY_v1.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPLETENESS_ADMISSIBILITY_v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPLETENESS_ADMISSIBILITY_v1.md`
   - role in batch: formal admissibility spec for completeness- or spanning-like claims over admitted finite axis-sets
   - sha256: `d36872ebfe060137a6bb56686c7cb27ed07855bfbcad256490de80199e7a6487`
   - size bytes: `3534`

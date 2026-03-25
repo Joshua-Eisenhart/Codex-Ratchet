@@ -23,17 +23,17 @@ Date: 2026-03-09
 - bundling reason:
   - these surfaces together show how external extraction returns are ingested into A2/A1-facing packet stores, how active runnable lanes are bounded, how promotion is contractually framed, and how repo-wide audit claims are classified
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/a1_brain.jsonl`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/autosave_seq.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/campaign_status/CAMPAIGN_STATUS__20260224T225042Z.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/constraint_surface.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/core_docs_ingest_index_v1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/doc_index.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/fuel_queue.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ingest/index_v1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ingest/system_map_v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/memory.jsonl`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/rosetta.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/a1_brain.jsonl`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/autosave_seq.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/campaign_status/CAMPAIGN_STATUS__20260224T225042Z.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/constraint_surface.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/core_docs_ingest_index_v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/doc_index.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/fuel_queue.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ingest/index_v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ingest/system_map_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/memory.jsonl`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/rosetta.json`
 
 ## 2) Source Membership By Subfamily
 - compact stage-2 ingest bootstrap:

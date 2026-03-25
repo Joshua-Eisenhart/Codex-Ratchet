@@ -28,8 +28,8 @@ Extraction mode: `TENSION_MAP_PASS`
 ## Candidate Summary C4
 - proposal-only reading:
   - the best immediate comparison anchors for this source family are:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok toe redo save.txt`
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok unified phuysics nov 29th.txt`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok toe redo save.txt`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok unified phuysics nov 29th.txt`
 - support:
   - this file looks like another compact Nov. 11 pressure surface feeding toward later broader physics packaging
 
@@ -42,4 +42,4 @@ Extraction mode: `TENSION_MAP_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should move to the next source root and process the first unprocessed non-sims refined-fuel doc:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md`

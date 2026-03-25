@@ -18,18 +18,18 @@ Use this record for:
 - explicit current-lane weighting
 
 Current machine-readable controller launch companions:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_GATE_RESULT__CURRENT__2026_03_12__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_HANDOFF__CURRENT__2026_03_12__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_SPINE__CURRENT__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_GATE_RESULT__CURRENT__2026_03_12__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_HANDOFF__CURRENT__2026_03_12__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_SPINE__CURRENT__2026_03_15__v1.json`
 
 ## Intake consult rule
 
 Controller intake lookup should remain bounded to the runtime helper surfaces below:
-- default consult `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_WARM_VISIBILITY__v1.md` for controller-visible reusable intake
-- consult `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_COLD_INDEX__v1.md` only when evaluating an explicit bounded revisit nomination or cold re-warm question
-- keep `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md` as the ledger authority behind both helper surfaces
+- default consult `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_WARM_VISIBILITY__v1.md` for controller-visible reusable intake
+- consult `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_COLD_INDEX__v1.md` only when evaluating an explicit bounded revisit nomination or cold re-warm question
+- keep `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md` as the ledger authority behind both helper surfaces
 
 Admission guard:
 - both helper surfaces remain `RUNTIME_ONLY`
@@ -175,31 +175,31 @@ Do not read this block as the current controller state.
 ## Governing basis
 
 Primary source anchors for this record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/SKILL_STACK_APPLICATION__CONSTRAINTS_ENTROPY_REVISIT_LANE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_A1_DELTA__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_FIRST_DISPATCH_OPERATOR_PACKET__2026_03_11__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_RESULT__ENTROPY_RESIDUE_NEGATIVE_AND_RESCUE__2026_03_11__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_16__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/REFINEDFUEL_REVISIT_ROUTING_PASS__2026_03_11__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ALIGNED_METHOD_RETUNING_CONTINUITY__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ACTIVE_CONTEXT_AND_UPGRADE_REFRESH__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CURRENT.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/SKILL_STACK_APPLICATION__CONSTRAINTS_ENTROPY_REVISIT_LANE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_A1_DELTA__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_FIRST_DISPATCH_OPERATOR_PACKET__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_RESULT__ENTROPY_RESIDUE_NEGATIVE_AND_RESCUE__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_16__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/REFINEDFUEL_REVISIT_ROUTING_PASS__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ALIGNED_METHOD_RETUNING_CONTINUITY__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ACTIVE_CONTEXT_AND_UPGRADE_REFRESH__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/CURRENT.md`
 
 ## Current weighted truth
 
 ### PRIMARY_CORPUS
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
 
 ### CURRENT_PRIMARY_LANE
 - bounded substrate-base A2 -> A1 handoff lineage, now closed back to `NO_WORK`
 
 Current live anchor surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a1_substrate_base_current__2026_03_20__v1/A1_WORKER_LAUNCH_PACKET__A1_DISPATCH__SUBSTRATE_BASE_CURRENT__2026_03_20__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_16__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a1_substrate_base_current__2026_03_20__v1/A1_WORKER_LAUNCH_PACKET__A1_DISPATCH__SUBSTRATE_BASE_CURRENT__2026_03_20__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_16__v1.md`
 
 Working read:
 - the most recent admitted bounded `A2 -> A1` lane was the March 20 substrate-base dispatch
@@ -262,27 +262,27 @@ Current safe support-program read:
   - canonized manifold / primitive-axis / unique-Hopf overreads
 
 ### LAST_SUCCESSFUL_A2_OUTPUT_SET
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ALIGNED_METHOD_RETUNING_CONTINUITY__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ALIGNED_METHOD_RETUNING_CONTINUITY__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ACTIVE_CONTEXT_AND_UPGRADE_REFRESH__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ACTIVE_CONTEXT_AND_UPGRADE_REFRESH__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__NONLITERAL_IMPORT_AND_NONCLASSICAL_POSTURE__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__NONLITERAL_IMPORT_AND_NONCLASSICAL_POSTURE__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ELEGANT_EXTERNAL_PATTERN_APPLICATION__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ELEGANT_EXTERNAL_PATTERN_APPLICATION__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__DOMINANT_WORK_CLASS_DIAL__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__DOMINANT_WORK_CLASS_DIAL__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__LEAN_REFINERY_BLOAT_AUDIT__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__LEAN_REFINERY_BLOAT_AUDIT__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__LEV_AUTODEV_LANDING_AND_NEXT_CLUSTER_SHIFT__2026_03_22__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__LEV_AUTODEV_LANDING_AND_NEXT_CLUSTER_SHIFT__2026_03_22__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ALIGNED_METHOD_RETUNING_CONTINUITY__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ALIGNED_METHOD_RETUNING_CONTINUITY__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ACTIVE_CONTEXT_AND_UPGRADE_REFRESH__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ACTIVE_CONTEXT_AND_UPGRADE_REFRESH__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__NONLITERAL_IMPORT_AND_NONCLASSICAL_POSTURE__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__NONLITERAL_IMPORT_AND_NONCLASSICAL_POSTURE__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ELEGANT_EXTERNAL_PATTERN_APPLICATION__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ELEGANT_EXTERNAL_PATTERN_APPLICATION__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__DOMINANT_WORK_CLASS_DIAL__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__DOMINANT_WORK_CLASS_DIAL__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__LEAN_REFINERY_BLOAT_AUDIT__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__LEAN_REFINERY_BLOAT_AUDIT__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__LEV_AUTODEV_LANDING_AND_NEXT_CLUSTER_SHIFT__2026_03_22__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__LEV_AUTODEV_LANDING_AND_NEXT_CLUSTER_SHIFT__2026_03_22__v1.md`
 
 ### LAST_VALID_A2_TO_A1_PATH
 - most recent admitted bounded lineage:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a1_substrate_base_current__2026_03_20__v1/A1_WORKER_LAUNCH_PACKET__A1_DISPATCH__SUBSTRATE_BASE_CURRENT__2026_03_20__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a1_substrate_base_current__2026_03_20__v1/A1_WORKER_LAUNCH_PACKET__A1_DISPATCH__SUBSTRATE_BASE_CURRENT__2026_03_20__v1.json`
 - first bounded historical lineage still kept visible:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_FIRST_DISPATCH_OPERATOR_PACKET__2026_03_11__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_RESULT__ENTROPY_RESIDUE_NEGATIVE_AND_RESCUE__2026_03_11__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_FIRST_DISPATCH_OPERATOR_PACKET__2026_03_11__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_RESULT__ENTROPY_RESIDUE_NEGATIVE_AND_RESCUE__2026_03_11__v1.md`
 
 Working read:
 - the first bounded `A1` dispatch already happened from the prime-corpus internal lane and should remain visible
@@ -300,15 +300,15 @@ Current basis:
 - future A2 refreshes should prefer smaller owner-surface deltas over wider same-scope note stacking before attempting to open new A1 breadth
 
 Current machine-readable companions:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.json`
 
 Current registry read:
 - no bounded family slices are currently admitted into the live A1 queue candidate set
 - current queue packet therefore resolves fail-closed to `NO_WORK`
 
 Current staged companion:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_FAMILY_SLICE__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_FAMILY_SLICE__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json`
 
 Current staging rule:
 - this staged family slice is an active A2-side companion surface, not an admitted live queue candidate yet
@@ -317,7 +317,7 @@ Current staging rule:
 ### NEXT_ADMISSIBLE_W1
 - no bounded worker dispatch is currently admitted
 - the last admitted A1 lane was:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a1_substrate_base_current__2026_03_20__v1/A1_WORKER_LAUNCH_PACKET__A1_DISPATCH__SUBSTRATE_BASE_CURRENT__2026_03_20__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a1_substrate_base_current__2026_03_20__v1/A1_WORKER_LAUNCH_PACKET__A1_DISPATCH__SUBSTRATE_BASE_CURRENT__2026_03_20__v1.json`
   - queue status there resolved `READY_FROM_NEW_A2_HANDOFF`
   - current queue status now resolves back to `NO_WORK`
 - the next admissible controller move is therefore:

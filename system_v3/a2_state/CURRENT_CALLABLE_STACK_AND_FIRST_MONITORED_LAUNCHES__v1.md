@@ -48,7 +48,7 @@ It is actual execution and capture of returns.
 ### Launch 1: internal `Constraints. Entropy` revisit lane
 
 Primary runbook:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/SKILL_STACK_APPLICATION__CONSTRAINTS_ENTROPY_REVISIT_LANE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/SKILL_STACK_APPLICATION__CONSTRAINTS_ENTROPY_REVISIT_LANE__v1.md`
 
 Use:
 - `a2-brain-refresh`
@@ -75,12 +75,12 @@ Stop condition:
 ### Launch 2: external entropy / Carnot / Szilard refinery lane
 
 Primary operator checklist:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_LANE_OPERATOR_CHECKLIST__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_LANE_OPERATOR_CHECKLIST__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md`
 
 Secondary runbook/context:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/SKILL_STACK_APPLICATION__ENTROPY_CARNOT_SZILARD_EXTERNAL_LANE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_LAUNCH_PACKET__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_RETURN_AUDIT_AND_INGEST_PACKET__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/SKILL_STACK_APPLICATION__ENTROPY_CARNOT_SZILARD_EXTERNAL_LANE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_LAUNCH_PACKET__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_RETURN_AUDIT_AND_INGEST_PACKET__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md`
 
 Use:
 - `external-research-refinery-launcher`

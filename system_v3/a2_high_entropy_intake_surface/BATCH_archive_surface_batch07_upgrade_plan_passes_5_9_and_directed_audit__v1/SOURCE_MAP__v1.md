@@ -7,17 +7,17 @@ Date: 2026-03-09
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_07_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_07_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__v1_1.zip`
 - reason for bounded single-package batch:
   - this is the next archive-root item after the upgrade bootpack and plan-passes-1-4 package
   - it shifts again from upgrade control into late-pass audit locking, directed gap extraction, and ZIP taxonomy definition
   - keeping it isolated preserves audit-question lineage, unresolved confirmation semantics, and ZIP-kind term minting without treating the package as active authority
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_08_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__v1_0.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_08_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__v1_0.zip`
 
 ## 2) Source Membership
 ### Primary container
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_07_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__v1_1.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_07_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__v1_1.zip`
 - sha256: `1fea2057b1ee2b720ee0876a76779378969d0c48bc94932c71071a17d037867e`
 - size bytes: `84610`
 - container member count: `76`

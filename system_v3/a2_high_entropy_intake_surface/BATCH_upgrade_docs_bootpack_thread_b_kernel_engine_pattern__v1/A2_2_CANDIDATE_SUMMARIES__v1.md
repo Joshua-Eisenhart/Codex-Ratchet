@@ -48,4 +48,4 @@ Extraction mode: `ENGINE_PATTERN_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should begin the directed-extraction family at:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS.md`

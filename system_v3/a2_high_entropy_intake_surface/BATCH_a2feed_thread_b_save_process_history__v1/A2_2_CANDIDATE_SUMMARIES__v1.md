@@ -22,9 +22,9 @@ Extraction mode: `PROCESS_HISTORY_PASS`
 ## Candidate Summary C3
 - proposal-only reading:
   - another strong later pass would be paired Thread B family reconciliation across:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt`
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt`
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md`
 - support:
   - the current batch is valuable family context, but it does not settle latest-version authority by itself
 
@@ -47,4 +47,4 @@ Extraction mode: `PROCESS_HISTORY_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/x grok chat TOE.txt`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/x grok chat TOE.txt`

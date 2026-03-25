@@ -16,9 +16,9 @@ Date: 2026-03-09
 - `BATCH_A2MID_axes_master_semantic_fences__v1`
 
 ## Active control comparators read
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
 
 ## Parent artifacts read
 - `MANIFEST.json`

@@ -7,13 +7,13 @@ Role: preserve the controller-wrapper reset that makes family-slice input the ex
 ## Scope
 
 This note is bounded to:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_wiggle_control_cycle.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_WIGGLE_CONTROLLER_LAUNCH_NOTE__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_wiggle_control_cycle.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_WIGGLE_CONTROLLER_LAUNCH_NOTE__2026_03_15__v1.md`
 
 Focused regressions:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_wiggle_control_cycle.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a1_autoratchet_controller_result.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_wiggle_control_cycle.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a1_autoratchet_controller_result.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py`
 
 ## What changed
 
@@ -41,7 +41,7 @@ so controller-side inspection can see whether the run was launched through:
 ### 3) Active launch note was retargeted
 
 `A1_WIGGLE_CONTROLLER_LAUNCH_NOTE__2026_03_15__v1.md` now uses:
-- `--family-slice-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json`
+- `--family-slice-json /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json`
 
 in both initial and continuation command examples, and it now states plainly that:
 - family-slice input is the normal direct-control path
@@ -78,8 +78,8 @@ Focused tests:
 Best next move:
 - leave the controller-law seam alone for now
 - return to deeper planner/orchestrator reset work in:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/autoratchet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/autoratchet.py`
 
 Specifically, the next useful patch is likely:
 - reduce or isolate the hardcoded profile ladders so compatibility mode is visibly scaffold-only instead of still defining most active planning behavior

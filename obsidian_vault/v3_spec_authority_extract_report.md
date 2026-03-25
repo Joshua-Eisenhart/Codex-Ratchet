@@ -9,7 +9,7 @@ authority: "SOURCE_CLAIM"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::v3_spec_authority_extract_report::496c05717130f437`
 
 ## Description
-authority_extract_report.json (302968B): {   "authority_sources": [     {       "path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md",       "sha256": "68a8114f647d778c49f6f8af3bd270646cae06d40b990fe60e782fb59ccc731b",     
+authority_extract_report.json (302968B): {   "authority_sources": [     {       "path": "/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md",       "sha256": "68a8114f647d778c49f6f8af3bd270646cae06d40b990fe60e782fb59ccc731b",     
 
 ## Properties
 - **source_line_range**: 

@@ -9,7 +9,7 @@ authority: "SOURCE_CLAIM"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_worker_launch_handoff__stage1_operato::cc9a218d87af1e3f`
 
 ## Description
-A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json (5335B): {   "closeout_route": {     "append_command": "python3 system_v3/tools/append_thread_closeout_packet.py --packet-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_HIGH_REFINERY_PASS__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1__A2_WORKER.json'",     "c
+A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json (5335B): {   "closeout_route": {     "append_command": "python3 system_v3/tools/append_thread_closeout_packet.py --packet-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_HIGH_REFINERY_PASS__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1__A2_WORKER.json'",     "c
 
 ## Properties
 - **source_line_range**: 

@@ -7,7 +7,7 @@
 
 ## Anchor Family
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
 
 ## Why This Pair Matters
 
@@ -24,17 +24,17 @@
 #### Normalized Retained Triple
 
 - memo witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_LOCAL_0001/reports/a1_external_memo_batch_driver_report.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_LOCAL_0001/reports/a1_external_memo_batch_driver_report.json`
   - witness meaning:
     - retained record that the strict local bridge seed passed through the memo/exchange stage
 
 - cold-core witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_LOCAL_0001/a1_sandbox/cold_core/000024_A1_COLD_CORE_PROPOSALS_v1.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_LOCAL_0001/a1_sandbox/cold_core/000024_A1_COLD_CORE_PROPOSALS_v1.json`
   - witness meaning:
     - retained late local bridge proposal state for the strict local seed lane
 
 - strategy witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_LOCAL_0001/a1_sandbox/outgoing/000024_A1_STRATEGY_v1__PACK_SELECTOR.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_LOCAL_0001/a1_sandbox/outgoing/000024_A1_STRATEGY_v1__PACK_SELECTOR.json`
   - witness meaning:
     - retained emitted strategy state for the strict local seed lane
 
@@ -46,28 +46,28 @@
 #### Normalized Retained Triple
 
 - memo witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_BROAD_0001/reports/a1_external_memo_batch_driver_report.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_BROAD_0001/reports/a1_external_memo_batch_driver_report.json`
   - witness meaning:
     - retained record that the broad bridge saturation lane passed through memo/exchange stage
 
 - cold-core witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_BROAD_0001/a1_sandbox/cold_core/000024_A1_COLD_CORE_PROPOSALS_v1.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_BROAD_0001/a1_sandbox/cold_core/000024_A1_COLD_CORE_PROPOSALS_v1.json`
   - witness meaning:
     - retained late broad bridge proposal state for the graveyard saturation lane
 
 - strategy witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_BROAD_0001/a1_sandbox/outgoing/000024_A1_STRATEGY_v1__PACK_SELECTOR.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_BROAD_0001/a1_sandbox/outgoing/000024_A1_STRATEGY_v1__PACK_SELECTOR.json`
   - witness meaning:
     - retained emitted strategy state for the broad bridge saturation lane
 
 ## Additional Report Anchors
 
 - strict local seed wrapper:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_LOCAL_0001/reports/graveyard_first_validity_wrapper_report.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_LOCAL_0001/reports/graveyard_first_validity_wrapper_report.json`
 - broad graveyard saturation wrapper:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_BROAD_0001/reports/graveyard_first_validity_wrapper_report.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_BROAD_0001/reports/graveyard_first_validity_wrapper_report.json`
 - broad semantic/math gate:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_BROAD_0001/reports/a1_semantic_and_math_substance_gate_report.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_BROAD_0001/reports/a1_semantic_and_math_substance_gate_report.json`
 
 ## Normalized Family Read
 

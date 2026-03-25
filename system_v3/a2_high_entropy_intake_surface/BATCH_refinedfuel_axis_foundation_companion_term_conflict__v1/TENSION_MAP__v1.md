@@ -30,10 +30,10 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `39-46`
   - source 1: `143-149`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:10-12`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:38-42`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:8-10`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:31-36`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:10-12`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:38-42`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:8-10`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:31-36`
 - tension:
   - nearby refined-fuel canon surfaces hard-lock Axis-3 to engine-family split only and explicitly reject chirality / Berry / flux semantics in canon
   - this companion reuses Axis-3 as Flux2 chirality / Berry-flux sign and builds Terrain8 on top of that
@@ -46,7 +46,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `49-52`
   - source 1: `196-204`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:46-48`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:46-48`
 - tension:
   - the file repeatedly says Axis-4 is a math-class split, not forward versus reverse order
   - it still interprets old reverse-vs-forward sequencing results as inductive versus deductive evidence
@@ -60,7 +60,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `141-180`
   - source 1: `251-263`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:50-60`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:50-60`
 - tension:
   - the file aligns with the base rule that Axis-1 × Axis-2 define Topology4 and edges are derived
   - it then expands into Terrain8 and Stage8 overlay structures that can easily reintroduce derived structure as if it were axis essence
@@ -72,7 +72,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `29`
   - source 1: `121-137`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:116-123`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:116-123`
 - tension:
   - the file says S3 / Bloch / Hopf are derived geometry and therefore kernel-compatible when derived
   - active-state noncontamination rules still require overlays not to modify kernel meaning and only structured artifacts to cross downward
@@ -85,8 +85,8 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `208-243`
   - source 1: `247-270`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1:1588-1605`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1:1632-1637`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1:1588-1605`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1:1632-1637`
 - tension:
   - the file says Jung / IGT labels are overlay only and should not add ontology
   - it still builds a detailed operator-role and loop architecture that could be mistaken for kernel structure if reformulated too aggressively

@@ -7,26 +7,26 @@ Date: 2026-03-08
 
 ## 1) Batch Selection
 - selected first family after `A2_SYSTEM_SPEC_v1.md`:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1 copy.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1 copy.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1.md`
 - reason for bundling:
   - adjacent in folder order
   - the `copy` file is a sealed prefix-state working-context surface
   - the full file preserves that same base and then appends major integration and structural passes
   - the delta itself is archived process-history evidence
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/FULL_READ_LOG_PASS_4.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/FULL_READ_LOG_PASS_4.md`
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1 copy.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1 copy.md`
   - role in batch: sealed prefix snapshot of the stabilized working-context layer
   - sha256: `a754ba06e0bcdb326225c08f48ba435f20a12580a70b6951d2077f13fb5c5c66`
   - size bytes: `4843`
   - line count: `163`
   - source class: archived runtime-state working-context doc
 - source 2:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1.md`
   - role in batch: append-only continuation of the same working-context doc
   - sha256: `ef414e146ea2596be15eea4079dd7ae090394f1d4d8f58201fc2f2eb98343f2b`
   - size bytes: `47095`

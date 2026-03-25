@@ -7,7 +7,7 @@
 
 ## Anchor Family
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
 
 ## Why This Family
 
@@ -25,17 +25,17 @@
 ### Normalized Retained Triple
 
 - memo witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_11__20260309T071410Z/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_ENRICH_LOCAL_0003/reports/a1_external_memo_batch_driver_report.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_11__20260309T071410Z/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_ENRICH_LOCAL_0003/reports/a1_external_memo_batch_driver_report.json`
   - witness meaning:
     - compact retained record that the concept-local enrichment seed ran through the memo/exchange path
 
 - cold-core witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_11__20260309T071410Z/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_ENRICH_LOCAL_0003/a1_sandbox/cold_core/000004_A1_COLD_CORE_PROPOSALS_v1.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_11__20260309T071410Z/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_ENRICH_LOCAL_0003/a1_sandbox/cold_core/000004_A1_COLD_CORE_PROPOSALS_v1.json`
   - witness meaning:
     - retained proposal surface for the exact four-term enrichment family after family-local graveyard pressure
 
 - strategy witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_11__20260309T071410Z/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_ENRICH_LOCAL_0003/a1_sandbox/outgoing/000004_A1_STRATEGY_v1__PACK_SELECTOR.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_11__20260309T071410Z/RUN_GRAVEYARD_VALIDITY_SUBSTRATE_ENRICH_LOCAL_0003/a1_sandbox/outgoing/000004_A1_STRATEGY_v1__PACK_SELECTOR.json`
   - witness meaning:
     - retained selector output showing the same four-term family at the seed-saturation boundary
 

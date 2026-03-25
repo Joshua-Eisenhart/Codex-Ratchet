@@ -9,10 +9,10 @@ Role: preserve the structural split between strict runtime execution and recover
 This note is bounded to the code structure change only.
 
 It records that the recovery/projection machinery has been extracted out of:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_real_loop.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_real_loop.py`
 
 into:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_real_loop_recovery.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_real_loop_recovery.py`
 
 ## What moved
 

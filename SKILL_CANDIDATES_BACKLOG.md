@@ -14,10 +14,10 @@ It is a `SOURCE_CORPUS` working surface, not canonical A2 brain memory by itself
 
 Detailed source and status tracking lives in:
 
-- [SKILL_SOURCE_CORPUS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md)
-- [REPO_SKILL_INTEGRATION_TRACKER.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md)
-- [79_INTEGRATION_LEDGER__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs/79_INTEGRATION_LEDGER__v1.md)
-- [A2_V4_RECOVERY_AUDIT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/A2_V4_RECOVERY_AUDIT.md)
+- [SKILL_SOURCE_CORPUS.md](/home/ratchet/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md)
+- [REPO_SKILL_INTEGRATION_TRACKER.md](/home/ratchet/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md)
+- [79_INTEGRATION_LEDGER__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/specs/79_INTEGRATION_LEDGER__v1.md)
+- [A2_V4_RECOVERY_AUDIT.md](/home/ratchet/Desktop/Codex%20Ratchet/A2_V4_RECOVERY_AUDIT.md)
 
 ## Buckets
 
@@ -191,8 +191,8 @@ Detailed source and status tracking lives in:
 ### Deliberation / Improvement
 
 - `skill-improver-operator`
-  - now audit-cleared for one bounded first target class in [SKILL_IMPROVER_READINESS_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/SKILL_IMPROVER_READINESS_REPORT__CURRENT__v1.json)
-  - current selected first target is [a2-skill-improver-readiness-operator](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-skill-improver-readiness-operator/SKILL.md)
+  - now audit-cleared for one bounded first target class in [SKILL_IMPROVER_READINESS_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/SKILL_IMPROVER_READINESS_REPORT__CURRENT__v1.json)
+  - current selected first target is [a2-skill-improver-readiness-operator](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-skill-improver-readiness-operator/SKILL.md)
   - still not honest as a general live repo-mutating loop
 - `repo-pattern-miner`
 - `method-to-skill-converter`

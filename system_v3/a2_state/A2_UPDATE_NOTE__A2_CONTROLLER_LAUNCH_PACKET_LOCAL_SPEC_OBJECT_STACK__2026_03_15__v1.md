@@ -7,25 +7,25 @@ Role: preserve the first local spec-object representation for the live A2 contro
 ## Scope
 
 New local-stack surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a2_controller_launch_packet_models.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_a2_controller_launch_packet_pydantic.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/export_a2_controller_launch_packet_graph.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/emit_a2_controller_launch_packet_pydantic_schema.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a2_controller_launch_packet_models.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_a2_controller_launch_packet_pydantic.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/export_a2_controller_launch_packet_graph.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/emit_a2_controller_launch_packet_pydantic_schema.py`
 
 Focused regression:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_launch_packet_pydantic_stack.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_launch_packet_pydantic_stack.py`
 
 Patched read surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
 
 Current live input used for proof:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json`
 
 Generated artifacts:
 - GraphML:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.graphml`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.graphml`
 - Pydantic schema:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_LAUNCH_PACKET_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_LAUNCH_PACKET_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
 
 ## What changed
 
@@ -55,7 +55,7 @@ Result:
 - `Ran 3 tests ... OK`
 
 Current audit:
-- `'.venv_spec_graph/bin/python' system_v3/tools/audit_a2_controller_launch_packet_pydantic.py --packet-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json`
+- `'.venv_spec_graph/bin/python' system_v3/tools/audit_a2_controller_launch_packet_pydantic.py --packet-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json`
 
 Observed result:
 - `thread_class = A2_CONTROLLER`
@@ -64,10 +64,10 @@ Observed result:
 - graph shape = `9 nodes / 8 edges`
 
 Current graph export:
-- `'.venv_spec_graph/bin/python' system_v3/tools/export_a2_controller_launch_packet_graph.py --packet-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json --out-graphml /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.graphml`
+- `'.venv_spec_graph/bin/python' system_v3/tools/export_a2_controller_launch_packet_graph.py --packet-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json --out-graphml /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.graphml`
 
 Current schema emit:
-- `'.venv_spec_graph/bin/python' system_v3/tools/emit_a2_controller_launch_packet_pydantic_schema.py --out-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_LAUNCH_PACKET_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
+- `'.venv_spec_graph/bin/python' system_v3/tools/emit_a2_controller_launch_packet_pydantic_schema.py --out-json /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_LAUNCH_PACKET_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
 
 ## Current interpretation
 

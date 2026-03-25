@@ -31,8 +31,8 @@ Extraction mode: `MATH_CLASS_PASS`
 - source markers:
   - source 1: `27`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/ORTHOGONALITY_ADMISSIBILITY_v1.md:9-12`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/ORTHOGONALITY_ADMISSIBILITY_v1.md:29-33`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/ORTHOGONALITY_ADMISSIBILITY_v1.md:9-12`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/ORTHOGONALITY_ADMISSIBILITY_v1.md:29-33`
 - tension:
   - the surrounding family allows orthogonality-like relations and inner-product-like extensions as open possibilities
   - this file explicitly forbids `Orth + Comp` from upgrading into basis, orthonormality, or coordinate representation by default

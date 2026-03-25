@@ -11,8 +11,8 @@ It is not a new ontology.
 It is a steering surface for the existing broad entropy lane after cluster-aware rescue has already been proven executable.
 
 ## 2) Source Evidence
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 
 Observed `CANONICAL_ALLOWED` helper leakage:
 - `information`
@@ -127,7 +127,7 @@ The next entropy control move is to strip helper fragmentation:
 without losing the real bridge-side gains already earned.
 
 ## 8) First Execution Audit
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 
 Observed:
 - `PASS__EXECUTED_CYCLE`
@@ -151,7 +151,7 @@ Operational decision:
 - treat helper fragmentation as a later merge / lexical attachment / lower-surface control problem
 
 ## 9) Planner-Side Suppression Probe
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 
 Observed:
 - `PASS__EXECUTED_CYCLE`

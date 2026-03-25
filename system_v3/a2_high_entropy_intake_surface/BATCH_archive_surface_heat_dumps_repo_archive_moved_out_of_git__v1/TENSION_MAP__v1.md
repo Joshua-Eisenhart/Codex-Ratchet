@@ -37,7 +37,7 @@ Date: 2026-03-09
   - save-export rotation manifest
   - cleanup bookkeeping logs
 - bounded contradiction:
-  - the object sits under a nested heat-dump mirror, but its manifests and cleanup logs still speak in old live absolute paths under `/Users/joshuaeisenhart/Desktop/Codex Ratchet/archive/...` and `system_v3/...`
+  - the object sits under a nested heat-dump mirror, but its manifests and cleanup logs still speak in old live absolute paths under `/home/ratchet/Desktop/Codex Ratchet/archive/...` and `system_v3/...`
 - intake handling:
   - preserve these live-era path references as historical relocation residue
 

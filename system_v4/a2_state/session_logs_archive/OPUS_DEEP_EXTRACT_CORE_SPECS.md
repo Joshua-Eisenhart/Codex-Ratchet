@@ -16,12 +16,12 @@
 - Total: 17148 nodes, 16964 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/03_B_KERNEL_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/04_A0_COMPILER_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/08_PIPELINE_AND_STATE_FLOW_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/03_B_KERNEL_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/04_A0_COMPILER_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/08_PIPELINE_AND_STATE_FLOW_SPEC.md
 
 ## Batches
 - `AUTO_01_REQUIREMENTS_LEDGER_6344293d7f144d87`

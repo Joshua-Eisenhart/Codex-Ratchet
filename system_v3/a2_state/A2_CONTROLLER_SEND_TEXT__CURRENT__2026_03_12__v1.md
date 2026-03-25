@@ -23,15 +23,15 @@ You are not an A1 worker lane.
 You are the controller.
 
 First read these files in order:
-1. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md
-2. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md
-3. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md
-4. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/66_PARALLEL_CODEX_RUN_PLAYBOOK__v1.md
-5. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md
-6. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md
-7. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md
-8. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md
-9. /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CURRENT.md
+1. /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md
+2. /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md
+3. /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md
+4. /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/66_PARALLEL_CODEX_RUN_PLAYBOOK__v1.md
+5. /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md
+6. /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md
+7. /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md
+8. /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md
+9. /home/ratchet/Desktop/Codex Ratchet/work/CURRENT.md
 
 Then build your controller state only from repo-held artifacts.
 
@@ -39,8 +39,8 @@ Launch packet:
 MODEL: GPT-5.4 Medium
 THREAD_CLASS: A2_CONTROLLER
 MODE: CONTROLLER_ONLY
-PRIMARY_CORPUS: /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel
-STATE_RECORD: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md
+PRIMARY_CORPUS: /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel
+STATE_RECORD: /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md
 CURRENT_PRIMARY_LANE: bounded substrate-base A2 -> A1 handoff lineage, now closed back to NO_WORK
 CURRENT_A1_QUEUE_STATUS: A1_QUEUE_STATUS: NO_WORK
 GO_ON_COUNT: 0

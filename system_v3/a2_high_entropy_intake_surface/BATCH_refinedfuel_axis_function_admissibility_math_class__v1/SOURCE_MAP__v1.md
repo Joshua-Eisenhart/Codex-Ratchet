@@ -7,7 +7,7 @@ Date: 2026-03-08
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - folder order begins:
@@ -24,7 +24,7 @@ Date: 2026-03-08
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_FUNCTION_ADMISSIBILITY_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_FUNCTION_ADMISSIBILITY_v1.md`
 - reason for selection:
   - this is the first file in folder order inside `constraint ladder/`
   - the file is a compact formal admissibility micro-spec, not a narrative note or omnibus theory surface
@@ -36,11 +36,11 @@ Date: 2026-03-08
     - bounded open extension clauses
   - this makes `MATH_CLASS_PASS` the best fit
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_SET_ADMISSIBILITY_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_SET_ADMISSIBILITY_v1.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_FUNCTION_ADMISSIBILITY_v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_FUNCTION_ADMISSIBILITY_v1.md`
   - role in batch: formal admissibility spec for generic function-like assignments that may later underwrite axis-like structures
   - sha256: `89d4689a1064da23c308dc2b0661c6c8c2e9b86c80708dd7a4bbab5b0ff58eb6`
   - size bytes: `3246`

@@ -7,17 +7,17 @@ Date: 2026-03-09
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_09_OF_10__A2_LAYER1_5__OUTPUT__SIM_PROTOCOL_AND_EVIDENCE_SURFACE__v1_1__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_09_OF_10__A2_LAYER1_5__OUTPUT__SIM_PROTOCOL_AND_EVIDENCE_SURFACE__v1_1__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION.zip`
 - reason for bounded single-package batch:
   - this is the next archive-root item after the structural-memory ratchet-fuel package
   - it switches back into the compact `A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION` family, but this time over mixed markdown/text/json SIM protocol and evidence artifacts rather than worldview notes or structural-memory docs
   - processing it alone preserves its engineering-not-truth protocol discipline, evidence-pack hygiene contradictions, and topic-label overreach without treating the package as current active authority
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_10_OF_10__A2_LAYER1_5__OUTPUT__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__v1_0.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_10_OF_10__A2_LAYER1_5__OUTPUT__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__v1_0.zip`
 
 ## 2) Source Membership
 ### Primary container
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_09_OF_10__A2_LAYER1_5__OUTPUT__SIM_PROTOCOL_AND_EVIDENCE_SURFACE__v1_1__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_09_OF_10__A2_LAYER1_5__OUTPUT__SIM_PROTOCOL_AND_EVIDENCE_SURFACE__v1_1__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION.zip`
 - sha256: `93760a48204b3f7b04d6edd1513eb0d95f1c36436ec08dc39fb1ea5e03263329`
 - size bytes: `41622`
 - container member count: `30`

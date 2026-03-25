@@ -7,7 +7,7 @@
 
 ## Anchor family
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 
 ## Why this family matters
 
@@ -56,32 +56,32 @@
 ### Normalized retained core
 
 - memo witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_CONT_0040/reports/a1_external_memo_batch_driver_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_CONT_0040/reports/a1_external_memo_batch_driver_report.json`
   - witness meaning:
     - current local rescue-side driver witness with `executed_cycles_total = 355`, state `16 / 47 / 47 / 478`, and `rescue_bootstrap_stalled_terms = ["correlation_diversity_functional"]`
 
 - cold-core witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_CONT_0040/a1_sandbox/cold_core/000005_A1_COLD_CORE_PROPOSALS_v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_CONT_0040/a1_sandbox/cold_core/000005_A1_COLD_CORE_PROPOSALS_v1.json`
   - witness meaning:
     - preserves the current narrowing where `probe_induced_partition_boundary` is clear while `correlation_diversity_functional` still carries fragment `functional`
 
 - strategy witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_CONT_0040/a1_sandbox/outgoing/000006_A1_STRATEGY_v1__PACK_SELECTOR.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_CONT_0040/a1_sandbox/outgoing/000006_A1_STRATEGY_v1__PACK_SELECTOR.json`
   - witness meaning:
     - preserves the latest retained selector surface for the same locally retained rescue continuation branch
 
 ## Supporting control witnesses
 
 - seeded continuation bootstrap proof:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_CONT_0006/reports/a1_exchange_serial_runner_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_CONT_0006/reports/a1_exchange_serial_runner_report.json`
 - clean rescue novelty stall classification:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_CONT_0026/reports/graveyard_first_validity_wrapper_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_CONT_0026/reports/graveyard_first_validity_wrapper_report.json`
 - rescue-target propagation proof:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_CONT_0028/reports/graveyard_first_validity_wrapper_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_CONT_0028/reports/graveyard_first_validity_wrapper_report.json`
 - focus-mode proof:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_CONT_0030/reports/a1_external_memo_batch_driver_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_CONT_0030/reports/a1_external_memo_batch_driver_report.json`
 - support-only decomposition proof:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_CONT_SUPPORT_0001/a1_sandbox/cold_core/000008_A1_COLD_CORE_PROPOSALS_v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_CONT_SUPPORT_0001/a1_sandbox/cold_core/000008_A1_COLD_CORE_PROPOSALS_v1.json`
 
 ## Normalized family read
 
@@ -107,6 +107,6 @@
 ## Future refactor consequence
 
 - once active A1/A2 surfaces cite:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - the raw continuation rescue runs become better candidates for archive-first handling instead of mandatory local residency

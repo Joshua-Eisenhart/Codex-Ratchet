@@ -10,19 +10,19 @@ Role: exact bounded `A2_WORKER` dispatch packet for executing only the already-c
 - `dispatch_id: A2_WORKER__RUNS_SAFE_MOVE_EXECUTION__2026_03_16__v1`
 - `thread_class: A2_WORKER`
 - `model: GPT-5.4 Medium`
-- `BOOT_SURFACE: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+- `BOOT_SURFACE: /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
 - `ROLE_LABEL: A2H Archived State`
 - `ROLE_TYPE: A2_HIGH_ARCHIVED_STATE`
 - `ROLE_SCOPE: one bounded pass to execute only the already-cleared safe moves for runs cleanup`
 
 ## Source artifacts
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__RUNS_CLEANUP_PLAN__2026_03_15__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/processed/2026-03-16/A2_WORKER__RUNS_CLEANUP_PLAN__2026_03_15__v1__return.txt`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/archive`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__RUNS_CLEANUP_PLAN__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/processed/2026-03-16/A2_WORKER__RUNS_CLEANUP_PLAN__2026_03_15__v1__return.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs`
+- `/home/ratchet/Desktop/Codex Ratchet/archive`
 
 ## BOUNDED_SCOPE
 
@@ -42,9 +42,9 @@ Do not:
 - exact move execution for the already-cleared candidates only
 - one small manifest note under `work/audit_tmp` listing moved paths
 - one raw returned result file written by the worker itself into:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__RUNS_SAFE_MOVE_EXECUTION__2026_03_16__v1__return.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__RUNS_SAFE_MOVE_EXECUTION__2026_03_16__v1__return.txt`
 - one raw closeout staging text file written by the worker itself into:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__RUNS_SAFE_MOVE_EXECUTION__2026_03_16__v1.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__RUNS_SAFE_MOVE_EXECUTION__2026_03_16__v1.txt`
 
 ## Exact prompt to send
 
@@ -52,7 +52,7 @@ Do not:
 Use $safe-run-maintenance.
 
 Use the current A2 boot:
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md
 
 Run one bounded A2_HIGH_ARCHIVED_STATE pass only.
 
@@ -62,12 +62,12 @@ ROLE_TYPE: A2_HIGH_ARCHIVED_STATE
 ROLE_SCOPE: one bounded pass to execute only the already-cleared safe moves for runs cleanup
 
 Use only these artifacts:
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__RUNS_CLEANUP_PLAN__2026_03_15__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/processed/2026-03-16/A2_WORKER__RUNS_CLEANUP_PLAN__2026_03_15__v1__return.txt
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/archive
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__RUNS_CLEANUP_PLAN__2026_03_15__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/processed/2026-03-16/A2_WORKER__RUNS_CLEANUP_PLAN__2026_03_15__v1__return.txt
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runs
+- /home/ratchet/Desktop/Codex Ratchet/archive
 
 Task:
 - archive exactly system_v3/runs/RUN_LLM_LANE_SMOKE_02
@@ -83,8 +83,8 @@ Rules:
 
 Before your final answer:
 - write the exact final closeout body to:
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__RUNS_SAFE_MOVE_EXECUTION__2026_03_16__v1__return.txt
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__RUNS_SAFE_MOVE_EXECUTION__2026_03_16__v1.txt
+  - /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__RUNS_SAFE_MOVE_EXECUTION__2026_03_16__v1__return.txt
+  - /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__RUNS_SAFE_MOVE_EXECUTION__2026_03_16__v1.txt
 - if the folders do not exist, create them
 - do not ask the operator to save, paste back, or carry files
 - if you cannot self-save, report that exact blocker and stop

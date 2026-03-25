@@ -9,7 +9,7 @@ authority: "CROSS_VALIDATED"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_controller_launch_packet__current__20::d5f400862792dac3`
 
 ## Description
-A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json (1684B): {   "boot_surface": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md",   "current_a1_queue_status": "A1_QUEUE_STATUS: NO_WORK",   "current_primary_lane": "internal refinedfuel Constraints / Constraints. Entropy revisit lineage",   "dispatch_rule": "
+A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json (1684B): {   "boot_surface": "/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md",   "current_a1_queue_status": "A1_QUEUE_STATUS: NO_WORK",   "current_primary_lane": "internal refinedfuel Constraints / Constraints. Entropy revisit lineage",   "dispatch_rule": "
 
 ## Properties
 - **source_line_range**: 

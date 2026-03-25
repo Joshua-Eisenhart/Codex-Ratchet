@@ -7,17 +7,17 @@ Role: preserve the first compatibility-safe bridge where existing family-slice p
 ## Scope
 
 Patched tools:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_worker_launch_packet_from_family_slice.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_a1_launch_bundle_from_family_slice.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_worker_launch_packet_from_family_slice.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_a1_launch_bundle_from_family_slice.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py`
 
 Focused regressions:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a1_worker_launch_packet_from_family_slice.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_launch_bundle_from_family_slice.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_status_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a1_worker_launch_packet_from_family_slice.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_launch_bundle_from_family_slice.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_status_packet.py`
 
 Observed smoke output:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__SUBSTRATE_BASE_SCAFFOLD__PYDANTIC_SMOKE__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__SUBSTRATE_BASE_SCAFFOLD__PYDANTIC_SMOKE__2026_03_15__v1.json`
 
 ## What changed
 
@@ -62,10 +62,10 @@ Result:
 - `Ran 9 tests ... OK`
 
 Direct local-Pydantic packet smoke:
-- `python3 system_v3/tools/build_a1_worker_launch_packet_from_family_slice.py --family-slice-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_FAMILY_SLICE__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json --model 'GPT-5.4 Medium' --dispatch-id 'A1_DISPATCH__DIRECT_PYDANTIC_SMOKE__2026_03_15__v1' --family-slice-validation-mode local_pydantic --spec-graph-python /Users/joshuaeisenhart/Desktop/Codex Ratchet/.venv_spec_graph/bin/python --out-json /tmp/a1_packet_direct_pydantic_smoke.json`
+- `python3 system_v3/tools/build_a1_worker_launch_packet_from_family_slice.py --family-slice-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_FAMILY_SLICE__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json --model 'GPT-5.4 Medium' --dispatch-id 'A1_DISPATCH__DIRECT_PYDANTIC_SMOKE__2026_03_15__v1' --family-slice-validation-mode local_pydantic --spec-graph-python /home/ratchet/Desktop/Codex Ratchet/.venv_spec_graph/bin/python --out-json /tmp/a1_packet_direct_pydantic_smoke.json`
 
 Direct local-Pydantic queue smoke:
-- `python3 system_v3/tools/build_a1_queue_status_packet.py --family-slice-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_FAMILY_SLICE__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json --model 'GPT-5.4 Medium' --dispatch-id 'A1_DISPATCH__QUEUE_PACKET_PYDANTIC_SMOKE__2026_03_15__v1' --preparation-mode packet --family-slice-validation-mode local_pydantic --spec-graph-python /Users/joshuaeisenhart/Desktop/Codex Ratchet/.venv_spec_graph/bin/python --out-dir /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/queue_status_packet__substrate_base_scaffold__pydantic_smoke__2026_03_15__v1 --out-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__SUBSTRATE_BASE_SCAFFOLD__PYDANTIC_SMOKE__2026_03_15__v1.json`
+- `python3 system_v3/tools/build_a1_queue_status_packet.py --family-slice-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_FAMILY_SLICE__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json --model 'GPT-5.4 Medium' --dispatch-id 'A1_DISPATCH__QUEUE_PACKET_PYDANTIC_SMOKE__2026_03_15__v1' --preparation-mode packet --family-slice-validation-mode local_pydantic --spec-graph-python /home/ratchet/Desktop/Codex Ratchet/.venv_spec_graph/bin/python --out-dir /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/queue_status_packet__substrate_base_scaffold__pydantic_smoke__2026_03_15__v1 --out-json /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__SUBSTRATE_BASE_SCAFFOLD__PYDANTIC_SMOKE__2026_03_15__v1.json`
 
 Observed result:
 - packet compiler succeeded under `local_pydantic`

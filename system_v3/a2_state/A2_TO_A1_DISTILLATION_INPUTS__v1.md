@@ -277,19 +277,19 @@ Current executable bridge order:
 Working interpretation:
 - the direct entropy-family names remain proposal-space targets
 - the bridge terms are the first lower-loop executable faces for this lane
-- use `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BRIDGE_CAMPAIGN__v1.md` for the first strict execution surface
+- use `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BRIDGE_CAMPAIGN__v1.md` for the first strict execution surface
 
 Current proof split:
 - strict local seed proof:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
   - proves one real lower-loop executed cycle
   - still thin:
     - `graveyard_count = 9`
     - `kill_log_count = 9`
     - `sim_registry_count = 17`
 - broad-fuel graveyard saturation:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
   - proves rich exploratory pressure:
     - `graveyard_count = 153`
     - `kill_log_count = 153`
@@ -312,14 +312,14 @@ Current bookkeeping-side read:
 - for now, the bookkeeping side should stay coupled to the broad exploratory entropy-bridge mode
 
 Family anchor:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_RATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_RATE_FAMILY__v1.md`
 
 Normalized regeneration witness:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_RATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_RATE_FAMILY__v1.md`
 
 Narrow packet-only bookkeeping follow-up:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BOOKKEEPING_PACKET_SMOKE_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BOOKKEEPING_PACKET_SMOKE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BOOKKEEPING_PACKET_SMOKE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BOOKKEEPING_PACKET_SMOKE_FAMILY__v1.md`
 - working read:
   - planner-level superoperator inflation is fixed for:
     - `density_entropy`
@@ -351,8 +351,8 @@ Narrow packet-only bookkeeping follow-up:
 
 Focused local follow-up:
 - single-term `correlation_polarity` local pressure also remains too thin under the current exchange/memo path
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_RATE_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_RATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_RATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_RATE_FAMILY__v1.md`
 - observed:
   - `FAIL__SUBPROCESS`
   - no executed cycle
@@ -368,8 +368,8 @@ Updated decision:
 - if a later narrow route is needed, use a stronger bridge pair or direct packet pressure, not the current memo-local single-term profile
 
 Direct packet-pressure update:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_PACKET_SMOKE_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_PACKET_SMOKE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_PACKET_SMOKE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_PACKET_SMOKE_FAMILY__v1.md`
 - this route still proves a real narrow packet-only lower-loop step on the correlation side, but the earlier stronger claim had to be corrected:
   - helper-suppression in the normalized narrow packet route is negative evidence:
     - the retained family witness preserves an unresolved contradiction between doctrine (`UNDEFINED_LEXEME:polarity`) and the retained B-report (`UNDEFINED_LEXEME:correlation`)
@@ -407,8 +407,8 @@ Next executable entropy move:
   rather than continuing single-term local tuning
 
 Residue-broad broad-mode audit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
 - current read:
   - `entropy_bridge_residue_broad` is the correct residue-tagged broad executable surface
   - it reaches:
@@ -443,7 +443,7 @@ Observed dominant residue basin from that run:
 before giving probability / homunculus residue the top budget share
 
 Current next-action pack:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BROAD_RESCUE_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BROAD_RESCUE_PACK__v1.md`
 - use this order inside the broad entropy lane:
   1. thermal scalar stripping
   2. time / bath stripping
@@ -452,7 +452,7 @@ Current next-action pack:
 - do not return to narrow bookkeeping tuning before this broad rescue pack has been used
 
 Focused follow-up if the broad pack only reconfirms the same basin:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_THERMAL_TIME_RESCUE_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_THERMAL_TIME_RESCUE_PACK__v1.md`
 - use it to test the first dominant basin directly:
   - `CLASSICAL_TEMPERATURE`
   - `CLASSICAL_TIME`
@@ -461,7 +461,7 @@ Focused follow-up if the broad pack only reconfirms the same basin:
 - do not reintroduce heavier geometry/infinity or probability pressure until this narrower split is tried
 
 Thermal/time split result:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 - the narrowed profile executes cleanly and preserves targets
 - but run-end counts remain unchanged:
   - `canonical_term_count = 39`
@@ -474,8 +474,8 @@ Thermal/time split result:
   - the next entropy move should focus on rescue-structure changes, not more profile-shape tuning
 
 Reformulation broad result:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 - the reformulation profile also executes cleanly
 - but it lands the same broad plateau:
   - `canonical_term_count = 39`
@@ -491,29 +491,29 @@ Reformulation broad result:
   - next entropy control move should come from graveyard cluster / failure-topology pressure, not another profile reshuffle
 
 Active failure-topology control surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__v1.md`
 - generated confirmation:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__AUTO__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__AUTO__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__AUTO__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__AUTO__v1.json`
 - this topology now defines the next entropy control move:
   - cluster-aware rescue
   - not more profile wording churn
 
 Active rescue pack derived from that topology:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_CLUSTER_RESCUE_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_CLUSTER_RESCUE_PACK__v1.md`
 - rescue-order note:
   - generated topology ranks aggregate pressure as `Cluster C > Cluster B > Cluster A`
   - active rescue order still stays `Cluster A -> Cluster B -> Cluster C`
   - this remains an explicit control choice until active run evidence shows the order should change
 - frozen-order recheck:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_AUDIT_PROOF_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_AUDIT_PROOF_CLUSTER__v1.md`
   - same dominant basin persists under the frozen A/B/C order
   - `correlation_polarity` remains the active admitted bridge-side survivor
   - `entropy_production_rate` still does not land
   - next entropy move should come from stronger branch-budget / merge / rescue-structure changes, not a reorder of the same cluster pack
 - seeded continuation proof:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
   - the active broad route now proves live later-phase rescue under:
     - `process_phase = rescue`
     - `cycle_debate_mode = graveyard_recovery`
@@ -525,7 +525,7 @@ Active rescue pack derived from that topology:
     - `sim_registry_count = 71`
   - so the next entropy move is rescue-efficacy pressure, not more proof that rescue exists
 - extended rescue-efficacy probe:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
   - broad rescue remains the active route and now runs through sequence `24`
   - state expands only slightly to:
     - `canonical_term_count = 12`
@@ -538,7 +538,7 @@ Active rescue pack derived from that topology:
     - global closure is still blocked by missing `T6_WHOLE_SYSTEM` and required probe terms `qit_master_conjunction`, `unitary_operator`
 
 Cluster-rescue broad result:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - this is the first broad entropy control surface that materially breaks the earlier 39/144/232 plateau
 - current read:
   - `correlation_polarity` survives under cluster-aware broad rescue
@@ -553,7 +553,7 @@ Cluster-rescue broad result:
   - next entropy work should focus on lifting `entropy_production_rate` from this tighter frontier
 
 Cold-start probe correction:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - one-step clean probe is too thin and falls to:
   - `canonical_term_count = 1`
   - `graveyard_count = 9`
@@ -561,7 +561,7 @@ Cold-start probe correction:
   - `sim_registry_count = 13`
 
 Full-budget clean result:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - the same profile with full serial budget returns to:
   - `canonical_term_count = 9`
   - `graveyard_count = 45`
@@ -578,12 +578,12 @@ Next blocker from the full-budget clean run:
   - `bound`
   - `polarity`
 - next entropy control surface:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_HELPER_LEAK_STRIP_PACK__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_HELPER_LEAK_STRIP_PACK__v1.md`
 - next entropy move:
   - strip helper fragmentation without losing the cluster-rescue broad gains
 
 Helper-strip broad audit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 - run outcome:
   - `PASS__EXECUTED_CYCLE`
   - `canonical_term_count = 9`
@@ -605,7 +605,7 @@ Current decision:
 - treat helper fragmentation as a later merge / lexical attachment control problem
 
 Planner-side suppression probe:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 - run outcome:
   - `PASS__EXECUTED_CYCLE`
   - `canonical_term_count = 5`
@@ -628,12 +628,12 @@ Decision:
 - return to cluster-rescue broad as the active route
 
 Active lift pack from that frontier:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_RATE_LIFT_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_RATE_LIFT_PACK__v1.md`
 
 Rate-lift broad result:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_RATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_RATE_FAMILY__v1.md`
 - normalized witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_RATE_FAMILY__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_RATE_FAMILY__v1.md`
 - current read:
   - `correlation_polarity` survives
   - `entropy_production_rate` now survives
@@ -652,7 +652,7 @@ Rate-lift broad result:
   - next entropy budget should shift away from bridge tuning and back toward structure-side lift and later tier closure
 
 Current entropy next-action pack:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_REFORMULATION_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_REFORMULATION_PACK__v1.md`
 
 Operational read:
 - the next entropy move should not spend more budget on profile narrowing
@@ -668,10 +668,10 @@ Structure-side split:
   - real runtime diversity probes already exist
 - `probe_induced_partition_boundary` stays proposal-side for now
 - active next-action pack:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_STRUCTURE_LIFT_PACK__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_STRUCTURE_LIFT_PACK__v1.md`
 
 Diversity-lift broad result:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_DIVERSITY_FAMILY__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_DIVERSITY_FAMILY__v1.md`
 - current read:
   - `correlation_diversity_functional` still does not land
   - `probe_induced_partition_boundary` still does not land
@@ -689,12 +689,12 @@ Diversity-lift broad result:
   - next entropy structure work should build a colder executable diversity alias/decomposition before retrying direct structure admission
 
 Active colder-alias next step:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md`
 - working candidate alias:
   - `pairwise_correlation_spread_functional`
 
 Reference quarry:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_ENGINE_CLASSICAL_RESIDUE_QUARRY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_ENGINE_CLASSICAL_RESIDUE_QUARRY__v1.md`
 
 ## 2.1) First Concrete Ratchet Target Family
 Use this as the first serious substrate-first family:
@@ -809,15 +809,15 @@ This file exists so A1 can be refreshed from a cleaner A2 understanding surface 
 
 ## 10) Current Execution Status
 The first substrate-family target has now passed the upper worker path and reached one real lower-loop step via:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_FAMILY__v1.md`
 
 This means the current bottleneck is no longer exchange/prepack wiring.
 The next pressure point is family quality and lower-loop survival.
 
 ## 11) First Concrete Narrowing Signal
 First lower-loop failure for the substrate family:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
 
 What failed:
 - `density_matrix` branch imported `left_action_superoperator` / `right_action_superoperator` too early
@@ -831,7 +831,7 @@ Narrowing rule for the next A1 attempt:
 The lean exchange/prepack path now proves the core five substrate terms can advance through the lower loop without the earlier first-family binding failures.
 
 Evidence:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
 
 Implication for A1:
 - keep superoperator, correlation, Hopf, and axis work out of pass-1 substrate families
@@ -856,7 +856,7 @@ Why this set:
   - Hopf/manifold/axis inflation
 
 First packet proof result:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
 
 Observed:
 - `unitary_operator` reached `CANONICAL_ALLOWED`
@@ -869,7 +869,7 @@ Next A1 instruction:
 - do not unlock the compound capstone or superoperator family yet
 
 Second packet proof result:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
 
 Observed:
 - `commutator_operator` reached `CANONICAL_ALLOWED`
@@ -895,14 +895,14 @@ Validity-mode instruction later:
 
 Current proven validity-mode result:
 - represented in the normalized substrate-base validity family surfaces:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_BASE_VALIDITY_FAMILY__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_BASE_VALIDITY_FAMILY__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_BASE_VALIDITY_FAMILY__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_BASE_VALIDITY_FAMILY__v1.md`
 - broad-fuel graveyard seed is now execution-proven
 - real graveyard pressure, kill diversity, and negative-class coverage are present before the first executed cycle
 
 ## 12.3) First Entropy Campaign Is Now Defined
 The first concrete entropy-processing campaign is now:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_ENGINE_CAMPAIGN__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_ENGINE_CAMPAIGN__v1.md`
 
 Interpretation:
 - this is the next serious family scaffold after the current substrate/enrichment floor
@@ -929,8 +929,8 @@ Current recommendation:
 
 Pass-2 enrichment concept-local result:
 - represented in the normalized substrate-enrichment family surfaces:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
   - exact enrichment-family terms admitted:
     - `unitary_operator`
     - `commutator_operator`
@@ -1026,8 +1026,8 @@ Current proof comparison:
 The first entropy broad rescue pack is now injected into the actual worker candidate set via `priority_terms`.
 
 Evidence:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
 
 Observed front-loaded terms:
 1. `information_work_extraction_bound`
@@ -1052,8 +1052,8 @@ Interpretation:
 The same broad entropy profile now injects the dominant negative classes directly into the worker request path.
 
 Evidence:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
 
 Injected negative classes:
 - `CLASSICAL_TEMPERATURE`
@@ -1081,8 +1081,8 @@ Interpretation:
 - stop tuning this exact broad profile further unless a tighter thermal/time residue split is introduced
 
 Reformulation follow-up:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 - `priority_claims` are now live in the exchange request path
 - wrapper result remains:
   - `PASS__EXECUTED_CYCLE`
@@ -1098,7 +1098,7 @@ Current decision:
 - the next entropy move must change the colder witness mix or rescue composition more sharply, not just add more claim text
 
 Next pack:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_COLDER_WITNESS_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_COLDER_WITNESS_PACK__v1.md`
 
 Use it to:
 - front-load colder bridge witnesses,
@@ -1107,7 +1107,7 @@ Use it to:
 - keep classical residue explicit on the negative side.
 
 First audit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 
 Observed:
 - branch-leading term shifts to `density_entropy`
@@ -1127,7 +1127,7 @@ Current decision:
 - the next usable entropy move must lift colder witnesses into a stronger bridge composition instead of collapsing into `density_entropy` alone
 
 Next pack:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_LIFT_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_LIFT_PACK__v1.md`
 
 Use it to:
 - prevent lone-helper branches,
@@ -1135,8 +1135,8 @@ Use it to:
 - keep direct engine terms on the negative side only.
 
 Helper-lift audit correction:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 - bridge-floor terms in that run are already `CANONICAL_ALLOWED`:
   - `correlation_polarity`
   - `entropy_production_rate`
@@ -1150,9 +1150,9 @@ Helper-lift audit correction:
 - the correct next move is direct entropy-structure pressure with bridge support demoted to witness status
 
 Current direct-structure follow-up:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_STRUCTURE_CAMPAIGN__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_STRUCTURE_CAMPAIGN__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_STRUCTURE_FAMILY__v1.md`
 - active unresolved targets:
   - `probe_induced_partition_boundary`
   - `correlation_diversity_functional`
@@ -1176,8 +1176,8 @@ Current direct-structure follow-up:
   - `correlation_polarity` was still causing same-cycle `UNDEFINED_LEXEME:polarity` pressure in the local route
 
 Follow-up reruns:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_STRUCTURE_FAMILY__v1.md`
 - updated read:
   - narrowing the support floor improved the local phase materially and stably:
     - `graveyard_count = 18`
@@ -1203,7 +1203,7 @@ Follow-up reruns:
 The lean substrate-first ladder currently still admits `probe` as an auxiliary helper term because `probe_operator` decomposes into a non-L0 `probe` component under current kernel rules.
 
 Evidence:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
 
 This is now the next semantic boundary question:
 - allow `probe` as a helper substrate term
@@ -1217,8 +1217,8 @@ Current instruction to A1:
 
 ## 14) Entropy Alias Audit
 Runs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_DIVERSITY_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_DIVERSITY_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_DIVERSITY_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_DIVERSITY_FAMILY__v1.md`
 
 Observed:
 - `pairwise_correlation_spread_functional` is now a real admissible cold-core candidate
@@ -1235,8 +1235,8 @@ Decision:
 
 ## Entropy Cluster-Rescue Broad Transition
 Evidence:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 
 Observed:
 - the broad route still gives the rich early pressure floor:
@@ -1267,7 +1267,7 @@ Instruction to A1:
 - treat the post-seed admissible six-term set as the live path-build floor
 - do not reopen alias-first or helper-only routes as the main path while this phase-switch behavior is working
 - active path-build control pack:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_PATH_BUILD_PRIORITY_PACK__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_PATH_BUILD_PRIORITY_PACK__v1.md`
 - required path-build order:
   1. `probe_induced_partition_boundary`
   2. `correlation_diversity_functional`
@@ -1278,7 +1278,7 @@ Instruction to A1:
 - helper fragments may remain as witnesses only and must not retake path-build head status
 
 Hard-floor enforcement update:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
   confirms the six-term path-build floor is now enforced at cold-core / prepack and the same allowlist is active at the driver layer.
 
 Updated A2 read:
@@ -1287,11 +1287,11 @@ Updated A2 read:
 - so the next entropy engineering step should target helper decomposition control, not more path-build pack adjustment.
 
 Lower-loop evidence for this read:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/kernel.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/kernel.py`
   enforces compound-term component admissibility on underscore terms,
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py`
   still records missing underscore components for atomic bootstrap,
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
   may still promote those missing components into bootstrap/search batches, but the active support-term channel now keeps them out of `proposed_terms_raw` on the validated entropy rescue path.
 
 Instruction to A1:
@@ -1309,8 +1309,8 @@ Current default:
 - revisit alias/component strategies only after colder witness movement saturates.
 
 Focused local-structure clamp repair:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_STRUCTURE_FAMILY__v1.md`
 - accepted read:
   - the concept-local clamp is now working mechanically through:
     - `focus_term_mode = concept_local_rescue`
@@ -1325,14 +1325,14 @@ Focused local-structure clamp repair:
     - the local route is now valid evidence that proposal-side clamping is fixed
     - direct structure-side executable admission remains blocked by current lower-loop term-surface semantics
 - active control pack:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md`
 
 Active control pack:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md`
 
 Executable-entrypoint refinement:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
   confirms that the broad entropy route is still only earning the correlation-side helper floor:
   - `correlation`
   - `polarity`
@@ -1348,10 +1348,10 @@ Instruction to A1:
 - keep the six-term bridge floor as a control surface for broad pressure / rescue / path-build ordering,
 - do not count `information` or `bound` as successful entropy bridge landing.
 - active executable branch pack:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_CORRELATION_EXECUTABLE_PACK__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_CORRELATION_EXECUTABLE_PACK__v1.md`
 
 Fresh run confirmation:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
   shows the correlation-side executable branch is real:
   - `PASS__EXECUTED_CYCLE`
   - `interpretation = executed_cycle_with_non_bridge_residue`
@@ -1362,7 +1362,7 @@ Fresh run confirmation:
   - `canonical_term_count = 12`
   - `graveyard_count = 54`
   - `sim_registry_count = 84`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
   shows the currently admitted entropy-side floor is still:
   - `correlation`
   - `correlation_polarity`
@@ -1382,8 +1382,8 @@ Updated read:
 - but it is still not enough to treat `information`, `bound`, or `work` as genuine entropy bridge landing.
 
 Seeded continuation update:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 
 Observed:
 - `wrapper_status = PASS__PATH_BUILD_SATURATED`
@@ -1400,8 +1400,8 @@ Instruction to A2:
 - do not keep spending budget on the same seeded continuation unless the family floor is intentionally widened
 
 Variant comparison update:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 
 Observed:
 - both narrower probes return `PASS__NO_EXECUTED_CYCLE`
@@ -1420,7 +1420,7 @@ Budget / merge update:
   - `path_build = 12`
   - `rescue = 8`
 - capped-only evidence:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
 - this route is still the active broad profile baseline because it preserves broad pressure while reducing helper spread.
 
 Important caveat:
@@ -1432,14 +1432,14 @@ Important caveat:
   - defer seed-phase family fencing
   - use later-phase rescue-family fencing only
 - control surface:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_FAMILY_MERGE_FENCE__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_FAMILY_MERGE_FENCE__v1.md`
 
 Seeded continuation operational rule:
 - for the active broad entropy route, valid continuation must preserve lower-loop state while resetting stale upper-loop work surfaces
 - active bootstrap tool:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/bootstrap_seeded_continuation_run.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/bootstrap_seeded_continuation_run.py`
 - accepted continuation proof:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - current accepted read:
   - `executed_cycles_total = 4`
   - `wait_cycles_total = 4`
@@ -1457,18 +1457,18 @@ Seeded continuation operational rule:
   - fresh wrapper runs with no preserved lower state
   - naive copied-run continuations that carry stale `a1_sandbox` / `a1_inbox` state
 - active runner support now exists directly in:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_graveyard_first_validity_campaign.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_graveyard_first_validity_campaign.py`
   - via `--seed-from-run-id`
 - wrapper emission is now also stable for seeded continuation:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
   - `PASS__EXECUTED_CYCLE`
   - the wrapper now counts serial aggregate work, not just the latest driver call
   - remaining blocker is path-build saturation, not continuation observability
 
 Seeded rescue-stop confirmation:
 - clean rescue-side stop proof now exists at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted read:
   - `wrapper_status = PASS__RESCUE_NOVELTY_STALLED`
   - `stop_reason = STOPPED__RESCUE_NOVELTY_STALL`
@@ -1486,8 +1486,8 @@ Seeded rescue-stop confirmation:
   - for seeded continuation on the active broad entropy route, rescue novelty stall now means honest post-executed-cycle novelty exhaustion after sustained rescue execution
 
 Pinned rescue-support confirmation:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted current read:
   - rescue-side pinned support terms are now explicitly carried in the live broad entropy route
   - `proposal_support_terms` includes:
@@ -1501,14 +1501,14 @@ Pinned rescue-support confirmation:
   - the remaining open question is rescue efficacy after support persistence, not whether support terms are making it into the live route
 
 Rotated rescue-support control:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted read:
   - rescue-side support is now rotated instead of being pinned as one static set on every step
   - the active broad route still executes after the change
   - the open question remains rescue efficacy under rotated support, not route liveness
 - rescue-target shape rotation proof:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - current read:
   - rescue-target shape rotation is live through sustained rescue execution
   - the route reaches `executed_cycles = 24`
@@ -1517,7 +1517,7 @@ Rotated rescue-support control:
 
 Probe-companion next bounded move:
 - control pack:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_PROBE_COMPANION_PACK__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_PROBE_COMPANION_PACK__v1.md`
 - purpose:
   - test whether the active broad entropy lane can satisfy the missing probe obligations
     - `qit_master_conjunction`
@@ -1529,7 +1529,7 @@ Probe-companion next bounded move:
     - `correlation`
     - `correlation_polarity`
 - tested seeded run:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 - accepted result:
   - `wrapper_status = PASS__PATH_BUILD_SATURATED`
   - `executed_cycles = 0`
@@ -1542,8 +1542,8 @@ Probe-companion next bounded move:
   - witness-only probe-companion injection does not currently advance the executable entropy branch
 
 Rescue-target propagation closure:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted read:
   - rescue requests now carry explicit non-empty `graveyard_rescue_targets`
   - seeded continuation still ends at `PASS__RESCUE_NOVELTY_STALLED`
@@ -1553,8 +1553,8 @@ Rescue-target propagation closure:
   - not rescue-target injection
 
 Rescue focus-mode confirmation:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted read:
   - late rescue requests now carry `focus_term_mode = concept_priority_rescue`
   - late rescue requests still carry non-empty `graveyard_rescue_targets`
@@ -1566,8 +1566,8 @@ Rescue focus-mode confirmation:
   - remaining blocker stays rescue novelty generation
 
 Rotating rescue-frontier continuation update:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted read:
   - rescue-target propagation stays fixed
   - rescue focus-term mode stays fixed
@@ -1583,18 +1583,18 @@ Rotating rescue-frontier continuation update:
 
 Memo / prepack hygiene update:
 - active `path_build` / `rescue` allowlists now sanitize external memo `proposed_terms` at the two real ingress points:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_external_memo_batch_driver.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_consolidation_prepack_job.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_external_memo_batch_driver.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_consolidation_prepack_job.py`
 - this closes the specific reintroduction path where broad prefilled external memos kept carrying:
   - `information_work_extraction_bound`
 - focused proof:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
   - `information_work_extraction_bound` no longer appears in `proposed_terms_raw`
 
 Cluster-clamp executable entropy update:
 - active cleaner continuation:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 - accepted read:
   - `PASS__EXECUTED_CYCLE`
   - `executed_cycles = 8`
@@ -1619,8 +1619,8 @@ Cluster-clamp executable entropy update:
   - helper-residue control is improved but still incomplete
 
 Latest continuation update:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - current authoritative read:
   - `wrapper_status = PASS__EXECUTED_CYCLE`
   - `interpretation = executed_cycle`
@@ -1645,9 +1645,9 @@ Latest continuation update:
     - `unitary_operator` and `qit_master_conjunction` remain pinned support terms but are not active rescue companions in the observed bootstrap histogram
 
 Bootstrap-stall narrowing update:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - current authoritative read:
   - rescue-side bootstrap demotion is now asymmetric
   - `rescue_bootstrap_stalled_terms` narrows to:
@@ -1656,7 +1656,7 @@ Bootstrap-stall narrowing update:
     - `need_atomic_bootstrap = []`
   - `correlation_diversity_functional` no longer stalls at bootstrap propagation
   - the stalled rescue-target decomposition is now frozen in:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_RESCUE_TARGET_DECOMPOSITION_PACK__v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_RESCUE_TARGET_DECOMPOSITION_PACK__v1.md`
     - bootstrap fragment = `functional`
     - witness companions = `unitary_operator`, `qit_master_conjunction`
   - the live rescue driver now injects `functional` as a pinned rescue fragment for this stalled basin
@@ -1668,7 +1668,7 @@ Bootstrap-stall narrowing update:
   - the remaining local blocker is downstream lower-loop term-surface semantics on `correlation_diversity_functional`
 
 Bootstrap-companion admission proof:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted read:
   - rescue-side decomposition companions now flow in support-only fields
   - `functional` is present in:
@@ -1683,9 +1683,9 @@ Bootstrap-companion admission proof:
 
 Required-probe witness next move:
 - control pack:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_REQUIRED_PROBE_WITNESS_PACK__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_REQUIRED_PROBE_WITNESS_PACK__v1.md`
 - authoritative run:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 - accepted rule:
   - witness-only required-probe companions are:
     - `qit_master_conjunction`
@@ -1698,7 +1698,7 @@ Required-probe witness next move:
 
 ## Thread-derived immediate sequencing lock (2026-03-06 thread export)
 Source corpus:
-- `/Users/joshuaeisenhart/Desktop/codex thread save.txt`
+- `/home/ratchet/Desktop/codex thread save.txt`
 
 Immediate A2->A1 sequencing correction:
 - do not treat broader runtime experimentation as the next primary task
@@ -1870,8 +1870,8 @@ Control implication:
 
 ## Constraints. Entropy revisit impact lock (2026-03-10)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_A1_DELTA__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_A1_DELTA__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
 
 Working A1 consequence:
 - this sibling pair should not generate new doctrine-head or direct executable-head families
@@ -1894,10 +1894,10 @@ Blocked A1 moves from this lane:
 
 ## Controller boot refresh impact lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CONTROLLER_BOOT_REFRESH_AND_QUEUE_LOCK__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CHECK__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/33_A2_VS_A1_ROLE_SPLIT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CONTROLLER_BOOT_REFRESH_AND_QUEUE_LOCK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CHECK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/33_A2_VS_A1_ROLE_SPLIT__v1.md`
 
 Working A1 consequence:
 - `A1_QUEUE_STATUS` remains `NO_WORK` until a fresh bounded handoff exists
@@ -1916,8 +1916,8 @@ Blocked A1 moves under this lock:
 
 ## External boot readiness audit lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_BOOT_READINESS_AUDIT__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_AUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_BOOT_READINESS_AUDIT__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_AUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - scaffold completion for the corrected external boot does not create a fresh entropy-family handoff
@@ -1929,8 +1929,8 @@ Blocked A1 moves under this lock:
 
 ## Carnot packet first-source-fill lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CARNOT_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_AUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CARNOT_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_AUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - one real Carnot source-bearing file exists now
@@ -1941,8 +1941,8 @@ Blocked A1 moves under this lock:
 
 ## Carnot packet second-source-fill lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CARNOT_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_AUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CARNOT_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_AUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - Carnot packet quality improved again
@@ -1953,8 +1953,8 @@ Blocked A1 moves under this lock:
 
 ## Maxwell packet first-source-fill lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_AUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_AUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - Maxwell packet now has its first real source-bearing file
@@ -1965,8 +1965,8 @@ Blocked A1 moves under this lock:
 
 ## FEP packet first-source-fill lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__FEP_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_AUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__FEP_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_AUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - first-source floors now exist for Carnot, Maxwell, and FEP
@@ -1977,8 +1977,8 @@ Blocked A1 moves under this lock:
 
 ## External first-wave re-audit lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_FIRST_WAVE_REAUDIT__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_REAUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_FIRST_WAVE_REAUDIT__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_REAUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the first-priority wave is source-bearing but still partial
@@ -1989,8 +1989,8 @@ Blocked A1 moves under this lock:
 
 ## Maxwell packet second-source-fill lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_REAUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_REAUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - Maxwell packet is stronger, but the lane still remains in controller-side completeness work
@@ -2000,8 +2000,8 @@ Blocked A1 moves under this lock:
 
 ## FEP packet second-source-fill lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__FEP_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_REAUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__FEP_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_REAUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - FEP now has a two-file source-bearing floor, so the first-priority wave is more evenly grounded
@@ -2012,8 +2012,8 @@ Blocked A1 moves under this lock:
 
 ## External comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_COMPARATIVE_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_COMPARATIVE_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the first-priority wave is now balanced at a two-file floor, but `maxwell_demon_primary` remains the sharpest controller-side blocker
@@ -2025,8 +2025,8 @@ Blocked A1 moves under this lock:
 
 ## Maxwell packet third-source-fill lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the sharpest old Maxwell bridge gap is narrower now
@@ -2037,8 +2037,8 @@ Blocked A1 moves under this lock:
 
 ## External post-Maxwell comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `carnot_primary`
@@ -2050,8 +2050,8 @@ Blocked A1 moves under this lock:
 
 ## Carnot packet third-source-fill lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CARNOT_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CARNOT_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the sharpest old Carnot state/semantic-boundary gap is narrower now
@@ -2062,8 +2062,8 @@ Blocked A1 moves under this lock:
 
 ## External post-Carnot comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `fep_active_inference_primary`
@@ -2075,8 +2075,8 @@ Blocked A1 moves under this lock:
 
 ## FEP packet third-source-fill lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__FEP_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__FEP_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the sharpest old FEP blanket/strip-map gap is narrower now
@@ -2087,8 +2087,8 @@ Blocked A1 moves under this lock:
 
 ## External post-FEP comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `maxwell_demon_primary`
@@ -2100,8 +2100,8 @@ Blocked A1 moves under this lock:
 
 ## Maxwell Bennett/Szilard block lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the next Maxwell bridge step is blocked on missing source-bearing Bennett/Szilard material
@@ -2115,8 +2115,8 @@ Blocked A1 moves under this lock:
 
 ## External post-Maxwell-Bennett comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_BENNETT_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_BENNETT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_BENNETT_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_BENNETT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `carnot_primary`
@@ -2128,8 +2128,8 @@ Blocked A1 moves under this lock:
 
 ## External post-Carnot-fourth comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_FOURTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_FOURTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_FOURTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_FOURTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `fep_active_inference_primary`
@@ -2141,8 +2141,8 @@ Blocked A1 moves under this lock:
 
 ## External post-FEP-fourth comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_FOURTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_FOURTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_FOURTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_FOURTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `maxwell_demon_primary`
@@ -2154,8 +2154,8 @@ Blocked A1 moves under this lock:
 
 ## External post-Maxwell-fifth comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_FIFTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_FIFTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_FIFTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_FIFTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `carnot_primary`
@@ -2167,8 +2167,8 @@ Blocked A1 moves under this lock:
 
 ## External post-Maxwell-stage-map comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_STAGE_MAP_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_STAGE_MAP__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_STAGE_MAP_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_STAGE_MAP__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `carnot_primary`
@@ -2180,8 +2180,8 @@ Blocked A1 moves under this lock:
 
 ## External post-Carnot-fifth comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_FIFTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_FIFTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_FIFTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_FIFTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `fep_active_inference_primary`
@@ -2193,8 +2193,8 @@ Blocked A1 moves under this lock:
 
 ## External post-FEP-fifth comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_FIFTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_FIFTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_FIFTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_FIFTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `maxwell_demon_primary`
@@ -2206,7 +2206,7 @@ Blocked A1 moves under this lock:
 
 ## Maxwell sixth-source acquisition lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/09_SOURCE_BEARING_EXTRACT__BENNETT_SZILARD_PROGRAM_FLOW_AND_MERGING_COST__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/09_SOURCE_BEARING_EXTRACT__BENNETT_SZILARD_PROGRAM_FLOW_AND_MERGING_COST__v1.md`
 
 Working A1 consequence:
 - Maxwell now has a six-file source-bearing floor rather than a five-file floor
@@ -2219,8 +2219,8 @@ Blocked A1 moves under this lock:
 
 ## External post-Maxwell-sixth comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_SIXTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_SIXTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_SIXTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_SIXTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `carnot_primary`
@@ -2232,8 +2232,8 @@ Blocked A1 moves under this lock:
 
 ## External post-Carnot-sixth comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_SIXTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_SIXTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_SIXTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_SIXTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `fep_active_inference_primary`
@@ -2245,8 +2245,8 @@ Blocked A1 moves under this lock:
 
 ## External post-FEP-sixth comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_SIXTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_SIXTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_SIXTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_SIXTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `maxwell_demon_primary`
@@ -2258,8 +2258,8 @@ Blocked A1 moves under this lock:
 
 ## External post-Maxwell-seventh comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_SEVENTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_SEVENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_SEVENTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_SEVENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `carnot_primary`
@@ -2271,8 +2271,8 @@ Blocked A1 moves under this lock:
 
 ## External post-Maxwell-latest comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_EIGHTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_EIGHTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_EIGHTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_EIGHTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `carnot_primary`
@@ -2284,8 +2284,8 @@ Blocked A1 moves under this lock:
 
 ## External post-Carnot-seventh comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_SEVENTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_SEVENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_SEVENTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_SEVENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `fep_active_inference_primary`
@@ -2297,8 +2297,8 @@ Blocked A1 moves under this lock:
 
 ## External post-FEP-seventh comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_SEVENTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_SEVENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_SEVENTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_SEVENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `maxwell_demon_primary`
@@ -2310,8 +2310,8 @@ Blocked A1 moves under this lock:
 
 ## External post-Maxwell-eighth comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_NINTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_NINTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_NINTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_NINTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `carnot_primary`
@@ -2323,8 +2323,8 @@ Blocked A1 moves under this lock:
 
 ## External post-Carnot-eighth comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_EIGHTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_EIGHTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_EIGHTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_EIGHTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `fep_active_inference_primary`
@@ -2336,8 +2336,8 @@ Blocked A1 moves under this lock:
 
 ## External post-FEP-eighth comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_EIGHTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_EIGHTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_EIGHTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_EIGHTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `maxwell_demon_primary`
@@ -2349,8 +2349,8 @@ Blocked A1 moves under this lock:
 
 ## External post-Maxwell-ninth comparative refresh lock (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_TENTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_TENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_TENTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_TENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 Working A1 consequence:
 - the lead controller-side blocker is now `carnot_primary`
@@ -2362,9 +2362,9 @@ Blocked A1 moves under this lock:
 
 ## Operating split and trigger correction (2026-03-12)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CHECK__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_16__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_NEXT_TRIGGER_CANDIDATES__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CHECK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_16__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_NEXT_TRIGGER_CANDIDATES__2026_03_12__v1.md`
 - current March 12 controller corrections captured into the live A2 owner surfaces
 
 Working A1 consequence:
@@ -2385,8 +2385,8 @@ Blocked A1 moves under this correction:
 
 ## Whole-system target clarification (2026-03-13)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__WHOLE_SYSTEM_TARGET_AUDIT__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__WHOLE_SYSTEM_TARGET_AUDIT__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md`
 
 Working A1 consequence:
 - the first operatorized entropy family remains the correct early executable narrowing
@@ -2405,8 +2405,8 @@ Blocked A1 overreads under this clarification:
 
 ## Main target staged family map (2026-03-13)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md`
 
 Working A1 consequence:
 - keep the current head / near-head families explicit:
@@ -2431,9 +2431,9 @@ Blocked A1 moves under this staged map:
 
 ## Historical pre-A1 head-grounding dispatch (2026-03-13)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_PACKET__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_PACKET__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json`
 
 Working A1 consequence:
 - `A1` still remains `NO_WORK`
@@ -2446,10 +2446,10 @@ Blocked A1 moves under this dispatch:
 
 ## Active context and upgrade-support split correction (2026-03-13)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ALIGNED_METHOD_RETUNING_CONTINUITY__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ACTIVE_CONTEXT_AND_UPGRADE_REFRESH__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CURRENT.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/INBOX/GENERAL_TASK_PLAN__AUTOMATION_SKILLS_PRO_REFINERY__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ALIGNED_METHOD_RETUNING_CONTINUITY__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ACTIVE_CONTEXT_AND_UPGRADE_REFRESH__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/CURRENT.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/INBOX/GENERAL_TASK_PLAN__AUTOMATION_SKILLS_PRO_REFINERY__2026_03_13__v1.md`
 
 Working A1 consequence:
 - `A1` still remains `NO_WORK`
@@ -2464,9 +2464,9 @@ Blocked A1 moves under this correction:
 
 ## Nonliteral import and nonclassical posture correction (2026-03-13)
 Source-bound inputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__NONLITERAL_IMPORT_AND_NONCLASSICAL_POSTURE__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__NONLITERAL_IMPORT_AND_NONCLASSICAL_POSTURE__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__NONLITERAL_IMPORT_AND_NONCLASSICAL_POSTURE__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__NONLITERAL_IMPORT_AND_NONCLASSICAL_POSTURE__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md`
 
 Working A1 consequence:
 - `A1` still remains `NO_WORK`

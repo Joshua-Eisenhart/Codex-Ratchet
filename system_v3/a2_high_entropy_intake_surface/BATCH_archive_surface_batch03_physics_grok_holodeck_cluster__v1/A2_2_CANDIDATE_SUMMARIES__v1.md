@@ -39,5 +39,5 @@ Extraction mode: `ARCHIVE_LAYERED_EXTRACTION_PACKAGE_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_04_OF_10__LEVIATHAN_MODEL_INTERPRETATION_CLUSTER__OUTPUTS__v1_1.zip`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_04_OF_10__LEVIATHAN_MODEL_INTERPRETATION_CLUSTER__OUTPUTS__v1_1.zip`
   - that pass should stay isolated as its own archive package family

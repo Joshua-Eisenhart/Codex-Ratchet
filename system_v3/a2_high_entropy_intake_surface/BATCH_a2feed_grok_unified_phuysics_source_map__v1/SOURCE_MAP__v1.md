@@ -7,9 +7,9 @@ Date: 2026-03-09
 
 ## 1) Folder-Order Selection
 - prior completed batch ended at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok toe redo save.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok toe redo save.txt`
 - next folder-order source selected for this bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok unified phuysics nov 29th.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok unified phuysics nov 29th.txt`
 - bounded-doc rule used:
   - this file is large and internally revisionary
   - first pass is structural and contradiction-preserving, not doctrinal normalization
@@ -23,12 +23,12 @@ Date: 2026-03-09
     - simulation-legitimacy lineage
     - AI-alignment / oracle export lineage
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/holodeck docs.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/holodeck docs.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt`
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok unified phuysics nov 29th.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok unified phuysics nov 29th.txt`
   - sha256: `0389cf9353e87f38d48241a1421e68bbffce41789715d71d205be5ae5608aabe`
   - size bytes: `407166`
   - line count: `6599`

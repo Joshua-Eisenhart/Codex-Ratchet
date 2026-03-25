@@ -28,7 +28,7 @@ Extraction mode: `QIT_BRIDGE_PASS`
 ## Candidate Summary C4
 - proposal-only reading:
   - the most important immediate downstream comparison is the next refined-fuel doc:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md`
 - support:
   - v0.2 sets the ratchet order and the unresolved deliverables, so v0.3 is the right place to check what actually hardens
 
@@ -41,4 +41,4 @@ Extraction mode: `QIT_BRIDGE_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md`

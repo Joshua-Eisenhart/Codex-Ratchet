@@ -29,7 +29,7 @@ Current read:
 - `T1_COMPOUND` = pending
 
 Evidence:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
 
 Important caveat:
 - helper `probe` may appear as an auxiliary bootstrap term
@@ -48,8 +48,8 @@ Current read:
 - `T2_OPERATOR` = active / family-specific path-build execution proven under seeded cluster clamp
 
 Evidence:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
 
 Interpretation:
 - concept-local pressure preserves family specificity
@@ -75,8 +75,8 @@ Current read:
 - `T2_OPERATOR/STRUCTURE` = pending
 
 Evidence:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 
 Interpretation:
 - primary admitted terms remain:
@@ -89,8 +89,8 @@ Interpretation:
     - `entropy`
   - `probe` remains substrate companion, not entropy success
 - seeded continuation after the proved cluster-clamp run was also tested:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
   - result:
     - `PASS__PATH_BUILD_SATURATED`
   - meaning:
@@ -115,9 +115,9 @@ Current read:
 - support lane only
 
 Evidence:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_AUDIT_PROOF_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_AUDIT_PROOF_CLUSTER__v1.md`
 
 Interpretation:
 - broad route remains useful for:
@@ -126,14 +126,14 @@ Interpretation:
   - graveyard growth
 - broad route does not by itself justify ontology promotion
 - seeded continuation now proves the later-phase rescue lane is live:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
   - sequences `10–17` run under `process_phase = rescue`
   - `wrapper_status = PASS__EXECUTED_CYCLE`
 - state counts remain flat at `11 / 45 / 45 / 71`
 - therefore the remaining issue is rescue efficacy, not rescue-phase existence
 - extended rescue probe:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
   - `wrapper_status = PASS__EXECUTED_CYCLE`
   - live rescue extends through sequence `24`
   - state expands to `12 / 46 / 46 / 88`
@@ -142,7 +142,7 @@ Interpretation:
     - missing required probe terms `qit_master_conjunction`, `unitary_operator`
   - so the active lane is still operationally real but promotion-incomplete
 - seeded rescue-stop proof:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
   - `wrapper_status = PASS__RESCUE_NOVELTY_STALLED`
   - `stop_reason = STOPPED__RESCUE_NOVELTY_STALL`
   - this proves the route can terminate cleanly inside later-phase `rescue` after sustained executed rescue cycles
@@ -154,7 +154,7 @@ Interpretation:
     - executed rescue evidence
     - clean seeded rescue-side saturation evidence
   - follow-up seeded continuation:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
     - rescue requests now include non-empty `graveyard_rescue_targets`
     - same end-state confirms propagation is fixed and novelty generation is the remaining blocker
 
@@ -163,12 +163,12 @@ Interpretation:
     - `qit_master_conjunction`
     - `unitary_operator`
   - control pack:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_PROBE_COMPANION_PACK__v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_PROBE_COMPANION_PACK__v1.md`
   - accepted reason:
     - the active broad entropy lane is live but still promotion-incomplete at the semantic/math gate because those two probe terms are missing
     - this is a bounded probe-coverage move, not entropy-family widening
 - seeded probe-companion audit:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
   - accepted result:
     - `PASS__PATH_BUILD_SATURATED`
     - `executed_cycles = 0`
@@ -177,12 +177,12 @@ Interpretation:
       - `qit_master_conjunction`
       - `unitary_operator`
 - fresh seeded continuation:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
   - rescue requests now also carry `focus_term_mode = concept_priority_rescue`
   - same end-state confirms rescue-phase focus-term drift is not the blocker either
 - current authoritative seeded continuation:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
   - rescue-target propagation and focus-term control remain fixed
   - deterministic rotating rescue subsets restore novelty beyond the previously frozen rescue frontier
   - `wrapper_status = PASS__RESCUE_NOVELTY_STALLED`
@@ -194,7 +194,7 @@ Interpretation:
     - not rescue-target injection or focus-mode drift
 
 - bootstrap-stall narrowing:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
   - rescue-side bootstrap demotion is now asymmetric:
     - `probe_induced_partition_boundary` reaches rescue cold-core with no atomic bootstrap
     - `correlation_diversity_functional` remains stalled on `functional`
@@ -202,7 +202,7 @@ Interpretation:
     - the live rescue-side blocker has narrowed from a shared decomposition basin to the remaining `functional` bootstrap surface
 
 - bootstrap-companion admission:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
   - accepted read:
     - `functional` is now carried as support-only witness material
     - it is absent from `proposed_terms_raw` and `admissible_term_candidates`
@@ -238,8 +238,8 @@ The current next engineering pressure is:
 - `system_v3/a1_state/A1_GRAVEYARD_FIRST_VALIDITY_PROFILE__v1.md`
 
 Latest entropy broad-rescue lane update:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted lane read:
   - `wrapper_status = PASS__EXECUTED_CYCLE`
   - `interpretation = executed_cycle`
@@ -259,8 +259,8 @@ Latest entropy broad-rescue lane update:
     - `unitary_operator` and `qit_master_conjunction` remain pinned but inactive in the rescue bootstrap histogram
 
 Latest structure-side seeded continuation:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_STRUCTURE_FAMILY__v1.md`
 - accepted lane read:
   - `wrapper_status = PASS__EXECUTED_CYCLE`
   - `executed_cycles = 12`
@@ -283,8 +283,8 @@ Latest structure-side seeded continuation:
   - not seed-from-run support
 
 Focused local-structure clamp repair:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_STRUCTURE_FAMILY__v1.md`
 - accepted lane read:
   - `wrapper_status = PASS__EXECUTED_CYCLE`
   - `focus_term_mode = concept_local_rescue`
@@ -301,9 +301,9 @@ Focused local-structure clamp repair:
 
 Required-probe witness audit:
 - control pack:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_REQUIRED_PROBE_WITNESS_PACK__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_REQUIRED_PROBE_WITNESS_PACK__v1.md`
 - authoritative run:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 - accepted result:
   - required probe coverage is satisfied with witness-only companions
   - the entropy lane remains unchanged structurally

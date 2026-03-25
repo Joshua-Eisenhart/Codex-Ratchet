@@ -9,11 +9,11 @@ Role: preserve the read that the multi-domain worldstack / labs / methods idea e
 
 ## SOURCE_ANCHORS
 - live user correction in the 2026-03-16 controller thread
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/A0 new thread save before sim run.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/gpt thread a1 trigram work out .txt`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/35_PRO_THREAD_BOOT_LEVELS__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/39_PRO_LAUNCH_TEMPLATE__METHOD_COMPARE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/tasks/01_TASK__SOURCE_AND_METHOD_MAP.task.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/A0 new thread save before sim run.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/gpt thread a1 trigram work out .txt`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/35_PRO_THREAD_BOOT_LEVELS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/39_PRO_LAUNCH_TEMPLATE__METHOD_COMPARE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/tasks/01_TASK__SOURCE_AND_METHOD_MAP.task.md`
 
 ## A2_UPDATE_DELTA
 - corrected read:

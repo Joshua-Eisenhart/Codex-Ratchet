@@ -6,12 +6,12 @@ Role: bounded A2 controller note for the first real source-bearing fill of `carn
 
 ## AUDIT_SCOPE
 - corrected external boot workspace:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3`
 - target packet:
   - `sources/external/carnot_primary/`
 - supporting control surfaces:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_AUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_PRO_BOOT_PACKET_SCAFFOLD__ENTROPY_CARNOT_SZILARD__2026_03_11__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_AUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_PRO_BOOT_PACKET_SCAFFOLD__ENTROPY_CARNOT_SZILARD__2026_03_11__v1.md`
 
 ## FINDINGS
 - repo-local residue alone was not enough to satisfy `CARNOT_PRIMARY_PACKET`

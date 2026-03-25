@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Batch Selection
 - selected sources:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/README_PROGRESS.txt`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/README_PROGRESS.txt`
   - embedded child run:
     - `RUN_FOUNDATION_BATCH_0001/summary.json`
     - `RUN_FOUNDATION_BATCH_0001/state.json`
@@ -23,11 +23,11 @@ Date: 2026-03-09
   - the bundle is structurally different from the parent run and should be treated as a replay/export surface, not as a smaller equivalent copy
   - this preserves early-foundation subset lineage and replay semantics without reopening sibling bundles or the full parent run again
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE_v2`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE_v2`
 
 ## 2) Source Membership
 ### Source 1
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE`
 - source class: progress-bundle root
 - total files: `63`
 - total directories: `5`
@@ -37,7 +37,7 @@ Date: 2026-03-09
   - `packets`
 
 ### Source 2
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/README_PROGRESS.txt`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/README_PROGRESS.txt`
 - sha256: `0fed33003713553d338f011668f49c888e8c2c6314a0d86954b9e58f83ffabd5`
 - size bytes: `982`
 - source class: replay README
@@ -49,7 +49,7 @@ Date: 2026-03-09
   - cumulative observed from events: `accepted 64`, `parked 7`, `rejected 4`
 
 ### Source 3
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001`
 - source class: embedded child run snapshot
 - files: `55`
 - directories: `3`
@@ -67,7 +67,7 @@ Date: 2026-03-09
   - no `sim/` directory
 
 ### Source 4
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/summary.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/summary.json`
 - sha256: `236f5d553acc51f5d058a7b4ba2a03bc18c9bedea69bd7f3e30a277325cd0645`
 - size bytes: `835`
 - source class: embedded final snapshot summary
@@ -81,7 +81,7 @@ Date: 2026-03-09
   - `final_state_hash 0e013eb1b87429686cf1b588fa2a7e45455cb145765ad63a5fdfa3c1eed49be8`
 
 ### Source 5
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/state.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/state.json`
 - sha256: `0e013eb1b87429686cf1b588fa2a7e45455cb145765ad63a5fdfa3c1eed49be8`
 - size bytes: `85352`
 - source class: embedded final snapshot state
@@ -99,13 +99,13 @@ Date: 2026-03-09
   - `active_ruleset_sha256` empty
 
 ### Source 6
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/state.json.sha256`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/state.json.sha256`
 - source class: embedded state integrity sidecar
 - integrity result:
   - declared hash matches actual `state.json` sha256 and the README current final state hash
 
 ### Source 7
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/events.jsonl`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/events.jsonl`
 - sha256: `6688695c2bd75762ca96790707d29ca8c57cbb4e55015d3d0b4539a75df95ee0`
 - size bytes: `16561`
 - line count: `6`
@@ -125,7 +125,7 @@ Date: 2026-03-09
 - referenced sim result packet count: `25`
 
 ### Source 8
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/soak_report.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/soak_report.md`
 - sha256: `7fcacf3bfbbde39ae53155497e59126fbeb544f9aabe03a5cd89e7212c1bbd23`
 - size bytes: `16746`
 - source class: embedded human-readable report
@@ -138,7 +138,7 @@ Date: 2026-03-09
   - top failure tag: `SCHEMA_FAIL 2`
 
 ### Source 9
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/zip_packets`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/zip_packets`
 - source class: embedded packet subset
 - file count: `43`
 - packet kind counts:
@@ -149,14 +149,14 @@ Date: 2026-03-09
   - `SIM_TO_A0_SIM_RESULT_ZIP`: `25`
 
 ### Source 10
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/packets`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/packets`
 - source class: carried replay strategy packets
 - file count: `7`
 - packet kind counts:
   - `A1_TO_A0_STRATEGY_ZIP`: `7`
 
 ### Source 11
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/a1_inbox/consumed`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_BATCH_0001_PROGRESS_BUNDLE/RUN_FOUNDATION_BATCH_0001/a1_inbox/consumed`
 - source class: embedded consumed strategy residue
 - file count: `7`
 - exact-copy relation:

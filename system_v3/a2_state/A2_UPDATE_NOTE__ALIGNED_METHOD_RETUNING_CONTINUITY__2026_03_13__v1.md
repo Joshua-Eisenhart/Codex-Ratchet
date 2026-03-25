@@ -23,19 +23,19 @@ This pass does not:
 ## Source anchors
 
 Live A2 brain/control surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/MODEL_CONTEXT.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ALT_MODEL_MINING_PLAYBOOK.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/MODEL_CONTEXT.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ALT_MODEL_MINING_PLAYBOOK.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
 
 Recent A2 refresh/control notes:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__FIRST_WAVE_EXTERNAL_PACKET_COMPARATIVE_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__FIRST_WAVE_EXTERNAL_PACKET_COMPARATIVE_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
 
 Live A1 / spec companions:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_ENGINE_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/ZIP_PROTOCOL_v2.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/SURFACE_CLASS_AND_MEMORY_ADMISSION_RULES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_ENGINE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/ZIP_PROTOCOL_v2.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/SURFACE_CLASS_AND_MEMORY_ADMISSION_RULES__v1.md`
 
 ## Continuity repair
 

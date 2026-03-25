@@ -7,23 +7,23 @@ Role: preserve the first real local spec-object stack for `A2_TO_A1_FAMILY_SLICE
 ## Scope
 
 Local stack env:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/.venv_spec_graph`
+- `/home/ratchet/Desktop/Codex Ratchet/.venv_spec_graph`
 
 New tools:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a2_to_a1_family_slice_models.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_a2_to_a1_family_slice_pydantic.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/export_a2_to_a1_family_slice_graph.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/emit_a2_to_a1_family_slice_pydantic_schema.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a2_to_a1_family_slice_models.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_a2_to_a1_family_slice_pydantic.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/export_a2_to_a1_family_slice_graph.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/emit_a2_to_a1_family_slice_pydantic_schema.py`
 
 Focused regression:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_to_a1_family_slice_pydantic_stack.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_to_a1_family_slice_pydantic_stack.py`
 
 Generated artifacts:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.graphml`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.graphml`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
 
 Validated active input:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_FAMILY_SLICE__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_FAMILY_SLICE__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json`
 
 ## What changed
 
@@ -67,7 +67,7 @@ Result:
 - `Ran 3 tests ... OK`
 
 Active family-slice audit:
-- `.venv_spec_graph/bin/python system_v3/tools/audit_a2_to_a1_family_slice_pydantic.py --family-slice-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_FAMILY_SLICE__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json`
+- `.venv_spec_graph/bin/python system_v3/tools/audit_a2_to_a1_family_slice_pydantic.py --family-slice-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_FAMILY_SLICE__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json`
 
 Observed result:
 - `valid = true`
@@ -81,7 +81,7 @@ Observed result:
   - `required_sim_family_count = 5`
 
 Schema emit:
-- `.venv_spec_graph/bin/python system_v3/tools/emit_a2_to_a1_family_slice_pydantic_schema.py --out-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
+- `.venv_spec_graph/bin/python system_v3/tools/emit_a2_to_a1_family_slice_pydantic_schema.py --out-json /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
 
 Manual-vs-Pydantic schema comparison:
 - top-level property count:

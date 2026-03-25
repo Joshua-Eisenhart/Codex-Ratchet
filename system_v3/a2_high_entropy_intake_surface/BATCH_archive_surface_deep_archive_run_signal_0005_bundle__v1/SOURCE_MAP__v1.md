@@ -8,7 +8,7 @@ Date: 2026-03-09
 ## 1) Batch Selection
 - selected sources:
   - direct archive object:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
   - embedded run family under zip root:
     - `RUN_SIGNAL_0005/summary.json`
     - `RUN_SIGNAL_0005/state.json`
@@ -30,11 +30,11 @@ Date: 2026-03-09
   - the archive value is that the bundle is materially fuller than the direct run-root pattern: it is a self-contained export kit with local sim evidence bodies, strategy JSONs, compile/eval reports, snapshots, and outbox blocks
   - the bundle is especially useful for demotion lineage because runtime-facing counts are aligned, but both the event-lattice endpoint and the deterministic replay audit still diverge from the final snapshot hash
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_EMPTY`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_EMPTY`
 
 ## 2) Source Membership
 ### Source 1
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - sha256: `d42708222c0c771394bf98def2002abfece88811a0247a8436a28594ab790e78`
 - size bytes: `5008299`
 - source class: zipped self-contained signal bundle
@@ -56,7 +56,7 @@ Date: 2026-03-09
     - `a1_inbox/.DS_Store`
 
 ### Source 2
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - zip member path: `RUN_SIGNAL_0005/summary.json`
 - source class: embedded final snapshot summary
 - summary markers:
@@ -81,7 +81,7 @@ Date: 2026-03-09
     - higher tiers all zero
 
 ### Source 3
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - zip member path: `RUN_SIGNAL_0005/state.json`
 - source class: embedded final snapshot state
 - compact state markers:
@@ -115,7 +115,7 @@ Date: 2026-03-09
   - all `360` `sim_promotion_status` entries are `PARKED`
 
 ### Source 4
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - zip member path: `RUN_SIGNAL_0005/state.json.sha256`
 - source class: embedded state integrity sidecar
 - integrity result:
@@ -123,7 +123,7 @@ Date: 2026-03-09
   - declared hash matches embedded `summary.json` final state hash
 
 ### Source 5
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - zip member path: `RUN_SIGNAL_0005/sequence_state.json`
 - source class: embedded full run sequence ledger
 - sequence maxima:
@@ -134,7 +134,7 @@ Date: 2026-03-09
   - `SIM 360`
 
 ### Source 6
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - zip member path: `RUN_SIGNAL_0005/SIGNAL_AUDIT.json`
 - source class: embedded compact structural audit overlay
 - audit markers:
@@ -158,7 +158,7 @@ Date: 2026-03-09
   - final state hash matches embedded `summary.json` and `state.json`
 
 ### Source 7
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - zip member path: `RUN_SIGNAL_0005/REPLAY_AUDIT.json`
 - source class: embedded reconstructive replay audit overlay
 - audit markers:
@@ -187,7 +187,7 @@ Date: 2026-03-09
   - replay final hash does not match embedded `summary/state` final hash
 
 ### Source 8
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - zip member path: `RUN_SIGNAL_0005/events.jsonl`
 - source class: embedded aligned event ledger
 - event markers:
@@ -214,7 +214,7 @@ Date: 2026-03-09
     - final embedded `summary/state` hash is `0045ff3fdb8a39572123eef7bfb071d583d60326371eb0d6a08be8bc36307f93`
 
 ### Source 9
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - zip member path: `RUN_SIGNAL_0005/soak_report.md`
 - source class: embedded human-readable soak report
 - report markers:
@@ -227,7 +227,7 @@ Date: 2026-03-09
     - `NONE`
 
 ### Source 10
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - zip member path: `RUN_SIGNAL_0005/a1_inbox/`
 - source class: embedded inbox residue
 - top-level entries:
@@ -238,7 +238,7 @@ Date: 2026-03-09
   - the inbox retains sixty consumed strategy packets plus Finder noise
 
 ### Source 11
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - zip member path: `RUN_SIGNAL_0005/a1_strategies/`
 - source class: embedded strategy export family
 - family markers:
@@ -251,7 +251,7 @@ Date: 2026-03-09
     - the bundle keeps per-step strategy JSONs rather than only packetized strategy residue
 
 ### Source 12
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - zip member path: `RUN_SIGNAL_0005/outbox/`
 - source class: embedded export-block family
 - family markers:
@@ -264,7 +264,7 @@ Date: 2026-03-09
     - export blocks preserve compiled batch proposals with explicit `TARGET THREAD_B_ENFORCEMENT_KERNEL`, branch-track bindings, and negative-class kill bindings
 
 ### Source 13
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - zip member path: `RUN_SIGNAL_0005/snapshots/`
 - source class: embedded save-snapshot family
 - family markers:
@@ -277,7 +277,7 @@ Date: 2026-03-09
     - snapshots preserve `THREAD_S_SAVE_SNAPSHOT v2` save-state bodies rather than only final summary counters
 
 ### Source 14
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - zip member path: `RUN_SIGNAL_0005/reports/`
 - source class: embedded compile/eval report family
 - family markers:
@@ -288,7 +288,7 @@ Date: 2026-03-09
     - the bundle keeps both compile-time structural digest reports and per-export evaluation reports
 
 ### Source 15
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - zip member path: `RUN_SIGNAL_0005/sim/`
 - source class: embedded local sim evidence family
 - family markers:
@@ -301,7 +301,7 @@ Date: 2026-03-09
     - unlike the thinner direct run-root pattern, the bundle carries local evidence bodies for all retained SIM outputs
 
 ### Source 16
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - zip member path: `RUN_SIGNAL_0005/zip_packets/`
 - source class: embedded packet lattice
 - file count: `541`
@@ -326,7 +326,7 @@ Date: 2026-03-09
     - `000360_SIM_TO_A0_SIM_RESULT_ZIP.zip`
 
 ### Source 17
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_SIGNAL_0005_bundle.zip`
 - zip member path: `RUN_SIGNAL_0005/a1_inbox/consumed/`
 - source class: embedded consumed strategy lane
 - file count: `60`

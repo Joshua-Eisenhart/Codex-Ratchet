@@ -26,7 +26,7 @@ After a successful read:
 
 Attach this file only:
 
-`/Users/joshuaeisenhart/Desktop/PRO_BOOT_JOB__ENTROPY_CARNOT_SZILARD__20260309_204341Z.zip`
+`/home/ratchet/Desktop/PRO_BOOT_JOB__ENTROPY_CARNOT_SZILARD__20260309_204341Z.zip`
 
 ## Exact launch text
 

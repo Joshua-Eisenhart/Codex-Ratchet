@@ -53,7 +53,7 @@ Target:
 
 Live confirmation:
 - terminal section `## 13) Thread weighting vs recency` is still present
-- terminal `Main source:` block still ends with `/Users/joshuaeisenhart/Desktop/codex thread save.txt`
+- terminal `Main source:` block still ends with `/home/ratchet/Desktop/codex thread save.txt`
 
 Status:
 - `READY_ON_CURRENT_LIVE_SHAPE`

@@ -9,7 +9,7 @@ authority: "SOURCE_CLAIM"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::v3_spec_16_zip_save_and_tapes_spec::13e262c7d6f28b73`
 
 ## Description
-16_ZIP_SAVE_AND_TAPES_SPEC.md (9893B): # ZIP, Save, and Tapes Spec Status: DRAFT / NONCANON Date: 2026-02-20 Owner: `RQ-090..RQ-096`  Companion repair targets: - semantic `FULL+` restore bundle:   - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/73_FULL_PLUS_SEMANTIC_SAVE_Z
+16_ZIP_SAVE_AND_TAPES_SPEC.md (9893B): # ZIP, Save, and Tapes Spec Status: DRAFT / NONCANON Date: 2026-02-20 Owner: `RQ-090..RQ-096`  Companion repair targets: - semantic `FULL+` restore bundle:   - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/73_FULL_PLUS_SEMANTIC_SAVE_Z
 
 ## Properties
 - **source_line_range**: 

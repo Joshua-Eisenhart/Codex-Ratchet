@@ -35,9 +35,9 @@ or FlowMind runtime is ported.
 ## Execute Now
 
 1. Read:
-   - [V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md)
-   - [SYSTEM_SKILL_BUILD_PLAN.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SYSTEM_SKILL_BUILD_PLAN.md)
-   - [ratchet_prompt_stack.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/ratchet_prompt_stack.py)
+   - [V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md)
+   - [SYSTEM_SKILL_BUILD_PLAN.md](/home/ratchet/Desktop/Codex%20Ratchet/SYSTEM_SKILL_BUILD_PLAN.md)
+   - [ratchet_prompt_stack.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/ratchet_prompt_stack.py)
 2. Inspect the current session surfaces under `system_v4/a2_state/stack_sessions` unless an explicit alternate root is supplied.
 3. Emit:
    - one current ledger state

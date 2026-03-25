@@ -9,7 +9,7 @@ authority: "CROSS_VALIDATED"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_worker_prompt__intake_warm_cold_consu::32e42d5f93332b5a`
 
 ## Description
-A2_WORKER_PROMPT__INTAKE_WARM_COLD_CONSUMER_AUDIT__2026_03_16__v1.txt (1942B): Use $ratchet-a2-a1. Use $a2-a1-memory-admission-guard.  Use the current A2 boot: - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md  Run one bounded A2H Refined Fuel Non-Sims pass only.  dispatch_id: A2_WORKER__INTAKE_WARM_COLD_CONSUMER_AUDIT__2026_03_16__v1 ROLE
+A2_WORKER_PROMPT__INTAKE_WARM_COLD_CONSUMER_AUDIT__2026_03_16__v1.txt (1942B): Use $ratchet-a2-a1. Use $a2-a1-memory-admission-guard.  Use the current A2 boot: - /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md  Run one bounded A2H Refined Fuel Non-Sims pass only.  dispatch_id: A2_WORKER__INTAKE_WARM_COLD_CONSUMER_AUDIT__2026_03_16__v1 ROLE
 
 ## Properties
 - **source_line_range**: 

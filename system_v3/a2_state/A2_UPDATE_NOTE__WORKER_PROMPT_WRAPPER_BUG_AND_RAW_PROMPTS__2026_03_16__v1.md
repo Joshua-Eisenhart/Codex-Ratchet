@@ -17,10 +17,10 @@ Observed effect:
 
 Created raw operator launch prompt files that contain only the sendable prompt body:
 
-1. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__RUNS_SAFE_MOVE_EXECUTION__2026_03_16__v1.txt`
-2. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__THREAD_CLOSEOUT_EXTRACTOR_PATCH__2026_03_16__v1.txt`
-3. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__A2_INTAKE_COLD_INDEX_PREP__2026_03_16__v1.txt`
-4. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__A2_STATE_DUPLICATE_SURFACE_PACK__2026_03_16__v1.txt`
+1. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__RUNS_SAFE_MOVE_EXECUTION__2026_03_16__v1.txt`
+2. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__THREAD_CLOSEOUT_EXTRACTOR_PATCH__2026_03_16__v1.txt`
+3. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__A2_INTAKE_COLD_INDEX_PREP__2026_03_16__v1.txt`
+4. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__A2_STATE_DUPLICATE_SURFACE_PACK__2026_03_16__v1.txt`
 
 ## Operator rule going forward
 

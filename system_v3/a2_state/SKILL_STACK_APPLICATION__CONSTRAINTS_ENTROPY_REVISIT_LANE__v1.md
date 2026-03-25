@@ -7,15 +7,15 @@ Role: apply the newly installed skill stack to the live internal `Constraints. E
 ## 1) Chosen lane
 
 Use the existing sibling pair:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_entropy_term_conflict__v1`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_term_conflict__v1`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_entropy_term_conflict__v1`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_term_conflict__v1`
 
 Use the existing child fence packets as direct context:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_constraints_entropy_chain_fences__v1`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_constraints_foundation_governance_fences__v1`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_constraints_entropy_chain_fences__v1`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_constraints_foundation_governance_fences__v1`
 
 This is the current top internal revisit priority already named in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_CLOSEOUT_AUDIT_AND_NEXT_BATCH_PLAN__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_CLOSEOUT_AUDIT_AND_NEXT_BATCH_PLAN__v1.md`
 
 ## 2) Skill order
 
@@ -37,18 +37,18 @@ except as a parallel companion lane outside the revisit itself.
 ## 3) Lane inputs
 
 Primary parent surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_entropy_term_conflict__v1/A2_3_DISTILLATES__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_entropy_term_conflict__v1/TENSION_MAP__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_entropy_term_conflict__v1/CLUSTER_MAP__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_term_conflict__v1/A2_3_DISTILLATES__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_term_conflict__v1/TENSION_MAP__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_term_conflict__v1/CLUSTER_MAP__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_entropy_term_conflict__v1/A2_3_DISTILLATES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_entropy_term_conflict__v1/TENSION_MAP__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_entropy_term_conflict__v1/CLUSTER_MAP__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_term_conflict__v1/A2_3_DISTILLATES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_term_conflict__v1/TENSION_MAP__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_term_conflict__v1/CLUSTER_MAP__v1.md`
 
 Primary child fence context:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_constraints_entropy_chain_fences__v1/DOWNSTREAM_CONSEQUENCE_NOTES__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_constraints_entropy_chain_fences__v1/CONTRADICTION_PRESERVATION__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_constraints_foundation_governance_fences__v1/DOWNSTREAM_CONSEQUENCE_NOTES__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_constraints_foundation_governance_fences__v1/CONTRADICTION_PRESERVATION__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_constraints_entropy_chain_fences__v1/DOWNSTREAM_CONSEQUENCE_NOTES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_constraints_entropy_chain_fences__v1/CONTRADICTION_PRESERVATION__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_constraints_foundation_governance_fences__v1/DOWNSTREAM_CONSEQUENCE_NOTES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_constraints_foundation_governance_fences__v1/CONTRADICTION_PRESERVATION__v1.md`
 
 ## 4) Current lane read
 
@@ -148,7 +148,7 @@ It should not keep going into:
 If the entropy / Carnot / Szilard external-research lane is run in parallel, keep it separate.
 
 Use:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/SKILL_STACK_APPLICATION__ENTROPY_CARNOT_SZILARD_EXTERNAL_LANE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/SKILL_STACK_APPLICATION__ENTROPY_CARNOT_SZILARD_EXTERNAL_LANE__v1.md`
 
 Do not merge external research return material into this revisit pass before the instant audit has passed.
 

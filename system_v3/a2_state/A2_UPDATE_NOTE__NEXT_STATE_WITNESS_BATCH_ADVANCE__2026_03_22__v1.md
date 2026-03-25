@@ -5,9 +5,9 @@ Surface class: `DERIVED_A2`
 Status: active maintenance note
 
 Source-bound basis:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/witness_corpus_v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_PACKET__CURRENT__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/witness_corpus_v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_PACKET__CURRENT__v1.json`
 
 Bounded update:
 - the witness spine now contains a small real post-action batch from current repair work

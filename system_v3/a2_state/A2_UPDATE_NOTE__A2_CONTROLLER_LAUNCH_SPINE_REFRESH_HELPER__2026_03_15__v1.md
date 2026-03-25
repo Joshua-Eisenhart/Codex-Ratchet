@@ -7,13 +7,13 @@ Role: preserve the step where the compact A2 controller launch spine became a no
 ## Scope
 
 New helper:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/refresh_active_current_a2_controller_launch_spine.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/refresh_active_current_a2_controller_launch_spine.py`
 
 Focused regression:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_refresh_active_current_a2_controller_launch_spine.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_refresh_active_current_a2_controller_launch_spine.py`
 
 Patched read surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
 
 ## What changed
 
@@ -37,7 +37,7 @@ Result:
 - `Ran 2 tests ... OK`
 
 Current smoke:
-- `python3 system_v3/tools/refresh_active_current_a2_controller_launch_spine.py --spec-graph-python /Users/joshuaeisenhart/Desktop/Codex Ratchet/.venv_spec_graph/bin/python --emit-graphml --emit-schema`
+- `python3 system_v3/tools/refresh_active_current_a2_controller_launch_spine.py --spec-graph-python /home/ratchet/Desktop/Codex Ratchet/.venv_spec_graph/bin/python --emit-graphml --emit-schema`
 
 Observed result:
 - current launch spine refreshed successfully
@@ -53,4 +53,4 @@ The controller-side compact launch spine is now operational:
 ## Next seam
 
 The next useful move was the A1 worker launch packet local stack, and that seam is now also in progress/completed in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_WORKER_LAUNCH_PACKET_LOCAL_SPEC_OBJECT_STACK__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_WORKER_LAUNCH_PACKET_LOCAL_SPEC_OBJECT_STACK__2026_03_15__v1.md`

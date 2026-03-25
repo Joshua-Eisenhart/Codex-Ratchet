@@ -7,15 +7,15 @@ Date: 2026-03-09
 
 ## 1) Folder-Order Selection
 - primary bootstrap revision family:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev4.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev5.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev6.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev7.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev8.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev9.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev9.zip.sha256`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev2.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev2.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev4.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev5.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev6.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev7.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev8.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev9.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev9.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev2.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev2.zip.sha256`
 - bundling reason:
   - this is one contiguous spillover bootstrap ladder with explicit outer revisioning
   - `v3__rev4` through `v3__rev8` behave like a stable plateau:
@@ -36,7 +36,7 @@ Date: 2026-03-09
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev4.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev4.zip`
   - sha256: `2bdba4bd8215d3a59f6db0d7fce240e5aa89981bc7609aeb17fe61fad33f57bb`
   - size bytes: `2964961`
   - entry count: `689`
@@ -44,7 +44,7 @@ Date: 2026-03-09
   - source-class note:
     - first remaining `v3` revision in the ladder; embedded read-first still self-labels as `SYSTEM_REPAIR_BOOTSTRAP_v2`
 - source 2:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev5.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev5.zip`
   - sha256: `cbffa31c4e1f0eb918d847525bc9c5fcfb4150069c6aa732bb5a628fcdf9ca75`
   - size bytes: `2964674`
   - entry count: `689`
@@ -52,7 +52,7 @@ Date: 2026-03-09
   - source-class note:
     - same embedded read-first and save-profile hashes as `rev4` despite a different outer zip hash
 - source 3:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev6.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev6.zip`
   - sha256: `98bd5ac7bdc205510d39269ccea06687276d28641a2963d053fe7c67ab67e02b`
   - size bytes: `2965063`
   - entry count: `689`
@@ -60,7 +60,7 @@ Date: 2026-03-09
   - source-class note:
     - still on the same internal plateau
 - source 4:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev7.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev7.zip`
   - sha256: `0b100d8a38f6e2ce01322ce3d39044088a482ad128b7a58b4b52e2435b239277`
   - size bytes: `2965093`
   - entry count: `689`
@@ -68,7 +68,7 @@ Date: 2026-03-09
   - source-class note:
     - same key embedded control hashes as `rev4` through `rev6`
 - source 5:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev8.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev8.zip`
   - sha256: `9bcc8cbcc50c1ee2281ae228d264fbb663e559d739d6825c683a669cb109d9f3`
   - size bytes: `2964982`
   - entry count: `689`
@@ -76,7 +76,7 @@ Date: 2026-03-09
   - source-class note:
     - last plateau revision before the internal-content break at `rev9`
 - source 6:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev9.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev9.zip`
   - sha256: `ee9f3dbf05592973f4b0e4e976b87a26cd890813668aac3adae819991d99047e`
   - size bytes: `2982798`
   - entry count: `691`
@@ -86,7 +86,7 @@ Date: 2026-03-09
     - embedded save-profile manifest changes from `641` to `644`
     - three `system_v3` payload files are added relative to the plateau
 - source 7:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev9.zip.sha256`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev9.zip.sha256`
   - sha256: `07fe67c16b42c40a5bed0efc61acd0f376b1835be7bc5f00d02ff1575e0ad050`
   - size bytes: `65`
   - line count: `1`
@@ -94,7 +94,7 @@ Date: 2026-03-09
   - source-class note:
     - first bootstrap sidecar present in the remaining `v3` ladder
 - source 8:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev2.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev2.zip`
   - sha256: `3fb1e3be9bdc144c6c6226320db6db63ba0adb0daa2d2792e0f6216dcdb1b981`
   - size bytes: `3181248`
   - entry count: `714`
@@ -102,7 +102,7 @@ Date: 2026-03-09
   - source-class note:
     - keeps the `v4` read-first label and save-profile `641` count while expanding the bootstrap control layer beyond `v3__rev9`
 - source 9:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev2.zip.sha256`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev2.zip.sha256`
   - sha256: `edb6610e6cb2ea1973c216e8f17efb48986c4304e48af7e4b49549aa011ced19`
   - size bytes: `65`
   - line count: `1`

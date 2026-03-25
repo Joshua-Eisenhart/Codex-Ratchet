@@ -12,7 +12,7 @@ Date: 2026-03-09
   - use it to stop further broad same-root source extraction
   - use it to choose the next selective re-entry batch from the unresolved set
 - nominated next re-entry target:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints. Entropy.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints. Entropy.md`
 - why this target wins:
   - it is one of the largest unresolved legacy foundation surfaces
   - it currently has only broad source-map coverage

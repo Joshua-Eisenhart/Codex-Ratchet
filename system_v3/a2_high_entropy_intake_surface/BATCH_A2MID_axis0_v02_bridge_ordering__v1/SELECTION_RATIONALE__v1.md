@@ -13,7 +13,7 @@ Date: 2026-03-08
   - direct sim contact plus geometry-last ratchet order
 
 ## Why this reduction is narrow
-- the prior batch [`BATCH_A2MID_axis0_option_menu_adjudication__v1`](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_axis0_option_menu_adjudication__v1/A2_2_REFINED_CANDIDATES__v1.md) already compressed the broad v0.1 option menu
+- the prior batch [`BATCH_A2MID_axis0_option_menu_adjudication__v1`](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_axis0_option_menu_adjudication__v1/A2_2_REFINED_CANDIDATES__v1.md) already compressed the broad v0.1 option menu
 - this pass therefore keeps only the v0.2 deltas and the cleanest reusable bridge rules
 - repeated option-menu bulk is reduced to one inherited-menu candidate instead of being recopied in full
 

@@ -2,7 +2,7 @@
 
 generated_utc: 2026-03-20T09:36:50Z
 result: PARTIAL_ALIGNMENT
-family_slice_path: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_FAMILY_SLICE__DUAL_STACKED_ENGINE_2026_03_17__v1.json
+family_slice_path: /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_FAMILY_SLICE__DUAL_STACKED_ENGINE_2026_03_17__v1.json
 queue_selected_family_slice: A2_TO_A1_FAMILY_SLICE__DUAL_STACKED_ENGINE_2026_03_17__v1.json
 
 ## Minted Terms

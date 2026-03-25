@@ -7,12 +7,12 @@ Date: 2026-03-09
 
 ## 1) Folder-Order Selection
 - primary repair-analysis family:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/AUTOWIGGLE_FIX_ANALYSIS.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/AUTOWIGGLE_V2_PATCH_DIFF.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/AUTOWIGGLE_FIX_ANALYSIS.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/AUTOWIGGLE_V2_PATCH_DIFF.txt`
 - bundled adjacent A1 control-family docs:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_brain_persistent__v1/README__A1_BRAIN_PERSISTENT__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_brain_persistent__v1/A1_BRAIN__OVERLAY_FIREWALL_AND_TERM_ADMISSION_POLICY__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_brain_persistent__v1/A1_BRAIN__OVERLAY_FIREWALL_TERM_ADMISSION_AND_SCHEMA_LOCK_POLICY__v2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/a1_brain_persistent__v1/README__A1_BRAIN_PERSISTENT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/a1_brain_persistent__v1/A1_BRAIN__OVERLAY_FIREWALL_AND_TERM_ADMISSION_POLICY__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/a1_brain_persistent__v1/A1_BRAIN__OVERLAY_FIREWALL_TERM_ADMISSION_AND_SCHEMA_LOCK_POLICY__v2.md`
 - bundling reason:
   - the fix-analysis pair tries to restore canonical ascent in autowiggle
   - the A1 brain policy docs constrain how A2-derived overlay fuel may be admitted, labeled, and schema-locked once more canonical-shaped material begins to flow
@@ -20,14 +20,14 @@ Date: 2026-03-09
     - increase canonical-path emission
     - tighten overlay/admission boundaries
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/INBOX/README.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/TO_SEND_TO_PRO__A2_LAYER1_5__STAGE3__v1_1/BATCH_SET__A2_LAYER1_5__MANIFEST__STAGE3_PRO_RUN__v1_1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/TO_SEND_TO_PRO__A2_LAYER1_5__STAGE3__v1_1/BATCH_SET__A2_LAYER1_5__SEND_ORDER__STAGE3_PRO_RUN__v1_1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/TO_SEND_TO_PRO__A2_LAYER1_5__STAGE3__v1_1/BATCH_SET__A2_LAYER1_5__SHA256__STAGE3_PRO_RUN__v1_1.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/INBOX/README.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/TO_SEND_TO_PRO__A2_LAYER1_5__STAGE3__v1_1/BATCH_SET__A2_LAYER1_5__MANIFEST__STAGE3_PRO_RUN__v1_1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/TO_SEND_TO_PRO__A2_LAYER1_5__STAGE3__v1_1/BATCH_SET__A2_LAYER1_5__SEND_ORDER__STAGE3_PRO_RUN__v1_1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/TO_SEND_TO_PRO__A2_LAYER1_5__STAGE3__v1_1/BATCH_SET__A2_LAYER1_5__SHA256__STAGE3_PRO_RUN__v1_1.txt`
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/AUTOWIGGLE_FIX_ANALYSIS.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/AUTOWIGGLE_FIX_ANALYSIS.txt`
   - sha256: `a387a02cfaf81ca470263665652e0ff944d2b102fd8752aad20e276c60511bf5`
   - size bytes: `6881`
   - line count: `176`
@@ -35,7 +35,7 @@ Date: 2026-03-09
   - source-class note:
     - strongest explicit proposal for how to stop autowiggle from being SIM-only by injecting `MATH_DEF -> TERM_DEF -> CANON_PERMIT`
 - source 2:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/AUTOWIGGLE_V2_PATCH_DIFF.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/AUTOWIGGLE_V2_PATCH_DIFF.txt`
   - sha256: `74192f78cda2f7d4a59693a1c00de6925dbe3997909c186533e8c183ed4f4698`
   - size bytes: `3798`
   - line count: `127`
@@ -43,7 +43,7 @@ Date: 2026-03-09
   - source-class note:
     - reframes the repair as a validated patch that preserves L0 fences, removes forbidden fields, and guarantees canonical units per cycle window
 - source 3:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_brain_persistent__v1/README__A1_BRAIN_PERSISTENT__v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/a1_brain_persistent__v1/README__A1_BRAIN_PERSISTENT__v1.md`
   - sha256: `33673fc89c999a42bbe2a60985a59e61eab4314f7cb9d9c92a57a423fcb958af`
   - size bytes: `688`
   - line count: `12`
@@ -51,7 +51,7 @@ Date: 2026-03-09
   - source-class note:
     - defines the folder as a persistent A1 sandbox brain seed with immutable versioning
 - source 4:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_brain_persistent__v1/A1_BRAIN__OVERLAY_FIREWALL_AND_TERM_ADMISSION_POLICY__v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/a1_brain_persistent__v1/A1_BRAIN__OVERLAY_FIREWALL_AND_TERM_ADMISSION_POLICY__v1.md`
   - sha256: `633be881538f7fd8f7ebdf108234af4140fcb8c28bd17c6901d36c24cbe08042`
   - size bytes: `1052`
   - line count: `29`
@@ -59,7 +59,7 @@ Date: 2026-03-09
   - source-class note:
     - noncanon overlay firewall and label policy for A1 intake from A2 packets
 - source 5:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_brain_persistent__v1/A1_BRAIN__OVERLAY_FIREWALL_TERM_ADMISSION_AND_SCHEMA_LOCK_POLICY__v2.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/a1_brain_persistent__v1/A1_BRAIN__OVERLAY_FIREWALL_TERM_ADMISSION_AND_SCHEMA_LOCK_POLICY__v2.md`
   - sha256: `71cefc7072d24fa3860b526dfca306af7c2ab059662abd5a4b82c2e76f985fa7`
   - size bytes: `1271`
   - line count: `28`
@@ -70,7 +70,7 @@ Date: 2026-03-09
 ## 3) Structural Map
 ### Segment A: autowiggle rewrite feasibility and insertion points
 - source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/AUTOWIGGLE_FIX_ANALYSIS.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/AUTOWIGGLE_FIX_ANALYSIS.txt`
 - key markers:
   - architecture says rewrite is possible
   - current emitter is SIM-only
@@ -82,7 +82,7 @@ Date: 2026-03-09
 
 ### Segment B: patch-summary hardening and fence checks
 - source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/AUTOWIGGLE_V2_PATCH_DIFF.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/AUTOWIGGLE_V2_PATCH_DIFF.txt`
 - key markers:
   - L0/derived-only fence confirmation
   - forbidden token checks

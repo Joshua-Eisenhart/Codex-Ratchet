@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - folder order around this batch:
@@ -19,7 +19,7 @@ Date: 2026-03-09
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COSMOLOGICALLY_CONSTRAINT_ADMISSIBLE_STRUCTURES_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COSMOLOGICALLY_CONSTRAINT_ADMISSIBLE_STRUCTURES_v1.md`
 - reason for selection:
   - this is the next unprocessed non-sims `constraint ladder` file in folder order after `COORDINATE_ADMISSIBILITY_v1.md`
   - the file is a compact foundational admissibility micro-spec, not a narrative note or omnibus theory surface
@@ -33,11 +33,11 @@ Date: 2026-03-09
     - narrow OPEN space for derived equivalence, commutative subclasses, identity surrogates, and minimality criteria
   - this makes `MATH_CLASS_PASS` the best fit
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/CYCLE_CLASS_ADMISSIBILITY_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/CYCLE_CLASS_ADMISSIBILITY_v1.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COSMOLOGICALLY_CONSTRAINT_ADMISSIBLE_STRUCTURES_v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COSMOLOGICALLY_CONSTRAINT_ADMISSIBLE_STRUCTURES_v1.md`
   - role in batch: foundational formal admissibility surface defining the minimum finite relational kernel beneath later state, transport, obstruction, and geometry layers
   - sha256: `4344f4e1cf99c07ce02566ca09aaa9e82c83a21c7d1718cb9c67899956bcec9e`
   - size bytes: `3777`

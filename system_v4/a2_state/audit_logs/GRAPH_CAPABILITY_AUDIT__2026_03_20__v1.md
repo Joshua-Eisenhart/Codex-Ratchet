@@ -1,7 +1,7 @@
 # GRAPH_CAPABILITY_AUDIT__CURRENT__v1
 
 generated_utc: 2026-03-22T02:55:39Z
-authoritative_live_store: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/system_graph_a2_refinery.json
+authoritative_live_store: /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/system_graph_a2_refinery.json
 authoritative_node_count: 19939
 authoritative_edge_count: 40643
 canonical_graph_count: 1
@@ -71,12 +71,12 @@ next_recommended_unit: None
 - sample_single_edge_skill_ids: ['a0-compiler', 'a1-distiller', 'a1-from-a2-distillation', 'a1-rosetta-mapper', 'a1-routing-state', 'a2-graph-refinery', 'a2-thermodynamic-purge', 'automation-controller', 'b-adjudicator', 'brain-delta-consolidation']
 
 ## Target Layer Store Status
-- A2_HIGH_INTAKE: MATERIALIZED (/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_high_intake_graph_v1.json)
-- A2_MID_REFINEMENT: MATERIALIZED (/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_mid_refinement_graph_v1.json)
-- A2_LOW_CONTROL: MATERIALIZED (/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_low_control_graph_v1.json)
-- A1_JARGONED: MATERIALIZED (/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_jargoned_graph_v1.json)
-- A1_STRIPPED: BLOCKED (/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_stripped_graph_v1.json)
-- A1_CARTRIDGE: BLOCKED (/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_cartridge_graph_v1.json)
+- A2_HIGH_INTAKE: MATERIALIZED (/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_high_intake_graph_v1.json)
+- A2_MID_REFINEMENT: MATERIALIZED (/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_mid_refinement_graph_v1.json)
+- A2_LOW_CONTROL: MATERIALIZED (/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_low_control_graph_v1.json)
+- A1_JARGONED: MATERIALIZED (/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/a1_jargoned_graph_v1.json)
+- A1_STRIPPED: BLOCKED (/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/a1_stripped_graph_v1.json)
+- A1_CARTRIDGE: BLOCKED (/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/a1_cartridge_graph_v1.json)
 
 ## Preserved Overlap Treatment
 - A2_HIGH_INTAKE: state=no_preserve_diagnostics_present preserved_only_edges=0 preserved_only_overlaps=0

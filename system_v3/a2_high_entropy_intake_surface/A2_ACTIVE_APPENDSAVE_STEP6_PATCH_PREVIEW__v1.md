@@ -44,7 +44,7 @@ If mutation is later authorized, and Steps 1 and 4 have already landed exactly, 
 
 ```patch
 *** Begin Patch
-*** Update File: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md
+*** Update File: /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md
 @@
  - control implication:
    - `ADMISSIONS_SEQUENCE_NOT_ONTOLOGY_PRECEDENCE` remains the rule for build-order / admissions-order language

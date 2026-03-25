@@ -7,10 +7,10 @@ Extraction mode: `SIM_HYGIENE_RESIDUE_ARTIFACT_PASS`
 - cluster label:
   - core hygiene residue family
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_axis0_boundary_bookkeep_sweep_v2.cpython-313.pyc`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_axis12_axis0_link_v1.cpython-313.pyc`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_mega_axis0_ab_stage16_axis6.cpython-313.pyc`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/.DS_Store`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_axis0_boundary_bookkeep_sweep_v2.cpython-313.pyc`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_axis12_axis0_link_v1.cpython-313.pyc`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_mega_axis0_ab_stage16_axis6.cpython-313.pyc`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/.DS_Store`
 - family role:
   - canonical source-bounded member set for the final hygiene pass
 - executable-facing read:
@@ -50,7 +50,7 @@ Extraction mode: `SIM_HYGIENE_RESIDUE_ARTIFACT_PASS`
 - cluster label:
   - leading-space runner shadow anchor
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_leading_space_runner_result_family__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_leading_space_runner_result_family__v1/MANIFEST.json`
 - family role:
   - comparison-only executable lineage anchor
 - executable-facing read:

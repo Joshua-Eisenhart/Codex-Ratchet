@@ -10,12 +10,12 @@ Role: preserve the current repo-held lev imported-cluster state after the bounde
 - no imported runtime claim
 
 ## SOURCE_ANCHORS
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AUTODEV_LOOP_AUDIT_REPORT__CURRENT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/SYSTEM_SKILL_BUILD_PLAN.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AUTODEV_LOOP_AUDIT_REPORT__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/SYSTEM_SKILL_BUILD_PLAN.md`
+- `/home/ratchet/Desktop/Codex Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md`
 
 ## A2_UPDATE_DELTA
 - `SKILL_CLUSTER::lev-autodev-exec-validation` now has its first bounded landed slice:

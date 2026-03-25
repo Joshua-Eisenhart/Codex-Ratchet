@@ -16,9 +16,9 @@
 - Total: 121 nodes, 135 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/18_A1_WIGGLE_EXECUTION_CONTRACT.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/20_CONTROLLED_TUNING_AND_UPGRADE_CONTRACT.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/18_A1_WIGGLE_EXECUTION_CONTRACT.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/20_CONTROLLED_TUNING_AND_UPGRADE_CONTRACT.md
 
 ## Key Findings
 - Ingested 3 contract specs (18, 19, 20)

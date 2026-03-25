@@ -16,7 +16,7 @@ This note answers:
 ## 2) Codex A2 controller thread
 
 ### Boot
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
 
 ### Role
 - whole-system A2 control
@@ -61,7 +61,7 @@ Examples:
 ## 4) Codex A1 thread
 
 ### Boot
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md`
 
 ### Start condition
 - only from valid queue status
@@ -87,7 +87,7 @@ Examples:
 
 1. controller checks current A2 fuel and queue status
 2. if a valid bounded family slice exists, prefer compiling one queue-status packet through:
-   - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py`
+   - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py`
    - using either `packet` or `bundle` preparation mode
    - if more than one bounded family slice exists, select one explicitly or fail closed
 3. otherwise, controller emits one queue-status packet

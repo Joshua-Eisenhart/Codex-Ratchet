@@ -20,15 +20,15 @@ but weaker operator/process structure for:
 - whole-system mega-gate discipline
 
 This spec is the process-layer companion to:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/06_SIM_EVIDENCE_AND_TIERS_SPEC.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/08_PIPELINE_AND_STATE_FLOW_SPEC.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/04_A0_COMPILER_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/06_SIM_EVIDENCE_AND_TIERS_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/08_PIPELINE_AND_STATE_FLOW_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/04_A0_COMPILER_SPEC.md`
 
 Legacy witness surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/BOOTPACKS/BOOTPACK_THREAD_SIM_v2.10.md`
-- `/Users/joshuaeisenhart/Desktop/mega legacy/RATCHET_BUNDLE_v2.0.12 2/SIM_RUNBOOK_v1.4.md`
-- `/Users/joshuaeisenhart/Desktop/mega legacy/RATCHET_BUNDLE_v2.0.12 2/SIM_CATALOG_v1.3.md`
-- `/Users/joshuaeisenhart/Desktop/mega legacy/RATCHET_BUNDLE_v2.0.12 2/SIM_EVIDENCE_PACK_autogen_v2.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/BOOTPACKS/BOOTPACK_THREAD_SIM_v2.10.md`
+- `/home/ratchet/Desktop/mega legacy/RATCHET_BUNDLE_v2.0.12 2/SIM_RUNBOOK_v1.4.md`
+- `/home/ratchet/Desktop/mega legacy/RATCHET_BUNDLE_v2.0.12 2/SIM_CATALOG_v1.3.md`
+- `/home/ratchet/Desktop/mega legacy/RATCHET_BUNDLE_v2.0.12 2/SIM_EVIDENCE_PACK_autogen_v2.txt`
 
 Normative anchors:
 - `RQ-050`
@@ -242,11 +242,11 @@ This spec is satisfied only when:
 ## Current patch targets
 
 Primary runtime files:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_dispatcher.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_evidence_ingest_gate.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_dispatcher.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_evidence_ingest_gate.py`
 
 Primary schema/compile files:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_strategy.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_bridge.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a0_compiler.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_strategy.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_bridge.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a0_compiler.py`

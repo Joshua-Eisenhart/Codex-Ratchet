@@ -31,7 +31,7 @@ Extraction mode: `QIT_BRIDGE_PASS`
   - source 1: `105-154`
   - source 1: `158-191`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1:702`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1:702`
 - tension:
   - the file insists on explicit finite-dimensional testability
   - it still grows a broad stack of candidates:

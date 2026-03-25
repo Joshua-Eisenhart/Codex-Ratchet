@@ -7,7 +7,7 @@ Role: comparative refresh after the first-priority external wave reached a consi
 ## Follow-on control note
 
 See:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 ## Result
 

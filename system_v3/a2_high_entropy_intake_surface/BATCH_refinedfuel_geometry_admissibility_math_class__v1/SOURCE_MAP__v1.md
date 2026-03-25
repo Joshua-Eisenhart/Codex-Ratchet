@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - folder order around this batch:
@@ -19,7 +19,7 @@ Date: 2026-03-09
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/GEOMETRY_ADMISSIBILITY_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/GEOMETRY_ADMISSIBILITY_v1.md`
 - reason for selection:
   - this is the next unprocessed non-sims `constraint ladder` file in folder order after `Entropy contract v1.md`
   - the file is a compact formal admissibility micro-spec rather than a stitched geometry narrative
@@ -35,11 +35,11 @@ Date: 2026-03-09
     - metric, dimensionality, and coordinate extensions remain open only as later derived overlays
   - this makes `MATH_CLASS_PASS` the best fit
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Game theory rosetta v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Game theory rosetta v1.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/GEOMETRY_ADMISSIBILITY_v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/GEOMETRY_ADMISSIBILITY_v1.md`
   - role in batch: formal admissibility spec for finite relation-only geometric structure over an already frozen carrier, compatibility, transport, and obstruction stack
   - sha256: `0714ba7b92c2534e2c00e4c5f2f30e5c99a21fb4b84e8214c29b54386f2a3e9e`
   - size bytes: `3572`

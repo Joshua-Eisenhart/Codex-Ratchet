@@ -7,7 +7,7 @@
 
 ## Anchor Family
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
 
 ## First Normalized Witness Instance
 
@@ -19,17 +19,17 @@
 ### Normalized Retained Triple
 
 - memo witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_12__20260309T071701Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_STRUCTURE_LOCAL_SEEDED_0001/reports/a1_external_memo_batch_driver_report.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_12__20260309T071701Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_STRUCTURE_LOCAL_SEEDED_0001/reports/a1_external_memo_batch_driver_report.json`
   - witness meaning:
     - retained report-level memo consequence for the seeded structure-family continuation
 
 - cold-core witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_12__20260309T071701Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_STRUCTURE_LOCAL_SEEDED_0001/a1_sandbox/cold_core/000012_A1_COLD_CORE_PROPOSALS_v1.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_12__20260309T071701Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_STRUCTURE_LOCAL_SEEDED_0001/a1_sandbox/cold_core/000012_A1_COLD_CORE_PROPOSALS_v1.json`
   - witness meaning:
     - retained cold-core proposal surface showing the seeded direct-structure candidate set after clamp repair
 
 - strategy witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_12__20260309T071701Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_STRUCTURE_LOCAL_SEEDED_0001/a1_sandbox/outgoing/000012_A1_STRATEGY_v1__PACK_SELECTOR.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_12__20260309T071701Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_STRUCTURE_LOCAL_SEEDED_0001/a1_sandbox/outgoing/000012_A1_STRATEGY_v1__PACK_SELECTOR.json`
   - witness meaning:
     - retained selector output showing the seeded continuation state that still preserves the direct structure lane while exposing the remaining decomposition blocker
 

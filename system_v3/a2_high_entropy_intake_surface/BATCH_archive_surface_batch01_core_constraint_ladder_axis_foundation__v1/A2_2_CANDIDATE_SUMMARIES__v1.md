@@ -37,5 +37,5 @@ Extraction mode: `ARCHIVE_LAYERED_EXTRACTION_PACKAGE_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_02_OF_10__A2_LAYER1_5__OUTPUT__AXES_APPLE_NOTES_IGT_MAPPING__v1_1.zip`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_02_OF_10__A2_LAYER1_5__OUTPUT__AXES_APPLE_NOTES_IGT_MAPPING__v1_1.zip`
   - that pass should stay isolated as its own archived package family

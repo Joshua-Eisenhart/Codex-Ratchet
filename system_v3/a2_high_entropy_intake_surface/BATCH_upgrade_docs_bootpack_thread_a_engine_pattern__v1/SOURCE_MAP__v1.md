@@ -7,7 +7,7 @@ Date: 2026-03-08
 
 ## 1) Assigned Root Inventory
 - assigned root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs`
 - file count in folder order: `16`
 - folder-order inventory:
   - `BOOTPACK_THREAD_A_v2.60.md` (`828` lines) `[selected]`
@@ -29,18 +29,18 @@ Date: 2026-03-08
 
 ## 2) Folder-Order Selection
 - first doc encountered in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_A_v2.60.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_A_v2.60.md`
 - reason for single-doc batch:
   - first bounded batch requirement for this root
   - the source is self-contained enough to extract without skipping ahead
   - pairing it with `BOOTPACK_THREAD_B_v3.9.13.md` would weaken the doc-by-doc boundary and substantially expand the first batch
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS.md`
 
 ## 3) Source Membership
 - primary source:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_A_v2.60.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_A_v2.60.md`
   - sha256: `0c2b7717ab03854525fb52f7534b2e717031a03c92b6bd6494f81bbbdd1db861`
   - size bytes: `32751`
   - line count: `828`

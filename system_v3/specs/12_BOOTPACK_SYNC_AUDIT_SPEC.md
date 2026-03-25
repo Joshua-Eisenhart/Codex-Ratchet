@@ -6,11 +6,11 @@ Date: 2026-02-20
 Detect drift between v3 owner docs and bootpack authority text.
 
 Conformance-fixture companion:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/23_BOOTPACK_CONFORMANCE_FIXTURE_MATRIX_CONTRACT.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/23_BOOTPACK_CONFORMANCE_FIXTURE_MATRIX_CONTRACT.md`
 
 ## Authority Inputs
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/BOOTPACK_THREAD_B_v3.9.13.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/BOOTPACK_THREAD_A_v2.60.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/BOOTPACK_THREAD_B_v3.9.13.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/BOOTPACK_THREAD_A_v2.60.md`
 
 ## Audit Scope
 1. Container grammar sync

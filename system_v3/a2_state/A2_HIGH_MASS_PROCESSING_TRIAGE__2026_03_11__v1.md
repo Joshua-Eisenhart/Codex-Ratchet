@@ -37,8 +37,8 @@ Existing controller surfaces already say:
 - revisit-side routing is now the active mode
 
 Relevant surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_INTEGRITY_AUDIT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_REENTRY_SHORTLIST__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_INTEGRITY_AUDIT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_REENTRY_SHORTLIST__v1.md`
 
 ## 4) Triage classes
 

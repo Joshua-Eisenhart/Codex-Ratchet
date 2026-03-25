@@ -7,24 +7,24 @@ Date: 2026-03-08
 
 ## 1) Folder-Order Selection
 - prior completed batch ended at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt`
 - next folder-order source selected for this bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/x grok chat TOE.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/x grok chat TOE.txt`
 - bounded-doc rule used:
   - this file is short enough to read end-to-end
   - the dominant intake value is contradiction-preserving capture of compact cosmology / teleology / unification pressure, not large-doc structural decomposition
   - the source begins from an external Standard Model visual prompt but quickly collapses into a local entropy / retrocausal worldview dialogue
   - later passes can compare this pressure surface against:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok toe redo save.txt`
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok unified phuysics nov 29th.txt`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok toe redo save.txt`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok unified phuysics nov 29th.txt`
 - root-completion note:
   - this is the last standalone file in the `a2_feed_high entropy doc` source root
 - deferred next source-root doc in process order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md`
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/x grok chat TOE.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/x grok chat TOE.txt`
   - sha256: `24fbf378f8eb71bfd25b5916d6b4775177317cc482591ccdb23093c4040c586b`
   - size bytes: `14226`
   - line count: `85`

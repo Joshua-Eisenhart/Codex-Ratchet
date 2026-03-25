@@ -7,24 +7,24 @@ Role: preserve the patch that closes the highest-priority split-validator seam o
 ## Scope
 
 Primary runtime/prep files:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/family_slice_runtime_validation.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_worker_launch_packet_from_family_slice.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_a1_launch_bundle_from_family_slice.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_launch_bundle.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_worker_launch_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_worker_launch_packet_models.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_queue_surface_models.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/render_a1_queue_status_current_note_from_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/family_slice_runtime_validation.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_worker_launch_packet_from_family_slice.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_a1_launch_bundle_from_family_slice.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_launch_bundle.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_worker_launch_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_worker_launch_packet_models.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_queue_surface_models.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/render_a1_queue_status_current_note_from_packet.py`
 
 Focused regressions:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a1_worker_launch_packet_from_family_slice.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_launch_bundle_from_family_slice.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_status_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_queue_status_surfaces.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_worker_launch_packet_pydantic_stack.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_surface_pydantic_stack.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a1_worker_launch_packet_from_family_slice.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_launch_bundle_from_family_slice.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_status_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_queue_status_surfaces.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_worker_launch_packet_pydantic_stack.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_surface_pydantic_stack.py`
 
 ## Problem
 
@@ -42,7 +42,7 @@ This happened because:
 ### 1) `jsonschema` prep now also uses live runtime semantics
 
 A new helper:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/family_slice_runtime_validation.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/family_slice_runtime_validation.py`
 
 now calls the live planner semantic validator.
 

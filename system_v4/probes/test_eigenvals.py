@@ -1,5 +1,6 @@
 import numpy as np
 import sys
-sys.path.insert(0, "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes")
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from abiogenesis_v2_sim import sim_abiogenesis_topologies
 sim_abiogenesis_topologies()

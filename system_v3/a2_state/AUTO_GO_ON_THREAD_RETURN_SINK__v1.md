@@ -61,7 +61,7 @@ Underlying helpers:
 
 ```text
 python3 system_v3/tools/create_auto_go_on_cycle_packet.py \
-  --reply-text /Users/joshuaeisenhart/Desktop/Codex\ Ratchet/work/audit_tmp/auto_go_on_thread_returns/<thread_label>.txt \
+  --reply-text /home/ratchet/Desktop/Codex\ Ratchet/work/audit_tmp/auto_go_on_thread_returns/<thread_label>.txt \
   --target-thread-id <thread_id> \
   --thread-class <A2_WORKER|A1_WORKER|A2_CONTROLLER> \
   --boot-surface /abs/path/to/boot.md \
@@ -69,15 +69,15 @@ python3 system_v3/tools/create_auto_go_on_cycle_packet.py \
   --expected-return-shape "bounded worker return with STOP or one more bounded pass" \
   --fallback-role <fallback_role> \
   --fallback-scope "<fallback_scope>" \
-  --out-dir /Users/joshuaeisenhart/Desktop/Codex\ Ratchet/work/audit_tmp/auto_go_on_thread_returns/<thread_label>.out \
-  --out-json /Users/joshuaeisenhart/Desktop/Codex\ Ratchet/work/audit_tmp/auto_go_on_thread_returns/<thread_label>.cycle.json
+  --out-dir /home/ratchet/Desktop/Codex\ Ratchet/work/audit_tmp/auto_go_on_thread_returns/<thread_label>.out \
+  --out-json /home/ratchet/Desktop/Codex\ Ratchet/work/audit_tmp/auto_go_on_thread_returns/<thread_label>.cycle.json
 ```
 
 3. Run cycle:
 
 ```text
 python3 system_v3/tools/run_auto_go_on_cycle_from_packet.py \
-  --packet-json /Users/joshuaeisenhart/Desktop/Codex\ Ratchet/work/audit_tmp/auto_go_on_thread_returns/<thread_label>.cycle.json
+  --packet-json /home/ratchet/Desktop/Codex\ Ratchet/work/audit_tmp/auto_go_on_thread_returns/<thread_label>.cycle.json
 ```
 
 ## 6) Current decision use

@@ -15,9 +15,9 @@ build_status: MATERIALIZED
 materialized: True
 node_count: 858
 edge_count: 3029
-derived_from.master_graph: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/system_graph_a2_refinery.json
-derived_from.identity_registry: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/identity_registry_v1.json
-derived_from.a2_high_intake_graph: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_high_intake_graph_v1.json
+derived_from.master_graph: /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/system_graph_a2_refinery.json
+derived_from.identity_registry: /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/identity_registry_v1.json
+derived_from.a2_high_intake_graph: /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_high_intake_graph_v1.json
 
 ## Projection Diagnostics
 - attempted_internal_edge_count: 76

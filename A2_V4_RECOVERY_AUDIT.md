@@ -29,10 +29,10 @@ This is the easy-to-find recovery surface for this problem.
 
 The owner law is here:
 
-- [01_REQUIREMENTS_LEDGER.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md)
-- [02_OWNERSHIP_MAP.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md)
-- [07_A2_OPERATIONS_SPEC.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md)
-- [19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md)
+- [01_REQUIREMENTS_LEDGER.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md)
+- [02_OWNERSHIP_MAP.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md)
+- [07_A2_OPERATIONS_SPEC.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md)
+- [19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md)
 
 `A2` is not just a graph.
 It is supposed to be the persistent debug, orchestration, memory, and context layer for the system.
@@ -51,10 +51,10 @@ That means:
 
 Some useful repairs are real:
 
-- [A2_KEY_CONTEXT_APPEND_LOG__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md) now exists
-- [A2_BOOT_READ_ORDER__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_BOOT_READ_ORDER__CURRENT__v1.md) now exists
-- [REPO_SKILL_INTEGRATION_TRACKER.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md) now exists
-- [SKILL_CANDIDATES_BACKLOG.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_CANDIDATES_BACKLOG.md) now exists
+- [A2_KEY_CONTEXT_APPEND_LOG__v1.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md) now exists
+- [A2_BOOT_READ_ORDER__CURRENT__v1.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_BOOT_READ_ORDER__CURRENT__v1.md) now exists
+- [REPO_SKILL_INTEGRATION_TRACKER.md](%USER_HOME%/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md) now exists
+- [SKILL_CANDIDATES_BACKLOG.md](%USER_HOME%/Desktop/Codex%20Ratchet/SKILL_CANDIDATES_BACKLOG.md) now exists
 
 But the deeper failure is still real:
 
@@ -69,12 +69,12 @@ But the deeper failure is still real:
 
 ### 1. The owner law was missing from the canonical A2 index and is now repaired
 
-[doc_index.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/doc_index.json) now indexes the core owner docs:
+[doc_index.json](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/doc_index.json) now indexes the core owner docs:
 
-- [01_REQUIREMENTS_LEDGER.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md)
-- [02_OWNERSHIP_MAP.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md)
-- [07_A2_OPERATIONS_SPEC.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md)
-- [19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md)
+- [01_REQUIREMENTS_LEDGER.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md)
+- [02_OWNERSHIP_MAP.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md)
+- [07_A2_OPERATIONS_SPEC.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md)
+- [19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md)
 
 The remaining problem is no longer absence from the index.
 The remaining problem is using that repaired index to refresh the actual standing A2 brain surfaces.
@@ -83,11 +83,11 @@ The remaining problem is using that repaired index to refresh the actual standin
 
 These active A2 surfaces are materially older than the current `v4` work:
 
-- [INTENT_SUMMARY.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/INTENT_SUMMARY.md)
-- [A2_BRAIN_SLICE__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md)
-- [A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md)
-- [A2_TERM_CONFLICT_MAP__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md)
-- [A2_TO_A1_DISTILLATION_INPUTS__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md)
+- [INTENT_SUMMARY.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/INTENT_SUMMARY.md)
+- [A2_BRAIN_SLICE__v1.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md)
+- [A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md)
+- [A2_TERM_CONFLICT_MAP__v1.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md)
+- [A2_TO_A1_DISTILLATION_INPUTS__v1.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md)
 
 The new repair surfaces exist, but the old standing brain has not yet been refreshed around them.
 
@@ -95,10 +95,10 @@ The new repair surfaces exist, but the old standing brain has not yet been refre
 
 The current A2 persistent-state layer is mixed:
 
-- [memory.jsonl](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/memory.jsonl) is still mostly compatibility-style autosave, not the full `19` memory-entry shape
-- [fuel_queue.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/fuel_queue.json) is legacy-shaped and missing the fuller contract fields
-- [rosetta.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/rosetta.json) is legacy-shaped and missing current schema/version framing
-- [constraint_surface.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/constraint_surface.json) is a narrow derived summary, not a richer declared canonical surface
+- [memory.jsonl](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/memory.jsonl) is still mostly compatibility-style autosave, not the full `19` memory-entry shape
+- [fuel_queue.json](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/fuel_queue.json) is legacy-shaped and missing the fuller contract fields
+- [rosetta.json](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/rosetta.json) is legacy-shaped and missing current schema/version framing
+- [constraint_surface.json](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/constraint_surface.json) is a narrow derived summary, not a richer declared canonical surface
 
 This is not one clean problem.
 Part of it is compatibility autosave.
@@ -138,14 +138,14 @@ That is why raw directory browsing keeps failing.
 
 ### 6. The live skill registry path and graph coverage are now repaired enough to trust the counts, but depth is still partial
 
-The raw registry file at [skill_registry_v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a1_state/skill_registry_v1.json) now has `109` rows with `109` `active` statuses, and the live registry loader now successfully loads them.
+The raw registry file at [skill_registry_v1.json](%USER_HOME%/Desktop/Codex%20Ratchet/system_v4/a1_state/skill_registry_v1.json) now has `109` rows with `109` `active` statuses, and the live registry loader now successfully loads them.
 
 Verified current behavior:
 
 - `SkillRegistry('.')` now loads `109` skills
 - `health_pass()` now reports `0` stale skills
 - the live graph now has `109` `SKILL` nodes with `0` missing relative to the registry
-- the front-door corpus docs are now directly indexed in [doc_index.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/doc_index.json)
+- the front-door corpus docs are now directly indexed in [doc_index.json](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/doc_index.json)
 
 The remaining problem is no longer loader failure or missing graph coverage.
 The remaining problem is integration depth and keeping the audit surfaces current.
@@ -156,7 +156,7 @@ So raw registry presence is not the same thing as live usable registry integrati
 
 ### 1. The graph is not empty
 
-The live `v4` refinery graph at [system_graph_a2_refinery.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/graphs/system_graph_a2_refinery.json) is real and large:
+The live `v4` refinery graph at [system_graph_a2_refinery.json](%USER_HOME%/Desktop/Codex%20Ratchet/system_v4/a2_state/graphs/system_graph_a2_refinery.json) is real and large:
 
 - `19898` nodes
 - `40506` edges
@@ -179,20 +179,20 @@ It does not mean the system has built a bounded owner-law understanding model.
 
 These new recovery surfaces do not currently appear in the live `v4` graph:
 
-- [A2_KEY_CONTEXT_APPEND_LOG__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md)
-- [A2_BOOT_READ_ORDER__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_BOOT_READ_ORDER__CURRENT__v1.md)
+- [A2_KEY_CONTEXT_APPEND_LOG__v1.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md)
+- [A2_BOOT_READ_ORDER__CURRENT__v1.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_BOOT_READ_ORDER__CURRENT__v1.md)
 
 So even the recovery work is not yet represented there.
 
 ### 4. Graph presence is not the same thing as runtime semantic steering
 
-Skill dispatch in [run_real_ratchet.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/run_real_ratchet.py) is still primarily driven by registry metadata through [skill_registry.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/skill_registry.py), not by graph-edge semantics.
+Skill dispatch in [run_real_ratchet.py](%USER_HOME%/Desktop/Codex%20Ratchet/system_v4/skills/run_real_ratchet.py) is still primarily driven by registry metadata through [skill_registry.py](%USER_HOME%/Desktop/Codex%20Ratchet/system_v4/skills/skill_registry.py), not by graph-edge semantics.
 
 So the graph is not currently the main thing that understands the system and routes the work.
 
 ### 5. The graph skill audit is now refreshed against the live registry
 
-The current graph capability audit at [GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json) now reports:
+The current graph capability audit at [GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json](%USER_HOME%/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json) now reports:
 
 - `91` active skills
 - `91` graphed skill nodes
@@ -222,7 +222,7 @@ The current honest split is:
 - `EverMem`: thin adapter files exist, `witness-evermem-sync` now has one honest post-batch runtime seam plus durable cursor/error/report handling, but the broader memory family is still partial
 - `pi-mono`: source ingestion exists, but runtime integration is still shallow
 - `lev-os`: tracked as source families, not yet real integrated skill families
-- `Retooled External Methods`: real as a saved source family through [29 thing.txt](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/29%20thing.txt), still partial as method-by-method integrated skill conversion
+- `Retooled External Methods`: real as a saved source family through [29 thing.txt](%USER_HOME%/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/29%20thing.txt), still partial as method-by-method integrated skill conversion
 
 ## What Was Actually Accomplished
 
@@ -233,10 +233,10 @@ These things are real and should not be erased:
 - the root trackers now exist
 - the A2 append log now exists
 - the A2 boot-read order now exists
-- the Retooled External Methods referent was corrected back to the real source doc [29 thing.txt](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/29%20thing.txt)
+- the Retooled External Methods referent was corrected back to the real source doc [29 thing.txt](%USER_HOME%/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/29%20thing.txt)
 - the EverMem lane now has one durable repo-held state/report seam:
-  - [EVERMEM_WITNESS_SYNC_STATE__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/EVERMEM_WITNESS_SYNC_STATE__CURRENT__v1.json)
-  - [EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.md)
+  - [EVERMEM_WITNESS_SYNC_STATE__CURRENT__v1.json](%USER_HOME%/Desktop/Codex%20Ratchet/system_v4/a2_state/EVERMEM_WITNESS_SYNC_STATE__CURRENT__v1.json)
+  - [EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.md)
 
 So this is not a story of literally nothing being done.
 
@@ -252,11 +252,11 @@ It is a story of real work being built on top of an A2 understanding layer that 
 
 ## Repair Order
 
-1. Maintain [doc_index.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/doc_index.json) coverage so it indexes the owner law, active A2 brain surfaces, and the root front-door corpus docs.
+1. Maintain [doc_index.json](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/doc_index.json) coverage so it indexes the owner law, active A2 brain surfaces, and the root front-door corpus docs.
 2. Expand autosave/snapshot coverage to include the full required A2 brain/control set.
-3. Bring [fuel_queue.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/fuel_queue.json), [rosetta.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/rosetta.json), and [constraint_surface.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/constraint_surface.json) up to at least a declared compatible schema/version layer.
-4. Decide what the live truth for [memory.jsonl](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/memory.jsonl) is supposed to be, instead of letting `07`, `19`, and compatibility autosave all silently disagree.
-5. Keep [skill_registry.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/skill_registry.py) metadata and dispatch bindings aligned so newer corpus-derived skill records stay discoverable.
+3. Bring [fuel_queue.json](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/fuel_queue.json), [rosetta.json](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/rosetta.json), and [constraint_surface.json](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/constraint_surface.json) up to at least a declared compatible schema/version layer.
+4. Decide what the live truth for [memory.jsonl](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/memory.jsonl) is supposed to be, instead of letting `07`, `19`, and compatibility autosave all silently disagree.
+5. Keep [skill_registry.py](%USER_HOME%/Desktop/Codex%20Ratchet/system_v4/skills/skill_registry.py) metadata and dispatch bindings aligned so newer corpus-derived skill records stay discoverable.
 6. Refresh the standing A2 brain surfaces from the owner law and the current repo state.
 7. Re-ingest the new A2 repair surfaces into `v4`.
 8. Keep the `v4` graph capability audit refreshed against the real live skill state instead of letting it drift again.
@@ -266,8 +266,8 @@ It is a story of real work being built on top of an A2 understanding layer that 
 
 Before claiming any repo, method bundle, or skill family is truly saved:
 
-1. append it to [REPO_SKILL_INTEGRATION_TRACKER.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md)
-2. append the durable context impact to [A2_KEY_CONTEXT_APPEND_LOG__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md)
+1. append it to [REPO_SKILL_INTEGRATION_TRACKER.md](%USER_HOME%/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md)
+2. append the durable context impact to [A2_KEY_CONTEXT_APPEND_LOG__v1.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md)
 3. only then claim it is retained
 
 That is the minimum bar until the deeper A2 recovery work is actually done.

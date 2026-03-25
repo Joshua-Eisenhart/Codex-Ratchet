@@ -7,7 +7,7 @@ Role: preserve the current strict-required vs projection classification for `run
 ## Scope
 
 This note is bounded to the outer runtime loop artifact classes touched by:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_real_loop.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_real_loop.py`
 
 It records which artifact classes are currently treated as:
 - strict-required canon inputs
@@ -71,7 +71,7 @@ So the recovery path is explicit but still fail-aware.
 ## Verification
 
 Focused tests:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_real_loop.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_real_loop.py`
 
 Covered now:
 - strict mode fails closed on missing canonical events and graveyard records

@@ -24,10 +24,10 @@
 - Total: 17198 nodes, 17021 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/29_STAGE_3_TEMPLATE_AND_SCHEMA_GATE_FLOW__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/29_ZIP_BOOT_BINDING_RULES__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/29_STAGE_3_TEMPLATE_AND_SCHEMA_GATE_FLOW__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/29_ZIP_BOOT_BINDING_RULES__v1.md
 
 ## Batches
 - `BATCH_V4_SOURCE_MAP_TIER0_28_BOOT`

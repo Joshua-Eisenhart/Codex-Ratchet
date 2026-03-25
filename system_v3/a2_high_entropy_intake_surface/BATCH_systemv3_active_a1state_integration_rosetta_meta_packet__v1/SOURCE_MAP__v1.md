@@ -26,23 +26,23 @@ Date: 2026-03-09
 - bundling reason:
   - these fourteen files are one coherent normalization layer: the generic A1 family model, the live admissibility and anchor/witness rules, the active-family rosetta restatement set, and the live substrate enrichment family used by that normalized read
 - deferred next source-like surfaces after `a1_state`:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/README.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/brain_manifest.yaml`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/contradictions.yaml`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/decisions.yaml`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/pending_actions.yaml`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/thread_seals.000.jsonl`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/memory_log.000.jsonl`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/MODEL_CONTEXT.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/00_README.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/NONCANONICAL_RUNTIME_FROZEN_IMPORT_BLOCKED_FILES.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/A1_SANDBOX_ONLY_PACKET_CONTRACT_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/README.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/brain_manifest.yaml`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/contradictions.yaml`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/decisions.yaml`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/pending_actions.yaml`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/thread_seals.000.jsonl`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/memory_log.000.jsonl`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/MODEL_CONTEXT.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/00_README.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/NONCANONICAL_RUNTIME_FROZEN_IMPORT_BLOCKED_FILES.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/A1_SANDBOX_ONLY_PACKET_CONTRACT_v1.md`
 
 ## 2) Source Membership By Subfamily
 - generic family-model doctrine:

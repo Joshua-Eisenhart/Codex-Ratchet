@@ -15,7 +15,7 @@ Date: 2026-03-09
 ### 2) scalar laws here vs later fail-closed entropy/path contracts
 - tension:
   - this source asserts additive path entropy, monotone `i`-scalar behavior, cost from `|Delta S|`, scalar-bounded path admissibility, and survivorship-based path selection
-  - later [Entropy contract v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/core_docs/a1_refined_Ratchet%20Fuel/constraint%20ladder/Entropy%20contract%20v1.md) and [Path contract v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/core_docs/a1_refined_Ratchet%20Fuel/constraint%20ladder/Path%20contract%20v1.md) explicitly forbid default accumulation, additivity, monotonicity, scalar-gated admissibility, and scalar-driven path selection
+  - later [Entropy contract v1.md](/home/ratchet/Desktop/Codex%20Ratchet/core_docs/a1_refined_Ratchet%20Fuel/constraint%20ladder/Entropy%20contract%20v1.md) and [Path contract v1.md](/home/ratchet/Desktop/Codex%20Ratchet/core_docs/a1_refined_Ratchet%20Fuel/constraint%20ladder/Path%20contract%20v1.md) explicitly forbid default accumulation, additivity, monotonicity, scalar-gated admissibility, and scalar-driven path selection
 - why it matters:
   - this is the largest contract-level conflict in the document
 

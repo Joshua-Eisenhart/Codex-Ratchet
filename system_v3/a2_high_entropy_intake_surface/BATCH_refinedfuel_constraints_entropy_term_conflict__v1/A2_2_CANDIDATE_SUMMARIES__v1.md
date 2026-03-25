@@ -15,4 +15,4 @@ Date: 2026-03-09
   - the source still needs companion-side comparison with the paired `Constraints.md` surface
   - the file remains too dense and too internally contradictory to count as a settled reduced packet by itself
 - next-step note:
-  - the strongest companion re-entry is `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md` as its parallel `TERM_CONFLICT_PASS`
+  - the strongest companion re-entry is `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md` as its parallel `TERM_CONFLICT_PASS`

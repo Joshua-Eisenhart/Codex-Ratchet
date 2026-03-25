@@ -7,10 +7,10 @@ Date: 2026-03-08
 
 ## 1) Batch Selection
 - starting file in raw simpy folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_full_axis_suite.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_full_axis_suite.py`
 - selected sources:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_full_axis_suite.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_full_axis_suite.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_full_axis_suite.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_full_axis_suite.json`
 - reason for bounded family:
   - `run_full_axis_suite.py` is the next unprocessed raw-folder-order source after the `engine32` batch
   - the script and its paired result are one compact cross-axis sampler:
@@ -19,23 +19,23 @@ Date: 2026-03-08
     - one aggregate result file
   - the current repo also contains clearly corresponding standalone descendant surfaces for axes 3, 4, 5, and 6, so those were read as comparison anchors rather than merged into source membership
 - comparison-only descendant anchors read:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS3_WEYL_HOPF_GRID_V1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS4_COMP_FETI_TEFI_CHECK_V1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS5_FGA_SWEEP_V1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS5_FSA_SWEEP_V1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS6_LR_MULTI_V1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS3_WEYL_HOPF_GRID_V1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS4_COMP_FETI_TEFI_CHECK_V1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS5_FGA_SWEEP_V1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS5_FSA_SWEEP_V1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS6_LR_MULTI_V1.json`
 - deferred next raw-folder-order source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_invariant_gradient_scan_v11.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_invariant_gradient_scan_v11.py`
 
 ## 2) Source Membership
 - Runner:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_full_axis_suite.py`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_full_axis_suite.py`
   - sha256: `71aa883f4c16db4258e00b90944a990e1c8ee9c049cb3a1a51929c1361f060eb`
   - size bytes: `9982`
   - line count: `259`
   - source role: cross-axis sampler / precursor runner
 - Result surface:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_full_axis_suite.json`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_full_axis_suite.json`
   - sha256: `14aacaeee692b72eabdd78b08204babd0e4ce5c1eaeede6be3efa02ead16102b`
   - size bytes: `1023`
   - line count: `36`
@@ -108,8 +108,8 @@ Date: 2026-03-08
 
 ## 4) Comparison Anchors
 - comparison sources:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
 - relevant anchors:
   - `SIM_CATALOG_v1.3.md:11-16`
   - `SIM_CATALOG_v1.3.md:86`

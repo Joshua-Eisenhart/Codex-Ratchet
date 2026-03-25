@@ -7,7 +7,7 @@ Role: bounded A2 capture of the audited local-pack-only external return for the 
 ## 1) Scope
 
 This note records only what the audited returned zip actually supports from:
-- `/Users/joshuaeisenhart/Desktop/ENTROPY_BOOT_RETURN__20260311__LOCAL_ONLY.zip`
+- `/home/ratchet/Desktop/ENTROPY_BOOT_RETURN__20260311__LOCAL_ONLY.zip`
 
 This is not a full external research pass.
 It is a bounded local-source-pack return.

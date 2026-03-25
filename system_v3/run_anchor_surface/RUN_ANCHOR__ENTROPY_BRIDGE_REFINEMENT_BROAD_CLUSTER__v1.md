@@ -8,12 +8,12 @@
 
 ## Anchor runs
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_THERMAL_TIME_BROAD_0001`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_REFORMULATION_BROAD_0001`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_COLDER_WITNESS_BROAD_0001`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_HELPER_STRIP_BROAD_0001`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_HELPER_STRIP_BROAD_0002`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_HELPER_LIFT_BROAD_0001`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_THERMAL_TIME_BROAD_0001`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_REFORMULATION_BROAD_0001`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_COLDER_WITNESS_BROAD_0001`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_HELPER_STRIP_BROAD_0001`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_HELPER_STRIP_BROAD_0002`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_HELPER_LIFT_BROAD_0001`
 
 ## What this family carries
 
@@ -144,4 +144,4 @@ Key retained surfaces:
 
 See:
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`

@@ -6,13 +6,13 @@ Role: bounded A2 controller re-audit of the first-priority external source wave
 
 ## AUDIT_SCOPE
 - corrected external dropin workspace:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3`
 - first-priority packets only:
   - `sources/external/carnot_primary/`
   - `sources/external/maxwell_demon_primary/`
   - `sources/external/fep_active_inference_primary/`
 - active readiness gate:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_AUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_AUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 ## FINDINGS
 - all three first-priority packets now have crossed the first real source-bearing floor

@@ -47,9 +47,9 @@ Extraction mode: `TERM_CONFLICT_PASS`
 - source anchors:
   - source 1: `49-77`
 - comparison anchors:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1:24-31`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1:49-54`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1:62-67`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1:24-31`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1:49-54`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1:62-67`
 - possible downstream consequence:
   - this raises the value of the digest as a reusable quarantine/reference surface, but does not change its noncanon status
 

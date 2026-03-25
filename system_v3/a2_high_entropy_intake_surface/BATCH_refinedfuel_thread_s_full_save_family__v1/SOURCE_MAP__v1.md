@@ -7,7 +7,7 @@ Date: 2026-03-08
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
 - nontrivial top-level entry count:
   - `11`
 - ignored filesystem noise:
@@ -27,14 +27,14 @@ Date: 2026-03-08
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/README.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/PROVENANCE.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/REPORT_POLICY_STATE.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/SHA256SUMS.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/DUMP_INDEX.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/DUMP_TERMS.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/DUMP_LEDGER_BODIES.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/THREAD_S_SAVE_SNAPSHOT_v2.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/README.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/PROVENANCE.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/REPORT_POLICY_STATE.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/SHA256SUMS.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/DUMP_INDEX.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/DUMP_TERMS.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/DUMP_LEDGER_BODIES.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/THREAD_S_SAVE_SNAPSHOT_v2.txt`
 - reason for selection:
   - this is the first unprocessed non-`sims` bounded unit in folder order after the top-level refined-fuel docs
   - the folder is explicitly packaged as a single `Thread S Full Save Kit` rather than a loose note collection
@@ -51,11 +51,11 @@ Date: 2026-03-08
     - integrity hashes
   - `SAVE_KIT_PASS` is the best fit because the main value is archive/replay packaging and portable state externalization, not term conflict or broad theory mapping
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_FUNCTION_ADMISSIBILITY_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_FUNCTION_ADMISSIBILITY_v1.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/README.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/README.md`
   - role in batch: family readme and explicit archive/replay intent statement
   - sha256: `4729f5845b5d281a84e1386897ad4e10bd120ce830c70103809f48e2be3fc9ca`
   - size bytes: `829`
@@ -63,7 +63,7 @@ Date: 2026-03-08
   - source class:
     - refined-fuel save-kit readme
 - source 2:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/PROVENANCE.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/PROVENANCE.txt`
   - role in batch: compact counters/provenance sidecar
   - sha256: `05284c2f4c4e548b1b5032d90a104750fcfd1d3e61402b80a7e31b864f104618`
   - size bytes: `133`
@@ -71,7 +71,7 @@ Date: 2026-03-08
   - source class:
     - refined-fuel save-kit provenance sidecar
 - source 3:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/REPORT_POLICY_STATE.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/REPORT_POLICY_STATE.txt`
   - role in batch: policy-flag sidecar for the save state
   - sha256: `c3c34a0ab63c2d2f933bf01511a6ccb5e2a3b464d50cb42b4a9c89c4b6dc84de`
   - size bytes: `351`
@@ -79,7 +79,7 @@ Date: 2026-03-08
   - source class:
     - refined-fuel save-kit policy surface
 - source 4:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/SHA256SUMS.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/SHA256SUMS.txt`
   - role in batch: per-file integrity hash list
   - sha256: `9c6b502df0f8a42dca6fed8a6fa9db0c8b29fd1ce9f226b02fef98917793f9a8`
   - size bytes: `594`
@@ -87,7 +87,7 @@ Date: 2026-03-08
   - source class:
     - refined-fuel save-kit integrity sidecar
 - source 5:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/DUMP_INDEX.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/DUMP_INDEX.txt`
   - role in batch: compact census/index of axioms, specs, counts, and checkpoint totals
   - sha256: `76766947b22310fd360f67ab28d56d143a333bd2af2a208f7bb6d2cfa1d6ecb4`
   - size bytes: `12863`
@@ -95,7 +95,7 @@ Date: 2026-03-08
   - source class:
     - refined-fuel save-kit index surface
 - source 6:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/DUMP_TERMS.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/DUMP_TERMS.txt`
   - role in batch: full term-registry enumeration
   - sha256: `2904b5054c3e24c78fb9cd9fc324630b2820b5b4ac46f5eb4420153b24d0fd41`
   - size bytes: `23416`
@@ -103,7 +103,7 @@ Date: 2026-03-08
   - source class:
     - refined-fuel save-kit term dump
 - source 7:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/DUMP_LEDGER_BODIES.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/DUMP_LEDGER_BODIES.txt`
   - role in batch: full survivor-ledger-body dump with park-set body section
   - sha256: `a39182592658f96dbf2c90c2d71d693b06668cbab38066300749a2926367dd96`
   - size bytes: `85049`
@@ -111,7 +111,7 @@ Date: 2026-03-08
   - source class:
     - refined-fuel save-kit ledger-body dump
 - source 8:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/THREAD_S_SAVE_SNAPSHOT_v2.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/THREAD_S_SAVE_SNAPSHOT_v2.txt`
   - role in batch: canonical snapshot container for Thread-S-side replay of Thread-B state
   - sha256: `ac4bb0255175120ad3eadbcb227ee150984466fe3e3ad22306ca84540e898c8b`
   - size bytes: `108452`

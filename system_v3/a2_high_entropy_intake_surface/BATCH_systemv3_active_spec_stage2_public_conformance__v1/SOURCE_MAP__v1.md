@@ -29,10 +29,10 @@ Date: 2026-03-09
   - the conformance and public-facing surfaces are small and heavily coupled to this late-spec packet
   - the schema stubs and baseline digest are spec-adjacent source-like surfaces and should not be silently skipped
 - deferred next docs in priority order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_INPUT_TRUST_AND_QUARANTINE_MAP__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ALT_MODEL_MINING_PLAYBOOK.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/COUPLED_RATCHET_AND_SIM_LADDERS__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/DOC_INDEX_STATUS_CAUTION__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_INPUT_TRUST_AND_QUARANTINE_MAP__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ALT_MODEL_MINING_PLAYBOOK.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/COUPLED_RATCHET_AND_SIM_LADDERS__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/DOC_INDEX_STATUS_CAUTION__v1.md`
 
 ## 2) Source Membership By Family
 - late spec-owner and build packet:

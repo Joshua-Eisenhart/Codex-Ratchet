@@ -16,10 +16,10 @@
 - Total: 237 nodes, 207 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/36_PRO_LAUNCH_TEMPLATE__NARROW_SOURCE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/43_AUTO_GO_ON_EXECUTION_PATH__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/48_BROWSER_ASSISTED_GO_ON_EXECUTION__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/36_PRO_LAUNCH_TEMPLATE__NARROW_SOURCE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/43_AUTO_GO_ON_EXECUTION_PATH__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/48_BROWSER_ASSISTED_GO_ON_EXECUTION__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1.md
 
 ## Key Findings
 - Mass ingested remaining 32 SPEC_SUPPLEMENT files: Pro templates (36-39), auto-go-on chain (43-47), browser specs (30,48-65), parallel wave packets (68-70), manifest (00)

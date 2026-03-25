@@ -9,7 +9,7 @@ authority: "SOURCE_CLAIM"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::v3_spec_full_plus_save_gap_audit__2026_03_1::1cc72fa63c2065b1`
 
 ## Description
-FULL_PLUS_SAVE_GAP_AUDIT__2026_03_14__v1.md (3484B): # FULL_PLUS_SAVE_GAP_AUDIT__2026_03_14__v1 Status: NONCANON / AUDIT Date: 2026-03-14  ## Scope  Audit current save ZIP behavior against: - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1.md` - `/Users/
+FULL_PLUS_SAVE_GAP_AUDIT__2026_03_14__v1.md (3484B): # FULL_PLUS_SAVE_GAP_AUDIT__2026_03_14__v1 Status: NONCANON / AUDIT Date: 2026-03-14  ## Scope  Audit current save ZIP behavior against: - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1.md` - `/Users/
 
 ## Properties
 - **source_line_range**: 

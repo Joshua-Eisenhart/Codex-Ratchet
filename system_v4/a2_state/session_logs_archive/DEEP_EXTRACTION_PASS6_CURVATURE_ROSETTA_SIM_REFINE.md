@@ -24,10 +24,10 @@
 - Total: 17436 nodes, 17252 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Curvature contract v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Rosetta contract v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Simulation protocol v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/REFINEMENT_CONTRACT_v1.1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Curvature contract v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Rosetta contract v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Simulation protocol v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/REFINEMENT_CONTRACT_v1.1.md
 
 ## Batches
 - `CURVATURE_CONTRACT`

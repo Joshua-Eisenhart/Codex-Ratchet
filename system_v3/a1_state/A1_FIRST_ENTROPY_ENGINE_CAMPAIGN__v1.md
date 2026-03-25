@@ -20,7 +20,7 @@ This campaign implements:
 - `distinguishability_processing_machine`
 
 Parent source:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_ENGINE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_ENGINE_FAMILY__v1.md`
 
 ## 3) Current Ordered Campaign Rule
 Do not try to push the whole four-term family at once.
@@ -88,7 +88,7 @@ Cluster-attached negatives:
   - `KERNEL_VALID_BUT_MODEL_EMPTY`
 
 Observed residue-broad pressure priority:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
 - current dominant kill tokens:
   - `NEG_CLASSICAL_TEMPERATURE = 20`
   - `NEG_COMMUTATIVE_ASSUMPTION = 20`
@@ -127,9 +127,9 @@ But in this first campaign those classical engines remain:
 - not direct primary targets.
 
 Reference quarry:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_ENGINE_CLASSICAL_RESIDUE_QUARRY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BROAD_RESCUE_PACK__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_THERMAL_TIME_RESCUE_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_ENGINE_CLASSICAL_RESIDUE_QUARRY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BROAD_RESCUE_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_THERMAL_TIME_RESCUE_PACK__v1.md`
 
 Immediate rescue priority:
 1. Carnot-style residue
@@ -143,7 +143,7 @@ Immediate rescue priority:
 Focused follow-up rule:
 - if the broad rescue pack executes cleanly but reconfirms the same dominant basin,
   move next to:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_THERMAL_TIME_RESCUE_PACK__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_THERMAL_TIME_RESCUE_PACK__v1.md`
 - use that pack to test whether the first thermal/time basin can be moved before reintroducing heavier cross-basin or probability pressure
    - rescue toward:
      - `probe_induced_partition_boundary`
@@ -164,7 +164,7 @@ Focused follow-up rule:
      - colder bridge witnesses before any new machine naming
 
 Current executable control pack:
-- use `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BROAD_RESCUE_PACK__v1.md`
+- use `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BROAD_RESCUE_PACK__v1.md`
 - pack order:
   1. thermal scalar strip
   2. time / bath strip
@@ -197,7 +197,7 @@ So the first campaign should use:
 Do not pretend direct entropy-engine runtime hooks already exist.
 
 Executable bridge note:
-- use `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BRIDGE_CAMPAIGN__v1.md`
+- use `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BRIDGE_CAMPAIGN__v1.md`
 - keep the direct entropy-family names in the upper proposal lane
 - route executable lower-loop pressure through:
   - `correlation_polarity`

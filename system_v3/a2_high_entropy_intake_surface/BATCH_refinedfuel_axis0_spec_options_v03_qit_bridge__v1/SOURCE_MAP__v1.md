@@ -7,7 +7,7 @@ Date: 2026-03-08
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
 - nontrivial top-level file count:
   - `8`
 - ignored filesystem noise:
@@ -24,7 +24,7 @@ Date: 2026-03-08
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md`
 - reason for selection:
   - this is the next nontrivial top-level file in folder order after `AXIS0_SPEC_OPTIONS_v0.2.md`
   - compared to v0.2, this version compresses the family into a cleaner operational measurement surface:
@@ -39,11 +39,11 @@ Date: 2026-03-08
   - the dominant intake value remains the QIT bridge from Axis-0 language to testable measurement objects
   - this keeps `QIT_BRIDGE_PASS` as the best-fit extraction mode
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md`
   - role in batch: refined-fuel Axis-0 v0.3 compact measurement-proposal surface
   - sha256: `394f81ce9ac38daeedb005a834d9abf7f0ac0b463a9835043d769593a846b659`
   - size bytes: `5584`

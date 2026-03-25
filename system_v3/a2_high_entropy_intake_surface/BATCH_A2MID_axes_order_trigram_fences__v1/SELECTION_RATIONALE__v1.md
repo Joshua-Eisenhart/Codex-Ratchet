@@ -5,7 +5,7 @@ Extraction mode: `TERM_CONFLICT_REDUCTION_PASS`
 Date: 2026-03-09
 
 ## Why this parent batch
-- the queued next target, `BATCH_refinedfuel_axis_foundation_companion_term_conflict__v1`, was checked first and not reused because it already has a narrowed child reduction at [BATCH_A2MID_axis_foundation_overlay_fences__v1](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_axis_foundation_overlay_fences__v1/A2_2_REFINED_CANDIDATES__v1.md)
+- the queued next target, `BATCH_refinedfuel_axis_foundation_companion_term_conflict__v1`, was checked first and not reused because it already has a narrowed child reduction at [BATCH_A2MID_axis_foundation_overlay_fences__v1](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_axis_foundation_overlay_fences__v1/A2_2_REFINED_CANDIDATES__v1.md)
 - `BATCH_refinedfuel_axes_order_trigrams_term_conflict__v1` is therefore the next real unresolved refined-fuel term-conflict parent without an A2-mid child
 - the parent batch is strong because it already isolates:
   - the early build-order precursor

@@ -61,7 +61,7 @@ Extraction mode: `ARCHIVE_LAYERED_EXTRACTION_PACKAGE_PASS`
 
 ## Cluster 7: Deferred Next Package
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_03_OF_10__A2_LAYER1_5__OUTPUT__PHYSICS_GROK_HOLODECK_CLUSTER__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_03_OF_10__A2_LAYER1_5__OUTPUT__PHYSICS_GROK_HOLODECK_CLUSTER__v1_1.zip`
 - cluster read:
   - the next archive-root family is another packaged extraction and should remain its own bounded pass
 - current usefulness:

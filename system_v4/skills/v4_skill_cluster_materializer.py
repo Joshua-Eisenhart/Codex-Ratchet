@@ -101,4 +101,4 @@ def run_materialization(repo_root: str):
     print(f"Materialized {added_nodes} SKILL_CLUSTER nodes and {added_edges} MEMBER_OF edges natively.")
 
 if __name__ == "__main__":
-    run_materialization("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
+    run_materialization(str(Path(__file__).resolve().parents[2]))

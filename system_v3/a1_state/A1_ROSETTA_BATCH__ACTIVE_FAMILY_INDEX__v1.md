@@ -168,13 +168,13 @@ The active rosetta set currently resolves into:
 This is the compact reusable map for the current batch set.
 
 ## 9) Source Anchors
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__ACTIVE_FAMILY_MANIFEST__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__PROBE_OPERATOR__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__CORRELATION_POLARITY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__CORRELATION_DIVERSITY_FUNCTIONAL__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__ENTROPY_PRODUCTION_RATE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__ACTIVE_FAMILY_COMPARISON_MATRIX__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__ACTIVE_FAMILY_CROSS_AUDIT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__LIVE_FAMILY_HINT_COVERAGE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__ANCHOR_WITNESS_WORKFLOW__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__EXTERNAL_TOOL_DRIFT_AUDIT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__ACTIVE_FAMILY_MANIFEST__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__PROBE_OPERATOR__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__CORRELATION_POLARITY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__CORRELATION_DIVERSITY_FUNCTIONAL__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__ENTROPY_PRODUCTION_RATE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__ACTIVE_FAMILY_COMPARISON_MATRIX__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ROSETTA_BATCH__ACTIVE_FAMILY_CROSS_AUDIT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__LIVE_FAMILY_HINT_COVERAGE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__ANCHOR_WITNESS_WORKFLOW__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__EXTERNAL_TOOL_DRIFT_AUDIT__v1.md`

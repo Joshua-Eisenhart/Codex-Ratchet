@@ -7,9 +7,9 @@ Date: 2026-03-09
 
 ## 1) Folder-Order Selection
 - prior completed batch ended at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/holodeck docs.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/holodeck docs.md`
 - next folder-order source selected for this bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt`
 - bounded-doc rule used:
   - this file is compact enough to read fully in one pass
   - unlike the surrounding stitched save/history surfaces, this source is a single authored control surface rather than a long mixed transcript
@@ -19,12 +19,12 @@ Date: 2026-03-09
     - term-admission pipeline reuse
     - Thread B versus Thread S save/history reconciliation
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/x grok chat TOE.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/x grok chat TOE.txt`
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt`
   - sha256: `a72f9e491660d0c4cbea0fceae07d86221780352d041c7dc7308d39ab6bca1c8`
   - size bytes: `10953`
   - line count: `348`

@@ -9,7 +9,7 @@ authority: "CROSS_VALIDATED"
 **Node ID:** `A1_STRIPPED::A2_STATE_V3_A2_WORKER_PROMPT_INTAKE_WARM_COLD_CONSU`
 
 ## Description
-A2_WORKER_PROMPT__INTAKE_WARM_COLD_CONSUMER_AUDIT__2026_03_16__v1.txt (1942B): Use $ratchet-a2-a1. Use $a2-a1-memory-admission-guard.  Use the current A2 boot: - /Users/joshuaeisenhart/Desktop/Codex R
+A2_WORKER_PROMPT__INTAKE_WARM_COLD_CONSUMER_AUDIT__2026_03_16__v1.txt (1942B): Use $ratchet-a2-a1. Use $a2-a1-memory-admission-guard.  Use the current A2 boot: - /home/ratchet/Desktop/Codex R
 
 ## Properties
 - **dropped_jargon**: []

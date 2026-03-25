@@ -71,7 +71,7 @@ If route data is present, the plan must include:
 ## Command family
 
 The first plan should target the local Playwright wrapper:
-- `/Users/joshuaeisenhart/.codex/skills/playwright/scripts/playwright_cli.sh`
+- `/home/ratchet/.codex/skills/playwright/scripts/playwright_cli.sh`
 
 The plan may include:
 - `open`

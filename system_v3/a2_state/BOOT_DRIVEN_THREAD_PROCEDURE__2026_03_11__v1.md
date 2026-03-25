@@ -7,9 +7,9 @@ Role: restore boot-driven operator procedure for external research threads and f
 ## 1. Source basis
 
 This procedure is derived from:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_A_v2.60.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_A_v2.60.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md`
 
 The missing rules that must govern all future handoffs are:
 - ZIP bundles are the primary communication carrier.
@@ -97,7 +97,7 @@ Do not allow a fail-closed content package to stand in for attachment failure.
 ### Current boot artifact
 
 Current issued artifact:
-- `/Users/joshuaeisenhart/Desktop/PRO_BOOT_JOB__ENTROPY_CARNOT_SZILARD__20260311_v3.zip`
+- `/home/ratchet/Desktop/PRO_BOOT_JOB__ENTROPY_CARNOT_SZILARD__20260311_v3.zip`
 
 ### Operator action shape
 
@@ -163,6 +163,6 @@ If any answer is bad, do not send the handoff yet.
 The Desktop procedure-note pattern is now explicitly disallowed.
 
 The only Desktop artifact that matters for the current external lane is:
-- `/Users/joshuaeisenhart/Desktop/PRO_BOOT_JOB__ENTROPY_CARNOT_SZILARD__20260311_v3.zip`
+- `/home/ratchet/Desktop/PRO_BOOT_JOB__ENTROPY_CARNOT_SZILARD__20260311_v3.zip`
 
 Everything else should be delivered in-chat as a self-contained action block.

@@ -13,7 +13,7 @@ Role: small controller routing packet for duplicate-family handling inside the i
 
 ## 2) Source-Bound Match Facts
 - both source-map parents point to the same underlying source file:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok unified phuysics nov 29th.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok unified phuysics nov 29th.txt`
 - both parents record the same source hash:
   - `0389cf9353e87f38d48241a1421e68bbffce41789715d71d205be5ae5608aabe`
 - both parents record the same source size and line count:

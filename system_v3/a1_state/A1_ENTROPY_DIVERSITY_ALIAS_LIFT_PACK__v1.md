@@ -13,7 +13,7 @@ Current blocker:
 
 ## 2) Source Runtime Anchor
 Runtime comment and probe surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_engine.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_engine.py`
 
 Key wording already present there:
 - `pairwise correlation-spread functional`
@@ -64,8 +64,8 @@ can land cleanly from the already-earned correlation-side bridge floor.
 
 ## 7) Alias Audit
 Runs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_DIVERSITY_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_DIVERSITY_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_DIVERSITY_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_DIVERSITY_FAMILY__v1.md`
 
 Observed:
 - `pairwise_correlation_spread_functional` enters cold-core admissible candidates

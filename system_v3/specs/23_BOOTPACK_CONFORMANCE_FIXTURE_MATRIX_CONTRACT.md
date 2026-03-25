@@ -7,7 +7,7 @@ Owner: `RQ-139..RQ-144`
 This document defines deterministic conformance fixture requirements used to validate B behavior and block drift.
 
 Runner tool:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_conformance_fixture_matrix.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_conformance_fixture_matrix.py`
 
 ## Normative Clauses
 - `RQ-139` MUST: each fixture has immutable `fixture_id`, `expected_status`, and `expected_tags[]`.

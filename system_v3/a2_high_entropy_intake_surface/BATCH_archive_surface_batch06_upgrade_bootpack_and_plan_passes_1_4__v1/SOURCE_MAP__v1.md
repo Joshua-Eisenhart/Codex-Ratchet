@@ -7,17 +7,17 @@ Date: 2026-03-09
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_06_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__UPGRADE_BOOTPACK_AND_PLAN_PASSES_1_4__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_06_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__UPGRADE_BOOTPACK_AND_PLAN_PASSES_1_4__v1_1.zip`
 - reason for bounded single-package batch:
   - this is the next archive-root item after the Thread B trigram/megaboot mint package
   - it shifts from thread-save-heavy historical synthesis into a compact upgrade/control packet over bootpacks and four explicit upgrade-plan passes
   - keeping it isolated preserves the change in topic family, restored rosetta lock presence, and upgrade-phase contradictions without treating the package as active runtime authority
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_07_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_07_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__v1_1.zip`
 
 ## 2) Source Membership
 ### Primary container
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_06_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__UPGRADE_BOOTPACK_AND_PLAN_PASSES_1_4__v1_1.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_06_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__UPGRADE_BOOTPACK_AND_PLAN_PASSES_1_4__v1_1.zip`
 - sha256: `3e388a546d58422de97e68f8e4bc40fbc6d373667417dca3ed3eda58bb35bd44`
 - size bytes: `59524`
 - container member count: `60`

@@ -8,7 +8,7 @@ Date: 2026-03-09
 ## 1) Batch Selection
 - selected sources:
   - direct run root:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001`
   - embedded run-state surfaces:
     - `summary.json`
     - `state.json`
@@ -23,11 +23,11 @@ Date: 2026-03-09
   - the archive object is useful as an early minimal ladder seed rather than as a broad replay/export kit
   - the key historical value is the one-step clean run shape plus the renamed-but-byte-identical consumed action packet
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_HARDMODE_CLEAN_0001`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_HARDMODE_CLEAN_0001`
 
 ## 2) Source Membership
 ### Source 1
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001`
 - source class: direct run root
 - total files: `15`
 - total directories: `3`
@@ -46,7 +46,7 @@ Date: 2026-03-09
   - no `sim/` directory
 
 ### Source 2
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001/summary.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001/summary.json`
 - sha256: `ad2f17a73c55899c620a5d90c1bfd84ff9e07dc43013cedeb5968b9bd3cfccbd`
 - size bytes: `833`
 - source class: direct final snapshot summary
@@ -61,7 +61,7 @@ Date: 2026-03-09
   - `final_state_hash f0f1df4bcd8c85b255a6e5836354337ff0f59d2b1833c4444fc4f2de4b0792c4`
 
 ### Source 3
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001/state.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001/state.json`
 - sha256: `f0f1df4bcd8c85b255a6e5836354337ff0f59d2b1833c4444fc4f2de4b0792c4`
 - size bytes: `17922`
 - source class: direct final snapshot state
@@ -82,14 +82,14 @@ Date: 2026-03-09
   - one `NEG_NEG_COMMUTATIVE_ASSUMPTION` kill signal remains despite zero parked/rejected totals
 
 ### Source 4
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001/state.json.sha256`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001/state.json.sha256`
 - source class: state integrity sidecar
 - integrity result:
   - declared hash matches actual `state.json` sha256
   - declared hash matches `summary.json` final state hash
 
 ### Source 5
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001/events.jsonl`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001/events.jsonl`
 - sha256: `18b9567d21801533b830adf78395af3600e1fdb705074825145c45733640792d`
 - size bytes: `3596`
 - line count: `2`
@@ -109,7 +109,7 @@ Date: 2026-03-09
     - event rows still point to runtime-path `sim/sim_evidence_*` files that are not retained inside the archive object
 
 ### Source 6
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001/soak_report.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001/soak_report.md`
 - sha256: `9c34cc2dfdc148ad89c4cac2eff14f3a8873b144fd21d14cae59eceefdc36285`
 - size bytes: `3763`
 - source class: human-readable soak report
@@ -122,7 +122,7 @@ Date: 2026-03-09
   - top failure tag set: `NONE`
 
 ### Source 7
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001/zip_packets`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001/zip_packets`
 - source class: embedded packet lattice
 - file count: `9`
 - packet kind counts:
@@ -135,7 +135,7 @@ Date: 2026-03-09
   - `000001_A1_TO_A0_STRATEGY_ZIP.zip` sha256 `752588e7286706d6b218d4eaf97af36a02b31f0ea67b02b6449cc2dca6f6583e`
 
 ### Source 8
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001/a1_inbox/consumed/000001_FND_LR_ACTION.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/RUN_FOUNDATION_LADDER_001/a1_inbox/consumed/000001_FND_LR_ACTION.zip`
 - source class: consumed input residue
 - size bytes: `2473`
 - sha256: `752588e7286706d6b218d4eaf97af36a02b31f0ea67b02b6449cc2dca6f6583e`

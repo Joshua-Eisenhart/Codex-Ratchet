@@ -80,7 +80,7 @@ The operator must record:
 ## Output path
 
 The output packet must be written under:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/browser_thread_observations`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/browser_thread_observations`
 
 Recommended filename:
 - `browser_observed_thread__<thread_id>__<YYYYMMDDTHHMMSSZ>.json`
@@ -89,7 +89,7 @@ Recommended filename:
 
 Once one real observation packet exists:
 1. run the packet-driven wrapper:
-   - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_browser_go_on_from_observed_packet.py`
+   - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_browser_go_on_from_observed_packet.py`
 2. use `validate_only`
 3. inspect the emitted proof packet
 

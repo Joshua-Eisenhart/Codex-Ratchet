@@ -7,19 +7,19 @@ Date: 2026-03-09
 
 ## 1) Folder-Order Selection
 - prior completed batch ended at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_v3/WORKSPACE_LAYOUT_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/system_v3/WORKSPACE_LAYOUT_v1.md`
 - next primary diagnostic docs selected in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/AUTOWIGGLE_RESULTS.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/BLOCKAGE_DIAGNOSIS.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/RATCHET_STATE_EXTRACT.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/AUTOWIGGLE_RESULTS.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/BLOCKAGE_DIAGNOSIS.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/RATCHET_STATE_EXTRACT.txt`
 - bundled adjacent request-pack shell:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/README__HOW_TO_RUN.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/MANIFEST.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/COMBINED_PROMPT__A1_LLM_LANE__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/prompts/000001_20260303T203000Z_ROLE_1_STEELMAN__A1_PROMPT.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/prompts/000001_20260303T203000Z_ROLE_2_DEVIL__A1_PROMPT.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/prompts/000001_20260303T203000Z_ROLE_3_BOUNDARY__A1_PROMPT.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/prompts/000001_20260303T203000Z_ROLE_4_PACK_SELECTOR__A1_PROMPT.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/README__HOW_TO_RUN.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/COMBINED_PROMPT__A1_LLM_LANE__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/prompts/000001_20260303T203000Z_ROLE_1_STEELMAN__A1_PROMPT.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/prompts/000001_20260303T203000Z_ROLE_2_DEVIL__A1_PROMPT.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/prompts/000001_20260303T203000Z_ROLE_3_BOUNDARY__A1_PROMPT.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/prompts/000001_20260303T203000Z_ROLE_4_PACK_SELECTOR__A1_PROMPT.txt`
 - bundling reason:
   - the three autowiggle docs all diagnose the same failure family:
     - branch/kill/rescue churn exists
@@ -33,14 +33,14 @@ Date: 2026-03-09
   - this batch processes the request shell and role split
   - it does not unfold the four `context/*.md` files yet
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T205010Z/README__HOW_TO_RUN.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T205010Z/MANIFEST.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T205010Z/COMBINED_PROMPT__A1_LLM_LANE__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/entropy_analysis.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T205010Z/README__HOW_TO_RUN.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T205010Z/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T205010Z/COMBINED_PROMPT__A1_LLM_LANE__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/entropy_analysis.md`
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/AUTOWIGGLE_RESULTS.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/AUTOWIGGLE_RESULTS.md`
   - sha256: `d98977db926f10c5bf69b4d6bd9e867e970ce01cf1ea7cdad4e342b73d7e78cd`
   - size bytes: `2158`
   - line count: `77`
@@ -48,7 +48,7 @@ Date: 2026-03-09
   - source-class note:
     - high-level diagnosis surface framing autowiggle as branch/kill/rescue-active but canon-empty
 - source 2:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/BLOCKAGE_DIAGNOSIS.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/BLOCKAGE_DIAGNOSIS.txt`
   - sha256: `136d57fa4350d930c55946a56d2648543f405384bf6b883fe96649e4830b4337`
   - size bytes: `3695`
   - line count: `68`
@@ -56,7 +56,7 @@ Date: 2026-03-09
   - source-class note:
     - strongest explicit claim that autowiggle emits only `SIM_SPEC` branches and never enters `MATH_DEF -> TERM_DEF -> CANON_PERMIT`
 - source 3:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/RATCHET_STATE_EXTRACT.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/RATCHET_STATE_EXTRACT.txt`
   - sha256: `909ef0ac6524c38ddce36005b165ffec7af0afa7af95b85492de9406cc029c58`
   - size bytes: `18437`
   - line count: `619`
@@ -64,7 +64,7 @@ Date: 2026-03-09
   - source-class note:
     - mixed extract with large count tables, many `UNKNOWN` slots, and internal count inconsistencies that still reinforce the zero-canon blockage
 - source 4:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/README__HOW_TO_RUN.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/README__HOW_TO_RUN.txt`
   - sha256: `d5b5e1e92fced33c3b653eac99955c0e9184936bd74d8f876d4cb94a3df1dac0`
   - size bytes: `497`
   - line count: `13`
@@ -72,7 +72,7 @@ Date: 2026-03-09
   - source-class note:
     - concise host-side rule surface for generating exact role outputs and nothing else
 - source 5:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/MANIFEST.json`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/MANIFEST.json`
   - sha256: `291da4b6bba8cf8e91336abd066a87a1f560420c4e549cd10ffed6f2ee49f02b`
   - size bytes: `595`
   - line count: `16`
@@ -80,7 +80,7 @@ Date: 2026-03-09
   - source-class note:
     - declares `A1_LLM_LANE_REQUEST_v1`, output counts, and strict expected filenames
 - source 6:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/COMBINED_PROMPT__A1_LLM_LANE__v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/COMBINED_PROMPT__A1_LLM_LANE__v1.md`
   - sha256: `d9e5a968f9617b79238e914981a88d60f8f0190ce06577766785ded8a7ed885e`
   - size bytes: `1183`
   - line count: `26`
@@ -88,7 +88,7 @@ Date: 2026-03-09
   - source-class note:
     - converts the request into one deterministic read-order + output-format contract for an external host LLM
 - source 7:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/prompts/000001_20260303T203000Z_ROLE_1_STEELMAN__A1_PROMPT.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/prompts/000001_20260303T203000Z_ROLE_1_STEELMAN__A1_PROMPT.txt`
   - sha256: `636b4340b99a274db6e26551d664581a18f33e9cc48dafa627d898bbe29b602f`
   - size bytes: `833`
   - line count: `22`
@@ -96,7 +96,7 @@ Date: 2026-03-09
   - source-class note:
     - strongest admissible-path lane emitting sandbox-only `A1_LAWYER_MEMO_v1`
 - source 8:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/prompts/000001_20260303T203000Z_ROLE_2_DEVIL__A1_PROMPT.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/prompts/000001_20260303T203000Z_ROLE_2_DEVIL__A1_PROMPT.txt`
   - sha256: `51f7dacd88e55781e4790c3aadf6a56f46416c55796ef67011ff2d4b41ea2cb6`
   - size bytes: `838`
   - line count: `22`
@@ -104,7 +104,7 @@ Date: 2026-03-09
   - source-class note:
     - sincere adversarial lane intended to die under negative pressure
 - source 9:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/prompts/000001_20260303T203000Z_ROLE_3_BOUNDARY__A1_PROMPT.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/prompts/000001_20260303T203000Z_ROLE_3_BOUNDARY__A1_PROMPT.txt`
   - sha256: `79d3d03545177cf7950008cd294613e750dad8ceee8a34be715434b416f59fb8`
   - size bytes: `849`
   - line count: `22`
@@ -112,7 +112,7 @@ Date: 2026-03-09
   - source-class note:
     - boundary/perturb/stress lane aimed at rescue targets and graveyard/park surfaces
 - source 10:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/prompts/000001_20260303T203000Z_ROLE_4_PACK_SELECTOR__A1_PROMPT.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/a1_llm_lane_requests/000001__A1_LLM_REQUEST__20260303T203000Z/prompts/000001_20260303T203000Z_ROLE_4_PACK_SELECTOR__A1_PROMPT.txt`
   - sha256: `325369a9723d61f975ed84072372fd721745b0fececfe83dbdc80791fdb898c8`
   - size bytes: `937`
   - line count: `25`
@@ -123,7 +123,7 @@ Date: 2026-03-09
 ## 3) Structural Map
 ### Segment A: high-level autowiggle diagnosis plaque
 - source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/AUTOWIGGLE_RESULTS.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/AUTOWIGGLE_RESULTS.md`
 - key markers:
   - 46 steps
   - 5057 evidence tokens
@@ -136,7 +136,7 @@ Date: 2026-03-09
 
 ### Segment B: mechanical blockage statement
 - source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/BLOCKAGE_DIAGNOSIS.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/BLOCKAGE_DIAGNOSIS.txt`
 - key markers:
   - `MATH_DEF = 0`
   - `TERM_DEF = 0`
@@ -149,7 +149,7 @@ Date: 2026-03-09
 
 ### Segment C: raw extract with inconsistent but convergent evidence
 - source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/RATCHET_STATE_EXTRACT.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/RATCHET_STATE_EXTRACT.txt`
 - key markers:
   - total attempts `5057`
   - graveyard size `2300`

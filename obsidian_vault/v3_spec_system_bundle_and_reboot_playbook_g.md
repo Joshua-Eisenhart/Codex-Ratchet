@@ -9,7 +9,7 @@ authority: "SOURCE_CLAIM"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::v3_spec_system_bundle_and_reboot_playbook_g::d2b514e84f148796`
 
 ## Description
-SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK_GAP_AUDIT__2026_03_14__v1.md (5029B): # SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK_GAP_AUDIT__2026_03_14__v1 Status: NONCANON / AUDIT Date: 2026-03-14  ## Scope  Audit current system bundle and reboot coverage against: - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/76_SYSTEM_BUND
+SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK_GAP_AUDIT__2026_03_14__v1.md (5029B): # SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK_GAP_AUDIT__2026_03_14__v1 Status: NONCANON / AUDIT Date: 2026-03-14  ## Scope  Audit current system bundle and reboot coverage against: - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/76_SYSTEM_BUND
 
 ## Properties
 - **source_line_range**: 

@@ -1,0 +1,113 @@
+problem_id: GRAVITY_ROSETTA_V1
+goal: "Discrete entropic-curvature operator K=LΦ predicts drift direction"
+witness:
+  kind: correlation_graph_laplacian
+  parameters:
+    n_nodes: [4, 8, 16]
+    d_local: [2, 4, 8]
+constraints:
+  - CPTP_steps_only
+  - PSD_trace_invariants
+  - finite_system_only
+scoring:
+  primary: "drift_alignment >= 0.50"
+  secondary: "stability_across_seeds >= 0.80"
+negative_tests:
+  - "fails_when_random_topology"
+  - "fails_when_maximally_mixed_initial"
+sim_file: entropic_curvature_lattice_sim.py
+result_artifact: entropic_curvature_lattice_results.json
+status: SOLVED
+---
+problem_id: SET_THEORY_ROSETTA_V1
+goal: "Sets emerge as stable MI correlation clusters"
+witness:
+  kind: mutual_information_graph
+  parameters:
+    n_qubits: [3, 4, 5, 6]
+    tau: [0.01, 0.1, 0.5]
+constraints:
+  - finite_qubit_system
+  - partial_trace_reduction
+scoring:
+  primary: "jaccard_stability_small >= 0.90"
+  secondary: "jaccard_dissolution_large <= 0.60"
+negative_tests:
+  - "fails_when_product_state"
+sim_file: set_theory_correlation_cluster_sim.py
+result_artifact: set_theory_cluster_results.json
+status: SOLVED
+---
+problem_id: CALCULUS_EMERGENCE_V1
+goal: "Wave/Line algebras become orthogonal at large d (calculus is emergent)"
+witness:
+  kind: choi_operator_pair
+  parameters:
+    dims: [4, 8, 16, 32, 64]
+constraints:
+  - non_triviality_gate
+  - CPTP_channels
+scoring:
+  primary: "overlap_convergence_to_zero"
+  secondary: "both_norms_above_1e-6"
+negative_tests:
+  - "fails_at_d=4"
+sim_file: axis5_discrete_calculus_rosetta_sim.py
+result_artifact: axis5_discrete_calculus_rosetta_results.json
+status: KILL_EXPECTED
+---
+problem_id: AXIS_LIE_CLOSURE_V1
+goal: "6 axis generators produce a >6-dimensional Lie algebra via commutators"
+witness:
+  kind: choi_commutator_closure
+  parameters:
+    dims: [4, 8, 16]
+    max_levels: 2
+constraints:
+  - normalized_choi
+  - singular_value_rank_threshold
+scoring:
+  primary: "closure_rank > base_rank"
+  secondary: "stable_across_dimensions"
+negative_tests:
+  - "fails_when_axes_identical"
+sim_file: axis_lie_closure_expansion_sim.py
+result_artifact: axis_lie_closure_results.json
+status: SOLVED
+---
+problem_id: RESIDUAL_SUBSPACE_V1
+goal: "Operator manifold has stable directions beyond axes 1-6"
+witness:
+  kind: projection_residual
+  parameters:
+    dims: [4, 8, 16]
+    n_probes: 30
+constraints:
+  - random_CPTP_probes
+  - least_squares_projection
+scoring:
+  primary: "mean_residual_norm >= 0.20"
+  secondary: "stability_across_seeds >= 0.80"
+negative_tests:
+  - "fails_when_probes_in_axis_span"
+sim_file: axis_residual_subspace_discovery_sim.py
+result_artifact: axis_residual_subspace_results.json
+status: SOLVED
+---
+problem_id: DARK_SECTOR_DUALITY_V1
+goal: "Dark Energy = entropy expansion; Dark Matter = negentropy anchors"
+witness:
+  kind: density_matrix_dynamics
+  parameters:
+    dims: [4, 8]
+constraints:
+  - CPTP_steps_only
+  - PSD_trace_invariants
+scoring:
+  primary: "entropy_diverges_for_DE"
+  secondary: "purity_preserved_for_DM"
+negative_tests:
+  - "fails_when_no_dissipation"
+sim_file: origin_chain_physics_sim.py
+result_artifact: origin_chain_physics_results.json
+status: SOLVED

@@ -7,20 +7,20 @@ Date: 2026-03-08
 
 ## 1) Folder-Order Selection
 - prior completed batch ended at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_AUDIT_AND_QUESTIONS.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_AUDIT_AND_QUESTIONS.md`
 - next folder-order doc selected for this bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md`
 - reason for single-doc batch:
   - large dense composite source
   - mixes top-level system-law claims, reboot/save instructions, planning roadmaps, and embedded bootpacks
   - best first pass is structural/function split rather than forcing one premature interpretation
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS2.md`
 
 ## 2) Source Membership
 - primary source:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md`
   - sha256: `68a8114f647d778c49f6f8af3bd270646cae06d40b990fe60e782fb59ccc731b`
   - size bytes: `107752`
   - line count: `3050`

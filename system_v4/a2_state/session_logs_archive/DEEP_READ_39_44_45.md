@@ -16,9 +16,9 @@
 - Total: 3781 nodes, 7585 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/39_PRO_LAUNCH_TEMPLATE__METHOD_COMPARE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/44_AUTO_GO_ON_SENDER_PACKET__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/45_AUTO_GO_ON_RUNNER__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/39_PRO_LAUNCH_TEMPLATE__METHOD_COMPARE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/44_AUTO_GO_ON_SENDER_PACKET__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/45_AUTO_GO_ON_RUNNER__v1.md
 
 ## Batches
 - `AUTO_39_PRO_LAUNCH_TEMPLATE__METHOD_COMPARE__v1_020b1c4be1abf5d3`

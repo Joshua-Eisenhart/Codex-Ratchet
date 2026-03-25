@@ -11,27 +11,27 @@
   "thread_class": "A1_WORKER",
   "mode": "PROCEDURE_FIRST_BUILD",
   "required_boot": [
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/26_BOOTPACK_A1_WIGGLE__v1.md"
+    "/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/26_BOOTPACK_A1_WIGGLE__v1.md"
   ],
   "source_artifacts": [
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/rosetta_v2.json",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/A1_GRAPH_PROJECTION.json",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.json",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_FAMILY_SLICE__DUAL_STACKED_ENGINE_2026_03_17__v1.json"
+    "/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/rosetta_v2.json",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/A1_GRAPH_PROJECTION.json",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.json",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_FAMILY_SLICE__DUAL_STACKED_ENGINE_2026_03_17__v1.json"
   ],
   "depends_on": [
     "NESTED_GRAPH_BUILD__IDENTITY_REGISTRY__2026_03_20__v1",
     "NESTED_GRAPH_BUILD__A2_LOW_CONTROL__2026_03_20__v1"
   ],
   "expected_outputs": [
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_jargoned_graph_v1.json",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_JARGONED_GRAPH_AUDIT__2026_03_20__v1.md"
+    "/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/a1_jargoned_graph_v1.json",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_JARGONED_GRAPH_AUDIT__2026_03_20__v1.md"
   ],
   "write_scope": [
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_jargoned_graph_v1.json",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_JARGONED_GRAPH_AUDIT__2026_03_20__v1.md"
+    "/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/a1_jargoned_graph_v1.json",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_JARGONED_GRAPH_AUDIT__2026_03_20__v1.md"
   ],
   "operator_steps": [
     "Reload required boot surfaces before touching owner outputs.",
@@ -41,8 +41,8 @@
     "Fail closed if the pass would require inventing missing bridge doctrine or silently promoting a projection artifact to authority."
   ],
   "monitor_route": {
-    "skill": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skill_specs/thread-run-monitor/SKILL.md",
-    "owner_surface": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_RUN_DIAGNOSIS_AND_STOP_RULES__v1.md",
+    "skill": "/home/ratchet/Desktop/Codex Ratchet/system_v4/skill_specs/thread-run-monitor/SKILL.md",
+    "owner_surface": "/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_RUN_DIAGNOSIS_AND_STOP_RULES__v1.md",
     "allowed_decisions": [
       "STOP",
       "CONTINUE_ONE_BOUNDED_STEP",
@@ -50,11 +50,11 @@
     ]
   },
   "closeout_route": {
-    "skill": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skill_specs/thread-closeout-auditor/SKILL.md",
-    "sink_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/NESTED_GRAPH_BUILD_CLOSEOUTS__2026_03_20__v1.jsonl"
+    "skill": "/home/ratchet/Desktop/Codex Ratchet/system_v4/skill_specs/thread-closeout-auditor/SKILL.md",
+    "sink_path": "/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/NESTED_GRAPH_BUILD_CLOSEOUTS__2026_03_20__v1.jsonl"
   },
-  "source_packet_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json",
-  "program_packet_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json",
+  "source_packet_json": "/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json",
+  "program_packet_json": "/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json",
   "prompt_to_send": "Run one bounded A1_JARGONED nested-graph build pass using the aligned DUAL_STACKED_ENGINE family scope. Materialize only packet-backed Rosetta nodes now available and preserve blocked Weyl-engine labels as explicit scope residue.",
   "stop_rule": "Stop after one bounded A1 jargoned/rosetta graph materialization pass.",
   "blocking_issues": [

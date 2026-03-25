@@ -7,10 +7,10 @@ Date: 2026-03-08
 
 ## 1) Folder-Order Selection
 - prior completed batch ended at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/branch part 2.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/branchthread extract chat gpt.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/branch part 2.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/branchthread extract chat gpt.txt`
 - next folder-order source selected for this bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/gpt thread a1 trigram work out .txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/gpt thread a1 trigram work out .txt`
 - bounded-doc rule used:
   - this file is very large and internally heterogeneous
   - first pass is structural / cluster-preserving rather than total interpretation
@@ -20,12 +20,12 @@ Date: 2026-03-08
     - correlation-first foundation material
     - axis/trigram conflict material
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok eisenhart model .txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok gemini having digested the model.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok eisenhart model .txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok gemini having digested the model.md`
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/gpt thread a1 trigram work out .txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/gpt thread a1 trigram work out .txt`
   - sha256: `b7cfa26a28f3a84c3d30e9befff13bfa552bf5a6bf6de355c874b1107173fb7f`
   - size bytes: `2105245`
   - line count: `75642`

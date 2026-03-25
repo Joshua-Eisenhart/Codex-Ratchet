@@ -8,7 +8,7 @@ A2 is system debug/upgrade/mining/orchestration memory layer.
 This thread is operating in A2 function.
 
 Schema-depth companion:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md`
 
 ## Mining Function
 A2 is the miner for:
@@ -150,7 +150,7 @@ Fresh `A2_CONTROLLER` relaunches must use one explicit launch packet that declar
 - initial bounded scope
 
 Current launch packet surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
 
 ## Controller Weighted State (`RQ-146`)
 Fresh `A2_CONTROLLER` relaunches must recover weighted current truth from one small controller state record rather than inferring present priority from mixed execution history alone.
@@ -165,16 +165,16 @@ Minimum weighted state must include:
 - disallowed next moves
 
 Current weighted state surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
 
 Current machine-readable A1 queue companions may also be used as controller support surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.json`
 
 When the current bounded dispatch path is the first controller-mediated `A1` launch, controller support may also include the fixed subset-graph helper path:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/compile_first_controller_a1_launch_subset_graph.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/refresh_first_controller_a1_launch_subset_graph.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_first_controller_a1_launch_subset_graph.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/compile_first_controller_a1_launch_subset_graph.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/refresh_first_controller_a1_launch_subset_graph.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_first_controller_a1_launch_subset_graph.py`
 
 Operational timing rule for this helper path:
 - use it only at controller reload or immediately before controller-backed `A1` dispatch when readiness depends on the bounded first-launch subset artifacts
@@ -187,8 +187,8 @@ Readiness/provenance rule for this path:
 - machine-readable `A1` queue status and launch packet companions must preserve family-slice validation as explicit fields, not implied success
 - requested mode, resolved mode, validation source, requested provenance, and resolved provenance must remain inspectable on the ready artifacts when present
 - current validators for this gate are:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_worker_launch_packet.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_worker_launch_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
 
 ## Dispatch-First Controller Rule (`RQ-147`)
 `A2_CONTROLLER` is a routing/dispatch role first.
@@ -301,7 +301,7 @@ The system may use many fresh bounded threads as disposable worker lanes when sh
 repo artifacts, not conversational memory, carry the durable state.
 
 Controller process companion:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md`
 - If this companion surface is present but untracked in the current workspace, treat it as a local overlay for controller operations rather than a guaranteed tracked baseline dependency.
 
 Operational rule:

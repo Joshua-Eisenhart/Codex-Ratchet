@@ -216,11 +216,11 @@ It is not:
   - but the witness is currently only defined as an anchor-surface policy, not yet extracted into a normalized retained triple artifact from a single chosen run instance
 
 ## 3) Source Anchors
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md`
-- `/Users/joshuaeisenhart/Desktop/codex thread save.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md`
+- `/home/ratchet/Desktop/codex thread save.txt`
 ## 2026-03-09 intake-surface integrity issue: empty late batch shell
 - observed:
   - `system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_axis_foundation_overlay_fences__v1`
@@ -257,7 +257,7 @@ It is not:
 ## 2026-03-09 - Refinedfuel Math-Language Fence Residue
 
 Source note:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ENGINE_ENTROPY_GEOMETRY_FENCES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ENGINE_ENTROPY_GEOMETRY_FENCES__v1.md`
 
 Promoted:
 - narrow engine-language fence
@@ -270,7 +270,7 @@ Still unresolved / not promoted here:
 
 ## 2026-03-09 - Engine / Entropy / Geometry fence residue
 - source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ENGINE_ENTROPY_GEOMETRY_FENCES__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ENGINE_ENTROPY_GEOMETRY_FENCES__v1.md`
 - promoted:
   - narrow engine-language fence
   - narrow entropy-scalar fence
@@ -281,7 +281,7 @@ Still unresolved / not promoted here:
 ## 2026-03-09 - Archive/Thread-B governance tensions retained after narrow promotion
 
 Source:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ARCHIVE_THREADB_GOVERNANCE_FENCES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ARCHIVE_THREADB_GOVERNANCE_FENCES__v1.md`
 
 Retained unresolved tensions:
 
@@ -365,7 +365,7 @@ Still quarantined rather than promoted:
 
 ## 2026-03-16 - Persistent-brain alignment drift
 - bounded audit result:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__PERSISTENT_BRAIN_ALIGNMENT_AUDIT__2026_03_16__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__PERSISTENT_BRAIN_ALIGNMENT_AUDIT__2026_03_16__v1.md`
 - the intended A2 persistent-brain model still looks correct
 - the current drift is execution/process drift, not proof that the model was wrong:
   - controller reload still depends on a stale weighted state plus partial overlays
@@ -377,7 +377,7 @@ Still quarantined rather than promoted:
 
 ## 2026-03-16 - Layered-brain and seal-cadence clarification
 - clarification note:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__LAYERED_BRAIN_AND_SEAL_CADENCE_CLARIFICATION__2026_03_16__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__LAYERED_BRAIN_AND_SEAL_CADENCE_CLARIFICATION__2026_03_16__v1.md`
 - corrected read:
   - the whole A2 brain does not need to be globally tiny
   - the stronger target is:
@@ -391,7 +391,7 @@ Still quarantined rather than promoted:
 
 ## 2026-03-16 - Layered A1 brain planning gap
 - planning note:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__LAYERED_A1_BRAIN_PLANNING__2026_03_16__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__LAYERED_A1_BRAIN_PLANNING__2026_03_16__v1.md`
 - corrected read:
   - a layered A2 brain alone is insufficient for durable fresh-thread continuity
   - the active process also needs a clearer layered A1 brain:
@@ -403,7 +403,7 @@ Still quarantined rather than promoted:
 
 ## 2026-03-16 - Geometry / axes / non-flat self-map clarification gap
 - clarification note:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__GEOMETRY_AXES_AND_NONFLAT_SELFMAP_CLARIFICATION__2026_03_16__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__GEOMETRY_AXES_AND_NONFLAT_SELFMAP_CLARIFICATION__2026_03_16__v1.md`
 - corrected read:
   - geometry sits outside the axes
   - axes are degrees of freedom / slices on the larger geometric or constraint-manifold structure
@@ -419,7 +419,7 @@ Still quarantined rather than promoted:
 
 ## 2026-03-16 - Worldstack / labs / methods integration gap
 - clarification note:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__WORLDSTACK_AND_LABS_INTEGRATION_GAP__2026_03_16__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__WORLDSTACK_AND_LABS_INTEGRATION_GAP__2026_03_16__v1.md`
 - corrected read:
   - the repo already contains a strong multi-domain / multi-lab / multi-method upgrade idea
   - but it currently survives mostly as:

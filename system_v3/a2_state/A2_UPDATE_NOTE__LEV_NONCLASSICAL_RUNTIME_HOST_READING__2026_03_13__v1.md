@@ -5,19 +5,19 @@ Role: ingest bounded external architecture-reading delta from the audited Lev ru
 
 ## AUDIT_SCOPE
 - external implementation note:
-  - `/Users/joshuaeisenhart/Desktop/lev_nonclassical_runtime_design_audited.md`
+  - `/home/ratchet/Desktop/lev_nonclassical_runtime_design_audited.md`
 - determine what is genuinely new versus already remembered in active A2
 - preserve only the actionable host-architecture delta
 
 ## SOURCE_ANCHORS
-- `/Users/joshuaeisenhart/Desktop/lev_nonclassical_runtime_design_audited.md`
+- `/home/ratchet/Desktop/lev_nonclassical_runtime_design_audited.md`
 - `https://unfold-tablet-4ndn.here.now/`
 - `https://lev.here.now/mining-ideas/`
 - `https://lev.here.now/lev-supports-all-that/`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md`
 
 ## WHAT_THIS_NOTE_ADDS
 This external note does not mainly add new philosophy.

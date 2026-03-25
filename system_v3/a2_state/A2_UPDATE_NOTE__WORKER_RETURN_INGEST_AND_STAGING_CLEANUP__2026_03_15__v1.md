@@ -9,7 +9,7 @@ Processed the already-returned worker artifacts into the closeout sink and clear
 
 Ingested into:
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/thread_closeout_packets.000.jsonl`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/thread_closeout_packets.000.jsonl`
 
 Threads processed:
 
@@ -27,7 +27,7 @@ Threads processed:
 
 - active raw return staging now contains only the README
 - processed raw worker returns were moved under:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/processed/2026-03-15/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/processed/2026-03-15/`
 - closeout staging now holds the corresponding `.txt` and `.json` packet artifacts for controller use
 
 ## Current sink summary
@@ -39,24 +39,24 @@ Threads processed:
 
 Top newly confirmed worker outputs now include:
 
-1. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_queue_surface_models.py`
-2. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_surface_pydantic_stack.py`
-3. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
-4. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
-5. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_launch_packet_pydantic_stack.py`
-6. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_launch_handoff_pydantic_stack.py`
-7. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_launch_spine_pydantic_stack.py`
-8. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/compile_first_controller_a1_launch_subset_graph.py`
-9. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/FIRST_CONTROLLER_A1_LAUNCH_SUBSET__CURRENT_AND_SUBSTRATE_BASE__2026_03_15__v1.graphml`
-10. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_worker_launch_packet_from_family_slice.py`
-11. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_a1_launch_bundle_from_family_slice.py`
-12. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py`
-13. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_worker_launch_packet_models.py`
-14. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_queue_surface_models.py`
-15. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_WORKER_LAUNCH_PACKET_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
-16. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
-17. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/refresh_first_controller_a1_launch_subset_graph.py`
-18. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_first_controller_a1_launch_subset_graph.py`
+1. `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_queue_surface_models.py`
+2. `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_surface_pydantic_stack.py`
+3. `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+4. `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
+5. `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_launch_packet_pydantic_stack.py`
+6. `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_launch_handoff_pydantic_stack.py`
+7. `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_launch_spine_pydantic_stack.py`
+8. `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/compile_first_controller_a1_launch_subset_graph.py`
+9. `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/FIRST_CONTROLLER_A1_LAUNCH_SUBSET__CURRENT_AND_SUBSTRATE_BASE__2026_03_15__v1.graphml`
+10. `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_worker_launch_packet_from_family_slice.py`
+11. `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_a1_launch_bundle_from_family_slice.py`
+12. `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py`
+13. `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_worker_launch_packet_models.py`
+14. `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_queue_surface_models.py`
+15. `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_WORKER_LAUNCH_PACKET_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
+16. `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
+17. `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/refresh_first_controller_a1_launch_subset_graph.py`
+18. `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_first_controller_a1_launch_subset_graph.py`
 
 ## Verification
 
@@ -76,6 +76,6 @@ Top newly confirmed worker outputs now include:
 ## Staging result
 
 - active raw worker-return staging now contains only:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/README__PARALLEL_CODEX_WORKER_RETURN_STAGING__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/README__PARALLEL_CODEX_WORKER_RETURN_STAGING__v1.md`
 - processed raw returns are filed under:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/processed/2026-03-15/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/processed/2026-03-15/`

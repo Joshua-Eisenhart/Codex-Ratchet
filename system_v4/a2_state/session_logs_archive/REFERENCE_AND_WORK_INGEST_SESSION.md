@@ -16,12 +16,12 @@
 - Total: 358 nodes, 280 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/pi-mono/AGENTS.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/lev-os/agents/skills
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/reference_repos/patterns
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/v4_skill_audit
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/v4_skill_specs
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/v4_build_wave
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/pi-mono/AGENTS.md
+- /home/ratchet/Desktop/Codex Ratchet/lev-os/agents/skills
+- /home/ratchet/Desktop/Codex Ratchet/reference_repos/patterns
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/v4_skill_audit
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/v4_skill_specs
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/v4_build_wave
 
 ## Key Findings
 - Ingested reference repos (pi-mono, lev-os, karpathy, alphageometry, z3, dreamcoder, AutoResearchClaw, llm-council) + recent work/ docs into graph

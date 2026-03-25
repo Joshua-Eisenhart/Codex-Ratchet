@@ -44,4 +44,4 @@ Extraction mode: `WORKING_CONTEXT_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/FULL_READ_LOG_PASS_4.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/FULL_READ_LOG_PASS_4.md`

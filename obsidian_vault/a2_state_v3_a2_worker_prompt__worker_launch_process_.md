@@ -9,7 +9,7 @@ authority: "SOURCE_CLAIM"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_worker_prompt__worker_launch_process_::66f06492dce67494`
 
 ## Description
-A2_WORKER_PROMPT__WORKER_LAUNCH_PROCESS_FIX__2026_03_16__v1.txt (1923B): Use $ratchet-a2-a1.  Use the current A2 boot: - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md  Run one bounded A2_HIGH_UPGRADE_DOCS pass only.  dispatch_id: A2_WORKER__WORKER_LAUNCH_PROCESS_FIX__2026_03_16__v1 ROLE_LABEL: A2H Upgrade Docs ROLE_TYPE: A2_HIGH_UP
+A2_WORKER_PROMPT__WORKER_LAUNCH_PROCESS_FIX__2026_03_16__v1.txt (1923B): Use $ratchet-a2-a1.  Use the current A2 boot: - /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md  Run one bounded A2_HIGH_UPGRADE_DOCS pass only.  dispatch_id: A2_WORKER__WORKER_LAUNCH_PROCESS_FIX__2026_03_16__v1 ROLE_LABEL: A2H Upgrade Docs ROLE_TYPE: A2_HIGH_UP
 
 ## Properties
 - **source_line_range**: 

@@ -5,7 +5,7 @@ Extraction mode: `ZIP_INDEX_PASS`
 
 ## Source
 - primary source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/ZIP_INDEX_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/ZIP_INDEX_v1.md`
   - line span: `1-326`
   - role: archived package inventory only
 
@@ -53,7 +53,7 @@ Extraction mode: `ZIP_INDEX_PASS`
 - Presence in the archived package is not proof of current authority, correctness, or later implementation.
 
 ## Active Contrast Anchors Already In Scope
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:126`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:126`
   - save ZIPs are informational only
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:190`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:190`
   - A2 must not emit mutation containers

@@ -16,20 +16,20 @@
 - Total: 3933 nodes, 7687 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/RUNTIME_IMAGE_POLICY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/SIM_EVIDENCE_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/STATE_TRANSITION_DIGEST_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/STRUCTURAL_DIGEST_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ZIP_PROTOCOL_v2.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/flowmind_integration/CODEX_ONLY_CAPSULE_EXECUTION_TOPOLOGY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/validator_contract/AUTOMATED_STRESS_HARNESS_BLUEPRINT_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/validator_contract/DETERMINISTIC_REPLAY_RUNNER_OUTLINE_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/validator_contract/FULL_CYCLE_SIMULATION_v2_3.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/01_ARCHITECTURE_OVERVIEW.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/02_LAYER_BOUNDARIES.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/03_MUTATION_PATH_RULES.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/public_facing_docs/02_PUBLIC_FACING_FLOWMIND_A3_HOSTING_INTERFACE_CONTRACT_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/SYSTEM_CONTEXT_UPDATE_v2.6_PREP.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/RUNTIME_IMAGE_POLICY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/SIM_EVIDENCE_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/STATE_TRANSITION_DIGEST_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/STRUCTURAL_DIGEST_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ZIP_PROTOCOL_v2.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/flowmind_integration/CODEX_ONLY_CAPSULE_EXECUTION_TOPOLOGY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/validator_contract/AUTOMATED_STRESS_HARNESS_BLUEPRINT_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/validator_contract/DETERMINISTIC_REPLAY_RUNNER_OUTLINE_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/validator_contract/FULL_CYCLE_SIMULATION_v2_3.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/01_ARCHITECTURE_OVERVIEW.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/02_LAYER_BOUNDARIES.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/03_MUTATION_PATH_RULES.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/public_facing_docs/02_PUBLIC_FACING_FLOWMIND_A3_HOSTING_INTERFACE_CONTRACT_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/SYSTEM_CONTEXT_UPDATE_v2.6_PREP.md
 
 ## Batches
 - `AUTO_RUNTIME_IMAGE_POLICY_v1_edbb3dd862d0f5c6`

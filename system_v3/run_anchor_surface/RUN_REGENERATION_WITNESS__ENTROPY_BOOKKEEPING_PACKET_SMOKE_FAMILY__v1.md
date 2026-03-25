@@ -7,7 +7,7 @@
 
 ## Anchor Family
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BOOKKEEPING_PACKET_SMOKE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BOOKKEEPING_PACKET_SMOKE_FAMILY__v1.md`
 
 ## Why This Family
 
@@ -25,15 +25,15 @@
 - source run:
   - `RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0002`
 - campaign summary witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0002/reports/autoratchet_campaign_summary.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0002/reports/autoratchet_campaign_summary.json`
   - witness meaning:
     - retains the narrow bookkeeping packet summary where `density_entropy` survives and helper leakage remains bounded
 - lower-loop failure witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0002/b_reports/b_report_0002.txt`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0002/b_reports/b_report_0002.txt`
   - witness meaning:
     - preserves the explicit `UNDEFINED_LEXEME:neumann` failure for `von_neumann_entropy`
 - state witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0002/state.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0002/state.json`
   - witness meaning:
     - retains the end-state survivor set and counts for the first repaired bookkeeping packet pass
 
@@ -42,15 +42,15 @@
 - source run:
   - `RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0003`
 - campaign summary witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0003/reports/autoratchet_campaign_summary.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0003/reports/autoratchet_campaign_summary.json`
   - witness meaning:
     - retains the narrow bookkeeping packet summary for the rate-side target
 - lower-loop failure witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0003/b_reports/b_report_0002.txt`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0003/b_reports/b_report_0002.txt`
   - witness meaning:
     - preserves the explicit `UNDEFINED_LEXEME:rate` failure for `entropy_production_rate`
 - state witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0003/state.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0003/state.json`
   - witness meaning:
     - retains the end-state survivor set and counts for the rate-side bookkeeping probe
 
@@ -59,15 +59,15 @@
 - source run:
   - `RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0004`
 - campaign summary witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0004/reports/autoratchet_campaign_summary.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0004/reports/autoratchet_campaign_summary.json`
   - witness meaning:
     - retains the colder bound-side packet summary with `density_entropy` still surviving
 - lower-loop failure witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0004/b_reports/b_report_0002.txt`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0004/b_reports/b_report_0002.txt`
   - witness meaning:
     - preserves the explicit `UNDEFINED_LEXEME:work` and related extraction debt for `information_work_extraction_bound`
 - state witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0004/state.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BOOKKEEPING_BRIDGE_PACKET_SMOKE_0004/state.json`
   - witness meaning:
     - retains the end-state survivor set and counts for the colder bound-side bookkeeping probe
 

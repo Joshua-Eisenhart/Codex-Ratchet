@@ -7,20 +7,20 @@ Role: preserve the first controller-facing queue path where the active current `
 ## Scope
 
 Patched controller-facing helpers:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_a1_queue_status_surfaces.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_current_a1_queue_status_from_candidates.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/refresh_active_current_a1_queue_state.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_a1_queue_status_surfaces.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_current_a1_queue_status_from_candidates.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/refresh_active_current_a1_queue_state.py`
 
 Patched controller routing/doc surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_send_text_from_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/32_A1_QUEUE_STATUS_SURFACE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_send_text_from_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/32_A1_QUEUE_STATUS_SURFACE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
 
 Focused regressions:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_queue_status_surfaces.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_current_a1_queue_status_from_candidates.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_refresh_active_current_a1_queue_state.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a2_controller_send_text_from_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_queue_status_surfaces.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_current_a1_queue_status_from_candidates.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_refresh_active_current_a1_queue_state.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a2_controller_send_text_from_packet.py`
 
 ## What changed
 
@@ -30,7 +30,7 @@ Before this patch:
 
 Now the full current-queue chain accepts:
 - `--family-slice-validation-mode local_pydantic`
-- `--spec-graph-python /Users/joshuaeisenhart/Desktop/Codex Ratchet/.venv_spec_graph/bin/python`
+- `--spec-graph-python /home/ratchet/Desktop/Codex Ratchet/.venv_spec_graph/bin/python`
 
 That means the controller can now do:
 - current registry selection
@@ -64,7 +64,7 @@ Result:
 Real controller-facing smoke:
 1. created a candidate registry at `/tmp/a1_active_queue_pydantic_registry.json`
 2. ran:
-   - `python3 system_v3/tools/refresh_active_current_a1_queue_state.py --candidate-registry-json /tmp/a1_active_queue_pydantic_registry.json --queue-status-packet-json /tmp/a1_active_queue_pydantic_packet.json --preview-note /tmp/a1_active_queue_pydantic_preview.md --family-slice-validation-mode local_pydantic --spec-graph-python /Users/joshuaeisenhart/Desktop/Codex Ratchet/.venv_spec_graph/bin/python --model 'GPT-5.4 Medium' --dispatch-id 'A1_DISPATCH__ACTIVE_QUEUE_REFRESH_PYDANTIC_SMOKE__2026_03_15__v1' --preparation-mode packet --out-dir /tmp/a1_active_queue_pydantic_ready`
+   - `python3 system_v3/tools/refresh_active_current_a1_queue_state.py --candidate-registry-json /tmp/a1_active_queue_pydantic_registry.json --queue-status-packet-json /tmp/a1_active_queue_pydantic_packet.json --preview-note /tmp/a1_active_queue_pydantic_preview.md --family-slice-validation-mode local_pydantic --spec-graph-python /home/ratchet/Desktop/Codex Ratchet/.venv_spec_graph/bin/python --model 'GPT-5.4 Medium' --dispatch-id 'A1_DISPATCH__ACTIVE_QUEUE_REFRESH_PYDANTIC_SMOKE__2026_03_15__v1' --preparation-mode packet --out-dir /tmp/a1_active_queue_pydantic_ready`
 
 Observed result:
 - `candidate_count = 1`

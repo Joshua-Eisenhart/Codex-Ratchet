@@ -8,7 +8,7 @@ Date: 2026-03-09
 ## 1) Batch Selection
 - selected sources:
   - direct archive object:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001`
   - retained run-core files:
     - `summary.json`
     - `state.json`
@@ -26,11 +26,11 @@ Date: 2026-03-09
   - the archive value is a compact external-handoff stub with no accepted work, no inbound A1 strategy, two emitted save requests, and a duplicated save payload
   - this object is useful for demotion lineage because it preserves packet-outbound resume behavior, active-runtime path leakage inside archived events, sample-strategy placeholder residue, and duplicated step-1 request emission without any earned lower-loop state change
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_CHAIN_A`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_CHAIN_A`
 
 ## 2) Source Membership
 ### Source 1
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001`
 - source class: zero-work resume/request run root
 - retained top-level contents:
   - `a1_inbox/`
@@ -44,7 +44,7 @@ Date: 2026-03-09
   - `sequence_state.json` not retained
 
 ### Source 2
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/summary.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/summary.json`
 - source class: terminal run summary
 - summary markers:
   - `run_id TEST_RESUME_001`
@@ -65,7 +65,7 @@ Date: 2026-03-09
   - `final_state_hash de0e5fe905c27b70960a8a41dadfe10ac8ab9beef13ea3a6724d7d7630d353cc`
 
 ### Source 3
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/state.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/state.json`
 - source class: retained inert final state
 - compact state markers:
   - `accepted_batch_count 0`
@@ -91,14 +91,14 @@ Date: 2026-03-09
   - no earned state change survives; the run preserves only a clean lexical shell plus an outbound request posture
 
 ### Source 4
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/state.json.sha256`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/state.json.sha256`
 - source class: state integrity sidecar
 - integrity result:
   - declared hash matches `state.json`
   - declared hash matches `summary.json` final hash
 
 ### Source 5
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/events.jsonl`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/events.jsonl`
 - source class: outbound event ledger
 - event markers:
   - retained line count: `2`
@@ -110,13 +110,13 @@ Date: 2026-03-09
     - `source ZIP_PROTOCOL_v2`
     - `last_reject_tags []`
   - retained outbound save zip paths point to active runtime, not archive mirror:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/runs/TEST_RESUME_001/zip_packets/000001_A0_TO_A1_SAVE_ZIP.zip`
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/runs/TEST_RESUME_001/zip_packets/000002_A0_TO_A1_SAVE_ZIP.zip`
+    - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/runs/TEST_RESUME_001/zip_packets/000001_A0_TO_A1_SAVE_ZIP.zip`
+    - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/runs/TEST_RESUME_001/zip_packets/000002_A0_TO_A1_SAVE_ZIP.zip`
 - archive meaning:
   - the event ledger preserves duplicated outbound request emission rather than executed lower-loop work
 
 ### Source 6
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/soak_report.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/soak_report.md`
 - source class: human-readable stop report
 - report markers:
   - `cycle_count 1`
@@ -128,7 +128,7 @@ Date: 2026-03-09
     - `NONE`
 
 ### Source 7
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/a1_inbox/`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/a1_inbox/`
 - source class: empty inbound inbox
 - retained contents:
   - none
@@ -136,7 +136,7 @@ Date: 2026-03-09
   - the run stops after emitting A0-to-A1 requests; no returned A1 strategy packet survives locally
 
 ### Source 8
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/zip_packets/`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/zip_packets/`
 - source class: outbound save-only packet lattice
 - packet file count: `2`
 - packet kind counts:
@@ -145,7 +145,7 @@ Date: 2026-03-09
   - the packet surface preserves only external-handoff save packets, with no inbound or downstream execution packets
 
 ### Source 9
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/zip_packets/000001_A0_TO_A1_SAVE_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/zip_packets/000001_A0_TO_A1_SAVE_ZIP.zip`
 - source class: first outbound save packet
 - sha256: `c7255dcd2adc0e17f2c4126bceab12360335301c63e95b3d2bec5b4429973fb0`
 - size bytes: `1867`
@@ -176,7 +176,7 @@ Date: 2026-03-09
     - placeholder self-audit hashes `2222...`, `3333...`, `4444...`
 
 ### Source 10
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/zip_packets/000002_A0_TO_A1_SAVE_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001/zip_packets/000002_A0_TO_A1_SAVE_ZIP.zip`
 - source class: second outbound save packet
 - sha256: `5ec172c9dfe7200a478d52071064d5774f4ba1da80acb8a582e4a5c61bf0398b`
 - size bytes: `1866`

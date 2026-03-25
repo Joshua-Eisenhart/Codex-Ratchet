@@ -7,10 +7,10 @@ Date: 2026-03-08
 
 ## 1) Batch Selection
 - starting file in raw simpy folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_engine32_axis0_axis6_attack.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_engine32_axis0_axis6_attack.py`
 - selected sources:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_engine32_axis0_axis6_attack.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_engine32_axis0_axis6_attack.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_engine32_axis0_axis6_attack.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_engine32_axis0_axis6_attack.json`
 - reason for bounded family:
   - `run_engine32_axis0_axis6_attack.py` is the next unprocessed raw-folder-order source after the prior `batch_v3` composite precursor batch
   - the script and its paired result are structurally self-contained:
@@ -19,7 +19,7 @@ Date: 2026-03-08
     - one result file
     - one 32-cell result lattice under a single `results` object
 - adjacent-source exclusion decision:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_full_axis_suite.py` was read because it is the immediate next raw-folder-order source
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_full_axis_suite.py` was read because it is the immediate next raw-folder-order source
   - it does not belong in this batch because it is a cross-axis sampler:
     - six SIM_EVIDENCE blocks
     - one compact six-block result object
@@ -27,8 +27,8 @@ Date: 2026-03-08
     - no Axis0 attack lattice
   - it is deferred as the next separate family rather than merged into `engine32`
 - comparison-only adjacent-family anchors read:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_full_axis_suite.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_full_axis_suite.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_full_axis_suite.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_full_axis_suite.json`
   - current standalone descendant surfaces for the adjacent sampler:
     - `results_S_SIM_AXIS3_WEYL_HOPF_GRID_V1.json`
     - `results_S_SIM_AXIS4_COMP_FETI_TEFI_CHECK_V1.json`
@@ -38,13 +38,13 @@ Date: 2026-03-08
 
 ## 2) Source Membership
 - Runner:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_engine32_axis0_axis6_attack.py`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_engine32_axis0_axis6_attack.py`
   - sha256: `9d9a0a5f73f261b84be6b85df255a2f1f153c4abf090ca7485ae793c3dd0faf0`
   - size bytes: `8682`
   - line count: `238`
   - source role: focused Axis0/Axis6 attack runner
 - Result surface:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_engine32_axis0_axis6_attack.json`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_engine32_axis0_axis6_attack.json`
   - sha256: `fa5c5fd2da0f8501a39aca0a14c378190b4baea41df77c6a014fa4fc0cda0a41`
   - size bytes: `18434`
   - line count: `689`
@@ -114,8 +114,8 @@ Date: 2026-03-08
 
 ## 4) Comparison Anchors
 - comparison sources:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
   - adjacent family sources listed above
 - relevant anchors:
   - `SIM_CATALOG_v1.3.md:54`

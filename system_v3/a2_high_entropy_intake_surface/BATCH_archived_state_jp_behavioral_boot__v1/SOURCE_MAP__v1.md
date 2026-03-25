@@ -7,17 +7,17 @@ Date: 2026-03-08
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_JP_BEHAVIORAL_BOOT.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_JP_BEHAVIORAL_BOOT.md`
 - reason for single-doc batch:
   - one self-contained behavioral boot prompt
   - clear sectioning and bounded size
   - interaction protocol is specific enough to preserve as one unit
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_LOW_ENTROPY_LIBRARY_v4.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_LOW_ENTROPY_LIBRARY_v4.md`
 
 ## 2) Source Membership
 - primary source:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_JP_BEHAVIORAL_BOOT.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_JP_BEHAVIORAL_BOOT.md`
   - sha256: `6ef25694b72acbea63e390e4eb0237638bcabf5b41277a2768876852f225d71d`
   - size bytes: `6294`
   - line count: `211`

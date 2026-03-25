@@ -10,19 +10,19 @@ Role: exact bounded `A2_WORKER` dispatch packet for making closeout extraction a
 - `dispatch_id: A2_WORKER__THREAD_CLOSEOUT_EXTRACTOR_PATCH__2026_03_16__v1`
 - `thread_class: A2_WORKER`
 - `model: GPT-5.4 Medium`
-- `BOOT_SURFACE: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+- `BOOT_SURFACE: /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
 - `ROLE_LABEL: Controller Master`
 - `ROLE_TYPE: A2_CONTROLLER`
 - `ROLE_SCOPE: one bounded pass to patch thread closeout extraction so NEXT_STEP-format worker returns ingest cleanly`
 
 ## Source artifacts
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/extract_thread_closeout_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/append_thread_closeout_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__RUNS_CLEANUP_PLAN__2026_03_15__v1.txt`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__A2_INTAKE_BLOAT_TRIAGE__2026_03_15__v1.txt`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__DOCS_INTEGRATE_GRAPH_AND_PROVENANCE__2026_03_15__v1.txt`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__A2_STATE_BLOAT_AUDIT__2026_03_15__v1.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/extract_thread_closeout_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/append_thread_closeout_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__RUNS_CLEANUP_PLAN__2026_03_15__v1.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__A2_INTAKE_BLOAT_TRIAGE__2026_03_15__v1.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__DOCS_INTEGRATE_GRAPH_AND_PROVENANCE__2026_03_15__v1.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__A2_STATE_BLOAT_AUDIT__2026_03_15__v1.txt`
 
 ## BOUNDED_SCOPE
 
@@ -40,9 +40,9 @@ Do not:
 - one bounded extractor patch
 - one focused test
 - one raw returned result file written by the worker itself into:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__THREAD_CLOSEOUT_EXTRACTOR_PATCH__2026_03_16__v1__return.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__THREAD_CLOSEOUT_EXTRACTOR_PATCH__2026_03_16__v1__return.txt`
 - one raw closeout staging text file written by the worker itself into:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__THREAD_CLOSEOUT_EXTRACTOR_PATCH__2026_03_16__v1.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__THREAD_CLOSEOUT_EXTRACTOR_PATCH__2026_03_16__v1.txt`
 
 ## Exact prompt to send
 
@@ -50,7 +50,7 @@ Do not:
 Use $thread-closeout-auditor.
 
 Use the current A2 boot:
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md
 
 Run one bounded controller-tooling pass only.
 
@@ -60,12 +60,12 @@ ROLE_TYPE: A2_CONTROLLER
 ROLE_SCOPE: one bounded pass to patch thread closeout extraction so NEXT_STEP-format worker returns ingest cleanly
 
 Use only these artifacts:
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/extract_thread_closeout_packet.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/append_thread_closeout_packet.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__RUNS_CLEANUP_PLAN__2026_03_15__v1.txt
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__A2_INTAKE_BLOAT_TRIAGE__2026_03_15__v1.txt
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__DOCS_INTEGRATE_GRAPH_AND_PROVENANCE__2026_03_15__v1.txt
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__A2_STATE_BLOAT_AUDIT__2026_03_15__v1.txt
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/tools/extract_thread_closeout_packet.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/tools/append_thread_closeout_packet.py
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__RUNS_CLEANUP_PLAN__2026_03_15__v1.txt
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__A2_INTAKE_BLOAT_TRIAGE__2026_03_15__v1.txt
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__DOCS_INTEGRATE_GRAPH_AND_PROVENANCE__2026_03_15__v1.txt
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__A2_STATE_BLOAT_AUDIT__2026_03_15__v1.txt
 
 Task:
 - patch the extractor to accept the current ROLE_AND_SCOPE / ACTION_CHOSEN / WHAT_YOU_UPDATED / TESTS_RUN / RESULT / NEXT_STEP / CLOSED_STATEMENT shape
@@ -79,8 +79,8 @@ Rules:
 
 Before your final answer:
 - write the exact final closeout body to:
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__THREAD_CLOSEOUT_EXTRACTOR_PATCH__2026_03_16__v1__return.txt
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__THREAD_CLOSEOUT_EXTRACTOR_PATCH__2026_03_16__v1.txt
+  - /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__THREAD_CLOSEOUT_EXTRACTOR_PATCH__2026_03_16__v1__return.txt
+  - /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__THREAD_CLOSEOUT_EXTRACTOR_PATCH__2026_03_16__v1.txt
 - if the folders do not exist, create them
 - do not ask the operator to save, paste back, or carry files
 - if you cannot self-save, report that exact blocker and stop

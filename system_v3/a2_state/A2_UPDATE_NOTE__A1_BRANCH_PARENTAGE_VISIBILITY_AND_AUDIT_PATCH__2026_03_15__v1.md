@@ -38,7 +38,7 @@ So the right next move was:
 ### Planner
 
 Live planner file:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
 
 New self-audit surfaces:
 - `branch_parentage_map`
@@ -59,7 +59,7 @@ It only makes the live policy visible and replayable.
 ### Controller audit
 
 Audit file:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
 
 New check:
 - `AUTORATCHET_FAMILY_SLICE_BRANCH_PARENTAGE_VISIBLE`
@@ -78,7 +78,7 @@ This turns branch parentage/grouping from hidden local behavior into an exposed 
 ## Focused regressions
 
 Planner/runtime:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
 
 Updated:
 - self-audit now proves:
@@ -88,7 +88,7 @@ Updated:
 - expected boundary branch parentage is checked against the current primary baseline branch
 
 Controller audit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py`
 
 Updated:
 - passing family-slice audit fixtures now expose matching:

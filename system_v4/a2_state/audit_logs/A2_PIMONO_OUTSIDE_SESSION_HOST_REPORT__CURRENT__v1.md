@@ -5,7 +5,7 @@
 - cluster_id: `SKILL_CLUSTER::outside-control-shell-session-host`
 - first_slice: `outside-control-shell-operator`
 - source_family: `pi-mono`
-- target_surface_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/reference_repos/other/pi-mono/packages/coding-agent/test/fixtures/large-session.jsonl`
+- target_surface_path: `/home/ratchet/Desktop/Codex Ratchet/work/reference_repos/other/pi-mono/packages/coding-agent/test/fixtures/large-session.jsonl`
 - audit_only: `True`
 - observer_only: `True`
 - do_not_promote: `True`

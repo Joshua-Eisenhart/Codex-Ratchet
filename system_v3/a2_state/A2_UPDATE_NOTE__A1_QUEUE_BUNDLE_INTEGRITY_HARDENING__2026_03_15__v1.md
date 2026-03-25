@@ -7,16 +7,16 @@ Role: preserve the patch that turns the A1 queue packet into a stronger integrit
 ## Scope
 
 Primary runtime/integrity files:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_queue_ready_integrity.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_queue_surface_models.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_a1_queue_surfaces_pydantic.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_queue_ready_integrity.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_queue_surface_models.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_a1_queue_surfaces_pydantic.py`
 
 Focused regressions:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_status_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_queue_status_surfaces.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_refresh_active_current_a1_queue_state.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_surface_pydantic_stack.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_status_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_queue_status_surfaces.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_refresh_active_current_a1_queue_state.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_surface_pydantic_stack.py`
 
 ## Problem
 
@@ -32,7 +32,7 @@ Hand-edited or stale queue packets could stitch together mismatched staged artif
 ### 1) New shared ready-artifact coherence validator
 
 New helper:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_queue_ready_integrity.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_queue_ready_integrity.py`
 
 It validates one ready queue packet against its referenced staged artifacts.
 
@@ -63,8 +63,8 @@ For bundle mode it now also checks:
 ### 2) Plain validator and local Pydantic model now share the same integrity law
 
 Both:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_queue_surface_models.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_queue_surface_models.py`
 
 now call the same ready-artifact coherence helper.
 

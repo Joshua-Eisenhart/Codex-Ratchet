@@ -11,7 +11,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `208-209`
   - source 1: `575-586`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:51-61`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:51-61`
 - tension:
   - the note repeatedly presents its Axis-4 reading as the correct or locked pure-QIT definition
   - the archive manifest classifies the source family under `NONCANON_NOTES`, which are never ratcheted
@@ -25,9 +25,9 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `154-166`
   - source 1: `513-555`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:44-48`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:17-19`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:184-205`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:44-48`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:17-19`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:184-205`
 - tension:
   - this note explicitly defines Axis-4 as the active ordering of unitary versus non-unitary channel application
   - later refined-fuel canon and overlay surfaces say Axis-4 is the operator math-class split, while loop order is only a derived probe or symptom
@@ -40,8 +40,8 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `242-285`
   - source 1: `384-510`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:77-78`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:161-180`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:77-78`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:161-180`
 - tension:
   - the note uses Ne/Se/Ni/Si and terrain names as if they are the fixed stage-space identities and channel mappings
   - later refined-fuel surfaces demote those labels to provisional overlay aliases and keep channel-family mappings as candidate menus
@@ -52,8 +52,8 @@ Extraction mode: `TERM_CONFLICT_PASS`
 - source markers:
   - source 1: `303-316`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:32-36`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md:45-52`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:32-36`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md:45-52`
 - tension:
   - the note places Axis-5 at Rosetta level as drive / activation amplitude over the same loop and stages
   - later canon keeps Axis-5 as a generator/operator-family regime split, while the current conflict map preserves a different live mismatch around localization versus excitation
@@ -86,8 +86,8 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `64-83`
   - source 1: `515-518`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:50-54`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:84-117`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:50-54`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:84-117`
 - tension:
   - the file frames the core Axis-4 distinction as unitary versus non-unitary ordering
   - its stage-space and base-topology mapping simultaneously mix openness, accessibility, Hamiltonian circulation, invariant strata, and environment coupling in one table

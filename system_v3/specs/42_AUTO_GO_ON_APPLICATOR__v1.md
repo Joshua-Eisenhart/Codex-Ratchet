@@ -7,7 +7,7 @@ Owner: current `A2` controller for bounded continuation execution
 ## Purpose
 
 This note defines the first execution surface that applies:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
 
 It answers:
 - what a returned thread result must be checked against
@@ -96,7 +96,7 @@ If not:
 ### Step 5: block-case gate
 
 Check for blocked conditions from:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
 
 If any blocked condition is true:
 - output `ROUTE_TO_CLOSEOUT`

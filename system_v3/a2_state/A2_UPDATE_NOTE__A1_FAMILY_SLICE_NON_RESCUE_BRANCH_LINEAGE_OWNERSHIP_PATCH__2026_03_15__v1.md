@@ -32,14 +32,14 @@ That left the branch family asymmetrical:
 - baseline / alternative / negative branches still relied mostly on implicit IDs and track strings
 
 This was weaker than the family model in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md`
 
 ## What changed
 
 ### Planner
 
 Live planner file:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
 
 Family-slice branch lineage is now emitted on non-rescue `SIM_SPEC` branches too.
 
@@ -79,7 +79,7 @@ That field is derived from actual emitted non-rescue branch items.
 ### Controller audit
 
 Audit file:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
 
 New behavior:
 - non-rescue branch lineage now has its own actual-branch check
@@ -100,7 +100,7 @@ Rescue lineage remains a separate check:
 ## Focused regressions
 
 Planner/runtime:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
 
 Added/updated expectations:
 - planner self-audit exposes:
@@ -112,7 +112,7 @@ Added/updated expectations:
 - non-rescue alternative branches expose the same lineage set
 
 Controller audit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py`
 
 Updated:
 - the passing family-slice audit fixture now includes one actual non-rescue baseline branch carrying the declared lineage fields

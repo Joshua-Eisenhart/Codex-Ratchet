@@ -7,17 +7,17 @@ Date: 2026-03-09
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_05_OF_10__A2_LAYER1_5__OUTPUT__A2_A1_RATCHET_FUEL_MINT__THREAD_B_TRIGRAM_AND_MEGABOOT__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_05_OF_10__A2_LAYER1_5__OUTPUT__A2_A1_RATCHET_FUEL_MINT__THREAD_B_TRIGRAM_AND_MEGABOOT__v1_1.zip`
 - reason for bounded single-package batch:
   - this is the next archive-root item after the Leviathan hybrid package
   - it is the first archive package in this run whose primary retained products are stage-2 JSON packets rather than markdown A2/A1 update packets
   - keeping it isolated preserves the transition from layered extraction into ratchet-fuel mint packaging without letting cleaner packaging overstate underlying authority
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_06_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__UPGRADE_BOOTPACK_AND_PLAN_PASSES_1_4__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_06_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__UPGRADE_BOOTPACK_AND_PLAN_PASSES_1_4__v1_1.zip`
 
 ## 2) Source Membership
 ### Primary container
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_05_OF_10__A2_LAYER1_5__OUTPUT__A2_A1_RATCHET_FUEL_MINT__THREAD_B_TRIGRAM_AND_MEGABOOT__v1_1.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_05_OF_10__A2_LAYER1_5__OUTPUT__A2_A1_RATCHET_FUEL_MINT__THREAD_B_TRIGRAM_AND_MEGABOOT__v1_1.zip`
 - sha256: `41af45c16c5804258a9a8f8de6a4cabc3e8afc67c13434c927548b7b28cf805c`
 - size bytes: `39175`
 - container member count: `31`

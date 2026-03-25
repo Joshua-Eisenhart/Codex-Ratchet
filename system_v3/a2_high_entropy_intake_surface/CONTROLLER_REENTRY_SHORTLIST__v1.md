@@ -57,7 +57,7 @@ Role: small controller-side routing packet after broad-parent reduction backlog 
 - controller use:
   - keep the typo variant in quarantine-side family reconciliation
   - do not reduce it separately as if it were a fresh unresolved doctrine parent
-  - use `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_DUPLICATE_FAMILY_QUARANTINE__v1.md` as the small duplicate-family routing surface
+  - use `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_DUPLICATE_FAMILY_QUARANTINE__v1.md` as the small duplicate-family routing surface
 
 ## 5) Priority C: Archive-Side Revisit Cluster
 - archive-side unresolved cluster:

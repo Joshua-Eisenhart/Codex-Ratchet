@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_10_OF_10__A2_LAYER1_5__OUTPUT__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__v1_0.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_10_OF_10__A2_LAYER1_5__OUTPUT__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__v1_0.zip`
 - reason for bounded single-package batch:
   - this is the final archive-root packaged batch in the `BATCH_01_OF_10` through `BATCH_10_OF_10` sequence
   - it remains in the compact `A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION` family, but the payload is a Thread-S full save kit dominated by term/index dumps and a canonical snapshot container rather than evidence packs or protocol docs
@@ -17,7 +17,7 @@ Date: 2026-03-09
 
 ## 2) Source Membership
 ### Primary container
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_10_OF_10__A2_LAYER1_5__OUTPUT__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__v1_0.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_10_OF_10__A2_LAYER1_5__OUTPUT__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__v1_0.zip`
 - sha256: `1810981b68fcba304ccd515aeaaa46297fca1f6e17f15fbb64dac3654a016adc`
 - size bytes: `33305`
 - container member count: `30`

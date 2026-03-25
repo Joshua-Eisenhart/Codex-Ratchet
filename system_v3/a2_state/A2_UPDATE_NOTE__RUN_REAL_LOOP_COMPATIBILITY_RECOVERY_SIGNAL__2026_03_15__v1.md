@@ -9,10 +9,10 @@ Role: preserve the soft-deprecation / compatibility-path signal for recovery inv
 This note is bounded to the compatibility decision only.
 
 Patched surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_real_loop.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_real_loop.py`
 
 Focused regression:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_real_loop.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_real_loop.py`
 
 ## What changed
 

@@ -7,12 +7,12 @@ Owner: current `A2` controller for bounded continuation runner design
 ## Purpose
 
 This note defines the first runnable control-loop design that consumes:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/44_AUTO_GO_ON_SENDER_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/44_AUTO_GO_ON_SENDER_PACKET__v1.md`
 
 It sits after:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/43_AUTO_GO_ON_EXECUTION_PATH__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/43_AUTO_GO_ON_EXECUTION_PATH__v1.md`
 
 This note answers:
 - what the runner does
@@ -77,7 +77,7 @@ If the result is not captured in a usable form:
 ### Step 2: apply continuation rule
 
 Run:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md`
 
 Decision must be exactly one of:
 - `SEND_ONE_GO_ON`
@@ -98,7 +98,7 @@ If decision = `MANUAL_REVIEW_REQUIRED`:
 
 If decision = `SEND_ONE_GO_ON`:
 - build:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/44_AUTO_GO_ON_SENDER_PACKET__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/44_AUTO_GO_ON_SENDER_PACKET__v1.md`
 - emit `RUNNER_OUTPUT__SENDER_PACKET`
 
 ### Step 4: execute send path
@@ -128,7 +128,7 @@ When the next bounded return arrives:
 
 3. `NO_FREE_CHAINING`
 - if continuation count reaches the hard ceiling from:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
 - runner must stop and require manual review
 
 4. `NO_PRO_RUNNER`

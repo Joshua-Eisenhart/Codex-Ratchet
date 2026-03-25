@@ -9,7 +9,7 @@ Role: preserve the canonical operator-doc retarget for strict vs recovery real-l
 This note is bounded to the documented operator surface for the real-loop helper.
 
 Patched owner surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/22_RUN_SURFACE_TEMPLATE_AND_SCAFFOLDER_CONTRACT.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/22_RUN_SURFACE_TEMPLATE_AND_SCAFFOLDER_CONTRACT.md`
 
 ## What changed
 

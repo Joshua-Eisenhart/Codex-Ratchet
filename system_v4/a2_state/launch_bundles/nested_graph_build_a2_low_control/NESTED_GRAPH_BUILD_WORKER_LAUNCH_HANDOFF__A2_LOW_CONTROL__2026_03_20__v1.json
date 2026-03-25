@@ -11,25 +11,25 @@
   "thread_class": "A2_WORKER",
   "mode": "PROCEDURE_FIRST_BUILD",
   "required_boot": [
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/A2_BOOT__v1.md",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/A2_GRAPH_REFINERY_PROCESS__v2.md"
+    "/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/A2_BOOT__v1.md",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/A2_GRAPH_REFINERY_PROCESS__v2.md"
   ],
   "source_artifacts": [
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/system_graph_a2_refinery.json",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/promoted_subgraph.json",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/A1_GRAPH_PROJECTION.json"
+    "/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/system_graph_a2_refinery.json",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/promoted_subgraph.json",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/A1_GRAPH_PROJECTION.json"
   ],
   "depends_on": [
     "NESTED_GRAPH_BUILD__IDENTITY_REGISTRY__2026_03_20__v1",
     "NESTED_GRAPH_BUILD__A2_MID_REFINEMENT__2026_03_20__v1"
   ],
   "expected_outputs": [
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_low_control_graph_v1.json",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LOW_CONTROL_GRAPH_AUDIT__2026_03_20__v1.md"
+    "/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_low_control_graph_v1.json",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LOW_CONTROL_GRAPH_AUDIT__2026_03_20__v1.md"
   ],
   "write_scope": [
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_low_control_graph_v1.json",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LOW_CONTROL_GRAPH_AUDIT__2026_03_20__v1.md"
+    "/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_low_control_graph_v1.json",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LOW_CONTROL_GRAPH_AUDIT__2026_03_20__v1.md"
   ],
   "operator_steps": [
     "Reload required boot surfaces before touching owner outputs.",
@@ -39,8 +39,8 @@
     "Fail closed if the pass would require inventing missing bridge doctrine or silently promoting a projection artifact to authority."
   ],
   "monitor_route": {
-    "skill": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skill_specs/thread-run-monitor/SKILL.md",
-    "owner_surface": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_RUN_DIAGNOSIS_AND_STOP_RULES__v1.md",
+    "skill": "/home/ratchet/Desktop/Codex Ratchet/system_v4/skill_specs/thread-run-monitor/SKILL.md",
+    "owner_surface": "/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_RUN_DIAGNOSIS_AND_STOP_RULES__v1.md",
     "allowed_decisions": [
       "STOP",
       "CONTINUE_ONE_BOUNDED_STEP",
@@ -48,11 +48,11 @@
     ]
   },
   "closeout_route": {
-    "skill": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skill_specs/thread-closeout-auditor/SKILL.md",
-    "sink_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/NESTED_GRAPH_BUILD_CLOSEOUTS__2026_03_20__v1.jsonl"
+    "skill": "/home/ratchet/Desktop/Codex Ratchet/system_v4/skill_specs/thread-closeout-auditor/SKILL.md",
+    "sink_path": "/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/NESTED_GRAPH_BUILD_CLOSEOUTS__2026_03_20__v1.jsonl"
   },
-  "source_packet_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json",
-  "program_packet_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json",
+  "source_packet_json": "/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json",
+  "program_packet_json": "/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json",
   "prompt_to_send": "Run one bounded A2_LOW_CONTROL nested-graph build pass using the declared source artifacts and stop after producing only the declared outputs or a fail-closed prerequisite list.",
   "stop_rule": "Stop after one bounded A2-1 kernel/promotion graph materialization pass."
 }

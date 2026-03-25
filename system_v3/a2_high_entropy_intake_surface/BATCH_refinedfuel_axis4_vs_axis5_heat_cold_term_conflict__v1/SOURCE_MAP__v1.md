@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - folder order around this batch:
@@ -19,7 +19,7 @@ Date: 2026-03-09
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 vs axis 5. Heating vs cooling is not Hot vs coldΓÇ¿ΓÇ¿YouΓÇÖre rightΓÇª.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 vs axis 5. Heating vs cooling is not Hot vs coldΓÇ¿ΓÇ¿YouΓÇÖre rightΓÇª.md`
 - reason for selection:
   - this is the next unprocessed non-sims `constraint ladder` file in folder order after the Axis-4 QIT note
   - the file is compact and narrowly focused on one correction:
@@ -30,11 +30,11 @@ Date: 2026-03-09
     - but it still defines Axis-4 as loop direction itself, which conflicts with later refined-fuel canon
   - this makes `TERM_CONFLICT_PASS` the best fit
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Base constraints ledger v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Base constraints ledger v1.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 vs axis 5. Heating vs cooling is not Hot vs coldΓÇ¿ΓÇ¿YouΓÇÖre rightΓÇª.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 vs axis 5. Heating vs cooling is not Hot vs coldΓÇ¿ΓÇ¿YouΓÇÖre rightΓÇª.md`
   - role in batch: noncanon correction note separating loop direction from drive/intensity in the Axis-4 versus Axis-5 family
   - sha256: `c2cbdc2ad7b7a5eb634e5e8331944519b232c0df1b7c026da4df96abcc4e4219`
   - size bytes: `4057`

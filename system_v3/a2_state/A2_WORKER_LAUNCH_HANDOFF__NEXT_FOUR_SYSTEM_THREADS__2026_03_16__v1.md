@@ -27,30 +27,30 @@ Operator launch rule:
 - role:
   - `A2H Archived State`
 - dispatch packet:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__RUNS_SAFE_MOVE_EXECUTION__2026_03_16__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__RUNS_SAFE_MOVE_EXECUTION__2026_03_16__v1.md`
 - worker prompt:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__RUNS_SAFE_MOVE_EXECUTION__2026_03_16__v1.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__RUNS_SAFE_MOVE_EXECUTION__2026_03_16__v1.txt`
 
 `W14`
 - role:
   - `Controller Master`
 - dispatch packet:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__THREAD_CLOSEOUT_EXTRACTOR_PATCH__2026_03_16__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__THREAD_CLOSEOUT_EXTRACTOR_PATCH__2026_03_16__v1.md`
 - worker prompt:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__THREAD_CLOSEOUT_EXTRACTOR_PATCH__2026_03_16__v1.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__THREAD_CLOSEOUT_EXTRACTOR_PATCH__2026_03_16__v1.txt`
 
 `W15`
 - role:
   - `A2H Refined Fuel Non-Sims`
 - dispatch packet:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__A2_INTAKE_COLD_INDEX_PREP__2026_03_16__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__A2_INTAKE_COLD_INDEX_PREP__2026_03_16__v1.md`
 - worker prompt:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__A2_INTAKE_COLD_INDEX_PREP__2026_03_16__v1.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__A2_INTAKE_COLD_INDEX_PREP__2026_03_16__v1.txt`
 
 `W16`
 - role:
   - `A2M Contradiction Reprocess`
 - dispatch packet:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__A2_STATE_DUPLICATE_SURFACE_PACK__2026_03_16__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__A2_STATE_DUPLICATE_SURFACE_PACK__2026_03_16__v1.md`
 - worker prompt:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__A2_STATE_DUPLICATE_SURFACE_PACK__2026_03_16__v1.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_PROMPT__A2_STATE_DUPLICATE_SURFACE_PACK__2026_03_16__v1.txt`

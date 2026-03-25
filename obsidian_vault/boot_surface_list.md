@@ -9,7 +9,7 @@ authority: "NONCANON"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::boot_surface_list::eda929973dc604e4`
 
 ## Description
-Archived Work File: - [PRO_THREAD_PACKET_STANDARD__2026_03_13__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/INBOX/PRO_THREAD_PACKET_STANDARD__2026_03_13__v1
+Archived Work File: - [PRO_THREAD_PACKET_STANDARD__2026_03_13__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/work/INBOX/PRO_THREAD_PACKET_STANDARD__2026_03_13__v1
 
 ## Properties
 - **source_line_range**: 

@@ -7,42 +7,42 @@ Date: 2026-03-09
 
 ## 1) Batch Selection
 - selected sources:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/system_v3.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/system_v3 2.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/system_v3 3.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/_RUNS_REGISTRY.jsonl`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/system_v3.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/system_v3 2.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/system_v3 3.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/_RUNS_REGISTRY.jsonl`
   - root inventory and immediate subtree counts for `LEGACY__MIGRATED__FROM_RUN_ROOT`
 - reason for bounded family batch:
   - this is the next unread archive-root family in folder order after the purgeable cache tier
   - the family is too large to flatten into one pass, so this batch fixes the root topology first: three top-level milestone zips versus one migrated run-root subtree
   - keeping the batch at family-root scope preserves retention class, snapshot split, and migrated-run-root scale without pretending to have processed all `7805` files
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT`
 
 ## 2) Source Membership
 ### Source 1
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/system_v3.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/system_v3.zip`
 - sha256: `801961984392f4b98abed6bac24ab4dd6515772e4ca3ba06eb8b1871fba77b9a`
 - size bytes: `5353245`
 - container member count: `9424`
 - source class: top-level milestone `system_v3` snapshot zip
 
 ### Source 2
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/system_v3 2.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/system_v3 2.zip`
 - sha256: `b48678f74fc8ca47eeaf337814846de570566c8e058fc3362eabb3d3340710f3`
 - size bytes: `1712537`
 - container member count: `1798`
 - source class: smaller top-level milestone `system_v3` snapshot zip
 
 ### Source 3
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/system_v3 3.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/system_v3 3.zip`
 - sha256: `82c88f58853a61f5de3f6344c61d8c4cfd08e6849a6cb315303e66c49a151e47`
 - size bytes: `2314382`
 - container member count: `2652`
 - source class: intermediate top-level milestone `system_v3` snapshot zip
 
 ### Source 4
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/_RUNS_REGISTRY.jsonl`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/_RUNS_REGISTRY.jsonl`
 - sha256: `7cab6aa9ac70f04d09c2d9a2e24955cf018fc59c73e2c9da1099d994449bc96a`
 - size bytes: `7771`
 - line count: `27`

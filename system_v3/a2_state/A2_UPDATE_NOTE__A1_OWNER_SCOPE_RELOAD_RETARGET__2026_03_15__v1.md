@@ -7,12 +7,12 @@ Role: preserve the ownership-surface retarget that stops A1 owner docs from bein
 ## Scope
 
 Patched owner surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md`
 
 Related reload-hygiene surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/00_MANIFEST.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/18_A1_WIGGLE_EXECUTION_CONTRACT.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/00_MANIFEST.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/18_A1_WIGGLE_EXECUTION_CONTRACT.md`
 
 ## Problem
 
@@ -27,7 +27,7 @@ That was still risky after the earlier spec retargets, because ownership and liv
 ## What changed
 
 Added `A1 Owner-Scope Note` to:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md`
 
 It now says:
 - `05` still owns its requirement range, but is a mixed draft surface

@@ -76,7 +76,7 @@ If all checks pass, the plan must include:
 ## Command family
 
 The first real-send bridge still targets the local Playwright wrapper:
-- `/Users/joshuaeisenhart/.codex/skills/playwright/scripts/playwright_cli.sh`
+- `/home/ratchet/.codex/skills/playwright/scripts/playwright_cli.sh`
 
 The real-send command family may include:
 - `open`

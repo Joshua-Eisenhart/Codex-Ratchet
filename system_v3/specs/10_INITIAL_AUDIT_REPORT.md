@@ -14,18 +14,18 @@ Date: 2026-02-20
 - Updated owner map to match new ranges.
 - Deepened owner specs for B/A0/A1/SIM/A2/Governance.
 - Added migration + drift control specs:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/11_MIGRATION_HANDOFF_SPEC.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/12_BOOTPACK_SYNC_AUDIT_SPEC.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/13_CONTENT_REDUNDANCY_LINT_SPEC.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/14_A_THREAD_BOOTPACK_PROJECTION.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/11_MIGRATION_HANDOFF_SPEC.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/12_BOOTPACK_SYNC_AUDIT_SPEC.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/13_CONTENT_REDUNDANCY_LINT_SPEC.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/14_A_THREAD_BOOTPACK_PROJECTION.md`
 - Added executable audit tools:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/spec_lint.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/bootpack_sync_audit.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/content_redundancy_lint.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/spec_lint.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/bootpack_sync_audit.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/content_redundancy_lint.py`
 - Added migration artifact builder:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_migration_artifacts.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_migration_artifacts.py`
 - Generated machine reports under:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/`
 - Integrated role correction:
   - A2 explicit miner role
   - A1 explicit Rosetta role
@@ -47,7 +47,7 @@ Date: 2026-02-20
 5. Conformance automation:
 - Closed for baseline checks.
 - Implemented executable lint tool:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/spec_lint.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/spec_lint.py`
 - Current lint summary:
   - owner collisions: 0
   - orphan requirements: 0

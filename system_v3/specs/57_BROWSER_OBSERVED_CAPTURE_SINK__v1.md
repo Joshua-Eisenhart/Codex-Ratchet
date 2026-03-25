@@ -8,8 +8,8 @@ Owner: current `A2` controller for bounded browser-assisted Codex continuation
 
 This note defines the repo-held intake path for real observed Codex worker-thread values
 that will later feed:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/54_BROWSER_CODEX_THREAD_CAPTURE_RECORD__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/56_BROWSER_OBSERVED_CAPTURE_TO_PROOF_PATH__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/54_BROWSER_CODEX_THREAD_CAPTURE_RECORD__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/56_BROWSER_OBSERVED_CAPTURE_TO_PROOF_PATH__v1.md`
 
 It exists so the browser continuation chain stops depending on ad hoc pasted observations.
 
@@ -27,7 +27,7 @@ It is the raw observation intake used to create those later artifacts.
 ## Repo-held paths
 
 Raw observation staging directory:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/browser_thread_observations`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/browser_thread_observations`
 
 Recommended packet filename pattern:
 - `browser_observed_thread__<thread_id>__<YYYYMMDDTHHMMSSZ>.json`

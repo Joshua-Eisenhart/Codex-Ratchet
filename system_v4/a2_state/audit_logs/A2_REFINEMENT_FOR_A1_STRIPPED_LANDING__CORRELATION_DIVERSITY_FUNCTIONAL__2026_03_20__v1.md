@@ -6,23 +6,23 @@ decision: Keep correlation_diversity_functional blocked above A1_STRIPPED. Curre
 next_required_lane: A2_STAGE1_OPERATORIZED_ENTROPY_HEAD_REFINEMENT__CORRELATION_DIVERSITY_FUNCTIONAL
 
 ## Source Surfaces
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_stripped_graph_v1.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_STRIPPED_GRAPH_AUDIT__2026_03_20__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_STRIPPED_TERM_PLAN_ALIGNMENT__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__STAGE1_OPERATORIZED_ENTROPY_HEAD_GROUNDING__2026_03_17__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__STAGE1_OPERATORIZED_ENTROPY_HEAD_GROUNDING__2026_03_17__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_VALIDATION_TARGETS__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__LIVE_FAMILY_HINT_COVERAGE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/a1_stripped_graph_v1.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_STRIPPED_GRAPH_AUDIT__2026_03_20__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_STRIPPED_TERM_PLAN_ALIGNMENT__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__STAGE1_OPERATORIZED_ENTROPY_HEAD_GROUNDING__2026_03_17__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__STAGE1_OPERATORIZED_ENTROPY_HEAD_GROUNDING__2026_03_17__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_VALIDATION_TARGETS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__LIVE_FAMILY_HINT_COVERAGE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md
 
 ## Derived Evidence
-- strong_candidate_still_blocked: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__STAGE1_OPERATORIZED_ENTROPY_HEAD_GROUNDING__2026_03_17__v1.md:21 :: - `correlation_diversity_functional` stays the strongest direct-structure candidate, but still blocked
-- exact_landing_absent: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md:539 :: - `correlation_diversity_functional` still does not land
-- alias_witness_floor: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__LIVE_FAMILY_HINT_COVERAGE__v1.md:242 :: - `pairwise_correlation_spread_functional = WITNESS_ONLY`
-- next_work_helper_decomposition: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_VALIDATION_TARGETS__v1.md:42 :: - current blocker is helper decomposition / term-surface control
+- strong_candidate_still_blocked: /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__STAGE1_OPERATORIZED_ENTROPY_HEAD_GROUNDING__2026_03_17__v1.md:21 :: - `correlation_diversity_functional` stays the strongest direct-structure candidate, but still blocked
+- exact_landing_absent: /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md:539 :: - `correlation_diversity_functional` still does not land
+- alias_witness_floor: /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__LIVE_FAMILY_HINT_COVERAGE__v1.md:242 :: - `pairwise_correlation_spread_functional = WITNESS_ONLY`
+- next_work_helper_decomposition: /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_VALIDATION_TARGETS__v1.md:42 :: - current blocker is helper decomposition / term-surface control
 
 ## Missing Evidence
 - none

@@ -33,7 +33,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `80-92`
   - source 1: `96-118`
 - comparison anchors:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:44-54`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:44-54`
 - cluster role:
   - preserves the real alignment points that survived later canon narrowing
 - strongest reusable read:
@@ -45,9 +45,9 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `45-65`
   - source 1: `122-130`
 - comparison anchors:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:20-24`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:32-42`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md:8-13`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:20-24`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:32-42`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md:8-13`
 - cluster role:
   - isolates the axis-role assignments that materially conflict with later refined-fuel canon
 - strongest reusable read:
@@ -57,7 +57,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
 - members:
   - source 1: `1-182`
 - comparison anchors:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:51-61`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:51-61`
 - cluster role:
   - preserves the file’s own source-local placement as freeform note/fuel, not ratcheted canon
 - strongest reusable read:

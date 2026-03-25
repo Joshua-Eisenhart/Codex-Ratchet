@@ -61,7 +61,7 @@ Extraction mode: `ARCHIVE_LINEAGE_PASS`
 
 ## Cluster 6: Deferred Next Family
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_01_OF_10__A2_LAYER1_5__OUTPUT__CORE_CONSTRAINT_LADDER_AXIS_FOUNDATION__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_01_OF_10__A2_LAYER1_5__OUTPUT__CORE_CONSTRAINT_LADDER_AXIS_FOUNDATION__v1_1.zip`
 - cluster read:
   - the next family in folder order is a packaged historical extraction ZIP, not another root-policy file
 - current usefulness:

@@ -35,8 +35,8 @@ system still needs an explicit first bounded target instead of ad hoc self-mutat
 ## Execute Now
 
 1. Read:
-   - [SKILL_IMPROVER_READINESS_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/SKILL_IMPROVER_READINESS_REPORT__CURRENT__v1.json)
-   - [skill-improver-operator spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/skill-improver-operator/SKILL.md)
+   - [SKILL_IMPROVER_READINESS_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/SKILL_IMPROVER_READINESS_REPORT__CURRENT__v1.json)
+   - [skill-improver-operator spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/skill-improver-operator/SKILL.md)
 2. Only select from the bounded first-target class:
    - native maintenance Python skill
    - dedicated smoke exists

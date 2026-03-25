@@ -29,10 +29,10 @@ Date: 2026-03-09
   - they are low-entropy enough to compress together without losing source lineage
   - `ZIP_PROTOCOL_v2.md` is included now because the intake process names it as a governing input and the early specs repeatedly lean on its exact transport contract
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/20_CONTROLLED_TUNING_AND_UPGRADE_CONTRACT.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/21_IMPLEMENTATION_BUILD_SEQUENCE_AND_ACCEPTANCE_MATRIX.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/22_RUN_SURFACE_TEMPLATE_AND_SCAFFOLDER_CONTRACT.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/23_BOOTPACK_CONFORMANCE_FIXTURE_MATRIX_CONTRACT.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/20_CONTROLLED_TUNING_AND_UPGRADE_CONTRACT.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/21_IMPLEMENTATION_BUILD_SEQUENCE_AND_ACCEPTANCE_MATRIX.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/22_RUN_SURFACE_TEMPLATE_AND_SCAFFOLDER_CONTRACT.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/23_BOOTPACK_CONFORMANCE_FIXTURE_MATRIX_CONTRACT.md`
 
 ## 2) Source Membership By Family
 - root active docs:

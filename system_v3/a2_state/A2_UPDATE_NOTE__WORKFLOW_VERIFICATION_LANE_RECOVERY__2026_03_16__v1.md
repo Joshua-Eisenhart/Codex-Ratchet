@@ -17,10 +17,10 @@ Purpose: preserve the workflow-verification upgrade lane that was discussed in-t
 
 ## Source anchors
 
-- `/Users/joshuaeisenhart/Desktop/29 thing.txt`
+- `/home/ratchet/Desktop/29 thing.txt`
 - live operator correction in the current controller thread on 2026-03-16
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__THREAD_CONTEXT_SALVAGE_AND_FAILURE_RECORD__2026_03_16__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_PRO_BOOT_SOURCE_ADDITIONS__ENTROPY_CARNOT_SZILARD__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__THREAD_CONTEXT_SALVAGE_AND_FAILURE_RECORD__2026_03_16__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_PRO_BOOT_SOURCE_ADDITIONS__ENTROPY_CARNOT_SZILARD__2026_03_11__v1.md`
 
 ## Recovered proposal shape
 

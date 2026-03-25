@@ -1,3 +1,4 @@
+import os
 from __future__ import annotations
 
 import sys
@@ -55,7 +56,7 @@ class TestThreadCloseoutExtractor(unittest.TestCase):
                 self.assertEqual(expected["outputs_len"], len(packet["strongest_outputs"]))
                 self.assertTrue(packet["strongest_outputs"][0]["artifact_path"].endswith(expected["output_suffix"]))
                 self.assertEqual(
-                    ["/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md"],
+                    [os.environ.get("CODEX_RATCHET_ROOT", ".") + "/system_v3/specs/28_A2_THREAD_BOOT__v1.md"],
                     packet["handoff_packet"]["boot_files"],
                 )
                 self.assertTrue(
@@ -109,7 +110,7 @@ class TestThreadCloseoutExtractor(unittest.TestCase):
                 self.assertEqual(expected["decision"], packet["final_decision"])
                 self.assertEqual(expected["diagnosis"], packet["thread_diagnosis"])
                 self.assertEqual(
-                    ["/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md"],
+                    [os.environ.get("CODEX_RATCHET_ROOT", ".") + "/system_v3/specs/28_A2_THREAD_BOOT__v1.md"],
                     packet["handoff_packet"]["boot_files"],
                 )
                 self.assertTrue(packet["closed_statement"])

@@ -19,16 +19,16 @@ This pass does not:
 
 ## Source anchors
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints. Entropy.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_entropy_term_conflict__v1/A2_3_DISTILLATES__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_constraints_entropy_chain_fences__v1/DOWNSTREAM_CONSEQUENCE_NOTES__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_term_conflict__v1/A2_3_DISTILLATES__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_constraints_foundation_governance_fences__v1/DOWNSTREAM_CONSEQUENCE_NOTES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints. Entropy.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_entropy_term_conflict__v1/A2_3_DISTILLATES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_constraints_entropy_chain_fences__v1/DOWNSTREAM_CONSEQUENCE_NOTES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_constraints_term_conflict__v1/A2_3_DISTILLATES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_constraints_foundation_governance_fences__v1/DOWNSTREAM_CONSEQUENCE_NOTES__v1.md`
 
 ## Grounded term reads
 

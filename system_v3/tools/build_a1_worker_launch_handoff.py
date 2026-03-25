@@ -1,3 +1,4 @@
+import os
 #!/usr/bin/env python3
 from __future__ import annotations
 
@@ -34,15 +35,15 @@ def _sha256_file(path: Path) -> str:
 
 
 def _default_return_text_path(dispatch_id: str, role: str) -> str:
-    return f"/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_launch_returns/{dispatch_id}__{role}__return.txt"
+    return fos.environ.get("CODEX_RATCHET_ROOT", ".") + "/work/audit_tmp/thread_launch_returns/{dispatch_id}__{role}__return.txt"
 
 
 def _default_closeout_text_path(dispatch_id: str, role: str) -> str:
-    return f"/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/{dispatch_id}__{role}.txt"
+    return fos.environ.get("CODEX_RATCHET_ROOT", ".") + "/work/audit_tmp/thread_closeout_packets/{dispatch_id}__{role}.txt"
 
 
 def _default_closeout_json_path(dispatch_id: str, role: str) -> str:
-    return f"/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/{dispatch_id}__{role}.json"
+    return fos.environ.get("CODEX_RATCHET_ROOT", ".") + "/work/audit_tmp/thread_closeout_packets/{dispatch_id}__{role}.json"
 
 
 def build_handoff(packet_path: Path, packet: dict, send_text_path: Path) -> dict:
@@ -78,8 +79,8 @@ def build_handoff(packet_path: Path, packet: dict, send_text_path: Path) -> dict
             "If the lane runs long or drifts, route it through the monitor and closeout path below instead of free chaining.",
         ],
         "monitor_route": {
-            "skill": "/Users/joshuaeisenhart/.codex/skills/thread-run-monitor/SKILL.md",
-            "owner_surface": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_RUN_DIAGNOSIS_AND_STOP_RULES__v1.md",
+            "skill": os.path.expanduser("~/.codex") + "/skills/thread-run-monitor/SKILL.md",
+            "owner_surface": os.environ.get("CODEX_RATCHET_ROOT", ".") + "/system_v3/a2_state/THREAD_RUN_DIAGNOSIS_AND_STOP_RULES__v1.md",
             "allowed_decisions": [
                 "STOP",
                 "CONTINUE_ONE_BOUNDED_STEP",
@@ -87,11 +88,11 @@ def build_handoff(packet_path: Path, packet: dict, send_text_path: Path) -> dict
             ],
         },
         "closeout_route": {
-            "skill": "/Users/joshuaeisenhart/.codex/skills/thread-closeout-auditor/SKILL.md",
-            "closeout_prompt": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_subagents/THREAD_CLOSEOUT_AUDIT_PROMPT__v1.md",
+            "skill": os.path.expanduser("~/.codex") + "/skills/thread-closeout-auditor/SKILL.md",
+            "closeout_prompt": os.environ.get("CODEX_RATCHET_ROOT", ".") + "/work/zip_subagents/THREAD_CLOSEOUT_AUDIT_PROMPT__v1.md",
             "staging_text_path": closeout_text_path,
             "staging_json_path": closeout_json_path,
-            "sink_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/thread_closeout_packets.000.jsonl",
+            "sink_path": os.environ.get("CODEX_RATCHET_ROOT", ".") + "/system_v3/a2_derived_indices_noncanonical/thread_closeout_packets.000.jsonl",
             "extract_command": f"python3 system_v3/tools/extract_thread_closeout_packet.py --reply-text '{closeout_text_path}' --source-thread-label '{dispatch_id}__{role}' --out-json '{closeout_json_path}'",
             "append_command": f"python3 system_v3/tools/append_thread_closeout_packet.py --packet-json '{closeout_json_path}'",
         },

@@ -28,7 +28,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `70-77`
   - source 1: `85-86`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1:49-54`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1:49-54`
 - tension:
   - the digest repeats hard kernel locks:
     - no primitive causality
@@ -43,8 +43,8 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `36-45`
   - source 1: `87-88`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:15-17`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:116-123`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:15-17`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:116-123`
 - tension:
   - the file lists Bloch / S3 / Hopf / Weyl / chirality candidates early as useful physics fuel
   - it still says geometry should be ratcheted only as derived and active A2 adds a separate sim-capable substrate pressure before serious testing
@@ -56,8 +56,8 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `33`
   - source 1: `40`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:41`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:42`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:41`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:42`
 - tension:
   - this digest keeps Berry flux, chirality, and Weyl/spinor terms in the candidate physics menu
   - nearby refined-fuel canon surfaces explicitly forbid binding Axis-3 to that vocabulary in canon
@@ -69,9 +69,9 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `16-19`
   - source 1: `58-61`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Rosetta contract v1.md:40-45`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1:1588-1605`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1:1632-1637`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Rosetta contract v1.md:40-45`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1:1588-1605`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1:1632-1637`
 - tension:
   - the digest says candidate material must be rewritten as operator statements, falsifiable invariants, and sim observables before lower-layer use
   - active overlay-to-kernel rules separately forbid implicit mapping and smuggling through clean rephrasing

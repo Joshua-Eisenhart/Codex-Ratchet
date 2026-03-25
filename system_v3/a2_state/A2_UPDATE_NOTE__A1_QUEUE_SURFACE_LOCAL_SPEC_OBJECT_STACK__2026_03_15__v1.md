@@ -7,28 +7,28 @@ Role: preserve the first local spec-object representation for the live A1 queue 
 ## Scope
 
 New local-stack object/model surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_queue_surface_models.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_a1_queue_surfaces_pydantic.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/export_a1_queue_surfaces_graph.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/emit_a1_queue_surface_pydantic_schemas.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_queue_surface_models.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_a1_queue_surfaces_pydantic.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/export_a1_queue_surfaces_graph.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/emit_a1_queue_surface_pydantic_schemas.py`
 
 Focused regression:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_surface_pydantic_stack.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_surface_pydantic_stack.py`
 
 Patched read surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/32_A1_QUEUE_STATUS_SURFACE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/32_A1_QUEUE_STATUS_SURFACE__v1.md`
 
 Current live inputs used for proof:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.json`
 
 Generated graph exports:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.graphml`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.graphml`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.graphml`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.graphml`
 
 Generated queue-surface schemas:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_CANDIDATE_REGISTRY_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_CANDIDATE_REGISTRY_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
 
 ## What changed
 
@@ -58,7 +58,7 @@ Result:
 - `Ran 5 tests ... OK`
 
 Current registry audit:
-- `'.venv_spec_graph/bin/python' system_v3/tools/audit_a1_queue_surfaces_pydantic.py --registry-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.json`
+- `'.venv_spec_graph/bin/python' system_v3/tools/audit_a1_queue_surfaces_pydantic.py --registry-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.json`
 
 Observed result:
 - `candidate_count = 0`
@@ -66,7 +66,7 @@ Observed result:
 - graph shape = `1 node / 0 edges`
 
 Current queue packet audit:
-- `'.venv_spec_graph/bin/python' system_v3/tools/audit_a1_queue_surfaces_pydantic.py --packet-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.json`
+- `'.venv_spec_graph/bin/python' system_v3/tools/audit_a1_queue_surfaces_pydantic.py --packet-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.json`
 
 Observed result:
 - `queue_status = NO_WORK`
@@ -74,11 +74,11 @@ Observed result:
 - graph shape = `2 nodes / 1 edge`
 
 Current graph exports:
-- `'.venv_spec_graph/bin/python' system_v3/tools/export_a1_queue_surfaces_graph.py --registry-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.json --out-graphml /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.graphml`
-- `'.venv_spec_graph/bin/python' system_v3/tools/export_a1_queue_surfaces_graph.py --packet-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.json --out-graphml /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.graphml`
+- `'.venv_spec_graph/bin/python' system_v3/tools/export_a1_queue_surfaces_graph.py --registry-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.json --out-graphml /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.graphml`
+- `'.venv_spec_graph/bin/python' system_v3/tools/export_a1_queue_surfaces_graph.py --packet-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.json --out-graphml /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.graphml`
 
 Current schema emit:
-- `'.venv_spec_graph/bin/python' system_v3/tools/emit_a1_queue_surface_pydantic_schemas.py --registry-schema-out /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_CANDIDATE_REGISTRY_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json --queue-packet-schema-out /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
+- `'.venv_spec_graph/bin/python' system_v3/tools/emit_a1_queue_surface_pydantic_schemas.py --registry-schema-out /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_CANDIDATE_REGISTRY_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json --queue-packet-schema-out /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
 
 ## Current interpretation
 

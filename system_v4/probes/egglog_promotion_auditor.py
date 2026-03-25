@@ -30,7 +30,7 @@ def load_graph(path):
         return json.load(f)
 
 def run_auditor():
-    base_dir = Path("/Users/joshuaeisenhart/Desktop/Codex Directional_Accumulator/system_v4")
+    base_dir = Path(__file__).resolve().parent.parent
     low_ctrl_path = base_dir / "a2_state/graphs/a2_low_control_graph_v1.json"
     promoted_path = base_dir / "a2_state/graphs/promoted_subgraph.json"
     

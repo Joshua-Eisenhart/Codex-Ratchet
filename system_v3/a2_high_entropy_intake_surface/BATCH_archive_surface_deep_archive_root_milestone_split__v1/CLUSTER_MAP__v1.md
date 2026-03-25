@@ -64,7 +64,7 @@ Extraction mode: `ARCHIVE_DEEP_MILESTONE_ROOT_SPLIT_PASS`
 
 ## Cluster 8: Deferred Next Family
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT`
 - cluster read:
   - the next bounded pass should descend into the migrated run-root subtree itself
 - current usefulness:

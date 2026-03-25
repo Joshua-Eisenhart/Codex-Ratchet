@@ -285,7 +285,7 @@ Current application:
 Main sources:
 - `system_v3/runtime/bootpack_b_kernel_v1/state.py`
 - `system_v3/runtime/bootpack_b_kernel_v1/tests/test_state_seed_sets.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
 
 ## 12) Purpose
 This map exists to prevent language drift from outranking process while A2 and A1 understanding surfaces are being strengthened.
@@ -311,7 +311,7 @@ Operational implication:
 - thread history should not be distilled by recency alone
 
 Main source:
-- `/Users/joshuaeisenhart/Desktop/codex thread save.txt`
+- `/home/ratchet/Desktop/codex thread save.txt`
 
 ## 14) Constraint manifold authority status
 Problem:

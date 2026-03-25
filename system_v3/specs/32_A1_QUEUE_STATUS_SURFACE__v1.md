@@ -123,9 +123,9 @@ Minimum acceptable forms:
 
 The current queue answer may also be carried in machine-readable companion surfaces under `system_v3/a2_state/`, for example:
 - current queue packet:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.json`
 - current candidate registry:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CANDIDATE_REGISTRY__CURRENT__2026_03_15__v1.json`
 
 Interpretation rule:
 - the registry is the bounded candidate input set
@@ -143,7 +143,7 @@ The current queue helpers now support:
 - `--family-slice-validation-mode auto`
 - `--family-slice-validation-mode jsonschema`
 - `--family-slice-validation-mode local_pydantic`
-- `--spec-graph-python /Users/joshuaeisenhart/Desktop/Codex Ratchet/.venv_spec_graph/bin/python`
+- `--spec-graph-python /home/ratchet/Desktop/Codex Ratchet/.venv_spec_graph/bin/python`
 
 Current controller-facing default:
 - `auto`
@@ -169,28 +169,28 @@ It only defines the queue-status packet the controller should emit.
 ## Current executable helpers
 
 - queue-status builder:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py`
 - queue-status validator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
 - active current-queue refresh wrapper:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/refresh_active_current_a1_queue_state.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/refresh_active_current_a1_queue_state.py`
 - current-note renderer:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/render_a1_queue_status_current_note_from_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/render_a1_queue_status_current_note_from_packet.py`
 - queue-surfaces wrapper:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_a1_queue_status_surfaces.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_a1_queue_status_surfaces.py`
 - current-queue selector wrapper:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_current_a1_queue_status_from_candidates.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_current_a1_queue_status_from_candidates.py`
 - candidate-registry creator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_a1_queue_candidate_registry.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_a1_queue_candidate_registry.py`
 - candidate-registry validator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_candidate_registry.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_candidate_registry.py`
 - local spec-object queue-surface audit:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_a1_queue_surfaces_pydantic.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_a1_queue_surfaces_pydantic.py`
 - local spec-object queue-surface GraphML export:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/export_a1_queue_surfaces_graph.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/export_a1_queue_surfaces_graph.py`
 - local spec-object queue-surface schema emit:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/emit_a1_queue_surface_pydantic_schemas.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/emit_a1_queue_surface_pydantic_schemas.py`
 - family-slice packet compiler:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_worker_launch_packet_from_family_slice.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_worker_launch_packet_from_family_slice.py`
 - family-slice bundle preparer:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_a1_launch_bundle_from_family_slice.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_a1_launch_bundle_from_family_slice.py`

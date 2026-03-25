@@ -9,9 +9,9 @@ Prepared the next justified external worker batch after the fifth reported self-
 
 Launch surfaces:
 
-1. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__DOCS_INTEGRATE_GRAPH_AND_PROVENANCE__2026_03_15__v1.md`
-2. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__A2_STATE_BLOAT_AUDIT__2026_03_15__v1.md`
-3. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_HANDOFF__NEXT_TWO_SYSTEM_THREADS__2026_03_15__v6.md`
+1. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__DOCS_INTEGRATE_GRAPH_AND_PROVENANCE__2026_03_15__v1.md`
+2. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__A2_STATE_BLOAT_AUDIT__2026_03_15__v1.md`
+3. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_HANDOFF__NEXT_TWO_SYSTEM_THREADS__2026_03_15__v6.md`
 
 ## Why this batch
 

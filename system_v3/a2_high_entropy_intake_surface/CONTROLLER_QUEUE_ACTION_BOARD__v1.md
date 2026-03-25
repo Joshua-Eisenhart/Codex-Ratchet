@@ -109,7 +109,7 @@ Role: small explicit queue for reduction, quarantine, and archive decisions insi
   - current open revisit split:
     - duplicate-family quarantine:
       - `BATCH_a2feed_grok_unified_phuysics_source_map__v1`
-      - see `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_DUPLICATE_FAMILY_QUARANTINE__v1.md`
+      - see `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_DUPLICATE_FAMILY_QUARANTINE__v1.md`
     - archive-side revisit cluster:
       - deep-archive run-signal and test packets
       - richest bundle now direct-child closed by:
@@ -138,13 +138,13 @@ Role: small explicit queue for reduction, quarantine, and archive decisions insi
         - overlapping later duplicate-child residue:
           - `BATCH_A2MID_archive_v2_packet_req_request_only_handoff__v1`
         - duplicate-child routing surface:
-          - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_DUPLICATE_FAMILY_QUARANTINE__v1.md`
+          - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_DUPLICATE_FAMILY_QUARANTINE__v1.md`
       - adjacent `V2_ZIPV2_REPLAY_001` packet is now also direct-child closed by:
         - `BATCH_A2MID_archive_v2_replay_hashbridge_schemafail__v1`
       - next adjacent compact archive-side packet if another bounded historical pass is wanted:
         - `BATCH_archive_surface_heat_dumps_root_family_split__v1`
 - compact routing surface:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_REENTRY_SHORTLIST__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_REENTRY_SHORTLIST__v1.md`
 
 ## 2) Hold In Quarantine / Revisit
 - `BATCH_a2feed_gpt_thread_a1_trigram_source_map__v1`

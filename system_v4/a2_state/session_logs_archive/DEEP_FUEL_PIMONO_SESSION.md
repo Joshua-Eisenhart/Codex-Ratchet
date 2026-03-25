@@ -16,41 +16,41 @@
 - Total: 558 nodes, 398 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_PHYSICS_BRIDGE_v0.1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/PHYSICS_FUEL_DIGEST_v1.0.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_RUNBOOK_v1.4.md
-- /Users/joshuaeisenhart/GitHub/pi-mono/packages/agent/README.md
-- /Users/joshuaeisenhart/GitHub/pi-mono/packages/ai/README.md
-- /Users/joshuaeisenhart/GitHub/pi-mono/packages/coding-agent/README.md
-- /Users/joshuaeisenhart/GitHub/pi-mono/packages/mom/README.md
-- /Users/joshuaeisenhart/GitHub/pi-mono/packages/pods/README.md
-- /Users/joshuaeisenhart/GitHub/pi-mono/packages/tui/README.md
-- /Users/joshuaeisenhart/GitHub/pi-mono/packages/web-ui/README.md
-- /Users/joshuaeisenhart/GitHub/pi-mono/AGENTS.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_A_v2.60.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS_v2.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_AUDIT_AND_QUESTIONS.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS2.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS3.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS4.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS5.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS6.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS7.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS8.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS9.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/THREAD_CONTEXT_EXTRACT__MAX_RAW__2026_03_17__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/THREAD_CONTEXT_EXTRACT__MAX__2026_03_17__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_PHYSICS_BRIDGE_v0.1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/PHYSICS_FUEL_DIGEST_v1.0.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_RUNBOOK_v1.4.md
+- /home/ratchet/GitHub/pi-mono/packages/agent/README.md
+- /home/ratchet/GitHub/pi-mono/packages/ai/README.md
+- /home/ratchet/GitHub/pi-mono/packages/coding-agent/README.md
+- /home/ratchet/GitHub/pi-mono/packages/mom/README.md
+- /home/ratchet/GitHub/pi-mono/packages/pods/README.md
+- /home/ratchet/GitHub/pi-mono/packages/tui/README.md
+- /home/ratchet/GitHub/pi-mono/packages/web-ui/README.md
+- /home/ratchet/GitHub/pi-mono/AGENTS.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_A_v2.60.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS_v2.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_AUDIT_AND_QUESTIONS.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS2.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS3.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS4.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS5.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS6.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS7.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS8.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS9.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/THREAD_CONTEXT_EXTRACT__MAX_RAW__2026_03_17__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/THREAD_CONTEXT_EXTRACT__MAX__2026_03_17__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md
 
 ## Key Findings
 - DEEP FUEL + PI-MONO + UPGRADES: refined fuel, sims, pi-mono packages, upgrade docs, v4 upgrades all ingested

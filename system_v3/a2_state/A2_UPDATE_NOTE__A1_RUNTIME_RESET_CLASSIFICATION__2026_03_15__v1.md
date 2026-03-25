@@ -12,31 +12,31 @@ It classifies the recently audited A1/runtime/control surfaces so future reset w
 
 ## Source basis
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_RUNTIME_RESET_AND_SPEC_OBJECT_DIRECTION__2026_03_15__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__A1_RUNTIME_RESET_AND_SPEC_OBJECT_DIRECTION__2026_03_15__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/autoratchet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_real_loop.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_wiggle_control_cycle.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_autoratchet_controller_result.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_request_to_codex_prompt.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_llm_lane_driver.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_sandbox_only_runner.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_consolidation_prepack_job.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_pack_selector.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_RUNTIME_RESET_AND_SPEC_OBJECT_DIRECTION__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__A1_RUNTIME_RESET_AND_SPEC_OBJECT_DIRECTION__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/autoratchet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_real_loop.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_wiggle_control_cycle.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_autoratchet_controller_result.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_request_to_codex_prompt.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_llm_lane_driver.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_sandbox_only_runner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_consolidation_prepack_job.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_pack_selector.py`
 
 Doctrine/control anchors:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_EXECUTABLE_DISTILLATION_UPDATE__SOURCE_BOUND_v2.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A1_CONSOLIDATION_PREPACK_JOB__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_EXECUTABLE_DISTILLATION_UPDATE__SOURCE_BOUND_v2.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A1_CONSOLIDATION_PREPACK_JOB__v1.md`
 
 ## REWRITE_FIRST
 
-### `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_real_loop.py`
+### `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_real_loop.py`
 
 Reason:
 - manufactures PASS-looking compile/dependency/preflight reports from reconstructed export blocks at `#L223`
@@ -49,7 +49,7 @@ Reason:
 Classification:
 - rewrite first
 
-### `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+### `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
 
 Reason:
 - still encodes the active A1 path as fixed goal families/ladders:
@@ -63,7 +63,7 @@ Reason:
 Classification:
 - rewrite first
 
-### `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/autoratchet.py`
+### `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/autoratchet.py`
 
 Reason:
 - hardwires required probe terms by goal profile at `#L238`
@@ -72,7 +72,7 @@ Reason:
 Classification:
 - rewrite first
 
-### `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_wiggle_control_cycle.py`
+### `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_wiggle_control_cycle.py`
 
 Reason:
 - claims guardrail knobs like `--stall-limit-cycles`, `--max-run-bytes`, `--project-save-every-cycles`, and `--max-cycles-without-progress` at `#L71`
@@ -82,7 +82,7 @@ Reason:
 Classification:
 - rewrite first
 
-### `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_autoratchet_controller_result.py`
+### `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_autoratchet_controller_result.py`
 
 Reason:
 - can stop a run purely because `a1_semantic_gate_status == PASS` at `#L68`
@@ -91,7 +91,7 @@ Reason:
 Classification:
 - rewrite first
 
-### `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
+### `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
 
 Reason:
 - audit only checks for summary presence, step counts, packet presence, visible branch pressure, and minimum graveyard count at `#L38`
@@ -100,7 +100,7 @@ Reason:
 Classification:
 - rewrite first
 
-### `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_request_to_codex_prompt.py`
+### `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_request_to_codex_prompt.py`
 
 Reason:
 - explicitly treats broad refined fuel and multiple A2 surfaces as admissible A1 brain-upload material at `#L146`
@@ -110,7 +110,7 @@ Reason:
 Classification:
 - rewrite first
 
-### `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_llm_lane_driver.py`
+### `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_llm_lane_driver.py`
 
 Reason:
 - institutionalizes a prompt/ZIP host-LLM lane around `a1_request_to_codex_prompt.py` at `#L16` and `#L54`
@@ -119,7 +119,7 @@ Reason:
 Classification:
 - rewrite first
 
-### `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
+### `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
 
 Reason:
 - protects the scripted ladder instead of the doctrine:
@@ -132,7 +132,7 @@ Classification:
 
 ## DEMOTE_OR_REVIEW
 
-### `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_sandbox_only_runner.py`
+### `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_sandbox_only_runner.py`
 
 Reason:
 - sandbox-only helper, not the main runtime
@@ -145,7 +145,7 @@ Classification:
 
 ## LIKELY_KEEP_WITH_LATER_REVIEW
 
-### `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_consolidation_prepack_job.py`
+### `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_consolidation_prepack_job.py`
 
 Reason:
 - acts as a strict consolidation wrapper around:
@@ -161,7 +161,7 @@ Classification:
 - likely keep
 - later doctrine review still needed, but not a first reset target
 
-### `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_pack_selector.py`
+### `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_pack_selector.py`
 
 Reason:
 - already serves as a doctrine-to-runtime bridge rather than the whole runtime:

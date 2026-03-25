@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - folder order around this batch:
@@ -19,7 +19,7 @@ Date: 2026-03-09
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COORDINATE_ADMISSIBILITY_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COORDINATE_ADMISSIBILITY_v1.md`
 - reason for selection:
   - this is the next unprocessed non-sims `constraint ladder` file in folder order after `CONSTRAINT_MANIFOLD_DERIVATION_v1.md`
   - the file is a compact formal admissibility micro-spec, not a narrative note or omnibus theory surface
@@ -34,11 +34,11 @@ Date: 2026-03-09
     - bounded OPEN chart / atlas / dimensionality extensions only
   - this makes `MATH_CLASS_PASS` the best fit
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COSMOLOGICALLY_CONSTRAINT_ADMISSIBLE_STRUCTURES_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COSMOLOGICALLY_CONSTRAINT_ADMISSIBLE_STRUCTURES_v1.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COORDINATE_ADMISSIBILITY_v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COORDINATE_ADMISSIBILITY_v1.md`
   - role in batch: formal admissibility spec for coordinate-like representation as a removable overlay over already admitted carrier, path, geometry, and optional metric relations
   - sha256: `01e31d8a1dbf356e1a15f5db675274b362011635af6fbeb0800ddfce2c85afb7`
   - size bytes: `3569`

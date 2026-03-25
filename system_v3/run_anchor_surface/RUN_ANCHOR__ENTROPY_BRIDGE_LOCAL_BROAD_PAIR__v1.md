@@ -8,8 +8,8 @@
 
 ## Anchor Runs
 
-- `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_LOCAL_0001`
-- `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_BROAD_0001`
+- `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_LOCAL_0001`
+- `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_08__20260309T062522Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_BROAD_0001`
 
 ## What This Pair Carries
 
@@ -70,4 +70,4 @@ Key cited surfaces:
 
 ## Regeneration Witness Companion
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`

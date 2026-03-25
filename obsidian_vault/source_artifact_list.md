@@ -9,7 +9,7 @@ authority: "CROSS_VALIDATED"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::source_artifact_list::fec530eaeda58338`
 
 ## Description
-Archived Work File: - [KARPATHY__REFERENCE_NOTE__2026_03_13__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/external_refs/KARPATHY__REFERENCE_NOTE__2026_03_13
+Archived Work File: - [KARPATHY__REFERENCE_NOTE__2026_03_13__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/work/external_refs/KARPATHY__REFERENCE_NOTE__2026_03_13
 
 ## Properties
 - **source_line_range**: 

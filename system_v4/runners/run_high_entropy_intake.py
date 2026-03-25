@@ -6,7 +6,7 @@ layer, extracts core concepts from each, registers cross-doc contradictions,
 promotes refined concepts to A2-2, and admits kernel candidates to A2-1.
 
 Usage:
-    cd /Users/joshuaeisenhart/Desktop/Codex Ratchet
+    cd <repo_root>
     python -m system_v4.runners.run_high_entropy_intake
 """
 

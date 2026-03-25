@@ -16,4 +16,4 @@ Date: 2026-03-09
   - its strongest reusable content is governance-side, while its strongest foundation claims remain too strong for direct promotion
   - the next best progress comes from pairing this result with remaining unresolved axis-term surfaces rather than promoting the file itself
 - next-step note:
-  - the strongest next re-entry target is `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md` as the next `TERM_CONFLICT_PASS`
+  - the strongest next re-entry target is `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md` as the next `TERM_CONFLICT_PASS`

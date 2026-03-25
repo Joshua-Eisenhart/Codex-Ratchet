@@ -52,10 +52,10 @@ unreachable, or mismatched.
 ## Execute Now
 
 1. Read:
-   - [WITNESS_MEMORY_RETRIEVER_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/WITNESS_MEMORY_RETRIEVER_REPORT__CURRENT__v1.json)
-   - [EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json)
-   - [evermem_adapter.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/evermem_adapter.py)
-   - [work/reference_repos/EverMind-AI/EverMemOS/README.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/reference_repos/EverMind-AI/EverMemOS/README.md)
+   - [WITNESS_MEMORY_RETRIEVER_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/WITNESS_MEMORY_RETRIEVER_REPORT__CURRENT__v1.json)
+   - [EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json)
+   - [evermem_adapter.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/evermem_adapter.py)
+   - [work/reference_repos/EverMind-AI/EverMemOS/README.md](/home/ratchet/Desktop/Codex%20Ratchet/work/reference_repos/EverMind-AI/EverMemOS/README.md)
 2. Emit one bounded reachability audit only.
 3. Do not start services or widen memory claims from this slice.
 

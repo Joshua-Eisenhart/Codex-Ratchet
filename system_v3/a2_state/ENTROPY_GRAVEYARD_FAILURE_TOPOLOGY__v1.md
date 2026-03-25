@@ -12,13 +12,13 @@ It exists to stop the ratchet from re-hitting the same entropy graveyard basin
 without changing rescue structure.
 
 ## 2) Source Runs
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
 
 Generated companion surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__AUTO__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__AUTO__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__AUTO__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__AUTO__v1.json`
 
 Interpretation rule:
 - this file remains the human-readable active control surface

@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - folder order around this batch:
@@ -19,7 +19,7 @@ Date: 2026-03-09
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DYNAMICAL_ADMISSIBILITY_BOUNDARY_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DYNAMICAL_ADMISSIBILITY_BOUNDARY_v1.md`
 - reason for selection:
   - this is the next unprocessed non-sims `constraint ladder` file in folder order after `DUALITY_CLASS_ADMISSIBILITY_v1.md`
   - the file is a compact formal boundary micro-spec, not a stitched narrative surface
@@ -32,11 +32,11 @@ Date: 2026-03-09
     - dynamics-like notions may exist only as removable, non-binding overlays until explicit new primitives are admitted
   - this makes `MATH_CLASS_PASS` the best fit
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Engine contract v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Engine contract v1.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DYNAMICAL_ADMISSIBILITY_BOUNDARY_v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DYNAMICAL_ADMISSIBILITY_BOUNDARY_v1.md`
   - role in batch: formal boundary spec for keeping dynamics-like structure out of kernel admissibility until additional primitives are explicitly admitted
   - sha256: `a8250dc0c06402dffbe3aa0a00092f7357a718009422eca3fb6f5efec4335d73`
   - size bytes: `3080`

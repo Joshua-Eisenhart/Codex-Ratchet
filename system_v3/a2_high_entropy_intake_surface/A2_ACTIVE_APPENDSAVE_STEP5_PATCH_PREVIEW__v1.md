@@ -39,7 +39,7 @@ If mutation is later authorized, the bounded patch should be:
 
 ```patch
 *** Begin Patch
-*** Update File: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md
+*** Update File: /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md
 @@
  - if those landing floors are not satisfied, keep the richer term proposal-side or late-passenger-side rather than forcing it into a thin executable lead role
  - A0 should reject richer cartridges that remain alias-aspirational, decomposition-thin, witness-poor, or semantically warm enough to require lower-layer guessing

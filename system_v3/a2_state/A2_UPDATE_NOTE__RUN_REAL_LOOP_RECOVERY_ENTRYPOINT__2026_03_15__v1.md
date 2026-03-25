@@ -9,7 +9,7 @@ Role: preserve the dedicated recovery entrypoint added after the `run_real_loop`
 This note is bounded to the operator-facing entrypoint change only.
 
 It records the addition of:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_real_loop_recovery_cycle.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_real_loop_recovery_cycle.py`
 
 ## What changed
 
@@ -18,9 +18,9 @@ Before this patch:
 
 After this patch:
 - strict/default path:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_real_loop.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_real_loop.py`
 - explicit recovery path:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_real_loop_recovery_cycle.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_real_loop_recovery_cycle.py`
 
 The new entrypoint:
 - imports `run_real_loop.main`

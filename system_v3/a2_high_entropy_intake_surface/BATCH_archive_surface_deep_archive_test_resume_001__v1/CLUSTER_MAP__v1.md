@@ -28,8 +28,8 @@ Date: 2026-03-09
 - archive meaning:
   - the archived event ledger points to live-runtime absolute paths rather than archive-local packet paths
 - bound evidence:
-  - each `a1_strategy_request_emitted` row stores an `a0_to_a1_save_zip` path under `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/...`
-  - the actual preserved packets live under `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/.../TEST_RESUME_001/zip_packets/`
+  - each `a1_strategy_request_emitted` row stores an `a0_to_a1_save_zip` path under `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/...`
+  - the actual preserved packets live under `/home/ratchet/Desktop/Codex_Ratchet__archive/.../TEST_RESUME_001/zip_packets/`
 - retained interpretation:
   - useful historical seam between live runtime provenance and later archive relocation
 

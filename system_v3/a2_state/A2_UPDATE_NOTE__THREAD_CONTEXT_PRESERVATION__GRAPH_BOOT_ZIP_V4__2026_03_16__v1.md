@@ -11,18 +11,18 @@ Role: preserve high-value controller-thread context that is likely to be lost on
 
 ## SOURCE_ANCHORS
 - live user corrections in the 2026-03-16 controller thread
-- `/Users/joshuaeisenhart/Desktop/29 thing.txt`
-- `/Users/joshuaeisenhart/Desktop/jp graph asuggestions.txt`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v4.8 copy.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/MEGABOOT_RATCHET_SUITE_v7.4.8-PROJECTS copy.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/README.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/00_README.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/01_ARCHITECTURE_OVERVIEW.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ZIP_SUBAGENT_TEMPLATE_MATRIX__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_BRAIN_SLICE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__NESTED_SYSTEM_GRAPH_AND_AXIS0_POLICY_PLAN__2026_03_16__v1.md`
+- `/home/ratchet/Desktop/29 thing.txt`
+- `/home/ratchet/Desktop/jp graph asuggestions.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v4.8 copy.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/MEGABOOT_RATCHET_SUITE_v7.4.8-PROJECTS copy.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/README.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/00_README.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/01_ARCHITECTURE_OVERVIEW.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ZIP_SUBAGENT_TEMPLATE_MATRIX__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_BRAIN_SLICE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__NESTED_SYSTEM_GRAPH_AND_AXIS0_POLICY_PLAN__2026_03_16__v1.md`
 
 ## A2_UPDATE_DELTA
 - recovered boot-lineage correction:
@@ -190,17 +190,17 @@ Role: preserve high-value controller-thread context that is likely to be lost on
   - understanding-first `A2` stages before deeper kernel/proof closure claims
 
 ## NEXT CONTROLLER BOOT READ ORDER
-1. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md`
-2. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md`
-3. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_BRAIN_SLICE__v1.md`
-4. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__NESTED_SYSTEM_GRAPH_AND_AXIS0_POLICY_PLAN__2026_03_16__v1.md`
-5. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__THREAD_CONTEXT_PRESERVATION__GRAPH_BOOT_ZIP_V4__2026_03_16__v1.md`
-6. `/Users/joshuaeisenhart/Desktop/29 thing.txt`
-7. `/Users/joshuaeisenhart/Desktop/jp graph asuggestions.txt`
-8. `/Users/joshuaeisenhart/Desktop/jp lev web outputs.txt`
-9. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v4.8 copy.md`
-10. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/00_README.md`
-11. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ZIP_SUBAGENT_TEMPLATE_MATRIX__v1.md`
+1. `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md`
+2. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md`
+3. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_BRAIN_SLICE__v1.md`
+4. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__NESTED_SYSTEM_GRAPH_AND_AXIS0_POLICY_PLAN__2026_03_16__v1.md`
+5. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__THREAD_CONTEXT_PRESERVATION__GRAPH_BOOT_ZIP_V4__2026_03_16__v1.md`
+6. `/home/ratchet/Desktop/29 thing.txt`
+7. `/home/ratchet/Desktop/jp graph asuggestions.txt`
+8. `/home/ratchet/Desktop/jp lev web outputs.txt`
+9. `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v4.8 copy.md`
+10. `/home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/00_README.md`
+11. `/home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ZIP_SUBAGENT_TEMPLATE_MATRIX__v1.md`
 
 ## NEXT CONTROLLER BOOT TASKS
 1. presume less and classify more

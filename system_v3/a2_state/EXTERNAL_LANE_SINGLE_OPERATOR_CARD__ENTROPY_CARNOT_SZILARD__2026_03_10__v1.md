@@ -7,10 +7,10 @@ Role: single operator card for launching and auditing the external entropy / Car
 ## 1) Required attachment
 
 Attach only:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/PRO_BOOT_JOB__ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1__20260309_204341Z.zip`
+- `/home/ratchet/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/PRO_BOOT_JOB__ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1__20260309_204341Z.zip`
 
 Do not attach:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/PRO_BOOT_JOB__ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1__20260309_204020Z.zip`
+- `/home/ratchet/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/PRO_BOOT_JOB__ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1__20260309_204020Z.zip`
 
 ## 2) Launch message
 

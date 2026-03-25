@@ -17,7 +17,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `10-11`
   - source 1: `34-48`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:102-103`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:102-103`
 - tension:
   - this source says Axis-5 is a generator regime split and Axis-4 is a variance-order math-class split
   - current active A2 language says Axis-4 is entropy localization/containment vs radiation and Axis-5 is entropy excitation/intensity

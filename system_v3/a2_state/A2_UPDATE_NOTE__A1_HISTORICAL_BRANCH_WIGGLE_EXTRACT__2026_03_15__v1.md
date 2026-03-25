@@ -7,15 +7,15 @@ Role: preserve the paired historical extract step that gives the repo both a cle
 ## Scope
 
 New non-owner historical extract:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md`
 
 Supporting read surfaces updated:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/00_MANIFEST.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/00_MANIFEST.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md`
 
 Source surfaces for the extract:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/18_A1_WIGGLE_EXECUTION_CONTRACT.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/18_A1_WIGGLE_EXECUTION_CONTRACT.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md`
 
 ## Why this step
 
@@ -34,7 +34,7 @@ So the repo still lacked a clean paired read:
 ### 1) Added a non-owner historical extract
 
 Created:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md`
 
 It is explicitly:
 - `DRAFT / NONCANON`
@@ -53,19 +53,19 @@ It provides one compact read for:
 ### 2) Wired it into the read surfaces
 
 Updated:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/00_MANIFEST.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/00_MANIFEST.md`
   - `A1 Reload Hygiene` now points to `78` for the historical branch/wiggle read
   - `Active Process Supplements` now includes `78`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md`
   - `Extract/Reference Docs (Non-Owners)` now includes `78`
 
 ## Meaning
 
 The repo now has the missing pair:
 - live A1 packet/profile read:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md`
 - historical A1 branch/wiggle read:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md`
 
 That is a real structural improvement over the previous state, because it reduces pressure on the mixed owner docs to serve both purposes at once.
 

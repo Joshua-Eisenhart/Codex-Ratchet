@@ -29,4 +29,4 @@ Extraction mode: `ZIP_INDEX_PASS`
 
 ## Candidate Summary C4
 - proposal-only next-step note:
-  - folder-order processing for `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state` is complete after this batch
+  - folder-order processing for `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state` is complete after this batch

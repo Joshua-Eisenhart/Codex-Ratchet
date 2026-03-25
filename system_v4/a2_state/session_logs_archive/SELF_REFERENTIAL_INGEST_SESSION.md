@@ -16,22 +16,22 @@
 - Total: 390 nodes, 296 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/a2_graph_refinery.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/v4_graph_builder.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/memory_admission_guard.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/slice_compiler.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/zip_subagent_builder.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/registry_types.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/a2_persistent_brain.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/a1_rosetta_mapper.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/a1_distiller.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/generate_doc_queue.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/run_promotion_audit.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/run_contradiction_scan.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/run_mass_extraction.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/a2_brain_refresh.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/run_high_entropy_intake.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/a2_v3_to_v4_graphification_ingestor.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/a2_graph_refinery.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/v4_graph_builder.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/memory_admission_guard.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/slice_compiler.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/zip_subagent_builder.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/registry_types.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/a2_persistent_brain.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/a1_rosetta_mapper.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/a1_distiller.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/generate_doc_queue.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/run_promotion_audit.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/run_contradiction_scan.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/run_mass_extraction.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/a2_brain_refresh.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/run_high_entropy_intake.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/a2_v3_to_v4_graphification_ingestor.py
 
 ## Key Findings
 - SELF-REFERENTIAL INGESTION: All 15+ system_v4/skills/ Python files ingested into the graph. The system now knows itself.

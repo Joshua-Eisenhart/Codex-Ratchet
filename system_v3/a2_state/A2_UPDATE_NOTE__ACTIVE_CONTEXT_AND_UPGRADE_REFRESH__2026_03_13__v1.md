@@ -20,18 +20,18 @@ This pass does not:
 ## Source anchors
 
 Active owner surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ALIGNED_METHOD_RETUNING_CONTINUITY__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ALIGNED_METHOD_RETUNING_CONTINUITY__2026_03_13__v1.md`
 
 Current safe-workspace support surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CURRENT.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/INBOX/GENERAL_TASK_PLAN__AUTOMATION_SKILLS_PRO_REFINERY__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/INBOX/PRO_THREAD_PACKET_STANDARD__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/INBOX/QUARANTINE_FOLDER_CONTRACT__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/CURRENT.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/INBOX/GENERAL_TASK_PLAN__AUTOMATION_SKILLS_PRO_REFINERY__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/INBOX/PRO_THREAD_PACKET_STANDARD__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/INBOX/QUARANTINE_FOLDER_CONTRACT__2026_03_13__v1.md`
 
 ## Refresh findings
 

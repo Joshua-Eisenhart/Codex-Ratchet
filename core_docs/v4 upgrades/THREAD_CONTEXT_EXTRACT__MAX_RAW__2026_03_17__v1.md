@@ -608,7 +608,7 @@ The exact current Stage-1 worker launch surface is still missing.
 
 Do Next
 
-Read /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_PACKET__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json next and stop.
+Read /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_PACKET__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json next and stop.
 
 After Return
 
@@ -814,7 +814,7 @@ The meaning comes from the nonclassical structure the graph has to carry.
 
 Late in the thread, the assistant created a new folder:
 
-/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/system_v4_project_frame
+/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/system_v4_project_frame
 
 The purpose of that folder was:
 

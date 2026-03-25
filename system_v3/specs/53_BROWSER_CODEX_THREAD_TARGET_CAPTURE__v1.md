@@ -7,7 +7,7 @@ Owner: current `A2` controller for bounded browser-assisted Codex continuation
 ## Purpose
 
 This note defines the first practical capture step for:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/51_BROWSER_CODEX_THREAD_TARGET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/51_BROWSER_CODEX_THREAD_TARGET__v1.md`
 
 It exists because the browser continuation chain is now specified through:
 - sender packet

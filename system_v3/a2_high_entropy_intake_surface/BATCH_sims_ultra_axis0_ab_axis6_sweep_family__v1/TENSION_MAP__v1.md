@@ -77,7 +77,7 @@ Extraction mode: `SIM_ULTRA_AXIS0_AB_AXIS6_SWEEP_PASS`
 
 ## T6) The raw `simpy/` strip ends here
 - source markers:
-  - filename inventory of `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy`
+  - filename inventory of `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy`
 - tension:
   - this file is index `51 / 51`
   - no later raw-order `simpy/` file remains after `run_ultra_axis0_ab_axis6_sweep.py`

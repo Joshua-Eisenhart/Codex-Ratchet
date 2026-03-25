@@ -26,33 +26,33 @@ This surface is not:
 - a permission to rewrite active A2 surfaces directly
 
 Companion process:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_MID_REFINEMENT_PROCESS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_MID_REFINEMENT_PROCESS__v1.md`
 - use that process for second-pass A2-mid reduction from existing intake batches
 
 ## 2) Governing Inputs
 Before running this process, read these files in order:
 
-1. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md`
-2. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/ZIP_PROTOCOL_v2.md`
-3. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/16_ZIP_SAVE_AND_TAPES_SPEC.md`
-4. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/SURFACE_CLASS_AND_MEMORY_ADMISSION_RULES__v1.md`
-5. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md`
-6. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
-7. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md`
-8. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
-9. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md`
-10. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/MODEL_CONTEXT.md`
-11. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md`
+1. `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md`
+2. `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/ZIP_PROTOCOL_v2.md`
+3. `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/16_ZIP_SAVE_AND_TAPES_SPEC.md`
+4. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/SURFACE_CLASS_AND_MEMORY_ADMISSION_RULES__v1.md`
+5. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md`
+6. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
+7. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md`
+8. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
+9. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md`
+10. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/MODEL_CONTEXT.md`
+11. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md`
 
 ## 3) Source Roots
 Primary high-entropy intake roots:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state`
 
 Special source class:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims`
 
 Rule:
 - process `sims/` separately from ordinary theory/doc extraction
@@ -109,7 +109,7 @@ Rule:
 
 ## 7) Output Surface
 Write all outputs under:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/`
 
 This output surface is:
 - bounded
@@ -128,7 +128,7 @@ Each bounded batch should produce one folder:
 - `BATCH_<short_name>__v1/`
 
 The intake surface should also maintain one rolling ledger:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md`
 
 The ledger should record for each batch:
 - batch id

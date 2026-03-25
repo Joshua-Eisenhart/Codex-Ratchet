@@ -7,12 +7,12 @@ Date: 2026-03-09
 
 ## 1) Batch Selection
 - starting residual-priority source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_axis0_boundary_bookkeep_sweep_v2.cpython-313.pyc`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_axis0_boundary_bookkeep_sweep_v2.cpython-313.pyc`
 - selected sources:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_axis0_boundary_bookkeep_sweep_v2.cpython-313.pyc`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_axis12_axis0_link_v1.cpython-313.pyc`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_mega_axis0_ab_stage16_axis6.cpython-313.pyc`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/.DS_Store`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_axis0_boundary_bookkeep_sweep_v2.cpython-313.pyc`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_axis12_axis0_link_v1.cpython-313.pyc`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_mega_axis0_ab_stage16_axis6.cpython-313.pyc`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/.DS_Store`
 - reason for bounded family:
   - the prior proof-family batch explicitly left only hygiene residue
   - the closure audit classified the remaining sims-side residue as:
@@ -21,34 +21,34 @@ Date: 2026-03-09
   - the three cache artifacts all shadow already-batched leading-space runner families
   - `.DS_Store` is platform noise and stays separate in semantics even while sharing the same final hygiene batch
 - comparison-only anchors read:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_prove_foundation_proof_family__v1/MANIFEST.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_residual_inventory_closure_audit__v1/MANIFEST.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_leading_space_runner_result_family__v1/MANIFEST.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_prove_foundation_proof_family__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_residual_inventory_closure_audit__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_leading_space_runner_result_family__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md`
 - deferred next residual-priority source:
   - none; this batch exhausts the remaining sims-side hygiene residue
 
 ## 2) Source Membership
 - Hygiene artifact:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_axis0_boundary_bookkeep_sweep_v2.cpython-313.pyc`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_axis0_boundary_bookkeep_sweep_v2.cpython-313.pyc`
   - sha256: `9ce0a0f05541b7c71940e0bc052a0c3915c31b42faa51aac956939a50fdc3afe`
   - size bytes: `17906`
   - file-type read: `data`
   - source role: committed bytecode cache shadowing the already-batched boundary/bookkeep runner family
 - Hygiene artifact:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_axis12_axis0_link_v1.cpython-313.pyc`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_axis12_axis0_link_v1.cpython-313.pyc`
   - sha256: `bca7cf1a7d19466e69a1aa71b69e01fe567986e8a3ffd43ed0ec1412e7a6f98b`
   - size bytes: `20586`
   - file-type read: `data`
   - source role: committed bytecode cache shadowing the already-batched axis12-axis0-link runner family
 - Hygiene artifact:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_mega_axis0_ab_stage16_axis6.cpython-313.pyc`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/__pycache__/ run_mega_axis0_ab_stage16_axis6.cpython-313.pyc`
   - sha256: `ef0c2d4e094bae730a1c75e974813fb02de037ff9d58798863e7703cec7d12f0`
   - size bytes: `24284`
   - file-type read: `data`
   - source role: committed bytecode cache shadowing the already-batched mega runner family
 - Hygiene artifact:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/.DS_Store`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/.DS_Store`
   - sha256: `66c3c42d924cbfbf20a45a61f329dbeab03681632dfbdc11ac2223dc1d6b534a`
   - size bytes: `6148`
   - file-type read: `Apple Desktop Services Store`
@@ -120,9 +120,9 @@ Date: 2026-03-09
 
 ## 4) Comparison Anchors
 - comparison sources:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_prove_foundation_proof_family__v1/MANIFEST.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_residual_inventory_closure_audit__v1/MANIFEST.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_leading_space_runner_result_family__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_prove_foundation_proof_family__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_residual_inventory_closure_audit__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_leading_space_runner_result_family__v1/MANIFEST.json`
 - relevant anchors:
   - `BATCH_sims_residual_inventory_closure_audit__v1/MANIFEST.json`
   - `BATCH_sims_leading_space_runner_result_family__v1/MANIFEST.json`

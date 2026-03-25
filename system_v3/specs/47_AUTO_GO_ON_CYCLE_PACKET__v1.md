@@ -7,7 +7,7 @@ Owner: current `A2` controller for auto-`go on` execution input normalization
 ## Purpose
 
 This note defines the single invocation packet consumed by:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_auto_go_on_cycle_from_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_auto_go_on_cycle_from_packet.py`
 
 It exists to remove long manual CLI flag assembly from the auto-`go on` control path.
 
@@ -79,7 +79,7 @@ Optional but useful:
 ## Template path
 
 Template:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/auto_go_on_cycle_packet_template_v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/auto_go_on_cycle_packet_template_v1.json`
 
 ## Immediate implication
 

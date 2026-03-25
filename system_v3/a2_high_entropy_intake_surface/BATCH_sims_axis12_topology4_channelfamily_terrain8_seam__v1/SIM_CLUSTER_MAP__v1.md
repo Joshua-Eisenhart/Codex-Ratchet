@@ -7,8 +7,8 @@ Extraction mode: `SIM_AXIS12_TOPOLOGY4_CHANNELFAMILY_TERRAIN8_SEAM_PASS`
 - cluster label:
   - seam source pair
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis12_topology4_channelfamily_suite_v2.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS12_TOPOLOGY4_TERRAIN8_SUITE_V1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis12_topology4_channelfamily_suite_v2.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS12_TOPOLOGY4_TERRAIN8_SUITE_V1.json`
 - family role:
   - canonical source-bounded seam pair for this batch
 - executable-facing read:
@@ -61,7 +61,7 @@ Extraction mode: `SIM_AXIS12_TOPOLOGY4_CHANNELFAMILY_TERRAIN8_SEAM_PASS`
 - cluster label:
   - direct evidence-pack admission
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
   - `SIM_ID: S_SIM_AXIS12_TOPOLOGY4_TERRAIN8_SUITE_V1`
   - `CODE_HASH_SHA256: be1a8c714b57ebfe98559d14237d85b258f760f5db2691f10b3f778660edcb12`
   - `OUTPUT_HASH_SHA256: 218b43b4a1adee0149363f5103840329693d81e82beea73485fdc1235e2a6e9a`
@@ -77,7 +77,7 @@ Extraction mode: `SIM_AXIS12_TOPOLOGY4_CHANNELFAMILY_TERRAIN8_SEAM_PASS`
 - cluster label:
   - campaign continuity and next paired family
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_axis12_seq_constraints_family__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_axis12_seq_constraints_family__v1/MANIFEST.json`
   - deferred next residual pair:
     - `run_axis12_topology4_channelgrid_v1.py`
     - `results_axis12_topology4_channelgrid_v1.json`

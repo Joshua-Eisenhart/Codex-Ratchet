@@ -7,7 +7,7 @@ Extraction mode: `QIT_BRIDGE_PASS`
 - source markers:
   - source 1: `277-287`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:51-61`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:51-61`
 - tension:
   - the archive manifest classifies `Axis 0.md` as a freeform note that is never ratcheted
   - the source itself ends with an explicit recommendation for what to lock as the Axis-0 kernel
@@ -18,7 +18,7 @@ Extraction mode: `QIT_BRIDGE_PASS`
 - source markers:
   - source 1: `1-14`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md:1-22`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md:1-22`
 - tension:
   - this file is visibly a raw conversational precursor with duplicated lines and a sandbox download link
   - the later repo-local `AXIS0_SPEC_OPTIONS_v0.1.md` is a cleaned spec surface carrying the same core content
@@ -41,8 +41,8 @@ Extraction mode: `QIT_BRIDGE_PASS`
   - source 1: `34-52`
   - source 1: `222-256`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_PHYSICS_BRIDGE_v0.1.md:88-126`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md:117-169`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_PHYSICS_BRIDGE_v0.1.md:88-126`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md:117-169`
 - tension:
   - this note still speaks in time-dimensions and universal-clock rhetoric
   - later bridge surfaces work to rephrase the same pressure as nonliteral bookkeeping cuts, operational monotones, and no primitive time
@@ -63,7 +63,7 @@ Extraction mode: `QIT_BRIDGE_PASS`
 - source markers:
   - source 1: `277-287`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md:142-160`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md:142-160`
 - tension:
   - the precursor note recommends a specific preferred pair:
     - Option A default

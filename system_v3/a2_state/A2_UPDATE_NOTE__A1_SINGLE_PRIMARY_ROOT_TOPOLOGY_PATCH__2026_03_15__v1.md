@@ -28,7 +28,7 @@ Before this patch:
 So one family-slice cycle could emit many non-rescue roots.
 
 That was weaker than the family model in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md`
 
 The family model expects:
 - one primary branch
@@ -58,7 +58,7 @@ So the right core move was:
 ## What changed
 
 Live planner file:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
 
 New behavior in family-slice mode:
 - prerequisite atomic baseline SIM branches now attach to the current main target baseline branch
@@ -94,14 +94,14 @@ Effect:
   - non-rescue alternatives
 
 The controller audit in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
 
 continues to validate that visible parentage matches actual emitted parentage.
 
 ## Focused regressions
 
 Planner/runtime:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
 
 Updated expectations:
 - one explicit primary non-rescue root for the tested family-slice case

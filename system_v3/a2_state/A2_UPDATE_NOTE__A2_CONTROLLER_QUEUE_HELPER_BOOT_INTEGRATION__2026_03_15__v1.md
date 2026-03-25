@@ -7,17 +7,17 @@ Role: preserve the controller-boot integration step where fresh `A2_CONTROLLER` 
 ## Scope
 
 Patched controller boot surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_send_text_from_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_send_text_from_packet.py`
 
 Focused regression:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a2_controller_send_text_from_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_build_a2_controller_send_text_from_packet.py`
 
 Patched controller launch spec:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
 
 Related queue helper:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
 
 ## Problem
 
@@ -77,7 +77,7 @@ The regression locks that:
 ## Next seam
 
 The next likely controller seam is whether the current repo-held queue answer surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_16__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_16__v1.md`
 
 should stay hand-written, or whether it should later be rendered from:
 - one current `A1_QUEUE_STATUS_PACKET_v1`

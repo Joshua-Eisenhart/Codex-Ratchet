@@ -16,7 +16,7 @@
 - Total: 3729 nodes, 7543 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__ANTIGRAVITY__2026_03_18__v6.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__ANTIGRAVITY__2026_03_18__v6.md
 
 ## Batches
 - `BATCH_V4_THREAD_CONTEXT_EXTRACT_V6`

@@ -123,14 +123,14 @@ Important caution:
 
 These should be read as a cluster, not as isolated notes:
 
-- [A2_UPDATE_NOTE__THREAD_CONTEXT_SALVAGE_AND_FAILURE_RECORD__2026_03_16__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__THREAD_CONTEXT_SALVAGE_AND_FAILURE_RECORD__2026_03_16__v1.md)
-- [A2_UPDATE_NOTE__PERSISTENT_BRAIN_ALIGNMENT_AUDIT__2026_03_16__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__PERSISTENT_BRAIN_ALIGNMENT_AUDIT__2026_03_16__v1.md)
-- [A2_UPDATE_NOTE__LAYERED_BRAIN_AND_SEAL_CADENCE_CLARIFICATION__2026_03_16__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__LAYERED_BRAIN_AND_SEAL_CADENCE_CLARIFICATION__2026_03_16__v1.md)
-- [A2_UPDATE_NOTE__LAYERED_A1_BRAIN_PLANNING__2026_03_16__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__LAYERED_A1_BRAIN_PLANNING__2026_03_16__v1.md)
-- [A2_UPDATE_NOTE__GEOMETRY_AXES_AND_NONFLAT_SELFMAP_CLARIFICATION__2026_03_16__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__GEOMETRY_AXES_AND_NONFLAT_SELFMAP_CLARIFICATION__2026_03_16__v1.md)
-- [A2_UPDATE_NOTE__NESTED_SYSTEM_GRAPH_AND_AXIS0_POLICY_PLAN__2026_03_16__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__NESTED_SYSTEM_GRAPH_AND_AXIS0_POLICY_PLAN__2026_03_16__v1.md)
-- [A2_UPDATE_NOTE__WORLDSTACK_AND_LABS_INTEGRATION_GAP__2026_03_16__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__WORLDSTACK_AND_LABS_INTEGRATION_GAP__2026_03_16__v1.md)
-- [A2_UPDATE_NOTE__WORKFLOW_VERIFICATION_LANE_RECOVERY__2026_03_16__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__WORKFLOW_VERIFICATION_LANE_RECOVERY__2026_03_16__v1.md)
+- [A2_UPDATE_NOTE__THREAD_CONTEXT_SALVAGE_AND_FAILURE_RECORD__2026_03_16__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__THREAD_CONTEXT_SALVAGE_AND_FAILURE_RECORD__2026_03_16__v1.md)
+- [A2_UPDATE_NOTE__PERSISTENT_BRAIN_ALIGNMENT_AUDIT__2026_03_16__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__PERSISTENT_BRAIN_ALIGNMENT_AUDIT__2026_03_16__v1.md)
+- [A2_UPDATE_NOTE__LAYERED_BRAIN_AND_SEAL_CADENCE_CLARIFICATION__2026_03_16__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__LAYERED_BRAIN_AND_SEAL_CADENCE_CLARIFICATION__2026_03_16__v1.md)
+- [A2_UPDATE_NOTE__LAYERED_A1_BRAIN_PLANNING__2026_03_16__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__LAYERED_A1_BRAIN_PLANNING__2026_03_16__v1.md)
+- [A2_UPDATE_NOTE__GEOMETRY_AXES_AND_NONFLAT_SELFMAP_CLARIFICATION__2026_03_16__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__GEOMETRY_AXES_AND_NONFLAT_SELFMAP_CLARIFICATION__2026_03_16__v1.md)
+- [A2_UPDATE_NOTE__NESTED_SYSTEM_GRAPH_AND_AXIS0_POLICY_PLAN__2026_03_16__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__NESTED_SYSTEM_GRAPH_AND_AXIS0_POLICY_PLAN__2026_03_16__v1.md)
+- [A2_UPDATE_NOTE__WORLDSTACK_AND_LABS_INTEGRATION_GAP__2026_03_16__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__WORLDSTACK_AND_LABS_INTEGRATION_GAP__2026_03_16__v1.md)
+- [A2_UPDATE_NOTE__WORKFLOW_VERIFICATION_LANE_RECOVERY__2026_03_16__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__WORKFLOW_VERIFICATION_LANE_RECOVERY__2026_03_16__v1.md)
 
 These notes are useful, but they are not proof that the larger recurring external-methods set has been restored.
 
@@ -193,10 +193,10 @@ However:
 
 Audit the suspect mutation window across:
 
-- [system_v3/a2_state](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state)
-- [system_v3/specs](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs)
-- [system_v3/tools](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools)
-- [system_v3/runtime](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/runtime)
+- [system_v3/a2_state](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state)
+- [system_v3/specs](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/specs)
+- [system_v3/tools](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools)
+- [system_v3/runtime](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/runtime)
 
 Classify changes into:
 

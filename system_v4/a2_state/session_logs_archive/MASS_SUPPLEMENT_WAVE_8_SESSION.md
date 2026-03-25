@@ -16,14 +16,14 @@
 - Total: 229 nodes, 203 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/35_PRO_THREAD_BOOT_LEVELS__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/74_A0_SAVE_REPORT_SURFACES__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/ZIP_PROTOCOL_v2.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/THREAD_CONSOLIDATED_RECORD__2026_03_09__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/35_PRO_THREAD_BOOT_LEVELS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/74_A0_SAVE_REPORT_SURFACES__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/ZIP_PROTOCOL_v2.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/THREAD_CONSOLIDATED_RECORD__2026_03_09__v1.md
 
 ## Key Findings
 - Mass ingested 8 docs: specs 35, 42, 67, 73, 74, 76, ZIP_PROTOCOL_v2, THREAD_CONSOLIDATED_RECORD

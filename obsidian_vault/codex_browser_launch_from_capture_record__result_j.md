@@ -9,7 +9,7 @@ authority: "CROSS_VALIDATED"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::codex_browser_launch_from_capture_record__result_j::d12fa26b8fe6ac71`
 
 ## Description
-Unprocessed File Type (codex_browser_launch_from_capture_record__result.json): { | "bundle_rc": 1, | "bundle_result_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/a2_worker_browser_launch_real_observed_v1/A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1
+Unprocessed File Type (codex_browser_launch_from_capture_record__result.json): { | "bundle_rc": 1, | "bundle_result_json": "/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/a2_worker_browser_launch_real_observed_v1/A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1
 
 ## Properties
 - **source_line_range**: 

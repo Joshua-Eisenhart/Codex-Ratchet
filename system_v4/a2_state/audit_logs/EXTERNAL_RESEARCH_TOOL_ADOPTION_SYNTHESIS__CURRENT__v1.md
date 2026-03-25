@@ -7,29 +7,29 @@ Scope: cross-return synthesis over the current external tool-discovery batch
 ## Inputs Processed
 
 Primary synthesis sources:
-- `/Users/joshuaeisenhart/Desktop/FULL_TOOL_DISCOVERY_RESEARCH__ALL_9_DOMAINS__v1.md`
-- `/Users/joshuaeisenhart/.gemini/antigravity/brain/b9afb4e5-a8bb-42af-b552-ece9f9060790/tool_discovery_research_report.md.resolved`
-- `/Users/joshuaeisenhart/Desktop/Project_Tool_Discovery_and_Graph_Skill_Integration_Brief.docx`
-- `/Users/joshuaeisenhart/Desktop/RESEARCH_BY_DOMAIN/01__AUTORESEARCH_AND_COUNCIL_RETOOL_DISCOVERY.md`
-- `/Users/joshuaeisenhart/Desktop/RESEARCH_BY_DOMAIN/02__FORMAL_SEARCH_SYNTHESIS_TOOL_DISCOVERY.md`
-- `/Users/joshuaeisenhart/Desktop/RESEARCH_BY_DOMAIN/03__GRAPH_GEOMETRY_TOPOLOGY_TOOL_DISCOVERY.md`
-- `/Users/joshuaeisenhart/Desktop/RESEARCH_BY_DOMAIN/04__GRAPH_SKILL_CO_INTEGRATION_ARCHITECTURE.md`
-- `/Users/joshuaeisenhart/Desktop/RESEARCH_BY_DOMAIN/05__MEMORY_CONTINUITY_CONTEXT_TOOL_DISCOVERY.md`
-- `/Users/joshuaeisenhart/Desktop/RESEARCH_BY_DOMAIN/06__SKILL_INTEGRATION_WORKFLOW_PROCESS.md`
-- `/Users/joshuaeisenhart/Desktop/RESEARCH_BY_DOMAIN/07__BROAD_PROJECT_TOOL_DISCOVERY.md`
-- `/Users/joshuaeisenhart/Desktop/RESEARCH_BY_DOMAIN/08__SOURCE_FAMILY_CORPUS_EXPANSION.md`
-- `/Users/joshuaeisenhart/Desktop/RESEARCH_BY_DOMAIN/09__PRO_BOOT_JOB__MASTER_DELIVERABLES.md`
-- `/Users/joshuaeisenhart/Desktop/RESEARCH_BY_DOMAIN/10__CROSS_REFERENCE__ANTIGRAVITY_x_CODEX_PRO.md`
+- `/home/ratchet/Desktop/FULL_TOOL_DISCOVERY_RESEARCH__ALL_9_DOMAINS__v1.md`
+- `/home/ratchet/.gemini/antigravity/brain/b9afb4e5-a8bb-42af-b552-ece9f9060790/tool_discovery_research_report.md.resolved`
+- `/home/ratchet/Desktop/Project_Tool_Discovery_and_Graph_Skill_Integration_Brief.docx`
+- `/home/ratchet/Desktop/RESEARCH_BY_DOMAIN/01__AUTORESEARCH_AND_COUNCIL_RETOOL_DISCOVERY.md`
+- `/home/ratchet/Desktop/RESEARCH_BY_DOMAIN/02__FORMAL_SEARCH_SYNTHESIS_TOOL_DISCOVERY.md`
+- `/home/ratchet/Desktop/RESEARCH_BY_DOMAIN/03__GRAPH_GEOMETRY_TOPOLOGY_TOOL_DISCOVERY.md`
+- `/home/ratchet/Desktop/RESEARCH_BY_DOMAIN/04__GRAPH_SKILL_CO_INTEGRATION_ARCHITECTURE.md`
+- `/home/ratchet/Desktop/RESEARCH_BY_DOMAIN/05__MEMORY_CONTINUITY_CONTEXT_TOOL_DISCOVERY.md`
+- `/home/ratchet/Desktop/RESEARCH_BY_DOMAIN/06__SKILL_INTEGRATION_WORKFLOW_PROCESS.md`
+- `/home/ratchet/Desktop/RESEARCH_BY_DOMAIN/07__BROAD_PROJECT_TOOL_DISCOVERY.md`
+- `/home/ratchet/Desktop/RESEARCH_BY_DOMAIN/08__SOURCE_FAMILY_CORPUS_EXPANSION.md`
+- `/home/ratchet/Desktop/RESEARCH_BY_DOMAIN/09__PRO_BOOT_JOB__MASTER_DELIVERABLES.md`
+- `/home/ratchet/Desktop/RESEARCH_BY_DOMAIN/10__CROSS_REFERENCE__ANTIGRAVITY_x_CODEX_PRO.md`
 
 Returned ZIP bundles processed:
-- `/Users/joshuaeisenhart/Desktop/EXTERNAL_RESEARCH_RETOOL_REFINERY__completed_outputs__v1.zip`
-- `/Users/joshuaeisenhart/Desktop/EXTERNAL_RESEARCH_RETOOL_REFINERY__completed_outputs__v1 (1).zip`
-- `/Users/joshuaeisenhart/Desktop/EXTERNAL_RESEARCH_RETOOL_REFINERY__SKILL_INTEGRATION_WORKFLOW_PROCESS_TOOL_DISCOVERY__FILLED_OUTPUTS__v1.zip`
-- `/Users/joshuaeisenhart/Desktop/graph_geometry_topology_research_outputs_v1.zip`
-- `/Users/joshuaeisenhart/Desktop/research_bundle_outputs.zip`
-- `/Users/joshuaeisenhart/Desktop/formal_search_synthesis_tool_discovery_outputs_v1.zip`
-- `/Users/joshuaeisenhart/Desktop/EXTERNAL_RESEARCH_RETOOL_REFINERY__AUTORESEARCH_AND_COUNCIL_DISCOVERY__completed_outputs__v1.zip`
-- `/Users/joshuaeisenhart/Desktop/COMPLETED_ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__MEMORY_CONTINUITY_CONTEXT_TOOL_DISCOVERY__CHATUI_DROPIN__v1.zip`
+- `/home/ratchet/Desktop/EXTERNAL_RESEARCH_RETOOL_REFINERY__completed_outputs__v1.zip`
+- `/home/ratchet/Desktop/EXTERNAL_RESEARCH_RETOOL_REFINERY__completed_outputs__v1 (1).zip`
+- `/home/ratchet/Desktop/EXTERNAL_RESEARCH_RETOOL_REFINERY__SKILL_INTEGRATION_WORKFLOW_PROCESS_TOOL_DISCOVERY__FILLED_OUTPUTS__v1.zip`
+- `/home/ratchet/Desktop/graph_geometry_topology_research_outputs_v1.zip`
+- `/home/ratchet/Desktop/research_bundle_outputs.zip`
+- `/home/ratchet/Desktop/formal_search_synthesis_tool_discovery_outputs_v1.zip`
+- `/home/ratchet/Desktop/EXTERNAL_RESEARCH_RETOOL_REFINERY__AUTORESEARCH_AND_COUNCIL_DISCOVERY__completed_outputs__v1.zip`
+- `/home/ratchet/Desktop/COMPLETED_ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__MEMORY_CONTINUITY_CONTEXT_TOOL_DISCOVERY__CHATUI_DROPIN__v1.zip`
 
 Corrected input count:
 - 8 completed ZIP returns

@@ -1,0 +1,403 @@
+{
+  "timestamp": "2026-03-25T20:58:40.944465+00:00",
+  "n_problems": 12,
+  "n_executable": 12,
+  "n_solved": 5,
+  "problems": [
+    {
+      "problem_id": "GRAVITY_ROSETTA_V1",
+      "goal": "Discrete entropic-curvature operator K=L\u03a6 predicts drift direction",
+      "sim_file": "entropic_curvature_lattice_sim.py",
+      "sim_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/entropic_curvature_lattice_sim.py",
+      "result_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/entropic_curvature_lattice_results.json",
+      "constraints": [
+        "CPTP_steps_only",
+        "PSD_trace_invariants",
+        "finite_system_only"
+      ],
+      "scoring": {
+        "primary": "drift_alignment >= 0.50",
+        "secondary": "stability_across_seeds >= 0.80"
+      },
+      "negative_tests": [
+        "fails_when_random_topology",
+        "fails_when_maximally_mixed_initial"
+      ],
+      "witness": {
+        "kind": "correlation_graph_laplacian",
+        "parameters": {
+          "n_nodes": [
+            4,
+            8,
+            16
+          ],
+          "d_local": [
+            2,
+            4,
+            8
+          ]
+        }
+      },
+      "status": "SOLVED",
+      "executable": true
+    },
+    {
+      "problem_id": "SET_THEORY_ROSETTA_V1",
+      "goal": "Sets emerge as stable MI correlation clusters",
+      "sim_file": "set_theory_correlation_cluster_sim.py",
+      "sim_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/set_theory_correlation_cluster_sim.py",
+      "result_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/set_theory_cluster_results.json",
+      "constraints": [
+        "finite_qubit_system",
+        "partial_trace_reduction"
+      ],
+      "scoring": {
+        "primary": "jaccard_stability_small >= 0.90",
+        "secondary": "jaccard_dissolution_large <= 0.60"
+      },
+      "negative_tests": [
+        "fails_when_product_state"
+      ],
+      "witness": {
+        "kind": "mutual_information_graph",
+        "parameters": {
+          "n_qubits": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "tau": [
+            0.01,
+            0.1,
+            0.5
+          ]
+        }
+      },
+      "status": "SOLVED",
+      "executable": true
+    },
+    {
+      "problem_id": "CALCULUS_EMERGENCE_V1",
+      "goal": "Wave/Line algebras become orthogonal at large d (calculus is emergent)",
+      "sim_file": "axis5_discrete_calculus_rosetta_sim.py",
+      "sim_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/axis5_discrete_calculus_rosetta_sim.py",
+      "result_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/axis5_discrete_calculus_rosetta_results.json",
+      "constraints": [
+        "non_triviality_gate",
+        "CPTP_channels"
+      ],
+      "scoring": {
+        "primary": "overlap_convergence_to_zero",
+        "secondary": "both_norms_above_1e-6"
+      },
+      "negative_tests": [
+        "fails_at_d=4"
+      ],
+      "witness": {
+        "kind": "choi_operator_pair",
+        "parameters": {
+          "dims": [
+            4,
+            8,
+            16,
+            32,
+            64
+          ]
+        }
+      },
+      "status": "KILL_EXPECTED",
+      "executable": true
+    },
+    {
+      "problem_id": "AXIS_LIE_CLOSURE_V1",
+      "goal": "6 axis generators produce a >6-dimensional Lie algebra via commutators",
+      "sim_file": "axis_lie_closure_expansion_sim.py",
+      "sim_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/axis_lie_closure_expansion_sim.py",
+      "result_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/axis_lie_closure_results.json",
+      "constraints": [
+        "normalized_choi",
+        "singular_value_rank_threshold"
+      ],
+      "scoring": {
+        "primary": "closure_rank > base_rank",
+        "secondary": "stable_across_dimensions"
+      },
+      "negative_tests": [
+        "fails_when_axes_identical"
+      ],
+      "witness": {
+        "kind": "choi_commutator_closure",
+        "parameters": {
+          "dims": [
+            4,
+            8,
+            16
+          ],
+          "max_levels": 2
+        }
+      },
+      "status": "SOLVED",
+      "executable": true
+    },
+    {
+      "problem_id": "RESIDUAL_SUBSPACE_V1",
+      "goal": "Operator manifold has stable directions beyond axes 1-6",
+      "sim_file": "axis_residual_subspace_discovery_sim.py",
+      "sim_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/axis_residual_subspace_discovery_sim.py",
+      "result_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/axis_residual_subspace_results.json",
+      "constraints": [
+        "random_CPTP_probes",
+        "least_squares_projection"
+      ],
+      "scoring": {
+        "primary": "mean_residual_norm >= 0.20",
+        "secondary": "stability_across_seeds >= 0.80"
+      },
+      "negative_tests": [
+        "fails_when_probes_in_axis_span"
+      ],
+      "witness": {
+        "kind": "projection_residual",
+        "parameters": {
+          "dims": [
+            4,
+            8,
+            16
+          ],
+          "n_probes": 30
+        }
+      },
+      "status": "SOLVED",
+      "executable": true
+    },
+    {
+      "problem_id": "DARK_SECTOR_DUALITY_V1",
+      "goal": "Dark Energy = entropy expansion; Dark Matter = negentropy anchors",
+      "sim_file": "origin_chain_physics_sim.py",
+      "sim_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/origin_chain_physics_sim.py",
+      "result_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/origin_chain_physics_results.json",
+      "constraints": [
+        "CPTP_steps_only",
+        "PSD_trace_invariants"
+      ],
+      "scoring": {
+        "primary": "entropy_diverges_for_DE",
+        "secondary": "purity_preserved_for_DM"
+      },
+      "negative_tests": [
+        "fails_when_no_dissipation"
+      ],
+      "witness": {
+        "kind": "density_matrix_dynamics",
+        "parameters": {
+          "dims": [
+            4,
+            8
+          ]
+        }
+      },
+      "status": "SOLVED",
+      "executable": true
+    },
+    {
+      "problem_id": "ABIOGENESIS",
+      "goal": "Life requires chiral Deductive-Inductive engine; symmetric engines die",
+      "sim_file": "abiogenesis_v2_sim.py",
+      "sim_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/abiogenesis_v2_sim.py",
+      "result_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/abiogenesis_v2_results.json",
+      "constraints": [
+        "finite_system_only",
+        "deductive_inductive_loop",
+        "energy_conservation"
+      ],
+      "scoring": {
+        "primary": "chiral_survival_rate >= 0.80",
+        "secondary": "symmetric_death_rate >= 0.90"
+      },
+      "negative_tests": [
+        "fails_when_no_chirality",
+        "fails_when_no_deductive_engine"
+      ],
+      "witness": {
+        "kind": "chiral_engine_survival",
+        "parameters": {
+          "chirality_bias": [
+            0.0,
+            0.1,
+            0.3,
+            0.5,
+            1.0
+          ]
+        }
+      },
+      "status": "ACTIVE",
+      "executable": true
+    },
+    {
+      "problem_id": "BIG_BANG_TIME_GENESIS",
+      "goal": "Time begins when bipartite entanglement I(A:B)>0 breaks thermal symmetry",
+      "sim_file": "big_bang_fuzz_sim.py",
+      "sim_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/big_bang_fuzz_sim.py",
+      "result_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/big_bang_fuzz_results.json",
+      "constraints": [
+        "CPTP_steps_only",
+        "finite_system_only",
+        "thermal_initial_state"
+      ],
+      "scoring": {
+        "primary": "mutual_info_positive >= 0.80",
+        "secondary": "symmetry_break_detected >= 0.90"
+      },
+      "negative_tests": [
+        "fails_when_no_interaction",
+        "fails_when_maximally_mixed_initial"
+      ],
+      "witness": {
+        "kind": "entanglement_symmetry_break",
+        "parameters": {
+          "d": [
+            2,
+            4,
+            8,
+            16
+          ]
+        }
+      },
+      "status": "ACTIVE",
+      "executable": true
+    },
+    {
+      "problem_id": "TOPOLOGICAL_MATTER",
+      "goal": "Baryonic matter forms as stable topological knots of micro-GW loops",
+      "sim_file": "origin_chain_physics_sim.py",
+      "sim_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/origin_chain_physics_sim.py",
+      "result_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/origin_chain_physics_results.json",
+      "constraints": [
+        "CPTP_steps_only",
+        "PSD_trace_invariants",
+        "finite_system_only"
+      ],
+      "scoring": {
+        "primary": "knot_stability >= 0.80",
+        "secondary": "topological_invariant_preserved >= 0.90"
+      },
+      "negative_tests": [
+        "fails_when_trivial_topology",
+        "fails_when_no_dissipation"
+      ],
+      "witness": {
+        "kind": "topological_knot_stability",
+        "parameters": {
+          "d": [
+            4,
+            8,
+            16
+          ]
+        }
+      },
+      "status": "ACTIVE",
+      "executable": true
+    },
+    {
+      "problem_id": "YANG_MILLS_MASS_GAP",
+      "goal": "Spectral gap between vacuum and first excited state persists >0 at all finite d",
+      "sim_file": "yang_mills_sim.py",
+      "sim_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/yang_mills_sim.py",
+      "result_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/yang_mills_results.json",
+      "constraints": [
+        "CPTP_steps_only",
+        "PSD_trace_invariants",
+        "finite_system_only"
+      ],
+      "scoring": {
+        "primary": "spectral_gap > 0 at all d",
+        "secondary": "gap_stability_across_seeds >= 0.80"
+      },
+      "negative_tests": [
+        "fails_when_commutative_algebra",
+        "fails_when_infinite_temperature"
+      ],
+      "witness": {
+        "kind": "spectral_gap_persistence",
+        "parameters": {
+          "d": [
+            2,
+            4,
+            8,
+            16,
+            32
+          ]
+        }
+      },
+      "status": "ACTIVE",
+      "executable": true
+    },
+    {
+      "problem_id": "RIEMANN_ZETA_GUE",
+      "goal": "Non-commutative operator composition produces GUE eigenvalue spacing",
+      "sim_file": "riemann_zeta_sim.py",
+      "sim_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/riemann_zeta_sim.py",
+      "result_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/riemann_zeta_results.json",
+      "constraints": [
+        "non_commutative_operators",
+        "finite_system_only"
+      ],
+      "scoring": {
+        "primary": "gue_spacing_match >= 0.80",
+        "secondary": "convergence_with_dimension >= 0.70"
+      },
+      "negative_tests": [
+        "fails_when_commutative_operators",
+        "fails_when_diagonal_operators"
+      ],
+      "witness": {
+        "kind": "eigenvalue_spacing_distribution",
+        "parameters": {
+          "d": [
+            4,
+            8,
+            16,
+            32,
+            64
+          ]
+        }
+      },
+      "status": "ACTIVE",
+      "executable": true
+    },
+    {
+      "problem_id": "P_VS_NP_ASYMMETRY",
+      "goal": "Verification scales O(N), generation scales O(2^N) in open quantum networks",
+      "sim_file": "p_vs_np_sim.py",
+      "sim_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/p_vs_np_sim.py",
+      "result_artifact": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/p_vs_np_results.json",
+      "constraints": [
+        "CPTP_steps_only",
+        "open_system_dynamics",
+        "finite_system_only"
+      ],
+      "scoring": {
+        "primary": "verification_polynomial >= 0.90",
+        "secondary": "generation_exponential >= 0.80"
+      },
+      "negative_tests": [
+        "fails_when_closed_system",
+        "fails_when_trivial_hamiltonian"
+      ],
+      "witness": {
+        "kind": "computational_asymmetry",
+        "parameters": {
+          "d": [
+            2,
+            4,
+            8,
+            16
+          ]
+        }
+      },
+      "status": "ACTIVE",
+      "executable": true
+    }
+  ]
+}

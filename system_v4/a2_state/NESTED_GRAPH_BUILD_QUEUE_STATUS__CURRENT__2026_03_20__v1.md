@@ -14,8 +14,8 @@ current_handoff_json:
 - `A1_STRIPPED` and `A1_CARTRIDGE` remain blocked because the direct target is still proposal-side and the colder alias is not head-ready
 
 ## No Work Reason
-- completed alias-lift audit: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__PAIRWISE_CORRELATION_SPREAD_FUNCTIONAL__2026_03_20__v1.md
-- control surface: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md
+- completed alias-lift audit: /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__PAIRWISE_CORRELATION_SPREAD_FUNCTIONAL__2026_03_20__v1.md
+- control surface: /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md
 - reason: direct entropy-executable work should pause until a cleaner alias or deliberate component ladder is justified
 
 ## Preserved Overlap Observation Health

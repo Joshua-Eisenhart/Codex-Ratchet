@@ -8,7 +8,7 @@ Date: 2026-03-15
 Two linked changes landed:
 
 1. active A2 now carries the bounded helper:
-   - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_THREADB_CONSEQUENCE_SUBSET__SOURCE_BOUND_HELPER__2026_03_15__v1.md`
+   - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_THREADB_CONSEQUENCE_SUBSET__SOURCE_BOUND_HELPER__2026_03_15__v1.md`
 2. the live intake Thread B chain has been released from `system_v3/a2_high_entropy_intake_surface` into quarantine
 
 ## Why
@@ -30,7 +30,7 @@ Moved to quarantine:
 2. `BATCH_A2MID_CONTRADICTION_threadb_kernel_authority__v1`
 
 Destination:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/archive/intake_retention_quarantine/2026-03-15__THREADB_KERNEL_CHAIN__2026_03_15`
+- `/home/ratchet/Desktop/Codex Ratchet/archive/intake_retention_quarantine/2026-03-15__THREADB_KERNEL_CHAIN__2026_03_15`
 
 ## Guardrail
 

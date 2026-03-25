@@ -17,7 +17,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `7-11`
   - source 1: `13-17`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:110-116`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:110-116`
 - tension:
   - this source defines geometry abstractly as a constraint manifold induced by admissibility statements
   - current active A2 also says axes are candidate degrees of freedom of a geometric constraint manifold, but adds that a nested Hopf-tori substrate or equivalent sim-capable substrate must be running before serious SIM testing
@@ -44,9 +44,9 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `28-30`
   - source 1: `41`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:25-27`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:39-46`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:143-149`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:25-27`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:39-46`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:143-149`
 - tension:
   - this source says Axis-3 carries only engine-family semantics and explicitly forbids chirality / Berry / flux language in canon
   - the immediately prior companion batch reuses Axis-3 exactly that way for Flux2 terrain expansion
@@ -57,8 +57,8 @@ Extraction mode: `TERM_CONFLICT_PASS`
 - source markers:
   - source 1: `17`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:29`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:121-137`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:29`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:121-137`
 - tension:
   - this source keeps geometry at a minimal coordinate-free manifold level with no primitive metric
   - the companion quickly places S3 / Bloch / Hopf geometry as derived early structure
@@ -69,8 +69,8 @@ Extraction mode: `TERM_CONFLICT_PASS`
 - source markers:
   - source 1: `28-30`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:38-42`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:252-253`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:38-42`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:252-253`
 - tension:
   - the file says no additional semantics are attached to Type-1/Type-2 in canon
   - nearby refined-fuel and overlay surfaces still exert pressure to attach engine, flux, or legacy substrate meanings around those labels

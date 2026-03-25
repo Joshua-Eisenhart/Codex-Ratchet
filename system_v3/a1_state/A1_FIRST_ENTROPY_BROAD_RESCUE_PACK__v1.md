@@ -23,8 +23,8 @@ It is not for:
 
 ## 2) Source Run
 Primary source:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
 
 Observed dominant kill basin:
 - `NEG_CLASSICAL_TEMPERATURE = 20`
@@ -145,7 +145,7 @@ Do not use them as:
 - direct engine-name graveyard-ingestion claims
 
 Reference:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_ENGINE_CLASSICAL_RESIDUE_QUARRY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_ENGINE_CLASSICAL_RESIDUE_QUARRY__v1.md`
 
 ## 9) How To Use This Pack
 When running broad entropy pressure:
@@ -171,8 +171,8 @@ It should be used before spending more budget on narrower bookkeeping or homuncu
 This pack is now injected into the actual broad entropy worker request path via `priority_terms`.
 
 Evidence:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
 
 Observed front-loaded terms:
 1. `information_work_extraction_bound`
@@ -182,8 +182,8 @@ Observed front-loaded terms:
 The same broad entropy profile now also injects explicit dominant negative classes into the real worker request path.
 
 Evidence:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
 
 Observed injected negative classes:
 - `CLASSICAL_TEMPERATURE`
@@ -227,7 +227,7 @@ Interpretation:
 - the next entropy work should keep pushing that basin instead of reopening narrow bookkeeping routes
 
 Reformulation follow-up:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 - reformulation broad still lands:
   - `PASS__EXECUTED_CYCLE`
   - `graveyard_count = 144`
@@ -242,7 +242,7 @@ Reformulation follow-up:
   - next entropy control move must come from graveyard topology / clustered rescue pressure, not another broad prompt reshuffle
 
 Active topology surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__v1.md`
 
 Next control pack:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_CLUSTER_RESCUE_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_CLUSTER_RESCUE_PACK__v1.md`

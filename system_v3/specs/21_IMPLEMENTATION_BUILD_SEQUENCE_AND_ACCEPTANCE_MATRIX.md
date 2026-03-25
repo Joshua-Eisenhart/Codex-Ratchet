@@ -7,7 +7,7 @@ Owner: `RQ-125..RQ-132`
 This document defines the ordered implementation sequence from specs to a running A1/A0/B/SIM loop.
 
 Run-surface scaffolding companion:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/22_RUN_SURFACE_TEMPLATE_AND_SCAFFOLDER_CONTRACT.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/22_RUN_SURFACE_TEMPLATE_AND_SCAFFOLDER_CONTRACT.md`
 
 ## Normative Clauses
 - `RQ-125` MUST: implementation follows fixed phases `P0..P7` in order; skipping a phase is forbidden.

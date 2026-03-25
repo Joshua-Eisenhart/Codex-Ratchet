@@ -42,4 +42,4 @@ Extraction mode: `QIT_BRIDGE_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 1 2 topology mathΓÇ¿ΓÇ¿ΓÇ¿Good ΓÇö this is the right point to ask thatΓÇª.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 1 2 topology mathΓÇ¿ΓÇ¿ΓÇ¿Good ΓÇö this is the right point to ask thatΓÇª.md`

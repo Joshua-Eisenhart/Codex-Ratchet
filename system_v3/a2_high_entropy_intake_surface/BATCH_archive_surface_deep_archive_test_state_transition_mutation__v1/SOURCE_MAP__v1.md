@@ -8,7 +8,7 @@ Date: 2026-03-09
 ## 1) Batch Selection
 - selected sources:
   - direct archive object:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION`
   - retained primary run-core files:
     - `summary.json`
     - `state.json`
@@ -40,11 +40,11 @@ Date: 2026-03-09
   - the archive value is a compact one-step mutation seed with one executed strategy/export/snapshot spine, two SIM returns, final-snapshot drift above the only event row, and exact duplicate sidecar residue
   - this object is useful for demotion lineage because it preserves one-step transport cleanliness while keeping semantic promotion open, snapshot-versus-state evidence splits, runtime-path leakage, and top-level packaging duplication
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/V2_ZIPV2_PACKET_E2E_001`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/V2_ZIPV2_PACKET_E2E_001`
 
 ## 2) Source Membership
 ### Source 1
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION`
 - source class: one-step mutation run root
 - retained top-level contents:
   - `a1_inbox/`
@@ -67,7 +67,7 @@ Date: 2026-03-09
   - `zip_packets/`
 
 ### Source 2
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/summary.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/summary.json`
 - source class: primary terminal run summary
 - summary markers:
   - `run_id TEST_STATE_TRANSITION_MUTATION`
@@ -91,7 +91,7 @@ Date: 2026-03-09
     - all other tiers `0/0`
 
 ### Source 3
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/state.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/state.json`
 - source class: primary retained final state
 - compact state markers:
   - `accepted_batch_count 1`
@@ -126,14 +126,14 @@ Date: 2026-03-09
   - final state preserves one accepted mutation batch and both one-step SIM specs, but promotion closure remains open and final state omits pending-evidence bookkeeping
 
 ### Source 4
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/state.json.sha256`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/state.json.sha256`
 - source class: primary state integrity sidecar
 - integrity result:
   - declared hash matches `state.json`
   - declared hash matches `summary.json` final hash
 
 ### Source 5
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/sequence_state.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/sequence_state.json`
 - source class: retained sequence counters
 - counter markers:
   - `A0 1`
@@ -145,7 +145,7 @@ Date: 2026-03-09
   - sequence counters preserve a single executed strategy/export/snapshot spine plus two SIM returns and no queued continuation
 
 ### Source 6
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/events.jsonl`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/events.jsonl`
 - source class: primary executed event ledger
 - event markers:
   - retained line count: `1`
@@ -167,7 +167,7 @@ Date: 2026-03-09
   - the executed ledger preserves one clean transition only; final closure still sits above the only visible event row
 
 ### Source 7
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/soak_report.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/soak_report.md`
 - source class: primary human-readable stop report
 - report markers:
   - `cycle_count 1`
@@ -179,7 +179,7 @@ Date: 2026-03-09
     - `NONE`
 
 ### Source 8
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/{summary 2.json,state 2.json,state.json 2.sha256,sequence_state 2.json,events 2.jsonl,soak_report 2.md}`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/{summary 2.json,state 2.json,state.json 2.sha256,sequence_state 2.json,events 2.jsonl,soak_report 2.md}`
 - source class: exact duplicate packaging-residue family
 - duplication result:
   - each suffixed ` 2` file is byte-identical to its unsuffixed primary counterpart
@@ -188,7 +188,7 @@ Date: 2026-03-09
   - treat the suffixed family as packaging duplication, not as a separate runtime branch
 
 ### Source 9
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/{a1_inbox,a1_strategies 2,outbox 2,reports 2,zip_packets 2}`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/{a1_inbox,a1_strategies 2,outbox 2,reports 2,zip_packets 2}`
 - source class: empty residue directories
 - retained contents:
   - none
@@ -196,7 +196,7 @@ Date: 2026-03-09
   - these directory shells are present but empty and add no executed runtime evidence
 
 ### Source 10
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/zip_packets/`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/zip_packets/`
 - source class: one-step executed packet lattice
 - packet file count: `5`
 - packet kind counts:
@@ -208,7 +208,7 @@ Date: 2026-03-09
   - the lattice preserves a single executed loop with one strategy, one export, one snapshot, and two SIM returns, without any queued continuation packet
 
 ### Source 11
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/zip_packets/000001_A1_TO_A0_STRATEGY_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/zip_packets/000001_A1_TO_A0_STRATEGY_ZIP.zip`
 - source class: only strategy packet
 - sha256: `c42c71ae226d9d67cc12aa5dfc14ebf8a8cbe8ffdbd83097056c7f4a890a477f`
 - size bytes: `1905`
@@ -227,7 +227,7 @@ Date: 2026-03-09
   - `inputs.state_hash 7c6fbf60826eaf185e71e9329873beddeda9baa2f9ce956626b97115e8bafc89`
 
 ### Source 12
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/zip_packets/000001_A0_TO_B_EXPORT_BATCH_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/zip_packets/000001_A0_TO_B_EXPORT_BATCH_ZIP.zip`
 - source class: only export packet
 - sha256: `e39f055c7aeeca650ec7ade53792fc2dc61e75542047b839ab7077a279758fa7`
 - size bytes: `1423`
@@ -243,7 +243,7 @@ Date: 2026-03-09
   - both specs keep `KILL_IF ... NEG_NEG_BOUNDARY`
 
 ### Source 13
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/zip_packets/000001_B_TO_A0_STATE_UPDATE_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/zip_packets/000001_B_TO_A0_STATE_UPDATE_ZIP.zip`
 - source class: only Thread-S snapshot packet
 - sha256: `74bbff97650c8613af3e016ed49abe78d2e68f701867aaa46e3f75d58b88544a`
 - size bytes: `1552`
@@ -260,7 +260,7 @@ Date: 2026-03-09
     - `ACCEPTED_BATCH_COUNT=1`
 
 ### Source 14
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/zip_packets/{000001_SIM_TO_A0_SIM_RESULT_ZIP.zip,000002_SIM_TO_A0_SIM_RESULT_ZIP.zip}`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_STATE_TRANSITION_MUTATION/zip_packets/{000001_SIM_TO_A0_SIM_RESULT_ZIP.zip,000002_SIM_TO_A0_SIM_RESULT_ZIP.zip}`
 - source class: retained SIM evidence pair
 - member markers:
   - `000001_SIM_TO_A0_SIM_RESULT_ZIP.zip`

@@ -16,7 +16,7 @@
 - Total: 3761 nodes, 7573 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md
 
 ## Batches
 - `AUTO_01_REQUIREMENTS_LEDGER_6344293d7f144d87`

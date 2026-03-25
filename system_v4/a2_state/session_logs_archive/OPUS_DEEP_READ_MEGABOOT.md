@@ -16,7 +16,7 @@
 - Total: 3751 nodes, 7565 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/MEGABOOT_RATCHET_SUITE_v4.8 copy.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/MEGABOOT_RATCHET_SUITE_v4.8 copy.md
 
 ## Batches
 - `BATCH_V4_DEEP_READ_MEGABOOT`

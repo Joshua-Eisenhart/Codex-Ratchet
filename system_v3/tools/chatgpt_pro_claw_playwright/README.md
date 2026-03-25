@@ -22,11 +22,11 @@ If you are not logged in, log in manually, then return to the terminal and press
 Example (paths must exist):
 ```bash
 node work/chatgpt_pro_claw_playwright/run_one_job.mjs \
-  --zip "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__DEFAULT_ANY_DOCUMENT__CHATUI_DROPIN__v1.zip" \
-  --doc "/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.txt" \
-  --send-text-file "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__DEFAULT_ANY_DOCUMENT__CHATUI_DROPIN__v1/meta/CHATUI_MINIMAL_SEND_TEXT__COPY_PASTE.md" \
-  --download-dir "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/chatgpt_pro_claw_playwright/downloads" \
-  --profile-dir "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/chatgpt_pro_claw_playwright/profile" \
+  --zip "/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__DEFAULT_ANY_DOCUMENT__CHATUI_DROPIN__v1.zip" \
+  --doc "/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.txt" \
+  --send-text-file "/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__DEFAULT_ANY_DOCUMENT__CHATUI_DROPIN__v1/meta/CHATUI_MINIMAL_SEND_TEXT__COPY_PASTE.md" \
+  --download-dir "/home/ratchet/Desktop/Codex Ratchet/work/chatgpt_pro_claw_playwright/downloads" \
+  --profile-dir "/home/ratchet/Desktop/Codex Ratchet/work/chatgpt_pro_claw_playwright/profile" \
   --headed
 ```
 
@@ -35,7 +35,7 @@ After downloads land in `--download-dir`, run the deterministic validators to re
 
 ```bash
 python3 system_v3/tools/chatgpt_pro_claw_playwright/ingest_downloads.py \
-  --download-dir "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/chatgpt_pro_claw_playwright/downloads" \
+  --download-dir "/home/ratchet/Desktop/Codex Ratchet/work/chatgpt_pro_claw_playwright/downloads" \
   --mode discovery \
   --min-topic-slugs 10 \
   --move

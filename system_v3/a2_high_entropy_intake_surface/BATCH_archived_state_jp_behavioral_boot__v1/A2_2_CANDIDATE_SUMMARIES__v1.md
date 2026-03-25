@@ -38,4 +38,4 @@ Extraction mode: `BEHAVIORAL_BOOT_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_LOW_ENTROPY_LIBRARY_v4.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_LOW_ENTROPY_LIBRARY_v4.md`

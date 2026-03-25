@@ -7,17 +7,17 @@ Date: 2026-03-08
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/STRUCTURAL_MEMORY_MAP_v2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/STRUCTURAL_MEMORY_MAP_v2.md`
 - reason for single-doc batch:
   - one bounded archive-side memory-topology map
   - mostly reindexes other archived A2 docs instead of introducing new prose doctrine
   - useful as a structural summary surface, not a family bundle
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/UPGRADE_STRUCTURAL_MAP_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/UPGRADE_STRUCTURAL_MAP_v1.md`
 
 ## 2) Source Membership
 - primary source:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/STRUCTURAL_MEMORY_MAP_v2.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/STRUCTURAL_MEMORY_MAP_v2.md`
   - sha256: `00aa78f882dbee3be11b93b8cf9df39f20bef03897771ab2a7569d9d04b830db`
   - size bytes: `11789`
   - line count: `229`

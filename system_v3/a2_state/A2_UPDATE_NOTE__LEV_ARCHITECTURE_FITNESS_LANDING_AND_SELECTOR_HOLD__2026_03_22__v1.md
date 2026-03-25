@@ -5,10 +5,10 @@ Surface class: `DERIVED_A2`
 Status: active maintenance note
 
 Source-bound basis:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_ARCHITECTURE_FITNESS_REPORT__CURRENT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_ARCHITECTURE_FITNESS_REPORT__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md`
 
 Bounded update:
 - `SKILL_CLUSTER::lev-architecture-fitness-review` now has its first bounded landed slice:

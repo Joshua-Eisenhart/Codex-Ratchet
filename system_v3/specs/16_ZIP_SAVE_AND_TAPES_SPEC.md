@@ -5,9 +5,9 @@ Owner: `RQ-090..RQ-096`
 
 Companion repair targets:
 - semantic `FULL+` restore bundle:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1.md`
 - A0 save/report surfaces:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/74_A0_SAVE_REPORT_SURFACES__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/74_A0_SAVE_REPORT_SURFACES__v1.md`
 
 ## ZIP_JOB Carrier (`RQ-090`)
 - `RQ-090` MUST: inter-thread communication uses `ZIP_JOB` bundles as atomic deterministic carriers.

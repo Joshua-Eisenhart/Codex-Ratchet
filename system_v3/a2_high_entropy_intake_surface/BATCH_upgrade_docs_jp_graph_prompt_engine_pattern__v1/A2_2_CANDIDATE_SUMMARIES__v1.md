@@ -30,4 +30,4 @@ Extraction mode: `ENGINE_PATTERN_PASS`
 
 ## Candidate Summary C5
 - proposal-only next-step note:
-  - no further folder-order sources remain in `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs`
+  - no further folder-order sources remain in `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs`

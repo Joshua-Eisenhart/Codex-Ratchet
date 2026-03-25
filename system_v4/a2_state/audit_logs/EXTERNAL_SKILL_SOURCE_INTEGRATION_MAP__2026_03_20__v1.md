@@ -20,7 +20,7 @@ It does **not** treat them as drop-in doctrine.
 
 ### Local Lev Runtime Audit
 
-- source: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
+- source: `/home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
 - key value:
   - explicit retool rule: keep useful process, identify flattening assumption, retool for finitude + non-commutation
   - strong alignment with Lev's `Topology -> Orchestration -> Dispatch` split
@@ -77,7 +77,7 @@ It does **not** treat them as drop-in doctrine.
 
 - source anchor:
   - `https://github.com/karpathy`
-  - local design interpretation in `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
+  - local design interpretation in `/home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
 - import-worthy pattern:
   - small core
   - visible loop
@@ -88,7 +88,7 @@ It does **not** treat them as drop-in doctrine.
 ### SAT / SMT / Z3
 
 - source anchor:
-  - local SAT / SMT section in `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
+  - local SAT / SMT section in `/home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
 - import-worthy pattern:
   - local hard incompatibility detection
   - minimal failure-set extraction
@@ -100,7 +100,7 @@ These are the real places where the above sources would have to enter the live s
 
 ### 1. Canonical Skill Inventory
 
-- file: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/skill_registry_v1.json`
+- file: `/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/skill_registry_v1.json`
 - role:
   - declares repo-derived skills and external Codex-backed skills
   - binds trust zones, graph families, capabilities, adapters, and execution paths
@@ -110,7 +110,7 @@ These are the real places where the above sources would have to enter the live s
 
 ### 2. Skill Discovery / Admission Logic
 
-- file: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/skill_registry.py`
+- file: `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/skill_registry.py`
 - role:
   - loads the registry snapshot
   - filters by zone/capability via `find_relevant()`
@@ -122,7 +122,7 @@ These are the real places where the above sources would have to enter the live s
 
 ### 3. Live Runtime Binding
 
-- file: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/run_real_ratchet.py`
+- file: `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/run_real_ratchet.py`
 - role:
   - selects candidate phase skills
   - resolves execution adapters
@@ -133,7 +133,7 @@ These are the real places where the above sources would have to enter the live s
 
 ### 4. Graph Reflection of Skills
 
-- file: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/runtime_graph_bridge.py`
+- file: `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/runtime_graph_bridge.py`
 - role:
   - projects skills into graph form
   - prunes stale skills
@@ -144,8 +144,8 @@ These are the real places where the above sources would have to enter the live s
 ### 5. Extension Safety Tests
 
 - files:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/test_upstream_phase_selection_smoke.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/test_phase4_skill_dispatch_smoke.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/test_upstream_phase_selection_smoke.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/test_phase4_skill_dispatch_smoke.py`
 - role:
   - protect phase-runner metadata
   - protect adapter-to-dispatch binding expectations
@@ -213,8 +213,8 @@ concrete target:
   - status: staged / approved / rejected / promoted
 
 insertion points:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/skill_registry.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/skill_registry_v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/skill_registry.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/skill_registry_v1.json`
 
 ### Lane 2: Workshop Lifecycle Import
 
@@ -251,7 +251,7 @@ concrete target:
   - gate-only use, not global ontology enforcement
 
 source surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
 
 ### Lane 4: Karpathy Minimal-Core Audit
 

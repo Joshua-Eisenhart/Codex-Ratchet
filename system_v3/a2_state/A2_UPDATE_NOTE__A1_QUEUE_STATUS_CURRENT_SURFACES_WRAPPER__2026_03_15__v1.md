@@ -7,20 +7,20 @@ Role: preserve the bridge where one machine-readable `A1_QUEUE_STATUS_PACKET_v1`
 ## Scope
 
 New queue-current surfaces tools:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/render_a1_queue_status_current_note_from_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_a1_queue_status_surfaces.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/render_a1_queue_status_current_note_from_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_a1_queue_status_surfaces.py`
 
 Focused regression:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_queue_status_surfaces.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_queue_status_surfaces.py`
 
 Doc touch-up:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/32_A1_QUEUE_STATUS_SURFACE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/32_A1_QUEUE_STATUS_SURFACE__v1.md`
 
 Concrete sample current surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__CURRENT_NO_WORK__2026_03_15__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS__CURRENT__NO_WORK__2026_03_15__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__CURRENT_READY_SUBSTRATE__2026_03_15__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS__CURRENT__READY_SUBSTRATE__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__CURRENT_NO_WORK__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS__CURRENT__NO_WORK__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__CURRENT_READY_SUBSTRATE__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS__CURRENT__READY_SUBSTRATE__2026_03_15__v1.md`
 
 ## Problem
 
@@ -74,8 +74,8 @@ Syntax:
 - `python3 -m py_compile system_v3/tools/render_a1_queue_status_current_note_from_packet.py system_v3/tools/prepare_a1_queue_status_surfaces.py system_v3/runtime/bootpack_b_kernel_v1/tests/test_prepare_a1_queue_status_surfaces.py`
 
 Concrete sample generation:
-- `python3 system_v3/tools/prepare_a1_queue_status_surfaces.py --no-work-reason 'no bounded A1 family slice is currently prepared' --out-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__CURRENT_NO_WORK__2026_03_15__v1.json' --out-note '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS__CURRENT__NO_WORK__2026_03_15__v1.md'`
-- `python3 system_v3/tools/prepare_a1_queue_status_surfaces.py --family-slice-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json' --family-slice-schema-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1.schema.json' --model 'GPT-5.4 Medium' --dispatch-id 'A1_DISPATCH__CURRENT_READY_SUBSTRATE__2026_03_15__v1' --preparation-mode bundle --out-dir '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/current_queue_ready_bundle__substrate__2026_03_15__v1' --out-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__CURRENT_READY_SUBSTRATE__2026_03_15__v1.json' --out-note '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS__CURRENT__READY_SUBSTRATE__2026_03_15__v1.md'`
+- `python3 system_v3/tools/prepare_a1_queue_status_surfaces.py --no-work-reason 'no bounded A1 family slice is currently prepared' --out-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__CURRENT_NO_WORK__2026_03_15__v1.json' --out-note '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS__CURRENT__NO_WORK__2026_03_15__v1.md'`
+- `python3 system_v3/tools/prepare_a1_queue_status_surfaces.py --family-slice-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json' --family-slice-schema-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1.schema.json' --model 'GPT-5.4 Medium' --dispatch-id 'A1_DISPATCH__CURRENT_READY_SUBSTRATE__2026_03_15__v1' --preparation-mode bundle --out-dir '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/current_queue_ready_bundle__substrate__2026_03_15__v1' --out-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__CURRENT_READY_SUBSTRATE__2026_03_15__v1.json' --out-note '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS__CURRENT__READY_SUBSTRATE__2026_03_15__v1.md'`
 
 Observed result:
 - both packet and note are produced together

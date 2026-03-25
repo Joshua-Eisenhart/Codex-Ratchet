@@ -8,7 +8,7 @@ Date: 2026-03-09
 ## 1) Batch Selection
 - selected sources:
   - direct archive object:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002`
   - retained run-core files:
     - `summary.json`
     - `state.json`
@@ -32,11 +32,11 @@ Date: 2026-03-09
   - the archive value is a compact two-step real-A1-named run with a balanced packet lattice, no queued continuation residue, and a visibly mixed second-step closure surface
   - this object is useful for demotion lineage because summary and soak remain fairly coherent while replay attribution, missing sequence state, schema-fail second-step residue, mixed `S0001`/`S0002` survivor lineage, and final-hash drift all remain preserved
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_RESUME_001`
 
 ## 2) Source Membership
 ### Source 1
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002`
 - source class: two-step real-A1-named run root
 - retained top-level contents:
   - `a1_inbox/`
@@ -50,7 +50,7 @@ Date: 2026-03-09
   - `sequence_state.json` not retained
 
 ### Source 2
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/summary.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/summary.json`
 - source class: terminal run summary
 - summary markers:
   - `run_id TEST_REAL_A1_002`
@@ -74,7 +74,7 @@ Date: 2026-03-09
     - `T1_COMPOUND fail 2 pass 0`
 
 ### Source 3
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/state.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/state.json`
 - source class: retained final state
 - compact state markers:
   - `accepted_batch_count 2`
@@ -108,14 +108,14 @@ Date: 2026-03-09
   - final state keeps two-step acceptance and three parked promotion states, but the retained survivor set is mixed: the `OMEGA` alternative advances to `S0002` while the `SIGMA` target remains at `S0001`
 
 ### Source 4
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/state.json.sha256`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/state.json.sha256`
 - source class: state integrity sidecar
 - integrity result:
   - declared hash matches `state.json`
   - declared hash matches `summary.json` final hash
 
 ### Source 5
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/events.jsonl`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/events.jsonl`
 - source class: executed event ledger
 - event markers:
   - retained line count: `2`
@@ -146,7 +146,7 @@ Date: 2026-03-09
   - events preserve a clean two-step execution count, but the event chain does not close the full state lineage retained elsewhere
 
 ### Source 6
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/soak_report.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/soak_report.md`
 - source class: human-readable stop report
 - report markers:
   - `cycle_count 2`
@@ -158,7 +158,7 @@ Date: 2026-03-09
     - `SCHEMA_FAIL 1`
 
 ### Source 7
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/a1_inbox/`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/a1_inbox/`
 - source class: empty inbox residue
 - retained contents:
   - none
@@ -166,7 +166,7 @@ Date: 2026-03-09
   - retained A1 strategy lineage survives only in `zip_packets/`; there is no queued step-3 continuation surface
 
 ### Source 8
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/zip_packets/`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/zip_packets/`
 - source class: symmetric two-step packet lattice
 - packet file count: `8`
 - packet kind counts:
@@ -178,7 +178,7 @@ Date: 2026-03-09
   - transport surfaces preserve two complete step lanes without any third-step continuation packet
 
 ### Source 9
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/zip_packets/000001_A1_TO_A0_STRATEGY_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/zip_packets/000001_A1_TO_A0_STRATEGY_ZIP.zip`
 - source class: first strategy packet
 - sha256: `d88ce35a3496b4a68d13119e283a52f82ebf60e8f21377bb142317678148c3c5`
 - size bytes: `1909`
@@ -200,7 +200,7 @@ Date: 2026-03-09
     - `max_sims 5`
 
 ### Source 10
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/zip_packets/000002_A1_TO_A0_STRATEGY_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/zip_packets/000002_A1_TO_A0_STRATEGY_ZIP.zip`
 - source class: second strategy packet
 - sha256: `f79c0d2fa50cb6d99b2f1325ce515c48799687b8692489e08e0dd8060741e77a`
 - size bytes: `1906`
@@ -222,7 +222,7 @@ Date: 2026-03-09
     - `max_sims 5`
 
 ### Source 11
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/zip_packets/000002_A0_TO_B_EXPORT_BATCH_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/zip_packets/000002_A0_TO_B_EXPORT_BATCH_ZIP.zip`
 - source class: second export packet
 - sha256: `5252cbaee1e1a62943f412405209830f7ea90db513a4108ebf514139e74dc8a2`
 - size bytes: `1414`
@@ -240,7 +240,7 @@ Date: 2026-03-09
     - `NEG_BOUNDARY`
 
 ### Source 12
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/zip_packets/000002_B_TO_A0_STATE_UPDATE_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/zip_packets/000002_B_TO_A0_STATE_UPDATE_ZIP.zip`
 - source class: second Thread-S snapshot packet
 - sha256: `46e5db1dbdb0b7f386910ba1340d5d91c988f0a221deae1fea9da0fff00864b6`
 - size bytes: `1575`
@@ -258,7 +258,7 @@ Date: 2026-03-09
     - `ACCEPTED_BATCH_COUNT=2`
 
 ### Source 13
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/zip_packets/000001_SIM_TO_A0_SIM_RESULT_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/zip_packets/000001_SIM_TO_A0_SIM_RESULT_ZIP.zip`
 - source class: first SIM result packet
 - sha256: `0926ac1610f05866d46e2793a52b69ea1699b0baa7b563eb685bcb8785561b1c`
 - size bytes: `1392`
@@ -273,7 +273,7 @@ Date: 2026-03-09
     - `NEG_NEG_BOUNDARY`
 
 ### Source 14
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/zip_packets/000002_SIM_TO_A0_SIM_RESULT_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_REAL_A1_002/zip_packets/000002_SIM_TO_A0_SIM_RESULT_ZIP.zip`
 - source class: second SIM result packet
 - sha256: `1d1b9087a7b8f8e6181115554aaede8b0247bbe5ddfc1e6200a3f2b17d514574`
 - size bytes: `1391`

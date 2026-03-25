@@ -38,23 +38,23 @@ An `A2` thread does **not**:
 Every `A2` thread must boot from the current repo-held owner/control surfaces first.
 
 Minimum load set:
-1. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md`
-2. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
-3. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
-4. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md`
-5. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/SURFACE_CLASS_AND_MEMORY_ADMISSION_RULES__v1.md`
+1. `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md`
+2. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
+3. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
+4. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md`
+5. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/SURFACE_CLASS_AND_MEMORY_ADMISSION_RULES__v1.md`
 
 Context overlays when relevant:
-6. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md`
-7. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/MODEL_CONTEXT.md`
+6. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md`
+7. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/MODEL_CONTEXT.md`
 
 Thread-control overlays when relevant:
-8. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md`
-9. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/CURRENT_EXECUTION_STATE__2026_03_10__v1.md`
+8. `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md`
+9. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/CURRENT_EXECUTION_STATE__2026_03_10__v1.md`
 
 Controller launch overlays:
-10. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
-11. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
+10. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
+11. `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
 
 If `THREAD_CLASS = A2_CONTROLLER`, these controller launch overlays are required boot inputs, not optional overlays.
 
@@ -174,37 +174,37 @@ Deliberately retooled for current `system_v3`:
 
 Current launch repair:
 - `A2_CONTROLLER` relaunches should now bind through:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
 - and recover weighted current truth from:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
 
 Current executable `A2_WORKER` launch helpers:
 - creator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_a2_worker_launch_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_a2_worker_launch_packet.py`
   - creates the dispatch packet/controller-record surface, not the operator copy-paste body by itself
 - validator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a2_worker_launch_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a2_worker_launch_packet.py`
 - launch gate:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a2_worker_launch_from_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a2_worker_launch_from_packet.py`
 - send-text builder:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a2_worker_send_text_from_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a2_worker_send_text_from_packet.py`
   - builds the raw worker prompt body that should be used for operator copy-paste/send
 - launch handoff builder:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a2_worker_launch_handoff.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a2_worker_launch_handoff.py`
   - should expose both surfaces: dispatch packet `.md` for controller record and raw prompt `.txt` for launch
 - shared launch handoff validator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_handoff.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_handoff.py`
   - now validates `A2_WORKER` handoff shape and send-text integrity
 - one-shot bundle preparer:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_launch_bundle.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_launch_bundle.py`
 - generic browser-launch bundle preparer:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_browser_launch_bundle.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_browser_launch_bundle.py`
   - supports `A2_WORKER` handoffs through the shared launch validator and accepts `--cmd-timeout-sec`
 - observed-packet browser-launch wrapper:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_codex_browser_launch_from_observed_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_codex_browser_launch_from_observed_packet.py`
   - supports `A2_WORKER` and forwards `--cmd-timeout-sec`
 - capture-record browser-launch wrapper:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_codex_browser_launch_from_capture_record.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_codex_browser_launch_from_capture_record.py`
   - supports `A2_WORKER` and forwards `--cmd-timeout-sec`
 
 Operator discipline for current `A2_WORKER` launches:
@@ -214,11 +214,11 @@ Operator discipline for current `A2_WORKER` launches:
 
 Current bounded controller/A1 dispatch support helpers:
 - subset compiler:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/compile_first_controller_a1_launch_subset_graph.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/compile_first_controller_a1_launch_subset_graph.py`
 - subset refresher:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/refresh_first_controller_a1_launch_subset_graph.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/refresh_first_controller_a1_launch_subset_graph.py`
 - subset audit:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_first_controller_a1_launch_subset_graph.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_first_controller_a1_launch_subset_graph.py`
 - ready-artifact validators:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_worker_launch_packet.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_worker_launch_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`

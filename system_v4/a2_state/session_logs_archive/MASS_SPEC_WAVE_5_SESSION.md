@@ -16,14 +16,14 @@
 - Total: 177 nodes, 175 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/22_RUN_SURFACE_TEMPLATE_AND_SCAFFOLDER_CONTRACT.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/23_BOOTPACK_CONFORMANCE_FIXTURE_MATRIX_CONTRACT.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/25_BOOTPACK_A2_REFINERY__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/26_BOOTPACK_A1_WIGGLE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_BOOTPACK_RATCHET_FUEL_MINT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/29_STAGE_3_TEMPLATE_AND_SCHEMA_GATE_FLOW__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/22_RUN_SURFACE_TEMPLATE_AND_SCAFFOLDER_CONTRACT.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/23_BOOTPACK_CONFORMANCE_FIXTURE_MATRIX_CONTRACT.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/25_BOOTPACK_A2_REFINERY__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/26_BOOTPACK_A1_WIGGLE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/27_BOOTPACK_RATCHET_FUEL_MINT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/29_STAGE_3_TEMPLATE_AND_SCHEMA_GATE_FLOW__v1.md
 
 ## Key Findings
 - Mass ingested 8 docs: specs 22-29

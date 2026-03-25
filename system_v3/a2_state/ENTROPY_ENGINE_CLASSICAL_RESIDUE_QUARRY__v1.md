@@ -21,16 +21,16 @@ as direct primary ratchet terms in the current phase.
 
 ## 2) Active Source Anchors
 Current active anchor surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ALT_MODEL_MINING_PLAYBOOK.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/MODEL_CONTEXT.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_ALIGNMENT_PATTERN_EXTRACTS__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_sandbox_only_runner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ALT_MODEL_MINING_PLAYBOOK.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/MODEL_CONTEXT.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_ALIGNMENT_PATTERN_EXTRACTS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_sandbox_only_runner.py`
 
 Lower-loop bridge-witness anchors already present in active memory/runtime:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/memory.jsonl`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_engine.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/memory.jsonl`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_engine.py`
 
 ## 3) Current Translation Rule
 The first entropy lane should proceed as:
@@ -247,7 +247,7 @@ Negative-pressure use:
 Use these rescue transforms first when entropy-family branches fail.
 
 Observed residue-broad pressure
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
 - current dominant kill tokens from `state.json`:
   - `NEG_CLASSICAL_TEMPERATURE = 20`
   - `NEG_COMMUTATIVE_ASSUMPTION = 20`

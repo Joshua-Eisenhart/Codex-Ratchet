@@ -35,9 +35,9 @@ READY_FROM_NEW_A2_HANDOFF
 ```
 
 Most relevant precursor surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/REFINEDFUEL_REVISIT_ROUTING_PASS__2026_03_11__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/REFINEDFUEL_REVISIT_ROUTING_PASS__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1.md`
 
 ### T2. READY_FROM_NEW_A2_HANDOFF__SOURCE_BEARING_ENGINE_PACKET
 
@@ -52,8 +52,8 @@ If a future Pro/source-bearing packet actually closes one of the currently block
 and `A2` reduces that return into a bounded residue/bridge/proposal seam, then `A1` may become ready from a new handoff.
 
 Most relevant precursor surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_LOCAL_PACK_RETURN__2026_03_11__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_PRO_BOOT_SOURCE_ADDITIONS__ENTROPY_CARNOT_SZILARD__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_LOCAL_PACK_RETURN__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_PRO_BOOT_SOURCE_ADDITIONS__ENTROPY_CARNOT_SZILARD__2026_03_11__v1.md`
 
 ### T3. READY_FROM_A2_PREBUILT_BATCH__ENTROPY_ENGINE_RESCUE_FAMILY
 

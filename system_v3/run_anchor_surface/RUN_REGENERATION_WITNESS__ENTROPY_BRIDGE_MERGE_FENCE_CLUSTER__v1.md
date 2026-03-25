@@ -7,7 +7,7 @@
 
 ## Anchor Family
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
 
 ## Preferred Witness Triple
 
@@ -42,17 +42,17 @@
 ### Normalized Retained Triple
 
 - memo witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_05__20260308T222429Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_0012/reports/a1_external_memo_batch_driver_report.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_05__20260308T222429Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_0012/reports/a1_external_memo_batch_driver_report.json`
   - witness meaning:
     - retained report-level memo consequence for the merge-fence / rescue family
 
 - cold-core witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_05__20260308T222429Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_0012/a1_sandbox/cold_core/000650_A1_COLD_CORE_PROPOSALS_v1.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_05__20260308T222429Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_0012/a1_sandbox/cold_core/000650_A1_COLD_CORE_PROPOSALS_v1.json`
   - witness meaning:
     - retained cold-core proposal surface showing the late rescue-family candidate structure after merge-fence pressure
 
 - strategy witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_05__20260308T222429Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_0012/a1_sandbox/outgoing/000650_A1_STRATEGY_v1__PACK_SELECTOR.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_05__20260308T222429Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_RESCUE_BROAD_0012/a1_sandbox/outgoing/000650_A1_STRATEGY_v1__PACK_SELECTOR.json`
   - witness meaning:
     - retained selector output showing the late-cycle executable head, passengers, witness floor, and process-audit state for the same family
 
@@ -78,6 +78,6 @@
 ## Archive Status
 
 - archive batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_05__20260308T222429Z`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_05__20260308T222429Z`
 - manifest:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_05__20260308T222429Z/RUN_DEMOTION_MANIFEST__v1.md`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_05__20260308T222429Z/RUN_DEMOTION_MANIFEST__v1.md`

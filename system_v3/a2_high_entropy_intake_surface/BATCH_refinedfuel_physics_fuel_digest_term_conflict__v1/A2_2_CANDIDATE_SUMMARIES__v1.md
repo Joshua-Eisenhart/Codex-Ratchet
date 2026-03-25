@@ -43,4 +43,4 @@ Extraction mode: `TERM_CONFLICT_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should move to the next source root and process:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_EPISODE_01_WORKING_LOG copy.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_EPISODE_01_WORKING_LOG copy.md`

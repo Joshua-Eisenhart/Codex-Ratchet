@@ -45,8 +45,8 @@ Extraction mode: `MATH_CLASS_PASS`
 - members:
   - source 1: `29-33`
 - comparison anchors:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPLETENESS_ADMISSIBILITY_v1.md:3-9`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/ORTHOGONALITY_ADMISSIBILITY_v1.md:3-11`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPLETENESS_ADMISSIBILITY_v1.md:3-9`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/ORTHOGONALITY_ADMISSIBILITY_v1.md:3-11`
 - cluster role:
   - names the next micro-spec families that may later elaborate finite axis-sets without upgrading them here
 - strongest reusable read:
@@ -56,8 +56,8 @@ Extraction mode: `MATH_CLASS_PASS`
 - members:
   - source 1: `1-33`
 - comparison anchors:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:8-28`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/fuel_queue.json:3835-3870`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:8-28`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/fuel_queue.json:3835-3870`
 - cluster role:
   - preserves that the source is locally treated as canon and already echoed in active A2 extraction, while this batch still remains an outer noncanon intake artifact
 - strongest reusable read:

@@ -9,7 +9,7 @@ authority: "CROSS_VALIDATED"
 **Node ID:** `A1_STRIPPED::A1_WORKER_LAUNCH_PACKET_SUBSTRATE_BASE_SCAFFOLD`
 
 ## Description
-Unprocessed File Type (A1_WORKER_LAUNCH_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json): { | "a1_reload_artifacts": [ | "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_P
+Unprocessed File Type (A1_WORKER_LAUNCH_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json): { | "a1_reload_artifacts": [ | "/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_P
 
 ## Properties
 - **dropped_jargon**: []

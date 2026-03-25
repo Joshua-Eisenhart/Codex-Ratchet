@@ -92,7 +92,7 @@ Date: 2026-03-09
   - it is visibly stale relative to the newer intake workflow
 - main sources:
   - `WORKSPACE_LAYOUT_v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_HIGH_ENTROPY_INTAKE_PROCESS__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_HIGH_ENTROPY_INTAKE_PROCESS__v1.md`
 
 ## T8) `LIGHT_RUNBOOK_STARTUP_VS_HEAVIER_PROMOTION_GATE_STACK`
 - tension:

@@ -16,7 +16,7 @@
 - Total: 3744 nodes, 7558 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/THREAD_CONTEXT_EXTRACT__MAX__2026_03_17__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/THREAD_CONTEXT_EXTRACT__MAX__2026_03_17__v1.md
 
 ## Batches
 - `BATCH_V4_DEEP_READ_MAX_EXTRACT`

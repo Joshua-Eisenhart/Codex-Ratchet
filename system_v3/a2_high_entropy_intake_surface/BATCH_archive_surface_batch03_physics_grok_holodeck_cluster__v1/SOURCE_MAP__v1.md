@@ -7,17 +7,17 @@ Date: 2026-03-09
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_03_OF_10__A2_LAYER1_5__OUTPUT__PHYSICS_GROK_HOLODECK_CLUSTER__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_03_OF_10__A2_LAYER1_5__OUTPUT__PHYSICS_GROK_HOLODECK_CLUSTER__v1_1.zip`
 - reason for bounded single-package batch:
   - this is the next archive-root item in folder order after the apple-notes package
   - it is compact and self-contained at the output layer, but it clusters high-entropy Grok/holodeck material with a separate meta-based mapping-lock packet
   - processing it alone preserves that split instead of flattening it into the prior archive families
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_04_OF_10__LEVIATHAN_MODEL_INTERPRETATION_CLUSTER__OUTPUTS__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_04_OF_10__LEVIATHAN_MODEL_INTERPRETATION_CLUSTER__OUTPUTS__v1_1.zip`
 
 ## 2) Source Membership
 ### Primary container
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_03_OF_10__A2_LAYER1_5__OUTPUT__PHYSICS_GROK_HOLODECK_CLUSTER__v1_1.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_03_OF_10__A2_LAYER1_5__OUTPUT__PHYSICS_GROK_HOLODECK_CLUSTER__v1_1.zip`
 - sha256: `8b8cab2c3709c90f20b96c8d1ff29e69cbbe46bef43362a95b5c692d49dbd0b1`
 - size bytes: `36196`
 - container member count: `30`

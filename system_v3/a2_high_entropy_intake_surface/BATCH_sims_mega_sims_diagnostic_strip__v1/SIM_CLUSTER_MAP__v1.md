@@ -7,9 +7,9 @@ Extraction mode: `SIM_MEGA_SIMS_DIAGNOSTIC_STRIP_PASS`
 - cluster label:
   - core mega diagnostic strip
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/mega_sims_failure_detector.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/mega_sims_run_02.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/mega_sims_trivial_check.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/mega_sims_failure_detector.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/mega_sims_run_02.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/mega_sims_trivial_check.py`
 - family role:
   - canonical source-bounded member set for this batch
 - executable-facing read:
@@ -77,7 +77,7 @@ Extraction mode: `SIM_MEGA_SIMS_DIAGNOSTIC_STRIP_PASS`
 - cluster label:
   - proof boundary anchor
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/prove_foundation.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/prove_foundation.py`
   - `S_FOUNDATION_PROOF`
 - family role:
   - next bounded-family boundary anchor

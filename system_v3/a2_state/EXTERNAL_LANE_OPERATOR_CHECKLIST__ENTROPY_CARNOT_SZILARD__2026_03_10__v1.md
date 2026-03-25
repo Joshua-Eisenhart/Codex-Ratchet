@@ -7,15 +7,15 @@ Role: one ordered operator checklist for the first external entropy / Carnot / S
 ## 1) Attach this boot zip
 
 Use:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/PRO_BOOT_JOB__ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1__20260309_204341Z.zip`
+- `/home/ratchet/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/PRO_BOOT_JOB__ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1__20260309_204341Z.zip`
 
 Do not use:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/PRO_BOOT_JOB__ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1__20260309_204020Z.zip`
+- `/home/ratchet/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/PRO_BOOT_JOB__ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1__20260309_204020Z.zip`
 
 ## 2) Send this launch message
 
 Source:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_THREAD_LAUNCH_MESSAGE__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_THREAD_LAUNCH_MESSAGE__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md`
 
 Copy-paste:
 
@@ -56,7 +56,7 @@ Do not open a second external lane while this one is unresolved.
 ## 4) Send this return-audit message when the thread comes back
 
 Source:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_RETURN_AUDIT_MESSAGE__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_RETURN_AUDIT_MESSAGE__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md`
 
 Copy-paste:
 

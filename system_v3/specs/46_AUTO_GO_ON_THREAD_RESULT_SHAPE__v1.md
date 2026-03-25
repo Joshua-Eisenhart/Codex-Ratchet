@@ -7,7 +7,7 @@ Owner: current `A2` controller for normalized thread-result intake
 ## Purpose
 
 This note defines the normalized JSON shape consumed by:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/auto_go_on_runner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/auto_go_on_runner.py`
 
 It exists because current thread returns are still human-oriented text blocks.
 The runner needs one stable machine-readable result shape so:
@@ -23,9 +23,9 @@ This shape is not a closeout packet.
 It is a continuation-evaluation packet.
 
 It captures exactly the fields needed for:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/45_AUTO_GO_ON_RUNNER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/45_AUTO_GO_ON_RUNNER__v1.md`
 
 ## Required top-level fields
 
@@ -114,7 +114,7 @@ Optional fields:
 ## Template path
 
 The normalized template lives at:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/auto_go_on_thread_result_template_v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/auto_go_on_thread_result_template_v1.json`
 
 ## Immediate implication
 

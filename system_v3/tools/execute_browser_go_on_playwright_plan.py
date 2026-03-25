@@ -1,3 +1,4 @@
+import os
 #!/usr/bin/env python3
 from __future__ import annotations
 
@@ -9,7 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-PWCLI = "/Users/joshuaeisenhart/.codex/skills/playwright/scripts/playwright_cli.sh"
+PWCLI = os.path.expanduser("~/.codex") + "/skills/playwright/scripts/playwright_cli.sh"
 PLAN_SCHEMA = "BROWSER_GO_ON_PLAYWRIGHT_PLAN_v1"
 PROOF_SCHEMA = "BROWSER_GO_ON_PROOF_PACKET_v1"
 ALLOWED_MESSAGE = "go on"

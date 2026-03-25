@@ -24,11 +24,11 @@
 - Total: 17227 nodes, 17050 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/00_README.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/01_ARCHITECTURE_OVERVIEW.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/02_LAYER_BOUNDARIES.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/03_MUTATION_PATH_RULES.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/SYSTEM_CONTEXT_UPDATE_v2.6_PREP.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/00_README.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/01_ARCHITECTURE_OVERVIEW.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/02_LAYER_BOUNDARIES.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/03_MUTATION_PATH_RULES.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/SYSTEM_CONTEXT_UPDATE_v2.6_PREP.md
 
 ## Batches
 - `BATCH_V4_SOURCE_MAP_CTRL_PLANE_README`

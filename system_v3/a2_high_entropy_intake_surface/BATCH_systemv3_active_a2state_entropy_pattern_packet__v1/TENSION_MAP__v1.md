@@ -30,7 +30,7 @@ Date: 2026-03-09
   - this worker lane must keep that integration proposal-side only
 - main sources:
   - `ALT_MODEL_MINING_PLAYBOOK.md`
-  - cross-batch anchor: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_HIGH_ENTROPY_INTAKE_PROCESS__v1.md`
+  - cross-batch anchor: `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_HIGH_ENTROPY_INTAKE_PROCESS__v1.md`
 
 ## T4) `FOUNDATION_MODE_PRESSURE_VS_RECENT_SCAFFOLD_BIAS`
 - tension:

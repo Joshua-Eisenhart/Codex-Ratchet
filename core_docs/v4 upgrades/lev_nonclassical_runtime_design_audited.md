@@ -2448,8 +2448,8 @@ they are no longer independent frameworks. They become operators acting on one s
 
 Canonical durable ledger for this concern:
 
-- [REPO_SKILL_INTEGRATION_TRACKER.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md)
-- [SKILL_CANDIDATES_BACKLOG.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_CANDIDATES_BACKLOG.md)
+- [REPO_SKILL_INTEGRATION_TRACKER.md](/home/ratchet/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md)
+- [SKILL_CANDIDATES_BACKLOG.md](/home/ratchet/Desktop/Codex%20Ratchet/SKILL_CANDIDATES_BACKLOG.md)
 
 This document is not only about importing mathematical methods.
 
@@ -2471,7 +2471,7 @@ The integration scope of this runtime design includes:
 - `pi-mono` packages and agent tooling
 - external memory backends such as EverMemOS / EverMind-style memory services
 - longer-horizon backend candidates such as MSA / Memory Sparse Attention
-- the explicit external-method source document [29 thing.txt](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/29%20thing.txt), which is the canonical local referent for the repeatedly referenced 29-method source family
+- the explicit external-method source document [29 thing.txt](/home/ratchet/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/29%20thing.txt), which is the canonical local referent for the repeatedly referenced 29-method source family
 - multi-source cross-validation clusters already mined into the graph, including the current `29 sources / 29 batches` cluster, as separate graph artifacts rather than substitutes for that source document
 
 ### Required treatment

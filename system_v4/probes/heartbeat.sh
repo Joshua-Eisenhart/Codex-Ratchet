@@ -10,7 +10,7 @@
 #   heartbeat.sh           → full tick (deterministic + codex learning)
 #   heartbeat.sh --no-codex → deterministic only (for debugging)
 
-REPO="/Users/joshuaeisenhart/Desktop/Codex Ratchet"
+REPO="/home/ratchet/Desktop/Codex Ratchet"
 LOG_DIR="$REPO/system_v4/probes/a2_state/sim_results"
 DAEMON="$REPO/system_v4/skills/intent-compiler/heartbeat_daemon.py"
 

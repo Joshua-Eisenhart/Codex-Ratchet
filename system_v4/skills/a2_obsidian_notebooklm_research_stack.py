@@ -135,6 +135,6 @@ class ObsidianNotebookLMStack:
         }
 
 if __name__ == "__main__":
-    stack = ObsidianNotebookLMStack("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
+    stack = ObsidianNotebookLMStack(str(Path(__file__).resolve().parents[2]))
     result = stack.export_graph_to_obsidian()
     print(f"Obsidian Vault Generation Complete: {result['files_generated']} files materialized.")

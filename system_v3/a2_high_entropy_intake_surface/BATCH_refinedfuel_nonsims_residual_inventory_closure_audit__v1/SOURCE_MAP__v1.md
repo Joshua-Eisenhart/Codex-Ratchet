@@ -11,14 +11,14 @@ Date: 2026-03-09
   - broad source extraction is no longer the active gap
   - the next decision is whether any non-sims source files still remain outside direct source membership
 - selected anchors:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/00_MANIFEST__CORE_DOCS_ORDER_v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/00_MANIFEST__CORE_DOCS_ORDER_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md`
 - reason for bounded closure batch:
   - current folder-order extraction for the non-sims refined-fuel root is complete
   - a residual audit is needed before switching into selective re-entry
   - this pass is therefore a coverage and routing audit, not another doc-family extract
 - inventory method:
-  - filename-level inventory across `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
+  - filename-level inventory across `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
   - `sims/` excluded by rule
   - prior intake manifests checked only to distinguish:
     - direct source membership
@@ -30,12 +30,12 @@ Date: 2026-03-09
 ## 2) Source Membership
 - root-order anchor:
   - path:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/00_MANIFEST__CORE_DOCS_ORDER_v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/00_MANIFEST__CORE_DOCS_ORDER_v1.md`
   - source role:
     - canonical sub-root ordering anchor confirming `a1_refined_Ratchet Fuel/` as the first root and `sims/` as a separate source class inside it
 - local closure anchor:
   - path:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md`
   - source role:
     - end-of-sweep local closure marker inside the non-sims refined-fuel ladder family
   - source-class note:
@@ -52,7 +52,7 @@ Date: 2026-03-09
   - residual non-direct-member files:
     - `1`
   - residual file list:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/.DS_Store`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/.DS_Store`
 
 ### Direct coverage by root slice
 - top-level refined-fuel docs:
@@ -102,9 +102,9 @@ Date: 2026-03-09
 
 ## 4) Comparison Anchors
 - comparison sources:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_residual_inventory_closure_audit__v1/SOURCE_MAP__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_archive_manifest_source_map__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_residual_inventory_closure_audit__v1/SOURCE_MAP__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_refinedfuel_archive_manifest_source_map__v1/MANIFEST.json`
 - bounded comparison read:
   - the sims closure audit provides the repo-native precedent for switching from raw-order extraction to residual accounting
   - the refined-fuel non-sims root differs materially:

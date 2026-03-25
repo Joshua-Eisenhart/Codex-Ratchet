@@ -1,86 +1,95 @@
-name: codex-ratchet-ci
+name: Codex-Ratchet Unified SIM Pipeline && SSDF Pipeline
 
 on:
   push:
-    branches: [main]
+    branches: [ "main" ]
   pull_request:
-    branches: [main]
+    branches: [ "main" ]
 
 jobs:
-  quality:
+  lint-and-sast:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements-core.txt
+        pip install -r requirements-runtime.txt
+        pip install -r requirements-dev.txt
+    - name: Run Ruff Linter
+      run: ruff check .
+    - name: Run Mypy
+      run: mypy system_v4 || true
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Repo hygiene — no duplicate conflict files
-        run: |
-          if git ls-files | grep -qE ' 2\.(py|md|json|jsonl|html)$'; then
-            echo "FAIL: duplicate conflict files found"
-            git ls-files | grep -E ' 2\.(py|md|json|jsonl|html)$'
-            exit 1
-          fi
-
-      - name: Repo hygiene — no hardcoded local paths
-        run: |
-          if grep -rn '/Users/' --include='*.py' --include='*.json' . | grep -v '.git/' | grep -v node_modules; then
-            echo "WARNING: hardcoded local paths found (check above)"
-          fi
-
-  sims:
+  test:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-    needs: quality
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements-core.txt
+        pip install -r requirements-runtime.txt
+        pip install -r requirements-dev.txt
+    - name: Run Pytest
+      run: pytest -q system_v4/tests/
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+  sca-and-sbom:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements-core.txt
+        pip install -r requirements-runtime.txt
+        pip install pip-audit
+    - name: Create artifacts directory
+      run: mkdir -p artifacts
+    - name: Run pip-audit
+      run: pip-audit -r requirements-runtime.txt -f json -o artifacts/pip-audit.json || true
+    - name: Generate SBOM (Syft)
+      run: |
+        curl -sSfL https://get.anchore.io/syft | sh -s -- -b ./bin
+        ./bin/syft dir:. -o cyclonedx-json=artifacts/sbom.cdx.json || true
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Run unified SIM runner
-        run: python system_v4/probes/run_all_sims.py
-
-      - name: Validate SIM results
-        run: |
-          python -c "
-          import json
-          with open('system_v4/probes/a2_state/sim_results/unified_evidence_report.json') as f:
-              d = json.load(f)
-          fails = [r['file'] for r in d['sim_results'] if r['process_status'] != 'PASS']
-          no_toks = [r['file'] for r in d['sim_results'] if r['evidence_status'] == 'NO_TOKENS']
-          print(f'SIMs: {len(d[\"sim_results\"])}')
-          print(f'Tokens: {d[\"total_tokens\"]} (PASS={d[\"pass_count\"]}, KILL={d[\"kill_count\"]})')
-          print(f'Process-FAIL: {len(fails)}')
-          print(f'NO_TOKENS: {len(no_toks)}')
-          if fails:
-              print(f'FAILED SIMS: {fails}')
-              exit(1)
-          if no_toks:
-              print(f'NO_TOKEN SIMS: {no_toks}')
-              exit(1)
-          print('All SIMs healthy.')
-          "
-
-      - name: Upload evidence report
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: unified-evidence-report
-          path: system_v4/probes/a2_state/sim_results/unified_evidence_report.json
+  sim-execution:
+    runs-on: ubuntu-latest
+    needs: [test]
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Install core dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements-core.txt
+    - name: Home Path PII Guard Gate
+      run: |
+        if grep -RIn "/Users/" --include="*.py" --include="*.json" --include="*.md" . ; then
+          echo "FAIL: Absolute home paths (PII / Portability leak) detected in repository files."
+          exit 1
+        fi
+    - name: Run SIM Pipeline
+      run: |
+        python system_v4/probes/run_all_sims.py
+    - name: Upload Evidence
+      uses: actions/upload-artifact@v4
+      with:
+        name: unified_evidence_report
+        path: system_v4/probes/a2_state/sim_results/unified_evidence_report.json

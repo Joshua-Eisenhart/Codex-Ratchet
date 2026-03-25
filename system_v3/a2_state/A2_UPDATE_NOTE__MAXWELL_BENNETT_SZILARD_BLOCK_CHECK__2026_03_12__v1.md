@@ -6,9 +6,9 @@ Role: bounded A2 controller block check on the Maxwell Bennett/Szilard deepen ta
 
 ## AUDIT_SCOPE
 - target packet:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
 - active comparative note:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 ## FINDINGS
 - the remaining Maxwell gap is correctly identified as:

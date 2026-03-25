@@ -60,14 +60,14 @@ Large portions of the thread were spent making A2 into a real controlling surfac
 
 Key surfaces affected:
 
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/MODEL_CONTEXT.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/MODEL_CONTEXT.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/MODEL_CONTEXT.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/MODEL_CONTEXT.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md)
 
 Major A2-side upgrades made during the thread:
 
@@ -161,13 +161,13 @@ The thread repeatedly returned to the idea that A1 remained the main remaining e
 
 Key A1 surfaces affected:
 
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_EXECUTABLE_DISTILLATION_UPDATE__SOURCE_BOUND_v2.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_EXECUTABLE_DISTILLATION_UPDATE__SOURCE_BOUND_v2.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_BRAIN_SLICE__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_BRAIN_SLICE__v1.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_pack_selector.py](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_pack_selector.py)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_EXECUTABLE_DISTILLATION_UPDATE__SOURCE_BOUND_v2.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_EXECUTABLE_DISTILLATION_UPDATE__SOURCE_BOUND_v2.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_BRAIN_SLICE__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_BRAIN_SLICE__v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_pack_selector.py](/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_pack_selector.py)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py](/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py](/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py)
 
 Important A1-side conceptual/structural clarifications:
 
@@ -192,7 +192,7 @@ The thread clarified:
 3. Cartridge minimum contract was defined and centralized.
 
 The thread placed a minimum cartridge contract into:
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md)
 
 4. A1 -> A0 readiness was defined.
 
@@ -253,7 +253,7 @@ This is one of the biggest concrete A1 gains from the thread.
 11. Cold-core shaping was improved without overloading cold-core with final role doctrine.
 
 The thread improved support-term derivation in:
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py](/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py)
 
 But it also explicitly rejected putting too much final role judgment upstream into cold-core.
 
@@ -342,10 +342,10 @@ Starting condition:
 
 Important tools and surfaces involved:
 
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/thin_run_dir.py](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/thin_run_dir.py)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/compact_run_packets.py](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/compact_run_packets.py)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/16_ZIP_SAVE_AND_TAPES_SPEC.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/16_ZIP_SAVE_AND_TAPES_SPEC.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/02_SAFE_DELETE_SURFACE_v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/02_SAFE_DELETE_SURFACE_v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/thin_run_dir.py](/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/thin_run_dir.py)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/compact_run_packets.py](/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/compact_run_packets.py)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/16_ZIP_SAVE_AND_TAPES_SPEC.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/16_ZIP_SAVE_AND_TAPES_SPEC.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/02_SAFE_DELETE_SURFACE_v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/02_SAFE_DELETE_SURFACE_v1.md)
 
 Major results:
 
@@ -421,7 +421,7 @@ to:
 - “normalize meaning into anchor/witness surfaces, then archive-demote the runs”
 
 Archive root:
-- [/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS](/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS)
+- [/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS](/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS)
 
 Demotion batches created during the thread included:
 - `SYSTEM_V3__RUN_DEMOTION_BATCH_01__20260308T205105Z`
@@ -455,10 +455,10 @@ One of the deepest practical de-tangling moves in the thread was the creation of
 - regeneration witness surfaces
 
 Folder:
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface](/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface)
 
 Policy:
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS_POLICY__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS_POLICY__v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS_POLICY__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS_POLICY__v1.md)
 
 Families normalized during the thread:
 
@@ -499,10 +499,10 @@ The thread moved toward a model where:
 
 Important surfaces:
 
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_INTEGRITY_AUDIT__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_INTEGRITY_AUDIT__v1.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_ACTION_BOARD__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_ACTION_BOARD__v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_INTEGRITY_AUDIT__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_INTEGRITY_AUDIT__v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_ACTION_BOARD__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_ACTION_BOARD__v1.md)
 
 The controller concept matured into:
 - entropy/problem router
@@ -537,12 +537,12 @@ The thread launched multiple fresh threads to perform:
 - later, additional A2-high / A2-mid / archive/work/systemv3 / A1 integration / queue-audit / run-normalization threads
 
 Main intake folder:
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface)
 
 Main process docs:
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_HIGH_ENTROPY_INTAKE_PROCESS__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_HIGH_ENTROPY_INTAKE_PROCESS__v1.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_MID_REFINEMENT_PROCESS__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_MID_REFINEMENT_PROCESS__v1.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_HIGH_ENTROPY_INTAKE_PROCESS__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_HIGH_ENTROPY_INTAKE_PROCESS__v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_MID_REFINEMENT_PROCESS__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_MID_REFINEMENT_PROCESS__v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md)
 
 Important effects:
 - A2-high and A2-mid became real repo-held processes
@@ -551,14 +551,14 @@ Important effects:
 - several of those narrow note subsets were appended into active A2
 
 Important bounded promotion notes created during the thread included:
-- [A2_SELECTIVE_PROMOTION_NOTE__TRIO_01__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__TRIO_01__v1.md)
-- [A2_SELECTIVE_PROMOTION_NOTE__ENTROPIC_QIT_DRIFT__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ENTROPIC_QIT_DRIFT__v1.md)
-- [A2_SELECTIVE_PROMOTION_NOTE__MATH_CLASS_FENCES__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__MATH_CLASS_FENCES__v1.md)
-- [A2_SELECTIVE_PROMOTION_NOTE__SIMS_INTERFACE_HYGIENE__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__SIMS_INTERFACE_HYGIENE__v1.md)
-- [A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1.md)
-- [A2_SELECTIVE_PROMOTION_NOTE__TRANSPORT_TOPOLOGY_PROTOCOL_STATE__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__TRANSPORT_TOPOLOGY_PROTOCOL_STATE__v1.md)
-- [A2_SELECTIVE_PROMOTION_NOTE__ENGINE_ENTROPY_GEOMETRY_FENCES__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ENGINE_ENTROPY_GEOMETRY_FENCES__v1.md)
-- [A2_SELECTIVE_PROMOTION_NOTE__ARCHIVE_THREADB_GOVERNANCE_FENCES__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ARCHIVE_THREADB_GOVERNANCE_FENCES__v1.md)
+- [A2_SELECTIVE_PROMOTION_NOTE__TRIO_01__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__TRIO_01__v1.md)
+- [A2_SELECTIVE_PROMOTION_NOTE__ENTROPIC_QIT_DRIFT__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ENTROPIC_QIT_DRIFT__v1.md)
+- [A2_SELECTIVE_PROMOTION_NOTE__MATH_CLASS_FENCES__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__MATH_CLASS_FENCES__v1.md)
+- [A2_SELECTIVE_PROMOTION_NOTE__SIMS_INTERFACE_HYGIENE__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__SIMS_INTERFACE_HYGIENE__v1.md)
+- [A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1.md)
+- [A2_SELECTIVE_PROMOTION_NOTE__TRANSPORT_TOPOLOGY_PROTOCOL_STATE__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__TRANSPORT_TOPOLOGY_PROTOCOL_STATE__v1.md)
+- [A2_SELECTIVE_PROMOTION_NOTE__ENGINE_ENTROPY_GEOMETRY_FENCES__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ENGINE_ENTROPY_GEOMETRY_FENCES__v1.md)
+- [A2_SELECTIVE_PROMOTION_NOTE__ARCHIVE_THREADB_GOVERNANCE_FENCES__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ARCHIVE_THREADB_GOVERNANCE_FENCES__v1.md)
 
 This refinery wave was one of the thread’s largest strategic successes.
 It demonstrated that fresh threads can:
@@ -582,8 +582,8 @@ The controller thread repeatedly had to:
 - quarantine or remove confirmed zero-file archive-class shells
 
 This resulted in repeated updates to:
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_INTEGRITY_AUDIT__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_INTEGRITY_AUDIT__v1.md)
-- [/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_ACTION_BOARD__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_ACTION_BOARD__v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_INTEGRITY_AUDIT__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_INTEGRITY_AUDIT__v1.md)
+- [/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_ACTION_BOARD__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_ACTION_BOARD__v1.md)
 
 The thread correctly treated:
 - queue truth

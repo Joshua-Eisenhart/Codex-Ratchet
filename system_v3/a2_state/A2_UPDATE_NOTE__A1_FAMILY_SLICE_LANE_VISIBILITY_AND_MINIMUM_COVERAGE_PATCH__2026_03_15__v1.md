@@ -35,12 +35,12 @@ That left a real doctrinal blind spot:
 ### 1) Live family-slice validators now require lane-minimum coverage
 
 The live Pydantic model in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a2_to_a1_family_slice_models.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a2_to_a1_family_slice_models.py`
 
 now rejects a family slice whose `lane_minimums` do not cover every `required_lanes` entry.
 
 The runtime semantic validator in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
 
 now rejects the same gap in the non-Pydantic path.
 
@@ -49,7 +49,7 @@ This closes one more split-contract seam between the shape the family slice clai
 ### 2) Planner self-audit now exposes family branch-shape metadata
 
 The live planner in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
 
 now emits:
 - `family_slice_lane_minimums`
@@ -70,7 +70,7 @@ It makes the live branch shape visible first, which was the missing precondition
 ### 3) Cycle audit now checks that this branch-shape metadata is visible
 
 The controller audit in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
 
 now checks:
 - `AUTORATCHET_FAMILY_SLICE_LANE_MINIMUMS_VISIBLE`
@@ -86,20 +86,20 @@ This is a visibility patch, not the final doctrinal completion gate.
 ## Focused regressions
 
 Planner/runtime tests:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
 
 Added/updated:
 - family-slice semantics now fail when a required lane is missing from `lane_minimums`
 - family-slice self-audit now exposes lane minima, branch requirements, and lane branch counts
 
 Cycle-audit tests:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py`
 
 Added:
 - family-slice audit passes when visible lane minima / branch requirements are present and coherent
 
 Local spec-object stack:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_to_a1_family_slice_pydantic_stack.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_to_a1_family_slice_pydantic_stack.py`
 
 Still passes after the lane-minimum coverage rule was added to the live Pydantic model.
 

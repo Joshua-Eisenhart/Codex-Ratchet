@@ -10,13 +10,13 @@ Completed and admitted:
 - internal `Constraints. Entropy` revisit lane
 
 Bounded outputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_A1_DELTA__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_A1_DELTA__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
 
 Admitted into live owner surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
 
 Live consequence:
 - `Constraints. Entropy` remains precursor-pressure only after strict fencing
@@ -29,18 +29,18 @@ Prepared and execution-ready:
 - external entropy / Carnot / Szilard refinery lane
 
 Primary operator surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_LANE_OPERATOR_CHECKLIST__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_LANE_OPERATOR_CHECKLIST__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md`
 
 Required boot artifact:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/PRO_BOOT_JOB__ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1__20260309_204341Z.zip`
+- `/home/ratchet/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/PRO_BOOT_JOB__ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1__20260309_204341Z.zip`
 
 Blocked artifact:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/PRO_BOOT_JOB__ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1__20260309_204020Z.zip`
+- `/home/ratchet/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/PRO_BOOT_JOB__ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v1__20260309_204020Z.zip`
 
 Launch-side and return-side handoff surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_THREAD_LAUNCH_MESSAGE__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_RETURN_AUDIT_MESSAGE__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/BOOT_DRIVEN_THREAD_PROCEDURE__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_THREAD_LAUNCH_MESSAGE__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_RETURN_AUDIT_MESSAGE__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/BOOT_DRIVEN_THREAD_PROCEDURE__2026_03_11__v1.md`
 
 ## 3) Current controller rule
 
@@ -56,21 +56,21 @@ Current operator procedure correction:
 - Desktop carries issued artifacts only
 - operational prompts and stop conditions must be delivered self-contained in-chat
 - A1 remains dispatch-driven from A2 rather than free-running in parallel
-- see `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_TRIGGER_QUEUE_AND_A2_DISPATCH_RULE__2026_03_11__v1.md`
+- see `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_TRIGGER_QUEUE_AND_A2_DISPATCH_RULE__2026_03_11__v1.md`
 - current project-wide synthesis surfaces now exist:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OVERALL_PROJECT_EXECUTION_PLAN__2026_03_11__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_AND_AUTOMATION_PROCESS_FLOWS__2026_03_11__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/35_PRO_THREAD_BOOT_LEVELS__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/36_PRO_LAUNCH_TEMPLATE__NARROW_SOURCE__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/37_PRO_LAUNCH_TEMPLATE__FULL_A2_REASONING_SPACE__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/38_PRO_LAUNCH_TEMPLATE__LANE_REFINERY__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/39_PRO_LAUNCH_TEMPLATE__METHOD_COMPARE__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/66_PARALLEL_CODEX_RUN_PLAYBOOK__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/69_FIRST_PARALLEL_CODEX_WAVE_C0_EVALUATION_PACKET__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/70_FIRST_PARALLEL_CODEX_WAVE_LAUNCH_HANDOFF__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/OVERALL_PROJECT_EXECUTION_PLAN__2026_03_11__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_AND_AUTOMATION_PROCESS_FLOWS__2026_03_11__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/35_PRO_THREAD_BOOT_LEVELS__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/36_PRO_LAUNCH_TEMPLATE__NARROW_SOURCE__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/37_PRO_LAUNCH_TEMPLATE__FULL_A2_REASONING_SPACE__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/38_PRO_LAUNCH_TEMPLATE__LANE_REFINERY__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/39_PRO_LAUNCH_TEMPLATE__METHOD_COMPARE__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/66_PARALLEL_CODEX_RUN_PLAYBOOK__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/69_FIRST_PARALLEL_CODEX_WAVE_C0_EVALUATION_PACKET__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/70_FIRST_PARALLEL_CODEX_WAVE_LAUNCH_HANDOFF__v1.md`
 
 ## 4) No-spawn reminder
 
@@ -84,7 +84,7 @@ Prepared but not yet run:
 - bounded system-shape / run-folder bloat / cleanup-under-caution audit
 
 Primary operator surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/SYSTEM_SHAPE_AND_BLOAT_AUDIT_PROCEDURE__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/SYSTEM_SHAPE_AND_BLOAT_AUDIT_PROCEDURE__2026_03_10__v1.md`
 
 Role:
 - classify owner vs derived vs runtime vs archive-like surfaces
@@ -105,7 +105,7 @@ Completed:
 - first bounded archive-first cleanup pass on `work/to_send_to_pro`
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/TO_SEND_TO_PRO_ARCHIVE_PREP_MUTATION__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/TO_SEND_TO_PRO_ARCHIVE_PREP_MUTATION__2026_03_10__v1.md`
 
 Bounded result:
 - stale oversized `204020Z` external boot pair archived out of active send surface
@@ -121,7 +121,7 @@ Completed:
 - bounded branch-dual/context-pack family review and archive-first thinning
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/BRANCH_DUAL_CONTEXT_PACK_FAMILY_REVIEW__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/BRANCH_DUAL_CONTEXT_PACK_FAMILY_REVIEW__2026_03_10__v1.md`
 
 Bounded result:
 - older full zipped branch-dual versions `v1` through `v1_4` archived out of active send surface
@@ -143,7 +143,7 @@ Completed:
   - `PRO_AUDIT__FULL_SYSTEM_V3_PLUS_AUTOWIGGLE_AND_LLM_LANE__SINGLE_ATTACHMENT__v1.zip`
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/STAGE3_FULLBOOT_AND_FULL_AUDIT_REVIEW__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/STAGE3_FULLBOOT_AND_FULL_AUDIT_REVIEW__2026_03_10__v1.md`
 
 Bounded result:
 - both artifacts archived out of the active send surface
@@ -159,7 +159,7 @@ Completed:
 - bounded review of `PRO_CONTEXT_PACK__THREAD_EXTRACT__v1` versus `...AUTO__v1`
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_EXTRACT_PACK_REVIEW__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_EXTRACT_PACK_REVIEW__2026_03_10__v1.md`
 
 Bounded result:
 - no archive mutation justified
@@ -175,7 +175,7 @@ Completed:
 - bounded quarantine-prep review of `work/system_v3`
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/WORK_SYSTEM_V3_QUARANTINE_REVIEW__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/WORK_SYSTEM_V3_QUARANTINE_REVIEW__2026_03_10__v1.md`
 
 Bounded result:
 - subtree is now explicitly classified as shadow/migration residue, not active authority
@@ -191,7 +191,7 @@ Completed:
 - narrower review of the mirrored run concentration inside `work/system_v3/runs`
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/WORK_SYSTEM_V3_MIRRORED_RUNS_REVIEW__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/WORK_SYSTEM_V3_MIRRORED_RUNS_REVIEW__2026_03_10__v1.md`
 
 Bounded result:
 - the largest mirrored runs are confirmed as shadow residue, not active owner runtime
@@ -207,7 +207,7 @@ Completed:
 - bounded audit of the local-pack-only external entropy return
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_LOCAL_PACK_RETURN__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_LOCAL_PACK_RETURN__2026_03_11__v1.md`
 
 Bounded result:
 - local-pack return is usable as:
@@ -224,7 +224,7 @@ Completed:
 - bounded comparative refresh over the first source-bearing external packet wave
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__FIRST_WAVE_EXTERNAL_PACKET_COMPARATIVE_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__FIRST_WAVE_EXTERNAL_PACKET_COMPARATIVE_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - `carnot_primary`, `maxwell_demon_primary`, and `fep_active_inference_primary` are now explicitly treated as partially source-bearing comparison packets
@@ -245,9 +245,9 @@ Current read:
 Current next workflow target:
 - next Pro boot must add explicit source-bearing packets for the still-missing high-value families before this lane should be promoted further
 - exact scaffold:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_PRO_BOOT_PACKET_SCAFFOLD__ENTROPY_CARNOT_SZILARD__2026_03_11__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_PRO_BOOT_PACKET_SCAFFOLD__ENTROPY_CARNOT_SZILARD__2026_03_11__v1.md`
 - current stubbed dropin workspace:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3`
 - first packet upgraded beyond blank stub:
   - `sources/external/carnot_primary/`
   - now includes packet index, source-target note, and extraction-target note
@@ -262,7 +262,7 @@ Completed:
 - bounded routing pass over the live `BATCH_refinedfuel*` family
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/REFINEDFUEL_REVISIT_ROUTING_PASS__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/REFINEDFUEL_REVISIT_ROUTING_PASS__2026_03_11__v1.md`
 
 Bounded result:
 - exact `RUN_NOW` set fixed for wave 1:
@@ -279,15 +279,15 @@ Prepared:
 - first bounded parallel Codex wave
 
 Primary control surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/69_FIRST_PARALLEL_CODEX_WAVE_C0_EVALUATION_PACKET__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/70_FIRST_PARALLEL_CODEX_WAVE_LAUNCH_HANDOFF__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/69_FIRST_PARALLEL_CODEX_WAVE_C0_EVALUATION_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/70_FIRST_PARALLEL_CODEX_WAVE_LAUNCH_HANDOFF__v1.md`
 
 Shared result sink:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/PARALLEL_CODEX_WORKER_RESULT_SINK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/PARALLEL_CODEX_WORKER_RESULT_SINK__v1.md`
 - raw staging directory:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns`
 
 Important correction:
 - the first parallel Codex wave no longer depends on manual pasteback into `C0`
@@ -297,14 +297,14 @@ Important correction:
 
 Normalization path:
 - raw worker return:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_HIGH_REFINERY_PASS__REFINEDFUEL_RUN_NOW_WAVE_1__A2_WORKER__return.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_HIGH_REFINERY_PASS__REFINEDFUEL_RUN_NOW_WAVE_1__A2_WORKER__return.txt`
 - normalized controller intake JSON:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_HIGH_REFINERY_PASS__REFINEDFUEL_RUN_NOW_WAVE_1__A2_WORKER__return.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_HIGH_REFINERY_PASS__REFINEDFUEL_RUN_NOW_WAVE_1__A2_WORKER__return.json`
 - extractor:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/extract_parallel_codex_worker_result.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/extract_parallel_codex_worker_result.py`
 
 Expected first worker return path:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_HIGH_REFINERY_PASS__REFINEDFUEL_RUN_NOW_WAVE_1__A2_WORKER__return.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_HIGH_REFINERY_PASS__REFINEDFUEL_RUN_NOW_WAVE_1__A2_WORKER__return.txt`
 
 ## 15) A1 queue state
 
@@ -312,8 +312,8 @@ Current state:
 - `A1_QUEUE_STATUS: NO_WORK`
 
 Supporting surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CHECK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CHECK__2026_03_12__v1.md`
 
 Current read:
 - the first bounded `A1` dispatch worked and is repo-held
@@ -334,16 +334,16 @@ Current basis:
 - independent bounded booted queue-check on 2026-03-12 reconfirmed there is no new ready packet
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_RESULT__ENTROPY_RESIDUE_NEGATIVE_AND_RESCUE__2026_03_11__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CHECK__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_NEXT_TRIGGER_CANDIDATES__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_RESULT__ENTROPY_RESIDUE_NEGATIVE_AND_RESCUE__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CHECK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_NEXT_TRIGGER_CANDIDATES__2026_03_12__v1.md`
 
 Best next likely trigger:
 - `READY_FROM_NEW_A2_HANDOFF__REFINEDFUEL_WAVE_1`
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/REFINEDFUEL_REVISIT_ROUTING_PASS__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/REFINEDFUEL_REVISIT_ROUTING_PASS__2026_03_11__v1.md`
 
 Bounded result:
 - live refined-fuel family split into:
@@ -373,7 +373,7 @@ Completed:
 - bounded browser-assisted continuation policy layer
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/48_BROWSER_ASSISTED_GO_ON_EXECUTION__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/48_BROWSER_ASSISTED_GO_ON_EXECUTION__v1.md`
 
 Bounded result:
 - `PATH_BROWSER_AUTOMATED` is now policy-defined
@@ -399,7 +399,7 @@ Completed:
 - bounded `RUN_ANCHOR_DEPENDENCY_REMAP__ENTROPY_BRIDGE_CLUSTER`
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/RUN_ANCHOR_DEPENDENCY_REMAP__ENTROPY_BRIDGE_CLUSTER__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/RUN_ANCHOR_DEPENDENCY_REMAP__ENTROPY_BRIDGE_CLUSTER__2026_03_11__v1.md`
 
 Bounded result:
 - dominant `RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE*` family split into:
@@ -422,7 +422,7 @@ Completed:
 - bounded `RUN_ARCHIVE_PREP__ENTROPY_BRIDGE_UNREFERENCED_CLUSTER`
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/RUN_ARCHIVE_PREP__ENTROPY_BRIDGE_UNREFERENCED_CLUSTER__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/RUN_ARCHIVE_PREP__ENTROPY_BRIDGE_UNREFERENCED_CLUSTER__2026_03_11__v1.md`
 
 Bounded result:
 - exact mutation-prep set now exists for the `42` unreferenced entropy-bridge runs
@@ -441,11 +441,11 @@ Completed:
 - bounded archive/quarantine mutation over the exact `42`-run unreferenced entropy-bridge set
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/RUN_ARCHIVE_MUTATION__ENTROPY_BRIDGE_UNREFERENCED_CLUSTER__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/RUN_ARCHIVE_MUTATION__ENTROPY_BRIDGE_UNREFERENCED_CLUSTER__2026_03_11__v1.md`
 
 Bounded result:
 - moved `42` unreferenced entropy-bridge runs into:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/archive/distillery/RUN_ENTROPY_BRIDGE_UNREFERENCED_CLUSTER__2026_03_11__v1`
+  - `/home/ratchet/Desktop/Codex Ratchet/archive/distillery/RUN_ENTROPY_BRIDGE_UNREFERENCED_CLUSTER__2026_03_11__v1`
 - `system_v3/runs` dropped from `557M` to `279M`
 - remaining live entropy-bridge cluster in `system_v3/runs` is now exactly the `20` anchor-dependent members
 
@@ -463,8 +463,8 @@ Completed:
 - repo-held `ZIP_BOOT_BINDING_RULES`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/29_ZIP_BOOT_BINDING_RULES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/29_ZIP_BOOT_BINDING_RULES__v1.md`
 
 Bounded result:
 - Codex-side `A2` threads now have one explicit active boot surface instead of only partial process fragments
@@ -509,7 +509,7 @@ Completed:
 - repo-held `A2_TO_A1_HANDOFF_CONTRACT`
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md`
 
 Bounded result:
 - `A2` now has a current explicit dispatch rule for when `A1` may run
@@ -535,8 +535,8 @@ Completed:
 - updated Playwright plan builder with `real_send_once` plan mode
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/61_BROWSER_REAL_SEND_PLAYWRIGHT_BRIDGE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_browser_go_on_playwright_plan.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/61_BROWSER_REAL_SEND_PLAYWRIGHT_BRIDGE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_browser_go_on_playwright_plan.py`
 
 Bounded result:
 - the browser chain no longer stops at:
@@ -571,8 +571,8 @@ Completed:
 - first executable Playwright plan executor
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/62_BROWSER_GO_ON_PLAYWRIGHT_EXECUTION__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/execute_browser_go_on_playwright_plan.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/62_BROWSER_GO_ON_PLAYWRIGHT_EXECUTION__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/execute_browser_go_on_playwright_plan.py`
 
 Bounded result:
 - the browser chain no longer stops at plan emission
@@ -610,7 +610,7 @@ Completed:
 - repo-held `A1_THREAD_BOOT`
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md`
 
 Bounded result:
 - `A1` now has a current explicit thread boot instead of relying only on the older precursor bootpack
@@ -637,7 +637,7 @@ Completed:
 - repo-held `A1_QUEUE_STATUS_SURFACE`
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/32_A1_QUEUE_STATUS_SURFACE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/32_A1_QUEUE_STATUS_SURFACE__v1.md`
 
 Bounded result:
 - `a1?` now has a current repo-held response format
@@ -668,7 +668,7 @@ Completed:
 - repo-held `A2_VS_A1_ROLE_SPLIT`
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/33_A2_VS_A1_ROLE_SPLIT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/33_A2_VS_A1_ROLE_SPLIT__v1.md`
 
 Bounded result:
 - broad refinery is now explicitly fenced as `A2`
@@ -718,7 +718,7 @@ Completed:
 - repo-held current scale envelope
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/SCALE_UP_ENVELOPE__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/SCALE_UP_ENVELOPE__2026_03_11__v1.md`
 
 Bounded result:
 - current safe `A2` ceiling defined as:
@@ -745,7 +745,7 @@ Completed:
 - repo-held `A1_READY_PACKET` template
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md`
 
 Bounded result:
 - `a1?` can now emit a concrete ready packet instead of only a status/schema
@@ -776,7 +776,7 @@ Completed:
 - repo-held current `A1` queue-status packet
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md`
 
 Bounded result:
 - current `a1?` answer is no longer abstract
@@ -804,7 +804,7 @@ Completed:
 - repo-held first sendable `A1` operator packet
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_FIRST_DISPATCH_OPERATOR_PACKET__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_FIRST_DISPATCH_OPERATOR_PACKET__2026_03_11__v1.md`
 
 Bounded result:
 - the first real `A1` dispatch is now operator-ready
@@ -825,8 +825,8 @@ Completed:
 - first bounded `A1_PROPOSAL` dispatch executed and captured
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_RESULT__ENTROPY_RESIDUE_NEGATIVE_AND_RESCUE__2026_03_11__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_RESULT__ENTROPY_RESIDUE_NEGATIVE_AND_RESCUE__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md`
 
 Bounded result:
 - first real `A1` dispatch ran successfully
@@ -855,7 +855,7 @@ There are still real internal `go on` candidates, but they are now narrower than
 ### 13a) Run-folder cluster remap
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_REVIEW__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_CLUSTER_REVIEW__2026_03_11__v1.md`
 
 Current read:
 - `system_v3/runs` is still the largest local concentration (`557M`)
@@ -868,7 +868,7 @@ Next safe internal pass:
 ### 13b) A2-high family triage
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_HIGH_MASS_PROCESSING_TRIAGE__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_HIGH_MASS_PROCESSING_TRIAGE__2026_03_11__v1.md`
 
 Current read:
 - `a2_high_entropy_intake_surface` is moderate by bytes (`16M`) but large by count (`444` batch dirs)
@@ -884,7 +884,7 @@ Completed:
 - repo-held automatic bounded-continuation rule
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
 
 Bounded result:
 - thread continuation is now governed by an explicit rule
@@ -906,7 +906,7 @@ Completed:
 - repo-held continuation application surface
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md`
 
 Bounded result:
 - the system now has both:
@@ -932,7 +932,7 @@ Completed:
 - repo-held continuation execution-path surface
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/43_AUTO_GO_ON_EXECUTION_PATH__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/43_AUTO_GO_ON_EXECUTION_PATH__v1.md`
 
 Bounded result:
 - the system now has:
@@ -958,7 +958,7 @@ Completed:
 - repo-held continuation sender packet surface
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/44_AUTO_GO_ON_SENDER_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/44_AUTO_GO_ON_SENDER_PACKET__v1.md`
 
 Bounded result:
 - the system now has the exact final handoff object between:
@@ -980,7 +980,7 @@ Completed:
 - repo-held continuation runner design
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/45_AUTO_GO_ON_RUNNER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/45_AUTO_GO_ON_RUNNER__v1.md`
 
 Bounded result:
 - the full continuation loop is now designed end-to-end:
@@ -1006,7 +1006,7 @@ Completed:
 - first executable helper for bounded continuation decisions
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/auto_go_on_runner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/auto_go_on_runner.py`
 
 Bounded result:
 - one normalized thread-result JSON can now be evaluated into exactly one runner output:
@@ -1030,8 +1030,8 @@ Completed:
 - repo-held normalized input shape for the auto-`go on` runner
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/46_AUTO_GO_ON_THREAD_RESULT_SHAPE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/auto_go_on_thread_result_template_v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/46_AUTO_GO_ON_THREAD_RESULT_SHAPE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/auto_go_on_thread_result_template_v1.json`
 
 Bounded result:
 - the runner now has one explicit intended input shape:
@@ -1051,7 +1051,7 @@ Completed:
 - first prose-to-runner normalizer for returned thread results
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/extract_auto_go_on_thread_result.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/extract_auto_go_on_thread_result.py`
 
 Bounded result:
 - one returned thread prose block can now be converted into:
@@ -1076,7 +1076,7 @@ Completed:
 - one-command wrapper from raw returned thread text to normalized result plus runner output
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_auto_go_on_cycle.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_auto_go_on_cycle.py`
 
 Bounded result:
 - one command now covers:
@@ -1101,9 +1101,9 @@ Completed:
 - one packet-driven runner wrapper
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/47_AUTO_GO_ON_CYCLE_PACKET__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/auto_go_on_cycle_packet_template_v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_auto_go_on_cycle_from_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/47_AUTO_GO_ON_CYCLE_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/auto_go_on_cycle_packet_template_v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_auto_go_on_cycle_from_packet.py`
 
 Bounded result:
 - the auto-`go on` chain can now be invoked from one small JSON packet instead of a long manual flag list
@@ -1126,7 +1126,7 @@ Completed:
 - tiny capture-side helper for creating one cycle packet from raw returned thread text metadata
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_auto_go_on_cycle_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_auto_go_on_cycle_packet.py`
 
 Bounded result:
 - the continuation chain now has a minimal capture path:
@@ -1151,8 +1151,8 @@ Completed:
 - repo-held raw return staging path for the auto-`go on` chain
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/AUTO_GO_ON_THREAD_RETURN_SINK__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/auto_go_on_thread_returns/README__AUTO_GO_ON_THREAD_RETURN_STAGING__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/AUTO_GO_ON_THREAD_RETURN_SINK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/auto_go_on_thread_returns/README__AUTO_GO_ON_THREAD_RETURN_STAGING__v1.md`
 
 Bounded result:
 - the auto-`go on` chain no longer depends on `/tmp` conventions for returned thread text
@@ -1175,7 +1175,7 @@ Completed:
 - one-command wrapper from raw returned thread text plus metadata directly into the full cycle
 
 Record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_auto_go_on_from_metadata.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_auto_go_on_from_metadata.py`
 
 Bounded result:
 - the current operator path is now reducible to one command:
@@ -1201,8 +1201,8 @@ Completed:
 - browser-assisted continuation implementation planning layer
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/49_BROWSER_GO_ON_IMPLEMENTATION_PLAN__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/50_BROWSER_GO_ON_PROOF_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/49_BROWSER_GO_ON_IMPLEMENTATION_PLAN__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/50_BROWSER_GO_ON_PROOF_PACKET__v1.md`
 
 Bounded result:
 - the first browser helper now has a strict packet-in / proof-out design target
@@ -1223,8 +1223,8 @@ Completed:
 - first executable browser-assisted continuation helper
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/browser_go_on_helper.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/browser_go_on_proof_packet_template_v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/browser_go_on_helper.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/browser_go_on_proof_packet_template_v1.json`
 
 Bounded result:
 - sender-packet validation is now executable
@@ -1247,8 +1247,8 @@ Completed:
 - exact target-metadata surface for bounded browser-assisted Codex thread continuation
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/51_BROWSER_CODEX_THREAD_TARGET__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/browser_codex_thread_target_template_v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/51_BROWSER_CODEX_THREAD_TARGET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/browser_codex_thread_target_template_v1.json`
 
 Bounded result:
 - browser execution no longer needs to rely on implicit Codex thread identity assumptions
@@ -1273,8 +1273,8 @@ Completed:
 - browser helper upgraded from sender-only validation to sender-plus-target validation
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/browser_go_on_helper.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/51_BROWSER_CODEX_THREAD_TARGET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/browser_go_on_helper.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/51_BROWSER_CODEX_THREAD_TARGET__v1.md`
 
 Bounded result:
 - the helper now requires:
@@ -1304,8 +1304,8 @@ Completed:
 - first exact bridge from validated continuation packets to a concrete Playwright execution plan
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/52_BROWSER_GO_ON_PLAYWRIGHT_BRIDGE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_browser_go_on_playwright_plan.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/52_BROWSER_GO_ON_PLAYWRIGHT_BRIDGE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_browser_go_on_playwright_plan.py`
 
 Bounded result:
 - the browser path no longer jumps directly from packet validation to send implementation
@@ -1328,8 +1328,8 @@ Completed:
 - first bounded helper for turning known Codex worker metadata into one valid browser target packet
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/53_BROWSER_CODEX_THREAD_TARGET_CAPTURE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_browser_codex_thread_target.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/53_BROWSER_CODEX_THREAD_TARGET_CAPTURE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_browser_codex_thread_target.py`
 
 Bounded result:
 - browser continuation no longer depends on hand-editing `BROWSER_CODEX_THREAD_TARGET_v1` JSON
@@ -1356,8 +1356,8 @@ Completed:
 - first explicit observed-capture artifact for one live Codex worker thread
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/54_BROWSER_CODEX_THREAD_CAPTURE_RECORD__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/browser_codex_thread_capture_record_template_v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/54_BROWSER_CODEX_THREAD_CAPTURE_RECORD__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/browser_codex_thread_capture_record_template_v1.json`
 
 Bounded result:
 - the browser path no longer has to jump directly from guessed metadata to a `READY` target packet
@@ -1383,8 +1383,8 @@ Completed:
 - bounded helper for converting one observed capture record into one valid browser target packet
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/55_BROWSER_CAPTURE_RECORD_TO_TARGET__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_browser_target_from_capture_record.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/55_BROWSER_CAPTURE_RECORD_TO_TARGET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_browser_target_from_capture_record.py`
 
 Bounded result:
 - browser continuation no longer depends on hand-translating observed capture into `BROWSER_CODEX_THREAD_TARGET_v1`
@@ -1415,7 +1415,7 @@ Completed:
 - bounded helper for creating one observed browser capture record from real thread observations
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_browser_codex_thread_capture_record.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_browser_codex_thread_capture_record.py`
 
 Bounded result:
 - browser continuation no longer depends on hand-writing `BROWSER_CODEX_THREAD_CAPTURE_RECORD_v1`
@@ -1449,9 +1449,9 @@ Completed:
 - one bounded wrapper for running the full browser continuation chain from real observed thread values
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/56_BROWSER_OBSERVED_CAPTURE_TO_PROOF_PATH__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/60_BROWSER_REAL_SEND_MODE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_browser_go_on_from_observed_thread.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/56_BROWSER_OBSERVED_CAPTURE_TO_PROOF_PATH__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/60_BROWSER_REAL_SEND_MODE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_browser_go_on_from_observed_thread.py`
 
 Bounded result:
 - browser continuation no longer requires three separate operator commands for:
@@ -1485,9 +1485,9 @@ Completed:
 - repo-held sink and template for real observed Codex worker-thread values
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/57_BROWSER_OBSERVED_CAPTURE_SINK__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/browser_thread_observations/README__BROWSER_THREAD_OBSERVATION_STAGING__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/browser_observed_thread_packet_template_v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/57_BROWSER_OBSERVED_CAPTURE_SINK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/browser_thread_observations/README__BROWSER_THREAD_OBSERVATION_STAGING__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/browser_observed_thread_packet_template_v1.json`
 
 Bounded result:
 - browser continuation now has one stable repo-held intake path for:
@@ -1516,8 +1516,8 @@ Completed:
 - packet-driven wrapper from one staged observed-thread JSON to one browser proof packet
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/58_BROWSER_OBSERVED_PACKET_TO_PROOF_PATH__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_browser_go_on_from_observed_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/58_BROWSER_OBSERVED_PACKET_TO_PROOF_PATH__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_browser_go_on_from_observed_packet.py`
 
 Bounded result:
 - browser continuation no longer requires many CLI fields once a real observation packet exists
@@ -1546,7 +1546,7 @@ Completed:
 - explicit bounded procedure for the first real live Codex worker-thread capture
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/59_FIRST_LIVE_BROWSER_THREAD_CAPTURE_PROCEDURE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/59_FIRST_LIVE_BROWSER_THREAD_CAPTURE_PROCEDURE__v1.md`
 
 Bounded result:
 - the browser continuation chain now has one explicit first-live-capture procedure
@@ -1572,8 +1572,8 @@ Completed:
 - packet-driven wrapper from one staged observed-thread packet through the Playwright plan/execution chain
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/63_BROWSER_OBSERVED_PACKET_TO_PLAYWRIGHT_PROOF_PATH__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_browser_go_on_playwright_from_observed_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/63_BROWSER_OBSERVED_PACKET_TO_PLAYWRIGHT_PROOF_PATH__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_browser_go_on_playwright_from_observed_packet.py`
 
 Bounded result:
 - one wrapper now takes:
@@ -1609,8 +1609,8 @@ Completed:
 - added the one-command helper for staging a browser observed-thread sink packet
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/64_BROWSER_OBSERVED_THREAD_PACKET_STAGER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/stage_browser_observed_thread_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/64_BROWSER_OBSERVED_THREAD_PACKET_STAGER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/stage_browser_observed_thread_packet.py`
 
 Bounded result:
 - one helper now stages a valid observed-thread sink packet from bounded operator inputs:
@@ -1624,7 +1624,7 @@ Bounded result:
   - `source_note`
   - `composer_ready_hint`
 - the workspace sink path is now proven:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/browser_thread_observations/browser_observed_thread_smoke.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/browser_thread_observations/browser_observed_thread_smoke.json`
 
 Verification:
 - `py_compile` passed
@@ -1652,7 +1652,7 @@ Completed:
   - one staged observed-thread sink packet
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_browser_go_on_playwright_from_observed_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_browser_go_on_playwright_from_observed_packet.py`
 - live run output dir:
   - `/tmp/browser_live_validate_smoke`
 
@@ -1668,7 +1668,7 @@ Verification:
 - contract-valid sender packet created for:
   - `THREAD_SMOKE_0001`
 - staged observed-thread sink packet reused from:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/browser_thread_observations/browser_observed_thread_smoke.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/browser_thread_observations/browser_observed_thread_smoke.json`
 - packet-driven wrapper advanced through:
   - capture record creation
   - target packet creation
@@ -1689,11 +1689,11 @@ Current read:
 
 Completed:
 - added timeout-backed proof emission to:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/execute_browser_go_on_playwright_plan.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/execute_browser_go_on_playwright_plan.py`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/62_BROWSER_GO_ON_PLAYWRIGHT_EXECUTION__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/execute_browser_go_on_playwright_plan.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/62_BROWSER_GO_ON_PLAYWRIGHT_EXECUTION__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/execute_browser_go_on_playwright_plan.py`
 
 Bounded result:
 - browser command stalls no longer hang the execution path without a proof packet
@@ -1709,7 +1709,7 @@ Verification:
   - `/tmp/browser_timeout_proof.json`
 - emitted result:
   - `send_status = SEND_FAILED`
-  - `detail = command_timeout:/Users/joshuaeisenhart/.codex/skills/playwright/scripts/playwright_cli.sh:1`
+  - `detail = command_timeout:/home/ratchet/.codex/skills/playwright/scripts/playwright_cli.sh:1`
 
 Current next internal thread-action:
 - decide whether to perform one real observed-thread validate-only run again now that timeout-proof behavior exists, or switch to another remaining project gap
@@ -1729,7 +1729,7 @@ Completed:
   - timeout-proof execution layer
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_browser_go_on_playwright_from_observed_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_browser_go_on_playwright_from_observed_packet.py`
 - live run output dir:
   - `/tmp/browser_live_validate_timeoutproof`
 
@@ -1743,11 +1743,11 @@ Bounded result:
   - `/tmp/browser_live_validate_timeoutproof/browser_go_on_command_log.json`
 - proof packet emitted:
   - `send_status = SEND_FAILED`
-  - `detail = command_timeout:/Users/joshuaeisenhart/.codex/skills/playwright/scripts/playwright_cli.sh:20`
+  - `detail = command_timeout:/home/ratchet/.codex/skills/playwright/scripts/playwright_cli.sh:20`
 
 Verification:
 - staged observed-thread sink packet reused from:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/browser_thread_observations/browser_observed_thread_smoke.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/browser_thread_observations/browser_observed_thread_smoke.json`
 - sender packet reused from:
   - `/tmp/browser_smoke_sender_packet.json`
 - packet-driven wrapper returned proof path successfully
@@ -1769,7 +1769,7 @@ Completed:
 - checked the current Playwright browser context directly
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/65_BROWSER_LIVE_CAPTURE_ENVIRONMENT_BLOCKER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/65_BROWSER_LIVE_CAPTURE_ENVIRONMENT_BLOCKER__v1.md`
 
 Bounded result:
 - browser automation context is attached only to:
@@ -1801,8 +1801,8 @@ Completed:
 - bounded controller-law refresh across the active March 11 boot/control surfaces plus the March 12 `A1` queue confirmation
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CONTROLLER_BOOT_REFRESH_AND_QUEUE_LOCK__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CONTROLLER_BOOT_REFRESH_AND_QUEUE_LOCK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CONTROLLER_BOOT_REFRESH_AND_QUEUE_LOCK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CONTROLLER_BOOT_REFRESH_AND_QUEUE_LOCK__2026_03_12__v1.md`
 
 Bounded result:
 - current controller law is now held explicitly as:
@@ -1819,17 +1819,17 @@ Bounded result:
 
 Verification:
 - source set read for this pass included:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/33_A2_VS_A1_ROLE_SPLIT__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CHECK__2026_03_12__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_A_v2.60.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/33_A2_VS_A1_ROLE_SPLIT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CHECK__2026_03_12__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_A_v2.60.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md`
 
 Current next internal thread-action:
 - perform one bounded controller-side pass on the corrected external entropy/Carnot/Szilard boot packet path from:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_PRO_BOOT_PACKET_SCAFFOLD__ENTROPY_CARNOT_SZILARD__2026_03_11__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_PRO_BOOT_PACKET_SCAFFOLD__ENTROPY_CARNOT_SZILARD__2026_03_11__v1.md`
 
 Current read:
 - the highest-value next action is still corrected external source-packet boot preparation and later return audit
@@ -1842,9 +1842,9 @@ Completed:
 - bounded readiness audit of the corrected `v3` external entropy/Carnot/Szilard dropin
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_BOOT_READINESS_AUDIT__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_AUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_BOOT_READINESS_AUDIT__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_BOOT_READINESS_AUDIT__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_AUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_BOOT_READINESS_AUDIT__2026_03_12__v1.md`
 
 Bounded result:
 - the corrected `v3` boot now has all six packet families scaffolded
@@ -1870,7 +1870,7 @@ Verification:
 
 Current next internal thread-action:
 - perform one bounded acquisition/fill pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
 
 Current read:
 - the corrected external lane is better-scaffolded but not yet launch-ready
@@ -1882,9 +1882,9 @@ Completed:
 - one bounded fill pass on `carnot_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CARNOT_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CARNOT_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/04_SOURCE_BEARING_EXTRACT__CARNOT_CYCLE_AND_MAXIMUM_EFFECT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CARNOT_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CARNOT_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/04_SOURCE_BEARING_EXTRACT__CARNOT_CYCLE_AND_MAXIMUM_EFFECT__v1.md`
 
 Bounded result:
 - `carnot_primary` is no longer empty-stub only
@@ -1900,7 +1900,7 @@ Verification:
 
 Current next internal thread-action:
 - perform one more bounded fill pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
 
 Current read:
 - the controller is past empty scaffolding on Carnot
@@ -1912,9 +1912,9 @@ Completed:
 - one additional bounded fill pass on `carnot_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CARNOT_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CARNOT_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/05_SOURCE_BEARING_EXTRACT__CARNOT_REVERSIBILITY_AND_EFFICIENCY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CARNOT_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CARNOT_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/05_SOURCE_BEARING_EXTRACT__CARNOT_REVERSIBILITY_AND_EFFICIENCY__v1.md`
 
 Bounded result:
 - `carnot_primary` now has a minimal two-file source-bearing floor
@@ -1924,7 +1924,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded first-source fill pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
 
 Current read:
 - Carnot is no longer the sharpest first-priority blocker
@@ -1936,9 +1936,9 @@ Completed:
 - one bounded first-source fill pass on `maxwell_demon_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/04_SOURCE_BEARING_EXTRACT__MAXWELL_SORTING_AND_DISSIPATION_REVERSAL__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/04_SOURCE_BEARING_EXTRACT__MAXWELL_SORTING_AND_DISSIPATION_REVERSAL__v1.md`
 
 Bounded result:
 - `maxwell_demon_primary` is no longer empty-stub only
@@ -1947,7 +1947,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded first-source fill pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
 
 Current read:
 - Carnot and Maxwell both have real source-bearing starts
@@ -1959,9 +1959,9 @@ Completed:
 - one bounded first-source fill pass on `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__FEP_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__FEP_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/04_SOURCE_BEARING_EXTRACT__ACTIVE_INFERENCE_AND_MARKOV_BLANKETS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__FEP_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__FEP_PACKET_FIRST_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/04_SOURCE_BEARING_EXTRACT__ACTIVE_INFERENCE_AND_MARKOV_BLANKETS__v1.md`
 
 Bounded result:
 - first-source floors now exist for:
@@ -1987,9 +1987,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_FIRST_WAVE_REAUDIT__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_REAUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_FIRST_WAVE_REAUDIT__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_FIRST_WAVE_REAUDIT__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_READINESS_REAUDIT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_FIRST_WAVE_REAUDIT__2026_03_12__v1.md`
 
 Bounded result:
 - first-priority wave is now classified as:
@@ -2002,7 +2002,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
 
 Current read:
 - the lane has moved from startup to comparative completeness work
@@ -2014,9 +2014,9 @@ Completed:
 - one bounded deepen pass on `maxwell_demon_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/05_SOURCE_BEARING_EXTRACT__LANDAUER_ERASURE_AND_COST_BOUND__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/05_SOURCE_BEARING_EXTRACT__LANDAUER_ERASURE_AND_COST_BOUND__v1.md`
 
 Bounded result:
 - Maxwell now has a minimal two-file source-bearing floor
@@ -2024,7 +2024,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
 
 Current read:
 - Carnot and Maxwell now both have two-file source-bearing floors
@@ -2036,9 +2036,9 @@ Completed:
 - one bounded deepen pass on `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__FEP_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__FEP_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/05_SOURCE_BEARING_EXTRACT__ACTIVE_INFERENCE_VARIATIONAL_AND_UPDATE_ASSUMPTIONS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__FEP_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__FEP_PACKET_SECOND_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/05_SOURCE_BEARING_EXTRACT__ACTIVE_INFERENCE_VARIATIONAL_AND_UPDATE_ASSUMPTIONS__v1.md`
 
 Bounded result:
 - FEP now has a minimal two-file source-bearing floor
@@ -2047,9 +2047,9 @@ Bounded result:
 
 Current next internal thread-action:
 - run one bounded comparative refresh pass across:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
 
 Current read:
 - FEP is no longer uniquely thin at the first-wave floor level
@@ -2064,9 +2064,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_COMPARATIVE_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_COMPARATIVE_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_COMPARATIVE_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_COMPARATIVE_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2079,7 +2079,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
 
 Current read:
 - the next correct move is a Maxwell measurement/recording-to-cost bridge fill
@@ -2091,9 +2091,9 @@ Completed:
 - one bounded deepen pass on `maxwell_demon_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/06_SOURCE_BEARING_EXTRACT__MEASUREMENT_INFORMATION_AND_COST_BRIDGE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/06_SOURCE_BEARING_EXTRACT__MEASUREMENT_INFORMATION_AND_COST_BRIDGE__v1.md`
 
 Bounded result:
 - Maxwell now has a third source-bearing file that narrows the old measurement/recording-to-cost bridge gap
@@ -2101,9 +2101,9 @@ Bounded result:
 
 Current next internal thread-action:
 - run one bounded comparative refresh pass across:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
 
 Current read:
 - Maxwell has improved enough that the pre-fill blocker ranking should no longer be assumed
@@ -2118,9 +2118,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2132,7 +2132,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
 
 Current read:
 - the next correct move is a Carnot deepen pass on state-variable treatment and bridge/separation material
@@ -2144,9 +2144,9 @@ Completed:
 - one bounded deepen pass on `carnot_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CARNOT_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CARNOT_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/06_SOURCE_BEARING_EXTRACT__CARNOT_STATE_VARIABLES_AND_SEMANTIC_BOUNDARY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CARNOT_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CARNOT_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/06_SOURCE_BEARING_EXTRACT__CARNOT_STATE_VARIABLES_AND_SEMANTIC_BOUNDARY__v1.md`
 
 Bounded result:
 - Carnot now has a third source-bearing file that narrows the old state-variable / semantic-boundary gap
@@ -2154,9 +2154,9 @@ Bounded result:
 
 Current next internal thread-action:
 - run one bounded comparative refresh pass across:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
 
 Current read:
 - Carnot has improved enough that the pre-fill blocker ranking should no longer be assumed
@@ -2171,9 +2171,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2185,7 +2185,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
 
 Current read:
 - the next correct move is an FEP deepen pass on blanket/assumption strip mapping
@@ -2197,9 +2197,9 @@ Completed:
 - one bounded deepen pass on `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__FEP_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__FEP_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/06_SOURCE_BEARING_EXTRACT__MARKOV_BLANKET_STRIP_MAP_AND_WORLDVIEW_BOUNDARY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__FEP_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__FEP_PACKET_THIRD_SOURCE_FILL__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/06_SOURCE_BEARING_EXTRACT__MARKOV_BLANKET_STRIP_MAP_AND_WORLDVIEW_BOUNDARY__v1.md`
 
 Bounded result:
 - FEP now has a third source-bearing file that narrows the old blanket/strip-map gap
@@ -2207,9 +2207,9 @@ Bounded result:
 
 Current next internal thread-action:
 - run one bounded comparative refresh pass across:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
 
 Current read:
 - FEP has improved enough that the pre-fill blocker ranking should no longer be assumed
@@ -2224,9 +2224,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_FEP_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_FEP_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2238,7 +2238,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
 
 Current read:
 - the next correct move is a Maxwell deepen pass on Bennett/Szilard bridge material
@@ -2250,8 +2250,8 @@ Completed:
 - one bounded controller check on the Maxwell Bennett/Szilard deepen target
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md`
 
 Bounded result:
 - no local source-bearing Bennett/Szilard file was found that can be safely promoted into `maxwell_demon_primary`
@@ -2271,8 +2271,8 @@ Completed:
 - one bounded archive verification pass against the Maxwell Bennett/Szilard bridge gap
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md`
 
 Bounded result:
 - sampled archive `incoming_consumed` payloads were confirmed as `A1_LAWYER_MEMO_v1` overlays rather than source-bearing extracts
@@ -2286,7 +2286,7 @@ Current next internal thread-action:
   - reset/erasure as a distinct thermodynamic burden
   - explicit Maxwell-to-Szilard bridge language
 - use the sharpened packet-local acquisition surfaces under:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
   rather than restarting from generic Maxwell search criteria
 
 Current read:
@@ -2299,7 +2299,7 @@ Completed:
 - one bounded controller follow-through pass propagating the sharpened Maxwell acquisition fence across the active dropin carrier surfaces
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md`
 
 Bounded result:
 - the packet, bundle inventory, launch brief, operator send text, scope JSON, and manifest now all preserve the same Bennett/Szilard acquisition target
@@ -2319,8 +2319,8 @@ Completed:
 - one bounded source-bearing acquisition pass on the Maxwell Bennett/Szilard gap
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/07_SOURCE_BEARING_EXTRACT__BENNETT_SZILARD_MEASUREMENT_MEMORY_RESET__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/07_SOURCE_BEARING_EXTRACT__BENNETT_SZILARD_MEASUREMENT_MEMORY_RESET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md`
 
 Bounded result:
 - Maxwell now has a fourth real source-bearing file
@@ -2345,9 +2345,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_BENNETT_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_BENNETT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_BENNETT_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_BENNETT_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_BENNETT__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_BENNETT_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2359,7 +2359,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
 
 Current read:
 - Maxwell is no longer the sharpest first-wave bottleneck after the Bennett-style acquisition
@@ -2371,7 +2371,7 @@ Completed:
 - one bounded source-bearing deepen pass on `carnot_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/07_SOURCE_BEARING_EXTRACT__CARNOT_MAXIMUM_CONDITION_AND_ENGINE_BOUNDARY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/07_SOURCE_BEARING_EXTRACT__CARNOT_MAXIMUM_CONDITION_AND_ENGINE_BOUNDARY__v1.md`
 
 Bounded result:
 - Carnot now has a fourth real source-bearing file
@@ -2397,9 +2397,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_TENTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_TENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_TENTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_TENTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_TENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_TENTH_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2411,7 +2411,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
 
 Current read:
 - Maxwell is no longer the sharpest first-wave bottleneck after its nine-file floor
@@ -2423,7 +2423,7 @@ Completed:
 - one bounded source-bearing deepen pass on `carnot_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/12_SOURCE_BEARING_EXTRACT__UNIVERSAL_WORKING_SUBSTANCE_AND_COMPARISON_RULE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/12_SOURCE_BEARING_EXTRACT__UNIVERSAL_WORKING_SUBSTANCE_AND_COMPARISON_RULE__v1.md`
 
 Bounded result:
 - Carnot now has a ninth real source-bearing file
@@ -2448,9 +2448,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_FEP_EIGHTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_EIGHTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_EIGHTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_FEP_EIGHTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_EIGHTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_EIGHTH_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2462,7 +2462,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
 
 Current read:
 - FEP is no longer the sharpest first-wave bottleneck after its eight-file floor
@@ -2474,7 +2474,7 @@ Completed:
 - one bounded source-bearing deepen pass on `maxwell_demon_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/12_SOURCE_BEARING_EXTRACT__ELECTRICAL_MAXWELL_SZILARD_CONTROL_AND_ANALOG_DISSIPATION__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/12_SOURCE_BEARING_EXTRACT__ELECTRICAL_MAXWELL_SZILARD_CONTROL_AND_ANALOG_DISSIPATION__v1.md`
 
 Bounded result:
 - Maxwell now has a ninth real source-bearing file
@@ -2499,9 +2499,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_EIGHTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_EIGHTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_EIGHTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_EIGHTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_EIGHTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_EIGHTH_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2513,7 +2513,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
 
 Current read:
 - Carnot is no longer the sharpest first-wave bottleneck after its eight-file floor
@@ -2525,7 +2525,7 @@ Completed:
 - one bounded source-bearing deepen pass on `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/11_SOURCE_BEARING_EXTRACT__RECOGNITION_DENSITY_AND_POLICY_SELECTION_SURVIVOR_MAP__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/11_SOURCE_BEARING_EXTRACT__RECOGNITION_DENSITY_AND_POLICY_SELECTION_SURVIVOR_MAP__v1.md`
 
 Bounded result:
 - FEP now has an eighth real source-bearing file
@@ -2550,9 +2550,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_NINTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_NINTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_NINTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_NINTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_NINTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_NINTH_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2564,7 +2564,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
 
 Current read:
 - Maxwell is no longer the sharpest first-wave bottleneck after its eight-file floor
@@ -2576,7 +2576,7 @@ Completed:
 - one bounded source-bearing deepen pass on `carnot_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/11_SOURCE_BEARING_EXTRACT__PERFECT_ENGINE_CRITERION_AND_REVERSIBLE_COMPARISON_CORE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/11_SOURCE_BEARING_EXTRACT__PERFECT_ENGINE_CRITERION_AND_REVERSIBLE_COMPARISON_CORE__v1.md`
 
 Bounded result:
 - Carnot now has an eighth real source-bearing file
@@ -2601,9 +2601,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_FEP_SEVENTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_SEVENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_SEVENTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_FEP_SEVENTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_SEVENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_SEVENTH_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2615,7 +2615,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
 
 Current read:
 - FEP is no longer the sharpest first-wave bottleneck after its seventh source-bearing file
@@ -2627,7 +2627,7 @@ Completed:
 - one bounded source-bearing deepen pass on `maxwell_demon_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/11_SOURCE_BEARING_EXTRACT__NONEQUILIBRIUM_IMPLEMENTATION_OVERHEAD_AND_EXTERNAL_POWER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/11_SOURCE_BEARING_EXTRACT__NONEQUILIBRIUM_IMPLEMENTATION_OVERHEAD_AND_EXTERNAL_POWER__v1.md`
 
 Bounded result:
 - Maxwell now has an eighth real source-bearing file
@@ -2652,9 +2652,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_SEVENTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_SEVENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_SEVENTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_SEVENTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_SEVENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_SEVENTH_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2666,7 +2666,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
 
 Current read:
 - Carnot is no longer the sharpest first-wave bottleneck after its seventh source-bearing file
@@ -2678,7 +2678,7 @@ Completed:
 - one bounded source-bearing deepen pass on `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/10_SOURCE_BEARING_EXTRACT__STEADY_STATE_DENSITIES_AND_SUFFICIENT_STATISTICS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/10_SOURCE_BEARING_EXTRACT__STEADY_STATE_DENSITIES_AND_SUFFICIENT_STATISTICS__v1.md`
 
 Bounded result:
 - FEP now has a seventh real source-bearing file
@@ -2703,9 +2703,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_SEVENTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_SEVENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_SEVENTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_SEVENTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_SEVENTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_SEVENTH_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2717,7 +2717,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
 
 Current read:
 - Maxwell is no longer the sharpest first-wave bottleneck after its seventh source-bearing file
@@ -2732,9 +2732,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_EIGHTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_EIGHTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_EIGHTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_EIGHTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_EIGHTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_EIGHTH_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2746,7 +2746,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
 
 Current read:
 - Maxwell is no longer the sharpest first-wave bottleneck after its seven-file floor and implementation-cost bridge fill
@@ -2758,7 +2758,7 @@ Completed:
 - one bounded source-bearing deepen pass on `carnot_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/10_SOURCE_BEARING_EXTRACT__PROVISIONAL_AXIOM_AND_RECONSTRUCTION_BOUNDARY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/10_SOURCE_BEARING_EXTRACT__PROVISIONAL_AXIOM_AND_RECONSTRUCTION_BOUNDARY__v1.md`
 
 Bounded result:
 - Carnot now has a seventh real source-bearing file
@@ -2783,9 +2783,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_FEP_SIXTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_SIXTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_SIXTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_FEP_SIXTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_SIXTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_SIXTH_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2797,7 +2797,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
 
 Current read:
 - FEP is no longer the sharpest first-wave bottleneck after its sixth source-bearing file
@@ -2809,7 +2809,7 @@ Completed:
 - one bounded source-bearing deepen pass on `maxwell_demon_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/10_SOURCE_BEARING_EXTRACT__IMPLEMENTATION_COST_BRIDGE_FROM_SZILARD_BOX__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/10_SOURCE_BEARING_EXTRACT__IMPLEMENTATION_COST_BRIDGE_FROM_SZILARD_BOX__v1.md`
 
 Bounded result:
 - Maxwell now has a seventh real source-bearing file
@@ -2834,9 +2834,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_SIXTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_SIXTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_SIXTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_SIXTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_SIXTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_SIXTH_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2848,7 +2848,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
 
 Current read:
 - Carnot is no longer the sharpest first-wave bottleneck after its sixth source-bearing file
@@ -2860,7 +2860,7 @@ Completed:
 - one bounded source-bearing deepen pass on `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/09_SOURCE_BEARING_EXTRACT__CONTROL_SYSTEM_AND_REPRESENTATIONAL_BOUNDARY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/09_SOURCE_BEARING_EXTRACT__CONTROL_SYSTEM_AND_REPRESENTATIONAL_BOUNDARY__v1.md`
 
 Bounded result:
 - FEP now has a sixth real source-bearing file
@@ -2885,9 +2885,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_FOURTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_FOURTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_FOURTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_FOURTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_FOURTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_FOURTH_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2899,7 +2899,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
 
 Current read:
 - FEP is now the sharpest first-wave bottleneck
@@ -2911,7 +2911,7 @@ Completed:
 - one bounded source-bearing deepen pass on `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/07_SOURCE_BEARING_EXTRACT__PARTICULAR_PARTITION_AND_STATISTICAL_BOUNDARY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/07_SOURCE_BEARING_EXTRACT__PARTICULAR_PARTITION_AND_STATISTICAL_BOUNDARY__v1.md`
 
 Bounded result:
 - FEP now has a fourth real source-bearing file
@@ -2936,9 +2936,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_FEP_FOURTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_FOURTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_FOURTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_FEP_FOURTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_FOURTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_FOURTH_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -2950,7 +2950,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
 
 Current read:
 - with all three packets at four-file floors, Maxwell is again the sharpest first-wave same-source bridge gap
@@ -2962,7 +2962,7 @@ Completed:
 - one bounded source-bearing deepen pass on `maxwell_demon_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/08_SOURCE_BEARING_EXTRACT__SZILARD_STAGE_MAPPING_AND_MEMORY_COMPENSATION__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/08_SOURCE_BEARING_EXTRACT__SZILARD_STAGE_MAPPING_AND_MEMORY_COMPENSATION__v1.md`
 
 Bounded result:
 - Maxwell now has a fifth real source-bearing file
@@ -2987,9 +2987,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_FIFTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_FIFTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_FIFTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_FIFTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_FIFTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_FIFTH_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -3001,7 +3001,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
 
 Current read:
 - Maxwell is no longer the sharpest first-wave bottleneck after its fifth source-bearing file
@@ -3016,9 +3016,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_STAGE_MAP_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_STAGE_MAP__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_STAGE_MAP_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_STAGE_MAP_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_STAGE_MAP__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_STAGE_MAP_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -3030,7 +3030,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
 
 Current read:
 - Maxwell is no longer the sharpest first-wave bottleneck after the stage-mapping acquisition
@@ -3042,7 +3042,7 @@ Completed:
 - one bounded source-bearing deepen pass on `carnot_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/08_SOURCE_BEARING_EXTRACT__CARNOT_REVERSIBLE_EQUIVALENCE_AND_NO_LOSS_BOUNDARY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/08_SOURCE_BEARING_EXTRACT__CARNOT_REVERSIBLE_EQUIVALENCE_AND_NO_LOSS_BOUNDARY__v1.md`
 
 Bounded result:
 - Carnot now has a fifth real source-bearing file
@@ -3065,9 +3065,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_FIFTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_FIFTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_FIFTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_FIFTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_CARNOT_FIFTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_CARNOT_FIFTH_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -3079,7 +3079,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/`
 
 Current read:
 - Carnot is no longer the sharpest first-wave bottleneck after its fifth source-bearing file
@@ -3091,7 +3091,7 @@ Completed:
 - one bounded source-bearing deepen pass on `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/08_SOURCE_BEARING_EXTRACT__FORMAL_PARTICULAR_PARTITION_AND_SYNCHRONISATION_MAP__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/fep_active_inference_primary/08_SOURCE_BEARING_EXTRACT__FORMAL_PARTICULAR_PARTITION_AND_SYNCHRONISATION_MAP__v1.md`
 
 Bounded result:
 - FEP now has a fifth real source-bearing file
@@ -3114,9 +3114,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_FEP_FIFTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_FIFTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_FIFTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_FEP_FIFTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_FEP_FIFTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_FEP_FIFTH_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -3128,7 +3128,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/`
 
 Current read:
 - with all three packets at five-file floors, Maxwell is again the sharpest same-source bridge gap
@@ -3140,7 +3140,7 @@ Completed:
 - one bounded source-bearing deepen pass on `maxwell_demon_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/09_SOURCE_BEARING_EXTRACT__BENNETT_SZILARD_PROGRAM_FLOW_AND_MERGING_COST__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/maxwell_demon_primary/09_SOURCE_BEARING_EXTRACT__BENNETT_SZILARD_PROGRAM_FLOW_AND_MERGING_COST__v1.md`
 
 Bounded result:
 - Maxwell now has a sixth real source-bearing file
@@ -3165,9 +3165,9 @@ Completed:
   - `fep_active_inference_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_SIXTH_REFRESH__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_SIXTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_SIXTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_SIXTH_REFRESH__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__POST_MAXWELL_SIXTH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__ENTROPY_EXTERNAL_POST_MAXWELL_SIXTH_REFRESH__2026_03_12__v1.md`
 
 Bounded result:
 - the first-priority wave remains at:
@@ -3179,7 +3179,7 @@ Bounded result:
 
 Current next internal thread-action:
 - perform one bounded deepen pass on:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/`
 
 Current read:
 - Maxwell is no longer the sharpest first-wave bottleneck after its sixth source-bearing file
@@ -3191,7 +3191,7 @@ Completed:
 - one bounded source-bearing deepen pass on `carnot_primary`
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/09_SOURCE_BEARING_EXTRACT__CYCLE_RESTORATION_AND_THERMAL_AGENCY_BOUNDARY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/zip_dropins/ZIP_JOB__EXTERNAL_RESEARCH_RETOOL_REFINERY__ENTROPY_CARNOT_SZILARD_ENGINE_FAMILIES__CHATUI_DROPIN__v3/sources/external/carnot_primary/09_SOURCE_BEARING_EXTRACT__CYCLE_RESTORATION_AND_THERMAL_AGENCY_BOUNDARY__v1.md`
 
 Bounded result:
 - Carnot now has a sixth real source-bearing file
@@ -3213,8 +3213,8 @@ Completed:
 - appended the remaining March 12 process corrections into the live owner surfaces instead of leaving them in chat only
 
 Updated:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
 
 Bounded result:
 - legacy boot docs are now explicitly preserved as high-value predecessor law, not canon
@@ -3234,13 +3234,13 @@ Completed:
 - added a fail-closed top-level controller launch packet
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
 
 Bounded result:
 - controller relaunch no longer needs to infer current priority from this mixed execution ledger alone
 - the prime owner corpus is now explicit again:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
 - the currently governing successful internal path is now explicit again:
   - internal refinedfuel `Constraints` / `Constraints. Entropy` revisit
   - first valid bounded `A2 -> A1` dispatch chain
@@ -3260,8 +3260,8 @@ Completed:
 - one bounded whole-system target audit against the prime fuel corpus and live owner surfaces
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__WHOLE_SYSTEM_TARGET_AUDIT__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__WHOLE_SYSTEM_TARGET_AUDIT__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__WHOLE_SYSTEM_TARGET_AUDIT__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__WHOLE_SYSTEM_TARGET_AUDIT__2026_03_13__v1.md`
 
 Bounded result:
 - the actual scientific target is now restated explicitly as:
@@ -3282,8 +3282,8 @@ Completed:
 - one bounded prime-corpus staged-family decomposition pass over the actual scientific target
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
 
 Bounded result:
 - the broader target is now decomposed into explicit live buckets:
@@ -3320,14 +3320,14 @@ Completed:
 - the machine-readable `A2_WORKER` launch path for that same dispatch now exists and validates cleanly end to end
 
 Records:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_PACKET__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_GATE_RESULT__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_SEND_TEXT__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/a2_worker_launch_audit/A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__VALIDATION__2026_03_13__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a2_worker_stage1_operatorized_entropy_head`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_PACKET__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_GATE_RESULT__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_SEND_TEXT__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/a2_worker_launch_audit/A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__VALIDATION__2026_03_13__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a2_worker_stage1_operatorized_entropy_head`
 
 Bounded result:
 - the next mainline move is no longer only implied by notes
@@ -3365,4 +3365,4 @@ Bounded result:
 
 Current next internal thread-action:
 - launch `W1` from:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md`

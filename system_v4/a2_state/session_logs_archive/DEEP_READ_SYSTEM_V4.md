@@ -16,12 +16,12 @@
 - Total: 3955 nodes, 7697 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/A2_GRAPH_REFINERY_PROCESS__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/A2_GRAPH_REFINERY_PROCESS__v2.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/A2_WORKER_PASS_RECORD__STAGE1_GROUNDING.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/REFERENCE_REPOS.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__ANTIGRAVITY__2026_03_17__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__ANTIGRAVITY__2026_03_17__v2.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/A2_GRAPH_REFINERY_PROCESS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/A2_GRAPH_REFINERY_PROCESS__v2.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/A2_WORKER_PASS_RECORD__STAGE1_GROUNDING.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/REFERENCE_REPOS.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__ANTIGRAVITY__2026_03_17__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__ANTIGRAVITY__2026_03_17__v2.md
 
 ## Batches
 - `AUTO_A2_GRAPH_REFINERY_PROCESS__v1_a5938081a451e690`

@@ -7,11 +7,11 @@ Date: 2026-03-08
 
 ## 1) Folder-Order Selection
 - prior completed batch ended at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/apple notes save. pre axex notes.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/axes math. apple notes dump.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/apple notes save. pre axex notes.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/axes math. apple notes dump.txt`
 - next folder-order family selected for this bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/branch part 2.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/branchthread extract chat gpt.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/branch part 2.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/branchthread extract chat gpt.txt`
 - bundling reason:
   - the smaller file is explicitly a continuation / reaction surface about the larger broken-thread transcript
   - both files center on the same operational problem cluster:
@@ -21,12 +21,12 @@ Date: 2026-03-08
     - evidence binding and branch movement
   - the large file is too broad for a total pass here, so this bounded batch targets the operational repair clusters it feeds
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/gpt thread a1 trigram work out .txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok eisenhart model .txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/gpt thread a1 trigram work out .txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok eisenhart model .txt`
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/branch part 2.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/branch part 2.txt`
   - sha256: `736c16a28c7d76f9dcebe57e30d980f4d542b383b55c20b44bde5a2f89e10551`
   - size bytes: `314334`
   - line count: `10101`
@@ -34,7 +34,7 @@ Date: 2026-03-08
   - source-class note:
     - mixed chat transcript, summaries of prior repair work, and increasingly explicit operational docs for what the ratchet failed to do
 - source 2:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/branchthread extract chat gpt.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/branchthread extract chat gpt.txt`
   - sha256: `5c1452b024c7a5627dd34b03e2e918b87af30592b5228c0861cd9a2213465ba0`
   - size bytes: `1183817`
   - line count: `44461`

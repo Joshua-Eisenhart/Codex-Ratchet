@@ -5,7 +5,7 @@ import pytest
 from hypothesis import given, strategies as st, settings, HealthCheck
 
 # --- Configuration ---
-GRAPHS_DIR = "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs"
+GRAPHS_DIR = str(Path(__file__).resolve().parent.parent / "a2_state" / "graphs")
 # Broadening based on observed values
 VALID_TRUST_ZONES = {
     "A2_1_KERNEL",

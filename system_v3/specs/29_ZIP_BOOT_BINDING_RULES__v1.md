@@ -19,7 +19,7 @@ Example:
 - this current thread
 
 Required boot:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
 
 Binding rule:
 - the thread must load its boot from repo-held surfaces before bounded work starts
@@ -27,9 +27,9 @@ Binding rule:
 ### 2. Codex `A1` thread
 
 Required boot:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md`
 - precursor surface:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/26_BOOTPACK_A1_WIGGLE__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/26_BOOTPACK_A1_WIGGLE__v1.md`
 
 Binding rule:
 - `A1` runs only from explicit bounded fuel and its own boot

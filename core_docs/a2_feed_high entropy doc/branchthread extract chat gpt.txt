@@ -23,7 +23,7 @@ Quick test result
 I ran the unit tests for the canonical kernel runtime:
 system_v3/runtime/bootpack_b_kernel_v1: 114 tests passed ✅
 A concrete portability issue (and fix)
-Several operational tooling scripts were hard-coded to a local machine path: /Users/joshuaeisenhart/Desktop/Codex Ratchet That means commands in the runbook like python3 system_v3/tools/sprawl_guard.py will crash on any other machine unless that exact path exists. I fixed this in a cleaned “portable” version by:
+Several operational tooling scripts were hard-coded to a local machine path: /home/ratchet/Desktop/Codex Ratchet That means commands in the runbook like python3 system_v3/tools/sprawl_guard.py will crash on any other machine unless that exact path exists. I fixed this in a cleaned “portable” version by:
 Adding --repo-root (optional) to those tools
 Supporting CODEX_RATCHET_ROOT env var
 Defaulting to inferring repo root from the script’s location (so “just run it” works after unzip)
@@ -184,7 +184,7 @@ Yes — there is Minimax work in work/, and some of it is actionable.
 
 Where it is
 
-Coordination sandbox + message exchange: /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/coordination_sandbox__codex_minimax__noncanonical_delete_safe/codex_exchange/
+Coordination sandbox + message exchange: /home/ratchet/Desktop/Codex Ratchet/work/coordination_sandbox__codex_minimax__noncanonical_delete_safe/codex_exchange/
 Minimax-authored overview: ANALYSIS_SUMMARY.md (explicitly “Author: MiniMax Agent”)
 Shared “what are we doing” surface: CURRENT.md
 Shared refinery map: 00_READ_FIRST__A2_A1_REFINERY_v1.md

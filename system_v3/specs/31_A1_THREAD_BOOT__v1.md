@@ -8,8 +8,8 @@ Owner: current Codex `A1` proposal threads and ZIP-bound `A1` worker lanes
 This is the active current boot for Codex-side `A1` threads.
 
 It is derived from:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/26_BOOTPACK_A1_WIGGLE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/26_BOOTPACK_A1_WIGGLE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md`
 - current `A1` state surfaces in `system_v3/a1_state`
 
 The earlier `BOOTPACK_A1_WIGGLE__v1` remains a high-value precursor boot surface.
@@ -18,10 +18,10 @@ This file is the current retooled `A1` thread boot for `system_v3`.
 ## Reload hygiene
 
 For the current live A1 packet/profile path, prefer this compact read:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md`
 
 For the older branch/wiggle doctrine as historical context, use:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md`
 
 Interpretation rule:
 - `77` is the compact live A1 packet/profile read
@@ -58,19 +58,19 @@ An `A1` thread does **not**:
 ## Required boot inputs
 
 Minimum load set:
-1. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md`
-2. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_BRAIN_SLICE__v1.md`
-3. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_EXECUTABLE_DISTILLATION_UPDATE__SOURCE_BOUND_v2.md`
-4. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
-5. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE.md`
+1. `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md`
+2. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_BRAIN_SLICE__v1.md`
+3. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_EXECUTABLE_DISTILLATION_UPDATE__SOURCE_BOUND_v2.md`
+4. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
+5. `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE.md`
 
 Companion surfaces when relevant:
-6. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_NEGATIVE_CLASS_REGISTRY__v1.md`
-7. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_RESCUE_AND_GRAVEYARD_OPERATORS__v1.md`
-8. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__LIVE_FAMILY_HINT_COVERAGE__v1.md`
-9. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__ANCHOR_WITNESS_WORKFLOW__v1.md`
-10. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md`
-11. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md`
+6. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_NEGATIVE_CLASS_REGISTRY__v1.md`
+7. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_RESCUE_AND_GRAVEYARD_OPERATORS__v1.md`
+8. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__LIVE_FAMILY_HINT_COVERAGE__v1.md`
+9. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__ANCHOR_WITNESS_WORKFLOW__v1.md`
+10. `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md`
+11. `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md`
 
 ## Start condition
 
@@ -225,44 +225,44 @@ Still pending:
 
 Current executable helpers:
 - creator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_a1_worker_launch_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_a1_worker_launch_packet.py`
 - validator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_worker_launch_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_worker_launch_packet.py`
 - launch gate:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_worker_launch_from_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_worker_launch_from_packet.py`
 - send-text builder:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_worker_send_text_from_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_worker_send_text_from_packet.py`
 - launch handoff builder:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_worker_launch_handoff.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_worker_launch_handoff.py`
 - launch handoff validator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_handoff.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_handoff.py`
   - checks both handoff shape and send-text integrity (`send_text_sha256` plus required launch markers)
 - one-shot bundle preparer:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_launch_bundle.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_launch_bundle.py`
 - Playwright launch plan builder:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_codex_thread_launch_playwright_plan.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_codex_thread_launch_playwright_plan.py`
 - Playwright launch executor:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/execute_codex_thread_launch_playwright_plan.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/execute_codex_thread_launch_playwright_plan.py`
   - blocks if the expected visible verification text is not present in the snapshot before any send
 - launch-target creator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_codex_thread_launch_target.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_codex_thread_launch_target.py`
 - launch-target validator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_target.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_target.py`
 - launch-surface capture-record creator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_codex_thread_launch_surface_capture_record.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_codex_thread_launch_surface_capture_record.py`
 - launch-surface capture-record validator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_surface_capture_record.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_surface_capture_record.py`
 - observed launch-packet creator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_codex_thread_launch_observed_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_codex_thread_launch_observed_packet.py`
 - observed launch-packet validator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_observed_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_observed_packet.py`
 - launch-target from capture-record creator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_codex_thread_launch_target_from_capture_record.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_codex_thread_launch_target_from_capture_record.py`
 - one-shot browser-launch bundle preparer:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_browser_launch_bundle.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_browser_launch_bundle.py`
 - one-shot browser-launch bundle preparer from observed surface:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_browser_launch_bundle_from_observed_surface.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_browser_launch_bundle_from_observed_surface.py`
 - packet-driven browser-launch wrapper from staged capture record:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_codex_browser_launch_from_capture_record.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_codex_browser_launch_from_capture_record.py`
 - packet-driven browser-launch wrapper from staged observed packet:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_codex_browser_launch_from_observed_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_codex_browser_launch_from_observed_packet.py`

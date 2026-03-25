@@ -13,7 +13,7 @@ This pack exists because:
 
 ## 2) Runtime Justification
 Direct runtime evidence already exists for the diversity side:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_engine.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_engine.py`
   - `pairwise_mutual_information_diversity_delta_under_perturbation`
   - `mi2_pair_diversity_base`
   - `mi2_pair_diversity_delta`
@@ -87,8 +87,8 @@ This pack makes the structure-side entropy split explicit:
 
 ## 8) Diversity-Lift Broad Result
 Run:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_DIVERSITY_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_DIVERSITY_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_DIVERSITY_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_DIVERSITY_FAMILY__v1.md`
 
 Observed:
 - wrapper status:

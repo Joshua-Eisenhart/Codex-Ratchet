@@ -14,8 +14,8 @@ This file is a supporting detailed ledger for:
 
 Primary append surfaces now live at repo root:
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/SKILL_CANDIDATES_BACKLOG.md`
+- `/home/ratchet/Desktop/Codex Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md`
+- `/home/ratchet/Desktop/Codex Ratchet/SKILL_CANDIDATES_BACKLOG.md`
 
 If a repo, method bundle, external source, or requested skill family is mentioned in work on this repo, it should be appended to those root trackers first.
 
@@ -24,7 +24,7 @@ This file remains as a deeper supporting ledger and should not be the first huma
 Current warning:
 
 - parts of this ledger are already behind the live repo state
-- use [A2_V4_RECOVERY_AUDIT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/A2_V4_RECOVERY_AUDIT.md) plus the two root trackers for the current reality check before trusting older integration claims here
+- use [A2_V4_RECOVERY_AUDIT.md](/home/ratchet/Desktop/Codex%20Ratchet/A2_V4_RECOVERY_AUDIT.md) plus the two root trackers for the current reality check before trusting older integration claims here
 
 ## Status Legend
 
@@ -44,28 +44,28 @@ Current warning:
 
 - `system_v3/specs/79_INTEGRATION_LEDGER__v1.md`
   - role: canonical durable ledger for this concern
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/29 thing.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/29 thing.txt`
   - status: `LOCAL_SOURCE_VERIFIED`, `GRAPH_INGESTED`
   - role: canonical local referent for the repeatedly referenced 29-method source family
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
   - status: `LOCAL_SOURCE_VERIFIED`
   - role: main Lev runtime design source, widened to include repo family integration and skillization intent
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/jp graph asuggestions.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/jp graph asuggestions.txt`
   - status: `LOCAL_SOURCE_VERIFIED`
   - role: JP graph suggestions source
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/jp graph prompt!!.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/jp graph prompt!!.txt`
   - status: `LOCAL_SOURCE_VERIFIED`
   - role: JP graph prompt source
 
 ### Supporting derived surfaces
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/external_skill_admission_staging_v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/external_skill_admission_staging_v1.json`
   - status: durable staging surface
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/MASTER_INTEGRATION_AND_SKILLIZATION_MAP__2026_03_20__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/MASTER_INTEGRATION_AND_SKILLIZATION_MAP__2026_03_20__v1.md`
   - status: derived planning surface
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/SYSTEMIC_INTEGRATION_FAILURE_AUDIT__2026_03_20__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/SYSTEMIC_INTEGRATION_FAILURE_AUDIT__2026_03_20__v1.md`
   - status: derived failure audit
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/SYSTEM_INVENTORY__29_METHOD_SOURCE_CROSS_REFERENCE__2026_03_21__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/SYSTEM_INVENTORY__29_METHOD_SOURCE_CROSS_REFERENCE__2026_03_21__v1.md`
   - status: `UNVERIFIED_MAP`
   - note: source identification is useful, but live-skill and hot-path claims still need verification and some rows currently overclaim
 
@@ -74,13 +74,13 @@ Current warning:
 ### 1. The 29-method source bundle
 
 - canonical source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/29 thing.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/29 thing.txt`
   - surface class: `SOURCE_CORPUS`
 - graph/session support:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/session_logs/OPUS_DEEP_READ_29_THING.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/session_logs/OPUS_DEEP_READ_29_THING.md`
   - best treatment: `RUNTIME_ONLY`
 - derived cross-reference:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/SYSTEM_INVENTORY__29_METHOD_SOURCE_CROSS_REFERENCE__2026_03_21__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/SYSTEM_INVENTORY__29_METHOD_SOURCE_CROSS_REFERENCE__2026_03_21__v1.md`
   - best treatment: `DERIVED_A2`, `UNVERIFIED_MAP`
 - current truth:
   - `29 thing.txt` is the canonical local source
@@ -91,7 +91,7 @@ Current warning:
 ### 2. Lev nonclassical runtime family
 
 - source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
 - status:
   - `LOCAL_SOURCE_VERIFIED`
 - current truth:
@@ -134,7 +134,7 @@ Current warning:
 - repo:
   - `https://github.com/badlogic/pi-mono`
 - graph/session support:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/session_logs/DEEP_FUEL_PIMONO_SESSION.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/session_logs/DEEP_FUEL_PIMONO_SESSION.md`
 - current truth:
   - source family is graph-ingested
   - pi-mono adapter skillization is incomplete and partly malformed
@@ -154,19 +154,19 @@ Current warning:
 ### A. Verified registry-present and hot-path-referenced in `run_real_ratchet.py`
 
 - `autoresearch-operator`
-  - source: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/autoresearch_operator.py`
+  - source: `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/autoresearch_operator.py`
   - status: `REGISTRY_PRESENT`, `HOT_PATH_REFERENCED`
 - `llm-council-operator`
-  - source: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/llm_council_operator.py`
+  - source: `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/llm_council_operator.py`
   - status: `REGISTRY_PRESENT`, `HOT_PATH_REFERENCED`
 - `z3-constraint-checker`
-  - source: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/z3_constraint_checker.py`
+  - source: `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/z3_constraint_checker.py`
   - status: `REGISTRY_PRESENT`, `HOT_PATH_REFERENCED`
 - `bounded-improve-operator`
-  - source: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/bounded_improve_operator.py`
+  - source: `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/bounded_improve_operator.py`
   - status: `REGISTRY_PRESENT`, `HOT_PATH_REFERENCED`
 - `intent-control-surface-builder`
-  - source: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/intent_control_surface_builder.py`
+  - source: `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/intent_control_surface_builder.py`
   - status: `REGISTRY_PRESENT`, `HOT_PATH_REFERENCED`
 
 ### B. Registry-present, source-present, but not hot-path-verified in this pass
@@ -183,31 +183,31 @@ Current warning:
 
 Current truth for this block:
 
-- all are present in `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/skill_registry_v1.json`
+- all are present in `/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/skill_registry_v1.json`
 - all have source files present on disk except where separately called out below
 - this ledger is not claiming hot-path runtime use for them without direct verification
 
 ### C. Registry-present but structurally broken or incomplete
 
 - `pimono-evermem-adapter`
-  - registry entry exists in `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/skill_registry_v1.json`
+  - registry entry exists in `/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/skill_registry_v1.json`
   - expected source path:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/pimono_evermem_adapter.py`
+    - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/pimono_evermem_adapter.py`
   - current status: `REGISTRY_PRESENT`, `FILE_MISSING`
 
 ### D. Runtime substrate files that matter even when not phase-dispatched by skill id
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/runtime_state_kernel.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/witness_recorder.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/runtime_graph_bridge.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/a2_graph_refinery.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/intent_refinement_graph_builder.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/intent_runtime_policy.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/runtime_state_kernel.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/witness_recorder.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/runtime_graph_bridge.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/a2_graph_refinery.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/intent_refinement_graph_builder.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/intent_runtime_policy.py`
 
 ## Graph / Registry State
 
 - current registry file:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/skill_registry_v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/skill_registry_v1.json`
 - counted directly from JSON in this pass:
   - `88` total skill records
   - `82` records explicitly marked `status: active`
@@ -221,7 +221,7 @@ Current truth for this block:
   - `pimono-evermem-adapter`
 
 - last saved graph capability audit:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json`
   - reports `82` active graphed skills and `37` single-edge skill nodes
 
 Current truth:
@@ -233,7 +233,7 @@ Current truth:
 ## Layer / Placement Notes
 
 - nested graph currently projects `11` layers in:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/nested_graph_v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/nested_graph_v1.json`
 - broad intended placement:
   - `29 thing.txt` and Lev runtime design doc:
     - source/doc layer, then graph-mined into A2 families

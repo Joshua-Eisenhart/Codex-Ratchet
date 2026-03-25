@@ -9,8 +9,8 @@ Role: preserve the bridge-layer retarget after splitting strict and recovery rea
 This note is bounded to the lightweight work-bridge layer only.
 
 Patched surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_real_loop_bridge_from_work.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_real_loop_recovery_bridge_from_work.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_real_loop_bridge_from_work.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_real_loop_recovery_bridge_from_work.py`
 
 ## What changed
 

@@ -8,7 +8,7 @@ Extraction mode: `SAVE_KIT_PASS`
   - source 1: `6-16`
   - source 8: `1-5`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:126-138`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:126-138`
 - tension:
   - the readme says this bundle contains everything Thread S needs to archive/replay the current Thread B state
   - active A2 state now says save ZIPs are informational only and lower-loop mutation remains governed by stricter transport surfaces
@@ -33,7 +33,7 @@ Extraction mode: `SAVE_KIT_PASS`
   - source 8: `1-5`
   - source 8: `2156-2160`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/08_PIPELINE_AND_STATE_FLOW_SPEC.md:56-85`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/08_PIPELINE_AND_STATE_FLOW_SPEC.md:56-85`
 - tension:
   - the family is designed as a portable replay pack centered on one snapshot plus sidecars
   - the newer run contract splits persistent state across:
@@ -90,8 +90,8 @@ Extraction mode: `SAVE_KIT_PASS`
   - source 1: `6-16`
   - source 8: `2156-2160`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:130-157`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/08_PIPELINE_AND_STATE_FLOW_SPEC.md:5-14`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:130-157`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/08_PIPELINE_AND_STATE_FLOW_SPEC.md:5-14`
 - tension:
   - the kit assumes a direct Thread-S-side archive/replay handoff model
   - the current active architecture describes ordered ZIP-mediated lanes with explicit consolidation, `EXPORT_BLOCK`, `SIM_EVIDENCE`, and run-surface partitioning

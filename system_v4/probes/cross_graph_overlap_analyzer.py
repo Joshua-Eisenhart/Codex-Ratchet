@@ -1,6 +1,9 @@
 import json
 import os
+from pathlib import Path
 from typing import Dict, List, Set, Tuple
+
+_REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 
 def load_graph(path: str) -> dict:
     with open(path, 'r') as f:
@@ -30,7 +33,7 @@ def compute_jaccard(set1: Set, set2: Set) -> float:
     return intersection / union if union > 0 else 0.0
 
 def main():
-    base_path = "/Users/joshuaeisenhart/Desktop/Codex Directional_Accumulator/system_v4/a2_state/graphs"
+    base_path = str(_REPO_ROOT / "system_v4" / "a2_state" / "graphs")
     graph_files = {
         "A2_INTAKE": "a2_high_intake_graph_v1.json",
         "A2_REFINEMENT": "a2_mid_refinement_graph_v1.json",
@@ -123,7 +126,7 @@ def main():
             results.append(f"    - `{s}`")
 
     # Write final report
-    report_path = "/Users/joshuaeisenhart/Desktop/Codex Directional_Accumulator/system_v4/a2_state/audit_logs/CROSS_GRAPH_OVERLAP_ANALYSIS__v1.md"
+    report_path = str(_REPO_ROOT / "system_v4" / "a2_state" / "audit_logs" / "CROSS_GRAPH_OVERLAP_ANALYSIS__v1.md")
     with open(report_path, 'w') as f:
         f.write("\n".join(results))
     

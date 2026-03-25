@@ -9,7 +9,7 @@ Role: exact packet scaffold for the next Pro boot after the successful local-pac
 The next Pro boot must not be another local-pack-only retry.
 
 It must keep the current local pack as the base and add source-bearing packets for the missing external families already identified in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_PRO_BOOT_SOURCE_ADDITIONS__ENTROPY_CARNOT_SZILARD__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_PRO_BOOT_SOURCE_ADDITIONS__ENTROPY_CARNOT_SZILARD__2026_03_11__v1.md`
 
 This note converts that missing-family list into an exact packet scaffold.
 

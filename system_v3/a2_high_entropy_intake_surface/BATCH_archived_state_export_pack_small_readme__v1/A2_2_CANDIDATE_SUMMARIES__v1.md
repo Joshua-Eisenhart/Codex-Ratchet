@@ -25,4 +25,4 @@ Extraction mode: `EXPORT_PACK_README_PASS`
 ## Candidate Summary C4
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/STRUCTURAL_MEMORY_MAP_v2.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/STRUCTURAL_MEMORY_MAP_v2.md`

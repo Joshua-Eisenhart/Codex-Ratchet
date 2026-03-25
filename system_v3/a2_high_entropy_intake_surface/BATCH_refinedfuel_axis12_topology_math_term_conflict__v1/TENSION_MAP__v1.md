@@ -8,7 +8,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `1-9`
   - source 1: `187-205`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:51-61`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:51-61`
 - tension:
   - the note presents the four-row table as already accepted and then argues its mapping is mathematically legitimate
   - the archive manifest classifies this source family under `NONCANON_NOTES` and says such notes are never ratcheted
@@ -19,8 +19,8 @@ Extraction mode: `TERM_CONFLICT_PASS`
 - source markers:
   - source 1: `19-23`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:44-46`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:21-23`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:44-46`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:21-23`
 - tension:
   - the source table uses `Expansion / Compression` plus a single `Axis-1` column and then treats the four resulting rows as the topology basis
   - later refined-fuel canon says `Topology4` is the product of two axes, `Axis-1 × Axis-2`, not a one-axis table with inherited legacy labels
@@ -31,9 +31,9 @@ Extraction mode: `TERM_CONFLICT_PASS`
 - source markers:
   - source 1: `60-184`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:84-117`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:161-180`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:283-285`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:84-117`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:161-180`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:283-285`
 - tension:
   - this note directly identifies each legacy row with a concrete channel or flow family
   - the later companion keeps the kernel basis at open/closed × eulerian/lagrangian and treats concrete channel-family mappings as a candidate menu that sims must decide
@@ -47,9 +47,9 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `119-124`
   - source 1: `150-179`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:77-78`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:151-180`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:278-281`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:77-78`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:151-180`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:278-281`
 - tension:
   - the note treats `Se/Ne/Ni/Si` and `funnel / cannon / vortex / spiral / pit / source / hill / citadel` as if they are the real structural identities
   - later refined-fuel surfaces demote those labels to overlay-only aliases and keep the terrain vocabulary provisional
@@ -74,7 +74,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `119-124`
   - source 1: `146-150`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:141-180`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:141-180`
 - tension:
   - this note already mixes influx/outflux, spiral direction, and source/sink flavor into the terrain identity itself
   - the later companion separates base topology from a second flux-direction split
@@ -86,8 +86,8 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `37-42`
   - source 1: `113-124`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:7-18`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:29`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:7-18`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:29`
 - tension:
   - the note leans on `S^3`, Bloch, and Hopf structure as if they are the natural topology substrate for the axis mapping
   - later refined-fuel canon says geometry/manifold comes first and axes are slices on that manifold, while the companion only allows `S^3`/Hopf placement as derived geometry

@@ -17,8 +17,8 @@ Extraction mode: `QIT_BRIDGE_PASS`
 - source markers:
   - source 1: `8-13`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md:16-22`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md:76-81`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md:16-22`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md:76-81`
 - tension:
   - v0.3 shifts the label toward persistence polarity
   - the earlier family language centered response / movement / diversity under perturbation
@@ -40,9 +40,9 @@ Extraction mode: `QIT_BRIDGE_PASS`
   - source 1: `8-13`
   - source 1: `84-98`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md:21-22`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md:105-130`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md:101-116`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md:21-22`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md:105-130`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md:101-116`
 - tension:
   - the broader Axis-0 family worked hard to avoid treating Axis-0 as entropy sign while still accommodating a negative-conditional-entropy / coherent-information branch
   - v0.3 removes that branch entirely and substitutes total correlation
@@ -71,8 +71,8 @@ Extraction mode: `QIT_BRIDGE_PASS`
 - source markers:
   - source 1: `17-160`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md:54-70`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md:176-205`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md:54-70`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md:176-205`
 - tension:
   - v0.3 is cleaner and more compact as a measurement surface
   - it drops the earlier shell-bookkeeping formalization, sim-evidence identity, and explicit ratchet-order guidance

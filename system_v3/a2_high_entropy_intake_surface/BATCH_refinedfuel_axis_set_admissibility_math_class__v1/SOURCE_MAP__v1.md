@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - folder order begins:
@@ -24,7 +24,7 @@ Date: 2026-03-09
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_SET_ADMISSIBILITY_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_SET_ADMISSIBILITY_v1.md`
 - reason for selection:
   - this is the next file in folder order after the already processed axis-function admissibility micro-spec
   - the document is a compact formal follow-on that packages individually admitted function relations into a finite set token `Σ`
@@ -36,11 +36,11 @@ Date: 2026-03-09
     - bounded open extensions toward coordinate frames, orthogonality, and completeness
   - this makes `MATH_CLASS_PASS` the best fit
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axes 0 - 6 5 3 - 4 1 2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axes 0 - 6 5 3 - 4 1 2.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_SET_ADMISSIBILITY_v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_SET_ADMISSIBILITY_v1.md`
   - role in batch: formal admissibility spec for finite sets of admitted axis-like function relations
   - sha256: `f8c5bd3522d46d220434cb7dec97f26a9a8340908be21e4d5d2a95201a473bbb`
   - size bytes: `3295`

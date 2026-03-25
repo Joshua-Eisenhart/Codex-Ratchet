@@ -120,7 +120,7 @@ Source-bound correction inputs:
 - `system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
 - `system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md`
 - `system_v3/a2_state/INTENT_SUMMARY.md`
-- `/Users/joshuaeisenhart/Desktop/codex thread save.txt`
+- `/home/ratchet/Desktop/codex thread save.txt`
 
 Construction rule:
 - A1 must be rebuilt from refreshed A2 understanding rather than from thread memory, local runtime state, or ad hoc repo impressions

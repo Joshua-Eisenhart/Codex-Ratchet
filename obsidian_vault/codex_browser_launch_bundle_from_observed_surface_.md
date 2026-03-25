@@ -9,7 +9,7 @@ authority: "NONCANON"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::codex_browser_launch_bundle_from_observed_surface_::46938d114f63e1ae`
 
 ## Description
-Unprocessed File Type (codex_browser_launch_bundle_from_observed_surface__result.json): { | "bundle_rc": 1, | "capture_record_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/browser_launch_bundle_from_capture_a2_blocked_v3/codex_thread_launch_surface_capture_record.json",
+Unprocessed File Type (codex_browser_launch_bundle_from_observed_surface__result.json): { | "bundle_rc": 1, | "capture_record_json": "/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/browser_launch_bundle_from_capture_a2_blocked_v3/codex_thread_launch_surface_capture_record.json",
 
 ## Properties
 - **source_line_range**: 

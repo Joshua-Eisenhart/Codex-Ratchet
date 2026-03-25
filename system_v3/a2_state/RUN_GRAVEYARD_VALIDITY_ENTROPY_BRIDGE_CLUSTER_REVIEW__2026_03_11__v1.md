@@ -7,7 +7,7 @@ Role: bounded review of the dominant `system_v3/runs` concentration family
 ## 1) Scope
 
 - audited only the `RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE*` family under:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs`
 - goal:
   - determine whether the run-folder bloat still has a meaningful next internal action
   - avoid path-breaking archive moves where run-anchor / witness surfaces still depend on exact run paths
@@ -53,7 +53,7 @@ Live repo evidence still points at exact family members through:
 - `run_anchor_surface/*`
 - `RUN_REGENERATION_WITNESS__*`
 - archive-surface/source-map packets in:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_archive_surface_heat_dumps_root_family_split__v1`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_archive_surface_heat_dumps_root_family_split__v1`
 
 Important result:
 - multiple run-anchor and witness surfaces still rely on exact run paths from this family

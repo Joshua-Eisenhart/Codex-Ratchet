@@ -28,7 +28,7 @@ This audit checks that claim against the actual repo state.
 ### 1. The failure was real
 
 Before this repair pass, the strongest durable external-source staging surface
-`/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/external_skill_admission_staging_v1.json`
+`/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/external_skill_admission_staging_v1.json`
 contained only `4` staged candidates:
 
 - `EXTSKILL::LEV_NONCLASSICAL_RUNTIME_DESIGN`
@@ -48,7 +48,7 @@ So the user's complaint that referenced repos kept disappearing from durable sur
 
 ### 2. Pattern-level mention was repeatedly being mistaken for real skillization
 
-In `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/skill_registry_v1.json`:
+In `/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/skill_registry_v1.json`:
 
 - Z3 has real skills:
   - `z3-constraint-checker`
@@ -63,7 +63,7 @@ So the repeated feeling of "I asked to make them skills and they still are not s
 
 ### 3. The main Lev runtime doc was incomplete for the broader integration mandate
 
-`/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
+`/home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
 already had method sections for:
 
 - Karpathy design philosophy
@@ -89,7 +89,7 @@ The skill graph previously had a real drift problem.
 That part is now repaired:
 
 - current graph capability report at
-  `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json`
+  `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json`
   shows:
   - `82` active skills
   - `82` graphed skill nodes
@@ -109,7 +109,7 @@ So many skills are graph-native now, but still shallowly integrated.
 
 There *was* an explicit local source document:
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/29 thing.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/29 thing.txt`
 
 The failure was that this repair lane did not bind that document into the durable staging surface and instead overfit to a different local graph artifact:
 
@@ -123,7 +123,7 @@ So the user's complaint here was materially correct in a stronger form: the syst
 
 ### 1. Main design doc repaired
 
-`/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
+`/home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md`
 now contains:
 
 - `Integration Expansion Mandate`
@@ -147,7 +147,7 @@ That section explicitly names:
 
 ### 2. External-source staging repaired
 
-`/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/external_skill_admission_staging_v1.json`
+`/home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/external_skill_admission_staging_v1.json`
 now contains `9` candidates instead of `4`.
 
 Newly saved candidates:

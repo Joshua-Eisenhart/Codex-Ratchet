@@ -7,7 +7,7 @@ Date: 2026-03-08
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
 - nontrivial top-level file count:
   - `8`
 - ignored filesystem noise:
@@ -24,7 +24,7 @@ Date: 2026-03-08
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md`
 - reason for selection:
   - this is the next nontrivial top-level file in folder order after `AXIS0_SPEC_OPTIONS_v0.3.md`
   - the file self-declares as overlay-only / noncanon and is organized around:
@@ -36,11 +36,11 @@ Date: 2026-03-08
   - the dominant intake value is not broad source mapping or QIT formalization, but preserving overlay-to-kernel term pressures and direct semantic conflicts against nearby refined-fuel canon surfaces
   - this makes `TERM_CONFLICT_PASS` the best fit
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md`
   - role in batch: refined-fuel overlay / rosetta companion for axis, terrain, Jung, and IGT mapping
   - sha256: `5ace2d42ae8a0b1ad56c89191739bebf256cd1d1b57a3a8a0ec5937b40941542`
   - size bytes: `11757`

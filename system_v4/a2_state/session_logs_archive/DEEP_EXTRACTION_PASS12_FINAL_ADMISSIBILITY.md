@@ -24,7 +24,7 @@
 - Total: 17510 nodes, 17326 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/GEOMETRY_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/GEOMETRY_ADMISSIBILITY_v1.md
 
 ## Batches
 - `ADMISSIBILITY_FINAL`

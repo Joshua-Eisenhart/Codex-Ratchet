@@ -17,12 +17,12 @@ The stager consumes bounded observed thread metadata and emits:
 - one `browser_observed_thread__<thread_id>__<timestamp>.json`
 
 under:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/browser_thread_observations`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/browser_thread_observations`
 
 ## Required output contract
 
 The staged packet must satisfy:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/57_BROWSER_OBSERVED_CAPTURE_SINK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/57_BROWSER_OBSERVED_CAPTURE_SINK__v1.md`
 
 The stager may not:
 - invent controller threads

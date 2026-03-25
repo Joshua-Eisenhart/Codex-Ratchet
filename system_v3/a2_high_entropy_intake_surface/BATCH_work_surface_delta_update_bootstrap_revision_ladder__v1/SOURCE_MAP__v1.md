@@ -7,36 +7,36 @@ Date: 2026-03-09
 
 ## 1) Folder-Order Selection
 - primary revision-ladder family:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v2.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v2.zip.sha256`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v3.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v3.zip.sha256`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v4.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v4.zip.sha256`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v2.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v2.zip.sha256`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev1.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev1.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v2.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v2.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v3.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v3.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v4.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v4.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v2.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v2.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev1.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev1.zip.sha256`
 - bundling reason:
   - this cluster shows how the spillover export line mutates immediately after the first minimal delta and first broad update pack
   - the delta family grows by accreting `EXTRACTS/*` evidence while keeping the core canon-lock bridge largely stable
   - the update-pack `v2` keeps a stale `648`-file manifest while dropping two archive zips relative to `v1`
   - the bootstrap family moves from an internally mislabeled `v3` export to a `v4` read-first surface with added runtime-lock/control docs
 - deferred next revision family:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev4.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev5.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev6.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev7.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev8.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev9.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev9.zip.sha256`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev2.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev2.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev4.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev5.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev6.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev7.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev8.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev9.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3__rev9.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev2.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev2.zip.sha256`
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v2.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v2.zip`
   - sha256: `de22aa56a3dea06b81a106f3efbf68084216e67f4ad2a0dea7e3c502b18cbca8`
   - size bytes: `71157`
   - entry count: `24`
@@ -44,7 +44,7 @@ Date: 2026-03-09
   - source-class note:
     - shifts the delta from notes-only support to prompt-driven canon-lock plus Playwright-claw integration with a clean broken-thread extract set
 - source 2:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v2.zip.sha256`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v2.zip.sha256`
   - sha256: `27fee6c4672cecd967aea2c06e3cc8bdc89458d1ef232ee6b704b5df74b5a609`
   - size bytes: `65`
   - line count: `1`
@@ -52,7 +52,7 @@ Date: 2026-03-09
   - source-class note:
     - one-line digest only, no filename binding inside the file
 - source 3:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v3.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v3.zip`
   - sha256: `165b29e504c22949aa8f7a4bdb4c89c6cff674a05539665110777893687a5794`
   - size bytes: `73807`
   - entry count: `25`
@@ -60,7 +60,7 @@ Date: 2026-03-09
   - source-class note:
     - preserves the same inner `v2` container naming while adding `BRANCHTHREAD_EXTRACT__chatgpt__v1.md`
 - source 4:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v3.zip.sha256`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v3.zip.sha256`
   - sha256: `45021f526350c277d1d944a26abdd6459a1ed186d6fdb9cd5cb5f5f4e005291e`
   - size bytes: `65`
   - line count: `1`
@@ -68,7 +68,7 @@ Date: 2026-03-09
   - source-class note:
     - same path-dependent sidecar convention
 - source 5:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v4.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v4.zip`
   - sha256: `c9581d1984df69b2700b5e2c0e8eaae239e24b1a41b540fa5f6ccf6149a5b34e`
   - size bytes: `142498`
   - entry count: `27`
@@ -76,7 +76,7 @@ Date: 2026-03-09
   - source-class note:
     - still carries the inner `v2` folder/readme/prompt names while adding issue-ledger markdown and raw JSON extracts
 - source 6:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v4.zip.sha256`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v4.zip.sha256`
   - sha256: `32355c6bc5f8ba8fc7e0d7a052b1ed56987085b15504e0b5d2e234697a221fbb`
   - size bytes: `65`
   - line count: `1`
@@ -84,7 +84,7 @@ Date: 2026-03-09
   - source-class note:
     - same sidecar convention survives as the delta doubles in size
 - source 7:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v2.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v2.zip`
   - sha256: `71737f09210a7600ae3fd149d096e66d5d62284ba95703dc59701efd37bbc8ce`
   - size bytes: `6288062`
   - entry count: `647`
@@ -92,7 +92,7 @@ Date: 2026-03-09
   - source-class note:
     - internal manifest still claims `648` copied files while the normalized content set drops two archive zips relative to `v1`
 - source 8:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v2.zip.sha256`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v2.zip.sha256`
   - sha256: `b08990cd8661d55eb8c03fc22369fabc89f0ba57a857d4f2486e20a6cc495b60`
   - size bytes: `65`
   - line count: `1`
@@ -100,7 +100,7 @@ Date: 2026-03-09
   - source-class note:
     - same pathless digest pattern as the delta family
 - source 9:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v3.zip`
   - sha256: `39c814ddac7a0e0aa7fed72dc133973f3319f28ec724b16def2087f4ff324033`
   - size bytes: `3154647`
   - entry count: `705`
@@ -108,7 +108,7 @@ Date: 2026-03-09
   - source-class note:
     - contains a `v3` outer wrapper but the embedded read-first plaque still self-labels as `SYSTEM_REPAIR_BOOTSTRAP_v2`
 - source 10:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev1.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev1.zip`
   - sha256: `0496237312dc78fcead2b334546fcf7e899df263a8fd1f7c7eefffe5150c059b`
   - size bytes: `3176411`
   - entry count: `711`
@@ -116,7 +116,7 @@ Date: 2026-03-09
   - source-class note:
     - adds runtime-canon/control-lock core docs and aligns the embedded read-first label with the outer `v4` family
 - source 11:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev1.zip.sha256`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/SYSTEM_REPAIR_BOOTSTRAP_v4__rev1.zip.sha256`
   - sha256: `556cd4df90230da9d146558b2de232e1ca01999802d33588a9e43f8c5c7ba05a`
   - size bytes: `65`
   - line count: `1`

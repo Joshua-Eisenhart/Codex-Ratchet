@@ -28,7 +28,7 @@ This note is not:
 - permission to let anti-smuggling posture, authority labels, or cleaned-up physics language self-authorize kernel doctrine
 
 Important lane choice:
-- [A2_SELECTIVE_PROMOTION_NOTE__ENTROPIC_QIT_DRIFT__v1](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ENTROPIC_QIT_DRIFT__v1.md), [A2_SELECTIVE_PROMOTION_NOTE__TRIO_13__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__TRIO_13__v1.md), and [A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1.md](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1.md) already covered the broader warm-theory, scalar, engine, and manifold-before-axes lanes
+- [A2_SELECTIVE_PROMOTION_NOTE__ENTROPIC_QIT_DRIFT__v1](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ENTROPIC_QIT_DRIFT__v1.md), [A2_SELECTIVE_PROMOTION_NOTE__TRIO_13__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__TRIO_13__v1.md), and [A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1.md](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1.md) already covered the broader warm-theory, scalar, engine, and manifold-before-axes lanes
 - this note keeps only the remaining source-specific anti-smuggling packets, canon-side minimality/review consequences, and physics rewrite-gate consequences
 
 ## 2) Promotion Rule Used

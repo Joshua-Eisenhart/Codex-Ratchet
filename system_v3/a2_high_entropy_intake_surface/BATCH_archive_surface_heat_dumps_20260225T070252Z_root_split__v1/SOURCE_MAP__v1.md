@@ -8,7 +8,7 @@ Date: 2026-03-09
 ## 1) Batch Selection
 - selected sources:
   - direct archive object:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z`
   - immediate child families:
     - `RUN_ENGINE_ENTROPY_0001`
     - `repo_archive__moved_out_of_git`
@@ -19,11 +19,11 @@ Date: 2026-03-09
   - the archive value is structural: one sandbox-like engine-entropy residue family sits beside one much larger moved-out-of-git archive mirror
   - this object is useful for lineage because it preserves a second-order archive fork where prompt/memo heat and nested archive relocation coexist inside one timestamped dump
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/RUN_ENGINE_ENTROPY_0001`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/RUN_ENGINE_ENTROPY_0001`
 
 ## 2) Source Membership
 ### Source 1
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z`
 - source class: timestamped heat-dump root
 - retained top-level entries:
   - `RUN_ENGINE_ENTROPY_0001`
@@ -33,7 +33,7 @@ Date: 2026-03-09
   - this timestamped dump is itself a two-branch archive split, not a single coherent run root
 
 ### Source 2
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/RUN_ENGINE_ENTROPY_0001`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/RUN_ENGINE_ENTROPY_0001`
 - source class: sandbox-like engine entropy residue family
 - family markers:
   - file count: `2558`
@@ -60,7 +60,7 @@ Date: 2026-03-09
   - this branch looks like high-volume A1 sandbox prompt/memo residue rather than a normal system run root
 
 ### Source 3
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git`
 - source class: nested moved-out-of-git archive mirror
 - family markers:
   - file count: `25056`
@@ -80,7 +80,7 @@ Date: 2026-03-09
   - this branch is a nested archive mirror that already compresses a cache/deep-archive/ops-log taxonomy inside the larger heat dump
 
 ### Source 4
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/ARCHIVE_INDEX_v1.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git/ARCHIVE_INDEX_v1.json`
 - source class: nested archive checkpoint/index signature
 - retained markers:
   - `schema ARCHIVE_INDEX_v1`

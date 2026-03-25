@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - assigned root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - re-entry context:
@@ -20,7 +20,7 @@ Date: 2026-03-09
 
 ## 2) Re-entry Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints. Entropy.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints. Entropy.md`
 - reason for re-entry:
   - the earlier `SOURCE_MAP_PASS` established a large stitched legacy derivation chain but did not isolate the semantic collisions
   - the file is one of the strongest remaining legacy precursor surfaces for:
@@ -31,12 +31,12 @@ Date: 2026-03-09
     - topology and bundle emergence claims
   - those pressures now need explicit conflict placement against later fail-closed entropy, path, cycle, topology, engine, and geometry contracts
 - deferred next re-entry candidate:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md`
 
 ## 3) Source Membership
 - primary source:
   - path:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints. Entropy.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints. Entropy.md`
   - sha256:
     - `48cbeafe93a2726a3e63780d2391ce15f8290cac8d3e375d283822d1138f0854`
   - size bytes:

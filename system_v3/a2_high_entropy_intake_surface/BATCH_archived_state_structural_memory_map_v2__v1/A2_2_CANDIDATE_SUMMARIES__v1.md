@@ -28,4 +28,4 @@ Extraction mode: `STRUCTURAL_MEMORY_MAP_PASS`
 ## Candidate Summary C4
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/UPGRADE_STRUCTURAL_MAP_v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/UPGRADE_STRUCTURAL_MAP_v1.md`

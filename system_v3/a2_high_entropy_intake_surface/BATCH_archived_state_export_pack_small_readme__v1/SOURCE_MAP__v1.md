@@ -7,17 +7,17 @@ Date: 2026-03-08
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/README_A2_EXPORT_PACK_SMALL.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/README_A2_EXPORT_PACK_SMALL.md`
 - reason for single-doc batch:
   - tiny self-contained pack readme
   - packaging metadata is the primary value
   - no need for family bundling
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/STRUCTURAL_MEMORY_MAP_v2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/STRUCTURAL_MEMORY_MAP_v2.md`
 
 ## 2) Source Membership
 - primary source:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/README_A2_EXPORT_PACK_SMALL.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/README_A2_EXPORT_PACK_SMALL.md`
   - sha256: `7ce73c366327b944c39f9dd99f44aa3d4f5d9712bcb275c4091d538dd3b80f2c`
   - size bytes: `217`
   - line count: `11`

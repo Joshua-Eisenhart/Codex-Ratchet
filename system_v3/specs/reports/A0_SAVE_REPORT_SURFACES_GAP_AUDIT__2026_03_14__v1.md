@@ -5,15 +5,15 @@ Date: 2026-03-14
 ## Scope
 
 Audit current tool/spec surface against:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/74_A0_SAVE_REPORT_SURFACES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/74_A0_SAVE_REPORT_SURFACES__v1.md`
 
 Legacy witness:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/BOOTPACKS/BOOTPACK_THREAD_S_v1.64.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/BOOTPACKS/BOOTPACK_THREAD_S_v1.64.md`
 
 Audited current surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_save_profile_zip.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_save_profile_zip.py`
 
 ## Findings
 
@@ -30,8 +30,8 @@ The required recovered surface family is:
 Current tool inventory does not contain executable tools named for those surfaces.
 
 Witness:
-- tool inventory under `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools`
-- schema inventory under `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas`
+- tool inventory under `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools`
+- schema inventory under `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas`
 
 Gap:
 - the concepts exist in old bootpack and extracted reports
@@ -42,7 +42,7 @@ Gap:
 Current save tooling focuses on building ZIP profiles and packet/run surfaces.
 
 Witness:
-- [build_save_profile_zip.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools/build_save_profile_zip.py#L198)
+- [build_save_profile_zip.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools/build_save_profile_zip.py#L198)
 
 Gap:
 - save packaging exists
@@ -62,7 +62,7 @@ It does not contain schemas for:
 - `TAPE_SUMMARY_REPORT`
 
 Witness:
-- schema inventory under `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas`
+- schema inventory under `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas`
 
 Gap:
 - tool and schema layers are both missing
@@ -70,19 +70,19 @@ Gap:
 ## Exact patch targets
 
 1. Add tool pair:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_project_save_doc.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_project_save_doc.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_project_save_doc.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_project_save_doc.py`
 
 2. Add lint/summary tools:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_export_block_lint_report.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_tape_summary_report.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_export_block_lint_report.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_tape_summary_report.py`
 
 3. Add chain/instrumentation tools:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_term_chain_report.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_instrumentation_report.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_term_chain_report.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_instrumentation_report.py`
 
 4. Add schemas:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/PROJECT_SAVE_DOC_v1.schema.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/AUDIT_PROJECT_SAVE_DOC_REPORT_v1.schema.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/EXPORT_BLOCK_LINT_REPORT_v1.schema.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/TAPE_SUMMARY_REPORT_v1.schema.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/PROJECT_SAVE_DOC_v1.schema.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/AUDIT_PROJECT_SAVE_DOC_REPORT_v1.schema.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/EXPORT_BLOCK_LINT_REPORT_v1.schema.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/TAPE_SUMMARY_REPORT_v1.schema.json`

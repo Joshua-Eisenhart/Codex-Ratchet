@@ -17,29 +17,29 @@ It does not rewrite owner doctrine or promote runtime residue into canon.
 
 ## Read first on reload
 
-1. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__THREAD_RELOAD_SPINE_AND_RUN_BLOAT_AUDIT__2026_03_15__v1.md`
-2. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_RUNTIME_RESET_AND_SPEC_OBJECT_DIRECTION__2026_03_15__v1.md`
-3. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_RECOVERY_SHAPE_OWNERSHIP_PATCH__2026_03_15__v1.md`
-4. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__FIRST_LOCAL_PYDANTIC_FAMILY_SLICE_STACK__2026_03_15__v1.md`
-5. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__FAMILY_SLICE_VALIDATOR_UNIFICATION_AND_PROVENANCE_PATCH__2026_03_15__v1.md`
-6. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_QUEUE_BUNDLE_INTEGRITY_HARDENING__2026_03_15__v1.md`
-7. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_SCHEMA_ALIGNMENT_AND_PYDANTIC_REFRESH__2026_03_15__v1.md`
-8. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_GRAVEYARD_NEGATIVE_LIMIT_OWNERSHIP_PATCH__2026_03_15__v1.md`
-9. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_GRAVEYARD_BUDGET_OWNERSHIP_PATCH__2026_03_15__v1.md`
-10. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_LANE_VISIBILITY_AND_MINIMUM_COVERAGE_PATCH__2026_03_15__v1.md`
-11. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_SCAFFOLD_RESCUE_LANE_AND_LANE_MINIMUM_GATE__2026_03_15__v1.md`
-12. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_SCAFFOLD_RESCUE_MULTIPLICITY_PATCH__2026_03_15__v1.md`
-13. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_RESCUE_LINEAGE_FIELD_OWNERSHIP_PATCH__2026_03_15__v1.md`
-14. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_NON_RESCUE_BRANCH_LINEAGE_OWNERSHIP_PATCH__2026_03_15__v1.md`
-15. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_BRANCH_PARENTAGE_VISIBILITY_AND_AUDIT_PATCH__2026_03_15__v1.md`
-16. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_SINGLE_PRIMARY_ROOT_TOPOLOGY_PATCH__2026_03_15__v1.md`
-17. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_BRANCH_GROUP_VISIBILITY_AND_AUDIT_PATCH__2026_03_15__v1.md`
-18. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_BRANCH_TRACK_VISIBILITY_AND_AUDIT_PATCH__2026_03_15__v1.md`
+1. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__THREAD_RELOAD_SPINE_AND_RUN_BLOAT_AUDIT__2026_03_15__v1.md`
+2. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_RUNTIME_RESET_AND_SPEC_OBJECT_DIRECTION__2026_03_15__v1.md`
+3. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_RECOVERY_SHAPE_OWNERSHIP_PATCH__2026_03_15__v1.md`
+4. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__FIRST_LOCAL_PYDANTIC_FAMILY_SLICE_STACK__2026_03_15__v1.md`
+5. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__FAMILY_SLICE_VALIDATOR_UNIFICATION_AND_PROVENANCE_PATCH__2026_03_15__v1.md`
+6. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_QUEUE_BUNDLE_INTEGRITY_HARDENING__2026_03_15__v1.md`
+7. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_SCHEMA_ALIGNMENT_AND_PYDANTIC_REFRESH__2026_03_15__v1.md`
+8. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_GRAVEYARD_NEGATIVE_LIMIT_OWNERSHIP_PATCH__2026_03_15__v1.md`
+9. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_GRAVEYARD_BUDGET_OWNERSHIP_PATCH__2026_03_15__v1.md`
+10. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_LANE_VISIBILITY_AND_MINIMUM_COVERAGE_PATCH__2026_03_15__v1.md`
+11. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_SCAFFOLD_RESCUE_LANE_AND_LANE_MINIMUM_GATE__2026_03_15__v1.md`
+12. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_SCAFFOLD_RESCUE_MULTIPLICITY_PATCH__2026_03_15__v1.md`
+13. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_RESCUE_LINEAGE_FIELD_OWNERSHIP_PATCH__2026_03_15__v1.md`
+14. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_NON_RESCUE_BRANCH_LINEAGE_OWNERSHIP_PATCH__2026_03_15__v1.md`
+15. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_BRANCH_PARENTAGE_VISIBILITY_AND_AUDIT_PATCH__2026_03_15__v1.md`
+16. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_SINGLE_PRIMARY_ROOT_TOPOLOGY_PATCH__2026_03_15__v1.md`
+17. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_BRANCH_GROUP_VISIBILITY_AND_AUDIT_PATCH__2026_03_15__v1.md`
+18. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_BRANCH_TRACK_VISIBILITY_AND_AUDIT_PATCH__2026_03_15__v1.md`
 
 If the next thread is about maintenance/cleanup, also read:
-- `/Users/joshuaeisenhart/.codex/skills/safe-run-maintenance/SKILL.md`
-- `/Users/joshuaeisenhart/.codex/skills/safe-run-maintenance/references/allowlist-denylist.md`
-- `/Users/joshuaeisenhart/.codex/skills/safe-run-maintenance/references/loop-shape.md`
+- `/home/ratchet/.codex/skills/safe-run-maintenance/SKILL.md`
+- `/home/ratchet/.codex/skills/safe-run-maintenance/references/allowlist-denylist.md`
+- `/home/ratchet/.codex/skills/safe-run-maintenance/references/loop-shape.md`
 
 ## Current high-signal state
 
@@ -115,7 +115,7 @@ These seams are improved, but not complete.
 ### Grounded current numbers
 
 Current local run tree:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs`
 - approximate size: `275M`
 - immediate child count: `90`
 
@@ -128,20 +128,20 @@ Pattern concentration:
 - `4` `RUN_ENTROPY_*`
 
 Largest members observed:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/_RUNS_REGISTRY.jsonl` about `15M`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_DUAL_THREAD_NO_PRO_SMOKE_0004` about `15M`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/_RUNS_REGISTRY.jsonl` about `15M`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_DUAL_THREAD_NO_PRO_SMOKE_0004` about `15M`
 - multiple `RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_*` continuation families in the `7M-9M` range
 
 ### What is clearly protected/live
 
 Never move from `system_v3/runs/`:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/_CURRENT_STATE`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/_CURRENT_RUN.txt`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/_RUNS_REGISTRY.jsonl`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/_CURRENT_STATE`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/_CURRENT_RUN.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/_RUNS_REGISTRY.jsonl`
 
 Current recent safety-window surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_A1_WIGGLE_SMOKE_20260314_01`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_A1_WIGGLE_SMOKE_20260314_02`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_A1_WIGGLE_SMOKE_20260314_01`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_A1_WIGGLE_SMOKE_20260314_02`
 
 ### Current maintenance judgment
 
@@ -174,7 +174,7 @@ If continuing the architecture/runtime path:
 4. inspect whether any remaining family-branch semantics are still only encoded in planner-local naming rules after the new `BRANCH_TRACK` surface
 
 If continuing the bloat/cleanup path:
-1. do a bounded archive-prep pass only on `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs`
+1. do a bounded archive-prep pass only on `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs`
 2. classify exact candidates as one of:
    - `KEEP_ACTIVE`
    - `MOVE_TO_ARCHIVE`

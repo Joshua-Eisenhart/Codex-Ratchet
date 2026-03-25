@@ -53,7 +53,7 @@ Target:
 Check:
 - preview hash matches current live hash
 - terminal section `## 13) Thread weighting vs recency` is still the live tail
-- terminal anchor `Main source:` with `/Users/joshuaeisenhart/Desktop/codex thread save.txt` is still present
+- terminal anchor `Main source:` with `/home/ratchet/Desktop/codex thread save.txt` is still present
 
 Verdict:
 - `VALID`

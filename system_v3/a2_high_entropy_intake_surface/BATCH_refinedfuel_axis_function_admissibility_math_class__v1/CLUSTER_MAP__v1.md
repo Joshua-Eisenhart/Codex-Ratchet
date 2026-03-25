@@ -39,7 +39,7 @@ Extraction mode: `MATH_CLASS_PASS`
 - members:
   - source 1: `27-31`
 - comparison anchors:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Base constraints ledger v1.md:63-67`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Base constraints ledger v1.md:63-67`
 - cluster role:
   - keeps a narrow extension menu open while refusing primitive optimization, time, probability, or utility imports
 - strongest reusable read:
@@ -49,7 +49,7 @@ Extraction mode: `MATH_CLASS_PASS`
 - members:
   - source 1: `27`
 - comparison anchors:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_SET_ADMISSIBILITY_v1.md:3-7`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_SET_ADMISSIBILITY_v1.md:3-7`
 - cluster role:
   - hands off from individual admitted function relations to later finite axis-set packaging
 - strongest reusable read:
@@ -59,9 +59,9 @@ Extraction mode: `MATH_CLASS_PASS`
 - members:
   - source 1: `1-31`
 - comparison anchors:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:8-28`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:71-75`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1.md:768-770`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:8-28`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:71-75`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1.md:768-770`
 - cluster role:
   - preserves that the file is source-locally treated as part of a stable canon set and already echoed in active A2 ingestion, while this batch still remains an outer noncanon intake artifact
 - strongest reusable read:

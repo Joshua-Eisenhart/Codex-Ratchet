@@ -6,7 +6,7 @@ registry, load graph fuel (even if empty to simulate dry-run/skip LLM calls),
 and correctly invoke the final wrapup phases like Overseer, Lawyer, and Bridge.
 
 Usage:
-    cd "/Users/joshuaeisenhart/Desktop/Codex Ratchet"
+    cd <repo_root>
     python -m system_v4.skills.test_run_real_ratchet_smoke
 """
 

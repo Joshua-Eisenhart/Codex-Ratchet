@@ -7,23 +7,23 @@ Role: preserve the worker-launch routing patch that makes A1 launch packets carr
 ## Scope
 
 Patched A1 worker launch tools:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_a1_worker_launch_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_worker_launch_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_worker_send_text_from_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_worker_launch_from_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_worker_launch_handoff.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_handoff.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_a1_worker_launch_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_worker_launch_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_worker_send_text_from_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_worker_launch_from_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_worker_launch_handoff.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_handoff.py`
 
 Patched A1 launch-shape specs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/32_A1_QUEUE_STATUS_SURFACE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/32_A1_QUEUE_STATUS_SURFACE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md`
 
 Focused regression:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_worker_launch_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_worker_launch_packet.py`
 
 Target reload surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md`
 
 ## Problem
 

@@ -44,9 +44,9 @@ So the graph step should come after substrate hardening, not before.
 ### 1) Validator unification
 
 Bring these into the same law:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1.schema.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a2_to_a1_family_slice_models.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1.schema.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a2_to_a1_family_slice_models.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
 
 Goal:
 - one family slice should not pass prep and fail later because validators disagree
@@ -155,7 +155,7 @@ If external Codex worker threads are used, the best bounded jobs now are:
 ## Reload use
 
 On reload, this note should be read after:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__THREAD_RELOAD_SPINE_AND_RUN_BLOAT_AUDIT__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__THREAD_RELOAD_SPINE_AND_RUN_BLOAT_AUDIT__2026_03_15__v1.md`
 
 Use it to decide:
 - whether to keep hardening the object substrate

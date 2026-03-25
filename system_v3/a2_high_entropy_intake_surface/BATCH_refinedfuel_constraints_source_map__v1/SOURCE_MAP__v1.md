@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - folder order around this batch:
@@ -19,7 +19,7 @@ Date: 2026-03-09
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md`
 - reason for selection:
   - this is the next unprocessed non-sims `constraint ladder` file in folder order after `Constraints. Entropy.md`
   - the file is a large stitched legacy foundation note rather than a compact fail-closed contract
@@ -31,11 +31,11 @@ Date: 2026-03-09
     - restart into a first constraint-compatible construction
   - because the file is structurally rich and internally tensioned, the correct first bounded treatment is a `SOURCE_MAP_PASS`, not early normalization
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Curvature contract v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Curvature contract v1.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md`
   - role in batch: stitched legacy foundation source that compresses monism, admissible mathematics, uncertainty governance, and a first construction restart into one precursor note
   - sha256: `91b7de3b8eb2fa4eb17d50d664e68a9993205dde2e11733fe68b5df1900ee777`
   - size bytes: `42546`

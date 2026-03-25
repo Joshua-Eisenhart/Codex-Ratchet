@@ -14,6 +14,7 @@ import subprocess
 import json
 import os
 import sys
+import platform
 from datetime import datetime, UTC
 from pathlib import Path
 
@@ -30,6 +31,7 @@ TIERED_SIMS = {
         "foundations_sim.py",
         "math_foundations_sim.py",
         "deep_math_foundations_sim.py",
+        "extreme_nominalism_math_sim.py",
     ],
     "T1_CONSTRAINTS": [
         "proof_cost_sim.py",
@@ -52,6 +54,13 @@ TIERED_SIMS = {
         "quantum_gravity_sim.py",
         "yang_mills_sim.py",
         "chemistry_sim.py",
+        "big_bang_fuzz_sim.py",
+        "origin_chain_physics_sim.py",
+    ],
+    "T3_ROSETTA": [
+        "set_theory_correlation_cluster_sim.py",
+        "axis5_discrete_calculus_rosetta_sim.py",
+        "entropic_curvature_lattice_sim.py",
     ],
     "T4_ENGINE": [
         "topology_operator_sim.py",
@@ -67,6 +76,14 @@ TIERED_SIMS = {
         "axis_6_precedence_sim.py",
         "i_scalar_filtration_sim.py",
     ],
+    "T4_AXIS_DISCOVERY": [
+        "axis_compositional_structure_sim.py",
+        "deep_axis_composition_sim.py",
+        "axis_residual_subspace_discovery_sim.py",
+        "axis_lie_closure_expansion_sim.py",
+        "axis_7_12_mirror_orthogonality_suite.py",
+        "axis_7_12_commutator_construction_sim.py",
+    ],
     "T5_ORTHOGONALITY": [
         "axis_orthogonality_suite.py",
         "axis_triplet_orthogonality_sim.py",
@@ -80,7 +97,11 @@ TIERED_SIMS = {
         "orthogonality_axis0_axis5_sim.py",
         "orthogonality_axis0_axis6_sim.py",
         "qit_topology_parity_sim.py",
+        "axis_7_12_orthogonality_suite.py",
         "egglog_graph_rewrite_probe.py",
+    ],
+    "T5_AUTORESEARCH": [
+        "autoresearch_sim_harness.py",
     ],
     "T6_ADVANCED": [
         "nlm_batch2_sim.py",
@@ -101,6 +122,9 @@ TIERED_SIMS = {
         "extended_graveyard_battery.py",
         "thermodynamic_graveyard_battery.py",
         "information_graveyard_battery.py",
+    ],
+    "T6_GRAPH_BRIDGE": [
+        "evidence_to_graph_bridge_sim.py",
     ],
 }
 
@@ -140,6 +164,7 @@ def run_sim(filename: str) -> dict:
             "foundations_sim.py": "foundations_results.json",
             "math_foundations_sim.py": "math_foundations_results.json",
             "deep_math_foundations_sim.py": "deep_math_results.json",
+            "extreme_nominalism_math_sim.py": "extreme_nominalism_results.json",
             "arithmetic_gravity_sim.py": "arithmetic_gravity_results.json",
             "proof_cost_sim.py": "proof_cost_results.json",
             "navier_stokes_complexity_sim.py": "navier_stokes_results.json",
@@ -172,6 +197,8 @@ def run_sim(filename: str) -> dict:
             "world_model_sim.py": "world_model_results.json",
             "scientific_method_sim.py": "scientific_method_results.json",
             "navier_stokes_formal_sim.py": "navier_stokes_formal_results.json",
+            "big_bang_fuzz_sim.py": "cosmo_fuzz_results.json",
+            "origin_chain_physics_sim.py": "origin_chain_results.json",
             "rock_falsifier_enhanced_sim.py": "rock_falsifier_enhanced_results.json",
             "tier_3_mega_sim.py": "tier_3_mega_results.json",
             "sim_moloch_trap_field.py": "moloch_trap_field_results.json",
@@ -194,6 +221,9 @@ def run_sim(filename: str) -> dict:
             "thermodynamic_graveyard_battery.py": "thermo_graveyard_results.json",
             "information_graveyard_battery.py": "info_graveyard_results.json",
             "axis_orthogonality_suite.py": "axis_orthogonality_v3_results.json",
+            "axis_7_12_orthogonality_suite.py": "axis_7_12_ortho_results.json",
+            "axis_residual_subspace_discovery_sim.py": "axis_residual_candidates.json",
+            "axis_lie_closure_expansion_sim.py": "axis_lie_closure_rank.json",
             "egglog_graph_rewrite_probe.py": "egglog_rewrite_results.json",
             "neg_scrambled_sequence_sim.py": "neg_scrambled_sequence_results.json",
             "neg_inverted_major_loop_sim.py": "neg_inverted_major_loop_results.json",
@@ -202,6 +232,16 @@ def run_sim(filename: str) -> dict:
             "neg_single_loop_sim.py": "neg_single_loop_results.json",
             "neg_classical_probability_sim.py": "neg_classical_results.json",
             "neg_no_dissipation_sim.py": "neg_no_dissipation_results.json",
+            # Phase 14-17 new SIMs
+            "set_theory_correlation_cluster_sim.py": "set_theory_correlation_results.json",
+            "axis5_discrete_calculus_rosetta_sim.py": "axis5_discrete_calculus_results.json",
+            "entropic_curvature_lattice_sim.py": "entropic_curvature_results.json",
+            "axis_compositional_structure_sim.py": "axis_compositional_structure_results.json",
+            "deep_axis_composition_sim.py": "deep_axis_composition_results.json",
+            "axis_7_12_mirror_orthogonality_suite.py": "axis_7_12_mirror_ortho_results.json",
+            "axis_7_12_commutator_construction_sim.py": "axis_7_12_commutator_results.json",
+            "autoresearch_sim_harness.py": "autoresearch_harness_results.json",
+            "evidence_to_graph_bridge_sim.py": "evidence_graph_bridge_results.json",
         }
         
         tokens = []
@@ -411,9 +451,20 @@ def main():
             kill_reasons = [t.get('kill_reason', '?') for t in r['tokens'] if t.get('status') == 'KILL']
             print(f"    - {r['file']}: {', '.join(kill_reasons)}")
     
+    try:
+        git_sha = subprocess.check_output(["git", "rev-parse", "HEAD"]).decode("utf-8").strip()
+    except Exception:
+        git_sha = "unknown"
+
     # Save consolidated report
     report = {
         "timestamp": datetime.now(UTC).isoformat(),
+        "provenance": {
+            "git_sha": git_sha,
+            "python_version": platform.python_version(),
+            "os": platform.system() + " " + platform.release(),
+            "rng_seed_policy": "per-sim-deterministic",
+        },
         "total_tokens": graph["total_tokens"],
         "pass_count": graph["pass_count"],
         "kill_count": graph["kill_count"],

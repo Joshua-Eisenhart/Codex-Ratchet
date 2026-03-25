@@ -169,8 +169,8 @@ Reason:
 
 ### 6. First pass-2 proof now succeeds
 The first pass-2 packet proof now succeeds for `unitary_operator`:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
 
 Observed:
 - lower-loop result = `PASS`
@@ -194,8 +194,8 @@ Next immediate target:
 
 ## Fresh Worker-Path Proof
 After this understanding-layer pass, the exchange-driven A1 worker path was proven on a fresh substrate-family run:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_FAMILY__v1.md`
 
 Observed result:
 - external memo response ingested
@@ -208,7 +208,7 @@ This closes the prior uncertainty about whether the new `A1_CONSOLIDATION_PREPAC
 The worker-path proof has now advanced beyond a single step.
 
 Evidence:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
 
 Interpretation:
 - the active bottleneck was successfully narrowed to first-family planner shaping
@@ -219,7 +219,7 @@ Interpretation:
 The first validated substrate-family run still admits an auxiliary helper term, `probe`, because of current component-gating against the fixed L0 lexeme seed.
 
 Evidence:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
 
 This is a semantic/lower-loop choice, not an upper-layer transport problem.
 
@@ -260,8 +260,8 @@ Additional useful constraint:
 
 ## Graveyard-First Validity Proof
 The graveyard-first validity path is now execution-proven on a fresh local-stub run:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_BASE_VALIDITY_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_BASE_VALIDITY_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_BASE_VALIDITY_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_BASE_VALIDITY_FAMILY__v1.md`
 
 Observed:
 - the serial exchange path now answers the correct sequence under graveyard-first mode
@@ -280,8 +280,8 @@ Important caution:
 
 ## Concept-Local Graveyard Validity Proof
 The tighter concept-local graveyard profile is now also execution-proven:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_BASE_VALIDITY_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_BASE_VALIDITY_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_BASE_VALIDITY_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_BASE_VALIDITY_FAMILY__v1.md`
 
 Observed:
 - the concept-local profile is materially narrower than the broad-fuel profile
@@ -298,8 +298,8 @@ Interpretation:
 
 ## Enrichment Concept-Local Seed Result
 The pass-2 enrichment family now has a real concept-local graveyard-seed result:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
 
 Observed:
 - exact admitted family terms:
@@ -322,7 +322,7 @@ Interpretation:
 
 ## Focused Dynamics-Local Seed Result
 The targeted time/dynamics follow-up is now also real:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
 
 Observed:
 - exact target terms allowed:
@@ -342,7 +342,7 @@ Interpretation:
 
 ## Dynamics-Bridge Negative Evidence
 The wider bridge profile is now also tested:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
 
 Observed:
 - `executed_cycles = 1`
@@ -363,7 +363,7 @@ Interpretation:
 
 ## Cluster-Clamped Dynamics Continuation
 The missing family-specific executed-cycle dynamics route is now real:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_ENRICHMENT_FAMILY__v1.md`
 
 Observed:
 - `executed_cycles = 2`
@@ -417,7 +417,7 @@ Current interpretation:
 
 ## Executable Entropy Bridge
 The first entropy lane now has a separate executable bridge surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BRIDGE_CAMPAIGN__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BRIDGE_CAMPAIGN__v1.md`
 
 Working rule:
 - keep the direct entropy-family names in proposal space
@@ -434,13 +434,13 @@ Interpretation:
 
 Entropy bridge validation is now split into two proven surfaces:
 - strict local seed:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
   - `PASS__EXECUTED_CYCLE`
   - `graveyard_count = 9`
   - `sim_registry_count = 17`
 - broad-fuel graveyard saturation:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_LOCAL_BROAD_PAIR__v1.md`
   - `PASS__EXECUTED_CYCLE`
   - `graveyard_count = 153`
   - `kill_log_count = 153`
@@ -453,9 +453,9 @@ Working read:
 - direct higher entropy-family names remain proposal-space and are not yet final lower-loop closures
 
 Focused bookkeeping-side follow-ups are currently negative evidence:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_RATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_RATE_FAMILY__v1.md`
   - too thin to sustain a useful local graveyard-first path
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_RATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_RATE_FAMILY__v1.md`
   - no executed cycle
   - no graveyard growth
   - no negative pressure
@@ -464,7 +464,7 @@ Current decision:
 - stop tuning isolated bookkeeping-local entropy profiles
 - keep bookkeeping pressure inside the broad exploratory entropy-bridge mode
 - a focused `correlation_polarity` local memo-path follow-up was also tested and failed thin:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_RATE_FAMILY__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_RATE_FAMILY__v1.md`
   - `FAIL__SUBPROCESS`
   - no executed cycle
   - no graveyard growth
@@ -478,8 +478,8 @@ Updated decision:
 - if a later narrow entropy route is needed, use a stronger bridge pair or direct packet pressure, not the current memo-local single-term path
 
 Direct packet-only entropy bridge follow-up:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_PACKET_SMOKE_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_PACKET_SMOKE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_PACKET_SMOKE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_PACKET_SMOKE_FAMILY__v1.md`
 - the direct packet route is still partially useful, but the earlier stronger claim had to be corrected
 - proved:
   - one real narrow packet-only lower-loop step still exists on the correlation side
@@ -513,8 +513,8 @@ Current audit read:
 - next executable entropy work should be broad-mode residue pressure, not more single-term tuning
 
 Residue-broad broad-mode audit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
 - wrapper result:
   - `PASS__EXECUTED_CYCLE`
   - `canonical_term_count = 41`
@@ -556,13 +556,13 @@ Residue-broad broad-mode audit:
     - cross-basin structural rescue
   - explicit probability/homunculus pressure remains in the lane, but it is not the first dominant observed basin
   - first concrete control surface is now:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BROAD_RESCUE_PACK__v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BROAD_RESCUE_PACK__v1.md`
   - current rule:
     - use that broad rescue pack before reopening narrow bookkeeping tuning
 
 Narrow bookkeeping bridge follow-up:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BOOKKEEPING_PACKET_SMOKE_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BOOKKEEPING_PACKET_SMOKE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BOOKKEEPING_PACKET_SMOKE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BOOKKEEPING_PACKET_SMOKE_FAMILY__v1.md`
 - planner-level superoperator inflation is fixed for the bookkeeping lane, but the narrow executable route remains lexeme-surface toxic:
   - `von_neumann_entropy` fails on `UNDEFINED_LEXEME:neumann`
   - `entropy_production_rate` fails on `UNDEFINED_LEXEME:rate`
@@ -570,8 +570,8 @@ Narrow bookkeeping bridge follow-up:
 - `density_entropy` is the only narrow bookkeeping seed that currently survives lower-loop pressure
 
 Explicit entropy negative-frontier injection:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
 - this proves the dominant entropy negatives are now injected directly:
   - `CLASSICAL_TEMPERATURE`
   - `CLASSICAL_TIME`
@@ -593,8 +593,8 @@ Explicit entropy negative-frontier injection:
   - do not keep tuning this exact broad profile unless we introduce a tighter thermal/time residue split
 
 Thermal/time residue split prepared:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_THERMAL_TIME_RESCUE_PACK__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_graveyard_first_validity_campaign.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_THERMAL_TIME_RESCUE_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_graveyard_first_validity_campaign.py`
   now includes:
   - `entropy_bridge_thermal_time_broad`
 - intended use:
@@ -609,7 +609,7 @@ Thermal/time residue split prepared:
   - test whether the first dominant basin can actually be moved before reintroducing wider structural residue
 
 Thermal/time residue split result:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 - narrowed negative frontier:
   - `CLASSICAL_TEMPERATURE`
   - `CLASSICAL_TIME`
@@ -627,15 +627,15 @@ Thermal/time residue split result:
   - next entropy work should alter rescue structure or bridge formulation instead
 
 Entropy bridge reformulation pack added:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_REFORMULATION_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_REFORMULATION_PACK__v1.md`
 - purpose:
   - move the entropy lane from negative-frontier tuning to branch-shape and rescue-composition changes
 - current rule:
   - do not spend further immediate budget on entropy profile narrowing
 
 Reformulation broad result:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 - run outcome remains:
   - `PASS__EXECUTED_CYCLE`
   - `canonical_term_count = 39`
@@ -648,19 +648,19 @@ Reformulation broad result:
   - next useful control move is graveyard topology / clustered rescue pressure, not more broad profile wording changes
 
 Entropy failure-topology surface added:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__v1.md`
 - generated confirmation:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__AUTO__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__AUTO__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__AUTO__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__AUTO__v1.json`
 
 Cluster-aware rescue pack added:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_CLUSTER_RESCUE_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_CLUSTER_RESCUE_PACK__v1.md`
 - generated-topology note:
   - aggregate cluster totals currently rank `Cluster C > Cluster B > Cluster A`
   - active rescue order remains `Cluster A -> Cluster B -> Cluster C`
   - keep that as an explicit control choice unless active run evidence shifts the basin materially
 - frozen-order recheck:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_AUDIT_PROOF_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_AUDIT_PROOF_CLUSTER__v1.md`
   - semantic/math gate still passes
   - dominant basin does not shift under the frozen A/B/C order
   - `correlation_polarity` still survives
@@ -668,7 +668,7 @@ Cluster-aware rescue pack added:
   - next control move should be branch-budget / merge / stronger rescue-structure pressure, not another cluster reorder
 
 Cluster-rescue broad result:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - run outcome:
   - `PASS__EXECUTED_CYCLE`
   - `graveyard_count = 45`
@@ -681,7 +681,7 @@ Cluster-rescue broad result:
   - cluster-aware rescue is now the active broad entropy control path
 
 Next lift pack:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_RATE_LIFT_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_RATE_LIFT_PACK__v1.md`
   - spend the next budget on colder bridge reformulations and less direct classical machine narration
 - helper bootstrap leakage on that path still includes:
   - `von`
@@ -691,7 +691,7 @@ Next lift pack:
   - `bound`
 
 Cold-start probe audit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - one-step clean probe gives:
   - `canonical_term_count = 1`
   - `graveyard_count = 9`
@@ -700,7 +700,7 @@ Cold-start probe audit:
 - that probe is too thin to judge the route
 
 Full-budget clean audit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - full local serial budget on a clean run returns:
   - `canonical_term_count = 9`
   - `graveyard_count = 45`
@@ -721,7 +721,7 @@ Next blocker from the full-budget clean run:
 - semantic/math substance gate still fails on the bookkeeping bridge runs because the direct bookkeeping witnesses do not land as required probe terms
 
 Helper-strip broad audit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 - run outcome:
   - `PASS__EXECUTED_CYCLE`
   - `canonical_term_count = 9`
@@ -743,7 +743,7 @@ Decision:
 - treat helper fragmentation as a later merge / lexical attachment control problem
 
 Planner-side suppression probe:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 - run outcome:
   - `PASS__EXECUTED_CYCLE`
   - `canonical_term_count = 5`
@@ -778,8 +778,8 @@ Updated bookkeeping decision:
   just to force a narrow bookkeeping pass
 
 Rate-lift broad result:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_RATE_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_RATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_RATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_RATE_FAMILY__v1.md`
 - run outcome:
   - `PASS__EXECUTED_CYCLE`
   - `canonical_term_count = 40`
@@ -809,11 +809,11 @@ Structure-side lift correction:
 - `correlation_diversity_functional` has direct runtime diversity-probe support
 - `probe_induced_partition_boundary` does not yet
 - next executable structure-side move is:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_STRUCTURE_LIFT_PACK__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_STRUCTURE_LIFT_PACK__v1.md`
 
 Diversity-lift broad result:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_DIVERSITY_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_DIVERSITY_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_DIVERSITY_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_DIVERSITY_FAMILY__v1.md`
 - run outcome:
   - `PASS__EXECUTED_CYCLE`
   - `canonical_term_count = 9`
@@ -834,7 +834,7 @@ Current decision:
   - colder executable diversity alias/decomposition
 
 Active next step:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md`
 - working colder alias candidate:
   - `pairwise_correlation_spread_functional`
 
@@ -842,8 +842,8 @@ Active next step:
 The broad entropy rescue pack is now operational in the actual worker request path.
 
 Evidence:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
 
 Observed:
 - request terms are explicitly front-loaded with:
@@ -867,8 +867,8 @@ Audit read:
 
 ## First Entropy Reformulation Run
 Run:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 
 Observed:
 - `priority_claims` are now carried through the live worker request path
@@ -887,7 +887,7 @@ Audit read:
 - the next entropy step must change the colder witness composition or rescue composition more sharply
 
 Next entropy pack:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_COLDER_WITNESS_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_COLDER_WITNESS_PACK__v1.md`
 
 Purpose:
 - stop leading with direct bridge aliases,
@@ -895,7 +895,7 @@ Purpose:
 - keep classical residue explicit only on the negative side.
 
 First colder-witness audit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 
 Observed:
 - the strategy head shifts to `density_entropy`
@@ -915,7 +915,7 @@ Audit read:
 - do not make it the new default entropy route
 
 Next entropy pack:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_LIFT_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_LIFT_PACK__v1.md`
 
 Purpose:
 - stop lone-helper collapse,
@@ -923,8 +923,8 @@ Purpose:
 - keep direct engine naming on the negative side only.
 
 Helper-lift audit correction:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 
 Observed:
 - wrapper status = `PASS__NO_EXECUTED_CYCLE`
@@ -950,8 +950,8 @@ New active follow-up:
 - `system_v3/a1_state/A1_FIRST_ENTROPY_STRUCTURE_CAMPAIGN__v1.md`
 
 Direct entropy-structure local audit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_STRUCTURE_FAMILY__v1.md`
 
 Observed:
 - wrapper status = `PASS__EXECUTED_CYCLE`
@@ -980,7 +980,7 @@ Current read:
   - `erasure_channel_entropy_cost_lower_bound`
   - `correlation_polarity`
 - reruns:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
 - updated read:
   - the narrower support set materially improved local pressure and then saturated:
     - `graveyard_count = 18`
@@ -998,8 +998,8 @@ Current read:
   - the cleaner next move is to keep `correlation_polarity` broad-only and treat the local direct-structure route as helper-only evidence, not the active executable entropy path
 
 Focused local-structure clamp repair:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_STRUCTURE_FAMILY__v1.md`
 - accepted read:
   - local-family clamp bug is fixed
   - the route now carries:
@@ -1018,7 +1018,7 @@ Focused local-structure clamp repair:
     - lower-loop executable failure
   - that is useful evidence and should not be misread as a still-broken route shaper
 - active control pack:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md`
 
 ## Bottom Line
 This pass successfully moved the system from:
@@ -1043,8 +1043,8 @@ Alias-lift correction:
 
 ## Entropy Cluster-Rescue Broad Phase-Switch Audit
 Run:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 
 Observed:
 - the new seed-force-transition override works as intended
@@ -1074,7 +1074,7 @@ Current decision:
 - keep `entropy_bridge_cluster_rescue_broad` as the active executable entropy route
 - use driver report + cold-core outputs as the main audit surfaces for this profile until wrapper completion is cleaned up
 - use:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_PATH_BUILD_PRIORITY_PACK__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_PATH_BUILD_PRIORITY_PACK__v1.md`
   as the control surface for the post-seed `path_build` phase
 - current required path-build floor/order:
   1. `probe_induced_partition_boundary`
@@ -1090,7 +1090,7 @@ Current decision:
   remain tolerated only as witnesses and should not retake path-build head status
 
 Follow-up audit from the entropy-bridge executable anchor:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 - the six-term path-build floor is now enforced at cold-core / prepack,
 - the driver explicitly carries the same allowlist during `path_build`,
 - the unresolved entropy-bridge blocker has moved downstream to helper decomposition for selected multi-lexeme bridge terms.
@@ -1103,9 +1103,9 @@ Current conclusion:
 Audit refinement:
 - this helper-decomposition issue is a real lower-loop rule, not a noisy upper-loop artifact.
 - the decisive surfaces are:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/kernel.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/kernel.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
 
 Current practical read:
 - the active broad entropy route is still correct,
@@ -1116,11 +1116,11 @@ Current practical read:
   - or keep compound targets as proposal-only while colder witnesses remain executable.
 
 This decision is now frozen in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md`
 
 Further audit refinement from:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 
 The broad entropy route does not currently justify describing the six-term bridge floor as an executable lower-loop ladder.
 
@@ -1131,8 +1131,8 @@ The right split is now:
 That distinction is now part of the active A1/A2 understanding layer and should remain explicit until a colder alias or deliberate component ladder actually lifts the structure-side bridge heads.
 
 Later-phase rescue proof:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
   now proves that the broad entropy route reaches real family-fenced rescue after seeded continuation:
   - `executed_cycles = 16`
   - `wait_cycles = 16`
@@ -1151,7 +1151,7 @@ Later-phase rescue proof:
   - but rescue efficacy under the present branch-budget / merge structure
 
 Extended broad-rescue audit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
 - accepted read:
   - `wrapper_status = PASS__EXECUTED_CYCLE`
   - live rescue extends through sequence `24`
@@ -1169,10 +1169,10 @@ Extended broad-rescue audit:
   - the live blocker is rescue efficacy under the current branch-budget / merge structure
 
 The current executable continuation is now frozen in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_CORRELATION_EXECUTABLE_PACK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_CORRELATION_EXECUTABLE_PACK__v1.md`
 
 Fresh confirmation:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
   returns:
   - `PASS__EXECUTED_CYCLE`
   - `interpretation = executed_cycle_with_non_bridge_residue`
@@ -1180,7 +1180,7 @@ Fresh confirmation:
   - `bridge_witness_terms_present = polarity`
   - `non_bridge_residue_terms_present = information, bound, work`
   - `substrate_companion_terms_present = probe`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
   shows the executable entropy-side floor is still correlation-side, with classified companions present
 
 Current audit decision:
@@ -1190,8 +1190,8 @@ Current audit decision:
 - do not reopen direct six-term bridge admission work as the near-term executable path.
 
 Variant comparison refinement:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 - both narrower probes return `PASS__NO_EXECUTED_CYCLE`
 - both stop at `STOPPED__LOWER_LOOP_PACKET_FAILED`
 - `work_strip_broad` is the cleaner negative boundary probe because it removes `work` and `probe`
@@ -1204,14 +1204,14 @@ Entropy broad-route update:
   - `path_build = 12`
   - `rescue = 8`
 - validated by:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
 - result:
   - helper carry-through improved (`work`, `probe` dropped),
   - but cross-family bleed appeared (`commutator_operator`).
 
 Seed-phase family-fence trials:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 - these removed substrate bleed,
 - but collapsed broad graveyard pressure to the thin seed frontier
 - therefore they are not adopted as the active route.
@@ -1226,9 +1226,9 @@ Current control decision:
 Seeded continuation audit:
 - fresh wrapper reruns and naive copied-run continuations were shown to be invalid evidence for this route because stale upper surfaces distort the next entropy step
 - accepted repair:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/bootstrap_seeded_continuation_run.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/bootstrap_seeded_continuation_run.py`
 - accepted proof run:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - audit result:
   - `executed_cycles_total = 4`
   - `wait_cycles_total = 4`
@@ -1245,10 +1245,10 @@ Seeded continuation audit:
   - the entropy broad route now has a valid continuation method
   - route continuity depends on preserving lower-loop state and resetting stale upper-loop surfaces
   - the validity runner now supports this directly through:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_graveyard_first_validity_campaign.py`
+    - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_graveyard_first_validity_campaign.py`
     - via `--seed-from-run-id`
   - wrapper-report observability is now fixed for the seeded continuation path:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
     - `wrapper_status = PASS__EXECUTED_CYCLE`
   - next blocker is no longer observability; counts remain flat at:
     - `canonical_term_count = 10`
@@ -1259,8 +1259,8 @@ Seeded continuation audit:
 
 Seeded rescue novelty stall proof:
 - accepted clean rescue-side stop:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted read:
   - `wrapper_status = PASS__RESCUE_NOVELTY_STALLED`
   - `stop_reason = STOPPED__RESCUE_NOVELTY_STALL`
@@ -1273,8 +1273,8 @@ Seeded rescue novelty stall proof:
   - the next live blocker remains rescue/path novelty exhaustion, not transport, wrapper emission, or stale broad memo bleed
 
 Pinned rescue-support update:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted current read:
   - active rescue requests now keep a pinned three-term support set:
     - `unitary_operator`
@@ -1287,14 +1287,14 @@ Pinned rescue-support update:
   - the active bottleneck is now downstream rescue efficacy after pinned support is present
 
 - rotated-support follow-up:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
   - accepted read:
     - rescue-side support rotation is live
     - the active broad route still executes after the control is introduced
     - the remaining question is rescue efficacy under rotated support, not whether the route survives the change
   - follow-up seeded target-shape continuation:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
   - current read:
     - rescue-target shape rotation now reaches sustained rescue execution
     - wrapper-level `executed_cycles = 24`
@@ -1303,7 +1303,7 @@ Pinned rescue-support update:
 
 Probe-companion freeze:
 - new control pack:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_PROBE_COMPANION_PACK__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_PROBE_COMPANION_PACK__v1.md`
 - accepted next bounded move:
   - add witness-only probe companions
     - `qit_master_conjunction`
@@ -1313,7 +1313,7 @@ Probe-companion freeze:
     - entropy heads = `correlation`, `correlation_polarity`
     - no substrate-family widening
 - probe-companion follow-up:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
   - accepted read:
     - the witness-only probe-companion move is now tested
     - it does not produce an executed-cycle gain
@@ -1328,8 +1328,8 @@ Probe-companion freeze:
 
 Rescue-target propagation closure:
 - focused seeded rerun:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted read:
   - rescue requests now carry non-empty `graveyard_rescue_targets`
   - wrapper result is still `PASS__RESCUE_NOVELTY_STALLED`
@@ -1338,8 +1338,8 @@ Rescue-target propagation closure:
 
 Rescue focus-mode confirmation:
 - fresh seeded rerun:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted read:
   - rescue requests now carry `focus_term_mode = concept_priority_rescue`
   - rescue requests still carry non-empty `graveyard_rescue_targets`
@@ -1351,8 +1351,8 @@ Rescue focus-mode confirmation:
   - rescue novelty generation remains the live bottleneck
 
 Rotating rescue-frontier continuation update:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted read:
   - rescue-target propagation remains fixed
   - rescue focus-term mode remains fixed
@@ -1371,19 +1371,19 @@ Upstream reintroduction fix:
   - broad external memos were still carrying `information_work_extraction_bound` in `proposed_terms`
   - even when the active `path_build` / `rescue` allowlists demoted it to proposal/control only
 - fixed at the two real ingress points:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_external_memo_batch_driver.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_consolidation_prepack_job.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_external_memo_batch_driver.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_consolidation_prepack_job.py`
 - focused proof:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
   - `information_work_extraction_bound` no longer appears in `proposed_terms_raw`
 - continuation smoke after the fix:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 
 Cluster-clamp executable entropy update:
 - cleaner active continuation now exists at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 - accepted read:
   - `PASS__EXECUTED_CYCLE`
   - `executed_cycles = 8`
@@ -1413,8 +1413,8 @@ Cluster-clamp executable entropy update:
   - helper-residue control is improved but still incomplete
 
 Seeded continuation saturation proof:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 - accepted read:
   - `PASS__PATH_BUILD_SATURATED`
   - `interpretation = path_build_saturated_after_seed`
@@ -1449,8 +1449,8 @@ See:
 - `system_v3/a2_state/NEXT_VALIDATION_TARGETS__v1.md`
 
 Latest entropy rescue superseding note:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted current read:
   - `wrapper_status = PASS__EXECUTED_CYCLE`
   - `interpretation = executed_cycle`
@@ -1476,9 +1476,9 @@ Latest entropy rescue superseding note:
     - the broad-route bottleneck is therefore rescue efficacy / witness activation, not support propagation
 
 Bootstrap-stall narrowing update:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted current read:
   - rescue-side bootstrap demotion is now asymmetric
   - `rescue_bootstrap_stalled_terms` narrows to:
@@ -1487,7 +1487,7 @@ Bootstrap-stall narrowing update:
     - `need_atomic_bootstrap = []`
   - `correlation_diversity_functional` no longer remains blocked at bootstrap propagation
   - the stalled rescue-target decomposition is now frozen in:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_RESCUE_TARGET_DECOMPOSITION_PACK__v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_RESCUE_TARGET_DECOMPOSITION_PACK__v1.md`
     - bootstrap fragment = `functional`
     - witness companions = `unitary_operator`, `qit_master_conjunction`
   - the live rescue driver now injects `functional` as a pinned rescue fragment for this stalled basin
@@ -1499,7 +1499,7 @@ Bootstrap-stall narrowing update:
   - the remaining local blocker is lower-loop term-surface semantics on `correlation_diversity_functional`
 
 Bootstrap-companion admission proof:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted current read:
   - the rescue-side support-term path is now proven
   - `functional` is emitted in:
@@ -1514,9 +1514,9 @@ Bootstrap-companion admission proof:
 
 Required-probe witness pack:
 - new control surface:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_REQUIRED_PROBE_WITNESS_PACK__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_REQUIRED_PROBE_WITNESS_PACK__v1.md`
 - authoritative run:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_EXECUTABLE_CLUSTER__v1.md`
 - accepted read:
   - active broad entropy route remains executable
   - witness-only probe coverage is now satisfied on the active correlation executable route

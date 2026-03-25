@@ -43,7 +43,7 @@ Reason:
 - role:
   - `A2M Promotion Review`
 - dispatch packet:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__GENERATED_SCHEMA_REFRESH_HARDENING__2026_03_15__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__GENERATED_SCHEMA_REFRESH_HARDENING__2026_03_15__v1.md`
 
 `W4`
 - one new Codex thread
@@ -54,7 +54,7 @@ Reason:
 - role:
   - `A1 Rosetta Bridge`
 - dispatch packet:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__FIRST_CONTROLLER_GRAPH_SUBSET__2026_03_15__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__FIRST_CONTROLLER_GRAPH_SUBSET__2026_03_15__v1.md`
 
 ## Exact instructions for launching
 
@@ -63,26 +63,26 @@ Reason:
 1. Open `1` new Codex thread
 2. Set model to `GPT-5.4 Medium`
 3. Paste the exact prompt from:
-   - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__GENERATED_SCHEMA_REFRESH_HARDENING__2026_03_15__v1.md`
+   - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__GENERATED_SCHEMA_REFRESH_HARDENING__2026_03_15__v1.md`
 4. Send it once
 5. Wait for the bounded result
 6. Do not manually save or carry back files
 7. The worker must self-save its own raw return and closeout staging file into:
-   - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__GENERATED_SCHEMA_REFRESH_HARDENING__2026_03_15__v1__return.txt`
-   - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__GENERATED_SCHEMA_REFRESH_HARDENING__2026_03_15__v1.txt`
+   - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__GENERATED_SCHEMA_REFRESH_HARDENING__2026_03_15__v1__return.txt`
+   - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__GENERATED_SCHEMA_REFRESH_HARDENING__2026_03_15__v1.txt`
 
 ### Launch `W4`
 
 1. Open `1` new Codex thread
 2. Set model to `GPT-5.4 Medium`
 3. Paste the exact prompt from:
-   - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__FIRST_CONTROLLER_GRAPH_SUBSET__2026_03_15__v1.md`
+   - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__FIRST_CONTROLLER_GRAPH_SUBSET__2026_03_15__v1.md`
 4. Send it once
 5. Wait for the bounded result
 6. Do not manually save or carry back files
 7. The worker must self-save its own raw return and closeout staging file into:
-   - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__FIRST_CONTROLLER_GRAPH_SUBSET__2026_03_15__v1__return.txt`
-   - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__FIRST_CONTROLLER_GRAPH_SUBSET__2026_03_15__v1.txt`
+   - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__FIRST_CONTROLLER_GRAPH_SUBSET__2026_03_15__v1__return.txt`
+   - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A2_WORKER__FIRST_CONTROLLER_GRAPH_SUBSET__2026_03_15__v1.txt`
 
 ## Stop condition
 

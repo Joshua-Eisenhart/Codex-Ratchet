@@ -16,7 +16,7 @@
 - Total: 394 nodes, 299 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__ANTIGRAVITY__2026_03_18__v3.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__ANTIGRAVITY__2026_03_18__v3.md
 
 ## Key Findings
 - THREAD CONTEXT V3 INGESTED — system reboot key now in graph as CANON

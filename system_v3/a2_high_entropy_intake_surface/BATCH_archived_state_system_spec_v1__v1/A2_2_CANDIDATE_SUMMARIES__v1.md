@@ -34,5 +34,5 @@ Extraction mode: `SYSTEM_SPEC_PASS`
 ## Candidate Summary C5
 - proposal-only next-step note:
   - the next bounded folder-order batch should process the adjacent family:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1 copy.md`
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1 copy.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1.md`

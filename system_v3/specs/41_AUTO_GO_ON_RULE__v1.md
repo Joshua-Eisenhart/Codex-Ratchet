@@ -142,9 +142,9 @@ Future automation must do this in order:
 ## Interaction with existing control surfaces
 
 This note extends:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_AND_AUTOMATION_PROCESS_FLOWS__2026_03_11__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_RUN_DIAGNOSIS_AND_STOP_RULES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_AND_AUTOMATION_PROCESS_FLOWS__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_RUN_DIAGNOSIS_AND_STOP_RULES__v1.md`
 
 And is enforced later through:
 - `thread-run-monitor`

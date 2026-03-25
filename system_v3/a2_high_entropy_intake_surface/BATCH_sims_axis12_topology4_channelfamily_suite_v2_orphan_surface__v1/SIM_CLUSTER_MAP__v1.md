@@ -7,7 +7,7 @@ Extraction mode: `SIM_AXIS12_TOPOLOGY4_CHANNELFAMILY_SUITE_V2_ORPHAN_SURFACE_PAS
 - cluster label:
   - core orphan surface
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis12_topology4_channelfamily_suite_v2.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis12_topology4_channelfamily_suite_v2.json`
 - family role:
   - canonical source-bounded member set for this correction batch
 - executable-facing read:
@@ -37,7 +37,7 @@ Extraction mode: `SIM_AXIS12_TOPOLOGY4_CHANNELFAMILY_SUITE_V2_ORPHAN_SURFACE_PAS
 - cluster label:
   - terrain8 admission seam anchor
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_axis12_topology4_channelfamily_terrain8_seam__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_axis12_topology4_channelfamily_terrain8_seam__v1/MANIFEST.json`
 - family role:
   - comparison-only seam-preservation anchor
 - executable-facing read:
@@ -50,7 +50,7 @@ Extraction mode: `SIM_AXIS12_TOPOLOGY4_CHANNELFAMILY_SUITE_V2_ORPHAN_SURFACE_PAS
   - closure correction anchor
 - members:
   - aggregate direct-source coverage scan
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_hygiene_residue_artifacts__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_hygiene_residue_artifacts__v1/MANIFEST.json`
 - family role:
   - closure-completion anchor
 - executable-facing read:

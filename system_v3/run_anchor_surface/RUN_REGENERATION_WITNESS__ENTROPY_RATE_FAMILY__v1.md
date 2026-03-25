@@ -7,7 +7,7 @@
 
 ## Anchor Family
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_RATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_RATE_FAMILY__v1.md`
 
 ## Why This Family Third
 
@@ -33,17 +33,17 @@
 ### Normalized Retained Triple
 
 - memo witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_09__20260309T070408Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_RATE_LOCAL_0001/reports/a1_external_memo_batch_driver_report.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_09__20260309T070408Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_RATE_LOCAL_0001/reports/a1_external_memo_batch_driver_report.json`
   - witness meaning:
     - compact retained record that the entropy-rate family ran through the memo/exchange step on the local validity lane
 
 - cold-core witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_09__20260309T070408Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_RATE_LOCAL_0001/a1_sandbox/cold_core/000002_A1_COLD_CORE_PROPOSALS_v1.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_09__20260309T070408Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_RATE_LOCAL_0001/a1_sandbox/cold_core/000002_A1_COLD_CORE_PROPOSALS_v1.json`
   - witness meaning:
     - retained cold-core proposal surface showing the passenger-lift family with rate, polarity, and witness-floor structure
 
 - strategy witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_09__20260309T070408Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_RATE_LOCAL_0001/a1_sandbox/outgoing/000001_A1_STRATEGY_v1__PACK_SELECTOR.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_09__20260309T070408Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_RATE_LOCAL_0001/a1_sandbox/outgoing/000001_A1_STRATEGY_v1__PACK_SELECTOR.json`
   - witness meaning:
     - retained selector output showing `correlation_polarity` as head and `entropy_production_rate` as `PASSENGER_ONLY`
 
@@ -64,12 +64,12 @@
 ## Supporting Control Witnesses
 
 - bookkeeping-pair local memo witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BOOKKEEPING_PAIR_LOCAL_0001/reports/a1_external_memo_batch_driver_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BOOKKEEPING_PAIR_LOCAL_0001/reports/a1_external_memo_batch_driver_report.json`
   - witness meaning:
     - preserves the thin local bookkeeping state at `3 / 0 / 0 / 3` while showing the two-term pair still formed
 
 - bookkeeping-pair local cold-core witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BOOKKEEPING_PAIR_LOCAL_0001/a1_sandbox/cold_core/000024_A1_COLD_CORE_PROPOSALS_v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BOOKKEEPING_PAIR_LOCAL_0001/a1_sandbox/cold_core/000024_A1_COLD_CORE_PROPOSALS_v1.json`
   - witness meaning:
     - preserves the narrow bookkeeping pair:
       - `entropy_production_rate`
@@ -81,7 +81,7 @@
       - `rate`
 
 - bookkeeping-pair local strategy witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BOOKKEEPING_PAIR_LOCAL_0001/a1_sandbox/outgoing/000024_A1_STRATEGY_v1__PACK_SELECTOR.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BOOKKEEPING_PAIR_LOCAL_0001/a1_sandbox/outgoing/000024_A1_STRATEGY_v1__PACK_SELECTOR.json`
   - witness meaning:
     - preserves the thin selector outcome where the route still rides:
       - `erasure`
@@ -89,12 +89,12 @@
       - `erasure_channel_entropy_cost_lower_bound`
 
 - thin local correlation-head wrapper witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_CORRELATION_POLARITY_LOCAL_0003/reports/graveyard_first_validity_wrapper_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_CORRELATION_POLARITY_LOCAL_0003/reports/graveyard_first_validity_wrapper_report.json`
   - witness meaning:
     - preserves the `FAIL__SUBPROCESS` / `WAITING_FOR_MEMOS` boundary for isolated `correlation_polarity`
 
 - thin local correlation-head cold-core witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_CORRELATION_POLARITY_LOCAL_0003/a1_sandbox/cold_core/000002_A1_COLD_CORE_PROPOSALS_v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_CORRELATION_POLARITY_LOCAL_0003/a1_sandbox/cold_core/000002_A1_COLD_CORE_PROPOSALS_v1.json`
   - witness meaning:
     - preserves the atomic ladder:
       - `correlation`
@@ -102,7 +102,7 @@
       - `correlation_polarity`
 
 - thin local correlation-head strategy witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_CORRELATION_POLARITY_LOCAL_0003/a1_sandbox/outgoing/000002_A1_STRATEGY_v1__PACK_SELECTOR.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_CORRELATION_POLARITY_LOCAL_0003/a1_sandbox/outgoing/000002_A1_STRATEGY_v1__PACK_SELECTOR.json`
   - witness meaning:
     - preserves the same local selector shape even though the lane never escapes memo wait
 

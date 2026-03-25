@@ -11,10 +11,10 @@ It is not a new ontology.
 It is a steering surface for the existing broad entropy lane.
 
 Source topology:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__v1.md`
 - generated confirmation:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__AUTO__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__AUTO__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__AUTO__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/ENTROPY_GRAVEYARD_FAILURE_TOPOLOGY__AUTO__v1.json`
 
 Interpretation rule:
 - the generated topology confirms the same stable entropy frontier mechanically
@@ -118,8 +118,8 @@ If the same dominant basin persists after this pack:
 This is the first A1 rescue pack that keys off the observed entropy failure topology instead of generic residue pressure.
 
 ## 9) First Run Result
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 
 Observed:
 - `PASS__EXECUTED_CYCLE`
@@ -142,7 +142,7 @@ Operational rule:
 - do not go back to thermal-only or wording-only broad profiles as the default
 
 ## 10) Cold-Start Audit
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 
 Observed on a clean fresh run:
 - `PASS__EXECUTED_CYCLE`
@@ -157,7 +157,7 @@ Interpretation:
 - it is a serial-budget issue, not a pack invalidation
 
 Full-budget clean correction:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - with `--steps 24 --clean`, the same profile reproduces the good frontier:
   - `canonical_term_count = 9`
   - `graveyard_count = 45`
@@ -170,7 +170,7 @@ Operational rule:
 - do not read one-step cold probes as the real route verdict
 
 ## 11) Frozen-Order Recheck
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_AUDIT_PROOF_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_AUDIT_PROOF_CLUSTER__v1.md`
 
 Observed:
 - semantic/math substance gate still passes
@@ -193,8 +193,8 @@ Interpretation:
 - next changes should be branch-budget / merge / stronger rescue structure changes, not another reorder of the same three clusters
 
 Seeded continuation proof:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - this proves the broad route now reaches live later-phase `rescue`, not just broad seed / `path_build` pressure:
   - `executed_cycles = 16`
   - `wait_cycles = 16`
@@ -211,15 +211,15 @@ Seeded continuation proof:
   - rescue efficacy remains the active entropy bottleneck
 
 Rescue-target propagation proof:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted read:
   - rescue requests are now seeded with non-empty `graveyard_rescue_targets`
   - the frozen `Cluster A -> Cluster B -> Cluster C` route still terminates in the same novelty basin
   - next rescue changes must act on novelty production, not allowlist propagation
 
 Extended rescue-efficacy probe:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_MERGE_FENCE_CLUSTER__v1.md`
 - this keeps the same frozen broad route but extends the live rescue budget through sequence `24`:
   - `executed_cycles = 24`
   - `wait_cycles = 24`
@@ -241,8 +241,8 @@ Extended rescue-efficacy probe:
   - rescue efficacy is still the live entropy bottleneck
 
 Rotating rescue-frontier continuation:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted read:
   - seeded broad rescue now uses deterministic rotating rescue subsets instead of replaying the same rescue frontier every cycle
   - `wrapper_status = PASS__RESCUE_NOVELTY_STALLED`
@@ -259,8 +259,8 @@ Rotating rescue-frontier continuation:
   - next rescue pressure should target helper-residue control, not rescue-target propagation
 
 Latest continuation update:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted current read:
   - the cluster rescue route now stays live through a 24-step seeded continuation budget
   - `wrapper_status = PASS__EXECUTED_CYCLE`
@@ -278,8 +278,8 @@ Latest continuation update:
     - frontier expansion
 
 Bootstrap-stall narrowing update:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted current read:
   - rescue-side bootstrap demotion is now asymmetric
   - `probe_induced_partition_boundary` now clears rescue cold-core bootstrap
@@ -291,8 +291,8 @@ Bootstrap-stall narrowing update:
   - not on a shared two-term rescue basin
 
 Bootstrap-companion admission proof:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_BRIDGE_RESCUE_CONTINUATION_CLUSTER__v1.md`
 - accepted current read:
   - rescue-side support decomposition is now active
   - `functional` is carried in:

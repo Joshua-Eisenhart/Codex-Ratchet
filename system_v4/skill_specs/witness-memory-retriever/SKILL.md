@@ -50,9 +50,9 @@ claims.
 ## Execute Now
 
 1. Read:
-   - [EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json)
-   - [witness_corpus_v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/witness_corpus_v1.json)
-   - [evermem_adapter.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/evermem_adapter.py)
+   - [EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json)
+   - [witness_corpus_v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/witness_corpus_v1.json)
+   - [evermem_adapter.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/evermem_adapter.py)
 2. Attempt one bounded retrieval probe only.
 3. Keep the slice report-only and non-bootstrap.
 

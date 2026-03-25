@@ -8,7 +8,7 @@ Date: 2026-03-09
 ## 1) Batch Selection
 - selected sources:
   - direct archive object:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/RUN_ENGINE_ENTROPY_0001`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/RUN_ENGINE_ENTROPY_0001`
   - retained child families:
     - `a1_sandbox__prompt_queue`
     - `a1_sandbox__lawyer_memos`
@@ -26,11 +26,11 @@ Date: 2026-03-09
   - the archive value is structural rather than authoritative: it preserves a prompt-orchestration workbench with repeated role lanes, shadow output mirrors, and retry/autofill residue
   - the branch is useful for historical lineage because it shows how a run-named object could act as a lawyer-pack entropy conveyor without preserving ordinary runtime state surfaces
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/repo_archive__moved_out_of_git`
 
 ## 2) Source Membership
 ### Source 1
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/RUN_ENGINE_ENTROPY_0001`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/RUN_ENGINE_ENTROPY_0001`
 - source class: run-named sandbox residue root
 - retained family markers:
   - file count: `2558`
@@ -43,7 +43,7 @@ Date: 2026-03-09
   - this object is shaped like a sandbox export shell, not a normal run root with summary/state/events surfaces at this boundary
 
 ### Source 2
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/RUN_ENGINE_ENTROPY_0001/a1_sandbox__prompt_queue`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/RUN_ENGINE_ENTROPY_0001/a1_sandbox__prompt_queue`
 - source class: sandbox prompt conveyor
 - retained markers:
   - file count: `938`
@@ -73,7 +73,7 @@ Date: 2026-03-09
   - the prompt queue preserves an overproduced role carousel whose sequence count runs ahead of admitted step progress
 
 ### Source 3
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/RUN_ENGINE_ENTROPY_0001/a1_sandbox__lawyer_memos`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/RUN_ENGINE_ENTROPY_0001/a1_sandbox__lawyer_memos`
 - source class: lawyer memo output mirror
 - retained markers:
   - file count: `810`
@@ -95,7 +95,7 @@ Date: 2026-03-09
   - the memo layer preserves six role responses only, so the seventh prompt lane is retained as instruction pressure rather than as stored output
 
 ### Source 4
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/RUN_ENGINE_ENTROPY_0001/a1_sandbox__incoming_consumed`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/20260225T070252Z/RUN_ENGINE_ENTROPY_0001/a1_sandbox__incoming_consumed`
 - source class: consumed sandbox mirror
 - retained markers:
   - file count: `810`

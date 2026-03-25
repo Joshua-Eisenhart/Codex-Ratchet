@@ -7,7 +7,7 @@ Date: 2026-03-08
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
 - nontrivial top-level file count:
   - `8`
 - ignored filesystem noise:
@@ -24,7 +24,7 @@ Date: 2026-03-08
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md`
 - reason for selection:
   - this is the next nontrivial top-level file in folder order after `AXIS0_PHYSICS_BRIDGE_v0.1.md`
   - the file is the explicit option-sheet counterpart to the prior bridge doc:
@@ -34,11 +34,11 @@ Date: 2026-03-08
   - the dominant intake value is the bridge-to-formula conversion itself rather than generic structure mapping
   - this makes `QIT_BRIDGE_PASS` a better fit than a pure source map or term-conflict pass
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md`
   - role in batch: refined-fuel Axis-0 option sheet with explicit QIT realizations and sim ladder
   - sha256: `0c5e069df47b58986e49d62b61ee737b22592220d6cf6e90856cea1c85ba1b6e`
   - size bytes: `6267`

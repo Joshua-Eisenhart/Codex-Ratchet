@@ -5,13 +5,13 @@ Owner: `RQ-020..RQ-029`, `RQ-060..RQ-064`
 
 ## Authority
 Behavior is anchored to:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/BOOTPACK_THREAD_B_v3.9.13.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/BOOTPACK_THREAD_B_v3.9.13.md`
 
 If boot text is ambiguous, result is `UNKNOWN` and admission is blocked.
 
 ## Implementer Reference Extract (Non-Owner Helper)
 For a compact, implementer-facing extract of enforceable grammar + fences, see:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1.md`
 
 ## Accepted Containers (`RQ-020`)
 - `EXPORT_BLOCK vN`

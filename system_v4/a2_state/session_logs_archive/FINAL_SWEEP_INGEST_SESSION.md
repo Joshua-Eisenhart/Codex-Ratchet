@@ -16,65 +16,65 @@
 - Total: 3235 nodes, 7051 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/BOOTSTRAP/00_READ_FIRST.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/BOOTSTRAP/INPUTS/BOOTPACK_THREAD_B_v3.9.13.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COSMOLOGICALLY_CONSTRAINT_ADMISSIBLE_STRUCTURES_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis0_boundary_bookkeep_sweep_v2.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis4_type2_all_seq_both_dirs.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS4.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/a2_state/ingest/doc_cards/DOC_6826FEAE2E41.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/conformance/fixtures_v1/fixtures/FIX_FORMULA_001_GLYPH_REJECT.txt
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ANTI_HELPFULNESS_POLICY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/templates/A1_TO_A2_SAVE_ZIP_TEMPLATE/ZIP_HEADER.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/runtime/bootpack_b_kernel_v1/a1_strategies/sample_strategy.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/runtime/ratchet_core/tests_bootpack_conformance/fixtures/glyph_digit_reject.txt
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/specs/02_OWNERSHIP_MAP.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/specs/27_BOOTPACK_RATCHET_FUEL_MINT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/BOOTSTRAP/00_READ_FIRST.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/BOOTSTRAP/INPUTS/BLOCKAGE_DIAGNOSIS.txt
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPOSITION_CLASS_ADMISSIBILITY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Simulation protocol v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_NEGCTRL_AXIS6_COMMUTE_V3.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis4_seq01_both_dirs.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a2_feed_high entropy doc/grok toe redo save.txt
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/a2_state/A2_BRAIN_SLICE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/a2_state/ingest/doc_cards/DOC_608E31082B06.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/conformance/fixtures_v1/fixtures/FIX_DERIVED_001_PRIMITIVE_USE_REJECT.txt
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A2_EXECUTION_POLICY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/templates/A1_TO_A0_STRATEGY_ZIP_TEMPLATE/ZIP_HEADER.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/public_facing_docs/02_PUBLIC_FACING_FLOWMIND_A3_HOSTING_INTERFACE_CONTRACT_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/runtime/ratchet_core/tests_bootpack_conformance/fixtures/formula_unquoted_equal_reject.txt
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/runtime/ratchet_core/tests_bootpack_conformance/fixtures/undefined_term_reject.txt
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/specs/24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/BOOTSTRAP/00_READ_FIRST.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/BOOTSTRAP/CORE/INTEGRATION_MAP__GROUND_TRUTH_TO_RUNTIME__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/BOOTSTRAP/SIM/SIM_RATCHET_PROTOCOL_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axes 0 - 6 5 3 - 4 1 2.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/METRIC_ADMISSIBILITY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS4_SEQ03_P03.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis12_axis0_link_v1.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_ultra4_full_stack.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a2_runtime_state archived old state/STRUCTURAL_MEMORY_MAP_v2.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/a2_derived_indices_noncanonical/README.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/a2_state/ingest/doc_cards/DOC_1531D2CCB68B.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/a2_state/ingest/doc_cards/DOC_E4EBE53C78D0.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/03_MUTATION_PATH_RULES.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ZIP_PROTOCOL_v2.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/templates/SIM_TO_A0_SIM_RESULT_ZIP_TEMPLATE/ZIP_HEADER.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/runtime/ratchet_core/tests_bootpack_conformance/fixtures/axiom_root_reject.txt
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/runtime/ratchet_core/tests_bootpack_conformance/fixtures/save_order_park.txt
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/specs/15_ROSETTA_AND_MINING_ARTIFACTS.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/tools/A1_SANDBOX_ONLY_PACKET_CONTRACT_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BOOKKEEPING_PACKET_SMOKE_FAMILY__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_RATE_FAMILY__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_subagents/EXTERNAL_RESEARCH_CONTROLLER_BOOT_RECIPE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/INBOX/GENERAL_TASK_PLAN__AUTOMATION_SKILLS_PRO_REFINERY__2026_03_13__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/BOOTSTRAP/00_READ_FIRST.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/BOOTSTRAP/INPUTS/BOOTPACK_THREAD_B_v3.9.13.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COSMOLOGICALLY_CONSTRAINT_ADMISSIBLE_STRUCTURES_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis0_boundary_bookkeep_sweep_v2.json
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis4_type2_all_seq_both_dirs.json
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/a2_feed_high entropy doc/thread b 3.4.2 .txt
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS4.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/a2_state/ingest/doc_cards/DOC_6826FEAE2E41.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/conformance/fixtures_v1/fixtures/FIX_FORMULA_001_GLYPH_REJECT.txt
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ANTI_HELPFULNESS_POLICY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/templates/A1_TO_A2_SAVE_ZIP_TEMPLATE/ZIP_HEADER.json
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/runtime/bootpack_b_kernel_v1/a1_strategies/sample_strategy.json
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/runtime/ratchet_core/tests_bootpack_conformance/fixtures/glyph_digit_reject.txt
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/specs/02_OWNERSHIP_MAP.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM_REPAIR_BOOTSTRAP_v2/SYSTEM/system_v3/specs/27_BOOTPACK_RATCHET_FUEL_MINT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/BOOTSTRAP/00_READ_FIRST.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/BOOTSTRAP/INPUTS/BLOCKAGE_DIAGNOSIS.txt
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPOSITION_CLASS_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Simulation protocol v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_NEGCTRL_AXIS6_COMMUTE_V3.json
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis4_seq01_both_dirs.json
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/a2_feed_high entropy doc/grok toe redo save.txt
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/a2_state/A2_BRAIN_SLICE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/a2_state/ingest/doc_cards/DOC_608E31082B06.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/conformance/fixtures_v1/fixtures/FIX_DERIVED_001_PRIMITIVE_USE_REJECT.txt
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A2_EXECUTION_POLICY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/templates/A1_TO_A0_STRATEGY_ZIP_TEMPLATE/ZIP_HEADER.json
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/public_facing_docs/02_PUBLIC_FACING_FLOWMIND_A3_HOSTING_INTERFACE_CONTRACT_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/runtime/ratchet_core/tests_bootpack_conformance/fixtures/formula_unquoted_equal_reject.txt
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/runtime/ratchet_core/tests_bootpack_conformance/fixtures/undefined_term_reject.txt
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM_REPAIR_BOOTSTRAP_v3/SYSTEM/system_v3/specs/24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/BOOTSTRAP/00_READ_FIRST.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/BOOTSTRAP/CORE/INTEGRATION_MAP__GROUND_TRUTH_TO_RUNTIME__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/BOOTSTRAP/SIM/SIM_RATCHET_PROTOCOL_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axes 0 - 6 5 3 - 4 1 2.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a1_refined_Ratchet Fuel/constraint ladder/METRIC_ADMISSIBILITY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS4_SEQ03_P03.json
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis12_axis0_link_v1.json
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_ultra4_full_stack.json
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/core_docs/a2_runtime_state archived old state/STRUCTURAL_MEMORY_MAP_v2.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/a2_derived_indices_noncanonical/README.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/a2_state/ingest/doc_cards/DOC_1531D2CCB68B.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/a2_state/ingest/doc_cards/DOC_E4EBE53C78D0.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/03_MUTATION_PATH_RULES.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ZIP_PROTOCOL_v2.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/control_plane_bundle_work/system_v3_control_plane/templates/SIM_TO_A0_SIM_RESULT_ZIP_TEMPLATE/ZIP_HEADER.json
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/runtime/ratchet_core/tests_bootpack_conformance/fixtures/axiom_root_reject.txt
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/runtime/ratchet_core/tests_bootpack_conformance/fixtures/save_order_park.txt
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/specs/15_ROSETTA_AND_MINING_ARTIFACTS.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM_REPAIR_BOOTSTRAP_v4/SYSTEM/system_v3/tools/A1_SANDBOX_ONLY_PACKET_CONTRACT_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BOOKKEEPING_PACKET_SMOKE_FAMILY__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_RATE_FAMILY__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/zip_subagents/EXTERNAL_RESEARCH_CONTROLLER_BOOT_RECIPE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/INBOX/GENERAL_TASK_PLAN__AUTOMATION_SKILLS_PRO_REFINERY__2026_03_13__v1.md
 
 ## Key Findings
 - FINAL SWEEP: 1396 files from system repair bootstraps + run anchors + zip subagents + inbox

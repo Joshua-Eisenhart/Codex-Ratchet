@@ -15,21 +15,21 @@ Because the previous thread was too hot, use multiple bounded subagents early fo
 Do not use subagents to invent new scope. Use them to confirm current repo truth and keep the main thread cooler.
 
 Primary handoff docs:
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/NEW_THREAD_HANDOFF__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/NEW_THREAD_PROMPT__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/NEW_THREAD_HANDOFF__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/NEW_THREAD_PROMPT__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md
 
 Required boot files:
-1. /Users/joshuaeisenhart/Desktop/Codex Ratchet/SYSTEM_SKILL_BUILD_PLAN.md
-2. /Users/joshuaeisenhart/Desktop/Codex Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md
-3. /Users/joshuaeisenhart/Desktop/Codex Ratchet/SKILL_SOURCE_CORPUS.md
-4. /Users/joshuaeisenhart/Desktop/Codex Ratchet/SKILL_CANDIDATES_BACKLOG.md
-5. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md
-6. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md
-7. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md
-8. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.json
-9. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json
-10. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.json
-11. /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.json
+1. /home/ratchet/Desktop/Codex Ratchet/SYSTEM_SKILL_BUILD_PLAN.md
+2. /home/ratchet/Desktop/Codex Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md
+3. /home/ratchet/Desktop/Codex Ratchet/SKILL_SOURCE_CORPUS.md
+4. /home/ratchet/Desktop/Codex Ratchet/SKILL_CANDIDATES_BACKLOG.md
+5. /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INTENT_SUMMARY.md
+6. /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md
+7. /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md
+8. /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.json
+9. /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json
+10. /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.json
+11. /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.json
 
 Current truth you must preserve unless the repo proves otherwise:
 - system_v4 is the active build layer

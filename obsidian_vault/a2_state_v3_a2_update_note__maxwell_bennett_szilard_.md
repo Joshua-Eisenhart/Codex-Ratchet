@@ -9,7 +9,7 @@ authority: "SOURCE_CLAIM"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_update_note__maxwell_bennett_szilard_::bff595b0a616cb04`
 
 ## Description
-A2_UPDATE_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md (5415B): # A2_UPDATE_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1  Status: PROPOSED / NONCANONICAL / A2 UPDATE NOTE Date: 2026-03-12 Role: bounded A2 controller block check on the Maxwell Bennett/Szilard deepen target  ## AUDIT_SCOPE - target packet:   - `/Users/joshuaeisenhart/Desktop/Codex Rat
+A2_UPDATE_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1.md (5415B): # A2_UPDATE_NOTE__MAXWELL_BENNETT_SZILARD_BLOCK_CHECK__2026_03_12__v1  Status: PROPOSED / NONCANONICAL / A2 UPDATE NOTE Date: 2026-03-12 Role: bounded A2 controller block check on the Maxwell Bennett/Szilard deepen target  ## AUDIT_SCOPE - target packet:   - `/home/ratchet/Desktop/Codex Rat
 
 ## Properties
 - **source_line_range**: 

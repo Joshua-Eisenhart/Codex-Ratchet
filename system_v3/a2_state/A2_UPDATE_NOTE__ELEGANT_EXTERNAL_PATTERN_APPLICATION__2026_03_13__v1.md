@@ -20,8 +20,8 @@ This pass does not:
 ## Source anchors
 
 Local reference notes:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/external_refs/PI_MONO__REFERENCE_NOTE__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/external_refs/KARPATHY__REFERENCE_NOTE__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/external_refs/PI_MONO__REFERENCE_NOTE__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/external_refs/KARPATHY__REFERENCE_NOTE__2026_03_13__v1.md`
 
 Primary external sources:
 - `pi-mono` coding-agent README:

@@ -31,11 +31,11 @@ It does not replace:
 ## Required governing surfaces
 
 Every `A2_CONTROLLER` launch packet must bind to:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/66_PARALLEL_CODEX_RUN_PLAYBOOK__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/66_PARALLEL_CODEX_RUN_PLAYBOOK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
 
 ## Packet role
 
@@ -135,10 +135,10 @@ INITIAL_BOUNDED_SCOPE: <one exact bounded controller action>
 ## Current launch basis
 
 Current expected state record:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
 
 Current primary owner corpus:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
 
 Current working interpretation:
 - the internal refinedfuel `Constraints` / `Constraints. Entropy` lineage remains the primary internal lane
@@ -152,8 +152,8 @@ A2_CONTROLLER_LAUNCH_PACKET
 MODEL: GPT-5.4 Medium
 THREAD_CLASS: A2_CONTROLLER
 MODE: CONTROLLER_ONLY
-PRIMARY_CORPUS: /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel
-STATE_RECORD: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md
+PRIMARY_CORPUS: /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel
+STATE_RECORD: /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md
 CURRENT_PRIMARY_LANE: internal refinedfuel Constraints / Constraints. Entropy revisit lineage
 CURRENT_A1_QUEUE_STATUS: A1_QUEUE_STATUS: NO_WORK
 GO_ON_COUNT: 0
@@ -167,57 +167,57 @@ INITIAL_BOUNDED_SCOPE: refresh weighted current state and choose exactly one nex
 
 Current machine-readable launch path:
 - creator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_a2_controller_launch_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_a2_controller_launch_packet.py`
 - validator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a2_controller_launch_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a2_controller_launch_packet.py`
 - local spec-object audit:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_a2_controller_launch_packet_pydantic.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_a2_controller_launch_packet_pydantic.py`
 - local spec-object GraphML export:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/export_a2_controller_launch_packet_graph.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/export_a2_controller_launch_packet_graph.py`
 - local spec-object schema emit:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/emit_a2_controller_launch_packet_pydantic_schema.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/emit_a2_controller_launch_packet_pydantic_schema.py`
 - launch gate:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a2_controller_launch_from_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a2_controller_launch_from_packet.py`
 - local spec-object gate-result audit:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_a2_controller_launch_gate_result_pydantic.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_a2_controller_launch_gate_result_pydantic.py`
 - local spec-object gate-result GraphML export:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/export_a2_controller_launch_gate_result_graph.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/export_a2_controller_launch_gate_result_graph.py`
 - local spec-object gate-result schema emit:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/emit_a2_controller_launch_gate_result_pydantic_schema.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/emit_a2_controller_launch_gate_result_pydantic_schema.py`
 - send-text builder:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_send_text_from_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_send_text_from_packet.py`
 - send-text companion builder:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_send_text_companion.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_send_text_companion.py`
 - local spec-object send-text companion audit:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_a2_controller_send_text_companion_pydantic.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_a2_controller_send_text_companion_pydantic.py`
 - local spec-object send-text companion GraphML export:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/export_a2_controller_send_text_companion_graph.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/export_a2_controller_send_text_companion_graph.py`
 - local spec-object send-text companion schema emit:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/emit_a2_controller_send_text_companion_pydantic_schema.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/emit_a2_controller_send_text_companion_pydantic_schema.py`
 - launch handoff builder:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_launch_handoff.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_launch_handoff.py`
 - launch handoff validator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_handoff.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_handoff.py`
   - checks both handoff shape and send-text integrity (`send_text_sha256` plus required launch markers)
 - local spec-object handoff audit:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_a2_controller_launch_handoff_pydantic.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_a2_controller_launch_handoff_pydantic.py`
 - local spec-object handoff GraphML export:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/export_a2_controller_launch_handoff_graph.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/export_a2_controller_launch_handoff_graph.py`
 - local spec-object handoff schema emit:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/emit_a2_controller_launch_handoff_pydantic_schema.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/emit_a2_controller_launch_handoff_pydantic_schema.py`
 - compact controller launch-spine companion builder:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_launch_spine.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_launch_spine.py`
 - compact controller launch-spine audit:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_a2_controller_launch_spine_pydantic.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_a2_controller_launch_spine_pydantic.py`
 - compact controller launch-spine GraphML export:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/export_a2_controller_launch_spine_graph.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/export_a2_controller_launch_spine_graph.py`
 - compact controller launch-spine schema emit:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/emit_a2_controller_launch_spine_pydantic_schema.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/emit_a2_controller_launch_spine_pydantic_schema.py`
 - active current controller launch-spine refresh helper:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/refresh_active_current_a2_controller_launch_spine.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/refresh_active_current_a2_controller_launch_spine.py`
 - current A1 queue-status helper for the bounded `a1?` action:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/refresh_active_current_a1_queue_state.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/refresh_active_current_a1_queue_state.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py`
   - these now default to controller-facing compatibility mode:
     - `--family-slice-validation-mode auto`
   - `auto` means:
@@ -225,36 +225,36 @@ Current machine-readable launch path:
     - otherwise fall back to `jsonschema`
   - explicit local-stack path still exists via:
     - `--family-slice-validation-mode local_pydantic`
-    - `--spec-graph-python /Users/joshuaeisenhart/Desktop/Codex Ratchet/.venv_spec_graph/bin/python`
+    - `--spec-graph-python /home/ratchet/Desktop/Codex Ratchet/.venv_spec_graph/bin/python`
 - one-shot bundle preparer:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_launch_bundle.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_launch_bundle.py`
 - Playwright launch plan builder:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_codex_thread_launch_playwright_plan.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_codex_thread_launch_playwright_plan.py`
 - Playwright launch executor:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/execute_codex_thread_launch_playwright_plan.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/execute_codex_thread_launch_playwright_plan.py`
   - blocks if the expected visible verification text is not present in the snapshot before any send
 - launch-target creator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_codex_thread_launch_target.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_codex_thread_launch_target.py`
 - launch-target validator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_target.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_target.py`
 - launch-surface capture-record creator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_codex_thread_launch_surface_capture_record.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_codex_thread_launch_surface_capture_record.py`
 - launch-surface capture-record validator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_surface_capture_record.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_surface_capture_record.py`
 - observed launch-packet creator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_codex_thread_launch_observed_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_codex_thread_launch_observed_packet.py`
 - observed launch-packet validator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_observed_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_codex_thread_launch_observed_packet.py`
 - launch-target from capture-record creator:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/create_codex_thread_launch_target_from_capture_record.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/create_codex_thread_launch_target_from_capture_record.py`
 - one-shot browser-launch bundle preparer:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_browser_launch_bundle.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_browser_launch_bundle.py`
 - one-shot browser-launch bundle preparer from observed surface:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_browser_launch_bundle_from_observed_surface.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/prepare_codex_browser_launch_bundle_from_observed_surface.py`
 - packet-driven browser-launch wrapper from staged capture record:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_codex_browser_launch_from_capture_record.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_codex_browser_launch_from_capture_record.py`
 - packet-driven browser-launch wrapper from staged observed packet:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_codex_browser_launch_from_observed_packet.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_codex_browser_launch_from_observed_packet.py`
 
 Current launch-gate result statuses:
 - `LAUNCH_READY`

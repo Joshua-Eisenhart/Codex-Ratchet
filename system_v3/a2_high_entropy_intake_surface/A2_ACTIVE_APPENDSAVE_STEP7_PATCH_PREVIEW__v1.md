@@ -45,7 +45,7 @@ If mutation is later authorized, and Steps 3 and 6 have already landed exactly, 
 
 ```patch
 *** Begin Patch
-*** Update File: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md
+*** Update File: /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md
 @@
  - the sims/interface hygiene promotion added a narrow reusable subset, but several seams remain unresolved rather than promoted:
    - `SIDECAR_EVIDENCE_RECONCILIATION_DEFERRED`

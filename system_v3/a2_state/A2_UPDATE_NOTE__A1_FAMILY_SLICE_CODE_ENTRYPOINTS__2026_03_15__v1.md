@@ -7,8 +7,8 @@ Role: preserve the exact live code entrypoints where `A2_TO_A1_FAMILY_SLICE_v1` 
 ## Scope
 
 This note is the code-seam companion to:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_CONTRACT__2026_03_15__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_SCHEMA_DRAFT__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_CONTRACT__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_FAMILY_SLICE_SCHEMA_DRAFT__2026_03_15__v1.md`
 
 It does not mutate runtime code.
 It pins the live entrypoints so the next rewrite step can land in the actual seam instead of adding more wrapper prose.
@@ -18,7 +18,7 @@ It pins the live entrypoints so the next rewrite step can land in the actual sea
 ### 1) Planner source of doctrinal substitution
 
 Primary file:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
 
 Current substitution points:
 - `Goal` dataclass at line 85
@@ -92,7 +92,7 @@ Add to planner:
 If present:
 - load the JSON
 - validate against:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1.schema.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1.schema.json`
 - derive:
   - `goals`
   - `debate_mode`
@@ -128,7 +128,7 @@ Expected minimum fields:
 ## Autoratchet seam
 
 Primary file:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/autoratchet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/autoratchet.py`
 
 Current substitution points:
 - `_required_probe_terms_for_profile(...)` line 238
@@ -150,7 +150,7 @@ Reset requirement:
 ## Control wrapper seam
 
 Primary file:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_wiggle_control_cycle.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_wiggle_control_cycle.py`
 
 Current substitution points:
 - operator-visible knob surface lines 60-89

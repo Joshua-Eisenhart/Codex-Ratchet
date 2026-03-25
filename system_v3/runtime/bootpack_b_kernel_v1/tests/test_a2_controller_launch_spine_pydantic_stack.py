@@ -1,3 +1,4 @@
+import os
 from __future__ import annotations
 
 import json
@@ -124,7 +125,7 @@ class TestA2ControllerLaunchSpinePydanticStack(unittest.TestCase):
             self.assertIn("first_controller_a1_launch_subset", graph.nodes)
             self.assertIn("queue_status_value:NO_WORK", graph.nodes)
             self.assertIn(
-                "artifact_path:/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json",
+                "artifact_path:/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json",
                 graph.nodes,
             )
             self.assertTrue(

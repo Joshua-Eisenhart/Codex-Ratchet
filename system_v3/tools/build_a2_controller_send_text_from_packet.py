@@ -1,3 +1,4 @@
+import os
 #!/usr/bin/env python3
 from __future__ import annotations
 
@@ -11,17 +12,17 @@ from validate_a2_controller_launch_packet import validate as validate_packet
 
 
 GOVERNING_SURFACES = [
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/66_PARALLEL_CODEX_RUN_PLAYBOOK__v1.md",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md",
+    os.environ.get("CODEX_RATCHET_ROOT", ".") + "/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md",
+    os.environ.get("CODEX_RATCHET_ROOT", ".") + "/system_v3/specs/28_A2_THREAD_BOOT__v1.md",
+    os.environ.get("CODEX_RATCHET_ROOT", ".") + "/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md",
+    os.environ.get("CODEX_RATCHET_ROOT", ".") + "/system_v3/specs/66_PARALLEL_CODEX_RUN_PLAYBOOK__v1.md",
+    os.environ.get("CODEX_RATCHET_ROOT", ".") + "/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md",
 ]
 
 ACTIVE_CONTEXT_SURFACES = [
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CURRENT.md",
+    os.environ.get("CODEX_RATCHET_ROOT", ".") + "/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md",
+    os.environ.get("CODEX_RATCHET_ROOT", ".") + "/system_v3/a2_state/OPEN_UNRESOLVED__v1.md",
+    os.environ.get("CODEX_RATCHET_ROOT", ".") + "/work/CURRENT.md",
 ]
 
 
@@ -41,13 +42,13 @@ def build_send_text(packet: dict) -> str:
         queue_helper_lines = [
             "",
             "For the bounded `a1?` queue-answer action, use these helpers:",
-            "- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/refresh_active_current_a1_queue_state.py",
-            "- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py",
-            "- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py",
+            "- /home/ratchet/Desktop/Codex Ratchet/system_v3/tools/refresh_active_current_a1_queue_state.py",
+            "- /home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py",
+            "- /home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py",
             "- prefer family-slice `packet` or `bundle` preparation mode when a valid bounded family slice exists",
             "- current queue refresh defaults to `--family-slice-validation-mode auto`",
-            "- `auto` means: use `local_pydantic` when `/Users/joshuaeisenhart/Desktop/Codex Ratchet/.venv_spec_graph/bin/python` exists, else fall back to `jsonschema`",
-            "- if you explicitly want the local spec-object stack, use `--family-slice-validation-mode local_pydantic --spec-graph-python /Users/joshuaeisenhart/Desktop/Codex Ratchet/.venv_spec_graph/bin/python` through the current-queue refresh path",
+            "- `auto` means: use `local_pydantic` when `/home/ratchet/Desktop/Codex Ratchet/.venv_spec_graph/bin/python` exists, else fall back to `jsonschema`",
+            "- if you explicitly want the local spec-object stack, use `--family-slice-validation-mode local_pydantic --spec-graph-python /home/ratchet/Desktop/Codex Ratchet/.venv_spec_graph/bin/python` through the current-queue refresh path",
         ]
     lines = [
         "Use Ratchet A2/A1.",

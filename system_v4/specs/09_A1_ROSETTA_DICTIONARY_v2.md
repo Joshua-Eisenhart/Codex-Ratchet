@@ -77,7 +77,7 @@
 
 ## GRAVEYARD (20 Killed Hypotheses)
 
-See [GRAVEYARD_FULL_LEDGER__v1.txt](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/graveyard/GRAVEYARD_FULL_LEDGER__v1.txt) for the full ledger including:
+See [GRAVEYARD_FULL_LEDGER__v1.txt](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/graveyard/GRAVEYARD_FULL_LEDGER__v1.txt) for the full ledger including:
 - 8 classical math axiom kills (Axiom of Infinity, Choice, Peano, ZFC, Reals, Archimedean, Commutativity)
 - 4 classical physics kills (continuous time, continuous bath, Euclidean metric, classical temperature)
 - 3 topology/graph failures

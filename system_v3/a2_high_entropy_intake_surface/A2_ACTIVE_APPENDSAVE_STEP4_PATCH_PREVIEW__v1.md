@@ -41,7 +41,7 @@ If mutation is later authorized, and Step 1 has already landed exactly, the boun
 
 ```patch
 *** Begin Patch
-*** Update File: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md
+*** Update File: /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md
 @@
  - `WORLDVIEW_PRESSURE_MEMO_CLASSIFICATION`
    - short conversational, synthesis-heavy, or worldview-forward packets should default to memo classification when the boundary is unclear

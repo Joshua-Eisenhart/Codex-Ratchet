@@ -4,8 +4,8 @@ Date: 2026-03-09
 Role: compact integrity audit for the A2-high intake queue and promotion surface
 
 ## 1) Scope
-- audited only under `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/`
-- controller process file actually resolved at `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md`
+- audited only under `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/`
+- controller process file actually resolved at `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md`
 - if the live filesystem and queue docs disagree, the live filesystem snapshot wins
 - when that happens, queue repair is required before any new dispatch recommendation
 - no active A2 append-save or control-surface mutation was performed
@@ -56,13 +56,13 @@ Role: compact integrity audit for the A2-high intake queue and promotion surface
   - overlapping later duplicate-child residue:
     - `BATCH_A2MID_archive_v2_packet_req_request_only_handoff__v1`
   - route through:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_DUPLICATE_FAMILY_QUARANTINE__v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_DUPLICATE_FAMILY_QUARANTINE__v1.md`
 - revisit-side routing split is now explicit:
   - `Constraints. Entropy` remains the highest-value revisit anchor because the residual-inventory closure audit nominates it and the existing child pair already isolates the main fence packets
   - the older `BATCH_a2feed_thread_b_bootpack_engine_pattern__v1` selection is now stale because that parent is direct-child closed by `BATCH_A2MID_a2feed_thread_b_provenance_admission_fences__v1`
   - the remaining live unresolved revisit frontier now splits into one duplicate-family quarantine packet:
     - `BATCH_a2feed_grok_unified_phuysics_source_map__v1`
-    - routed through `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_DUPLICATE_FAMILY_QUARANTINE__v1.md`
+    - routed through `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_DUPLICATE_FAMILY_QUARANTINE__v1.md`
   - and one archive-side revisit cluster:
     - deep-archive run-signal and test packets
     - richest self-contained bundle now direct-child reduced by:
@@ -94,5 +94,5 @@ Role: compact integrity audit for the A2-high intake queue and promotion surface
     - next adjacent compact archive-side packet if another bounded pass is needed:
       - `BATCH_archive_surface_heat_dumps_root_family_split__v1`
 - broad non-sims refined-fuel source-map extraction is already controller-closed at this coverage depth
-- use `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_REENTRY_SHORTLIST__v1.md` for the compact revisit-routing split
-- use `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_ACTION_BOARD__v1.md` as the small explicit next-action queue
+- use `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_REENTRY_SHORTLIST__v1.md` for the compact revisit-routing split
+- use `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/CONTROLLER_QUEUE_ACTION_BOARD__v1.md` as the small explicit next-action queue

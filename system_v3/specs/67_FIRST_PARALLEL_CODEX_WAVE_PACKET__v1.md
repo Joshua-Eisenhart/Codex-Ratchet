@@ -18,13 +18,13 @@ This is the first concrete parallel Codex wave.
 
 ## Governing surfaces
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/66_PARALLEL_CODEX_RUN_PLAYBOOK__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/PARALLEL_CODEX_WORKER_RESULT_SINK__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/REFINEDFUEL_REVISIT_ROUTING_PASS__2026_03_11__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/66_PARALLEL_CODEX_RUN_PLAYBOOK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/PARALLEL_CODEX_WORKER_RESULT_SINK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/REFINEDFUEL_REVISIT_ROUTING_PASS__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md`
 
 ## Current launch decision
 
@@ -47,7 +47,7 @@ THREAD_CLASS:
 - `A2_CONTROLLER`
 
 BOOT_SURFACE:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
 
 BOUNDED_SCOPE:
 - maintain `CURRENT_EXECUTION_STATE`
@@ -65,13 +65,13 @@ THREAD_CLASS:
 - `A2_WORKER`
 
 BOOT_SURFACE:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
 
 ROLE_LABEL:
 - `A2_HIGH_REFINERY_PASS__REFINEDFUEL_RUN_NOW_WAVE_1`
 
 SOURCE_SURFACE:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/REFINEDFUEL_REVISIT_ROUTING_PASS__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/REFINEDFUEL_REVISIT_ROUTING_PASS__2026_03_11__v1.md`
 
 BOUNDED_SCOPE:
 - process only the exact `RUN_NOW` refinedfuel wave-1 set:
@@ -88,11 +88,11 @@ EXPECTED_OUTPUTS:
   - `STOP`
   - `ONE_MORE_BOUNDED_A2_PASS_NEEDED`
 - one raw returned result file written into:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns`
 
 CONTINUATION_POLICY:
 - `AUTO_GO_ON_ALLOWED = NO` unless later thread result qualifies under:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
 
 STOP_RULE:
 - stop after one bounded wave-1 refinedfuel revisit pass
@@ -115,10 +115,10 @@ Launch gate:
 - launch only if:
   - current queue is not `NO_WORK`
   - and a valid ready packet exists under:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md`
 
 Current blocker:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md`
 
 ## Launch order
 

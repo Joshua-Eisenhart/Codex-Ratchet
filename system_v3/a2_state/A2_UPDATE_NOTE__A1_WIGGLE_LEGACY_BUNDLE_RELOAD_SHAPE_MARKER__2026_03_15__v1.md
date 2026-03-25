@@ -7,7 +7,7 @@ Role: preserve that the retained wiggle-soak worker launch bundle is now explici
 ## Scope
 
 Patched note:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_WIGGLE_CONTROLLER_LAUNCH_NOTE__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_WIGGLE_CONTROLLER_LAUNCH_NOTE__2026_03_15__v1.md`
 
 ## What changed
 

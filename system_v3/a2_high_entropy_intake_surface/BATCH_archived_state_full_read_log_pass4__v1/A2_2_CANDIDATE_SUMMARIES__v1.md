@@ -40,4 +40,4 @@ Extraction mode: `READ_LOG_AUDIT_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/README_A2_EXPORT_PACK_SMALL.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/README_A2_EXPORT_PACK_SMALL.md`

@@ -7,7 +7,7 @@ This is intentionally a standalone smoke artifact:
 - verifies adapter_info is written by log_skill_invocation()
 
 Usage:
-    cd "/Users/joshuaeisenhart/Desktop/Codex Ratchet"
+    cd <repo_root>
     python -m system_v4.skills.test_phase4_skill_dispatch_smoke
 """
 

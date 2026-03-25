@@ -7,11 +7,11 @@ Define deterministic migration from v2/legacy spec surfaces into the v3 owner-mo
 
 ## Sources
 - Legacy draft pack:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_spec_pack_v2/`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_spec_pack_v2/`
 - Legacy work specs:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/system_specs/`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/system_specs/`
 - New owner pack:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/`
 
 ## Migration Phases
 1. Inventory

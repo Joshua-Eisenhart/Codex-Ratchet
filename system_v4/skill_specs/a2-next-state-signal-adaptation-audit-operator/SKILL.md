@@ -34,10 +34,10 @@ runtime.
 ## Execute Now
 
 1. Read:
-   - [work/external_refs/OPENCLAW_RL__REFERENCE_NOTE__2026_03_21__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/external_refs/OPENCLAW_RL__REFERENCE_NOTE__2026_03_21__v1.md)
-   - [SKILL_SOURCE_CORPUS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md)
-   - [REPO_SKILL_INTEGRATION_TRACKER.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md)
-   - [system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md)
+   - [work/external_refs/OPENCLAW_RL__REFERENCE_NOTE__2026_03_21__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/work/external_refs/OPENCLAW_RL__REFERENCE_NOTE__2026_03_21__v1.md)
+   - [SKILL_SOURCE_CORPUS.md](/home/ratchet/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md)
+   - [REPO_SKILL_INTEGRATION_TRACKER.md](/home/ratchet/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md)
+   - [system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md)
 2. Verify the local mapping seams only:
    - `witness-recorder`
    - `runtime-state-kernel`

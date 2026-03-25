@@ -16,7 +16,7 @@ This family is the main richer-term landing case where:
 
 ### Memo witness
 
-- `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_03__20260309T050608Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_STRUCTURE_DIVERSITY_ALIAS_BROAD_0001/reports/a1_external_memo_batch_driver_report.json`
+- `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_03__20260309T050608Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_STRUCTURE_DIVERSITY_ALIAS_BROAD_0001/reports/a1_external_memo_batch_driver_report.json`
 
 Why retained:
 
@@ -26,7 +26,7 @@ Why retained:
 
 ### Cold-core witness
 
-- `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_03__20260309T050608Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_STRUCTURE_DIVERSITY_ALIAS_BROAD_0001/a1_sandbox/cold_core/000024_A1_COLD_CORE_PROPOSALS_v1.json`
+- `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_03__20260309T050608Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_STRUCTURE_DIVERSITY_ALIAS_BROAD_0001/a1_sandbox/cold_core/000024_A1_COLD_CORE_PROPOSALS_v1.json`
 
 Why retained:
 
@@ -38,7 +38,7 @@ Why retained:
 
 ### Strategy witness
 
-- `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_03__20260309T050608Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_STRUCTURE_DIVERSITY_ALIAS_BROAD_0001/a1_sandbox/outgoing/000024_A1_STRATEGY_v1__PACK_SELECTOR.json`
+- `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_03__20260309T050608Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_STRUCTURE_DIVERSITY_ALIAS_BROAD_0001/a1_sandbox/outgoing/000024_A1_STRATEGY_v1__PACK_SELECTOR.json`
 
 Why retained:
 
@@ -49,12 +49,12 @@ Why retained:
 ## Supporting Bridge-Side Alias Follow-Up
 
 - memo witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_RATE_ALIAS_BROAD_0001/reports/a1_external_memo_batch_driver_report.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_RATE_ALIAS_BROAD_0001/reports/a1_external_memo_batch_driver_report.json`
   - witness meaning:
     - preserves the bridge-side alias follow-up that executes one cycle at `9 / 45 / 45 / 69` while keeping the alias lane on the helper frontier
 
 - cold-core witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_RATE_ALIAS_BROAD_0001/a1_sandbox/cold_core/000024_A1_COLD_CORE_PROPOSALS_v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_RATE_ALIAS_BROAD_0001/a1_sandbox/cold_core/000024_A1_COLD_CORE_PROPOSALS_v1.json`
   - witness meaning:
     - preserves the coexistence of:
       - `pairwise_correlation_spread_functional`
@@ -64,7 +64,7 @@ Why retained:
     - while the colder alias still carries heavy bootstrap debt
 
 - strategy witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_RATE_ALIAS_BROAD_0001/a1_sandbox/outgoing/000024_A1_STRATEGY_v1__PACK_SELECTOR.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_RATE_ALIAS_BROAD_0001/a1_sandbox/outgoing/000024_A1_STRATEGY_v1__PACK_SELECTOR.json`
   - witness meaning:
     - preserves the selector fallback onto:
       - `work`

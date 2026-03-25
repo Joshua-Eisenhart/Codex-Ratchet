@@ -16,7 +16,7 @@
 - Total: 124 nodes, 137 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/21_IMPLEMENTATION_BUILD_SEQUENCE_AND_ACCEPTANCE_MATRIX.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/21_IMPLEMENTATION_BUILD_SEQUENCE_AND_ACCEPTANCE_MATRIX.md
 
 ## Key Findings
 - Ingested spec 21: build sequence with 8 fixed phases and survivor significance gate

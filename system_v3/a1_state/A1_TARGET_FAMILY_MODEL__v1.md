@@ -268,7 +268,7 @@ Executable bridge rule:
   3. `information_work_extraction_bound`
   4. `erasure_channel_entropy_cost_lower_bound`
 - keep the direct entropy-family names in proposal space while this bridge is being proven
-- use `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BRIDGE_CAMPAIGN__v1.md` as the executable bridge surface
+- use `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_FIRST_ENTROPY_BRIDGE_CAMPAIGN__v1.md` as the executable bridge surface
 
 Live normalization note:
 - preserve the older bridge sequence as a pressure-order surface, not as the current head/passenger/witness split
@@ -278,7 +278,7 @@ Live normalization note:
   - `entropy_production_rate` = late bookkeeping passenger
   - `information_work_extraction_bound` = witness-only / proposal-control bridge witness
   - `erasure_channel_entropy_cost_lower_bound` = witness-only / proposal-control bridge witness
-- use `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__LIVE_FAMILY_HINT_COVERAGE__v1.md` and `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__ANCHOR_WITNESS_WORKFLOW__v1.md` when a live-family admissibility question turns on this distinction
+- use `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__LIVE_FAMILY_HINT_COVERAGE__v1.md` and `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_INTEGRATION_BATCH__ANCHOR_WITNESS_WORKFLOW__v1.md` when a live-family admissibility question turns on this distinction
 
 ## 11) A2-first family construction discipline
 Governing source surfaces:
@@ -286,7 +286,7 @@ Governing source surfaces:
 - `system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
 - `system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md`
 - `system_v3/a2_state/FOUNDATION_MODE_AND_SCAFFOLD_MODE_SPLIT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/codex thread save.txt`
+- `/home/ratchet/Desktop/codex thread save.txt`
 
 Working rule:
 - each A1 family/path campaign must be traceable to refreshed A2 inputs

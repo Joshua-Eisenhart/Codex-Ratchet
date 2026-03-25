@@ -7,13 +7,13 @@ Date: 2026-03-09
 
 ## 1) Folder-Order Selection
 - primary export-lineage family:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/PRO_SEND_PACK__A2_LAYER1_5__STAGE3_BATCHES_10__v1_1.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_CONTEXT__STAGE_V1_OUTPUTS__v1.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_CONTEXT__STAGE_V1_OUTPUTS__v1.zip.sha256`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v1.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v1.zip.sha256`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v1.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v1.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/PRO_SEND_PACK__A2_LAYER1_5__STAGE3_BATCHES_10__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_CONTEXT__STAGE_V1_OUTPUTS__v1.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_CONTEXT__STAGE_V1_OUTPUTS__v1.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v1.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v1.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v1.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v1.zip.sha256`
 - bundling reason:
   - together these files show one spillover export arc:
     - a ten-job Stage-3 handoff set repackaged as one wrapper zip
@@ -24,23 +24,23 @@ Date: 2026-03-09
     - detached digest only
     - no filename binding inside the sidecar itself
 - deferred near-neighbor revision family:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v2.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v2.zip.sha256`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v3.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v3.zip.sha256`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v4.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v4.zip.sha256`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v2.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v2.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v2.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v2.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v3.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v3.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v4.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v4.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v2.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v2.zip.sha256`
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v2.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v2.zip.sha256`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v3.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v3.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v2.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v2.zip.sha256`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v3.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v3.zip.sha256`
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/PRO_SEND_PACK__A2_LAYER1_5__STAGE3_BATCHES_10__v1_1.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/PRO_SEND_PACK__A2_LAYER1_5__STAGE3_BATCHES_10__v1_1.zip`
   - sha256: `13ec9c7f081b71ee6d04f7bf8e7fcca141ae85e6d74d0c8613c9e32a88eefc49`
   - size bytes: `1754443`
   - entry count: `14`
@@ -48,7 +48,7 @@ Date: 2026-03-09
   - source-class note:
     - wraps the previously separated Stage-3 directory as one transferable shell containing the ten child job zips plus the three Stage-3 control files
 - source 2:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_CONTEXT__STAGE_V1_OUTPUTS__v1.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_CONTEXT__STAGE_V1_OUTPUTS__v1.zip`
   - sha256: `bbd84126f93e5eb648c697cbbe92f634c85cdde44fe430813cf16403b5e5e0eb`
   - size bytes: `1327933`
   - entry count: `5`
@@ -56,7 +56,7 @@ Date: 2026-03-09
   - source-class note:
     - an intentionally narrow output artifact preserving filtered A2 brain material, counts, doc index, and a non-authoritative audit
 - source 3:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_CONTEXT__STAGE_V1_OUTPUTS__v1.zip.sha256`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_CONTEXT__STAGE_V1_OUTPUTS__v1.zip.sha256`
   - sha256: `17e580cf34c27600719fa7c23636601c81ed2ce4b824d14aaedc42bd3c4e4811`
   - size bytes: `65`
   - line count: `1`
@@ -64,7 +64,7 @@ Date: 2026-03-09
   - source-class note:
     - preserves only the archive digest, with no filename on the line
 - source 4:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v1.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v1.zip`
   - sha256: `20f4983c0d80db5709df3682b9cd759b89cde9fa2fafe00befab8220fa94b88a`
   - size bytes: `32504`
   - entry count: `24`
@@ -72,7 +72,7 @@ Date: 2026-03-09
   - source-class note:
     - explicitly limited to the missing canon-lock bridge docs, Playwright claw, and operator notes needed to update an external Pro thread without sending full trees
 - source 5:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v1.zip.sha256`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v1.zip.sha256`
   - sha256: `007d1e20752a777e0ac71aa28394240ae695b28caabaa47b6a58fd6639aa5837`
   - size bytes: `65`
   - line count: `1`
@@ -80,7 +80,7 @@ Date: 2026-03-09
   - source-class note:
     - same digest-only sidecar convention as the Stage V1 outputs pack
 - source 6:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v1.zip`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v1.zip`
   - sha256: `30a4fe1116dd9421c3e6ef23269cd98762f519f17d9060b834c1a3cc9d1f826f`
   - size bytes: `7477771`
   - entry count: `649`
@@ -88,7 +88,7 @@ Date: 2026-03-09
   - source-class note:
     - re-expands the export surface into bundles, examples, core docs, and `system_v3` state, with an internal manifest declaring `648` copied files
 - source 7:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v1.zip.sha256`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v1.zip.sha256`
   - sha256: `93e822986f1a34802ec2aa94cbe38e62a9be3855aa02c0f157fbf1ac8f6516ad`
   - size bytes: `65`
   - line count: `1`
@@ -99,7 +99,7 @@ Date: 2026-03-09
 ## 3) Structural Map
 ### Segment A: one-file wrapper around the Stage-3 serialized handoff set
 - source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/PRO_SEND_PACK__A2_LAYER1_5__STAGE3_BATCHES_10__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/PRO_SEND_PACK__A2_LAYER1_5__STAGE3_BATCHES_10__v1_1.zip`
 - key markers:
   - `14` archive entries total
   - one embedded `TO_SEND_TO_PRO__A2_LAYER1_5__STAGE3__v1_1/` directory
@@ -110,7 +110,7 @@ Date: 2026-03-09
 
 ### Segment B: outputs-only return artifact
 - source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_CONTEXT__STAGE_V1_OUTPUTS__v1.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_CONTEXT__STAGE_V1_OUTPUTS__v1.zip`
 - key markers:
   - embedded README says the pack is from a prior `SYSTEM_BOOTSTRAP_STAGE_v1` style pass
   - explicitly outputs-only
@@ -121,7 +121,7 @@ Date: 2026-03-09
 
 ### Segment C: drift-prevention delta pack
 - source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v1.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_DELTA__CANON_LOCK_PLUS_CLAW__v1.zip`
 - key markers:
   - embedded README says the zip is intentionally small
   - only missing docs/scripts not already in the Pro thread
@@ -145,7 +145,7 @@ Date: 2026-03-09
 
 ### Segment E: broad system update pack
 - source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v1.zip`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/out/PRO_THREAD_UPDATE_PACK__SYSTEM_V3_PLUS_CANON_LOCK_PLUS_CLAW__v1.zip`
 - key markers:
   - embedded manifest declares `648` copied files
   - bundled bootstrap zip and its `.sha256`

@@ -1,16 +1,16 @@
 {
   "a1_reload_artifacts": [
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md"
+    "/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md"
   ],
   "closeout_route": {
-    "append_command": "python3 system_v3/tools/append_thread_closeout_packet.py --packet-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL.json'",
-    "closeout_prompt": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/zip_subagents/THREAD_CLOSEOUT_AUDIT_PROMPT__v1.md",
-    "extract_command": "python3 system_v3/tools/extract_thread_closeout_packet.py --reply-text '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL.txt' --source-thread-label 'A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL' --out-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL.json'",
-    "sink_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/thread_closeout_packets.000.jsonl",
-    "skill": "/Users/joshuaeisenhart/.codex/skills/thread-closeout-auditor/SKILL.md",
-    "staging_json_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL.json",
-    "staging_text_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL.txt"
+    "append_command": "python3 system_v3/tools/append_thread_closeout_packet.py --packet-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL.json'",
+    "closeout_prompt": "/home/ratchet/Desktop/Codex Ratchet/work/zip_subagents/THREAD_CLOSEOUT_AUDIT_PROMPT__v1.md",
+    "extract_command": "python3 system_v3/tools/extract_thread_closeout_packet.py --reply-text '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL.txt' --source-thread-label 'A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL' --out-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL.json'",
+    "sink_path": "/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_derived_indices_noncanonical/thread_closeout_packets.000.jsonl",
+    "skill": "/home/ratchet/.codex/skills/thread-closeout-auditor/SKILL.md",
+    "staging_json_path": "/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL.json",
+    "staging_text_path": "/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_closeout_packets/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL.txt"
   },
   "dispatch_id": "A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1",
   "mode": "PROPOSAL_ONLY",
@@ -21,34 +21,34 @@
       "CONTINUE_ONE_BOUNDED_STEP",
       "CORRECT_LANE_LATER"
     ],
-    "owner_surface": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_RUN_DIAGNOSIS_AND_STOP_RULES__v1.md",
-    "skill": "/Users/joshuaeisenhart/.codex/skills/thread-run-monitor/SKILL.md"
+    "owner_surface": "/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_RUN_DIAGNOSIS_AND_STOP_RULES__v1.md",
+    "skill": "/home/ratchet/.codex/skills/thread-run-monitor/SKILL.md"
   },
   "operator_steps": [
     "Open one fresh Codex thread.",
     "Set model to GPT-5.4 Medium.",
-    "Paste the full send text from /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a1_wiggle_soak_controllerled/A1_WORKER_LAUNCH_PACKET__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__SEND_TEXT.md.",
+    "Paste the full send text from /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a1_wiggle_soak_controllerled/A1_WORKER_LAUNCH_PACKET__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__SEND_TEXT.md.",
     "Send it once.",
-    "Save the bounded return to /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_launch_returns/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL__return.txt.",
+    "Save the bounded return to /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_launch_returns/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL__return.txt.",
     "If the lane runs long or drifts, route it through the monitor and closeout path below instead of free chaining."
   ],
   "queue_status": "READY_FROM_EXISTING_FUEL",
-  "required_a1_boot": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md",
-  "return_capture_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_launch_returns/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL__return.txt",
+  "required_a1_boot": "/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md",
+  "return_capture_path": "/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_launch_returns/A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__A1_PROPOSAL__return.txt",
   "role_label": "A1_DISPATCH__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1",
   "role_scope": "One bounded A1_PROPOSAL wiggle tranche on one fixed run_id that keeps all authoritative outputs in repo-held files and supports exact bare go on continuation on the same run.",
   "role_type": "A1_PROPOSAL",
   "schema": "A1_WORKER_LAUNCH_HANDOFF_v1",
-  "send_text_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a1_wiggle_soak_controllerled/A1_WORKER_LAUNCH_PACKET__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__SEND_TEXT.md",
+  "send_text_path": "/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a1_wiggle_soak_controllerled/A1_WORKER_LAUNCH_PACKET__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1__SEND_TEXT.md",
   "send_text_sha256": "b7755ba336534c4f98d96ccd6b940b9ce36a1b2d00028dd345d8c8002ac9cee7",
   "source_a2_artifacts": [
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md",
-    "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md"
+    "/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md",
+    "/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md"
   ],
-  "source_packet_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_WORKER_LAUNCH_PACKET__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1.json",
+  "source_packet_json": "/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_WORKER_LAUNCH_PACKET__WIGGLE_SOAK_CONTROLLERLED__2026_03_15__v1.json",
   "stop_rule": "Stop after one bounded wiggle tranche, one soak audit, and one rewritten controller result packet.",
   "thread_class": "A1_WORKER"
 }

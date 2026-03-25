@@ -7,9 +7,9 @@ Date: 2026-03-08
 
 ## 1) Folder-Order Selection
 - prior completed batch ended at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/gpt thread a1 trigram work out .txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/gpt thread a1 trigram work out .txt`
 - next folder-order source selected for this bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok eisenhart model .txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok eisenhart model .txt`
 - bounded-doc rule used:
   - this file is large, repetitive, and internally revisionary
   - first pass is structural and contradiction-preserving rather than normalization into one stable doctrine
@@ -19,12 +19,12 @@ Date: 2026-03-08
     - vortex / spiral distinction lineage
     - Type `1` engine and Szilard mapping lineage
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok gemini having digested the model.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok toe redo save.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok gemini having digested the model.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok toe redo save.txt`
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok eisenhart model .txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/grok eisenhart model .txt`
   - sha256: `49d5cfdacf25da5235d74d10ca1c2732d238b183d7593050b2b92d5dbd9e7427`
   - size bytes: `613660`
   - line count: `9162`

@@ -18,11 +18,11 @@ but weaker explicit artifact packs for:
 - export candidate packs
 
 Legacy witness surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/BOOTPACKS/BOOTPACK_THREAD_M_v1.0.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/BOOTPACKS/BOOTPACK_THREAD_M_v1.0.md`
 
 Current normative anchors:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/15_ROSETTA_AND_MINING_ARTIFACTS.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/04_A0_COMPILER_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/15_ROSETTA_AND_MINING_ARTIFACTS.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/04_A0_COMPILER_SPEC.md`
 
 ## Core boundary rule
 
@@ -126,9 +126,9 @@ Expected current homes:
 ## Tooling targets
 
 Current likely base tools:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/legacy_extract.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/ingest_a2_distillery_zip.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/legacy_extract.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/ingest_a2_distillery_zip.py`
 
 Likely new tools:
 - `build_fuel_digest.py`

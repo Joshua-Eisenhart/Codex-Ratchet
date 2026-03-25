@@ -1,6 +1,6 @@
 # Package Inventory: .venv_spec_graph
 **Date**: 2026-03-22
-**Environment**: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/.venv_spec_graph`
+**Environment**: `/home/ratchet/Desktop/Codex Ratchet/.venv_spec_graph`
 
 ## Executive Summary
 The `.venv_spec_graph` environment contains **232** total packages. It represents a heavy-duty research and verification stack, incorporating advanced topological analysis, formal verification (SMT), and machine learning (GNN).

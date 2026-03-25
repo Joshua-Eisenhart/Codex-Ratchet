@@ -31,10 +31,10 @@ Use with:
 
 These are the easy human-facing append surfaces:
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/SKILL_SOURCE_CORPUS.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/SKILL_CANDIDATES_BACKLOG.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/LOCAL_SOURCE_REPO_INVENTORY.md`
+- `/home/ratchet/Desktop/Codex Ratchet/SKILL_SOURCE_CORPUS.md`
+- `/home/ratchet/Desktop/Codex Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md`
+- `/home/ratchet/Desktop/Codex Ratchet/SKILL_CANDIDATES_BACKLOG.md`
+- `/home/ratchet/Desktop/Codex Ratchet/LOCAL_SOURCE_REPO_INVENTORY.md`
 
 They are `SOURCE_CORPUS` helpers.
 They are not the canonical A2 brain by themselves.
@@ -92,10 +92,10 @@ When a new repo, source doc, method family, or architecture family appears:
    - `SOURCE_CORPUS` family
    - live skill/runtime fact
    - both
-2. Append the family to `/Users/joshuaeisenhart/Desktop/Codex Ratchet/SKILL_SOURCE_CORPUS.md`.
-3. Record local presence in `/Users/joshuaeisenhart/Desktop/Codex Ratchet/LOCAL_SOURCE_REPO_INVENTORY.md`.
-4. Record integration reality in `/Users/joshuaeisenhart/Desktop/Codex Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md`.
-5. Record candidate skills in `/Users/joshuaeisenhart/Desktop/Codex Ratchet/SKILL_CANDIDATES_BACKLOG.md`.
+2. Append the family to `/home/ratchet/Desktop/Codex Ratchet/SKILL_SOURCE_CORPUS.md`.
+3. Record local presence in `/home/ratchet/Desktop/Codex Ratchet/LOCAL_SOURCE_REPO_INVENTORY.md`.
+4. Record integration reality in `/home/ratchet/Desktop/Codex Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md`.
+5. Record candidate skills in `/home/ratchet/Desktop/Codex Ratchet/SKILL_CANDIDATES_BACKLOG.md`.
 6. Append recurring significance and controller consequences to `system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md`.
 7. Refresh `doc_index.json` if the source should become visible to canonical A2 indexing.
 8. Add a `fuel_queue.json` item if the source creates real A2 work.

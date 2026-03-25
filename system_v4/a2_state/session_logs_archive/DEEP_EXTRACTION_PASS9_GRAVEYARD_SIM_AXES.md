@@ -24,7 +24,7 @@
 - Total: 17476 nodes, 17292 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/06_SIM_EVIDENCE_AND_TIERS_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/06_SIM_EVIDENCE_AND_TIERS_SPEC.md
 
 ## Batches
 - `GRAVEYARD_SIM_AXES`

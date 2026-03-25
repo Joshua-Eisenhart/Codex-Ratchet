@@ -60,7 +60,7 @@ Extraction mode: `ARCHIVE_LAYERED_EXTRACTION_PACKAGE_PASS`
 
 ## Cluster 7: Deferred Next Package
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_02_OF_10__A2_LAYER1_5__OUTPUT__AXES_APPLE_NOTES_IGT_MAPPING__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_02_OF_10__A2_LAYER1_5__OUTPUT__AXES_APPLE_NOTES_IGT_MAPPING__v1_1.zip`
 - cluster read:
   - the next archive-root family is another packaged historical extraction zip and should be processed separately
 - current usefulness:

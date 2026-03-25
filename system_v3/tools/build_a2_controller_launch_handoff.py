@@ -1,3 +1,4 @@
+import os
 #!/usr/bin/env python3
 from __future__ import annotations
 
@@ -61,13 +62,13 @@ def build_handoff(packet_path: Path, packet: dict, send_text_path: Path) -> dict
         ],
         "monitor_route": {
             "mode": "direct_controller_result_read",
-            "owner_surface": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md",
+            "owner_surface": os.environ.get("CODEX_RATCHET_ROOT", ".") + "/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md",
             "next_reader": "current operator or replacement controller",
         },
         "closeout_route": {
             "mode": "manual_controller_stop",
-            "state_refresh_target": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md",
-            "execution_log_target": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/CURRENT_EXECUTION_STATE__2026_03_10__v1.md",
+            "state_refresh_target": os.environ.get("CODEX_RATCHET_ROOT", ".") + "/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md",
+            "execution_log_target": os.environ.get("CODEX_RATCHET_ROOT", ".") + "/system_v3/a2_state/CURRENT_EXECUTION_STATE__2026_03_10__v1.md",
         },
     }
 

@@ -9,7 +9,7 @@ authority: "SOURCE_CLAIM"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a2_state_v3_external_lane_operator_checklist__entrop::61a529d3b38212f2`
 
 ## Description
-EXTERNAL_LANE_OPERATOR_CHECKLIST__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md (3812B): # EXTERNAL_LANE_OPERATOR_CHECKLIST__ENTROPY_CARNOT_SZILARD__2026_03_10__v1  Status: DRAFT / NONCANON / A2 CONTROL NOTE Date: 2026-03-10 Role: one ordered operator checklist for the first external entropy / Carnot / Szilard monitored lane  ## 1) Attach this boot zip  Use: - `/Users/joshuaeisenhart/De
+EXTERNAL_LANE_OPERATOR_CHECKLIST__ENTROPY_CARNOT_SZILARD__2026_03_10__v1.md (3812B): # EXTERNAL_LANE_OPERATOR_CHECKLIST__ENTROPY_CARNOT_SZILARD__2026_03_10__v1  Status: DRAFT / NONCANON / A2 CONTROL NOTE Date: 2026-03-10 Role: one ordered operator checklist for the first external entropy / Carnot / Szilard monitored lane  ## 1) Attach this boot zip  Use: - `/home/ratchet/De
 
 ## Properties
 - **source_line_range**: 

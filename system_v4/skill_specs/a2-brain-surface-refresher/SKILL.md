@@ -34,10 +34,10 @@ canonical A2.
 ## Execute Now
 
 1. Read:
-   - [A2_BOOT_READ_ORDER__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_BOOT_READ_ORDER__CURRENT__v1.md)
-   - [A2_KEY_CONTEXT_APPEND_LOG__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md)
-   - [V4_SYSTEM_SPEC__CURRENT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/V4_SYSTEM_SPEC__CURRENT.md)
-   - [GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md)
+   - [A2_BOOT_READ_ORDER__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_BOOT_READ_ORDER__CURRENT__v1.md)
+   - [A2_KEY_CONTEXT_APPEND_LOG__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md)
+   - [V4_SYSTEM_SPEC__CURRENT.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/V4_SYSTEM_SPEC__CURRENT.md)
+   - [GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md)
 2. Compare the primary standing A2 surfaces against:
    - owner-law indexing truth
    - front-door corpus indexing truth

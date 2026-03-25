@@ -195,7 +195,7 @@ Do not escalate just because:
 This note defines thread classes.
 
 Concurrency still follows:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/SCALE_UP_ENVELOPE__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/SCALE_UP_ENVELOPE__2026_03_11__v1.md`
 
 Meaning:
 - current safe external envelope remains `1` to `3` live `Pro` lanes
@@ -208,7 +208,7 @@ Current gap closed by this note:
 - narrow worker lanes, method-compare lanes, lane-refinery lanes, and full-context exploratory lanes now have distinct boot/context rules
 
 Current runnable templates:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/36_PRO_LAUNCH_TEMPLATE__NARROW_SOURCE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/37_PRO_LAUNCH_TEMPLATE__FULL_A2_REASONING_SPACE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/38_PRO_LAUNCH_TEMPLATE__LANE_REFINERY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/39_PRO_LAUNCH_TEMPLATE__METHOD_COMPARE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/36_PRO_LAUNCH_TEMPLATE__NARROW_SOURCE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/37_PRO_LAUNCH_TEMPLATE__FULL_A2_REASONING_SPACE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/38_PRO_LAUNCH_TEMPLATE__LANE_REFINERY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/39_PRO_LAUNCH_TEMPLATE__METHOD_COMPARE__v1.md`

@@ -28,7 +28,7 @@ That meant the runtime could still under-deliver branch diversity relative to th
 ## What changed
 
 The live planner in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
 
 now computes scaffold rescue count from:
 - declared `lane_minimums["RESCUER"].min_branches`
@@ -50,7 +50,7 @@ This keeps the rescue expansion bounded and still family-local.
 ## Focused regression
 
 Planner/runtime:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
 
 Added:
 - a family-slice scaffold case where `RESCUER.min_branches = 2`

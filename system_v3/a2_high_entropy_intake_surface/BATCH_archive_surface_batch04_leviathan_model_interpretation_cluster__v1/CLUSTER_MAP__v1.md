@@ -75,7 +75,7 @@ Extraction mode: `ARCHIVE_LAYERED_EXTRACTION_PACKAGE_PASS`
 
 ## Cluster 8: Deferred Next Package
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_05_OF_10__A2_LAYER1_5__OUTPUT__A2_A1_RATCHET_FUEL_MINT__THREAD_B_TRIGRAM_AND_MEGABOOT__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_05_OF_10__A2_LAYER1_5__OUTPUT__A2_A1_RATCHET_FUEL_MINT__THREAD_B_TRIGRAM_AND_MEGABOOT__v1_1.zip`
 - cluster read:
   - the next archive-root family returns to an explicit `A2_A1_RATCHET_FUEL_MINT` package and should remain isolated as its own bounded pass
 - current usefulness:

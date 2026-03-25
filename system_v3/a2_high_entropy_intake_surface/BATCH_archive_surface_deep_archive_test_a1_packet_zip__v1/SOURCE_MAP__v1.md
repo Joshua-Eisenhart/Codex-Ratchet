@@ -8,7 +8,7 @@ Date: 2026-03-09
 ## 1) Batch Selection
 - selected sources:
   - direct archive object:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP`
   - retained run-core files:
     - `summary.json`
     - `state.json`
@@ -28,11 +28,11 @@ Date: 2026-03-09
   - the archive value is a tightly bounded single-step packet-loop object with four live packet kinds and three copies of the strategy zip, but deeply contradictory run-state summaries
   - this object is especially useful for demotion lineage because it preserves both a structurally richer transport-lane strategy packet and a schema-invalid inbox copy of the same named packet
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_DET_A`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_DET_A`
 
 ## 2) Source Membership
 ### Source 1
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP`
 - source class: one-step packet-loop run root
 - retained top-level contents:
   - `a1_inbox/`
@@ -45,7 +45,7 @@ Date: 2026-03-09
   - `zip_packets/`
 
 ### Source 2
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/summary.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/summary.json`
 - source class: terminal summary surface
 - summary markers:
   - `run_id TEST_A1_PACKET_ZIP`
@@ -65,7 +65,7 @@ Date: 2026-03-09
   - `final_state_hash aed8327fa78122bdcf8a56ba2beaeeb7becea60b94ab34e11e134231c9642611`
 
 ### Source 3
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/state.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/state.json`
 - source class: retained final state
 - compact state markers:
   - `accepted_batch_count 2`
@@ -96,14 +96,14 @@ Date: 2026-03-09
   - state retains evidence of two accepted batches and a later schema failure even though the summary reports zero accepted work
 
 ### Source 4
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/state.json.sha256`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/state.json.sha256`
 - source class: state integrity sidecar
 - integrity result:
   - declared hash matches `state.json`
   - declared hash matches `summary.json` final hash
 
 ### Source 5
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/sequence_state.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/sequence_state.json`
 - source class: global sequence ledger
 - sequence maxima:
   - `A0 0`
@@ -115,7 +115,7 @@ Date: 2026-03-09
   - this zeroed sequence surface contradicts the visible presence of one packet in every active lane
 
 ### Source 6
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/events.jsonl`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/events.jsonl`
 - source class: duplicated event ledger
 - event markers:
   - retained line count: `32`
@@ -135,7 +135,7 @@ Date: 2026-03-09
   - the event lattice preserves both successful execution and repeated fail-closed regeneration noise at the same step
 
 ### Source 7
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/soak_report.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/soak_report.md`
 - source class: human-readable run report
 - report markers:
   - `cycle_count 1`
@@ -147,7 +147,7 @@ Date: 2026-03-09
     - `NONE`
 
 ### Source 8
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/a1_inbox/000001_A1_TO_A0_STRATEGY_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/a1_inbox/000001_A1_TO_A0_STRATEGY_ZIP.zip`
 - source class: inbox strategy packet copy
 - sha256: `b912f7b97a89a34964a513afe9ad54a94315fdc58524a470dddcaa58b856ddf0`
 - size bytes: `1491`
@@ -160,7 +160,7 @@ Date: 2026-03-09
   - this is the schema-invalid strategy form echoed by the repeated `a1_generation_fail` events
 
 ### Source 9
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/a1_inbox/consumed/000001_A1_TO_A0_STRATEGY_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/a1_inbox/consumed/000001_A1_TO_A0_STRATEGY_ZIP.zip`
 - source class: consumed strategy packet copy
 - sha256: `b912f7b97a89a34964a513afe9ad54a94315fdc58524a470dddcaa58b856ddf0`
 - size bytes: `1491`
@@ -168,7 +168,7 @@ Date: 2026-03-09
   - byte-identical to the inbox copy
 
 ### Source 10
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/zip_packets/000001_A1_TO_A0_STRATEGY_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/zip_packets/000001_A1_TO_A0_STRATEGY_ZIP.zip`
 - source class: transport-lane strategy packet
 - sha256: `71b8c1dab70472ada69817b0ad8e05274faaf3c9979c2924863bb93f7ef33b44`
 - size bytes: `1935`
@@ -193,7 +193,7 @@ Date: 2026-03-09
   - this copy is materially richer than the inbox/consumed copy despite sharing the same packet name and sequence
 
 ### Source 11
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/zip_packets/000001_A0_TO_B_EXPORT_BATCH_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/zip_packets/000001_A0_TO_B_EXPORT_BATCH_ZIP.zip`
 - source class: export batch packet
 - sha256: `4a864c4fdaaaed45ba7bf78c8341ccf117fd844a59d71dabb8f41110c003b119`
 - size bytes: `1324`
@@ -211,7 +211,7 @@ Date: 2026-03-09
     - `THREAD_B_ENFORCEMENT_KERNEL`
 
 ### Source 12
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/zip_packets/000001_B_TO_A0_STATE_UPDATE_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/zip_packets/000001_B_TO_A0_STATE_UPDATE_ZIP.zip`
 - source class: Thread-S snapshot packet
 - sha256: `37f7dd8d4ed70d9e6041648e25232692818cf5beb394a624ac9f83c2aab222da`
 - size bytes: `1422`
@@ -230,7 +230,7 @@ Date: 2026-03-09
     - `S_BIND_ALPHA_S0001` requires `E_BIND_ALPHA`
 
 ### Source 13
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/zip_packets/000001_SIM_TO_A0_SIM_RESULT_ZIP.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY/LEGACY__MIGRATED__FROM_RUN_ROOT/bootpack_b_kernel_v1__runs__/TEST_A1_PACKET_ZIP/zip_packets/000001_SIM_TO_A0_SIM_RESULT_ZIP.zip`
 - source class: SIM result packet
 - sha256: `c2ac995e3e1ac4f0268d5b8935dda1157d8f48c0d1624dc0e1dca1a5c952a1c6`
 - size bytes: `1385`

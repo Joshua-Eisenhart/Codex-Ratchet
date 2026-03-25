@@ -1,7 +1,7 @@
 # NESTED_GRAPH_LAYER_AUDIT__CURRENT__v1
 
 generated_utc: 2026-03-21T02:10:56Z
-program_path: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json
+program_path: /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/NESTED_GRAPH_BUILD_PROGRAM__2026_03_20__v1.json
 program_status: NO_CURRENT_WORK__DIRECT_ENTROPY_EXECUTABLE_PAUSED
 ready_unit_id: 
 current_queue_status: NO_WORK
@@ -35,7 +35,7 @@ live_substrate: single_authoritative_multigraph_plus_projections
 - declared_status: MATERIALIZED_FROM_EXISTING_FUEL
 - current_state: MATERIALIZED
 - owner_surface_state: MATERIALIZED
-- owner_surface: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/identity_registry_v1.json
+- owner_surface: /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/identity_registry_v1.json
 - existing_outputs: 3/3
 
 ## A2_HIGH_INTAKE
@@ -44,7 +44,7 @@ live_substrate: single_authoritative_multigraph_plus_projections
 - declared_status: MATERIALIZED_FROM_EXISTING_FUEL
 - current_state: MATERIALIZED
 - owner_surface_state: MATERIALIZED
-- owner_surface: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_high_intake_graph_v1.json
+- owner_surface: /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_high_intake_graph_v1.json
 - existing_outputs: 2/2
 
 ## A2_MID_REFINEMENT
@@ -53,7 +53,7 @@ live_substrate: single_authoritative_multigraph_plus_projections
 - declared_status: MATERIALIZED_FROM_EXISTING_FUEL
 - current_state: MATERIALIZED
 - owner_surface_state: MATERIALIZED
-- owner_surface: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_mid_refinement_graph_v1.json
+- owner_surface: /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_mid_refinement_graph_v1.json
 - existing_outputs: 2/2
 
 ## A2_LOW_CONTROL
@@ -62,7 +62,7 @@ live_substrate: single_authoritative_multigraph_plus_projections
 - declared_status: MATERIALIZED_FROM_EXISTING_FUEL
 - current_state: MATERIALIZED
 - owner_surface_state: MATERIALIZED
-- owner_surface: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_low_control_graph_v1.json
+- owner_surface: /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/a2_low_control_graph_v1.json
 - existing_outputs: 2/2
 
 ## A1_JARGONED
@@ -71,7 +71,7 @@ live_substrate: single_authoritative_multigraph_plus_projections
 - declared_status: MATERIALIZED_FROM_SCOPE_ALIGNED_FUEL
 - current_state: MATERIALIZED
 - owner_surface_state: MATERIALIZED
-- owner_surface: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_jargoned_graph_v1.json
+- owner_surface: /home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/a1_jargoned_graph_v1.json
 - existing_outputs: 2/2
 
 ## A1_STRIPPED
@@ -80,7 +80,7 @@ live_substrate: single_authoritative_multigraph_plus_projections
 - declared_status: BLOCKED_ON_DIRECT_ENTROPY_EXECUTABLE_PAUSE
 - current_state: BLOCKED
 - owner_surface_state: BLOCKED
-- owner_surface: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_stripped_graph_v1.json
+- owner_surface: /home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/a1_stripped_graph_v1.json
 - existing_outputs: 2/2
 
 ## A1_CARTRIDGE
@@ -89,5 +89,5 @@ live_substrate: single_authoritative_multigraph_plus_projections
 - declared_status: BLOCKED_ON_DIRECT_ENTROPY_EXECUTABLE_PAUSE
 - current_state: BLOCKED
 - owner_surface_state: BLOCKED
-- owner_surface: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a1_state/a1_cartridge_graph_v1.json
+- owner_surface: /home/ratchet/Desktop/Codex Ratchet/system_v4/a1_state/a1_cartridge_graph_v1.json
 - existing_outputs: 2/2

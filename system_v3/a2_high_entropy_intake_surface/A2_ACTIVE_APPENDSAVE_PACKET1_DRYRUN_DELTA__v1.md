@@ -32,9 +32,9 @@ Proposed insertion text:
 ```md
 ## 25) Anti-Drift And Worldview-Pressure Consequences (2026-03-09)
 Source notes:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__TRIO_03__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__PAIR_01__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_ACTIVE_APPENDSAVE_CANDIDATE_SHORTLIST__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__TRIO_03__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__PAIR_01__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_ACTIVE_APPENDSAVE_CANDIDATE_SHORTLIST__v1.md`
 
 Only the smallest anti-drift subset is being carried forward here.
 This is not a promotion of worldview overlays, translation residue, or cosmology pressure as active law.
@@ -94,9 +94,9 @@ Operational implication:
 - if a cleaner paraphrase requires hidden reconstruction, the material should remain in memo/quarantine handling rather than entering A2-1 control memory
 
 Main sources:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__TRIO_03__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__PAIR_01__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_ACTIVE_APPENDSAVE_CANDIDATE_SHORTLIST__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__TRIO_03__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__PAIR_01__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_ACTIVE_APPENDSAVE_CANDIDATE_SHORTLIST__v1.md`
 ```
 
 ## 4) Dry-Run Delta For `OPEN_UNRESOLVED__v1.md`

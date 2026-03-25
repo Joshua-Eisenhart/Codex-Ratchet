@@ -14,7 +14,7 @@ Date: 2026-03-09
   - provisional operator-role rosetta
 
 ## Why this reduction is narrow
-- the prior batch [`BATCH_A2MID_axes_master_semantic_fences__v1`](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_axes_master_semantic_fences__v1/A2_2_REFINED_CANDIDATES__v1.md) already compressed the strongest axis-semantics fences
+- the prior batch [`BATCH_A2MID_axes_master_semantic_fences__v1`](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_A2MID_axes_master_semantic_fences__v1/A2_2_REFINED_CANDIDATES__v1.md) already compressed the strongest axis-semantics fences
 - this pass therefore keeps only the companion's overlay-discipline and translation-hygiene contributions
 - direct Axis-3 / Flux2 conflict, Terrain8 expansion, and Jung/IGT ontology pressure remain quarantined instead of being normalized
 

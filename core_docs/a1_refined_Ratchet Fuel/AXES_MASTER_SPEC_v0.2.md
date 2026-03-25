@@ -9,7 +9,7 @@ REFERENCE
 GLOBAL LOCKS (HARD)
 - Geometry is the constraint manifold and exists before Axes 0–6.
 - Axes 0–6 are functions/slices on the constraint manifold; they are not primitives.
-- Axis-3 is the engine-family split mapped directly to Weyl Spinor Flux (Inward vs Outward).
+- Axis-3 is ONLY the engine-family split (Type-1 vs Type-2), without explicit Flux binding.
 
 ## 0) Notation
 
@@ -34,13 +34,12 @@ GLOBAL LOCKS (HARD)
 - Codomain: **V₅ = {Line (Partition), Wave (Mixing)}**
 - Rule: Axis-5 partitions the mathematical calculus toolhead into integration vs differentiation boundaries.
 - **Wave Family (FeFi / Mixing):** Integration algebra that binds, smooths, and correlates continuous fields. Native to a topological Fourier ring basis: $\rho \mapsto \sum_k W_k \rho W_k^\dagger$. Primary physical operators: The Laplacian ($\nabla^2$) and the Fourier Transform ($\mathcal{F}$).
-- **Line Family (TeTi / Partition):** Differentiation algebra that cuts, separates, and isolates sharp discrete boundaries. Native to the discrete computational checkerboard basis: $\rho \mapsto \sum_x P_x \rho P_x$. Primary physical operators: The Gradient ($\nabla$) and the Dirac Delta projector.
+- **Line Family (TeTi / Partition)::** Differentiation algebra that cuts, separates, and isolates sharp discrete boundaries. Native to the discrete computational checkerboard basis: $\rho \mapsto \sum_x P_x \rho P_x$. Primary physical operators: The Gradient ($\nabla$) and the Dirac Delta projector.
 
-## 4) Axis-3 (engine-family split)
-
-- Codomain: **V₃ = {Inward-Flux (Type-1), Outward-Flux (Type-2)}**
-- Rule: Axis-3 selects the Weyl Spinor topological framework (Type-1 vs Type-2).
-- Engine Type 1 (Deductive template) applies Inward flux; Engine Type 2 (Inductive template) applies Outward flux.
+## 4) Axis-3: Type Selection ($A_3 \in \{0, 1\}$)
+- **Topological Role**: Top-level fork for operator family (e.g. Identity-preservation vs. Phase/Inversion logic).
+- **Physical Interpretation**: *[Removed from Canon]* Axis-3 is the locus of several physical hypotheses, most prominently the Weyl Spinor Chirality mapping. See `AXIS3_HYPOTHESES.md` for physical overlays.
+- **Values**: Type-1 vs Type-2 mappings are Engine overlay specifications, not CANON Axis definitions.
 
 ## 5) Axis-4 (Operator Family / Thermodynamic Optimization)
 
@@ -63,7 +62,7 @@ GLOBAL LOCKS (HARD)
 
 - Axis-4 ≠ Axis-6 (math class vs composition sidedness).
 - Axis-1×Axis-2 base regimes ≠ edges/adjacency structures.
-- Axis-3 defines the physical Weyl Spinor chirality constraint (inward/outward path flow).
+- Axis-3 is the engine-family split only (Type-1 vs Type-2). Physical overlays (Weyl/Flux/Impedance) are tracked in `AXIS3_HYPOTHESES.md`.
 
 ## 8) Ratchet ingestion order (roadmap only)
 

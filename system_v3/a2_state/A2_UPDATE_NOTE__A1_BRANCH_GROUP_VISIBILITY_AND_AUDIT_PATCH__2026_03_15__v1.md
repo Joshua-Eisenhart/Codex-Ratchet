@@ -41,10 +41,10 @@ This was weaker than the owner/doctrine surfaces that already talk in terms of:
 - term-family grouping
 
 Grounding surfaces checked during this patch:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/PROMOTION_BINDING_v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A1_CONSOLIDATION_PREPACK_JOB__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/PROMOTION_BINDING_v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A1_CONSOLIDATION_PREPACK_JOB__v1.md`
 
 ## Why no new family-slice grouping hint object was added
 
@@ -64,7 +64,7 @@ So the right move here was:
 ## What changed
 
 Live planner file:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
 
 New emitted field:
 - `BRANCH_GROUP`
@@ -88,7 +88,7 @@ New self-audit surfaces:
 ## Controller audit impact
 
 Audit file:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
 
 New live audit check:
 - `AUTORATCHET_FAMILY_SLICE_BRANCH_GROUPS_VISIBLE`
@@ -105,7 +105,7 @@ Important detail:
 ## Focused regressions
 
 Planner/runtime:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
 
 Updated expectations:
 - tested family-slice baseline branch emits `BRANCH_GROUP`
@@ -113,7 +113,7 @@ Updated expectations:
 - self-audit now reports the expected `branch_groups_used`
 
 Controller audit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py`
 
 Updated expectations:
 - visible branch-group metadata passes when it matches actual emitted grouping

@@ -8,10 +8,10 @@
 
 ## Anchor Runs
 
-- `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_09__20260309T070408Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_RATE_LOCAL_0001`
-- `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_09__20260309T070408Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_RATE_LIFT_BROAD_0001`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BOOKKEEPING_PAIR_LOCAL_0001`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_CORRELATION_POLARITY_LOCAL_0003`
+- `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_09__20260309T070408Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_RATE_LOCAL_0001`
+- `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_09__20260309T070408Z/RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE_RATE_LIFT_BROAD_0001`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_ENTROPY_BOOKKEEPING_PAIR_LOCAL_0001`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs/RUN_GRAVEYARD_VALIDITY_CORRELATION_POLARITY_LOCAL_0003`
 
 ## What This Family Carries
 
@@ -117,4 +117,4 @@ Key cited surfaces:
 
 ## Regeneration Witness Companion
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_RATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_REGENERATION_WITNESS__ENTROPY_RATE_FAMILY__v1.md`

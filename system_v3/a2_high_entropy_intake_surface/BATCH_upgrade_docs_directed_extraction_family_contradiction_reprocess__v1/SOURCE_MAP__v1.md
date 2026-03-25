@@ -7,37 +7,37 @@ Date: 2026-03-08
 
 ## 1) Folder-Order Selection
 - prior completed batch ended at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md`
 - next adjacent family selected in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS_v2.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_AUDIT_AND_QUESTIONS.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS_v2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_AUDIT_AND_QUESTIONS.md`
 - bundling reason:
   - the three docs are a single bounded question/answer family
   - `AUDIT_AND_QUESTIONS` defines six missing-structure gaps and six targeted question sets
   - `ANSWERS` and `ANSWERS_v2` are two extraction passes over that same question set
   - the highest-value output is contradiction-preserving comparison, not three isolated source maps
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md`
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS.md`
   - sha256: `18450e8a57f8b55f1706891bdff21c2c23caee214622335d6b02858e6847cdab`
   - size bytes: `4107`
   - line count: `168`
   - source-class note:
     - explicit answer sheet marked `STATE_EXTRACTION_ONLY`, with strong `UNSPECIFIED — DO NOT INFER` discipline
 - source 2:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS_v2.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS_v2.md`
   - sha256: `50238ccbf6f3936d613e8f83d29d113cf39bb386cba0b3dc189729deb1ca4ad3`
   - size bytes: `4135`
   - line count: `127`
   - source-class note:
     - denser answer rewrite preserving more verbatim thread phrases and some additional proposal-side ZIP naming
 - source 3:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_AUDIT_AND_QUESTIONS.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_AUDIT_AND_QUESTIONS.md`
   - sha256: `497789608a36fbdcd7ebec41fa2a51d06288016f5087e2c930f83c225e0671eb`
   - size bytes: `4896`
   - line count: `204`

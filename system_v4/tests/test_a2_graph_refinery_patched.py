@@ -11,7 +11,7 @@ Tests all 7 newly added capabilities:
   7. Mid-session checkpointing
 
 Usage:
-    cd /Users/joshuaeisenhart/Desktop/Codex\ Ratchet
+    cd <repo_root>
     python -m system_v4.skills.test_a2_graph_refinery_patched
 """
 

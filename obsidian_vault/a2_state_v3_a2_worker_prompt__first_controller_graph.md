@@ -9,7 +9,7 @@ authority: "SOURCE_CLAIM"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_worker_prompt__first_controller_graph::f86a120c84ab7cdd`
 
 ## Description
-A2_WORKER_PROMPT__FIRST_CONTROLLER_GRAPH_USE_PLAN__2026_03_16__v1.txt (2185B): Use $ratchet-a2-a1.  Use the current A2 boot: - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md  Run one bounded A1_ROSETTA_BRIDGE pass only.  dispatch_id: A2_WORKER__FIRST_CONTROLLER_GRAPH_USE_PLAN__2026_03_16__v1 ROLE_LABEL: A1 Rosetta Bridge ROLE_TYPE: A1_ROS
+A2_WORKER_PROMPT__FIRST_CONTROLLER_GRAPH_USE_PLAN__2026_03_16__v1.txt (2185B): Use $ratchet-a2-a1.  Use the current A2 boot: - /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md  Run one bounded A1_ROSETTA_BRIDGE pass only.  dispatch_id: A2_WORKER__FIRST_CONTROLLER_GRAPH_USE_PLAN__2026_03_16__v1 ROLE_LABEL: A1 Rosetta Bridge ROLE_TYPE: A1_ROS
 
 ## Properties
 - **source_line_range**: 

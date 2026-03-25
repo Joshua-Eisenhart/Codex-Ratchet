@@ -38,4 +38,4 @@ Extraction mode: `LOW_ENTROPY_LIBRARY_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_SYSTEM_SPEC_v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_SYSTEM_SPEC_v1.md`

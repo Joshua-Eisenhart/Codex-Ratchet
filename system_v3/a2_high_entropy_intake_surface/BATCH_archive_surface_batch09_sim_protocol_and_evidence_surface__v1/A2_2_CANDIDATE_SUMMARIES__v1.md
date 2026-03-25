@@ -39,5 +39,5 @@ Extraction mode: `ARCHIVE_LAYERED_EXTRACTION_PACKAGE_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_10_OF_10__A2_LAYER1_5__OUTPUT__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__v1_0.zip`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_10_OF_10__A2_LAYER1_5__OUTPUT__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__v1_0.zip`
   - that pass should remain isolated as its own archive package family

@@ -7,17 +7,17 @@ Date: 2026-03-08
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/FULL_READ_LOG_PASS_4.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/FULL_READ_LOG_PASS_4.md`
 - reason for single-doc batch:
   - one bounded structured read-log artifact
   - internally consistent repeated schema across many logged documents
   - valuable as an archived audit/index surface rather than as a source-family bundle
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/README_A2_EXPORT_PACK_SMALL.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/README_A2_EXPORT_PACK_SMALL.md`
 
 ## 2) Source Membership
 - primary source:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/FULL_READ_LOG_PASS_4.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/FULL_READ_LOG_PASS_4.md`
   - sha256: `96c9d223f9432174187a6dbf67e8f729be0d2e0be6c4610f5122aa968c1a18bb`
   - size bytes: `55083`
   - line count: `1316`

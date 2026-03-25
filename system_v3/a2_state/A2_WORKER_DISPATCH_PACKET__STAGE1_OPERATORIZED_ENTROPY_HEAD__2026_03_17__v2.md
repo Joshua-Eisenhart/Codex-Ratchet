@@ -10,17 +10,17 @@ Role: exact bounded `A2_WORKER` dispatch packet for the Stage-1 operatorized ent
 - `dispatch_id: A2_HIGH_REFINERY_PASS__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_17__v2`
 - `thread_class: A2_WORKER`
 - `model: GPT-5.4 Medium` (or Pro/Minimax)
-- `BOOT_SURFACE: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+- `BOOT_SURFACE: /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
 - `ROLE_LABEL: A2H Refined Fuel Non-Sims`
 - `ROLE_TYPE: A2_HIGH_REFINERY_PASS`
 - `ROLE_SCOPE: bounded Stage-1 head grounding pass ensuring Left/Right Weyl engine loop inequalities`
 
 ## Source artifacts
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__DUAL_STACKED_ENGINE_TOPOLOGY__2026_03_17__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints. Entropy.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__DUAL_STACKED_ENGINE_TOPOLOGY__2026_03_17__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints. Entropy.md`
 
 ## BOUNDED_SCOPE
 
@@ -37,16 +37,16 @@ Run one bounded Stage-1 head grounding pass that:
 Use $ratchet-a2-a1 and $a2-brain-refresh.
 
 Use the current A2 boot:
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md
 
 Run one bounded A2_HIGH_REFINERY_PASS.
 dispatch_id: A2_HIGH_REFINERY_PASS__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_17__v2
 
 Use only these artifacts:
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__DUAL_STACKED_ENGINE_TOPOLOGY__2026_03_17__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints. Entropy.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__DUAL_STACKED_ENGINE_TOPOLOGY__2026_03_17__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints. Entropy.md
 
 Task:
 - ground the Stage-1 head family: probe_induced_partition_boundary and correlation_diversity_functional.

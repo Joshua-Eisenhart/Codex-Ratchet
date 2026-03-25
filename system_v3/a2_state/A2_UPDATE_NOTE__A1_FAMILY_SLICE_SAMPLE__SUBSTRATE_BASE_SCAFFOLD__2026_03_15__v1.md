@@ -9,7 +9,7 @@ Role: preserve one concrete sample `A2_TO_A1_FAMILY_SLICE_v1` object for the fir
 This note exists so the family-slice rewrite direction is not only abstract.
 
 It points to one concrete sample payload:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json`
 
 That sample is:
 - draft

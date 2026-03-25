@@ -41,6 +41,6 @@ Role: bounded controller-grade note for context/spec/workflow lane landing and n
 
 ## Source anchors
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_CONTEXT_SPEC_WORKFLOW_PATTERN_AUDIT_REPORT__CURRENT__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_SOURCE_FAMILY_LANE_SELECTION_PACKET__CURRENT__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_CONTEXT_SPEC_WORKFLOW_PATTERN_AUDIT_REPORT__CURRENT__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_SOURCE_FAMILY_LANE_SELECTION_PACKET__CURRENT__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.json`

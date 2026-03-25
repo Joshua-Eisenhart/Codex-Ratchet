@@ -28,7 +28,7 @@ This note is not:
 - permission to let older order notes, loop-order definitions, or thermodynamic metaphor override the existing math-first axis fences
 
 Important lane choice:
-- [A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1.md) already preserved the global anti-hierarchy and anti-overread fences
+- [A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1.md) already preserved the global anti-hierarchy and anti-overread fences
 - this note keeps only the unresolved Axis-4/Axis-5 conflict-handling subset that remained outside that earlier promotion
 
 ## 2) Promotion Rule Used

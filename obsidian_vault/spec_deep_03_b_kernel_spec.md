@@ -16,7 +16,7 @@ Owner: `RQ-020..RQ-029`, `RQ-060..RQ-064`
 
 ## Authority
 Behavior is anchored to:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/BOOTPACK_THREAD_B_v3.9.13.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/BOOTPACK_THREAD_B_v3.9.13.md`
 
 If boot text is ambiguous, result is `UNKNOWN` and admission is
 

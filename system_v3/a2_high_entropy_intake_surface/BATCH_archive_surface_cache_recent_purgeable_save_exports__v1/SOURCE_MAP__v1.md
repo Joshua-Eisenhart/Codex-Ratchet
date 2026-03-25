@@ -7,33 +7,33 @@ Date: 2026-03-09
 
 ## 1) Batch Selection
 - selected sources:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/SAFE_TO_DELETE_NOW__20260224_071639Z.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__bootstrap__20260224_065046Z.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__bootstrap__20260224_065046Z.zip.sha256`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__bootstrap__smoke.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__bootstrap__smoke.zip.sha256`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__20260224_065121Z.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__20260224_065121Z.zip.sha256`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__20260224_070148Z.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__20260224_070148Z.zip.sha256`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__smoke.zip`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__smoke.zip.sha256`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/SAFE_TO_DELETE_NOW__20260224_071639Z.txt`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__bootstrap__20260224_065046Z.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__bootstrap__20260224_065046Z.zip.sha256`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__bootstrap__smoke.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__bootstrap__smoke.zip.sha256`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__20260224_065121Z.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__20260224_065121Z.zip.sha256`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__20260224_070148Z.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__20260224_070148Z.zip.sha256`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__smoke.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__smoke.zip.sha256`
 - reason for bounded family batch:
   - this is the next unread archive-root family in folder order after the packaged batch sequence
   - it is explicitly marked purgeable cache, so it should be preserved as export-lineage and retention-policy evidence rather than mined for doctrine
   - keeping it isolated avoids flattening recent save exports into deeper milestone archives or legacy reference families
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY`
 
 ## 2) Source Membership
 ### Source 1
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/SAFE_TO_DELETE_NOW__20260224_071639Z.txt`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/SAFE_TO_DELETE_NOW__20260224_071639Z.txt`
 - size bytes: `1127`
 - line count: `14`
 - source class: cache-tier delete-allow list
 
 ### Source 2
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__bootstrap__20260224_065046Z.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__bootstrap__20260224_065046Z.zip`
 - sha256: `335a3cb4d3cc24acd71d914929bd6eac34e4578df5f2f7dcf78141e0f78f3b31`
 - size bytes: `2462921`
 - container member count: `580`
@@ -43,13 +43,13 @@ Date: 2026-03-09
 - source class: cache-tier bootstrap save export
 
 ### Source 3
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__bootstrap__20260224_065046Z.zip.sha256`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__bootstrap__20260224_065046Z.zip.sha256`
 - size bytes: `65`
 - line count: `1`
 - source class: detached checksum sidecar
 
 ### Source 4
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__bootstrap__smoke.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__bootstrap__smoke.zip`
 - sha256: `419225fae1dc9fd8b27f5ca1c1f2e22ad5a7acffc667fc01ad47c29d398f174e`
 - size bytes: `2462624`
 - container member count: `580`
@@ -59,13 +59,13 @@ Date: 2026-03-09
 - source class: cache-tier bootstrap smoke save export
 
 ### Source 5
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__bootstrap__smoke.zip.sha256`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__bootstrap__smoke.zip.sha256`
 - size bytes: `65`
 - line count: `1`
 - source class: detached checksum sidecar
 
 ### Source 6
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__20260224_065121Z.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__20260224_065121Z.zip`
 - sha256: `085912605838729b0d085b7c904a3d72ccabc9dc1273999da51ef2a5a385d0aa`
 - size bytes: `2496318`
 - container member count: `605`
@@ -75,13 +75,13 @@ Date: 2026-03-09
 - source class: cache-tier debug save export
 
 ### Source 7
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__20260224_065121Z.zip.sha256`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__20260224_065121Z.zip.sha256`
 - size bytes: `65`
 - line count: `1`
 - source class: detached checksum sidecar
 
 ### Source 8
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__20260224_070148Z.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__20260224_070148Z.zip`
 - sha256: `e99bd03e6cfac2e9d71a52955a86e23fa5a8b7a9ff7e7153fded2eb0a1ea2b27`
 - size bytes: `2496718`
 - container member count: `605`
@@ -91,13 +91,13 @@ Date: 2026-03-09
 - source class: cache-tier later debug save export
 
 ### Source 9
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__20260224_070148Z.zip.sha256`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__20260224_070148Z.zip.sha256`
 - size bytes: `65`
 - line count: `1`
 - source class: detached checksum sidecar
 
 ### Source 10
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__smoke.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__smoke.zip`
 - sha256: `f00a5a57bf1b6d2f8d7c3bc2f06032a67d91e5270044f220cf98c5e9e545fc0b`
 - size bytes: `2492554`
 - container member count: `602`
@@ -107,7 +107,7 @@ Date: 2026-03-09
 - source class: cache-tier debug smoke save export
 
 ### Source 11
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__smoke.zip.sha256`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/save_exports__20260224_070730Z/SYSTEM_SAVE__debug__RUN_PHASE1_AUTORATCHET_0001__smoke.zip.sha256`
 - size bytes: `65`
 - line count: `1`
 - source class: detached checksum sidecar

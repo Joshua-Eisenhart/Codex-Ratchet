@@ -547,7 +547,7 @@ Current guidance:
 ## Update — March 6, 2026 (Thread-process correction)
 
 Thread export ingested as weighted source history:
-- `/Users/joshuaeisenhart/Desktop/codex thread save.txt`
+- `/home/ratchet/Desktop/codex thread save.txt`
 
 Strong user-priority correction:
 

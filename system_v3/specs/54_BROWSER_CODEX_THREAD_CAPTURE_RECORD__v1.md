@@ -7,7 +7,7 @@ Owner: current `A2` controller for bounded browser-assisted Codex continuation
 ## Purpose
 
 This note defines the observed capture record that sits before:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/53_BROWSER_CODEX_THREAD_TARGET_CAPTURE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/53_BROWSER_CODEX_THREAD_TARGET_CAPTURE__v1.md`
 
 It exists because one real browser target cannot honestly be marked `READY` from guessed values.
 The system needs one stable artifact for the observed thread route, title, visible marker,
@@ -86,7 +86,7 @@ Every capture record must include:
 This record is not the final send target.
 
 The final target packet still lives under:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/51_BROWSER_CODEX_THREAD_TARGET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/51_BROWSER_CODEX_THREAD_TARGET__v1.md`
 
 The capture record exists to justify the final values used there.
 

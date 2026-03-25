@@ -19,7 +19,7 @@ GUARDRAILS:
 
 ### Thread A: Pytest + Mutmut Quality Gate
 ```
-You are working in /Users/joshuaeisenhart/Desktop/Codex Ratchet
+You are working in /home/ratchet/Desktop/Codex Ratchet
 Activate .venv_spec_graph.
 
 1. Run the existing test suite:
@@ -38,7 +38,7 @@ Activate .venv_spec_graph.
 
 ### Thread B: Hypothesis Deep Invariant Suite
 ```
-You are working in /Users/joshuaeisenhart/Desktop/Codex Ratchet
+You are working in /home/ratchet/Desktop/Codex Ratchet
 Activate .venv_spec_graph.
 
 Write and run a comprehensive Hypothesis invariant test suite covering ALL graph files.
@@ -61,7 +61,7 @@ Write script: system_v4/probes/test_graph_invariants_deep.py
 
 ### Thread C: OPA/Conftest Policy Engine Probe
 ```
-You are working in /Users/joshuaeisenhart/Desktop/Codex Ratchet
+You are working in /home/ratchet/Desktop/Codex Ratchet
 Activate .venv_spec_graph.
 
 Evaluate OPA (Open Policy Agent) and Conftest for graph artifact policy checking:
@@ -84,7 +84,7 @@ Evaluate OPA (Open Policy Agent) and Conftest for graph artifact policy checking
 
 ### Thread D: egglog Promotion Auditor (Production-Grade)
 ```
-You are working in /Users/joshuaeisenhart/Desktop/Codex Ratchet
+You are working in /home/ratchet/Desktop/Codex Ratchet
 Activate .venv_spec_graph. egglog 13.0.1 is installed.
 
 Build on the working examples in:
@@ -104,7 +104,7 @@ system_v4/a2_state/audit_logs/EGGLOG_V13_WORKING_EXAMPLES__v1.md
 
 ### Thread E: PySMT Graph Legality Constraint Library
 ```
-You are working in /Users/joshuaeisenhart/Desktop/Codex Ratchet  
+You are working in /home/ratchet/Desktop/Codex Ratchet  
 Activate .venv_spec_graph. PySMT 0.9.6, z3-solver 4.16.0, cvc5 1.3.3 installed.
 
 Build a reusable constraint library for graph legality:
@@ -126,7 +126,7 @@ Build a reusable constraint library for graph legality:
 
 ### Thread F: dotmotif Structural Pattern Catalog
 ```
-You are working in /Users/joshuaeisenhart/Desktop/Codex Ratchet
+You are working in /home/ratchet/Desktop/Codex Ratchet
 Activate .venv_spec_graph. dotmotif 0.14.0 is installed.
 
 Build a structural pattern catalog across all graphs:
@@ -156,7 +156,7 @@ Build a structural pattern catalog across all graphs:
 
 ### Thread G: Topology Comparison Deep Dive
 ```
-You are working in /Users/joshuaeisenhart/Desktop/Codex Ratchet
+You are working in /home/ratchet/Desktop/Codex Ratchet
 Activate .venv_spec_graph. GUDHI 3.11.0, leidenalg 0.11.0 installed.
 
 Read the existing results:
@@ -176,7 +176,7 @@ Extend the topology analysis:
 
 ### Thread H: Community-to-Layer Alignment Audit
 ```
-You are working in /Users/joshuaeisenhart/Desktop/Codex Ratchet
+You are working in /home/ratchet/Desktop/Codex Ratchet
 Activate .venv_spec_graph. leidenalg installed.
 
 The nested graph has 5 manually-defined layers (HIGH_INTAKE, MID_REFINEMENT, LOW_CONTROL, A1_JARGONED, PROMOTED).
@@ -194,7 +194,7 @@ Question: Do the algorithmically-discovered communities ALIGN with the manual la
 
 ### Thread I: Graph Health Dashboard
 ```
-You are working in /Users/joshuaeisenhart/Desktop/Codex Ratchet
+You are working in /home/ratchet/Desktop/Codex Ratchet
 Activate .venv_spec_graph.
 
 Build a comprehensive graph health check that tests the ENTIRE graph corpus:
@@ -218,7 +218,7 @@ Build a comprehensive graph health check that tests the ENTIRE graph corpus:
 
 ### Thread J: Cross-Graph Overlap Analysis
 ```
-You are working in /Users/joshuaeisenhart/Desktop/Codex Ratchet
+You are working in /home/ratchet/Desktop/Codex Ratchet
 Activate .venv_spec_graph.
 
 Analyze how the 5 layer graphs overlap and relate:
@@ -237,8 +237,8 @@ Analyze how the 5 layer graphs overlap and relate:
 ### Thread K: Source Family Deep Eval (research)
 ```
 Read these files:
-- /Users/joshuaeisenhart/Desktop/RESEARCH_BY_DOMAIN/08__SOURCE_FAMILY_CORPUS_EXPANSION.md
-- /Users/joshuaeisenhart/Desktop/RESEARCH_BY_DOMAIN/10__CROSS_REFERENCE__ANTIGRAVITY_x_CODEX_PRO.md
+- /home/ratchet/Desktop/RESEARCH_BY_DOMAIN/08__SOURCE_FAMILY_CORPUS_EXPANSION.md
+- /home/ratchet/Desktop/RESEARCH_BY_DOMAIN/10__CROSS_REFERENCE__ANTIGRAVITY_x_CODEX_PRO.md
 
 Do deep web research on the top 5 "save now" source families that we haven't installed yet:
 1. Scikit-TDA (ripser, kepler-mapper, persim) — what does each sub-package actually do? API examples?
@@ -248,13 +248,13 @@ Do deep web research on the top 5 "save now" source families that we haven't ins
 5. GitHub Spec Kit — what are the 4 phases? How does `specify` CLI work?
 
 For each: exact install command, Python version compatibility, last release date, dependency weight.
-Write results to: /Users/joshuaeisenhart/Desktop/RESEARCH_BY_DOMAIN/11__SOURCE_FAMILY_DEEP_EVAL__v1.md
+Write results to: /home/ratchet/Desktop/RESEARCH_BY_DOMAIN/11__SOURCE_FAMILY_DEEP_EVAL__v1.md
 ```
 
 ### Thread L: Codex Pro Completed Output Deep Read
 ```
 Read the completed Codex Pro ZIP outputs in:
-/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/
+/home/ratchet/Desktop/Codex Ratchet/work/to_send_to_pro/jobs/
 
 Extract and organize the content from these completed ZIP files:
 - COMPLETED_ZIP_JOB__*MEMORY_CONTINUITY*.zip
@@ -267,10 +267,10 @@ Extract and organize the content from these completed ZIP files:
 
 For each ZIP: extract the RATCHET_FUEL_SELECTION_MATRIX, REJECT_LOG, TOP_5 lists.
 Cross-reference with:
-/Users/joshuaeisenhart/Desktop/RESEARCH_BY_DOMAIN/10__CROSS_REFERENCE__ANTIGRAVITY_x_CODEX_PRO.md
+/home/ratchet/Desktop/RESEARCH_BY_DOMAIN/10__CROSS_REFERENCE__ANTIGRAVITY_x_CODEX_PRO.md
 
 Find any tools or findings the cross-reference document MISSED.
-Write: /Users/joshuaeisenhart/Desktop/RESEARCH_BY_DOMAIN/12__CODEX_PRO_DEEP_READ__v1.md
+Write: /home/ratchet/Desktop/RESEARCH_BY_DOMAIN/12__CODEX_PRO_DEEP_READ__v1.md
 ```
 
 ---
@@ -279,7 +279,7 @@ Write: /Users/joshuaeisenhart/Desktop/RESEARCH_BY_DOMAIN/12__CODEX_PRO_DEEP_READ
 
 ### Thread M: Git Commit the DVC Setup
 ```
-You are working in /Users/joshuaeisenhart/Desktop/Codex Ratchet
+You are working in /home/ratchet/Desktop/Codex Ratchet
 Read system_v4/a2_state/audit_logs/DVC_SETUP_REPORT__v1.md
 
 1. Check git status
@@ -295,7 +295,7 @@ Read system_v4/a2_state/audit_logs/DVC_SETUP_REPORT__v1.md
 
 ### Thread N: pip freeze Snapshot
 ```
-You are working in /Users/joshuaeisenhart/Desktop/Codex Ratchet
+You are working in /home/ratchet/Desktop/Codex Ratchet
 Activate .venv_spec_graph.
 
 1. Run: pip freeze > system_v4/a2_state/audit_logs/PIP_FREEZE__venv_spec_graph__2026_03_22.txt

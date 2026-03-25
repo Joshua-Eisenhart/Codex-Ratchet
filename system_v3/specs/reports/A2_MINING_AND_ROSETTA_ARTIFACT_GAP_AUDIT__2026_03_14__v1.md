@@ -5,16 +5,16 @@ Date: 2026-03-14
 ## Scope
 
 Audit current mining/Rosetta tooling against:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/75_A2_MINING_AND_ROSETTA_ARTIFACT_PACKS__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/15_ROSETTA_AND_MINING_ARTIFACTS.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/75_A2_MINING_AND_ROSETTA_ARTIFACT_PACKS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/15_ROSETTA_AND_MINING_ARTIFACTS.md`
 
 Legacy witness:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/BOOTPACKS/BOOTPACK_THREAD_M_v1.0.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/BOOTPACKS/BOOTPACK_THREAD_M_v1.0.md`
 
 Audited files:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/legacy_extract.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/ingest_a2_distillery_zip.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/legacy_extract.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/ingest_a2_distillery_zip.py`
 
 ## Findings
 
@@ -23,9 +23,9 @@ Audited files:
 Current legacy extractor scans old markdown files for keyword/role hits and writes one JSON report.
 
 Witness:
-- [legacy_extract.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools/legacy_extract.py#L40)
-- [legacy_extract.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools/legacy_extract.py#L95)
-- [legacy_extract.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools/legacy_extract.py#L127)
+- [legacy_extract.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools/legacy_extract.py#L40)
+- [legacy_extract.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools/legacy_extract.py#L95)
+- [legacy_extract.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools/legacy_extract.py#L127)
 
 Gap:
 - extraction exists
@@ -39,9 +39,9 @@ Current cold-core strip logic:
 - extracts rescue targets and negative classes
 
 Witness:
-- [a1_cold_core_strip.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools/a1_cold_core_strip.py#L48)
-- [a1_cold_core_strip.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools/a1_cold_core_strip.py#L68)
-- [a1_cold_core_strip.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools/a1_cold_core_strip.py#L210)
+- [a1_cold_core_strip.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools/a1_cold_core_strip.py#L48)
+- [a1_cold_core_strip.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools/a1_cold_core_strip.py#L68)
+- [a1_cold_core_strip.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools/a1_cold_core_strip.py#L210)
 
 Gap:
 - cold-core filtering exists
@@ -55,9 +55,9 @@ Current distillery ingest:
 - appends rosetta candidates to `a1_brain.jsonl`
 
 Witness:
-- [ingest_a2_distillery_zip.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools/ingest_a2_distillery_zip.py#L52)
-- [ingest_a2_distillery_zip.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools/ingest_a2_distillery_zip.py#L67)
-- [ingest_a2_distillery_zip.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/tools/ingest_a2_distillery_zip.py#L88)
+- [ingest_a2_distillery_zip.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools/ingest_a2_distillery_zip.py#L52)
+- [ingest_a2_distillery_zip.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools/ingest_a2_distillery_zip.py#L67)
+- [ingest_a2_distillery_zip.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/tools/ingest_a2_distillery_zip.py#L88)
 
 Gap:
 - ingest continuity exists
@@ -75,8 +75,8 @@ but the current tool layer does not yet make it structurally hard to confuse:
 - candidate pack
 
 Witness:
-- [15_ROSETTA_AND_MINING_ARTIFACTS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs/15_ROSETTA_AND_MINING_ARTIFACTS.md#L18)
-- [15_ROSETTA_AND_MINING_ARTIFACTS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs/15_ROSETTA_AND_MINING_ARTIFACTS.md#L53)
+- [15_ROSETTA_AND_MINING_ARTIFACTS.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/specs/15_ROSETTA_AND_MINING_ARTIFACTS.md#L18)
+- [15_ROSETTA_AND_MINING_ARTIFACTS.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/specs/15_ROSETTA_AND_MINING_ARTIFACTS.md#L53)
 
 Gap:
 - the boundary is conceptually defined
@@ -85,17 +85,17 @@ Gap:
 ## Exact patch targets
 
 1. Add artifact builders:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_fuel_digest.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_rosetta_map.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_overlay_save_doc.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_export_candidate_pack.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_fuel_digest.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_rosetta_map.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_overlay_save_doc.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_export_candidate_pack.py`
 
 2. Extend current tools:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/legacy_extract.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/legacy_extract.py`
   - source extraction feed
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_cold_core_strip.py`
   - kernel-lane emission feed
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/ingest_a2_distillery_zip.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/ingest_a2_distillery_zip.py`
   - structured pack emission or routing
 
 3. Add schemas:

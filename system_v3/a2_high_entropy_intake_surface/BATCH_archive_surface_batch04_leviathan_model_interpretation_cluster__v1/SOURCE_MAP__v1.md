@@ -7,17 +7,17 @@ Date: 2026-03-09
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_04_OF_10__LEVIATHAN_MODEL_INTERPRETATION_CLUSTER__OUTPUTS__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_04_OF_10__LEVIATHAN_MODEL_INTERPRETATION_CLUSTER__OUTPUTS__v1_1.zip`
 - reason for bounded single-package batch:
   - this is the next archive-root item after the archived physics/Grok/holodeck package
   - it is a materially different package class because it mixes `A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION` outputs with `A2_A1_RATCHET_FUEL_MINT` stage-2 artifacts in one archive
   - keeping it isolated preserves packaging drift, registry mismatches, and Leviathan contradiction lineage without mutating or overruling active A2 surfaces
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_05_OF_10__A2_LAYER1_5__OUTPUT__A2_A1_RATCHET_FUEL_MINT__THREAD_B_TRIGRAM_AND_MEGABOOT__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_05_OF_10__A2_LAYER1_5__OUTPUT__A2_A1_RATCHET_FUEL_MINT__THREAD_B_TRIGRAM_AND_MEGABOOT__v1_1.zip`
 
 ## 2) Source Membership
 ### Primary container
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_04_OF_10__LEVIATHAN_MODEL_INTERPRETATION_CLUSTER__OUTPUTS__v1_1.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_04_OF_10__LEVIATHAN_MODEL_INTERPRETATION_CLUSTER__OUTPUTS__v1_1.zip`
 - sha256: `a6e75571a3bbfc845b419a1eeed1f34bf7b14126f419357131e031935aa5f967`
 - size bytes: `75939`
 - container member count: `58`

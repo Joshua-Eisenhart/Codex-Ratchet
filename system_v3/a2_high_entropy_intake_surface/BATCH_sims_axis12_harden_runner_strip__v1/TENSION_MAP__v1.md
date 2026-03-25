@@ -90,7 +90,7 @@ Extraction mode: `SIM_AXIS12_HARDEN_RUNNER_STRIP_PASS`
 ## T6) The six corresponding orphan result surfaces are clearly linked to this strip, but this batch must still keep them out of source membership to preserve residual-class separation
 - source markers:
   - `BATCH_sims_residual_inventory_closure_audit__v1/MANIFEST.json`
-  - filename inventory of `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson`
+  - filename inventory of `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson`
 - tension:
   - the six declared result filenames are present in the repo-side result inventory
   - they belong to the next residual class, not this one

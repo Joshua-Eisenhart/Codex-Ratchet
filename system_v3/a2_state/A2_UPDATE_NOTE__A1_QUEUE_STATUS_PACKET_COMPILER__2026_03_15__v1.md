@@ -7,27 +7,27 @@ Role: preserve the new fail-closed `a1?` compiler seam where the controller can 
 ## Scope
 
 New queue-status tools:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a1_queue_status_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
 
 Focused regression:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_status_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_status_packet.py`
 
 Patched routing/docs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/32_A1_QUEUE_STATUS_SURFACE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_AND_AUTOMATION_PROCESS_FLOWS__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/32_A1_QUEUE_STATUS_SURFACE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_AND_AUTOMATION_PROCESS_FLOWS__2026_03_11__v1.md`
 
 Concrete sample queue packets:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__NO_WORK__2026_03_15__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__SUBSTRATE_BASE_SCAFFOLD__BUNDLE__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__NO_WORK__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__SUBSTRATE_BASE_SCAFFOLD__BUNDLE__2026_03_15__v1.json`
 
 Concrete ready outputs produced by the compiler:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/queue_status_packet__substrate_base_scaffold__2026_03_15__v1/A1_WORKER_LAUNCH_PACKET__A1_DISPATCH__QUEUE_STATUS_SUBSTRATE_PACKET__2026_03_15__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/queue_status_bundle__substrate_base_scaffold__2026_03_15__v1/A1_WORKER_LAUNCH_PACKET__A1_DISPATCH__QUEUE_STATUS_SUBSTRATE_BUNDLE__2026_03_15__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/queue_status_bundle__substrate_base_scaffold__2026_03_15__v1/A1_WORKER_LAUNCH_PACKET__A1_DISPATCH__QUEUE_STATUS_SUBSTRATE_BUNDLE__2026_03_15__v1__BUNDLE_RESULT.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/queue_status_packet__substrate_base_scaffold__2026_03_15__v1/A1_WORKER_LAUNCH_PACKET__A1_DISPATCH__QUEUE_STATUS_SUBSTRATE_PACKET__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/queue_status_bundle__substrate_base_scaffold__2026_03_15__v1/A1_WORKER_LAUNCH_PACKET__A1_DISPATCH__QUEUE_STATUS_SUBSTRATE_BUNDLE__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/queue_status_bundle__substrate_base_scaffold__2026_03_15__v1/A1_WORKER_LAUNCH_PACKET__A1_DISPATCH__QUEUE_STATUS_SUBSTRATE_BUNDLE__2026_03_15__v1__BUNDLE_RESULT.json`
 
 ## Problem
 
@@ -106,14 +106,14 @@ Syntax:
 - `python3 -m py_compile system_v3/tools/build_a1_queue_status_packet.py system_v3/tools/validate_a1_queue_status_packet.py system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_queue_status_packet.py`
 
 Concrete sample generation:
-- `python3 system_v3/tools/build_a1_queue_status_packet.py --no-work-reason 'no bounded A1 family slice is currently prepared' --out-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__NO_WORK__2026_03_15__v1.json'`
-- `python3 system_v3/tools/build_a1_queue_status_packet.py --family-slice-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json' --family-slice-schema-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1.schema.json' --model 'GPT-5.4 Medium' --dispatch-id 'A1_DISPATCH__QUEUE_STATUS_SUBSTRATE_PACKET__2026_03_15__v1' --preparation-mode packet --out-dir '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/queue_status_packet__substrate_base_scaffold__2026_03_15__v1' --out-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json'`
-- `python3 system_v3/tools/build_a1_queue_status_packet.py --family-slice-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json' --family-slice-schema-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1.schema.json' --model 'GPT-5.4 Medium' --dispatch-id 'A1_DISPATCH__QUEUE_STATUS_SUBSTRATE_BUNDLE__2026_03_15__v1' --preparation-mode bundle --out-dir '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/queue_status_bundle__substrate_base_scaffold__2026_03_15__v1' --out-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__SUBSTRATE_BASE_SCAFFOLD__BUNDLE__2026_03_15__v1.json'`
+- `python3 system_v3/tools/build_a1_queue_status_packet.py --no-work-reason 'no bounded A1 family slice is currently prepared' --out-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__NO_WORK__2026_03_15__v1.json'`
+- `python3 system_v3/tools/build_a1_queue_status_packet.py --family-slice-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json' --family-slice-schema-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1.schema.json' --model 'GPT-5.4 Medium' --dispatch-id 'A1_DISPATCH__QUEUE_STATUS_SUBSTRATE_PACKET__2026_03_15__v1' --preparation-mode packet --out-dir '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/queue_status_packet__substrate_base_scaffold__2026_03_15__v1' --out-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json'`
+- `python3 system_v3/tools/build_a1_queue_status_packet.py --family-slice-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json' --family-slice-schema-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1.schema.json' --model 'GPT-5.4 Medium' --dispatch-id 'A1_DISPATCH__QUEUE_STATUS_SUBSTRATE_BUNDLE__2026_03_15__v1' --preparation-mode bundle --out-dir '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/queue_status_bundle__substrate_base_scaffold__2026_03_15__v1' --out-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__SUBSTRATE_BASE_SCAFFOLD__BUNDLE__2026_03_15__v1.json'`
 
 Validator checks on the concrete samples:
-- `python3 system_v3/tools/validate_a1_queue_status_packet.py --packet-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__NO_WORK__2026_03_15__v1.json'`
-- `python3 system_v3/tools/validate_a1_queue_status_packet.py --packet-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json'`
-- `python3 system_v3/tools/validate_a1_queue_status_packet.py --packet-json '/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__SUBSTRATE_BASE_SCAFFOLD__BUNDLE__2026_03_15__v1.json'`
+- `python3 system_v3/tools/validate_a1_queue_status_packet.py --packet-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__NO_WORK__2026_03_15__v1.json'`
+- `python3 system_v3/tools/validate_a1_queue_status_packet.py --packet-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json'`
+- `python3 system_v3/tools/validate_a1_queue_status_packet.py --packet-json '/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_QUEUE_STATUS_PACKET__SUBSTRATE_BASE_SCAFFOLD__BUNDLE__2026_03_15__v1.json'`
 
 Observed result:
 - all three sample queue packets validate cleanly

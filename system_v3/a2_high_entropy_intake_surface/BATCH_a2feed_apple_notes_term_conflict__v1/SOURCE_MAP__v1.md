@@ -7,23 +7,23 @@ Date: 2026-03-08
 
 ## 1) Folder-Order Selection
 - prior completed batch ended at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.docx`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.docx`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.txt`
 - next folder-order family selected for this bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/apple notes save. pre axex notes.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/axes math. apple notes dump.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/apple notes save. pre axex notes.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/axes math. apple notes dump.txt`
 - bundling reason:
   - the two files are consecutive in folder order
   - both belong to the same apple-notes / axis-work thread family
   - the shorter file states intent, desired extraction targets, and anti-drift demands
   - the larger file is the repeated math-lock / axis-lock working dump that those demands point toward
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/branch part 2.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/branchthread extract chat gpt.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/branch part 2.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/branchthread extract chat gpt.txt`
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/apple notes save. pre axex notes.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/apple notes save. pre axex notes.txt`
   - sha256: `ccf13fe170968935c7cdb2bd6709de097a1c39506a3df171763a00eb3bdf3fcd`
   - size bytes: `93828`
   - line count: `1798`
@@ -31,7 +31,7 @@ Date: 2026-03-08
   - source-class note:
     - mixed raw note, extraction request, copied assistant drafting, and later constraint-registry paste
 - source 2:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/axes math. apple notes dump.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/axes math. apple notes dump.txt`
   - sha256: `0ebca48033c2609aa81b554a15068e8b367d176bf8bf55aa24607c4830c67181`
   - size bytes: `385011`
   - line count: `17700`

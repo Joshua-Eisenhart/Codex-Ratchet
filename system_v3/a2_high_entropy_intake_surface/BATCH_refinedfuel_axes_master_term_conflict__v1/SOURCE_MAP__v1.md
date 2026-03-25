@@ -7,7 +7,7 @@ Date: 2026-03-08
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
 - nontrivial top-level file count:
   - `8`
 - ignored filesystem noise:
@@ -24,18 +24,18 @@ Date: 2026-03-08
 
 ## 2) Batch Selection
 - selected first bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md`
 - reason for selection:
   - this is the first nontrivial top-level file in the refined-fuel root
   - the file is compact, formal, and mostly axis-semantics / nonconflation law rather than narrative discussion
   - the dominant intake value is preserving explicit axis label meanings and conflicts against current active A2 axis language, not broad structural decomposition
   - the source self-labels `AUTHORITY: CANON`, but intake handling remains proposal-side and source-bound
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_PHYSICS_BRIDGE_v0.1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_PHYSICS_BRIDGE_v0.1.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md`
   - role in batch: compact refined-fuel axis semantics and nonconflation surface
   - sha256: `f2c5f2789429d42d0765d78ef7c0a2427ff7c1eaf9c25365b50227e0267a1e5b`
   - size bytes: `2625`

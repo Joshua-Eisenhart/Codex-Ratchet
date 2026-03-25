@@ -34,7 +34,7 @@ That made a bounded fix possible without pretending every rescue branch must alr
 ### 1) Scaffold family-slice cycles now emit one real rescue branch
 
 The live planner in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
 
 now emits one bounded scaffold rescue branch when:
 - a family slice is present
@@ -65,7 +65,7 @@ The rescue-family visibility helper also now recognizes scaffold rescue branches
 ### 3) Lane minima are now an active controller audit gate
 
 The controller audit in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
 
 now checks:
 - `AUTORATCHET_FAMILY_SLICE_LANE_MINIMUMS_SATISFIED`
@@ -78,7 +78,7 @@ Because scaffold rescue emission now exists, this gate can include `RESCUER` ins
 ## Focused regressions
 
 Planner/runtime:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
 
 Locked behaviors:
 - balanced family-slice mode now emits one scaffold rescue branch
@@ -86,14 +86,14 @@ Locked behaviors:
 - live lane counts now include `RESCUER`
 
 Controller audit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py`
 
 Locked behaviors:
 - a coherent family-slice cycle with visible rescue lane passes the lane-minimum gate
 - a family-slice cycle that still shows `RESCUER = 0` fails the new lane-minimum satisfaction check
 
 Local spec-object stack:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_to_a1_family_slice_pydantic_stack.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_to_a1_family_slice_pydantic_stack.py`
 
 Still passes after the runtime planner/audit change.
 

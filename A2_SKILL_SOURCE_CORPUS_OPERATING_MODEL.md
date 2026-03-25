@@ -36,33 +36,33 @@ That means:
 
 Use first:
 
-- [01_REQUIREMENTS_LEDGER.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md)
-- [02_OWNERSHIP_MAP.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md)
-- [07_A2_OPERATIONS_SPEC.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md)
-- [19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md)
+- [01_REQUIREMENTS_LEDGER.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md)
+- [02_OWNERSHIP_MAP.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md)
+- [07_A2_OPERATIONS_SPEC.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md)
+- [19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md)
 
 ### 2. A2 Memory / Control
 
 Use as the bounded recovery set:
 
-- [A2_BOOT_READ_ORDER__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_BOOT_READ_ORDER__CURRENT__v1.md)
-- [A2_KEY_CONTEXT_APPEND_LOG__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md)
-- [A2_SKILL_SOURCE_INTAKE_PROCEDURE__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SKILL_SOURCE_INTAKE_PROCEDURE__CURRENT__v1.md)
+- [A2_BOOT_READ_ORDER__CURRENT__v1.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_BOOT_READ_ORDER__CURRENT__v1.md)
+- [A2_KEY_CONTEXT_APPEND_LOG__v1.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md)
+- [A2_SKILL_SOURCE_INTAKE_PROCEDURE__CURRENT__v1.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SKILL_SOURCE_INTAKE_PROCEDURE__CURRENT__v1.md)
 - standing A2 brain/control surfaces listed in the boot read order
 
 ### 3. Skill Source Corpus
 
 Use as the naming and source-family layer:
 
-- [SKILL_SOURCE_CORPUS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md)
-- [LOCAL_SOURCE_REPO_INVENTORY.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/LOCAL_SOURCE_REPO_INVENTORY.md)
+- [SKILL_SOURCE_CORPUS.md](%USER_HOME%/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md)
+- [LOCAL_SOURCE_REPO_INVENTORY.md](%USER_HOME%/Desktop/Codex%20Ratchet/LOCAL_SOURCE_REPO_INVENTORY.md)
 
 ### 4. Skill Tracking
 
 Use for current reality and candidate build queue:
 
-- [REPO_SKILL_INTEGRATION_TRACKER.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md)
-- [SKILL_CANDIDATES_BACKLOG.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_CANDIDATES_BACKLOG.md)
+- [REPO_SKILL_INTEGRATION_TRACKER.md](%USER_HOME%/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md)
+- [SKILL_CANDIDATES_BACKLOG.md](%USER_HOME%/Desktop/Codex%20Ratchet/SKILL_CANDIDATES_BACKLOG.md)
 
 ### 5. Graph Layer
 
@@ -83,11 +83,11 @@ Use for actual live integration claims:
 
 When a new repo, doc, or method family is referenced:
 
-1. Append the source family to [SKILL_SOURCE_CORPUS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md).
-2. Record local presence tier in [LOCAL_SOURCE_REPO_INVENTORY.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/LOCAL_SOURCE_REPO_INVENTORY.md).
-3. Append current integration reality in [REPO_SKILL_INTEGRATION_TRACKER.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md).
-4. Append skill candidates in [SKILL_CANDIDATES_BACKLOG.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_CANDIDATES_BACKLOG.md).
-5. Append the durable significance to [A2_KEY_CONTEXT_APPEND_LOG__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md).
+1. Append the source family to [SKILL_SOURCE_CORPUS.md](%USER_HOME%/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md).
+2. Record local presence tier in [LOCAL_SOURCE_REPO_INVENTORY.md](%USER_HOME%/Desktop/Codex%20Ratchet/LOCAL_SOURCE_REPO_INVENTORY.md).
+3. Append current integration reality in [REPO_SKILL_INTEGRATION_TRACKER.md](%USER_HOME%/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md).
+4. Append skill candidates in [SKILL_CANDIDATES_BACKLOG.md](%USER_HOME%/Desktop/Codex%20Ratchet/SKILL_CANDIDATES_BACKLOG.md).
+5. Append the durable significance to [A2_KEY_CONTEXT_APPEND_LOG__v1.md](%USER_HOME%/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_KEY_CONTEXT_APPEND_LOG__v1.md).
 6. Refresh canonical A2 state:
    - `doc_index.json` if the source family should be indexed
    - `fuel_queue.json` if it creates real A2 work

@@ -7,7 +7,7 @@ Owner: current `A2` controller for browser-assisted continuation implementation 
 ## Purpose
 
 This note turns:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/48_BROWSER_ASSISTED_GO_ON_EXECUTION__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/48_BROWSER_ASSISTED_GO_ON_EXECUTION__v1.md`
 
 into a concrete implementation target.
 
@@ -32,7 +32,7 @@ It is not a thread monitor.
 ## Required input
 
 The implementation target must consume one sender packet with all required fields from:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/44_AUTO_GO_ON_SENDER_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/44_AUTO_GO_ON_SENDER_PACKET__v1.md`
 
 Minimum runtime fields:
 - `TARGET_THREAD_ID`
@@ -118,4 +118,4 @@ After this note:
 - browser assistance has a concrete first build target
 - remaining work is implementation against a strict packet-in / proof-out contract
 - live send still requires:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/60_BROWSER_REAL_SEND_MODE__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/60_BROWSER_REAL_SEND_MODE__v1.md`

@@ -10,39 +10,39 @@
 
 ## A. The 29 Methods → Skill Status
 
-Each row attempts to map one of the 29 numbered methods from [29 thing.txt](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/29%20thing.txt) to a live or proposed skill, but those status columns require explicit registry and hot-path verification.
+Each row attempts to map one of the 29 numbered methods from [29 thing.txt](file:///home/ratchet/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/29%20thing.txt) to a live or proposed skill, but those status columns require explicit registry and hot-path verification.
 
 | # | Method | Live Skill | Status |
 |---|--------|-----------|--------|
-| 1 | Nested Hopf Tori | [runtime_state_kernel.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/runtime_state_kernel.py) | ✅ `region`, `phaseIndex`, `phasePeriod`, `loopScale` all present in `RuntimeState` |
-| 2 | Topology/Orchestration/Dispatch Split | [run_real_ratchet.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/run_real_ratchet.py) | ✅ Three-plane split is the live architecture |
-| 3 | Graph Topology Thinking | [runtime_graph_bridge.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/runtime_graph_bridge.py) | ✅ Graph is executable topology |
-| 4 | Nonclassical State Space | [runtime_state_kernel.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/runtime_state_kernel.py) | ✅ Structured state with boundaries, invariants, non-commutative transforms |
-| 5 | Phase / Loop-Scale Model | [runtime_state_kernel.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/runtime_state_kernel.py) | ✅ Phase and loop scale are explicit fields |
-| 6 | Karpathy Design Philosophy | [bounded_improve_operator.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/bounded_improve_operator.py) | ✅ Small visible loop, mutate/eval/keep |
-| 7 | Nanochat | [runtime_state_kernel.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/runtime_state_kernel.py) | ✅ Small-core principle expressed through kernel |
-| 8 | Autoresearch | [autoresearch_operator.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/autoresearch_operator.py) | ✅ Registered, wired into `run_real_ratchet.py` |
-| 9 | LLM-Council | [llm_council_operator.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/llm_council_operator.py) | ✅ Registered, wired into `run_real_ratchet.py` |
+| 1 | Nested Hopf Tori | [runtime_state_kernel.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/runtime_state_kernel.py) | ✅ `region`, `phaseIndex`, `phasePeriod`, `loopScale` all present in `RuntimeState` |
+| 2 | Topology/Orchestration/Dispatch Split | [run_real_ratchet.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/run_real_ratchet.py) | ✅ Three-plane split is the live architecture |
+| 3 | Graph Topology Thinking | [runtime_graph_bridge.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/runtime_graph_bridge.py) | ✅ Graph is executable topology |
+| 4 | Nonclassical State Space | [runtime_state_kernel.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/runtime_state_kernel.py) | ✅ Structured state with boundaries, invariants, non-commutative transforms |
+| 5 | Phase / Loop-Scale Model | [runtime_state_kernel.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/runtime_state_kernel.py) | ✅ Phase and loop scale are explicit fields |
+| 6 | Karpathy Design Philosophy | [bounded_improve_operator.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/bounded_improve_operator.py) | ✅ Small visible loop, mutate/eval/keep |
+| 7 | Nanochat | [runtime_state_kernel.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/runtime_state_kernel.py) | ✅ Small-core principle expressed through kernel |
+| 8 | Autoresearch | [autoresearch_operator.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/autoresearch_operator.py) | ✅ Registered, wired into `run_real_ratchet.py` |
+| 9 | LLM-Council | [llm_council_operator.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/llm_council_operator.py) | ✅ Registered, wired into `run_real_ratchet.py` |
 | 10 | Bayesian Updating | — | ❌ **No skill.** Retooled pattern exists in doc but no `bayesian_update_operator.py` |
 | 11 | Markov Chains | — | ❌ **No skill.** Transform-based state evolution is implicit in kernel but not a named operator |
-| 12 | FEP / Active Inference | [fep_regulation_operator.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/fep_regulation_operator.py) | ⚠️ Skill exists, registered, **not in hot-path** of `run_real_ratchet.py` |
+| 12 | FEP / Active Inference | [fep_regulation_operator.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/fep_regulation_operator.py) | ⚠️ Skill exists, registered, **not in hot-path** of `run_real_ratchet.py` |
 | 13 | Information Geometry | — | ❌ **No skill.** Probe-relative distinguishability is in kernel but no named operator |
 | 14 | Algorithmic Information Theory | — | ❌ **No skill.** Trace compression / motif detection not yet a standalone skill |
-| 15 | Property-Based Testing | [property_pressure_tester.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/property_pressure_tester.py) | ⚠️ Skill exists, registered, **not in hot-path** |
-| 16 | CEGIS | [z3_cegis_refiner.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/z3_cegis_refiner.py) | ⚠️ Skill exists, registered, **not in hot-path** |
-| 17 | SAT / SMT | [z3_constraint_checker.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/z3_constraint_checker.py) | ✅ Registered **and** in hot-path |
-| 18 | Differential Testing | [differential_tester.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/differential_tester.py) | ⚠️ Skill exists, registered, **not in hot-path** |
-| 19 | Model Checking | [model_checker.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/model_checker.py) | ⚠️ Skill exists, registered, **not in hot-path** |
+| 15 | Property-Based Testing | [property_pressure_tester.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/property_pressure_tester.py) | ⚠️ Skill exists, registered, **not in hot-path** |
+| 16 | CEGIS | [z3_cegis_refiner.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/z3_cegis_refiner.py) | ⚠️ Skill exists, registered, **not in hot-path** |
+| 17 | SAT / SMT | [z3_constraint_checker.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/z3_constraint_checker.py) | ✅ Registered **and** in hot-path |
+| 18 | Differential Testing | [differential_tester.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/differential_tester.py) | ⚠️ Skill exists, registered, **not in hot-path** |
+| 19 | Model Checking | [model_checker.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/model_checker.py) | ⚠️ Skill exists, registered, **not in hot-path** |
 | 20 | Abstract Interpretation | — | ❌ **No skill.** Coarse-state abstraction not yet a standalone operator |
-| 21 | Fuzzing | [structured_fuzzer.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/structured_fuzzer.py) | ⚠️ Skill exists, registered, **not in hot-path** |
-| 22 | AlphaGeometry-Style Search | [frontier_search_operator.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/frontier_search_operator.py) | ⚠️ Skill exists, registered, **not in hot-path** |
+| 21 | Fuzzing | [structured_fuzzer.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/structured_fuzzer.py) | ⚠️ Skill exists, registered, **not in hot-path** |
+| 22 | AlphaGeometry-Style Search | [frontier_search_operator.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/frontier_search_operator.py) | ⚠️ Skill exists, registered, **not in hot-path** |
 | 23 | Program Synthesis | — | ❌ **No skill.** Candidate generation is implicit in CEGIS but no standalone synth operator |
 | 24 | DreamCoder / Abstraction Learning | — | ❌ **No skill.** Motif mining from traces not yet a standalone skill |
 | 25 | Evolutionary Search | — | ❌ **No skill.** Mutation/recombination is in bounded_improve but no standalone evo operator |
 | 26 | Constrained Decoding | — | ❌ **No skill.** Typed I/O contracts exist but no standalone constrained-decode skill |
-| 27 | Guardrail Pipelines | [b_kernel](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills) | ✅ Guard/gate logic exists in B kernel |
-| 28 | Build / Reproducibility | [run_real_ratchet.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/run_real_ratchet.py) | ✅ Deterministic rebuild from graph + event spine |
-| 29 | Graph Mining / Topology Extraction | [graph_capability_auditor.py](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/graph_capability_auditor.py) | ⚠️ Graph mining exists but is audit-only, not a full trace-mining operator |
+| 27 | Guardrail Pipelines | [b_kernel](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills) | ✅ Guard/gate logic exists in B kernel |
+| 28 | Build / Reproducibility | [run_real_ratchet.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/run_real_ratchet.py) | ✅ Deterministic rebuild from graph + event spine |
+| 29 | Graph Mining / Topology Extraction | [graph_capability_auditor.py](file:///home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/graph_capability_auditor.py) | ⚠️ Graph mining exists but is audit-only, not a full trace-mining operator |
 
 ### Summary
 - **✅ Fully live:** 11 of 29
@@ -54,7 +54,7 @@ Each row attempts to map one of the 29 numbered methods from [29 thing.txt](file
 
 ## B. JP Graph Suggestions → Skill Status
 
-From [jp graph asuggestions.txt](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/jp%20graph%20asuggestions.txt):
+From [jp graph asuggestions.txt](file:///home/ratchet/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/jp%20graph%20asuggestions.txt):
 
 | JP Concept | Live Skill | Status |
 |---|---|---|
@@ -65,7 +65,7 @@ From [jp graph asuggestions.txt](file:///Users/joshuaeisenhart/Desktop/Codex%20R
 | Agent verification loop | `z3-constraint-checker` → `run_real_ratchet` | ⚠️ Loop exists but counterexample→fix cycle not automated |
 | Graph-driven intent runtime prompt | `intent-control-surface-builder`, `intent-runtime-policy` | ✅ Intent primitives are first-class |
 
-From [jp graph prompt!!.txt](file:///Users/joshuaeisenhart/Desktop/Codex%20Ratchet/core_docs/upgrade%20docs/jp%20graph%20prompt%21%21.txt):
+From [jp graph prompt!!.txt](file:///home/ratchet/Desktop/Codex%20Ratchet/core_docs/upgrade%20docs/jp%20graph%20prompt%21%21.txt):
 
 | JP Concept | Live Skill | Status |
 |---|---|---|

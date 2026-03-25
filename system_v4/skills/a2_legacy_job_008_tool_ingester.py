@@ -89,7 +89,7 @@ class Job008Ingester:
         }
 
 if __name__ == "__main__":
-    ingester = Job008Ingester("/Users/joshuaeisenhart/Desktop/Codex Ratchet")
+    ingester = Job008Ingester(str(Path(__file__).resolve().parents[2]))
     res = ingester.run_ingestion()
     if res["status"] == "success":
         print(f"Successfully processed JOB_008: Added {res['nodes_added']} legacy nodes and {res['edges_added']} mapping edges.")

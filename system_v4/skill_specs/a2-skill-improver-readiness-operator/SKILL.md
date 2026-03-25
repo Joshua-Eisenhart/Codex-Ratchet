@@ -35,13 +35,13 @@ meta-skill.
 ## Execute Now
 
 1. Read:
-   - [V4_SKILL_CLUSTER_SPEC__CURRENT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/V4_SKILL_CLUSTER_SPEC__CURRENT.md)
-   - [GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md)
-   - [A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.md)
+   - [V4_SKILL_CLUSTER_SPEC__CURRENT.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/V4_SKILL_CLUSTER_SPEC__CURRENT.md)
+   - [GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md)
+   - [A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.md)
 2. Inspect:
-   - [skill_improver_operator.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/skill_improver_operator.py)
-   - [skill_registry_v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a1_state/skill_registry_v1.json)
-   - [run_real_ratchet.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/run_real_ratchet.py)
+   - [skill_improver_operator.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/skill_improver_operator.py)
+   - [skill_registry_v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a1_state/skill_registry_v1.json)
+   - [run_real_ratchet.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/run_real_ratchet.py)
 3. Emit bounded readiness artifacts only.
 
 ## Default Outputs

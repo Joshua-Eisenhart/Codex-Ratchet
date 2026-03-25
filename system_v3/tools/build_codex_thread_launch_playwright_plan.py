@@ -1,3 +1,4 @@
+import os
 #!/usr/bin/env python3
 from __future__ import annotations
 
@@ -10,7 +11,7 @@ from validate_codex_thread_launch_target import validate as validate_target
 from validate_codex_thread_launch_handoff import validate as validate_handoff
 
 
-PWCLI = "/Users/joshuaeisenhart/.codex/skills/playwright/scripts/playwright_cli.sh"
+PWCLI = os.path.expanduser("~/.codex") + "/skills/playwright/scripts/playwright_cli.sh"
 ALLOWED_PLAN_MODES = {"validate_only", "real_send_once"}
 BLOCKED_LAUNCH_ROUTES = {"NONE", "about:blank"}
 

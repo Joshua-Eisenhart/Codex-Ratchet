@@ -7,17 +7,17 @@ Date: 2026-03-08
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/UPGRADE_STRUCTURAL_MAP_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/UPGRADE_STRUCTURAL_MAP_v1.md`
 - reason for single-doc batch:
   - one bounded upgrade-planning map
   - internally organized as a sequence of extracted directed-answer and plan-pass doc stubs
   - useful as an archive-side planning topology surface
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/ZIP_INDEX_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/ZIP_INDEX_v1.md`
 
 ## 2) Source Membership
 - primary source:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/UPGRADE_STRUCTURAL_MAP_v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/UPGRADE_STRUCTURAL_MAP_v1.md`
   - sha256: `010ec8d023e67f92b4f7fbde9fe8aaa1fe957ba5f9d51731d2f86a50da912ff6`
   - size bytes: `7588`
   - line count: `228`

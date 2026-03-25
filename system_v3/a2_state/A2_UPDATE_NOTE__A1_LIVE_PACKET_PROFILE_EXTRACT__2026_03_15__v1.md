@@ -7,17 +7,17 @@ Role: preserve the first safe structural split step for `05` by adding a non-own
 ## Scope
 
 New non-owner extract:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md`
 
 Supporting read surfaces updated:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/00_MANIFEST.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/00_MANIFEST.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md`
 
 Authority anchors:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A1_STRATEGY_v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ENUM_REGISTRY_v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A1_REPAIR_OPERATOR_MAPPING_v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A1_STRATEGY_v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ENUM_REGISTRY_v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A1_REPAIR_OPERATOR_MAPPING_v1.md`
 
 ## Why this step
 
@@ -33,7 +33,7 @@ So future reads still had to bounce across several docs just to reconstruct the 
 ### 1) Added a non-owner live packet/profile extract
 
 Created:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md`
 
 It is explicitly:
 - `DRAFT / NONCANON`
@@ -51,10 +51,10 @@ It provides a compact current read for:
 ### 2) Wired it into the read surfaces
 
 Updated:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/00_MANIFEST.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/00_MANIFEST.md`
   - `A1 Reload Hygiene` now points to the new extract
   - `Active Process Supplements` now includes the extract
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md`
   - `Extract/Reference Docs (Non-Owners)` now includes the extract and clarifies authority stays in `05` plus the control-plane A1 strategy/operator specs
 
 ## Why this is the safe structural move

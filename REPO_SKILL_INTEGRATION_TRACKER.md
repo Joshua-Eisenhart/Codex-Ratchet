@@ -21,23 +21,23 @@ It is a `SOURCE_CORPUS` working surface, not the canonical A2 brain.
 Important rule:
 
 - this tracker is for the broad referenced corpus, not one source doc
-- [lev_nonclassical_runtime_design_audited.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/lev_nonclassical_runtime_design_audited.md) is an audited / reorganized rendering of the same 29-method source family rooted in [29 thing.txt](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/29%20thing.txt), not an independent second source family
+- [lev_nonclassical_runtime_design_audited.md](/home/ratchet/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/lev_nonclassical_runtime_design_audited.md) is an audited / reorganized rendering of the same 29-method source family rooted in [29 thing.txt](/home/ratchet/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/29%20thing.txt), not an independent second source family
 - do not collapse the whole corpus back into that one file
 
 Umbrella naming and source-family framing lives here:
 
-- [SKILL_SOURCE_CORPUS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md)
+- [SKILL_SOURCE_CORPUS.md](/home/ratchet/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md)
 
 The older detailed supporting ledger is:
 
-- [79_INTEGRATION_LEDGER__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/specs/79_INTEGRATION_LEDGER__v1.md)
+- [79_INTEGRATION_LEDGER__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/specs/79_INTEGRATION_LEDGER__v1.md)
 
 Current A2 / `v4` recovery audit lives here:
 
-- [A2_V4_RECOVERY_AUDIT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/A2_V4_RECOVERY_AUDIT.md)
-- [A2_SKILL_SOURCE_CORPUS_OPERATING_MODEL.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/A2_SKILL_SOURCE_CORPUS_OPERATING_MODEL.md)
-- [LOCAL_SOURCE_REPO_INVENTORY.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/LOCAL_SOURCE_REPO_INVENTORY.md)
-- [work/reference_repos/README.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/reference_repos/README.md)
+- [A2_V4_RECOVERY_AUDIT.md](/home/ratchet/Desktop/Codex%20Ratchet/A2_V4_RECOVERY_AUDIT.md)
+- [A2_SKILL_SOURCE_CORPUS_OPERATING_MODEL.md](/home/ratchet/Desktop/Codex%20Ratchet/A2_SKILL_SOURCE_CORPUS_OPERATING_MODEL.md)
+- [LOCAL_SOURCE_REPO_INVENTORY.md](/home/ratchet/Desktop/Codex%20Ratchet/LOCAL_SOURCE_REPO_INVENTORY.md)
+- [work/reference_repos/README.md](/home/ratchet/Desktop/Codex%20Ratchet/work/reference_repos/README.md)
 
 ## Status Words
 
@@ -54,7 +54,7 @@ Current A2 / `v4` recovery audit lives here:
 
 Main source:
 
-- [29 thing.txt](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/29%20thing.txt)
+- [29 thing.txt](/home/ratchet/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/29%20thing.txt)
 
 Preferred system term:
 
@@ -74,7 +74,7 @@ Important note:
 
 Main source:
 
-- [lev_nonclassical_runtime_design_audited.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/lev_nonclassical_runtime_design_audited.md)
+- [lev_nonclassical_runtime_design_audited.md](/home/ratchet/Desktop/Codex%20Ratchet/core_docs/v4%20upgrades/lev_nonclassical_runtime_design_audited.md)
 
 Current state:
 
@@ -106,17 +106,17 @@ Current state:
   - imported members: `lev-intake`, `skill-discovery`, `skill-builder`
   - first Ratchet-native slice: `a2-skill-source-intake-operator`
   - current staged audit output:
-    - [A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.md)
+    - [A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.md)
 - second imported/corpus-derived slice now exists:
   - `tracked work / planning`
   - first bounded slice: `a2-tracked-work-operator`
   - current staged audit output:
-    - [A2_TRACKED_WORK_STATE__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_TRACKED_WORK_STATE__CURRENT__v1.md)
+    - [A2_TRACKED_WORK_STATE__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_TRACKED_WORK_STATE__CURRENT__v1.md)
 - third imported/corpus-derived slice now exists:
   - `research / deliberation`
   - first bounded slice: `a2-research-deliberation-operator`
   - current staged audit output:
-    - [A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.md)
+    - [A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.md)
 
 Important note:
 
@@ -208,12 +208,12 @@ Current state:
   - `outside-control-shell-operator`
   - status: read-only / repo-held report + packet / no durable state
   - current repo-held outputs:
-    - [A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.json)
-    - [A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.md)
-    - [A2_PIMONO_OUTSIDE_SESSION_HOST_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_PACKET__CURRENT__v1.json)
+    - [A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.json)
+    - [A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.md)
+    - [A2_PIMONO_OUTSIDE_SESSION_HOST_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_PACKET__CURRENT__v1.json)
 - local checkouts verified at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/reference_repos/other/pi-mono` at `3563cc4d`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/pi-mono` at `3563cc4d`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/reference_repos/other/pi-mono` at `3563cc4d`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/pi-mono` at `3563cc4d`
 - strongest current extraction seams are:
   - `resource-loader` / resource bundle host pattern
   - `plan-mode` and `subagent` controller pattern
@@ -234,26 +234,26 @@ Current state:
 
 - `saved`
 - local organized checkouts now exist:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/reference_repos/EverMind-AI/EverMemOS` at `3c9a2d0`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/reference_repos/EverMind-AI/MSA` at `8631c9d`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/reference_repos/EverMind-AI/EverMemOS` at `3c9a2d0`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/reference_repos/EverMind-AI/MSA` at `8631c9d`
 - raw EverMem adapter rows and files exist
 - live registry loading is now repaired
 - the first two honest EverMem runner seams are now repo-held:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/EVERMEM_WITNESS_SYNC_STATE__CURRENT__v1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/EVERMEM_WITNESS_SYNC_STATE__CURRENT__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.md`
 - the next bounded EverMem slice is now landed as `witness-memory-retriever`:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/WITNESS_MEMORY_RETRIEVER_REPORT__CURRENT__v1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/WITNESS_MEMORY_RETRIEVER_REPORT__CURRENT__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/WITNESS_MEMORY_RETRIEVER_PACKET__CURRENT__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/WITNESS_MEMORY_RETRIEVER_REPORT__CURRENT__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/WITNESS_MEMORY_RETRIEVER_REPORT__CURRENT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/WITNESS_MEMORY_RETRIEVER_PACKET__CURRENT__v1.json`
 - the bounded backend-reachability audit slice is now landed:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_EVERMEM_BACKEND_REACHABILITY_AUDIT_REPORT__CURRENT__v1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_EVERMEM_BACKEND_REACHABILITY_AUDIT_REPORT__CURRENT__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_EVERMEM_BACKEND_REACHABILITY_AUDIT_PACKET__CURRENT__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_EVERMEM_BACKEND_REACHABILITY_AUDIT_REPORT__CURRENT__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_EVERMEM_BACKEND_REACHABILITY_AUDIT_REPORT__CURRENT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_EVERMEM_BACKEND_REACHABILITY_AUDIT_PACKET__CURRENT__v1.json`
 - current repo-held local report status is `sync_failed` because no reachable local EverMem service exists in this environment, but the cursor and report surfaces are now preserved correctly
 - current retrieval-probe status is `attention_required` with bounded next step `hold_at_retrieval_probe`
 - current backend-reachability status is `attention_required` with bounded next step `start_docker_daemon`
-- the adapter search contract is now repaired in [evermem_adapter.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/evermem_adapter.py) to use `GET /api/v1/memories/search`
+- the adapter search contract is now repaired in [evermem_adapter.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/evermem_adapter.py) to use `GET /api/v1/memories/search`
 - EverMem runtime use is still `partial`
 - EverMem is now explicitly a side-project lane, not the main build focus
 - MSA is still mostly a future backend candidate, not a live system component
@@ -281,9 +281,9 @@ Current state:
 
 Sources:
 
-- [Leviathan v3.2 word.txt](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/core_docs/a2_feed_high%20entropy%20doc/Leviathan%20v3.2%20word.txt)
-- [holodeck docs.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/core_docs/a2_feed_high%20entropy%20doc/holodeck%20docs.md)
-- [BOOTPACK_THREAD_B_v3.9.13.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/core_docs/upgrade%20docs/BOOTPACK_THREAD_B_v3.9.13.md)
+- [Leviathan v3.2 word.txt](/home/ratchet/Desktop/Codex%20Ratchet/core_docs/a2_feed_high%20entropy%20doc/Leviathan%20v3.2%20word.txt)
+- [holodeck docs.md](/home/ratchet/Desktop/Codex%20Ratchet/core_docs/a2_feed_high%20entropy%20doc/holodeck%20docs.md)
+- [BOOTPACK_THREAD_B_v3.9.13.md](/home/ratchet/Desktop/Codex%20Ratchet/core_docs/upgrade%20docs/BOOTPACK_THREAD_B_v3.9.13.md)
 
 Current state:
 
@@ -298,7 +298,7 @@ Sources:
 
 - [OpenClaw-RL paper](https://arxiv.org/abs/2603.10165)
 - [Gen-Verse/OpenClaw-RL](https://github.com/Gen-Verse/OpenClaw-RL)
-- [OPENCLAW_RL__REFERENCE_NOTE__2026_03_21__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/external_refs/OPENCLAW_RL__REFERENCE_NOTE__2026_03_21__v1.md)
+- [OPENCLAW_RL__REFERENCE_NOTE__2026_03_21__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/work/external_refs/OPENCLAW_RL__REFERENCE_NOTE__2026_03_21__v1.md)
 
 Current state:
 
@@ -315,18 +315,18 @@ Current state:
   - directive correction
   - async improvement architecture
 - current emitted outputs:
-  - [A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.json)
-  - [A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.md)
-  - [A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_PACKET__CURRENT__v1.json)
-  - [A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.json)
-  - [A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.md)
-  - [A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_PACKET__CURRENT__v1.json)
-  - [A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.json)
-  - [A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.md)
-  - [A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_PACKET__CURRENT__v1.json)
-  - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.json)
-  - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.md)
-  - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_PACKET__CURRENT__v1.json)
+  - [A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.json)
+  - [A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.md)
+  - [A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_PACKET__CURRENT__v1.json)
+  - [A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.json)
+  - [A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.md)
+  - [A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_PACKET__CURRENT__v1.json)
+  - [A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.json)
+  - [A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.md)
+  - [A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_PACKET__CURRENT__v1.json)
+  - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.json)
+  - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.md)
+  - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_PACKET__CURRENT__v1.json)
 
 Important note:
 - the directive probe now has real post-action witness material and currently returns `ok`
@@ -376,11 +376,11 @@ These exist as real repo files and/or raw registry rows, but that is not the sam
 
 These runtime substrate files also matter even when they are not thought of as "skills" in the narrow sense:
 
-- [runtime_state_kernel.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/runtime_state_kernel.py)
-- [witness_recorder.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/witness_recorder.py)
-- [runtime_graph_bridge.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/runtime_graph_bridge.py)
-- [a2_graph_refinery.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/a2_graph_refinery.py)
-- [intent_control_surface_builder.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/intent_control_surface_builder.py)
+- [runtime_state_kernel.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/runtime_state_kernel.py)
+- [witness_recorder.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/witness_recorder.py)
+- [runtime_graph_bridge.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/runtime_graph_bridge.py)
+- [a2_graph_refinery.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/a2_graph_refinery.py)
+- [intent_control_surface_builder.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/intent_control_surface_builder.py)
 
 ## Things Still Wrong
 
@@ -399,17 +399,17 @@ These runtime substrate files also matter even when they are not thought of as "
   - current retrieval probe is explicitly held at `hold_at_retrieval_probe`, not widened into a broader memory claim
   - current reachability audit is explicitly held at `start_docker_daemon`, not widened into service-start/bootstrap claims
 - keep the EverMem lane as a bounded side project unless local backend reachability is actually earned
-- `evermem-memory-backend-adapter` is real, but the file naming is inconsistent because the skill id maps to [evermem_adapter.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/evermem_adapter.py)
+- `evermem-memory-backend-adapter` is real, but the file naming is inconsistent because the skill id maps to [evermem_adapter.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/evermem_adapter.py)
 - some older audit notes still overclaim or are stale
 - the deeper A2 persistent-brain / owner-law boot path is still weak, which means tracking can still drift unless it is actively refreshed
 - `skill-improver-operator` is still not honest as a live repo-mutating meta-skill:
-  - [SKILL_IMPROVER_READINESS_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/SKILL_IMPROVER_READINESS_REPORT__CURRENT__v1.json) currently marks it `bounded_ready_for_first_target`
+  - [SKILL_IMPROVER_READINESS_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/SKILL_IMPROVER_READINESS_REPORT__CURRENT__v1.json) currently marks it `bounded_ready_for_first_target`
   - that is still narrower than general live repo mutation; the explicit gate remains in place
 
 ## What We Need Next
 
-1. Keep [SKILL_SOURCE_CORPUS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md) updated as the structured umbrella meta doc instead of letting it regress back to a shallow family list.
-2. Keep the A2-side intake loop live in [A2_SKILL_SOURCE_CORPUS_OPERATING_MODEL.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/A2_SKILL_SOURCE_CORPUS_OPERATING_MODEL.md) and [A2_SKILL_SOURCE_INTAKE_PROCEDURE__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SKILL_SOURCE_INTAKE_PROCEDURE__CURRENT__v1.md).
+1. Keep [SKILL_SOURCE_CORPUS.md](/home/ratchet/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md) updated as the structured umbrella meta doc instead of letting it regress back to a shallow family list.
+2. Keep the A2-side intake loop live in [A2_SKILL_SOURCE_CORPUS_OPERATING_MODEL.md](/home/ratchet/Desktop/Codex%20Ratchet/A2_SKILL_SOURCE_CORPUS_OPERATING_MODEL.md) and [A2_SKILL_SOURCE_INTAKE_PROCEDURE__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SKILL_SOURCE_INTAKE_PROCEDURE__CURRENT__v1.md).
 3. Extract `lev-os/agents` further as a real imported skill corpus with keep/adapt/mine/skip classification and first live cluster promotion.
   - the bounded promotion-audit slice is now real:
     - `a2-lev-agents-promotion-operator`
@@ -656,9 +656,9 @@ These runtime substrate files also matter even when they are not thought of as "
     - `SKILL_CLUSTER::workshop-analysis-gating`
     - first honest slice: `a2-workshop-analysis-gate-operator`
     - current repo-held outputs:
-      - [A2_WORKSHOP_ANALYSIS_GATE_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_WORKSHOP_ANALYSIS_GATE_REPORT__CURRENT__v1.json)
-      - [A2_WORKSHOP_ANALYSIS_GATE_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_WORKSHOP_ANALYSIS_GATE_REPORT__CURRENT__v1.md)
-      - [A2_WORKSHOP_ANALYSIS_GATE_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_WORKSHOP_ANALYSIS_GATE_PACKET__CURRENT__v1.json)
+      - [A2_WORKSHOP_ANALYSIS_GATE_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_WORKSHOP_ANALYSIS_GATE_REPORT__CURRENT__v1.json)
+      - [A2_WORKSHOP_ANALYSIS_GATE_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_WORKSHOP_ANALYSIS_GATE_REPORT__CURRENT__v1.md)
+      - [A2_WORKSHOP_ANALYSIS_GATE_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_WORKSHOP_ANALYSIS_GATE_PACKET__CURRENT__v1.json)
 9. Current post-proof next tranche from the audit lanes:
   - the lev selector refresh is now landed:
     - `a2-lev-agents-promotion-operator` no longer recommends the already-landed builder/formalization lane
@@ -676,17 +676,17 @@ These runtime substrate files also matter even when they are not thought of as "
     - import label: `FlowMind Session Durability Bridge`
     - first honest slice: `outer-session-ledger`
     - current repo-held outputs:
-      - [OUTER_SESSION_LEDGER_STATE__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/OUTER_SESSION_LEDGER_STATE__CURRENT__v1.json)
-      - [OUTER_SESSION_LEDGER_EVENTS__APPEND_ONLY__v1.jsonl](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/OUTER_SESSION_LEDGER_EVENTS__APPEND_ONLY__v1.jsonl)
-      - [OUTER_SESSION_LEDGER_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/OUTER_SESSION_LEDGER_REPORT__CURRENT__v1.json)
-      - [OUTER_SESSION_LEDGER_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/OUTER_SESSION_LEDGER_REPORT__CURRENT__v1.md)
+      - [OUTER_SESSION_LEDGER_STATE__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/OUTER_SESSION_LEDGER_STATE__CURRENT__v1.json)
+      - [OUTER_SESSION_LEDGER_EVENTS__APPEND_ONLY__v1.jsonl](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/OUTER_SESSION_LEDGER_EVENTS__APPEND_ONLY__v1.jsonl)
+      - [OUTER_SESSION_LEDGER_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/OUTER_SESSION_LEDGER_REPORT__CURRENT__v1.json)
+      - [OUTER_SESSION_LEDGER_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/OUTER_SESSION_LEDGER_REPORT__CURRENT__v1.md)
   - landed `pi-mono` slice:
     - `SKILL_CLUSTER::outside-control-shell-session-host`
     - first bounded slice: `outside-control-shell-operator`
     - current repo-held outputs:
-      - [A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.json)
-      - [A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.md)
-      - [A2_PIMONO_OUTSIDE_SESSION_HOST_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_PACKET__CURRENT__v1.json)
+      - [A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.json)
+      - [A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.md)
+      - [A2_PIMONO_OUTSIDE_SESSION_HOST_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_PACKET__CURRENT__v1.json)
     - bounded status: read-only / repo-held report + packet / no durable state
 9. Keep appending every newly referenced repo or doc here and into canonical A2 indexing.
 10. Turn source families into actual skill bundles and clusters, not just one-off notes.

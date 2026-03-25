@@ -50,7 +50,7 @@ Extraction mode: `QIT_BRIDGE_PASS`
   - source 1: `84-88`
   - source 1: `104-107`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1:702`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1:702`
 - tension:
   - the file tries to stay finite-dimensional and QIT-native
   - it still reaches toward Kraus-history and code-subspace-like formulations that sit near current anti-inflation caution

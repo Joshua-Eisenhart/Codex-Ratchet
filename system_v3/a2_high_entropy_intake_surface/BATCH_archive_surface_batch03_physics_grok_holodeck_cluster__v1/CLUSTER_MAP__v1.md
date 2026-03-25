@@ -61,7 +61,7 @@ Extraction mode: `ARCHIVE_LAYERED_EXTRACTION_PACKAGE_PASS`
 
 ## Cluster 7: Deferred Next Package
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_04_OF_10__LEVIATHAN_MODEL_INTERPRETATION_CLUSTER__OUTPUTS__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_04_OF_10__LEVIATHAN_MODEL_INTERPRETATION_CLUSTER__OUTPUTS__v1_1.zip`
 - cluster read:
   - the next archive-root family is another packaged worldview extraction and should stay isolated as its own pass
 - current usefulness:

@@ -4,8 +4,8 @@ Date: 2026-03-16
 Role: bounded warm-visibility listing for intake batches whose ledger status is exactly `A2_3_REUSABLE`
 
 ## Scope
-- derived in one bounded pass from `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md`
-- application rule source: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__A2_INTAKE_COLD_INDEX_APPLICATION_PLAN__2026_03_16__v1__return.txt`
+- derived in one bounded pass from `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md`
+- application rule source: `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_WORKER__A2_INTAKE_COLD_INDEX_APPLICATION_PLAN__2026_03_16__v1__return.txt`
 - keyed only by existing batch id and current status
 - no intake artifacts moved, renamed, deleted, or reclassified by this surface
 

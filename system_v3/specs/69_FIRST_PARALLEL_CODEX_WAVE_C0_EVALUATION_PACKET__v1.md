@@ -7,7 +7,7 @@ Owner: current `A2` controller
 ## Purpose
 
 This note is the matching `C0` controller-side intake/evaluation packet for:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1.md`
 
 It answers:
 - how `C0` should receive the returned `W1` result from the shared sink
@@ -30,20 +30,20 @@ It should not be reused for:
 
 ## Governing surfaces
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/PARALLEL_CODEX_WORKER_RESULT_SINK__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/PARALLEL_CODEX_WORKER_RESULT_SINK__v1.md`
 
 ## What `C0` should expect from the shared sink
 
 The staged `W1` result file should exist at:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_HIGH_REFINERY_PASS__REFINEDFUEL_RUN_NOW_WAVE_1__A2_WORKER__return.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_HIGH_REFINERY_PASS__REFINEDFUEL_RUN_NOW_WAVE_1__A2_WORKER__return.txt`
 
 Before controller evaluation, `C0` should normalize that raw return into:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_HIGH_REFINERY_PASS__REFINEDFUEL_RUN_NOW_WAVE_1__A2_WORKER__return.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/parallel_codex_worker_returns/A2_HIGH_REFINERY_PASS__REFINEDFUEL_RUN_NOW_WAVE_1__A2_WORKER__return.json`
 
 Use:
 
@@ -81,10 +81,10 @@ You are evaluating the returned result of:
 - A2_HIGH_REFINERY_PASS__REFINEDFUEL_RUN_NOW_WAVE_1
 
 Use these governing surfaces:
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md
 
 Task:
 - read and evaluate the normalized sink-held W1 result only
@@ -139,7 +139,7 @@ Use only when:
 - stop condition is explicit
 - worker class/role purity is intact
 - no blocked condition from:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
 
 Immediate consequence:
 - emit exactly:

@@ -38,5 +38,5 @@ Extraction mode: `ARCHIVE_RATCHET_FUEL_MINT_PACKAGE_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_06_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__UPGRADE_BOOTPACK_AND_PLAN_PASSES_1_4__v1_1.zip`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_06_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__UPGRADE_BOOTPACK_AND_PLAN_PASSES_1_4__v1_1.zip`
   - that pass should remain isolated as its own archive package family

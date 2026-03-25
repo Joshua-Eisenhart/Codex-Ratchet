@@ -20,12 +20,12 @@ but weaker first-class operator/report surfaces for:
 - instrumentation/forensics
 
 Legacy witness surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/BOOTPACKS/BOOTPACK_THREAD_S_v1.64.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/BOOTPACKS/BOOTPACK_THREAD_S_v1.64.md`
 
 Current normative anchors:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/04_A0_COMPILER_SPEC.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/16_ZIP_SAVE_AND_TAPES_SPEC.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/08_PIPELINE_AND_STATE_FLOW_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/04_A0_COMPILER_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/16_ZIP_SAVE_AND_TAPES_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/08_PIPELINE_AND_STATE_FLOW_SPEC.md`
 
 ## Core rule
 
@@ -143,9 +143,9 @@ Primary expected tools:
 - `build_instrumentation_report.py`
 
 Likely neighbors:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_save_profile_zip.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_replay_pair_gate.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a0_compile_gate.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_save_profile_zip.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_replay_pair_gate.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a0_compile_gate.py`
 
 ## Acceptance criteria
 

@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - ignored filesystem noise:
@@ -21,7 +21,7 @@ Date: 2026-03-09
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 0.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 0.md`
 - reason for selection:
   - this is the next unprocessed non-sims `constraint ladder/` file in folder order after `Axes 0 - 6 5 3 - 4 1 2.md`
   - the file is a precursor note that directly blossoms into the later cleaned `AXIS0_SPEC_OPTIONS` family:
@@ -33,11 +33,11 @@ Date: 2026-03-09
     - it is the bridge from chat-export narrative residue into explicit QIT candidates
   - this makes `QIT_BRIDGE_PASS` a better fit than a pure `TERM_CONFLICT_PASS`
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 1 2 topology mathΓÇ¿ΓÇ¿ΓÇ¿Good ΓÇö this is the right point to ask thatΓÇª.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 1 2 topology mathΓÇ¿ΓÇ¿ΓÇ¿Good ΓÇö this is the right point to ask thatΓÇª.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 0.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 0.md`
   - role in batch: noncanon precursor note for Axis-0 semantics, QIT candidate formulas, and shell / clock bookkeeping bridge language
   - sha256: `dc62e8731307d46d5b124d69bc36ddfd082552634f041c0320ee901938738eca`
   - size bytes: `14399`

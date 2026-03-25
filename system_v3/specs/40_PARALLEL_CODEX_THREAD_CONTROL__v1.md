@@ -48,7 +48,7 @@ Current safe Codex upper-loop layout:
 - class: `A2_CONTROLLER`
 - count: exactly `1`
 - boot:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
 - allowed work:
   - execution-state updates
   - queue routing
@@ -59,7 +59,7 @@ Current safe Codex upper-loop layout:
 - class: `A2_WORKER`
 - count: up to `1`
 - boot:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
 - allowed work:
   - family routing
   - high-entropy revisit
@@ -71,7 +71,7 @@ Current safe Codex upper-loop layout:
 - class: `A2_WORKER`
 - count: up to `1`
 - boot:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
 - allowed work:
   - same worker classes as `W1`
 - extra rule:
@@ -81,14 +81,14 @@ Current safe Codex upper-loop layout:
 - class: `A1_WORKER`
 - count: `0` or `1`
 - boot:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md`
 - allowed work:
   - one bounded `A1_ROSETTA`
   - or one bounded `A1_PROPOSAL`
   - or one bounded `A1_PACKAGING`
 - start condition:
   - valid packet from:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md`
 
 ## Maximum live Codex set now
 

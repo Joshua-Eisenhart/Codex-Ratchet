@@ -26,7 +26,7 @@ This file is not:
 Primary corpus reminder:
 
 - there is no single source doc that stands in for the whole referenced repo/method/skill corpus
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md` is one important member of that broader set
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md` is one important member of that broader set
 - the system must retain the broader corpus, not collapse it into one remembered file
 
 ### 2026-03-21 — corrective update: the umbrella is the broad referenced corpus, not one Lev document
@@ -128,8 +128,8 @@ Downstream effect:
 
 Related surfaces:
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/SKILL_CANDIDATES_BACKLOG.md`
+- `/home/ratchet/Desktop/Codex Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md`
+- `/home/ratchet/Desktop/Codex Ratchet/SKILL_CANDIDATES_BACKLOG.md`
 
 ### 2026-03-21 — system_v4 is the active build target
 
@@ -167,8 +167,8 @@ Downstream effect:
 
 Related surfaces:
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/29 thing.txt`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/session_logs/OPUS_DEEP_READ_29_THING.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/29 thing.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/session_logs/OPUS_DEEP_READ_29_THING.md`
 
 ### 2026-03-21 — system_v3 itself still needs processing, graphing, and understanding
 
@@ -363,8 +363,8 @@ What:
 - new repo/doc/method families are now being tracked through a root-level Skill Source Corpus layer
 - but those root docs are only front-door `SOURCE_CORPUS` surfaces, not the canonical A2 brain
 - verified local checkouts currently include:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/pi-mono` at `3563cc4d`
-  - `/Users/joshuaeisenhart/GitHub/pi-mono` at `3563cc4d`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/pi-mono` at `3563cc4d`
+  - `/home/ratchet/GitHub/pi-mono` at `3563cc4d`
   - `/tmp/lev_os_agents` at `fd5191f`
   - `/tmp/lev_os_leviathan` at `f256434`
 
@@ -386,10 +386,10 @@ Downstream effect:
 
 Related surfaces:
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/SKILL_SOURCE_CORPUS.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/LOCAL_SOURCE_REPO_INVENTORY.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/A2_SKILL_SOURCE_CORPUS_OPERATING_MODEL.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SKILL_SOURCE_INTAKE_PROCEDURE__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/SKILL_SOURCE_CORPUS.md`
+- `/home/ratchet/Desktop/Codex Ratchet/LOCAL_SOURCE_REPO_INVENTORY.md`
+- `/home/ratchet/Desktop/Codex Ratchet/A2_SKILL_SOURCE_CORPUS_OPERATING_MODEL.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SKILL_SOURCE_INTAKE_PROCEDURE__CURRENT__v1.md`
 
 Interpretation:
 
@@ -435,7 +435,7 @@ What:
 - `doc_index.json` now does include the owner-law docs and the new A2 bridge surfaces
 - the live `system_v4` skill registry loader now loads `96` skills instead of fail-closing to `0`
 - the canonical organized local repo tree is now:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/reference_repos/README.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/reference_repos/README.md`
 
 Why it matters:
 
@@ -514,13 +514,13 @@ What:
 
 - the first imported `lev-os/agents` cluster is now explicit as the `skill-source intake` cluster
 - shared cluster truth now exists in:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skill_specs/SKILL_CLUSTER_SCHEMA__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/skill_specs/SKILL_CLUSTER_SCHEMA__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md`
 - the first bounded Ratchet-native slice is now a real skill:
   - `a2-skill-source-intake-operator`
 - that operator now emits repo-held staged output here:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.md`
 - the current emitted intake report is `ok` and confirms:
   - all four front-door corpus docs are directly indexed in canonical A2
   - local `lev-os/agents` counts are:
@@ -561,8 +561,8 @@ What:
 - the first bounded follow-on slice is now real:
   - `a2-tracked-work-operator`
 - it now emits repo-held tracked-work state here:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_TRACKED_WORK_STATE__CURRENT__v1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_TRACKED_WORK_STATE__CURRENT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_TRACKED_WORK_STATE__CURRENT__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_TRACKED_WORK_STATE__CURRENT__v1.md`
 - current live skill/graph presence truth after this landing is:
   - `96` registry skills
   - `96` graphed `SKILL` nodes
@@ -596,8 +596,8 @@ What:
   - `cdo` -> mine
   - cited-research workflow leaves -> skip or mine later
 - it now emits repo-held output here:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.md`
 - live skill/graph presence truth after the graph resync plus sequential re-audit is now:
   - `96` registry skills
   - `96` graphed `SKILL` nodes
@@ -622,9 +622,9 @@ Downstream effect:
 What:
 
 - `witness-evermem-sync` now preserves durable sync state and emits repo-held report surfaces here:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/EVERMEM_WITNESS_SYNC_STATE__CURRENT__v1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/EVERMEM_WITNESS_SYNC_STATE__CURRENT__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.md`
 - the durability smoke now covers:
   - contiguous stop-on-first-failure behavior
   - resume from persisted cursor
@@ -1045,7 +1045,7 @@ What changed:
 
 - the OpenClaw-RL paper and repo are now recorded in the broad source corpus as a next-state signal source family
 - a new external reference note now exists:
-  - [OPENCLAW_RL__REFERENCE_NOTE__2026_03_21__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/external_refs/OPENCLAW_RL__REFERENCE_NOTE__2026_03_21__v1.md)
+  - [OPENCLAW_RL__REFERENCE_NOTE__2026_03_21__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/work/external_refs/OPENCLAW_RL__REFERENCE_NOTE__2026_03_21__v1.md)
 - the first bounded slice is now real:
   - `a2-next-state-signal-adaptation-audit-operator`
 
@@ -1060,9 +1060,9 @@ Current rule:
 What changed:
 
 - a root support handoff now exists:
-  - [NEW_THREAD_HANDOFF__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/NEW_THREAD_HANDOFF__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md)
+  - [NEW_THREAD_HANDOFF__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/NEW_THREAD_HANDOFF__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md)
 - a root paste-ready launch prompt now exists:
-  - [NEW_THREAD_PROMPT__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/NEW_THREAD_PROMPT__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md)
+  - [NEW_THREAD_PROMPT__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/NEW_THREAD_PROMPT__SYSTEM_V4_SKILL_BUILD__2026_03_21__v1.md)
 - those docs preserve the current main-line next move:
   - `SKILL_CLUSTER::lev-autodev-exec-validation`
   - first bounded slice: `a2-lev-autodev-loop-audit-operator`

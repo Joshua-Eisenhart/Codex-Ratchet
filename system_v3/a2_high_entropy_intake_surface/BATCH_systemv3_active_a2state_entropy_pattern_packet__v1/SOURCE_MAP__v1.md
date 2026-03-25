@@ -28,10 +28,10 @@ Date: 2026-03-09
 - bundling reason:
   - these surfaces collectively define how A2 should trust inputs, borrow external methods, classify the machine as coupled structural/evidence ladders, steer the entropy lane using graveyard topology, choose scaffold versus foundation mode, and place holodeck as an A2-edge surface
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__DUAL_THREAD__A2_A1_STAGE2_PACKETS__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A1_BRAIN_ROSETTA_UPDATE_PACKETS__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__ROSETTA_TABLES__TOP_CANDIDATES__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__DUAL_THREAD__A2_A1_STAGE2_PACKETS__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A1_BRAIN_ROSETTA_UPDATE_PACKETS__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__ROSETTA_TABLES__TOP_CANDIDATES__v1.md`
 
 ## 2) Source Membership By Subfamily
 - intake policy and boundary discipline:

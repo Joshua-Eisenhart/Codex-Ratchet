@@ -9,8 +9,8 @@ Owner: current `A2` controller for bounded continuation execution path
 This note defines the first execution path for automatic `go on`.
 
 It sits after:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md`
 
 This note answers:
 - what metadata must exist before `SEND_ONE_GO_ON` can actually be executed
@@ -49,7 +49,7 @@ If capture is incomplete:
 ## Stage 2: Applicator decision
 
 Use:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md`
 
 Output must be exactly one of:
 - `SEND_ONE_GO_ON`

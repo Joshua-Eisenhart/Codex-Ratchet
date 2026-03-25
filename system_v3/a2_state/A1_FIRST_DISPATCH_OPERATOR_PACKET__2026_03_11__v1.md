@@ -8,14 +8,14 @@ Role: exact first sendable `A1` dispatch packet
 - `dispatch_id: A1_DISPATCH__ENTROPY_RESIDUE_NEGATIVE_AND_RESCUE__2026_03_11__v1`
 - `queue_status: READY_FROM_EXISTING_FUEL`
 - `target_a1_role: A1_PROPOSAL`
-- `required_a1_boot: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md`
+- `required_a1_boot: /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md`
 
 ## Source artifacts
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_A1_DELTA__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_LOCAL_PACK_RETURN__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_A1_DELTA__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_LOCAL_PACK_RETURN__2026_03_11__v1.md`
 
 ## Bounded scope
 
@@ -33,15 +33,15 @@ without claiming:
 
 ```text
 Use the current A1 boot:
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md
 
 Run one bounded A1_PROPOSAL pass only.
 
 Use only these artifacts:
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_A1_DELTA__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_LOCAL_PACK_RETURN__2026_03_11__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_IMPACT_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_A1_DELTA__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__ENTROPY_LOCAL_PACK_RETURN__2026_03_11__v1.md
 
 Task:
 - generate one bounded proposal family for the entropy/engine residue lane

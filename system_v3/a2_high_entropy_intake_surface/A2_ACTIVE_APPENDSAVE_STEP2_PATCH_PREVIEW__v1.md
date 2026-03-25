@@ -29,7 +29,7 @@ Problem:
 - thread distillation can drift toward newer assistant synthesis, smoother wording, or recap-by-recentness
 ...
 Main source:
-- `/Users/joshuaeisenhart/Desktop/codex thread save.txt`
+- `/home/ratchet/Desktop/codex thread save.txt`
 ```
 
 Use this preview only if the live tail still matches this audited shape closely enough.
@@ -39,10 +39,10 @@ If mutation is later authorized, the bounded patch should be:
 
 ```patch
 *** Begin Patch
-*** Update File: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md
+*** Update File: /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md
 @@
  Main source:
- - `/Users/joshuaeisenhart/Desktop/codex thread save.txt`
+ - `/home/ratchet/Desktop/codex thread save.txt`
 +## 14) Worldview-pressure memo vs disciplined control consequence
 +Problem:
 +- translation cleanup, rosetta cleanup, or thread synthesis can produce language that sounds cleaner or more technical than its source authority warrants
@@ -61,9 +61,9 @@ If mutation is later authorized, the bounded patch should be:
 +- if a cleaner paraphrase requires hidden reconstruction, the material should remain in memo/quarantine handling rather than entering A2-1 control memory
 +
 +Main sources:
-+- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__TRIO_03__v1.md`
-+- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__PAIR_01__v1.md`
-+- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_ACTIVE_APPENDSAVE_CANDIDATE_SHORTLIST__v1.md`
++- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__TRIO_03__v1.md`
++- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__PAIR_01__v1.md`
++- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_ACTIVE_APPENDSAVE_CANDIDATE_SHORTLIST__v1.md`
 *** End Patch
 ```
 

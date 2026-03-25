@@ -7,17 +7,17 @@ Date: 2026-03-09
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_01_OF_10__A2_LAYER1_5__OUTPUT__CORE_CONSTRAINT_LADDER_AXIS_FOUNDATION__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_01_OF_10__A2_LAYER1_5__OUTPUT__CORE_CONSTRAINT_LADDER_AXIS_FOUNDATION__v1_1.zip`
 - reason for bounded single-package batch:
   - this is the next archive-root item in folder order after the archive-root policy/lineage batch
   - the package is compact (`39305` bytes) and self-contained at the output layer
   - it is a historical derived extraction artifact, so it is safer to process one zip at a time rather than flattening multiple archive packages together
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_02_OF_10__A2_LAYER1_5__OUTPUT__AXES_APPLE_NOTES_IGT_MAPPING__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_02_OF_10__A2_LAYER1_5__OUTPUT__AXES_APPLE_NOTES_IGT_MAPPING__v1_1.zip`
 
 ## 2) Source Membership
 ### Primary container
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_01_OF_10__A2_LAYER1_5__OUTPUT__CORE_CONSTRAINT_LADDER_AXIS_FOUNDATION__v1_1.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_01_OF_10__A2_LAYER1_5__OUTPUT__CORE_CONSTRAINT_LADDER_AXIS_FOUNDATION__v1_1.zip`
 - sha256: `762167c8a904ab4536a1841dfa2f795a241cffbe8188ac5e314284c39044b312`
 - size bytes: `39305`
 - container member count: `30`

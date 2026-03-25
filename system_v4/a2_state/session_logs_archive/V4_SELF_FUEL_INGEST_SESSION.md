@@ -16,19 +16,19 @@
 - Total: 419 nodes, 312 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/session_logs/MASS_UPGRADE_DOCS_WAVE_11_SESSION.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/PROMOTION_AUDIT_2026-03-18_072831.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/CONTRADICTION_SCAN_2026-03-18_072833.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/system_graph_a2_refinery.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/system_graph_v3_ingest_pass1.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/doc_queue.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/refinery_batch_index.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/rosetta.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/memory.jsonl
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_understanding/A2_UNDERSTANDING_REPORT.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__ANTIGRAVITY__2026_03_18__v3.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/test_zips
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/A2_PROPOSAL.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/session_logs/MASS_UPGRADE_DOCS_WAVE_11_SESSION.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/PROMOTION_AUDIT_2026-03-18_072831.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/CONTRADICTION_SCAN_2026-03-18_072833.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/system_graph_a2_refinery.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/graphs/system_graph_v3_ingest_pass1.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/doc_queue.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/refinery_batch_index.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/rosetta.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/memory.jsonl
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_understanding/A2_UNDERSTANDING_REPORT.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__ANTIGRAVITY__2026_03_18__v3.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/test_zips
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/A2_PROPOSAL.json
 
 ## Key Findings
 - V4 SELF-FUEL INGEST: 15 concept clusters covering session logs, audit reports, graph data, state files, understanding module, context extract, test fixtures, proposals

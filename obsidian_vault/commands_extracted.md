@@ -9,7 +9,7 @@ authority: "NONCANON"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::commands_extracted::f8c0286c39643351`
 
 ## Description
-Archived Work File: L000026 Several operational tooling scripts were hard-coded to a local machine path: /Users/joshuaeisenhart/Desktop/Codex Ratchet That means commands 
+Archived Work File: L000026 Several operational tooling scripts were hard-coded to a local machine path: /home/ratchet/Desktop/Codex Ratchet That means commands 
 
 ## Properties
 - **source_line_range**: 

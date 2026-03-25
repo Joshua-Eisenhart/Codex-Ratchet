@@ -39,4 +39,4 @@ Extraction mode: `SOURCE_MAP_PASS`
 ## Candidate Summary C5
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/jp graph prompt!!.txt`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/jp graph prompt!!.txt`

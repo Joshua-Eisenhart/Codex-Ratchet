@@ -7,7 +7,7 @@
 
 ## Anchor Family
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_PACKET_SMOKE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_PACKET_SMOKE_FAMILY__v1.md`
 
 ## Why This Family
 
@@ -29,17 +29,17 @@
 ### Normalized Retained Packet Triple
 
 - campaign summary witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BRIDGE_PACKET_SMOKE_0002/reports/autoratchet_campaign_summary.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BRIDGE_PACKET_SMOKE_0002/reports/autoratchet_campaign_summary.json`
   - witness meaning:
     - strongest positive packet-side summary for the family, preserving the route where `correlation_polarity` still survives while bookkeeping pressure starts to spill
 
 - lower-loop failure witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BRIDGE_PACKET_SMOKE_0002/b_reports/b_report_0003.txt`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BRIDGE_PACKET_SMOKE_0002/b_reports/b_report_0003.txt`
   - witness meaning:
     - compact retained failure record that the bookkeeping side still collapses on `rate` with missing math/term/canon support
 
 - state witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BRIDGE_PACKET_SMOKE_0002/state.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BRIDGE_PACKET_SMOKE_0002/state.json`
   - witness meaning:
     - retained end-state registry showing the surviving packet-side helper/bridge terms and the run-end counts
 
@@ -53,17 +53,17 @@
 ### Normalized Retained Packet Triple
 
 - campaign summary witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BRIDGE_PACKET_SMOKE_0004/reports/autoratchet_campaign_summary.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BRIDGE_PACKET_SMOKE_0004/reports/autoratchet_campaign_summary.json`
   - witness meaning:
     - retained one-step summary showing the restored packet route still exists
 
 - lower-loop failure witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BRIDGE_PACKET_SMOKE_0004/b_reports/b_report_0001.txt`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BRIDGE_PACKET_SMOKE_0004/b_reports/b_report_0001.txt`
   - witness meaning:
     - compact retained failure record that `correlation_polarity` still collapses on `polarity`
 
 - state witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BRIDGE_PACKET_SMOKE_0004/state.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BRIDGE_PACKET_SMOKE_0004/state.json`
   - witness meaning:
     - retained end-state registry showing only helper `correlation` survives and graveyard pressure does not grow
 
@@ -73,7 +73,7 @@
 - active doctrine currently describes that run as `correlation_polarity` failing on:
   - `UNDEFINED_LEXEME:polarity`
 - the retained B-report at:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BRIDGE_PACKET_SMOKE_0003/b_reports/b_report_0001.txt`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_13__20260309T072246Z/RUN_ENTROPY_BRIDGE_PACKET_SMOKE_0003/b_reports/b_report_0001.txt`
   currently records:
   - `UNDEFINED_LEXEME:correlation`
 - preserve the contradiction; do not normalize it away until a later audit resolves which surface is the intended family read

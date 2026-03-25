@@ -520,9 +520,9 @@ Current source-bound controller read:
 - extra Codex concurrency is worker-slot concurrency under one controller, not multi-controller drift
 
 Source anchors:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/33_A2_VS_A1_ROLE_SPLIT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/33_A2_VS_A1_ROLE_SPLIT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md`
 
 Legacy boot translation rule:
 - the legacy boot trio remains useful predecessor law for:
@@ -533,7 +533,7 @@ Legacy boot translation rule:
 - the legacy boot trio does not override the current `system_v3` role split or slot layout even when it uses stronger local authority labels
 
 Queue consequence now explicit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CHECK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CHECK__2026_03_12__v1.md`
   reconfirms:
   - `A1_QUEUE_STATUS: NO_WORK`
 - current corrective read:
@@ -742,7 +742,7 @@ A2 is not where truth is declared.
 
 ## 13) Thread-Derived Process Correction (2026-03-06 thread export)
 Source corpus:
-- `/Users/joshuaeisenhart/Desktop/codex thread save.txt`
+- `/home/ratchet/Desktop/codex thread save.txt`
 
 Thread-derived correction to preserve:
 - recent work drifted into top-down repo-aware engineering, partial doc syncing, and local runtime/debug activity
@@ -790,7 +790,7 @@ Operational repo-shape read to preserve:
 - `work/` is not dead or purely archival.
   - it is a legacy/test/prototype spillover surface still used for ZIP dropins, Pro-send packs, sandbox workspaces, golden tests, temporary audits, and mirrored/experimental system fragments
   - it should not be confused with the clean active `system_v3/` control path
-- external archive at `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive` is a real retention/heat-dump surface.
+- external archive at `/home/ratchet/Desktop/Codex_Ratchet__archive` is a real retention/heat-dump surface.
   - it contains milestone zips, cleanup bookkeeping, legacy reference tiers, and purgeable cache tiers
   - it should not be treated as active runtime input unless an active surface explicitly re-imports something from it
 - the long explicit top-level surfaces inside `system_v3/` (for example `a2_persistent_context_and_memory_surface`, `deterministic_runtime_execution_surface`) are mostly alias/migration scaffolding under compatibility mode, not missing active content
@@ -865,7 +865,7 @@ Operational implication:
 
 ## 18) Outer A2 Intake Audit Read (2026-03-08)
 The new outer-lane high-entropy intake surface is now producing bounded batch artifacts under:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/`
 
 Audit read:
 - the process is working at the packaging level:
@@ -930,7 +930,7 @@ Current leakage risks:
 ## 19) First Selective-Promotion Consequence Subset (2026-03-08)
 First bounded selective-promotion read from:
 - `BATCH_A2MID_branchthread_workflow_repair__v1`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_THREADB_CONSEQUENCE_SUBSET__SOURCE_BOUND_HELPER__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_THREADB_CONSEQUENCE_SUBSET__SOURCE_BOUND_HELPER__2026_03_15__v1.md`
 - `BATCH_A2MID_sims_evidence_boundary__v1`
 
 For the Thread B kernel component, active A2 now uses one bounded provenance companion instead of pointing directly at live intake artifacts.
@@ -1033,11 +1033,11 @@ This pattern is active and useful, but still provisional:
 - exact loop/process law should continue to be revised from actual runs
 
 Controller-process companion surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md`
 
 ## 21) Entropic/QIT Drift Reduction Consequences (2026-03-09)
 Source note:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ENTROPIC_QIT_DRIFT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ENTROPIC_QIT_DRIFT__v1.md`
 
 Only the smallest governance/boundary residue is being carried forward here.
 This is not a promotion of warm precursor theory as active law.
@@ -1069,7 +1069,7 @@ This is not a promotion of warm precursor theory as active law.
 
 ## 22) Math-Class Fence Consequences (2026-03-09)
 Source note:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__MATH_CLASS_FENCES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__MATH_CLASS_FENCES__v1.md`
 
 Only the smallest boundary-fence subset is being carried forward here.
 This is not a promotion of a full math-class ontology.
@@ -1103,7 +1103,7 @@ This is not a promotion of a full math-class ontology.
 
 ## 23) Sims / Interface Hygiene Consequences (2026-03-09)
 Source note:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__SIMS_INTERFACE_HYGIENE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__SIMS_INTERFACE_HYGIENE__v1.md`
 
 Only the smallest process/boundary subset is being carried forward here.
 This is not a promotion of thread-local command language, sidecar completeness, or runbook theory overlays.
@@ -1135,7 +1135,7 @@ This is not a promotion of thread-local command language, sidecar completeness, 
 
 ## 24) Axes Semantic-Fence Consequences (2026-03-09)
 Source note:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1.md`
 
 Only the smallest semantic-fence subset is being carried forward here.
 This is not a promotion of a full axes glossary or source-local authority claims.
@@ -1242,7 +1242,7 @@ This is not a promotion of a full axes glossary or source-local authority claims
 ## 2026-03-09 - Narrow Math-Language Fence Promotion From Refinedfuel Trio
 
 Source note:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ENGINE_ENTROPY_GEOMETRY_FENCES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ENGINE_ENTROPY_GEOMETRY_FENCES__v1.md`
 
 Promoted narrow boundary rules:
 - `ENGINE_LANGUAGE_IS_WITNESS_BOUND_CYCLE_OBSTRUCTION_ONLY`
@@ -1262,8 +1262,8 @@ What stayed out:
 ## 2026-03-10 - Constraints. Entropy revisit lock
 
 Source-bound revisit outputs:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_A1_DELTA__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_A1_DELTA__CONSTRAINTS_ENTROPY_REVISIT__2026_03_10__v1.md`
 
 Admitted bounded A2 read:
 - `Constraints. Entropy` is not an active doctrine packet.
@@ -1287,7 +1287,7 @@ Control consequence:
 ## 2026-03-09 - Narrow Engine / Entropy / Geometry Fence Promotion
 
 Source note:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ENGINE_ENTROPY_GEOMETRY_FENCES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ENGINE_ENTROPY_GEOMETRY_FENCES__v1.md`
 
 Promoted narrow boundary rules:
 - `ENGINE_LANGUAGE_IS_WITNESS_BOUND_CYCLE_OBSTRUCTION_ONLY`
@@ -1306,7 +1306,7 @@ What stayed out:
 ## 2026-03-09 - Archive/Thread-B governance fence uptake (narrow selective promotion)
 
 Source-bounded uptake from:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ARCHIVE_THREADB_GOVERNANCE_FENCES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__ARCHIVE_THREADB_GOVERNANCE_FENCES__v1.md`
 
 Smallest safe promoted subset:
 
@@ -1347,8 +1347,8 @@ Explicitly not promoted in this pass:
 ## 2026-03-12 - Operating procedure corrections from live controller run
 
 Source-bound basis:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CONTROLLER_BOOT_REFRESH_AND_QUEUE_LOCK__2026_03_12__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CHECK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__CONTROLLER_BOOT_REFRESH_AND_QUEUE_LOCK__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_CHECK__2026_03_12__v1.md`
 - live controller/user corrections from the active March 12 run, captured here as bounded procedure law rather than left in chat only
 
 Promoted current operating corrections:
@@ -1370,7 +1370,7 @@ Blocked reads from these corrections:
 ## 2026-03-13 - Whole-system target clarification from prime fuel audit
 
 Source-bound basis:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__WHOLE_SYSTEM_TARGET_AUDIT__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__WHOLE_SYSTEM_TARGET_AUDIT__2026_03_13__v1.md`
 
 Promoted current operating clarification:
 - the actual scientific target preserved in the prime corpus is broader than the live support-lane emphasis:
@@ -1396,7 +1396,7 @@ Current control consequence:
 ## 2026-03-13 - Main target staged decomposition from prime fuel
 
 Source-bound basis:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__MAIN_TARGET_DECOMPOSITION__2026_03_13__v1.md`
 
 Promoted current operating clarification:
 - the broader scientific target should now be read in five staged buckets:
@@ -1430,10 +1430,10 @@ Current control consequence:
 ## 2026-03-21 - Outside-memory seam durability clarification
 
 Source-bound basis:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/EVERMEM_WITNESS_SYNC_STATE__CURRENT__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/test_witness_evermem_sync_durability_smoke.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/test_run_real_ratchet_e2e_smoke.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/EVERMEM_WITNESS_SYNC_STATE__CURRENT__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/test_witness_evermem_sync_durability_smoke.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/skills/test_run_real_ratchet_e2e_smoke.py`
 
 Promoted current operating clarification:
 - broader EverMem or outside-memory integration is still not earned
@@ -1455,10 +1455,10 @@ Current control consequence:
 ## 2026-03-22 - imported-cluster selector shift after bounded autodev landing
 
 Source-bound basis:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__LEV_AUTODEV_LANDING_AND_NEXT_CLUSTER_SHIFT__2026_03_22__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AUTODEV_LOOP_AUDIT_REPORT__CURRENT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__LEV_AUTODEV_LANDING_AND_NEXT_CLUSTER_SHIFT__2026_03_22__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AUTODEV_LOOP_AUDIT_REPORT__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_BRAIN_SURFACE_REFRESH_REPORT__CURRENT__v1.md`
 
 Promoted current operating clarification:
 - `SKILL_CLUSTER::lev-autodev-exec-validation` is no longer just a candidate:
@@ -1483,10 +1483,10 @@ Current control consequence:
 ## 2026-03-22 - architecture-fitness is now landed and the lev selector is held
 
 Source-bound basis:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__LEV_ARCHITECTURE_FITNESS_LANDING_AND_SELECTOR_HOLD__2026_03_22__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_ARCHITECTURE_FITNESS_REPORT__CURRENT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__LEV_ARCHITECTURE_FITNESS_LANDING_AND_SELECTOR_HOLD__2026_03_22__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_ARCHITECTURE_FITNESS_REPORT__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AGENTS_PROMOTION_REPORT__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md`
 
 Promoted current operating clarification:
 - `SKILL_CLUSTER::lev-architecture-fitness-review` is no longer just the next candidate:
@@ -1509,9 +1509,9 @@ Current control consequence:
 ## 2026-03-22 - next-state directive probe is now landed
 
 Source-bound basis:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__NEXT_STATE_DIRECTIVE_PROBE_LANDING__2026_03_22__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__NEXT_STATE_DIRECTIVE_PROBE_LANDING__2026_03_22__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/GRAPH_CAPABILITY_AUDIT__2026_03_20__v1.md`
 
 Promoted current operating clarification:
 - `SKILL_CLUSTER::next-state-signal-adaptation` is no longer just pattern-mapping:

@@ -23,7 +23,7 @@ Current A2 understanding already encodes a multi-layer A2 stack:
 - `A2-1` = control kernel
 
 Primary source:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
 
 The related historical consolidation record also states the working distinction explicitly:
 - `A2-3` outer intake / entropy buffering / high-entropy cleaned mirrors
@@ -31,7 +31,7 @@ The related historical consolidation record also states the working distinction 
 - `A2-1` low-entropy control kernel
 
 Primary source:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/THREAD_CONSOLIDATED_RECORD__2026_03_09__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/THREAD_CONSOLIDATED_RECORD__2026_03_09__v1.md`
 
 ### "Lean" applies most strongly to A2-1, not to all A2 layers equally
 
@@ -52,7 +52,7 @@ Older A2 memory still states:
 - the goal is that the next thread boots from lowered-entropy preserved context instead of starting from zero
 
 Primary source:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/memory_shards/memory_shard_000001.jsonl`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/memory_shards/memory_shard_000001.jsonl`
 
 ## Current live mismatch
 

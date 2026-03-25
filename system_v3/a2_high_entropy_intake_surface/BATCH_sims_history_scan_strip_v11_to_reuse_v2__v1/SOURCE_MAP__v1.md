@@ -7,20 +7,20 @@ Date: 2026-03-08
 
 ## 1) Batch Selection
 - starting file in raw simpy folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_invariant_gradient_scan_v11.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_invariant_gradient_scan_v11.py`
 - selected sources:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_invariant_gradient_scan_v11.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_order_critical_scan_v16.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_pair_order_coupling_scan_v17.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_reuse_probe_v1.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_reuse_truncation_v2.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_self_operator_scan_v18.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_gradient_scan_v12.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_order_preserved_v13.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_order_preserved_v13b.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_order_scrambled_v14.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_order_truncated_v15.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_history_invariant_gradient_scan_v11.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_invariant_gradient_scan_v11.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_order_critical_scan_v16.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_pair_order_coupling_scan_v17.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_reuse_probe_v1.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_reuse_truncation_v2.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_self_operator_scan_v18.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_gradient_scan_v12.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_order_preserved_v13.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_order_preserved_v13b.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_order_scrambled_v14.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_order_truncated_v15.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_history_invariant_gradient_scan_v11.json`
 - reason for bounded family:
   - this is the next unprocessed raw-folder-order strip after `run_full_axis_suite.py`
   - the selected scripts form one contiguous history-themed executable family:
@@ -32,80 +32,80 @@ Date: 2026-03-08
     - `results_history_invariant_gradient_scan_v11.json`
   - keeping the whole strip together preserves the executable family while keeping result-surface admission separate and partial
 - comparison-only anchors read:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
 - deferred next raw-folder-order source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_oprole8_left_right_suite.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_oprole8_left_right_suite.py`
 
 ## 2) Source Membership
 - Runner:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_invariant_gradient_scan_v11.py`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_invariant_gradient_scan_v11.py`
   - sha256: `394d5d7df581a643dac55dd48579da63a548485bf604059e225317f7a489f911`
   - size bytes: `1341`
   - line count: `41`
   - source role: invariant baseline gradient placeholder runner
 - Runner:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_gradient_scan_v12.py`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_gradient_scan_v12.py`
   - sha256: `f20531df894b74355c8dabc84fda386081b7726e95201be442ecc840e0c18bc8`
   - size bytes: `1420`
   - line count: `48`
   - source role: shuffled-history gradient placeholder runner
 - Runner:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_order_preserved_v13.py`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_order_preserved_v13.py`
   - sha256: `df47d90c2f248a12ffae46d238d7daa8ea025b0aabca5dc151be56a05d10e62c`
   - size bytes: `460`
   - line count: `19`
   - source role: wrapper launcher for preserved-order variants
 - Runner:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_order_preserved_v13b.py`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_order_preserved_v13b.py`
   - sha256: `7a7b5b1a32c4daf8ad37550e2d83c74f903072add2b8c5f4d2c90c90d33e4768`
   - size bytes: `1011`
   - line count: `43`
   - source role: growth-heavy preserved-order runtime surface
 - Runner:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_order_scrambled_v14.py`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_order_scrambled_v14.py`
   - sha256: `99ccabb193d6a53ba99c528ecc62c7b6ee7571fdfea3a621912c53050c2caf1c`
   - size bytes: `683`
   - line count: `25`
   - source role: scrambled-order runtime surface
 - Runner:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_order_truncated_v15.py`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_variant_order_truncated_v15.py`
   - sha256: `499d7f337e6bc02a895655c4125d9bd7a7c1a9028b576b531f474f22bd8f1f6a`
   - size bytes: `670`
   - line count: `26`
   - source role: truncated-order runtime surface
 - Runner:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_order_critical_scan_v16.py`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_order_critical_scan_v16.py`
   - sha256: `92fa64fd023c01bb42f5b7c1161453d59e00b40ca204587c8fb94784b939c8bb`
   - size bytes: `680`
   - line count: `24`
   - source role: depth-indexed order-critical runtime surface
 - Runner:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_pair_order_coupling_scan_v17.py`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_pair_order_coupling_scan_v17.py`
   - sha256: `d8c19c2ae0f309af52f628656727d4a06a6fb64b97e90df8e611976aafbc92f1`
   - size bytes: `936`
   - line count: `36`
   - source role: preserved-vs-scrambled pair-order runtime surface
 - Runner:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_self_operator_scan_v18.py`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_self_operator_scan_v18.py`
   - sha256: `42b3da6e46cd7d678c1d9e216d0c1fbf00594d4187add4f1650179668b491468`
   - size bytes: `885`
   - line count: `35`
   - source role: data-only versus prefix-reuse runtime surface
 - Runner:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_reuse_probe_v1.py`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_reuse_probe_v1.py`
   - sha256: `ab538d44544441dde3892a6986223d977b2042160f74536a467831f1ad2b269e`
   - size bytes: `1375`
   - line count: `52`
   - source role: matrix-record versus operator-reuse probe
 - Runner:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_reuse_truncation_v2.py`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_history_reuse_truncation_v2.py`
   - sha256: `80246cce437e120dd0fa80f592bb1ec652f934d7f519fb3c7e118b56394718e0`
   - size bytes: `1175`
   - line count: `43`
   - source role: reuse plus depth-truncation runtime surface
 - Result surface:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_history_invariant_gradient_scan_v11.json`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_history_invariant_gradient_scan_v11.json`
   - sha256: `050f6a79848b07a28fc191db4a5da5cd23681fa814ea71f5fd476c59410ac6a9`
   - size bytes: `953`
   - line count: `35`
@@ -180,8 +180,8 @@ Date: 2026-03-08
 
 ## 4) Comparison Anchors
 - comparison sources:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_CATALOG_v1.3.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
 - relevant anchors:
   - `SIM_CATALOG_v1.3.md:104`
   - `SIM_CATALOG_v1.3.md:155`

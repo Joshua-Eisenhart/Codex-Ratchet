@@ -1,3 +1,4 @@
+import os
 #!/usr/bin/env python3
 from __future__ import annotations
 
@@ -9,7 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-PWCLI = "/Users/joshuaeisenhart/.codex/skills/playwright/scripts/playwright_cli.sh"
+PWCLI = os.path.expanduser("~/.codex") + "/skills/playwright/scripts/playwright_cli.sh"
 PLAN_SCHEMA = "CODEX_THREAD_LAUNCH_PLAYWRIGHT_PLAN_v1"
 PROOF_SCHEMA = "CODEX_THREAD_LAUNCH_PROOF_PACKET_v1"
 DEFAULT_CMD_TIMEOUT_SEC = 20

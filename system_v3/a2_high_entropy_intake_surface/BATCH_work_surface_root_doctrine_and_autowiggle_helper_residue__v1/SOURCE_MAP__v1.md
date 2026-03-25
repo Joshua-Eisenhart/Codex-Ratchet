@@ -9,9 +9,9 @@ Scope
 ## Source set A: root control plaques
 
 Primary anchors
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/00_READ_FIRST__A2_A1_REFINERY_v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CURRENT.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/LEAN_POLICY__READ_ME_FIRST__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/00_READ_FIRST__A2_A1_REFINERY_v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/CURRENT.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/LEAN_POLICY__READ_ME_FIRST__v1.md`
 
 Observed structure
 - `00_READ_FIRST__A2_A1_REFINERY_v1.md` is explicitly `Status: DRAFT (work-sandbox only)` and says:
@@ -41,11 +41,11 @@ Useful residue
 ## Source set B: law-like runtime and SIM protocol spillover
 
 Primary anchors
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/SYSTEM_RUNTIME_CANON_v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/SPINNER_ENGINE_PROTOCOL_v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CORE/A0_COMPILER_PROTOCOL_v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/CORE/SYSTEM_ARCHITECTURE_CANON_v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/SIM/NEGATIVE_SIM_PROTOCOL_v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/SYSTEM_RUNTIME_CANON_v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/SPINNER_ENGINE_PROTOCOL_v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/CORE/A0_COMPILER_PROTOCOL_v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/CORE/SYSTEM_ARCHITECTURE_CANON_v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/SIM/NEGATIVE_SIM_PROTOCOL_v1.md`
 
 Observed structure
 - These are written like system-law documents even though they live under `work/`.
@@ -64,15 +64,15 @@ Useful residue
 ## Source set C: sandbox analysis and path drift
 
 Primary anchors
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/ANALYSIS_SUMMARY.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/coordination_sandbox__codex_minimax__noncanonical_delete_safe/00_SANDBOX_MANIFEST.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/ANALYSIS_SUMMARY.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/coordination_sandbox__codex_minimax__noncanonical_delete_safe/00_SANDBOX_MANIFEST.md`
 
 Observed structure
 - `ANALYSIS_SUMMARY.md` is a MiniMax-authored status-and-proposal memo from `2026-02-25`.
 - It says `work/a1_sandbox/00_SANDBOX_MANIFEST.md` and `work/a1_sandbox/steelman_brain/STEELMAN_BRAIN_CORE.md` were created.
 - During this pass those two expected paths were confirmed missing.
 - A related sandbox manifest does exist at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/coordination_sandbox__codex_minimax__noncanonical_delete_safe/00_SANDBOX_MANIFEST.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/coordination_sandbox__codex_minimax__noncanonical_delete_safe/00_SANDBOX_MANIFEST.md`
 - That manifest defines the same broad lane structure: steelman brain, devil lanes, graveyard input, and output to A0.
 
 Useful residue
@@ -81,13 +81,13 @@ Useful residue
 ## Source set D: autowiggle helper export stack
 
 Primary anchors
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/autowiggle_summary.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/autowiggle_promotion_status.txt`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/autowiggle_sim_registry.txt`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/autowiggle_evidence.txt`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/autowiggle_graveyard.txt`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/autowiggle_sim_results.txt`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/tmp_a1_cold_core_diversity_case__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/autowiggle_summary.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/autowiggle_promotion_status.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/work/autowiggle_sim_registry.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/work/autowiggle_evidence.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/work/autowiggle_graveyard.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/work/autowiggle_sim_results.txt`
+- `/home/ratchet/Desktop/Codex Ratchet/work/tmp_a1_cold_core_diversity_case__v1.json`
 
 Observed structure
 - `autowiggle_summary.json` reports:

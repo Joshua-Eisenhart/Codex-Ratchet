@@ -16,7 +16,7 @@
 - Total: 3237 nodes, 7052 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__ANTIGRAVITY__2026_03_18__v5.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__ANTIGRAVITY__2026_03_18__v5.md
 
 ## Key Findings
 - Thread context v5 FINAL written and ingested.

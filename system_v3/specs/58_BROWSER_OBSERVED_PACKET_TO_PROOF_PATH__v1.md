@@ -38,7 +38,7 @@ It does not:
 The wrapper must receive:
 - one valid `AUTO_GO_ON_SENDER_PACKET_v1`
 - one valid sink packet matching:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/57_BROWSER_OBSERVED_CAPTURE_SINK__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/57_BROWSER_OBSERVED_CAPTURE_SINK__v1.md`
 - one output directory
 - one helper mode
 

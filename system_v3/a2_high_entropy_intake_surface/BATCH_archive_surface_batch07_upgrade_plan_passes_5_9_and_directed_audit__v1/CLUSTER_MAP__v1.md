@@ -81,7 +81,7 @@ Extraction mode: `ARCHIVE_RATCHET_FUEL_MINT_PACKAGE_PASS`
 
 ## Cluster 9: Deferred Next Package
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_08_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__v1_0.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_08_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__v1_0.zip`
 - cluster read:
   - the next archive-root package stays in the ratchet-fuel mint family and should remain isolated as its own bounded pass
 - current usefulness:

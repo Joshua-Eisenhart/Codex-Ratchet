@@ -1,6 +1,7 @@
 import json
 import time
 import os
+from pathlib import Path
 from pysmt.shortcuts import (
     Symbol, And, Or, Implies, Equals, Not,
     Int, Ite, LE, GE, LT, GT,
@@ -9,8 +10,9 @@ from pysmt.shortcuts import (
 from pysmt.typing import INT, BOOL, STRING
 
 # --- Configuration & Paths ---
-GRAPH_PATH = "/Users/joshuaeisenhart/Desktop/Codex Directional_Accumulator/system_v4/a2_state/graphs/a2_low_control_graph_v1.json"
-REPORT_PATH = "/Users/joshuaeisenhart/Desktop/Codex Directional_Accumulator/system_v4/a2_state/audit_logs/SMT_GRAPH_LEGALITY_LIBRARY__v1.md"
+_REPO_ROOT = Path(__file__).resolve().parent.parent.parent
+GRAPH_PATH = str(_REPO_ROOT / "system_v4" / "a2_state" / "graphs" / "a2_low_control_graph_v1.json")
+REPORT_PATH = str(_REPO_ROOT / "system_v4" / "a2_state" / "audit_logs" / "SMT_GRAPH_LEGALITY_LIBRARY__v1.md")
 
 def load_graph():
     print(f"Loading graph from {GRAPH_PATH}...")

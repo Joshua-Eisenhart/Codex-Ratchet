@@ -42,7 +42,7 @@ Use it to keep imported-corpus work from collapsing back into:
 - `status`: `partial`
 - `tracker_state`: `MATERIALIZED`
 - `graph_state`: `not_projected`
-- `tracker_ref`: [SKILL_SOURCE_CORPUS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md)
+- `tracker_ref`: [SKILL_SOURCE_CORPUS.md](/home/ratchet/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md)
 - `first_slice`: `a2-skill-source-intake-operator`
 
 Projection status:
@@ -71,11 +71,11 @@ Nearby helper, not first-cluster member:
 
 First Ratchet-native slice:
 
-- [a2-skill-source-intake-operator spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-skill-source-intake-operator/SKILL.md)
-- [a2_skill_source_intake_operator.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/a2_skill_source_intake_operator.py)
+- [a2-skill-source-intake-operator spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-skill-source-intake-operator/SKILL.md)
+- [a2_skill_source_intake_operator.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/a2_skill_source_intake_operator.py)
 - current emitted report:
-  - [A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.json)
-  - [A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.md)
+  - [A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.json)
+  - [A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_SKILL_SOURCE_INTAKE_REPORT__CURRENT__v1.md)
 
 Current scope of the first slice:
 
@@ -105,11 +105,11 @@ Not in the first slice:
   - first believable Ratchet-native slice:
     - `a2-tracked-work-operator`
   - first bounded implementation now exists:
-    - [a2-tracked-work-operator spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-tracked-work-operator/SKILL.md)
-    - [a2_tracked_work_operator.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/a2_tracked_work_operator.py)
+    - [a2-tracked-work-operator spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-tracked-work-operator/SKILL.md)
+    - [a2_tracked_work_operator.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/a2_tracked_work_operator.py)
     - current emitted report:
-      - [A2_TRACKED_WORK_STATE__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_TRACKED_WORK_STATE__CURRENT__v1.json)
-      - [A2_TRACKED_WORK_STATE__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_TRACKED_WORK_STATE__CURRENT__v1.md)
+      - [A2_TRACKED_WORK_STATE__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_TRACKED_WORK_STATE__CURRENT__v1.json)
+      - [A2_TRACKED_WORK_STATE__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_TRACKED_WORK_STATE__CURRENT__v1.md)
   - intended role:
     - one bounded repo-held work-state note with explicit `current slice`, `next action`, `stop/continue`, and `non-goals`
   - non-goals:
@@ -125,11 +125,11 @@ Not in the first slice:
     - `cdo` -> `mine`
     - `workflow-cited-research` -> `skip`
   - first bounded implementation now exists:
-    - [a2-research-deliberation-operator spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-research-deliberation-operator/SKILL.md)
-    - [a2_research_deliberation_operator.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/a2_research_deliberation_operator.py)
+    - [a2-research-deliberation-operator spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-research-deliberation-operator/SKILL.md)
+    - [a2_research_deliberation_operator.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/a2_research_deliberation_operator.py)
     - current emitted report:
-      - [A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.json)
-      - [A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.md)
+      - [A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.json)
+      - [A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_RESEARCH_DELIBERATION_REPORT__CURRENT__v1.md)
   - intended role:
     - one bounded repo-held local route that composes `autoresearch` and `llm-council` over explicit candidates or a seeded local search space
   - non-goals:
@@ -147,9 +147,9 @@ Not in the first slice:
   - first bounded slice now exists:
     - durable/auditable `witness-evermem-sync`
     - current repo-held outputs:
-      - [EVERMEM_WITNESS_SYNC_STATE__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/EVERMEM_WITNESS_SYNC_STATE__CURRENT__v1.json)
-      - [EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json)
-      - [EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.md)
+      - [EVERMEM_WITNESS_SYNC_STATE__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/EVERMEM_WITNESS_SYNC_STATE__CURRENT__v1.json)
+      - [EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.json)
+      - [EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/EVERMEM_WITNESS_SYNC_REPORT__CURRENT__v1.md)
   - intended role:
     - post-batch contiguous witness projection to an outside EverMem backend with repo-held state, cursor, and failure reporting
   - non-goals:
@@ -165,12 +165,12 @@ Not in the first slice:
     - `lev-align` -> `adapt`
     - `work` -> `mine`
   - first bounded slice now exists:
-    - [a2-workshop-analysis-gate-operator spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-workshop-analysis-gate-operator/SKILL.md)
-    - [a2_workshop_analysis_gate_operator.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/a2_workshop_analysis_gate_operator.py)
+    - [a2-workshop-analysis-gate-operator spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-workshop-analysis-gate-operator/SKILL.md)
+    - [a2_workshop_analysis_gate_operator.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/a2_workshop_analysis_gate_operator.py)
     - current repo-held outputs:
-      - [A2_WORKSHOP_ANALYSIS_GATE_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_WORKSHOP_ANALYSIS_GATE_REPORT__CURRENT__v1.json)
-      - [A2_WORKSHOP_ANALYSIS_GATE_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_WORKSHOP_ANALYSIS_GATE_REPORT__CURRENT__v1.md)
-      - [A2_WORKSHOP_ANALYSIS_GATE_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_WORKSHOP_ANALYSIS_GATE_PACKET__CURRENT__v1.json)
+      - [A2_WORKSHOP_ANALYSIS_GATE_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_WORKSHOP_ANALYSIS_GATE_REPORT__CURRENT__v1.json)
+      - [A2_WORKSHOP_ANALYSIS_GATE_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_WORKSHOP_ANALYSIS_GATE_REPORT__CURRENT__v1.md)
+      - [A2_WORKSHOP_ANALYSIS_GATE_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_WORKSHOP_ANALYSIS_GATE_PACKET__CURRENT__v1.json)
   - intended role:
     - bounded intake-to-analysis gate for one imported workshop candidate at a time
   - non-goals:
@@ -184,13 +184,13 @@ Not in the first slice:
   - import label: `FlowMind Session Durability Bridge`
   - source family: `lev-os/leviathan`
   - first bounded slice now exists:
-    - [outer-session-ledger spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/outer-session-ledger/SKILL.md)
-    - [outer_session_ledger.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/outer_session_ledger.py)
+    - [outer-session-ledger spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/outer-session-ledger/SKILL.md)
+    - [outer_session_ledger.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/outer_session_ledger.py)
     - current repo-held outputs:
-      - [OUTER_SESSION_LEDGER_STATE__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/OUTER_SESSION_LEDGER_STATE__CURRENT__v1.json)
-      - [OUTER_SESSION_LEDGER_EVENTS__APPEND_ONLY__v1.jsonl](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/OUTER_SESSION_LEDGER_EVENTS__APPEND_ONLY__v1.jsonl)
-      - [OUTER_SESSION_LEDGER_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/OUTER_SESSION_LEDGER_REPORT__CURRENT__v1.json)
-      - [OUTER_SESSION_LEDGER_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/OUTER_SESSION_LEDGER_REPORT__CURRENT__v1.md)
+      - [OUTER_SESSION_LEDGER_STATE__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/OUTER_SESSION_LEDGER_STATE__CURRENT__v1.json)
+      - [OUTER_SESSION_LEDGER_EVENTS__APPEND_ONLY__v1.jsonl](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/OUTER_SESSION_LEDGER_EVENTS__APPEND_ONLY__v1.jsonl)
+      - [OUTER_SESSION_LEDGER_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/OUTER_SESSION_LEDGER_REPORT__CURRENT__v1.json)
+      - [OUTER_SESSION_LEDGER_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/OUTER_SESSION_LEDGER_REPORT__CURRENT__v1.md)
   - intended role:
     - bounded outside-session continuity ledger with repo-held state, append-only observations, and resume audit
   - non-goals:
@@ -203,12 +203,12 @@ Not in the first slice:
 - `SKILL_CLUSTER::outside-control-shell-session-host`
   - source family: `pi-mono`
   - first bounded slice now exists:
-    - [outside-control-shell-operator spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/outside-control-shell-operator/SKILL.md)
-    - [outside_control_shell_operator.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/outside_control_shell_operator.py)
+    - [outside-control-shell-operator spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/outside-control-shell-operator/SKILL.md)
+    - [outside_control_shell_operator.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/outside_control_shell_operator.py)
     - current repo-held outputs:
-      - [A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.json)
-      - [A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.md)
-      - [A2_PIMONO_OUTSIDE_SESSION_HOST_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_PACKET__CURRENT__v1.json)
+      - [A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.json)
+      - [A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_REPORT__CURRENT__v1.md)
+      - [A2_PIMONO_OUTSIDE_SESSION_HOST_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_PIMONO_OUTSIDE_SESSION_HOST_PACKET__CURRENT__v1.json)
   - intended role:
     - bounded read-only audit of local pi-mono session-host surfaces plus mom workspace boundary
   - non-goals:
@@ -226,39 +226,39 @@ Not in the first slice:
     - `directive-correction-supervision` -> `adapt`
     - `async-serving-judging-training-loop` -> `mine`
   - first bounded slice now exists:
-    - [a2-next-state-signal-adaptation-audit-operator spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-next-state-signal-adaptation-audit-operator/SKILL.md)
-    - [a2_next_state_signal_adaptation_audit_operator.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/a2_next_state_signal_adaptation_audit_operator.py)
+    - [a2-next-state-signal-adaptation-audit-operator spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-next-state-signal-adaptation-audit-operator/SKILL.md)
+    - [a2_next_state_signal_adaptation_audit_operator.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/a2_next_state_signal_adaptation_audit_operator.py)
     - current repo-held outputs:
-      - [A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.json)
-      - [A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.md)
-      - [A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_PACKET__CURRENT__v1.json)
+      - [A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.json)
+      - [A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_REPORT__CURRENT__v1.md)
+      - [A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_SIGNAL_ADAPTATION_AUDIT_PACKET__CURRENT__v1.json)
   - second bounded slice now exists:
-    - [a2-next-state-directive-signal-probe-operator spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-next-state-directive-signal-probe-operator/SKILL.md)
-    - [a2_next_state_directive_signal_probe_operator.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/a2_next_state_directive_signal_probe_operator.py)
+    - [a2-next-state-directive-signal-probe-operator spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-next-state-directive-signal-probe-operator/SKILL.md)
+    - [a2_next_state_directive_signal_probe_operator.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/a2_next_state_directive_signal_probe_operator.py)
     - current repo-held outputs:
-      - [A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.json)
-      - [A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.md)
-      - [A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_PACKET__CURRENT__v1.json)
+      - [A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.json)
+      - [A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_REPORT__CURRENT__v1.md)
+      - [A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_DIRECTIVE_SIGNAL_PROBE_PACKET__CURRENT__v1.json)
   - third bounded slice now exists:
-    - [a2-next-state-improver-context-bridge-audit-operator spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-next-state-improver-context-bridge-audit-operator/SKILL.md)
-    - [a2_next_state_improver_context_bridge_audit_operator.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/a2_next_state_improver_context_bridge_audit_operator.py)
+    - [a2-next-state-improver-context-bridge-audit-operator spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-next-state-improver-context-bridge-audit-operator/SKILL.md)
+    - [a2_next_state_improver_context_bridge_audit_operator.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/a2_next_state_improver_context_bridge_audit_operator.py)
     - current repo-held outputs:
-      - [A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.json)
-      - [A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.md)
-      - [A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_PACKET__CURRENT__v1.json)
+      - [A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.json)
+      - [A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_REPORT__CURRENT__v1.md)
+      - [A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_IMPROVER_CONTEXT_BRIDGE_AUDIT_PACKET__CURRENT__v1.json)
   - fourth bounded slice now exists:
-    - [a2-next-state-first-target-context-consumer-admission-audit-operator spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-next-state-first-target-context-consumer-admission-audit-operator/SKILL.md)
-    - [a2_next_state_first_target_context_consumer_admission_audit_operator.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/a2_next_state_first_target_context_consumer_admission_audit_operator.py)
+    - [a2-next-state-first-target-context-consumer-admission-audit-operator spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-next-state-first-target-context-consumer-admission-audit-operator/SKILL.md)
+    - [a2_next_state_first_target_context_consumer_admission_audit_operator.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/a2_next_state_first_target_context_consumer_admission_audit_operator.py)
     - current repo-held outputs:
-      - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.json)
-      - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.md)
-      - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_PACKET__CURRENT__v1.json)
-    - [a2-next-state-first-target-context-consumer-proof-operator spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-next-state-first-target-context-consumer-proof-operator/SKILL.md)
-    - [a2_next_state_first_target_context_consumer_proof_operator.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/a2_next_state_first_target_context_consumer_proof_operator.py)
+      - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.json)
+      - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_REPORT__CURRENT__v1.md)
+      - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_ADMISSION_AUDIT_PACKET__CURRENT__v1.json)
+    - [a2-next-state-first-target-context-consumer-proof-operator spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-next-state-first-target-context-consumer-proof-operator/SKILL.md)
+    - [a2_next_state_first_target_context_consumer_proof_operator.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/a2_next_state_first_target_context_consumer_proof_operator.py)
     - current repo-held outputs:
-      - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_PROOF_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_PROOF_REPORT__CURRENT__v1.json)
-      - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_PROOF_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_PROOF_REPORT__CURRENT__v1.md)
-      - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_PROOF_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_PROOF_PACKET__CURRENT__v1.json)
+      - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_PROOF_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_PROOF_REPORT__CURRENT__v1.json)
+      - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_PROOF_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_PROOF_REPORT__CURRENT__v1.md)
+      - [A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_PROOF_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_NEXT_STATE_FIRST_TARGET_CONTEXT_CONSUMER_PROOF_PACKET__CURRENT__v1.json)
   - intended role:
     - bounded audit of how OpenClaw-RL next-state and directive-correction ideas map onto existing Ratchet witness and gated-improvement seams
     - then bounded probe over whether the current witness corpus actually contains post-action next-state and directive-correction evidence
@@ -290,12 +290,12 @@ Not in the first slice:
     - `lev-plan` -> `mine`
     - `stack` -> `background_only`
   - first bounded slice now exists:
-    - [a2-lev-autodev-loop-audit-operator spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-lev-autodev-loop-audit-operator/SKILL.md)
-    - [a2_lev_autodev_loop_audit_operator.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/a2_lev_autodev_loop_audit_operator.py)
+    - [a2-lev-autodev-loop-audit-operator spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-lev-autodev-loop-audit-operator/SKILL.md)
+    - [a2_lev_autodev_loop_audit_operator.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/a2_lev_autodev_loop_audit_operator.py)
     - current repo-held outputs:
-      - [A2_LEV_AUTODEV_LOOP_AUDIT_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AUTODEV_LOOP_AUDIT_REPORT__CURRENT__v1.json)
-      - [A2_LEV_AUTODEV_LOOP_AUDIT_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AUTODEV_LOOP_AUDIT_REPORT__CURRENT__v1.md)
-      - [A2_LEV_AUTODEV_LOOP_AUDIT_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AUTODEV_LOOP_AUDIT_PACKET__CURRENT__v1.json)
+      - [A2_LEV_AUTODEV_LOOP_AUDIT_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AUTODEV_LOOP_AUDIT_REPORT__CURRENT__v1.json)
+      - [A2_LEV_AUTODEV_LOOP_AUDIT_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AUTODEV_LOOP_AUDIT_REPORT__CURRENT__v1.md)
+      - [A2_LEV_AUTODEV_LOOP_AUDIT_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_AUTODEV_LOOP_AUDIT_PACKET__CURRENT__v1.json)
   - intended role:
     - bounded audit of execution / validation loop shape, exit guards, and runtime-coupling seams before any recurring execution claim
   - non-goals:
@@ -314,12 +314,12 @@ Not in the first slice:
     - `arch` -> `adapt`
     - `lev-builder` -> `mine`
   - first bounded slice now exists:
-    - [a2-lev-architecture-fitness-operator spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-lev-architecture-fitness-operator/SKILL.md)
-    - [a2_lev_architecture_fitness_operator.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/a2_lev_architecture_fitness_operator.py)
+    - [a2-lev-architecture-fitness-operator spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-lev-architecture-fitness-operator/SKILL.md)
+    - [a2_lev_architecture_fitness_operator.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/a2_lev_architecture_fitness_operator.py)
     - current repo-held outputs:
-      - [A2_LEV_ARCHITECTURE_FITNESS_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_ARCHITECTURE_FITNESS_REPORT__CURRENT__v1.json)
-      - [A2_LEV_ARCHITECTURE_FITNESS_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_ARCHITECTURE_FITNESS_REPORT__CURRENT__v1.md)
-      - [A2_LEV_ARCHITECTURE_FITNESS_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_ARCHITECTURE_FITNESS_PACKET__CURRENT__v1.json)
+      - [A2_LEV_ARCHITECTURE_FITNESS_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_ARCHITECTURE_FITNESS_REPORT__CURRENT__v1.json)
+      - [A2_LEV_ARCHITECTURE_FITNESS_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_ARCHITECTURE_FITNESS_REPORT__CURRENT__v1.md)
+      - [A2_LEV_ARCHITECTURE_FITNESS_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_LEV_ARCHITECTURE_FITNESS_PACKET__CURRENT__v1.json)
   - intended role:
     - bounded audit of quality attributes, candidate options, tradeoffs, fitness checks, and review triggers for candidate Ratchet changes before any generic review or migration claim
   - non-goals:
@@ -406,19 +406,19 @@ Current post-proof lev-os/agents recommendation:
     - `superpowers` -> `mine`
     - `mem0` -> `mine`
   - first bounded slice now exists:
-    - [a2-context-spec-workflow-pattern-audit-operator spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-context-spec-workflow-pattern-audit-operator/SKILL.md)
-    - [a2_context_spec_workflow_pattern_audit_operator.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/a2_context_spec_workflow_pattern_audit_operator.py)
+    - [a2-context-spec-workflow-pattern-audit-operator spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-context-spec-workflow-pattern-audit-operator/SKILL.md)
+    - [a2_context_spec_workflow_pattern_audit_operator.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/a2_context_spec_workflow_pattern_audit_operator.py)
     - current repo-held outputs:
-      - [A2_CONTEXT_SPEC_WORKFLOW_PATTERN_AUDIT_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_CONTEXT_SPEC_WORKFLOW_PATTERN_AUDIT_REPORT__CURRENT__v1.json)
-      - [A2_CONTEXT_SPEC_WORKFLOW_PATTERN_AUDIT_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_CONTEXT_SPEC_WORKFLOW_PATTERN_AUDIT_REPORT__CURRENT__v1.md)
-      - [A2_CONTEXT_SPEC_WORKFLOW_PATTERN_AUDIT_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_CONTEXT_SPEC_WORKFLOW_PATTERN_AUDIT_PACKET__CURRENT__v1.json)
+      - [A2_CONTEXT_SPEC_WORKFLOW_PATTERN_AUDIT_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_CONTEXT_SPEC_WORKFLOW_PATTERN_AUDIT_REPORT__CURRENT__v1.json)
+      - [A2_CONTEXT_SPEC_WORKFLOW_PATTERN_AUDIT_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_CONTEXT_SPEC_WORKFLOW_PATTERN_AUDIT_REPORT__CURRENT__v1.md)
+      - [A2_CONTEXT_SPEC_WORKFLOW_PATTERN_AUDIT_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_CONTEXT_SPEC_WORKFLOW_PATTERN_AUDIT_PACKET__CURRENT__v1.json)
   - second bounded selector slice now exists:
-    - [a2-context-spec-workflow-follow-on-selector-operator spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-context-spec-workflow-follow-on-selector-operator/SKILL.md)
-    - [a2_context_spec_workflow_follow_on_selector_operator.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/a2_context_spec_workflow_follow_on_selector_operator.py)
+    - [a2-context-spec-workflow-follow-on-selector-operator spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-context-spec-workflow-follow-on-selector-operator/SKILL.md)
+    - [a2_context_spec_workflow_follow_on_selector_operator.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/a2_context_spec_workflow_follow_on_selector_operator.py)
     - current repo-held outputs:
-      - [A2_CONTEXT_SPEC_WORKFLOW_FOLLOW_ON_SELECTOR_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_CONTEXT_SPEC_WORKFLOW_FOLLOW_ON_SELECTOR_REPORT__CURRENT__v1.json)
-      - [A2_CONTEXT_SPEC_WORKFLOW_FOLLOW_ON_SELECTOR_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_CONTEXT_SPEC_WORKFLOW_FOLLOW_ON_SELECTOR_REPORT__CURRENT__v1.md)
-      - [A2_CONTEXT_SPEC_WORKFLOW_FOLLOW_ON_SELECTOR_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_CONTEXT_SPEC_WORKFLOW_FOLLOW_ON_SELECTOR_PACKET__CURRENT__v1.json)
+      - [A2_CONTEXT_SPEC_WORKFLOW_FOLLOW_ON_SELECTOR_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_CONTEXT_SPEC_WORKFLOW_FOLLOW_ON_SELECTOR_REPORT__CURRENT__v1.json)
+      - [A2_CONTEXT_SPEC_WORKFLOW_FOLLOW_ON_SELECTOR_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_CONTEXT_SPEC_WORKFLOW_FOLLOW_ON_SELECTOR_REPORT__CURRENT__v1.md)
+      - [A2_CONTEXT_SPEC_WORKFLOW_FOLLOW_ON_SELECTOR_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_CONTEXT_SPEC_WORKFLOW_FOLLOW_ON_SELECTOR_PACKET__CURRENT__v1.json)
   - intended role:
     - bounded audit of append-safe context shells, executable spec coupling, workflow/review discipline, and scoped memory-sidecar patterns before any substrate or controller replacement claim
   - current bounded result:
@@ -447,12 +447,12 @@ Current post-proof lev-os/agents recommendation:
     - `llm.c` -> `defer`
     - `minbpe` -> `defer`
   - first bounded slice now exists:
-    - [a2-autoresearch-council-runtime-proof-operator spec](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-autoresearch-council-runtime-proof-operator/SKILL.md)
-    - [a2_autoresearch_council_runtime_proof_operator.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skills/a2_autoresearch_council_runtime_proof_operator.py)
+    - [a2-autoresearch-council-runtime-proof-operator spec](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/a2-autoresearch-council-runtime-proof-operator/SKILL.md)
+    - [a2_autoresearch_council_runtime_proof_operator.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/a2_autoresearch_council_runtime_proof_operator.py)
     - current repo-held outputs:
-      - [A2_AUTORESEARCH_COUNCIL_RUNTIME_PROOF_REPORT__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_AUTORESEARCH_COUNCIL_RUNTIME_PROOF_REPORT__CURRENT__v1.json)
-      - [A2_AUTORESEARCH_COUNCIL_RUNTIME_PROOF_REPORT__CURRENT__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_AUTORESEARCH_COUNCIL_RUNTIME_PROOF_REPORT__CURRENT__v1.md)
-      - [A2_AUTORESEARCH_COUNCIL_RUNTIME_PROOF_PACKET__CURRENT__v1.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_AUTORESEARCH_COUNCIL_RUNTIME_PROOF_PACKET__CURRENT__v1.json)
+      - [A2_AUTORESEARCH_COUNCIL_RUNTIME_PROOF_REPORT__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_AUTORESEARCH_COUNCIL_RUNTIME_PROOF_REPORT__CURRENT__v1.json)
+      - [A2_AUTORESEARCH_COUNCIL_RUNTIME_PROOF_REPORT__CURRENT__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_AUTORESEARCH_COUNCIL_RUNTIME_PROOF_REPORT__CURRENT__v1.md)
+      - [A2_AUTORESEARCH_COUNCIL_RUNTIME_PROOF_PACKET__CURRENT__v1.json](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/a2_state/audit_logs/A2_AUTORESEARCH_COUNCIL_RUNTIME_PROOF_PACKET__CURRENT__v1.json)
   - intended role:
     - bounded local runtime proof that the existing `autoresearch` plus `llm-council` seams are real and composable before any broader Karpathy-family self-improvement claim
   - current bounded result:

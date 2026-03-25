@@ -3,27 +3,27 @@
 generated_utc: 2026-03-20T10:32:54Z
 result: HELPER_DECOMPOSITION_CONTROL_CONFIRMED__COMPOUND_TERMS_STAY_PROPOSAL_SIDE
 decision: Keep correlation_diversity_functional blocked above A1_STRIPPED. Current repo-held doctrine agrees that helper decomposition remains the real barrier, compound bridge heads stay proposal/control-side, and executable pressure should remain on the colder correlation-side witness floor.
-handoff_packet: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/launch_bundles/nested_graph_build_a2_entropy_bridge_helper_decomposition_control/NESTED_GRAPH_BUILD_WORKER_LAUNCH_HANDOFF__A2_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.json
+handoff_packet: /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/launch_bundles/nested_graph_build_a2_entropy_bridge_helper_decomposition_control/NESTED_GRAPH_BUILD_WORKER_LAUNCH_HANDOFF__A2_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.json
 next_required_lane: COLDER_WITNESS_EXECUTION_CONSOLIDATION__CORRELATION_POLARITY
-next_control_surface: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md
+next_control_surface: /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md
 
 ## Source Surfaces
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_STAGE1_OPERATORIZED_ENTROPY_HEAD_REFINEMENT__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_VALIDATION_TARGETS__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_STAGE1_OPERATORIZED_ENTROPY_HEAD_REFINEMENT__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/NEXT_VALIDATION_TARGETS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md
 
 ## Derived Evidence
-- stage1_preserved_blocker: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_STAGE1_OPERATORIZED_ENTROPY_HEAD_REFINEMENT__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.md:7 :: next_required_lane: A2_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__CORRELATION_DIVERSITY_FUNCTIONAL
-- actual_blocker: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1.md:15 :: - downstream helper decomposition of selected multi-lexeme bridge terms under current lower-loop semantics.
-- compound_proposal_colder_execution: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1.md:92 :: ### C) Compound proposal + colder witness execution
-- direct_head_stays_proposal_side: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1.md:68 :: - keep direct compound bridge terms in proposal space for now,
-- executable_floor_colder_witness: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md:73 :: - correlation-side helper floor = current executable entropy-adjacent entrypoint
-- next_branch_colder_consolidation: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md:91 :: If entropy remains the active field, the next executable branch should be:
-- alias_or_component_deferred: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1.md:90 :: - deferred unless colder witness movement saturates
+- stage1_preserved_blocker: /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A2_STAGE1_OPERATORIZED_ENTROPY_HEAD_REFINEMENT__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.md:7 :: next_required_lane: A2_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__CORRELATION_DIVERSITY_FUNCTIONAL
+- actual_blocker: /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1.md:15 :: - downstream helper decomposition of selected multi-lexeme bridge terms under current lower-loop semantics.
+- compound_proposal_colder_execution: /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1.md:92 :: ### C) Compound proposal + colder witness execution
+- direct_head_stays_proposal_side: /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1.md:68 :: - keep direct compound bridge terms in proposal space for now,
+- executable_floor_colder_witness: /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md:73 :: - correlation-side helper floor = current executable entropy-adjacent entrypoint
+- next_branch_colder_consolidation: /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md:91 :: If entropy remains the active field, the next executable branch should be:
+- alias_or_component_deferred: /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_BRIDGE_HELPER_DECOMPOSITION_CONTROL__v1.md:90 :: - deferred unless colder witness movement saturates
 
 ## Missing Evidence
 - none

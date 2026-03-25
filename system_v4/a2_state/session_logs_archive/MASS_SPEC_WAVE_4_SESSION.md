@@ -16,14 +16,14 @@
 - Total: 159 nodes, 165 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/10_INITIAL_AUDIT_REPORT.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/11_MIGRATION_HANDOFF_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/12_BOOTPACK_SYNC_AUDIT_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/13_CONTENT_REDUNDANCY_LINT_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/14_A_THREAD_BOOTPACK_PROJECTION.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/15_ROSETTA_AND_MINING_ARTIFACTS.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/10_INITIAL_AUDIT_REPORT.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/11_MIGRATION_HANDOFF_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/12_BOOTPACK_SYNC_AUDIT_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/13_CONTENT_REDUNDANCY_LINT_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/14_A_THREAD_BOOTPACK_PROJECTION.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/15_ROSETTA_AND_MINING_ARTIFACTS.md
 
 ## Key Findings
 - Mass ingested 8 docs: specs 01, 02, 10, 11, 12, 13, 14, 15

@@ -3,9 +3,9 @@
 STATUS: GENERATED / NONCANONICAL / ACTIVE CONTROL SURFACE
 
 ## 1) Source Surfaces
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
 
 ## 2) Aggregate Kill Tokens
 - `NEG_CLASSICAL_TEMPERATURE` = 61
@@ -47,7 +47,7 @@ STATUS: GENERATED / NONCANONICAL / ACTIVE CONTROL SURFACE
 
 ## 5) Per-Snapshot Projection
 ### entropy-bridge reformulation broad profile
-- normalized source surface = `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- normalized source surface = `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 - status = `FAIL`
 - graveyard_count = 144
 - kill_log_count = 0
@@ -62,7 +62,7 @@ STATUS: GENERATED / NONCANONICAL / ACTIVE CONTROL SURFACE
 - `NEG_PRIMITIVE_EQUALS` = 17
 
 ### entropy-bridge residue broad profile
-- normalized source surface = `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
+- normalized source surface = `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_RESIDUE_BROAD_CLUSTER__v1.md`
 - status = `FAIL`
 - graveyard_count = 153
 - kill_log_count = 0
@@ -77,7 +77,7 @@ STATUS: GENERATED / NONCANONICAL / ACTIVE CONTROL SURFACE
 - `NEG_PRIMITIVE_EQUALS` = 18
 
 ### entropy-bridge thermal/time broad profile
-- normalized source surface = `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
+- normalized source surface = `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BRIDGE_REFINEMENT_BROAD_CLUSTER__v1.md`
 - status = `FAIL`
 - graveyard_count = 144
 - kill_log_count = 0
@@ -92,7 +92,7 @@ STATUS: GENERATED / NONCANONICAL / ACTIVE CONTROL SURFACE
 - `NEG_PRIMITIVE_EQUALS` = 17
 
 ### entropy-structure narrowed local rerun profile
-- normalized source surface = `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
+- normalized source surface = `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md`
 - status = `FAIL`
 - graveyard_count = 18
 - kill_log_count = 0

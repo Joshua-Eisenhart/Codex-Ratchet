@@ -3,29 +3,29 @@
 generated_utc: 2026-03-20T11:02:55Z
 result: DECOMPOSITION_CONTROL_CONFIRMED__COLDER_ALIAS_LIFT_NEXT
 decision: Keep the local entropy-structure route honest: the live blocker remains lower-loop decomposition / helper bootstrap, so direct structure targets stay proposal-side while executable pressure remains on the colder correlation-side floor. The next explicit review lane is the colder diversity alias pack around pairwise_correlation_spread_functional.
-handoff_packet: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/launch_bundles/nested_graph_build_a1_entropy_structure_decomposition_control/NESTED_GRAPH_BUILD_WORKER_LAUNCH_HANDOFF__A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.json
+handoff_packet: /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/launch_bundles/nested_graph_build_a1_entropy_structure_decomposition_control/NESTED_GRAPH_BUILD_WORKER_LAUNCH_HANDOFF__A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.json
 next_required_lane: A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__PAIRWISE_CORRELATION_SPREAD_FUNCTIONAL
-next_control_surface: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md
+next_control_surface: /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md
 
 ## Source Surfaces
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_FIRST_ENTROPY_STRUCTURE_CAMPAIGN__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/POST_UPDATE_CONSOLIDATION_AUDIT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_FIRST_ENTROPY_STRUCTURE_CAMPAIGN__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/POST_UPDATE_CONSOLIDATION_AUDIT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md
 
 ## Derived Evidence
-- prior_structure_campaign: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_FIRST_ENTROPY_STRUCTURE_CAMPAIGN__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.md:4 :: result: STRUCTURE_CAMPAIGN_CONFIRMED__DECOMPOSITION_CONTROL_NEXT
-- actual_blocker: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md:14 :: The current blocker is:
-- proposal_side_rule: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md:122 :: - keep direct structure targets proposal-side,
-- current_default: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md:2 :: Status: PROPOSED / NONCANONICAL / A1 CONTROL PACK
-- helper_only_route: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md:78 :: - the local structure route is execution-real, but still helper-side only
-- executable_floor: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md:91 :: If entropy remains the active field, the next executable branch should be:
-- colder_alias_next: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md:552 :: - next entropy structure work should build a colder executable diversity alias/decomposition before retrying direct structure admission
-- alias_candidate: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md:556 :: - working candidate alias:
-- alias_not_head_ready: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md:78 :: - the alias is not yet a justified executable lead term
+- prior_structure_campaign: /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/A1_FIRST_ENTROPY_STRUCTURE_CAMPAIGN__CORRELATION_DIVERSITY_FUNCTIONAL__2026_03_20__v1.md:4 :: result: STRUCTURE_CAMPAIGN_CONFIRMED__DECOMPOSITION_CONTROL_NEXT
+- actual_blocker: /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md:14 :: The current blocker is:
+- proposal_side_rule: /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md:122 :: - keep direct structure targets proposal-side,
+- current_default: /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_STRUCTURE_DECOMPOSITION_CONTROL__v1.md:2 :: Status: PROPOSED / NONCANONICAL / A1 CONTROL PACK
+- helper_only_route: /home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_STRUCTURE_FAMILY__v1.md:78 :: - the local structure route is execution-real, but still helper-side only
+- executable_floor: /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_EXECUTABLE_ENTRYPOINT__v1.md:91 :: If entropy remains the active field, the next executable branch should be:
+- colder_alias_next: /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md:552 :: - next entropy structure work should build a colder executable diversity alias/decomposition before retrying direct structure admission
+- alias_candidate: /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md:556 :: - working candidate alias:
+- alias_not_head_ready: /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_ENTROPY_DIVERSITY_ALIAS_LIFT_PACK__v1.md:78 :: - the alias is not yet a justified executable lead term
 
 ## Missing Evidence
 - none

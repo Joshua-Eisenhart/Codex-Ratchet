@@ -50,8 +50,8 @@ Reason:
 - the dry-run remains safe only if its exact heading is appended without any renumbering or cleanup pass
 
 Live anchor context:
-- [A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L827](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L827)
-- [A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L849](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L849)
+- [A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L827](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L827)
+- [A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L849](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L849)
 
 ### Step 2
 Target:
@@ -68,7 +68,7 @@ Reason:
 - the dry-run is a simple append after the current tail with no competing overlapping insert
 
 Live anchor context:
-- [A2_TERM_CONFLICT_MAP__v1.md#L158](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md#L158)
+- [A2_TERM_CONFLICT_MAP__v1.md#L158](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md#L158)
 
 ### Step 3
 Target:
@@ -86,7 +86,7 @@ Reason:
 - no competing sibling insertion from the other packets targets this same anchor
 
 Live anchor context:
-- [OPEN_UNRESOLVED__v1.md#L24](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md#L24)
+- [OPEN_UNRESOLVED__v1.md#L24](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md#L24)
 
 ### Step 4
 Target:
@@ -105,7 +105,7 @@ Reason:
 - application must use the execution-map order and text anchors, not old line numbers
 
 Live anchor context:
-- [A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L876](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L876)
+- [A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L876](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L876)
 
 ### Step 5
 Target:
@@ -124,7 +124,7 @@ Reason:
 - the dry-run remains safe only if its exact unnumbered heading is appended as-is rather than renumbered to match older sections
 
 Live anchor context:
-- [A2_TO_A1_DISTILLATION_INPUTS__v1.md#L1682](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md#L1682)
+- [A2_TO_A1_DISTILLATION_INPUTS__v1.md#L1682](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md#L1682)
 
 ### Step 6
 Target:
@@ -142,8 +142,8 @@ Reason:
 - the step is still safe, but only after the earlier append order is respected and the existing `RUNNER_RESULT_PAIRING_AND_SCOPE_PATTERN` text is left untouched
 
 Live anchor context:
-- [A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L812](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L812)
-- [A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L876](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L876)
+- [A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L812](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L812)
+- [A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L876](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md#L876)
 
 ### Step 7
 Target:
@@ -161,7 +161,7 @@ Reason:
 - it is distinct from the Packet 1 unresolved anchor, so the two insertions do not collide if applied in the mapped order
 
 Live anchor context:
-- [OPEN_UNRESOLVED__v1.md#L103](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md#L103)
+- [OPEN_UNRESOLVED__v1.md#L103](/home/ratchet/Desktop/Codex%20Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md#L103)
 
 ## 4) Collision And Drift Notes
 

@@ -15,12 +15,12 @@ It exists because the current system still defines:
 but the live tool surface has drifted toward broad repo/system exports instead of the older semantic restore bundle.
 
 Legacy witness surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/README.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/THREAD_S_FULL_SAVE/README.md`
 
 Current normative anchors:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/16_ZIP_SAVE_AND_TAPES_SPEC.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/08_PIPELINE_AND_STATE_FLOW_SPEC.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/16_ZIP_SAVE_AND_TAPES_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/08_PIPELINE_AND_STATE_FLOW_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1.md`
 
 Normative anchors:
 - `RQ-090`
@@ -199,8 +199,8 @@ This spec is satisfied only when:
 ## Current patch targets
 
 Primary tool to retain as generic exporter:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_save_profile_zip.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_save_profile_zip.py`
 
 Primary new tools to add:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_full_plus_save_zip.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_full_plus_save_zip.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_full_plus_save_zip.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_full_plus_save_zip.py`

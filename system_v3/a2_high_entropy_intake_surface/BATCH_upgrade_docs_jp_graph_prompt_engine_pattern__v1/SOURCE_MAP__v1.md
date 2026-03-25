@@ -7,17 +7,17 @@ Date: 2026-03-08
 
 ## 1) Folder-Order Selection
 - prior completed batch ended at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS2.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS3.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS4.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS5.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS6.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS7.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS8.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS9.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS3.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS4.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS5.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS6.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS7.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS8.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS9.md`
 - next folder-order doc selected for this bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/jp graph prompt!!.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/jp graph prompt!!.txt`
 - reason for single-doc batch:
   - the file is a compact self-contained prompt shell rather than a pass family or megadoc
   - it defines a distinct proposal/patch/acceptance interaction model and mandatory footer contract
@@ -25,11 +25,11 @@ Date: 2026-03-08
 - deferred next docs in folder order:
   - none
 - assigned-root completion note:
-  - folder-order processing for `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs` is complete after this batch
+  - folder-order processing for `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs` is complete after this batch
 
 ## 2) Source Membership
 - primary source:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/jp graph prompt!!.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/jp graph prompt!!.txt`
   - sha256: `0c3b30c2fa9e0b3ea63074aaccbec75e6bb9a53ea9dfb343f4936799fd40e272`
   - size bytes: `4159`
   - line count: `144`

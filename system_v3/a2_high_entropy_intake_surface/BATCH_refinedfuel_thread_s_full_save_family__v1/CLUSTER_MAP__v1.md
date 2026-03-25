@@ -73,8 +73,8 @@ Extraction mode: `SAVE_KIT_PASS`
   - source 4
   - source 8
 - comparison anchors:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:126-157`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/08_PIPELINE_AND_STATE_FLOW_SPEC.md:56-85`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md:126-157`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/08_PIPELINE_AND_STATE_FLOW_SPEC.md:56-85`
 - cluster role:
   - preserves the gap between this older replay-kit packaging and the tighter current ZIP/tape transport model
 - strongest reusable read:

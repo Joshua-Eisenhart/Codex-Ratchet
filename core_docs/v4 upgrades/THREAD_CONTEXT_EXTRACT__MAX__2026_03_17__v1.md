@@ -401,7 +401,7 @@ What went wrong was what got preserved.
 
 At this point, a large family of docs was created under:
 
-/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/controller_reboot_prompts
+/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/controller_reboot_prompts
 
 These included:
 
@@ -557,7 +557,7 @@ This was a major recovery moment.
 
 After the explorer result and more local source reading, a new folder was created:
 
-/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/system_v4_project_frame
+/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/system_v4_project_frame
 
 with:
 
@@ -963,7 +963,7 @@ This section is intentionally more exhaustive.
 
 Folder:
 
-/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/controller_reboot_prompts
+/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/controller_reboot_prompts
 
 Notable files created or heavily revised during the thread included:
 
@@ -1017,7 +1017,7 @@ The user’s eventual judgment was that this family was mostly garbage or unusab
 
 Folder:
 
-/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/system_v4_project_frame
+/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/system_v4_project_frame
 
 Files:
 
@@ -1034,10 +1034,10 @@ This was the strongest late attempt to preserve the actual project instead of re
 
 Files created after the user asked for a thread extract:
 
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_extracts/THREAD_CONTEXT_EXTRACT__2026_03_17__v1.md
-- /Users/joshuaeisenhart/Desktop/THREAD_CONTEXT_EXTRACT__2026_03_17__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_extracts/THREAD_CONTEXT_EXTRACT__2026_03_17__v1.md
+- /home/ratchet/Desktop/THREAD_CONTEXT_EXTRACT__2026_03_17__v1.md
 - and now this max version:
-  - /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/thread_extracts/THREAD_CONTEXT_EXTRACT__MAX__2026_03_17__v1.md
+  - /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/thread_extracts/THREAD_CONTEXT_EXTRACT__MAX__2026_03_17__v1.md
 
 ----------------------------------------------------------------
 9.4 Existing repo surfaces that mattered heavily
@@ -1045,27 +1045,27 @@ Files created after the user asked for a thread extract:
 
 These surfaces either anchored the project or were repeatedly read/referenced:
 
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_BRAIN_SLICE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__NESTED_SYSTEM_GRAPH_AND_AXIS0_POLICY_PLAN__2026_03_16__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__THREAD_CONTEXT_PRESERVATION__GRAPH_BOOT_ZIP_V4__2026_03_16__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/FOUNDATION_MODE_AND_SCAFFOLD_MODE_SPLIT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/SKILL_STACK_AND_BRAIN_UPDATE_STABILIZATION__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/SURFACE_CLASS_AND_MEMORY_ADMISSION_RULES__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_PACKET__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_SEND_TEXT__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v4.8 copy.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md
-- /Users/joshuaeisenhart/Desktop/29 thing.txt
-- /Users/joshuaeisenhart/Desktop/jp graph asuggestions.txt
-- /Users/joshuaeisenhart/Desktop/jp lev web outputs.txt
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_BRAIN_SLICE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__NESTED_SYSTEM_GRAPH_AND_AXIS0_POLICY_PLAN__2026_03_16__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__THREAD_CONTEXT_PRESERVATION__GRAPH_BOOT_ZIP_V4__2026_03_16__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/FOUNDATION_MODE_AND_SCAFFOLD_MODE_SPLIT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/SKILL_STACK_AND_BRAIN_UPDATE_STABILIZATION__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/SURFACE_CLASS_AND_MEMORY_ADMISSION_RULES__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_PACKET__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_SEND_TEXT__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_HANDOFF__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/MEGABOOT_RATCHET_SUITE_v4.8 copy.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md
+- /home/ratchet/Desktop/29 thing.txt
+- /home/ratchet/Desktop/jp graph asuggestions.txt
+- /home/ratchet/Desktop/jp lev web outputs.txt
 
 ================================================================
 SECTION 10. STAGE-1 ENTROPY-HEAD LANE CONTENT

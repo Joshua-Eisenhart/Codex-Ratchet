@@ -9,10 +9,10 @@ Scope
 ## Source set A: curated broken-thread extraction package
 
 Primary anchors
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/THREAD_EXTRACT__BROKEN_THREAD__v1_2026-03-04/README.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/THREAD_EXTRACT__BROKEN_THREAD__v1_2026-03-04/docs/00_MANIFEST.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/THREAD_EXTRACT__BROKEN_THREAD__v1_2026-03-04/docs/07_PLAN_ASSESSMENT_AND_RECOMMENDED_SEQUENCE.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/THREAD_EXTRACT__BROKEN_THREAD__v1_2026-03-04/data/json_filenames_counts.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/THREAD_EXTRACT__BROKEN_THREAD__v1_2026-03-04/README.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/THREAD_EXTRACT__BROKEN_THREAD__v1_2026-03-04/docs/00_MANIFEST.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/THREAD_EXTRACT__BROKEN_THREAD__v1_2026-03-04/docs/07_PLAN_ASSESSMENT_AND_RECOMMENDED_SEQUENCE.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/THREAD_EXTRACT__BROKEN_THREAD__v1_2026-03-04/data/json_filenames_counts.json`
 
 Observed structure
 - The package formalizes one prior transcript into `12` extracted docs with a declared read order.
@@ -26,12 +26,12 @@ Useful residue
 ## Source set B: issue distillation and authority-safe overlays
 
 Primary anchors
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/extracts/READ_THIS_FIRST__v2__AUTHORITY_CONFLICT_SAFE.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/extracts/BRANCHTHREAD_ISSUE_LEDGER__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/extracts/THREAD_EXTRACT__BROKEN_THREAD__ISSUES_AND_UPGRADES__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/extracts/TOP_OPEN_UPGRADES__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/extracts/UPGRADE_STATUS_SUMMARY__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/extracts/NEXT_EXECUTION_ROADMAP__NO_PRO_FIRST__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/extracts/READ_THIS_FIRST__v2__AUTHORITY_CONFLICT_SAFE.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/extracts/BRANCHTHREAD_ISSUE_LEDGER__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/extracts/THREAD_EXTRACT__BROKEN_THREAD__ISSUES_AND_UPGRADES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/extracts/TOP_OPEN_UPGRADES__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/extracts/UPGRADE_STATUS_SUMMARY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/extracts/NEXT_EXECUTION_ROADMAP__NO_PRO_FIRST__v1.md`
 
 Observed structure
 - `READ_THIS_FIRST__v2__AUTHORITY_CONFLICT_SAFE.md` adds a fail-closed overlay: if authority labels conflict, postpone decisions until header quotes are checked directly in source docs.
@@ -46,7 +46,7 @@ Useful residue
 ## Source set C: selector-audit runtime residue hidden under audit_tmp
 
 Primary anchor
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/a1_pack_selector_audit_0047/RUN_AUDIT_0047/state.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/a1_pack_selector_audit_0047/RUN_AUDIT_0047/state.json`
 
 Observed structure
 - Despite the `audit_tmp` location, this file is not a tiny scratch artifact.
@@ -63,21 +63,21 @@ Useful residue
 ## Source set D: ZIP-VM golden validation harness
 
 Primary anchors
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/golden_tests/README__ZIP_VM_GOLDEN_TESTS__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/golden_tests/validate_zip_vm_output.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/golden_tests/run_one_check.sh`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/golden_tests/audit_corpus_with_profile_cascade.sh`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/golden_tests/expected_checks/GOLDEN_CHECK__FAIL_CLOSED_MISSING_PAYLOAD__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/golden_tests/expected_checks/GOLDEN_CHECK__MODEL_CORE_MINIMAL_PASS__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/golden_tests/expected_checks/GOLDEN_CHECK__A2_REAL_BUNDLE_BASELINE__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/golden_tests/reports/CASCADE_AUDIT__WIGGLE_RETURNS__2026_03_02__00_39_32.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/golden_tests/reports/QUICK_AUDIT_NOTE__L1_5_RETURN__2026_03_02__00_42_12.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/golden_tests/README__ZIP_VM_GOLDEN_TESTS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/golden_tests/validate_zip_vm_output.py`
+- `/home/ratchet/Desktop/Codex Ratchet/work/golden_tests/run_one_check.sh`
+- `/home/ratchet/Desktop/Codex Ratchet/work/golden_tests/audit_corpus_with_profile_cascade.sh`
+- `/home/ratchet/Desktop/Codex Ratchet/work/golden_tests/expected_checks/GOLDEN_CHECK__FAIL_CLOSED_MISSING_PAYLOAD__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/golden_tests/expected_checks/GOLDEN_CHECK__MODEL_CORE_MINIMAL_PASS__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/golden_tests/expected_checks/GOLDEN_CHECK__A2_REAL_BUNDLE_BASELINE__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/golden_tests/reports/CASCADE_AUDIT__WIGGLE_RETURNS__2026_03_02__00_39_32.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/golden_tests/reports/QUICK_AUDIT_NOTE__L1_5_RETURN__2026_03_02__00_42_12.md`
 
 Observed structure
 - The harness is explicitly mechanical and fail-closed: file existence plus required/forbidden substring checks only.
 - `expected_checks/` contains `14` profiles, including one current baseline and a broad legacy-compat ladder.
 - The cascade audit report records `10` bundles tested, `10` passed, `0` failed.
-- The sample bundle at `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/golden_tests/output_samples/sample_pass` passed both:
+- The sample bundle at `/home/ratchet/Desktop/Codex Ratchet/work/golden_tests/output_samples/sample_pass` passed both:
   - `FAIL_CLOSED_MISSING_PAYLOAD_v1`
   - `MODEL_CORE_MINIMAL_PASS_v1`
 

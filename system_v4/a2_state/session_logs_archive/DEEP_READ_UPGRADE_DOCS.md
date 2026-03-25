@@ -16,13 +16,13 @@
 - Total: 3883 nodes, 7663 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_SYSTEM_SPEC_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_EPISODE_01_WORKING_LOG.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1 copy.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/FULL_READ_LOG_PASS_4.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/README_A2_EXPORT_PACK_SMALL.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/ZIP_INDEX_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_SYSTEM_SPEC_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_EPISODE_01_WORKING_LOG.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1 copy.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/FULL_READ_LOG_PASS_4.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/README_A2_EXPORT_PACK_SMALL.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/ZIP_INDEX_v1.md
 
 ## Batches
 - `AUTO_A2_SYSTEM_SPEC_v1_c751524f7c5b9a4c`

@@ -92,7 +92,7 @@ Extraction mode: `ARCHIVE_RATCHET_FUEL_MINT_PACKAGE_PASS`
 
 ## Cluster 10: Deferred Next Package
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_09_OF_10__A2_LAYER1_5__OUTPUT__SIM_PROTOCOL_AND_EVIDENCE_SURFACE__v1_1__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_09_OF_10__A2_LAYER1_5__OUTPUT__SIM_PROTOCOL_AND_EVIDENCE_SURFACE__v1_1__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION.zip`
 - cluster read:
   - the next archive-root package exits the ratchet-fuel structural-memory family and returns to an A2_DOC layered extraction carrier
 - current usefulness:

@@ -7,8 +7,8 @@ Extraction mode: `SIM_AXIS12_CHANNEL_REALIZATION_SUITE_PASS`
 - cluster label:
   - core source pair
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis12_channel_realization_suite.py`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis12_channel_realization_suite.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/run_axis12_channel_realization_suite.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_axis12_channel_realization_suite.json`
 - family role:
   - canonical source-bounded member set for this batch
 - executable-facing read:
@@ -56,8 +56,8 @@ Extraction mode: `SIM_AXIS12_CHANNEL_REALIZATION_SUITE_PASS`
 - cluster label:
   - repo-top descendant and evidence seam
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS12_CHANNEL_REALIZATION_V4.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/SIM_EVIDENCE_PACK_autogen_v2.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simson/results_S_SIM_AXIS12_CHANNEL_REALIZATION_V4.json`
   - shared runner hash `5e6358240110019fd266675f9ff1e520c7822114a811d597b630a62aa9efd6f5`
 - family role:
   - comparison-only evidence and descendant cluster
@@ -72,7 +72,7 @@ Extraction mode: `SIM_AXIS12_CHANNEL_REALIZATION_SUITE_PASS`
 - cluster label:
   - campaign continuity and residual separation
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_axis0_traj_corr_suite_family__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_axis0_traj_corr_suite_family__v1/MANIFEST.json`
   - deferred next residual pair:
     - `run_axis12_seq_constraints.py`
     - `results_axis12_seq_constraints.json`

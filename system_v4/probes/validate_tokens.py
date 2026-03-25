@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 def validate_tokens():
     print("Loading Unified Evidence Report...")
@@ -10,7 +11,8 @@ def validate_tokens():
     print(f"Found {len(token_ids)} unique Token IDs in SIM results.")
 
     print("Loading Master Graph (system_graph_a2_refinery.json)...")
-    with open("/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/system_graph_a2_refinery.json") as f:
+    _repo_root = Path(__file__).resolve().parent.parent.parent
+    with open(str(_repo_root / "system_v4" / "a2_state" / "graphs" / "system_graph_a2_refinery.json")) as f:
         graph = json.load(f)
     
     nodes = graph.get("nodes", {})

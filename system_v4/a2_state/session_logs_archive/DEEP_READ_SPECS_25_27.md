@@ -24,10 +24,10 @@
 - Total: 17189 nodes, 17011 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/25_BOOTPACK_A2_REFINERY__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/26_BOOTPACK_A1_WIGGLE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_BOOTPACK_RATCHET_FUEL_MINT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/25_BOOTPACK_A2_REFINERY__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/26_BOOTPACK_A1_WIGGLE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/27_BOOTPACK_RATCHET_FUEL_MINT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md
 
 ## Batches
 - `BATCH_V4_SOURCE_MAP_TIER0_25`

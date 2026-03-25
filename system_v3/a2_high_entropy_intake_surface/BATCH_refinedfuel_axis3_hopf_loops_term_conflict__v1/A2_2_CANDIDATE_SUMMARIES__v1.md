@@ -46,4 +46,4 @@ Extraction mode: `TERM_CONFLICT_PASS`
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 qit mathΓÇ¿ΓÇ¿Good ΓÇö that statement narrows the target exactlyΓÇª.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 qit mathΓÇ¿ΓÇ¿Good ΓÇö that statement narrows the target exactlyΓÇª.md`

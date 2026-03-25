@@ -7,7 +7,7 @@
 
 ## Anchor Family
 
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__SUBSTRATE_FAMILY__v1.md`
 
 ## Why This Family Second
 
@@ -28,17 +28,17 @@
 ### Normalized Retained Triple
 
 - memo witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_10__20260309T070854Z/RUN_SUBSTRATE_FAMILY_EXCHANGE_SMOKE_0001/reports/a1_external_memo_batch_driver_report.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_10__20260309T070854Z/RUN_SUBSTRATE_FAMILY_EXCHANGE_SMOKE_0001/reports/a1_external_memo_batch_driver_report.json`
   - witness meaning:
     - compact retained record that the substrate-family memo/exchange stage ran through the exchange/prepack worker path
 
 - cold-core witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_10__20260309T070854Z/RUN_SUBSTRATE_FAMILY_EXCHANGE_SMOKE_0001/a1_sandbox/cold_core/000001_A1_COLD_CORE_PROPOSALS_v1.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_10__20260309T070854Z/RUN_SUBSTRATE_FAMILY_EXCHANGE_SMOKE_0001/a1_sandbox/cold_core/000001_A1_COLD_CORE_PROPOSALS_v1.json`
   - witness meaning:
     - retained cold-core proposal surface showing the first admissible substrate-family candidate bundle
 
 - strategy witness:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_10__20260309T070854Z/RUN_SUBSTRATE_FAMILY_EXCHANGE_SMOKE_0001/a1_sandbox/outgoing/000001_A1_STRATEGY_v1__PACK_SELECTOR.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/HEAT_DUMPS/SYSTEM_V3__RUN_DEMOTION_BATCH_10__20260309T070854Z/RUN_SUBSTRATE_FAMILY_EXCHANGE_SMOKE_0001/a1_sandbox/outgoing/000001_A1_STRATEGY_v1__PACK_SELECTOR.json`
   - witness meaning:
     - retained selector output showing the first substrate-family emitted strategy object
 

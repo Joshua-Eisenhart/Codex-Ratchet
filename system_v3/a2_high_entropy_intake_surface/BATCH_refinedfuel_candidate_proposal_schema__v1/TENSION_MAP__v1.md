@@ -7,7 +7,7 @@ Extraction mode: `PROPOSAL_SCHEMA_PASS`
 - source markers:
   - source 1: `3`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:8-28`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:8-28`
 - tension:
   - the file explicitly treats the frozen admissibility stack as authoritative
   - the current work is still packaging the file through a noncanonical outer-intake surface
@@ -41,7 +41,7 @@ Extraction mode: `PROPOSAL_SCHEMA_PASS`
   - source 1: `19-24`
   - source 1: `37`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DYNAMICAL_ADMISSIBILITY_BOUNDARY_v1.md:1-25`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/DYNAMICAL_ADMISSIBILITY_BOUNDARY_v1.md:1-25`
 - tension:
   - the file sharply restricts witnesses to finite syntactic bindings
   - candidate docs may be tempted to smuggle semantic, evaluative, temporal, causal, or probabilistic force into those witnesses

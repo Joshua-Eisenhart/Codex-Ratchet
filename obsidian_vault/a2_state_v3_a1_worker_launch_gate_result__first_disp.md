@@ -9,7 +9,7 @@ authority: "SOURCE_CLAIM"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a2_state_v3_a1_worker_launch_gate_result__first_disp::1ca34997881cd027`
 
 ## Description
-A1_WORKER_LAUNCH_GATE_RESULT__FIRST_DISPATCH_EXAMPLE__2026_03_11__v1.json (2830B): {   "a1_reload_artifacts": [     "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md",     "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md"   ],   "bounded_scope": "One bounded A1_PROPOSAL 
+A1_WORKER_LAUNCH_GATE_RESULT__FIRST_DISPATCH_EXAMPLE__2026_03_11__v1.json (2830B): {   "a1_reload_artifacts": [     "/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md",     "/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md"   ],   "bounded_scope": "One bounded A1_PROPOSAL 
 
 ## Properties
 - **source_line_range**: 

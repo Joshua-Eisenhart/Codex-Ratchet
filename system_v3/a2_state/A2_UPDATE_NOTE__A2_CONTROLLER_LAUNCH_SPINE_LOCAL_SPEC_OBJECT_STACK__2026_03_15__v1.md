@@ -7,33 +7,33 @@ Role: preserve the compact machine-readable launch-spine companion for the activ
 ## Scope
 
 New local-stack surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a2_controller_launch_spine_models.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_launch_spine.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_a2_controller_launch_spine_pydantic.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/export_a2_controller_launch_spine_graph.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/emit_a2_controller_launch_spine_pydantic_schema.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a2_controller_launch_spine_models.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_launch_spine.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_a2_controller_launch_spine_pydantic.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/export_a2_controller_launch_spine_graph.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/emit_a2_controller_launch_spine_pydantic_schema.py`
 
 Focused regression:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_launch_spine_pydantic_stack.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_launch_spine_pydantic_stack.py`
 
 Patched read surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_STATE_RECORD__CURRENT__v1.md`
 
 Current live inputs used for proof:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_GATE_RESULT__CURRENT__2026_03_12__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_HANDOFF__CURRENT__2026_03_12__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_GATE_RESULT__CURRENT__2026_03_12__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_HANDOFF__CURRENT__2026_03_12__v1.json`
 
 Generated current companion:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_SPINE__CURRENT__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_SPINE__CURRENT__2026_03_15__v1.json`
 
 Generated artifacts:
 - GraphML:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_LAUNCH_SPINE__CURRENT__2026_03_15__v1.graphml`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_LAUNCH_SPINE__CURRENT__2026_03_15__v1.graphml`
 - Pydantic schema:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_LAUNCH_SPINE_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_LAUNCH_SPINE_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
 
 ## What changed
 
@@ -65,7 +65,7 @@ Focused compile:
 - `python3 -m py_compile system_v3/tools/a2_controller_launch_spine_models.py system_v3/tools/build_a2_controller_launch_spine.py system_v3/tools/audit_a2_controller_launch_spine_pydantic.py system_v3/tools/export_a2_controller_launch_spine_graph.py system_v3/tools/emit_a2_controller_launch_spine_pydantic_schema.py system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_launch_spine_pydantic_stack.py`
 
 Current spine build:
-- `'.venv_spec_graph/bin/python' system_v3/tools/build_a2_controller_launch_spine.py --packet-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json --gate-result-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_GATE_RESULT__CURRENT__2026_03_12__v1.json --send-text-companion-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json --handoff-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_HANDOFF__CURRENT__2026_03_12__v1.json --out-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_SPINE__CURRENT__2026_03_15__v1.json`
+- `'.venv_spec_graph/bin/python' system_v3/tools/build_a2_controller_launch_spine.py --packet-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json --gate-result-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_GATE_RESULT__CURRENT__2026_03_12__v1.json --send-text-companion-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json --handoff-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_HANDOFF__CURRENT__2026_03_12__v1.json --out-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_SPINE__CURRENT__2026_03_15__v1.json`
 
 Observed result:
 - current launch spine created successfully
@@ -79,7 +79,7 @@ Result:
 - `Ran 3 tests ... OK`
 
 Current audit:
-- `'.venv_spec_graph/bin/python' system_v3/tools/audit_a2_controller_launch_spine_pydantic.py --spine-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_SPINE__CURRENT__2026_03_15__v1.json`
+- `'.venv_spec_graph/bin/python' system_v3/tools/audit_a2_controller_launch_spine_pydantic.py --spine-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_SPINE__CURRENT__2026_03_15__v1.json`
 
 Observed result:
 - `thread_class = A2_CONTROLLER`
@@ -90,10 +90,10 @@ Observed result:
 - `queue_helper_mode = none`
 
 Current graph export:
-- `'.venv_spec_graph/bin/python' system_v3/tools/export_a2_controller_launch_spine_graph.py --spine-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_SPINE__CURRENT__2026_03_15__v1.json --out-graphml /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_LAUNCH_SPINE__CURRENT__2026_03_15__v1.graphml`
+- `'.venv_spec_graph/bin/python' system_v3/tools/export_a2_controller_launch_spine_graph.py --spine-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_SPINE__CURRENT__2026_03_15__v1.json --out-graphml /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_LAUNCH_SPINE__CURRENT__2026_03_15__v1.graphml`
 
 Current schema emit:
-- `'.venv_spec_graph/bin/python' system_v3/tools/emit_a2_controller_launch_spine_pydantic_schema.py --out-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_LAUNCH_SPINE_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
+- `'.venv_spec_graph/bin/python' system_v3/tools/emit_a2_controller_launch_spine_pydantic_schema.py --out-json /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_LAUNCH_SPINE_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
 
 ## Current interpretation
 

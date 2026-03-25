@@ -3,20 +3,20 @@ Status: DRAFT / NONCANON
 Date: 2026-02-20
 
 Companion repair target:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/75_A2_MINING_AND_ROSETTA_ARTIFACT_PACKS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/75_A2_MINING_AND_ROSETTA_ARTIFACT_PACKS__v1.md`
 
 ## Purpose
 Make the “A2 miner / A1 rosetta” core function explicit as concrete artifact shapes, with hard boundary rules.
 
 ## Authority Sources
 - Megaboot topology + boundary:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md:14`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md:22`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md:121`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md:14`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md:22`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md:121`
 - Megaboot rosetta formats:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md:155`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md:178`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md:198`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md:155`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md:178`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2 hand assembled docs/uploads/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md:198`
 
 ## Core Boundary Rule
 - Kernel lane artifacts are B-safe and may be compiled into `EXPORT_BLOCK`.

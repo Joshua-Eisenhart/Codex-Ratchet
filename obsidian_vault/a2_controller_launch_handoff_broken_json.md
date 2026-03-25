@@ -9,7 +9,7 @@ authority: "NONCANON"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a2_controller_launch_handoff_broken_json::be7b3a1d52d1a293`
 
 ## Description
-Unprocessed File Type (a2_controller_launch_handoff_broken.json): { | "closeout_route": { | "execution_log_target": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/CURRENT_EXECUTION_STATE__2026_03_10__v1.md",
+Unprocessed File Type (a2_controller_launch_handoff_broken.json): { | "closeout_route": { | "execution_log_target": "/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/CURRENT_EXECUTION_STATE__2026_03_10__v1.md",
 
 ## Properties
 - **source_line_range**: 

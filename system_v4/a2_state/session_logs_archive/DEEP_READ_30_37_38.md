@@ -16,9 +16,9 @@
 - Total: 3771 nodes, 7579 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/30_CHATUI_CLAW_PLAYWRIGHT_PROTOCOL_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/37_PRO_LAUNCH_TEMPLATE__FULL_A2_REASONING_SPACE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/38_PRO_LAUNCH_TEMPLATE__LANE_REFINERY__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/30_CHATUI_CLAW_PLAYWRIGHT_PROTOCOL_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/37_PRO_LAUNCH_TEMPLATE__FULL_A2_REASONING_SPACE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/38_PRO_LAUNCH_TEMPLATE__LANE_REFINERY__v1.md
 
 ## Batches
 - `AUTO_30_CHATUI_CLAW_PLAYWRIGHT_PROTOCOL_v1_47349427047d626a`

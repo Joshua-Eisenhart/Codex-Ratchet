@@ -118,11 +118,11 @@ Recommended value families:
 The current repo-held cluster surfaces should be:
 
 - this file for the working overlay and cluster-family priorities
-- [SKILL_CLUSTER_SCHEMA__v1.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/skill_specs/SKILL_CLUSTER_SCHEMA__v1.md) for the shared schema
-- [V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md) for the concrete imported-cluster map
-- [SKILL_SOURCE_CORPUS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md) for umbrella corpus membership
-- [REPO_SKILL_INTEGRATION_TRACKER.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md) for current integration truth
-- [SKILL_CANDIDATES_BACKLOG.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SKILL_CANDIDATES_BACKLOG.md) for candidate and next-build tracking
+- [SKILL_CLUSTER_SCHEMA__v1.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skill_specs/SKILL_CLUSTER_SCHEMA__v1.md) for the shared schema
+- [V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md) for the concrete imported-cluster map
+- [SKILL_SOURCE_CORPUS.md](/home/ratchet/Desktop/Codex%20Ratchet/SKILL_SOURCE_CORPUS.md) for umbrella corpus membership
+- [REPO_SKILL_INTEGRATION_TRACKER.md](/home/ratchet/Desktop/Codex%20Ratchet/REPO_SKILL_INTEGRATION_TRACKER.md) for current integration truth
+- [SKILL_CANDIDATES_BACKLOG.md](/home/ratchet/Desktop/Codex%20Ratchet/SKILL_CANDIDATES_BACKLOG.md) for candidate and next-build tracking
 
 ## 5. First Required Cluster Families
 

@@ -13,7 +13,7 @@ READINESS: HOLD_FOR_DEEPER_FIRST_WAVE_FILL
 ## Follow-on control note
 
 See:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/EXTERNAL_BOOT_COMPARATIVE_REFRESH__ENTROPY_CARNOT_SZILARD__2026_03_12__v1.md`
 
 ## Why
 

@@ -7,7 +7,7 @@ Role: exact source-family additions required for the next Pro boot after the suc
 ## 1) Why this note exists
 
 The audited return from:
-- `/Users/joshuaeisenhart/Desktop/ENTROPY_BOOT_RETURN__20260311__LOCAL_ONLY.zip`
+- `/home/ratchet/Desktop/ENTROPY_BOOT_RETURN__20260311__LOCAL_ONLY.zip`
 
 proved:
 - the attachment boot works

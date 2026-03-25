@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - assigned root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - folder-order local window:
@@ -20,18 +20,18 @@ Date: 2026-03-09
 
 ## 2) Folder-Order Selection
 - first unprocessed doc encountered in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Topology contract v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Topology contract v1.md`
 - reason for single-doc batch:
   - next uncovered gap in current folder order after the simulation-protocol pass
   - contract-style source with one dominant topology-language boundary spanning compatibility, adjacency, neighborhoods, compatibility-valid paths, anti-identity, anti-scalarization, and anti-geometry handling
   - best handled as `MATH_CLASS_PASS` because the file is a hard admissibility fence rather than a stitched narrative, rosetta, or save artifact
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Transport contract v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Transport contract v1.md`
 
 ## 3) Source Membership
 - primary source:
   - path:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Topology contract v1.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Topology contract v1.md`
   - sha256:
     - `349adeb6ec2505d1742700d342ae6d8444a6a7f5941382892a3f030c7363064c`
   - size bytes:

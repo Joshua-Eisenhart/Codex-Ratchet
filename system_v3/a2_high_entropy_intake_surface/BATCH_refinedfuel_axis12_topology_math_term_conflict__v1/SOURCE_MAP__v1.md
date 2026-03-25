@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - folder order around this batch:
@@ -20,7 +20,7 @@ Date: 2026-03-09
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 1 2 topology mathΓÇ¿ΓÇ¿ΓÇ¿Good ΓÇö this is the right point to ask thatΓÇª.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 1 2 topology mathΓÇ¿ΓÇ¿ΓÇ¿Good ΓÇö this is the right point to ask thatΓÇª.md`
 - reason for selection:
   - this is the next unprocessed non-sims `constraint ladder` file in folder order after `Axis 0.md`
   - the note is not a neutral math-class micro-spec:
@@ -32,11 +32,11 @@ Date: 2026-03-09
     - nearby refined-fuel canon and overlay surfaces keep those mappings provisional
   - this makes `TERM_CONFLICT_PASS` a better fit than `MATH_CLASS_PASS`
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 3 math Hopf fiber loop vs lifted base loop.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 3 math Hopf fiber loop vs lifted base loop.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 1 2 topology mathΓÇ¿ΓÇ¿ΓÇ¿Good ΓÇö this is the right point to ask thatΓÇª.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 1 2 topology mathΓÇ¿ΓÇ¿ΓÇ¿Good ΓÇö this is the right point to ask thatΓÇª.md`
   - role in batch: noncanon topology-math note proposing a fixed four-way mapping between legacy labels, topology classes, terrains, and explicit QIT flow structures
   - sha256: `922ff28275d75c004d5bffa782a61380854fe26030170440731611a257db473f`
   - size bytes: `6416`

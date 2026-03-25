@@ -9,7 +9,7 @@ Owner: current `A2` controller for bounded browser-assisted Codex thread continu
 This note defines the missing target-metadata artifact for browser-assisted `go on` sending.
 
 It exists because:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/browser_go_on_helper.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/browser_go_on_helper.py`
   can validate sender packets and emit proof packets,
 - but a real browser send still needs one stable target description for the exact Codex worker thread.
 

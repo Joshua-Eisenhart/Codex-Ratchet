@@ -9,7 +9,7 @@ authority: "SOURCE_CLAIM"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a2_state_v3_run_archive_prep__entropy_bridge_unrefer::a868a5ac5c376120`
 
 ## Description
-RUN_ARCHIVE_PREP__ENTROPY_BRIDGE_UNREFERENCED_CLUSTER__2026_03_11__v1.md (5511B): # RUN_ARCHIVE_PREP__ENTROPY_BRIDGE_UNREFERENCED_CLUSTER__2026_03_11__v1  Status: DRAFT / NONCANON / A2 CONTROL NOTE Date: 2026-03-11 Role: exact archive-prep mutation set for the unreferenced `RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE*` cluster  ## Scope  This pass follows: - `/Users/joshuaeisenhart/Des
+RUN_ARCHIVE_PREP__ENTROPY_BRIDGE_UNREFERENCED_CLUSTER__2026_03_11__v1.md (5511B): # RUN_ARCHIVE_PREP__ENTROPY_BRIDGE_UNREFERENCED_CLUSTER__2026_03_11__v1  Status: DRAFT / NONCANON / A2 CONTROL NOTE Date: 2026-03-11 Role: exact archive-prep mutation set for the unreferenced `RUN_GRAVEYARD_VALIDITY_ENTROPY_BRIDGE*` cluster  ## Scope  This pass follows: - `/home/ratchet/Des
 
 ## Properties
 - **source_line_range**: 

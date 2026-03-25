@@ -7,21 +7,21 @@ Date: 2026-03-08
 
 ## 1) Folder-Order Selection
 - prior completed batch ended at:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/A0 new thread save before sim run.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/A0 new thread save before sim run.md`
 - next folder-order family selected for this bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.docx`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.docx`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.txt`
 - bundling reason:
   - same basename
   - binary original plus readable sibling
   - bounded family extract is cleaner than splitting one binary file and one text file into separate batches
 - deferred next docs in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/apple notes save. pre axex notes.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/axes math. apple notes dump.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/apple notes save. pre axex notes.txt`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/axes math. apple notes dump.txt`
 
 ## 2) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.docx`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.docx`
   - sha256: `9a018e83dd2f751cb855438584de1f84af719d2204dc7e02e9a6a5e827dfe994`
   - size bytes: `169501`
   - readable status in this batch: binary sibling only
@@ -29,7 +29,7 @@ Date: 2026-03-08
     - archive entries: `13`
     - `docProps/core.xml` is present but empty of descriptive metadata
 - source 2:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.txt`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/Leviathan v3.2 word.txt`
   - sha256: `a6fb6e87c03102dcb447acf5300ce9917bf3be9a76f868ac4a8c774980b6f4b8`
   - size bytes: `281022`
   - line count: `2204`

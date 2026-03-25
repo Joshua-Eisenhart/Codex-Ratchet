@@ -39,7 +39,7 @@ Extraction mode: `QIT_BRIDGE_PASS`
 - source markers:
   - source 1: `20-32`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/SURFACE_CLASS_AND_MEMORY_ADMISSION_RULES__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/SURFACE_CLASS_AND_MEMORY_ADMISSION_RULES__v1.md`
 - tension:
   - the file says the QIT terms are legitimate and later gateable into Thread-B
   - current intake rules still require separate admission control and do not let source-local framing self-authorize terms
@@ -50,7 +50,7 @@ Extraction mode: `QIT_BRIDGE_PASS`
 - source markers:
   - source 1: `140-172`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1:702`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1:702`
 - tension:
   - the file offers a clean explicit route for `jk fuzz` via Kraus sets and environment bookkeeping
   - this sits close to the existing caution against stack inflation around Kraus-history and measurement machinery

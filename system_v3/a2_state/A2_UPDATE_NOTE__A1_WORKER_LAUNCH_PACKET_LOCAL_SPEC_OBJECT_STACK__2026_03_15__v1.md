@@ -7,25 +7,25 @@ Role: preserve the first local spec-object representation for the A1 worker laun
 ## Scope
 
 New local-stack surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a1_worker_launch_packet_models.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_a1_worker_launch_packet_pydantic.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/export_a1_worker_launch_packet_graph.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/emit_a1_worker_launch_packet_pydantic_schema.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a1_worker_launch_packet_models.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_a1_worker_launch_packet_pydantic.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/export_a1_worker_launch_packet_graph.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/emit_a1_worker_launch_packet_pydantic_schema.py`
 
 Focused regression:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_worker_launch_packet_pydantic_stack.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_worker_launch_packet_pydantic_stack.py`
 
 Patched read surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md`
 
 Current staged proof input:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_WORKER_LAUNCH_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_WORKER_LAUNCH_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json`
 
 Generated artifacts:
 - GraphML:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_WORKER_LAUNCH_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.graphml`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_WORKER_LAUNCH_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.graphml`
 - Pydantic schema:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_WORKER_LAUNCH_PACKET_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_WORKER_LAUNCH_PACKET_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
 
 ## What changed
 
@@ -51,7 +51,7 @@ Result:
 - `Ran 3 tests ... OK`
 
 Current audit:
-- `'.venv_spec_graph/bin/python' system_v3/tools/audit_a1_worker_launch_packet_pydantic.py --packet-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_WORKER_LAUNCH_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json`
+- `'.venv_spec_graph/bin/python' system_v3/tools/audit_a1_worker_launch_packet_pydantic.py --packet-json /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_WORKER_LAUNCH_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json`
 
 Observed result:
 - `thread_class = A1_WORKER`
@@ -62,10 +62,10 @@ Observed result:
 - `a1_reload_artifact_count = 2`
 
 Current graph export:
-- `'.venv_spec_graph/bin/python' system_v3/tools/export_a1_worker_launch_packet_graph.py --packet-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_WORKER_LAUNCH_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json --out-graphml /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_WORKER_LAUNCH_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.graphml`
+- `'.venv_spec_graph/bin/python' system_v3/tools/export_a1_worker_launch_packet_graph.py --packet-json /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_WORKER_LAUNCH_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json --out-graphml /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_WORKER_LAUNCH_PACKET__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.graphml`
 
 Current schema emit:
-- `'.venv_spec_graph/bin/python' system_v3/tools/emit_a1_worker_launch_packet_pydantic_schema.py --out-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_WORKER_LAUNCH_PACKET_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
+- `'.venv_spec_graph/bin/python' system_v3/tools/emit_a1_worker_launch_packet_pydantic_schema.py --out-json /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A1_WORKER_LAUNCH_PACKET_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
 
 ## Current interpretation
 

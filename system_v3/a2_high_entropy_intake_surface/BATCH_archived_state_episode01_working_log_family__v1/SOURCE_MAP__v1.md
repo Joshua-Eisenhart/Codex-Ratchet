@@ -7,7 +7,7 @@ Date: 2026-03-08
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state`
 - file count:
   - `13`
 - folder order:
@@ -27,26 +27,26 @@ Date: 2026-03-08
 
 ## 2) Batch Selection
 - selected first bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_EPISODE_01_WORKING_LOG copy.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_EPISODE_01_WORKING_LOG.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_EPISODE_01_WORKING_LOG copy.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_EPISODE_01_WORKING_LOG.md`
 - reason for bundling:
   - they are adjacent in folder order
   - the `copy` file is a sealed prefix-state artifact
   - the full file preserves the same episode and appends later integration, graveyard, drift-audit, and migration markers
   - the delta itself is useful archived-state evidence, not noise
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_INTENT_MANIFEST_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_INTENT_MANIFEST_v1.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_EPISODE_01_WORKING_LOG copy.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_EPISODE_01_WORKING_LOG copy.md`
   - role in batch: sealed prefix snapshot of episode-01 process memory
   - sha256: `7b8ae13056d611d809058e9c61c299bb611caf1b75a5612806da4a87eaecfc54`
   - size bytes: `13554`
   - line count: `243`
   - source class: archived runtime-state working log
 - source 2:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_EPISODE_01_WORKING_LOG.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_EPISODE_01_WORKING_LOG.md`
   - role in batch: append-only continuation of the same episode with later structural passes
   - sha256: `f06ee1ecd8856b3cf23d71d1d96ea394cb92bb8d5a222d2a52c7a32265c9d381`
   - size bytes: `66677`

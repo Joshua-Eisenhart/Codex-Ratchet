@@ -9,7 +9,7 @@ authority: "SOURCE_CLAIM"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_to_a1_impact_note__stage1_operatorize::da5bb91c5ef0ee64`
 
 ## Description
-A2_TO_A1_IMPACT_NOTE__STAGE1_OPERATORIZED_ENTROPY_HEAD_GROUNDING__2026_03_17__v1.md (2408B): # A2_TO_A1_IMPACT_NOTE__STAGE1_OPERATORIZED_ENTROPY_HEAD_GROUNDING__2026_03_17__v1  Status: DRAFT / NONCANON / A2->A1 NOTE Date: 2026-03-17 Role: bounded A2->A1 consequence note for the Stage-1 operatorized entropy head grounding pass  ## Source basis  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet
+A2_TO_A1_IMPACT_NOTE__STAGE1_OPERATORIZED_ENTROPY_HEAD_GROUNDING__2026_03_17__v1.md (2408B): # A2_TO_A1_IMPACT_NOTE__STAGE1_OPERATORIZED_ENTROPY_HEAD_GROUNDING__2026_03_17__v1  Status: DRAFT / NONCANON / A2->A1 NOTE Date: 2026-03-17 Role: bounded A2->A1 consequence note for the Stage-1 operatorized entropy head grounding pass  ## Source basis  - `/home/ratchet/Desktop/Codex Ratchet
 
 ## Properties
 - **source_line_range**: 

@@ -31,5 +31,5 @@ Extraction mode: `ARCHIVE_CACHE_SAVE_EXPORT_PASS`
 ## Candidate Summary C5
 - proposal-only next-step note:
   - the next bounded folder-order batch should process:
-    - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY`
+    - `/home/ratchet/Desktop/Codex_Ratchet__archive/DEEP_ARCHIVE__LOW_ENTROPY__MILESTONES_ONLY`
   - that pass should stay isolated as its own archive family

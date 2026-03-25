@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - assigned root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - re-entry context:
@@ -20,7 +20,7 @@ Date: 2026-03-09
 
 ## 2) Re-entry Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md`
 - reason for re-entry:
   - the earlier `SOURCE_MAP_PASS` established the file as a stitched legacy foundation note but did not isolate the semantic collisions
   - this source is the closest companion to `Constraints. Entropy.md`, but it packages the same precursor pressure in a warmer and more self-policing form
@@ -35,12 +35,12 @@ Date: 2026-03-09
     - manifold and Hopf-like attractor pressure
     - axes and engines as must-emerge outcomes
 - deferred next re-entry candidate:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md`
 
 ## 3) Source Membership
 - primary source:
   - path:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Constraints.md`
   - sha256:
     - `91b7de3b8eb2fa4eb17d50d664e68a9993205dde2e11733fe68b5df1900ee777`
   - size bytes:

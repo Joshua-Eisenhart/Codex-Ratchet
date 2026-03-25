@@ -7,17 +7,17 @@ Date: 2026-03-08
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_LOW_ENTROPY_LIBRARY_v4.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_LOW_ENTROPY_LIBRARY_v4.md`
 - reason for single-doc batch:
   - one bounded append-only library surface
   - internally staged through versions `v1` to `v4`
   - compact enough to map as one source while preserving the version accretion
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_SYSTEM_SPEC_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_SYSTEM_SPEC_v1.md`
 
 ## 2) Source Membership
 - primary source:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_LOW_ENTROPY_LIBRARY_v4.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_LOW_ENTROPY_LIBRARY_v4.md`
   - sha256: `f82854710b3461c01c96fa0f0ff2fc38041234e665b5ff1efc4328a89eacaff3`
   - size bytes: `5403`
   - line count: `214`

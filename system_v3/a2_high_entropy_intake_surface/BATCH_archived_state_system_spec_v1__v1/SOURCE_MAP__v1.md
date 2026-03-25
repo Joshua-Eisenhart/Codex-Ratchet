@@ -7,18 +7,18 @@ Date: 2026-03-08
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_SYSTEM_SPEC_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_SYSTEM_SPEC_v1.md`
 - reason for single-doc batch:
   - one short self-contained A2 self-spec plaque
   - compact enough to preserve as a single bounded source
   - useful as an archived role-definition surface, not a family bundle
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1 copy.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1 copy.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_WORKING_UPGRADE_CONTEXT_v1.md`
 
 ## 2) Source Membership
 - primary source:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_SYSTEM_SPEC_v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_SYSTEM_SPEC_v1.md`
   - sha256: `4c6c50236a373581ba9e8dcac409071e9f63bf9fe9c5f4756a35d1d2059202fb`
   - size bytes: `692`
   - line count: `34`

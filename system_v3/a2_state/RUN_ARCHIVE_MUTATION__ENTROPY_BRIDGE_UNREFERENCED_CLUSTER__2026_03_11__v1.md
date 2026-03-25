@@ -7,18 +7,18 @@ Role: record of the bounded archive/quarantine mutation over the exact unreferen
 ## Mutation basis
 
 Source prep set:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/RUN_ARCHIVE_PREP__ENTROPY_BRIDGE_UNREFERENCED_CLUSTER__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/RUN_ARCHIVE_PREP__ENTROPY_BRIDGE_UNREFERENCED_CLUSTER__2026_03_11__v1.md`
 
 Archive destination:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/archive/distillery/RUN_ENTROPY_BRIDGE_UNREFERENCED_CLUSTER__2026_03_11__v1`
+- `/home/ratchet/Desktop/Codex Ratchet/archive/distillery/RUN_ENTROPY_BRIDGE_UNREFERENCED_CLUSTER__2026_03_11__v1`
 
 ## What moved
 
 Moved exactly `42` run directories from:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runs`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runs`
 
 into:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/archive/distillery/RUN_ENTROPY_BRIDGE_UNREFERENCED_CLUSTER__2026_03_11__v1`
+- `/home/ratchet/Desktop/Codex Ratchet/archive/distillery/RUN_ENTROPY_BRIDGE_UNREFERENCED_CLUSTER__2026_03_11__v1`
 
 Mutation class:
 - bounded archive/quarantine move

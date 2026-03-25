@@ -6,7 +6,7 @@ Date: 2026-03-15
 ## Change
 
 Active A2 now uses:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_THREADB_CONSEQUENCE_SUBSET__SOURCE_BOUND_HELPER__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_THREADB_CONSEQUENCE_SUBSET__SOURCE_BOUND_HELPER__2026_03_15__v1.md`
 
 instead of relying on the live intake Thread B chain for this exact concern.
 

@@ -7,7 +7,7 @@ Extraction mode: `SIM_PROVE_FOUNDATION_PROOF_PASS`
 - cluster label:
   - core proof family
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/prove_foundation.py`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims/simpy/prove_foundation.py`
 - family role:
   - canonical source-bounded member set for this batch
 - executable-facing read:
@@ -82,7 +82,7 @@ Extraction mode: `SIM_PROVE_FOUNDATION_PROOF_PASS`
 - cluster label:
   - mega-strip separation anchor
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_mega_sims_diagnostic_strip__v1/MANIFEST.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_sims_mega_sims_diagnostic_strip__v1/MANIFEST.json`
 - family role:
   - comparison-only boundary anchor
 - executable-facing read:

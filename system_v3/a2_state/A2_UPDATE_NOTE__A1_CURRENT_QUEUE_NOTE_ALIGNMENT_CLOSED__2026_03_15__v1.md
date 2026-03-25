@@ -7,17 +7,17 @@ Role: preserve the now-closed seam between the active machine-readable A1 queue 
 ## Scope
 
 Audit tool:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_a1_current_queue_note_alignment.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_a1_current_queue_note_alignment.py`
 
 Focused regression:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_audit_a1_current_queue_note_alignment.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_audit_a1_current_queue_note_alignment.py`
 
 Aligned active surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md`
 
 Refresh wrapper used:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/refresh_active_current_a1_queue_state.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/refresh_active_current_a1_queue_state.py`
 
 ## What changed
 
@@ -45,7 +45,7 @@ Result:
 - `Ran 2 tests ... OK`
 
 Active note refresh used:
-- `python3 system_v3/tools/refresh_active_current_a1_queue_state.py --active-current-note /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md --write-active-current-note`
+- `python3 system_v3/tools/refresh_active_current_a1_queue_state.py --active-current-note /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md --write-active-current-note`
 
 Observed result:
 - active current note was rewritten from the active queue packet
@@ -54,7 +54,7 @@ Observed result:
   - `reason: no bounded A1 family slice is currently prepared`
 
 Alignment audit:
-- `python3 system_v3/tools/audit_a1_current_queue_note_alignment.py --packet-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.json --note-text /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md`
+- `python3 system_v3/tools/audit_a1_current_queue_note_alignment.py --packet-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS_PACKET__CURRENT__2026_03_15__v1.json --note-text /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A1_QUEUE_STATUS__CURRENT__2026_03_11__v1.md`
 
 Observed result:
 - `valid = true`

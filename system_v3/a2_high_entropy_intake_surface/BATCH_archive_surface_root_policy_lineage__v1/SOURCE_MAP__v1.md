@@ -7,73 +7,73 @@ Date: 2026-03-09
 
 ## 1) Batch Selection
 - selected sources:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/A1_ROSETTA_v1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/A2_BRAIN_v1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/README__ARCHIVE_POLICY_v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DOC_INDEX.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/SYSTEM_PROCESS_AUDIT.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/MIGRATION_LOG__20260224_070730Z.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CLEANUP_BOOKKEEPING__20260224T204957Z.txt`
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CLEANUP_BOOKKEEPING__20260224T205138Z.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/A1_ROSETTA_v1.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/A2_BRAIN_v1.json`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/README__ARCHIVE_POLICY_v1.md`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/DOC_INDEX.md`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/SYSTEM_PROCESS_AUDIT.md`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/MIGRATION_LOG__20260224_070730Z.txt`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/CLEANUP_BOOKKEEPING__20260224T204957Z.txt`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/CLEANUP_BOOKKEEPING__20260224T205138Z.json`
 - reason for bounded family batch:
   - these are the first high-signal archive-root docs in folder order before the first `BATCH_01_OF_10...zip` package
   - together they define archive role, migration lineage, cleanup/demotion behavior, generated retained-memory mirrors, and a process-status snapshot
   - this keeps the first batch at archive-root scope and avoids prematurely descending into ZIP contents, heat dumps, or deep milestone run families
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_01_OF_10__A2_LAYER1_5__OUTPUT__CORE_CONSTRAINT_LADDER_AXIS_FOUNDATION__v1_1.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_01_OF_10__A2_LAYER1_5__OUTPUT__CORE_CONSTRAINT_LADDER_AXIS_FOUNDATION__v1_1.zip`
 
 ## 2) Source Membership
 ### Source 1
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/README__ARCHIVE_POLICY_v1.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/README__ARCHIVE_POLICY_v1.md`
 - sha256: `f4db49cb259d9c532a40e3f88c1477502fdfc93153ece6810a9634fd32e98370`
 - size bytes: `690`
 - line count: `22`
 - source class: archive-root policy plaque
 
 ### Source 2
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/MIGRATION_LOG__20260224_070730Z.txt`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/MIGRATION_LOG__20260224_070730Z.txt`
 - sha256: `9fcb66c21d72fb8a3bd2c73fd401f1438c75d9cf7abe01c45ba6b393a09bb6f3`
 - size bytes: `2961`
 - line count: `24`
 - source class: archive migration and demotion move log
 
 ### Source 3
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CLEANUP_BOOKKEEPING__20260224T204957Z.txt`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/CLEANUP_BOOKKEEPING__20260224T204957Z.txt`
 - sha256: `fe4a323e292f40eccecd767c9605c319f2f955b7015e864b1f238ba2ca9be972`
 - size bytes: `32057`
 - line count: `227`
 - source class: cleanup residue and duplicate-dir deletion log
 
 ### Source 4
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/CLEANUP_BOOKKEEPING__20260224T205138Z.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/CLEANUP_BOOKKEEPING__20260224T205138Z.json`
 - sha256: `1c8b135cf878ae09f3892f85a9987453f1d6ac9c55326b869f6303021d341869`
 - size bytes: `3034`
 - line count: `64`
 - source class: cleanup summary and byte-delta record
 
 ### Source 5
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/SYSTEM_PROCESS_AUDIT.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/SYSTEM_PROCESS_AUDIT.md`
 - sha256: `d0fe77c8837a70d239ed4a8c2d2d79b0f1b6c790611b84579eda18f330d0e01b`
 - size bytes: `6873`
 - line count: `109`
 - source class: archived process maturity snapshot
 
 ### Source 6
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/DOC_INDEX.md`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/DOC_INDEX.md`
 - sha256: `c6d73c46317f1a76383fca540bbe5118b5b268f2461ad13abd2ffa8dce9303c8`
 - size bytes: `3458975`
 - line count: `35577`
 - source class: generated processed-doc lookup index
 
 ### Source 7
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/A2_BRAIN_v1.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/A2_BRAIN_v1.json`
 - sha256: `6f8f640c5786ac79a8c18d174ddf31cf479cecba85a6444e7ed09f3c6e434ba9`
 - size bytes: `10299066`
 - line count: `58831`
 - source class: generated archive-held A2 content mirror
 
 ### Source 8
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/A1_ROSETTA_v1.json`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/A1_ROSETTA_v1.json`
 - sha256: `19e06505f820cb8bf11dc7a6bbab64f09e8fb1fd8d5a2869a7bf84d444af392f`
 - size bytes: `2952669`
 - line count: `115097`

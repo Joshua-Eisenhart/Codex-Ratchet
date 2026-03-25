@@ -16,16 +16,16 @@
 - Total: 311 nodes, 244 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/00_README.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ENUM_REGISTRY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A1_STRATEGY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/PROMOTION_BINDING_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A2_PERCEPTION_FRAME_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ANTI_HELPFULNESS_POLICY_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ZIP_SUBAGENT_TEMPLATE_MATRIX__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/flowmind_integration/FLOWMIND_BOUNDARY_RULES.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/validator_contract/A0_DETERMINISM_TEST.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/public_facing_docs/00_PUBLIC_FACING_SYSTEM_INTENT_AND_CONSTRAINTS_ON_INTERPRETATION_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/00_README.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ENUM_REGISTRY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A1_STRATEGY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/PROMOTION_BINDING_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/A2_PERCEPTION_FRAME_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ANTI_HELPFULNESS_POLICY_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/specs/ZIP_SUBAGENT_TEMPLATE_MATRIX__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/flowmind_integration/FLOWMIND_BOUNDARY_RULES.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/control_plane_bundle_work/system_v3_control_plane/validator_contract/A0_DETERMINISM_TEST.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/public_facing_docs/00_PUBLIC_FACING_SYSTEM_INTENT_AND_CONSTRAINTS_ON_INTERPRETATION_v1.md
 
 ## Key Findings
 - Mass ingested 40 CONTROL_PLANE files: architecture, enums, A1 strategy schema, promotion binding, governance policies, validators, flowmind, public-facing docs

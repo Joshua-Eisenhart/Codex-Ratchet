@@ -35,7 +35,7 @@ If mutation is later authorized, the bounded patch should be:
 
 ```patch
 *** Begin Patch
-*** Update File: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md
+*** Update File: /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md
 @@
  - the A2-2 -> A2-1 boundary rule is now explicit, but the current kernel surfaces still leak too much worldview/overlay pressure downward and need gradual tightening rather than wholesale rewrite
 +- the intake promotion sweep now sharpens the worldview-pressure boundary, but one live tension remains:

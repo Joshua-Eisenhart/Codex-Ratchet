@@ -6,8 +6,8 @@ from pathlib import Path
 
 def main():
     repo_root = Path(__file__).resolve().parent
-    artifacts_dir = Path("/Users/joshuaeisenhart/.gemini/antigravity/brain/351be0f2-e55d-441a-86ad-3b8bfa0629e3")
-    desktop_dir = Path("/Users/joshuaeisenhart/Desktop")
+    artifacts_dir = Path(os.path.expanduser("~/.gemini") + "/antigravity/brain/351be0f2-e55d-441a-86ad-3b8bfa0629e3")
+    desktop_dir = Path(os.path.expanduser("~/Desktop"))
     
     staging_dir = repo_root / "nlm_pack_staging"
     if staging_dir.exists():

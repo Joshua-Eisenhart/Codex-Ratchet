@@ -24,7 +24,7 @@
 - Total: 17519 nodes, 17335 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/kernel.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/kernel.py
 
 ## Batches
 - `V3_RUNTIME_TOOLS`

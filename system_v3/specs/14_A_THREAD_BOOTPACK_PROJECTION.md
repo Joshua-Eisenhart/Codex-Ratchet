@@ -6,7 +6,7 @@ Date: 2026-02-20
 Project the enforceable A-thread operational rules into v3 spec surface so A1/A0 behavior remains aligned with Thread A boot discipline.
 
 ## Authority Source
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/BOOTPACK_THREAD_A_v2.60.md`
+- `/home/ratchet/Desktop/Codex Ratchet/core_docs/BOOTPACK_THREAD_A_v2.60.md`
 
 ## Projected Rule Set (Enforceable Core; Summarized)
 These rules are originally framed for a chat UI (atomic copy/paste boxes). In automation, the same discipline applies as:
@@ -38,13 +38,13 @@ These rules are originally framed for a chat UI (atomic copy/paste boxes). In au
 
 ## v3 Mapping Targets
 - A1 planning/repair behavior:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md`
 - A0 compile/header behavior:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/04_A0_COMPILER_SPEC.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/04_A0_COMPILER_SPEC.md`
 - B grammar and symbol gating:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/03_B_KERNEL_SPEC.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/03_B_KERNEL_SPEC.md`
 - Conformance gates:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/09_CONFORMANCE_AND_REDUNDANCY_GATES.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/09_CONFORMANCE_AND_REDUNDANCY_GATES.md`
 
 ## Projection Notes
 - Thread-A route/box macros are operational scaffolding, not canon authority.

@@ -7,30 +7,30 @@ Role: preserve the first local spec-object representation for the A2 controller 
 ## Scope
 
 New local-stack surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/a2_controller_send_text_companion_models.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_send_text_companion.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_a2_controller_send_text_companion_pydantic.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/export_a2_controller_send_text_companion_graph.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/emit_a2_controller_send_text_companion_pydantic_schema.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/a2_controller_send_text_companion_models.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_send_text_companion.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_a2_controller_send_text_companion_pydantic.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/export_a2_controller_send_text_companion_graph.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/emit_a2_controller_send_text_companion_pydantic_schema.py`
 
 Focused regression:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_send_text_companion_pydantic_stack.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_send_text_companion_pydantic_stack.py`
 
 Patched read surface:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md`
 
 Current live inputs used for proof:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT__CURRENT__2026_03_12__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT__CURRENT__2026_03_12__v1.md`
 
 Generated current companion:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json`
 
 Generated artifacts:
 - GraphML:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.graphml`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.graphml`
 - Pydantic schema:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_SEND_TEXT_COMPANION_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_SEND_TEXT_COMPANION_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
 
 ## What changed
 
@@ -57,7 +57,7 @@ Focused compile:
 - `python3 -m py_compile system_v3/tools/a2_controller_send_text_companion_models.py system_v3/tools/build_a2_controller_send_text_companion.py system_v3/tools/audit_a2_controller_send_text_companion_pydantic.py system_v3/tools/export_a2_controller_send_text_companion_graph.py system_v3/tools/emit_a2_controller_send_text_companion_pydantic_schema.py system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_send_text_companion_pydantic_stack.py`
 
 Current companion build:
-- `python3 system_v3/tools/build_a2_controller_send_text_companion.py --packet-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json --send-text /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT__CURRENT__2026_03_12__v1.md --out-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json`
+- `python3 system_v3/tools/build_a2_controller_send_text_companion.py --packet-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_PACKET__CURRENT__2026_03_12__v1.json --send-text /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT__CURRENT__2026_03_12__v1.md --out-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json`
 
 Observed result:
 - current companion created successfully
@@ -68,7 +68,7 @@ Focused suite:
 - `'.venv_spec_graph/bin/python' -m unittest system_v3/runtime/bootpack_b_kernel_v1/tests/test_a2_controller_send_text_companion_pydantic_stack.py`
 
 Current audit:
-- `'.venv_spec_graph/bin/python' system_v3/tools/audit_a2_controller_send_text_companion_pydantic.py --companion-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json`
+- `'.venv_spec_graph/bin/python' system_v3/tools/audit_a2_controller_send_text_companion_pydantic.py --companion-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json`
 
 Observed result:
 - `thread_class = A2_CONTROLLER`
@@ -78,22 +78,22 @@ Observed result:
 - `queue_helper_mode = none`
 
 Current graph export:
-- `'.venv_spec_graph/bin/python' system_v3/tools/export_a2_controller_send_text_companion_graph.py --companion-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json --out-graphml /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.graphml`
+- `'.venv_spec_graph/bin/python' system_v3/tools/export_a2_controller_send_text_companion_graph.py --companion-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json --out-graphml /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.graphml`
 
 Current schema emit:
-- `'.venv_spec_graph/bin/python' system_v3/tools/emit_a2_controller_send_text_companion_pydantic_schema.py --out-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_SEND_TEXT_COMPANION_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
+- `'.venv_spec_graph/bin/python' system_v3/tools/emit_a2_controller_send_text_companion_pydantic_schema.py --out-json /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_CONTROLLER_SEND_TEXT_COMPANION_v1__PYDANTIC_SCHEMA__2026_03_15__v1.json`
 
 Builder/validator drift closure:
 - the generic handoff validator required the send-text marker:
   - `You are a fresh A2 controller thread.`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_send_text_from_packet.py` now emits that marker
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/build_a2_controller_send_text_from_packet.py` now emits that marker
 - the active current surfaces were then regenerated:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT__CURRENT__2026_03_12__v1.md`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_HANDOFF__CURRENT__2026_03_12__v1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a2_current`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT__CURRENT__2026_03_12__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_HANDOFF__CURRENT__2026_03_12__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/launch_bundles/a2_current`
 - the generic validator now passes cleanly:
-  - `python3 system_v3/tools/validate_codex_thread_launch_handoff.py --launch-handoff-json /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_HANDOFF__CURRENT__2026_03_12__v1.json`
+  - `python3 system_v3/tools/validate_codex_thread_launch_handoff.py --launch-handoff-json /home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_CONTROLLER_LAUNCH_HANDOFF__CURRENT__2026_03_12__v1.json`
 - current observed result:
   - `valid = true`
   - `errors = []`

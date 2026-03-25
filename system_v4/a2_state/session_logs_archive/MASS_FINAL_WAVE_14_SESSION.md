@@ -16,12 +16,12 @@
 - Total: 335 nodes, 256 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_BRAIN_SLICE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BOOKKEEPING_PACKET_SMOKE_FAMILY__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/RUNS_SAFE_MOVE_MANIFEST__2026_03_16__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/apple notes save. pre axex notes.txt
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/A2_BOOT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/00_MANIFEST__CORE_DOCS_ORDER_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_BRAIN_SLICE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/run_anchor_surface/RUN_ANCHOR__ENTROPY_BOOKKEEPING_PACKET_SMOKE_FAMILY__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/RUNS_SAFE_MOVE_MANIFEST__2026_03_16__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/apple notes save. pre axex notes.txt
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/A2_BOOT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/00_MANIFEST__CORE_DOCS_ORDER_v1.md
 
 ## Key Findings
 - FINAL WAVE: Mass ingested 327 remaining files across 6 tiers

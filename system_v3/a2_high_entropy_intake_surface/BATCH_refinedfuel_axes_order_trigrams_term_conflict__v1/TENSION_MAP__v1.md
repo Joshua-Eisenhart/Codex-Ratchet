@@ -8,7 +8,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `3-7`
   - source 1: `157-165`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:51-61`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:51-61`
 - tension:
   - the note asserts one correct global order and one clean factorization to keep
   - the source-local archive manifest classifies it under `NONCANON_NOTES` and explicitly says those notes are never ratcheted
@@ -22,8 +22,8 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `76-78`
   - source 1: `151-153`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:62-65`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:7-9`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:62-65`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:7-9`
 - tension:
   - the note’s sequence aligns closely with the later candidate build order roadmap
   - it also says each axis only makes sense once the previous ones exist, which can be overread as putting axes before the constraint manifold or making them ontological prerequisites
@@ -34,8 +34,8 @@ Extraction mode: `TERM_CONFLICT_PASS`
 - source markers:
   - source 1: `11-28`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md:8-13`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md:32-39`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md:8-13`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md:32-39`
 - tension:
   - the note treats Axis-0 as existence, entropy gradient, and noncommutation precondition
   - later refined-fuel Axis-0 work narrows it to correlation-persistence polarity under perturbation and separately warns against thermodynamic shortcut language
@@ -46,7 +46,7 @@ Extraction mode: `TERM_CONFLICT_PASS`
 - source markers:
   - source 1: `45-55`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:32-36`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:32-36`
 - tension:
   - the note binds Axis-5 to drive, activation, and amplitude strength
   - later canon narrows Axis-5 to a two-class generator/operator-family regime split with placeholder names
@@ -58,10 +58,10 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `59-65`
   - source 1: `160-161`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:38-42`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:26-30`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:25-27`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:143-149`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:38-42`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:26-30`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:25-27`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:143-149`
 - tension:
   - the note places Axis-3 inside the engine trigram while defining it as flux/chirality / representation orientation
   - later canon hard-locks Axis-3 to engine-family split only and explicitly rejects chirality/Berry/flux semantics in canon
@@ -74,8 +74,8 @@ Extraction mode: `TERM_CONFLICT_PASS`
   - source 1: `76-132`
   - source 1: `159-163`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:44-54`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:21-27`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:44-54`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md:21-27`
 - tension:
   - the note treats Axis-4, Axis-1, and Axis-2 together as a stage-identity trigram and counts `2×2×2 = 8 stages`
   - later canon says Axis-4 is a separate math-class split while Axis-1×Axis-2 alone define `Topology4`
@@ -87,8 +87,8 @@ Extraction mode: `TERM_CONFLICT_PASS`
 - source markers:
   - source 1: `169-180`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/PHYSICS_FUEL_DIGEST_v1.0.md:11-20`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md:91-103`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/PHYSICS_FUEL_DIGEST_v1.0.md:11-20`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TERM_CONFLICT_MAP__v1.md:91-103`
 - tension:
   - the note immediately turns its factorization into a Rosetta and pure-math ratchet target
   - active layer discipline requires stronger separation between overlay, fuel, and kernel-facing admissions

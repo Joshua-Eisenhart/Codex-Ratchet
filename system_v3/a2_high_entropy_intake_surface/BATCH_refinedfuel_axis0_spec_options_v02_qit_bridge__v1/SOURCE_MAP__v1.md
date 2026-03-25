@@ -7,7 +7,7 @@ Date: 2026-03-08
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel`
 - nontrivial top-level file count:
   - `8`
 - ignored filesystem noise:
@@ -24,7 +24,7 @@ Date: 2026-03-08
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md`
 - reason for selection:
   - this is the next nontrivial top-level file in folder order after `AXIS0_SPEC_OPTIONS_v0.1.md`
   - compared to the v0.1 options sheet, this version shifts toward Thread-B-facing formalization:
@@ -36,11 +36,11 @@ Date: 2026-03-08
   - the dominant intake value is still bridge-formalization into admissible QIT objects rather than pure term conflict or generic structure mapping
   - this makes `QIT_BRIDGE_PASS` the best fit again
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.3.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXIS0_SPEC_OPTIONS_v0.2.md`
   - role in batch: refined-fuel Axis-0 v0.2 bridge/options surface with admission language, shell bookkeeping minimalism, and sim-alignment notes
   - sha256: `dc20d450d357c5f80136c4f7e3bd601a01d3494eb6614e0dadfbabe39b96bfce`
   - size bytes: `8774`

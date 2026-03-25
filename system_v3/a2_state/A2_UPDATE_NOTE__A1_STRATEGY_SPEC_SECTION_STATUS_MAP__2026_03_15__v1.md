@@ -7,12 +7,12 @@ Role: preserve the in-file section-status map added to `05_A1_STRATEGY_AND_REPAI
 ## Scope
 
 Patched spec:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md`
 
 Related reset surfaces:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_OPERATOR_DOCTRINE_SPLIT_AND_POLICY_SOURCE__2026_03_15__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_LEGACY_OPERATOR_SPEC_RETARGET__2026_03_15__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_RELOAD_HYGIENE_MANIFEST_PATCH__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_OPERATOR_DOCTRINE_SPLIT_AND_POLICY_SOURCE__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_LEGACY_OPERATOR_SPEC_RETARGET__2026_03_15__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_UPDATE_NOTE__A1_RELOAD_HYGIENE_MANIFEST_PATCH__2026_03_15__v1.md`
 
 ## Problem
 
@@ -27,7 +27,7 @@ That is exactly the kind of reload ambiguity that has been hurting this seam.
 ## What changed
 
 Added `Section Status Map` near the top of:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md`
 
 It now explicitly classifies:
 

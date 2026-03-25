@@ -7,8 +7,8 @@ Extraction mode: `MATH_CLASS_PASS`
 - source markers:
   - source 1: `1-33`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:8-28`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:73-75`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:8-28`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:73-75`
 - tension:
   - the archive manifest source-locally places this file inside a `CANON` set and says candidate generation may proceed deterministically
   - this outer intake process still treats the file as noncanon source material whose authority cannot outrank active surfaces
@@ -20,8 +20,8 @@ Extraction mode: `MATH_CLASS_PASS`
   - source 1: `5-7`
   - source 1: `23`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:10-18`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:62-65`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:10-18`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:62-65`
 - tension:
   - this file allows only explicit finite axis-set tokens `Σ` and forbids assuming a single global axis-set across all domains/components
   - later refined-fuel canon speaks in terms of the fixed bookkeeping family `Axes 0–6`
@@ -33,8 +33,8 @@ Extraction mode: `MATH_CLASS_PASS`
   - source 1: `11-15`
   - source 1: `31-33`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPLETENESS_ADMISSIBILITY_v1.md:3-11`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/ORTHOGONALITY_ADMISSIBILITY_v1.md:3-11`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/COMPLETENESS_ADMISSIBILITY_v1.md:3-11`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/ORTHOGONALITY_ADMISSIBILITY_v1.md:3-11`
 - tension:
   - this file forbids completeness, spanning, independence, and related structure by default
   - it simultaneously leaves orthogonality-like and completeness-like extensions open in later dedicated specs
@@ -55,8 +55,8 @@ Extraction mode: `MATH_CLASS_PASS`
 - source markers:
   - source 1: `3`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_FUNCTION_ADMISSIBILITY_v1.md:3-7`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:15-21`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/AXIS_FUNCTION_ADMISSIBILITY_v1.md:3-7`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:15-21`
 - tension:
   - the file depends on already admitted individual axis-like function relations and the source-local canon ordering indeed places axis-function admission immediately before axis-set admission
   - the outer intake process is following filesystem folder order rather than rebuilding the entire source-local dependency lattice first
@@ -68,7 +68,7 @@ Extraction mode: `MATH_CLASS_PASS`
   - source 1: `23`
   - source 1: `25-27`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:50-54`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:50-54`
 - tension:
   - this file forbids assuming a single axis-set that applies globally and forbids induced global order or vectorization across members
   - later canon talks about `Axis-1 × Axis-2` whose product defines `Topology4`
@@ -79,7 +79,7 @@ Extraction mode: `MATH_CLASS_PASS`
 - source markers:
   - source 1: `1-33`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/fuel_queue.json:128-236`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/fuel_queue.json:128-236`
 - tension:
   - active repo-local A2 surfaces already queue and summarize this file’s clauses
   - this outer intake pass still needs to preserve the original compact source surface and its comparison seams rather than assuming active extraction fully substitutes for it

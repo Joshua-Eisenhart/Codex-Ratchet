@@ -16,17 +16,17 @@
 - Total: 291 nodes, 234 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/THREAD_CONTEXT_EXTRACT__MAX_RAW__2026_03_17__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_A_v2.60.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_INTENT_MANIFEST_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_LOW_ENTROPY_LIBRARY_v4.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/STRUCTURAL_MEMORY_MAP_v2.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/UPGRADE_STRUCTURAL_MAP_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_JP_BEHAVIORAL_BOOT.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/THREAD_CONTEXT_EXTRACT__MAX_RAW__2026_03_17__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_A_v2.60.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/DIRECTED_EXTRACTION_ANSWERS.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/SYSTEM_UPGRADE_PLAN_EXTRACT_PASS1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_INTENT_MANIFEST_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_LOW_ENTROPY_LIBRARY_v4.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/STRUCTURAL_MEMORY_MAP_v2.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/UPGRADE_STRUCTURAL_MAP_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_JP_BEHAVIORAL_BOOT.md
 
 ## Key Findings
 - Mass ingested 29 UPGRADE_DOCS: v4 upgrades (2), legacy bootpacks A/B, directed extraction, upgrade plan passes 1-9, archived A2 state (12)

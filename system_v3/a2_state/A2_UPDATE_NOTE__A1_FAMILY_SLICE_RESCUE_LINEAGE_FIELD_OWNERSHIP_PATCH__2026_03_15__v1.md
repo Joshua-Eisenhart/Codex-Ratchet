@@ -32,14 +32,14 @@ So rescue lineage was only half-real:
 - the actual emitted rescue branches did not satisfy the full declared lineage shape
 
 That left the A1 family-slice path weaker than the stated family model in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a1_state/A1_TARGET_FAMILY_MODEL__v1.md`
 
 ## What changed
 
 ### Planner
 
 Live planner file:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tools/a1_adaptive_ratchet_planner.py`
 
 New behavior:
 - family-slice rescue branches now emit declared lineage fields when the slice requires them
@@ -73,7 +73,7 @@ That field is derived from actual emitted rescue items, not from the family-slic
 ### Controller audit
 
 Audit file:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/run_a1_autoratchet_cycle_audit.py`
 
 New behavior:
 - rescue-lineage checks now inspect actual emitted rescue branches
@@ -90,7 +90,7 @@ New behavior:
 ## Focused regressions
 
 Planner/runtime:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_a1_adaptive_ratchet_planner.py`
 
 Added/updated expectations:
 - scaffold rescue branches expose:
@@ -103,7 +103,7 @@ Added/updated expectations:
   - `rescue_lineage_fields_used`
 
 Controller audit:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/tests/test_run_a1_autoratchet_cycle_audit.py`
 
 Updated:
 - passing family-slice audit fixture now includes an actual rescue branch carrying the declared lineage fields

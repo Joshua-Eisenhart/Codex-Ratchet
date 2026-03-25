@@ -65,24 +65,24 @@ Dispatch surface rule:
 The controller should be able to reboot from a small file set.
 
 Minimum boot set:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_BRAIN_SLICE__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_TO_A1_DISTILLATION_INPUTS__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/BATCH_INDEX__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md`
 
 When the bounded task is controller-backed `A1` launch preparation, the controller may additionally use the fixed subset-graph helper path:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/controller_helper_surfaces/FIRST_CONTROLLER_GRAPH_USE_CONTROLLER_CHECKLIST__2026_03_16__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/compile_first_controller_a1_launch_subset_graph.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/refresh_first_controller_a1_launch_subset_graph.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/audit_first_controller_a1_launch_subset_graph.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_worker_launch_packet.py`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/controller_helper_surfaces/FIRST_CONTROLLER_GRAPH_USE_CONTROLLER_CHECKLIST__2026_03_16__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/compile_first_controller_a1_launch_subset_graph.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/refresh_first_controller_a1_launch_subset_graph.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/audit_first_controller_a1_launch_subset_graph.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_worker_launch_packet.py`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/tools/validate_a1_queue_status_packet.py`
 
 Timing/use rule for this helper path:
-- use `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/controller_helper_surfaces/FIRST_CONTROLLER_GRAPH_USE_CONTROLLER_CHECKLIST__2026_03_16__v1.md` as the compact controller-facing checklist for this helper path so a fresh controller can reload the timing, entrypoint, audit-shape, and consult boundaries without hunting across tools
+- use `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/controller_helper_surfaces/FIRST_CONTROLLER_GRAPH_USE_CONTROLLER_CHECKLIST__2026_03_16__v1.md` as the compact controller-facing checklist for this helper path so a fresh controller can reload the timing, entrypoint, audit-shape, and consult boundaries without hunting across tools
 - use `refresh_first_controller_a1_launch_subset_graph.py` as the normal controller reload/pre-dispatch entrypoint, immediately before a decision that depends on the bounded first controller-mediated `A1` launch path
 - after every `refresh`, run `audit_first_controller_a1_launch_subset_graph.py` before trusting the subset; if audit fails, treat the helper path as not ready and do not dispatch from it
 - use `compile_first_controller_a1_launch_subset_graph.py` directly only for a cold build from explicit absolute source GraphML paths or when the wrapper defaults are intentionally not being used

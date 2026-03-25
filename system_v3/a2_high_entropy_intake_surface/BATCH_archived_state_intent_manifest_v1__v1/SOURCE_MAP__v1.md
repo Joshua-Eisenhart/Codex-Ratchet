@@ -7,17 +7,17 @@ Date: 2026-03-08
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_INTENT_MANIFEST_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_INTENT_MANIFEST_v1.md`
 - reason for single-doc batch:
   - compact bounded manifest
   - clearly self-labeled as `INTENT_LAYER`
   - useful as an archived intent snapshot without needing family bundling
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_JP_BEHAVIORAL_BOOT.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_JP_BEHAVIORAL_BOOT.md`
 
 ## 2) Source Membership
 - primary source:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_INTENT_MANIFEST_v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_runtime_state archived old state/A2_INTENT_MANIFEST_v1.md`
   - sha256: `e1bd971418d8278363b597249318dfc65d65c13508e3d07ce67db1af1a0cd7a7`
   - size bytes: `1207`
   - line count: `45`

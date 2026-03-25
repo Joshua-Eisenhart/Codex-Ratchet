@@ -24,34 +24,34 @@
 - Total: 17555 nodes, 17367 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/kernel.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/zip_protocol_v2_validator.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a0_compiler.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_dispatcher.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_model_selector.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_engine.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_strategy.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_autowiggle.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_bridge.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_debug_policy.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/state.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/containers.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/snapshot.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/pipeline.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/gateway.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/zip_protocol_v2_writer.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/a2_graph_refinery.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/v4_graph_builder.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/run_wave_0_1_extraction.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/run_promotion_audit.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/run_contradiction_scan.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/run_mass_extraction.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/a2_boot.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/test_a2_graph_refinery_patched.py
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/A2_GRAPH_REFINERY_PROCESS__v2.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__ANTIGRAVITY__2026_03_18__v8.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__OPUS__2026_03_18__v7.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/kernel.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/zip_protocol_v2_validator.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a0_compiler.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_dispatcher.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_model_selector.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_a0_b_sim_runner.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/sim_engine.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_strategy.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_autowiggle.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_bridge.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/a1_debug_policy.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/state.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/containers.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/snapshot.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/pipeline.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/gateway.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/runtime/bootpack_b_kernel_v1/zip_protocol_v2_writer.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/a2_graph_refinery.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/v4_graph_builder.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/run_wave_0_1_extraction.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/run_promotion_audit.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/run_contradiction_scan.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/run_mass_extraction.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/a2_boot.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/skills/test_a2_graph_refinery_patched.py
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/A2_GRAPH_REFINERY_PROCESS__v2.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__ANTIGRAVITY__2026_03_18__v8.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v4/a2_state/THREAD_CONTEXT_EXTRACT__OPUS__2026_03_18__v7.md
 
 ## Batches
 - `BATCH_V3RT_CORE_LOOP_001`

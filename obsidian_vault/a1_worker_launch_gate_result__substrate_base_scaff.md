@@ -9,7 +9,7 @@ authority: "CROSS_VALIDATED"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a1_worker_launch_gate_result__substrate_base_scaff::b76e579ca4207432`
 
 ## Description
-Unprocessed File Type (A1_WORKER_LAUNCH_GATE_RESULT__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json): { | "a1_reload_artifacts": [ | "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md",
+Unprocessed File Type (A1_WORKER_LAUNCH_GATE_RESULT__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json): { | "a1_reload_artifacts": [ | "/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md",
 
 ## Properties
 - **source_line_range**: 

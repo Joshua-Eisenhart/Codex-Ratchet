@@ -181,10 +181,10 @@ None
 - `IDENTITY_OVERLAP`: 95106
 
 ### Missing Required Fields
-- `admissibility_state`: 7392 nodes missing
+None
 
 ### Health Anomalies
-- ⚠️ Many nodes missing 'admissibility_state': 7392 nodes
+- ✅ No significant anomalies detected.
 
 ---
 
@@ -206,11 +206,10 @@ None
 None
 
 ### Missing Required Fields
-- `admissibility_state`: 13481 nodes missing
+None
 
 ### Health Anomalies
 - ⚠️ High number of isolated nodes: 13481/13481 (100.0%)
-- ⚠️ Many nodes missing 'admissibility_state': 13481 nodes
 
 ---
 
@@ -265,28 +264,28 @@ None
 ---
 
 ## probe_evidence_graph.json
-- **Nodes**: 208
-- **Edges**: 159
-- **Density**: 0.003693
-- **Connected Components**: 50 (Largest: 19)
-- **Degree Distribution**: Min=1, Max=18, Mean=1.53, Median=1.00
+- **Nodes**: 261
+- **Edges**: 202
+- **Density**: 0.002977
+- **Connected Components**: 60 (Largest: 21)
+- **Degree Distribution**: Min=1, Max=20, Mean=1.55, Median=1.00
 - **Isolated Nodes (degree 0)**: 0
 - **Self-loops**: 0
 - **Duplicate Edges**: 0
 - **Dangling Edges**: 0
 
 ### Node Types Distribution
-- `evidence_token`: 157
-- `probe_evidence`: 51
+- `evidence_token`: 200
+- `probe_evidence`: 61
 
 ### Edge Relation Types Distribution
-- `produces`: 159
+- `produces`: 202
 
 ### Missing Required Fields
-- `admissibility_state`: 51 nodes missing
+None
 
 ### Health Anomalies
-- ⚠️ Many nodes missing 'admissibility_state': 51 nodes
+- ✅ No significant anomalies detected.
 
 ---
 
@@ -412,25 +411,23 @@ None
 
 ### Missing Required Fields
 - `description`: 811 nodes missing
-- `admissibility_state`: 826 nodes missing
 
 ### Health Anomalies
 - ⚠️ 2 duplicate edges found
 - ⚠️ Many nodes missing 'description': 811 nodes
-- ⚠️ Many nodes missing 'admissibility_state': 826 nodes
 
 ---
 
 ## system_graph_a2_refinery.json
 - **Nodes**: 19977
-- **Edges**: 40830
+- **Edges**: 40793
 - **Density**: 0.000102
 - **Connected Components**: 1107 (Largest: 18765)
-- **Degree Distribution**: Min=0, Max=1898, Mean=4.09, Median=1.00
-- **Isolated Nodes (degree 0)**: 1048
+- **Degree Distribution**: Min=0, Max=1898, Mean=4.08, Median=1.00
+- **Isolated Nodes (degree 0)**: 1058
 - **Self-loops**: 0
 - **Duplicate Edges**: 0
-- **Dangling Edges**: 37
+- **Dangling Edges**: 0
 
 ### Node Types Distribution
 - `SOURCE_DOCUMENT`: 10107
@@ -475,10 +472,10 @@ None
 - `SIM_KILLED`: 98
 - `REFINED_INTO`: 77
 - `SIM_EVIDENCE_FOR`: 67
-- `MEMBER_OF`: 53
 - `PART_OF`: 47
 - `ACCEPTED_FROM`: 47
 - `PARKED_FROM`: 38
+- `MEMBER_OF`: 22
 - `TERM_ADMITTED_FROM`: 20
 - `BEAT_IN_RATCHET`: 17
 - `SKILL_FOLLOWS`: 12
@@ -488,16 +485,13 @@ None
 - `TERM_CONFLICT_PASS`: 3
 - `PROMOTED_TO_KERNEL`: 3
 - `REFINES_INTENT`: 3
-- `DIRECT_PORT_TO`: 2
-- `ABSORBED_INTO_TO`: 2
-- `SPLIT_INTO_TO`: 2
 - `EVIDENCED_FROM`: 1
 
 ### Missing Required Fields
 None
 
 ### Health Anomalies
-- ⚠️ 37 dangling edges found
+- ✅ No significant anomalies detected.
 
 ---
 
@@ -582,11 +576,10 @@ None
 - `IMPORTS_FROM`: 133
 
 ### Missing Required Fields
-- `admissibility_state`: 298 nodes missing
+None
 
 ### Health Anomalies
 - ⚠️ High number of isolated nodes: 195/298 (65.4%)
-- ⚠️ Many nodes missing 'admissibility_state': 298 nodes
 
 ---
 

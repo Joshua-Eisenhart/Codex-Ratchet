@@ -9,7 +9,7 @@ authority: "SOURCE_CLAIM"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_worker_send_text__stage1_operatorized::6af63027598e9fb7`
 
 ## Description
-A2_WORKER_SEND_TEXT__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md (5447B): Use Ratchet A2/A1.  You are an A2 Codex worker thread.  Read first: - /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md  Launch packet: MODEL: GPT-5.4 Medium THREAD_CLASS: A2_WORKER MODE: A2_ONLY dispatch_id: A2_HIGH_REFINERY_PASS__STAGE1_OPERATORIZED_ENTROPY_HEAD
+A2_WORKER_SEND_TEXT__STAGE1_OPERATORIZED_ENTROPY_HEAD__2026_03_13__v1.md (5447B): Use Ratchet A2/A1.  You are an A2 Codex worker thread.  Read first: - /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md  Launch packet: MODEL: GPT-5.4 Medium THREAD_CLASS: A2_WORKER MODE: A2_ONLY dispatch_id: A2_HIGH_REFINERY_PASS__STAGE1_OPERATORIZED_ENTROPY_HEAD
 
 ## Properties
 - **source_line_range**: 

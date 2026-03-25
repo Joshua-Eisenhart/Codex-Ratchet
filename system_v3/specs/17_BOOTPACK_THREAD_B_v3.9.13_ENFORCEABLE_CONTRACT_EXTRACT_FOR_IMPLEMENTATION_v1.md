@@ -9,7 +9,7 @@ Purpose: provide a single compact implementation reference for:
 - state object shapes
 - deterministic stage order
 
-Authority source (sole): `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/BOOTPACK_THREAD_B_v3.9.13.md`
+Authority source (sole): `/home/ratchet/Desktop/Codex Ratchet/core_docs/BOOTPACK_THREAD_B_v3.9.13.md`
 
 Note: the bootpack contains duplicated blocks; this extract targets the earliest occurrence of each rule family.
 

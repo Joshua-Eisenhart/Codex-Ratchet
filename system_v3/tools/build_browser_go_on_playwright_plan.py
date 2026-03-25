@@ -1,3 +1,4 @@
+import os
 #!/usr/bin/env python3
 from __future__ import annotations
 
@@ -7,7 +8,7 @@ import sys
 from pathlib import Path
 
 
-PWCLI = "/Users/joshuaeisenhart/.codex/skills/playwright/scripts/playwright_cli.sh"
+PWCLI = os.path.expanduser("~/.codex") + "/skills/playwright/scripts/playwright_cli.sh"
 ALLOWED_MESSAGE = "go on"
 ALLOWED_THREAD_CLASS = {"A2_WORKER", "A1_WORKER"}
 ALLOWED_PLATFORM = "CODEX_DESKTOP"

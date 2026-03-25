@@ -22,7 +22,7 @@ Extraction mode: `ENGINE_PATTERN_PASS`
 ## Candidate Summary C3
 - proposal-only reading:
   - another strong later pass would compare this bootpack against its immediate stateful companion:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt`
 - support:
   - this file explicitly accepts `THREAD_S_SAVE_SNAPSHOT v2` and narrows valid context to bootpack plus replayable state surfaces
 
@@ -38,11 +38,11 @@ Extraction mode: `ENGINE_PATTERN_PASS`
   - later Thread B family reconciliation should keep explicit:
     - the filename / boot-id mismatch in this source
     - the existence of a newer sibling Thread B surface elsewhere in repo:
-      - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md`
+      - `/home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACK_THREAD_B_v3.9.13.md`
 - support:
   - this batch preserves strong local kernel patterns, but it does not by itself settle which Thread B version should dominate family-level interpretation
 
 ## Candidate Summary C6
 - proposal-only next-step note:
   - the next bounded folder-order batch should process the next standalone source:
-    - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt`
+    - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/thread b save.txt`

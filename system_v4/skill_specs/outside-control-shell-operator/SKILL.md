@@ -35,11 +35,11 @@ is ported or live inside Ratchet.
 ## Execute Now
 
 1. Read:
-   - [V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md)
-   - [SYSTEM_SKILL_BUILD_PLAN.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/SYSTEM_SKILL_BUILD_PLAN.md)
-   - [session.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/reference_repos/other/pi-mono/packages/coding-agent/docs/session.md)
-   - [rpc.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/reference_repos/other/pi-mono/packages/coding-agent/docs/rpc.md)
-   - [README.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/work/reference_repos/other/pi-mono/packages/mom/README.md)
+   - [V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md)
+   - [SYSTEM_SKILL_BUILD_PLAN.md](/home/ratchet/Desktop/Codex%20Ratchet/SYSTEM_SKILL_BUILD_PLAN.md)
+   - [session.md](/home/ratchet/Desktop/Codex%20Ratchet/work/reference_repos/other/pi-mono/packages/coding-agent/docs/session.md)
+   - [rpc.md](/home/ratchet/Desktop/Codex%20Ratchet/work/reference_repos/other/pi-mono/packages/coding-agent/docs/rpc.md)
+   - [README.md](/home/ratchet/Desktop/Codex%20Ratchet/work/reference_repos/other/pi-mono/packages/mom/README.md)
 2. Inspect the current target session surface. Default target:
    - `work/reference_repos/other/pi-mono/packages/coding-agent/test/fixtures/large-session.jsonl`
 3. Emit one report and one compact packet only.

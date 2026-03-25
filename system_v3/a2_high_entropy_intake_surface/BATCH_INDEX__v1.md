@@ -4663,7 +4663,7 @@ Role: Rolling ledger for A2-high entropy intake batches
 - tensions:
   - the object is a coherent nested archive root, but it survives only as a moved-out-of-git mirror inside a later heat dump and must not be treated as current authority
   - the direct `HEAT_DUMPS` child is empty while `ARCHIVE_INDEX_v1.json` routes all ten recent heat references into `CACHE__HIGH_ENTROPY__RECENT__PURGEABLE/HEAT_DUMPS`
-  - manifests, checkpoint notes, and cleanup logs still reference older live absolute paths under `/Users/joshuaeisenhart/Desktop/Codex Ratchet/archive/...` and `system_v3/...`, and cleanup history continues later than the latest deep checkpoint
+  - manifests, checkpoint notes, and cleanup logs still reference older live absolute paths under `/home/ratchet/Desktop/Codex Ratchet/archive/...` and `system_v3/...`, and cleanup history continues later than the latest deep checkpoint
 
 ### BATCH_archive_surface_heat_dumps_nested_cache_recent_purgeable__v1
 - extraction mode: `ARCHIVE_HEAT_DUMPS_NESTED_CACHE_RECENT_PURGEABLE_PASS`

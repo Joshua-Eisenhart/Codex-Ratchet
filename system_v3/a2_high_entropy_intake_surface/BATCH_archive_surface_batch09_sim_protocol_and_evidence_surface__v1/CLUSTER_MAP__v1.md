@@ -72,7 +72,7 @@ Extraction mode: `ARCHIVE_LAYERED_EXTRACTION_PACKAGE_PASS`
 
 ## Cluster 8: Deferred Next Package
 - members:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_10_OF_10__A2_LAYER1_5__OUTPUT__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__v1_0.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_10_OF_10__A2_LAYER1_5__OUTPUT__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION__v1_0.zip`
 - cluster read:
   - the next archive-root package remains in the layered `A2_DOC` family and should stay isolated as the final bounded pass
 - current usefulness:

@@ -16,7 +16,7 @@
 - Total: 3756 nodes, 7570 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/x grok chat TOE.txt
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/a2_feed_high entropy doc/x grok chat TOE.txt
 
 ## Batches
 - `BATCH_V4_DEEP_READ_GROK_TOE`

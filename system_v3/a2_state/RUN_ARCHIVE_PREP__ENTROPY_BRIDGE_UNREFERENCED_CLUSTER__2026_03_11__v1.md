@@ -7,7 +7,7 @@ Role: exact archive-prep mutation set for the unreferenced `RUN_GRAVEYARD_VALIDI
 ## Scope
 
 This pass follows:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/RUN_ANCHOR_DEPENDENCY_REMAP__ENTROPY_BRIDGE_CLUSTER__2026_03_11__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/RUN_ANCHOR_DEPENDENCY_REMAP__ENTROPY_BRIDGE_CLUSTER__2026_03_11__v1.md`
 
 It does **not** move runs yet.
 
@@ -73,7 +73,7 @@ The following runs are the exact `ARCHIVE_PREP_SET`:
 
 The following `20` members stay untouched because they are still directly referenced by active run-anchor surfaces:
 - see `ANCHOR_DEPENDENT` in:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/RUN_ANCHOR_DEPENDENCY_REMAP__ENTROPY_BRIDGE_CLUSTER__2026_03_11__v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/RUN_ANCHOR_DEPENDENCY_REMAP__ENTROPY_BRIDGE_CLUSTER__2026_03_11__v1.md`
 
 ## Why the full 42 stay in one mutation set
 

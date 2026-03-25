@@ -7,8 +7,8 @@ Extraction mode: `MATH_CLASS_PASS`
 - source markers:
   - source 1: `1-31`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:8-28`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:73-75`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:8-28`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:73-75`
 - tension:
   - the archive manifest source-locally places this file inside a `CANON` set and says that canon is stable and automation-safe
   - this outer intake process still treats the file as noncanon source material whose authority cannot outrank current active surfaces
@@ -20,8 +20,8 @@ Extraction mode: `MATH_CLASS_PASS`
   - source 1: `5-7`
   - source 1: `21`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:16-18`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:21-24`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:16-18`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:21-24`
 - tension:
   - this file insists that generic function-like assignments are explicit relations with no totality or uniqueness by default
   - later refined-fuel canon surfaces compress axis notation into `Aᵢ : M → Vᵢ`, which can be overread as total single-valued function notation
@@ -33,8 +33,8 @@ Extraction mode: `MATH_CLASS_PASS`
   - source 1: `9`
   - source 1: `27`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:10-18`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:7-10`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/AXES_MASTER_SPEC_v0.2.md:10-18`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0.md:7-10`
 - tension:
   - the file says a generic admitted `F(x,v)` may not by itself induce an axis, coordinate system, basis, or parameterization
   - later canon says axes do exist as functions/slices on the constraint manifold
@@ -45,7 +45,7 @@ Extraction mode: `MATH_CLASS_PASS`
 - source markers:
   - source 1: `29`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Base constraints ledger v1.md:63-67`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Base constraints ledger v1.md:63-67`
 - tension:
   - this file keeps optimization-like selection open if time, probability, and utility are not introduced as primitives
   - the base constraints ledger separately forbids optimization or utility primitives at the base layer
@@ -56,7 +56,7 @@ Extraction mode: `MATH_CLASS_PASS`
 - source markers:
   - source 1: `3`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:15-21`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/archive_manifest_v_1.md:15-21`
 - tension:
   - the file’s dependency line presupposes value-token registries associated with earlier metric and dimensionality work, and the source-local canon ordering places metric/coordinate/dimensionality before axis-function admission
   - the outer intake process encounters this file first because filesystem folder order is alphabetical
@@ -77,8 +77,8 @@ Extraction mode: `MATH_CLASS_PASS`
 - source markers:
   - source 1: `1-31`
 - comparison markers:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1.md:768-770`
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/fuel_queue.json:5-121`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/INGESTED__WIGGLE_V1__A2_BRAIN_UPDATE_PACKETS__v1.md:768-770`
+  - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/fuel_queue.json:5-121`
 - tension:
   - active repo-local A2 surfaces already summarize and queue the content of this file
   - this outer intake pass still has to preserve the original compact source surface and its comparison seams rather than assuming the active reduction is sufficient

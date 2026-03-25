@@ -24,139 +24,139 @@
 - Total: 17272 nodes, 17081 edges
 
 ## Documents
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/00_MANIFEST.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/03_B_KERNEL_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/04_A0_COMPILER_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/06_SIM_EVIDENCE_AND_TIERS_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/08_PIPELINE_AND_STATE_FLOW_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/09_CONFORMANCE_AND_REDUNDANCY_GATES.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/10_INITIAL_AUDIT_REPORT.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/11_MIGRATION_HANDOFF_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/12_BOOTPACK_SYNC_AUDIT_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/13_CONTENT_REDUNDANCY_LINT_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/14_A_THREAD_BOOTPACK_PROJECTION.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/15_ROSETTA_AND_MINING_ARTIFACTS.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/16_ZIP_SAVE_AND_TAPES_SPEC.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/18_A1_WIGGLE_EXECUTION_CONTRACT.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/20_CONTROLLED_TUNING_AND_UPGRADE_CONTRACT.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/21_IMPLEMENTATION_BUILD_SEQUENCE_AND_ACCEPTANCE_MATRIX.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/22_RUN_SURFACE_TEMPLATE_AND_SCAFFOLDER_CONTRACT.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/23_BOOTPACK_CONFORMANCE_FIXTURE_MATRIX_CONTRACT.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/25_BOOTPACK_A2_REFINERY__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/26_BOOTPACK_A1_WIGGLE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_BOOTPACK_RATCHET_FUEL_MINT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/29_STAGE_3_TEMPLATE_AND_SCHEMA_GATE_FLOW__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/29_ZIP_BOOT_BINDING_RULES__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/30_CHATUI_CLAW_PLAYWRIGHT_PROTOCOL_v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/32_A1_QUEUE_STATUS_SURFACE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/33_A2_VS_A1_ROLE_SPLIT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/35_PRO_THREAD_BOOT_LEVELS__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/36_PRO_LAUNCH_TEMPLATE__NARROW_SOURCE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/37_PRO_LAUNCH_TEMPLATE__FULL_A2_REASONING_SPACE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/38_PRO_LAUNCH_TEMPLATE__LANE_REFINERY__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/39_PRO_LAUNCH_TEMPLATE__METHOD_COMPARE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/43_AUTO_GO_ON_EXECUTION_PATH__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/44_AUTO_GO_ON_SENDER_PACKET__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/45_AUTO_GO_ON_RUNNER__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/46_AUTO_GO_ON_THREAD_RESULT_SHAPE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/47_AUTO_GO_ON_CYCLE_PACKET__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/48_BROWSER_ASSISTED_GO_ON_EXECUTION__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/49_BROWSER_GO_ON_IMPLEMENTATION_PLAN__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/50_BROWSER_GO_ON_PROOF_PACKET__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/51_BROWSER_CODEX_THREAD_TARGET__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/52_BROWSER_GO_ON_PLAYWRIGHT_BRIDGE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/53_BROWSER_CODEX_THREAD_TARGET_CAPTURE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/54_BROWSER_CODEX_THREAD_CAPTURE_RECORD__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/55_BROWSER_CAPTURE_RECORD_TO_TARGET__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/56_BROWSER_OBSERVED_CAPTURE_TO_PROOF_PATH__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/57_BROWSER_OBSERVED_CAPTURE_SINK__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/58_BROWSER_OBSERVED_PACKET_TO_PROOF_PATH__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/59_FIRST_LIVE_BROWSER_THREAD_CAPTURE_PROCEDURE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/60_BROWSER_REAL_SEND_MODE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/61_BROWSER_REAL_SEND_PLAYWRIGHT_BRIDGE__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/62_BROWSER_GO_ON_PLAYWRIGHT_EXECUTION__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/63_BROWSER_OBSERVED_PACKET_TO_PLAYWRIGHT_PROOF_PATH__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/64_BROWSER_OBSERVED_THREAD_PACKET_STAGER__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/65_BROWSER_LIVE_CAPTURE_ENVIRONMENT_BLOCKER__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/66_PARALLEL_CODEX_RUN_PLAYBOOK__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/69_FIRST_PARALLEL_CODEX_WAVE_C0_EVALUATION_PACKET__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/70_FIRST_PARALLEL_CODEX_WAVE_LAUNCH_HANDOFF__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/72_SIM_CAMPAIGN_AND_SUITE_MODES__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/74_A0_SAVE_REPORT_SURFACES__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/75_A2_MINING_AND_ROSETTA_ARTIFACT_PACKS__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/THREAD_CONSOLIDATED_RECORD__2026_03_09__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/ZIP_PROTOCOL_v2.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/_normative_hash_baseline.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/ARCHIVE_MANIFEST_v2 copy.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/AXES_MASTER_SPEC_v0.2 copy.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/AXIS_FOUNDATION_COMPANION_v1.5 copy.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/BOOTPACK_THREAD_A_v2.60.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/BOOTPACK_THREAD_B_v3.9.13.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/BOOTPACK_THREAD_M_v1.0.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/BOOTPACK_THREAD_SIM_v2.10.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/BOOTPACK_THREAD_S_v1.64.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0 copy.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/MEGABOOT_RATCHET_SUITE_v4.8 copy.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/MEGABOOT_RATCHET_SUITE_v7.4.8-PROJECTS copy.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/PROJECT_SAVE_DOC_v1_TEMPLATE_FULLPP copy.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/README_FIRST_RATCHET_BUNDLE_v2.0.13 copy.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/SIM_CATALOG_v1.4 copy.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/SIM_RUNBOOK_v1.5 copy.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/A1_BRAIN_ROSETTA_UPDATE_PACKET_STAGE2_v1.schema.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/A2_BRAIN_UPDATE_PACKET_STAGE2_v1.schema.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/AUDIT_PROJECT_SAVE_DOC_REPORT_v1.schema.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/EXPORT_BLOCK_LINT_REPORT_v1.schema.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/EXPORT_CANDIDATE_PACK_v1.schema.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/FUEL_DIGEST_v1.schema.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/INSTRUMENTATION_REPORT_v1.schema.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/OVERLAY_SAVE_DOC_v1.schema.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/PROJECT_SAVE_DOC_v1.schema.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/RATCHET_FUEL_CANDIDATE_PACKET_STAGE2_v1.schema.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/ROSETTA_MAP_v1.schema.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/TAPE_SUMMARY_REPORT_v1.schema.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/TERM_CHAIN_REPORT_v1.schema.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/schemas/ZIP_JOB_MANIFEST_STAGE2_v1.schema.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/A0_SAVE_REPORT_SURFACES_GAP_AUDIT__2026_03_14__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/A2_MINING_AND_ROSETTA_ARTIFACT_GAP_AUDIT__2026_03_14__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/FULL_PLUS_SAVE_GAP_AUDIT__2026_03_14__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/SIM_PROCESS_GAP_AUDIT__2026_03_14__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK_GAP_AUDIT__2026_03_14__v1.md
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/authority_extract_report.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/authority_gap_report.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/content_redundancy_report.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/legacy_extract_report.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/migration_inventory.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/migration_mapping.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/migration_promotion_report.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/migration_unknowns.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/normative_hash_report.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/orphan_requirements_report.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/owner_collision_report.json
-- /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/reports/redundancy_report.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/00_MANIFEST.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/01_REQUIREMENTS_LEDGER.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/02_OWNERSHIP_MAP.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/03_B_KERNEL_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/04_A0_COMPILER_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/05_A1_STRATEGY_AND_REPAIR_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/06_SIM_EVIDENCE_AND_TIERS_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/07_A2_OPERATIONS_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/08_PIPELINE_AND_STATE_FLOW_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/09_CONFORMANCE_AND_REDUNDANCY_GATES.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/10_INITIAL_AUDIT_REPORT.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/11_MIGRATION_HANDOFF_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/12_BOOTPACK_SYNC_AUDIT_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/13_CONTENT_REDUNDANCY_LINT_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/14_A_THREAD_BOOTPACK_PROJECTION.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/15_ROSETTA_AND_MINING_ARTIFACTS.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/16_ZIP_SAVE_AND_TAPES_SPEC.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/17_BOOTPACK_THREAD_B_v3.9.13_ENFORCEABLE_CONTRACT_EXTRACT_FOR_IMPLEMENTATION_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/18_A1_WIGGLE_EXECUTION_CONTRACT.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/19_A2_PERSISTENT_BRAIN_AND_CONTEXT_SEAL_CONTRACT.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/20_CONTROLLED_TUNING_AND_UPGRADE_CONTRACT.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/21_IMPLEMENTATION_BUILD_SEQUENCE_AND_ACCEPTANCE_MATRIX.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/22_RUN_SURFACE_TEMPLATE_AND_SCAFFOLDER_CONTRACT.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/23_BOOTPACK_CONFORMANCE_FIXTURE_MATRIX_CONTRACT.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/24_NAMING_AND_ARTIFACT_RULES__STAGE_0_FREEZE.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/25_BOOTPACK_A2_REFINERY__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/26_BOOTPACK_A1_WIGGLE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/27_BOOTPACK_RATCHET_FUEL_MINT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/27_MASTER_CONTROLLER_THREAD_PROCESS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_A2_THREAD_BOOT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/28_STAGE_2_JOB_SCHEMAS_AND_VALIDATION_STUBS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/29_STAGE_3_TEMPLATE_AND_SCHEMA_GATE_FLOW__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/29_ZIP_BOOT_BINDING_RULES__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/30_A2_TO_A1_HANDOFF_CONTRACT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/30_CHATUI_CLAW_PLAYWRIGHT_PROTOCOL_v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/31_A1_THREAD_BOOT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/32_A1_QUEUE_STATUS_SURFACE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/33_A2_VS_A1_ROLE_SPLIT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/34_A1_READY_PACKET__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/35_PRO_THREAD_BOOT_LEVELS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/36_PRO_LAUNCH_TEMPLATE__NARROW_SOURCE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/37_PRO_LAUNCH_TEMPLATE__FULL_A2_REASONING_SPACE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/38_PRO_LAUNCH_TEMPLATE__LANE_REFINERY__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/39_PRO_LAUNCH_TEMPLATE__METHOD_COMPARE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/40_PARALLEL_CODEX_THREAD_CONTROL__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/41_AUTO_GO_ON_RULE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/42_AUTO_GO_ON_APPLICATOR__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/43_AUTO_GO_ON_EXECUTION_PATH__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/44_AUTO_GO_ON_SENDER_PACKET__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/45_AUTO_GO_ON_RUNNER__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/46_AUTO_GO_ON_THREAD_RESULT_SHAPE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/47_AUTO_GO_ON_CYCLE_PACKET__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/48_BROWSER_ASSISTED_GO_ON_EXECUTION__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/49_BROWSER_GO_ON_IMPLEMENTATION_PLAN__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/50_BROWSER_GO_ON_PROOF_PACKET__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/51_BROWSER_CODEX_THREAD_TARGET__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/52_BROWSER_GO_ON_PLAYWRIGHT_BRIDGE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/53_BROWSER_CODEX_THREAD_TARGET_CAPTURE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/54_BROWSER_CODEX_THREAD_CAPTURE_RECORD__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/55_BROWSER_CAPTURE_RECORD_TO_TARGET__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/56_BROWSER_OBSERVED_CAPTURE_TO_PROOF_PATH__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/57_BROWSER_OBSERVED_CAPTURE_SINK__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/58_BROWSER_OBSERVED_PACKET_TO_PROOF_PATH__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/59_FIRST_LIVE_BROWSER_THREAD_CAPTURE_PROCEDURE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/60_BROWSER_REAL_SEND_MODE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/61_BROWSER_REAL_SEND_PLAYWRIGHT_BRIDGE__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/62_BROWSER_GO_ON_PLAYWRIGHT_EXECUTION__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/63_BROWSER_OBSERVED_PACKET_TO_PLAYWRIGHT_PROOF_PATH__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/64_BROWSER_OBSERVED_THREAD_PACKET_STAGER__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/65_BROWSER_LIVE_CAPTURE_ENVIRONMENT_BLOCKER__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/66_PARALLEL_CODEX_RUN_PLAYBOOK__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/67_FIRST_PARALLEL_CODEX_WAVE_PACKET__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/68_FIRST_PARALLEL_CODEX_WAVE_OPERATOR_PACKET__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/69_FIRST_PARALLEL_CODEX_WAVE_C0_EVALUATION_PACKET__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/70_FIRST_PARALLEL_CODEX_WAVE_LAUNCH_HANDOFF__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/71_A2_CONTROLLER_LAUNCH_PACKET__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/72_SIM_CAMPAIGN_AND_SUITE_MODES__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/73_FULL_PLUS_SEMANTIC_SAVE_ZIP__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/74_A0_SAVE_REPORT_SURFACES__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/75_A2_MINING_AND_ROSETTA_ARTIFACT_PACKS__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/76_SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/77_A1_LIVE_PACKET_PROFILE_EXTRACT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/78_A1_HISTORICAL_BRANCH_WIGGLE_EXTRACT__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/THREAD_CONSOLIDATED_RECORD__2026_03_09__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/ZIP_PROTOCOL_v2.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/_normative_hash_baseline.json
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/ARCHIVE_MANIFEST_v2 copy.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/AXES_MASTER_SPEC_v0.2 copy.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/AXIS_FOUNDATION_COMPANION_v1.5 copy.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/BOOTPACK_THREAD_A_v2.60.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/BOOTPACK_THREAD_B_v3.9.13.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/BOOTPACK_THREAD_M_v1.0.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/BOOTPACK_THREAD_SIM_v2.10.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/BOOTPACK_THREAD_S_v1.64.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.0 copy.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/MEGABOOT_RATCHET_SUITE_v4.8 copy.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/MEGABOOT_RATCHET_SUITE_v7.4.8-PROJECTS copy.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/MEGABOOT_RATCHET_SUITE_v7.4.9-PROJECTS 2.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/PROJECT_SAVE_DOC_v1_TEMPLATE_FULLPP copy.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/README_FIRST_RATCHET_BUNDLE_v2.0.13 copy.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/SIM_CATALOG_v1.4 copy.md
+- /home/ratchet/Desktop/Codex Ratchet/core_docs/upgrade docs/BOOTPACKS/SIM_RUNBOOK_v1.5 copy.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/A1_BRAIN_ROSETTA_UPDATE_PACKET_STAGE2_v1.schema.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/A2_BRAIN_UPDATE_PACKET_STAGE2_v1.schema.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/AUDIT_PROJECT_SAVE_DOC_REPORT_v1.schema.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/EXPORT_BLOCK_LINT_REPORT_v1.schema.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/EXPORT_CANDIDATE_PACK_v1.schema.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/FUEL_DIGEST_v1.schema.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/INSTRUMENTATION_REPORT_v1.schema.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/OVERLAY_SAVE_DOC_v1.schema.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/PROJECT_SAVE_DOC_v1.schema.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/RATCHET_FUEL_CANDIDATE_PACKET_STAGE2_v1.schema.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/ROSETTA_MAP_v1.schema.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/TAPE_SUMMARY_REPORT_v1.schema.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/TERM_CHAIN_REPORT_v1.schema.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/schemas/ZIP_JOB_MANIFEST_STAGE2_v1.schema.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/A0_SAVE_REPORT_SURFACES_GAP_AUDIT__2026_03_14__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/A2_MINING_AND_ROSETTA_ARTIFACT_GAP_AUDIT__2026_03_14__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/FULL_PLUS_SAVE_GAP_AUDIT__2026_03_14__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/SIM_PROCESS_GAP_AUDIT__2026_03_14__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/SYSTEM_BUNDLE_AND_REBOOT_PLAYBOOK_GAP_AUDIT__2026_03_14__v1.md
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/authority_extract_report.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/authority_gap_report.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/content_redundancy_report.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/legacy_extract_report.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/migration_inventory.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/migration_mapping.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/migration_promotion_report.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/migration_unknowns.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/normative_hash_report.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/orphan_requirements_report.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/owner_collision_report.json
+- /home/ratchet/Desktop/Codex Ratchet/system_v3/specs/reports/redundancy_report.json
 
 ## Batches
 - `SPECS_V3_INTAKE`

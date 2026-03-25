@@ -7,17 +7,17 @@ Date: 2026-03-09
 
 ## 1) Batch Selection
 - selected source:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_08_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__v1_0.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_08_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__v1_0.zip`
 - reason for bounded single-package batch:
   - this is the next archive-root item after the late-pass directed-audit ratchet-fuel packet
   - it shifts away from audit-gap closure and toward archive structural memory over six low-entropy/root docs plus a full read-log inventory
   - keeping it isolated preserves its stricter fail-closed transport contract, restored exact IGT locks, and duplicate stage-2 compatibility packaging without treating any of it as current active authority
 - deferred next bounded batch in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_09_OF_10__A2_LAYER1_5__OUTPUT__SIM_PROTOCOL_AND_EVIDENCE_SURFACE__v1_1__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION.zip`
+  - `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_09_OF_10__A2_LAYER1_5__OUTPUT__SIM_PROTOCOL_AND_EVIDENCE_SURFACE__v1_1__A2_DOC_LAYERED_MULTI_TOPIC_FULL_EXTRACTION.zip`
 
 ## 2) Source Membership
 ### Primary container
-- path: `/Users/joshuaeisenhart/Desktop/Codex_Ratchet__archive/BATCH_08_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__v1_0.zip`
+- path: `/home/ratchet/Desktop/Codex_Ratchet__archive/BATCH_08_OF_10__A2_A1_RATCHET_FUEL_MINT__OUTPUT__v1_0.zip`
 - sha256: `c43a8d45ffc9cc50be2514c2e34103a082e8fb36f691673d1535e48de2832693`
 - size bytes: `102872`
 - container member count: `83`

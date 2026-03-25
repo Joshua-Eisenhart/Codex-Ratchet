@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - folder order around this batch:
@@ -19,7 +19,7 @@ Date: 2026-03-09
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 qit mathΓÇ¿ΓÇ¿Good ΓÇö that statement narrows the target exactlyΓÇª.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 qit mathΓÇ¿ΓÇ¿Good ΓÇö that statement narrows the target exactlyΓÇª.md`
 - reason for selection:
   - this is the next unprocessed non-sims `constraint ladder` file in folder order after the Axis-3 Hopf-loop note
   - the file is a stitched multi-part note:
@@ -36,11 +36,11 @@ Date: 2026-03-09
     - it reintroduces Axis-5 as drive / activation amplitude
   - this makes `TERM_CONFLICT_PASS` a better fit than `MATH_CLASS_PASS`
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 vs axis 5. Heating vs cooling is not Hot vs coldΓÇ¿ΓÇ¿YouΓÇÖre rightΓÇª.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 vs axis 5. Heating vs cooling is not Hot vs coldΓÇ¿ΓÇ¿YouΓÇÖre rightΓÇª.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 qit mathΓÇ¿ΓÇ¿Good ΓÇö that statement narrows the target exactlyΓÇª.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 qit mathΓÇ¿ΓÇ¿Good ΓÇö that statement narrows the target exactlyΓÇª.md`
   - role in batch: noncanon Axis-4 note attempting a QIT-native loop-order formalization and Rosetta verification sheet for the four base topologies
   - sha256: `f358fadcbf1943c59d69af3708d5a87537b18ceb8feb2f8d2a701ab644c030d8`
   - size bytes: `16919`

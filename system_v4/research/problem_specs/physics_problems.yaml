@@ -1,0 +1,98 @@
+problem_id: BIG_BANG_TIME_GENESIS
+goal: "Time begins when bipartite entanglement I(A:B)>0 breaks thermal symmetry"
+witness:
+  kind: entanglement_symmetry_break
+  parameters:
+    d: [2, 4, 8, 16]
+constraints:
+  - CPTP_steps_only
+  - finite_system_only
+  - thermal_initial_state
+scoring:
+  primary: "mutual_info_positive >= 0.80"
+  secondary: "symmetry_break_detected >= 0.90"
+negative_tests:
+  - "fails_when_no_interaction"
+  - "fails_when_maximally_mixed_initial"
+sim_file: big_bang_fuzz_sim.py
+result_artifact: big_bang_fuzz_results.json
+status: ACTIVE
+---
+problem_id: TOPOLOGICAL_MATTER
+goal: "Baryonic matter forms as stable topological knots of micro-GW loops"
+witness:
+  kind: topological_knot_stability
+  parameters:
+    d: [4, 8, 16]
+constraints:
+  - CPTP_steps_only
+  - PSD_trace_invariants
+  - finite_system_only
+scoring:
+  primary: "knot_stability >= 0.80"
+  secondary: "topological_invariant_preserved >= 0.90"
+negative_tests:
+  - "fails_when_trivial_topology"
+  - "fails_when_no_dissipation"
+sim_file: origin_chain_physics_sim.py
+result_artifact: origin_chain_physics_results.json
+status: ACTIVE
+---
+problem_id: YANG_MILLS_MASS_GAP
+goal: "Spectral gap between vacuum and first excited state persists >0 at all finite d"
+witness:
+  kind: spectral_gap_persistence
+  parameters:
+    d: [2, 4, 8, 16, 32]
+constraints:
+  - CPTP_steps_only
+  - PSD_trace_invariants
+  - finite_system_only
+scoring:
+  primary: "spectral_gap > 0 at all d"
+  secondary: "gap_stability_across_seeds >= 0.80"
+negative_tests:
+  - "fails_when_commutative_algebra"
+  - "fails_when_infinite_temperature"
+sim_file: yang_mills_sim.py
+result_artifact: yang_mills_results.json
+status: ACTIVE
+---
+problem_id: RIEMANN_ZETA_GUE
+goal: "Non-commutative operator composition produces GUE eigenvalue spacing"
+witness:
+  kind: eigenvalue_spacing_distribution
+  parameters:
+    d: [4, 8, 16, 32, 64]
+constraints:
+  - non_commutative_operators
+  - finite_system_only
+scoring:
+  primary: "gue_spacing_match >= 0.80"
+  secondary: "convergence_with_dimension >= 0.70"
+negative_tests:
+  - "fails_when_commutative_operators"
+  - "fails_when_diagonal_operators"
+sim_file: riemann_zeta_sim.py
+result_artifact: riemann_zeta_results.json
+status: ACTIVE
+---
+problem_id: P_VS_NP_ASYMMETRY
+goal: "Verification scales O(N), generation scales O(2^N) in open quantum networks"
+witness:
+  kind: computational_asymmetry
+  parameters:
+    d: [2, 4, 8, 16]
+constraints:
+  - CPTP_steps_only
+  - open_system_dynamics
+  - finite_system_only
+scoring:
+  primary: "verification_polynomial >= 0.90"
+  secondary: "generation_exponential >= 0.80"
+negative_tests:
+  - "fails_when_closed_system"
+  - "fails_when_trivial_hamiltonian"
+sim_file: p_vs_np_sim.py
+result_artifact: p_vs_np_results.json
+status: ACTIVE

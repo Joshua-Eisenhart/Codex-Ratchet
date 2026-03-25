@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - folder order around this batch:
@@ -19,7 +19,7 @@ Date: 2026-03-09
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Base constraints ledger v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Base constraints ledger v1.md`
 - reason for selection:
   - this is the next unprocessed non-sims `constraint ladder` file in folder order after the Axis-4 / Axis-5 correction note
   - the file is not a freeform note:
@@ -30,11 +30,11 @@ Date: 2026-03-09
     - but later canon splits them into narrower frozen specs with stronger dependency and tagging discipline
   - this makes `TERM_CONFLICT_PASS` the best fit
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/CANDIDATE_PROPOSAL_v1.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/CANDIDATE_PROPOSAL_v1.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Base constraints ledger v1.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Base constraints ledger v1.md`
   - role in batch: legacy omnibus constraint ledger summarizing finitude, anti-identity, anti-metric, anti-probability, anti-optimization, and anti-smuggling base fences
   - sha256: `48ddcd8f1bc6b89ef6165c845f44c523d087c8f0673f6bfa236a38e7c1972e13`
   - size bytes: `5095`

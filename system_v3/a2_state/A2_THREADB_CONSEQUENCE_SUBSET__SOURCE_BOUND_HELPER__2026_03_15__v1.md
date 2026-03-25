@@ -39,8 +39,8 @@ This helper remains:
 ## Provenance Companion
 
 Detailed non-owner provenance remains in:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/run_maintenance_reports/SYSTEM_V3_A2_THREADB_CONSEQUENCE_SUBSET_REPLACEMENT_PACKET__CANDIDATE__2026_03_15.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/run_maintenance_reports/SYSTEM_V3_A2_THREADB_CONSEQUENCE_SUBSET_REPLACEMENT_PACKET__ADMISSION_REVIEW__2026_03_15.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/run_maintenance_reports/SYSTEM_V3_A2_THREADB_CONSEQUENCE_SUBSET_REPLACEMENT_PACKET__CANDIDATE__2026_03_15.md`
+- `/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/run_maintenance_reports/SYSTEM_V3_A2_THREADB_CONSEQUENCE_SUBSET_REPLACEMENT_PACKET__ADMISSION_REVIEW__2026_03_15.md`
 
 Those companion surfaces preserve:
 - the exact five-item subset

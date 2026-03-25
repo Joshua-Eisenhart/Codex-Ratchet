@@ -9,8 +9,8 @@ Owner: current `A2` controller for browser-assisted continuation proof capture
 This note defines the proof artifact emitted by browser-assisted continuation execution.
 
 It sits after:
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/48_BROWSER_ASSISTED_GO_ON_EXECUTION__v1.md`
-- `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/specs/49_BROWSER_GO_ON_IMPLEMENTATION_PLAN__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/48_BROWSER_ASSISTED_GO_ON_EXECUTION__v1.md`
+- `/home/ratchet/Desktop/Codex Ratchet/system_v3/specs/49_BROWSER_GO_ON_IMPLEMENTATION_PLAN__v1.md`
 
 ## Packet role
 

@@ -7,7 +7,7 @@ Date: 2026-03-09
 
 ## 1) Assigned Root Inventory
 - root:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder`
 - nontrivial file count:
   - `40`
 - folder order around this batch:
@@ -19,7 +19,7 @@ Date: 2026-03-09
 
 ## 2) Batch Selection
 - selected bounded batch:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 3 math Hopf fiber loop vs lifted base loop.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 3 math Hopf fiber loop vs lifted base loop.md`
 - reason for selection:
   - this is the next unprocessed non-sims `constraint ladder` file in folder order after the Axis-1/Axis-2 topology note
   - the file is dominated by direct Axis-3 semantic conflict:
@@ -31,11 +31,11 @@ Date: 2026-03-09
     - engine-type versus stage-structure separation
   - but the dominant value is contradiction preservation against later refined-fuel canon, so `TERM_CONFLICT_PASS` is the best fit
 - deferred next doc in folder order:
-  - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 qit mathΓÇ¿ΓÇ¿Good ΓÇö that statement narrows the target exactlyΓÇª.md`
+  - `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 4 qit mathΓÇ¿ΓÇ¿Good ΓÇö that statement narrows the target exactlyΓÇª.md`
 
 ## 3) Source Membership
 - source 1:
-  - path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 3 math Hopf fiber loop vs lifted base loop.md`
+  - path: `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 3 math Hopf fiber loop vs lifted base loop.md`
   - role in batch: noncanon Axis-3 geometry note arguing for Hopf-fiber versus lifted-base loops as the real math names and deriving an eight-stage topology on generalized spinor geometry
   - sha256: `3b08b7a59ca0f30c44eb3e0507e429a6f14000c3f5e9b9ee40584db0901d6cde`
   - size bytes: `12039`

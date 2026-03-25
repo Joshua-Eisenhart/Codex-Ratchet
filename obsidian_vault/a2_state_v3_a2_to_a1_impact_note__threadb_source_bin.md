@@ -9,7 +9,7 @@ authority: "SOURCE_CLAIM"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_to_a1_impact_note__threadb_source_bin::60a1a57a9c18b1fd`
 
 ## Description
-A2_TO_A1_IMPACT_NOTE__THREADB_SOURCE_BINDING_NARROWING__2026_03_15__v1.md (1184B): # A2_TO_A1_IMPACT_NOTE__THREADB_SOURCE_BINDING_NARROWING__2026_03_15__v1  Status: `DERIVED_A2` Date: 2026-03-15  ## Change  Active A2 source-binding language in: - `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`  was narrowed so th
+A2_TO_A1_IMPACT_NOTE__THREADB_SOURCE_BINDING_NARROWING__2026_03_15__v1.md (1184B): # A2_TO_A1_IMPACT_NOTE__THREADB_SOURCE_BINDING_NARROWING__2026_03_15__v1  Status: `DERIVED_A2` Date: 2026-03-15  ## Change  Active A2 source-binding language in: - `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md`  was narrowed so th
 
 ## Properties
 - **source_line_range**: 

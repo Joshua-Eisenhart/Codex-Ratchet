@@ -9,7 +9,7 @@ authority: "SOURCE_CLAIM"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_controller_send_text_companion__curre::2101f8f0337bdec4`
 
 ## Description
-A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json (4301B): {   "active_context_surfaces": [     "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md",     "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md",     "/Users/joshuaeisenhart/Desktop/Codex Ratchet/w
+A2_CONTROLLER_SEND_TEXT_COMPANION__CURRENT__2026_03_15__v1.json (4301B): {   "active_context_surfaces": [     "/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_SYSTEM_UNDERSTANDING_UPDATE__SOURCE_BOUND_v2.md",     "/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/OPEN_UNRESOLVED__v1.md",     "/home/ratchet/Desktop/Codex Ratchet/w
 
 ## Properties
 - **source_line_range**: 

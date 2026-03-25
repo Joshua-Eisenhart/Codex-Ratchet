@@ -9,7 +9,7 @@ authority: "NONCANON"
 **Node ID:** `A2_3::SOURCE_MAP_PASS::a1_queue_candidate_registry__substrate_base_scaffo::95fddd0c5373952f`
 
 ## Description
-Unprocessed File Type (A1_QUEUE_CANDIDATE_REGISTRY__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json): { | "candidate_family_slice_jsons": [ | "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json"
+Unprocessed File Type (A1_QUEUE_CANDIDATE_REGISTRY__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json): { | "candidate_family_slice_jsons": [ | "/home/ratchet/Desktop/Codex Ratchet/work/audit_tmp/spec_object_drafts/A2_TO_A1_FAMILY_SLICE_v1__SUBSTRATE_BASE_SCAFFOLD__2026_03_15__v1.json"
 
 ## Properties
 - **source_line_range**: 

@@ -9,7 +9,7 @@ authority: "CROSS_VALIDATED"
 **Node ID:** `A1_STRIPPED::A2_STATE_V3_A2_WORKER_PROMPT_A2_STATE_CONSOLIDATION`
 
 ## Description
-A2_WORKER_PROMPT__A2_STATE_CONSOLIDATION_EXECUTION__2026_03_16__v1.txt (1922B): Use $ratchet-a2-a1. Use $a2-a1-memory-admission-guard.  Use the current A2 boot: - /Users/joshuaeisenhart/Desktop/Codex
+A2_WORKER_PROMPT__A2_STATE_CONSOLIDATION_EXECUTION__2026_03_16__v1.txt (1922B): Use $ratchet-a2-a1. Use $a2-a1-memory-admission-guard.  Use the current A2 boot: - /home/ratchet/Desktop/Codex
 
 ## Properties
 - **dropped_jargon**: []

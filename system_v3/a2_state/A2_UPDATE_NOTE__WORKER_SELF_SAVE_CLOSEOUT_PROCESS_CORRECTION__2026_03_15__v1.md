@@ -9,10 +9,10 @@ Corrected the external worker launch process so it no longer depends on the oper
 
 Updated surfaces:
 
-1. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_HANDOFF__NEXT_TWO_SYSTEM_THREADS__2026_03_15__v1.md`
-2. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__VALIDATOR_PROVENANCE_HARDENING__2026_03_15__v1.md`
-3. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__PLANNER_GLOBAL_DEFAULTS_AUDIT__2026_03_15__v1.md`
-4. `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_CLOSEOUT_CAPTURE_QUICKSTART__v1.md`
+1. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_LAUNCH_HANDOFF__NEXT_TWO_SYSTEM_THREADS__2026_03_15__v1.md`
+2. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__VALIDATOR_PROVENANCE_HARDENING__2026_03_15__v1.md`
+3. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/A2_WORKER_DISPATCH_PACKET__PLANNER_GLOBAL_DEFAULTS_AUDIT__2026_03_15__v1.md`
+4. `/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_state/THREAD_CLOSEOUT_CAPTURE_QUICKSTART__v1.md`
 
 ## Correct rule
 

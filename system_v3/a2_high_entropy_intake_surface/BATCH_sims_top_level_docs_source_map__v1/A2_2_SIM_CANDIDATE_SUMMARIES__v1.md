@@ -51,4 +51,4 @@ Extraction mode: `SIM_SOURCE_MAP_PASS`
 - proposal-only next-step note:
   - the next bounded sims batch in folder order should move to the earliest executable-facing runner family, starting with the three leading-space `simpy` scripts and their paired result surfaces, while treating `__pycache__` files as nonprimary source noise
 - supporting anchors:
-  - observed folder order under `/Users/joshuaeisenhart/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims`
+  - observed folder order under `/home/ratchet/Desktop/Codex Ratchet/core_docs/a1_refined_Ratchet Fuel/sims`

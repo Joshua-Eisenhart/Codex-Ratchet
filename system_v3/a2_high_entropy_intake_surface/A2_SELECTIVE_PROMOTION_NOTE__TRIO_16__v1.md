@@ -28,7 +28,7 @@ This note is not:
 - permission to let legacy labels, derived geometry, or overlay guidance replace math-first kernel naming
 
 Important lane choice:
-- [A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1](/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1.md) already preserved the global manifold-before-axes and base-regime fences
+- [A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1](/home/ratchet/Desktop/Codex Ratchet/system_v3/a2_high_entropy_intake_surface/A2_SELECTIVE_PROMOTION_NOTE__AXES_SEMANTIC_FENCES__v1.md) already preserved the global manifold-before-axes and base-regime fences
 - this note keeps only the remaining stage-side adjudication, derived-geometry placement, and overlay-handling subset
 
 ## 2) Promotion Rule Used

@@ -317,9 +317,9 @@ def sim_variance_direction(d: int = 4, n_steps: int = 200) -> EvidenceToken:
     trajectory_divergence = np.max(np.abs(entropy_ded - entropy_ind))
     final_state_distance = trace_distance(rho_ded, rho_ind)
     
-    print(f"  Initial state_dispersion: {state_dispersion_deductive[0]:.6f}")
-    print(f"  Deductive final state_dispersion: {state_dispersion_deductive[-1]:.6f}")
-    print(f"  Inductive final state_dispersion: {state_dispersion_inductive[-1]:.6f}")
+    print(f"  Initial entropy: {entropy_deductive[0]:.6f}")
+    print(f"  Deductive final entropy: {entropy_deductive[-1]:.6f}")
+    print(f"  Inductive final entropy: {entropy_inductive[-1]:.6f}")
     print(f"  Max trajectory divergence: {trajectory_divergence:.6f}")
     print(f"  Final state trace distance: {final_state_distance:.6f}")
     
@@ -429,13 +429,13 @@ def sim_proto_attractor_basin(d: int = 4, n_steps: int = 500, n_initial_states: 
         attractor = attractor / np.trace(attractor)
         attractor_entropy = von_neumann_entropy(attractor)
         eigvals = np.sort(np.real(np.linalg.eigvalsh(attractor)))[::-1]
-        print(f"  Invariant_Target state_dispersion: {invariant_target_state_dispersion:.6f}")
+        print(f"  Invariant_Target entropy: {attractor_entropy:.6f}")
         print(f"  Invariant_Target eigenvalues: {eigvals}")
         
         # Verify invariant_target is not maximally mixed (not trivial)
         max_entropy = np.log2(d)
         if attractor_entropy < max_entropy * 0.99:
-            print(f"  Invariant_Target is NON-TRIVIAL (S={invariant_target_state_dispersion:.4f} < S_max={max_state_dispersion:.4f})")
+            print(f"  Invariant_Target is NON-TRIVIAL (S={attractor_entropy:.4f} < S_max={max_entropy:.4f})")
         else:
             print(f"  WARNING: Invariant_Target is near maximally mixed (trivial)")
         

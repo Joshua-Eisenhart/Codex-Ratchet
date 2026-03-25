@@ -1,0 +1,42 @@
+{
+  "schema": "SIM_EVIDENCE_v1",
+  "file": "axis3_4_nondegen_diagnostic_sim.py",
+  "timestamp": "2026-03-25T21:55:11.294097+00:00Z",
+  "evidence_ledger": [
+    {
+      "token_id": "E_SIM_AXIS3_4_NONDEGEN_PASS",
+      "sim_spec_id": "S_SIM_AXIS3_4_NONDEGEN_V1",
+      "status": "PASS",
+      "measured_value": 0.004515575074109232,
+      "kill_reason": null,
+      "timestamp": "2026-03-25T21:55:11.293820"
+    }
+  ],
+  "measurements": {
+    "d=4": {
+      "avg_norm_Ax3": 0.08607603565448561,
+      "avg_norm_Ax4": 0.004550075694100101,
+      "avg_overlap": 0.1462392306384643,
+      "degenerate_trials": 0,
+      "total_trials": 50
+    },
+    "d=8": {
+      "avg_norm_Ax3": 0.06513654651678032,
+      "avg_norm_Ax4": 0.004537970962422358,
+      "avg_overlap": 0.06369867069877602,
+      "degenerate_trials": 0,
+      "total_trials": 50
+    },
+    "d=16": {
+      "avg_norm_Ax3": 0.04835794925100263,
+      "avg_norm_Ax4": 0.004515575074109232,
+      "avg_overlap": 0.025267889064415926,
+      "degenerate_trials": 0,
+      "total_trials": 50
+    }
+  },
+  "diagnosis": {
+    "root_cause": "Original Ti projector zeros off-diagonals completely, making Fe (off-diagonal-only Lindblad) commute with Ti. Delta_Ax4 = 0 at machine precision.",
+    "fix_applied": "Hardened operators use partial dephasing + random unitary perturbation to ensure non-commutativity."
+  }
+}

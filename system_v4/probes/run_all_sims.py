@@ -100,6 +100,7 @@ TIERED_SIMS = {
         "qit_topology_parity_sim.py",
         "axis_7_12_orthogonality_suite.py",
         "egglog_graph_rewrite_probe.py",
+        "axis3_4_nondegen_diagnostic_sim.py",
     ],
     "T5_AUTORESEARCH": [
         "autoresearch_sim_harness.py",
@@ -252,6 +253,7 @@ def run_sim(filename: str) -> dict:
             "set_theory_correlation_cluster_sim.py": "set_theory_cluster_results.json",
             "axis5_discrete_calculus_rosetta_sim.py": "axis5_discrete_calculus_rosetta_results.json",
             "entropic_curvature_lattice_sim.py": "entropic_curvature_lattice_results.json",
+            "axis3_4_nondegen_diagnostic_sim.py": "axis3_4_nondegen_results.json",
             "axis_compositional_structure_sim.py": "axis_compositional_structure_results.json",
             "deep_axis_composition_sim.py": "deep_axis_composition_results.json",
             "axis_7_12_mirror_orthogonality_suite.py": "axis_7_12_mirror_results.json",

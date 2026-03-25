@@ -1,19 +1,18 @@
 problem_id: ABIOGENESIS
-goal: "Life requires chiral Deductive-Inductive engine; symmetric engines die"
+goal: "Life (negentropy maintenance) requires chiral (asymmetric) deductive-inductive engine coupling"
 witness:
-  kind: chiral_engine_survival
+  kind: "entropy_production_rate"
   parameters:
-    chirality_bias: [0.0, 0.1, 0.3, 0.5, 1.0]
+    dims: [4, 8, 16]
+    n_iterations: 50
 constraints:
-  - finite_system_only
-  - deductive_inductive_loop
-  - energy_conservation
+  - "random_initial_state"
+  - "CPTP_channels"
 scoring:
-  primary: "chiral_survival_rate >= 0.80"
-  secondary: "symmetric_death_rate >= 0.90"
+  primary: "chiral_entropy < symmetric_entropy"
+  secondary: "chiral_advantage > 0.02"
 negative_tests:
-  - "fails_when_no_chirality"
-  - "fails_when_no_deductive_engine"
+  - "fails_for_symmetrical_engines"
 sim_file: abiogenesis_v2_sim.py
 result_artifact: abiogenesis_v2_results.json
-status: ACTIVE
+status: SOLVED

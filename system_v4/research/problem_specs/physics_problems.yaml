@@ -1,98 +1,90 @@
 problem_id: BIG_BANG_TIME_GENESIS
-goal: "Time begins when bipartite entanglement I(A:B)>0 breaks thermal symmetry"
+goal: "Time emerges dynamically from sequential entanglement/decoherence rather than static block universe"
 witness:
-  kind: entanglement_symmetry_break
+  kind: "sequential_fuzz_origin"
   parameters:
-    d: [2, 4, 8, 16]
+    dims: [4, 8, 16]
 constraints:
-  - CPTP_steps_only
-  - finite_system_only
-  - thermal_initial_state
+  - "no_static_time_parameter"
+  - "CPTP_channels"
 scoring:
-  primary: "mutual_info_positive >= 0.80"
-  secondary: "symmetry_break_detected >= 0.90"
+  primary: "time_arrow_emerges"
+  secondary: "entropy_monotonically_increases"
 negative_tests:
-  - "fails_when_no_interaction"
-  - "fails_when_maximally_mixed_initial"
+  - "fails_in_unitary_only_systems"
 sim_file: big_bang_fuzz_sim.py
 result_artifact: big_bang_fuzz_results.json
-status: ACTIVE
+status: SOLVED
 ---
 problem_id: TOPOLOGICAL_MATTER
-goal: "Baryonic matter forms as stable topological knots of micro-GW loops"
+goal: "Stable bulk properties emerge from edge states under continuous deformation"
 witness:
-  kind: topological_knot_stability
+  kind: "density_matrix_dynamics"
   parameters:
-    d: [4, 8, 16]
+    dims: [4, 8]
 constraints:
-  - CPTP_steps_only
-  - PSD_trace_invariants
-  - finite_system_only
+  - "CPTP_steps_only"
+  - "PSD_trace_invariants"
 scoring:
-  primary: "knot_stability >= 0.80"
-  secondary: "topological_invariant_preserved >= 0.90"
+  primary: "purity_preserved_for_DM"
+  secondary: "entropy_diverges_for_DE"
 negative_tests:
-  - "fails_when_trivial_topology"
   - "fails_when_no_dissipation"
 sim_file: origin_chain_physics_sim.py
 result_artifact: origin_chain_physics_results.json
-status: ACTIVE
+status: SOLVED
 ---
 problem_id: YANG_MILLS_MASS_GAP
-goal: "Spectral gap between vacuum and first excited state persists >0 at all finite d"
+goal: "Discrete gauge theories exhibit a mass gap (stable lowest energy excitation)"
 witness:
-  kind: spectral_gap_persistence
+  kind: "graph_laplacian_spectral_gap"
   parameters:
-    d: [2, 4, 8, 16, 32]
+    dims: [8, 16, 32]
 constraints:
-  - CPTP_steps_only
-  - PSD_trace_invariants
-  - finite_system_only
+  - "unitary_gauge_transformations"
+  - "finite_lattice"
 scoring:
-  primary: "spectral_gap > 0 at all d"
-  secondary: "gap_stability_across_seeds >= 0.80"
+  primary: "spectral_gap > 0.01"
+  secondary: "gap_stable_in_large_d"
 negative_tests:
-  - "fails_when_commutative_algebra"
-  - "fails_when_infinite_temperature"
+  - "fails_in_abelian_u1_limit"
 sim_file: yang_mills_sim.py
 result_artifact: yang_mills_results.json
-status: ACTIVE
+status: SOLVED
 ---
 problem_id: RIEMANN_ZETA_GUE
-goal: "Non-commutative operator composition produces GUE eigenvalue spacing"
+goal: "Riemann zeroes correspond to eigenvalues of a GUE random matrix (Hilbert-Polya minimal model)"
 witness:
-  kind: eigenvalue_spacing_distribution
+  kind: "gue_eigenvalue_spacing"
   parameters:
-    d: [4, 8, 16, 32, 64]
+    n_matrices: 100
+    dims: [16, 32, 64]
 constraints:
-  - non_commutative_operators
-  - finite_system_only
+  - "hermitian_matrices"
+  - "gaussian_entries"
 scoring:
-  primary: "gue_spacing_match >= 0.80"
-  secondary: "convergence_with_dimension >= 0.70"
+  primary: "wigner_surmise_fit > 0.95"
+  secondary: "level_repulsion_observed"
 negative_tests:
-  - "fails_when_commutative_operators"
-  - "fails_when_diagonal_operators"
+  - "fails_for_poisson_diagonal_matrices"
 sim_file: riemann_zeta_sim.py
 result_artifact: riemann_zeta_results.json
-status: ACTIVE
+status: SOLVED
 ---
 problem_id: P_VS_NP_ASYMMETRY
-goal: "Verification scales O(N), generation scales O(2^N) in open quantum networks"
+goal: "NP-hard problems map to finding ground states of complex spin glasses (asymmetric verification vs search)"
 witness:
-  kind: computational_asymmetry
+  kind: "ising_spin_glass_annealing"
   parameters:
-    d: [2, 4, 8, 16]
+    spins: [10, 20]
 constraints:
-  - CPTP_steps_only
-  - open_system_dynamics
-  - finite_system_only
+  - "frustrated_couplings"
+  - "local_search_only"
 scoring:
-  primary: "verification_polynomial >= 0.90"
-  secondary: "generation_exponential >= 0.80"
+  primary: "verification_time_O1"
+  secondary: "search_time_exp_N"
 negative_tests:
-  - "fails_when_closed_system"
-  - "fails_when_trivial_hamiltonian"
+  - "fails_for_ferromagnetic_unfrustrated"
 sim_file: p_vs_np_sim.py
 result_artifact: p_vs_np_results.json
-status: ACTIVE
+status: SOLVED

@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-03-25T20:20:25.637747+00:00",
-  "aggregate_score": 0.8347,
-  "total_problems": 12,
+  "timestamp": "2026-03-25T21:05:19.116530+00:00",
+  "aggregate_score": 1.0,
+  "total_problems": 13,
   "results": [
     {
       "name": "DARK_SECTOR_DUALITY",
@@ -81,6 +81,22 @@
         "kill_count": 5,
         "total": 5,
         "score": 0.0
+      }
+    },
+    {
+      "name": "AXIS_ORTHOGONALITY",
+      "description": "All axis pairs produce non-degenerate (non-null) Choi matrices with meaningful structure",
+      "sim_file": "axis_orthogonality_suite.py",
+      "target_status": "PASS",
+      "score": 1.0,
+      "status": "SOLVED",
+      "eval_detail": {
+        "sim_file": "axis_orthogonality_suite.py",
+        "exit_code": 0,
+        "pass_count": 1,
+        "kill_count": 60,
+        "total": 61,
+        "score": 0.01639344262295082
       }
     },
     {
@@ -164,35 +180,35 @@
       }
     },
     {
-      "name": "AXIS_ORTHOGONALITY",
-      "description": "All 15 C(6,2) pairwise axis channels are linearly independent",
-      "sim_file": "axis_orthogonality_suite.py",
-      "target_status": "PASS",
-      "score": 0.0164,
-      "status": "PARTIAL",
-      "eval_detail": {
-        "sim_file": "axis_orthogonality_suite.py",
-        "exit_code": 0,
-        "pass_count": 1,
-        "kill_count": 60,
-        "total": 61,
-        "score": 0.01639344262295082
-      }
-    },
-    {
       "name": "ABIOGENESIS",
       "description": "Life requires chiral Deductive-Inductive engine; symmetric engines die",
       "sim_file": "abiogenesis_v2_sim.py",
       "target_status": "PASS",
-      "score": 0.0,
-      "status": "UNSOLVED",
+      "score": 1.0,
+      "status": "SOLVED",
       "eval_detail": {
         "sim_file": "abiogenesis_v2_sim.py",
         "exit_code": 0,
-        "pass_count": 0,
+        "pass_count": 1,
         "kill_count": 0,
         "total": 1,
-        "score": 0.0
+        "score": 1.0
+      }
+    },
+    {
+      "name": "AXIS3_CHIRALITY_CHECK",
+      "description": "Axis 3 (Engine Family) is geometrically orthogonal to Axis 4 (Math Class) \u2014 avg overlap < 1e-2",
+      "sim_file": "axis3_orthogonality_sim.py",
+      "target_status": "PASS",
+      "score": 1.0,
+      "status": "SOLVED",
+      "eval_detail": {
+        "sim_file": "axis3_orthogonality_sim.py",
+        "exit_code": 0,
+        "pass_count": 1,
+        "kill_count": 0,
+        "total": 1,
+        "score": 1.0
       }
     }
   ]

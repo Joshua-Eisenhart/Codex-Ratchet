@@ -1,21 +1,96 @@
 # SIM CATALOG AXIS DISCOVERY
 
-This document catalogs the configuration, tiering, and execution thresholds of all Simulation Probes in the system.
-
-| Filename | Tier | Thesis | PASS/KILL Threshold | Output Artifact | Runtime Class |
+| filename | tier | thesis | PASS/KILL threshold | output artifact | runtime class |
 |---|---|---|---|---|---|
-| axis5_discrete_calculus_rosetta_sim.py | N/A | Axis-5 Wave/Line families implement two non-equivalent | N/A | N/A | N/A |
-| axis_7_12_mirror_orthogonality_suite.py | N/A | Mirror axes 7-12 can be defined as operator-domain | N/A | N/A | N/A |
-| axis_compositional_structure_sim.py | N/A | N/A | N/A | Ranked table of ALL n-tuples by emergent structural significance. | N/A |
-| axis_lie_closure_expansion_sim.py | N/A | The Lie closure (commutator closure) of axis generators | N/A | N/A | N/A |
-| axis_orthogonality_suite.py | N/A | N/A | ε = 1e-5. | N/A | N/A |
-| axis_residual_subspace_discovery_sim.py | N/A | The current axis basis (axes 1-6) does not exhaust | N/A | N/A | N/A |
-| entropic_curvature_lattice_sim.py | N/A | A finite correlation network supports a discrete curvature | N/A | N/A | N/A |
-| evidence_to_graph_bridge_sim.py | N/A | N/A | N/A | a2_state/graphs/evidence_graph.json | N/A |
-| orthogonality_axis0_axis1_sim.py | N/A | The arrow of time/thermodynamics strictly enforces its sign bounds | N/A | N/A | N/A |
-| orthogonality_axis0_axis2_sim.py | N/A | The geometric dimension scale must not synthetically generate | N/A | N/A | N/A |
-| orthogonality_axis0_axis4_sim.py | N/A | The geometric dimension scale must not synthetically flip the gradient of the computational | N/A | N/A | - DEDUCTIVE: Reduces variance (Condensation). Operates via Ti (projections) and Fe (cooling jumps). |
-| orthogonality_axis0_axis5_sim.py | N/A | The structural dimensionality (Axis 0) MUST NOT synthetically force Line-like | N/A | N/A | N/A |
-| orthogonality_axis0_axis6_sim.py | N/A | Mathematical non-commutativity must remain strict. If the geometric | N/A | N/A | N/A |
-| proto_ratchet_sim_runner.py | N/A | N/A | N/A | N/A | str |
-| set_theory_correlation_cluster_sim.py | N/A | "Sets" emerge as stable correlation clusters. | N/A | N/A | N/A |
+| abiogenesis_sim.py | N/A | Abiogenesis SIM — Pro Thread 9 ================================= Spontaneous life from I/d (maxim... | Emits PASS or KILL | N/A | Quantum CPTP |
+| axis0_gradient_sim.py | N/A | NLM-1: Axis 0 Mathematical Gradient SIM ===================================== Calculate and provi... | Emits PASS or KILL | N/A | Procedural |
+| complexity_gap_sim.py | N/A | Complexity Gap Scaling SIM ============================ Tests the critical prediction: the P-NP g... | Emits PASS or KILL | N/A | Quantum CPTP |
+| gain_calibration_sim.py | N/A | Gain Calibration SIM — Pro Thread 1 ==================================== Sweeps γ_sub from 0.01 t... | Emits PASS or KILL | N/A | Procedural |
+| hopf_torus_meta_sim.py | N/A | NLM-6: Axes 7-12 Hopf Torus (Meta-Operator Domain) ==============================================... | Emits PASS or KILL | N/A | Quantum CPTP |
+| igt_advanced_sim.py | N/A | IGT Advanced Theory SIM Suite ================================= Tests the deep claims of Irration... | Emits PASS or KILL | igt_advanced_results.json | Quantum CPTP |
+| igt_game_theory_sim.py | N/A | IGT (Infinite Game Theory) SIM Suite ======================================== Joshua's game theor... | Emits PASS or KILL | igt_results.json | Quantum CPTP |
+| igt_moloch_trap_sim.py | N/A | NLM-4: IGT Fields & The Moloch Trap =================================== PROMPT: "What is the exac... | Emits PASS or KILL | N/A | Procedural |
+| neg_commutative_process_cycle_sim.py | N/A | Negative Commutative Process_Cycle SIM ====================================== Graveyard PROBE (Ad... | Emits PASS or KILL | N/A | Procedural |
+| orthogonality_sim.py | N/A | Orthogonality Verification SIM ============================== Verifies the structural orthogonali... | Emits PASS or KILL | N/A | Procedural |
+| proto_ratchet_sim_runner.py | N/A | Proto-Directional_Accumulator SIM Runner ======================== Computational verification of t... | Emits PASS or KILL | N/A | Quantum CPTP |
+| run_all_sims.py | N/A | Unified SIM Runner — Codex Ratchet Evidence Engine ==============================================... | N/A | N/A | Runner |
+| sim_timing_benchmark.py | N/A | N/A | N/A | N/A | Runner |
+| symmetry_breaking_sim.py | N/A | NLM-3: Type-1 vs Type-2 Symmetry Breaking ========================================= PROMPT: "Unde... | Emits PASS or KILL | N/A | Quantum CPTP |
+| szilard_64stage_sim.py | N/A | 64-Stage Dual Szilard Process_Cycle SIM ================================== NLM-verified architect... | Emits PASS or KILL | N/A | Procedural |
+| thread_sim_evidence_normalizer.py | N/A | Thread SIM Evidence Normalizer ============================== Deterministic wrapper that converts... | N/A | N/A | Procedural |
+| deep_math_foundations_sim.py | T0_AXIOMS | Deep Math Foundations SIM Suite ================================ Extends arithmetic with subtract... | Emits PASS or KILL | deep_math_results.json | Quantum CPTP |
+| extreme_nominalism_math_sim.py | T0_AXIOMS | Extreme Nominalism Math SIM — Pro Thread 12 ========================================= Proves that... | Emits PASS or KILL | extreme_nominalism_results.json | Quantum CPTP |
+| foundations_sim.py | T0_AXIOMS | Foundations SIM Suite: Entropic Monism & Operational Equivalence ================================... | Emits PASS or KILL | foundations_results.json | Quantum CPTP |
+| math_foundations_sim.py | T0_AXIOMS | Mathematical Foundations SIM Suite ==================================== Computationally verify th... | Emits PASS or KILL | math_foundations_results.json | Quantum CPTP |
+| constraint_gap_sim.py | T1_CONSTRAINTS | Operator_Bound Gap SIM Suite ========================= Fills the gaps identified by NLM operator_... | Emits PASS or KILL | operator_bound_gap_results.json | Quantum CPTP |
+| godel_stall_sim.py | T1_CONSTRAINTS | Gödel Stall SIM: Undecidability = Thermodynamic Stall ===========================================... | Emits PASS or KILL | godel_stall_results.json | Quantum CPTP |
+| neg_classical_probability_sim.py | T1_CONSTRAINTS | NLM-5: Graveyard Negative Sim (Classical Probability Fails) =====================================... | Emits Evidence | neg_classical_results.json | Procedural |
+| neg_commutative_engine_sim.py | T1_CONSTRAINTS | Negative SIM: Commutative Process_Cycle ================================== HYPOTHESIS TO KILL: "T... | Emits PASS or KILL | neg_commutative_process_cycle_results.json | Procedural |
+| neg_infinite_d_sim.py | T1_CONSTRAINTS | Negative SIM: Infinite-d Divergence ====================================== HYPOTHESIS TO KILL: "T... | Emits PASS or KILL | neg_infinite_d_results.json | Quantum CPTP |
+| neg_no_dissipation_sim.py | T1_CONSTRAINTS | Negative SIM: No Dissipation (Fe removed) — PATCHED v2 ==========================================... | Emits PASS or KILL | neg_no_dissipation_results.json | Quantum CPTP |
+| neg_single_loop_sim.py | T1_CONSTRAINTS | Negative SIM: Single-Loop Process_Cycle =================================== HYPOTHESIS TO KILL: "... | Emits PASS or KILL | neg_single_loop_results.json | Quantum CPTP |
+| proof_cost_sim.py | T1_CONSTRAINTS | Proof Cost & Refinement SIM Suite ================================== Tests the newly confirmed cl... | Emits PASS or KILL | proof_cost_results.json | Quantum CPTP |
+| arithmetic_gravity_sim.py | T2_ARITHMETIC | Arithmetic & Gravity SIM Suite ================================ Tests the deepest emergent claims... | Emits PASS or KILL | arithmetic_gravity_results.json | Quantum CPTP |
+| big_bang_fuzz_sim.py | T3_PHYSICS | Big Bang Fuzz Engine — The Origins of Time and Measurement ======================================... | Emits PASS or KILL | cosmo_fuzz_results.json | Quantum CPTP |
+| chemistry_sim.py | T3_PHYSICS | Chemistry SIM — Pro Thread 13 ================================ Toy QIT chemistry: atoms as d=4 de... | Emits PASS or KILL | chemistry_results.json | Procedural |
+| navier_stokes_complexity_sim.py | T3_PHYSICS | Navier-Stokes & Complexity SIM Suite ====================================== Tests the Navier-Stok... | Emits PASS or KILL | navier_stokes_results.json | Quantum CPTP |
+| navier_stokes_formal_sim.py | T3_PHYSICS | Navier-Stokes FORMAL Proof SIM — CPTP Fluid Regularisation ======================================... | Emits PASS or KILL | navier_stokes_formal_results.json | Quantum CPTP |
+| navier_stokes_qit_sim.py | T3_PHYSICS | Navier-Stokes QIT SIM — Pro Thread 6 ======================================= CPTP analog of Navie... | Emits PASS or KILL | navier_stokes_qit_results.json | Quantum CPTP |
+| origin_chain_physics_sim.py | T3_PHYSICS | Origin Chain Physics Engine — The Unified Cosmology Simulation ==================================... | Emits PASS or KILL | origin_chain_results.json | Quantum CPTP |
+| quantum_gravity_sim.py | T3_PHYSICS | Quantum Gravity SIM — Pro Thread 10 ====================================== Discrete lattice gravi... | Emits PASS or KILL | quantum_gravity_results.json | Quantum CPTP |
+| yang_mills_sim.py | T3_PHYSICS | Yang-Mills SIM — Pro Thread 11 ================================= Finite-d lattice gauge with SU(2... | Emits PASS or KILL | yang_mills_results.json | Procedural |
+| axis5_discrete_calculus_rosetta_sim.py | T3_ROSETTA | Axis-5 Discrete Calculus Rosetta SIM ====================================== Falsifiable thesis: A... | Emits PASS or KILL | axis5_discrete_calculus_results.json | Procedural |
+| entropic_curvature_lattice_sim.py | T3_ROSETTA | Entropic Curvature Lattice SIM ================================ Falsifiable thesis: A finite corr... | Emits PASS or KILL | entropic_curvature_results.json | Procedural |
+| set_theory_correlation_cluster_sim.py | T3_ROSETTA | Set Theory as Correlation Clusters SIM ======================================== Falsifiable thesi... | Emits PASS or KILL | set_theory_correlation_results.json | Procedural |
+| axis_7_12_commutator_construction_sim.py | T4_AXIS_DISCOVERY | Axes 7-12 Commutator Construction SIM ======================================== Constructs axes 7-... | Emits PASS or KILL | axis_7_12_commutator_results.json | Procedural |
+| axis_7_12_mirror_orthogonality_suite.py | T4_AXIS_DISCOVERY | Axis 7-12 Mirror Orthogonality Suite ======================================= Falsifiable thesis: ... | Emits PASS or KILL | axis_7_12_mirror_ortho_results.json | Procedural |
+| axis_compositional_structure_sim.py | T4_AXIS_DISCOVERY | Axis Compositional Structure Discovery SIM ============================================ Exhaustiv... | Emits PASS or KILL | axis_compositional_structure_results.json | Procedural |
+| axis_lie_closure_expansion_sim.py | T4_AXIS_DISCOVERY | Axis Lie Closure Expansion SIM ================================ Falsifiable thesis: The Lie closu... | Emits PASS or KILL | axis_lie_closure_rank.json | Procedural |
+| axis_residual_subspace_discovery_sim.py | T4_AXIS_DISCOVERY | Axis Residual Subspace Discovery SIM ======================================= Falsifiable thesis: ... | Emits PASS or KILL | axis_residual_candidates.json | Procedural |
+| deep_axis_composition_sim.py | T4_AXIS_DISCOVERY | Deep Axis Composition Analysis Engine ======================================== Goes beyond the sw... | Emits PASS on config | deep_axis_composition_results.json | Procedural |
+| abiogenesis_v2_sim.py | T4_ENGINE | Abiogenesis v2 SIM ==================== Falsifiable thesis: "Life" (negentropic maintenance) requ... | Emits PASS or KILL | abiogenesis_v2_results.json | Procedural |
+| axis_6_precedence_sim.py | T4_ENGINE | Axis 6 Precedence Check SIM =========================== Formally tests and locks the Action Prece... | Emits PASS or KILL | axis_6_precedence_results.json | Procedural |
+| complexity_gap_v2_sim.py | T4_ENGINE | Complexity Gap Scaling SIM V2 ============================= Fixes the NO_CORRELATION kill by form... | Emits PASS or KILL | complexity_gap_v2_results.json | Quantum CPTP |
+| demon_fixed_sim.py | T4_ENGINE | Demon Fixed SIM — Pro Thread 2 ================================ Fixes the Maxwell's Demon KILL by... | Emits PASS or KILL | demon_fixed_results.json | Procedural |
+| dual_weyl_spinor_engine_sim.py | T4_ENGINE | Dual Weyl Spinor Process_Cycle SIM ============================ Tests the Type 1 (Left Weyl / con... | Emits PASS or KILL | dual_weyl_results.json | Quantum CPTP |
+| engine_terrain_sim.py | T4_ENGINE | Complete 8-Terrain Process_Cycle SIM ================================= Both Type-1 and Type-2 eng... | Emits PASS or KILL | process_cycle_terrain_results.json | Quantum CPTP |
+| full_8stage_engine_sim.py | T4_ENGINE | Full 8-Stage Process_Cycle Cycle SIM ============================== Implements the complete proce... | Emits PASS or KILL | full_8stage_results.json | Quantum CPTP |
+| gain_calibration_v2_sim.py | T4_ENGINE | Gain Calibration Fix SIM — Pro Thread 1 (v2) ============================================ Fixes t... | Emits PASS or KILL | gain_calibration_v2_results.json | Procedural |
+| i_scalar_filtration_sim.py | T4_ENGINE | I-Scalar Filtration Path SIM ============================ Executes the explicit i-scalar path ent... | Emits PASS or KILL | iscalar_filtration_results.json | Procedural |
+| szilard_64stage_v2_sim.py | T4_ENGINE | 64-Stage Dual Szilard Process_Cycle SIM V2 =================================== Tests explicitly f... | Emits PASS or KILL | szilard_64stage_v2_results.json | Procedural |
+| topology_operator_sim.py | T4_ENGINE | Topology & Operator SIM Suite ================================ The process_cycle has 4 TOPOLOGIES... | Emits PASS or KILL | topology_operator_results.json | Quantum CPTP |
+| type2_engine_sim.py | T4_ENGINE | Type-2 Process_Cycle SIM — Reversed Chirality ======================================== 8 stages ×... | Emits PASS or KILL | type2_process_cycle_results.json | Procedural |
+| autoresearch_sim_harness.py | T5_AUTORESEARCH | AutoResearch SIM Evaluation Harness ===================================== Connects Karpathy's aut... | N/A | autoresearch_harness_results.json | OOP |
+| axis0_correlation_sim.py | T5_ORTHOGONALITY | Axis 0: Correlation Gradient SIM ================================ Tests the Explicit mutual infor... | Emits PASS or KILL | axis0_correlation_results.json | Procedural |
+| axis0_path_integral_sim.py | T5_ORTHOGONALITY | Axis 0: Feynman Path-Integral / Nested Hopf Torus SIM ===========================================... | Emits PASS or KILL | axis0_path_integral_results.json | Procedural |
+| axis3_orthogonality_sim.py | T5_ORTHOGONALITY | Axis 3 vs Axis 4 Orthogonality Verification SIM (Canonical Revision) ============================... | Emits PASS or KILL | axis3_orthogonality_results.json | Procedural |
+| axis_7_12_orthogonality_suite.py | T5_ORTHOGONALITY | Axis 7-12 Mirror Validation Suite ================================= Validates that the higher-ord... | Emits PASS or KILL | axis_7_12_ortho_results.json | Procedural |
+| axis_orthogonality_suite.py | T5_ORTHOGONALITY | CANONICAL AXIS ORTHOGONALITY SUITE v3 — AXES_MASTER_SPEC Compliance =============================... | N/A | axis_orthogonality_v3_results.json | Procedural |
+| axis_relations_sim.py | T5_ORTHOGONALITY | Axis Relations SIM ================== Maps the exact geometric orthogonality (Trace Distance) and... | Emits PASS on config | axis_relations_results.json | Procedural |
+| axis_triplet_orthogonality_sim.py | T5_ORTHOGONALITY | Axis Triplet Orthogonality SIM ============================== Maps 3-axis independence for all C(... | Emits PASS or KILL | axis_triplet_orthogonality_results.json | Procedural |
+| egglog_graph_rewrite_probe.py | T5_ORTHOGONALITY | ANOMALY-B: A4 vs A5 Eigenvalue Deformation Probe ================================================... | Emits PASS or KILL | egglog_rewrite_results.json | Procedural |
+| orthogonality_axis0_axis1_sim.py | T5_ORTHOGONALITY | ORT-0.1: Axis 0 x Axis 1 Orthogonality Matrix ============================================= Pairi... | Emits PASS or KILL | ort_0_1_results.json | Procedural |
+| orthogonality_axis0_axis2_sim.py | T5_ORTHOGONALITY | ORT-0.2: Axis 0 x Axis 2 Orthogonality Matrix ============================================= Pairi... | Emits PASS or KILL | ort_0_2_results.json | Procedural |
+| orthogonality_axis0_axis4_sim.py | T5_ORTHOGONALITY | ORT-0.4: Axis 0 x Axis 4 Orthogonality Matrix ============================================= Pairi... | Emits PASS or KILL | ort_0_4_results.json | Procedural |
+| orthogonality_axis0_axis5_sim.py | T5_ORTHOGONALITY | ORT-0.5: Axis 0 x Axis 5 Orthogonality Matrix ============================================= Pairi... | Emits PASS or KILL | ort_0_5_results.json | Procedural |
+| orthogonality_axis0_axis6_sim.py | T5_ORTHOGONALITY | ORT-0.6: Axis 0 x Axis 6 Orthogonality Matrix ============================================= Pairi... | Emits PASS or KILL | ort_0_6_results.json | Procedural |
+| qit_topology_parity_sim.py | T5_ORTHOGONALITY | QIT Topology Parity SIM =================================== Tests Topological Parity between Type... | Emits PASS or KILL | qit_topology_parity_results.json | Procedural |
+| alignment_sim.py | T6_ADVANCED | Alignment SIM — Pro Thread 8 =============================== 3 agents: aligned, misaligned, Moloc... | Emits PASS or KILL | alignment_results.json | Procedural |
+| consciousness_sim.py | T6_ADVANCED | Recursive_State SIM — Pro Thread 7 =================================== Multi-level recursive_stat... | Emits PASS or KILL | recursive_state_results.json | Quantum CPTP |
+| deep_graveyard_battery.py | T6_ADVANCED | DEEP GRAVEYARD: 16-Point Constraint Matrix — Systematic Negative SIM Battery ====================... | Emits PASS or KILL | deep_graveyard_results.json | Procedural |
+| extended_graveyard_battery.py | T6_ADVANCED | EXTENDED GRAVEYARD: Additional Compound & Triplet Negative SIMs =================================... | Emits PASS or KILL | extended_graveyard_results.json | Procedural |
+| information_graveyard_battery.py | T6_ADVANCED | INFORMATION-THEORETIC GRAVEYARD BATTERY ======================================== Tests informatio... | Emits PASS or KILL | info_graveyard_results.json | Quantum CPTP |
+| neg_inverted_major_loop_sim.py | T6_ADVANCED | Negative Inverted Major Loop SIM ================================ Graveyard PROBE (Adversarial St... | Emits PASS or KILL | neg_inverted_major_loop_results.json | Procedural |
+| neg_scrambled_sequence_sim.py | T6_ADVANCED | Negative Scrambled Sequence SIM =============================== Graveyard PROBE (Adversarial Stre... | Emits PASS or KILL | neg_scrambled_sequence_results.json | Procedural |
+| nlm_batch2_sim.py | T6_ADVANCED | NLM Batch 2 SIM Suite ====================== Turns the remaining NLM extractions into executable ... | Emits PASS or KILL | nlm_batch2_results.json | Quantum CPTP |
+| p_vs_np_sim.py | T6_ADVANCED | P vs NP SIM — Pro Thread 5 ============================= Demonstrates the complexity gap: verific... | Emits PASS or KILL | p_vs_np_results.json | Procedural |
+| riemann_zeta_sim.py | T6_ADVANCED | Riemann Zeta SIM — Pro Thread 4 ================================= Finite-d analog of the Riemann ... | Emits PASS on config | riemann_zeta_results.json | Procedural |
+| rock_falsifier_enhanced_sim.py | T6_ADVANCED | Enhanced Rock Falsifier SIM — Bridge T Test ============================================= The sin... | Emits PASS or KILL | rock_falsifier_enhanced_results.json | Quantum CPTP |
+| rock_falsifier_sim.py | T6_ADVANCED | Rock Falsifier SIM ================== The ultimate adversarial test: does a low-action "rock" out... | Emits PASS or KILL | rock_falsifier_results.json | Quantum CPTP |
+| scale_testing_sim.py | T6_ADVANCED | Scale Testing SIM — AG-04 ========================== Runs all 18 SIMs at d=4, d=8, d=16, d=32. Ve... | Emits PASS or KILL | scale_testing_results.json | Quantum CPTP |
+| scientific_method_sim.py | T6_ADVANCED | Scientific Method SIM — Pro Thread 15 ======================================== The scientific met... | Emits PASS or KILL | scientific_method_results.json | Quantum CPTP |
+| sim_moloch_trap_field.py | T6_ADVANCED | PRO-15: N-AGENT MOLOCH FIELD SIM ================================ Expands the IGT Moloch Trap to ... | Emits PASS or KILL | moloch_trap_field_results.json | OOP |
+| thermodynamic_graveyard_battery.py | T6_ADVANCED | THERMODYNAMIC GRAVEYARD BATTERY ================================ Tests thermodynamic boundary vio... | Emits PASS or KILL | thermo_graveyard_results.json | Quantum CPTP |
+| tier_3_mega_sim.py | T6_ADVANCED | PRO-11: TIER-3 MEGA SIM — Coupled 64-Stage Engines + No-Signaling Check =========================... | Emits PASS or KILL | tier_3_mega_results.json | Procedural |
+| world_model_sim.py | T6_ADVANCED | World Model SIM — Pro Thread 14 (3-Token Split) =================================================... | Emits PASS or KILL | world_model_results.json | Procedural |
+| evidence_to_graph_bridge_sim.py | T6_GRAPH_BRIDGE | Evidence-to-Graph Bridge SIM ================================ Transforms the unified evidence rep... | Emits Evidence | evidence_graph_bridge_results.json | Procedural |

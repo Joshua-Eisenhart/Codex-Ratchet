@@ -75,6 +75,7 @@ TIERED_SIMS = {
         "abiogenesis_v2_sim.py",
         "axis_6_precedence_sim.py",
         "i_scalar_filtration_sim.py",
+        "holodeck_fep_engine.py",
     ],
     "T4_AXIS_DISCOVERY": [
         "axis_compositional_structure_sim.py",
@@ -204,6 +205,7 @@ def run_sim(filename: str) -> dict:
             "sim_moloch_trap_field.py": "moloch_trap_field_results.json",
             "axis_6_precedence_sim.py": "axis_6_precedence_results.json",
             "i_scalar_filtration_sim.py": "iscalar_filtration_results.json",
+            "holodeck_fep_engine.py": "holodeck_fep_results.json",
             "axis3_orthogonality_sim.py": "axis3_orthogonality_results.json",
             "axis_triplet_orthogonality_sim.py": "axis_triplet_orthogonality_results.json",
             "axis0_correlation_sim.py": "axis0_correlation_results.json",

@@ -163,6 +163,35 @@ None
 
 ---
 
+## evidence_graph.json
+- **Nodes**: 31
+- **Edges**: 15
+- **Density**: 0.016129
+- **Connected Components**: 16 (Largest: 16)
+- **Degree Distribution**: Min=0, Max=15, Mean=0.97, Median=1.00
+- **Isolated Nodes (degree 0)**: 15
+- **Self-loops**: 0
+- **Duplicate Edges**: 0
+- **Dangling Edges**: 0
+
+### Node Types Distribution
+- `NonCommutativity`: 15
+- `SpecClaim`: 12
+- `LieClosure`: 3
+- `SystemState`: 1
+
+### Edge Relation Types Distribution
+- `supports`: 13
+- `refutes`: 2
+
+### Missing Required Fields
+- `description`: 19 nodes missing
+
+### Health Anomalies
+- ⚠️ Many nodes missing 'description': 19 nodes
+
+---
+
 ## identity_registry_overlap_suggestions_v1.json
 - **Nodes**: 7392
 - **Edges**: 95106

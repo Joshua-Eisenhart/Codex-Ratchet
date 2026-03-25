@@ -40,13 +40,13 @@
 - **Shared Nodes:** 76
 - **Unique to A2_REFINEMENT:** 782
 - **Unique to A2_CONTROL:** 591
-- **Shared Edges:** 3
+- **Shared Edges:** 2
 
 ### A2_REFINEMENT vs PROMOTED
 - **Shared Nodes:** 76
 - **Unique to A2_REFINEMENT:** 782
 - **Unique to PROMOTED:** 220
-- **Shared Edges:** 2
+- **Shared Edges:** 1
 
 ### A2_REFINEMENT vs A1_JARGONED
 - **Shared Nodes:** 0
@@ -58,7 +58,7 @@
 - **Shared Nodes:** 296
 - **Unique to A2_CONTROL:** 371
 - **Unique to PROMOTED:** 0
-- **Shared Edges:** 731
+- **Shared Edges:** 717
 
 ### A2_CONTROL vs A1_JARGONED
 - **Shared Nodes:** 138
@@ -84,8 +84,8 @@
 ### 3. Unexpected Placements
 - **Spontaneous nodes in Control (not in Ref/Intake):** 591
   - Examples:
-    - `A2_3::SOURCE_MAP_PASS::a2_state_v3_a2_controller_launch_packet__current__20::d5f400862792dac3`
-    - `A2_3::SOURCE_MAP_PASS::a1_thread_boot_eight_hard_rules::305bb4ebdc28de2b`
-    - `A2_3::SOURCE_MAP_PASS::workspace_layout_v1::5e299d60c482e0cf`
-    - `A2_3::SOURCE_MAP_PASS::doc_a711a4ddad9c::90955d3e62817c96`
-    - `A2_3::SOURCE_MAP_PASS::zip_boot_binding_rules::f5841e532ff7e2f3`
+    - `A2_1::KERNEL::a2_deterministic_tick_sequence::e132b0c90141d83b`
+    - `A2_3::SOURCE_MAP_PASS::relational_transport_admissibility_v1::b227577258ac9143`
+    - `A2_3::SOURCE_MAP_PASS::run_super_batch::1ba823e0446c63fd`
+    - `A2_1::KERNEL::KERNEL__IDENTITY_EMERGENCE::0b5dbc77cac1b7bc`
+    - `A2_3::SOURCE_MAP_PASS::finite_universe_compressibility::71ef60b58bfaa3d3`

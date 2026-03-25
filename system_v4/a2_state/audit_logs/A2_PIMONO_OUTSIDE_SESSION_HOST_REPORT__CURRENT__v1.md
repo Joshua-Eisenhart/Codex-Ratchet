@@ -13,7 +13,7 @@
 ## Session Header
 - id: `d703a1a9-1b7b-4fb1-b512-c9738b1fe617`
 - timestamp: `2025-11-20T23:33:50.805Z`
-- cwd: `/Users/badlogic/workspaces/pi-mono`
+- cwd: `~/workspaces/pi-mono`
 - provider: `anthropic`
 - modelId: `claude-sonnet-4-5`
 - thinkingLevel: `off`

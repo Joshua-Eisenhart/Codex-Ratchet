@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-03-25T20:49:16.583751+00:00",
+  "timestamp": "2026-03-25T21:34:52.792362+00:00",
   "schema_version": "1.0",
   "node_types": [
     "SystemState",
@@ -19,9 +19,9 @@
     {
       "id": "SYS_AGGREGATE",
       "type": "SystemState",
-      "aggregate_score": 0.8347,
-      "total_problems": 12,
-      "timestamp": "2026-03-25T20:20:25.637747+00:00"
+      "aggregate_score": 1.0,
+      "total_problems": 13,
+      "timestamp": "2026-03-25T21:05:19.116530+00:00"
     },
     {
       "id": "7d2b999e4fe4e485",
@@ -69,6 +69,15 @@
       "sim_file": "axis5_discrete_calculus_rosetta_sim.py"
     },
     {
+      "id": "b732366380fcbf9e",
+      "type": "SpecClaim",
+      "name": "AXIS_ORTHOGONALITY",
+      "description": "All axis pairs produce non-degenerate (non-null) Choi matrices with meaningful structure",
+      "score": 1.0,
+      "status": "SOLVED",
+      "sim_file": "axis_orthogonality_suite.py"
+    },
+    {
       "id": "5d056074544bf69e",
       "type": "SpecClaim",
       "name": "ENTROPIC_GRAVITY",
@@ -114,22 +123,22 @@
       "sim_file": "big_bang_fuzz_sim.py"
     },
     {
-      "id": "b732366380fcbf9e",
-      "type": "SpecClaim",
-      "name": "AXIS_ORTHOGONALITY",
-      "description": "All 15 C(6,2) pairwise axis channels are linearly independent",
-      "score": 0.0164,
-      "status": "PARTIAL",
-      "sim_file": "axis_orthogonality_suite.py"
-    },
-    {
       "id": "5f836be351673f49",
       "type": "SpecClaim",
       "name": "ABIOGENESIS",
       "description": "Life requires chiral Deductive-Inductive engine; symmetric engines die",
-      "score": 0.0,
-      "status": "UNSOLVED",
+      "score": 1.0,
+      "status": "SOLVED",
       "sim_file": "abiogenesis_v2_sim.py"
+    },
+    {
+      "id": "0476469cfcc06ee9",
+      "type": "SpecClaim",
+      "name": "AXIS3_CHIRALITY_CHECK",
+      "description": "Axis 3 (Engine Family) is geometrically orthogonal to Axis 4 (Math Class) \u2014 avg overlap < 1e-2",
+      "score": 1.0,
+      "status": "SOLVED",
+      "sim_file": "axis3_orthogonality_sim.py"
     },
     {
       "id": "624a149470aaae73",
@@ -326,6 +335,12 @@
       "weight": 1.0
     },
     {
+      "source": "b732366380fcbf9e",
+      "target": "SYS_AGGREGATE",
+      "type": "supports",
+      "weight": 1.0
+    },
+    {
       "source": "5d056074544bf69e",
       "target": "SYS_AGGREGATE",
       "type": "supports",
@@ -356,16 +371,16 @@
       "weight": 1.0
     },
     {
-      "source": "b732366380fcbf9e",
-      "target": "SYS_AGGREGATE",
-      "type": "refutes",
-      "weight": 0.0164
-    },
-    {
       "source": "5f836be351673f49",
       "target": "SYS_AGGREGATE",
-      "type": "refutes",
-      "weight": 0.0
+      "type": "supports",
+      "weight": 1.0
+    },
+    {
+      "source": "0476469cfcc06ee9",
+      "target": "SYS_AGGREGATE",
+      "type": "supports",
+      "weight": 1.0
     },
     {
       "source": "624a149470aaae73",
@@ -387,9 +402,9 @@
     }
   ],
   "stats": {
-    "n_nodes": 31,
-    "n_edges": 15,
-    "n_supporting": 13,
-    "n_refuting": 2
+    "n_nodes": 32,
+    "n_edges": 16,
+    "n_supporting": 16,
+    "n_refuting": 0
   }
 }

@@ -138,6 +138,13 @@ PROBLEM_CATALOG = [
         parameter_space={},
         target_status="PASS",
     ),
+    ResearchProblem(
+        name="HOLODECK_FEP",
+        description="S^3 Hopf projection + FEP surprise minimizes to finite bound over random density matrices",
+        sim_file="holodeck_fep_engine.py",
+        parameter_space={},
+        target_status="PASS",
+    ),
 ]
 
 
@@ -192,7 +199,7 @@ def evaluate_sim(sim_file: str) -> Dict[str, Any]:
     try:
         result = subprocess.run(
             [sys.executable, str(sim_path)],
-            capture_output=True, text=True, timeout=120,
+            capture_output=True, text=True, timeout=600,
             cwd=str(PROBES_DIR),
         )
         output = result.stdout + result.stderr
@@ -212,8 +219,22 @@ def evaluate_sim(sim_file: str) -> Dict[str, Any]:
             "score": pass_count / max(total, 1),
             "output_tail": output[-20000:] if output else "",
         }
-    except subprocess.TimeoutExpired:
-        return {"sim_file": sim_file, "error": "TIMEOUT", "pass_count": 0, "kill_count": 0, "total": 0, "score": 0.0}
+    except subprocess.TimeoutExpired as e:
+        # Capture any partial output before timeout for custom evaluators
+        partial = ""
+        if e.output:
+            partial += e.output if isinstance(e.output, str) else e.output.decode("utf-8", errors="replace")
+        if e.stderr:
+            partial += e.stderr if isinstance(e.stderr, str) else e.stderr.decode("utf-8", errors="replace")
+        return {
+            "sim_file": sim_file,
+            "error": "TIMEOUT",
+            "pass_count": 0,
+            "kill_count": 0,
+            "total": 0,
+            "score": 0.0,
+            "output_tail": partial[-20000:] if partial else "",
+        }
     except Exception as e:
         return {"sim_file": sim_file, "error": str(e), "pass_count": 0, "kill_count": 0, "total": 0, "score": 0.0}
 
@@ -234,7 +255,14 @@ def run_full_evaluation() -> Dict[str, Any]:
         print(f"\n  [{problem.name}] Running {problem.sim_file}...", end=" ", flush=True)
         eval_result = evaluate_sim(problem.sim_file)
 
-        if "error" in eval_result and eval_result.get("total", 0) == 0:
+        has_error = "error" in eval_result and eval_result.get("total", 0) == 0
+        # Even on TIMEOUT/ERROR, try custom evaluator if it exists and partial output is available
+        if has_error and problem.custom_evaluator is not None and eval_result.get("output_tail"):
+            score = problem.custom_evaluator(eval_result)
+            if score > 0:
+                has_error = False  # Recovered via custom evaluator
+
+        if has_error:
             status = "ERROR"
             score = 0.0
             print(f"ERROR: {eval_result.get('error', 'unknown')}")

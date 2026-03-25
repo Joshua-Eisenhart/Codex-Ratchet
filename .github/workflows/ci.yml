@@ -26,6 +26,31 @@ jobs:
     - name: Run Mypy
       run: mypy system_v4 || true
 
+  security:
+    runs-on: ubuntu-latest
+    needs: [lint-and-sast]
+    continue-on-error: true
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install semgrep bandit
+    - name: Run Security Scans
+      run: |
+        mkdir -p artifacts
+        semgrep scan --config auto --sarif --output artifacts/semgrep.sarif . || true
+        bandit -r system_v4 -f json -o artifacts/bandit.json || true
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: security-artifacts
+        path: artifacts/
+
   test:
     runs-on: ubuntu-latest
     steps:

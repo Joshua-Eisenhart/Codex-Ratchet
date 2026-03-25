@@ -103,6 +103,23 @@ def trace_distance(rho1: np.ndarray, rho2: np.ndarray) -> float:
     return float(0.5 * np.sum(eigenvalues))
 
 
+def ensure_valid(rho: np.ndarray) -> np.ndarray:
+    """Project a matrix onto the set of valid density matrices.
+    
+    Enforces: Hermiticity, positive semi-definiteness, trace = 1.
+    Used after non-unitary steps (Lindblad, projection, mixing) that
+    may produce numerical artifacts (negative eigenvalues, trace drift).
+    """
+    rho = (rho + rho.conj().T) / 2  # enforce Hermiticity
+    evals, evecs = np.linalg.eigh(rho)
+    evals = np.maximum(evals, 0)  # clamp negative eigenvalues
+    rho = evecs @ np.diag(evals.astype(complex)) @ evecs.conj().T
+    tr = np.real(np.trace(rho))
+    if tr > 0:
+        rho /= tr  # normalize trace
+    return rho
+
+
 # ─────────────────────────────────────────────
 # SIM RUNNERS
 # ─────────────────────────────────────────────
@@ -367,14 +384,18 @@ def sim_proto_attractor_basin(d: int = 4, n_steps: int = 500, n_initial_states: 
     # Create the FSA component (unitary rotation — coherent, state_dispersion-preserving)
     U = make_random_unitary(d)
     
+    # Create FGA component ONCE (Lindbladian dissipation direction — held constant)
+    # γ sweep should only vary coupling STRENGTH, not operator direction
+    L_base = np.random.randn(d, d) + 1j * np.random.randn(d, d)
+    L_base = L_base / np.linalg.norm(L_base)  # unit-norm base operator
+    
     # Sweep γ values to find the critical damping threshold
     gamma_values = [0.3, 0.8, 1.5, 3.0, 5.0]
     sweep_results = []
     
     for gamma in gamma_values:
-        # Create FGA component (Lindbladian dissipation — state_dispersion-producing)
-        L_base = np.random.randn(d, d) + 1j * np.random.randn(d, d)
-        L = L_base / np.linalg.norm(L_base) * gamma
+        # Scale fixed operator direction by γ (strength only)
+        L = L_base * gamma
         
         # Deductive ordering: dissipation FIRST (operator_bound-first), then rotation
         # Apply multiple dissipation steps per unitary step (FGA dominance)

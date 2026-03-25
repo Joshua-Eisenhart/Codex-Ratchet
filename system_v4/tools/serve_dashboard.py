@@ -28,7 +28,7 @@ if __name__ == "__main__":
     os.chdir(DIRECTORY)
     threading.Thread(target=open_browser, daemon=True).start()
     
-    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+    with socketserver.TCPServer(("127.0.0.1", PORT), Handler) as httpd:
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:

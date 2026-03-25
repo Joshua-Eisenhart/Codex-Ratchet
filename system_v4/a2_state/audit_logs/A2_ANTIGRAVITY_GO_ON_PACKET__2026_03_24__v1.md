@@ -34,24 +34,29 @@ If a file is missing, say so explicitly and do not use it.
 Primary source:
 - `system_v4/probes/a2_state/sim_results/unified_evidence_report.json`
 
-At time of this packet:
+Current repo-grounded state after regeneration commit `f9b923d8`:
 - SIM entries: `51`
-- total tokens: `146`
-- PASS: `128`
-- KILL: `18`
+- total tokens: `157`
+- PASS: `136`
+- KILL: `21`
 
 This supersedes earlier same-day states such as:
 - `129 / 128 / 1`
 - `135 / 135 / 0`
+- `146 / 128 / 18`
 
 ## Current KILL Inventory
 
-The current `18` KILLs come from:
+The current `21` KILLs come from:
 
 ### Negative/falsifier lane
+- `neg_commutative_engine_sim.py`
+  - emitted KILL after regeneration
 - `neg_infinite_d_sim.py`
   - `S_NEG_INFINITE_D_V1`
   - `INFINITE_D_DIVERGENCE`
+- `neg_classical_probability_sim.py`
+  - emitted KILL after regeneration
 - `neg_single_loop_sim.py`
   - `S_NEG_SINGLE_LOOP_V1`
   - `SINGLE_LOOP_SATURATES`
@@ -84,15 +89,18 @@ The current `18` KILLs come from:
 
 ## Current NO_TOKENS Surfaces
 
-These are currently important because they indicate trust gaps in the runner contract:
+After regeneration, only one `NO_TOKENS` surface remains:
 
-- `constraint_gap_sim.py` — process `FAIL`
-- `neg_commutative_engine_sim.py` — process `PASS`
-- `neg_classical_probability_sim.py` — process `PASS`
 - `type2_engine_sim.py` — process `PASS`
-- `axis_orthogonality_suite.py` — process `TIMEOUT`
-- `egglog_graph_rewrite_probe.py` — process `FAIL`
-- `consciousness_sim.py` — process `FAIL`
+
+Recovered from the earlier `NO_TOKENS` void:
+
+- `constraint_gap_sim.py` → now `5P/0K`
+- `consciousness_sim.py` → now `2P/0K`
+- `egglog_graph_rewrite_probe.py` → now counted evidence `0P/1K`
+- `neg_commutative_engine_sim.py` → now emits KILL
+- `neg_classical_probability_sim.py` → now emits KILL
+- `axis_orthogonality_suite.py` → now emits counted evidence
 
 ## Process-FAIL But Evidence-PASS Surfaces
 
@@ -106,6 +114,8 @@ These still count evidence while failing executable health:
 - `full_8stage_engine_sim.py`
 - `nlm_batch2_sim.py`
 - `rock_falsifier_enhanced_sim.py`
+
+These are still worth auditing because the token layer and process-health layer remain partially decoupled.
 
 ## Daemon / Brain Gap
 
@@ -122,9 +132,9 @@ Current concern:
 - `heartbeat_daemon.py` runs probes, writes evidence/triage, bridges witnesses, and materializes graph fuel
 - but it does not clearly emit the strict authorization surfaces needed to wake `run_real_ratchet.py`
 
-## Graph Contradiction
+## Graph Contradiction / Stale Surfaces
 
-There is a live contradiction between:
+There is still a graph-side contradiction between:
 - `system_v4/a2_state/audit_logs/NESTED_GRAPH_BUILD_REPORT__v1.md`
 and
 - `system_v4/a2_state/graphs/nested_graph_v1.json`
@@ -136,16 +146,34 @@ The report claims a successful large build:
 
 But the artifact on disk does not present a correspondingly populated graph object.
 
+Also, the following state surfaces remain stale even after regeneration:
+
+- `system_v4/probes/a2_state/sim_results/latest_triage.json`
+- `system_v4/a2_state/audit_logs/POLICY_ENGINE_EVALUATION_REPORT__v1.md`
+- `system_v4/a2_state/audit_logs/GRAPH_HEALTH_DASHBOARD__v1.md`
+- `system_v4/a2_state/audit_logs/NESTED_GRAPH_BUILD_REPORT__v1.md`
+
+Updated and synchronized:
+
+- `system_v4/probes/a2_state/sim_results/unified_evidence_report.json`
+- `system_v4/a2_state/graphs/probe_evidence_graph.json`
+- `system_v4/a2_state/graphs/probe_evidence_graph_audit.md`
+
 ## What You Should Do Now
 
 Answer these exact questions from repo evidence:
 
-1. Of the current `18` KILLs, which are expected falsifier/graveyard KILLs that should remain KILL?
+1. Of the current `21` KILLs, which are expected falsifier/graveyard KILLs that should remain KILL?
 2. Which of the current KILLs are dangerous unresolved contradictions rather than healthy negative boundaries?
-3. Why are the current `NO_TOKENS` surfaces failing to emit counted evidence?
+3. Diagnose the one remaining `NO_TOKENS` surface: `type2_engine_sim.py`
 4. Does `run_all_sims.py` implement meaningful semantic gating, or only tiered ordering plus partial halts?
 5. What exact authorization packet(s) are still missing between `heartbeat_daemon.py` and `run_real_ratchet.py`?
-6. Is the graph side currently trustworthy enough to drive decisions, given the contradiction between the nested-graph report and artifact plus the stale policy/health surfaces?
+6. What is required to regenerate the still-stale surfaces:
+   - `latest_triage.json`
+   - `POLICY_ENGINE_EVALUATION_REPORT__v1.md`
+   - `GRAPH_HEALTH_DASHBOARD__v1.md`
+   - `NESTED_GRAPH_BUILD_REPORT__v1.md`
+7. Is the graph side currently trustworthy enough to drive decisions, given the nested-graph contradiction plus stale policy/health surfaces?
 
 ## Deliverable Format
 

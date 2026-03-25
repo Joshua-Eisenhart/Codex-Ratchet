@@ -3,10 +3,10 @@
   "build_status": "MATERIALIZED",
   "materialized": true,
   "summary": {
-    "total_nodes": 206,
-    "total_edges": 157,
-    "total_tokens": 157,
-    "pass_count": 136,
+    "total_nodes": 208,
+    "total_edges": 159,
+    "total_tokens": 159,
+    "pass_count": 138,
     "kill_count": 21
   },
   "blockers": [],
@@ -343,7 +343,7 @@
     },
     "probe:type2_engine_sim": {
       "name": "type2_engine_sim.py",
-      "description": "QIT probe: NO_TOKENS, 0P/0K",
+      "description": "QIT probe: ALL_PASS, 2P/0K",
       "type": "probe_evidence",
       "tags": [
         "probe",
@@ -351,10 +351,10 @@
         "evidence"
       ],
       "process_status": "PASS",
-      "evidence_status": "NO_TOKENS",
-      "pass_count": 0,
+      "evidence_status": "ALL_PASS",
+      "pass_count": 2,
       "kill_count": 0,
-      "token_count": 0
+      "token_count": 2
     },
     "probe:szilard_64stage_v2_sim": {
       "name": "szilard_64stage_v2_sim.py",
@@ -1712,6 +1712,30 @@
       "measured_value": 0.997427677759342,
       "source_file": "full_8stage_engine_sim.py"
     },
+    "token:E_SIM_TYPE2_CHIRALITY_DISTINCT": {
+      "name": "E_SIM_TYPE2_CHIRALITY_DISTINCT",
+      "description": "PASS: S_SIM_TYPE2_PROCESS_CYCLE_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": 0.01617263122013115,
+      "source_file": "type2_engine_sim.py"
+    },
+    "token:E_SIM_TYPE2_CYCLE_OK": {
+      "name": "E_SIM_TYPE2_CYCLE_OK",
+      "description": "PASS: S_SIM_TYPE2_CYCLE_V1",
+      "type": "evidence_token",
+      "tags": [
+        "token",
+        "pass"
+      ],
+      "status": "PASS",
+      "measured_value": -0.45031740409691545,
+      "source_file": "type2_engine_sim.py"
+    },
     "token:E_SIM_DUAL_SZILARD_V2_OK": {
       "name": "E_SIM_DUAL_SZILARD_V2_OK",
       "description": "PASS: S_SIM_DUAL_SZILARD_V2",
@@ -1745,7 +1769,7 @@
         "pass"
       ],
       "status": "PASS",
-      "measured_value": 0.9688762124954119,
+      "measured_value": 0.9688762124954118,
       "source_file": "complexity_gap_v2_sim.py"
     },
     "token:E_SIM_GAIN_PHASE_DIAGRAM_V2_OK": {
@@ -1913,7 +1937,7 @@
         "pass"
       ],
       "status": "PASS",
-      "measured_value": 0.1572794154958994,
+      "measured_value": 0.16828048118731953,
       "source_file": "axis0_correlation_sim.py"
     },
     "token:E_SIM_NESTED_HOPF_TORI_OK": {
@@ -1925,7 +1949,7 @@
         "pass"
       ],
       "status": "PASS",
-      "measured_value": 1.3354677961268338,
+      "measured_value": 1.034348451869071,
       "source_file": "axis0_path_integral_sim.py"
     },
     "token:E_SIM_QIT_PARITY_OK": {
@@ -3039,6 +3063,16 @@
       "type": "produces"
     },
     {
+      "source": "probe:type2_engine_sim",
+      "target": "token:E_SIM_TYPE2_CHIRALITY_DISTINCT",
+      "type": "produces"
+    },
+    {
+      "source": "probe:type2_engine_sim",
+      "target": "token:E_SIM_TYPE2_CYCLE_OK",
+      "type": "produces"
+    },
+    {
       "source": "probe:szilard_64stage_v2_sim",
       "target": "token:E_SIM_DUAL_SZILARD_V2_OK",
       "type": "produces"
@@ -3424,5 +3458,5 @@
       "type": "produces"
     }
   ],
-  "timestamp": "2026-03-25T00:39:48.999657+00:00"
+  "timestamp": "2026-03-25T00:48:13.637695+00:00"
 }

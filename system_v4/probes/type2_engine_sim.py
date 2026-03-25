@@ -426,7 +426,7 @@ if __name__ == "__main__":
 
     # Save results
     base = os.path.dirname(os.path.abspath(__file__))
-    results_dir = os.path.join(base, "..", "a2_state", "sim_results")
+    results_dir = os.path.join(base, "a2_state", "sim_results")
     os.makedirs(results_dir, exist_ok=True)
     outpath = os.path.join(results_dir, "type2_process_cycle_results.json")
 

@@ -1,10 +1,10 @@
 # Probe Evidence Graph — Materialization Audit
-Timestamp: 2026-03-25T00:39:48.999657+00:00
+Timestamp: 2026-03-25T00:48:13.637695+00:00
 
 ## Summary
-- Nodes: 206
-- Edges: 157
-- Tokens: 157 (136 PASS, 21 KILL)
+- Nodes: 208
+- Edges: 159
+- Tokens: 159 (138 PASS, 21 KILL)
 
 ## Node List
 - `probe:foundations_sim`: QIT probe: ALL_PASS, 5P/0K
@@ -29,7 +29,7 @@ Timestamp: 2026-03-25T00:39:48.999657+00:00
 - `probe:engine_terrain_sim`: QIT probe: ALL_PASS, 3P/0K
 - `probe:dual_weyl_spinor_engine_sim`: QIT probe: ALL_PASS, 4P/0K
 - `probe:full_8stage_engine_sim`: QIT probe: ALL_PASS, 2P/0K
-- `probe:type2_engine_sim`: QIT probe: NO_TOKENS, 0P/0K
+- `probe:type2_engine_sim`: QIT probe: ALL_PASS, 2P/0K
 - `probe:szilard_64stage_v2_sim`: QIT probe: ALL_PASS, 1P/0K
 - `probe:complexity_gap_v2_sim`: QIT probe: ALL_PASS, 2P/0K
 - `probe:gain_calibration_v2_sim`: QIT probe: ALL_PASS, 2P/0K
@@ -136,6 +136,8 @@ Timestamp: 2026-03-25T00:39:48.999657+00:00
 - `token:E_SIM_NESTED_TORI_NON_STATE_REDUCTION_OK`: PASS: S_SIM_STRUCTURAL_NON_STATE_REDUCTION_FALSIFY
 - `token:E_SIM_FULL_8STAGE_CYCLE_OK`: PASS: S_SIM_FULL_8STAGE_CYCLE_V1
 - `token:E_SIM_FRACTAL_NESTING_V1_OK`: PASS: S_SIM_FRACTAL_NESTING_V1
+- `token:E_SIM_TYPE2_CHIRALITY_DISTINCT`: PASS: S_SIM_TYPE2_PROCESS_CYCLE_V1
+- `token:E_SIM_TYPE2_CYCLE_OK`: PASS: S_SIM_TYPE2_CYCLE_V1
 - `token:E_SIM_DUAL_SZILARD_V2_OK`: PASS: S_SIM_DUAL_SZILARD_V2
 - `token:E_SIM_GAP_SCALES_V2_OK`: PASS: S_SIM_GAP_SCALING_V2
 - `token:E_SIM_CONVERGENT_SUBSET_DEPTH_V2_OK`: PASS: S_SIM_CONVERGENT_SUBSET_DEPTH_V1

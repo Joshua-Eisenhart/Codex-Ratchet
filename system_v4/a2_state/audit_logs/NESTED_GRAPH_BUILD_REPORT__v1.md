@@ -1,16 +1,16 @@
 # Nested Graph Build Report
 
-- generated_utc: `2026-03-23T07:08:46Z`
+- generated_utc: `2026-03-25T00:49:47Z`
 - status: `built`
 - layer_count: `5`
 - total_nodes_across_layers: `11034`
-- total_edges_across_layers: `22599`
+- total_edges_across_layers: `22434`
 - cross_layer_edge_count: `8903`
-- toponetx_available: `True`
-- toponetx_shape: `[4, 4, 1]`
-- pyg_available: `True`
-- gudhi_available: `True`
-- gudhi_betti_numbers: `[302]`
+- toponetx_available: `False`
+- toponetx_shape: `[]`
+- pyg_available: `False`
+- gudhi_available: `False`
+- gudhi_betti_numbers: `[]`
 
 ## Layers
 
@@ -18,9 +18,9 @@
 |-------|-------|-------|------|
 | A2_HIGH_INTAKE            |   8793 |  16279 |    0 |
 | A2_MID_REFINEMENT         |    858 |   3029 |    1 |
-| A2_LOW_CONTROL            |    667 |   1270 |    2 |
+| A2_LOW_CONTROL            |    667 |   1121 |    2 |
 | A1_JARGONED               |    420 |   1288 |    3 |
-| PROMOTED_SUBGRAPH         |    296 |    733 |   -1 |
+| PROMOTED_SUBGRAPH         |    296 |    717 |   -1 |
 
 ## Cross-Layer Edges
 

@@ -118,7 +118,8 @@ Important rules:
 | `GRAPH::SKILL_KERNEL_BRIDGE_BUILDER` | skill/kernel bridge builder | `graph_operator` | [skill_kernel_bridge_builder.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/skill_kernel_bridge_builder.py) | `repo_local` | `saved` | `partial` | direct graph-formation operator for binding skills into kernel structure | live builder exists and has already injected bridge edges, but the resulting bridge quality still needs stronger owner-grounded semantics |
 | `GRAPH::NESTED_GRAPH_BUILDER` | nested graph builder | `graph_operator` | [nested_graph_builder.py](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills/nested_graph_builder.py) | `repo_local` | `saved` | `partial` | graph-of-graphs builder over the owner layer set | live builder exists and produced `nested_graph_v1.json`; keep this on the main graph line instead of burying it under sidecar audit prose |
 | `SUBSTRATE::V4_RUNTIME_CORE` | `system_v4` runtime substrate | `runtime_substrate` | [system_v4/skills](/home/ratchet/Desktop/Codex%20Ratchet/system_v4/skills) | `repo_local` | `saved` | `partial` | runtime kernel, witness, graph bridge, refinery, intent-control core | keep these explicit corpus members, not invisible “just code” |
-
+| `REPO::HIPPORAG` | `OSU-NLP-Group/HippoRAG` | `repo` | [OSU-NLP-Group/HippoRAG](https://github.com/OSU-NLP-Group/HippoRAG) | `url_only` | `saved` | `registry` | associative memory, multi-hop reasoning, "brain" persistence graph | candidate for A2 persistent brain and cross-document reasoning |
+| `REPO::LIGHTRAG` | `HKUDS/LightRAG` | `repo` | [HKUDS/LightRAG](https://github.com/HKUDS/LightRAG) | `url_only` | `saved` | `registry` | operational graph-RAG, incremental updates, speed, multi-storage | candidate for live witness-corpus retrieval and high-frequency graph updates |
 ## Imported Skill Corpora
 
 ### `lev-os/agents`

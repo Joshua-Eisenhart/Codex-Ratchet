@@ -1,0 +1,111 @@
+{
+  "timestamp": "2026-03-26T08:20:46.827520+00:00",
+  "name": "Entropy_Form_Negative_Battery",
+  "results": {
+    "spectral_pair_total": 2016,
+    "linear_disagreements": 0,
+    "renyi2_disagreements": 0,
+    "tsallis2_disagreements": 0,
+    "purity_disagreements": 0,
+    "rel_to_maxmix_affine_err": 0.0,
+    "shannon_basis_failures": 32,
+    "shannon_basis_shift_avg": 0.18846898452816965,
+    "conditional_proxy_max_error": 8.881784197001252e-16,
+    "conditional_proxy_max_mutual": 8.881784197001252e-16,
+    "fi_vn_delta": 0.0,
+    "fi_linear_delta": 0.0,
+    "fi_renyi2_delta": 0.0,
+    "fi_state_distance": 0.4740998230350174,
+    "fi_z_shift": 0.8348623853211008,
+    "renyi2_proxy_ok": true
+  },
+  "evidence_ledger": [
+    {
+      "token_id": "E_ENTROPY_QUBIT_SPECTRAL_EQUIV",
+      "sim_spec_id": "S_ENTROPY_QUBIT_SPECTRAL_EQUIV",
+      "status": "PASS",
+      "measured_value": 2016.0,
+      "kill_reason": null,
+      "timestamp": "2026-03-26T08:20:46.757975"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_LINEAR_BETTER_THAN_VN",
+      "status": "KILL",
+      "measured_value": 0.0,
+      "kill_reason": "QUBIT_MONOTONE_EQUIVALENT_NOT_BETTER",
+      "timestamp": "2026-03-26T08:20:46.758145"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_RENYI2_BETTER_THAN_VN",
+      "status": "KILL",
+      "measured_value": 0.0,
+      "kill_reason": "QUBIT_MONOTONE_EQUIVALENT_NOT_BETTER",
+      "timestamp": "2026-03-26T08:20:46.758147"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_TSALLIS2_BETTER_THAN_VN",
+      "status": "KILL",
+      "measured_value": 0.0,
+      "kill_reason": "QUBIT_MONOTONE_EQUIVALENT_NOT_BETTER",
+      "timestamp": "2026-03-26T08:20:46.758150"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_PURITY_BETTER_THAN_VN",
+      "status": "KILL",
+      "measured_value": 0.0,
+      "kill_reason": "INVERTED_EQUIVALENT_NOT_BETTER",
+      "timestamp": "2026-03-26T08:20:46.758152"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_SHANNON_DIAG_GEOMETRIC",
+      "status": "KILL",
+      "measured_value": 32.0,
+      "kill_reason": "BASIS_DEPENDENT_NOT_GEOMETRY_SAFE",
+      "timestamp": "2026-03-26T08:20:46.760034"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_CONDITIONAL_ENTROPY_CURRENT_ENGINE",
+      "status": "KILL",
+      "measured_value": 8.881784197001252e-16,
+      "kill_reason": "NO_JOINT_STATE_CONDITIONAL_REDUNDANT",
+      "timestamp": "2026-03-26T08:20:46.827005"
+    },
+    {
+      "token_id": "",
+      "sim_spec_id": "S_NEG_ALT_ENTROPY_RESCUES_PURE_FI",
+      "status": "KILL",
+      "measured_value": 0.4740998230350174,
+      "kill_reason": "PURE_STATE_FI_NEEDS_DIRECTIONAL_METRIC",
+      "timestamp": "2026-03-26T08:20:46.827174"
+    },
+    {
+      "token_id": "E_RENYI2_PROXY_QUBIT_OK",
+      "sim_spec_id": "S_ENTROPY_RENYI2_PROXY_QUBIT",
+      "status": "PASS",
+      "measured_value": 2016.0,
+      "kill_reason": null,
+      "timestamp": "2026-03-26T08:20:46.827178"
+    }
+  ],
+  "recommendation": {
+    "best_default_mixedness_metric": "von_neumann_entropy",
+    "best_proxy_metric": "renyi2_entropy",
+    "not_geometry_safe": [
+      "shannon_diag_entropy"
+    ],
+    "not_meaningful_without_joint_state": [
+      "conditional_entropy",
+      "mutual_information",
+      "coherent_information"
+    ],
+    "needs_auxiliary_metric": [
+      "pure_state_Fi_directionality"
+    ]
+  }
+}

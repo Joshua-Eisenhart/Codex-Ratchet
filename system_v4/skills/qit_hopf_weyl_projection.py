@@ -363,8 +363,16 @@ def build_projection() -> dict[str, Any]:
     return {
         "schema": "QIT_HOPF_WEYL_PROJECTION_v1",
         "generated_utc": _utc_iso(),
+        "status": "present_bounded_projection",
         "source": str(GRAPH_JSON),
         "source_content_hash": g.get("content_hash", "unknown"),
+        "owner_snapshot": {
+            "qit_graph_json": str(GRAPH_JSON),
+            "qit_graph_schema": g.get("schema", ""),
+            "qit_graph_content_hash": g.get("content_hash", "unknown"),
+            "node_count": len(nodes),
+            "edge_count": len(edges),
+        },
 
         # ── Sidecar boundary metadata ──
         "sidecar_boundary": {
@@ -380,6 +388,29 @@ def build_projection() -> dict[str, Any]:
                 "into higher-order geometric representations. "
                 "This is context for future promotion decisions, not proof."
             ),
+        },
+
+        "hopf_stage_projection": {
+            "stage_count": len(stage_nodes),
+            "fiber_stage_count": cycle_groupings["fiber_stage_count"],
+            "base_stage_count": cycle_groupings["base_stage_count"],
+            "shared_clifford_stage_count": len(cycle_groupings["torus_to_stages"].get("clifford", [])),
+            "torus_carriers": [
+                {
+                    "torus_public_id": pid,
+                    "label": node.get("label", ""),
+                    "nesting_rank": node.get("nesting_rank"),
+                    "description": node.get("description", ""),
+                }
+                for pid, node in sorted(torus_nodes.items(), key=lambda item: item[1].get("nesting_rank", 999))
+            ],
+        },
+        "weyl_projection_readiness": {
+            "projection_status": "engine_pair_only_derived",
+            "weyl_branch_nodes_present": False,
+            "chirality_coupling_edge_present": len(chirality_edges) > 0,
+            "engine_pair_public_ids": sorted(engine_nodes.keys()),
+            "missing_owner_anchors": ["WEYL_BRANCH"],
         },
 
         # ── Projections ──

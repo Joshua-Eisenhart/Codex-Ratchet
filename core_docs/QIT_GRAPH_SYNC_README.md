@@ -10,12 +10,14 @@
 | File | Purpose |
 |---|---|
 | `core_docs/QIT_GRAPH_LAYER_MAPPING.md` | Conceptual Rosetta stone: which physics concept lives in which graph layer |
-| `core_docs/QIT_GRAPH_SCHEMA.md` | Canonical node and edge inventory (7 node types, 9 edge types, 41 nodes, 185 edges) |
+| `core_docs/QIT_GRAPH_SCHEMA.md` | Canonical node and edge inventory (6 live node types + 1 schema-ready type, 9 edge types, 41 nodes, 185 edges) |
 | `core_docs/QIT_GRAPH_SIDECAR_POLICY.md` | What each sidecar may and may not do |
 | `core_docs/QIT_GRAPH_RUNTIME_MODEL.md` | Structure vs state vs history graph separation |
 | `core_docs/QIT_GRAPH_PROMOTION_GATES.md` | When a concept moves from sidecar to owner truth |
 | `core_docs/QIT_COMPRESSION_FUTURE_REFERENCES.md` | Later-only compression references (QJL, TurboQuant, PolarQuant) and revisit triggers |
+| `core_docs/C_LAYER_ARCHITECTURE.md` | C1/C2/C3 external layer: pi-mono, AutoResearchClaw, MiroFish, OpenClaw-RL |
 | `system_v4/skills/qit_engine_graph_builder.py` | Builds the QIT engine graph layer |
+| `system_v4/skills/qit_graph_stack_runtime.py` | Rebuilds the QIT owner graph, exports GraphML, and runs the bounded sidecars into one status report |
 | `system_v4/skills/qit_owner_schemas.py` | Pydantic contracts for all owner-layer types |
 | `system_v4/a2_state/graphs/qit_engine_graph_v1.json` | The live QIT engine graph (41 nodes, 185 edges) |
 
@@ -32,6 +34,8 @@ The **owner stack** is `Pydantic → JSON → NetworkX → GraphML`. These are r
 - ✅ 7 proven load-bearing axes (0–6)
 - ✅ 9 negative witness nodes (graveyard kills)
 - ✅ 185 structural edges (stage sequence, operator acts-on, torus nesting, chirality coupling, etc.)
+- ✅ GraphML export as an owner-stack interoperability view
+- ⚠️ `WEYL_BRANCH` is schema-ready, but not yet instantiated in the live owner graph
 
 ---
 
@@ -42,7 +46,7 @@ The **owner stack** is `Pydantic → JSON → NetworkX → GraphML`. These are r
 | **TopoNetX** | Bounded read-only projection | Builds CellComplex, identifies cycles and 2-cells from owner data |
 | **clifford** | Bounded read-only sidecar | Computes Cl(3,0) multivector edge payloads from owner edge types |
 | **PyG** | Bounded read-only sidecar | Builds HeteroData tensor projections from owner data |
-| **LightRAG** | Not yet integrated | Will provide retrieval over corpus + SIM results |
+| **LightRAG** | Installed, smoke-tested | Retrieval over corpus + SIM results (needs embedding config) |
 | **kingdon** | Not yet integrated | Optional GA-Torch bridge for differentiable algebra |
 
 **None of these sidecars are semantic owners yet.** They are the correct *next* semantic carriers for their respective domains, pending promotion gates.
@@ -83,6 +87,9 @@ python3 system_v4/skills/qit_owner_schemas.py
 
 # Rebuild the QIT engine graph
 python3 system_v4/skills/qit_engine_graph_builder.py
+
+# Rebuild the owner graph, export GraphML, and run bounded sidecar status
+python3 system_v4/skills/qit_graph_stack_runtime.py
 
 # Rebuild the full nested graph (includes QIT as 6th layer)
 python3 system_v4/skills/nested_graph_builder.py

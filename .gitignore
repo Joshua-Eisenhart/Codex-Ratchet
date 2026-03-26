@@ -37,9 +37,8 @@ mutmut_results.txt
 # Archive (large historical artifacts, keep in DVC or separate)
 archive/
 
-# System v3 snapshots (large, kept locally)
-system_v3/a2_state/snapshots/
-
+# System v3 (legacy, superseded by v4)
+system_v3/
 
 # Large graph data files (tracked by DVC, not git)
 system_v4/a2_state/graphs/system_graph_a2_refinery.json
@@ -56,8 +55,7 @@ system_v4/a2_state/graphs/system_graph_v3_ingest_pass1.json
 system_v4/a2_state/graphs/*.graphml
 system_v4/a2_state/graphs/*.html
 system_v4/a2_state/refinery_batch_index.json
-*.DS_Store
-*.zip
-work/lightrag_venv/
-work/lightrag_smoke/
-work/mirofish/
+
+# Regenerable runtime state (rebuilt on each run)
+system_v4/runtime_state/
+system_v4/probes/telemetry_logs/

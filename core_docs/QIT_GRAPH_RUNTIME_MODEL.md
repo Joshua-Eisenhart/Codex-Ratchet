@@ -43,6 +43,10 @@
 
 **Location**: Not yet instantiated as a graph. Currently lives in `engine_core.py` as the `EngineState` dataclass.
 
+**Smallest real next slice now available**:
+- `system_v4/skills/qit_runtime_state_history_adapter.py` emits a graph-adjacent `RuntimeStateOverlay`
+- the overlay references stable QIT `public_id`s only and does NOT mutate the owner graph
+
 **Future graph form**: State would be stored as attribute annotations on structure-graph nodes:
 - `MACRO_STAGE` nodes get `active: bool`, `last_activated_utc: str`
 - `TORUS` nodes get `current_eta: float`, `current_theta_1: float`
@@ -64,6 +68,11 @@
 
 **Location**: Currently `system_v4/probes/a2_state/sim_results/*.json` (flat files). Not yet a graph.
 
+**Smallest real next slice now available**:
+- `system_v4/skills/qit_runtime_state_history_adapter.py` emits an append-only `HistoryRunPacket`
+- each step record points at stable `SUBCYCLE_STEP` and `MACRO_STAGE` `public_id`s from the structure graph
+- this is still a packet surface, not a promoted history graph
+
 **Future graph form**: Each run becomes a node with:
 - `RUN_EVIDENCES` edges to the `MACRO_STAGE` nodes it exercised
 - `RUN_PROVES` edges to the `NEG_WITNESS` nodes it confirmed
@@ -84,6 +93,19 @@ engine.step(state, stage_idx=3)
 | **Structure** | Nothing. Read-only. The step reads the structure to know which operators to apply, which torus to use, which axis governs. |
 | **State** | Updated. `current_stage` moves to 3. `rho_L`, `rho_R`, `eta`, `theta_1`, `theta_2` all updated by the 4 operator applications. |
 | **History** | Appended. If this is a probe run, the step's outcome (PASS/KILL, entropy delta, axis readings) is logged as a new evidence record. |
+
+---
+
+## Minimal Runtime Slice
+
+The current honest bridge is:
+
+1. Keep the structure graph immutable and owner-held.
+2. Map `EngineState` to a `RuntimeStateOverlay` keyed by stable QIT `public_id`s.
+3. Map `state.history` to a `HistoryRunPacket` keyed by stable `SUBCYCLE_STEP` / `MACRO_STAGE` `public_id`s.
+4. Persist those packets beside runs or in later sidecar stores until explicit state/history graph promotion lands.
+
+This keeps runtime and history graph work executable now without overclaiming that a live state graph already exists.
 
 ---
 

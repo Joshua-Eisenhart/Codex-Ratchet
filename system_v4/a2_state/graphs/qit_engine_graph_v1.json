@@ -1,6 +1,22 @@
 {
   "schema": "QIT_ENGINE_GRAPH_v2",
-  "generated_utc": "2026-03-26T21:50:06Z",
+  "generated_utc": "2026-03-26T22:35:18Z",
+  "owner_layer": "QIT_ENGINE",
+  "materialized": true,
+  "build_status": "MATERIALIZED",
+  "derived_from": {
+    "builder_program": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_engine_graph_builder.py",
+    "owner_schemas": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_owner_schemas.py",
+    "engine_runtime_reference": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/engine_core.py",
+    "hopf_geometry_reference": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/hopf_manifold.py",
+    "operator_reference": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/geometric_operators.py"
+  },
+  "selection_contract": {
+    "included_node_rule": "Materialize only the explicit QIT owner structures enumerated in this builder: engine types, macro-stages, fixed operators, torus identities, proven axes, negative witnesses, and 64 subcycle steps. Do not infer runtime state, history/evidence, Weyl branches, or sidecar payloads.",
+    "edge_rule": "Materialize only the structural topology edges explicitly constructed in this builder between emitted owner nodes. Do not infer extra relations from simulations, sidecars, or documentation.",
+    "validation_gate": "Each emitted node must pass its owner-schema Pydantic model before the graph is materialized. Validation failures fail the build rather than emitting partial owner truth.",
+    "bridge_policy": "public_id/public_id_index are stable join handles only. Cross-layer integration requires explicit bridge admission outside this owner builder."
+  },
   "description": "Graph encoding of the Geometric Engine's physical topology: 8 macro-stages \u00d7 2 engine types, 4 fixed subcycle operators, 64 subcycle steps (16\u00d74 runtime grain), 3 nested Hopf tori, 7 proven axes, and 9 negative witnesses. All nodes carry stable public_id for cross-layer joining.",
   "nodes": {
     "778ddaca61bf2497": {
@@ -268,7 +284,7 @@
       "public_id": "qit::AXIS::axis_3",
       "node_type": "AXIS",
       "label": "axis_3",
-      "description": "Chirality / engine type split",
+      "description": "Engine-family split (Type-1 / Type-2); chirality remains derived/noncanon here",
       "proven": true,
       "negative_witness": null
     },
@@ -4220,7 +4236,20 @@
       "NEG_WITNESS": 9,
       "SUBCYCLE_STEP": 64
     },
+    "relation_types": {
+      "SUBCYCLE_ORDER": 4,
+      "STAGE_SEQUENCE": 16,
+      "TORUS_NESTING": 2,
+      "ENGINE_OWNS_STAGE": 16,
+      "CHIRALITY_COUPLING": 1,
+      "STEP_IN_STAGE": 64,
+      "STEP_USES_OPERATOR": 64,
+      "STEP_SEQUENCE": 48,
+      "STAGE_ON_TORUS": 32,
+      "AXIS_GOVERNS": 14,
+      "NEGATIVE_PROVES": 36
+    },
     "validation_errors": []
   },
-  "content_hash": "e7e853d4ffa0badf9abcd8898fa52fee2403f4adf257f1e1ae82e10d63aeb79c"
+  "content_hash": "29a9456b6aa4c15f66d1c7955bd672fe0aba81cb44d6fc1400b4c60114e9fa1b"
 }

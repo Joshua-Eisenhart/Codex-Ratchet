@@ -39,6 +39,7 @@ from qit_owner_schemas import (
 REPO_ROOT = Path(__file__).resolve().parents[2]
 GRAPH_DIR = REPO_ROOT / "system_v4" / "a2_state" / "graphs"
 OUT_FILE = GRAPH_DIR / "qit_engine_graph_v1.json"
+OWNER_LAYER = "QIT_ENGINE"
 
 
 # ── Physical Constants ──
@@ -76,7 +77,7 @@ PROVEN_AXES = [
     ("axis_0", "Identity / entropy gradient", True, "sim_neg_axis0_frozen.py"),
     ("axis_1", "Parity / expansion-compression", True, None),
     ("axis_2", "Scale / dimension-dependent shift", True, None),
-    ("axis_3", "Chirality / engine type split", True, None),
+    ("axis_3", "Engine-family split (Type-1 / Type-2); chirality remains derived/noncanon here", True, None),
     ("axis_4", "Variance direction / information flow", True, None),
     ("axis_5", "Coupling strength / interaction weight", True, None),
     ("axis_6", "Polarity / torus latitude sign", True, "neg_axis6_shared_stage_matrix_sim.py"),
@@ -454,13 +455,53 @@ def build_qit_engine_graph() -> dict[str, Any]:
     for hid, node in nodes.items():
         public_id_index[node["public_id"]] = hid
 
-    # ── Count node types ──
+    if validation_errors:
+        raise ValueError(
+            "QIT owner graph validation failed:\n- " + "\n- ".join(validation_errors)
+        )
+
+    # ── Count node / relation types ──
     from collections import Counter
     type_counts = Counter(n["node_type"] for n in nodes.values())
+    relation_counts = Counter(e["relation"] for e in edges)
+    materialized = bool(nodes)
+    build_status = "MATERIALIZED" if materialized else "FAIL_CLOSED"
 
     graph = {
         "schema": "QIT_ENGINE_GRAPH_v2",
         "generated_utc": _utc_iso(),
+        "owner_layer": OWNER_LAYER,
+        "materialized": materialized,
+        "build_status": build_status,
+        "derived_from": {
+            "builder_program": str(Path(__file__).resolve()),
+            "owner_schemas": str(REPO_ROOT / "system_v4" / "skills" / "qit_owner_schemas.py"),
+            "engine_runtime_reference": str(REPO_ROOT / "system_v4" / "probes" / "engine_core.py"),
+            "hopf_geometry_reference": str(REPO_ROOT / "system_v4" / "probes" / "hopf_manifold.py"),
+            "operator_reference": str(REPO_ROOT / "system_v4" / "probes" / "geometric_operators.py"),
+        },
+        "selection_contract": {
+            "included_node_rule": (
+                "Materialize only the explicit QIT owner structures enumerated in this "
+                "builder: engine types, macro-stages, fixed operators, torus identities, "
+                "proven axes, negative witnesses, and 64 subcycle steps. Do not infer "
+                "runtime state, history/evidence, Weyl branches, or sidecar payloads."
+            ),
+            "edge_rule": (
+                "Materialize only the structural topology edges explicitly constructed in "
+                "this builder between emitted owner nodes. Do not infer extra relations "
+                "from simulations, sidecars, or documentation."
+            ),
+            "validation_gate": (
+                "Each emitted node must pass its owner-schema Pydantic model before the "
+                "graph is materialized. Validation failures fail the build rather than "
+                "emitting partial owner truth."
+            ),
+            "bridge_policy": (
+                "public_id/public_id_index are stable join handles only. Cross-layer "
+                "integration requires explicit bridge admission outside this owner builder."
+            ),
+        },
         "description": (
             "Graph encoding of the Geometric Engine's physical topology: "
             "8 macro-stages × 2 engine types, 4 fixed subcycle operators, "
@@ -475,7 +516,8 @@ def build_qit_engine_graph() -> dict[str, Any]:
             "node_count": len(nodes),
             "edge_count": len(edges),
             "node_types": dict(type_counts),
-            "validation_errors": validation_errors,
+            "relation_types": dict(relation_counts),
+            "validation_errors": [],
         },
     }
 

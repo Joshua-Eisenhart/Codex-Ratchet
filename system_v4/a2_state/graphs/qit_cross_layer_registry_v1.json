@@ -1,0 +1,86 @@
+{
+  "schema": "QIT_CROSS_LAYER_REGISTRY_v1",
+  "generated_utc": "2026-03-26T00:00:00Z",
+  "status": "ADMITTED_ONLY",
+  "purpose": "Explicit admitted bridges from existing system-layer concepts into stable QIT public_ids. This registry is the conservative bridge surface used before broader cross-layer reconciliation is allowed.",
+  "bridge_policy": {
+    "admission_rule": "Only add bridges when the source concept is an explicit repo-held concept node and the QIT target is a stable owner public_id. Do not admit fuzzy label matches.",
+    "non_goals": [
+      "Do not infer new owner truth inside the QIT graph.",
+      "Do not auto-derive bridges from text similarity.",
+      "Do not treat this registry as proof that runtime/history promotion is complete."
+    ]
+  },
+  "bridges": [
+    {
+      "bridge_id": "qit_axis0_first_principle",
+      "status": "ADMITTED",
+      "source_id": "A2_2::REFINED::a2_axis_0_first_principle::862c42fe7848134c",
+      "target_public_id": "qit::AXIS::axis_0",
+      "relation": "QIT_AXIS_BRIDGE",
+      "bridge_via": "manual_registry",
+      "scope": "exact_admitted_mapping",
+      "rationale": "This refined concept is the repo-held first-principle Axis-0 anchor and is admitted as the bridge into the QIT owner axis."
+    },
+    {
+      "bridge_id": "qit_engine_family_split_type1",
+      "status": "ADMITTED",
+      "source_id": "A2_2::REFINED::engine_chirality_inequality::e8175f7500ce3cfa",
+      "target_public_id": "qit::ENGINE::type1_deductive",
+      "relation": "QIT_ENGINE_FAMILY_BRIDGE",
+      "bridge_via": "manual_registry",
+      "scope": "family_split_bridge",
+      "rationale": "This refined concept is the current system-graph anchor for engine-family inequality and is admitted as a bridge to the Type-1 engine node."
+    },
+    {
+      "bridge_id": "qit_engine_family_split_type2",
+      "status": "ADMITTED",
+      "source_id": "A2_2::REFINED::engine_chirality_inequality::e8175f7500ce3cfa",
+      "target_public_id": "qit::ENGINE::type2_inductive",
+      "relation": "QIT_ENGINE_FAMILY_BRIDGE",
+      "bridge_via": "manual_registry",
+      "scope": "family_split_bridge",
+      "rationale": "This refined concept is the current system-graph anchor for engine-family inequality and is admitted as a bridge to the Type-2 engine node."
+    },
+    {
+      "bridge_id": "qit_operator_family_ti",
+      "status": "ADMITTED",
+      "source_id": "A2_1::KERNEL::KERNEL: Chiral Game Theory Operators::189a01b4b3cd537c",
+      "target_public_id": "qit::OPERATOR::Ti",
+      "relation": "QIT_OPERATOR_FAMILY_BRIDGE",
+      "bridge_via": "manual_registry",
+      "scope": "family_member_bridge",
+      "rationale": "This kernel concept explicitly anchors the Te/Ti/Fe/Fi operator family and is admitted as a bridge to the Ti owner node."
+    },
+    {
+      "bridge_id": "qit_operator_family_fe",
+      "status": "ADMITTED",
+      "source_id": "A2_1::KERNEL::KERNEL: Chiral Game Theory Operators::189a01b4b3cd537c",
+      "target_public_id": "qit::OPERATOR::Fe",
+      "relation": "QIT_OPERATOR_FAMILY_BRIDGE",
+      "bridge_via": "manual_registry",
+      "scope": "family_member_bridge",
+      "rationale": "This kernel concept explicitly anchors the Te/Ti/Fe/Fi operator family and is admitted as a bridge to the Fe owner node."
+    },
+    {
+      "bridge_id": "qit_operator_family_te",
+      "status": "ADMITTED",
+      "source_id": "A2_1::KERNEL::KERNEL: Chiral Game Theory Operators::189a01b4b3cd537c",
+      "target_public_id": "qit::OPERATOR::Te",
+      "relation": "QIT_OPERATOR_FAMILY_BRIDGE",
+      "bridge_via": "manual_registry",
+      "scope": "family_member_bridge",
+      "rationale": "This kernel concept explicitly anchors the Te/Ti/Fe/Fi operator family and is admitted as a bridge to the Te owner node."
+    },
+    {
+      "bridge_id": "qit_operator_family_fi",
+      "status": "ADMITTED",
+      "source_id": "A2_1::KERNEL::KERNEL: Chiral Game Theory Operators::189a01b4b3cd537c",
+      "target_public_id": "qit::OPERATOR::Fi",
+      "relation": "QIT_OPERATOR_FAMILY_BRIDGE",
+      "bridge_via": "manual_registry",
+      "scope": "family_member_bridge",
+      "rationale": "This kernel concept explicitly anchors the Te/Ti/Fe/Fi operator family and is admitted as a bridge to the Fi owner node."
+    }
+  ]
+}

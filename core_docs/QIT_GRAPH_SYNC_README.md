@@ -17,7 +17,7 @@
 | `core_docs/QIT_COMPRESSION_FUTURE_REFERENCES.md` | Later-only compression references (QJL, TurboQuant, PolarQuant) and revisit triggers |
 | `core_docs/C_LAYER_ARCHITECTURE.md` | C1/C2/C3 external layer: pi-mono, AutoResearchClaw, MiroFish, OpenClaw-RL |
 | `system_v4/skills/qit_engine_graph_builder.py` | Builds the QIT engine graph layer |
-| `system_v4/skills/qit_graph_stack_runtime.py` | Rebuilds the QIT owner graph, exports GraphML, and runs the bounded sidecars into one status report |
+| `system_v4/skills/qit_graph_stack_runtime.py` | Read-only-by-default verifier over the existing QIT owner snapshot, GraphML export, bounded sidecars, and promotion gates |
 | `system_v4/skills/qit_owner_schemas.py` | Pydantic contracts for all owner-layer types |
 | `system_v4/a2_state/graphs/qit_engine_graph_v1.json` | The live QIT engine graph (105 nodes, 297 edges) |
 
@@ -49,7 +49,7 @@ The **owner stack** is `Pydantic → JSON → NetworkX → GraphML`. These are r
 | **TopoNetX** | Bounded read-only projection | Builds CellComplex, identifies cycles and 2-cells from owner data |
 | **clifford** | Bounded read-only sidecar | Computes Cl(3,0) multivector edge payloads from owner edge types |
 | **PyG** | Bounded read-only sidecar | Builds HeteroData tensor projections from owner data |
-| **LightRAG** | Installed, smoke-tested | Retrieval over corpus + SIM results (needs embedding config) |
+| **LightRAG** | Sidecar corpus ready; indexing/query still blocked on embedding config | Read-only retrieval corpus over owner graph summaries, QIT docs, and SIM/history surfaces; not owner memory |
 | **kingdon** | Not yet integrated | Optional GA-Torch bridge for differentiable algebra |
 
 **None of these sidecars are semantic owners yet.** They are the correct *next* semantic carriers for their respective domains, pending promotion gates.
@@ -60,7 +60,7 @@ The **owner stack** is `Pydantic → JSON → NetworkX → GraphML`. These are r
 
 - ❌ Runtime state graph (engine position during execution) — still in `engine_core.py` dataclass, not a graph
 - ❌ History/evidence graph — still flat JSON files in `a2_state/sim_results/`
-- ❌ LightRAG retrieval over SIM results
+- ❌ Live LightRAG indexing/query over the internal graph/docs/evidence corpus
 - ❌ Live TopoNetX torus 2-cells in the owner graph
 - ❌ Live clifford chirality payloads in the owner graph
 - ❌ Any promotion gate fully passed
@@ -91,9 +91,9 @@ python3 system_v4/skills/qit_owner_schemas.py
 # Rebuild the QIT engine graph
 python3 system_v4/skills/qit_engine_graph_builder.py
 
-# Rebuild the owner graph, export GraphML, and run bounded sidecar status
+# Verify the existing owner snapshot, GraphML surface, bounded sidecars, and promotion gates
 python3 system_v4/skills/qit_graph_stack_runtime.py
 
-# Rebuild the full nested graph (QIT listed as 6th layer, but currently zero cross-layer edges)
+# Rebuild the full nested graph (QIT present as a 6th layer; explicit cross-layer admission still incomplete)
 python3 system_v4/skills/nested_graph_builder.py
 ```

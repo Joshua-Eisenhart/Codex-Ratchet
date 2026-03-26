@@ -1,15 +1,17 @@
 """
 graph_tool_integration.py
 
-Connects the actual graph tools (TopoNetX, PyG, clifford) to the live
-layer graphs. This is NOT an audit — it BUILD graph structure using the
-tools that were selected in the plan.
+Build bounded graph-tool projections and summaries over live layer graphs.
 
-This skill takes the low-control kernel graph and:
-1. Builds a TopoNetX CellComplex with promoted 2-cells
-2. Creates Cl(3) multivector edge payloads for each relation type
-3. Builds a PyG HeteroData with GA-valued edge features
-4. Writes the enriched graph structures back to disk
+This module does not make TopoNetX, clifford, or PyG semantic owners.
+It provides sidecar-ready projections that can be inspected, audited, and
+used by higher-level status/report surfaces.
+
+This helper currently:
+1. Builds a TopoNetX CellComplex summary from the loaded owner graph
+2. Creates Cl(3) multivector-style edge payloads keyed to relation families
+3. Builds a minimal PyG-compatible tensor projection when torch/PyG exist
+4. Can write an enriched sidecar snapshot for bounded local inspection
 
 Aligned with:
 - RQ-001 F01_FINITUDE (finite graph, finite cells, bounded)
@@ -49,12 +51,15 @@ RELATION_GA_SPEC = {
     "SUBCYCLE_ORDER": {"grade": 1, "coeffs": [0, 1.0, 0, 0, 0, 0, 0, 0]},
     "STAGE_SEQUENCE": {"grade": 1, "coeffs": [0, 0.8, 0.2, 0, 0, 0, 0, 0]},
     "TORUS_NESTING": {"grade": 2, "coeffs": [0, 0, 0, 0, 0, 1.0, 0, 0]},
-    "CHIRALITY_COUPLING": {"grade": 2, "coeffs": [0, 0, 0, 0, 0, 0, 0, 1.0]},
+    "CHIRALITY_COUPLING": {"grade": 3, "coeffs": [0, 0, 0, 0, 0, 0, 0, 1.0]},
     "ENGINE_OWNS_STAGE": {"grade": 1, "coeffs": [0, 0, 0, 1.0, 0, 0, 0, 0]},
     "OPERATOR_ACTS_ON": {"grade": 1, "coeffs": [0, 0.5, 0, 0.5, 0, 0, 0, 0]},
     "STAGE_ON_TORUS": {"grade": 2, "coeffs": [0, 0, 0, 0, 0, 0, 1.0, 0]},
     "AXIS_GOVERNS": {"grade": 1, "coeffs": [0, 0.4, 0.4, 0.4, 0, 0, 0, 0]},
     "NEGATIVE_PROVES": {"grade": 2, "coeffs": [0, 0, 0, 0, -1.0, 0, 0, 0]},
+    "STEP_IN_STAGE": {"grade": 1, "coeffs": [0, 0.2, 0, 0.8, 0, 0, 0, 0]},
+    "STEP_USES_OPERATOR": {"grade": 1, "coeffs": [0, 0.8, 0.2, 0, 0, 0, 0, 0]},
+    "STEP_SEQUENCE": {"grade": 1, "coeffs": [0, 1.0, 0, 0, 0, 0, 0, 0]},
 }
 
 DEFAULT_GA = {"grade": 1, "coeffs": [0, 0.1, 0.1, 0.1, 0, 0, 0, 0]}
@@ -138,8 +143,9 @@ def build_pyg_tensors(nodes: dict, edges: list) -> dict[str, Any]:
     """Build PyG-compatible tensor data with GA edge features."""
     try:
         import torch
+        from torch_geometric.data import HeteroData
     except ImportError:
-        return {"available": False, "error": "PyTorch not installed"}
+        return {"available": False, "error": "PyTorch/PyG not installed"}
 
     node_list = sorted(nodes.keys())
     node_idx = {nid: i for i, nid in enumerate(node_list)}
@@ -174,12 +180,21 @@ def build_pyg_tensors(nodes: dict, edges: list) -> dict[str, Any]:
                 ga_spec = RELATION_GA_SPEC.get(rel, DEFAULT_GA)
                 edge_ga_features.append(ga_spec["coeffs"])
 
+    hetero = HeteroData()
+    hetero["node"].x = torch.tensor(node_features, dtype=torch.float32)
+    hetero["node", "rel", "node"].edge_index = torch.tensor([edge_src, edge_tgt], dtype=torch.long)
+    if edge_ga_features:
+        hetero["node", "rel", "node"].edge_attr = torch.tensor(edge_ga_features, dtype=torch.float32)
+
     return {
         "available": True,
         "node_count": len(node_list),
         "node_feature_dim": 3,
         "edge_count": len(edge_src),
         "edge_feature_dim": 8,
+        "heterodata_constructed": True,
+        "heterodata_node_store_count": len(hetero.node_types),
+        "heterodata_edge_store_count": len(hetero.edge_types),
         "node_features_sample": node_features[:3],
         "edge_features_sample": edge_ga_features[:3],
     }

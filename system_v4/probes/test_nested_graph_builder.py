@@ -12,7 +12,8 @@ from hypothesis import given, strategies as st, settings, HealthCheck
 # Import the module under test
 from system_v4.skills.nested_graph_builder import (
     _load_json, _write_json, _node_id, _utc_iso,
-    _build_layer_summary, build_nested_graph, LAYER_GRAPHS, REPO_ROOT,
+    _build_layer_summary, _find_cross_layer_edges,
+    build_nested_graph, LAYER_GRAPHS, REPO_ROOT,
 )
 
 
@@ -140,6 +141,146 @@ class TestBuildNestedGraph:
     def test_report_has_status(self, nested_result):
         """Report has status continuous_operator."""
         assert nested_result["report"]["status"] == "built"
+
+
+class TestStrongBridgeResolution:
+    def test_resolves_qit_public_id_on_edge_endpoint(self, tmp_path):
+        """Cross-layer discovery should resolve QIT endpoints by public_id."""
+        qit_path = tmp_path / LAYER_GRAPHS["QIT_ENGINE"]["path"]
+        _write_json(qit_path, {
+            "nodes": {
+                "qit_hash_1": {
+                    "public_id": "qit::ENGINE::type1_deductive",
+                    "node_type": "ENGINE",
+                }
+            },
+            "edges": [],
+            "public_id_index": {
+                "qit::ENGINE::type1_deductive": "qit_hash_1",
+            },
+        })
+
+        accum_path = tmp_path / "system_v4/a2_state/graphs/system_graph_a2_refinery.json"
+        _write_json(accum_path, {
+            "nodes": {
+                "SIM::demo": {"node_type": "SIM_EVIDENCED", "properties": {}},
+            },
+            "edges": [
+                {
+                    "source_id": "SIM::demo",
+                    "target_id": "missing_qit_hash",
+                    "target_public_id": "qit::ENGINE::type1_deductive",
+                    "relation": "SIM_EVIDENCE_FOR",
+                    "attributes": {},
+                }
+            ],
+        })
+
+        cross_edges = _find_cross_layer_edges(tmp_path)
+        assert len(cross_edges) == 1
+        edge = cross_edges[0]
+        assert edge["source_layer"] == "SIM_LAYER"
+        assert edge["target_layer"] == "QIT_ENGINE"
+        assert edge["resolved_target_id"] == "qit_hash_1"
+        assert edge["target_resolved_via"] == "public_id"
+        assert edge["discovery_mode"] == "explicit_edge"
+
+    def test_derives_source_concept_id_bridge_without_fake_label_match(self, tmp_path):
+        """Strong bridge fields should materialize a cross-layer bridge even without an explicit edge."""
+        a2_high_path = tmp_path / LAYER_GRAPHS["A2_HIGH_INTAKE"]["path"]
+        concept_id = "A2_3::QIT_BRIDGE_PASS::Entropy as Spacetime (Axiom)::2ab647479e76a51a"
+        _write_json(a2_high_path, {
+            "nodes": {
+                concept_id: {
+                    "node_type": "EXTRACTED_CONCEPT",
+                    "description": "QIT bridge concept",
+                }
+            },
+            "edges": [],
+        })
+
+        accum_path = tmp_path / "system_v4/a2_state/graphs/system_graph_a2_refinery.json"
+        _write_json(accum_path, {
+            "nodes": {
+                "GRAVEYARD_RECORD::demo": {
+                    "node_type": "GRAVEYARD_RECORD",
+                    "properties": {
+                        "source_concept_id": concept_id,
+                    },
+                }
+            },
+            "edges": [],
+        })
+
+        cross_edges = _find_cross_layer_edges(tmp_path)
+        assert len(cross_edges) == 1
+        edge = cross_edges[0]
+        assert edge["relation"] == "SOURCE_CONCEPT_ID_BRIDGE"
+        assert edge["source_layer"] == "GRAVEYARD"
+        assert edge["target_layer"] == "A2_HIGH_INTAKE"
+        assert edge["target_id"] == concept_id
+        assert edge["attributes"]["bridge_field"] == "source_concept_id"
+        assert edge["discovery_mode"] == "strong_bridge_field"
+
+    def test_uses_explicit_qit_bridge_registry(self, tmp_path):
+        """Explicit admitted registry bridges should materialize cross-layer QIT links."""
+        a2_low_path = tmp_path / LAYER_GRAPHS["A2_LOW_CONTROL"]["path"]
+        _write_json(a2_low_path, {
+            "nodes": {
+                "A2_2::REFINED::a2_axis_0_first_principle::demo": {
+                    "node_type": "REFINED_CONCEPT",
+                    "description": "Axis 0 bridge candidate",
+                }
+            },
+            "edges": [],
+        })
+
+        qit_path = tmp_path / LAYER_GRAPHS["QIT_ENGINE"]["path"]
+        _write_json(qit_path, {
+            "nodes": {
+                "qit_hash_axis0": {
+                    "public_id": "qit::AXIS::axis_0",
+                    "node_type": "AXIS",
+                }
+            },
+            "edges": [],
+            "public_id_index": {
+                "qit::AXIS::axis_0": "qit_hash_axis0",
+            },
+        })
+
+        _write_json(tmp_path / "system_v4/a2_state/graphs/system_graph_a2_refinery.json", {
+            "nodes": {
+                "A2_2::REFINED::a2_axis_0_first_principle::demo": {
+                    "node_type": "REFINED_CONCEPT",
+                }
+            },
+            "edges": [],
+        })
+
+        _write_json(tmp_path / "system_v4/a2_state/graphs/qit_cross_layer_registry_v1.json", {
+            "bridges": [
+                {
+                    "bridge_id": "demo_axis0_bridge",
+                    "status": "ADMITTED",
+                    "source_id": "A2_2::REFINED::a2_axis_0_first_principle::demo",
+                    "target_public_id": "qit::AXIS::axis_0",
+                    "relation": "QIT_AXIS_BRIDGE",
+                    "bridge_via": "manual_registry",
+                    "scope": "exact_admitted_mapping",
+                    "rationale": "Axis-0 first-principle concept is explicitly admitted as the bridge anchor.",
+                }
+            ]
+        })
+
+        cross_edges = _find_cross_layer_edges(tmp_path)
+        assert len(cross_edges) == 1
+        edge = cross_edges[0]
+        assert edge["relation"] == "QIT_AXIS_BRIDGE"
+        assert edge["source_layer"] == "A2_LOW_CONTROL"
+        assert edge["target_layer"] == "QIT_ENGINE"
+        assert edge["resolved_target_id"] == "qit_hash_axis0"
+        assert edge["discovery_mode"] == "explicit_bridge_registry"
 
 
 # ── Hypothesis domain invariants ──

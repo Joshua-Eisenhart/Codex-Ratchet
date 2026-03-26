@@ -1,0 +1,647 @@
+#!/usr/bin/env python3
+"""
+qit_graph_stack_runtime.py
+
+Verify the current QIT graph stack as a gradual-integration surface.
+
+Default behavior is read-only with respect to the owner graph:
+1. Validate the owner-layer Pydantic schemas.
+2. Load the existing QIT owner graph snapshot from disk.
+3. Optionally refresh owner/GraphML artifacts only when explicitly requested.
+4. Run the current bounded sidecars (TopoNetX, clifford payload mapping, PyG)
+   over the loaded owner snapshot and write one consolidated status report.
+"""
+
+from __future__ import annotations
+
+import argparse
+import hashlib
+import importlib.util
+import json
+import os
+import subprocess
+import time
+from pathlib import Path
+from typing import Any
+
+import networkx as nx
+
+from graph_tool_integration import (
+    build_ga_edge_payloads,
+    build_pyg_tensors,
+    build_toponetx_complex,
+)
+from qit_engine_graph_builder import OUT_FILE as QIT_GRAPH_JSON
+from qit_engine_graph_builder import write_qit_engine_graph
+from qit_owner_schemas import (
+    BoundaryEnum,
+    CANONICAL_ENGINE_TYPES,
+    CANONICAL_OPERATORS,
+    CANONICAL_TORI,
+    EngineTypeEnum,
+    LoopEnum,
+    MacroStage,
+    ModeEnum,
+)
+
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+AUDIT_DIR = REPO_ROOT / "system_v4" / "a2_state" / "audit_logs"
+GRAPH_DIR = REPO_ROOT / "system_v4" / "a2_state" / "graphs"
+REPORT_JSON = AUDIT_DIR / "QIT_GRAPH_STACK_STATUS__CURRENT__v1.json"
+REPORT_MD = AUDIT_DIR / "QIT_GRAPH_STACK_STATUS__CURRENT__v1.md"
+GRAPHML_PATH = GRAPH_DIR / "qit_engine_graph_v1.graphml"
+NESTED_GRAPH_PATH = GRAPH_DIR / "nested_graph_v1.json"
+RUNTIME_STATE_PATH = GRAPH_DIR / "qit_runtime_state_v1.json"
+HISTORY_GRAPH_PATH = GRAPH_DIR / "qit_history_graph_v1.json"
+LIGHTRAG_WORK_DIR = REPO_ROOT / "work" / "lightrag_smoke"
+LIGHTRAG_RESULT_PATH = LIGHTRAG_WORK_DIR / "smoke_test_result.json"
+LIGHTRAG_MANIFEST_PATH = LIGHTRAG_WORK_DIR / "corpus_manifest.json"
+PREFERRED_INTERPRETER = REPO_ROOT / ".venv_spec_graph" / "bin" / "python"
+RUNTIME_PACKET_ADAPTER_PATH = REPO_ROOT / "system_v4" / "skills" / "qit_runtime_state_history_adapter.py"
+
+
+def _utc_iso() -> str:
+    return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+
+
+def _write_json(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def _write_text(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+
+
+def _load_json(path: Path) -> dict[str, Any]:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _sha256_bytes(raw: bytes) -> str:
+    return hashlib.sha256(raw).hexdigest()
+
+
+def _sha256_path(path: Path) -> str:
+    return _sha256_bytes(path.read_bytes())
+
+
+def _canonical_sha256(payload: Any) -> str:
+    canon = json.dumps(payload, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return _sha256_bytes(canon)
+
+
+def _git_sha() -> str:
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            cwd=str(REPO_ROOT),
+            text=True,
+        ).strip()
+    except Exception:
+        return "unknown"
+
+
+def _path_sha256_if_exists(raw_path: str | None) -> str | None:
+    if not raw_path:
+        return None
+    path = Path(raw_path)
+    if not path.exists() or not path.is_file():
+        return None
+    return _sha256_path(path)
+
+
+def _module_available(name: str) -> bool:
+    return importlib.util.find_spec(name) is not None
+
+
+def _sidecar_env() -> dict[str, str]:
+    env = os.environ.copy()
+    cache = REPO_ROOT / "work" / "audit_tmp" / "mplcache"
+    cache.mkdir(parents=True, exist_ok=True)
+    env.setdefault("MPLCONFIGDIR", str(cache))
+    env.setdefault("XDG_CACHE_HOME", str(cache))
+    return env
+
+
+def _module_available_in_interpreter(interpreter: Path, name: str) -> bool:
+    if not interpreter.exists():
+        return False
+    result = subprocess.run(
+        [str(interpreter), "-c", f"import {name}"],
+        capture_output=True,
+        text=True,
+        env=_sidecar_env(),
+    )
+    return result.returncode == 0
+
+
+def _graphml_attr(value: Any) -> str | int | float | bool:
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, (int, float)):
+        return value
+    if value is None:
+        return ""
+    if isinstance(value, str):
+        return value
+    return json.dumps(value, sort_keys=True)
+
+
+def _validate_owner_schemas() -> dict[str, Any]:
+    sample_stage = MacroStage(
+        terrain="Se_f",
+        engine_type=EngineTypeEnum.DEDUCTIVE,
+        stage_index=0,
+        loop=LoopEnum.FIBER,
+        mode=ModeEnum.EXPAND,
+        boundary=BoundaryEnum.OPEN,
+    )
+    return {
+        "operators": len(CANONICAL_OPERATORS),
+        "tori": len(CANONICAL_TORI),
+        "engine_types": len(CANONICAL_ENGINE_TYPES),
+        "sample_stage": sample_stage.model_dump(),
+    }
+
+
+def _owner_content_hash(payload: dict[str, Any]) -> str:
+    content_for_hash = {
+        key: value for key, value in payload.items() if key not in {"generated_utc", "content_hash"}
+    }
+    return _canonical_sha256(content_for_hash)
+
+
+def _load_owner_snapshot(refresh_owner: bool) -> tuple[dict[str, Any], dict[str, dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
+    action = "read_existing_snapshot"
+    if refresh_owner:
+        write_qit_engine_graph()
+        action = "rebuilt_owner_snapshot"
+    elif not QIT_GRAPH_JSON.exists():
+        raise FileNotFoundError(
+            f"QIT owner graph snapshot not found at {QIT_GRAPH_JSON}. "
+            "Run with --refresh-owner to create it explicitly."
+        )
+
+    payload = _load_json(QIT_GRAPH_JSON)
+    nodes = payload.get("nodes", {})
+    edges = payload.get("edges", [])
+    embedded_content_hash = payload.get("content_hash")
+    recomputed_content_hash = _owner_content_hash(payload)
+    summary = payload.get("summary", {}) if isinstance(payload.get("summary", {}), dict) else {}
+
+    snapshot = {
+        "path": str(QIT_GRAPH_JSON),
+        "action": action,
+        "exists": True,
+        "file_sha256": _sha256_path(QIT_GRAPH_JSON),
+        "size_bytes": QIT_GRAPH_JSON.stat().st_size,
+        "schema": payload.get("schema"),
+        "generated_utc": payload.get("generated_utc"),
+        "embedded_content_hash": embedded_content_hash,
+        "recomputed_content_hash": recomputed_content_hash,
+        "embedded_content_hash_matches_recomputed": (
+            embedded_content_hash == recomputed_content_hash if embedded_content_hash else None
+        ),
+        "summary_node_count": summary.get("node_count"),
+        "summary_edge_count": summary.get("edge_count"),
+        "summary_validation_errors": summary.get("validation_errors", []),
+    }
+    return payload, nodes, edges, snapshot
+
+
+def _export_graphml(nodes: dict[str, dict[str, Any]], edges: list[dict[str, Any]]) -> dict[str, Any]:
+    graph = nx.MultiDiGraph()
+
+    for node_id, node in nodes.items():
+        attrs = {key: _graphml_attr(value) for key, value in node.items()}
+        graph.add_node(node_id, **attrs)
+
+    for idx, edge in enumerate(edges):
+        attrs = {
+            "relation": _graphml_attr(edge.get("relation", "")),
+            "edge_index": idx,
+            "attributes_json": json.dumps(edge.get("attributes", {}) or {}, sort_keys=True),
+        }
+        raw_attrs = edge.get("attributes", {}) or {}
+        for key, value in raw_attrs.items():
+            attrs[f"attr_{key}"] = _graphml_attr(value)
+        graph.add_edge(edge["source_id"], edge["target_id"], key=idx, **attrs)
+
+    GRAPH_DIR.mkdir(parents=True, exist_ok=True)
+    nx.write_graphml(graph, GRAPHML_PATH)
+    return {
+        "path": str(GRAPHML_PATH),
+        "node_count": graph.number_of_nodes(),
+        "edge_count": graph.number_of_edges(),
+    }
+
+
+def _graphml_snapshot(
+    nodes: dict[str, dict[str, Any]],
+    edges: list[dict[str, Any]],
+    refresh_graphml: bool,
+) -> dict[str, Any]:
+    if refresh_graphml:
+        exported = _export_graphml(nodes, edges)
+        sha256 = _sha256_path(GRAPHML_PATH)
+        size_bytes = GRAPHML_PATH.stat().st_size
+        return {
+            **exported,
+            "exists": True,
+            "action": "refreshed_from_owner_snapshot",
+            "file_sha256": sha256,
+            "size_bytes": size_bytes,
+            "parse_error": None,
+            "matches_owner_counts": (
+                exported["node_count"] == len(nodes) and exported["edge_count"] == len(edges)
+            ),
+        }
+
+    if not GRAPHML_PATH.exists():
+        return {
+            "path": str(GRAPHML_PATH),
+            "exists": False,
+            "action": "not_present_not_refreshed",
+            "file_sha256": None,
+            "size_bytes": None,
+            "node_count": None,
+            "edge_count": None,
+            "parse_error": None,
+            "matches_owner_counts": None,
+        }
+
+    try:
+        graph = nx.read_graphml(GRAPHML_PATH)
+        node_count = graph.number_of_nodes()
+        edge_count = graph.number_of_edges()
+        parse_error = None
+    except Exception as exc:
+        node_count = None
+        edge_count = None
+        parse_error = str(exc)
+
+    return {
+        "path": str(GRAPHML_PATH),
+        "exists": True,
+        "action": "read_existing_snapshot",
+        "file_sha256": _sha256_path(GRAPHML_PATH),
+        "size_bytes": GRAPHML_PATH.stat().st_size,
+        "node_count": node_count,
+        "edge_count": edge_count,
+        "parse_error": parse_error,
+        "matches_owner_counts": (
+            node_count == len(nodes) and edge_count == len(edges)
+            if parse_error is None
+            else None
+        ),
+    }
+
+
+def _clifford_projection_summary(
+    nodes: dict[str, dict[str, Any]],
+    edges: list[dict[str, Any]],
+) -> dict[str, Any]:
+    enriched = build_ga_edge_payloads(edges, nodes)
+    grade_counts: dict[int, int] = {}
+    relation_counts: dict[str, int] = {}
+    preview: list[dict[str, Any]] = []
+
+    for item in enriched:
+        payload = item.get("ga_payload", {})
+        grade = int(payload.get("grade", 0))
+        relation = str(payload.get("relation", "?"))
+        grade_counts[grade] = grade_counts.get(grade, 0) + 1
+        relation_counts[relation] = relation_counts.get(relation, 0) + 1
+        if len(preview) < 5:
+            preview.append(
+                {
+                    "relation": relation,
+                    "grade": grade,
+                    "coefficients": payload.get("coefficients", []),
+                }
+            )
+
+    return {
+        "package_available_current_interpreter": _module_available("clifford"),
+        "package_importable_preferred_interpreter": _module_available_in_interpreter(PREFERRED_INTERPRETER, "clifford"),
+        "kingdon_available_current_interpreter": _module_available("kingdon"),
+        "kingdon_importable_preferred_interpreter": _module_available_in_interpreter(PREFERRED_INTERPRETER, "kingdon"),
+        "edges_enriched": len(enriched),
+        "grade_counts": grade_counts,
+        "relation_counts": relation_counts,
+        "preview": preview,
+    }
+
+
+def _promotion_gate_status(owner_payload: dict[str, Any]) -> dict[str, Any]:
+    nodes = owner_payload.get("nodes", {}) if isinstance(owner_payload.get("nodes"), dict) else {}
+    required_owner_fields = [
+        "owner_layer",
+        "materialized",
+        "build_status",
+        "derived_from",
+        "selection_contract",
+        "content_hash",
+        "public_id_index",
+    ]
+    owner_contract_ok = all(field in owner_payload for field in required_owner_fields)
+    public_ids_ok = bool(nodes) and all("public_id" in node for node in nodes.values())
+    subcycle_steps = sum(1 for node in nodes.values() if node.get("node_type") == "SUBCYCLE_STEP")
+
+    qit_nested_cross = 0
+    if NESTED_GRAPH_PATH.exists():
+        nested_graph = _load_json(NESTED_GRAPH_PATH)
+        qit_nested_cross = sum(
+            int(v)
+            for k, v in (nested_graph.get("inter_layer_edges", {}) or {}).get("by_layer_pair", {}).items()
+            if "QIT" in k
+        )
+
+    return {
+        "owner_structure_gate": {
+            "status": "PRECHECK_OK" if owner_contract_ok and public_ids_ok and subcycle_steps == 64 else "PRECHECK_MISSING",
+            "full_promotion_gate_passed": False,
+            "verification_level": "owner_snapshot_structure_only",
+            "required_owner_fields_present": owner_contract_ok,
+            "public_ids_present_on_all_nodes": public_ids_ok,
+            "subcycle_step_count": subcycle_steps,
+            "required_subcycle_step_count": 64,
+        },
+        "cross_layer_alignment_gate": {
+            "status": "PRECHECK_OK" if qit_nested_cross > 0 else "PRECHECK_MISSING",
+            "full_promotion_gate_passed": False,
+            "verification_level": "bridge_presence_only",
+            "qit_nested_cross_layer_edges": qit_nested_cross,
+        },
+        "runtime_state_gate": {
+            "status": "PRECHECK_OK" if RUNTIME_STATE_PATH.exists() else "PRECHECK_MISSING",
+            "full_promotion_gate_passed": False,
+            "verification_level": "file_presence_only",
+            "runtime_state_path": str(RUNTIME_STATE_PATH),
+            "packet_only_adapter_available": RUNTIME_PACKET_ADAPTER_PATH.exists(),
+            "packet_only_adapter_path": str(RUNTIME_PACKET_ADAPTER_PATH),
+        },
+        "history_graph_gate": {
+            "status": "PRECHECK_OK" if HISTORY_GRAPH_PATH.exists() else "PRECHECK_MISSING",
+            "full_promotion_gate_passed": False,
+            "verification_level": "file_presence_only",
+            "history_graph_path": str(HISTORY_GRAPH_PATH),
+            "packet_only_adapter_available": RUNTIME_PACKET_ADAPTER_PATH.exists(),
+            "packet_only_adapter_path": str(RUNTIME_PACKET_ADAPTER_PATH),
+        },
+    }
+
+
+def _lightrag_status() -> dict[str, Any]:
+    if LIGHTRAG_RESULT_PATH.exists():
+        result = _load_json(LIGHTRAG_RESULT_PATH)
+        manifest_exists = LIGHTRAG_MANIFEST_PATH.exists()
+        init_success = bool(result.get("init_success"))
+        if manifest_exists and init_success:
+            status = "sidecar_corpus_ready"
+        elif manifest_exists and not init_success:
+            status = "corpus_manifest_ready_init_failed"
+        else:
+            status = "smoke_ran_manifest_missing"
+        return {
+            "status": status,
+            "working_dir": str(LIGHTRAG_WORK_DIR),
+            "smoke_result_path": str(LIGHTRAG_RESULT_PATH),
+            "corpus_manifest_path": str(LIGHTRAG_MANIFEST_PATH),
+            "documents_built": result.get("documents_built"),
+            "total_corpus_chars": result.get("total_corpus_chars"),
+            "init_success": init_success,
+            "init_error": result.get("init_error"),
+        }
+    return {
+        "status": "registered_not_integrated",
+        "working_dir": str(LIGHTRAG_WORK_DIR),
+        "smoke_result_path": str(LIGHTRAG_RESULT_PATH),
+        "corpus_manifest_path": str(LIGHTRAG_MANIFEST_PATH),
+    }
+
+
+def _render_markdown(report: dict[str, Any]) -> str:
+    owner = report["owner"]
+    sidecars = report["sidecars"]
+    snapshot = report["snapshot"]
+    scope = report["verification_scope"]
+    next_actions = "\n".join(f"- {item}" for item in report["next_actions"])
+    verifies = "\n".join(f"- {item}" for item in scope["verifies"])
+    does_not_verify = "\n".join(f"- {item}" for item in scope["does_not_verify"])
+    gate_lines = "\n".join(
+        f"- {gate}: `{details['status']}`"
+        for gate, details in report["promotion_gates"].items()
+    )
+    return "\n".join(
+        [
+            "# QIT Graph Stack Status",
+            "",
+            f"- status: `{report['status']}`",
+            f"- generated_utc: `{report['generated_utc']}`",
+            f"- purpose: `{report['purpose']}`",
+            f"- snapshot_id: `{snapshot['snapshot_id']}`",
+            f"- git_sha: `{report['provenance']['git_sha']}`",
+            f"- owner_builder_sha256: `{report['provenance']['owner_builder_sha256']}`",
+            "",
+            "## Owner Layer",
+            f"- qit_graph_json: `{owner['qit_graph_json']}`",
+            f"- qit_graph_action: `{owner['qit_graph_action']}`",
+            f"- qit_graph_sha256: `{owner['qit_graph_sha256']}`",
+            f"- qit_graph_content_hash: `{owner['qit_graph_content_hash']}`",
+            f"- qit_graph_content_hash_matches_recomputed: `{owner['qit_graph_content_hash_matches_recomputed']}`",
+            f"- graphml_export: `{owner['graphml_export']['path']}`",
+            f"- graphml_action: `{owner['graphml_export']['action']}`",
+            f"- graphml_sha256: `{owner['graphml_export']['file_sha256']}`",
+            f"- node_count: `{owner['node_count']}`",
+            f"- edge_count: `{owner['edge_count']}`",
+            f"- live_node_types: `{', '.join(owner['live_node_types'])}`",
+            f"- schema_ready_not_instantiated: `{', '.join(owner['schema_ready_not_instantiated'])}`",
+            "",
+            "## Verification Scope",
+            f"- mutates_owner_truth: `{scope['mutates_owner_truth']}`",
+            f"- mutates_graphml_sidecar: `{scope['mutates_graphml_sidecar']}`",
+            "- verifies:",
+            verifies,
+            "- does_not_verify:",
+            does_not_verify,
+            "",
+            "## Promotion Gates",
+            "- gate_status_meaning: `PRECHECK_OK/PRECHECK_MISSING are coarse readiness checks only, not full promotion completion`",
+            gate_lines,
+            "",
+            "## Sidecars",
+            f"- preferred sidecar interpreter: `{sidecars['preferred_sidecar_interpreter']['path']}`",
+            f"- preferred sidecar interpreter exists: `{sidecars['preferred_sidecar_interpreter']['exists']}`",
+            f"- TopoNetX available (current interpreter): `{sidecars['toponetx']['available_current_interpreter']}`",
+            f"- TopoNetX importable (preferred interpreter): `{sidecars['toponetx']['importable_preferred_interpreter']}`",
+            f"- TopoNetX shape: `{sidecars['toponetx'].get('shape', [])}`",
+            f"- clifford available (current interpreter): `{sidecars['clifford']['package_available_current_interpreter']}`",
+            f"- clifford importable (preferred interpreter): `{sidecars['clifford']['package_importable_preferred_interpreter']}`",
+            f"- kingdon available (current interpreter): `{sidecars['clifford']['kingdon_available_current_interpreter']}`",
+            f"- kingdon importable (preferred interpreter): `{sidecars['clifford']['kingdon_importable_preferred_interpreter']}`",
+            f"- PyG available (current interpreter): `{sidecars['pyg']['available_current_interpreter']}`",
+            f"- PyG importable (preferred interpreter): `{sidecars['pyg']['importable_preferred_interpreter']}`",
+            f"- LightRAG status: `{sidecars['lightrag']['status']}`",
+            "",
+            "## Next Actions",
+            next_actions,
+            "",
+        ]
+    )
+
+
+def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: bool = False) -> dict[str, Any]:
+    schema_status = _validate_owner_schemas()
+    graph_payload, nodes, edges, owner_snapshot = _load_owner_snapshot(refresh_owner=refresh_owner)
+
+    graphml = _graphml_snapshot(nodes, edges, refresh_graphml=refresh_graphml)
+    toponetx = build_toponetx_complex(nodes, edges)
+    clifford = _clifford_projection_summary(nodes, edges)
+    pyg = build_pyg_tensors(nodes, edges)
+    preferred_interpreter_exists = PREFERRED_INTERPRETER.exists()
+
+    live_node_types = sorted({node.get("node_type", "?") for node in nodes.values()})
+    schema_ready_not_instantiated = sorted({"WEYL_BRANCH"} - set(live_node_types))
+    promotion_gates = _promotion_gate_status(graph_payload)
+    git_sha = _git_sha()
+    derived_from = graph_payload.get("derived_from", {}) if isinstance(graph_payload.get("derived_from"), dict) else {}
+    owner_builder_path = derived_from.get("builder_program")
+    owner_schema_path = derived_from.get("owner_schemas")
+    snapshot_inputs = {
+        "git_sha": git_sha,
+        "owner_file_sha256": owner_snapshot["file_sha256"],
+        "owner_content_hash": owner_snapshot["embedded_content_hash"],
+        "graphml_file_sha256": graphml["file_sha256"],
+        "graphml_exists": graphml["exists"],
+        "owner_builder_sha256": _path_sha256_if_exists(owner_builder_path),
+    }
+    snapshot_id = _canonical_sha256(snapshot_inputs)
+    gate_statuses = [details["status"] for details in promotion_gates.values()]
+    overall_status = (
+        "precheck_ready_not_promoted"
+        if gate_statuses and all(status == "PRECHECK_OK" for status in gate_statuses)
+        else "precheck_blocked"
+    )
+
+    report = {
+        "schema": "QIT_GRAPH_STACK_STATUS_v1",
+        "status": overall_status,
+        "generated_utc": _utc_iso(),
+        "purpose": "read-only-by-default verification surface over the current QIT owner snapshot and bounded sidecars",
+        "provenance": {
+            "git_sha": git_sha,
+            "script_path": str(Path(__file__).resolve()),
+            "script_sha256": _sha256_path(Path(__file__).resolve()),
+            "owner_builder_path": owner_builder_path,
+            "owner_builder_sha256": _path_sha256_if_exists(owner_builder_path),
+            "owner_schema_path": owner_schema_path,
+            "owner_schema_sha256": _path_sha256_if_exists(owner_schema_path),
+        },
+        "snapshot": {
+            "snapshot_id": snapshot_id,
+            **snapshot_inputs,
+        },
+        "verification_scope": {
+            "mutates_owner_truth": refresh_owner,
+            "mutates_graphml_sidecar": refresh_graphml,
+            "verifies": [
+                "owner snapshot file presence, schema tag, counts, and file hash",
+                "embedded owner content_hash against a recomputed canonical hash",
+                "existing GraphML snapshot hash and parseability when present, or explicit missing status when absent",
+                "sidecar availability and projection summaries over the loaded owner snapshot",
+                "coarse promotion-gate state for owner structure, cross-layer alignment, runtime state, and history graph presence",
+            ],
+            "does_not_verify": [
+                "that the owner graph matches docs or runtime semantics beyond the stored snapshot",
+                "that the existing GraphML snapshot is fresh unless it was explicitly refreshed in this run",
+                "that sidecar outputs are promotion-ready owner truth",
+                "that any blocked promotion gate should be auto-promoted or auto-repaired",
+                "that a PRECHECK_OK promotion gate satisfies the negative-proof, round-trip, no-sidecar-read, or human-audit requirements from the promotion-gates doc",
+            ],
+        },
+        "owner": {
+            "qit_graph_json": str(QIT_GRAPH_JSON),
+            "qit_graph_action": owner_snapshot["action"],
+            "qit_graph_sha256": owner_snapshot["file_sha256"],
+            "qit_graph_size_bytes": owner_snapshot["size_bytes"],
+            "qit_graph_schema": owner_snapshot["schema"],
+            "qit_graph_generated_utc": owner_snapshot["generated_utc"],
+            "qit_graph_content_hash": owner_snapshot["embedded_content_hash"],
+            "qit_graph_content_hash_recomputed": owner_snapshot["recomputed_content_hash"],
+            "qit_graph_content_hash_matches_recomputed": owner_snapshot["embedded_content_hash_matches_recomputed"],
+            "graphml_export": graphml,
+            "node_count": len(nodes),
+            "edge_count": len(edges),
+            "live_node_types": live_node_types,
+            "schema_ready_not_instantiated": schema_ready_not_instantiated,
+            "schema_validation": schema_status,
+            "owner_summary_validation_errors": owner_snapshot["summary_validation_errors"],
+        },
+        "sidecars": {
+            "preferred_sidecar_interpreter": {
+                "path": str(PREFERRED_INTERPRETER),
+                "exists": preferred_interpreter_exists,
+            },
+            "toponetx": {
+                **toponetx,
+                "available_current_interpreter": bool(toponetx.get("available", False)),
+                "importable_preferred_interpreter": _module_available_in_interpreter(PREFERRED_INTERPRETER, "toponetx"),
+            },
+            "clifford": clifford,
+            "pyg": {
+                **pyg,
+                "available_current_interpreter": bool(pyg.get("available", False)),
+                "importable_preferred_interpreter": _module_available_in_interpreter(PREFERRED_INTERPRETER, "torch_geometric"),
+            },
+            "lightrag": {
+                **_lightrag_status(),
+                "role": "read-only retrieval sidecar over internal graph/docs/evidence corpus; not owner memory",
+            },
+        },
+        "promotion_gates": promotion_gates,
+        "next_actions": [
+            "keep owner verification read-only by default and use refresh flags only for intentional artifact regeneration",
+            "treat snapshot_id plus file hashes as the join key for future audit/report surfaces",
+            "admit explicit QIT bridge links through the registry before claiming nested-graph integration beyond summary-level presence",
+            "materialize runtime-state and history graph surfaces before promoting QIT runtime semantics inward",
+            "complete a bounded embedding-backed query path over the existing LightRAG sidecar corpus, not as owner memory",
+            "promote torus/chirality/runtime semantics only after negative-proof and round-trip gates are satisfied",
+        ],
+    }
+    return report
+
+
+def _parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Verify the QIT graph stack without mutating owner truth by default.")
+    parser.add_argument(
+        "--refresh-owner",
+        action="store_true",
+        help="Explicitly rebuild the owner QIT JSON snapshot before verification.",
+    )
+    parser.add_argument(
+        "--refresh-graphml",
+        action="store_true",
+        help="Explicitly rewrite the GraphML sidecar from the loaded owner snapshot before verification.",
+    )
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = _parse_args()
+    report = build_qit_graph_stack_status(
+        refresh_owner=args.refresh_owner,
+        refresh_graphml=args.refresh_graphml,
+    )
+    _write_json(REPORT_JSON, report)
+    _write_text(REPORT_MD, _render_markdown(report))
+    print("QIT graph stack status written:")
+    print(f"  JSON: {REPORT_JSON}")
+    print(f"  MD:   {REPORT_MD}")
+    print(f"  GraphML: {GRAPHML_PATH} ({report['owner']['graphml_export']['action']})")
+
+
+if __name__ == "__main__":
+    main()

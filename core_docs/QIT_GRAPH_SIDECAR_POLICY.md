@@ -28,7 +28,7 @@
 | Modify owner-graph attributes | ❌ Prohibited |
 | Claim retrieval results as proven facts | ❌ Prohibited |
 
-**Current status**: Not yet integrated. Registered in `SKILL_SOURCE_CORPUS.md`.
+**Current status**: Bounded corpus-build slice is landed under `work/lightrag_smoke/`; actual indexing/query remains blocked until a local embedding configuration is provided.
 
 ### TopoNetX — Topology Sidecar
 

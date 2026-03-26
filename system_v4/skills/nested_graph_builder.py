@@ -71,6 +71,7 @@ ACCUMULATION_GRAPH = "system_v4/a2_state/graphs/system_graph_a2_refinery.json"
 NESTED_GRAPH_OUT = "system_v4/a2_state/graphs/nested_graph_v1.json"
 REPORT_JSON = "system_v4/a2_state/audit_logs/NESTED_GRAPH_BUILD_REPORT__v1.json"
 REPORT_MD = "system_v4/a2_state/audit_logs/NESTED_GRAPH_BUILD_REPORT__v1.md"
+QIT_BRIDGE_REGISTRY = "system_v4/a2_state/graphs/qit_cross_layer_registry_v1.json"
 
 # Cross-layer edge relations that connect layers
 CROSS_LAYER_RELATIONS = {
@@ -84,6 +85,9 @@ CROSS_LAYER_RELATIONS = {
     "AXIS_GOVERNS",      # AXIS → ENGINE (physics layer)
     "NEGATIVE_PROVES",   # NEG_WITNESS → structure (physics layer)
     "OPERATOR_ACTS_ON",  # OPERATOR → MACRO_STAGE (physics layer)
+    "QIT_AXIS_BRIDGE",   # explicit admitted system ↔ QIT axis link
+    "QIT_ENGINE_FAMILY_BRIDGE",
+    "QIT_OPERATOR_FAMILY_BRIDGE",
 }
 
 PREFERRED_INTERPRETER = ".venv_spec_graph/bin/python"
@@ -149,54 +153,334 @@ def _build_layer_summary(root: Path, layer_id: str, layer_cfg: dict) -> dict[str
     }
 
 
+def _node_layer_from_type(node: dict[str, Any]) -> str | None:
+    """Best-effort layer classification for accumulation-only node types."""
+    ntype = node.get("node_type", "")
+    if ntype == "SKILL":
+        return "SKILLS"
+    if ntype in ("B_OUTCOME", "B_SURVIVOR", "B_PARKED"):
+        return "B_LAYER"
+    if ntype in ("SIM_EVIDENCED", "SIM_KILL"):
+        return "SIM_LAYER"
+    if ntype == "GRAVEYARD_RECORD":
+        return "GRAVEYARD"
+    if ntype == "TERM_ADMITTED":
+        return "TERM_LAYER"
+    return None
+
+
+def _build_layer_indexes(root: Path) -> dict[str, dict[str, str]]:
+    """Collect exact node-id and public-id bindings for all configured layers."""
+    node_to_layer: dict[str, str] = {}
+    public_id_to_layer: dict[str, str] = {}
+    public_id_to_node_id: dict[str, str] = {}
+
+    for layer_id, cfg in LAYER_GRAPHS.items():
+        layer_data = _load_json(root / cfg["path"])
+        layer_nodes = layer_data.get("nodes", {}) if isinstance(layer_data, dict) else {}
+        if not isinstance(layer_nodes, dict):
+            layer_nodes = {}
+
+        public_id_index = layer_data.get("public_id_index", {}) if isinstance(layer_data, dict) else {}
+        if not isinstance(public_id_index, dict):
+            public_id_index = {}
+
+        for nid, node in layer_nodes.items():
+            node_to_layer[nid] = layer_id
+            if isinstance(node, dict):
+                public_id = node.get("public_id", "")
+                if isinstance(public_id, str) and public_id:
+                    public_id_to_layer[public_id] = layer_id
+                    public_id_to_node_id[public_id] = nid
+
+        for public_id, nid in public_id_index.items():
+            if not isinstance(public_id, str) or not public_id:
+                continue
+            if not isinstance(nid, str) or not nid:
+                continue
+            public_id_to_layer[public_id] = layer_id
+            public_id_to_node_id[public_id] = nid
+
+    return {
+        "node_to_layer": node_to_layer,
+        "public_id_to_layer": public_id_to_layer,
+        "public_id_to_node_id": public_id_to_node_id,
+    }
+
+
+def _resolve_layer_binding(
+    ref: str,
+    layer_indexes: dict[str, dict[str, str]],
+) -> dict[str, str] | None:
+    """Resolve an exact layer node id or a layer public_id."""
+    if not isinstance(ref, str) or not ref:
+        return None
+
+    node_to_layer = layer_indexes["node_to_layer"]
+    if ref in node_to_layer:
+        return {
+            "node_id": ref,
+            "layer": node_to_layer[ref],
+            "resolved_via": "node_id",
+        }
+
+    public_id_to_node_id = layer_indexes["public_id_to_node_id"]
+    public_id_to_layer = layer_indexes["public_id_to_layer"]
+    if ref in public_id_to_node_id:
+        return {
+            "node_id": public_id_to_node_id[ref],
+            "layer": public_id_to_layer[ref],
+            "public_id": ref,
+            "resolved_via": "public_id",
+        }
+
+    return None
+
+
+def _resolve_edge_endpoint(
+    edge: dict[str, Any],
+    endpoint: str,
+    layer_indexes: dict[str, dict[str, str]],
+) -> dict[str, str] | None:
+    """Resolve edge endpoints using exact ids first, then public ids."""
+    endpoint_id_key = f"{endpoint}_id"
+    direct = _resolve_layer_binding(edge.get(endpoint_id_key, ""), layer_indexes)
+    if direct:
+        return direct
+
+    public_keys = [
+        f"{endpoint}_public_id",
+        f"{endpoint}_canonical_concept_id",
+    ]
+    attrs = edge.get("attributes", {}) or {}
+    if isinstance(attrs, dict):
+        public_keys.extend([
+            f"{endpoint}_public_id",
+            f"{endpoint}_canonical_concept_id",
+        ])
+
+    for key in public_keys:
+        if key in edge:
+            resolved = _resolve_layer_binding(edge.get(key, ""), layer_indexes)
+            if resolved:
+                return resolved
+        if isinstance(attrs, dict) and key in attrs:
+            resolved = _resolve_layer_binding(attrs.get(key, ""), layer_indexes)
+            if resolved:
+                return resolved
+
+    return None
+
+
+def _iter_strong_node_bridges(
+    node_id: str,
+    node: dict[str, Any],
+    layer_indexes: dict[str, dict[str, str]],
+) -> list[dict[str, Any]]:
+    """Extract conservative bridge targets from repo-approved strong fields only."""
+    props = node.get("properties", {}) or {}
+    bridges: list[dict[str, Any]] = []
+
+    def add_bridge(ref: Any, field: str, via: str | None = None) -> None:
+        resolved = _resolve_layer_binding(ref if isinstance(ref, str) else "", layer_indexes)
+        if not resolved:
+            return
+        relation = {
+            "canonical_concept_id": "CANONICAL_CONCEPT_BRIDGE",
+            "source_concept_id": "SOURCE_CONCEPT_ID_BRIDGE",
+        }.get(field, "STRONG_IDENTITY_BRIDGE")
+        bridges.append({
+            "source_id": node_id,
+            "target_id": resolved["node_id"],
+            "target_layer": resolved["layer"],
+            "target_public_id": resolved.get("public_id", ""),
+            "target_resolved_via": resolved["resolved_via"],
+            "bridge_field": field,
+            "bridge_via": via or field,
+            "relation": relation,
+        })
+
+    for field in ("canonical_concept_id", "source_concept_id"):
+        value = node.get(field)
+        if not value:
+            value = props.get(field)
+        add_bridge(value, field)
+
+    carrier_layer = node.get("carrier_layer") or props.get("carrier_layer")
+    carrier_id = node.get("carrier_id") or props.get("carrier_id")
+    if isinstance(carrier_layer, str) and carrier_layer and isinstance(carrier_id, str) and carrier_id:
+        resolved = _resolve_layer_binding(carrier_id, layer_indexes)
+        if resolved and resolved["layer"] == carrier_layer:
+            bridges.append({
+                "source_id": node_id,
+                "target_id": resolved["node_id"],
+                "target_layer": resolved["layer"],
+                "target_public_id": resolved.get("public_id", ""),
+                "target_resolved_via": resolved["resolved_via"],
+                "bridge_field": "carrier_id",
+                "bridge_via": "carrier_layer+carrier_id",
+                "relation": "CARRIER_BINDING_BRIDGE",
+            })
+
+    return bridges
+
+
+def _iter_registry_bridges(
+    root: Path,
+    nodes: dict[str, Any],
+    layer_indexes: dict[str, dict[str, str]],
+    node_to_layer: dict[str, str],
+) -> list[dict[str, Any]]:
+    """Load explicit admitted QIT bridge records from the registry surface."""
+    registry = _load_json(root / QIT_BRIDGE_REGISTRY)
+    bridge_rows = registry.get("bridges", []) if isinstance(registry, dict) else []
+    if not isinstance(bridge_rows, list):
+        return []
+
+    bridges: list[dict[str, Any]] = []
+    for row in bridge_rows:
+        if not isinstance(row, dict):
+            continue
+        if row.get("status") != "ADMITTED":
+            continue
+
+        source_ref = row.get("source_id") or row.get("source_public_id") or ""
+        target_ref = row.get("target_id") or row.get("target_public_id") or ""
+        relation = str(row.get("relation", "QIT_EXPLICIT_BRIDGE"))
+
+        source_binding = _resolve_layer_binding(source_ref, layer_indexes)
+        target_binding = _resolve_layer_binding(target_ref, layer_indexes)
+        if not target_binding:
+            continue
+
+        source_layer = (
+            source_binding["layer"]
+            if source_binding
+            else node_to_layer.get(source_ref, "UNKNOWN")
+        )
+        if source_layer == "UNKNOWN":
+            source_node = nodes.get(source_ref)
+            if isinstance(source_node, dict):
+                source_layer = _node_layer_from_type(source_node) or "UNKNOWN"
+        if source_layer == "UNKNOWN" or source_layer == target_binding["layer"]:
+            continue
+
+        bridges.append({
+            "source_id": source_binding["node_id"] if source_binding else source_ref,
+            "target_id": target_binding["node_id"],
+            "resolved_source_id": source_binding["node_id"] if source_binding else source_ref,
+            "resolved_target_id": target_binding["node_id"],
+            "source_layer": source_layer,
+            "target_layer": target_binding["layer"],
+            "relation": relation,
+            "attributes": {
+                "registry_bridge_id": row.get("bridge_id", ""),
+                "bridge_via": row.get("bridge_via", "explicit_registry"),
+                "scope": row.get("scope", ""),
+                "rationale": row.get("rationale", ""),
+                "derived": True,
+            },
+            "source_resolved_via": source_binding["resolved_via"] if source_binding else "node_id",
+            "target_resolved_via": target_binding["resolved_via"],
+            "discovery_mode": "explicit_bridge_registry",
+        })
+
+    return bridges
+
+
 def _find_cross_layer_edges(root: Path) -> list[dict[str, Any]]:
     """Find edges in the accumulation graph that connect nodes across layers."""
     accum = _load_json(root / ACCUMULATION_GRAPH)
     nodes = accum.get("nodes", {}) if isinstance(accum, dict) else {}
     edges = accum.get("edges", []) if isinstance(accum, dict) else []
 
-    # Build node-to-layer mapping from the layer graphs
-    node_to_layer: dict[str, str] = {}
-    for layer_id, cfg in LAYER_GRAPHS.items():
-        layer_data = _load_json(root / cfg["path"])
-        layer_nodes = layer_data.get("nodes", {}) if isinstance(layer_data, dict) else {}
-        for nid in layer_nodes:
-            node_to_layer[nid] = layer_id
+    layer_indexes = _build_layer_indexes(root)
+    node_to_layer = dict(layer_indexes["node_to_layer"])
 
     # Also map node types from accumulation graph for nodes not in any layer
     for nid, n in nodes.items():
         if nid not in node_to_layer:
-            ntype = n.get("node_type", "")
-            if ntype == "SKILL":
-                node_to_layer[nid] = "SKILLS"
-            elif ntype in ("B_OUTCOME", "B_SURVIVOR", "B_PARKED"):
-                node_to_layer[nid] = "B_LAYER"
-            elif ntype in ("SIM_EVIDENCED", "SIM_KILL"):
-                node_to_layer[nid] = "SIM_LAYER"
-            elif ntype == "GRAVEYARD_RECORD":
-                node_to_layer[nid] = "GRAVEYARD"
-            elif ntype == "TERM_ADMITTED":
-                node_to_layer[nid] = "TERM_LAYER"
+            layer = _node_layer_from_type(n if isinstance(n, dict) else {})
+            if layer:
+                node_to_layer[nid] = layer
 
     # Find edges that cross layer boundaries
     cross_edges = []
+    seen_edges: set[tuple[str, str, str]] = set()
     for e in edges:
         if not isinstance(e, dict):
             continue
         src = e.get("source_id", "")
         tgt = e.get("target_id", "")
-        src_layer = node_to_layer.get(src, "UNKNOWN")
-        tgt_layer = node_to_layer.get(tgt, "UNKNOWN")
+        src_binding = _resolve_edge_endpoint(e, "source", layer_indexes)
+        tgt_binding = _resolve_edge_endpoint(e, "target", layer_indexes)
+
+        src_layer = src_binding["layer"] if src_binding else node_to_layer.get(src, "UNKNOWN")
+        tgt_layer = tgt_binding["layer"] if tgt_binding else node_to_layer.get(tgt, "UNKNOWN")
 
         if src_layer != tgt_layer and src_layer != "UNKNOWN" and tgt_layer != "UNKNOWN":
+            resolved_src = src_binding["node_id"] if src_binding else src
+            resolved_tgt = tgt_binding["node_id"] if tgt_binding else tgt
+            dedupe_key = (resolved_src, resolved_tgt, str(e.get("relation", "?")))
+            if dedupe_key in seen_edges:
+                continue
+            seen_edges.add(dedupe_key)
             cross_edges.append({
                 "source_id": src,
                 "target_id": tgt,
+                "resolved_source_id": resolved_src,
+                "resolved_target_id": resolved_tgt,
                 "source_layer": src_layer,
                 "target_layer": tgt_layer,
                 "relation": e.get("relation", "?"),
                 "attributes": e.get("attributes", {}),
+                "source_resolved_via": src_binding["resolved_via"] if src_binding else "node_id" if src in layer_indexes["node_to_layer"] else "node_type",
+                "target_resolved_via": tgt_binding["resolved_via"] if tgt_binding else "node_id" if tgt in layer_indexes["node_to_layer"] else "node_type",
+                "discovery_mode": "explicit_edge",
             })
+
+    for nid, node in nodes.items():
+        if not isinstance(node, dict):
+            continue
+        source_layer = node_to_layer.get(nid, "UNKNOWN")
+        if source_layer == "UNKNOWN":
+            continue
+        for bridge in _iter_strong_node_bridges(nid, node, layer_indexes):
+            target_layer = bridge["target_layer"]
+            if target_layer == source_layer:
+                continue
+            dedupe_key = (nid, bridge["target_id"], bridge["relation"])
+            if dedupe_key in seen_edges:
+                continue
+            seen_edges.add(dedupe_key)
+            cross_edges.append({
+                "source_id": nid,
+                "target_id": bridge["target_id"],
+                "resolved_source_id": nid,
+                "resolved_target_id": bridge["target_id"],
+                "source_layer": source_layer,
+                "target_layer": target_layer,
+                "relation": bridge["relation"],
+                "attributes": {
+                    "bridge_field": bridge["bridge_field"],
+                    "bridge_via": bridge["bridge_via"],
+                    "derived": True,
+                },
+                "source_resolved_via": "node_id" if nid in layer_indexes["node_to_layer"] else "node_type",
+                "target_resolved_via": bridge["target_resolved_via"],
+                "discovery_mode": "strong_bridge_field",
+            })
+
+    for bridge in _iter_registry_bridges(root, nodes, layer_indexes, node_to_layer):
+        dedupe_key = (
+            bridge["resolved_source_id"],
+            bridge["resolved_target_id"],
+            bridge["relation"],
+        )
+        if dedupe_key in seen_edges:
+            continue
+        seen_edges.add(dedupe_key)
+        cross_edges.append(bridge)
 
     return cross_edges
 

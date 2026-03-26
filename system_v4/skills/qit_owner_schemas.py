@@ -16,13 +16,15 @@ Schemas:
   - WeylBranch       (left or right spinor state)
   - AxisState        (one of 7 proven axes)
   - NegativeWitness  (graveyard kill proving necessity)
+  - RuntimeStateOverlay   (graph-adjacent mutable snapshot keyed to public ids)
+  - HistoryRunPacket      (append-only step history keyed to public ids)
 """
 
 from __future__ import annotations
 
 from enum import Enum
-from typing import Literal, Optional
-from pydantic import BaseModel, Field
+from typing import ClassVar, Literal, Optional
+from pydantic import BaseModel, Field, model_validator
 
 
 # ── Enums ──
@@ -99,6 +101,28 @@ class MacroStage(BaseModel):
     mode: ModeEnum
     boundary: BoundaryEnum
 
+    _TERRAIN_SPEC: ClassVar[dict[str, tuple[LoopEnum, ModeEnum, BoundaryEnum, int]]] = {
+        "Se_f": (LoopEnum.FIBER, ModeEnum.EXPAND, BoundaryEnum.OPEN, 0),
+        "Si_f": (LoopEnum.FIBER, ModeEnum.COMPRESS, BoundaryEnum.CLOSED, 1),
+        "Ne_f": (LoopEnum.FIBER, ModeEnum.EXPAND, BoundaryEnum.CLOSED, 2),
+        "Ni_f": (LoopEnum.FIBER, ModeEnum.COMPRESS, BoundaryEnum.OPEN, 3),
+        "Se_b": (LoopEnum.BASE, ModeEnum.EXPAND, BoundaryEnum.OPEN, 4),
+        "Si_b": (LoopEnum.BASE, ModeEnum.COMPRESS, BoundaryEnum.CLOSED, 5),
+        "Ne_b": (LoopEnum.BASE, ModeEnum.EXPAND, BoundaryEnum.CLOSED, 6),
+        "Ni_b": (LoopEnum.BASE, ModeEnum.COMPRESS, BoundaryEnum.OPEN, 7),
+    }
+
+    @model_validator(mode="after")
+    def validate_terrain_contract(self) -> "MacroStage":
+        expected = self._TERRAIN_SPEC[self.terrain]
+        if (self.loop, self.mode, self.boundary, self.stage_index) != expected:
+            raise ValueError(
+                "MacroStage fields must match the canonical terrain contract "
+                f"for {self.terrain}: loop={expected[0].value}, mode={expected[1].value}, "
+                f"boundary={expected[2].value}, stage_index={expected[3]}"
+            )
+        return self
+
     class Config:
         frozen = True
 
@@ -115,10 +139,27 @@ class SubcycleOperator(BaseModel):
 class SubcycleStep(BaseModel):
     """A single operator application at a specific macro-stage."""
     operator: OperatorEnum
-    stage_terrain: str
+    stage_terrain: str = Field(..., pattern=r"^[SN][ei]_[fb]$")
     engine_type: EngineTypeEnum
     position_in_subcycle: int = Field(..., ge=0, le=3,
                                       description="0=Ti, 1=Fe, 2=Te, 3=Fi")
+
+    _POSITION_BY_OPERATOR: ClassVar[dict[OperatorEnum, int]] = {
+        OperatorEnum.Ti: 0,
+        OperatorEnum.Fe: 1,
+        OperatorEnum.Te: 2,
+        OperatorEnum.Fi: 3,
+    }
+
+    @model_validator(mode="after")
+    def validate_subcycle_position(self) -> "SubcycleStep":
+        expected = self._POSITION_BY_OPERATOR[self.operator]
+        if self.position_in_subcycle != expected:
+            raise ValueError(
+                "SubcycleStep position_in_subcycle must match the fixed "
+                f"Ti->Fe->Te->Fi order; {self.operator.value} expects {expected}"
+            )
+        return self
 
     class Config:
         frozen = True
@@ -220,6 +261,60 @@ class TopoNetXCellProjection(BaseModel):
         frozen = True
 
 
+class RuntimeStateOverlay(BaseModel):
+    """Minimal mutable runtime snapshot projected onto stable QIT public ids.
+
+    This is graph-adjacent scaffolding, not owner-graph mutation. It provides
+    the smallest honest bridge from EngineState into later state-graph work.
+    """
+    engine_public_id: str
+    active_stage_public_id: str
+    last_completed_step_public_id: Optional[str] = None
+    stage_index_mod8: int = Field(..., ge=0, le=7)
+    engine_type: EngineTypeEnum
+    eta: float
+    theta1: float
+    theta2: float
+    ga0_level: float = Field(..., ge=0.0, le=1.0)
+    history_length: int = Field(..., ge=0)
+
+    class Config:
+        frozen = True
+
+
+class HistoryStepRecord(BaseModel):
+    """One append-only subcycle record keyed to stable QIT public ids."""
+    sequence_index: int = Field(..., ge=0)
+    step_public_id: str
+    stage_public_id: str
+    operator: OperatorEnum
+    engine_type: EngineTypeEnum
+    dphi_L: float
+    dphi_R: float
+    strength: float
+    ga0_before: float
+    ga0_after: float
+
+    class Config:
+        frozen = True
+
+
+class HistoryRunPacket(BaseModel):
+    """Append-only packet for one engine run or probe trace.
+
+    This stays outside the owner graph until explicit history-graph promotion.
+    """
+    run_id: str
+    engine_public_id: str
+    engine_type: EngineTypeEnum
+    total_steps: int = Field(..., ge=0)
+    macro_stages_completed: int = Field(..., ge=0)
+    step_records: list[HistoryStepRecord] = Field(default_factory=list)
+
+    class Config:
+        frozen = True
+
+
 # ── Convenience builders ──
 
 CANONICAL_OPERATORS = [
@@ -267,14 +362,14 @@ if __name__ == "__main__":
 
     # Validate one clifford payload
     payload = CliffordEdgePayload(
-        grade=2, coefficients=[0, 0, 0, 0, 0, 0, 0, 1.0],
+        grade=3, coefficients=[0, 0, 0, 0, 0, 0, 0, 1.0],
         relation="CHIRALITY_COUPLING"
     )
     print(f"  Sample clifford payload: grade={payload.grade}, relation={payload.relation}")
 
     # Validate one TopoNetX projection
     proj = TopoNetXCellProjection(
-        shape=[41, 185, 0],
+        shape=[105, 297, 0],
         stage_cycles=["type1_deductive_8stage_loop", "type2_inductive_8stage_loop"],
         torus_2cells=[],
         stage_diamonds=[]

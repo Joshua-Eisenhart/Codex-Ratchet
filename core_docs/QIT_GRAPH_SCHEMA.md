@@ -11,7 +11,7 @@
 
 - Schema: `QIT_ENGINE_GRAPH_v2`
 - Nodes: `105`
-- Edges: `297`
+- Edges: `282`
 - Live node types: `7`
 - Live relation types: `11`
 - Schema-ready but not instantiated: `WEYL_BRANCH`
@@ -84,9 +84,9 @@ The current owner graph carries:
 | `TORUS_NESTING` | `TORUS → TORUS` | 2 | 2 | `inner → clifford → outer` nesting chain |
 | `CHIRALITY_COUPLING` | `ENGINE → ENGINE` | 1 | 3 | Complementary engine-family coupling |
 | `AXIS_GOVERNS` | `AXIS → ENGINE` | 14 | 1 | Each axis governs both engine families |
-| `NEGATIVE_PROVES` | `NEG_WITNESS → owner node` | 36 | 2 | Negative proof edges from witness nodes to load-bearing structures |
+| `NEGATIVE_PROVES` | `NEG_WITNESS → owner node` | 21 | 2 | Negative proof edges from witness nodes to load-bearing structures |
 
-**Live total:** `297` edges
+**Live total:** `282` edges
 
 > The `Sidecar Cl(3) Grade` column is a bounded sidecar mapping from `graph_tool_integration.py`, not an owner payload stored directly on the live graph edges.
 

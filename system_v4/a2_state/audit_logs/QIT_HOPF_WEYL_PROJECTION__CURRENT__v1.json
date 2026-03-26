@@ -1,0 +1,376 @@
+{
+  "schema": "QIT_HOPF_WEYL_PROJECTION_v1",
+  "generated_utc": "2026-03-26T23:48:51Z",
+  "source": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json",
+  "source_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
+  "sidecar_boundary": {
+    "mode": "bounded_read_only",
+    "do_not_promote": true,
+    "audit_only": true,
+    "nonoperative": true,
+    "reads_from": [
+      "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json"
+    ],
+    "writes_to": [
+      "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json",
+      "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md"
+    ],
+    "never_writes_to": [
+      "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json"
+    ],
+    "purpose": "Project the owner graph's torus/chirality flat edges into higher-order geometric representations. This is context for future promotion decisions, not proof."
+  },
+  "torus_cell_complex": {
+    "available": true,
+    "shape": [
+      16,
+      34,
+      3
+    ],
+    "stage_0cells": [
+      "type1_deductive_Ne_b",
+      "type1_deductive_Ne_f",
+      "type1_deductive_Ni_b",
+      "type1_deductive_Ni_f",
+      "type1_deductive_Se_b",
+      "type1_deductive_Se_f",
+      "type1_deductive_Si_b",
+      "type1_deductive_Si_f",
+      "type2_inductive_Ne_b",
+      "type2_inductive_Ne_f",
+      "type2_inductive_Ni_b",
+      "type2_inductive_Ni_f",
+      "type2_inductive_Se_b",
+      "type2_inductive_Se_f",
+      "type2_inductive_Si_b",
+      "type2_inductive_Si_f"
+    ],
+    "stage_0cell_count": 16,
+    "torus_2cells": {
+      "inner": {
+        "stages": [
+          "type1_deductive_Ne_f",
+          "type1_deductive_Ni_f",
+          "type1_deductive_Se_f",
+          "type1_deductive_Si_f",
+          "type2_inductive_Ne_f",
+          "type2_inductive_Ni_f",
+          "type2_inductive_Se_f",
+          "type2_inductive_Si_f"
+        ],
+        "stage_count": 8
+      },
+      "clifford": {
+        "stages": [
+          "type1_deductive_Ne_b",
+          "type1_deductive_Ne_f",
+          "type1_deductive_Ni_b",
+          "type1_deductive_Ni_f",
+          "type1_deductive_Se_b",
+          "type1_deductive_Se_f",
+          "type1_deductive_Si_b",
+          "type1_deductive_Si_f",
+          "type2_inductive_Ne_b",
+          "type2_inductive_Ne_f",
+          "type2_inductive_Ni_b",
+          "type2_inductive_Ni_f",
+          "type2_inductive_Se_b",
+          "type2_inductive_Se_f",
+          "type2_inductive_Si_b",
+          "type2_inductive_Si_f"
+        ],
+        "stage_count": 16
+      },
+      "outer": {
+        "stages": [
+          "type1_deductive_Ne_b",
+          "type1_deductive_Ni_b",
+          "type1_deductive_Se_b",
+          "type1_deductive_Si_b",
+          "type2_inductive_Ne_b",
+          "type2_inductive_Ni_b",
+          "type2_inductive_Se_b",
+          "type2_inductive_Si_b"
+        ],
+        "stage_count": 8
+      }
+    },
+    "engine_type1_cycle": [
+      "type1_deductive_Ne_b",
+      "type1_deductive_Ne_f",
+      "type1_deductive_Ni_b",
+      "type1_deductive_Ni_f",
+      "type1_deductive_Se_b",
+      "type1_deductive_Se_f",
+      "type1_deductive_Si_b",
+      "type1_deductive_Si_f"
+    ],
+    "engine_type2_cycle": [
+      "type2_inductive_Ne_b",
+      "type2_inductive_Ne_f",
+      "type2_inductive_Ni_b",
+      "type2_inductive_Ni_f",
+      "type2_inductive_Se_b",
+      "type2_inductive_Se_f",
+      "type2_inductive_Si_b",
+      "type2_inductive_Si_f"
+    ]
+  },
+  "stage_torus_groupings": {
+    "stage_to_tori": {
+      "type1_deductive_Se_f": [
+        "inner",
+        "clifford"
+      ],
+      "type1_deductive_Si_f": [
+        "inner",
+        "clifford"
+      ],
+      "type1_deductive_Ne_f": [
+        "inner",
+        "clifford"
+      ],
+      "type1_deductive_Ni_f": [
+        "inner",
+        "clifford"
+      ],
+      "type1_deductive_Se_b": [
+        "outer",
+        "clifford"
+      ],
+      "type1_deductive_Si_b": [
+        "outer",
+        "clifford"
+      ],
+      "type1_deductive_Ne_b": [
+        "outer",
+        "clifford"
+      ],
+      "type1_deductive_Ni_b": [
+        "outer",
+        "clifford"
+      ],
+      "type2_inductive_Se_f": [
+        "inner",
+        "clifford"
+      ],
+      "type2_inductive_Si_f": [
+        "inner",
+        "clifford"
+      ],
+      "type2_inductive_Ne_f": [
+        "inner",
+        "clifford"
+      ],
+      "type2_inductive_Ni_f": [
+        "inner",
+        "clifford"
+      ],
+      "type2_inductive_Se_b": [
+        "outer",
+        "clifford"
+      ],
+      "type2_inductive_Si_b": [
+        "outer",
+        "clifford"
+      ],
+      "type2_inductive_Ne_b": [
+        "outer",
+        "clifford"
+      ],
+      "type2_inductive_Ni_b": [
+        "outer",
+        "clifford"
+      ]
+    },
+    "torus_to_stages": {
+      "inner": [
+        "type1_deductive_Ne_f",
+        "type1_deductive_Ni_f",
+        "type1_deductive_Se_f",
+        "type1_deductive_Si_f",
+        "type2_inductive_Ne_f",
+        "type2_inductive_Ni_f",
+        "type2_inductive_Se_f",
+        "type2_inductive_Si_f"
+      ],
+      "clifford": [
+        "type1_deductive_Ne_b",
+        "type1_deductive_Ne_f",
+        "type1_deductive_Ni_b",
+        "type1_deductive_Ni_f",
+        "type1_deductive_Se_b",
+        "type1_deductive_Se_f",
+        "type1_deductive_Si_b",
+        "type1_deductive_Si_f",
+        "type2_inductive_Ne_b",
+        "type2_inductive_Ne_f",
+        "type2_inductive_Ni_b",
+        "type2_inductive_Ni_f",
+        "type2_inductive_Se_b",
+        "type2_inductive_Se_f",
+        "type2_inductive_Si_b",
+        "type2_inductive_Si_f"
+      ],
+      "outer": [
+        "type1_deductive_Ne_b",
+        "type1_deductive_Ni_b",
+        "type1_deductive_Se_b",
+        "type1_deductive_Si_b",
+        "type2_inductive_Ne_b",
+        "type2_inductive_Ni_b",
+        "type2_inductive_Se_b",
+        "type2_inductive_Si_b"
+      ]
+    },
+    "fiber_stages": [
+      "type1_deductive_Ne_f",
+      "type1_deductive_Ni_f",
+      "type1_deductive_Se_f",
+      "type1_deductive_Si_f",
+      "type2_inductive_Ne_f",
+      "type2_inductive_Ni_f",
+      "type2_inductive_Se_f",
+      "type2_inductive_Si_f"
+    ],
+    "base_stages": [
+      "type1_deductive_Ne_b",
+      "type1_deductive_Ni_b",
+      "type1_deductive_Se_b",
+      "type1_deductive_Si_b",
+      "type2_inductive_Ne_b",
+      "type2_inductive_Ni_b",
+      "type2_inductive_Se_b",
+      "type2_inductive_Si_b"
+    ],
+    "fiber_stage_count": 8,
+    "base_stage_count": 8,
+    "all_stages_touch_clifford": true,
+    "clifford_is_universal_bridge": true
+  },
+  "chirality_coupling": {
+    "available": true,
+    "algebra": "Cl(3,0)",
+    "pseudoscalar_blade": "e123",
+    "type1_deductive": {
+      "orientation": "+e123",
+      "spinor_rule": "\u03c8_L \u2192 U\u00b7\u03c8_L (fundamental SU(2))",
+      "fiber_phase": "e^{+i\u03b8} (positive phase accumulation)",
+      "operator_dominance": "Fe/Ti on base, Te/Fi on fiber"
+    },
+    "type2_inductive": {
+      "orientation": "-e123",
+      "spinor_rule": "\u03c8_R \u2192 U*\u00b7\u03c8_R (conjugate SU(2))",
+      "fiber_phase": "e^{-i\u03b8} (negative phase accumulation)",
+      "operator_dominance": "Te/Fi on base, Fe/Ti on fiber"
+    },
+    "coupling_product_grade": "0",
+    "coupling_is_scalar": true,
+    "physical_meaning": "The pseudoscalar e\u2081\u2082\u2083 in Cl(3,0) encodes the chirality handedness. Type-1 (deductive) transforms under the fundamental SU(2) representation, Type-2 (inductive) under the conjugate. Their product is a scalar, confirming they are complementary orientations of the same structure.",
+    "owner_graph_chirality_edges": 1,
+    "owner_graph_engine_nodes": {
+      "type1_deductive": {
+        "description": "Fe/Ti dominant on base, Te/Fi on fiber",
+        "public_id": "qit::ENGINE::type1_deductive"
+      },
+      "type2_inductive": {
+        "description": "Te/Fi dominant on base, Fe/Ti on fiber",
+        "public_id": "qit::ENGINE::type2_inductive"
+      }
+    }
+  },
+  "torus_geometry": {
+    "tori": {
+      "inner": {
+        "R_major": 0.92388,
+        "R_minor": 0.382683,
+        "area": 0.353553,
+        "flatness": 0.414214,
+        "loop_assignment": "fiber"
+      },
+      "clifford": {
+        "R_major": 0.707107,
+        "R_minor": 0.707107,
+        "area": 0.5,
+        "flatness": 1.0,
+        "loop_assignment": "bridge"
+      },
+      "outer": {
+        "R_major": 0.382683,
+        "R_minor": 0.92388,
+        "area": 0.353553,
+        "flatness": 0.414214,
+        "loop_assignment": "base"
+      }
+    },
+    "eta_values": {
+      "inner": 0.392699,
+      "clifford": 0.785398,
+      "outer": 1.178097
+    },
+    "nesting_order": [
+      "inner",
+      "clifford",
+      "outer"
+    ],
+    "clifford_is_flat": true,
+    "transport_distance_inner_to_outer": 1.0
+  },
+  "relevant_negative_evidence": {
+    "torus_witnesses": [
+      {
+        "witness_id": "qit::NEG_WITNESS::neg_no_torus_transport",
+        "label": "neg_no_torus_transport",
+        "description": "Removing torus transport kills the engine",
+        "target_structure": "TORUS",
+        "owner_edge_emission": "suppressed_pending_owner_concept",
+        "proves_label": "torus_transport_regime_is_necessary",
+        "proves_targets": []
+      },
+      {
+        "witness_id": "qit::NEG_WITNESS::neg_torus_scrambled",
+        "label": "neg_torus_scrambled",
+        "description": "Scrambling torus assignment kills coherence",
+        "target_structure": "TORUS",
+        "owner_edge_emission": "suppressed_pending_owner_concept",
+        "proves_label": "torus_assignment_coherence_is_necessary",
+        "proves_targets": []
+      }
+    ],
+    "chirality_witnesses": [
+      {
+        "witness_id": "qit::NEG_WITNESS::neg_no_chirality",
+        "label": "neg_no_chirality",
+        "description": "Removing engine type distinction kills asymmetry",
+        "target_structure": "CHIRALITY",
+        "owner_edge_emission": "specific_targets",
+        "proves_label": "engine_type_asymmetry_is_necessary",
+        "proves_targets": [
+          "qit::ENGINE::type1_deductive",
+          "qit::ENGINE::type2_inductive"
+        ]
+      },
+      {
+        "witness_id": "qit::NEG_WITNESS::neg_type_flatten",
+        "label": "neg_type_flatten",
+        "description": "Flattening engine types kills chirality separation",
+        "target_structure": "CHIRALITY",
+        "owner_edge_emission": "specific_targets",
+        "proves_label": "type_specific_weighting_is_necessary",
+        "proves_targets": [
+          "qit::ENGINE::type1_deductive",
+          "qit::ENGINE::type2_inductive"
+        ]
+      }
+    ],
+    "total": 4
+  },
+  "owner_summary": {
+    "torus_nodes": 3,
+    "engine_nodes": 2,
+    "stage_nodes": 16,
+    "nesting_edges": 2,
+    "stage_torus_edges": 32,
+    "chirality_edges": 1
+  }
+}

@@ -10,7 +10,7 @@
 | File | Purpose |
 |---|---|
 | `core_docs/QIT_GRAPH_LAYER_MAPPING.md` | Conceptual Rosetta stone: which physics concept lives in which graph layer |
-| `core_docs/QIT_GRAPH_SCHEMA.md` | Canonical node and edge inventory (7 live node types + 1 schema-ready type, 10 edge types, 105 nodes, 297 edges) |
+| `core_docs/QIT_GRAPH_SCHEMA.md` | Canonical node and edge inventory (7 live node types + 1 schema-ready type, 11 edge types, 105 nodes, 297 edges) |
 | `core_docs/QIT_GRAPH_SIDECAR_POLICY.md` | What each sidecar may and may not do |
 | `core_docs/QIT_GRAPH_RUNTIME_MODEL.md` | Structure vs state vs history graph separation |
 | `core_docs/QIT_GRAPH_PROMOTION_GATES.md` | When a concept moves from sidecar to owner truth |
@@ -34,7 +34,7 @@ The **owner stack** is `Pydantic → JSON → NetworkX → GraphML`. These are r
 - ✅ 7 proven load-bearing axes (0–6)
 - ✅ 9 negative witness nodes (graveyard kills)
 - ✅ 64 subcycle step nodes (full 16×4 runtime grain)
-- ✅ 297 structural edges (stage sequence, operator acts-on, step-in-stage, step-uses-operator, step-sequence, torus nesting, chirality coupling, etc.)
+- ✅ 297 structural edges (stage sequence, step-in-stage, step-uses-operator, step-sequence, torus nesting, chirality coupling, etc.)
 - ✅ Stable `public_id` on every node for cross-layer joining
 - ✅ `content_hash` for snapshot provenance
 - ✅ GraphML export as an owner-stack interoperability view
@@ -94,6 +94,6 @@ python3 system_v4/skills/qit_engine_graph_builder.py
 # Rebuild the owner graph, export GraphML, and run bounded sidecar status
 python3 system_v4/skills/qit_graph_stack_runtime.py
 
-# Rebuild the full nested graph (includes QIT as 6th layer)
+# Rebuild the full nested graph (QIT listed as 6th layer, but currently zero cross-layer edges)
 python3 system_v4/skills/nested_graph_builder.py
 ```

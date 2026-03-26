@@ -5,7 +5,7 @@ import time
 import json
 
 PROBES_DIR = "system_v4/probes"
-EXCLUDES = ["sim_timing_benchmark.py", "autoresearch_sim_harness.py"]
+EXCLUDES = ["sim_timing_benchmark.py", "autoresearch_sim_harness.py", "exploratory_process_cycle_stage_matrix_sim.py", "stage_matrix_neg_lib.py"]
 OUTPUT_JSON = "a2_state/sim_results/sim_timing_benchmark.json"
 
 def find_sim_files():

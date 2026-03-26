@@ -1,6 +1,6 @@
 # Nested Graph Build Report
 
-- generated_utc: `2026-03-26T22:35:22Z`
+- generated_utc: `2026-03-26T22:51:53Z`
 - status: `built`
 - layer_count: `6`
 - total_nodes_across_layers: `11139`
@@ -54,7 +54,8 @@
 - `A2_LOW_CONTROL → PROMOTED_SUBGRAPH`: 11
 - `A1_JARGONED → A2_MID_REFINEMENT`: 8
 - `B_LAYER → A2_MID_REFINEMENT`: 8
-- `PROMOTED_SUBGRAPH → QIT_ENGINE`: 7
+- `A2_LOW_CONTROL → QIT_ENGINE`: 5
 - `A2_MID_REFINEMENT → PROMOTED_SUBGRAPH`: 4
 - `GRAVEYARD → SKILLS`: 2
+- `A2_MID_REFINEMENT → QIT_ENGINE`: 2
 - `PROMOTED_SUBGRAPH → A2_MID_REFINEMENT`: 1

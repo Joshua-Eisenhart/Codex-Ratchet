@@ -1,23 +1,23 @@
 # QIT Graph Stack Status
 
 - status: `precheck_blocked`
-- generated_utc: `2026-03-26T22:36:52Z`
+- generated_utc: `2026-03-26T22:58:28Z`
 - purpose: `read-only-by-default verification surface over the current QIT owner snapshot and bounded sidecars`
-- snapshot_id: `3aaa98dfb9ac8168636856ef68daf67872bd9014ae0132d0bd79532caaee7053`
-- git_sha: `ee4f6c20a0da88c8a39ffef56979b3ea42e33aa9`
-- owner_builder_sha256: `93e134bbbc9ba32399273c7d8a2d11a57a10f2492697f9a86f36310d24d6997a`
+- snapshot_id: `e21502aa1545dfd7e0c0ed3c0f7f081b12f631c23dce026108893e582bf622f4`
+- git_sha: `f5c317d544b67c27521c7d53810946d7594486de`
+- owner_builder_sha256: `9bd0a8faa9e99db5174496039a53026663e3f8706d66d2e5d4d216882d84099a`
 
 ## Owner Layer
 - qit_graph_json: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json`
 - qit_graph_action: `read_existing_snapshot`
-- qit_graph_sha256: `1a84ab74f23d146e0a2e1ac5ce3396f15d06584cc3f347579b0b2ed5e639c430`
-- qit_graph_content_hash: `29a9456b6aa4c15f66d1c7955bd672fe0aba81cb44d6fc1400b4c60114e9fa1b`
+- qit_graph_sha256: `3d47ff0839cfc8af4cbd7c40ce5b85fbeff6a9c91aaa4f9f9a9323c340e8ab72`
+- qit_graph_content_hash: `019ace7d8072508e1e1e3bc3931e36155be38652255e1f55993a47fc053406ee`
 - qit_graph_content_hash_matches_recomputed: `True`
 - graphml_export: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.graphml`
 - graphml_action: `read_existing_snapshot`
 - graphml_sha256: `0158f9197931ebf7f6e2938b37ace7a4fb7eae81924d406487ef6faab6125373`
 - node_count: `105`
-- edge_count: `297`
+- edge_count: `282`
 - live_node_types: `AXIS, ENGINE, MACRO_STAGE, NEG_WITNESS, OPERATOR, SUBCYCLE_STEP, TORUS`
 - schema_ready_not_instantiated: `WEYL_BRANCH`
 
@@ -56,7 +56,7 @@
 - kingdon importable (preferred interpreter): `True`
 - PyG available (current interpreter): `False`
 - PyG importable (preferred interpreter): `True`
-- LightRAG status: `corpus_manifest_ready_init_failed`
+- LightRAG status: `sidecar_corpus_ready_needs_embedding_config`
 
 ## Next Actions
 - keep owner verification read-only by default and use refresh flags only for intentional artifact regeneration

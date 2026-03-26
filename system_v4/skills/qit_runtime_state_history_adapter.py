@@ -130,6 +130,7 @@ def build_runtime_slice(state: EngineState, run_id: str | None = None) -> dict[s
         "schema": "QIT_RUNTIME_SLICE_v1",
         "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "owner_graph_role": "read_only_reference_only",
+        "persistence_policy": "ephemeral_packet_only",
         "state_overlay": overlay.model_dump(),
         "history_packet": history.model_dump(),
     }

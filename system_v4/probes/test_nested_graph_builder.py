@@ -222,6 +222,69 @@ class TestStrongBridgeResolution:
         assert edge["attributes"]["bridge_field"] == "source_concept_id"
         assert edge["discovery_mode"] == "strong_bridge_field"
 
+    def test_registry_source_layer_overrides_promoted_subgraph_when_explicit(self, tmp_path):
+        """Explicit QIT registry rows should honor a pinned source layer when a node exists in multiple graphs."""
+        source_id = "A2_1::KERNEL::KERNEL: Chiral Game Theory Operators::189a01b4b3cd537c"
+
+        _write_json(tmp_path / LAYER_GRAPHS["A2_LOW_CONTROL"]["path"], {
+            "nodes": {
+                source_id: {
+                    "node_type": "KERNEL_CONCEPT",
+                    "description": "kernel anchor",
+                }
+            },
+            "edges": [],
+        })
+        _write_json(tmp_path / LAYER_GRAPHS["PROMOTED_SUBGRAPH"]["path"], {
+            "nodes": {
+                source_id: {
+                    "node_type": "KERNEL_CONCEPT",
+                    "description": "promoted copy",
+                }
+            },
+            "edges": [],
+        })
+        _write_json(tmp_path / LAYER_GRAPHS["QIT_ENGINE"]["path"], {
+            "nodes": {
+                "qit_op_ti": {
+                    "public_id": "qit::OPERATOR::Ti",
+                    "node_type": "OPERATOR",
+                }
+            },
+            "edges": [],
+            "public_id_index": {
+                "qit::OPERATOR::Ti": "qit_op_ti",
+            },
+        })
+        _write_json(tmp_path / "system_v4/a2_state/graphs/system_graph_a2_refinery.json", {
+            "nodes": {},
+            "edges": [],
+        })
+        _write_json(tmp_path / "system_v4/a2_state/graphs/qit_cross_layer_registry_v1.json", {
+            "bridges": [
+                {
+                    "bridge_id": "qit_operator_family_ti",
+                    "status": "ADMITTED",
+                    "source_id": source_id,
+                    "source_layer": "A2_LOW_CONTROL",
+                    "target_public_id": "qit::OPERATOR::Ti",
+                    "relation": "QIT_OPERATOR_FAMILY_BRIDGE",
+                    "bridge_via": "manual_registry",
+                    "scope": "family_member_bridge",
+                    "rationale": "Pinned to kernel owner layer.",
+                }
+            ]
+        })
+
+        cross_edges = _find_cross_layer_edges(tmp_path)
+        registry_edges = [e for e in cross_edges if e["discovery_mode"] == "explicit_bridge_registry"]
+        assert len(registry_edges) == 1
+        edge = registry_edges[0]
+        assert edge["source_layer"] == "A2_LOW_CONTROL"
+        assert edge["target_layer"] == "QIT_ENGINE"
+        assert edge["attributes"]["registry_source_layer"] == "A2_LOW_CONTROL"
+        assert edge["attributes"]["target_public_id"] == "qit::OPERATOR::Ti"
+
     def test_uses_explicit_qit_bridge_registry(self, tmp_path):
         """Explicit admitted registry bridges should materialize cross-layer QIT links."""
         a2_low_path = tmp_path / LAYER_GRAPHS["A2_LOW_CONTROL"]["path"]

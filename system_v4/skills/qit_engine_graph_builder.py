@@ -1,24 +1,16 @@
 #!/usr/bin/env python3
 """
-QIT Engine Graph Builder
-========================
+QIT Engine Graph Builder (v2)
+==============================
 Encodes the GeometricEngine's physical topology directly as a graph layer.
 
-This makes the graphs themselves mirror the QIT engine structure:
-  - 8 macro-stages as MACRO_STAGE nodes (per engine type)
-  - 4 operators (Ti, Fe, Te, Fi) as OPERATOR nodes
-  - 3 nested tori (inner, Clifford, outer) as TORUS nodes
-  - 2 engine types (Deductive, Inductive) as ENGINE nodes
-  - 7 proven axes as AXIS nodes (Axis 0–6)
-
-Edges encode:
-  - SUBCYCLE_ORDER: Ti → Fe → Te → Fi (the fixed internal operator cycle)
-  - STAGE_SEQUENCE: macro-stage n → macro-stage n+1
-  - TORUS_NESTING: inner → Clifford → outer (Hopf fibration hierarchy)
-  - CHIRALITY_COUPLING: Type 1 ↔ Type 2 (complementary dominance)
-  - OPERATOR_ACTS_ON: which operator dominates which macro-stage
-  - AXIS_GOVERNS: which axis is load-bearing for which macro-stage
-  - NEGATIVE_WITNESS: edges to graveyard kills proving each structure is necessary
+v2 changes (Codex P1/P2 audit fixes):
+  - Every node carries a stable `public_id` (human-readable, joinable)
+  - Every edge carries a stable `edge_id`
+  - All nodes validated through Pydantic schemas before emission
+  - 64 SUBCYCLE_STEP nodes for the full 16×4 runtime grain
+  - Content hash for snapshot provenance
+  - Cross-layer reconciliation map for joining to accumulation graph
 
 Output: system_v4/a2_state/graphs/qit_engine_graph_v1.json
 """
@@ -30,6 +22,18 @@ import hashlib
 import time
 from pathlib import Path
 from typing import Any
+
+# Import owner schemas for validation
+import sys
+import os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from qit_owner_schemas import (
+    EngineType, EngineTypeEnum,
+    MacroStage, LoopEnum, ModeEnum, BoundaryEnum,
+    SubcycleOperator, OperatorEnum, SubcycleStep,
+    TorusState, TorusEnum,
+    AxisState, NegativeWitness, NegTargetEnum,
+)
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -95,258 +99,389 @@ def _utc_iso() -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
 
-def _node_id(prefix: str, name: str) -> str:
+def _hash_id(prefix: str, name: str) -> str:
+    """Generate a short hash id. Used as dict key, NOT as public identity."""
     raw = f"{prefix}::{name}"
     return hashlib.sha256(raw.encode()).hexdigest()[:16]
 
 
+def _public_id(prefix: str, name: str) -> str:
+    """Generate a stable, human-readable, joinable public id."""
+    return f"qit::{prefix}::{name}"
+
+
+def _edge_id(relation: str, source_pub: str, target_pub: str) -> str:
+    """Generate a stable edge id from relation + endpoints."""
+    raw = f"{relation}::{source_pub}::{target_pub}"
+    return hashlib.sha256(raw.encode()).hexdigest()[:20]
+
+
+def _content_hash(data: dict) -> str:
+    """Compute a content hash over the entire graph for provenance."""
+    canonical = json.dumps(data, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(canonical.encode()).hexdigest()
+
+
+def _make_node(
+    prefix: str,
+    name: str,
+    node_type: str,
+    attrs: dict[str, Any],
+) -> tuple[str, dict[str, Any]]:
+    """Create a node with both hash id (dict key) and public_id (joinable)."""
+    hid = _hash_id(prefix, name)
+    pub = _public_id(prefix, name)
+    node = {
+        "public_id": pub,
+        "node_type": node_type,
+        **attrs,
+    }
+    return hid, node
+
+
+def _make_edge(
+    relation: str,
+    source_hid: str,
+    target_hid: str,
+    source_pub: str,
+    target_pub: str,
+    attrs: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Create an edge with stable edge_id and public endpoint refs."""
+    return {
+        "edge_id": _edge_id(relation, source_pub, target_pub),
+        "source_id": source_hid,
+        "target_id": target_hid,
+        "source_public_id": source_pub,
+        "target_public_id": target_pub,
+        "relation": relation,
+        "attributes": attrs or {},
+    }
+
+
 def build_qit_engine_graph() -> dict[str, Any]:
-    """Construct the QIT Engine graph layer."""
+    """Construct the QIT Engine graph layer with Pydantic-validated nodes."""
     nodes: dict[str, dict[str, Any]] = {}
     edges: list[dict[str, Any]] = []
+    validation_errors: list[str] = []
 
-    # ── 1. MACRO_STAGE nodes (8 per engine type = 16 total) ──
+    # ── 1. ENGINE nodes (Pydantic-validated) ──
     for etype_id, etype_desc in ENGINE_TYPES:
+        try:
+            model = EngineType(
+                engine_type=EngineTypeEnum(etype_id),
+                description=etype_desc,
+            )
+        except Exception as e:
+            validation_errors.append(f"ENGINE {etype_id}: {e}")
+            continue
+        hid, node = _make_node("ENGINE", etype_id, "ENGINE", {
+            "label": model.engine_type.value,
+            "description": model.description,
+        })
+        nodes[hid] = node
+
+    # ── 2. MACRO_STAGE nodes (Pydantic-validated) ──
+    for etype_id, _ in ENGINE_TYPES:
         for stage_idx, (terrain, loop, mode, boundary) in enumerate(TERRAINS):
-            nid = _node_id("MACRO_STAGE", f"{etype_id}_{terrain}")
-            nodes[nid] = {
-                "node_type": "MACRO_STAGE",
-                "label": f"{etype_id}::{terrain}",
-                "engine_type": etype_id,
-                "terrain": terrain,
-                "loop": loop,
-                "mode": mode,
-                "boundary": boundary,
-                "stage_index": stage_idx,
-            }
+            try:
+                model = MacroStage(
+                    terrain=terrain,
+                    engine_type=EngineTypeEnum(etype_id),
+                    stage_index=stage_idx,
+                    loop=LoopEnum(loop),
+                    mode=ModeEnum(mode),
+                    boundary=BoundaryEnum(boundary),
+                )
+            except Exception as e:
+                validation_errors.append(f"MACRO_STAGE {etype_id}_{terrain}: {e}")
+                continue
+            hid, node = _make_node(
+                "MACRO_STAGE", f"{etype_id}_{terrain}", "MACRO_STAGE", {
+                    "label": f"{etype_id}::{terrain}",
+                    "engine_type": model.engine_type.value,
+                    "terrain": model.terrain,
+                    "loop": model.loop.value,
+                    "mode": model.mode.value,
+                    "boundary": model.boundary.value,
+                    "stage_index": model.stage_index,
+                })
+            nodes[hid] = node
 
-    # ── 2. OPERATOR nodes ──
+    # ── 3. OPERATOR nodes (Pydantic-validated) ──
     for op_name, op_action, op_desc in OPERATORS:
-        nid = _node_id("OPERATOR", op_name)
-        nodes[nid] = {
-            "node_type": "OPERATOR",
-            "label": op_name,
-            "action": op_action,
+        try:
+            model = SubcycleOperator(
+                operator=OperatorEnum(op_name),
+                action=op_action,
+            )
+        except Exception as e:
+            validation_errors.append(f"OPERATOR {op_name}: {e}")
+            continue
+        hid, node = _make_node("OPERATOR", op_name, "OPERATOR", {
+            "label": model.operator.value,
+            "action": model.action,
             "description": op_desc,
-        }
+        })
+        nodes[hid] = node
 
-    # ── 3. TORUS nodes ──
+    # ── 4. TORUS nodes (Pydantic-validated) ──
     for torus_name, torus_rank, torus_desc in TORI:
-        nid = _node_id("TORUS", torus_name)
-        nodes[nid] = {
-            "node_type": "TORUS",
-            "label": torus_name,
-            "nesting_rank": torus_rank,
-            "description": torus_desc,
-        }
+        try:
+            model = TorusState(
+                torus=TorusEnum(torus_name),
+                nesting_rank=torus_rank,
+                description=torus_desc,
+            )
+        except Exception as e:
+            validation_errors.append(f"TORUS {torus_name}: {e}")
+            continue
+        hid, node = _make_node("TORUS", torus_name, "TORUS", {
+            "label": model.torus.value,
+            "nesting_rank": model.nesting_rank,
+            "description": model.description,
+        })
+        nodes[hid] = node
 
-    # ── 4. ENGINE nodes ──
-    for etype_id, etype_desc in ENGINE_TYPES:
-        nid = _node_id("ENGINE", etype_id)
-        nodes[nid] = {
-            "node_type": "ENGINE",
-            "label": etype_id,
-            "description": etype_desc,
-        }
-
-    # ── 5. AXIS nodes ──
+    # ── 5. AXIS nodes (Pydantic-validated) ──
     for axis_id, axis_desc, axis_proven, axis_neg in PROVEN_AXES:
-        nid = _node_id("AXIS", axis_id)
-        nodes[nid] = {
-            "node_type": "AXIS",
-            "label": axis_id,
-            "description": axis_desc,
-            "proven": axis_proven,
-            "negative_witness": axis_neg,
-        }
+        try:
+            model = AxisState(
+                axis_id=axis_id,
+                description=axis_desc,
+                proven=axis_proven,
+                negative_witness_sim=axis_neg,
+            )
+        except Exception as e:
+            validation_errors.append(f"AXIS {axis_id}: {e}")
+            continue
+        hid, node = _make_node("AXIS", axis_id, "AXIS", {
+            "label": model.axis_id,
+            "description": model.description,
+            "proven": model.proven,
+            "negative_witness": model.negative_witness_sim,
+        })
+        nodes[hid] = node
 
-    # ── 6. NEGATIVE_WITNESS nodes ──
+    # ── 6. NEGATIVE_WITNESS nodes (Pydantic-validated) ──
     for neg_id, neg_desc, neg_target in NEGATIVE_WITNESSES:
-        nid = _node_id("NEG_WITNESS", neg_id)
-        nodes[nid] = {
-            "node_type": "NEG_WITNESS",
-            "label": neg_id,
-            "description": neg_desc,
-            "target_structure": neg_target,
-        }
+        try:
+            model = NegativeWitness(
+                neg_id=neg_id,
+                description=neg_desc,
+                target_structure=NegTargetEnum(neg_target),
+            )
+        except Exception as e:
+            validation_errors.append(f"NEG_WITNESS {neg_id}: {e}")
+            continue
+        hid, node = _make_node("NEG_WITNESS", neg_id, "NEG_WITNESS", {
+            "label": model.neg_id,
+            "description": model.description,
+            "target_structure": model.target_structure.value,
+        })
+        nodes[hid] = node
+
+    # ── 7. SUBCYCLE_STEP nodes — the 64 operator applications ──
+    op_order = ["Ti", "Fe", "Te", "Fi"]
+    for etype_id, _ in ENGINE_TYPES:
+        for terrain, loop, mode, boundary in TERRAINS:
+            for op_idx, op_name in enumerate(op_order):
+                step_name = f"{etype_id}_{terrain}_{op_name}"
+                try:
+                    model = SubcycleStep(
+                        operator=OperatorEnum(op_name),
+                        stage_terrain=terrain,
+                        engine_type=EngineTypeEnum(etype_id),
+                        position_in_subcycle=op_idx,
+                    )
+                except Exception as e:
+                    validation_errors.append(f"SUBCYCLE_STEP {step_name}: {e}")
+                    continue
+                hid, node = _make_node(
+                    "SUBCYCLE_STEP", step_name, "SUBCYCLE_STEP", {
+                        "label": f"{etype_id}::{terrain}::{op_name}",
+                        "engine_type": model.engine_type.value,
+                        "terrain": model.stage_terrain,
+                        "operator": model.operator.value,
+                        "position_in_subcycle": model.position_in_subcycle,
+                    })
+                nodes[hid] = node
 
     # ── EDGES ──
 
-    # 6a. SUBCYCLE_ORDER: Ti → Fe → Te → Fi (fixed operator cycle)
-    op_order = ["Ti", "Fe", "Te", "Fi"]
-    for i in range(len(op_order) - 1):
-        edges.append({
-            "source_id": _node_id("OPERATOR", op_order[i]),
-            "target_id": _node_id("OPERATOR", op_order[i + 1]),
-            "relation": "SUBCYCLE_ORDER",
-            "attributes": {"position": i, "proven": True},
-        })
-    # Close the cycle: Fi → Ti
-    edges.append({
-        "source_id": _node_id("OPERATOR", "Fi"),
-        "target_id": _node_id("OPERATOR", "Ti"),
-        "relation": "SUBCYCLE_ORDER",
-        "attributes": {"position": 3, "closes_cycle": True, "proven": True},
-    })
+    def _h(pfx, nm):
+        return _hash_id(pfx, nm)
 
-    # 6b. STAGE_SEQUENCE: macro-stage n → n+1 within each engine type
+    def _p(pfx, nm):
+        return _public_id(pfx, nm)
+
+    # 8a. SUBCYCLE_ORDER: Ti → Fe → Te → Fi → Ti
+    for i in range(len(op_order)):
+        src, tgt = op_order[i], op_order[(i + 1) % 4]
+        edges.append(_make_edge(
+            "SUBCYCLE_ORDER", _h("OPERATOR", src), _h("OPERATOR", tgt),
+            _p("OPERATOR", src), _p("OPERATOR", tgt),
+            {"position": i, "closes_cycle": i == 3, "proven": True},
+        ))
+
+    # 8b. STAGE_SEQUENCE: macro-stage n → n+1 within each engine type
     for etype_id, _ in ENGINE_TYPES:
-        for i in range(len(TERRAINS) - 1):
-            edges.append({
-                "source_id": _node_id("MACRO_STAGE", f"{etype_id}_{TERRAINS[i][0]}"),
-                "target_id": _node_id("MACRO_STAGE", f"{etype_id}_{TERRAINS[i+1][0]}"),
-                "relation": "STAGE_SEQUENCE",
-                "attributes": {"engine_type": etype_id},
-            })
-        # Close the cycle
-        edges.append({
-            "source_id": _node_id("MACRO_STAGE", f"{etype_id}_{TERRAINS[-1][0]}"),
-            "target_id": _node_id("MACRO_STAGE", f"{etype_id}_{TERRAINS[0][0]}"),
-            "relation": "STAGE_SEQUENCE",
-            "attributes": {"engine_type": etype_id, "closes_cycle": True},
-        })
+        for i in range(len(TERRAINS)):
+            src_t = TERRAINS[i][0]
+            tgt_t = TERRAINS[(i + 1) % len(TERRAINS)][0]
+            src_key = f"{etype_id}_{src_t}"
+            tgt_key = f"{etype_id}_{tgt_t}"
+            edges.append(_make_edge(
+                "STAGE_SEQUENCE",
+                _h("MACRO_STAGE", src_key), _h("MACRO_STAGE", tgt_key),
+                _p("MACRO_STAGE", src_key), _p("MACRO_STAGE", tgt_key),
+                {"engine_type": etype_id, "closes_cycle": i == len(TERRAINS) - 1},
+            ))
 
-    # 6c. TORUS_NESTING: inner → Clifford → outer
+    # 8c. TORUS_NESTING: inner → Clifford → outer
     for i in range(len(TORI) - 1):
-        edges.append({
-            "source_id": _node_id("TORUS", TORI[i][0]),
-            "target_id": _node_id("TORUS", TORI[i+1][0]),
-            "relation": "TORUS_NESTING",
-            "attributes": {"direction": "outward"},
-        })
+        edges.append(_make_edge(
+            "TORUS_NESTING",
+            _h("TORUS", TORI[i][0]), _h("TORUS", TORI[i + 1][0]),
+            _p("TORUS", TORI[i][0]), _p("TORUS", TORI[i + 1][0]),
+            {"direction": "outward"},
+        ))
 
-    # 6d. ENGINE_OWNS_STAGE: engine → its 8 macro-stages
-    for etype_id, _ in ENGINE_TYPES:
-        engine_nid = _node_id("ENGINE", etype_id)
-        for terrain, _, _, _ in TERRAINS:
-            stage_nid = _node_id("MACRO_STAGE", f"{etype_id}_{terrain}")
-            edges.append({
-                "source_id": engine_nid,
-                "target_id": stage_nid,
-                "relation": "ENGINE_OWNS_STAGE",
-            })
-
-    # 6e. CHIRALITY_COUPLING: Type 1 ↔ Type 2
-    edges.append({
-        "source_id": _node_id("ENGINE", "type1_deductive"),
-        "target_id": _node_id("ENGINE", "type2_inductive"),
-        "relation": "CHIRALITY_COUPLING",
-        "attributes": {"coupling_type": "complementary_dominance"},
-    })
-
-    # 6f. OPERATOR_ACTS_ON: each operator acts on every macro-stage
+    # 8d. ENGINE_OWNS_STAGE
     for etype_id, _ in ENGINE_TYPES:
         for terrain, _, _, _ in TERRAINS:
-            stage_nid = _node_id("MACRO_STAGE", f"{etype_id}_{terrain}")
-            for op_name, _, _ in OPERATORS:
-                op_nid = _node_id("OPERATOR", op_name)
-                edges.append({
-                    "source_id": op_nid,
-                    "target_id": stage_nid,
-                    "relation": "OPERATOR_ACTS_ON",
-                    "attributes": {"engine_type": etype_id, "terrain": terrain},
-                })
+            stage_key = f"{etype_id}_{terrain}"
+            edges.append(_make_edge(
+                "ENGINE_OWNS_STAGE",
+                _h("ENGINE", etype_id), _h("MACRO_STAGE", stage_key),
+                _p("ENGINE", etype_id), _p("MACRO_STAGE", stage_key),
+            ))
 
-    # 6g. STAGE_ON_TORUS: fiber stages on inner/clifford, base stages on clifford/outer
+    # 8e. CHIRALITY_COUPLING
+    edges.append(_make_edge(
+        "CHIRALITY_COUPLING",
+        _h("ENGINE", "type1_deductive"), _h("ENGINE", "type2_inductive"),
+        _p("ENGINE", "type1_deductive"), _p("ENGINE", "type2_inductive"),
+        {"coupling_type": "complementary_dominance"},
+    ))
+
+    # 8f. STEP_IN_STAGE: each SUBCYCLE_STEP belongs to its MACRO_STAGE
+    for etype_id, _ in ENGINE_TYPES:
+        for terrain, _, _, _ in TERRAINS:
+            stage_key = f"{etype_id}_{terrain}"
+            for op_name in op_order:
+                step_key = f"{etype_id}_{terrain}_{op_name}"
+                edges.append(_make_edge(
+                    "STEP_IN_STAGE",
+                    _h("SUBCYCLE_STEP", step_key), _h("MACRO_STAGE", stage_key),
+                    _p("SUBCYCLE_STEP", step_key), _p("MACRO_STAGE", stage_key),
+                    {"operator": op_name},
+                ))
+
+    # 8g. STEP_USES_OPERATOR: each SUBCYCLE_STEP uses its OPERATOR
+    for etype_id, _ in ENGINE_TYPES:
+        for terrain, _, _, _ in TERRAINS:
+            for op_name in op_order:
+                step_key = f"{etype_id}_{terrain}_{op_name}"
+                edges.append(_make_edge(
+                    "STEP_USES_OPERATOR",
+                    _h("SUBCYCLE_STEP", step_key), _h("OPERATOR", op_name),
+                    _p("SUBCYCLE_STEP", step_key), _p("OPERATOR", op_name),
+                ))
+
+    # 8h. STEP_SEQUENCE: within each stage, Ti→Fe→Te→Fi subcycle ordering
+    for etype_id, _ in ENGINE_TYPES:
+        for terrain, _, _, _ in TERRAINS:
+            for i in range(len(op_order) - 1):
+                src_step = f"{etype_id}_{terrain}_{op_order[i]}"
+                tgt_step = f"{etype_id}_{terrain}_{op_order[i + 1]}"
+                edges.append(_make_edge(
+                    "STEP_SEQUENCE",
+                    _h("SUBCYCLE_STEP", src_step), _h("SUBCYCLE_STEP", tgt_step),
+                    _p("SUBCYCLE_STEP", src_step), _p("SUBCYCLE_STEP", tgt_step),
+                    {"position": i},
+                ))
+
+    # 8i. STAGE_ON_TORUS: fiber → inner, base → outer, all → clifford
     for etype_id, _ in ENGINE_TYPES:
         for terrain, loop, _, _ in TERRAINS:
-            stage_nid = _node_id("MACRO_STAGE", f"{etype_id}_{terrain}")
-            if loop == "fiber":
-                torus_nid = _node_id("TORUS", "inner")
-            else:
-                torus_nid = _node_id("TORUS", "outer")
-            edges.append({
-                "source_id": stage_nid,
-                "target_id": torus_nid,
-                "relation": "STAGE_ON_TORUS",
-                "attributes": {"loop": loop},
-            })
-        # Both loops share the Clifford torus
-        for terrain, _, _, _ in TERRAINS:
-            stage_nid = _node_id("MACRO_STAGE", f"{etype_id}_{terrain}")
-            edges.append({
-                "source_id": stage_nid,
-                "target_id": _node_id("TORUS", "clifford"),
-                "relation": "STAGE_ON_TORUS",
-                "attributes": {"shared": True},
-            })
+            stage_key = f"{etype_id}_{terrain}"
+            primary_torus = "inner" if loop == "fiber" else "outer"
+            edges.append(_make_edge(
+                "STAGE_ON_TORUS",
+                _h("MACRO_STAGE", stage_key), _h("TORUS", primary_torus),
+                _p("MACRO_STAGE", stage_key), _p("TORUS", primary_torus),
+                {"loop": loop, "primary": True},
+            ))
+            edges.append(_make_edge(
+                "STAGE_ON_TORUS",
+                _h("MACRO_STAGE", stage_key), _h("TORUS", "clifford"),
+                _p("MACRO_STAGE", stage_key), _p("TORUS", "clifford"),
+                {"shared": True, "primary": False},
+            ))
 
-    # 6h. AXIS_GOVERNS: connect each axis to the engine nodes
+    # 8j. AXIS_GOVERNS
     for axis_id, _, _, _ in PROVEN_AXES:
-        axis_nid = _node_id("AXIS", axis_id)
         for etype_id, _ in ENGINE_TYPES:
-            engine_nid = _node_id("ENGINE", etype_id)
-            edges.append({
-                "source_id": axis_nid,
-                "target_id": engine_nid,
-                "relation": "AXIS_GOVERNS",
-                "attributes": {"axis": axis_id},
-            })
+            edges.append(_make_edge(
+                "AXIS_GOVERNS",
+                _h("AXIS", axis_id), _h("ENGINE", etype_id),
+                _p("AXIS", axis_id), _p("ENGINE", etype_id),
+                {"axis": axis_id},
+            ))
 
-    # 6i. NEGATIVE_PROVES: connect negative witnesses to what they prove
+    # 8k. NEGATIVE_PROVES
     for neg_id, _, neg_target in NEGATIVE_WITNESSES:
-        neg_nid = _node_id("NEG_WITNESS", neg_id)
+        neg_h = _h("NEG_WITNESS", neg_id)
+        neg_p = _p("NEG_WITNESS", neg_id)
+        targets: list[tuple[str, str, str]] = []
         if neg_target == "TORUS":
-            for torus_name, _, _ in TORI:
-                edges.append({
-                    "source_id": neg_nid,
-                    "target_id": _node_id("TORUS", torus_name),
-                    "relation": "NEGATIVE_PROVES",
-                    "attributes": {"proves": "structure_is_necessary"},
-                })
+            targets = [(_h("TORUS", t[0]), _p("TORUS", t[0]), "structure_is_necessary") for t in TORI]
         elif neg_target == "AXIS":
-            for axis_id, _, _, _ in PROVEN_AXES:
-                edges.append({
-                    "source_id": neg_nid,
-                    "target_id": _node_id("AXIS", axis_id),
-                    "relation": "NEGATIVE_PROVES",
-                    "attributes": {"proves": "axis_is_load_bearing"},
-                })
+            targets = [(_h("AXIS", a[0]), _p("AXIS", a[0]), "axis_is_load_bearing") for a in PROVEN_AXES]
         elif neg_target == "OPERATOR":
-            for op_name, _, _ in OPERATORS:
-                edges.append({
-                    "source_id": neg_nid,
-                    "target_id": _node_id("OPERATOR", op_name),
-                    "relation": "NEGATIVE_PROVES",
-                    "attributes": {"proves": "operator_is_necessary"},
-                })
+            targets = [(_h("OPERATOR", o[0]), _p("OPERATOR", o[0]), "operator_is_necessary") for o in OPERATORS]
         elif neg_target == "CHIRALITY":
-            edges.append({
-                "source_id": neg_nid,
-                "target_id": _node_id("ENGINE", "type1_deductive"),
-                "relation": "NEGATIVE_PROVES",
-                "attributes": {"proves": "chirality_separation_is_necessary"},
-            })
-            edges.append({
-                "source_id": neg_nid,
-                "target_id": _node_id("ENGINE", "type2_inductive"),
-                "relation": "NEGATIVE_PROVES",
-                "attributes": {"proves": "chirality_separation_is_necessary"},
-            })
+            targets = [
+                (_h("ENGINE", "type1_deductive"), _p("ENGINE", "type1_deductive"), "chirality_separation_is_necessary"),
+                (_h("ENGINE", "type2_inductive"), _p("ENGINE", "type2_inductive"), "chirality_separation_is_necessary"),
+            ]
+        for tgt_h, tgt_p, proves in targets:
+            edges.append(_make_edge("NEGATIVE_PROVES", neg_h, tgt_h, neg_p, tgt_p, {"proves": proves}))
+
+    # ── Build public_id index for cross-layer reconciliation ──
+    public_id_index = {}
+    for hid, node in nodes.items():
+        public_id_index[node["public_id"]] = hid
+
+    # ── Count node types ──
+    from collections import Counter
+    type_counts = Counter(n["node_type"] for n in nodes.values())
 
     graph = {
-        "schema": "QIT_ENGINE_GRAPH_v1",
+        "schema": "QIT_ENGINE_GRAPH_v2",
         "generated_utc": _utc_iso(),
         "description": (
             "Graph encoding of the Geometric Engine's physical topology: "
             "8 macro-stages × 2 engine types, 4 fixed subcycle operators, "
-            "3 nested Hopf tori, 7 proven axes, and 9 negative witnesses."
+            "64 subcycle steps (16×4 runtime grain), "
+            "3 nested Hopf tori, 7 proven axes, and 9 negative witnesses. "
+            "All nodes carry stable public_id for cross-layer joining."
         ),
         "nodes": nodes,
         "edges": edges,
+        "public_id_index": public_id_index,
         "summary": {
             "node_count": len(nodes),
             "edge_count": len(edges),
-            "node_types": {
-                "MACRO_STAGE": sum(1 for n in nodes.values() if n["node_type"] == "MACRO_STAGE"),
-                "OPERATOR": sum(1 for n in nodes.values() if n["node_type"] == "OPERATOR"),
-                "TORUS": sum(1 for n in nodes.values() if n["node_type"] == "TORUS"),
-                "ENGINE": sum(1 for n in nodes.values() if n["node_type"] == "ENGINE"),
-                "AXIS": sum(1 for n in nodes.values() if n["node_type"] == "AXIS"),
-                "NEG_WITNESS": sum(1 for n in nodes.values() if n["node_type"] == "NEG_WITNESS"),
-            },
+            "node_types": dict(type_counts),
+            "validation_errors": validation_errors,
         },
     }
+
+    # Compute content hash AFTER building (but before writing timestamp)
+    content_for_hash = {k: v for k, v in graph.items() if k != "generated_utc"}
+    graph["content_hash"] = _content_hash(content_for_hash)
 
     return graph
 
@@ -362,16 +497,25 @@ def write_qit_engine_graph() -> dict[str, Any]:
         "node_count": summary["node_count"],
         "edge_count": summary["edge_count"],
         "node_types": summary["node_types"],
+        "content_hash": graph["content_hash"],
+        "validation_errors": summary["validation_errors"],
     }
 
 
 if __name__ == "__main__":
     result = write_qit_engine_graph()
     print(f"\n{'='*60}")
-    print(f"QIT ENGINE GRAPH LAYER")
+    print(f"QIT ENGINE GRAPH LAYER (v2)")
     print(f"{'='*60}")
     print(f"  Nodes: {result['node_count']}")
     print(f"  Edges: {result['edge_count']}")
     for ntype, count in result["node_types"].items():
         print(f"    {ntype}: {count}")
+    print(f"  Content hash: {result['content_hash'][:16]}...")
+    if result["validation_errors"]:
+        print(f"  VALIDATION ERRORS: {len(result['validation_errors'])}")
+        for err in result["validation_errors"]:
+            print(f"    ⚠ {err}")
+    else:
+        print(f"  Pydantic validation: ALL PASSED ✓")
     print(f"  Written to: {result['path']}")

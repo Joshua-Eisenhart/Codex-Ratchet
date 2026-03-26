@@ -369,6 +369,7 @@ def build_nested_graph(repo_root: str | Path) -> dict[str, Any]:
                 "node_count": layer["node_count"],
                 "edge_count": layer["edge_count"],
                 "node_types": layer["node_types"],
+                "node_ids": layer["node_ids"],
             }
             for layer in layers
         },
@@ -376,7 +377,7 @@ def build_nested_graph(repo_root: str | Path) -> dict[str, Any]:
             "total": len(cross_edges),
             "by_layer_pair": dict(cross_layer_summary),
             "by_relation": dict(cross_layer_by_relation),
-            "edges": cross_edges[:500],  # Cap at 500 for readability
+            "edges": cross_edges,  # Full set — no cap
         },
         "topology": {
             "toponetx": tnx_result,

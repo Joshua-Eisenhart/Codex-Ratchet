@@ -160,6 +160,14 @@ def run_macro_stage(
     observed_native_by_dphi = max(abs_dphi_score, key=abs_dphi_score.get)
     observed_native_by_trace = max(trace_score, key=trace_score.get)
 
+    max_dphi = max(abs_dphi_score.values()) if any(abs_dphi_score.values()) else 1.0
+    max_trace = max(trace_score.values()) if any(trace_score.values()) else 1.0
+    mixed_score = {}
+    for op in OPERATORS:
+        mx = (abs_dphi_score.get(op, 0.0) / max_dphi) + (trace_score.get(op, 0.0) / max_trace)
+        mixed_score[op] = mx
+    observed_native_by_mixed = max(mixed_score, key=mixed_score.get)
+
     return {
         "engine_type": engine_type,
         "stage_num": stage_num,
@@ -184,8 +192,10 @@ def run_macro_stage(
         "delta_axes": summarize_axes(delta_axes),
         "observed_native_by_abs_dphi": observed_native_by_dphi,
         "observed_native_by_trace": observed_native_by_trace,
+        "observed_native_by_mixed": observed_native_by_mixed,
         "native_matches_abs_dphi": observed_native_by_dphi == native_operator,
         "native_matches_trace": observed_native_by_trace == native_operator,
+        "native_matches_mixed": observed_native_by_mixed == native_operator,
         "subcycles": subcycles,
     }
 
@@ -216,6 +226,7 @@ def aggregate_macro_runs(records: list[dict]) -> dict:
             },
             "native_match_rate_abs_dphi": float(np.mean([r["native_matches_abs_dphi"] for r in records])),
             "native_match_rate_trace": float(np.mean([r["native_matches_trace"] for r in records])),
+            "native_match_rate_mixed": float(np.mean([r["native_matches_mixed"] for r in records])),
         },
         "subcycle_averages": [],
     }
@@ -243,11 +254,13 @@ def build_type_summaries(matrix_rows: list[dict]) -> dict:
         op_totals = defaultdict(lambda: {"dphi_L": 0.0, "dphi_R": 0.0, "trace_L": 0.0, "trace_R": 0.0, "n": 0})
         dominant_counts_dphi = Counter()
         dominant_counts_trace = Counter()
+        dominant_counts_mixed = Counter()
 
         for row in subset:
             rep = row["representative"]
             dominant_counts_dphi[rep["observed_native_by_abs_dphi"]] += 1
             dominant_counts_trace[rep["observed_native_by_trace"]] += 1
+            dominant_counts_mixed[rep["observed_native_by_mixed"]] += 1
             for sub in row["subcycle_averages"]:
                 bucket = op_totals[sub["operator"]]
                 for key in ("dphi_L", "dphi_R", "trace_L", "trace_R"):
@@ -270,9 +283,13 @@ def build_type_summaries(matrix_rows: list[dict]) -> dict:
             "avg_native_match_rate_trace": float(np.mean([
                 row["trial_averages"]["native_match_rate_trace"] for row in subset
             ])),
+            "avg_native_match_rate_mixed": float(np.mean([
+                row["trial_averages"]["native_match_rate_mixed"] for row in subset
+            ])),
             "operator_profiles": operator_profiles,
             "dominant_counts_abs_dphi": dict(dominant_counts_dphi),
             "dominant_counts_trace": dict(dominant_counts_trace),
+            "dominant_counts_mixed": dict(dominant_counts_mixed),
         }
     return summaries
 
@@ -312,12 +329,20 @@ def run():
                 f"order={'/'.join(agg['representative']['observed_operator_order'])}"
             )
 
+    total_mixed_matches = sum([1 for row in matrix_rows if row["trial_averages"]["native_match_rate_mixed"] >= 0.5])
     tokens = [
         EvidenceToken(
             "E_PROCESS_CYCLE_STAGE_MATRIX_OK",
             "S_PROCESS_CYCLE_STAGE_MATRIX",
             "PASS",
             float(len(matrix_rows)),
+        ),
+        EvidenceToken(
+            "E_PROCESS_CYCLE_NATIVE_DOMINANT",
+            "S_PROCESS_CYCLE_STAGE_MATRIX",
+            "PASS" if total_mixed_matches >= 8 else "FAIL",
+            float(total_mixed_matches),
+            f"Mixed score matches >= 8 required, got {total_mixed_matches}",
         )
     ]
 

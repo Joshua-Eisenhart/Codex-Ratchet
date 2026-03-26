@@ -10,7 +10,7 @@
 | File | Purpose |
 |---|---|
 | `core_docs/QIT_GRAPH_LAYER_MAPPING.md` | Conceptual Rosetta stone: which physics concept lives in which graph layer |
-| `core_docs/QIT_GRAPH_SCHEMA.md` | Canonical node and edge inventory (7 live node types + 1 schema-ready type, 11 edge types, 105 nodes, 282 edges) |
+| `core_docs/QIT_GRAPH_SCHEMA.md` | Canonical node and edge inventory (7 live node types + 1 schema-ready type, 11 edge types, 105 nodes, 272 edges) |
 | `core_docs/QIT_GRAPH_SIDECAR_POLICY.md` | What each sidecar may and may not do |
 | `core_docs/QIT_GRAPH_RUNTIME_MODEL.md` | Structure vs state vs history graph separation |
 | `core_docs/QIT_GRAPH_PROMOTION_GATES.md` | When a concept moves from sidecar to owner truth |
@@ -18,14 +18,18 @@
 | `core_docs/C_LAYER_ARCHITECTURE.md` | C1/C2/C3 external layer: pi-mono, AutoResearchClaw, MiroFish, OpenClaw-RL |
 | `system_v4/skills/qit_engine_graph_builder.py` | Builds the QIT engine graph layer |
 | `system_v4/skills/qit_graph_stack_runtime.py` | Read-only-by-default verifier over the existing QIT owner snapshot, GraphML export, bounded sidecars, and promotion gates |
+| `system_v4/skills/qit_runtime_evidence_bridge.py` | Persists a read-only runtime/evidence audit packet keyed to stable QIT `public_id`s |
+| `system_v4/skills/qit_retrieval_sidecar.py` | Builds a bounded QIT retrieval corpus/query seam with lexical fallback and explicit non-authoritative guards |
 | `system_v4/skills/qit_owner_schemas.py` | Pydantic contracts for all owner-layer types |
-| `system_v4/a2_state/graphs/qit_engine_graph_v1.json` | The live QIT engine graph (105 nodes, 282 edges) |
+| `system_v4/a2_state/graphs/qit_engine_graph_v1.json` | The live QIT engine graph (105 nodes, 272 edges) |
+| `system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json` | Persisted read-only runtime/evidence bridge packet/report input |
+| `system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.json` | Persisted bounded retrieval-sidecar report over QIT docs and evidence |
 
 ---
 
 ## What Is Owner Truth (Read These First)
 
-The **owner stack** is `Pydantic → JSON → NetworkX → GraphML`. These are real:
+The **owner stack** is `Pydantic → JSON → NetworkX`, with GraphML as an interoperability/export view. These are real:
 
 - ✅ Engine type identities (Deductive / Inductive)
 - ✅ 16 macro-stage nodes with terrain attributes
@@ -34,7 +38,7 @@ The **owner stack** is `Pydantic → JSON → NetworkX → GraphML`. These are r
 - ✅ 7 proven load-bearing axes (0–6)
 - ✅ 9 negative witness nodes (graveyard kills)
 - ✅ 64 subcycle step nodes (full 16×4 runtime grain)
-- ✅ 282 structural edges (stage sequence, step-in-stage, step-uses-operator, step-sequence, torus nesting, chirality coupling, etc.)
+- ✅ 272 structural edges (stage sequence, step-in-stage, step-uses-operator, step-sequence, torus nesting, chirality coupling, and only evidence-backed negative proofs)
 - ✅ Stable `public_id` on every node for cross-layer joining
 - ✅ `content_hash` for snapshot provenance
 - ✅ GraphML export as an owner-stack interoperability view
@@ -49,7 +53,8 @@ The **owner stack** is `Pydantic → JSON → NetworkX → GraphML`. These are r
 | **TopoNetX** | Bounded read-only projection | Builds CellComplex, identifies cycles and 2-cells from owner data |
 | **clifford** | Bounded read-only sidecar | Computes Cl(3,0) multivector edge payloads from owner edge types |
 | **PyG** | Bounded read-only sidecar | Builds HeteroData tensor projections from owner data |
-| **LightRAG** | Sidecar corpus ready; indexing/query still blocked on embedding config | Read-only retrieval corpus over owner graph summaries, QIT docs, and SIM/history surfaces; not owner memory |
+| **LightRAG** | Sidecar corpus ready; embedding-backed indexing/query still blocked on embedding config | Intended read-only retrieval/index layer over QIT docs and evidence surfaces; not owner memory |
+| **QIT retrieval seam** | Present (lexical fallback only) | Bounded query surface over QIT docs, structured runtime/evidence bridge packets, stack reports, and selected SIM evidence; context only, not proof |
 | **kingdon** | Not yet integrated | Optional GA-Torch bridge for differentiable algebra |
 
 **None of these sidecars are semantic owners yet.** They are the correct *next* semantic carriers for their respective domains, pending promotion gates.
@@ -60,7 +65,9 @@ The **owner stack** is `Pydantic → JSON → NetworkX → GraphML`. These are r
 
 - ❌ Runtime state graph (engine position during execution) — still in `engine_core.py` dataclass, not a graph
 - ❌ History/evidence graph — still flat JSON files in `a2_state/sim_results/`
-- ❌ Live LightRAG indexing/query over the internal graph/docs/evidence corpus
+- ✅ Read-only runtime/evidence bridge packet/report — can be persisted under `a2_state/audit_logs/` without promoting a graph
+- ✅ Bounded retrieval sidecar with lexical fallback over QIT docs and evidence
+- ❌ Live embedding-backed LightRAG indexing/query over the internal QIT corpus
 - ❌ Live TopoNetX torus 2-cells in the owner graph
 - ❌ Live clifford chirality payloads in the owner graph
 - ❌ Any promotion gate fully passed
@@ -93,6 +100,15 @@ python3 system_v4/skills/qit_engine_graph_builder.py
 
 # Verify the existing owner snapshot, GraphML surface, bounded sidecars, and promotion gates
 python3 system_v4/skills/qit_graph_stack_runtime.py
+
+# Persist a read-only runtime/evidence bridge packet and markdown summary
+python3 system_v4/skills/qit_runtime_evidence_bridge.py
+
+# Build the bounded retrieval sidecar and run its default context-only query
+python3 system_v4/skills/qit_retrieval_sidecar.py
+
+# Persist the tracked status artifacts only when you intentionally want to refresh them
+python3 system_v4/skills/qit_graph_stack_runtime.py --write-report
 
 # Rebuild the full nested graph (QIT present as a 6th layer; explicit cross-layer admission still incomplete)
 python3 system_v4/skills/nested_graph_builder.py

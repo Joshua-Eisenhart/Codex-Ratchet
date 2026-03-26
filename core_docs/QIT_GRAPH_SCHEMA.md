@@ -11,7 +11,7 @@
 
 - Schema: `QIT_ENGINE_GRAPH_v2`
 - Nodes: `105`
-- Edges: `282`
+- Edges: `272`
 - Live node types: `7`
 - Live relation types: `11`
 - Schema-ready but not instantiated: `WEYL_BRANCH`
@@ -65,6 +65,9 @@ The current owner graph carries:
 | `proven` | `AXIS` | Whether the axis is currently treated as load-bearing in this owner graph |
 | `negative_witness` | `AXIS` | Negative sim reference when present |
 | `target_structure` | `NEG_WITNESS` | `TORUS`, `AXIS`, `OPERATOR`, or `CHIRALITY` |
+| `specific_targets` | `NEG_WITNESS` | Explicit owner members named by the witness when the proof is narrower than a whole class |
+| `owner_edge_emission` | `NEG_WITNESS` | Whether owner proof edges are emitted directly, swept per member, or suppressed pending a better owner concept |
+| `proves_label` | `NEG_WITNESS` | Witness-specific proof claim carried onto any emitted `NEGATIVE_PROVES` edges |
 | `operator` | `SUBCYCLE_STEP` | The operator used at this step |
 | `position_in_subcycle` | `SUBCYCLE_STEP` | Fixed subcycle slot `0=Ti`, `1=Fe`, `2=Te`, `3=Fi` |
 
@@ -84,9 +87,9 @@ The current owner graph carries:
 | `TORUS_NESTING` | `TORUS → TORUS` | 2 | 2 | `inner → clifford → outer` nesting chain |
 | `CHIRALITY_COUPLING` | `ENGINE → ENGINE` | 1 | 3 | Complementary engine-family coupling |
 | `AXIS_GOVERNS` | `AXIS → ENGINE` | 14 | 1 | Each axis governs both engine families |
-| `NEGATIVE_PROVES` | `NEG_WITNESS → owner node` | 21 | 2 | Negative proof edges from witness nodes to load-bearing structures |
+| `NEGATIVE_PROVES` | `NEG_WITNESS → owner node` | 11 | 2 | Negative proof edges only where the witness names a faithful owner-level target |
 
-**Live total:** `282` edges
+**Live total:** `272` edges
 
 > The `Sidecar Cl(3) Grade` column is a bounded sidecar mapping from `graph_tool_integration.py`, not an owner payload stored directly on the live graph edges.
 
@@ -107,6 +110,7 @@ The current owner graph carries:
 | `axis` | `AXIS_GOVERNS` | The governing axis id |
 | `operator` | `STEP_IN_STAGE` | Which operator this step represents |
 | `proves` | `NEGATIVE_PROVES` | What the negative witness is taken to prove |
+| `scope` | `NEGATIVE_PROVES` | Whether the proof edge comes from specific named targets or a per-member sweep |
 
 ---
 
@@ -125,4 +129,5 @@ The current owner graph carries:
 python3 system_v4/skills/qit_owner_schemas.py
 python3 system_v4/skills/qit_engine_graph_builder.py
 python3 system_v4/skills/qit_graph_stack_runtime.py
+python3 system_v4/skills/qit_graph_stack_runtime.py --write-report
 ```

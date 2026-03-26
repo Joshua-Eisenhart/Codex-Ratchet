@@ -1,15 +1,15 @@
 {
-  "generated_utc": "2026-03-26T22:58:28Z",
+  "generated_utc": "2026-03-26T23:19:57Z",
   "next_actions": [
     "keep owner verification read-only by default and use refresh flags only for intentional artifact regeneration",
     "treat snapshot_id plus file hashes as the join key for future audit/report surfaces",
     "admit explicit QIT bridge links through the registry before claiming nested-graph integration beyond summary-level presence",
-    "materialize runtime-state and history graph surfaces before promoting QIT runtime semantics inward",
-    "complete a bounded embedding-backed query path over the existing LightRAG sidecar corpus, not as owner memory",
+    "persist and expand the read-only runtime evidence bridge before promoting runtime/history semantics inward",
+    "use the bounded retrieval sidecar as context only until embedding-backed LightRAG query is configured and explicitly kept non-authoritative",
     "promote torus/chirality/runtime semantics only after negative-proof and round-trip gates are satisfied"
   ],
   "owner": {
-    "edge_count": 282,
+    "edge_count": 272,
     "graphml_export": {
       "action": "read_existing_snapshot",
       "edge_count": 297,
@@ -33,14 +33,14 @@
     "node_count": 105,
     "owner_summary_validation_errors": [],
     "qit_graph_action": "read_existing_snapshot",
-    "qit_graph_content_hash": "019ace7d8072508e1e1e3bc3931e36155be38652255e1f55993a47fc053406ee",
+    "qit_graph_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
     "qit_graph_content_hash_matches_recomputed": true,
-    "qit_graph_content_hash_recomputed": "019ace7d8072508e1e1e3bc3931e36155be38652255e1f55993a47fc053406ee",
-    "qit_graph_generated_utc": "2026-03-26T22:57:16Z",
+    "qit_graph_content_hash_recomputed": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
+    "qit_graph_generated_utc": "2026-03-26T23:01:11Z",
     "qit_graph_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json",
     "qit_graph_schema": "QIT_ENGINE_GRAPH_v2",
-    "qit_graph_sha256": "3d47ff0839cfc8af4cbd7c40ce5b85fbeff6a9c91aaa4f9f9a9323c340e8ab72",
-    "qit_graph_size_bytes": 139280,
+    "qit_graph_sha256": "82ad2bda2f3be37b7c69cf2d436477fb3a8f40d755e170c076dc2a12885dedda",
+    "qit_graph_size_bytes": 137116,
     "schema_ready_not_instantiated": [
       "WEYL_BRANCH"
     ],
@@ -92,27 +92,64 @@
     }
   },
   "provenance": {
-    "git_sha": "f5c317d544b67c27521c7d53810946d7594486de",
+    "git_sha": "0f724e56f67f24d7a7402e568e3c3658eb2b56c2",
     "git_worktree_dirty": true,
     "owner_builder_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_engine_graph_builder.py",
-    "owner_builder_sha256": "9bd0a8faa9e99db5174496039a53026663e3f8706d66d2e5d4d216882d84099a",
+    "owner_builder_sha256": "271e5c1681d077ea0994fdd4a5a9ff68e0a21e45e4129943e03858b0e4744822",
     "owner_schema_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_owner_schemas.py",
-    "owner_schema_sha256": "5bdf19caa881a39e19cf710c80cf5bdbf6eab74405b47b72907f34d5ffb3fb75",
+    "owner_schema_sha256": "5136161e11d0ea93bc8f9d27f0dfa9bd5ddd053bfbed42ea782c4d9e5ec73d25",
     "relevant_git_status": [
       " M system_v4/a2_state/audit_logs/QIT_GRAPH_STACK_STATUS__CURRENT__v1.json",
-      " M system_v4/a2_state/audit_logs/QIT_GRAPH_STACK_STATUS__CURRENT__v1.md"
+      " M system_v4/a2_state/audit_logs/QIT_GRAPH_STACK_STATUS__CURRENT__v1.md",
+      " M system_v4/a2_state/graphs/qit_engine_graph_v1.json",
+      " M system_v4/skills/qit_engine_graph_builder.py",
+      " M system_v4/skills/qit_graph_stack_runtime.py",
+      " M system_v4/skills/qit_owner_schemas.py",
+      "?? system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.json",
+      "?? system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.md",
+      "?? system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json",
+      "?? system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md"
     ],
     "script_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_graph_stack_runtime.py",
-    "script_sha256": "5966ec8bb0a492563deedf7069ec8e9927af696160d125520ac1931c33e947bb"
+    "script_sha256": "6a07241bc99aaa74c716370c877fdbf93d1887ab453c8b19ebf732c99b1998ed"
   },
   "purpose": "read-only-by-default verification surface over the current QIT owner snapshot and bounded sidecars",
+  "retrieval_sidecar": {
+    "allow_owner_writes": false,
+    "allow_proof_claims": false,
+    "document_count": 21,
+    "embedding_backed_query": false,
+    "embedding_backed_query_blocker": "LightRAG embedding_func not configured",
+    "generated_utc": "2026-03-26T23:19:46Z",
+    "json_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.json",
+    "md_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.md",
+    "mode": "lexical_fallback_only",
+    "query": "Which QIT runtime evidence surfaces are live now, and how do axis 6, missing Fe, and type flatten negatives map into the current graph lane?",
+    "retrieval_role": "context_only_non_authoritative",
+    "schema": "QIT_RETRIEVAL_SIDECAR_v1",
+    "status": "present",
+    "top_hit_count": 8
+  },
+  "runtime_evidence_bridge": {
+    "complete_mappings": 4,
+    "generated_utc": "2026-03-26T23:17:37Z",
+    "json_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json",
+    "md_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md",
+    "owner_content_hash_matches_current_snapshot": true,
+    "partial_mappings": 1,
+    "runtime_sample_count": 2,
+    "schema": "QIT_RUNTIME_EVIDENCE_BRIDGE_v1",
+    "sim_packet_count": 5,
+    "status": "present",
+    "unresolved_owner_links": 0
+  },
   "schema": "QIT_GRAPH_STACK_STATUS_v1",
   "sidecars": {
     "clifford": {
-      "edges_enriched": 282,
+      "edges_enriched": 272,
       "grade_counts": {
         "1": 226,
-        "2": 55,
+        "2": 45,
         "3": 1
       },
       "kingdon_available_current_interpreter": false,
@@ -195,7 +232,7 @@
         "AXIS_GOVERNS": 14,
         "CHIRALITY_COUPLING": 1,
         "ENGINE_OWNS_STAGE": 16,
-        "NEGATIVE_PROVES": 21,
+        "NEGATIVE_PROVES": 11,
         "STAGE_ON_TORUS": 32,
         "STAGE_SEQUENCE": 16,
         "STEP_IN_STAGE": 64,
@@ -234,21 +271,23 @@
     }
   },
   "snapshot": {
-    "git_sha": "f5c317d544b67c27521c7d53810946d7594486de",
+    "git_sha": "0f724e56f67f24d7a7402e568e3c3658eb2b56c2",
     "graphml_exists": true,
     "graphml_file_sha256": "0158f9197931ebf7f6e2938b37ace7a4fb7eae81924d406487ef6faab6125373",
-    "owner_builder_sha256": "9bd0a8faa9e99db5174496039a53026663e3f8706d66d2e5d4d216882d84099a",
-    "owner_content_hash": "019ace7d8072508e1e1e3bc3931e36155be38652255e1f55993a47fc053406ee",
-    "owner_file_sha256": "3d47ff0839cfc8af4cbd7c40ce5b85fbeff6a9c91aaa4f9f9a9323c340e8ab72",
-    "owner_schema_sha256": "5bdf19caa881a39e19cf710c80cf5bdbf6eab74405b47b72907f34d5ffb3fb75",
-    "script_sha256": "5966ec8bb0a492563deedf7069ec8e9927af696160d125520ac1931c33e947bb",
-    "snapshot_id": "e21502aa1545dfd7e0c0ed3c0f7f081b12f631c23dce026108893e582bf622f4"
+    "owner_builder_sha256": "271e5c1681d077ea0994fdd4a5a9ff68e0a21e45e4129943e03858b0e4744822",
+    "owner_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
+    "owner_file_sha256": "82ad2bda2f3be37b7c69cf2d436477fb3a8f40d755e170c076dc2a12885dedda",
+    "owner_schema_sha256": "5136161e11d0ea93bc8f9d27f0dfa9bd5ddd053bfbed42ea782c4d9e5ec73d25",
+    "script_sha256": "6a07241bc99aaa74c716370c877fdbf93d1887ab453c8b19ebf732c99b1998ed",
+    "snapshot_id": "6a2086366982c4f43a713ecd1b0286ee67a3625d7eed0520acd199f9b92b23ab"
   },
   "status": "precheck_blocked",
   "verification_scope": {
     "does_not_verify": [
       "that the owner graph matches docs or runtime semantics beyond the stored snapshot",
       "that the existing GraphML snapshot is fresh unless it was explicitly refreshed in this run",
+      "that a present runtime evidence bridge constitutes a promoted runtime-state or history graph",
+      "that a present retrieval sidecar constitutes embedding-backed LightRAG retrieval or owner-authoritative memory",
       "that sidecar outputs are promotion-ready owner truth",
       "that any blocked promotion gate should be auto-promoted or auto-repaired",
       "that a PRECHECK_OK promotion gate satisfies the negative-proof, round-trip, no-sidecar-read, or human-audit requirements from the promotion-gates doc"
@@ -260,6 +299,8 @@
       "embedded owner content_hash against a recomputed canonical hash",
       "existing GraphML snapshot hash and parseability when present, or explicit missing status when absent",
       "sidecar availability and projection summaries over the loaded owner snapshot",
+      "existing runtime evidence bridge presence and owner-snapshot alignment when present",
+      "existing bounded retrieval sidecar presence and safety flags when present",
       "coarse promotion-gate state for owner structure, cross-layer alignment, runtime state, and history graph presence"
     ]
   }

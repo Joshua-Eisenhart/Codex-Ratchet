@@ -9,7 +9,8 @@ Default behavior is read-only with respect to the owner graph:
 2. Load the existing QIT owner graph snapshot from disk.
 3. Optionally refresh owner/GraphML artifacts only when explicitly requested.
 4. Run the current bounded sidecars (TopoNetX, clifford payload mapping, PyG)
-   over the loaded owner snapshot and write one consolidated status report.
+   over the loaded owner snapshot.
+5. Persist the consolidated status report only when explicitly requested.
 """
 
 from __future__ import annotations
@@ -50,6 +51,10 @@ AUDIT_DIR = REPO_ROOT / "system_v4" / "a2_state" / "audit_logs"
 GRAPH_DIR = REPO_ROOT / "system_v4" / "a2_state" / "graphs"
 REPORT_JSON = AUDIT_DIR / "QIT_GRAPH_STACK_STATUS__CURRENT__v1.json"
 REPORT_MD = AUDIT_DIR / "QIT_GRAPH_STACK_STATUS__CURRENT__v1.md"
+RUNTIME_EVIDENCE_BRIDGE_JSON = AUDIT_DIR / "QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json"
+RUNTIME_EVIDENCE_BRIDGE_MD = AUDIT_DIR / "QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md"
+QIT_RETRIEVAL_SIDECAR_JSON = AUDIT_DIR / "QIT_RETRIEVAL_SIDECAR__CURRENT__v1.json"
+QIT_RETRIEVAL_SIDECAR_MD = AUDIT_DIR / "QIT_RETRIEVAL_SIDECAR__CURRENT__v1.md"
 GRAPHML_PATH = GRAPH_DIR / "qit_engine_graph_v1.graphml"
 NESTED_GRAPH_PATH = GRAPH_DIR / "nested_graph_v1.json"
 RUNTIME_STATE_PATH = GRAPH_DIR / "qit_runtime_state_v1.json"
@@ -439,11 +444,79 @@ def _lightrag_status() -> dict[str, Any]:
     }
 
 
+def _runtime_evidence_bridge_status(owner_snapshot: dict[str, Any]) -> dict[str, Any]:
+    if not RUNTIME_EVIDENCE_BRIDGE_JSON.exists():
+        return {
+            "status": "absent",
+            "json_path": str(RUNTIME_EVIDENCE_BRIDGE_JSON),
+            "md_path": str(RUNTIME_EVIDENCE_BRIDGE_MD),
+        }
+
+    payload = _load_json(RUNTIME_EVIDENCE_BRIDGE_JSON)
+    summary = payload.get("summary", {}) if isinstance(payload.get("summary"), dict) else {}
+    owner = payload.get("owner_snapshot", {}) if isinstance(payload.get("owner_snapshot"), dict) else {}
+    owner_hash_matches = owner.get("qit_graph_content_hash") == owner_snapshot.get("embedded_content_hash")
+    runtime_sample_count = int(summary.get("runtime_sample_count", 0) or 0)
+    sim_packet_count = int(summary.get("sim_packet_count", 0) or 0)
+    complete_mappings = int(summary.get("complete_mappings", 0) or 0)
+    partial_mappings = int(summary.get("partial_mappings", 0) or 0)
+    unresolved_links = int(summary.get("unresolved_owner_links", 0) or 0)
+
+    if owner_hash_matches and runtime_sample_count > 0 and sim_packet_count > 0 and unresolved_links == 0:
+        status = "present"
+    else:
+        status = "partial"
+
+    return {
+        "status": status,
+        "json_path": str(RUNTIME_EVIDENCE_BRIDGE_JSON),
+        "md_path": str(RUNTIME_EVIDENCE_BRIDGE_MD),
+        "schema": payload.get("schema", ""),
+        "generated_utc": payload.get("generated_utc", ""),
+        "owner_content_hash_matches_current_snapshot": owner_hash_matches,
+        "runtime_sample_count": runtime_sample_count,
+        "sim_packet_count": sim_packet_count,
+        "complete_mappings": complete_mappings,
+        "partial_mappings": partial_mappings,
+        "unresolved_owner_links": unresolved_links,
+    }
+
+
+def _qit_retrieval_sidecar_status() -> dict[str, Any]:
+    if not QIT_RETRIEVAL_SIDECAR_JSON.exists():
+        return {
+            "status": "absent",
+            "json_path": str(QIT_RETRIEVAL_SIDECAR_JSON),
+            "md_path": str(QIT_RETRIEVAL_SIDECAR_MD),
+        }
+
+    payload = _load_json(QIT_RETRIEVAL_SIDECAR_JSON)
+    top_hits = payload.get("top_hits", [])
+    return {
+        "status": "present" if top_hits else "partial",
+        "json_path": str(QIT_RETRIEVAL_SIDECAR_JSON),
+        "md_path": str(QIT_RETRIEVAL_SIDECAR_MD),
+        "schema": payload.get("schema", ""),
+        "generated_utc": payload.get("generated_utc", ""),
+        "mode": payload.get("mode", ""),
+        "retrieval_role": payload.get("retrieval_role", ""),
+        "allow_owner_writes": payload.get("allow_owner_writes"),
+        "allow_proof_claims": payload.get("allow_proof_claims"),
+        "embedding_backed_query": payload.get("embedding_backed_query"),
+        "embedding_backed_query_blocker": payload.get("embedding_backed_query_blocker", ""),
+        "document_count": payload.get("document_count", 0),
+        "top_hit_count": len(top_hits) if isinstance(top_hits, list) else 0,
+        "query": payload.get("query", ""),
+    }
+
+
 def _render_markdown(report: dict[str, Any]) -> str:
     owner = report["owner"]
     sidecars = report["sidecars"]
     snapshot = report["snapshot"]
     scope = report["verification_scope"]
+    bridge = report["runtime_evidence_bridge"]
+    retrieval = report["retrieval_sidecar"]
     next_actions = "\n".join(f"- {item}" for item in report["next_actions"])
     verifies = "\n".join(f"- {item}" for item in scope["verifies"])
     does_not_verify = "\n".join(f"- {item}" for item in scope["does_not_verify"])
@@ -502,6 +575,28 @@ def _render_markdown(report: dict[str, Any]) -> str:
             f"- PyG importable (preferred interpreter): `{sidecars['pyg']['importable_preferred_interpreter']}`",
             f"- LightRAG status: `{sidecars['lightrag']['status']}`",
             "",
+            "## Runtime Evidence Bridge",
+            f"- status: `{bridge['status']}`",
+            f"- json_path: `{bridge['json_path']}`",
+            f"- md_path: `{bridge['md_path']}`",
+            f"- owner_content_hash_matches_current_snapshot: `{bridge.get('owner_content_hash_matches_current_snapshot')}`",
+            f"- runtime_sample_count: `{bridge.get('runtime_sample_count')}`",
+            f"- sim_packet_count: `{bridge.get('sim_packet_count')}`",
+            f"- complete_mappings: `{bridge.get('complete_mappings')}`",
+            f"- partial_mappings: `{bridge.get('partial_mappings')}`",
+            "",
+            "## Retrieval Sidecar",
+            f"- status: `{retrieval['status']}`",
+            f"- json_path: `{retrieval['json_path']}`",
+            f"- md_path: `{retrieval['md_path']}`",
+            f"- mode: `{retrieval.get('mode')}`",
+            f"- retrieval_role: `{retrieval.get('retrieval_role')}`",
+            f"- allow_owner_writes: `{retrieval.get('allow_owner_writes')}`",
+            f"- allow_proof_claims: `{retrieval.get('allow_proof_claims')}`",
+            f"- embedding_backed_query: `{retrieval.get('embedding_backed_query')}`",
+            f"- document_count: `{retrieval.get('document_count')}`",
+            f"- top_hit_count: `{retrieval.get('top_hit_count')}`",
+            "",
             "## Next Actions",
             next_actions,
             "",
@@ -518,6 +613,8 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
     clifford = _clifford_projection_summary(nodes, edges)
     pyg = build_pyg_tensors(nodes, edges)
     preferred_interpreter_exists = PREFERRED_INTERPRETER.exists()
+    runtime_evidence_bridge = _runtime_evidence_bridge_status(owner_snapshot)
+    retrieval_sidecar = _qit_retrieval_sidecar_status()
 
     live_node_types = sorted({node.get("node_type", "?") for node in nodes.values()})
     schema_ready_not_instantiated = sorted({"WEYL_BRANCH"} - set(live_node_types))
@@ -533,6 +630,10 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
         Path(owner_schema_path) if owner_schema_path else None,
         QIT_GRAPH_JSON,
         GRAPHML_PATH,
+        RUNTIME_EVIDENCE_BRIDGE_JSON,
+        RUNTIME_EVIDENCE_BRIDGE_MD,
+        QIT_RETRIEVAL_SIDECAR_JSON,
+        QIT_RETRIEVAL_SIDECAR_MD,
         REPORT_JSON,
         REPORT_MD,
     ]
@@ -585,11 +686,15 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
                 "embedded owner content_hash against a recomputed canonical hash",
                 "existing GraphML snapshot hash and parseability when present, or explicit missing status when absent",
                 "sidecar availability and projection summaries over the loaded owner snapshot",
+                "existing runtime evidence bridge presence and owner-snapshot alignment when present",
+                "existing bounded retrieval sidecar presence and safety flags when present",
                 "coarse promotion-gate state for owner structure, cross-layer alignment, runtime state, and history graph presence",
             ],
             "does_not_verify": [
                 "that the owner graph matches docs or runtime semantics beyond the stored snapshot",
                 "that the existing GraphML snapshot is fresh unless it was explicitly refreshed in this run",
+                "that a present runtime evidence bridge constitutes a promoted runtime-state or history graph",
+                "that a present retrieval sidecar constitutes embedding-backed LightRAG retrieval or owner-authoritative memory",
                 "that sidecar outputs are promotion-ready owner truth",
                 "that any blocked promotion gate should be auto-promoted or auto-repaired",
                 "that a PRECHECK_OK promotion gate satisfies the negative-proof, round-trip, no-sidecar-read, or human-audit requirements from the promotion-gates doc",
@@ -634,13 +739,15 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
                 "role": "read-only retrieval sidecar over internal graph/docs/evidence corpus; not owner memory",
             },
         },
+        "runtime_evidence_bridge": runtime_evidence_bridge,
+        "retrieval_sidecar": retrieval_sidecar,
         "promotion_gates": promotion_gates,
         "next_actions": [
             "keep owner verification read-only by default and use refresh flags only for intentional artifact regeneration",
             "treat snapshot_id plus file hashes as the join key for future audit/report surfaces",
             "admit explicit QIT bridge links through the registry before claiming nested-graph integration beyond summary-level presence",
-            "materialize runtime-state and history graph surfaces before promoting QIT runtime semantics inward",
-            "complete a bounded embedding-backed query path over the existing LightRAG sidecar corpus, not as owner memory",
+            "persist and expand the read-only runtime evidence bridge before promoting runtime/history semantics inward",
+            "use the bounded retrieval sidecar as context only until embedding-backed LightRAG query is configured and explicitly kept non-authoritative",
             "promote torus/chirality/runtime semantics only after negative-proof and round-trip gates are satisfied",
         ],
     }
@@ -658,6 +765,11 @@ def _parse_args() -> argparse.Namespace:
         "--refresh-graphml",
         action="store_true",
         help="Explicitly rewrite the GraphML sidecar from the loaded owner snapshot before verification.",
+    )
+    parser.add_argument(
+        "--write-report",
+        action="store_true",
+        help="Persist the tracked JSON/Markdown status artifacts after verification.",
     )
     return parser.parse_args()
 
@@ -677,25 +789,29 @@ def main() -> None:
 
     new_hash = _report_content_hash(report)
 
-    # Only rewrite status artifacts when substantive content changed
-    should_write = True
+    old_hash = None
     if REPORT_JSON.exists():
         try:
             old_report = _load_json(REPORT_JSON)
             old_hash = _report_content_hash(old_report)
-            if old_hash == new_hash:
-                should_write = False
         except Exception:
-            pass  # corrupted or missing — rewrite
+            old_hash = None
 
-    if should_write:
-        _write_json(REPORT_JSON, report)
-        _write_text(REPORT_MD, _render_markdown(report))
-        print("QIT graph stack status updated (content changed):")
-        print(f"  JSON: {REPORT_JSON}")
-        print(f"  MD:   {REPORT_MD}")
+    report_changed = old_hash != new_hash
+
+    if args.write_report:
+        if report_changed:
+            _write_json(REPORT_JSON, report)
+            _write_text(REPORT_MD, _render_markdown(report))
+            print("QIT graph stack status updated (content changed):")
+            print(f"  JSON: {REPORT_JSON}")
+            print(f"  MD:   {REPORT_MD}")
+        else:
+            print("QIT graph stack status unchanged — skipped rewrite.")
     else:
-        print("QIT graph stack status unchanged — skipped rewrite.")
+        state = "stale_on_disk" if report_changed else "matches_on_disk"
+        print(f"QIT graph stack status built in memory only ({state}).")
+        print("  Use --write-report to persist tracked status artifacts.")
 
     print(f"  GraphML: {GRAPHML_PATH} ({report['owner']['graphml_export']['action']})")
 

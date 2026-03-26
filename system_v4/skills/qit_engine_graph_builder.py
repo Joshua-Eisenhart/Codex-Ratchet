@@ -83,19 +83,82 @@ PROVEN_AXES = [
     ("axis_6", "Polarity / torus latitude sign", True, "neg_axis6_shared_stage_matrix_sim.py"),
 ]
 
-# Each negative witness carries: (id, description, target_class, specific_targets_or_None)
-# When specific_targets is None, the sim proves something about the ENTIRE class.
-# When specific_targets is a list, the sim only proves something about those specific members.
-NEGATIVE_WITNESSES: list[tuple[str, str, str, list[str] | None]] = [
-    ("neg_no_torus_transport", "Removing torus transport kills the engine", "TORUS", None),  # all tori
-    ("neg_axis0_frozen", "Freezing Axis 0 kills entropy gradients", "AXIS", ["axis_0"]),
-    ("neg_no_chirality", "Removing engine type distinction kills asymmetry", "CHIRALITY", None),  # both engines
-    ("neg_torus_scrambled", "Scrambling torus assignment kills coherence", "TORUS", None),  # all tori
-    ("neg_axis6_shared", "Sharing Axis 6 polarity across types kills separation", "AXIS", ["axis_6"]),
-    ("neg_missing_fe", "Removing Fe operator kills the subcycle", "OPERATOR", ["Fe"]),
-    ("neg_missing_operator", "Removing any single operator kills the subcycle", "OPERATOR", None),  # all operators
-    ("neg_native_only", "Using only native operators kills type distinction", "OPERATOR", None),  # all operators
-    ("neg_type_flatten", "Flattening engine types kills chirality separation", "CHIRALITY", None),  # both engines
+# Each negative witness carries:
+#   (id, description, target_class, specific_targets, owner_edge_emission, proves_label)
+# We only emit owner proof edges when there is a faithful owner-level target.
+NEGATIVE_WITNESSES: list[tuple[str, str, str, list[str], str, str]] = [
+    (
+        "neg_no_torus_transport",
+        "Removing torus transport kills the engine",
+        "TORUS",
+        [],
+        "suppressed_pending_owner_concept",
+        "torus_transport_regime_is_necessary",
+    ),
+    (
+        "neg_axis0_frozen",
+        "Freezing Axis 0 kills entropy gradients",
+        "AXIS",
+        ["axis_0"],
+        "specific_targets",
+        "axis_0_entropy_gradient_is_load_bearing",
+    ),
+    (
+        "neg_no_chirality",
+        "Removing engine type distinction kills asymmetry",
+        "CHIRALITY",
+        ["type1_deductive", "type2_inductive"],
+        "specific_targets",
+        "engine_type_asymmetry_is_necessary",
+    ),
+    (
+        "neg_torus_scrambled",
+        "Scrambling torus assignment kills coherence",
+        "TORUS",
+        [],
+        "suppressed_pending_owner_concept",
+        "torus_assignment_coherence_is_necessary",
+    ),
+    (
+        "neg_axis6_shared",
+        "Sharing Axis 6 polarity across types kills separation",
+        "AXIS",
+        ["axis_6"],
+        "specific_targets",
+        "axis_6_polarity_is_load_bearing",
+    ),
+    (
+        "neg_missing_fe",
+        "Removing Fe operator kills the subcycle",
+        "OPERATOR",
+        ["Fe"],
+        "specific_targets",
+        "fe_member_is_load_bearing",
+    ),
+    (
+        "neg_missing_operator",
+        "Removing any single operator kills the subcycle",
+        "OPERATOR",
+        ["Ti", "Fe", "Te", "Fi"],
+        "per_member_sweep",
+        "operator_member_is_load_bearing",
+    ),
+    (
+        "neg_native_only",
+        "Using only native operators kills type distinction",
+        "OPERATOR",
+        [],
+        "suppressed_pending_owner_concept",
+        "mixed_operator_regime_is_necessary",
+    ),
+    (
+        "neg_type_flatten",
+        "Flattening engine types kills chirality separation",
+        "CHIRALITY",
+        ["type1_deductive", "type2_inductive"],
+        "specific_targets",
+        "type_specific_weighting_is_necessary",
+    ),
 ]
 
 
@@ -268,12 +331,15 @@ def build_qit_engine_graph() -> dict[str, Any]:
         nodes[hid] = node
 
     # ── 6. NEGATIVE_WITNESS nodes (Pydantic-validated) ──
-    for neg_id, neg_desc, neg_target, specific_targets in NEGATIVE_WITNESSES:
+    for neg_id, neg_desc, neg_target, specific_targets, owner_edge_emission, proves_label in NEGATIVE_WITNESSES:
         try:
             model = NegativeWitness(
                 neg_id=neg_id,
                 description=neg_desc,
                 target_structure=NegTargetEnum(neg_target),
+                specific_targets=list(specific_targets),
+                owner_edge_emission=owner_edge_emission,
+                proves_label=proves_label,
             )
         except Exception as e:
             validation_errors.append(f"NEG_WITNESS {neg_id}: {e}")
@@ -282,6 +348,9 @@ def build_qit_engine_graph() -> dict[str, Any]:
             "label": model.neg_id,
             "description": model.description,
             "target_structure": model.target_structure.value,
+            "specific_targets": model.specific_targets,
+            "owner_edge_emission": model.owner_edge_emission,
+            "proves_label": model.proves_label,
         })
         nodes[hid] = node
 
@@ -434,39 +503,32 @@ def build_qit_engine_graph() -> dict[str, Any]:
                 {"axis": axis_id},
             ))
 
-    # 8k. NEGATIVE_PROVES — scoped to specific targets when the sim only proves
-    #     something about specific members, not the entire class.
-    for neg_id, _, neg_target, specific_targets in NEGATIVE_WITNESSES:
+    # 8k. NEGATIVE_PROVES — only emit owner proof edges when the witness names
+    #     a faithful owner-level target. Relation/transport witnesses remain
+    #     represented by the NEG_WITNESS node until a better owner concept exists.
+    for neg_id, _, neg_target, specific_targets, owner_edge_emission, proves_label in NEGATIVE_WITNESSES:
         neg_h = _h("NEG_WITNESS", neg_id)
         neg_p = _p("NEG_WITNESS", neg_id)
-        all_targets: list[tuple[str, str, str]] = []
+        if owner_edge_emission == "suppressed_pending_owner_concept":
+            continue
+
+        targets: list[tuple[str, str]] = []
         if neg_target == "TORUS":
-            pool = [(t[0],) for t in TORI]
-            all_targets = [(_h("TORUS", t[0]), _p("TORUS", t[0]), "structure_is_necessary") for t in pool]
+            targets = [(_h("TORUS", torus_id), _p("TORUS", torus_id)) for torus_id in specific_targets]
         elif neg_target == "AXIS":
-            pool = [(a[0],) for a in PROVEN_AXES]
-            all_targets = [(_h("AXIS", a[0]), _p("AXIS", a[0]), "axis_is_load_bearing") for a in pool]
+            targets = [(_h("AXIS", axis_id), _p("AXIS", axis_id)) for axis_id in specific_targets]
         elif neg_target == "OPERATOR":
-            pool = [(o[0],) for o in OPERATORS]
-            all_targets = [(_h("OPERATOR", o[0]), _p("OPERATOR", o[0]), "operator_is_necessary") for o in pool]
+            targets = [(_h("OPERATOR", operator_id), _p("OPERATOR", operator_id)) for operator_id in specific_targets]
         elif neg_target == "CHIRALITY":
-            all_targets = [
-                (_h("ENGINE", "type1_deductive"), _p("ENGINE", "type1_deductive"), "chirality_separation_is_necessary"),
-                (_h("ENGINE", "type2_inductive"), _p("ENGINE", "type2_inductive"), "chirality_separation_is_necessary"),
-            ]
+            targets = [(_h("ENGINE", engine_id), _p("ENGINE", engine_id)) for engine_id in specific_targets]
 
-        # Filter to specific targets if the witness is scoped
-        if specific_targets is not None:
-            all_targets = [
-                (h, p, proves) for h, p, proves in all_targets
-                if any(st in p for st in specific_targets)
-            ]
-
-        for tgt_h, tgt_p, proves in all_targets:
-            scope = "specific" if specific_targets else "class_wide"
+        for tgt_h, tgt_p in targets:
             edges.append(_make_edge(
                 "NEGATIVE_PROVES", neg_h, tgt_h, neg_p, tgt_p,
-                {"proves": proves, "scope": scope},
+                {
+                    "proves": proves_label,
+                    "scope": owner_edge_emission,
+                },
             ))
 
     # ── Build public_id index for cross-layer reconciliation ──

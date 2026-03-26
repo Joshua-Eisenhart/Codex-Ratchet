@@ -204,6 +204,24 @@ class NegativeWitness(BaseModel):
     description: str
     target_structure: NegTargetEnum
     sim_file: Optional[str] = None
+    specific_targets: list[str] = Field(
+        default_factory=list,
+        description="Specific owner members named by this witness when the proof is narrower than a whole class.",
+    )
+    owner_edge_emission: Literal[
+        "specific_targets",
+        "per_member_sweep",
+        "suppressed_pending_owner_concept",
+    ] = "suppressed_pending_owner_concept"
+    proves_label: Optional[str] = None
+
+    @model_validator(mode="after")
+    def _validate_edge_emission(self) -> "NegativeWitness":
+        if self.owner_edge_emission == "specific_targets" and not self.specific_targets:
+            raise ValueError("specific_targets emission requires at least one specific target")
+        if self.owner_edge_emission == "per_member_sweep" and not self.specific_targets:
+            raise ValueError("per_member_sweep requires explicit member targets")
+        return self
 
     class Config:
         frozen = True
@@ -370,7 +388,7 @@ if __name__ == "__main__":
 
     # Validate one TopoNetX projection
     proj = TopoNetXCellProjection(
-        shape=[105, 297, 0],
+        shape=[105, 272, 0],
         stage_cycles=["type1_deductive_8stage_loop", "type2_inductive_8stage_loop"],
         torus_2cells=[],
         stage_diamonds=[]

@@ -13,12 +13,12 @@
 
 | Content | Example |
 |---|---|
-| Engine type nodes | `ENGINE::type1_deductive` |
-| Macro-stage nodes | `MACRO_STAGE::type1_deductive_Se_f` |
-| Operator nodes | `OPERATOR::Ti` |
-| Torus nodes | `TORUS::inner` |
-| Axis nodes | `AXIS::axis_0` |
-| Negative witness nodes | `NEG_WITNESS::neg_no_chirality` |
+| Engine type nodes | `qit::ENGINE::type1_deductive` |
+| Macro-stage nodes | `qit::MACRO_STAGE::type1_deductive_Se_f` |
+| Operator nodes | `qit::OPERATOR::Ti` |
+| Torus nodes | `qit::TORUS::inner` |
+| Axis nodes | `qit::AXIS::axis_0` |
+| Negative witness nodes | `qit::NEG_WITNESS::neg_no_chirality` |
 | All structural edges | `STAGE_SEQUENCE`, `SUBCYCLE_ORDER`, `TORUS_NESTING`, etc. |
 
 **Location**: `system_v4/a2_state/graphs/qit_engine_graph_v1.json`
@@ -39,14 +39,15 @@
 | `eta` | float | Current torus latitude |
 | `theta_1` | float | Angle on first circle |
 | `theta_2` | float | Angle on second circle |
-| `axis_0_level` | float | Current entropy / identity axis value |
+| `axis_0_level` | float | Current entropy / identity axis value. The current packet bridge exposes this as `ga0_level`. |
 
-**Location**: Not yet instantiated as a graph. Currently lives in `engine_core.py` as the `EngineState` dataclass.
+**Location**: Not yet instantiated as a graph. Currently lives in `engine_core.py` as the `EngineState` dataclass and can be exported as a graph-adjacent packet or persisted as a read-only audit artifact.
 
 **Smallest real next slice now available**:
 - `system_v4/skills/qit_runtime_state_history_adapter.py` emits a graph-adjacent `RuntimeStateOverlay`
 - the overlay references stable QIT `public_id`s only and does NOT mutate the owner graph
 - the current overlay is stage-granular; it reports active macro-stage and last completed subcycle step, not a live in-flight operator cursor
+- `system_v4/skills/qit_runtime_evidence_bridge.py` can persist that runtime slice into a read-only audit-log packet/report without claiming a live state graph
 
 **Future graph form**: State would be stored as attribute annotations on structure-graph nodes:
 - `MACRO_STAGE` nodes get `active: bool`, `last_activated_utc: str`
@@ -73,6 +74,7 @@
 - `system_v4/skills/qit_runtime_state_history_adapter.py` emits an append-only `HistoryRunPacket`
 - each step record points at stable `SUBCYCLE_STEP` and `MACRO_STAGE` `public_id`s from the structure graph
 - this is still a packet surface, not a promoted history graph
+- `system_v4/skills/qit_runtime_evidence_bridge.py` can persist selected run packets plus mapped SIM evidence under `a2_state/audit_logs/` as a read-only bridge surface
 
 **Future graph form**: Each run becomes a node with:
 - `RUN_EVIDENCES` edges to the `MACRO_STAGE` nodes it exercised
@@ -92,8 +94,8 @@ engine.step(state, stage_idx=3)
 | Graph | What Happens |
 |---|---|
 | **Structure** | Nothing. Read-only. The step reads the structure to know which operators to apply, which torus to use, which axis governs. |
-| **State** | Updated. `current_stage` moves to 3. `rho_L`, `rho_R`, `eta`, `theta_1`, `theta_2` all updated by the 4 operator applications. |
-| **History** | Appended. If this is a probe run, the step's outcome (PASS/KILL, entropy delta, axis readings) is logged as a new evidence record. |
+| **State** | Updated in memory. `current_stage` moves to 3, and the live bridge can export a stage-granular `RuntimeStateOverlay` packet without mutating the owner graph. |
+| **History** | Accumulated in memory. The current bridge can export a `HistoryRunPacket` for audit/retrieval use, but there is still no persisted history graph. |
 
 ---
 
@@ -104,7 +106,7 @@ The current honest bridge is:
 1. Keep the structure graph immutable and owner-held.
 2. Map `EngineState` to a `RuntimeStateOverlay` keyed by stable QIT `public_id`s.
 3. Map `state.history` to a `HistoryRunPacket` keyed by stable `SUBCYCLE_STEP` / `MACRO_STAGE` `public_id`s.
-4. Keep those packets ephemeral by default; only persist them beside a run when a concrete audit/retrieval consumer exists and the output is clearly sidecar-only.
+4. Keep the adapter packet ephemeral by default; when a concrete audit/retrieval consumer exists, persist it only as read-only audit-log sidecars through `qit_runtime_evidence_bridge.py` and downstream retrieval artifacts.
 
 This keeps runtime and history graph work executable now without overclaiming that a live state graph already exists.
 
@@ -117,6 +119,7 @@ This keeps runtime and history graph work executable now without overclaiming th
 | **TopoNetX** | Post-run analysis only | Reads the structure graph and computes cell complex views. Does not observe state transitions. |
 | **clifford** | Post-run analysis only | Reads edge payloads from the structure graph. Does not modify state. |
 | **PyG** | Post-run analysis or future training | Reads structure + optionally state snapshots. Could train on trajectory data from history graph. |
-| **LightRAG** | Post-run or on-demand | Indexes history/evidence records for retrieval. Never touches structure or state. |
+| **QIT retrieval seam (current)** | Post-run or on-demand | Reads QIT docs plus read-only runtime/evidence bridge packets with lexical fallback. Context only, not proof. |
+| **LightRAG (target)** | Post-run or on-demand | Embedding-backed retrieval over the same bounded corpus once embedding config is available. Never touches structure or state. |
 
 **No sidecar runs during a live engine step.** Sidecars are offline analysis tools.

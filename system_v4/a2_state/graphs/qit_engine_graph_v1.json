@@ -1,6 +1,6 @@
 {
   "schema": "QIT_ENGINE_GRAPH_v2",
-  "generated_utc": "2026-03-26T22:57:16Z",
+  "generated_utc": "2026-03-26T23:01:11Z",
   "owner_layer": "QIT_ENGINE",
   "materialized": true,
   "build_status": "MATERIALIZED",
@@ -314,63 +314,107 @@
       "node_type": "NEG_WITNESS",
       "label": "neg_no_torus_transport",
       "description": "Removing torus transport kills the engine",
-      "target_structure": "TORUS"
+      "target_structure": "TORUS",
+      "specific_targets": [],
+      "owner_edge_emission": "suppressed_pending_owner_concept",
+      "proves_label": "torus_transport_regime_is_necessary"
     },
     "299773621576935a": {
       "public_id": "qit::NEG_WITNESS::neg_axis0_frozen",
       "node_type": "NEG_WITNESS",
       "label": "neg_axis0_frozen",
       "description": "Freezing Axis 0 kills entropy gradients",
-      "target_structure": "AXIS"
+      "target_structure": "AXIS",
+      "specific_targets": [
+        "axis_0"
+      ],
+      "owner_edge_emission": "specific_targets",
+      "proves_label": "axis_0_entropy_gradient_is_load_bearing"
     },
     "9b1c490d0bf89816": {
       "public_id": "qit::NEG_WITNESS::neg_no_chirality",
       "node_type": "NEG_WITNESS",
       "label": "neg_no_chirality",
       "description": "Removing engine type distinction kills asymmetry",
-      "target_structure": "CHIRALITY"
+      "target_structure": "CHIRALITY",
+      "specific_targets": [
+        "type1_deductive",
+        "type2_inductive"
+      ],
+      "owner_edge_emission": "specific_targets",
+      "proves_label": "engine_type_asymmetry_is_necessary"
     },
     "0b9e7ab8f5ca415f": {
       "public_id": "qit::NEG_WITNESS::neg_torus_scrambled",
       "node_type": "NEG_WITNESS",
       "label": "neg_torus_scrambled",
       "description": "Scrambling torus assignment kills coherence",
-      "target_structure": "TORUS"
+      "target_structure": "TORUS",
+      "specific_targets": [],
+      "owner_edge_emission": "suppressed_pending_owner_concept",
+      "proves_label": "torus_assignment_coherence_is_necessary"
     },
     "dc48a34a8312f716": {
       "public_id": "qit::NEG_WITNESS::neg_axis6_shared",
       "node_type": "NEG_WITNESS",
       "label": "neg_axis6_shared",
       "description": "Sharing Axis 6 polarity across types kills separation",
-      "target_structure": "AXIS"
+      "target_structure": "AXIS",
+      "specific_targets": [
+        "axis_6"
+      ],
+      "owner_edge_emission": "specific_targets",
+      "proves_label": "axis_6_polarity_is_load_bearing"
     },
     "a40e26b21e02fe7e": {
       "public_id": "qit::NEG_WITNESS::neg_missing_fe",
       "node_type": "NEG_WITNESS",
       "label": "neg_missing_fe",
       "description": "Removing Fe operator kills the subcycle",
-      "target_structure": "OPERATOR"
+      "target_structure": "OPERATOR",
+      "specific_targets": [
+        "Fe"
+      ],
+      "owner_edge_emission": "specific_targets",
+      "proves_label": "fe_member_is_load_bearing"
     },
     "b7d42cb39def8b33": {
       "public_id": "qit::NEG_WITNESS::neg_missing_operator",
       "node_type": "NEG_WITNESS",
       "label": "neg_missing_operator",
       "description": "Removing any single operator kills the subcycle",
-      "target_structure": "OPERATOR"
+      "target_structure": "OPERATOR",
+      "specific_targets": [
+        "Ti",
+        "Fe",
+        "Te",
+        "Fi"
+      ],
+      "owner_edge_emission": "per_member_sweep",
+      "proves_label": "operator_member_is_load_bearing"
     },
     "447fa9ed3f9486ba": {
       "public_id": "qit::NEG_WITNESS::neg_native_only",
       "node_type": "NEG_WITNESS",
       "label": "neg_native_only",
       "description": "Using only native operators kills type distinction",
-      "target_structure": "OPERATOR"
+      "target_structure": "OPERATOR",
+      "specific_targets": [],
+      "owner_edge_emission": "suppressed_pending_owner_concept",
+      "proves_label": "mixed_operator_regime_is_necessary"
     },
     "6d64f684ea4c42ac": {
       "public_id": "qit::NEG_WITNESS::neg_type_flatten",
       "node_type": "NEG_WITNESS",
       "label": "neg_type_flatten",
       "description": "Flattening engine types kills chirality separation",
-      "target_structure": "CHIRALITY"
+      "target_structure": "CHIRALITY",
+      "specific_targets": [
+        "type1_deductive",
+        "type2_inductive"
+      ],
+      "owner_edge_emission": "specific_targets",
+      "proves_label": "type_specific_weighting_is_necessary"
     },
     "a3aef7bbe2efcce1": {
       "public_id": "qit::SUBCYCLE_STEP::type1_deductive_Se_f_Ti",
@@ -3718,42 +3762,6 @@
       }
     },
     {
-      "edge_id": "ea7adc53cf955977b738",
-      "source_id": "ec7e5d0fffedff62",
-      "target_id": "19b85b6cae8c1a90",
-      "source_public_id": "qit::NEG_WITNESS::neg_no_torus_transport",
-      "target_public_id": "qit::TORUS::inner",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "structure_is_necessary",
-        "scope": "class_wide"
-      }
-    },
-    {
-      "edge_id": "0d17b26270a6f21b59db",
-      "source_id": "ec7e5d0fffedff62",
-      "target_id": "e48112a947938934",
-      "source_public_id": "qit::NEG_WITNESS::neg_no_torus_transport",
-      "target_public_id": "qit::TORUS::clifford",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "structure_is_necessary",
-        "scope": "class_wide"
-      }
-    },
-    {
-      "edge_id": "9ca93a5815631155b08a",
-      "source_id": "ec7e5d0fffedff62",
-      "target_id": "b03a3a6e42889795",
-      "source_public_id": "qit::NEG_WITNESS::neg_no_torus_transport",
-      "target_public_id": "qit::TORUS::outer",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "structure_is_necessary",
-        "scope": "class_wide"
-      }
-    },
-    {
       "edge_id": "41911b049340e8ab9de1",
       "source_id": "299773621576935a",
       "target_id": "1504af1f377932d9",
@@ -3761,8 +3769,8 @@
       "target_public_id": "qit::AXIS::axis_0",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "axis_is_load_bearing",
-        "scope": "specific"
+        "proves": "axis_0_entropy_gradient_is_load_bearing",
+        "scope": "specific_targets"
       }
     },
     {
@@ -3773,8 +3781,8 @@
       "target_public_id": "qit::ENGINE::type1_deductive",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "chirality_separation_is_necessary",
-        "scope": "class_wide"
+        "proves": "engine_type_asymmetry_is_necessary",
+        "scope": "specific_targets"
       }
     },
     {
@@ -3785,44 +3793,8 @@
       "target_public_id": "qit::ENGINE::type2_inductive",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "chirality_separation_is_necessary",
-        "scope": "class_wide"
-      }
-    },
-    {
-      "edge_id": "7386362081c1fc920976",
-      "source_id": "0b9e7ab8f5ca415f",
-      "target_id": "19b85b6cae8c1a90",
-      "source_public_id": "qit::NEG_WITNESS::neg_torus_scrambled",
-      "target_public_id": "qit::TORUS::inner",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "structure_is_necessary",
-        "scope": "class_wide"
-      }
-    },
-    {
-      "edge_id": "855464610fa5cabe0b54",
-      "source_id": "0b9e7ab8f5ca415f",
-      "target_id": "e48112a947938934",
-      "source_public_id": "qit::NEG_WITNESS::neg_torus_scrambled",
-      "target_public_id": "qit::TORUS::clifford",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "structure_is_necessary",
-        "scope": "class_wide"
-      }
-    },
-    {
-      "edge_id": "271e4ba2c190d3c04d2c",
-      "source_id": "0b9e7ab8f5ca415f",
-      "target_id": "b03a3a6e42889795",
-      "source_public_id": "qit::NEG_WITNESS::neg_torus_scrambled",
-      "target_public_id": "qit::TORUS::outer",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "structure_is_necessary",
-        "scope": "class_wide"
+        "proves": "engine_type_asymmetry_is_necessary",
+        "scope": "specific_targets"
       }
     },
     {
@@ -3833,8 +3805,8 @@
       "target_public_id": "qit::AXIS::axis_6",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "axis_is_load_bearing",
-        "scope": "specific"
+        "proves": "axis_6_polarity_is_load_bearing",
+        "scope": "specific_targets"
       }
     },
     {
@@ -3845,8 +3817,8 @@
       "target_public_id": "qit::OPERATOR::Fe",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "operator_is_necessary",
-        "scope": "specific"
+        "proves": "fe_member_is_load_bearing",
+        "scope": "specific_targets"
       }
     },
     {
@@ -3857,8 +3829,8 @@
       "target_public_id": "qit::OPERATOR::Ti",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "operator_is_necessary",
-        "scope": "class_wide"
+        "proves": "operator_member_is_load_bearing",
+        "scope": "per_member_sweep"
       }
     },
     {
@@ -3869,8 +3841,8 @@
       "target_public_id": "qit::OPERATOR::Fe",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "operator_is_necessary",
-        "scope": "class_wide"
+        "proves": "operator_member_is_load_bearing",
+        "scope": "per_member_sweep"
       }
     },
     {
@@ -3881,8 +3853,8 @@
       "target_public_id": "qit::OPERATOR::Te",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "operator_is_necessary",
-        "scope": "class_wide"
+        "proves": "operator_member_is_load_bearing",
+        "scope": "per_member_sweep"
       }
     },
     {
@@ -3893,56 +3865,8 @@
       "target_public_id": "qit::OPERATOR::Fi",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "operator_is_necessary",
-        "scope": "class_wide"
-      }
-    },
-    {
-      "edge_id": "e739ee78130426b81e21",
-      "source_id": "447fa9ed3f9486ba",
-      "target_id": "f09832c90802915c",
-      "source_public_id": "qit::NEG_WITNESS::neg_native_only",
-      "target_public_id": "qit::OPERATOR::Ti",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "operator_is_necessary",
-        "scope": "class_wide"
-      }
-    },
-    {
-      "edge_id": "36d09a0e70b56cec128f",
-      "source_id": "447fa9ed3f9486ba",
-      "target_id": "b09fd41e36e58cf7",
-      "source_public_id": "qit::NEG_WITNESS::neg_native_only",
-      "target_public_id": "qit::OPERATOR::Fe",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "operator_is_necessary",
-        "scope": "class_wide"
-      }
-    },
-    {
-      "edge_id": "03f157e451afbb6dc9f5",
-      "source_id": "447fa9ed3f9486ba",
-      "target_id": "af34d825f3db0db2",
-      "source_public_id": "qit::NEG_WITNESS::neg_native_only",
-      "target_public_id": "qit::OPERATOR::Te",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "operator_is_necessary",
-        "scope": "class_wide"
-      }
-    },
-    {
-      "edge_id": "34d3ba0ddfb54c0a7e14",
-      "source_id": "447fa9ed3f9486ba",
-      "target_id": "51ce70ad0cb0e67e",
-      "source_public_id": "qit::NEG_WITNESS::neg_native_only",
-      "target_public_id": "qit::OPERATOR::Fi",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "operator_is_necessary",
-        "scope": "class_wide"
+        "proves": "operator_member_is_load_bearing",
+        "scope": "per_member_sweep"
       }
     },
     {
@@ -3953,8 +3877,8 @@
       "target_public_id": "qit::ENGINE::type1_deductive",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "chirality_separation_is_necessary",
-        "scope": "class_wide"
+        "proves": "type_specific_weighting_is_necessary",
+        "scope": "specific_targets"
       }
     },
     {
@@ -3965,8 +3889,8 @@
       "target_public_id": "qit::ENGINE::type2_inductive",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "chirality_separation_is_necessary",
-        "scope": "class_wide"
+        "proves": "type_specific_weighting_is_necessary",
+        "scope": "specific_targets"
       }
     }
   ],
@@ -4079,7 +4003,7 @@
   },
   "summary": {
     "node_count": 105,
-    "edge_count": 282,
+    "edge_count": 272,
     "node_types": {
       "ENGINE": 2,
       "MACRO_STAGE": 16,
@@ -4100,9 +4024,9 @@
       "STEP_SEQUENCE": 48,
       "STAGE_ON_TORUS": 32,
       "AXIS_GOVERNS": 14,
-      "NEGATIVE_PROVES": 21
+      "NEGATIVE_PROVES": 11
     },
     "validation_errors": []
   },
-  "content_hash": "019ace7d8072508e1e1e3bc3931e36155be38652255e1f55993a47fc053406ee"
+  "content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff"
 }

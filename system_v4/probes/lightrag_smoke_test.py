@@ -43,6 +43,12 @@ QIT_DOCS = [
     REPO_ROOT / "core_docs" / "EMPIRICAL_MATH_ROSETTA.md",
 ]
 
+QIT_AUDIT_DOCS = [
+    REPO_ROOT / "system_v4" / "a2_state" / "audit_logs" / "QIT_GRAPH_STACK_STATUS__CURRENT__v1.md",
+    REPO_ROOT / "system_v4" / "a2_state" / "audit_logs" / "QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md",
+    REPO_ROOT / "system_v4" / "a2_state" / "audit_logs" / "QIT_RETRIEVAL_SIDECAR__CURRENT__v1.md",
+]
+
 SELECTED_SIM_RESULTS = [
     "unified_evidence_report.json",
     "L2_eight_stages_results.json",
@@ -279,6 +285,11 @@ def _build_documents() -> list[dict[str, Any]]:
             documents.append(doc)
 
     for path in QIT_DOCS:
+        doc = _format_markdown_doc(path)
+        if doc:
+            documents.append(doc)
+
+    for path in QIT_AUDIT_DOCS:
         doc = _format_markdown_doc(path)
         if doc:
             documents.append(doc)

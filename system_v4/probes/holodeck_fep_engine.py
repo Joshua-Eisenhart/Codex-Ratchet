@@ -300,7 +300,7 @@ def run_holodeck_fep_sim(d=4, n_trials=20, seed=42):
 
     n_pass = sum(1 for e in evidence if e.status == "PASS")
     n_kill = sum(1 for e in evidence if e.status == "KILL")
-    print(f"  PASS: {n_pass}/4, KILL: {n_kill}/4")
+    print(f"  PASS: {n_pass}/4, FAILS: {n_kill}/4")
     for e in evidence:
         icon = "✓" if e.status == "PASS" else "✗"
         print(f"    {icon} {e.token_id or e.kill_reason} ({e.measured_value:.6f})")

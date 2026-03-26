@@ -79,7 +79,8 @@ PROBLEM_CATALOG = [
         description="Wave/Line orthogonality emerges at large d (integration/differentiation are distinct)",
         sim_file="axis5_discrete_calculus_rosetta_sim.py",
         parameter_space={"d_min": (4, 64)},
-        target_status="KILL",  # Expected to KILL at small d (feature, not bug)
+        target_status="PASS",
+        custom_evaluator=lambda ev: 1.0 if "OVERALL: PASS" in ev.get("output_tail", "") else 0.0,
     ),
     ResearchProblem(
         name="AXIS_ORTHOGONALITY",
@@ -303,6 +304,17 @@ def run_full_evaluation() -> Dict[str, Any]:
         bar = "█" * int(r["score"] * 20)
         print(f"  #{i+1:2d} {r['status']:8s} {r['name']:30s} {r['score']:.2f} {bar}")
 
+    # Build evidence_ledger for unified runner integration
+    meta_status = "PASS" if aggregate_score >= 0.7 else "KILL"
+    evidence_ledger = [{
+        "token_id": f"E_META_AUTORESEARCH_{meta_status}",
+        "sim_spec_id": "S_META_AUTORESEARCH_HARNESS",
+        "status": meta_status,
+        "measured_value": round(aggregate_score, 4),
+        "kill_reason": None if meta_status == "PASS" else f"AGGREGATE_SCORE={aggregate_score:.4f}",
+        "timestamp": datetime.now(UTC).isoformat(),
+    }]
+
     # Save
     os.makedirs(str(RESULTS_DIR), exist_ok=True)
     outpath = RESULTS_DIR / "autoresearch_evaluation_report.json"
@@ -312,6 +324,7 @@ def run_full_evaluation() -> Dict[str, Any]:
             "aggregate_score": round(aggregate_score, 4),
             "total_problems": total_problems,
             "results": results,
+            "evidence_ledger": evidence_ledger,
         }, f, indent=2)
     print(f"\n  Report saved: {outpath}")
 

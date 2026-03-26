@@ -42,12 +42,14 @@
 | Tool | Role | Current Status |
 |---|---|---|
 | **pi-mono** | Primary agent framework (coding-agent, tui, web-ui, agent, pods, ai, mom) | Ingested as reference repo. `outside_control_shell_operator.py` and `pimono_evermem_adapter.py` exist as bounded bridges. |
+| **lev-os/agents** | Live-syncing skill source. Skills are diffed against obsidian ingestion state and promoted through the normal intake pipeline. | At `work/reference_repos/lev-os/agents/`. 50+ skills ingested. `levos_skills_sync.py` runs the diff. |
 | **outside_control_shell_operator** | Read-only audit of pi-mono session-host evidence | Live, bounded. Does not mutate pi-mono workspaces. |
 
 **Interfaces**:
-- C1 → A2_LOW_CONTROL: session evidence flows downward as intake documents
-- C1 → SKILLS: agent-dispatched skill invocations
+- C1 → A2_HIGH_INTAKE: session evidence and ingested skills flow downward as intake documents
+- C1 → SKILLS: agent-dispatched skill invocations; lev-os skills tested at C layer before promotion
 - A2_LOW_CONTROL → C1: kernel decisions emit agent task briefs
+- lev-os → C1: `levos_skills_sync.py --pull` pulls latest skills, diffs against existing ingestion
 
 **Constraints**:
 - C1 does NOT replace the A2 state machinery

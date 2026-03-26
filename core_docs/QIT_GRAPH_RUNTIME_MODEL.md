@@ -32,7 +32,7 @@
 | State Variable | Type | Description |
 |---|---|---|
 | `current_stage` | int 0–7 | Which macro-stage is active |
-| `current_operator` | int 0–3 | Which subcycle operator is executing |
+| `current_operator` | int 0–3 | Future finer-grain state field. Not yet surfaced by the current packet-only bridge. |
 | `current_engine_type` | enum | Deductive or Inductive |
 | `rho_L` | 2×2 complex | Left Weyl spinor density matrix |
 | `rho_R` | 2×2 complex | Right Weyl spinor density matrix |
@@ -46,6 +46,7 @@
 **Smallest real next slice now available**:
 - `system_v4/skills/qit_runtime_state_history_adapter.py` emits a graph-adjacent `RuntimeStateOverlay`
 - the overlay references stable QIT `public_id`s only and does NOT mutate the owner graph
+- the current overlay is stage-granular; it reports active macro-stage and last completed subcycle step, not a live in-flight operator cursor
 
 **Future graph form**: State would be stored as attribute annotations on structure-graph nodes:
 - `MACRO_STAGE` nodes get `active: bool`, `last_activated_utc: str`
@@ -103,7 +104,7 @@ The current honest bridge is:
 1. Keep the structure graph immutable and owner-held.
 2. Map `EngineState` to a `RuntimeStateOverlay` keyed by stable QIT `public_id`s.
 3. Map `state.history` to a `HistoryRunPacket` keyed by stable `SUBCYCLE_STEP` / `MACRO_STAGE` `public_id`s.
-4. Persist those packets beside runs or in later sidecar stores until explicit state/history graph promotion lands.
+4. Keep those packets ephemeral by default; only persist them beside a run when a concrete audit/retrieval consumer exists and the output is clearly sidecar-only.
 
 This keeps runtime and history graph work executable now without overclaiming that a live state graph already exists.
 

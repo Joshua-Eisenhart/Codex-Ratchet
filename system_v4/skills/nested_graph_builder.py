@@ -174,6 +174,7 @@ def _build_layer_indexes(root: Path) -> dict[str, dict[str, str]]:
     node_to_layer: dict[str, str] = {}
     public_id_to_layer: dict[str, str] = {}
     public_id_to_node_id: dict[str, str] = {}
+    node_memberships: dict[str, list[str]] = defaultdict(list)
 
     for layer_id, cfg in LAYER_GRAPHS.items():
         layer_data = _load_json(root / cfg["path"])
@@ -186,6 +187,9 @@ def _build_layer_indexes(root: Path) -> dict[str, dict[str, str]]:
             public_id_index = {}
 
         for nid, node in layer_nodes.items():
+            node_memberships.setdefault(nid, [])
+            if layer_id not in node_memberships[nid]:
+                node_memberships[nid].append(layer_id)
             node_to_layer[nid] = layer_id
             if isinstance(node, dict):
                 public_id = node.get("public_id", "")
@@ -205,6 +209,7 @@ def _build_layer_indexes(root: Path) -> dict[str, dict[str, str]]:
         "node_to_layer": node_to_layer,
         "public_id_to_layer": public_id_to_layer,
         "public_id_to_node_id": public_id_to_node_id,
+        "node_memberships": node_memberships,
     }
 
 
@@ -353,6 +358,11 @@ def _iter_registry_bridges(
         if not target_binding:
             continue
 
+        source_layer_hint = str(row.get("source_layer", "") or "")
+        source_memberships = layer_indexes.get("node_memberships", {}).get(
+            source_binding["node_id"] if source_binding else source_ref,
+            [],
+        )
         source_layer = (
             source_binding["layer"]
             if source_binding
@@ -362,6 +372,10 @@ def _iter_registry_bridges(
             source_node = nodes.get(source_ref)
             if isinstance(source_node, dict):
                 source_layer = _node_layer_from_type(source_node) or "UNKNOWN"
+        if source_layer_hint:
+            if source_layer_hint not in source_memberships:
+                continue
+            source_layer = source_layer_hint
         if source_layer == "UNKNOWN" or source_layer == target_binding["layer"]:
             continue
 
@@ -378,6 +392,8 @@ def _iter_registry_bridges(
                 "bridge_via": row.get("bridge_via", "explicit_registry"),
                 "scope": row.get("scope", ""),
                 "rationale": row.get("rationale", ""),
+                "registry_source_layer": source_layer_hint or source_layer,
+                "target_public_id": row.get("target_public_id", ""),
                 "derived": True,
             },
             "source_resolved_via": source_binding["resolved_via"] if source_binding else "node_id",

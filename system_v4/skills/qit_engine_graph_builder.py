@@ -476,9 +476,6 @@ def build_qit_engine_graph() -> dict[str, Any]:
         "derived_from": {
             "builder_program": str(Path(__file__).resolve()),
             "owner_schemas": str(REPO_ROOT / "system_v4" / "skills" / "qit_owner_schemas.py"),
-            "engine_runtime_reference": str(REPO_ROOT / "system_v4" / "probes" / "engine_core.py"),
-            "hopf_geometry_reference": str(REPO_ROOT / "system_v4" / "probes" / "hopf_manifold.py"),
-            "operator_reference": str(REPO_ROOT / "system_v4" / "probes" / "geometric_operators.py"),
         },
         "selection_contract": {
             "included_node_rule": (
@@ -488,9 +485,10 @@ def build_qit_engine_graph() -> dict[str, Any]:
                 "runtime state, history/evidence, Weyl branches, or sidecar payloads."
             ),
             "edge_rule": (
-                "Materialize only the structural topology edges explicitly constructed in "
-                "this builder between emitted owner nodes. Do not infer extra relations "
-                "from simulations, sidecars, or documentation."
+                "Materialize only the explicitly constructed edges in this builder: "
+                "structural topology edges between emitted owner nodes plus bounded "
+                "NEGATIVE_PROVES witness edges. Do not infer extra relations from "
+                "simulations, sidecars, or documentation."
             ),
             "validation_gate": (
                 "Each emitted node must pass its owner-schema Pydantic model before the "
@@ -503,7 +501,8 @@ def build_qit_engine_graph() -> dict[str, Any]:
             ),
         },
         "description": (
-            "Graph encoding of the Geometric Engine's physical topology: "
+            "Owner graph encoding of the Geometric Engine's structural topology plus "
+            "bounded negative-witness nodes/edges: "
             "8 macro-stages × 2 engine types, 4 fixed subcycle operators, "
             "64 subcycle steps (16×4 runtime grain), "
             "3 nested Hopf tori, 7 proven axes, and 9 negative witnesses. "

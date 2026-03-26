@@ -266,6 +266,7 @@ class RuntimeStateOverlay(BaseModel):
 
     This is graph-adjacent scaffolding, not owner-graph mutation. It provides
     the smallest honest bridge from EngineState into later state-graph work.
+    The current overlay is stage-granular, not live-subcycle-granular.
     """
     engine_public_id: str
     active_stage_public_id: str

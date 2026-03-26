@@ -10,7 +10,7 @@
 | File | Purpose |
 |---|---|
 | `core_docs/QIT_GRAPH_LAYER_MAPPING.md` | Conceptual Rosetta stone: which physics concept lives in which graph layer |
-| `core_docs/QIT_GRAPH_SCHEMA.md` | Canonical node and edge inventory (6 live node types + 1 schema-ready type, 9 edge types, 41 nodes, 185 edges) |
+| `core_docs/QIT_GRAPH_SCHEMA.md` | Canonical node and edge inventory (7 live node types + 1 schema-ready type, 10 edge types, 105 nodes, 297 edges) |
 | `core_docs/QIT_GRAPH_SIDECAR_POLICY.md` | What each sidecar may and may not do |
 | `core_docs/QIT_GRAPH_RUNTIME_MODEL.md` | Structure vs state vs history graph separation |
 | `core_docs/QIT_GRAPH_PROMOTION_GATES.md` | When a concept moves from sidecar to owner truth |
@@ -19,7 +19,7 @@
 | `system_v4/skills/qit_engine_graph_builder.py` | Builds the QIT engine graph layer |
 | `system_v4/skills/qit_graph_stack_runtime.py` | Rebuilds the QIT owner graph, exports GraphML, and runs the bounded sidecars into one status report |
 | `system_v4/skills/qit_owner_schemas.py` | Pydantic contracts for all owner-layer types |
-| `system_v4/a2_state/graphs/qit_engine_graph_v1.json` | The live QIT engine graph (41 nodes, 185 edges) |
+| `system_v4/a2_state/graphs/qit_engine_graph_v1.json` | The live QIT engine graph (105 nodes, 297 edges) |
 
 ---
 
@@ -33,7 +33,10 @@ The **owner stack** is `Pydantic → JSON → NetworkX → GraphML`. These are r
 - ✅ 3 nested Hopf torus identities
 - ✅ 7 proven load-bearing axes (0–6)
 - ✅ 9 negative witness nodes (graveyard kills)
-- ✅ 185 structural edges (stage sequence, operator acts-on, torus nesting, chirality coupling, etc.)
+- ✅ 64 subcycle step nodes (full 16×4 runtime grain)
+- ✅ 297 structural edges (stage sequence, operator acts-on, step-in-stage, step-uses-operator, step-sequence, torus nesting, chirality coupling, etc.)
+- ✅ Stable `public_id` on every node for cross-layer joining
+- ✅ `content_hash` for snapshot provenance
 - ✅ GraphML export as an owner-stack interoperability view
 - ⚠️ `WEYL_BRANCH` is schema-ready, but not yet instantiated in the live owner graph
 

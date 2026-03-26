@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
 """
-Lev-OS Skills Live Sync
+Lev-OS Skills Sync
 ========================
-Pulls latest lev-os/agents skills and diffs against existing ingested state.
+Diffs lev-os/agents skills against existing ingested state in obsidian.
+Optionally pulls latest from upstream with --pull flag.
 Outputs a manifest of new/changed/removed skills for C-layer evaluation.
+
+Note: Default behavior is a LOCAL DIFF only. Upstream refresh requires --pull.
 
 This script runs at the C1 layer — it reads external skill repos but does NOT
 modify the owner graph or A2 state. C → A2 promotion happens through the
 normal intake pipeline only.
 
 Usage:
-    python3 system_v4/skills/levos_skills_sync.py [--pull] [--diff-only]
-
-Flags:
-    --pull      git pull the lev-os/agents repo before diffing
-    --diff-only only show diff, don't write manifest
+    python3 system_v4/skills/levos_skills_sync.py              # local diff only
+    python3 system_v4/skills/levos_skills_sync.py --pull       # pull then diff
+    python3 system_v4/skills/levos_skills_sync.py --diff-only  # diff, skip manifest write
 """
 
 from __future__ import annotations

@@ -42,7 +42,7 @@
 | Tool | Role | Current Status |
 |---|---|---|
 | **pi-mono** | Primary agent framework (coding-agent, tui, web-ui, agent, pods, ai, mom) | Ingested as reference repo. `outside_control_shell_operator.py` and `pimono_evermem_adapter.py` exist as bounded bridges. |
-| **lev-os/agents** | Live-syncing skill source. Skills are diffed against obsidian ingestion state and promoted through the normal intake pipeline. | At `work/reference_repos/lev-os/agents/`. 50+ skills ingested. `levos_skills_sync.py` runs the diff. |
+| **lev-os/agents** | Skill source with local diff. Pull upstream with `--pull` flag. Skills are diffed against obsidian ingestion state and promoted through the normal intake pipeline. | At `work/reference_repos/lev-os/agents/`. 47 upstream skills, 48 ingested. `levos_skills_sync.py` runs the diff. |
 | **outside_control_shell_operator** | Read-only audit of pi-mono session-host evidence | Live, bounded. Does not mutate pi-mono workspaces. |
 
 **Interfaces**:
@@ -111,15 +111,25 @@
 
 ---
 
-## Verification
+## Verification (Partial)
+
+Only a subset of the C-layer is currently verifiable. Uncloned tools (AutoResearchClaw, OpenClaw-RL) are registered but not activated.
 
 ```bash
 # Verify C1 bridge exists
 python3 system_v4/skills/outside_control_shell_operator.py
+
+# Verify C1 lev-os skill diff
+python3 system_v4/skills/levos_skills_sync.py --diff-only
 
 # Verify C2 bridge exists
 python3 system_v4/probes/autoresearch_sim_harness.py
 
 # Verify LightRAG sidecar (bridges C2 → retrieval)
 work/lightrag_venv/bin/python3 system_v4/probes/lightrag_smoke_test.py
+
+# NOT YET VERIFIABLE:
+# - AutoResearchClaw (not cloned)
+# - OpenClaw-RL (not cloned)
+# - MiroFish (cloned at work/mirofish/ but no integration test)
 ```

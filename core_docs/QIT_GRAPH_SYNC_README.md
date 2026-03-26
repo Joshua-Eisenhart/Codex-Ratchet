@@ -110,6 +110,6 @@ python3 system_v4/skills/qit_retrieval_sidecar.py
 # Persist the tracked status artifacts only when you intentionally want to refresh them
 python3 system_v4/skills/qit_graph_stack_runtime.py --write-report
 
-# Rebuild the full nested graph (QIT present as a 6th layer; explicit cross-layer admission still incomplete)
+# Rebuild the full nested graph (QIT is present as a 6th layer, but live nested linkage is still only a thin admitted bridge foothold: 7 explicit QIT bridge edges, not broad integration)
 python3 system_v4/skills/nested_graph_builder.py
 ```

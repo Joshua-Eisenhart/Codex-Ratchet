@@ -1,15 +1,50 @@
+#!/usr/bin/env python3
+"""
+Shared helpers for exploratory stage-matrix negative sims.
+"""
+
 from __future__ import annotations
+
+import os
+import sys
+from itertools import product
+
 import numpy as np
-from engine_core import GeometricEngine, EngineState, StageControls, OPERATORS, TERRAINS
-from geometric_operators import apply_Ti, apply_Fe, apply_Te, apply_Fi, negentropy, trace_distance_2x2, _ensure_valid_density, SIGMA_X
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from engine_core import (
+    GeometricEngine, EngineState, StageControls, OPERATORS, TERRAINS,
+)
+from geometric_operators import (
+    apply_Ti, apply_Fe, apply_Te, apply_Fi,
+    negentropy, trace_distance_2x2, _ensure_valid_density, SIGMA_X,
+)
 from hopf_manifold import left_density, right_density, inter_torus_transport_partial
 from process_cycle_stage_matrix_sim import terrain_name_from_row, torus_for_loop
+from type2_engine_sim import TYPE1_STAGES, TYPE2_STAGES
 
+
+PISTON = 0.8
 AXIS_EPS = 0.005
+BASELINE_ORDER = tuple(OPERATORS)
+TYPE_TABLES = {1: TYPE1_STAGES, 2: TYPE2_STAGES}
 TERRAIN_INDEX = {terrain["name"]: idx for idx, terrain in enumerate(TERRAINS)}
 OP_FN = {"Ti": apply_Ti, "Fe": apply_Fe, "Te": apply_Te, "Fi": apply_Fi}
+MIXED_AXIS6_VARIANTS = {
+    "".join("U" if bit else "D" for bit in pattern): list(pattern)
+    for pattern in product([False, True], repeat=len(OPERATORS))
+    if tuple(pattern) not in ((False, False, False, False), (True, True, True, True))
+}
 
-def init_stage(engine_type: int, row: tuple, trial_seed: int) -> tuple[GeometricEngine, EngineState, dict]:
+
+def all_stage_rows():
+    for engine_type, table in TYPE_TABLES.items():
+        for row in table:
+            yield engine_type, row
+
+
+def init_stage(engine_type: int, row: tuple, trial_seed: int):
     stage_num, topo, native_operator, label, axis6_up, loop_role = row
     terrain_name = terrain_name_from_row(topo, loop_role)
     torus_target = torus_for_loop(loop_role)
@@ -23,7 +58,7 @@ def init_stage(engine_type: int, row: tuple, trial_seed: int) -> tuple[Geometric
         eta=torus_target,
         theta1=theta1,
         theta2=theta2,
-        rng=rng,
+        rng=np.random.default_rng(trial_seed),
     )
     meta = {
         "stage_num": stage_num,
@@ -38,13 +73,25 @@ def init_stage(engine_type: int, row: tuple, trial_seed: int) -> tuple[Geometric
     }
     return engine, state, meta
 
+
 def summarize_axes(delta_axes: dict[str, float]) -> dict[str, float]:
     return {k: float(v) for k, v in delta_axes.items()}
+
 
 def axes_delta(engine: GeometricEngine, before: EngineState, after: EngineState) -> dict[str, float]:
     axes_before = engine.read_axes(before)
     axes_after = engine.read_axes(after)
     return {k: float(axes_after[k] - axes_before[k]) for k in axes_before}
+
+
+def baseline_controls(meta: dict) -> StageControls:
+    return StageControls(
+        piston=PISTON,
+        lever=meta["axis6_up"],
+        torus=meta["torus_target"],
+        spinor="both",
+    )
+
 
 def apply_subcycle_variant(
     engine: GeometricEngine,
@@ -167,6 +214,7 @@ def apply_subcycle_variant(
         history=list(state.history),
     )
 
+
 def run_program_variant(
     engine_type: int,
     row: tuple,
@@ -179,12 +227,7 @@ def run_program_variant(
     engine, state, meta = init_stage(engine_type, row, trial_seed)
     terrain = TERRAINS[meta["terrain_idx"]]
     before = state
-    controls = StageControls(
-        piston=0.8,
-        lever=meta["axis6_up"],
-        torus=meta["torus_target"],
-        spinor="both",
-    )
+    controls = baseline_controls(meta)
 
     subcycles = []
     prev_L = state.rho_L.copy()
@@ -217,9 +260,19 @@ def run_program_variant(
         "final_state": state,
         "macro_trace_L": float(trace_distance_2x2(before.rho_L, state.rho_L)),
         "macro_trace_R": float(trace_distance_2x2(before.rho_R, state.rho_R)),
+        "macro_dphi_L": float(negentropy(state.rho_L) - negentropy(before.rho_L)),
+        "macro_dphi_R": float(negentropy(state.rho_R) - negentropy(before.rho_R)),
         "delta_axes": summarize_axes(axes_delta(engine, before, state)),
         "subcycles": subcycles,
     }
+
+
+def run_engine_baseline(engine_type: int, row: tuple, trial_seed: int):
+    engine, state0, meta = init_stage(engine_type, row, trial_seed)
+    controls = baseline_controls(meta)
+    state = engine.step(state0, stage_idx=meta["terrain_idx"], controls=controls)
+    return engine, state0, state, meta
+
 
 def compare_variants(base: dict, alt: dict) -> dict:
     base_state = base["final_state"]
@@ -235,16 +288,19 @@ def compare_variants(base: dict, alt: dict) -> dict:
         "n_axis_diff": int(sum(abs(v) > AXIS_EPS for v in axis_diff.values())),
     }
 
+
+def compare_variants_rich(base: dict, alt: dict) -> dict:
+    comp = compare_variants(base, alt)
+    base_abs_dphi = abs(base["macro_dphi_L"]) + abs(base["macro_dphi_R"])
+    alt_abs_dphi = abs(alt["macro_dphi_L"]) + abs(alt["macro_dphi_R"])
+    comp["base_abs_dphi"] = float(base_abs_dphi)
+    comp["alt_abs_dphi"] = float(alt_abs_dphi)
+    comp["abs_dphi_gap"] = float(alt_abs_dphi - base_abs_dphi)
+    comp["ga5_gap"] = float(alt["delta_axes"]["GA5_coupling"] - base["delta_axes"]["GA5_coupling"])
+    comp["ga3_gap"] = float(alt["delta_axes"]["GA3_chirality"] - base["delta_axes"]["GA3_chirality"])
+    comp["ga1_gap"] = float(alt["delta_axes"]["GA1_boundary"] - base["delta_axes"]["GA1_boundary"])
+    return comp
+
+
 def mean_metric(records: list[dict], key: str) -> float:
     return float(np.mean([r[key] for r in records]))
-
-def summarize_family(records_by_name: dict[str, list[dict]]) -> dict:
-    summary = {}
-    for name, records in records_by_name.items():
-        summary[name] = {
-            "mean_d_L": mean_metric(records, "d_L"),
-            "mean_d_R": mean_metric(records, "d_R"),
-            "mean_total_d": float(np.mean([r["d_L"] + r["d_R"] for r in records])),
-            "mean_axis_diff_count": float(np.mean([r["n_axis_diff"] for r in records])),
-        }
-    return summary

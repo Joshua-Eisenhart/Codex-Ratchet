@@ -58,6 +58,12 @@ LAYER_GRAPHS = {
         "trust_zone": "CROSS_LAYER",
         "description": "Cross-layer promotion records",
     },
+    "QIT_ENGINE": {
+        "path": "system_v4/a2_state/graphs/qit_engine_graph_v1.json",
+        "rank": 4,  # physics layer below A1
+        "trust_zone": "PHYSICS",
+        "description": "QIT engine topology: macro-stages, operators, tori, axes, negative witnesses",
+    },
 }
 
 # The authoritative accumulation graph and the target nested graph
@@ -75,6 +81,9 @@ CROSS_LAYER_RELATIONS = {
     "SKILL_OPERATES_ON", # SKILL → KERNEL_CONCEPT
     "ACCEPTED_FROM",     # B_SURVIVOR → source concept
     "SIM_EVIDENCE_FOR",  # SIM → B_SURVIVOR
+    "AXIS_GOVERNS",      # AXIS → ENGINE (physics layer)
+    "NEGATIVE_PROVES",   # NEG_WITNESS → structure (physics layer)
+    "OPERATOR_ACTS_ON",  # OPERATOR → MACRO_STAGE (physics layer)
 }
 
 PREFERRED_INTERPRETER = ".venv_spec_graph/bin/python"

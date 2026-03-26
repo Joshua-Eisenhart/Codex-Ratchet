@@ -45,6 +45,16 @@ RELATION_GA_SPEC = {
     "OVERLAPS": {"grade": 2, "coeffs": [0, 0, 0, 0, 0, 0, 1.0, 0]},
     "SKILL_OPERATES_ON": {"grade": 1, "coeffs": [0, 0, 0, 1.0, 0, 0, 0, 0]},
     "REFINED_INTO": {"grade": 1, "coeffs": [0, 0.7, 0, 0.7, 0, 0, 0, 0]},
+    # QIT Engine topology relations
+    "SUBCYCLE_ORDER": {"grade": 1, "coeffs": [0, 1.0, 0, 0, 0, 0, 0, 0]},
+    "STAGE_SEQUENCE": {"grade": 1, "coeffs": [0, 0.8, 0.2, 0, 0, 0, 0, 0]},
+    "TORUS_NESTING": {"grade": 2, "coeffs": [0, 0, 0, 0, 0, 1.0, 0, 0]},
+    "CHIRALITY_COUPLING": {"grade": 2, "coeffs": [0, 0, 0, 0, 0, 0, 0, 1.0]},
+    "ENGINE_OWNS_STAGE": {"grade": 1, "coeffs": [0, 0, 0, 1.0, 0, 0, 0, 0]},
+    "OPERATOR_ACTS_ON": {"grade": 1, "coeffs": [0, 0.5, 0, 0.5, 0, 0, 0, 0]},
+    "STAGE_ON_TORUS": {"grade": 2, "coeffs": [0, 0, 0, 0, 0, 0, 1.0, 0]},
+    "AXIS_GOVERNS": {"grade": 1, "coeffs": [0, 0.4, 0.4, 0.4, 0, 0, 0, 0]},
+    "NEGATIVE_PROVES": {"grade": 2, "coeffs": [0, 0, 0, 0, -1.0, 0, 0, 0]},
 }
 
 DEFAULT_GA = {"grade": 1, "coeffs": [0, 0.1, 0.1, 0.1, 0, 0, 0, 0]}

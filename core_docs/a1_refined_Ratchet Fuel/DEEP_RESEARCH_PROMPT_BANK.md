@@ -65,3 +65,31 @@ Your task:
 2. Write a Python visualization dashboard (using Plotly or Dash) that renders the global "Attractor Basin". I need to see exactly where the 12 semantic axes concentrate all the random input states in 3D Hopf space.
 3. Push the visualization code `global_basin_dashboard.py` directly to the repo.
 ```
+
+**Prompt 21: Future Compression Layer Audit (Do Not Build Prematurely)**
+```text
+Read these local repo docs first:
+- `core_docs/QIT_COMPRESSION_FUTURE_REFERENCES.md`
+- `core_docs/QIT_GRAPH_SYNC_README.md`
+- `core_docs/QIT_GRAPH_SIDECAR_POLICY.md`
+
+Then read these papers:
+- QJL: https://arxiv.org/abs/2406.03482
+- TurboQuant: https://arxiv.org/abs/2504.19874
+- PolarQuant: https://arxiv.org/abs/2502.02617
+
+Your task is NOT to build compression immediately.
+Your task is to determine whether the Ratchet system has actually reached the scale where a compression layer is justified.
+
+Specifically:
+1. Measure the current size of owner graphs, sidecar payloads, retrieval stores, and history/result surfaces.
+2. Determine whether there is a real memory or runtime bottleneck that these papers would solve.
+3. If not, write a short repo-held audit explaining why compression should remain deferred.
+4. If yes, identify the correct insertion point:
+   - retrieval embeddings
+   - PyG tensor projections
+   - history graph snapshots
+   - large vector stores
+5. Do NOT propose these papers as replacements for TopoNetX, clifford, PyG, or owner-graph truth.
+6. Write the result as `core_docs/QIT_COMPRESSION_READINESS_AUDIT.md`.
+```

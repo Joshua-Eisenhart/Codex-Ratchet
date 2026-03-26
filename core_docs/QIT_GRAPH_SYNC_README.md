@@ -14,6 +14,7 @@
 | `core_docs/QIT_GRAPH_SIDECAR_POLICY.md` | What each sidecar may and may not do |
 | `core_docs/QIT_GRAPH_RUNTIME_MODEL.md` | Structure vs state vs history graph separation |
 | `core_docs/QIT_GRAPH_PROMOTION_GATES.md` | When a concept moves from sidecar to owner truth |
+| `core_docs/QIT_COMPRESSION_FUTURE_REFERENCES.md` | Later-only compression references (QJL, TurboQuant, PolarQuant) and revisit triggers |
 | `system_v4/skills/qit_engine_graph_builder.py` | Builds the QIT engine graph layer |
 | `system_v4/skills/qit_owner_schemas.py` | Pydantic contracts for all owner-layer types |
 | `system_v4/a2_state/graphs/qit_engine_graph_v1.json` | The live QIT engine graph (41 nodes, 185 edges) |
@@ -56,6 +57,7 @@ The **owner stack** is `Pydantic → JSON → NetworkX → GraphML`. These are r
 - ❌ Live TopoNetX torus 2-cells in the owner graph
 - ❌ Live clifford chirality payloads in the owner graph
 - ❌ Any promotion gate fully passed
+- ❌ Any live compression layer over QIT graph state, retrieval embeddings, or history graph
 
 ---
 
@@ -69,6 +71,7 @@ If you are a new IDE or agent encountering this for the first time:
 4. `QIT_GRAPH_SIDECAR_POLICY.md` — know what you may and may not do
 5. `QIT_GRAPH_RUNTIME_MODEL.md` — understand structure vs state vs history
 6. `QIT_GRAPH_PROMOTION_GATES.md` — know when things move inward
+7. `QIT_COMPRESSION_FUTURE_REFERENCES.md` — know which compression papers matter later and why they are not build-now work
 
 ---
 

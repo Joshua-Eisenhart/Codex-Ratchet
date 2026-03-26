@@ -190,7 +190,9 @@ def _build_layer_indexes(root: Path) -> dict[str, dict[str, str]]:
             node_memberships.setdefault(nid, [])
             if layer_id not in node_memberships[nid]:
                 node_memberships[nid].append(layer_id)
-            node_to_layer[nid] = layer_id
+            # First-loaded layer wins — preserve highest-rank attribution
+            if nid not in node_to_layer:
+                node_to_layer[nid] = layer_id
             if isinstance(node, dict):
                 public_id = node.get("public_id", "")
                 if isinstance(public_id, str) and public_id:
@@ -411,7 +413,9 @@ def _find_cross_layer_edges(root: Path) -> list[dict[str, Any]]:
     edges = accum.get("edges", []) if isinstance(accum, dict) else []
 
     layer_indexes = _build_layer_indexes(root)
+    # Use first-loaded layer (highest-rank) as canonical, preserving multi-membership
     node_to_layer = dict(layer_indexes["node_to_layer"])
+    node_memberships = layer_indexes.get("node_memberships", {})
 
     # Also map node types from accumulation graph for nodes not in any layer
     for nid, n in nodes.items():
@@ -448,6 +452,8 @@ def _find_cross_layer_edges(root: Path) -> list[dict[str, Any]]:
                 "resolved_target_id": resolved_tgt,
                 "source_layer": src_layer,
                 "target_layer": tgt_layer,
+                "source_memberships": node_memberships.get(resolved_src, [src_layer]),
+                "target_memberships": node_memberships.get(resolved_tgt, [tgt_layer]),
                 "relation": e.get("relation", "?"),
                 "attributes": e.get("attributes", {}),
                 "source_resolved_via": src_binding["resolved_via"] if src_binding else "node_id" if src in layer_indexes["node_to_layer"] else "node_type",

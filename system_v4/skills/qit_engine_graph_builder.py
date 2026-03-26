@@ -83,16 +83,19 @@ PROVEN_AXES = [
     ("axis_6", "Polarity / torus latitude sign", True, "neg_axis6_shared_stage_matrix_sim.py"),
 ]
 
-NEGATIVE_WITNESSES = [
-    ("neg_no_torus_transport", "Removing torus transport kills the engine", "TORUS"),
-    ("neg_axis0_frozen", "Freezing Axis 0 kills entropy gradients", "AXIS"),
-    ("neg_no_chirality", "Removing engine type distinction kills asymmetry", "CHIRALITY"),
-    ("neg_torus_scrambled", "Scrambling torus assignment kills coherence", "TORUS"),
-    ("neg_axis6_shared", "Sharing Axis 6 polarity across types kills separation", "AXIS"),
-    ("neg_missing_fe", "Removing Fe operator kills the subcycle", "OPERATOR"),
-    ("neg_missing_operator", "Removing any single operator kills the subcycle", "OPERATOR"),
-    ("neg_native_only", "Using only native operators kills type distinction", "OPERATOR"),
-    ("neg_type_flatten", "Flattening engine types kills chirality separation", "CHIRALITY"),
+# Each negative witness carries: (id, description, target_class, specific_targets_or_None)
+# When specific_targets is None, the sim proves something about the ENTIRE class.
+# When specific_targets is a list, the sim only proves something about those specific members.
+NEGATIVE_WITNESSES: list[tuple[str, str, str, list[str] | None]] = [
+    ("neg_no_torus_transport", "Removing torus transport kills the engine", "TORUS", None),  # all tori
+    ("neg_axis0_frozen", "Freezing Axis 0 kills entropy gradients", "AXIS", ["axis_0"]),
+    ("neg_no_chirality", "Removing engine type distinction kills asymmetry", "CHIRALITY", None),  # both engines
+    ("neg_torus_scrambled", "Scrambling torus assignment kills coherence", "TORUS", None),  # all tori
+    ("neg_axis6_shared", "Sharing Axis 6 polarity across types kills separation", "AXIS", ["axis_6"]),
+    ("neg_missing_fe", "Removing Fe operator kills the subcycle", "OPERATOR", ["Fe"]),
+    ("neg_missing_operator", "Removing any single operator kills the subcycle", "OPERATOR", None),  # all operators
+    ("neg_native_only", "Using only native operators kills type distinction", "OPERATOR", None),  # all operators
+    ("neg_type_flatten", "Flattening engine types kills chirality separation", "CHIRALITY", None),  # both engines
 ]
 
 
@@ -265,7 +268,7 @@ def build_qit_engine_graph() -> dict[str, Any]:
         nodes[hid] = node
 
     # ── 6. NEGATIVE_WITNESS nodes (Pydantic-validated) ──
-    for neg_id, neg_desc, neg_target in NEGATIVE_WITNESSES:
+    for neg_id, neg_desc, neg_target, specific_targets in NEGATIVE_WITNESSES:
         try:
             model = NegativeWitness(
                 neg_id=neg_id,
@@ -431,24 +434,40 @@ def build_qit_engine_graph() -> dict[str, Any]:
                 {"axis": axis_id},
             ))
 
-    # 8k. NEGATIVE_PROVES
-    for neg_id, _, neg_target in NEGATIVE_WITNESSES:
+    # 8k. NEGATIVE_PROVES — scoped to specific targets when the sim only proves
+    #     something about specific members, not the entire class.
+    for neg_id, _, neg_target, specific_targets in NEGATIVE_WITNESSES:
         neg_h = _h("NEG_WITNESS", neg_id)
         neg_p = _p("NEG_WITNESS", neg_id)
-        targets: list[tuple[str, str, str]] = []
+        all_targets: list[tuple[str, str, str]] = []
         if neg_target == "TORUS":
-            targets = [(_h("TORUS", t[0]), _p("TORUS", t[0]), "structure_is_necessary") for t in TORI]
+            pool = [(t[0],) for t in TORI]
+            all_targets = [(_h("TORUS", t[0]), _p("TORUS", t[0]), "structure_is_necessary") for t in pool]
         elif neg_target == "AXIS":
-            targets = [(_h("AXIS", a[0]), _p("AXIS", a[0]), "axis_is_load_bearing") for a in PROVEN_AXES]
+            pool = [(a[0],) for a in PROVEN_AXES]
+            all_targets = [(_h("AXIS", a[0]), _p("AXIS", a[0]), "axis_is_load_bearing") for a in pool]
         elif neg_target == "OPERATOR":
-            targets = [(_h("OPERATOR", o[0]), _p("OPERATOR", o[0]), "operator_is_necessary") for o in OPERATORS]
+            pool = [(o[0],) for o in OPERATORS]
+            all_targets = [(_h("OPERATOR", o[0]), _p("OPERATOR", o[0]), "operator_is_necessary") for o in pool]
         elif neg_target == "CHIRALITY":
-            targets = [
+            all_targets = [
                 (_h("ENGINE", "type1_deductive"), _p("ENGINE", "type1_deductive"), "chirality_separation_is_necessary"),
                 (_h("ENGINE", "type2_inductive"), _p("ENGINE", "type2_inductive"), "chirality_separation_is_necessary"),
             ]
-        for tgt_h, tgt_p, proves in targets:
-            edges.append(_make_edge("NEGATIVE_PROVES", neg_h, tgt_h, neg_p, tgt_p, {"proves": proves}))
+
+        # Filter to specific targets if the witness is scoped
+        if specific_targets is not None:
+            all_targets = [
+                (h, p, proves) for h, p, proves in all_targets
+                if any(st in p for st in specific_targets)
+            ]
+
+        for tgt_h, tgt_p, proves in all_targets:
+            scope = "specific" if specific_targets else "class_wide"
+            edges.append(_make_edge(
+                "NEGATIVE_PROVES", neg_h, tgt_h, neg_p, tgt_p,
+                {"proves": proves, "scope": scope},
+            ))
 
     # ── Build public_id index for cross-layer reconciliation ──
     public_id_index = {}

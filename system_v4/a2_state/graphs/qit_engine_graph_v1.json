@@ -1,23 +1,20 @@
 {
   "schema": "QIT_ENGINE_GRAPH_v2",
-  "generated_utc": "2026-03-26T22:35:18Z",
+  "generated_utc": "2026-03-26T22:57:16Z",
   "owner_layer": "QIT_ENGINE",
   "materialized": true,
   "build_status": "MATERIALIZED",
   "derived_from": {
     "builder_program": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_engine_graph_builder.py",
-    "owner_schemas": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_owner_schemas.py",
-    "engine_runtime_reference": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/engine_core.py",
-    "hopf_geometry_reference": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/hopf_manifold.py",
-    "operator_reference": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/geometric_operators.py"
+    "owner_schemas": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_owner_schemas.py"
   },
   "selection_contract": {
     "included_node_rule": "Materialize only the explicit QIT owner structures enumerated in this builder: engine types, macro-stages, fixed operators, torus identities, proven axes, negative witnesses, and 64 subcycle steps. Do not infer runtime state, history/evidence, Weyl branches, or sidecar payloads.",
-    "edge_rule": "Materialize only the structural topology edges explicitly constructed in this builder between emitted owner nodes. Do not infer extra relations from simulations, sidecars, or documentation.",
+    "edge_rule": "Materialize only the explicitly constructed edges in this builder: structural topology edges between emitted owner nodes plus bounded NEGATIVE_PROVES witness edges. Do not infer extra relations from simulations, sidecars, or documentation.",
     "validation_gate": "Each emitted node must pass its owner-schema Pydantic model before the graph is materialized. Validation failures fail the build rather than emitting partial owner truth.",
     "bridge_policy": "public_id/public_id_index are stable join handles only. Cross-layer integration requires explicit bridge admission outside this owner builder."
   },
-  "description": "Graph encoding of the Geometric Engine's physical topology: 8 macro-stages \u00d7 2 engine types, 4 fixed subcycle operators, 64 subcycle steps (16\u00d74 runtime grain), 3 nested Hopf tori, 7 proven axes, and 9 negative witnesses. All nodes carry stable public_id for cross-layer joining.",
+  "description": "Owner graph encoding of the Geometric Engine's structural topology plus bounded negative-witness nodes/edges: 8 macro-stages \u00d7 2 engine types, 4 fixed subcycle operators, 64 subcycle steps (16\u00d74 runtime grain), 3 nested Hopf tori, 7 proven axes, and 9 negative witnesses. All nodes carry stable public_id for cross-layer joining.",
   "nodes": {
     "778ddaca61bf2497": {
       "public_id": "qit::ENGINE::type1_deductive",
@@ -3728,7 +3725,8 @@
       "target_public_id": "qit::TORUS::inner",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "structure_is_necessary"
+        "proves": "structure_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -3739,7 +3737,8 @@
       "target_public_id": "qit::TORUS::clifford",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "structure_is_necessary"
+        "proves": "structure_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -3750,7 +3749,8 @@
       "target_public_id": "qit::TORUS::outer",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "structure_is_necessary"
+        "proves": "structure_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -3761,73 +3761,8 @@
       "target_public_id": "qit::AXIS::axis_0",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "axis_is_load_bearing"
-      }
-    },
-    {
-      "edge_id": "e263dc149e79eaf192a4",
-      "source_id": "299773621576935a",
-      "target_id": "d5f161a324a94f20",
-      "source_public_id": "qit::NEG_WITNESS::neg_axis0_frozen",
-      "target_public_id": "qit::AXIS::axis_1",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "axis_is_load_bearing"
-      }
-    },
-    {
-      "edge_id": "8a2192b6af03060a37bc",
-      "source_id": "299773621576935a",
-      "target_id": "2cee085667f098e2",
-      "source_public_id": "qit::NEG_WITNESS::neg_axis0_frozen",
-      "target_public_id": "qit::AXIS::axis_2",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "axis_is_load_bearing"
-      }
-    },
-    {
-      "edge_id": "60d0f3624915c548bc5a",
-      "source_id": "299773621576935a",
-      "target_id": "7905294e7f427080",
-      "source_public_id": "qit::NEG_WITNESS::neg_axis0_frozen",
-      "target_public_id": "qit::AXIS::axis_3",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "axis_is_load_bearing"
-      }
-    },
-    {
-      "edge_id": "9749f9e7c317aebb7c5a",
-      "source_id": "299773621576935a",
-      "target_id": "f3b9b9d197c66e28",
-      "source_public_id": "qit::NEG_WITNESS::neg_axis0_frozen",
-      "target_public_id": "qit::AXIS::axis_4",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "axis_is_load_bearing"
-      }
-    },
-    {
-      "edge_id": "91df8a32c5ffc250c4e5",
-      "source_id": "299773621576935a",
-      "target_id": "52f4e85e1b321b25",
-      "source_public_id": "qit::NEG_WITNESS::neg_axis0_frozen",
-      "target_public_id": "qit::AXIS::axis_5",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "axis_is_load_bearing"
-      }
-    },
-    {
-      "edge_id": "3ffbe435089c605ed069",
-      "source_id": "299773621576935a",
-      "target_id": "dd53789b2e1978a4",
-      "source_public_id": "qit::NEG_WITNESS::neg_axis0_frozen",
-      "target_public_id": "qit::AXIS::axis_6",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "axis_is_load_bearing"
+        "proves": "axis_is_load_bearing",
+        "scope": "specific"
       }
     },
     {
@@ -3838,7 +3773,8 @@
       "target_public_id": "qit::ENGINE::type1_deductive",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "chirality_separation_is_necessary"
+        "proves": "chirality_separation_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -3849,7 +3785,8 @@
       "target_public_id": "qit::ENGINE::type2_inductive",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "chirality_separation_is_necessary"
+        "proves": "chirality_separation_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -3860,7 +3797,8 @@
       "target_public_id": "qit::TORUS::inner",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "structure_is_necessary"
+        "proves": "structure_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -3871,7 +3809,8 @@
       "target_public_id": "qit::TORUS::clifford",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "structure_is_necessary"
+        "proves": "structure_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -3882,73 +3821,8 @@
       "target_public_id": "qit::TORUS::outer",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "structure_is_necessary"
-      }
-    },
-    {
-      "edge_id": "24f0d767859e97826f0f",
-      "source_id": "dc48a34a8312f716",
-      "target_id": "1504af1f377932d9",
-      "source_public_id": "qit::NEG_WITNESS::neg_axis6_shared",
-      "target_public_id": "qit::AXIS::axis_0",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "axis_is_load_bearing"
-      }
-    },
-    {
-      "edge_id": "b115f6f2ac98ee01ebf6",
-      "source_id": "dc48a34a8312f716",
-      "target_id": "d5f161a324a94f20",
-      "source_public_id": "qit::NEG_WITNESS::neg_axis6_shared",
-      "target_public_id": "qit::AXIS::axis_1",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "axis_is_load_bearing"
-      }
-    },
-    {
-      "edge_id": "cf0f99b3af7faddc3806",
-      "source_id": "dc48a34a8312f716",
-      "target_id": "2cee085667f098e2",
-      "source_public_id": "qit::NEG_WITNESS::neg_axis6_shared",
-      "target_public_id": "qit::AXIS::axis_2",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "axis_is_load_bearing"
-      }
-    },
-    {
-      "edge_id": "227175af33a03417a20a",
-      "source_id": "dc48a34a8312f716",
-      "target_id": "7905294e7f427080",
-      "source_public_id": "qit::NEG_WITNESS::neg_axis6_shared",
-      "target_public_id": "qit::AXIS::axis_3",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "axis_is_load_bearing"
-      }
-    },
-    {
-      "edge_id": "0b0a7442fa878a10ae1c",
-      "source_id": "dc48a34a8312f716",
-      "target_id": "f3b9b9d197c66e28",
-      "source_public_id": "qit::NEG_WITNESS::neg_axis6_shared",
-      "target_public_id": "qit::AXIS::axis_4",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "axis_is_load_bearing"
-      }
-    },
-    {
-      "edge_id": "b8e8dc0caa255e67cd95",
-      "source_id": "dc48a34a8312f716",
-      "target_id": "52f4e85e1b321b25",
-      "source_public_id": "qit::NEG_WITNESS::neg_axis6_shared",
-      "target_public_id": "qit::AXIS::axis_5",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "axis_is_load_bearing"
+        "proves": "structure_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -3959,18 +3833,8 @@
       "target_public_id": "qit::AXIS::axis_6",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "axis_is_load_bearing"
-      }
-    },
-    {
-      "edge_id": "15c9d75fce2e7e51af75",
-      "source_id": "a40e26b21e02fe7e",
-      "target_id": "f09832c90802915c",
-      "source_public_id": "qit::NEG_WITNESS::neg_missing_fe",
-      "target_public_id": "qit::OPERATOR::Ti",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "operator_is_necessary"
+        "proves": "axis_is_load_bearing",
+        "scope": "specific"
       }
     },
     {
@@ -3981,29 +3845,8 @@
       "target_public_id": "qit::OPERATOR::Fe",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "operator_is_necessary"
-      }
-    },
-    {
-      "edge_id": "a23ee6ee6033339f5767",
-      "source_id": "a40e26b21e02fe7e",
-      "target_id": "af34d825f3db0db2",
-      "source_public_id": "qit::NEG_WITNESS::neg_missing_fe",
-      "target_public_id": "qit::OPERATOR::Te",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "operator_is_necessary"
-      }
-    },
-    {
-      "edge_id": "02a9f2f7d586deb0fe9f",
-      "source_id": "a40e26b21e02fe7e",
-      "target_id": "51ce70ad0cb0e67e",
-      "source_public_id": "qit::NEG_WITNESS::neg_missing_fe",
-      "target_public_id": "qit::OPERATOR::Fi",
-      "relation": "NEGATIVE_PROVES",
-      "attributes": {
-        "proves": "operator_is_necessary"
+        "proves": "operator_is_necessary",
+        "scope": "specific"
       }
     },
     {
@@ -4014,7 +3857,8 @@
       "target_public_id": "qit::OPERATOR::Ti",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "operator_is_necessary"
+        "proves": "operator_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -4025,7 +3869,8 @@
       "target_public_id": "qit::OPERATOR::Fe",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "operator_is_necessary"
+        "proves": "operator_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -4036,7 +3881,8 @@
       "target_public_id": "qit::OPERATOR::Te",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "operator_is_necessary"
+        "proves": "operator_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -4047,7 +3893,8 @@
       "target_public_id": "qit::OPERATOR::Fi",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "operator_is_necessary"
+        "proves": "operator_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -4058,7 +3905,8 @@
       "target_public_id": "qit::OPERATOR::Ti",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "operator_is_necessary"
+        "proves": "operator_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -4069,7 +3917,8 @@
       "target_public_id": "qit::OPERATOR::Fe",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "operator_is_necessary"
+        "proves": "operator_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -4080,7 +3929,8 @@
       "target_public_id": "qit::OPERATOR::Te",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "operator_is_necessary"
+        "proves": "operator_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -4091,7 +3941,8 @@
       "target_public_id": "qit::OPERATOR::Fi",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "operator_is_necessary"
+        "proves": "operator_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -4102,7 +3953,8 @@
       "target_public_id": "qit::ENGINE::type1_deductive",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "chirality_separation_is_necessary"
+        "proves": "chirality_separation_is_necessary",
+        "scope": "class_wide"
       }
     },
     {
@@ -4113,7 +3965,8 @@
       "target_public_id": "qit::ENGINE::type2_inductive",
       "relation": "NEGATIVE_PROVES",
       "attributes": {
-        "proves": "chirality_separation_is_necessary"
+        "proves": "chirality_separation_is_necessary",
+        "scope": "class_wide"
       }
     }
   ],
@@ -4226,7 +4079,7 @@
   },
   "summary": {
     "node_count": 105,
-    "edge_count": 297,
+    "edge_count": 282,
     "node_types": {
       "ENGINE": 2,
       "MACRO_STAGE": 16,
@@ -4247,9 +4100,9 @@
       "STEP_SEQUENCE": 48,
       "STAGE_ON_TORUS": 32,
       "AXIS_GOVERNS": 14,
-      "NEGATIVE_PROVES": 36
+      "NEGATIVE_PROVES": 21
     },
     "validation_errors": []
   },
-  "content_hash": "29a9456b6aa4c15f66d1c7955bd672fe0aba81cb44d6fc1400b4c60114e9fa1b"
+  "content_hash": "019ace7d8072508e1e1e3bc3931e36155be38652255e1f55993a47fc053406ee"
 }

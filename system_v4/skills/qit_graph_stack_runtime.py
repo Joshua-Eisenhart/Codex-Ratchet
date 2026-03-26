@@ -103,6 +103,22 @@ def _git_sha() -> str:
         return "unknown"
 
 
+def _git_status_porcelain(paths: list[Path] | None = None) -> list[str]:
+    cmd = ["git", "status", "--short"]
+    if paths:
+        cmd.append("--")
+        cmd.extend(str(path) for path in paths)
+    try:
+        output = subprocess.check_output(
+            cmd,
+            cwd=str(REPO_ROOT),
+            text=True,
+        )
+    except Exception:
+        return []
+    return [line.rstrip() for line in output.splitlines() if line.strip()]
+
+
 def _path_sha256_if_exists(raw_path: str | None) -> str | None:
     if not raw_path:
         return None
@@ -402,7 +418,7 @@ def _lightrag_status() -> dict[str, Any]:
         if manifest_exists and init_success:
             status = "sidecar_corpus_ready"
         elif manifest_exists and not init_success:
-            status = "corpus_manifest_ready_init_failed"
+            status = "sidecar_corpus_ready_needs_embedding_config"
         else:
             status = "smoke_ran_manifest_missing"
         return {
@@ -510,6 +526,19 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
     derived_from = graph_payload.get("derived_from", {}) if isinstance(graph_payload.get("derived_from"), dict) else {}
     owner_builder_path = derived_from.get("builder_program")
     owner_schema_path = derived_from.get("owner_schemas")
+    script_path = Path(__file__).resolve()
+    relevant_paths = [
+        script_path,
+        Path(owner_builder_path) if owner_builder_path else None,
+        Path(owner_schema_path) if owner_schema_path else None,
+        QIT_GRAPH_JSON,
+        GRAPHML_PATH,
+        REPORT_JSON,
+        REPORT_MD,
+    ]
+    relevant_paths = [path for path in relevant_paths if path is not None]
+    relevant_git_status = _git_status_porcelain(relevant_paths)
+    worktree_dirty = bool(_git_status_porcelain())
     snapshot_inputs = {
         "git_sha": git_sha,
         "owner_file_sha256": owner_snapshot["file_sha256"],
@@ -517,6 +546,8 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
         "graphml_file_sha256": graphml["file_sha256"],
         "graphml_exists": graphml["exists"],
         "owner_builder_sha256": _path_sha256_if_exists(owner_builder_path),
+        "owner_schema_sha256": _path_sha256_if_exists(owner_schema_path),
+        "script_sha256": _sha256_path(script_path),
     }
     snapshot_id = _canonical_sha256(snapshot_inputs)
     gate_statuses = [details["status"] for details in promotion_gates.values()]
@@ -533,8 +564,10 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
         "purpose": "read-only-by-default verification surface over the current QIT owner snapshot and bounded sidecars",
         "provenance": {
             "git_sha": git_sha,
-            "script_path": str(Path(__file__).resolve()),
-            "script_sha256": _sha256_path(Path(__file__).resolve()),
+            "git_worktree_dirty": worktree_dirty,
+            "relevant_git_status": relevant_git_status,
+            "script_path": str(script_path),
+            "script_sha256": _sha256_path(script_path),
             "owner_builder_path": owner_builder_path,
             "owner_builder_sha256": _path_sha256_if_exists(owner_builder_path),
             "owner_schema_path": owner_schema_path,
@@ -629,17 +662,41 @@ def _parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def _report_content_hash(report: dict[str, Any]) -> str:
+    """Hash the report excluding volatile fields so unchanged audits don't churn."""
+    stable = {k: v for k, v in report.items() if k != "generated_utc"}
+    return _canonical_sha256(stable)
+
+
 def main() -> None:
     args = _parse_args()
     report = build_qit_graph_stack_status(
         refresh_owner=args.refresh_owner,
         refresh_graphml=args.refresh_graphml,
     )
-    _write_json(REPORT_JSON, report)
-    _write_text(REPORT_MD, _render_markdown(report))
-    print("QIT graph stack status written:")
-    print(f"  JSON: {REPORT_JSON}")
-    print(f"  MD:   {REPORT_MD}")
+
+    new_hash = _report_content_hash(report)
+
+    # Only rewrite status artifacts when substantive content changed
+    should_write = True
+    if REPORT_JSON.exists():
+        try:
+            old_report = _load_json(REPORT_JSON)
+            old_hash = _report_content_hash(old_report)
+            if old_hash == new_hash:
+                should_write = False
+        except Exception:
+            pass  # corrupted or missing — rewrite
+
+    if should_write:
+        _write_json(REPORT_JSON, report)
+        _write_text(REPORT_MD, _render_markdown(report))
+        print("QIT graph stack status updated (content changed):")
+        print(f"  JSON: {REPORT_JSON}")
+        print(f"  MD:   {REPORT_MD}")
+    else:
+        print("QIT graph stack status unchanged — skipped rewrite.")
+
     print(f"  GraphML: {GRAPHML_PATH} ({report['owner']['graphml_export']['action']})")
 
 

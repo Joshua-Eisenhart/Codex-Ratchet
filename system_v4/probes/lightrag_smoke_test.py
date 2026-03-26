@@ -348,22 +348,92 @@ def run_smoke_test():
         print(f"    First 200 chars: {sample_doc['text'][:200]}...")
     print(f"  ✓ Corpus manifest: {manifest_path}")
 
-    # 4. Try LightRAG init. Current package requires embedding config before
-    # vector storage is usable, so this reports readiness rather than querying.
+    # 4. Initialize LightRAG with local sentence-transformer embeddings
     init_success = False
     init_error = None
+    query_result = None
     try:
+        from sentence_transformers import SentenceTransformer
+        from lightrag.utils import EmbeddingFunc
+        import numpy as np
+
+        # Load a small, fast embedding model (384-dim, ~80MB)
+        EMBED_MODEL_NAME = "all-MiniLM-L6-v2"
+        print(f"  Loading embedding model: {EMBED_MODEL_NAME}...")
+        embed_model = SentenceTransformer(EMBED_MODEL_NAME)
+        embedding_dim = embed_model.get_sentence_embedding_dimension()
+        print(f"  ✓ Embedding model loaded (dim={embedding_dim})")
+
+        # Async wrapper for sentence-transformers (LightRAG expects async)
+        async def local_embedding(texts: list[str]) -> np.ndarray:
+            embeddings = embed_model.encode(texts, normalize_embeddings=True)
+            return np.array(embeddings)
+
+        # Minimal LLM stub — LightRAG needs this for entity extraction during
+        # indexing, but for a retrieval-only sidecar we return a structured
+        # placeholder that tells LightRAG "nothing to extract".
+        async def local_llm_stub(prompt: str, **kwargs) -> str:
+            return '{"entities": [], "relationships": []}'
+
+        embedding_func = EmbeddingFunc(
+            embedding_dim=embedding_dim,
+            func=local_embedding,
+            max_token_size=512,
+            model_name=EMBED_MODEL_NAME,
+        )
+
         rag = LightRAG(
             working_dir=str(LIGHTRAG_WORK_DIR),
+            embedding_func=embedding_func,
+            llm_model_func=local_llm_stub,
+            llm_model_name="local_stub",
         )
+
+        # Initialize storage backends (required before insert/query in v1.4.11+)
+        import asyncio
+
+        async def _init_storages():
+            await rag.initialize_storages()
+
+        asyncio.run(_init_storages())
         init_success = True
-        print(f"  ✓ LightRAG initialized (working_dir={LIGHTRAG_WORK_DIR})")
+        print(f"  ✓ LightRAG initialized with local embeddings (working_dir={LIGHTRAG_WORK_DIR})")
+
+        # 5. Ingest the corpus documents
+        print(f"  Ingesting {len(documents)} documents...")
+
+        async def _ingest_all():
+            for doc in documents:
+                try:
+                    await rag.ainsert(doc["text"])
+                except Exception as e:
+                    print(f"    ⚠ Failed to ingest {doc['doc_id']}: {e}")
+
+        asyncio.run(_ingest_all())
+        print(f"  ✓ Ingestion complete")
+
+        # 6. Run a test query
+        test_query = "What are the macro stages and how do they relate to torus placement?"
+        print(f"  Running test query: {test_query}")
+
+        from lightrag import QueryParam
+
+        async def _query():
+            return await rag.aquery(test_query, param=QueryParam(mode="naive"))
+
+        query_result = asyncio.run(_query())
+        print(f"  ✓ Query returned {len(query_result)} chars")
+        print(f"  Preview: {query_result[:300]}...")
+
+    except ImportError as e:
+        init_error = f"sentence-transformers not available: {e}"
+        print(f"  ⚠ {init_error}")
+        print("    Install with: pip install sentence-transformers")
     except Exception as e:
         init_error = str(e)
-        print(f"  ⚠ LightRAG init still needs embedding config: {e}")
-        print("    Corpus build succeeded; indexing/querying is the remaining step.")
+        print(f"  ⚠ LightRAG init/ingest failed: {e}")
 
-    # 5. Write status summary
+    # 7. Write status summary
     result = {
         "status": "READY" if init_success else "NEEDS_EMBEDDING_CONFIG",
         "timestamp_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
@@ -373,6 +443,13 @@ def run_smoke_test():
         "corpus_manifest": str(manifest_path),
         "init_success": init_success,
         "init_error": init_error,
+        "embedding_model": "all-MiniLM-L6-v2" if init_success else None,
+        "embedding_dim": 384 if init_success else None,
+        "query_test": {
+            "query": "What are the macro stages and how do they relate to torus placement?" if query_result else None,
+            "result_chars": len(query_result) if query_result else 0,
+            "result_preview": query_result[:500] if query_result else None,
+        },
         "sample_document_name": sample_doc["doc_id"] if sample_doc else None,
     }
 

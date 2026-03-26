@@ -1,0 +1,2589 @@
+{
+  "schema": "SIM_EVIDENCE_v1",
+  "file": "process_cycle_stage_matrix_sim.py",
+  "timestamp": "2026-03-26T09:45:52.041217+00:00",
+  "operator_order_used": [
+    "Ti",
+    "Fe",
+    "Te",
+    "Fi"
+  ],
+  "operator_order_source": "engine_core.py OPERATORS = ['Ti', 'Fe', 'Te', 'Fi']",
+  "operator_order_conflict_note": "Some docs imply Fe -> Fi -> Te -> Ti while current engine_core executes Ti -> Fe -> Te -> Fi. This SIM uses current engine_core order as operational truth.",
+  "macro_stage_count": 16,
+  "subcycles_per_macro_stage": 4,
+  "trial_count_per_macro_stage": 6,
+  "type_summaries": {
+    "1": {
+      "macro_stage_count": 8,
+      "avg_native_match_rate_abs_dphi": 0.25,
+      "avg_native_match_rate_trace": 0.41666666666666663,
+      "operator_profiles": {
+        "Ti": {
+          "dphi_L": -0.23099581384302292,
+          "dphi_R": -0.31905397372741245,
+          "trace_L": 0.11950104602052657,
+          "trace_R": 0.14590969441396737
+        },
+        "Fe": {
+          "dphi_L": -0.04256905534041036,
+          "dphi_R": -0.005598117923337263,
+          "trace_L": 0.038484069289813745,
+          "trace_R": 0.01900409729202286
+        },
+        "Te": {
+          "dphi_L": 0.01564245540081817,
+          "dphi_R": 0.01885937246350991,
+          "trace_L": 0.1255857781254127,
+          "trace_R": 0.11566896520981673
+        },
+        "Fi": {
+          "dphi_L": 0.01566461813753716,
+          "dphi_R": 0.04409968895265068,
+          "trace_L": 0.09872827551927416,
+          "trace_R": 0.10688726665807957
+        }
+      },
+      "dominant_counts_abs_dphi": {
+        "Ti": 8
+      },
+      "dominant_counts_trace": {
+        "Ti": 4,
+        "Te": 2,
+        "Fi": 2
+      }
+    },
+    "2": {
+      "macro_stage_count": 8,
+      "avg_native_match_rate_abs_dphi": 0.2708333333333333,
+      "avg_native_match_rate_trace": 0.375,
+      "operator_profiles": {
+        "Ti": {
+          "dphi_L": -0.23320140836180317,
+          "dphi_R": -0.3111997087336509,
+          "trace_L": 0.12342555297265387,
+          "trace_R": 0.15011173702150754
+        },
+        "Fe": {
+          "dphi_L": -0.007264660251362456,
+          "dphi_R": -0.0028679811287926384,
+          "trace_L": 0.02076145086434511,
+          "trace_R": 0.033061953480532556
+        },
+        "Te": {
+          "dphi_L": 0.019956168917484796,
+          "dphi_R": 0.02384810458310849,
+          "trace_L": 0.14190034077970828,
+          "trace_R": 0.12975902664519756
+        },
+        "Fi": {
+          "dphi_L": -0.015644293294110947,
+          "dphi_R": -0.011387815463615657,
+          "trace_L": 0.1146340531867358,
+          "trace_R": 0.13259459387377026
+        }
+      },
+      "dominant_counts_abs_dphi": {
+        "Ti": 7,
+        "Fi": 1
+      },
+      "dominant_counts_trace": {
+        "Te": 3,
+        "Fi": 1,
+        "Ti": 4
+      }
+    }
+  },
+  "matrix_rows": [
+    {
+      "engine_type": 1,
+      "stage_num": 1,
+      "topology": "Ne",
+      "terrain": "Ne_b",
+      "loop_role": "A-outer",
+      "native_operator_doc": "Ti",
+      "label": "WIN",
+      "axis6_up": false,
+      "torus_target": 1.1780972450961724,
+      "representative": {
+        "engine_type": 1,
+        "stage_num": 1,
+        "topology": "Ne",
+        "terrain": "Ne_b",
+        "loop_role": "A-outer",
+        "native_operator_doc": "Ti",
+        "label": "WIN",
+        "axis6_up": false,
+        "axis6_label": "DOWN",
+        "torus_target": 1.1780972450961724,
+        "theta1_init": 3.0640862673483573,
+        "theta2_init": 3.507217741373269,
+        "terrain_idx": 6,
+        "observed_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "expected_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "operator_order_matches": true,
+        "macro_trace_L": 0.10331852761506141,
+        "macro_trace_R": 0.09797485963053035,
+        "macro_dphi_L": -0.24900702641657713,
+        "macro_dphi_R": -0.31327138194760074,
+        "delta_axes": {
+          "GA0_entropy": -0.003960346559615857,
+          "GA1_boundary": -0.03863431772744247,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.1657778932208589,
+          "GA4_variance": 0.16552772963808954,
+          "GA5_coupling": -0.28113920418208893
+        },
+        "observed_native_by_abs_dphi": "Ti",
+        "observed_native_by_trace": "Ti",
+        "native_matches_abs_dphi": true,
+        "native_matches_trace": true,
+        "subcycles": [
+          {
+            "subcycle_idx": 1,
+            "operator": "Ti",
+            "terrain_idx": 6,
+            "effective_strength": 0.8,
+            "dphi_L": -0.2156128634894134,
+            "dphi_R": -0.30981206718179316,
+            "trace_L": 0.08485281374238561,
+            "trace_R": 0.10733736932274902,
+            "ga0_before": 0.7071067811865477,
+            "ga0_after": 0.5428376618407358
+          },
+          {
+            "subcycle_idx": 2,
+            "operator": "Fe",
+            "terrain_idx": 6,
+            "effective_strength": 0.8,
+            "dphi_L": -0.0392066081199311,
+            "dphi_R": -0.00799624003321553,
+            "trace_L": 0.02974350014967511,
+            "trace_R": 0.010919254747383322,
+            "ga0_before": 0.5428376618407358,
+            "ga0_after": 0.5921323373939973
+          },
+          {
+            "subcycle_idx": 3,
+            "operator": "Te",
+            "terrain_idx": 6,
+            "effective_strength": 0.24,
+            "dphi_L": 0.0110602949312541,
+            "dphi_R": 0.013590960791628415,
+            "trace_L": 0.07509058549520489,
+            "trace_R": 0.07089494697596722,
+            "ga0_before": 0.5921323373939973,
+            "ga0_after": 0.7107514621927586
+          },
+          {
+            "subcycle_idx": 4,
+            "operator": "Fi",
+            "terrain_idx": 6,
+            "effective_strength": 0.24,
+            "dphi_L": -0.005247849738486743,
+            "dphi_R": -0.00905403552422046,
+            "trace_L": 0.026725705719712833,
+            "trace_R": 0.02763049728019122,
+            "ga0_before": 0.7107514621927586,
+            "ga0_after": 0.6368057895840897
+          }
+        ]
+      },
+      "trial_averages": {
+        "macro_trace_L": 0.09965532879500034,
+        "macro_trace_R": 0.12330733596974841,
+        "macro_dphi_L": -0.25190245146651785,
+        "macro_dphi_R": -0.3123993633424897,
+        "delta_axes": {
+          "GA0_entropy": -0.011899800665748195,
+          "GA1_boundary": -0.040501655588691406,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.17349500848943045,
+          "GA4_variance": 0.2765053031640986,
+          "GA5_coupling": -0.2821509074045038
+        },
+        "native_match_rate_abs_dphi": 1.0,
+        "native_match_rate_trace": 1.0
+      },
+      "subcycle_averages": [
+        {
+          "operator": "Ti",
+          "effective_strength": 0.7999999999999999,
+          "dphi_L": -0.21561286348941322,
+          "dphi_R": -0.3095260333055543,
+          "trace_L": 0.08485281374238578,
+          "trace_R": 0.1071524544687858
+        },
+        {
+          "operator": "Fe",
+          "effective_strength": 0.7999999999999999,
+          "dphi_L": -0.03920660811993151,
+          "dphi_R": -0.008960632958696027,
+          "trace_L": 0.029743500149675,
+          "trace_R": 0.013458231119990153
+        },
+        {
+          "operator": "Te",
+          "effective_strength": 0.24,
+          "dphi_L": 0.011060294931254036,
+          "dphi_R": 0.013139914759995291,
+          "trace_L": 0.06871925203728821,
+          "trace_R": 0.0641277422118397
+        },
+        {
+          "operator": "Fi",
+          "effective_strength": 0.24,
+          "dphi_L": -0.008143274788427154,
+          "dphi_R": -0.007052611838234644,
+          "trace_L": 0.027200690770376554,
+          "trace_R": 0.026957514731468665
+        }
+      ]
+    },
+    {
+      "engine_type": 1,
+      "stage_num": 2,
+      "topology": "Si",
+      "terrain": "Si_b",
+      "loop_role": "A-outer",
+      "native_operator_doc": "Fe",
+      "label": "WIN",
+      "axis6_up": true,
+      "torus_target": 1.1780972450961724,
+      "representative": {
+        "engine_type": 1,
+        "stage_num": 2,
+        "topology": "Si",
+        "terrain": "Si_b",
+        "loop_role": "A-outer",
+        "native_operator_doc": "Fe",
+        "label": "WIN",
+        "axis6_up": true,
+        "axis6_label": "UP",
+        "torus_target": 1.1780972450961724,
+        "theta1_init": 1.8203447821234477,
+        "theta2_init": 3.7602113422788155,
+        "terrain_idx": 5,
+        "observed_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "expected_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "operator_order_matches": true,
+        "macro_trace_L": 0.255075253149568,
+        "macro_trace_R": 0.40511302913804725,
+        "macro_dphi_L": -0.5598249095465673,
+        "macro_dphi_R": -0.5381756969214957,
+        "delta_axes": {
+          "GA0_entropy": -0.056025519861313766,
+          "GA1_boundary": -0.14289800428732258,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.5556928258851469,
+          "GA4_variance": 1.1132876543341055,
+          "GA5_coupling": -0.5490003032340315
+        },
+        "observed_native_by_abs_dphi": "Ti",
+        "observed_native_by_trace": "Ti",
+        "native_matches_abs_dphi": false,
+        "native_matches_trace": false,
+        "subcycles": [
+          {
+            "subcycle_idx": 1,
+            "operator": "Ti",
+            "terrain_idx": 5,
+            "effective_strength": 0.8,
+            "dphi_L": -0.40395448641811355,
+            "dphi_R": -0.53307954875582,
+            "trace_L": 0.282842712474619,
+            "trace_R": 0.3409178941615417,
+            "ga0_before": 0.7071067811865477,
+            "ga0_after": 0.42783766184073574
+          },
+          {
+            "subcycle_idx": 2,
+            "operator": "Fe",
+            "terrain_idx": 5,
+            "effective_strength": 0.8,
+            "dphi_L": -0.10855247517487981,
+            "dphi_R": -0.012085010993591605,
+            "trace_L": 0.08876054556180085,
+            "trace_R": 0.029644512316242384,
+            "ga0_before": 0.42783766184073574,
+            "ga0_after": 0.4150323373939973
+          },
+          {
+            "subcycle_idx": 3,
+            "operator": "Te",
+            "terrain_idx": 5,
+            "effective_strength": 0.24,
+            "dphi_L": 0.010963629191345858,
+            "dphi_R": 0.00813716907523887,
+            "trace_L": 0.03545709180109796,
+            "trace_R": 0.012470310264193272,
+            "ga0_before": 0.4150323373939973,
+            "ga0_after": 0.5001174621927587
+          },
+          {
+            "subcycle_idx": 4,
+            "operator": "Fi",
+            "terrain_idx": 5,
+            "effective_strength": 0.24,
+            "dphi_L": -0.05828157714491977,
+            "dphi_R": -0.0011483062473229833,
+            "trace_L": 0.07080208419788209,
+            "trace_R": 0.0797076600870554,
+            "ga0_before": 0.5001174621927587,
+            "ga0_after": 0.4080634295840897
+          }
+        ]
+      },
+      "trial_averages": {
+        "macro_trace_L": 0.25792950403103815,
+        "macro_trace_R": 0.38144779304609494,
+        "macro_dphi_L": -0.560075621677537,
+        "macro_dphi_R": -0.5040688367253675,
+        "delta_axes": {
+          "GA0_entropy": -0.05451614044635017,
+          "GA1_boundary": -0.13352569509455672,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.5256024256923103,
+          "GA4_variance": 1.0337093272075986,
+          "GA5_coupling": -0.5320722292014523
+        },
+        "native_match_rate_abs_dphi": 0.0,
+        "native_match_rate_trace": 0.0
+      },
+      "subcycle_averages": [
+        {
+          "operator": "Ti",
+          "effective_strength": 0.7999999999999999,
+          "dphi_L": -0.4039544864181135,
+          "dphi_R": -0.4851550441149129,
+          "trace_L": 0.28284271247461906,
+          "trace_R": 0.3193286488924275
+        },
+        {
+          "operator": "Fe",
+          "effective_strength": 0.7999999999999999,
+          "dphi_L": -0.10855247517487969,
+          "dphi_R": -0.02175032187920754,
+          "trace_L": 0.08876054556180064,
+          "trace_R": 0.02962627149852898
+        },
+        {
+          "operator": "Te",
+          "effective_strength": 0.24,
+          "dphi_L": 0.010963629191345617,
+          "dphi_R": 0.00655695296660555,
+          "trace_L": 0.036033460963350986,
+          "trace_R": 0.026285818022501725
+        },
+        {
+          "operator": "Fi",
+          "effective_strength": 0.24,
+          "dphi_L": -0.05853228927588949,
+          "dphi_R": -0.0037204236978525354,
+          "trace_L": 0.07062869898788338,
+          "trace_R": 0.07978078508361047
+        }
+      ]
+    },
+    {
+      "engine_type": 1,
+      "stage_num": 3,
+      "topology": "Se",
+      "terrain": "Se_b",
+      "loop_role": "A-outer",
+      "native_operator_doc": "Ti",
+      "label": "LOSE",
+      "axis6_up": true,
+      "torus_target": 1.1780972450961724,
+      "representative": {
+        "engine_type": 1,
+        "stage_num": 3,
+        "topology": "Se",
+        "terrain": "Se_b",
+        "loop_role": "A-outer",
+        "native_operator_doc": "Ti",
+        "label": "LOSE",
+        "axis6_up": true,
+        "axis6_label": "UP",
+        "torus_target": 1.1780972450961724,
+        "theta1_init": 1.4236893715169687,
+        "theta2_init": 2.505884924020635,
+        "terrain_idx": 4,
+        "observed_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "expected_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "operator_order_matches": true,
+        "macro_trace_L": 0.27261804301485226,
+        "macro_trace_R": 0.3980931351261129,
+        "macro_dphi_L": -0.5806982233310098,
+        "macro_dphi_R": -0.5898080648419081,
+        "delta_axes": {
+          "GA0_entropy": -0.03241382493363554,
+          "GA1_boundary": -0.1693470713789229,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.5959012675857744,
+          "GA4_variance": 0.9625495946060498,
+          "GA5_coupling": -0.585253144086459
+        },
+        "observed_native_by_abs_dphi": "Ti",
+        "observed_native_by_trace": "Ti",
+        "native_matches_abs_dphi": true,
+        "native_matches_trace": true,
+        "subcycles": [
+          {
+            "subcycle_idx": 1,
+            "operator": "Ti",
+            "terrain_idx": 4,
+            "effective_strength": 0.8,
+            "dphi_L": -0.4039544864181138,
+            "dphi_R": -0.5947895748647208,
+            "trace_L": 0.28284271247461906,
+            "trace_R": 0.36738358861718706,
+            "ga0_before": 0.7071067811865477,
+            "ga0_after": 0.591126983722081
+          },
+          {
+            "subcycle_idx": 2,
+            "operator": "Fe",
+            "terrain_idx": 4,
+            "effective_strength": 0.8,
+            "dphi_L": -0.1469913504152106,
+            "dphi_R": -0.0077930304715482235,
+            "trace_L": 0.13259146006974665,
+            "trace_R": 0.05739340825177509,
+            "ga0_before": 0.591126983722081,
+            "ga0_after": 0.7080958728377156
+          },
+          {
+            "subcycle_idx": 3,
+            "operator": "Te",
+            "terrain_idx": 4,
+            "effective_strength": 0.24,
+            "dphi_L": 0.01907050097642704,
+            "dphi_R": 0.010864774558041357,
+            "trace_L": 0.03822969785046655,
+            "trace_R": 0.03168147578764685,
+            "ga0_before": 0.7080958728377156,
+            "ga0_after": 0.8435621840485948
+          },
+          {
+            "subcycle_idx": 4,
+            "operator": "Fi",
+            "terrain_idx": 4,
+            "effective_strength": 0.24,
+            "dphi_L": -0.04882288747411245,
+            "dphi_R": 0.0019097659363196406,
+            "trace_L": 0.07225097899291553,
+            "trace_R": 0.07302810487992499,
+            "ga0_before": 0.8435621840485948,
+            "ga0_after": 0.7631673609813818
+          }
+        ]
+      },
+      "trial_averages": {
+        "macro_trace_L": 0.27266073152972925,
+        "macro_trace_R": 0.39838549257828987,
+        "macro_dphi_L": -0.5764819990431257,
+        "macro_dphi_R": -0.5698225589984828,
+        "delta_axes": {
+          "GA0_entropy": -0.03451396087006009,
+          "GA1_boundary": -0.15656898591436705,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.5753097083539124,
+          "GA4_variance": 0.8696131319334094,
+          "GA5_coupling": -0.5731522790208041
+        },
+        "native_match_rate_abs_dphi": 1.0,
+        "native_match_rate_trace": 1.0
+      },
+      "subcycle_averages": [
+        {
+          "operator": "Ti",
+          "effective_strength": 0.7999999999999999,
+          "dphi_L": -0.40395448641811377,
+          "dphi_R": -0.5726815323239517,
+          "trace_L": 0.28284271247461906,
+          "trace_R": 0.35731244660605793
+        },
+        {
+          "operator": "Fe",
+          "effective_strength": 0.7999999999999999,
+          "dphi_L": -0.1469913504152108,
+          "dphi_R": -0.010572101440710005,
+          "trace_L": 0.13259146006974662,
+          "trace_R": 0.05123727206622037
+        },
+        {
+          "operator": "Te",
+          "effective_strength": 0.24,
+          "dphi_L": 0.01907050097642656,
+          "dphi_R": 0.012082134417310847,
+          "trace_L": 0.04589357303494959,
+          "trace_R": 0.03814756339396516
+        },
+        {
+          "operator": "Fi",
+          "effective_strength": 0.24,
+          "dphi_L": -0.0446066631862276,
+          "dphi_R": 0.0013489403488680662,
+          "trace_L": 0.07280373159244942,
+          "trace_R": 0.07262037691107212
+        }
+      ]
+    },
+    {
+      "engine_type": 1,
+      "stage_num": 4,
+      "topology": "Ni",
+      "terrain": "Ni_b",
+      "loop_role": "A-outer",
+      "native_operator_doc": "Fe",
+      "label": "LOSE",
+      "axis6_up": false,
+      "torus_target": 1.1780972450961724,
+      "representative": {
+        "engine_type": 1,
+        "stage_num": 4,
+        "topology": "Ni",
+        "terrain": "Ni_b",
+        "loop_role": "A-outer",
+        "native_operator_doc": "Fe",
+        "label": "LOSE",
+        "axis6_up": false,
+        "axis6_label": "DOWN",
+        "torus_target": 1.1780972450961724,
+        "theta1_init": 0.8326379647560438,
+        "theta2_init": 1.7436048140772207,
+        "terrain_idx": 7,
+        "observed_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "expected_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "operator_order_matches": true,
+        "macro_trace_L": 0.09876970725212161,
+        "macro_trace_R": 0.13345343430143858,
+        "macro_dphi_L": -0.2836565043743161,
+        "macro_dphi_R": -0.37919731295715714,
+        "delta_axes": {
+          "GA0_entropy": -0.004572493340465833,
+          "GA1_boundary": -0.05330752513801407,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.21103093337698697,
+          "GA4_variance": 0.16754215892555338,
+          "GA5_coupling": -0.33142690866573665
+        },
+        "observed_native_by_abs_dphi": "Ti",
+        "observed_native_by_trace": "Ti",
+        "native_matches_abs_dphi": false,
+        "native_matches_trace": false,
+        "subcycles": [
+          {
+            "subcycle_idx": 1,
+            "operator": "Ti",
+            "terrain_idx": 7,
+            "effective_strength": 0.8,
+            "dphi_L": -0.2156128634894129,
+            "dphi_R": -0.35833739056286684,
+            "trace_L": 0.08485281374238561,
+            "trace_R": 0.11813281931610668,
+            "ga0_before": 0.7071067811865477,
+            "ga0_after": 0.45112698372208093
+          },
+          {
+            "subcycle_idx": 2,
+            "operator": "Fe",
+            "terrain_idx": 7,
+            "effective_strength": 0.8,
+            "dphi_L": -0.07137226717381223,
+            "dphi_R": -0.02440251619709266,
+            "trace_L": 0.04174054601888562,
+            "trace_R": 0.025823370216609465,
+            "ga0_before": 0.45112698372208093,
+            "ga0_after": 0.5064958728377156
+          },
+          {
+            "subcycle_idx": 3,
+            "operator": "Te",
+            "terrain_idx": 7,
+            "effective_strength": 0.24,
+            "dphi_L": 0.011365297739278246,
+            "dphi_R": 0.013880535586168863,
+            "trace_L": 0.04479322346752233,
+            "trace_R": 0.03415068619854511,
+            "ga0_before": 0.5064958728377156,
+            "ga0_after": 0.6428581840485948
+          },
+          {
+            "subcycle_idx": 4,
+            "operator": "Fi",
+            "terrain_idx": 7,
+            "effective_strength": 0.24,
+            "dphi_L": -0.008036671450369237,
+            "dphi_R": -0.0103379417833665,
+            "trace_L": 0.02730399782114485,
+            "trace_R": 0.027619784893019,
+            "ga0_before": 0.6428581840485948,
+            "ga0_after": 0.5348576009813817
+          }
+        ]
+      },
+      "trial_averages": {
+        "macro_trace_L": 0.09585671253207312,
+        "macro_trace_R": 0.14543210177975968,
+        "macro_dphi_L": -0.28599731671246553,
+        "macro_dphi_R": -0.3326703760392249,
+        "delta_axes": {
+          "GA0_entropy": -0.01077702664688901,
+          "GA1_boundary": -0.04459534163277845,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.19623718353902297,
+          "GA4_variance": 0.27242884125496697,
+          "GA5_coupling": -0.30933384637584516
+        },
+        "native_match_rate_abs_dphi": 0.0,
+        "native_match_rate_trace": 0.0
+      },
+      "subcycle_averages": [
+        {
+          "operator": "Ti",
+          "effective_strength": 0.7999999999999999,
+          "dphi_L": -0.2156128634894132,
+          "dphi_R": -0.30085817157918715,
+          "trace_L": 0.08485281374238574,
+          "trace_R": 0.10485112881823484
+        },
+        {
+          "operator": "Fe",
+          "effective_strength": 0.7999999999999999,
+          "dphi_L": -0.0713722671738121,
+          "dphi_R": -0.036773075966651886,
+          "trace_L": 0.04174054601888563,
+          "trace_R": 0.02545802297189711
+        },
+        {
+          "operator": "Te",
+          "effective_strength": 0.24,
+          "dphi_L": 0.011365297739278246,
+          "dphi_R": 0.012400681408676117,
+          "trace_L": 0.04192186535631597,
+          "trace_R": 0.03536800255191442
+        },
+        {
+          "operator": "Fi",
+          "effective_strength": 0.24,
+          "dphi_L": -0.010377483788518474,
+          "dphi_R": -0.007439809902061972,
+          "trace_L": 0.027319054457765547,
+          "trace_R": 0.027042350115242572
+        }
+      ]
+    },
+    {
+      "engine_type": 1,
+      "stage_num": 5,
+      "topology": "Se",
+      "terrain": "Se_f",
+      "loop_role": "B-inner",
+      "native_operator_doc": "Fi",
+      "label": "win",
+      "axis6_up": false,
+      "torus_target": 0.39269908169872414,
+      "representative": {
+        "engine_type": 1,
+        "stage_num": 5,
+        "topology": "Se",
+        "terrain": "Se_f",
+        "loop_role": "B-inner",
+        "native_operator_doc": "Fi",
+        "label": "win",
+        "axis6_up": false,
+        "axis6_label": "DOWN",
+        "torus_target": 0.39269908169872414,
+        "theta1_init": 2.9524777267412934,
+        "theta2_init": 3.7872789512090637,
+        "terrain_idx": 0,
+        "observed_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "expected_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "operator_order_matches": true,
+        "macro_trace_L": 0.23765658009831553,
+        "macro_trace_R": 0.08457492181256315,
+        "macro_dphi_L": -0.06351231805147839,
+        "macro_dphi_R": -0.11330882324577107,
+        "delta_axes": {
+          "GA0_entropy": -0.06737363053488599,
+          "GA1_boundary": -0.0667506878973338,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.0845129743552463,
+          "GA4_variance": 0.6392172792846333,
+          "GA5_coupling": -0.08841057064862479
+        },
+        "observed_native_by_abs_dphi": "Ti",
+        "observed_native_by_trace": "Te",
+        "native_matches_abs_dphi": false,
+        "native_matches_trace": false,
+        "subcycles": [
+          {
+            "subcycle_idx": 1,
+            "operator": "Ti",
+            "terrain_idx": 0,
+            "effective_strength": 0.24,
+            "dphi_L": -0.08880304197515099,
+            "dphi_R": -0.1544180503001612,
+            "trace_L": 0.025455844122715586,
+            "trace_R": 0.035912314920984206,
+            "ga0_before": 0.7071067811865476,
+            "ga0_after": 0.5071269837220809
+          },
+          {
+            "subcycle_idx": 2,
+            "operator": "Fe",
+            "terrain_idx": 0,
+            "effective_strength": 0.24,
+            "dphi_L": 0.0035081644963165237,
+            "dphi_R": 0.006662100763036305,
+            "trace_L": 0.0023785989519448138,
+            "trace_R": 0.003981291204541469,
+            "ga0_before": 0.5071269837220809,
+            "ga0_after": 0.5871358728377156
+          },
+          {
+            "subcycle_idx": 3,
+            "operator": "Te",
+            "terrain_idx": 0,
+            "effective_strength": 0.8,
+            "dphi_L": 0.014713722565163012,
+            "dphi_R": 0.025276576274809726,
+            "trace_L": 0.2363064707377232,
+            "trace_R": 0.22574365301874222,
+            "ga0_before": 0.5871358728377156,
+            "ga0_after": 0.734339784048595
+          },
+          {
+            "subcycle_idx": 4,
+            "operator": "Fi",
+            "terrain_idx": 0,
+            "effective_strength": 0.8,
+            "dphi_L": 0.007068836862193062,
+            "dphi_R": 0.009170550016544099,
+            "trace_L": 0.062300117801308244,
+            "trace_R": 0.15936497738226252,
+            "ga0_before": 0.734339784048595,
+            "ga0_after": 0.6311095049813817
+          }
+        ]
+      },
+      "trial_averages": {
+        "macro_trace_L": 0.14619781443665678,
+        "macro_trace_R": 0.19489918979467424,
+        "macro_dphi_L": -0.07738609785748846,
+        "macro_dphi_R": -0.09672395966781056,
+        "delta_axes": {
+          "GA0_entropy": -0.07731566901029002,
+          "GA1_boundary": -0.0795295969104113,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.09074751135699848,
+          "GA4_variance": 0.6838570686439857,
+          "GA5_coupling": -0.08705502876264953
+        },
+        "native_match_rate_abs_dphi": 0.0,
+        "native_match_rate_trace": 0.0
+      },
+      "subcycle_averages": [
+        {
+          "operator": "Ti",
+          "effective_strength": 0.24,
+          "dphi_L": -0.08880304197515176,
+          "dphi_R": -0.13715680852000942,
+          "trace_L": 0.02545584412271572,
+          "trace_R": 0.03325108744802036
+        },
+        {
+          "operator": "Fe",
+          "effective_strength": 0.24,
+          "dphi_L": 0.0035081644963165424,
+          "dphi_R": 0.005718180019908037,
+          "trace_L": 0.002378598951944849,
+          "trace_R": 0.004176318573023977
+        },
+        {
+          "operator": "Te",
+          "effective_strength": 0.7999999999999999,
+          "dphi_L": 0.014713722565162882,
+          "dphi_R": 0.0225350764604265,
+          "trace_L": 0.2574248164858988,
+          "trace_R": 0.24914226643549045
+        },
+        {
+          "operator": "Fi",
+          "effective_strength": 0.7999999999999999,
+          "dphi_L": -0.006804942943816117,
+          "dphi_R": 0.012179592371864334,
+          "trace_L": 0.1244728979009041,
+          "trace_R": 0.08687732129367622
+        }
+      ]
+    },
+    {
+      "engine_type": 1,
+      "stage_num": 6,
+      "topology": "Si",
+      "terrain": "Si_f",
+      "loop_role": "B-inner",
+      "native_operator_doc": "Te",
+      "label": "win",
+      "axis6_up": false,
+      "torus_target": 0.39269908169872414,
+      "representative": {
+        "engine_type": 1,
+        "stage_num": 6,
+        "topology": "Si",
+        "terrain": "Si_f",
+        "loop_role": "B-inner",
+        "native_operator_doc": "Te",
+        "label": "win",
+        "axis6_up": false,
+        "axis6_label": "DOWN",
+        "torus_target": 0.39269908169872414,
+        "theta1_init": 0.993838681740406,
+        "theta2_init": 3.1521874304271846,
+        "terrain_idx": 1,
+        "observed_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "expected_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "operator_order_matches": true,
+        "macro_trace_L": 0.08392553877930979,
+        "macro_trace_R": 0.17604443698197766,
+        "macro_dphi_L": -0.057668377585385566,
+        "macro_dphi_R": -0.09066028695706818,
+        "delta_axes": {
+          "GA0_entropy": -0.032659746636132914,
+          "GA1_boundary": -0.06874489659058758,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.05186767261892644,
+          "GA4_variance": 0.4396347534661141,
+          "GA5_coupling": -0.07416433227122687
+        },
+        "observed_native_by_abs_dphi": "Ti",
+        "observed_native_by_trace": "Te",
+        "native_matches_abs_dphi": false,
+        "native_matches_trace": true,
+        "subcycles": [
+          {
+            "subcycle_idx": 1,
+            "operator": "Ti",
+            "terrain_idx": 1,
+            "effective_strength": 0.24,
+            "dphi_L": -0.08880304197515143,
+            "dphi_R": -0.14579758579239033,
+            "trace_L": 0.025455844122715718,
+            "trace_R": 0.03463708083102113,
+            "ga0_before": 0.7071067811865476,
+            "ga0_after": 0.40483766184073566
+          },
+          {
+            "subcycle_idx": 2,
+            "operator": "Fe",
+            "terrain_idx": 1,
+            "effective_strength": 0.24,
+            "dphi_L": 0.002329328528930641,
+            "dphi_R": 0.004089635842522532,
+            "trace_L": 0.001585603742020472,
+            "trace_R": 0.002769091356248237,
+            "ga0_before": 0.40483766184073566,
+            "ga0_after": 0.3336123373939972
+          },
+          {
+            "subcycle_idx": 3,
+            "operator": "Te",
+            "terrain_idx": 1,
+            "effective_strength": 0.8,
+            "dphi_L": 0.009045019875816851,
+            "dphi_R": 0.014548284378039789,
+            "trace_L": 0.1558168381273735,
+            "trace_R": 0.14165163646342566,
+            "ga0_before": 0.3336123373939972,
+            "ga0_after": 0.3871506621927585
+          },
+          {
+            "subcycle_idx": 4,
+            "operator": "Fi",
+            "terrain_idx": 1,
+            "effective_strength": 0.8,
+            "dphi_L": 0.019760315985018373,
+            "dphi_R": 0.036499378614759825,
+            "trace_L": 0.11655533512082761,
+            "trace_R": 0.07358358151263464,
+            "ga0_before": 0.3871506621927585,
+            "ga0_after": 0.27806135758408956
+          }
+        ]
+      },
+      "trial_averages": {
+        "macro_trace_L": 0.13379085018737857,
+        "macro_trace_R": 0.1319880851053645,
+        "macro_dphi_L": -0.06065446752505586,
+        "macro_dphi_R": -0.08587684450442658,
+        "delta_axes": {
+          "GA0_entropy": -0.03995724544952386,
+          "GA1_boundary": -0.07527273810148305,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.05664896792228663,
+          "GA4_variance": 0.4830986006432844,
+          "GA5_coupling": -0.07326565601474126
+        },
+        "native_match_rate_abs_dphi": 0.0,
+        "native_match_rate_trace": 1.0
+      },
+      "subcycle_averages": [
+        {
+          "operator": "Ti",
+          "effective_strength": 0.24,
+          "dphi_L": -0.08880304197515176,
+          "dphi_R": -0.13518834750189265,
+          "trace_L": 0.025455844122715714,
+          "trace_R": 0.03296127145427428
+        },
+        {
+          "operator": "Fe",
+          "effective_strength": 0.24,
+          "dphi_L": 0.0023293285289309553,
+          "dphi_R": 0.0037212521973870225,
+          "trace_L": 0.0015856037420205454,
+          "trace_R": 0.002799988724336214
+        },
+        {
+          "operator": "Te",
+          "effective_strength": 0.7999999999999999,
+          "dphi_L": 0.00904501987581737,
+          "dphi_R": 0.013637134403506113,
+          "trace_L": 0.16158448570106643,
+          "trace_R": 0.15638618920724331
+        },
+        {
+          "operator": "Fi",
+          "effective_strength": 0.7999999999999999,
+          "dphi_L": 0.01677422604534758,
+          "dphi_R": 0.031953116396572924,
+          "trace_L": 0.08751718306658256,
+          "trace_R": 0.09463378832266826
+        }
+      ]
+    },
+    {
+      "engine_type": 1,
+      "stage_num": 7,
+      "topology": "Ne",
+      "terrain": "Ne_f",
+      "loop_role": "B-inner",
+      "native_operator_doc": "Fi",
+      "label": "lose",
+      "axis6_up": true,
+      "torus_target": 0.39269908169872414,
+      "representative": {
+        "engine_type": 1,
+        "stage_num": 7,
+        "topology": "Ne",
+        "terrain": "Ne_f",
+        "loop_role": "B-inner",
+        "native_operator_doc": "Fi",
+        "label": "lose",
+        "axis6_up": true,
+        "axis6_label": "UP",
+        "torus_target": 0.39269908169872414,
+        "theta1_init": 1.2142680681053208,
+        "theta2_init": 3.1920204595384036,
+        "terrain_idx": 2,
+        "observed_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "expected_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "operator_order_matches": true,
+        "macro_trace_L": 0.27968841118913024,
+        "macro_trace_R": 0.17102816013548633,
+        "macro_dphi_L": -0.062255874959024515,
+        "macro_dphi_R": -0.09502729643245911,
+        "delta_axes": {
+          "GA0_entropy": -0.02045052045928175,
+          "GA1_boundary": -0.17799028394628089,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.045243481556530796,
+          "GA4_variance": 0.34794639038804503,
+          "GA5_coupling": -0.07864158569574176
+        },
+        "observed_native_by_abs_dphi": "Ti",
+        "observed_native_by_trace": "Fi",
+        "native_matches_abs_dphi": false,
+        "native_matches_trace": true,
+        "subcycles": [
+          {
+            "subcycle_idx": 1,
+            "operator": "Ti",
+            "terrain_idx": 2,
+            "effective_strength": 0.24,
+            "dphi_L": -0.215612863489413,
+            "dphi_R": -0.2991583223243308,
+            "trace_L": 0.08485281374238578,
+            "trace_R": 0.1049056208846377,
+            "ga0_before": 0.7071067811865476,
+            "ga0_after": 0.47383766184073567
+          },
+          {
+            "subcycle_idx": 2,
+            "operator": "Fe",
+            "terrain_idx": 2,
+            "effective_strength": 0.24,
+            "dphi_L": 0.009666757168379059,
+            "dphi_R": 0.011556830500537463,
+            "trace_L": 0.004235343212702771,
+            "trace_R": 0.0112030043577333,
+            "ga0_before": 0.47383766184073567,
+            "ga0_after": 0.48587233739399727
+          },
+          {
+            "subcycle_idx": 3,
+            "operator": "Te",
+            "terrain_idx": 2,
+            "effective_strength": 0.8,
+            "dphi_L": 0.026022876876763745,
+            "dphi_R": 0.03594189241940199,
+            "trace_L": 0.20481468201413372,
+            "trace_R": 0.17888778330352428,
+            "ga0_before": 0.48587233739399727,
+            "ga0_after": 0.5843710621927585
+          },
+          {
+            "subcycle_idx": 4,
+            "operator": "Fi",
+            "terrain_idx": 2,
+            "effective_strength": 0.8,
+            "dphi_L": 0.11766735448524568,
+            "dphi_R": 0.15663230297193226,
+            "trace_L": 0.18112058532432615,
+            "trace_R": 0.291340983474754,
+            "ga0_before": 0.5843710621927585,
+            "ga0_after": 0.49956037358408956
+          }
+        ]
+      },
+      "trial_averages": {
+        "macro_trace_L": 0.22711155352144854,
+        "macro_trace_R": 0.2160298628638115,
+        "macro_dphi_L": -0.06735620427731404,
+        "macro_dphi_R": -0.09615944676840447,
+        "delta_axes": {
+          "GA0_entropy": -0.0288222956140487,
+          "GA1_boundary": -0.18823150089586685,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.052999702813541605,
+          "GA4_variance": 0.40995739299356754,
+          "GA5_coupling": -0.08175782552285926
+        },
+        "native_match_rate_abs_dphi": 0.0,
+        "native_match_rate_trace": 0.3333333333333333
+      },
+      "subcycle_averages": [
+        {
+          "operator": "Ti",
+          "effective_strength": 0.24,
+          "dphi_L": -0.21561286348941291,
+          "dphi_R": -0.3022492307377003,
+          "trace_L": 0.08485281374238574,
+          "trace_R": 0.1054047396541264
+        },
+        {
+          "operator": "Fe",
+          "effective_strength": 0.24,
+          "dphi_L": 0.00966675716837856,
+          "dphi_R": 0.011769209174744083,
+          "trace_L": 0.004235343212702645,
+          "trace_R": 0.01109303672186617
+        },
+        {
+          "operator": "Te",
+          "effective_strength": 0.7999999999999999,
+          "dphi_L": 0.026022876876764005,
+          "dphi_R": 0.03673189131056623,
+          "trace_L": 0.24123493392607318,
+          "trace_R": 0.22107069607296234
+        },
+        {
+          "operator": "Fi",
+          "effective_strength": 0.7999999999999999,
+          "dphi_L": 0.11256702516695634,
+          "dphi_R": 0.1575886834839856,
+          "trace_L": 0.21185067260512924,
+          "trace_R": 0.22010763289188515
+        }
+      ]
+    },
+    {
+      "engine_type": 1,
+      "stage_num": 8,
+      "topology": "Ni",
+      "terrain": "Ni_f",
+      "loop_role": "B-inner",
+      "native_operator_doc": "Te",
+      "label": "lose",
+      "axis6_up": true,
+      "torus_target": 0.39269908169872414,
+      "representative": {
+        "engine_type": 1,
+        "stage_num": 8,
+        "topology": "Ni",
+        "terrain": "Ni_f",
+        "loop_role": "B-inner",
+        "native_operator_doc": "Te",
+        "label": "lose",
+        "axis6_up": true,
+        "axis6_label": "UP",
+        "torus_target": 0.39269908169872414,
+        "theta1_init": 3.637705126686599,
+        "theta2_init": 5.15924813661399,
+        "terrain_idx": 3,
+        "observed_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "expected_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "operator_order_matches": true,
+        "macro_trace_L": 0.23691457982708447,
+        "macro_trace_R": 0.205106184233058,
+        "macro_dphi_L": -0.05946426023811213,
+        "macro_dphi_R": -0.06173016955272281,
+        "delta_axes": {
+          "GA0_entropy": -0.010067067099446048,
+          "GA1_boundary": -0.17799695507259544,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.029167746415125206,
+          "GA4_variance": 0.24189532561933555,
+          "GA5_coupling": -0.06059721489541747
+        },
+        "observed_native_by_abs_dphi": "Ti",
+        "observed_native_by_trace": "Fi",
+        "native_matches_abs_dphi": false,
+        "native_matches_trace": false,
+        "subcycles": [
+          {
+            "subcycle_idx": 1,
+            "operator": "Ti",
+            "terrain_idx": 3,
+            "effective_strength": 0.24,
+            "dphi_L": -0.21561286348941333,
+            "dphi_R": -0.21723585300133508,
+            "trace_L": 0.08485281374238565,
+            "trace_R": 0.08526218341176586,
+            "ga0_before": 0.7071067811865476,
+            "ga0_after": 0.3671269837220809
+          },
+          {
+            "subcycle_idx": 2,
+            "operator": "Fe",
+            "terrain_idx": 3,
+            "effective_strength": 0.24,
+            "dphi_L": 0.010066007966925028,
+            "dphi_R": 0.006125720850553407,
+            "trace_L": 0.006836956611734049,
+            "trace_R": 0.01528750178723639,
+            "ga0_before": 0.3671269837220809,
+            "ga0_after": 0.3855358728377156
+          },
+          {
+            "subcycle_idx": 3,
+            "operator": "Te",
+            "terrain_idx": 3,
+            "effective_strength": 0.8,
+            "dphi_L": 0.022898301050496617,
+            "dphi_R": 0.0247887393953814,
+            "trace_L": 0.13609712415065955,
+            "trace_R": 0.11203393590397721,
+            "ga0_before": 0.3855358728377156,
+            "ga0_after": 0.505635784048595
+          },
+          {
+            "subcycle_idx": 4,
+            "operator": "Fi",
+            "terrain_idx": 3,
+            "effective_strength": 0.8,
+            "dphi_L": 0.12318429423387955,
+            "dphi_R": 0.12459122320267746,
+            "trace_L": 0.20560471938692895,
+            "trace_R": 0.24407712665282794,
+            "ga0_before": 0.505635784048595,
+            "ga0_after": 0.39047974498138177
+          }
+        ]
+      },
+      "trial_averages": {
+        "macro_trace_L": 0.25473683833266314,
+        "macro_trace_R": 0.2003972486587288,
+        "macro_dphi_L": -0.05820820660111923,
+        "macro_dphi_R": -0.09582285583050688,
+        "delta_axes": {
+          "GA0_entropy": -0.014157522674307255,
+          "GA1_boundary": -0.1928155739590405,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.04021566204006066,
+          "GA4_variance": 0.28569430579803023,
+          "GA5_coupling": -0.07701553121581307
+        },
+        "native_match_rate_abs_dphi": 0.0,
+        "native_match_rate_trace": 0.0
+      },
+      "subcycle_averages": [
+        {
+          "operator": "Ti",
+          "effective_strength": 0.24,
+          "dphi_L": -0.21561286348941314,
+          "dphi_R": -0.30961662173609134,
+          "trace_L": 0.08485281374238572,
+          "trace_R": 0.10701577796981186
+        },
+        {
+          "operator": "Fe",
+          "effective_strength": 0.24,
+          "dphi_L": 0.01006600796692512,
+          "dphi_R": 0.012062547466528203,
+          "trace_L": 0.0068369566117340635,
+          "trace_R": 0.014183636660319889
+        },
+        {
+          "operator": "Te",
+          "effective_strength": 0.7999999999999999,
+          "dphi_L": 0.022898301050496634,
+          "dphi_R": 0.033791193980992625,
+          "trace_L": 0.15187383749835826,
+          "trace_R": 0.1348234437826167
+        },
+        {
+          "operator": "Fi",
+          "effective_strength": 0.7999999999999999,
+          "dphi_L": 0.12444034787087217,
+          "dphi_R": 0.16794002445806364,
+          "trace_L": 0.1680332747731024,
+          "trace_R": 0.24707836391501314
+        }
+      ]
+    },
+    {
+      "engine_type": 2,
+      "stage_num": 1,
+      "topology": "Ne",
+      "terrain": "Ne_b",
+      "loop_role": "B-outer",
+      "native_operator_doc": "Fi",
+      "label": "WIN",
+      "axis6_up": true,
+      "torus_target": 1.1780972450961724,
+      "representative": {
+        "engine_type": 2,
+        "stage_num": 1,
+        "topology": "Ne",
+        "terrain": "Ne_b",
+        "loop_role": "B-outer",
+        "native_operator_doc": "Fi",
+        "label": "WIN",
+        "axis6_up": true,
+        "axis6_label": "UP",
+        "torus_target": 1.1780972450961724,
+        "theta1_init": 2.0418419367042824,
+        "theta2_init": 2.074672744432471,
+        "terrain_idx": 6,
+        "observed_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "expected_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "operator_order_matches": true,
+        "macro_trace_L": 0.23390394833082828,
+        "macro_trace_R": 0.6058770677824216,
+        "macro_dphi_L": -0.5052197289299687,
+        "macro_dphi_R": -0.19489293388145335,
+        "delta_axes": {
+          "GA0_entropy": -0.24467233954891188,
+          "GA1_boundary": -0.09693072831241545,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.4866773898616992,
+          "GA4_variance": 1.4659045413170015,
+          "GA5_coupling": -0.350056331405711
+        },
+        "observed_native_by_abs_dphi": "Ti",
+        "observed_native_by_trace": "Te",
+        "native_matches_abs_dphi": false,
+        "native_matches_trace": false,
+        "subcycles": [
+          {
+            "subcycle_idx": 1,
+            "operator": "Ti",
+            "terrain_idx": 6,
+            "effective_strength": 0.23051937669493405,
+            "dphi_L": -0.20981866228030038,
+            "dphi_R": -0.21052323921756,
+            "trace_L": 0.081500907227942,
+            "trace_R": 0.08167615990236912,
+            "ga0_before": 0.7071067811865477,
+            "ga0_after": 0.5658376618407357
+          },
+          {
+            "subcycle_idx": 2,
+            "operator": "Fe",
+            "terrain_idx": 6,
+            "effective_strength": 0.2583675365847356,
+            "dphi_L": -0.054353335713175466,
+            "dphi_R": -0.04304951491911724,
+            "trace_L": 0.026476903601764724,
+            "trace_R": 0.019853133214945626,
+            "ga0_before": 0.5658376618407357,
+            "ga0_after": 0.6275523373939973
+          },
+          {
+            "subcycle_idx": 3,
+            "operator": "Te",
+            "terrain_idx": 6,
+            "effective_strength": 0.9213815658525242,
+            "dphi_L": 0.04921466768914623,
+            "dphi_R": 0.04536893146271981,
+            "trace_L": 0.2732603234425216,
+            "trace_R": 0.26751858015855223,
+            "ga0_before": 0.6275523373939973,
+            "ga0_after": 0.7528782621927587
+          },
+          {
+            "subcycle_idx": 4,
+            "operator": "Fi",
+            "terrain_idx": 6,
+            "effective_strength": 0.712373954439637,
+            "dphi_L": -0.2902623986256391,
+            "dphi_R": 0.013310888792504083,
+            "trace_L": 0.21419382088173178,
+            "trace_R": 0.26627592986466564,
+            "ga0_before": 0.7528782621927587,
+            "ga0_after": 0.6825542615840897
+          }
+        ]
+      },
+      "trial_averages": {
+        "macro_trace_L": 0.4547840977858735,
+        "macro_trace_R": 0.3565577642373096,
+        "macro_dphi_L": -0.29051863862456423,
+        "macro_dphi_R": -0.3900086181901585,
+        "delta_axes": {
+          "GA0_entropy": -0.15786963524980716,
+          "GA1_boundary": -0.025637087329318593,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.37367648436452744,
+          "GA4_variance": 1.2113540234943543,
+          "GA5_coupling": -0.3402636284073613
+        },
+        "native_match_rate_abs_dphi": 0.0,
+        "native_match_rate_trace": 0.3333333333333333
+      },
+      "subcycle_averages": [
+        {
+          "operator": "Ti",
+          "effective_strength": 0.23051937669493405,
+          "dphi_L": -0.20981866228029988,
+          "dphi_R": -0.28333041300671563,
+          "trace_L": 0.08150090722794204,
+          "trace_R": 0.09860742870096824
+        },
+        {
+          "operator": "Fe",
+          "effective_strength": 0.2583675365847356,
+          "dphi_L": -0.05435333571317582,
+          "dphi_R": -0.03393880080470955,
+          "trace_L": 0.026476903601764645,
+          "trace_R": 0.019486623169435783
+        },
+        {
+          "operator": "Te",
+          "effective_strength": 0.9213815658525242,
+          "dphi_L": 0.04921466768914614,
+          "dphi_R": 0.056231093662973373,
+          "trace_L": 0.27026002831961177,
+          "trace_R": 0.25590833374844196
+        },
+        {
+          "operator": "Fi",
+          "effective_strength": 0.712373954439637,
+          "dphi_L": -0.07556130832023468,
+          "dphi_R": -0.1289704980417067,
+          "trace_L": 0.27421221510924265,
+          "trace_R": 0.2652150654496123
+        }
+      ]
+    },
+    {
+      "engine_type": 2,
+      "stage_num": 2,
+      "topology": "Ni",
+      "terrain": "Ni_b",
+      "loop_role": "B-outer",
+      "native_operator_doc": "Te",
+      "label": "WIN",
+      "axis6_up": false,
+      "torus_target": 1.1780972450961724,
+      "representative": {
+        "engine_type": 2,
+        "stage_num": 2,
+        "topology": "Ni",
+        "terrain": "Ni_b",
+        "loop_role": "B-outer",
+        "native_operator_doc": "Te",
+        "label": "WIN",
+        "axis6_up": false,
+        "axis6_label": "DOWN",
+        "torus_target": 1.1780972450961724,
+        "theta1_init": 3.9388320013608555,
+        "theta2_init": 5.558339188279344,
+        "terrain_idx": 7,
+        "observed_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "expected_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "operator_order_matches": true,
+        "macro_trace_L": 0.19348929579750268,
+        "macro_trace_R": 0.1917391121824323,
+        "macro_dphi_L": -0.12176913922814347,
+        "macro_dphi_R": -0.13401790955269455,
+        "delta_axes": {
+          "GA0_entropy": -0.05144378083074086,
+          "GA1_boundary": 0.06284341856718367,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.09421848998197957,
+          "GA4_variance": 0.5701184559188294,
+          "GA5_coupling": -0.127893524390419
+        },
+        "observed_native_by_abs_dphi": "Ti",
+        "observed_native_by_trace": "Te",
+        "native_matches_abs_dphi": false,
+        "native_matches_trace": true,
+        "subcycles": [
+          {
+            "subcycle_idx": 1,
+            "operator": "Ti",
+            "terrain_idx": 7,
+            "effective_strength": 0.24300571434402035,
+            "dphi_L": -0.08967289208693752,
+            "dphi_R": -0.09036243395201493,
+            "trace_L": 0.02577464827196062,
+            "trace_R": 0.025896288255605464,
+            "ga0_before": 0.7071067811865477,
+            "ga0_after": 0.47912698372208096
+          },
+          {
+            "subcycle_idx": 2,
+            "operator": "Fe",
+            "terrain_idx": 7,
+            "effective_strength": 0.24674148568863102,
+            "dphi_L": -0.03742091421449989,
+            "dphi_R": -0.03505111219624757,
+            "trace_L": 0.012691004293455163,
+            "trace_R": 0.011227059385834008,
+            "ga0_before": 0.47912698372208096,
+            "ga0_after": 0.5468158728377157
+          },
+          {
+            "subcycle_idx": 3,
+            "operator": "Te",
+            "terrain_idx": 7,
+            "effective_strength": 0.8905275123433256,
+            "dphi_L": 0.023149234830645904,
+            "dphi_R": 0.022546228049123762,
+            "trace_L": 0.14901617724833383,
+            "trace_R": 0.1330844814975447,
+            "ga0_before": 0.5468158728377157,
+            "ga0_after": 0.688598984048595
+          },
+          {
+            "subcycle_idx": 4,
+            "operator": "Fi",
+            "terrain_idx": 7,
+            "effective_strength": 0.7601678945689369,
+            "dphi_L": -0.017824567757351972,
+            "dphi_R": -0.03115059145355581,
+            "trace_L": 0.09921784682200917,
+            "trace_R": 0.0990195565493705,
+            "ga0_before": 0.688598984048595,
+            "ga0_after": 0.5829835529813818
+          }
+        ]
+      },
+      "trial_averages": {
+        "macro_trace_L": 0.1649672134137656,
+        "macro_trace_R": 0.23844285104915752,
+        "macro_dphi_L": -0.1441009257440686,
+        "macro_dphi_R": -0.14624488249177342,
+        "delta_axes": {
+          "GA0_entropy": -0.0821871562079497,
+          "GA1_boundary": 0.0316245053563057,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.1284922843717978,
+          "GA4_variance": 0.7224582725620277,
+          "GA5_coupling": -0.14517290411792103
+        },
+        "native_match_rate_abs_dphi": 0.0,
+        "native_match_rate_trace": 1.0
+      },
+      "subcycle_averages": [
+        {
+          "operator": "Ti",
+          "effective_strength": 0.24300571434402032,
+          "dphi_L": -0.08967289208693753,
+          "dphi_R": -0.11170474690986369,
+          "trace_L": 0.025774648271960642,
+          "trace_R": 0.02940035177304805
+        },
+        {
+          "operator": "Fe",
+          "effective_strength": 0.246741485688631,
+          "dphi_L": -0.03742091421450013,
+          "dphi_R": -0.03222422507543343,
+          "trace_L": 0.012691004293455163,
+          "trace_R": 0.011149573188432607
+        },
+        {
+          "operator": "Te",
+          "effective_strength": 0.8905275123433256,
+          "dphi_L": 0.023149234830645904,
+          "dphi_R": 0.025739010901482413,
+          "trace_L": 0.17250391840996848,
+          "trace_R": 0.16496451825767566
+        },
+        {
+          "operator": "Fi",
+          "effective_strength": 0.7601678945689369,
+          "dphi_L": -0.04015635427327685,
+          "dphi_R": -0.028054921407958715,
+          "trace_L": 0.09792614618470095,
+          "trace_R": 0.09394090165218288
+        }
+      ]
+    },
+    {
+      "engine_type": 2,
+      "stage_num": 3,
+      "topology": "Se",
+      "terrain": "Se_b",
+      "loop_role": "B-outer",
+      "native_operator_doc": "Fi",
+      "label": "LOSE",
+      "axis6_up": false,
+      "torus_target": 1.1780972450961724,
+      "representative": {
+        "engine_type": 2,
+        "stage_num": 3,
+        "topology": "Se",
+        "terrain": "Se_b",
+        "loop_role": "B-outer",
+        "native_operator_doc": "Fi",
+        "label": "LOSE",
+        "axis6_up": false,
+        "axis6_label": "DOWN",
+        "torus_target": 1.1780972450961724,
+        "theta1_init": 0.6033859591182519,
+        "theta2_init": 3.6502497167496455,
+        "terrain_idx": 4,
+        "observed_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "expected_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "operator_order_matches": true,
+        "macro_trace_L": 0.2526603028928748,
+        "macro_trace_R": 0.3893246301842868,
+        "macro_dphi_L": -0.2011818816553041,
+        "macro_dphi_R": -0.15980640025625537,
+        "delta_axes": {
+          "GA0_entropy": -0.24872872346370678,
+          "GA1_boundary": -0.0596132894172865,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.2881325722390553,
+          "GA4_variance": 1.3496271597489802,
+          "GA5_coupling": -0.18049414095577976
+        },
+        "observed_native_by_abs_dphi": "Fi",
+        "observed_native_by_trace": "Te",
+        "native_matches_abs_dphi": true,
+        "native_matches_trace": false,
+        "subcycles": [
+          {
+            "subcycle_idx": 1,
+            "operator": "Ti",
+            "terrain_idx": 4,
+            "effective_strength": 0.22284571434402034,
+            "dphi_L": -0.0837768994294188,
+            "dphi_R": -0.08619206114720301,
+            "trace_L": 0.02363635736565235,
+            "trace_R": 0.024051858777464692,
+            "ga0_before": 0.7071067811865477,
+            "ga0_after": 0.619126983722081
+          },
+          {
+            "subcycle_idx": 2,
+            "operator": "Fe",
+            "terrain_idx": 4,
+            "effective_strength": 0.27577188568863104,
+            "dphi_L": -0.041555252414999355,
+            "dphi_R": -0.03886787957959503,
+            "trace_L": 0.014168518144757322,
+            "trace_R": 0.01234853126609969,
+            "ga0_before": 0.619126983722081,
+            "ga0_after": 0.7484158728377157
+          },
+          {
+            "subcycle_idx": 3,
+            "operator": "Te",
+            "terrain_idx": 4,
+            "effective_strength": 0.9734254323433256,
+            "dphi_L": 0.03044508534149748,
+            "dphi_R": 0.02982539339163448,
+            "trace_L": 0.32481297381601026,
+            "trace_R": 0.31956462606472724,
+            "ga0_before": 0.7484158728377157,
+            "ga0_after": 0.8613029840485948
+          },
+          {
+            "subcycle_idx": 4,
+            "operator": "Fi",
+            "terrain_idx": 4,
+            "effective_strength": 0.6564928097689369,
+            "dphi_L": -0.10629481515238343,
+            "dphi_R": -0.0645718529210918,
+            "trace_L": 0.0936761809402175,
+            "trace_R": 0.05106605624906375,
+            "ga0_before": 0.8613029840485948,
+            "ga0_after": 0.7989733129813819
+          }
+        ]
+      },
+      "trial_averages": {
+        "macro_trace_L": 0.3114404511184154,
+        "macro_trace_R": 0.2782290150540803,
+        "macro_dphi_L": -0.15781177440271135,
+        "macro_dphi_R": -0.18258592211244185,
+        "delta_axes": {
+          "GA0_entropy": -0.1997369335789283,
+          "GA1_boundary": -0.0161450246147449,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.239911637214398,
+          "GA4_variance": 1.1824981652324802,
+          "GA5_coupling": -0.1701988482575766
+        },
+        "native_match_rate_abs_dphi": 0.16666666666666666,
+        "native_match_rate_trace": 0.0
+      },
+      "subcycle_averages": [
+        {
+          "operator": "Ti",
+          "effective_strength": 0.22284571434402034,
+          "dphi_L": -0.0837768994294193,
+          "dphi_R": -0.10335375704541389,
+          "trace_L": 0.023636357365652515,
+          "trace_R": 0.026737352689758215
+        },
+        {
+          "operator": "Fe",
+          "effective_strength": 0.27577188568863104,
+          "dphi_L": -0.04155525241499919,
+          "dphi_R": -0.03613138011215552,
+          "trace_L": 0.014168518144757466,
+          "trace_R": 0.012242053173657985
+        },
+        {
+          "operator": "Te",
+          "effective_strength": 0.9734254323433255,
+          "dphi_L": 0.030445085341497535,
+          "dphi_R": 0.0333088557600791,
+          "trace_L": 0.30468516695887643,
+          "trace_R": 0.29800113805232953
+        },
+        {
+          "operator": "Fi",
+          "effective_strength": 0.6564928097689369,
+          "dphi_L": -0.0629247078997904,
+          "dphi_R": -0.07640964071495154,
+          "trace_L": 0.07127395979119798,
+          "trace_R": 0.07881021069373638
+        }
+      ]
+    },
+    {
+      "engine_type": 2,
+      "stage_num": 4,
+      "topology": "Si",
+      "terrain": "Si_b",
+      "loop_role": "B-outer",
+      "native_operator_doc": "Te",
+      "label": "LOSE",
+      "axis6_up": true,
+      "torus_target": 1.1780972450961724,
+      "representative": {
+        "engine_type": 2,
+        "stage_num": 4,
+        "topology": "Si",
+        "terrain": "Si_b",
+        "loop_role": "B-outer",
+        "native_operator_doc": "Te",
+        "label": "LOSE",
+        "axis6_up": true,
+        "axis6_label": "UP",
+        "torus_target": 1.1780972450961724,
+        "theta1_init": 0.36188476819751597,
+        "theta2_init": 6.018642176865852,
+        "terrain_idx": 5,
+        "observed_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "expected_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "operator_order_matches": true,
+        "macro_trace_L": 0.2977790348525892,
+        "macro_trace_R": 0.5752767569037578,
+        "macro_dphi_L": -0.4416651212196889,
+        "macro_dphi_R": -0.30253595748193296,
+        "delta_axes": {
+          "GA0_entropy": -0.09469018527750261,
+          "GA1_boundary": -0.017136916509417843,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.3386430635982872,
+          "GA4_variance": 0.9810203120728478,
+          "GA5_coupling": -0.37210053935081094
+        },
+        "observed_native_by_abs_dphi": "Ti",
+        "observed_native_by_trace": "Fi",
+        "native_matches_abs_dphi": false,
+        "native_matches_trace": false,
+        "subcycles": [
+          {
+            "subcycle_idx": 1,
+            "operator": "Ti",
+            "terrain_idx": 5,
+            "effective_strength": 0.24707937669493404,
+            "dphi_L": -0.21985891909699107,
+            "dphi_R": -0.3600491771073028,
+            "trace_L": 0.08735575137616677,
+            "trace_R": 0.12048364088351479,
+            "ga0_before": 0.7071067811865477,
+            "ga0_after": 0.45083766184073576
+          },
+          {
+            "subcycle_idx": 2,
+            "operator": "Fe",
+            "terrain_idx": 5,
+            "effective_strength": 0.2328651365847356,
+            "dphi_L": -0.049711038661904516,
+            "dphi_R": -0.024791932421389606,
+            "trace_L": 0.02385435280632755,
+            "trace_R": 0.017851546693980765,
+            "ga0_before": 0.45083766184073576,
+            "ga0_after": 0.45045233739399737
+          },
+          {
+            "subcycle_idx": 3,
+            "operator": "Te",
+            "terrain_idx": 5,
+            "effective_strength": 0.8202772458525243,
+            "dphi_L": 0.03336677389318998,
+            "dphi_R": 0.044509013919707296,
+            "trace_L": 0.15016986354506062,
+            "trace_R": 0.13237922571808397,
+            "ga0_before": 0.45045233739399737,
+            "ga0_after": 0.5422442621927587
+          },
+          {
+            "subcycle_idx": 4,
+            "operator": "Fi",
+            "terrain_idx": 5,
+            "effective_strength": 0.8221702872396371,
+            "dphi_L": -0.20546193735398333,
+            "dphi_R": 0.037796138127052126,
+            "trace_L": 0.33678553631375063,
+            "trace_R": 0.37340069805827925,
+            "ga0_before": 0.5422442621927587,
+            "ga0_after": 0.4538119015840897
+          }
+        ]
+      },
+      "trial_averages": {
+        "macro_trace_L": 0.35945130264571695,
+        "macro_trace_R": 0.5062623008385432,
+        "macro_dphi_L": -0.385059989976748,
+        "macro_dphi_R": -0.32591016589833605,
+        "delta_axes": {
+          "GA0_entropy": -0.07737169829429284,
+          "GA1_boundary": -0.009020971076838274,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.30847817486626344,
+          "GA4_variance": 0.8131891256640954,
+          "GA5_coupling": -0.355485077937542
+        },
+        "native_match_rate_abs_dphi": 0.0,
+        "native_match_rate_trace": 0.0
+      },
+      "subcycle_averages": [
+        {
+          "operator": "Ti",
+          "effective_strength": 0.24707937669493404,
+          "dphi_L": -0.2198589190969907,
+          "dphi_R": -0.3001645061800284,
+          "trace_L": 0.08735575137616658,
+          "trace_R": 0.1064526135519804
+        },
+        {
+          "operator": "Fe",
+          "effective_strength": 0.2328651365847356,
+          "dphi_L": -0.0497110386619041,
+          "dphi_R": -0.030679909746551742,
+          "trace_L": 0.023854352806327497,
+          "trace_R": 0.01810988051473894
+        },
+        {
+          "operator": "Te",
+          "effective_strength": 0.8202772458525242,
+          "dphi_L": 0.0333667738931897,
+          "dphi_R": 0.03849738169533707,
+          "trace_L": 0.1562301846083484,
+          "trace_R": 0.1442224493116955
+        },
+        {
+          "operator": "Fi",
+          "effective_strength": 0.8221702872396371,
+          "dphi_L": -0.14885680611104288,
+          "dphi_R": -0.033563131667092995,
+          "trace_L": 0.34743343933619464,
+          "trace_R": 0.36824661794021596
+        }
+      ]
+    },
+    {
+      "engine_type": 2,
+      "stage_num": 5,
+      "topology": "Ne",
+      "terrain": "Ne_f",
+      "loop_role": "A-inner",
+      "native_operator_doc": "Ti",
+      "label": "win",
+      "axis6_up": true,
+      "torus_target": 0.39269908169872414,
+      "representative": {
+        "engine_type": 2,
+        "stage_num": 5,
+        "topology": "Ne",
+        "terrain": "Ne_f",
+        "loop_role": "A-inner",
+        "native_operator_doc": "Ti",
+        "label": "win",
+        "axis6_up": true,
+        "axis6_label": "UP",
+        "torus_target": 0.39269908169872414,
+        "theta1_init": 4.242645487131819,
+        "theta2_init": 6.082232352218498,
+        "terrain_idx": 2,
+        "observed_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "expected_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "operator_order_matches": true,
+        "macro_trace_L": 0.27009349834979335,
+        "macro_trace_R": 0.15275663092123967,
+        "macro_dphi_L": -0.2855015005319306,
+        "macro_dphi_R": -0.39795829241263614,
+        "delta_axes": {
+          "GA0_entropy": -0.0419607602851233,
+          "GA1_boundary": -0.1662449994217982,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.2548269818622537,
+          "GA4_variance": 0.6099934365979756,
+          "GA5_coupling": -0.34172989647228336
+        },
+        "observed_native_by_abs_dphi": "Ti",
+        "observed_native_by_trace": "Ti",
+        "native_matches_abs_dphi": true,
+        "native_matches_trace": true,
+        "subcycles": [
+          {
+            "subcycle_idx": 1,
+            "operator": "Ti",
+            "terrain_idx": 2,
+            "effective_strength": 0.8235979223164471,
+            "dphi_L": -0.4067527054433499,
+            "dphi_R": -0.483802266398651,
+            "trace_L": 0.29118583792055563,
+            "trace_R": 0.3271411911368942,
+            "ga0_before": 0.7071067811865476,
+            "ga0_after": 0.45083766184073565
+          },
+          {
+            "subcycle_idx": 2,
+            "operator": "Fe",
+            "terrain_idx": 2,
+            "effective_strength": 0.7762171219491187,
+            "dphi_L": 0.040520742174629754,
+            "dphi_R": 0.019138354670128477,
+            "trace_L": 0.039361460731333085,
+            "trace_R": 0.0834432615988891,
+            "ga0_before": 0.45083766184073565,
+            "ga0_after": 0.45045233739399726
+          },
+          {
+            "subcycle_idx": 3,
+            "operator": "Te",
+            "terrain_idx": 2,
+            "effective_strength": 0.2460831737557572,
+            "dphi_L": 0.005974069818723893,
+            "dphi_R": 0.009225741070110871,
+            "trace_L": 0.06027782107012651,
+            "trace_R": 0.037769034127812295,
+            "ga0_before": 0.45045233739399726,
+            "ga0_after": 0.5422442621927586
+          },
+          {
+            "subcycle_idx": 4,
+            "operator": "Fi",
+            "terrain_idx": 2,
+            "effective_strength": 0.2466510861718911,
+            "dphi_L": 0.07475639291806568,
+            "dphi_R": 0.057479878245775495,
+            "trace_L": 0.03959065243215007,
+            "trace_R": 0.09079176870058978,
+            "ga0_before": 0.5422442621927586,
+            "ga0_after": 0.45381190158408957
+          }
+        ]
+      },
+      "trial_averages": {
+        "macro_trace_L": 0.26432615749553684,
+        "macro_trace_R": 0.2261169323986375,
+        "macro_dphi_L": -0.2854113237195972,
+        "macro_dphi_R": -0.47990993804711213,
+        "delta_axes": {
+          "GA0_entropy": -0.0378610977687478,
+          "GA1_boundary": -0.20150959681431999,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.2984708944026104,
+          "GA4_variance": 0.5271956651751694,
+          "GA5_coupling": -0.3826606308833546
+        },
+        "native_match_rate_abs_dphi": 1.0,
+        "native_match_rate_trace": 1.0
+      },
+      "subcycle_averages": [
+        {
+          "operator": "Ti",
+          "effective_strength": 0.823597922316447,
+          "dphi_L": -0.4067527054433501,
+          "dphi_R": -0.5915335875212491,
+          "trace_L": 0.29118583792055563,
+          "trace_R": 0.3746473098627874
+        },
+        {
+          "operator": "Fe",
+          "effective_strength": 0.7762171219491187,
+          "dphi_L": 0.04052074217463009,
+          "dphi_R": 0.03454932935144602,
+          "trace_L": 0.03936146073133313,
+          "trace_R": 0.08485193003456049
+        },
+        {
+          "operator": "Te",
+          "effective_strength": 0.2460831737557572,
+          "dphi_L": 0.005974069818723671,
+          "dphi_R": 0.011672703806108261,
+          "trace_L": 0.06237165298997613,
+          "trace_R": 0.034840653163407176
+        },
+        {
+          "operator": "Fi",
+          "effective_strength": 0.2466510861718911,
+          "dphi_L": 0.07484656973039917,
+          "dphi_R": 0.06540161631658276,
+          "trace_L": 0.04000598817177286,
+          "trace_R": 0.0909919810299179
+        }
+      ]
+    },
+    {
+      "engine_type": 2,
+      "stage_num": 6,
+      "topology": "Si",
+      "terrain": "Si_f",
+      "loop_role": "A-inner",
+      "native_operator_doc": "Fe",
+      "label": "win",
+      "axis6_up": true,
+      "torus_target": 0.39269908169872414,
+      "representative": {
+        "engine_type": 2,
+        "stage_num": 6,
+        "topology": "Si",
+        "terrain": "Si_f",
+        "loop_role": "A-inner",
+        "native_operator_doc": "Fe",
+        "label": "win",
+        "axis6_up": true,
+        "axis6_label": "UP",
+        "torus_target": 0.39269908169872414,
+        "theta1_init": 2.8327955936389015,
+        "theta2_init": 4.850636925981815,
+        "terrain_idx": 1,
+        "observed_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "expected_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "operator_order_matches": true,
+        "macro_trace_L": 0.29007436903703937,
+        "macro_trace_R": 0.22897121256463782,
+        "macro_dphi_L": -0.2872618655024929,
+        "macro_dphi_R": -0.4886155266567091,
+        "delta_axes": {
+          "GA0_entropy": -0.03615824330112072,
+          "GA1_boundary": -0.21438207683052576,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.3018795271603686,
+          "GA4_variance": 0.5509830818144239,
+          "GA5_coupling": -0.38793869607960096
+        },
+        "observed_native_by_abs_dphi": "Ti",
+        "observed_native_by_trace": "Ti",
+        "native_matches_abs_dphi": false,
+        "native_matches_trace": false,
+        "subcycles": [
+          {
+            "subcycle_idx": 1,
+            "operator": "Ti",
+            "terrain_idx": 1,
+            "effective_strength": 0.845677922316447,
+            "dphi_L": -0.40904742183949694,
+            "dphi_R": -0.5812969680696988,
+            "trace_L": 0.298992296784855,
+            "trace_R": 0.37912386133897796,
+            "ga0_before": 0.7071067811865476,
+            "ga0_after": 0.40483766184073566
+          },
+          {
+            "subcycle_idx": 2,
+            "operator": "Fe",
+            "terrain_idx": 1,
+            "effective_strength": 0.7090939219491186,
+            "dphi_L": 0.0320908586159539,
+            "dphi_R": 0.01910916463326573,
+            "trace_L": 0.02946272059644913,
+            "trace_R": 0.07043368047123813,
+            "ga0_before": 0.40483766184073566,
+            "ga0_after": 0.3106123373939972
+          },
+          {
+            "subcycle_idx": 3,
+            "operator": "Te",
+            "terrain_idx": 1,
+            "effective_strength": 0.2186492153557572,
+            "dphi_L": 0.003290294450932152,
+            "dphi_R": 0.005817489849296975,
+            "trace_L": 0.033931008778044586,
+            "trace_R": 0.023681016017853683,
+            "ga0_before": 0.3106123373939972,
+            "ga0_after": 0.3517306621927585
+          },
+          {
+            "subcycle_idx": 4,
+            "operator": "Fi",
+            "terrain_idx": 1,
+            "effective_strength": 0.27802542370789113,
+            "dphi_L": 0.086404403270118,
+            "dphi_R": 0.06775478693042697,
+            "trace_L": 0.04262275243484087,
+            "trace_R": 0.10191892372306299,
+            "ga0_before": 0.3517306621927585,
+            "ga0_after": 0.23593455758408954
+          }
+        ]
+      },
+      "trial_averages": {
+        "macro_trace_L": 0.26166539654383414,
+        "macro_trace_R": 0.2105355357799502,
+        "macro_dphi_L": -0.2873175755925376,
+        "macro_dphi_R": -0.44779106100813587,
+        "delta_axes": {
+          "GA0_entropy": -0.03880104638579068,
+          "GA1_boundary": -0.1924399418256246,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.2824272195779012,
+          "GA4_variance": 0.5177833359916976,
+          "GA5_coupling": -0.36755431830033675
+        },
+        "native_match_rate_abs_dphi": 0.0,
+        "native_match_rate_trace": 0.0
+      },
+      "subcycle_averages": [
+        {
+          "operator": "Ti",
+          "effective_strength": 0.8456779223164471,
+          "dphi_L": -0.409047421839497,
+          "dphi_R": -0.5358837796832301,
+          "trace_L": 0.29899229678485506,
+          "trace_R": 0.35775177578138867
+        },
+        {
+          "operator": "Fe",
+          "effective_strength": 0.7090939219491186,
+          "dphi_L": 0.03209085861595407,
+          "dphi_R": 0.015918624817399696,
+          "trace_L": 0.029462720596449166,
+          "trace_R": 0.06893281637860439
+        },
+        {
+          "operator": "Te",
+          "effective_strength": 0.21864921535575724,
+          "dphi_L": 0.0032902944509320318,
+          "dphi_R": 0.00656902644089614,
+          "trace_L": 0.04254172424101019,
+          "trace_R": 0.02431812607634759
+        },
+        {
+          "operator": "Fi",
+          "effective_strength": 0.27802542370789113,
+          "dphi_L": 0.08634869318007325,
+          "dphi_R": 0.06560506741679833,
+          "trace_L": 0.04591798416341472,
+          "trace_R": 0.10091534971209698
+        }
+      ]
+    },
+    {
+      "engine_type": 2,
+      "stage_num": 7,
+      "topology": "Se",
+      "terrain": "Se_f",
+      "loop_role": "A-inner",
+      "native_operator_doc": "Ti",
+      "label": "lose",
+      "axis6_up": false,
+      "torus_target": 0.39269908169872414,
+      "representative": {
+        "engine_type": 2,
+        "stage_num": 7,
+        "topology": "Se",
+        "terrain": "Se_f",
+        "loop_role": "A-inner",
+        "native_operator_doc": "Ti",
+        "label": "lose",
+        "axis6_up": false,
+        "axis6_label": "DOWN",
+        "torus_target": 0.39269908169872414,
+        "theta1_init": 5.995479973337879,
+        "theta2_init": 5.230537791804978,
+        "terrain_idx": 0,
+        "observed_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "expected_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "operator_order_matches": true,
+        "macro_trace_L": 0.14576074396228855,
+        "macro_trace_R": 0.09651635232793185,
+        "macro_dphi_L": -0.16061616391284017,
+        "macro_dphi_R": -0.27720356786433936,
+        "delta_axes": {
+          "GA0_entropy": -0.021079905501906304,
+          "GA1_boundary": -0.08560254864507716,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.13270035755247456,
+          "GA4_variance": 0.37723737391301293,
+          "GA5_coupling": -0.21890986588858974
+        },
+        "observed_native_by_abs_dphi": "Ti",
+        "observed_native_by_trace": "Ti",
+        "native_matches_abs_dphi": true,
+        "native_matches_trace": true,
+        "subcycles": [
+          {
+            "subcycle_idx": 1,
+            "operator": "Ti",
+            "terrain_idx": 0,
+            "effective_strength": 0.8100190478134013,
+            "dphi_L": -0.2174239266912672,
+            "dphi_R": -0.3696753261765677,
+            "trace_L": 0.08591549423986901,
+            "trace_R": 0.12145203237254121,
+            "ga0_before": 0.7071067811865476,
+            "ga0_after": 0.47912698372208096
+          },
+          {
+            "subcycle_idx": 2,
+            "operator": "Fe",
+            "terrain_idx": 0,
+            "effective_strength": 0.8224716189621035,
+            "dphi_L": 0.030769770709638156,
+            "dphi_R": 0.05053991429145083,
+            "trace_L": 0.011720731355223701,
+            "trace_R": 0.02732224480265364,
+            "ga0_before": 0.47912698372208096,
+            "ga0_after": 0.5468158728377156
+          },
+          {
+            "subcycle_idx": 3,
+            "operator": "Te",
+            "terrain_idx": 0,
+            "effective_strength": 0.2671582537029976,
+            "dphi_L": 0.008380461210995782,
+            "dphi_R": 0.01477410008655855,
+            "trace_L": 0.0742090080734277,
+            "trace_R": 0.07212947787698747,
+            "ga0_before": 0.5468158728377156,
+            "ga0_after": 0.6885989840485949
+          },
+          {
+            "subcycle_idx": 4,
+            "operator": "Fi",
+            "terrain_idx": 0,
+            "effective_strength": 0.22805036837068104,
+            "dphi_L": 0.01765753085779309,
+            "dphi_R": 0.027157743934218936,
+            "trace_L": 0.014876287772497063,
+            "trace_R": 0.03211395834968099,
+            "ga0_before": 0.6885989840485949,
+            "ga0_after": 0.5829835529813817
+          }
+        ]
+      },
+      "trial_averages": {
+        "macro_trace_L": 0.10305037066228302,
+        "macro_trace_R": 0.0998523830081517,
+        "macro_dphi_L": -0.16023004383316902,
+        "macro_dphi_R": -0.21162555577659248,
+        "delta_axes": {
+          "GA0_entropy": -0.019574164268509997,
+          "GA1_boundary": -0.06710778749206484,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.10764425032467002,
+          "GA4_variance": 0.3336280119439496,
+          "GA5_coupling": -0.18592779980488072
+        },
+        "native_match_rate_abs_dphi": 1.0,
+        "native_match_rate_trace": 0.6666666666666666
+      },
+      "subcycle_averages": [
+        {
+          "operator": "Ti",
+          "effective_strength": 0.8100190478134014,
+          "dphi_L": -0.21742392669126717,
+          "dphi_R": -0.2813498900115115,
+          "trace_L": 0.08591549423986894,
+          "trace_R": 0.10109013721036338
+        },
+        {
+          "operator": "Fe",
+          "effective_strength": 0.8224716189621034,
+          "dphi_L": 0.030769770709638516,
+          "dphi_R": 0.03667735392198665,
+          "trace_L": 0.011720731355223694,
+          "trace_R": 0.027695056566163667
+        },
+        {
+          "operator": "Te",
+          "effective_strength": 0.26715825370299756,
+          "dphi_L": 0.008380461210995505,
+          "dphi_R": 0.011375147043465234,
+          "trace_L": 0.08317583232191368,
+          "trace_R": 0.07964795886875588
+        },
+        {
+          "operator": "Fi",
+          "effective_strength": 0.22805036837068107,
+          "dphi_L": 0.01804365093746411,
+          "dphi_R": 0.02167183326946719,
+          "trace_L": 0.019761766593143267,
+          "trace_R": 0.027939739531722668
+        }
+      ]
+    },
+    {
+      "engine_type": 2,
+      "stage_num": 8,
+      "topology": "Ni",
+      "terrain": "Ni_f",
+      "loop_role": "A-inner",
+      "native_operator_doc": "Fe",
+      "label": "lose",
+      "axis6_up": false,
+      "torus_target": 0.39269908169872414,
+      "representative": {
+        "engine_type": 2,
+        "stage_num": 8,
+        "topology": "Ni",
+        "terrain": "Ni_f",
+        "loop_role": "A-inner",
+        "native_operator_doc": "Fe",
+        "label": "lose",
+        "axis6_up": false,
+        "axis6_label": "DOWN",
+        "torus_target": 0.39269908169872414,
+        "theta1_init": 5.996319885087865,
+        "theta2_init": 4.634697655099077,
+        "terrain_idx": 3,
+        "observed_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "expected_operator_order": [
+          "Ti",
+          "Fe",
+          "Te",
+          "Fi"
+        ],
+        "operator_order_matches": true,
+        "macro_trace_L": 0.11307989485045425,
+        "macro_trace_R": 0.05603307725619596,
+        "macro_dphi_L": -0.17958591936417867,
+        "macro_dphi_R": -0.2090797557588006,
+        "delta_axes": {
+          "GA0_entropy": -0.009295343834552217,
+          "GA1_boundary": -0.06676369045067548,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.10444835427653065,
+          "GA4_variance": 0.2509586093434591,
+          "GA5_coupling": -0.19433283756148967
+        },
+        "observed_native_by_abs_dphi": "Ti",
+        "observed_native_by_trace": "Ti",
+        "native_matches_abs_dphi": false,
+        "native_matches_trace": false,
+        "subcycles": [
+          {
+            "subcycle_idx": 1,
+            "operator": "Ti",
+            "terrain_idx": 3,
+            "effective_strength": 0.8772190478134013,
+            "dphi_L": -0.22925984002666344,
+            "dphi_R": -0.2580285752577848,
+            "trace_L": 0.09304313059422947,
+            "trace_R": 0.10042799866471382,
+            "ga0_before": 0.7071067811865476,
+            "ga0_after": 0.33912698372208094
+          },
+          {
+            "subcycle_idx": 2,
+            "operator": "Fe",
+            "terrain_idx": 3,
+            "effective_strength": 0.7257036189621036,
+            "dphi_L": 0.0215418874934567,
+            "dphi_R": 0.019914234715168844,
+            "trace_L": 0.00835591538545012,
+            "trace_R": 0.022591222869307613,
+            "ga0_before": 0.33912698372208094,
+            "ga0_after": 0.3452158728377156
+          },
+          {
+            "subcycle_idx": 3,
+            "operator": "Te",
+            "terrain_idx": 3,
+            "effective_strength": 0.23422487770299763,
+            "dphi_L": 0.005828764104747475,
+            "dphi_R": 0.006560959809150502,
+            "trace_L": 0.03809853599890027,
+            "trace_R": 0.035471337348187165,
+            "ga0_before": 0.3452158728377156,
+            "ga0_after": 0.45989498404859486
+          },
+          {
+            "subcycle_idx": 4,
+            "operator": "Fi",
+            "terrain_idx": 3,
+            "effective_strength": 0.26270105381068104,
+            "dphi_L": 0.022303269064280595,
+            "dphi_R": 0.02247362497466482,
+            "trace_L": 0.022256365443910145,
+            "trace_R": 0.03383764446776087,
+            "ga0_before": 0.45989498404859486,
+            "ga0_after": 0.3423537929813817
+          }
+        ]
+      },
+      "trial_averages": {
+        "macro_trace_L": 0.12436116109493106,
+        "macro_trace_R": 0.06973885181647191,
+        "macro_dphi_L": -0.17878327202493807,
+        "macro_dphi_R": -0.22878306241905522,
+        "delta_axes": {
+          "GA0_entropy": -0.01288403825489376,
+          "GA1_boundary": -0.07244859446791259,
+          "GA2_scale": 0.0,
+          "GA3_chirality": -0.11443296572037066,
+          "GA4_variance": 0.28982985113844156,
+          "GA5_coupling": -0.20378316722199666
+        },
+        "native_match_rate_abs_dphi": 0.0,
+        "native_match_rate_trace": 0.0
+      },
+      "subcycle_averages": [
+        {
+          "operator": "Ti",
+          "effective_strength": 0.8772190478134013,
+          "dphi_L": -0.22925984002666358,
+          "dphi_R": -0.2822769895111948,
+          "trace_L": 0.09304313059422938,
+          "trace_R": 0.10620692660176605
+        },
+        {
+          "operator": "Fe",
+          "effective_strength": 0.7257036189621036,
+          "dphi_L": 0.02154188749345694,
+          "dphi_R": 0.02288515861767676,
+          "trace_L": 0.008355915385450094,
+          "trace_R": 0.02202769481866654
+        },
+        {
+          "operator": "Te",
+          "effective_strength": 0.23422487770299763,
+          "dphi_L": 0.005828764104747873,
+          "dphi_R": 0.0073916173545263515,
+          "trace_L": 0.043434218387961215,
+          "trace_R": 0.03616903568292712
+        },
+        {
+          "operator": "Fi",
+          "effective_strength": 0.26270105381068104,
+          "dphi_L": 0.023105916403520683,
+          "dphi_R": 0.02321715111993644,
+          "trace_L": 0.020540926144219335,
+          "trace_R": 0.03469688498067713
+        }
+      ]
+    }
+  ],
+  "evidence_ledger": [
+    {
+      "token_id": "E_PROCESS_CYCLE_STAGE_MATRIX_OK",
+      "sim_spec_id": "S_PROCESS_CYCLE_STAGE_MATRIX",
+      "status": "PASS",
+      "measured_value": 16.0,
+      "kill_reason": null,
+      "timestamp": "2026-03-26T09:45:52.041067"
+    }
+  ]
+}

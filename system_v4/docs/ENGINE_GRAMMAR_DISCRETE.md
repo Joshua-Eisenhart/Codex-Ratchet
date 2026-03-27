@@ -48,7 +48,7 @@
 | Induction | `Ne → Ni → Se → Si` | `Se → Si → Ni → Ne` |
 | Deduction | `Ne → Si → Se → Ni` | `Se → Ne → Ni → Si` |
 
-**Proposed order rationale:** Se (heat contact/expansion) → middle legs → Ni (cold reset/compression) → Ne (transport) follows the Carnot expansion-then-compression logic. Starting token does not matter in a cycle.
+**Proposed order rationale (QIT-native):** The hypothesis is that the structural sequence of QIT map classes matters — specifically: mixing channel (Se, non-unital toward τ_hot) → dephasing channel (Si, basis-stabilizing) → reset channel (Ni, non-unital toward τ_cold) → unitary transport (Ne, entropy-preserving) places the two non-unital channels (Se, Ni) in structurally opposed positions rather than adjacent, which may be required for the dual-stack to produce bounded winding. This is a probe candidate, not a thermodynamic claim. Carnot/thermodynamics is a search-direction metaphor only — these are QIT engines.
 
 **Which loop runs which order (token sequences use ENGINES_SPEC order — subject to correction pending sim):**
 

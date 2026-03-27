@@ -41,6 +41,7 @@ GRAPH_JSON = REPO_ROOT / "system_v4" / "a2_state" / "graphs" / "qit_engine_graph
 AUDIT_DIR = REPO_ROOT / "system_v4" / "a2_state" / "audit_logs"
 OUTPUT_JSON = AUDIT_DIR / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json"
 OUTPUT_MD = AUDIT_DIR / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md"
+RUNTIME_BRIDGE_JSON = AUDIT_DIR / "QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json"
 
 # Torus latitudes from hopf_manifold.py (canonical constants)
 TORUS_INNER_ETA = math.pi / 8
@@ -190,30 +191,100 @@ def _build_stage_torus_groupings(
     """Group stages by their torus membership and loop type."""
     stage_to_tori: dict[str, list[str]] = defaultdict(list)
     torus_to_stages: dict[str, list[str]] = defaultdict(list)
+    torus_to_stage_public_ids: dict[str, list[str]] = defaultdict(list)
+    torus_to_engine_public_ids: dict[str, set[str]] = defaultdict(set)
 
     for e in stage_torus_edges:
-        stage_label = e["source_public_id"].split("::")[-1]
+        stage_public_id = e["source_public_id"]
+        stage_label = stage_public_id.split("::")[-1]
         torus_label = e["target_public_id"].split("::")[-1]
         if torus_label not in stage_to_tori[stage_label]:
             stage_to_tori[stage_label].append(torus_label)
         if stage_label not in torus_to_stages[torus_label]:
             torus_to_stages[torus_label].append(stage_label)
+        if stage_public_id not in torus_to_stage_public_ids[torus_label]:
+            torus_to_stage_public_ids[torus_label].append(stage_public_id)
+        engine_type = stage_nodes.get(stage_public_id, {}).get("engine_type", "")
+        if engine_type in {"Deductive", "type1_deductive"}:
+            torus_to_engine_public_ids[torus_label].add("qit::ENGINE::type1_deductive")
+        elif engine_type in {"Inductive", "type2_inductive"}:
+            torus_to_engine_public_ids[torus_label].add("qit::ENGINE::type2_inductive")
 
     # Classify: fiber stages touch inner+clifford, base stages touch outer+clifford
     fiber_stages = [s for s, tori in stage_to_tori.items() if "inner" in tori]
     base_stages = [s for s, tori in stage_to_tori.items() if "outer" in tori]
-    clifford_only = [s for s, tori in stage_to_tori.items()
-                     if "clifford" in tori and "inner" not in tori and "outer" not in tori]
 
     return {
         "stage_to_tori": dict(stage_to_tori),
         "torus_to_stages": {k: sorted(v) for k, v in torus_to_stages.items()},
+        "torus_to_stage_public_ids": {k: sorted(v) for k, v in torus_to_stage_public_ids.items()},
+        "torus_to_engine_public_ids": {k: sorted(v) for k, v in torus_to_engine_public_ids.items()},
         "fiber_stages": sorted(fiber_stages),
         "base_stages": sorted(base_stages),
         "fiber_stage_count": len(fiber_stages),
         "base_stage_count": len(base_stages),
         "all_stages_touch_clifford": all("clifford" in tori for tori in stage_to_tori.values()),
         "clifford_is_universal_bridge": "clifford" in torus_to_stages and len(torus_to_stages["clifford"]) == len(stage_to_tori),
+    }
+
+
+def _build_owner_carrier_evidence(
+    torus_nodes: dict[str, dict[str, Any]],
+    nesting_edges: list[dict[str, Any]],
+    stage_torus_edges: list[dict[str, Any]],
+    stage_groupings: dict[str, Any],
+) -> dict[str, Any]:
+    torus_carriers = []
+    for public_id, node in sorted(torus_nodes.items(), key=lambda item: item[1].get("nesting_rank", 999)):
+        torus_label = public_id.split("::")[-1]
+        torus_carriers.append(
+            {
+                "torus_public_id": public_id,
+                "label": node.get("label", ""),
+                "nesting_rank": node.get("nesting_rank"),
+                "stage_count": len(stage_groupings["torus_to_stages"].get(torus_label, [])),
+                "stage_public_ids": stage_groupings["torus_to_stage_public_ids"].get(torus_label, []),
+                "engine_public_ids": stage_groupings["torus_to_engine_public_ids"].get(torus_label, []),
+            }
+        )
+
+    return {
+        "torus_carriers": torus_carriers,
+        "torus_nesting_edges": [
+            {
+                "source_public_id": edge["source_public_id"],
+                "target_public_id": edge["target_public_id"],
+            }
+            for edge in nesting_edges
+        ],
+        "stage_on_torus_edge_count": len(stage_torus_edges),
+        "carrier_assignment_scope": "owner_scaffold_only",
+    }
+
+
+def _runtime_bridge_alignment(owner_content_hash: str) -> dict[str, Any]:
+    if not RUNTIME_BRIDGE_JSON.exists():
+        return {
+            "status": "absent",
+            "runtime_bridge_json": str(RUNTIME_BRIDGE_JSON),
+        }
+
+    payload = _load_json(RUNTIME_BRIDGE_JSON)
+    owner_snapshot = payload.get("owner_snapshot", {})
+    runtime_samples = payload.get("runtime_samples", [])
+    return {
+        "status": "present" if runtime_samples else "partial",
+        "runtime_bridge_json": str(RUNTIME_BRIDGE_JSON),
+        "owner_content_hash_matches_runtime_bridge": owner_snapshot.get("qit_graph_content_hash") == owner_content_hash,
+        "runtime_sample_count": len(runtime_samples),
+        "engine_sample_refs": [
+            {
+                "engine_public_id": sample.get("engine_public_id", ""),
+                "first_step_public_id": sample.get("history_summary", {}).get("first_step_public_id", ""),
+                "last_step_public_id": sample.get("history_summary", {}).get("last_step_public_id", ""),
+            }
+            for sample in runtime_samples
+        ],
     }
 
 
@@ -393,6 +464,13 @@ def build_projection() -> dict[str, Any]:
     chirality = _build_chirality_projection(engine_nodes, chirality_edges)
     torus_geometry = _build_torus_geometry()
     neg_evidence = _relevant_negative_evidence(nodes, edges)
+    owner_carrier_evidence = _build_owner_carrier_evidence(
+        torus_nodes,
+        nesting_edges,
+        stage_torus_edges,
+        cycle_groupings,
+    )
+    runtime_bridge = _runtime_bridge_alignment(g.get("content_hash", "unknown"))
 
     return {
         "schema": "QIT_HOPF_WEYL_PROJECTION_v1",
@@ -462,10 +540,12 @@ def build_projection() -> dict[str, Any]:
         },
 
         # ── Projections ──
+        "owner_carrier_evidence": owner_carrier_evidence,
         "torus_cell_complex": cell_complex,
         "stage_torus_groupings": cycle_groupings,
         "chirality_coupling": chirality,
         "torus_geometry": torus_geometry,
+        "runtime_bridge_alignment": runtime_bridge,
         "relevant_negative_evidence": neg_evidence,
 
         # ── Owner graph counts used ──
@@ -489,6 +569,8 @@ def _render_markdown(proj: dict[str, Any]) -> str:
     chiral = proj["chirality_coupling"]
     geom = proj["torus_geometry"]
     neg = proj["relevant_negative_evidence"]
+    owner_carrier = proj["owner_carrier_evidence"]
+    runtime_bridge = proj["runtime_bridge_alignment"]
     owner = proj["owner_summary"]
 
     lines = [
@@ -511,6 +593,11 @@ def _render_markdown(proj: dict[str, Any]) -> str:
         f"- TORUS_NESTING edges: `{owner['nesting_edges']}`",
         f"- STAGE_ON_TORUS edges: `{owner['stage_torus_edges']}`",
         f"- CHIRALITY_COUPLING edges: `{owner['chirality_edges']}`",
+        "",
+        "## Owner Carrier Evidence",
+        f"- carrier_assignment_scope: `{owner_carrier['carrier_assignment_scope']}`",
+        f"- TORUS_NESTING edges recorded: `{len(owner_carrier['torus_nesting_edges'])}`",
+        f"- STAGE_ON_TORUS edge count: `{owner_carrier['stage_on_torus_edge_count']}`",
         "",
         "## 1. TopoNetX Candidate Cell-Complex View",
         f"- available: `{cc.get('available', False)}`",
@@ -535,6 +622,19 @@ def _render_markdown(proj: dict[str, Any]) -> str:
 
     for torus, stages in groups.get("torus_to_stages", {}).items():
         lines.append(f"- `{torus}`: {len(stages)} stages")
+    lines.extend([
+        "",
+        "## Runtime Bridge Alignment",
+        f"- status: `{runtime_bridge['status']}`",
+        f"- runtime_bridge_json: `{runtime_bridge['runtime_bridge_json']}`",
+        f"- owner_content_hash_matches_runtime_bridge: `{runtime_bridge.get('owner_content_hash_matches_runtime_bridge')}`",
+        f"- runtime_sample_count: `{runtime_bridge.get('runtime_sample_count')}`",
+    ])
+    for sample in runtime_bridge.get("engine_sample_refs", []):
+        lines.append(
+            f"- `{sample['engine_public_id']}`: first_step=`{sample['first_step_public_id']}`, "
+            f"last_step=`{sample['last_step_public_id']}`"
+        )
 
     lines.extend([
         "",

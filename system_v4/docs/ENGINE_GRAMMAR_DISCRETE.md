@@ -37,11 +37,20 @@
 
 **Axis-4 governs:** Macro topology order ONLY (Deduction vs Induction). Not sign, not CW/CCW.
 
-**Topology orders:**
-- Deduction: `Ne → Si → Se → Ni`
-- Induction: `Ne → Ni → Se → Si`
+**Topology orders — ⚠️ DISPUTED:**
 
-**Which loop runs which order:**
+> The order from `ENGINES_SPEC.md` is preserved below, but is flagged as likely thermodynamically incorrect.
+> The user-proposed Carnot-grounded order is listed alongside as the probe candidate.
+> Loop order should be verified by sim — since it is a cycle, starting position does not matter, only the traversal order does.
+
+| | Spec (ENGINES_SPEC.md) | Proposed (Carnot-grounded, to sim) |
+|---|---|---|
+| Induction | `Ne → Ni → Se → Si` | `Se → Si → Ni → Ne` |
+| Deduction | `Ne → Si → Se → Ni` | `Se → Ne → Ni → Si` |
+
+**Proposed order rationale:** Se (heat contact/expansion) → middle legs → Ni (cold reset/compression) → Ne (transport) follows the Carnot expansion-then-compression logic. Starting token does not matter in a cycle.
+
+**Which loop runs which order (token sequences use ENGINES_SPEC order — subject to correction pending sim):**
 
 | Engine | Loop | Axis-4 stroke | Token sequence |
 |---|---|---|---|
@@ -177,7 +186,7 @@ These must be preserved by ANY future probe, doc, or sim:
 
 1. **Spinors are first-class** — ψ_L / ψ_R on S³ are the engine's geometry. Density is a shadow.
 2. **2 loops per engine type** — not 1. Outer = major, Inner = minor. Not an axis.
-3. **4 stages per loop** — ordered. The 4-token sequences above are the macro-4 canon.
+3. **4 stages per loop** — ordered. Token sequences are recorded but topology traversal ORDER is disputed: the ENGINES_SPEC order may be thermodynamically incorrect. Correct order is a probe target (Carnot-grounded proposal: induction = Se→Si→Ni→Ne, deduction = Se→Ne→Ni→Si).
 4. **Loop order inverts across types** — Type-1 outer = deduction, Type-2 outer = induction.
 5. **8 terrains = 4 topologies × 2 flow directions** — flow direction differs by engine chirality.
 6. **8 operator modes = 4 families × 2 Axis-6 precedences** — not intrinsic to operators.

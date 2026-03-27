@@ -11,10 +11,10 @@
 ## AXIS OWNER CORRECTIONS (take precedence over extracted spec)
 
 ### Ax0 — Correlation Entropy (not VN polarity)
-**Owner definition:** Ax0 is **correlation entropy** — it can be **negative**. This is distinct from VN entropy and from the signed orientation framing in `ENGINES_SPEC.md` (which says N/S polarity of Φ(ρ)). Negative correlation entropy is a real and structurally meaningful state in a QIT engine. The `AXIS_STRUCTURE_EMPIRICAL_AUDIT.md` characterization ("fine/coarse-graining") is a density-layer probe result, not the owner definition.
+**Owner definition:** Ax0 is **correlation entropy** — it can be **negative**. This is distinct from VN entropy and from the signed orientation framing in `ENGINES_SPEC.md`. Negative correlation entropy is a real and structurally meaningful state in a QIT engine.
 
 ### Ax5 — Actual Entropy Amount in the System (hot/cold)
-**Owner definition:** Ax5 is the **actual amount of entropy** in the engine system at a given state — the "temperature" in a loose QIT sense, hot vs cold. This bends what was described as the yin-yang curvature line, which may correspond to a real QIT engine property (e.g., mixing parameter, bath temperature, or non-unitality depth). Ax5 is NOT dormant by default — prior probes showing it as dormant were running on insufficient drive amplitude. The `AXIS_STRUCTURE_EMPIRICAL_AUDIT.md` which merged Ax5 with Ax1 was doing density-layer probes; on the spinor constraint manifold these are likely distinct.
+**Owner definition:** Ax5 is the **actual amount of entropy** in the engine system at a given state — the "temperature" in a loose QIT sense, hot vs cold. This bends what corresponds to the S-curve curvature in the taijitu search-map, which may correspond to a real QIT engine property (e.g., mixing parameter, non-unitality depth, or bath coupling strength). Ax5 is NOT dormant by default.
 
 ### Topology Repetition per Engine
 **Owner definition:** Each loop visits ALL 4 perceiving topologies. Topologies appear **twice per engine** (outer + inner loop), differentiated by terrain flow-direction variant. This overrides any interpretation that the 4 topologies split 2/2 between the two loops.

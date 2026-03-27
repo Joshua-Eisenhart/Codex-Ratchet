@@ -41,7 +41,7 @@ def generate_true_qit_telemetry(output_file, num_cycles=5000):
     
     with open(output_file, "w") as f:
         for cycle in range(num_cycles):
-            # Phase 1: Type 1 Engine (Inward Weyl Flux / Deductive)
+            # Phase 1: Type 1 Engine (Left Weyl spinor)
             # Stages 1-4
             for stage in range(1, 5):
                 # Major Loop: Dissipate THEN rotate
@@ -66,7 +66,7 @@ def generate_true_qit_telemetry(output_file, num_cycles=5000):
                     "i_scalar": i_scalar
                 }) + "\n")
                 
-            # Phase 2: Type 2 Engine (Outward Weyl Flux / Inductive)
+            # Phase 2: Type 2 Engine (Right Weyl spinor)
             # Stages 5-8
             for stage in range(5, 9):
                 # Minor Loop: Rotate THEN dissipate

@@ -6,7 +6,7 @@ No players, no payoffs, no strategies in the classical sense.
 
 IGT works on the process_cycle's own operators:
   4 OUTCOMES = 4 state_dispersion flows (SG-SG / SG-EE / EE-EE / EE-SG)
-  2 CHIRALITIES = T-first (deductive) vs F-first (inductive)
+  2 CHIRALITIES = T-first (left Weyl) vs F-first (right Weyl)
   → 8 states total = the 8-stage process_cycle cycle
 
 The interaction: two density matrices interact via a shared channel.
@@ -187,8 +187,8 @@ def sim_chirality_matters(d: int = 2):
     different outcomes even for the same initial states. This is
     non-commutativity applied to game theory.
     
-    T-first (competitive): Measure THEN filter → deductive → compression
-    F-first (cooperative): Filter THEN measure → inductive → expansion
+    T-first (competitive): Measure THEN filter → left Weyl → compression
+    F-first (cooperative): Filter THEN measure → right Weyl → expansion
     """
     print(f"\n{'='*60}")
     print(f"SIM_05: CHIRALITY MATTERS (T-FIRST vs F-FIRST)")

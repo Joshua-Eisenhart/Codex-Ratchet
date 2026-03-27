@@ -87,13 +87,13 @@ def run_L5_validation():
     def ax2_neg(rho): return apply_Te(rho, polarity_up=False)    # Compression
 
     def ax3_pos(rho):
-        # Type 1 engine (1 cycle): deductive outer, inductive inner
+        # Type 1 engine (1 cycle): left Weyl, inductive inner
         r = apply_Te(rho, polarity_up=True)
         r = apply_Fi(r, polarity_up=False)
         r = apply_Fe(r, polarity_up=True)
         return apply_Ti(r, polarity_up=True)
     def ax3_neg(rho):
-        # Type 2 engine (1 cycle): inductive outer, deductive inner
+        # Type 2 engine (1 cycle): right Weyl, deductive inner
         r = apply_Fe(rho, polarity_up=True)
         r = apply_Ti(r, polarity_up=True)
         r = apply_Te(r, polarity_up=True)

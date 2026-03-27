@@ -273,7 +273,7 @@ def sim_moloch_trap(d: int = 4, n_agents: int = 5, n_rounds: int = 50):
 
 def sim_maxwell_demon(d: int = 4, n_cycles: int = 10):
     """
-    NLM claim: Maxwell's demon = the FeTi deductive loop.
+    NLM claim: Maxwell's demon = the FeTi left Weyl loop.
     Cycle: measure (Ti) → store (Fe/Si) → sort (Ti) → erase (Fe)
     
     The demon gains info (ΔΦ > 0) via trace_projection,

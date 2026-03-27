@@ -1,14 +1,14 @@
 # QIT Hopf–Weyl Projection (Bounded Read-Only Sidecar)
 
-- generated_utc: `2026-03-27T00:09:58Z`
-- source_content_hash: `7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff`
+- generated_utc: `2026-03-27T00:34:35Z`
+- source_content_hash: `66a8c941ec313aa1277b374a7520144c3077dd6e7275691c65360a9156058bf7`
 - do_not_promote: `True`
 - mode: `bounded_read_only`
 
 ## Report Surface
 - surface_class: `tracked_current_workspace_report`
 - represents: `current workspace Hopf/Weyl sidecar state at generation time; may differ from the last committed snapshot until tracked CURRENT artifacts are committed`
-- git_sha: `446c5350e21cd27f027119d4da759e923e254148`
+- git_sha: `18dbe09a7c613ba43f3c941f2ad04d4c5afa8db6`
 
 ## Owner Graph Inputs
 - Torus nodes: `3`
@@ -43,7 +43,7 @@
 ## Runtime Bridge Alignment
 - status: `present`
 - runtime_bridge_json: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json`
-- owner_content_hash_matches_runtime_bridge: `True`
+- owner_content_hash_matches_runtime_bridge: `False`
 - runtime_sample_count: `2`
 - `qit::ENGINE::type1_deductive`: first_step=`qit::SUBCYCLE_STEP::type1_deductive_Se_f_Ti`, last_step=`qit::SUBCYCLE_STEP::type1_deductive_Ni_b_Fi`
 - `qit::ENGINE::type2_inductive`: first_step=`qit::SUBCYCLE_STEP::type2_inductive_Se_f_Ti`, last_step=`qit::SUBCYCLE_STEP::type2_inductive_Ni_b_Fi`

@@ -58,11 +58,11 @@ def execute_ort_0_6_proof():
         Ti_ops = build_Ti_ops(d)
         Te_op = build_Te_hamiltonian(d, seed=42)
         
-        # Operator A: Deductive projection
+        # Operator A: FeTi projection
         def apply_A(rho):
             return C_Ti(rho, Ti_ops)
             
-        # Operator B: Inductive rotation
+        # Operator B: TeFi rotation
         def apply_B(rho):
             return C_Te(rho, Te_op, dt=1.0)
             

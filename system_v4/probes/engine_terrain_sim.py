@@ -10,10 +10,10 @@ EE  = ΔΦ < 0 (State_Dispersion Emitted)
 BIG = outer/major loop (larger magnitude)
 small = inner/minor loop (smaller magnitude)
 
-TYPE-1 (outer=deductive FeTi, inner=inductive TeFi):
+TYPE-1 (Left Weyl: Fe/Ti on base, Te/Fi on fiber):
   Se: EE_sg  | Si: SG_sg  | Ne: SG_ee  | Ni: EE_ee
 
-TYPE-2 (outer=inductive TeFi, inner=deductive FeTi):
+TYPE-2 (Right Weyl: Te/Fi on base, Fe/Ti on fiber):
   Se: ee_SG  | Si: SG_sg  | Ne: sg_EE  | Ni: EE_ee
 
 Chiral mirrors: Se flips, Ne flips, Si invariant, Ni invariant.
@@ -254,8 +254,8 @@ def _collect_mismatches(results):
 
 
 def sim_type1_engine(d=4):
-    """TYPE-1 PROCESS_CYCLE: outer=deductive FeTi, inner=inductive TeFi"""
-    results = run_engine(TYPE1_TERRAINS, "TYPE-1 (Deductive outer, Inductive inner)", d)
+    """TYPE-1 PROCESS_CYCLE: Left Weyl: Fe/Ti on base, Te/Fi on fiber"""
+    results = run_engine(TYPE1_TERRAINS, "TYPE-1 (Left Weyl, TeFi fiber)", d)
     
     # Verify pattern: Se=EE_sg, Si=SG_sg, Ne=SG_ee, Ni=EE_ee
     matches = sum(1 for r in results if r["matches"])
@@ -317,8 +317,8 @@ def sim_type1_engine(d=4):
 
 
 def sim_type2_engine(d=4):
-    """TYPE-2 PROCESS_CYCLE: outer=inductive TeFi, inner=deductive FeTi"""
-    results = run_engine(TYPE2_TERRAINS, "TYPE-2 (Inductive outer, Deductive inner)", d)
+    """TYPE-2 PROCESS_CYCLE: Right Weyl: Te/Fi on base, Fe/Ti on fiber"""
+    results = run_engine(TYPE2_TERRAINS, "TYPE-2 (Right Weyl, Left Weyl inner)", d)
     
     matches = sum(1 for r in results if r["matches"])
     total = len(results)
@@ -386,20 +386,20 @@ def sim_chiral_mirror(d=4):
     np.random.seed(42)
     rho = make_random_density_matrix(d)
     
-    # Se in Type-1: Ti (deductive outer, UP)
+    # Se in Type-1: Ti (left Weyl, UP)
     phi_0 = negentropy(rho, d)
     rho_t1_se = apply_Ti(rho.copy(), d, polarity_up=True)
     dphi_t1_se = negentropy(rho_t1_se, d) - phi_0
     
-    # Se in Type-2: Fi (inductive outer, UP)
+    # Se in Type-2: Fi (right Weyl, UP)
     rho_t2_se = apply_Fi(rho.copy(), d, polarity_up=True)
     dphi_t2_se = negentropy(rho_t2_se, d) - phi_0
     
-    # Ne in Type-1: Ti (deductive outer, DOWN)
+    # Ne in Type-1: Ti (left Weyl, DOWN)
     rho_t1_ne = apply_Ti(rho.copy(), d, polarity_up=False)
     dphi_t1_ne = negentropy(rho_t1_ne, d) - phi_0
     
-    # Ne in Type-2: Fi (inductive outer, DOWN)
+    # Ne in Type-2: Fi (right Weyl, DOWN)
     rho_t2_ne = apply_Fi(rho.copy(), d, polarity_up=False)
     dphi_t2_ne = negentropy(rho_t2_ne, d) - phi_0
     

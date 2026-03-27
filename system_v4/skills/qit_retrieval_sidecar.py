@@ -51,12 +51,14 @@ AUDIT_DOCS = [
     AUDIT_DIR / "QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md",
     AUDIT_DIR / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md",
     AUDIT_DIR / "QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.md",
+    AUDIT_DIR / "QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.md",
 ]
 
 AUDIT_JSONS = [
     AUDIT_DIR / "QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json",
     AUDIT_DIR / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json",
     AUDIT_DIR / "QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json",
+    AUDIT_DIR / "QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.json",
 ]
 
 SIM_JSONS = [
@@ -595,6 +597,130 @@ def _format_hopf_weyl_evidence_audit_docs(path: Path) -> list[dict[str, Any]]:
     ]
 
 
+def _format_torus_type_repair_gap_docs(path: Path) -> list[dict[str, Any]]:
+    payload = _read_json(path)
+    if not isinstance(payload, dict):
+        return []
+
+    boundary = payload.get("audit_boundary", {})
+    derived_from = payload.get("derived_from", {})
+    summary = payload.get("repair_gap_summary", {})
+    torus = summary.get("torus_placement", {})
+    type_split = summary.get("type_split", {})
+    owner_snapshot_hash = derived_from.get("owner_snapshot_hash", "")
+
+    common_refs = _dedupe_refs([str(path), owner_snapshot_hash])
+
+    top_lines = [
+        "# Structured Torus/Type Repair Gap Report",
+        f"source_path: {path}",
+        "query_anchors: repair gap, torus placement evidence, type split evidence, missing now, forbidden to infer, non-promotional",
+        f"schema: {payload.get('schema', '')}",
+        f"status: {payload.get('status', '')}",
+        f"audit_only: {boundary.get('audit_only')}",
+        f"nonoperative: {boundary.get('nonoperative')}",
+        f"do_not_promote: {boundary.get('do_not_promote')}",
+        f"promotion_claim: {boundary.get('promotion_claim', '')}",
+        f"owner_snapshot_hash: {owner_snapshot_hash}",
+        "",
+        "## torus_placement_status",
+        f"- supported_now_count: {len(torus.get('supported_now', []))}",
+        f"- aligned_only_count: {len(torus.get('aligned_only', []))}",
+        f"- missing_count: {len(torus.get('missing', []))}",
+        f"- forbidden_to_infer_count: {len(torus.get('forbidden_to_infer', []))}",
+        "",
+        "## type_split_status",
+        f"- supported_now_count: {len(type_split.get('supported_now', []))}",
+        f"- aligned_only_count: {len(type_split.get('aligned_only', []))}",
+        f"- missing_count: {len(type_split.get('missing', []))}",
+        f"- forbidden_to_infer_count: {len(type_split.get('forbidden_to_infer', []))}",
+        "",
+        "## boundary_note",
+        "- This is a bounded repair map only.",
+        "- It is not repair completion and not promotion evidence.",
+    ]
+
+    torus_lines = [
+        "# Repair Gap: Torus Placement",
+        f"source_path: {path}",
+        "query_anchors: nested hopf tori, torus carrier assignment, stage-on-torus, torus transport, torus scramble, inner, clifford, outer",
+        f"owner_snapshot_hash: {owner_snapshot_hash}",
+        f"torus_public_ids: {', '.join(torus.get('torus_public_ids', []))}",
+        f"relevant_negative_witnesses: {', '.join(torus.get('relevant_negative_witnesses', []))}",
+        "",
+        "## supported_now",
+        *[f"- {item}" for item in torus.get("supported_now", [])],
+        "",
+        "## aligned_only",
+        *[f"- {item}" for item in torus.get("aligned_only", [])],
+        "",
+        "## missing",
+        *[f"- {item}" for item in torus.get("missing", [])],
+        "",
+        "## forbidden_to_infer",
+        *[f"- {item}" for item in torus.get("forbidden_to_infer", [])],
+        "",
+        "## boundary_note",
+        "- Bounded repair-gap summary only.",
+        "- Not validated Hopf geometry and not promotion evidence.",
+    ]
+
+    type_lines = [
+        "# Repair Gap: Type Split",
+        f"source_path: {path}",
+        "query_anchors: type split, engine-family split, chirality split, neg_no_chirality, neg_type_flatten, weyl branch missing, chirality coupling",
+        f"owner_snapshot_hash: {owner_snapshot_hash}",
+        f"engine_public_ids: {', '.join(type_split.get('engine_public_ids', []))}",
+        f"relevant_negative_witnesses: {', '.join(type_split.get('relevant_negative_witnesses', []))}",
+        "",
+        "## supported_now",
+        *[f"- {item}" for item in type_split.get("supported_now", [])],
+        "",
+        "## aligned_only",
+        *[f"- {item}" for item in type_split.get("aligned_only", [])],
+        "",
+        "## missing",
+        *[f"- {item}" for item in type_split.get("missing", [])],
+        "",
+        "## forbidden_to_infer",
+        *[f"- {item}" for item in type_split.get("forbidden_to_infer", [])],
+        "",
+        "## boundary_note",
+        "- Bounded repair-gap summary only.",
+        "- Not live Weyl semantics and not promotion evidence.",
+    ]
+
+    return [
+        {
+            "doc_id": "qit_torus_type_repair_gap_structured",
+            "family": "audit_reports",
+            "source_path": str(path),
+            "source_refs": common_refs,
+            "authoritative": False,
+            "owner_input_read_only": True,
+            "text": "\n".join(top_lines) + "\n",
+        },
+        {
+            "doc_id": "qit_repair_gap__torus_placement",
+            "family": "audit_reports",
+            "source_path": str(path),
+            "source_refs": _dedupe_refs(common_refs + torus.get("torus_public_ids", []) + torus.get("relevant_negative_witnesses", [])),
+            "authoritative": False,
+            "owner_input_read_only": True,
+            "text": "\n".join(torus_lines) + "\n",
+        },
+        {
+            "doc_id": "qit_repair_gap__type_split",
+            "family": "audit_reports",
+            "source_path": str(path),
+            "source_refs": _dedupe_refs(common_refs + type_split.get("engine_public_ids", []) + type_split.get("relevant_negative_witnesses", [])),
+            "authoritative": False,
+            "owner_input_read_only": True,
+            "text": "\n".join(type_lines) + "\n",
+        },
+    ]
+
+
 def _build_corpus_documents() -> list[dict[str, Any]]:
     docs: list[dict[str, Any]] = []
     for path in QIT_DOCS:
@@ -612,6 +738,8 @@ def _build_corpus_documents() -> list[dict[str, Any]]:
             docs.extend(_format_hopf_weyl_docs(path))
         elif path.name == "QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json":
             docs.extend(_format_hopf_weyl_evidence_audit_docs(path))
+        elif path.name == "QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.json":
+            docs.extend(_format_torus_type_repair_gap_docs(path))
     for path in SIM_JSONS:
         doc = _format_sim_doc(path)
         if doc:
@@ -681,6 +809,13 @@ def _score_doc(doc: dict[str, Any], query_terms: list[str]) -> tuple[float, floa
     type_query = any(term in {"type1", "type2", "deductive", "inductive"} for term in query_terms)
     if type_query and ("hopf_runtime_alignment__" in doc_id or "qit_hopf_weyl_projection_structured" == doc_id):
         precision_bonus += 0.15
+    repair_gap_query = any(term in {"repair", "gap", "gaps", "missing", "forbidden", "infer", "type", "split"} for term in query_terms)
+    if repair_gap_query and (
+        doc_id == "qit_torus_type_repair_gap_structured"
+        or doc_id.startswith("qit_repair_gap__")
+        or "repair_gap" in doc_id
+    ):
+        precision_bonus += 0.2
     ref_bonus = 0.0
     source_refs = doc.get("source_refs", [])
     if source_refs:

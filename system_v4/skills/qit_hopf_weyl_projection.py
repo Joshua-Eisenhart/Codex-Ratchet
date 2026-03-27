@@ -205,10 +205,10 @@ def _build_stage_torus_groupings(
         if stage_public_id not in torus_to_stage_public_ids[torus_label]:
             torus_to_stage_public_ids[torus_label].append(stage_public_id)
         engine_type = stage_nodes.get(stage_public_id, {}).get("engine_type", "")
-        if engine_type in {"Deductive", "type1_deductive"}:
-            torus_to_engine_public_ids[torus_label].add("qit::ENGINE::type1_deductive")
-        elif engine_type in {"Inductive", "type2_inductive"}:
-            torus_to_engine_public_ids[torus_label].add("qit::ENGINE::type2_inductive")
+        if engine_type in {"Deductive", "type1_left_weyl"}:
+            torus_to_engine_public_ids[torus_label].add("qit::ENGINE::type1_left_weyl")
+        elif engine_type in {"Inductive", "type2_right_weyl"}:
+            torus_to_engine_public_ids[torus_label].add("qit::ENGINE::type2_right_weyl")
 
     # Classify: fiber stages touch inner+clifford, base stages touch outer+clifford
     fiber_stages = [s for s, tori in stage_to_tori.items() if "inner" in tori]
@@ -319,14 +319,14 @@ def _build_chirality_projection(
             "available": True,
             "algebra": "Cl(3,0)",
             "pseudoscalar_blade": "e123",
-            "type1_deductive": {
+            "type1_left_weyl": {
                 "orientation": "+e123",
                 "projected_branch_label": "left_like",
                 "conventional_rule_annotation": "psi_L -> U·psi_L",
                 "non_owner_phase_note": "positive phase convention in sidecar view",
                 "operator_dominance": "Fe/Ti on base, Te/Fi on fiber",
             },
-            "type2_inductive": {
+            "type2_right_weyl": {
                 "orientation": "-e123",
                 "projected_branch_label": "right_like",
                 "conventional_rule_annotation": "psi_R -> U*·psi_R",
@@ -346,8 +346,8 @@ def _build_chirality_projection(
             "available": False,
             "error": "clifford not installed",
             "fallback_summary": {
-                "type1_deductive": "Fe/Ti dominant on base, ψ_L → U·ψ_L",
-                "type2_inductive": "Te/Fi dominant on base, ψ_R → U*·ψ_R",
+                "type1_left_weyl": "Fe/Ti dominant on base, ψ_L → U·ψ_L",
+                "type2_right_weyl": "Te/Fi dominant on base, ψ_R → U*·ψ_R",
                 "coupling": "complementary_dominance (flat owner edge, sidecar annotation only)",
             },
         }
@@ -644,8 +644,8 @@ def _render_markdown(proj: dict[str, Any]) -> str:
 
     if chiral.get("available"):
         lines.append(f"- pseudoscalar: `{chiral['pseudoscalar_blade']}`")
-        lines.append(f"- Type-1 orientation: `{chiral['type1_deductive']['orientation']}`")
-        lines.append(f"- Type-2 orientation: `{chiral['type2_inductive']['orientation']}`")
+        lines.append(f"- Type-1 orientation: `{chiral['type1_left_weyl']['orientation']}`")
+        lines.append(f"- Type-2 orientation: `{chiral['type2_right_weyl']['orientation']}`")
         lines.append(f"- coupling product is scalar: `{chiral['coupling_is_scalar']}`")
     else:
         fb = chiral.get("fallback_summary", {})

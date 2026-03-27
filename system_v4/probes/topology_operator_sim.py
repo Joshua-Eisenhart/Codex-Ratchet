@@ -353,7 +353,7 @@ def sim_expansion_operator(d: int = 4):
     expands it into a larger portion of state space.
     - State_Dispersion INCREASES
     - Emits structure into the environment
-    - Maps to the inductive/divergent stroke
+    - Maps to the TeFi/divergent stroke
     """
     print(f"\n{'='*60}")
     print(f"OPERATOR 2: EXPANSION (emissive logic)")

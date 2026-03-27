@@ -30,7 +30,7 @@ The current owner graph carries:
 
 | Node Type | Count | Owner Schema | Description |
 |---|---:|---|---|
-| `ENGINE` | 2 | `EngineType` | Deductive (`type1_deductive`) and Inductive (`type2_inductive`) engine identities |
+| `ENGINE` | 2 | `EngineType` | Deductive (`type1_left_weyl`) and Inductive (`type2_right_weyl`) engine identities |
 | `MACRO_STAGE` | 16 | `MacroStage` | One of the 8 canonical terrains within one engine type |
 | `OPERATOR` | 4 | `SubcycleOperator` | Fixed operator family: `Ti`, `Fe`, `Te`, `Fi` |
 | `TORUS` | 3 | `TorusState` | Nested Hopf torus identities: `inner`, `clifford`, `outer` |
@@ -52,7 +52,7 @@ The current owner graph carries:
 
 | Attribute | Applies To | Description |
 |---|---|---|
-| `public_id` | all nodes | Stable join handle, e.g. `qit::ENGINE::type1_deductive` |
+| `public_id` | all nodes | Stable join handle, e.g. `qit::ENGINE::type1_left_weyl` |
 | `label` | all nodes | Human-readable display label |
 | `engine_type` | `MACRO_STAGE`, `SUBCYCLE_STEP` | Which engine family the stage/step belongs to |
 | `terrain` | `MACRO_STAGE`, `SUBCYCLE_STEP` | Canonical terrain code such as `Se_f` |

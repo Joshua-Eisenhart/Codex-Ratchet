@@ -150,13 +150,13 @@ class TestStrongBridgeResolution:
         _write_json(qit_path, {
             "nodes": {
                 "qit_hash_1": {
-                    "public_id": "qit::ENGINE::type1_deductive",
+                    "public_id": "qit::ENGINE::type1_left_weyl",
                     "node_type": "ENGINE",
                 }
             },
             "edges": [],
             "public_id_index": {
-                "qit::ENGINE::type1_deductive": "qit_hash_1",
+                "qit::ENGINE::type1_left_weyl": "qit_hash_1",
             },
         })
 
@@ -169,7 +169,7 @@ class TestStrongBridgeResolution:
                 {
                     "source_id": "SIM::demo",
                     "target_id": "missing_qit_hash",
-                    "target_public_id": "qit::ENGINE::type1_deductive",
+                    "target_public_id": "qit::ENGINE::type1_left_weyl",
                     "relation": "SIM_EVIDENCE_FOR",
                     "attributes": {},
                 }

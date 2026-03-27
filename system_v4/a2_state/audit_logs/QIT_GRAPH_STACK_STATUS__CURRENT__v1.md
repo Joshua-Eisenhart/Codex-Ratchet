@@ -1,12 +1,12 @@
 # QIT Graph Stack Status
 
 - status: `precheck_blocked`
-- generated_utc: `2026-03-27T00:20:17Z`
+- generated_utc: `2026-03-27T00:34:32Z`
 - purpose: `read-only-by-default verification surface over the current QIT owner snapshot and bounded sidecars`
-- snapshot_id: `2549340de478553ad30cb2fcfc875918bc20e036a1a47e23030ee7bc4b716119`
-- git_sha: `7391077305b05a3e82e5cf38aaf7b42e236f41b3`
+- snapshot_id: `b6087561db1be4a124aca861a18a15601a056fac2b5c583f8b0e4a0ed787c527`
+- git_sha: `18dbe09a7c613ba43f3c941f2ad04d4c5afa8db6`
 - git_worktree_dirty: `True`
-- owner_builder_sha256: `271e5c1681d077ea0994fdd4a5a9ff68e0a21e45e4129943e03858b0e4744822`
+- owner_builder_sha256: `a9a45b8d6afd05d09ade953aec9569145850beab0b98f4e5c12ce4507bfb091b`
 
 ## Report Surface
 - surface_class: `tracked_current_workspace_report`
@@ -18,8 +18,8 @@
 ## Owner Layer
 - qit_graph_json: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json`
 - qit_graph_action: `read_existing_snapshot`
-- qit_graph_sha256: `82ad2bda2f3be37b7c69cf2d436477fb3a8f40d755e170c076dc2a12885dedda`
-- qit_graph_content_hash: `7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff`
+- qit_graph_sha256: `a51bfa4f886979b450508a41401e3df8d3c47fcc419ebf16d0c8893c641cee36`
+- qit_graph_content_hash: `66a8c941ec313aa1277b374a7520144c3077dd6e7275691c65360a9156058bf7`
 - qit_graph_content_hash_matches_recomputed: `True`
 - graphml_export: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.graphml`
 - graphml_action: `read_existing_snapshot`
@@ -77,10 +77,10 @@
 - LightRAG status: `sidecar_corpus_ready`
 
 ## Runtime Evidence Bridge
-- status: `present`
+- status: `partial`
 - json_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json`
 - md_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md`
-- owner_content_hash_matches_current_snapshot: `True`
+- owner_content_hash_matches_current_snapshot: `False`
 - runtime_sample_count: `2`
 - sim_packet_count: `5`
 - complete_mappings: `4`
@@ -95,14 +95,14 @@
 - allow_owner_writes: `False`
 - allow_proof_claims: `False`
 - embedding_backed_query: `False`
-- document_count: `30`
+- document_count: `34`
 - top_hit_count: `8`
 
 ## Hopf/Weyl Projection
-- status: `present`
+- status: `partial`
 - json_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json`
 - md_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md`
-- owner_content_hash_matches_current_snapshot: `True`
+- owner_content_hash_matches_current_snapshot: `False`
 - audit_only: `True`
 - observer_only: `True`
 - do_not_promote: `True`
@@ -111,10 +111,10 @@
 - weyl_projection_status: `engine_pair_only_derived`
 
 ## Hopf/Weyl Evidence Audit
-- status: `present`
+- status: `partial`
 - json_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json`
 - md_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.md`
-- owner_content_hash_matches_current_snapshot: `True`
+- owner_content_hash_matches_current_snapshot: `False`
 - audit_only: `True`
 - nonoperative: `True`
 - do_not_promote: `True`
@@ -123,15 +123,16 @@
 - chirality_witness_count: `2`
 
 ## Torus/Type Repair Gap Report
-- status: `present`
+- status: `partial`
 - json_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.json`
 - md_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.md`
-- owner_content_hash_matches_current_snapshot: `True`
+- owner_content_hash_matches_current_snapshot: `False`
 - audit_only: `True`
 - nonoperative: `True`
 - do_not_promote: `True`
 - torus_gap_count: `3`
 - type_gap_count: `3`
+- interpretation: `bounded repair map only; listed gaps are not already repaired and this surface is not promotion evidence`
 
 ## Next Actions
 - keep owner verification read-only by default and use refresh flags only for intentional artifact regeneration

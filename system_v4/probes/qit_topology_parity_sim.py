@@ -7,8 +7,8 @@ This explicitly eliminates the legacy "Szilard/Engine" terminology, opting
 for mathematically pure QIT Process_Cycles.
 
 KEY DISTINCTION (Chirality Reversal / Inverted Loops):
-  Type-1: Deductive Loop (FeTi) Outer, Inductive Loop (TeFi) Inner
-  Type-2: Inductive Loop (TeFi) Outer, Deductive Loop (FeTi) Inner
+  Type-1: Left Weyl: FeTi on base, TeFi on fiber
+  Type-2: Right Weyl: TeFi on base, FeTi on fiber
 
 We use V2 strictly-compliant physics:
   - Landauer-bounded trace operations.
@@ -78,25 +78,25 @@ def negentropy(rho, d):
     return np.log(d) - S
 
 TYPE1_STAGES = [
-    (1, "Ti", False), # S1: Deductive S1 / DOWN
-    (2, "Fe", True),  # S2: Deductive S2 / UP
-    (3, "Ti", True),  # S3: Deductive S3 / UP
-    (4, "Fe", False), # S4: Deductive S4 / DOWN
-    (5, "Fi", False), # S5: Inductive S1 / DOWN
-    (6, "Te", False), # S6: Inductive S2 / DOWN
-    (7, "Fi", True),  # S7: Inductive S3 / UP
-    (8, "Te", True),  # S8: Inductive S4 / UP
+    (1, "Ti", False), # S1: FeTi S1 / DOWN
+    (2, "Fe", True),  # S2: FeTi S2 / UP
+    (3, "Ti", True),  # S3: FeTi S3 / UP
+    (4, "Fe", False), # S4: FeTi S4 / DOWN
+    (5, "Fi", False), # S5: TeFi S1 / DOWN
+    (6, "Te", False), # S6: TeFi S2 / DOWN
+    (7, "Fi", True),  # S7: TeFi S3 / UP
+    (8, "Te", True),  # S8: TeFi S4 / UP
 ]
 
 TYPE2_STAGES = [
-    (1, "Fi", True),  # S1: Inductive S1 / UP (Chirality flipped)
-    (2, "Te", False), # S2: Inductive S2 / DOWN
-    (3, "Fi", False), # S3: Inductive S3 / DOWN
-    (4, "Te", True),  # S4: Inductive S4 / UP
-    (5, "Ti", True),  # S5: Deductive S1 / UP
-    (6, "Fe", True),  # S6: Deductive S2 / UP
-    (7, "Ti", False), # S7: Deductive S3 / DOWN
-    (8, "Fe", False), # S8: Deductive S4 / DOWN
+    (1, "Fi", True),  # S1: TeFi S1 / UP (Chirality flipped)
+    (2, "Te", False), # S2: TeFi S2 / DOWN
+    (3, "Fi", False), # S3: TeFi S3 / DOWN
+    (4, "Te", True),  # S4: TeFi S4 / UP
+    (5, "Ti", True),  # S5: FeTi S1 / UP
+    (6, "Fe", True),  # S6: FeTi S2 / UP
+    (7, "Ti", False), # S7: FeTi S3 / DOWN
+    (8, "Fe", False), # S8: FeTi S4 / DOWN
 ]
 
 def apply_lindblad_stage(rho, d, dominant_op, axis6_up, H, evals, evecs, gamma_dom=5.0, gamma_sub=1.0, dt=0.01):
@@ -168,10 +168,10 @@ def sim_qit_topology_parity(d=4, cycles=10):
     
     H, evals, evecs = build_h_and_eigenbasis(d)
 
-    print("Running Type-1 Topology [Deductive Outer -> Inductive Inner]")
+    print("Running Type-1 Topology [Left Weyl (FeTi base -> TeFi fiber)]")
     rho1, dphi1, deltas1 = run_topology(TYPE1_STAGES, "Type-1", rho_init, H, evals, evecs, d, cycles)
     
-    print("Running Type-2 Topology [Inductive Outer -> Deductive Inner]")
+    print("Running Type-2 Topology [Right Weyl (TeFi base -> FeTi fiber)]")
     rho2, dphi2, deltas2 = run_topology(TYPE2_STAGES, "Type-2", rho_init, H, evals, evecs, d, cycles)
 
     print(f"\nRESULTS:")

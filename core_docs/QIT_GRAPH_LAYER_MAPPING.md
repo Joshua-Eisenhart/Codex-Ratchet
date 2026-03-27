@@ -36,7 +36,7 @@ Optional GA-torch:     kingdon
 
 | Layer | What It Holds | Status |
 |---|---|---|
-| **NetworkX (owner)** | `ENGINE::type1_deductive`, `ENGINE::type2_inductive` nodes + `CHIRALITY_COUPLING` edge + `ENGINE_OWNS_STAGE` edges (16 per type) | **Live.** Structural facts. |
+| **NetworkX (owner)** | `ENGINE::type1_left_weyl`, `ENGINE::type2_right_weyl` nodes + `CHIRALITY_COUPLING` edge + `ENGINE_OWNS_STAGE` edges (16 per type) | **Live.** Structural facts. |
 | **clifford (next carrier)** | `CHIRALITY_COUPLING` edge as the pseudoscalar `e₁∧e₂∧e₃ = [0,0,0,0,0,0,0,1.0]` | **Correct next semantic carrier.** Chirality IS the pseudoscalar in Cl(3). The coupling is a parity transformation — exactly what grade-3 represents. Currently bounded read-only. |
 | **TopoNetX (next carrier)** | The two engine types + coupling form a 1-cell. Shared-torus stages create 2-cells (triangles). | **Bounded read-only projection.** |
 | **PyG (next carrier)** | Hetero edge type `('type1', 'couples_with', 'type2')` with learned coupling strength tensor | **Bounded read-only sidecar.** |

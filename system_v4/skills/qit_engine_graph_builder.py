@@ -69,8 +69,8 @@ TORI = [
 ]
 
 ENGINE_TYPES = [
-    ("type1_deductive", "Fe/Ti dominant on base, Te/Fi on fiber"),
-    ("type2_inductive", "Te/Fi dominant on base, Fe/Ti on fiber"),
+    ("type1_left_weyl", "Fe/Ti dominant on base, Te/Fi on fiber"),
+    ("type2_right_weyl", "Te/Fi dominant on base, Fe/Ti on fiber"),
 ]
 
 PROVEN_AXES = [
@@ -107,7 +107,7 @@ NEGATIVE_WITNESSES: list[tuple[str, str, str, list[str], str, str]] = [
         "neg_no_chirality",
         "Removing engine type distinction kills asymmetry",
         "CHIRALITY",
-        ["type1_deductive", "type2_inductive"],
+        ["type1_left_weyl", "type2_right_weyl"],
         "specific_targets",
         "engine_type_asymmetry_is_necessary",
     ),
@@ -155,7 +155,7 @@ NEGATIVE_WITNESSES: list[tuple[str, str, str, list[str], str, str]] = [
         "neg_type_flatten",
         "Flattening engine types kills chirality separation",
         "CHIRALITY",
-        ["type1_deductive", "type2_inductive"],
+        ["type1_left_weyl", "type2_right_weyl"],
         "specific_targets",
         "type_specific_weighting_is_necessary",
     ),
@@ -433,8 +433,8 @@ def build_qit_engine_graph() -> dict[str, Any]:
     # 8e. CHIRALITY_COUPLING
     edges.append(_make_edge(
         "CHIRALITY_COUPLING",
-        _h("ENGINE", "type1_deductive"), _h("ENGINE", "type2_inductive"),
-        _p("ENGINE", "type1_deductive"), _p("ENGINE", "type2_inductive"),
+        _h("ENGINE", "type1_left_weyl"), _h("ENGINE", "type2_right_weyl"),
+        _p("ENGINE", "type1_left_weyl"), _p("ENGINE", "type2_right_weyl"),
         {"coupling_type": "complementary_dominance"},
     ))
 

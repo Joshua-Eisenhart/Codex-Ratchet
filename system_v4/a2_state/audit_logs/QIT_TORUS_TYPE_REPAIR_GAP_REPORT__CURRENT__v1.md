@@ -1,12 +1,12 @@
 # QIT Torus/Type Repair Gap Report
 
 - status: `bounded_non_promotional_gap_summary`
-- generated_utc: `2026-03-27T00:20:13Z`
+- generated_utc: `2026-03-27T00:24:21Z`
 
 ## Report Surface
 - surface_class: `tracked_current_workspace_report`
 - represents: `current workspace torus/type repair-gap state at generation time; may differ from the last committed snapshot until tracked CURRENT artifacts are committed`
-- git_sha: `7391077305b05a3e82e5cf38aaf7b42e236f41b3`
+- git_sha: `18dbe09a7c613ba43f3c941f2ad04d4c5afa8db6`
 
 ## Audit Boundary
 - audit_only: `True`

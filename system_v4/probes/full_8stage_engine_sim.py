@@ -5,12 +5,12 @@ Implements the complete process_cycle cycle with all 8 stages, Berry phase
 tracking, survivorship functional computation, and fractal nesting test.
 
 A2 Fuel Source (NotebookLM 240 sources):
-  PHASE A (MAJOR LOOP / Deductive / S↓):
+  PHASE A (MAJOR LOOP / Left Weyl FeTi / S↓):
     Stage 1: CPTP projective trace_projection (isothermal, bath-coupled)
     Stage 2: Laplacian diffusion damping (adiabatic, insulated)
     Stage 3: Boundary-pruned unitary expansion (adiabatic, insulated)
     Stage 4: Kuramoto phase-lock entrainment (isothermal, bath-coupled)
-  PHASE B (MINOR LOOP / Inductive / S↑):
+  PHASE B (MINOR LOOP / Right Weyl TeFi / S↑):
     Stage 5: Gradient descent work extraction (isothermal, bath-coupled)
     Stage 6: Matched frequency filtering (adiabatic, insulated)
     Stage 7: Spectral synthesis emission (adiabatic, insulated)
@@ -317,7 +317,7 @@ def run_full_8stage_cycle(d: int = 4, n_full_cycles: int = 4):
     for cycle in range(n_full_cycles):
         print(f"\n  ─── Cycle {cycle+1}/{n_full_cycles} {'(Major=360°)' if cycle % 2 == 0 else '(Minor=360°)'} ───")
         
-        # PHASE A: Major Loop (Deductive / S↓)
+        # PHASE A: Major Loop (Left Weyl FeTi / S↓)
         # Stage 1: Trace_Projection Projection (isothermal)
         rho = stage1_measurement_projection(rho, d)
         S = von_neumann_entropy(rho)
@@ -350,7 +350,7 @@ def run_full_8stage_cycle(d: int = 4, n_full_cycles: int = 4):
         stage_survivorship.append((f"C{cycle+1}:{stage_labels[3]}", Phi))
         print(f"    {stage_labels[3]:24s} S={S:.6f} Φ={Phi:.6f}")
         
-        # PHASE B: Minor Loop (Inductive / S↑)
+        # PHASE B: Minor Loop (Right Weyl TeFi / S↑)
         # Stage 5: Gradient Descent (isothermal)
         rho = stage5_gradient_descent(rho, observable, eta=0.05)
         S = von_neumann_entropy(rho)

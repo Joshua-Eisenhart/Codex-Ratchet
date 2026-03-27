@@ -4,7 +4,7 @@ Negative Inverted Major Loop SIM
 ================================
 Graveyard PROBE (Adversarial Stress Test)
 Hypothesis to KILL: "The chronological order of constraints (Ti before Fe) doesn't matter, only the topological presence matters."
-Test: Reverse the sequence of the Type 1 (Deductive) major loop from Ti->Fe to Fe->Ti.
+Test: Reverse the sequence of the Type 1 (Left Weyl) major loop from Ti->Fe to Fe->Ti.
 Expected: Pumping heat before bounding the eigenbasis destroys constraint accumulation. The engine must saturate (ΔΦ ≈ 0) or overheat. Emits INVERTED_MAJOR_LOOP_HEATS.
 """
 
@@ -142,7 +142,7 @@ def sim_inverted_loop_process_cycle():
     tokens = []
     
     if is_stalled:
-        print("\n  [KILL] VALIDATED: Inverting the Deductive sequence stalls thermal bounds.")
+        print("\n  [KILL] VALIDATED: Inverting the Left Weyl Fe/Ti sequence stalls thermal bounds.")
         tokens.append(EvidenceToken(
             "", "S_NEG_INVERTED_MAJOR_LOOP_V1", "KILL", dphi, "INVERTED_MAJOR_LOOP_HEATS"
         ))

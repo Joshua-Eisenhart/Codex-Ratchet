@@ -4,7 +4,7 @@ Navier-Stokes & Complexity SIM Suite
 Tests the Navier-Stokes ↔ Lindblad mapping and P vs NP as invariant_target state_structure.
 
 SIM_01: Viscosity = Lindblad dissipation rate
-SIM_02: Turbulence = winding saturation (inductive beats dissipative)
+SIM_02: Turbulence = winding saturation (Te/Fi beats dissipative)
 SIM_03: P = within-convergent_subset convergence (cheap)
 SIM_04: NP = between-convergent_subset transition (expensive, requires work)
 SIM_05: Smoothness — can dissipation always prevent blowup in finite d?
@@ -129,7 +129,7 @@ def sim_viscosity_dissipation(d: int = 4):
 
 def sim_turbulence_stall(d: int = 4):
     """
-    CLAIM: Turbulence occurs when inductive (expansive) dynamics
+    CLAIM: Turbulence occurs when Te/Fi expansive dynamics
     outpace dissipative (contractive) dynamics. The system can't
     smooth fast enough → state_dispersion production explodes → stall.
     
@@ -155,7 +155,7 @@ def sim_turbulence_stall(d: int = 4):
         
         entropy_history = []
         for step in range(100):
-            # Inductive: strong unitary
+            # Te/Fi: strong unitary
             for _ in range(int(max(Re, 1))):
                 rho = apply_unitary_channel(rho, U)
             # Dissipative: weak Lindblad

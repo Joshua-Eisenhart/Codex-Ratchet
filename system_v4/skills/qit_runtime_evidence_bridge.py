@@ -72,8 +72,8 @@ SIM_RESULT_MAPPINGS: list[dict[str, Any]] = [
         "result_file": "neg_type_flatten_stage_matrix_results.json",
         "neg_witness_public_id": "qit::NEG_WITNESS::neg_type_flatten",
         "target_public_ids": [
-            "qit::ENGINE::type1_deductive",
-            "qit::ENGINE::type2_inductive",
+            "qit::ENGINE::type1_left_weyl",
+            "qit::ENGINE::type2_right_weyl",
         ],
         "summary_keys": ["flat_type_weighting"],
     },
@@ -142,7 +142,7 @@ def _build_runtime_samples() -> list[dict[str, Any]]:
         engine = GeometricEngine(engine_type=engine_type)
         state = engine.init_state()
         state = engine.run_cycle(state)
-        engine_name = "type1_deductive" if engine_type == 1 else "type2_inductive"
+        engine_name = "type1_left_weyl" if engine_type == 1 else "type2_right_weyl"
         run_id = f"qit_runtime_cycle_sample::{engine_name}::deterministic_full_cycle"
         runtime_slice = build_runtime_slice(state, run_id=run_id)
         overlay = runtime_slice["state_overlay"]

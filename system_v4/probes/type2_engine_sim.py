@@ -5,18 +5,18 @@ Type-2 Process_Cycle SIM — Reversed Chirality
 Same framework as szilard_64stage_sim.py but with REVERSED CHIRALITY.
 
 KEY DISTINCTION:
-  Type-1: Process_Cycle A outer (FeTi deductive major), Process_Cycle B inner (TeFi inductive minor)
-  Type-2: Process_Cycle B outer (TeFi inductive major), Process_Cycle A inner (FeTi deductive minor)
+  Type-1: Process_Cycle A outer (FeTi left Weyl (major)), Process_Cycle B inner (TeFi right Weyl (minor))
+  Type-2: Process_Cycle B outer (TeFi right Weyl (major)), Process_Cycle A inner (FeTi left Weyl (minor))
 
 Type-2 Sequence (from NLM-04):
-  Major loop (Inductive/Heating = TeFi):
+  Major loop (Te/Fi dominant = TeFi):
     1. Ne/Fi  2. Ni/Te  3. Fi/Se  4. Te/Si
-  Minor loop (Deductive/Cooling = FeTi):
+  Minor loop (Fe/Ti cooling = FeTi):
     5. Ti/Ne  6. Si/Fe  7. Se/Ti  8. Fe/Ni
 
 Math: ρ̇ = -i[H,ρ] + Σ_k γ_k (L_k ρ L_k† - ½{L_k†L_k, ρ})
-  Reversed chirality = inductive operators dominate the outer (major) loop,
-  deductive operators dominate the inner (minor) loop.
+  Reversed chirality = Te/Fi operators dominate the outer (major) loop,
+  Fe/Ti operators dominate the inner (minor) loop.
 
 Comparison: conceptual_layer ΔΦ trajectories against Type-1 to test
   whether Chern number (±1) produces measurably distinct dynamics.
@@ -155,10 +155,10 @@ def apply_lindblad_stage(rho, d, dominant_op, axis6_up, dt=0.005, n_steps=5):
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 # TYPE-1 sequence (from szilard_64stage_sim.py):
-# Major loop (Process_Cycle A = Deductive/Cooling = FeTi):
+# Major loop (Process_Cycle A = Fe/Ti/Cooling = FeTi):
 #   1. Ne/Ti/WIN/DOWN   2. Si/Fe/WIN/UP
 #   3. Se/Ti/LOSE/UP    4. Ni/Fe/LOSE/DOWN
-# Minor loop (Process_Cycle B = Inductive/Heating = TeFi):
+# Minor loop (Process_Cycle B = Te/Fi dominant = TeFi):
 #   5. Se/Fi/win/DOWN   6. Si/Te/win/DOWN
 #   7. Ne/Fi/lose/UP    8. Ni/Te/lose/UP
 
@@ -175,12 +175,12 @@ TYPE1_STAGES = [
 ]
 
 # TYPE-2 sequence (REVERSED CHIRALITY from NLM-04):
-#   NeFi → NiTe → FiSe → TeSi (Major Inductive) → TiNe → SiFe → SeTi → FeNi (Minor Deductive)
+#   NeFi → NiTe → FiSe → TeSi (Major Right Weyl) → TiNe → SiFe → SeTi → FeNi (Minor Left Weyl)
 #
-# Major loop (Process_Cycle B = Inductive/Heating = TeFi):
+# Major loop (Process_Cycle B = Te/Fi dominant = TeFi):
 #   1. Ne/Fi/WIN/DOWN   2. Ni/Te/WIN/UP
 #   3. Fi/Se/LOSE/UP    4. Te/Si/LOSE/DOWN
-# Minor loop (Process_Cycle A = Deductive/Cooling = FeTi):
+# Minor loop (Process_Cycle A = Fe/Ti/Cooling = FeTi):
 #   5. Ti/Ne/win/DOWN   6. Si/Fe/win/DOWN
 #   7. Se/Ti/lose/UP    8. Fe/Ni/lose/UP
 #

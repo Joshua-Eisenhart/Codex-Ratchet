@@ -11,10 +11,10 @@ As hypothesized by the User, true operational viability rests strictly within tw
 ## Mathematical Topology Implementation
 We modeled the four possible combinations of the Math Classes (Axis 4) intersecting against the loop impedance geometries (Axis 3):
 
-1. **Outer Deductive / Inner Inductive** (Type 1 Engine)
-2. **Outer Inductive / Inner Deductive** (Type 2 Engine)
-3. **Outer Deductive / Inner Deductive** (Over-Condensation Conflation)
-4. **Outer Inductive / Inner Inductive** (Thermal Expansion Conflation)
+1. **Left Weyl (FeTi base / TeFi fiber)** (Type 1 Engine)
+2. **Right Weyl (TeFi base / FeTi fiber)** (Type 2 Engine)
+3. **FeTi-FeTi overlap (CONFLATION)** (Over-Condensation Conflation)
+4. **TeFi-TeFi overlap (CONFLATION)** (Thermal Expansion Conflation)
 
 To detect a living engine, the matrix had to satisfy two thermodynamic limits:
 1. **Negentropy Extraction ($\Delta\Phi > 0$):** The structure must spontaneously draw itself away from thermal equilibrium and sustain the structural gain.
@@ -22,12 +22,12 @@ To detect a living engine, the matrix had to satisfy two thermodynamic limits:
 
 ## Final Execution Evidence
 The matrix simulations rigidly proved that ONLY the complementary Engine Types survived. 
-When mathematical loops overlapped with themselves (e.g. Deductive matched with Deductive), the topology could not natively seal its own boundary. Without the inverse math class to act as a counter-governor, the matrices experienced massive physical thrashing across the phase space (Trace Displacement Orbit $> 0.12$).
+When mathematical loops overlapped with themselves (e.g. FeTi matched with FeTi), the topology could not natively seal its own boundary. Without the inverse math class to act as a counter-governor, the matrices experienced massive physical thrashing across the phase space (Trace Displacement Orbit $> 0.12$).
 
 *   **Type 1 Engine** -> `[Orbit=0.0108]` -> **ALIVE**
 *   **Type 2 Engine** -> `[Orbit=0.0043]` -> **ALIVE**
-*   **Deductive Overlap** -> `[Orbit=0.3198]` -> **DEAD (THRASHING)**
-*   **Inductive Overlap** -> `[Orbit=0.1241]` -> **DEAD (THRASHING)**
+*   **FeTi Overlap** -> `[Orbit=0.3198]` -> **DEAD (THRASHING)**
+*   **TeFi Overlap** -> `[Orbit=0.1241]` -> **DEAD (THRASHING)**
 
 **Protocol Output:** `E_SIM_ABIOGENESIS_TYPE1_OK`, `E_SIM_ABIOGENESIS_TYPE2_OK`, and `E_SIM_ABIOGENESIS_EXCLUSION_OK` generated cleanly.
 

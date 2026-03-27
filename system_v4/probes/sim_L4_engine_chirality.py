@@ -8,12 +8,12 @@ From the source doc:
   CANON: Axis-3 = engine-family split (Type-1 vs Type-2).
   HYPOTHESIS: This split manifests as left/right Weyl spinor selection.
 
-  Type 1: Deductive (Fe/Ti) OUTER, Inductive (Te/Fi) INNER
-    = deductive envelope wrapping inductive core
+  Type 1: Left Weyl — Fe/Ti dominant on base, Te/Fi on fiber
+    = left-handed Weyl spinor topology
     = Fe/Ti acts on base loop, Te/Fi acts on fiber loop
 
-  Type 2: Inductive (Te/Fi) OUTER, Deductive (Fe/Ti) INNER
-    = inductive envelope wrapping deductive core
+  Type 2: Right Weyl — Te/Fi dominant on base, Fe/Ti on fiber
+    = right-handed Weyl spinor topology
     = Te/Fi acts on base loop, Fe/Ti acts on fiber loop
 
 Key Chiral Properties:
@@ -46,19 +46,19 @@ from proto_ratchet_sim_runner import EvidenceToken
 
 
 def run_type1_engine(rho: np.ndarray, n_cycles: int = 5) -> dict:
-    """Type 1: Deductive OUTER, Inductive INNER.
+    """Type 1: Left Weyl OUTER, Right Weyl INNER.
 
     Each cycle:
-      1. Inner loop (fiber): Te then Fi (inductive exploration)
-      2. Outer loop (base): Fe then Ti (deductive constraint)
+      1. Inner loop (fiber): Te then Fi (Te/Fi exploration)
+      2. Outer loop (base): Fe then Ti (Fe/Ti constraint)
 
-    The deductive framework wraps around inductive core.
+    Left Weyl: Fe/Ti dominant on base (outer), Te/Fi on fiber (inner).
     """
     phi_history = [negentropy(rho)]
     stage_deltas = {"Se": [], "Si": [], "Ne": [], "Ni": []}
 
     for cycle in range(n_cycles):
-        # ── INNER LOOP (fiber): Inductive = Te then Fi ──
+        # ── INNER LOOP (fiber): Te then Fi (explore+filter) ──
         rho_before_inner = rho.copy()
         rho = apply_Te(rho, polarity_up=True)   # Explore (fiber rotation)
         rho = apply_Fi(rho, polarity_up=False)   # Select (gentle filter)
@@ -68,7 +68,7 @@ def run_type1_engine(rho: np.ndarray, n_cycles: int = 5) -> dict:
         eta_approx = np.arccos(np.clip(abs(bloch[2]), 0, 1))
         inner_dphi = negentropy(rho) - negentropy(rho_before_inner)
 
-        # ── OUTER LOOP (base): Deductive = Fe then Ti ──
+        # ── OUTER LOOP (base): Fe then Ti (dominant in Left Weyl) ──
         rho_before_outer = rho.copy()
         rho = apply_Fe(rho, polarity_up=True)    # Dissipate (base transport)
         rho = apply_Ti(rho, polarity_up=True)    # Constrain (fiber projection)
@@ -84,22 +84,22 @@ def run_type1_engine(rho: np.ndarray, n_cycles: int = 5) -> dict:
 
 
 def run_type2_engine(rho: np.ndarray, n_cycles: int = 5) -> dict:
-    """Type 2: Inductive OUTER, Deductive INNER.
+    """Type 2: Right Weyl — Te/Fi on base, Fe/Ti on fiber.
 
     Each cycle:
-      1. Inner loop (fiber): Fe then Ti (deductive constraint)
-      2. Outer loop (base): Te then Fi (inductive exploration)
+      1. Inner loop (fiber): Fe then Ti (Fe/Ti constraint)
+      2. Outer loop (base): Te then Fi (Te/Fi exploration)
 
-    The inductive framework wraps around deductive core.
+    Right Weyl: Te/Fi dominant on base (outer), Fe/Ti on fiber (inner).
     """
     phi_history = [negentropy(rho)]
 
     for cycle in range(n_cycles):
-        # ── INNER LOOP (fiber): Deductive = Fe then Ti ──
+        # ── INNER LOOP (fiber): Fe then Ti (dominant in Right Weyl) ──
         rho = apply_Fe(rho, polarity_up=True)    # Dissipate
         rho = apply_Ti(rho, polarity_up=True)    # Constrain
 
-        # ── OUTER LOOP (base): Inductive = Te then Fi ──
+        # ── OUTER LOOP (base): Te then Fi (explore+filter) ──
         rho = apply_Te(rho, polarity_up=True)    # Explore
         rho = apply_Fi(rho, polarity_up=True)    # Select (strong filter)
 
@@ -202,8 +202,8 @@ def run_L4_validation():
     t1_bloch_z = np.array(t1_bloch_z)
     t2_bloch_z = np.array(t2_bloch_z)
 
-    # Type 1 (deductive outer) should drive toward constraint (higher z)
-    # Type 2 (inductive outer) should drive toward exploration (different z)
+    # Type 1 (left Weyl) should drive toward constraint (higher z)
+    # Type 2 (right Weyl) should drive toward exploration (different z)
     z_difference = abs(np.mean(t1_bloch_z) - np.mean(t2_bloch_z))
     mirror_detected = z_difference > 0.01
     results["avg_t1_bloch_z"] = float(np.mean(t1_bloch_z))

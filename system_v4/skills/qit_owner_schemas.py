@@ -30,8 +30,8 @@ from pydantic import BaseModel, Field, model_validator
 # ── Enums ──
 
 class EngineTypeEnum(str, Enum):
-    DEDUCTIVE = "type1_deductive"
-    INDUCTIVE = "type2_inductive"
+    LEFT_WEYL = "type1_left_weyl"
+    RIGHT_WEYL = "type2_right_weyl"
 
 
 class OperatorEnum(str, Enum):
@@ -353,10 +353,10 @@ CANONICAL_TORI = [
 ]
 
 CANONICAL_ENGINE_TYPES = [
-    EngineType(engine_type=EngineTypeEnum.DEDUCTIVE,
-               description="Fe/Ti dominant on base, Te/Fi on fiber"),
-    EngineType(engine_type=EngineTypeEnum.INDUCTIVE,
-               description="Te/Fi dominant on base, Fe/Ti on fiber"),
+    EngineType(engine_type=EngineTypeEnum.LEFT_WEYL,
+               description="Left-handed Weyl spinor: Fe/Ti dominant on base, Te/Fi on fiber"),
+    EngineType(engine_type=EngineTypeEnum.RIGHT_WEYL,
+               description="Right-handed Weyl spinor: Te/Fi dominant on base, Fe/Ti on fiber"),
 ]
 
 
@@ -374,7 +374,7 @@ if __name__ == "__main__":
         print(f"    {e.engine_type.value}: {e.description}")
 
     # Validate one macro-stage
-    stage = MacroStage(terrain="Se_f", engine_type=EngineTypeEnum.DEDUCTIVE,
+    stage = MacroStage(terrain="Se_f", engine_type=EngineTypeEnum.LEFT_WEYL,
                        stage_index=0, loop=LoopEnum.FIBER,
                        mode=ModeEnum.EXPAND, boundary=BoundaryEnum.OPEN)
     print(f"\n  Sample stage: {stage.terrain} (idx={stage.stage_index})")
@@ -389,7 +389,7 @@ if __name__ == "__main__":
     # Validate one TopoNetX projection
     proj = TopoNetXCellProjection(
         shape=[105, 272, 0],
-        stage_cycles=["type1_deductive_8stage_loop", "type2_inductive_8stage_loop"],
+        stage_cycles=["type1_left_weyl_8stage_loop", "type2_right_weyl_8stage_loop"],
         torus_2cells=[],
         stage_diamonds=[]
     )

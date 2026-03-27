@@ -127,7 +127,7 @@ PROBLEM_CATALOG = [
     ),
     ResearchProblem(
         name="ABIOGENESIS",
-        description="Life requires chiral Deductive-Inductive engine; symmetric engines die",
+        description="Life requires chiral Left-Right Weyl engine; symmetric engines die",
         sim_file="abiogenesis_v2_sim.py",
         parameter_space={},
         target_status="PASS",

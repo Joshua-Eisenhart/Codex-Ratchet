@@ -1,8 +1,8 @@
 """
 Dual Weyl Spinor Process_Cycle SIM
 ============================
-Tests the Type 1 (Left Weyl / convergent / deductive) and 
-Type 2 (Right Weyl / divergent / inductive) engines independently,
+Tests the Type 1 (Left Weyl / convergent) and 
+Type 2 (Right Weyl / divergent / right Weyl) engines independently,
 then composes them into an 8-stage 720° loop on the Hopf torus.
 
 A2 Fuel Source:
@@ -14,7 +14,7 @@ A2 Fuel Source:
 
 SIM hierarchy:
   T6: TYPE1_PROCESS_CYCLE — verify convergent invariant_target (already proven, re-run for comparison)
-  T7: TYPE2_PROCESS_CYCLE — verify divergent explorer (inductive ordering)
+  T7: TYPE2_PROCESS_CYCLE — verify divergent explorer (right Weyl ordering)
   T8: DUAL_PROCESS_CYCLE_720 — verify 8-stage composed loop doesn't state_reduction
   T9: CHIRAL_NON_STATE_REDUCTION — verify Type 1 and Type 2 produce distinct winding numbers
 """
@@ -71,11 +71,11 @@ def compute_winding_number(entropy_trajectory: List[float]) -> float:
 
 def run_type1_engine(d: int = 4, n_steps: int = 500, gamma: float = 3.0):
     """
-    Type 1 Process_Cycle: Left Weyl / Convergent / Deductive
+    Type 1 Process_Cycle: Left Weyl / Convergent
     Ordering: FGA dissipation FIRST, then FSA rotation (operator_bound-first)
     """
     print(f"\n{'='*60}")
-    print(f"TYPE 1 PROCESS_CYCLE (Left Weyl / Convergent / Deductive)")
+    print(f"TYPE 1 PROCESS_CYCLE (Left Weyl / Convergent)")
     print(f"  d={d}, steps={n_steps}, γ={gamma}")
     print(f"  Ordering: DISSIPATION → ROTATION (operator_bound-first)")
     print(f"{'='*60}")
@@ -91,7 +91,7 @@ def run_type1_engine(d: int = 4, n_steps: int = 500, gamma: float = 3.0):
     n_dissipation = max(1, int(gamma))
     
     for step in range(n_steps):
-        # Deductive: dissipate FIRST (operator_bound-first)
+        # Fe/Ti dominant: dissipate FIRST (operator_bound-first)
         for _ in range(n_dissipation):
             rho = apply_lindbladian_step(rho, L, dt=0.01)
         # Then rotate
@@ -115,14 +115,14 @@ def run_type1_engine(d: int = 4, n_steps: int = 500, gamma: float = 3.0):
 def run_type2_engine(d: int = 4, n_steps: int = 500, omega: float = 3.0,
                      gamma_weak: float = 0.5):
     """
-    Type 2 Process_Cycle: Right Weyl / Divergent / Inductive
+    Type 2 Process_Cycle: Right Weyl / Divergent
     Ordering: FSA rotation FIRST, then FGA dissipation (release-first)
     
     The key difference: rotation dominates, dissipation is weak.
     This should EXPAND the state, increasing state_dispersion and exploring.
     """
     print(f"\n{'='*60}")
-    print(f"TYPE 2 PROCESS_CYCLE (Right Weyl / Divergent / Inductive)")
+    print(f"TYPE 2 PROCESS_CYCLE (Right Weyl / Divergent)")
     print(f"  d={d}, steps={n_steps}, ω={omega}, γ_weak={gamma_weak}")
     print(f"  Ordering: ROTATION → DISSIPATION (release-first)")
     print(f"{'='*60}")
@@ -152,7 +152,7 @@ def run_type2_engine(d: int = 4, n_steps: int = 500, omega: float = 3.0,
     states = [rho.copy()]
     
     for step in range(n_steps):
-        # Inductive: rotate FIRST (release-first)
+        # Te/Fi dominant: rotate FIRST (release-first)
         rho = apply_unitary_channel(rho, U)
         # Then weak dissipation
         rho = apply_lindbladian_step(rho, L, dt=0.01)
@@ -177,8 +177,8 @@ def sim_dual_engine_720(d: int = 4, n_cycles: int = 4):
     SIM T8: 8-STAGE 720° LOOP
     
     Compose Type 1 and Type 2 engines into an 8-stage cycle:
-    Stages 1-4 (Type 1 / deductive / convergent): state_reduction toward invariant_target
-    Stages 5-8 (Type 2 / inductive / divergent): expand from invariant_target
+    Stages 1-4 (Type 1 / left Weyl / convergent): state_reduction toward invariant_target
+    Stages 5-8 (Type 2 / right Weyl / divergent): expand from invariant_target
     
     One full cycle = 360°. Must complete TWO cycles (720°) without state_reduction.
     The 720° spinor condition: state must return NEAR its starting point
@@ -186,7 +186,7 @@ def sim_dual_engine_720(d: int = 4, n_cycles: int = 4):
     """
     print(f"\n{'='*60}")
     print(f"SIM T8: DUAL PROCESS_CYCLE 720° LOOP")
-    print(f"  d={d}, cycles={n_cycles} (each cycle = 4 deductive + 4 inductive stages)")
+    print(f"  d={d}, cycles={n_cycles} (each cycle = 4 left Weyl + 4 right Weyl stages)")
     print(f"{'='*60}")
     
     # Process_Cycle parameters
@@ -210,7 +210,7 @@ def sim_dual_engine_720(d: int = 4, n_cycles: int = 4):
     for cycle in range(n_cycles):
         print(f"\n  --- Cycle {cycle+1}/{n_cycles} ---")
         
-        # Stages 1-4: Type 1 (Deductive / Convergent)
+        # Stages 1-4: Type 1 (Left Weyl / Convergent)
         # FGA dissipation dominant, operator_bound-first ordering
         for stage in range(4):
             for step in range(steps_per_stage):
@@ -220,9 +220,9 @@ def sim_dual_engine_720(d: int = 4, n_cycles: int = 4):
                 full_entropy_trajectory.append(von_neumann_entropy(rho))
         
         mid_entropy = von_neumann_entropy(rho)
-        print(f"    After 4 deductive stages: S = {mid_entropy:.6f}")
+        print(f"    After 4 left Weyl stages: S = {mid_entropy:.6f}")
         
-        # Stages 5-8: Type 2 (Inductive / Divergent)
+        # Stages 5-8: Type 2 (Right Weyl / Divergent)
         # FSA rotation dominant, release-first ordering
         for stage in range(4):
             for step in range(steps_per_stage):
@@ -231,7 +231,7 @@ def sim_dual_engine_720(d: int = 4, n_cycles: int = 4):
                 full_entropy_trajectory.append(von_neumann_entropy(rho))
         
         end_entropy = von_neumann_entropy(rho)
-        print(f"    After 4 inductive stages: S = {end_entropy:.6f}")
+        print(f"    After 4 right Weyl stages: S = {end_entropy:.6f}")
         
         cycle_endpoints.append(rho.copy())
     

@@ -9,7 +9,7 @@ Axis 6 controls the non-commutative sequence of states (i.e. does Operator A exe
 A common mapping flaw in scaling algorithms is geometric matrix dilution—as coordinate size exponentially scales, operators probabilistically commute towards common depolarized limits, artificially collapsing non-commutative hierarchies inside purely geometric bounds.
 
 ## Mathematical Constraints
-We mapped Operator A (Deductive Constraint, $C\_Ti$) and Operator B (Inductive Continuous Field, $C\_Te$) starting from a distinct single-coordinate particle point $|0\rangle\langle0|$.
+We mapped Operator A (FeTi Constraint, $C\_Ti$) and Operator B (TeFi Continuous Field, $C\_Te$) starting from a distinct single-coordinate particle point $|0\rangle\langle0|$.
 1.  **UP Mode:** A applied sequentially after B ($A \circ B$). The initial point is thrown around the Hamiltonian ring into a diffuse quantum state, and then immediately projected orthogonally, locking into a broadly uniform mixed mass.
 2.  **DOWN Mode:** B applied sequentially after A ($B \circ A$). The initial point is first constrained continuously down into itself locally, and then forcibly rotated perfectly intact to the next neighbor coordinate point $k \to k+1$.
 

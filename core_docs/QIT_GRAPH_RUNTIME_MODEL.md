@@ -13,8 +13,8 @@
 
 | Content | Example |
 |---|---|
-| Engine type nodes | `qit::ENGINE::type1_deductive` |
-| Macro-stage nodes | `qit::MACRO_STAGE::type1_deductive_Se_f` |
+| Engine type nodes | `qit::ENGINE::type1_left_weyl` |
+| Macro-stage nodes | `qit::MACRO_STAGE::type1_left_weyl_Se_f` |
 | Operator nodes | `qit::OPERATOR::Ti` |
 | Torus nodes | `qit::TORUS::inner` |
 | Axis nodes | `qit::AXIS::axis_0` |
@@ -65,7 +65,7 @@
 | SIM run records | `RUN::sim_L6_master_engine::20260326T090300Z` |
 | Evidence tokens | `EVIDENCE::PASS::L6_MASTER_ENGINE` |
 | Kill records | `KILL::neg_no_chirality::20260326T085300Z` |
-| Trajectory snapshots | `TRAJECTORY::type1_deductive::cycle_42` |
+| Trajectory snapshots | `TRAJECTORY::type1_left_weyl::cycle_42` |
 | Harness reports | `REPORT::autoresearch_evaluation_report::20260326T090300Z` |
 
 **Location**: Currently `system_v4/probes/a2_state/sim_results/*.json` (flat files). Not yet a graph.

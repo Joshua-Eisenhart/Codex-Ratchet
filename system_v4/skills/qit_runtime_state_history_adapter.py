@@ -45,12 +45,12 @@ def _public_id(prefix: str, name: str) -> str:
 
 
 def _engine_public_id(engine_type: int) -> str:
-    engine_name = "type1_deductive" if engine_type == 1 else "type2_inductive"
+    engine_name = "type1_left_weyl" if engine_type == 1 else "type2_right_weyl"
     return _public_id("ENGINE", engine_name)
 
 
 def _engine_enum(engine_type: int) -> EngineTypeEnum:
-    return EngineTypeEnum.DEDUCTIVE if engine_type == 1 else EngineTypeEnum.INDUCTIVE
+    return EngineTypeEnum.LEFT_WEYL if engine_type == 1 else EngineTypeEnum.RIGHT_WEYL
 
 
 def _terrain_name(stage_idx_mod8: int) -> str:
@@ -58,12 +58,12 @@ def _terrain_name(stage_idx_mod8: int) -> str:
 
 
 def _stage_public_id(engine_type: int, terrain: str) -> str:
-    engine_name = "type1_deductive" if engine_type == 1 else "type2_inductive"
+    engine_name = "type1_left_weyl" if engine_type == 1 else "type2_right_weyl"
     return _public_id("MACRO_STAGE", f"{engine_name}_{terrain}")
 
 
 def _step_public_id(engine_type: int, terrain: str, operator: str) -> str:
-    engine_name = "type1_deductive" if engine_type == 1 else "type2_inductive"
+    engine_name = "type1_left_weyl" if engine_type == 1 else "type2_right_weyl"
     return _public_id("SUBCYCLE_STEP", f"{engine_name}_{terrain}_{operator}")
 
 

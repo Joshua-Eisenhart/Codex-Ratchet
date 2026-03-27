@@ -6,8 +6,8 @@ chirality naturally break symmetry and dominate Type-2, or vice versa?
 Provide the mathematical condition."
 
 PROOF:
-Type-1 Engine (Deductive Outer): Prioritizes structural condensation (S -> 0).
-Type-2 Engine (Inductive Outer): Prioritizes phase space expansion (S up).
+Type-1 Engine (Left Weyl): Prioritizes structural condensation (S -> 0).
+Type-2 Engine (Right Weyl): Prioritizes phase space expansion (S up).
 
 Under High Environmental Noise: Type-2 suffers a Carnot collapse. Expanding a state 
 immediately exposes it to thermal scrambling, hitting I/d instantly. Type-1 survives 
@@ -15,7 +15,7 @@ because its primary outer loop actively resists thermal drift by driving density
 towards a protected eigenbasis.
 Under Low Environmental Noise: Type-1 suffers a complexity limit. It burns metabolic 
 energy condensing an already structured environment. Type-2 thrives because 
-inductive expansion maximizes work exploration without premature thermal death.
+Te/Fi expansion maximizes work exploration without premature thermal death.
 
 Condition for Type-1 Dominance: Environment Scrambling Rate > Agent Condensation Rate.
 """
@@ -35,11 +35,11 @@ from proto_ratchet_sim_runner import (
     EvidenceToken
 )
 
-def apply_deductive_stroke(rho, target_basis, strength=0.2):
+def apply_FeTi_stroke(rho, target_basis, strength=0.2):
     """Minimizes entropy (Ti projector / Fe sink)"""
     return (1 - strength) * rho + strength * target_basis
 
-def apply_inductive_stroke(rho, U, strength=0.2):
+def apply_TeFi_stroke(rho, U, strength=0.2):
     """Maximizes entropy/exploration (Te flow / Fi filter)"""
     rho_flow = apply_unitary_channel(rho, U)
     return (1 - strength) * rho + strength * rho_flow
@@ -50,15 +50,15 @@ def apply_environmental_noise(rho, noise_level):
     return (1 - noise_level) * rho + noise_level * I_d
 
 def type1_engine_cycle(rho, U, target_basis):
-    """Deductive Outer (Strong), Inductive Inner (Weak)"""
-    rho = apply_deductive_stroke(rho, target_basis, strength=0.3)  # Strong core structure
-    rho = apply_inductive_stroke(rho, U, strength=0.1)             # Weak exploration
+    """Left Weyl: Fe/Ti dominant, Te/Fi secondary"""
+    rho = apply_FeTi_stroke(rho, target_basis, strength=0.3)  # Fe/Ti dominant
+    rho = apply_TeFi_stroke(rho, U, strength=0.1)             # Te/Fi secondary
     return rho
 
 def type2_engine_cycle(rho, U, target_basis):
-    """Inductive Outer (Strong), Deductive Inner (Weak)"""
-    rho = apply_inductive_stroke(rho, U, strength=0.3)             # Strong exploration
-    rho = apply_deductive_stroke(rho, target_basis, strength=0.1)  # Weak core structure
+    """Right Weyl: Te/Fi dominant, Fe/Ti secondary"""
+    rho = apply_TeFi_stroke(rho, U, strength=0.3)             # Te/Fi dominant
+    rho = apply_FeTi_stroke(rho, target_basis, strength=0.1)  # Fe/Ti secondary
     return rho
 
 def sim_symmetry_breaking(d=4, cycles=25):

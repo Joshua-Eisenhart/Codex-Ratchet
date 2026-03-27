@@ -179,7 +179,7 @@ def _graphml_attr(value: Any) -> str | int | float | bool:
 def _validate_owner_schemas() -> dict[str, Any]:
     sample_stage = MacroStage(
         terrain="Se_f",
-        engine_type=EngineTypeEnum.DEDUCTIVE,
+        engine_type=EngineTypeEnum.LEFT_WEYL,
         stage_index=0,
         loop=LoopEnum.FIBER,
         mode=ModeEnum.EXPAND,
@@ -745,6 +745,7 @@ def _render_markdown(report: dict[str, Any]) -> str:
             f"- do_not_promote: `{repair_gap.get('do_not_promote')}`",
             f"- torus_gap_count: `{repair_gap.get('torus_gap_count')}`",
             f"- type_gap_count: `{repair_gap.get('type_gap_count')}`",
+            "- interpretation: `bounded repair map only; listed gaps are not already repaired and this surface is not promotion evidence`",
             "",
             "## Next Actions",
             next_actions,

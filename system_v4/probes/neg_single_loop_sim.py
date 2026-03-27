@@ -1,9 +1,9 @@
 """
 Negative SIM: Single-Loop Process_Cycle
 ===================================
-HYPOTHESIS TO KILL: "A single loop (deductive only) achieves sustained ΔΦ > 0"
+HYPOTHESIS TO KILL: "A single loop (FeTi only) achieves sustained ΔΦ > 0"
 
-Test: Run only Process_Cycle A (FeTi deductive/cooling loop), no Process_Cycle B (TeFi
+Test: Run only Process_Cycle A (FeTi cooling loop), no Process_Cycle B (TeFi
 inductive/heating loop). The process_cycle MUST saturate and stall — the dual-loop
 architecture requires both loops to complete the 720° spinor rotation.
 
@@ -37,12 +37,12 @@ from full_8stage_engine_sim import (
 
 
 def run_single_loop(d=4, n_cycles=200, n_trials=10):
-    """Run only the deductive (FeTi) loop — no inductive cycle."""
+    """Run only the FeTi (FeTi) loop — no TeFi cycle."""
     print("=" * 60)
     print("NEGATIVE SIM: SINGLE-LOOP PROCESS_CYCLE")
     print(f"  d={d}, cycles={n_cycles}, trials={n_trials}")
-    print(f"  ONLY deductive loop (FeTi): Ti→Fe→Ti→Fe...")
-    print(f"  NO inductive loop (TeFi): Te and Fi disabled")
+    print(f"  ONLY FeTi loop (FeTi): Ti→Fe→Ti→Fe...")
+    print(f"  NO TeFi loop (TeFi): Te and Fi disabled")
     print("=" * 60)
 
     results = []
@@ -66,7 +66,7 @@ def run_single_loop(d=4, n_cycles=200, n_trials=10):
         stall_point = None
 
         for cycle in range(n_cycles):
-            # ONLY deductive (cooling) loop: Ti → Fe → Ti → Fe
+            # ONLY FeTi (cooling) loop: Ti → Fe → Ti → Fe
             rho = stage1_measurement_projection(rho, d)  # Ti: project (dephase)
             rho = stage2_diffusive_damping(rho, L, n_steps=3)  # Fe: dissipate
             rho = stage1_measurement_projection(rho, d)  # Ti again
@@ -155,7 +155,7 @@ def run_single_loop(d=4, n_cycles=200, n_trials=10):
     with open(outpath, "w") as f:
         json.dump({
             "timestamp": datetime.now(UTC).isoformat(),
-            "hypothesis": "A single loop (deductive only) achieves sustained ΔΦ > 0",
+            "hypothesis": "A single loop (FeTi only) achieves sustained ΔΦ > 0",
             "expected_result": "KILL",
             "results": results,
             "verdict": evidence.status,

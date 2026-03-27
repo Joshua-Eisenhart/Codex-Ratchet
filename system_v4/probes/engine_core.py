@@ -18,8 +18,8 @@ Architecture:
     Ti (constrain) → Fe (release) → Te (explore) → Fi (filter)
 
   Engine types (from L4 chirality):
-    Type 1 (Deductive outer): Fe/Ti dominant on base, Te/Fi on fiber
-    Type 2 (Inductive outer): Te/Fi dominant on base, Fe/Ti on fiber
+    Type 1 (Left Weyl): Fe/Ti dominant on base, Te/Fi on fiber
+    Type 2 (Right Weyl): Te/Fi dominant on base, Fe/Ti on fiber
 
   4 controls per stage:
     1. Piston   = operator strength [0, 1]
@@ -144,8 +144,8 @@ class GeometricEngine:
     def __init__(self, engine_type: int = 1):
         """
         Args:
-            engine_type: 1 = Deductive outer (Fe/Ti on base, Te/Fi on fiber)
-                         2 = Inductive outer (Te/Fi on base, Fe/Ti on fiber)
+            engine_type: 1 = Left Weyl (Fe/Ti on base, Te/Fi on fiber)
+                         2 = Right Weyl (Te/Fi on base, Fe/Ti on fiber)
         """
         assert engine_type in (1, 2), "engine_type must be 1 or 2"
         self.engine_type = engine_type
@@ -184,7 +184,7 @@ class GeometricEngine:
         base_piston = controls.piston
 
         if self.engine_type == 1:
-            # Deductive outer: Fe/Ti dominant on base
+            # Left Weyl: Fe/Ti dominant on base
             if loop == "base" and op_name in ("Fe", "Ti"):
                 return base_piston * 1.0  # Full strength
             elif loop == "fiber" and op_name in ("Te", "Fi"):
@@ -192,7 +192,7 @@ class GeometricEngine:
             else:
                 return base_piston * 0.3  # Suppressed
         else:
-            # Inductive outer: Te/Fi dominant on base
+            # Right Weyl: Te/Fi dominant on base
             if loop == "base" and op_name in ("Te", "Fi"):
                 strength = base_piston * 1.0
             elif loop == "fiber" and op_name in ("Fe", "Ti"):

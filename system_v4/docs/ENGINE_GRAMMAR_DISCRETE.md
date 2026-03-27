@@ -21,6 +21,37 @@
 
 ---
 
+## IGT AXIS PARTITION MAP (owner-level search structure)
+
+**Why IGT and not correlations:** Correlation handles lead to drift — LLMs can parse them as gradient-continuous and smooth them. The IGT WIN/LOSE structure is a hard binary partition from game theory: WIN and LOSE are mutually exclusive outcomes. This makes it collapse-resistant.
+
+**Frame:**
+- `WIN` / `LOSE` (caps) = outer loop operations on Weyl spinors
+- `win` / `lose` (lower) = inner loop operations on Weyl spinors
+- Each axis = a discrete binary partition of the 4 perceiving functions (Ne, Si, Se, Ni) or the 4 judging functions (Ti, Fe, Te, Fi), or their ordered coupling
+
+**Axis partitions:**
+
+| Axis | Partition side A | Partition side B | Notes |
+|---|---|---|---|
+| **Ax0** | Ne / Ni | Se / Si | N-perceiving pair vs S-perceiving pair |
+| **Ax1** | Se / Ni | Ne / Si | Diagonal cross-pairs — each side has one expansion, one compression |
+| **Ax2** | Se / Ne | Si / Ni | Expansion vs compression. Also candidate: Si/Ni/Te/Fe vs Ne/Se/Fi/Ti |
+| **Ax3** | Type 1 (WIN/LOSE outer) | Type 2 (win/lose outer) | Fundamental topology inversion — flux in vs out. Not derivable from Ax0–Ax2. |
+| **Ax4** | Te / Fi | Fe / Ti | Which judging pair. Constraint: each loop is entirely Te/Fi OR entirely Fe/Ti — not mixed. |
+| **Ax5** | Fe / Fi (second strategy) | Te / Ti (first strategy) | Strategy axis. WinLose: Win=Ti, Lose=Fi. LoseWin: Lose=Ti, Win=Fi. WinWin/LoseLose: first=Te, second=Fe. |
+| **Ax6** | P then J (SiTe, SeTi, NeFi…) | J then P (TiSe, TeSi, TiNe, FiSe, FiNe…) | Couplet order. Perceiving-first vs Judging-first within each token. |
+
+**Why this resists collapse:**
+- WIN/LOSE is a hard binary: no blending, no soft transition, no "somewhat WIN"
+- Each axis partition assigns every function token to exactly one side
+- The outer/inner loop split (caps vs lower) is a structural fact, not a correlation
+- Ax4 hard constraint: loops cannot mix Te/Fi and Fe/Ti — this blocks the most common collapse
+
+**Status:** This is a search map and candidate-family generator. It is NOT a completed QIT operationalization. Each partition is a hypothesis about which QIT map-class property the axis corresponds to. Use as A1 fuel, not as B-lane closure claim.
+
+---
+
 ## SLICE A: Spinor Carrier
 
 **Primary state carrier:** Weyl spinor pair (ψ_L, ψ_R) on S³/SU(2) — Level 2–3 in the ratchet chain.

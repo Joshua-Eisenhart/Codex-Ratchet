@@ -41,46 +41,60 @@ From `sim_geometry_ratchet_chain.py` (has known bugs — see below):
 
 ---
 
+## Core Meta-Architecture: Drive vs Structure
+
+The most critical correction to the engine ontology: **Ax0 is not a peer binary axis.** 
+
+Testing Ax0 as a structural displacement (like dephasing or partial trace) is a category error. The true architecture is:
+
+```text
+Ax0 = Drive / Entropy Gradient (The thermodynamic arrow)
+Ax1–Ax6 = Six binary structural DOFs (The constraints)
+2⁶ = 64 structural configurations (The Hexagrams / State Space)
+Engines = Generators moving through the 64-state space along Ax0
+```
+
+Ax0 is the correlation entropy gradient that pushes the system through the 64 state configurations. The 4 operators (Ti/Te/Fi/Fe) and their doubles are specific combinations of axes 1–6 that generate motion along this gradient.
+
+---
+
 ## Yin-Yang ↔ Axis Mapping
 
 The taijitu IS a stereographic projection of the Clifford torus on S³.
 
-| Yin-Yang Feature | Axis | Corrected Math | Weyl DOF |
-|---|---|---|---|
-| **Black vs white** | Ax0 | Binary partition | parity (block-diagonal) |
-| **Seeds of the other** | Ax1 | CPTP vs Unitary | parity + L_z |
-| **Dots vs teardrops** | Ax2 | Concentrated vs spread | L_x |
-| **Flip + invert** (inverted mirror) | Ax3 | **CP: ψ_L ↔ ψ_R*** | parity + rotations |
-| **Spin direction** (CW/CCW) | Ax4 | **Process path integral** | ≈ Ax6 (overlap 0.97) |
-| **S-curve curvature** | Ax5 | **Geodesic curvature** | Ax0 cluster (overlap 0.66) |
-| **Which fish chases which** | Ax6 | Aρ vs ρA | L_z ≈ Ax4 |
+| Yin-Yang Feature | Axis | Best Candidate Formulations |
+|---|---|---|
+| **Black vs white** | **Ax0** | *Meta-axis: Correlation Entropy Gradient* |
+| **Seeds of the other** | Ax1 | Channel type (Dissipation / depolarizing) |
+| **Dots vs teardrops** | Ax2 | Boundary (Concentrated vs spread / projection) |
+| **Flip + invert** (inverted mirror) | Ax3 | Chirality (γ₅-phase family / CP mirror) |
+| **Spin direction** (CW/CCW) | Ax4 | Process direction (*Currently dead/unrecovered*) |
+| **S-curve curvature** | Ax5 | Torus geometry (Partial transport hysteresis) |
+| **Which fish chases which** | Ax6 | Action side (Aρ vs ρA / precedence) |
 
 ---
 
-## Definitive Axis Status
+## The Wiggle Exploration: Status of the Math
 
-From `sim_definitive_7axis.py` (corrected formulations, mixed states):
+From Codex's `sim_axis_candidate_mass_sweep.py` and `sim_wiggle_exploration.py`:
 
-| Axis | Best formulation | Max overlap | Status |
-|---|---|---|---|
-| **Ax0** | Coarse-graining | 0.70 (Ax1/Ax5) | Cluster member |
-| **Ax1** | Open/closed channel | 0.70 (Ax0 pure), 0.14 (Ax0 hot) | **Separates on hot states** |
-| **Ax2** | Boundary (concentrated/spread) | 0.60 (Ax1) | ⚠️ Marginal |
-| **Ax3** | **CP mirror (ψ_L ↔ ψ_R*)** | **0.47** | **Cleanest base axis** |
-| **Ax4** | Process direction (CW/CCW path) | **0.97 (Ax6)** | **≡ Ax6** |
-| **Ax5** | Trajectory curvature (FGA/FSA) | 0.66 (Ax0) | Cluster with Ax0 |
-| **Ax6** | Action side (Aρ vs ρA) | **0.97 (Ax4)** | **≡ Ax4** |
+> [!WARNING]
+> No axis currently has a locked, canonical mathematical formulation. The 7-axis concepts are structurally sound, but picking single proxies (like "Ax3 = CP") was premature "narrative smoothing." 
 
-### Verified Merges
-- **Ax4 ≡ Ax6**: Process direction and action side are the same DOF (0.97 overlap). In the yin-yang: which way you spin it determines who chases whom.
+**Current honest read on candidate math:**
+- **Ax1, Ax2**: Marginal/mixed candidates. Need better state-space construction.
+- **Ax3**: The cleanest disputed family. The best candidate is a chiral/γ₅-phase relative coherence metric, **not** the simple CP mirror swap.
+- **Ax4**: Dead. All endpoint and process-tensor constructions measured so far vanish on normalized states. The Ax4 concept (spin direction) has not been successfully mathematicalized.
+- **Ax5**: Torus-layer candidates (e.g., partial transport hysteresis) are much more promising than density-level proxies (entropy shape, Hamiltonian curvature).
+- **Ax6**: Alive and clearly distinct under multiple formulations (Aρ vs ρA).
 
-### Verified Separations  
-- **Ax1 ≠ Ax5**: Separate on mixed states. Channel type (open/closed) ≠ trajectory curvature (FGA/FSA). Curvature overlap with Ax1 stays at 0.12–0.17 at d=8 regardless of entropy.
-- **Ax3 ≠ Ax6**: CP mirror (0.24 overlap) — cleanly distinct with correct formulation.
+### Verified Separations (Subject to Math Refinement)
+- **Ax1 ≠ Ax5**: Channel type (open/closed) ≠ trajectory curvature.
+- **Ax3 ≠ Ax6**: Chirality/phase ≠ action side.
 
-### Open Conflations
-- **Ax0 / Ax5**: 0.66 overlap. May be aspects of the same DOF.
-- **Ax0 / Ax1**: 0.70 on pure states, but 0.14 on hot states — they separate with entropy.
+### Open Questions / Conflations
+- **Ax4 vs Ax6**: Is there a formulation where spin direction (Ax4) and action precedence (Ax6) are not 100% merged?
+- **Ax0 / Ax5**: Need to ensure Ax5 (curvature) operators don't accidentally measure Ax0 (entropy gradient).
 
 ---
 
@@ -132,8 +146,8 @@ SU(2)_L × SU(2)_R × U(1) × Z₂ = 3 + 3 + 1 + 1 = 8 DOFs
 
 ## Next Steps
 
-1. **Fix sim bugs** flagged by Codex (normalization, state construction)
-2. **Resolve Ax0/Ax5** — are coarse-graining and curvature truly different?
-3. **Map the full ratchet chain** with all intermediate layers (S³, Bloch, etc.)
-4. **Settle the Ax4≡Ax6 merge** — is there any condition where they separate?
-5. **Assign Jungian labels** to the surviving DOFs
+1. **Stop redefining settled axes** from scratch. Use the user's definitions as hard constraints.
+2. **Build Ax4/Ax6 process-level sweep**, testing if they can be separated.
+3. **Build Ax5 from torus/extrinsic curvature**, directly on the geometric lane, rather than generic Hamiltonian bending.
+4. **Test Ax3 at the spinor/process layer directly** (γ₅ phase vs branch coherence), since density models keep erasing phase information.
+5. **Assign Jungian labels** to the 6 structural DOFs.

@@ -1,0 +1,54 @@
+{
+  "schema": "SIM_EVIDENCE_v1",
+  "timestamp": "2026-03-27T01:38:48.979280+00:00Z",
+  "sim_name": "contract_s6_variance_direction",
+  "status": "current_basis_measurement",
+  "variance_definition": "V(rho) = Tr(rho^2)",
+  "measurements": {
+    "Type1_Deductive": {
+      "n_trials": 200,
+      "avg_early_delta_v": -0.21748317706318207,
+      "avg_full_delta_v": -0.25138049682909225,
+      "early_positive_rate": 0.0,
+      "early_negative_rate": 1.0
+    },
+    "Type1_Inductive": {
+      "n_trials": 200,
+      "avg_early_delta_v": -0.07449491872715612,
+      "avg_full_delta_v": -0.23981507647151998,
+      "early_positive_rate": 0.0,
+      "early_negative_rate": 1.0
+    },
+    "Type2_Deductive": {
+      "n_trials": 200,
+      "avg_early_delta_v": 4.052314039881821e-17,
+      "avg_full_delta_v": 2.142730437526552e-16,
+      "early_positive_rate": 0.46,
+      "early_negative_rate": 0.315
+    },
+    "Type2_Inductive": {
+      "n_trials": 200,
+      "avg_early_delta_v": 1.7152945730458668e-16,
+      "avg_full_delta_v": 3.164135620181696e-17,
+      "early_positive_rate": 0.79,
+      "early_negative_rate": 0.035
+    }
+  },
+  "verdicts": {
+    "Type1_Deductive_early_decreases": true,
+    "Type1_Inductive_early_increases": false,
+    "Type2_Deductive_early_decreases": false,
+    "Type2_Inductive_early_increases": true,
+    "all_contract_signs_hold": false
+  },
+  "evidence_ledger": [
+    {
+      "token_id": "",
+      "sim_spec_id": "S_SIM_CONTRACT_S6_VARIANCE_DIRECTION_V1",
+      "status": "KILL",
+      "measured_value": 0.14298825833602596,
+      "kill_reason": "EARLY_VARIANCE_SIGNS_DO_NOT_MATCH_CONTRACT",
+      "timestamp": "2026-03-27T01:38:48.979272"
+    }
+  ]
+}

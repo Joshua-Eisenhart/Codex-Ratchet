@@ -1,0 +1,366 @@
+{
+  "schema": "SIM_EVIDENCE_v1",
+  "timestamp": "2026-03-27T01:38:49.150421+00:00Z",
+  "sim_name": "contract_s2_impedance_z",
+  "status": "current_engine_baseline_only",
+  "contract_target": {
+    "formula": "Z = 1 / ||d rho / dt||",
+    "expected_order": "outer < inner for both types"
+  },
+  "measurement_notes": [
+    "Uses current engine_core step sequence without modifying semantics.",
+    "Treats base terrains as outer-loop telemetry and fiber terrains as inner-loop telemetry.",
+    "Computes ||d rho / dt|| from successive Frobenius norms of rho_L and rho_R and averages them."
+  ],
+  "summary": {
+    "type_1_inner": {
+      "n": 192,
+      "mean_z": 23.90453345144986,
+      "median_z": 6.298016473213725,
+      "min_z": 2.6498266601387495,
+      "max_z": 101.06141599887012
+    },
+    "all_inner": {
+      "n": 384,
+      "mean_z": 17.26940179302044,
+      "median_z": 8.318464633286933,
+      "min_z": 1.8894909977188654,
+      "max_z": 101.06141599887012
+    },
+    "type_1_outer": {
+      "n": 192,
+      "mean_z": 10.87237800392989,
+      "median_z": 9.504369657280876,
+      "min_z": 2.071091986943354,
+      "max_z": 33.298211701510816
+    },
+    "all_outer": {
+      "n": 384,
+      "mean_z": 10.421547136831231,
+      "median_z": 7.907102200923558,
+      "min_z": 1.862972073487856,
+      "max_z": 33.89452845103332
+    },
+    "type_2_inner": {
+      "n": 192,
+      "mean_z": 10.634270134591022,
+      "median_z": 10.646486283452937,
+      "min_z": 1.8894909977188654,
+      "max_z": 27.363588431967983
+    },
+    "type_2_outer": {
+      "n": 192,
+      "mean_z": 9.97071626973257,
+      "median_z": 6.265480694217011,
+      "min_z": 1.862972073487856,
+      "max_z": 33.89452845103332
+    }
+  },
+  "verdicts": {
+    "type_1_outer_lt_inner": true,
+    "type_2_outer_lt_inner": true,
+    "all_outer_lt_inner": true,
+    "same_order_for_both_types": true
+  },
+  "sample_size": 768,
+  "sample_records_preview": [
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Ti",
+      "trial": 0,
+      "step_norm_L": 0.11999999999999993,
+      "step_norm_R": 0.16307410323656807,
+      "step_norm_avg": 0.141537051618284,
+      "impedance_z": 7.065287771409379
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Fe",
+      "trial": 0,
+      "step_norm_L": 0.009175279368178529,
+      "step_norm_R": 0.020795200849166716,
+      "step_norm_avg": 0.014985240108672623,
+      "impedance_z": 66.73233079670545
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Te",
+      "trial": 0,
+      "step_norm_L": 0.3646618806921271,
+      "step_norm_R": 0.31354805154938625,
+      "step_norm_avg": 0.3391049661207567,
+      "impedance_z": 2.948939413774011
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Fi",
+      "trial": 0,
+      "step_norm_L": 0.44868632748272175,
+      "step_norm_R": 0.1550482842134273,
+      "step_norm_avg": 0.30186730584807453,
+      "impedance_z": 3.3127138336182904
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Ti",
+      "trial": 1,
+      "step_norm_L": 0.12000000000000023,
+      "step_norm_R": 0.1597159344755492,
+      "step_norm_avg": 0.13985796723777472,
+      "impedance_z": 7.150111071612276
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Fe",
+      "trial": 1,
+      "step_norm_L": 0.009175279368178376,
+      "step_norm_R": 0.020987493286521948,
+      "step_norm_avg": 0.015081386327350163,
+      "impedance_z": 66.30690165309906
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Te",
+      "trial": 1,
+      "step_norm_L": 0.36793706012666405,
+      "step_norm_R": 0.32206070594377095,
+      "step_norm_avg": 0.34499888303521753,
+      "impedance_z": 2.898560108955251
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Fi",
+      "trial": 1,
+      "step_norm_L": 0.45188559722505356,
+      "step_norm_R": 0.1439037134276452,
+      "step_norm_avg": 0.2978946553263494,
+      "impedance_z": 3.356891377941912
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Ti",
+      "trial": 2,
+      "step_norm_L": 0.1199999999999999,
+      "step_norm_R": 0.16901491715244704,
+      "step_norm_avg": 0.14450745857622346,
+      "impedance_z": 6.920058036122262
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Fe",
+      "trial": 2,
+      "step_norm_L": 0.00917527936817864,
+      "step_norm_R": 0.020544323426774036,
+      "step_norm_avg": 0.014859801397476339,
+      "impedance_z": 67.29565040955605
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Te",
+      "trial": 2,
+      "step_norm_L": 0.3189204958164672,
+      "step_norm_R": 0.290201996492112,
+      "step_norm_avg": 0.3045612461542896,
+      "impedance_z": 3.2834118346541166
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Fi",
+      "trial": 2,
+      "step_norm_L": 0.16651638423339618,
+      "step_norm_R": 0.4636443786546725,
+      "step_norm_avg": 0.31508038144403433,
+      "impedance_z": 3.173793288610778
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Ti",
+      "trial": 3,
+      "step_norm_L": 0.12,
+      "step_norm_R": 0.13917115086324472,
+      "step_norm_avg": 0.12958557543162236,
+      "impedance_z": 7.716908279869961
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Fe",
+      "trial": 3,
+      "step_norm_L": 0.00917527936817844,
+      "step_norm_R": 0.022357485966994727,
+      "step_norm_avg": 0.015766382667586586,
+      "impedance_z": 63.4260896163491
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Te",
+      "trial": 3,
+      "step_norm_L": 0.3770119301490322,
+      "step_norm_R": 0.3580533005622447,
+      "step_norm_avg": 0.36753261535563847,
+      "impedance_z": 2.720846962200517
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Fi",
+      "trial": 3,
+      "step_norm_L": 0.4630579876768994,
+      "step_norm_R": 0.10683400685879936,
+      "step_norm_avg": 0.28494599726784936,
+      "impedance_z": 3.5094369094084854
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Ti",
+      "trial": 4,
+      "step_norm_L": 0.12000000000000013,
+      "step_norm_R": 0.1317242889894902,
+      "step_norm_avg": 0.12586214449474517,
+      "impedance_z": 7.945200711574961
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Fe",
+      "trial": 4,
+      "step_norm_L": 0.009175279368178612,
+      "step_norm_R": 0.02249827691971982,
+      "step_norm_avg": 0.015836778143949216,
+      "impedance_z": 63.144156652978786
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Te",
+      "trial": 4,
+      "step_norm_L": 0.339483253646002,
+      "step_norm_R": 0.34219178313464654,
+      "step_norm_avg": 0.3408375183903243,
+      "impedance_z": 2.9339493044155085
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Fi",
+      "trial": 4,
+      "step_norm_L": 0.07027802500529423,
+      "step_norm_R": 0.5231338013998068,
+      "step_norm_avg": 0.2967059132025505,
+      "impedance_z": 3.3703406487801804
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Ti",
+      "trial": 5,
+      "step_norm_L": 0.12000000000000002,
+      "step_norm_R": 0.1692840818964948,
+      "step_norm_avg": 0.1446420409482474,
+      "impedance_z": 6.913619259270531
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Fe",
+      "trial": 5,
+      "step_norm_L": 0.009175279368178644,
+      "step_norm_R": 0.020519037649683932,
+      "step_norm_avg": 0.014847158508931289,
+      "impedance_z": 67.35295507207331
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Te",
+      "trial": 5,
+      "step_norm_L": 0.3467938508551542,
+      "step_norm_R": 0.2903879141012977,
+      "step_norm_avg": 0.318590882478226,
+      "impedance_z": 3.1388217773882614
+    },
+    {
+      "engine_type": 1,
+      "terrain": "Se_f",
+      "loop": "fiber",
+      "loop_position": "inner",
+      "operator": "Fi",
+      "trial": 5,
+      "step_norm_L": 0.43682471064753475,
+      "step_norm_R": 0.19413792176357367,
+      "step_norm_avg": 0.3154813162055542,
+      "impedance_z": 3.169759819781031
+    }
+  ],
+  "evidence_ledger": [
+    {
+      "token_id": "E_SIM_CONTRACT_S2_IMPEDANCE_BASELINE",
+      "sim_spec_id": "S_SIM_CONTRACT_S2_IMPEDANCE_Z_V1",
+      "status": "PASS",
+      "measured_value": 6.847854656189208,
+      "kill_reason": null,
+      "timestamp": "2026-03-27T01:38:49.150307"
+    }
+  ]
+}

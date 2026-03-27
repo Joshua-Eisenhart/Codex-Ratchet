@@ -6,15 +6,16 @@ Maps the 6 binary DOFs (Ax1-Ax6) to the 64 possible structural configurations.
 
 import os
 
-# Define the 6 DOFs and their binary representations (0 = Yin, 1 = Yang)
-# These are candidate labels based on the corrected geometry ratchet ontology.
+# Definitive Axis mapping based on the (6, 5, 3) & (4, 1, 2) Trigram Proposal:
+# Trigram 1 (Inner/Bottom): Line 1 = Ax6, Line 2 = Ax5, Line 3 = Ax3
+# Trigram 2 (Outer/Top): Line 4 = Ax4, Line 5 = Ax1, Line 6 = Ax2
 DOFS = [
-    {"axis": "Ax1", "name": "Channel", "yin": "Closed (Unitary)", "yang": "Open (Dissipative)"},
-    {"axis": "Ax2", "name": "Boundary", "yin": "Spread (Wave/Field)", "yang": "Concentrated (Particle/Dots)"},
-    {"axis": "Ax3", "name": "Chirality", "yin": "Left (Negative Phase)", "yang": "Right (Positive Phase)"},
-    {"axis": "Ax4", "name": "Traversal", "yin": "CCW (Inductive)", "yang": "CW (Deductive)"},
-    {"axis": "Ax5", "name": "Curvature", "yin": "Flat (FGA / Straight)", "yang": "Curved (FSA / Hysteresis)"},
-    {"axis": "Ax6", "name": "Precedence", "yin": "Receptive (ρA / Object-first)", "yang": "Generative (Aρ / Action-first)"}
+    {"line": "L1", "axis": "Ax6", "name": "Action Precedence", "yin": "ρA (Receptive)", "yang": "Aρ (Generative)"},
+    {"line": "L2", "axis": "Ax5", "name": "Curvature", "yin": "FGA / Flat", "yang": "FSA / Hysteresis"},
+    {"line": "L3", "axis": "Ax3", "name": "Chirality", "yin": "Left / -Phase", "yang": "Right / +Phase"},
+    {"line": "L4", "axis": "Ax4", "name": "Process Direction", "yin": "CCW (Inductive)", "yang": "CW (Deductive)"},
+    {"line": "L5", "axis": "Ax1", "name": "Channel Coupling", "yin": "Closed / Unitary", "yang": "Open / Dissipative"},
+    {"line": "L6", "axis": "Ax2", "name": "Boundary / Frame", "yin": "Spread / Eulerian", "yang": "Concentrated / Lagrangian"}
 ]
 
 # Standard King Wen hexagram names mapped by Shao Yong (Fuxi) binary index
@@ -51,29 +52,33 @@ def build_markdown():
     lines.append("")
     
     lines.append("## Axis Definition (The 6 Lines)")
-    lines.append("We map Ax1 to the bottom line (Line 1, LSB) and Ax6 to the top line (Line 6, MSB). `0` = Yin (broken), `1` = Yang (solid).")
+    lines.append("The mathematically grounded QIT mapping strictly maps the 6 axes into two mutually irreducible Trigrams:")
+    lines.append("- **Trigram 1 (Inner/Bottom)**: `(Ax6, Ax5, Ax3)` — The Generative Substrate (SU(2) generators)")
+    lines.append("- **Trigram 2 (Outer/Top)**: `(Ax4, Ax1, Ax2)` — The Boundary & Heat (Environmental coupling)")
+    lines.append("")
+    lines.append("`0` = Yin (broken), `1` = Yang (solid).")
     lines.append("")
     lines.append("| Line | Axis | 0 (Yin) | 1 (Yang) |")
     lines.append("|---|---|---|---|")
-    for i, dof in enumerate(DOFS):
-        lines.append(f"| L{i+1} | **{dof['axis']}** ({dof['name']}) | {dof['yin']} | {dof['yang']} |")
+    for dof in DOFS:
+        lines.append(f"| {dof['line']} | **{dof['axis']}** ({dof['name']}) | {dof['yin']} | {dof['yang']} |")
     lines.append("")
     
     lines.append("## The 64 Configurations")
     lines.append("")
-    lines.append("| Hex | Binary | Ax6 | Ax5 | Ax4 | Ax3 | Ax2 | Ax1 | I Ching Hexagram |")
+    lines.append("| Hex | Binary | L6 (Ax2) | L5 (Ax1) | L4 (Ax4) | L3 (Ax3) | L2 (Ax5) | L1 (Ax6) | I Ching Hexagram |")
     lines.append("|:---:|:---:|---|---|---|---|---|---|---|")
     
     for i in range(64):
-        # binary string, padded to 6 bits, reversed so LSB is at the end? 
-        # Standard notation: MSB on left. So: Ax6 Ax5 Ax4 Ax3 Ax2 Ax1
+        # padding to 6 bits. 
+        # LSB (index 5 of binary string) = Line 1 (Ax6)
+        # MSB (index 0 of binary string) = Line 6 (Ax2)
         binary = format(i, '06b')
-        # Here binary[0] is MSB (Ax6), binary[5] is LSB (Ax1)
-        ax6, ax5, ax4, ax3, ax2, ax1 = binary[0], binary[1], binary[2], binary[3], binary[4], binary[5]
+        l6_ax2, l5_ax1, l4_ax4, l3_ax3, l2_ax5, l1_ax6 = binary[0], binary[1], binary[2], binary[3], binary[4], binary[5]
         
         kw_num, kw_name = KING_WEN_MAPPING[i]
         
-        row = f"| {i:02d} | `{binary}` | {ax6} | {ax5} | {ax4} | {ax3} | {ax2} | {ax1} | **{kw_num}**: {kw_name} |"
+        row = f"| {i:02d} | `{binary}` | {l6_ax2} | {l5_ax1} | {l4_ax4} | {l3_ax3} | {l2_ax5} | {l1_ax6} | **{kw_num}**: {kw_name} |"
         lines.append(row)
         
     lines.append("")

@@ -4,20 +4,24 @@ This document maps the 6 binary DOFs (Ax1-Ax6) onto the 64 distinct structural c
 The engines are generators that traverse this 64-state space along the entropy gradient (Ax0).
 
 ## Axis Definition (The 6 Lines)
-We map Ax1 to the bottom line (Line 1, LSB) and Ax6 to the top line (Line 6, MSB). `0` = Yin (broken), `1` = Yang (solid).
+The mathematically grounded QIT mapping strictly maps the 6 axes into two mutually irreducible Trigrams:
+- **Trigram 1 (Inner/Bottom)**: `(Ax6, Ax5, Ax3)` — The Generative Substrate (SU(2) generators)
+- **Trigram 2 (Outer/Top)**: `(Ax4, Ax1, Ax2)` — The Boundary & Heat (Environmental coupling)
+
+`0` = Yin (broken), `1` = Yang (solid).
 
 | Line | Axis | 0 (Yin) | 1 (Yang) |
 |---|---|---|---|
-| L1 | **Ax1** (Channel) | Closed (Unitary) | Open (Dissipative) |
-| L2 | **Ax2** (Boundary) | Spread (Wave/Field) | Concentrated (Particle/Dots) |
-| L3 | **Ax3** (Chirality) | Left (Negative Phase) | Right (Positive Phase) |
-| L4 | **Ax4** (Traversal) | CCW (Inductive) | CW (Deductive) |
-| L5 | **Ax5** (Curvature) | Flat (FGA / Straight) | Curved (FSA / Hysteresis) |
-| L6 | **Ax6** (Precedence) | Receptive (ρA / Object-first) | Generative (Aρ / Action-first) |
+| L1 | **Ax6** (Action Precedence) | ρA (Receptive) | Aρ (Generative) |
+| L2 | **Ax5** (Curvature) | FGA / Flat | FSA / Hysteresis |
+| L3 | **Ax3** (Chirality) | Left / -Phase | Right / +Phase |
+| L4 | **Ax4** (Process Direction) | CCW (Inductive) | CW (Deductive) |
+| L5 | **Ax1** (Channel Coupling) | Closed / Unitary | Open / Dissipative |
+| L6 | **Ax2** (Boundary / Frame) | Spread / Eulerian | Concentrated / Lagrangian |
 
 ## The 64 Configurations
 
-| Hex | Binary | Ax6 | Ax5 | Ax4 | Ax3 | Ax2 | Ax1 | I Ching Hexagram |
+| Hex | Binary | L6 (Ax2) | L5 (Ax1) | L4 (Ax4) | L3 (Ax3) | L2 (Ax5) | L1 (Ax6) | I Ching Hexagram |
 |:---:|:---:|---|---|---|---|---|---|---|
 | 00 | `000000` | 0 | 0 | 0 | 0 | 0 | 0 | **2**: Kun (Field) |
 | 01 | `000001` | 0 | 0 | 0 | 0 | 0 | 1 | **24**: Fu (Return) |

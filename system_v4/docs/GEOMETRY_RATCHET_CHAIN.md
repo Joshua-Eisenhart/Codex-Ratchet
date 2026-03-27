@@ -1,4 +1,4 @@
-# Geometry Ratcheting: The Yin-Yang Constraint Chain
+# [Controller-safe] Geometry Ratcheting: The Yin-Yang Constraint Chain
 
 **Status**: Active investigation, not locked canon.  
 **Session**: 2026-03-27, 23 commits, 15 sims.

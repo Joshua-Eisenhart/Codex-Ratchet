@@ -1,4 +1,4 @@
-# Phenomenological Design Rules for Engine Probes
+# [Controller-safe] Phenomenological Design Rules for Engine Probes
 
 **Date:** 2026-03-27
 **Subject:** The Epistemology of the 6D Manifold

@@ -1,4 +1,4 @@
-# HOLODECK SCIENCE SYSTEM v1
+# [Exploratory probe synthesis] HOLODECK SCIENCE SYSTEM v1
 
 > **Status**: SPEC — Awaiting SIM Evidence  
 > **Date**: 2026-03-25  

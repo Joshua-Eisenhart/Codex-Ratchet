@@ -1,4 +1,6 @@
-# The 64 Engine State Space (Hexagrams)
+# [Proposal scaffold] The 64 Engine State Space (Hexagrams)
+
+> **WARNING**: This table functions as a useful structural scaffold, but it currently hard-codes provisional binary meanings for `Ax3` (Spinor Phase), `Ax4` (Process Loop traversal), and `Ax5` (Torus Hysteresis). Given that these axes are still under active operationalization in the probe lane, this document is explicitly fenced as a proposal table, NOT authoritative canonical state-space truth.
 
 This document maps the 6 binary DOFs (Ax1-Ax6) onto the 64 distinct structural configurations of the constraint manifold.
 The engines are generators that traverse this 64-state space along the entropy gradient (Ax0).

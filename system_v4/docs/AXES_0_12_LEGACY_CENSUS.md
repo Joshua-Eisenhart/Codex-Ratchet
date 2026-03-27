@@ -1,9 +1,11 @@
-# AXES 0-12 MASTER SPECIFICATION
+# [Historical / stale] AXES 0-12 LEGACY CENSUS
 
 DATE_UTC: 2026-03-25T13:57:47Z
 
 ## Overview
-This document specifies the master definitions for all 13 axes (Axes 0-12) of the Ratchet Graph structure. Axes 0-6 represent the canon definitions, while Axes 7-12 are non-canon extensions derived from commutator products of the base generators.
+> **WARNING**: This document still presents the older peer-axis ontology as settled canon: `Axis-0` is listed as a two-class slice rather than the thermodynamic drive, and `Axis-4` and `Axis-5` assignments are stated without qualification. This document must NOT be used as the primary structural authority. It functions only as a legacy census of early logic. For the correct controller-safe framework, refer to `GEOMETRY_RATCHET_CHAIN.md`.
+
+This document specifies the legacy definitions for all 13 axes (Axes 0-12)...
 
 ## Core Properties
 *   **Natural build order:** 0 → 6 → 5 → 3 → 4 → 1 → 2

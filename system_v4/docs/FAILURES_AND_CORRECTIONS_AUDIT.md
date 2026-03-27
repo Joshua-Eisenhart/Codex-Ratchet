@@ -1,4 +1,4 @@
-# Deep Audit: Systemic Failures in Geometry Ratcheting
+# [Controller-safe] Deep Audit: Systemic Failures in Geometry Ratcheting
 **Date:** 2026-03-27
 **Context:** Geometry ratcheting, Weyl spinor translation, and structural DOF mapping.
 

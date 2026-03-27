@@ -1,4 +1,6 @@
-# The 8×8 Engine Mapping: The True 64-State Generator
+# [Proposal scaffold] The 8×8 Engine Mapping: The True 64-State Generator
+
+> **Note:** This document presents the best current compositional decomposition for the engine, successfully bridging the 8 Terrains and 8 Signed Operators. However, because the exact mathematical bindings for Ax3, Ax4, and Ax5 remain under active experimental probing, this mapping should be treated as an explanatory bridge and proposal scaffold rather than definitive mathematical closure.
 
 The architectural math of the 64-hexagram state space is not an arbitrary list of permutations, nor is it a simplistic procedural loop. It is the Cartesian product of two orthogonal 8-state domains, perfectly matching the 8×8 I-Ching Trigram geometry.
 
@@ -45,4 +47,4 @@ Every hexagram in the 64-state space is a unique combination of:
 
 The engine moves through this matrix, dragged along by **Ax0** (The Entropy Gradient / Thermodynamic Drive), generating the 64 execution steps observed in the runtime manifold.
 
-No conflation. No overlapping variables. A flawless 8×8 algebraic closure.
+No conflation. No overlapping variables. A powerful current best decomposition.

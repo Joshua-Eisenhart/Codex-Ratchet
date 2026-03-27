@@ -92,28 +92,41 @@ Full 11×11 overlap matrix at d=8, 150 trials. **8 independent clusters:**
 
 ---
 
-## 5. Revised Axis Count
+## 5. Dimension Scaling (`42032863`)
 
-| Layer | Claimed | Verified Independent |
-|---|---|---|
-| Base (0-6) | 7 | **~4-5** (Ax1=Ax5, Ax0/Ax1/Ax2 cluster, Ax4 weak) |
-| Commutator (7-12) | 6 | **~3** (A9≡A10, A8≈A11≈A12) |
-| New candidates | 0 | **1** (measurement_basis) |
-| **Total** | **13** | **~8** |
+Tested at d={2,4,8,16,32}:
+
+| Question | d=2 | d=8 | d=32 | Answer |
+|---|---|---|---|---|
+| **Ax0/Ax1/Ax2 split?** | cluster (0.57) | cluster (0.66) | cluster (0.56) | **NEVER SPLITS** — one compound axis |
+| **Ax3 get clean?** | dirty (0.49) | dirty (0.38) | dirty (0.34) | **Slowly improving** but never clean |
+| **Ax4 activate?** | active (0.014) | zero (0.005) | zero (0.001) | **VANISHES at d≥8** |
+| **meas_basis stable?** | dirty (0.52) | OK (0.25) | clean (0.12) | **Gets cleaner with d** |
 
 ---
 
-## 6. Open Questions for Engine
+## 6. Revised Axis Count
+
+| Layer | Claimed | Verified Independent |
+|---|---|---|
+| Base (0-6) | 7 | **~3** (Ax0/1/2=one, Ax1=Ax5, Ax4 vanishes) |
+| Commutator (7-12) | 6 | **~3** (A9≡A10, A8≈A11≈A12) |
+| New candidates | 0 | **1** (measurement_basis) |
+| **Total** | **13** | **~5-7 real axes** |
+
+---
+
+## 7. Open Questions for Engine
 
 1. **What is measurement_basis in the engine?** Frame/basis selection — no Jungian label yet.
-2. **Should Ax0/Ax1/Ax2 be one axis or three?** They cluster at 0.54-0.77. Need d-scaling test.
-3. **Why does Ax4 produce zero displacement?** The specific map pair nearly commutes. Need different operators.
-4. **Is Ax3 (U vs U*) real chirality?** Max overlap 0.38 — not perfectly clean. Needs d-scaling.
+2. **Should Ax0/Ax1/Ax2 collapse to one axis?** d-scaling says YES — they never split.
+3. **Is Ax4 real at d>2?** d-scaling says NO — it vanishes. May only matter at qubit level.
+4. **Why does Ax3 stay dirty (0.34)?** Persistent overlap with Ax1. Chirality and dissipation may share structure.
 5. **Which commutator axes matter for engine dynamics?** A7=[A1,A3] is the strongest independent one.
 
 ---
 
-## 7. Sim Files (all in `system_v4/probes/`)
+## 8. Sim Files (all in `system_v4/probes/`)
 
 | File | What it tests |
 |---|---|
@@ -125,7 +138,9 @@ Full 11×11 overlap matrix at d=8, 150 trials. **8 independent clusters:**
 | `sim_axis_7_12_audit.py` | Commutator axes redundancy + candidate mapping |
 | `sim_axis_independence_matrix.py` | **Definitive 11×11 overlap matrix** |
 
-## 8. Results Files (all in `system_v4/a2_state/sim_results/`)
+| `sim_axis_dimension_scaling.py` | **d-scaling of 7 axes at d=2,4,8,16,32** |
+
+## 9. Results Files (all in `system_v4/a2_state/sim_results/`)
 
 | File | Content |
 |---|---|
@@ -136,3 +151,4 @@ Full 11×11 overlap matrix at d=8, 150 trials. **8 independent clusters:**
 | `broad_axis_search_results.json` | 15 candidates full results |
 | `axis_7_12_audit_results.json` | Commutator norms, overlap, candidate mapping |
 | `axis_independence_matrix.json` | **Definitive 11×11 matrix + clusters** |
+| `axis_dimension_scaling.json` | **d-scaling tracking for all 4 questions** |

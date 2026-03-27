@@ -33,6 +33,7 @@ These documents track what the current engine/runtime actually does. They outran
 ## 🟡 TIER 2: PROPOSAL SCAFFOLDS (Not Canon)
 These documents map a proposed 8x8 structural decomposition and 64-state scaffold. Their I Ching/trigram language is correlation shorthand only, not primary ontology. They rely on un-secured bindings for Ax3, Ax4, and Ax5. **DO NOT** use these to claim zero-conflation or full geometric closure.
 
+- `system_v4/docs/ENGINE_64_SCHEDULE_ATLAS.md` (**Preferred chart front door**. Merged IGT/Jung/I Ching scaffold chart; not runtime truth.)
 - `system_v4/docs/64_HEXAGRAM_STATE_SPACE.md` (Proposed structural mapping, NOT a live reflection)
 - `system_v4/docs/THE_8X8_ENGINE_MAPPING.md` (Current best topological decomposition, provisional only)
 - `~/.gemini/antigravity/brain/.../FEP_HOLOGRAPHIC_INGESTION_PLAN_v1.md` (Outside-repo theoretical blueprint relying on unsettled Ax5 mechanics)

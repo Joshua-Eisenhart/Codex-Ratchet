@@ -178,7 +178,7 @@ Hexagram labels may be attached to `S01-S64` as schedule tags only. They do not 
 | Ax0 | Graph edge | Ne/Ni vs Se/Si |
 | Ax1 | Graph edge (cross) | Se/Ni vs Ne/Si |
 | Ax2 | Graph edge | Se/Ne vs Si/Ni |
-| Ax3 | IGT | IN flux vs OUT flux |
+| Ax3 | IGT | IN flux vs OUT flux *(scaffold — not closed by proof)* |
 | Ax4 | Jung | FeTi (deductive) vs TeFi (inductive) |
 | Ax5 | IGT | First strategy (Te/Ti) vs second (Fe/Fi) |
 | Ax6 | Jung | UP (operator first) vs DOWN (terrain first) |

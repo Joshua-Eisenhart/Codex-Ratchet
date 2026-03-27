@@ -1,7 +1,7 @@
 # QIT Graph Runtime Model
 
-> How engine execution updates graph state over time.
-> Separates three graph concerns: **structure**, **state**, and **history**.
+> How engine execution relates to structure, packetized state overlays, and packetized history/evidence.
+> Separates three concerns: **structure**, **state overlays**, and **history/evidence packets**.
 
 ---
 
@@ -25,9 +25,9 @@
 **Builder**: `system_v4/skills/qit_engine_graph_builder.py`
 **Mutability**: Rebuilt only when the engine architecture itself changes (new stages, new axes, etc.). Not touched during runtime.
 
-### 2. State Graph (Dynamic)
+### 2. State Overlay Surface (Dynamic, Packet-Only Today)
 
-**What it holds**: The engine's current position during execution. Changes every step.
+**What it holds**: The engine's current position during execution. Changes every step, but today this is surfaced as a graph-adjacent packet rather than a promoted graph.
 
 | State Variable | Type | Description |
 |---|---|---|
@@ -49,16 +49,16 @@
 - the current overlay is stage-granular; it reports active macro-stage and last completed subcycle step, not a live in-flight operator cursor
 - `system_v4/skills/qit_runtime_evidence_bridge.py` can persist that runtime slice into a read-only audit-log packet/report without claiming a live state graph
 
-**Future graph form**: State would be stored as attribute annotations on structure-graph nodes:
+**Future graph form if promoted later**: State would be stored as attribute annotations on structure-graph nodes:
 - `MACRO_STAGE` nodes get `active: bool`, `last_activated_utc: str`
 - `TORUS` nodes get `current_eta: float`, `current_theta_1: float`
 - `ENGINE` nodes get `rho_L: list[list[complex]]`, `rho_R: list[list[complex]]`
 
 **Design rule**: State attributes are mutable overlays on immutable structure nodes. They NEVER change the structure graph's node/edge set.
 
-### 3. History/Evidence Graph (Append-Only)
+### 3. History/Evidence Packet Surface (Append-Only Today)
 
-**What it holds**: Every probe outcome, run trajectory, and evidence token ever generated.
+**What it holds**: Every probe outcome, run trajectory, and evidence token ever generated. Today this is packet/file-based, not a promoted graph.
 
 | Content | Example |
 |---|---|
@@ -76,7 +76,7 @@
 - this is still a packet surface, not a promoted history graph
 - `system_v4/skills/qit_runtime_evidence_bridge.py` can persist selected run packets plus mapped SIM evidence under `a2_state/audit_logs/` as a read-only bridge surface
 
-**Future graph form**: Each run becomes a node with:
+**Future graph form if promoted later**: Each run becomes a node with:
 - `RUN_EVIDENCES` edges to the `MACRO_STAGE` nodes it exercised
 - `RUN_PROVES` edges to the `NEG_WITNESS` nodes it confirmed
 - `RUN_TRAJECTORY` edges forming the temporal chain of state snapshots

@@ -54,6 +54,7 @@ AUDIT_DOCS = [
 
 AUDIT_JSONS = [
     AUDIT_DIR / "QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json",
+    AUDIT_DIR / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json",
 ]
 
 SIM_JSONS = [
@@ -409,6 +410,130 @@ def _format_runtime_bridge_docs(path: Path) -> list[dict[str, Any]]:
     return docs
 
 
+def _format_hopf_weyl_docs(path: Path) -> list[dict[str, Any]]:
+    payload = _read_json(path)
+    if not isinstance(payload, dict):
+        return []
+
+    docs: list[dict[str, Any]] = []
+    owner_snapshot = payload.get("owner_snapshot", {})
+    carrier = payload.get("owner_carrier_evidence", {})
+    runtime_bridge = payload.get("runtime_bridge_alignment", {})
+    readiness = payload.get("weyl_projection_readiness", {})
+    negatives = payload.get("relevant_negative_evidence", {})
+
+    summary_lines = [
+        "# Structured Hopf/Weyl Carrier Map",
+        f"source_path: {path}",
+        "query_anchors: hopf, weyl, torus, chirality, clifford, inner, outer, fiber, base, type1, type2",
+        f"schema: {payload.get('schema', '')}",
+        f"status: {payload.get('status', '')}",
+        f"audit_only: {payload.get('sidecar_boundary', {}).get('audit_only')}",
+        f"nonoperative: {payload.get('sidecar_boundary', {}).get('nonoperative')}",
+        f"do_not_promote: {payload.get('sidecar_boundary', {}).get('do_not_promote')}",
+        f"owner_content_hash: {owner_snapshot.get('qit_graph_content_hash', '')}",
+        f"carrier_assignment_scope: {carrier.get('carrier_assignment_scope', '')}",
+        f"stage_on_torus_edge_count: {carrier.get('stage_on_torus_edge_count', '')}",
+        f"runtime_bridge_status: {runtime_bridge.get('status', '')}",
+        f"runtime_bridge_owner_hash_match: {runtime_bridge.get('owner_content_hash_matches_runtime_bridge')}",
+        f"weyl_projection_status: {readiness.get('projection_status', '')}",
+        f"weyl_branch_nodes_present: {readiness.get('weyl_branch_nodes_present')}",
+        f"chirality_coupling_edge_present: {readiness.get('chirality_coupling_edge_present')}",
+        f"negative_evidence_total: {negatives.get('total', 0)}",
+    ]
+    docs.append(
+        {
+            "doc_id": "qit_hopf_weyl_projection_structured",
+            "family": "audit_reports",
+            "source_path": str(path),
+            "source_refs": _dedupe_refs(
+                [
+                    str(path),
+                    owner_snapshot.get("qit_graph_json", ""),
+                    runtime_bridge.get("runtime_bridge_json", ""),
+                    owner_snapshot.get("qit_graph_content_hash", ""),
+                ]
+            ),
+            "authoritative": False,
+            "owner_input_read_only": True,
+            "text": "\n".join(summary_lines) + "\n",
+        }
+    )
+
+    for torus in carrier.get("torus_carriers", []):
+        torus_public_id = torus.get("torus_public_id", "")
+        refs = _dedupe_refs(
+            [
+                str(path),
+                torus_public_id,
+                *torus.get("stage_public_ids", []),
+                *torus.get("engine_public_ids", []),
+                runtime_bridge.get("runtime_bridge_json", ""),
+                owner_snapshot.get("qit_graph_content_hash", ""),
+            ]
+        )
+        lines = [
+            f"# Hopf Carrier: {torus_public_id}",
+            f"source_path: {path}",
+            "query_anchors: hopf torus carrier clifford fiber base chirality stage runtime alignment",
+            f"torus_public_id: {torus_public_id}",
+            f"label: {torus.get('label', '')}",
+            f"nesting_rank: {torus.get('nesting_rank')}",
+            f"stage_count: {torus.get('stage_count')}",
+            f"engine_public_ids: {', '.join(torus.get('engine_public_ids', []))}",
+            f"stage_public_ids: {', '.join(torus.get('stage_public_ids', []))}",
+            f"owner_content_hash: {owner_snapshot.get('qit_graph_content_hash', '')}",
+        ]
+        docs.append(
+            {
+                "doc_id": f"hopf_carrier__{torus_public_id.split('::')[-1]}",
+                "family": "audit_reports",
+                "source_path": str(path),
+                "source_refs": refs,
+                "authoritative": False,
+                "owner_input_read_only": True,
+                "text": "\n".join(lines) + "\n",
+            }
+        )
+
+    for sample in runtime_bridge.get("engine_sample_refs", []):
+        engine_public_id = sample.get("engine_public_id", "")
+        refs = _dedupe_refs(
+            [
+                str(path),
+                engine_public_id,
+                sample.get("first_step_public_id", ""),
+                sample.get("last_step_public_id", ""),
+                runtime_bridge.get("runtime_bridge_json", ""),
+                owner_snapshot.get("qit_graph_content_hash", ""),
+            ]
+        )
+        lines = [
+            f"# Hopf/Weyl Runtime Alignment: {engine_public_id}",
+            f"source_path: {path}",
+            "query_anchors: hopf weyl chirality runtime bridge type1 type2 engine torus",
+            f"engine_public_id: {engine_public_id}",
+            f"first_step_public_id: {sample.get('first_step_public_id', '')}",
+            f"last_step_public_id: {sample.get('last_step_public_id', '')}",
+            f"runtime_bridge_json_path: {runtime_bridge.get('runtime_bridge_json', '')}",
+            f"owner_content_hash: {owner_snapshot.get('qit_graph_content_hash', '')}",
+            f"weyl_projection_status: {readiness.get('projection_status', '')}",
+        ]
+        docs.append(
+            {
+                "doc_id": f"hopf_runtime_alignment__{engine_public_id.split('::')[-1]}",
+                "family": "audit_reports",
+                "source_path": str(path),
+                "source_refs": refs,
+                "authoritative": False,
+                "owner_input_read_only": True,
+                "text": "\n".join(lines) + "\n",
+            }
+        )
+
+    return docs
+
+
 def _build_corpus_documents() -> list[dict[str, Any]]:
     docs: list[dict[str, Any]] = []
     for path in QIT_DOCS:
@@ -420,7 +545,10 @@ def _build_corpus_documents() -> list[dict[str, Any]]:
         if doc:
             docs.append(doc)
     for path in AUDIT_JSONS:
-        docs.extend(_format_runtime_bridge_docs(path))
+        if path.name == "QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json":
+            docs.extend(_format_runtime_bridge_docs(path))
+        elif path.name == "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json":
+            docs.extend(_format_hopf_weyl_docs(path))
     for path in SIM_JSONS:
         doc = _format_sim_doc(path)
         if doc:
@@ -478,6 +606,18 @@ def _score_doc(doc: dict[str, Any], query_terms: list[str]) -> tuple[float, floa
         precision_bonus = 0.15
     elif family == "audit_reports":
         precision_bonus = 0.05
+    doc_id = doc.get("doc_id", "")
+    hopf_query = any(term in {"hopf", "weyl", "torus", "chirality", "clifford", "fiber", "base"} for term in query_terms)
+    if hopf_query and (
+        doc_id.startswith("hopf_")
+        or doc_id.startswith("qit_hopf_weyl_")
+        or "hopf" in doc_id
+        or "weyl" in doc_id
+    ):
+        precision_bonus += 0.3
+    type_query = any(term in {"type1", "type2", "deductive", "inductive"} for term in query_terms)
+    if type_query and ("hopf_runtime_alignment__" in doc_id or "qit_hopf_weyl_projection_structured" == doc_id):
+        precision_bonus += 0.15
     ref_bonus = 0.0
     source_refs = doc.get("source_refs", [])
     if source_refs:

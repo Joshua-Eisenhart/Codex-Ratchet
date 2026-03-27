@@ -1,10 +1,10 @@
 # QIT Graph Stack Status
 
 - status: `precheck_blocked`
-- generated_utc: `2026-03-27T00:06:22Z`
+- generated_utc: `2026-03-27T00:12:52Z`
 - purpose: `read-only-by-default verification surface over the current QIT owner snapshot and bounded sidecars`
-- snapshot_id: `f3e0fcfaac766c0fe087199dc4eccfceaf9c1c0fccdc2adfca8aad89e67ab995`
-- git_sha: `cea9e14ec6742760fb8f16f7ca53405ca1ee9de7`
+- snapshot_id: `15934ea270cf3b7d5f3fd311c44029d12b16665f0163908dae3a3e12c0f26da8`
+- git_sha: `d2c98a9ee0b15cda05c2eb881adee4848195747a`
 - git_worktree_dirty: `True`
 - owner_builder_sha256: `271e5c1681d077ea0994fdd4a5a9ff68e0a21e45e4129943e03858b0e4744822`
 
@@ -91,7 +91,7 @@
 - allow_owner_writes: `False`
 - allow_proof_claims: `False`
 - embedding_backed_query: `False`
-- document_count: `22`
+- document_count: `28`
 - top_hit_count: `8`
 
 ## Hopf/Weyl Projection

@@ -73,23 +73,59 @@
 
 **Operator sign rule:** Ax6 produces a **signed operator** — `Ti↑` (operator acts before terrain channel) is a distinct physical object from `Ti↓` (terrain acts before operator). This is the non-commutation: `Φ_T ∘ U_O ≠ U_O ∘ Φ_T`.
 
+**Traversal order** comes from the Ax0/Ax2 graph on the 4 topology nodes:
+
+```
+Ne ──Ax2── Se
+│          │
+Ax0        Ax0
+│          │
+Ni ──Ax2── Si
+```
+
+Two Hamiltonian cycles, alternating edge types:
+- **Deductive:** `Se → Ne → Ni → Si` (Ax2, Ax0, Ax2, Ax0)
+- **Inductive:** `Se → Si → Ni → Ne` (Ax0, Ax2, Ax0, Ax2)
+
+Since these are cycles, starting position does not matter — only the traversal order does.
+
 ### Type-1 (IN flux, deductive outer, inductive inner)
 
-| Topology | Terrain | Outer (major) | Ax6 | Op sign | Result | Inner (minor) | Ax6 | Op sign | Result | Combined |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Ne | Ne-in | NeTi | DOWN | Ti↓ | WIN | FiNe | UP | Fi↑ | lose | WINlose |
-| Si | Si-in | FeSi | UP | Fe↑ | WIN | SiTe | DOWN | Te↓ | win | winWIN |
-| Se | Se-in | TiSe | UP | Ti↑ | LOSE | SeFi | DOWN | Fi↓ | win | LOSEwin |
-| Ni | Ni-in | NiFe | DOWN | Fe↓ | LOSE | TeNi | UP | Te↑ | lose | loseLOSE |
+**Outer = deductive order: Se → Ne → Ni → Si**
+**Inner = inductive order: Se → Si → Ni → Ne**
+
+| Stage | Topology | Terrain | Outer (major) | Ax6 | Op sign | Result | Inner (minor) | Ax6 | Op sign | Result | Combined |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | Se | Se-in | TiSe | UP | Ti↑ | LOSE | SeFi | DOWN | Fi↓ | win | LOSEwin |
+| 2 | Ne | Ne-in | NeTi | DOWN | Ti↓ | WIN | — | — | — | — | — |
+| 3 | Ni | Ni-in | NiFe | DOWN | Fe↓ | LOSE | — | — | — | — | — |
+| 4 | Si | Si-in | FeSi | UP | Fe↑ | WIN | — | — | — | — | — |
+
+| Stage | Topology | Terrain | Inner (minor) | Ax6 | Op sign | Result | Combined with outer |
+|---|---|---|---|---|---|---|---|
+| 1 | Se | Se-in | SeFi | DOWN | Fi↓ | win | LOSEwin |
+| 2 | Si | Si-in | SiTe | DOWN | Te↓ | win | winWIN |
+| 3 | Ni | Ni-in | TeNi | UP | Te↑ | lose | loseLOSE |
+| 4 | Ne | Ne-in | FiNe | UP | Fi↑ | lose | WINlose |
 
 ### Type-2 (OUT flux, inductive outer, deductive inner)
 
-| Topology | Terrain | Outer (major) | Ax6 | Op sign | Result | Inner (minor) | Ax6 | Op sign | Result | Combined |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Ne | Ne-out | NeFi | DOWN | Fi↓ | LOSE | TiNe | UP | Ti↑ | win | winLOSE |
-| Si | Si-out | TeSi | UP | Te↑ | WIN | SiFe | DOWN | Fe↓ | win | WINwin |
-| Se | Se-out | FiSe | UP | Fi↑ | WIN | SeTi | DOWN | Ti↓ | lose | loseWIN |
-| Ni | Ni-out | NiTe | DOWN | Te↓ | LOSE | FeNi | UP | Fe↑ | lose | LOSElose |
+**Outer = inductive order: Se → Si → Ni → Ne**
+**Inner = deductive order: Se → Ne → Ni → Si**
+
+| Stage | Topology | Terrain | Outer (major) | Ax6 | Op sign | Result | Combined |
+|---|---|---|---|---|---|---|---|
+| 1 | Se | Se-out | FiSe | UP | Fi↑ | WIN | loseWIN |
+| 2 | Si | Si-out | TeSi | UP | Te↑ | WIN | WINwin |
+| 3 | Ni | Ni-out | NiTe | DOWN | Te↓ | LOSE | LOSElose |
+| 4 | Ne | Ne-out | NeFi | DOWN | Fi↓ | LOSE | winLOSE |
+
+| Stage | Topology | Terrain | Inner (minor) | Ax6 | Op sign | Result | Combined with outer |
+|---|---|---|---|---|---|---|---|
+| 1 | Se | Se-out | SeTi | DOWN | Ti↓ | lose | loseWIN |
+| 2 | Ne | Ne-out | TiNe | UP | Ti↑ | win | winLOSE |
+| 3 | Ni | Ni-out | FeNi | UP | Fe↑ | lose | LOSElose |
+| 4 | Si | Si-out | SiFe | DOWN | Fe↓ | win | WINwin |
 
 ### Signed operator inventory (per engine)
 
@@ -155,18 +191,17 @@ Each engine uses all 4 operators in both signs = **8 distinct signed operators**
 
 **Axis-4 governs:** Macro topology order ONLY (Deduction vs Induction). Not sign, not CW/CCW.
 
-**Topology orders — ⚠️ DISPUTED:**
+**Topology orders — ✅ RESOLVED (Carnot-grounded, Ax0/Ax2 graph-derived):**
 
-> The order from `ENGINES_SPEC.md` is preserved below, but is flagged as likely thermodynamically incorrect.
-> The user-proposed Carnot-grounded order is listed alongside as the probe candidate.
-> Loop order should be verified by sim — since it is a cycle, starting position does not matter, only the traversal order does.
+> The spec order from `ENGINES_SPEC.md` was disputed and is now superseded.
+> The correct orders come from the Ax0/Ax2 Hamiltonian cycle graph (see FULL STAGE GRAMMAR above).
 
-| | Spec (ENGINES_SPEC.md) | Proposed (Carnot-grounded, to sim) |
+| | Spec (ENGINES_SPEC.md) — **SUPERSEDED** | Correct (Ax0/Ax2 graph) |
 |---|---|---|
-| Induction | `Ne → Ni → Se → Si` | `Se → Si → Ni → Ne` |
-| Deduction | `Ne → Si → Se → Ni` | `Se → Ne → Ni → Si` |
+| Induction | ~~`Ne → Ni → Se → Si`~~ | `Se → Si → Ni → Ne` |
+| Deduction | ~~`Ne → Si → Se → Ni`~~ | `Se → Ne → Ni → Si` |
 
-**Proposed order rationale (QIT-native):** The hypothesis is that the structural sequence of QIT map classes matters — specifically: mixing channel (Se, non-unital toward τ_hot) → dephasing channel (Si, basis-stabilizing) → reset channel (Ni, non-unital toward τ_cold) → unitary transport (Ne, entropy-preserving) places the two non-unital channels (Se, Ni) in structurally opposed positions rather than adjacent, which may be required for the dual-stack to produce bounded winding. This is a probe candidate, not a thermodynamic claim. Carnot/thermodynamics is a search-direction metaphor only — these are QIT engines.
+**Rationale:** The orders are the two Hamiltonian cycles on the 4-node graph where Ax0 (Ne↔Ni, Se↔Si) and Ax2 (Se↔Ne, Si↔Ni) are the edge types. Since these are cycles, starting position does not matter — only the traversal order does.
 
 | Engine | Loop | Axis-4 stroke | Operator set | Terrain suffixes |
 |---|---|---|---|---|

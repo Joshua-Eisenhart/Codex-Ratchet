@@ -70,45 +70,69 @@ Tested 15 QIT operations. After dedup, 1 strong new candidate:
 
 ---
 
-## 4. Revised Axis Count
+## 4. Definitive Independence Matrix (`f034d015`)
+
+Full 11×11 overlap matrix at d=8, 150 trials. **8 independent clusters:**
+
+| Cluster | Axes | Type |
+|---|---|---|
+| 1 | **Ax0 ≈ Ax1 ≈ Ax2** (overlap 0.54–0.77) | Base — may be one compound axis |
+| 2 | **Ax3** (U vs U*, max overlap 0.38) | Base — chirality, marginal but real |
+| 3 | **Ax4** (B∘A vs A∘B, zero norm issue) | Base — maps nearly commute at d=8 |
+| 4 | **Ax6** (Aρ vs ρA, max overlap 0.39) | Base — action side |
+| 5 | **A7=[A1,A3]** (max overlap 0.48) | Commutator — independent |
+| 6 | **A8=[A1,A6] ≈ A12=[A1,A5]** (overlap 0.57) | Commutator — cluster of 2 |
+| 7 | **A9=[A3,A6]** (max overlap 0.33) | Commutator — independent |
+| 8 | **measurement_basis** (max overlap 0.25) | NEW — cleanest axis in the system |
+
+### Formulation Notes
+- **Ax3**: Must use U vs U* (Weyl conjugate), NOT `e^{±iθ}` (global phase cancels in ρ→UρU†)
+- **Ax4**: zero norm at d=8 because dephasing and amplitude damping nearly commute. Needs stronger non-commuting map pair or may only activate at small d.
+- **Ax0/Ax1/Ax2 cluster**: fine-graining, dissipation, boundary all share the "how much information is lost" direction. May be aspects of a single metastructure.
+
+---
+
+## 5. Revised Axis Count
 
 | Layer | Claimed | Verified Independent |
 |---|---|---|
-| Base (0-6) | 7 | **6** (Ax1=Ax5 merge) |
-| Commutator (7-12) | 6 | **~3-4** (A9≡A10, A8≈A11) |
+| Base (0-6) | 7 | **~4-5** (Ax1=Ax5, Ax0/Ax1/Ax2 cluster, Ax4 weak) |
+| Commutator (7-12) | 6 | **~3** (A9≡A10, A8≈A11≈A12) |
 | New candidates | 0 | **1** (measurement_basis) |
-| **Total** | **13** | **~10-11** |
+| **Total** | **13** | **~8** |
 
 ---
 
-## 5. Open Questions for Engine
+## 6. Open Questions for Engine
 
-1. **What is measurement_basis in the engine?** It's the frame/basis selection — which basis the operators treat as computational. No Jungian label yet.
-2. **Should Ax5 be dropped or relabeled?** It's the same as Ax1. If kept, needs different math.
-3. **Which commutator axes matter for engine dynamics?** A7=[A1,A3] is the strongest independent one.
-4. **Is non_markovianity real?** Partially lives in commutator space — might not be truly new.
-5. **Does the Ax3 formulation change (e^{±iθ} vs ±G) affect engine convergence?**
+1. **What is measurement_basis in the engine?** Frame/basis selection — no Jungian label yet.
+2. **Should Ax0/Ax1/Ax2 be one axis or three?** They cluster at 0.54-0.77. Need d-scaling test.
+3. **Why does Ax4 produce zero displacement?** The specific map pair nearly commutes. Need different operators.
+4. **Is Ax3 (U vs U*) real chirality?** Max overlap 0.38 — not perfectly clean. Needs d-scaling.
+5. **Which commutator axes matter for engine dynamics?** A7=[A1,A3] is the strongest independent one.
 
 ---
 
-## 6. Sim Files (all in `system_v4/probes/`)
+## 7. Sim Files (all in `system_v4/probes/`)
 
 | File | What it tests |
 |---|---|
-| `sim_axis_anti_conflation.py` | Pairwise overlap of all 7 axes, danger pairs |
+| `sim_axis_anti_conflation.py` | Pairwise overlap of 7 axes, danger pairs |
 | `sim_axis_exploration_suite.py` | Ax1/Ax5 redundancy, Ax3/Ax6 disentanglement, torus η |
 | `sim_missing_axis_search.py` | 7 candidates for missing axis |
 | `sim_axis7_deep_test.py` | Deep validation of measurement_basis + squeezing |
 | `sim_broad_axis_search.py` | 15 candidates broad search |
 | `sim_axis_7_12_audit.py` | Commutator axes redundancy + candidate mapping |
+| `sim_axis_independence_matrix.py` | **Definitive 11×11 overlap matrix** |
 
-## 7. Results Files (all in `system_v4/a2_state/sim_results/`)
+## 8. Results Files (all in `system_v4/a2_state/sim_results/`)
 
 | File | Content |
 |---|---|
-| `axis_anti_conflation_results.json` | 7×7 overlap matrix + danger pairs |
+| `axis_anti_conflation_results.json` | 7×7 overlap + danger pairs |
 | `axis_exploration_suite_results.json` | Ax1/Ax5, Ax3/Ax6 disentangle, torus η |
 | `missing_axis_search_results.json` | 7 candidates residual analysis |
 | `axis7_deep_test_results.json` | Deep validation metadata |
 | `broad_axis_search_results.json` | 15 candidates full results |
 | `axis_7_12_audit_results.json` | Commutator norms, overlap, candidate mapping |
+| `axis_independence_matrix.json` | **Definitive 11×11 matrix + clusters** |

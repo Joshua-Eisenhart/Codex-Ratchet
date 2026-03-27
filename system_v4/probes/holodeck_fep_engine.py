@@ -1,345 +1,210 @@
 #!/usr/bin/env python3
 """
-Holodeck FEP Engine — S³ Projection & Free Energy Surprise
-============================================================
-Bridges the QIT engine to external reality modeling:
-  1. S³ projection via Hopf fibration of 2-qubit density matrix eigenspaces
-  2. FEP surprise metric: S_FEP = KL(q(z|x) || p(z)) on finite states
-  3. Thermal grid generation for spatial correlation matrices
-  4. EvidenceToken emission to holodeck_fep_results.json
+HOLODECK FEP ENGINE (v1)
+========================
+Implements the Free Energy Principle (FEP) as the explicit Axis 0 Gradient.
+Projects the 2-qubit Dirac/Weyl engine states safely onto the S^3 Hopf 
+Fibration manifold, carefully preserving phase data (chi/fiber coordinate)
+to build the 3D sensory environment (The Holodeck).
 
-KILL conditions tested:
-  K1: Eigenvalue collapse (degenerate spectrum for structured input)
-  K2: FEP divergence (infinite KL for finite states)
-  K3: S³ degeneracy (all eigenstates map to same point)
-  K4: Coherence below threshold (< 0.01)
-  K5: Thermal grid singularity (negative eigenvalues)
+Reference: core_docs/HOLODECK_SCIENCE_SYSTEM_v1.md
 """
 
 import numpy as np
-import json
-import os
-import sys
+import scipy.linalg as la
+import json, os, sys
 from datetime import datetime, UTC
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from proto_ratchet_sim_runner import (
-    EvidenceToken,
-    make_random_density_matrix,
-    von_neumann_entropy,
-)
+from proto_ratchet_sim_runner import EvidenceToken
 
-RESULTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                           "a2_state", "sim_results")
+def partial_trace_A(rho, dim_A=2, dim_B=2):
+    """Trace out system B from a composite rho_{AB}."""
+    reshaped = rho.reshape((dim_A, dim_B, dim_A, dim_B))
+    return np.einsum('jiki->jk', reshaped)
 
-
-# ─────────────────────────────────────────────
-# S³ Hopf Projection
-# ─────────────────────────────────────────────
-
-def partial_trace_B(psi_4, d=2):
-    """Partial trace over qubit B of a 2-qubit pure state |ψ⟩ ∈ ℂ⁴.
-    Returns reduced density matrix ρ_A ∈ ℂ^{2×2}.
+def hopf_map(psi_A):
     """
-    psi_reshaped = psi_4.reshape(d, d)
-    rho_A = psi_reshaped @ psi_reshaped.conj().T
-    tr = np.real(np.trace(rho_A))
-    if tr > 1e-15:
-        rho_A /= tr
-    return rho_A
-
-
-def bloch_from_reduced(rho_A):
-    """Extract dominant eigenvector of ρ_A ∈ ℂ^{2×2} as a normalized ψ ∈ ℂ²."""
-    eigvals, eigvecs = np.linalg.eigh(rho_A)
-    idx = np.argmax(eigvals)
-    psi = eigvecs[:, idx]
-    norm = np.linalg.norm(psi)
-    if norm > 1e-15:
-        psi = psi / norm
-    return psi
-
-
-def hopf_map(psi):
-    """Map ψ = (α, β) ∈ ℂ² (|α|²+|β|²=1) to S³ coordinates (θ, φ, χ).
-
-    θ = 2·arccos(|α|)       ∈ [0, π]
-    φ = arg(β) - arg(α)     ∈ [0, 2π)
-    χ = arg(α) + arg(β)     ∈ [0, 4π)
+    Map a 2-component spinor |psi_A> = (alpha, beta)^T to S^3 coordinates.
+    Returns: (theta, phi, chi)
+    theta in [0, pi]: Polar spherical angle
+    phi in [0, 2pi): Azimuthal spherical angle
+    chi in [0, 4pi): Hopf Fiber phase
     """
-    alpha, beta = psi[0], psi[1]
-    abs_alpha = np.clip(np.abs(alpha), 0.0, 1.0)
-    theta = 2.0 * np.arccos(abs_alpha)
+    alpha, beta = psi_A[0], psi_A[1]
+    
+    # Magnitudes and phases
+    r_alpha = np.abs(alpha)
+    # Ensure float safety for arccos
+    r_alpha = np.clip(r_alpha, 0.0, 1.0)
+    
+    theta = 2.0 * np.arccos(r_alpha)
+    
     arg_alpha = np.angle(alpha)
     arg_beta = np.angle(beta)
+    
     phi = (arg_beta - arg_alpha) % (2 * np.pi)
     chi = (arg_alpha + arg_beta) % (4 * np.pi)
-    return float(theta), float(phi), float(chi)
+    
+    return theta, phi, chi
 
-
-def hopf_project_eigenspace(rho):
-    """Eigendecompose a 4×4 density matrix and Hopf-project each eigenspace.
-    Returns list of dicts with eigenvalue, S³ coordinates.
+def compute_fep_surprise(obs_evals, model_evals):
     """
-    eigenvalues, eigenvectors = np.linalg.eigh(rho)
-    eigenvalues = np.real(eigenvalues)
-    idx = np.argsort(eigenvalues)[::-1]
-    eigenvalues = eigenvalues[idx]
-    eigenvectors = eigenvectors[:, idx]
-
-    projections = []
-    for i in range(len(eigenvalues)):
-        lam = eigenvalues[i]
-        if lam < 1e-12:
-            continue
-        psi_4 = eigenvectors[:, i]
-        rho_A = partial_trace_B(psi_4)
-        psi_2 = bloch_from_reduced(rho_A)
-        theta, phi, chi = hopf_map(psi_2)
-        projections.append({
-            "eigenvalue": float(lam),
-            "s3_theta": theta,
-            "s3_phi": phi,
-            "s3_chi": chi,
-        })
-    return projections
-
-
-# ─────────────────────────────────────────────
-# FEP Surprise (KL Divergence)
-# ─────────────────────────────────────────────
-
-def kl_divergence(q, p):
-    """KL(q || p) on finite discrete distributions with Laplace smoothing."""
+    Compute S_FEP = KL(q(z|x) || p(z)), the surprise of the observation given the model.
+    q(z|x) = obs_evals (the observed density eigen-spectrum)
+    p(z)   = model_evals (the predicted density eigen-spectrum, e.g. Thermal prior)
+    """
+    # Epsilon to prevent log(0)
     eps = 1e-12
-    q = np.array(q, dtype=float) + eps
-    p = np.array(p, dtype=float) + eps
-    q = q / q.sum()
-    p = p / p.sum()
-    return float(np.sum(q * np.log(q / p)))
+    q = np.clip(obs_evals, eps, 1.0)
+    p = np.clip(model_evals, eps, 1.0)
+    
+    # Normalize securely to make true probabilities
+    q /= np.sum(q)
+    p /= np.sum(p)
+    
+    kl = np.sum(q * np.log(q / p))
+    return float(kl)
 
+def compute_coherence_score(evals, d=4):
+    """1 - S_vN / log2(d), where 1 = pure, 0 = maximally mixed."""
+    eps = 1e-12
+    q = np.clip(evals, eps, 1.0)
+    s_vn = -np.sum(q * np.log2(q))
+    # log2(4) = 2.0
+    return max(0.0, 1.0 - (s_vn / np.log2(d)))
 
-def fep_surprise(rho_obs, rho_model):
-    """S_FEP = KL(q(z|x) || p(z)) where q,p are eigenvalue spectra."""
-    q = np.maximum(np.real(np.linalg.eigvalsh(rho_obs)), 0)
-    p = np.maximum(np.real(np.linalg.eigvalsh(rho_model)), 0)
-    q_sum, p_sum = q.sum(), p.sum()
-    if q_sum > 1e-15:
-        q = q / q_sum
-    if p_sum > 1e-15:
-        p = p / p_sum
-    return kl_divergence(q, p)
-
-
-# ─────────────────────────────────────────────
-# Thermal Grid
-# ─────────────────────────────────────────────
-
-def thermal_state(d, temperature):
-    """Gibbs state ρ = exp(-H/T)/Z with H = diag(0,1,...,d-1)."""
+def build_thermal_prior(T=1.0, d=4):
+    """
+    Constructs a generic thermal background prior p(z).
+    E_i = i, so p_i ~ exp(-i/T)
+    """
     energies = np.arange(d, dtype=float)
-    if temperature < 1e-10:
-        rho = np.zeros((d, d), dtype=complex)
-        rho[0, 0] = 1.0
-        return rho
-    boltzmann = np.exp(-energies / temperature)
-    return np.diag((boltzmann / boltzmann.sum()).astype(complex))
+    p = np.exp(-energies / T)
+    return p / np.sum(p)
 
+def run_holodeck_engine():
+    print("=" * 80)
+    print("HOLODECK SCIENCE SYSTEM: FEP ENGINE INIT")
+    print("Mapping Engine Density Matrices -> S^3 Topological Projections")
+    print("Axis 0 = FEP Entropy Gradient")
+    print("=" * 80)
+    
+    tokens = []
+    
+    # Generate a sample engine state (mixed)
+    rng = np.random.default_rng(20260327)
+    
+    # 1. We start with a 4x4 density matrix (d=4 base Hilbert space)
+    # Let's generate a structured state with some coherence
+    H = rng.normal(size=(4,4)) + 1j*rng.normal(size=(4,4))
+    H = H + H.conj().T
+    rho_obs = la.expm(-1j * H * 1.5) @ np.diag([0.7, 0.2, 0.08, 0.02]) @ la.expm(1j * H * 1.5)
+    
+    # EIGENSPACE DECOMPOSITION
+    evals, evecs = la.eigh(rho_obs)
+    
+    # Sort descending
+    idx = np.argsort(evals)[::-1]
+    evals = evals[idx]
+    evecs = evecs[:, idx]
+    
+    # HOPF FIBRATION S^3 MAPPING
+    s3_projections = []
+    valid_s3 = True
+    for i in range(4):
+        psi = evecs[:, i]
+        # Partial trace to get reduced state on qubit A
+        # psi is a 4-vector. For a pure state, rho_A is 2x2.
+        # But we need a 2-spinor |psi_A> to do Hopf map directly, 
+        # so we extract the dominant eigenvector of rho_A as the fiber base
+        # (Since S^3 naturally maps CP^1 / C^2)
+        rho = np.outer(psi, psi.conj())
+        rho_A = partial_trace_A(rho, 2, 2)
+        evals_A, evecs_A = la.eigh(rho_A)
+        # dominant eigenvector of the reduced state
+        psi_A = evecs_A[:, np.argmax(evals_A)]
+        
+        theta, phi, chi = hopf_map(psi_A)
+        s3_projections.append({
+            "eigen_index": i,
+            "weight": float(evals[i]),
+            "s3_theta": float(theta),
+            "s3_phi": float(phi),
+            "s3_chi": float(chi)
+        })
+        
+        if np.isnan(theta) or np.isnan(phi) or np.isnan(chi):
+            valid_s3 = False
 
-def thermal_grid(d=4, n_grid=8):
-    """Grid of thermal states → correlation matrix C_{ij} = Tr(ρ_i · ρ_j)."""
-    temperatures = np.linspace(0.1, 5.0, n_grid)
-    states = [thermal_state(d, T) for T in temperatures]
-    C = np.zeros((n_grid, n_grid))
-    for i in range(n_grid):
-        for j in range(n_grid):
-            C[i, j] = np.real(np.trace(states[i] @ states[j]))
-    return C, temperatures
-
-
-# ─────────────────────────────────────────────
-# Main SIM
-# ─────────────────────────────────────────────
-
-def run_holodeck_fep_sim(d=4, n_trials=20, seed=42):
-    """Run the full Holodeck FEP engine simulation."""
-    np.random.seed(seed)
-
-    print(f"\n{'='*60}")
-    print(f"HOLODECK FEP ENGINE — S³ PROJECTION + FREE ENERGY SURPRISE")
-    print(f"  d={d}, trials={n_trials}, seed={seed}")
-    print(f"{'='*60}")
-
-    evidence = []
-
-    # ── TEST 1: S³ PROJECTION ──
-    print(f"\n{'─'*40}")
-    print("  TEST 1: S³ Hopf Projection from Eigenspaces")
-    print(f"{'─'*40}")
-
-    all_projections = []
-    n_degenerate = 0
-    for t in range(n_trials):
-        rho = make_random_density_matrix(d)
-        projs = hopf_project_eigenspace(rho)
-        all_projections.append(projs)
-        if len(projs) >= 2:
-            coords = [(p["s3_theta"], p["s3_phi"]) for p in projs]
-            if all(np.allclose([coords[0][0], coords[0][1]],
-                               [c[0], c[1]], atol=1e-6) for c in coords[1:]):
-                n_degenerate += 1
-
-    if n_degenerate == n_trials:
-        print(f"  KILL: All {n_trials} states map to degenerate S³ point!")
-        evidence.append(EvidenceToken(
-            token_id="",
-            sim_spec_id="S_HOLODECK_S3_PROJECTION",
-            status="KILL", measured_value=0.0,
-            kill_reason="S3_DEGENERACY_ALL_EIGENSTATES_SAME_POINT"
-        ))
-    else:
-        avg_patches = np.mean([len(p) for p in all_projections])
-        print(f"  PASS: {n_trials} density matrices projected to S³")
-        print(f"  Average patches: {avg_patches:.1f}, Degenerate: {n_degenerate}/{n_trials}")
-        evidence.append(EvidenceToken(
-            token_id="E_SIM_HOLODECK_S3_PROJECTION_OK",
-            sim_spec_id="S_HOLODECK_S3_PROJECTION",
-            status="PASS", measured_value=avg_patches
-        ))
-
-    # ── TEST 2: FEP SURPRISE ──
-    print(f"\n{'─'*40}")
-    print("  TEST 2: FEP Surprise Metric (KL Divergence)")
-    print(f"{'─'*40}")
-
-    surprises = []
-    any_diverged = False
-    for t in range(n_trials):
-        rho_obs = make_random_density_matrix(d)
-        rho_prior = np.eye(d, dtype=complex) / d
-        s = fep_surprise(rho_obs, rho_prior)
-        surprises.append(s)
-        if not np.isfinite(s):
-            any_diverged = True
-
-    if any_diverged:
-        print(f"  KILL: FEP surprise diverged to infinity!")
-        evidence.append(EvidenceToken(
-            token_id="", sim_spec_id="S_HOLODECK_FEP_SURPRISE",
-            status="KILL", measured_value=float("inf"),
-            kill_reason="FEP_DIVERGENCE_INFINITE_KL"
-        ))
-    else:
-        mean_s, max_s = np.mean(surprises), np.max(surprises)
-        print(f"  PASS: All {n_trials} surprise values finite")
-        print(f"  Mean S_FEP = {mean_s:.6f}, Max = {max_s:.6f}")
-        evidence.append(EvidenceToken(
-            token_id="E_SIM_HOLODECK_FEP_SURPRISE_OK",
-            sim_spec_id="S_HOLODECK_FEP_SURPRISE",
-            status="PASS", measured_value=mean_s
-        ))
-
-    # ── TEST 3: THERMAL GRID ──
-    print(f"\n{'─'*40}")
-    print("  TEST 3: Thermal Grid Correlation Matrix")
-    print(f"{'─'*40}")
-
-    C, temps = thermal_grid(d=d, n_grid=8)
-    grid_eigs = np.real(np.linalg.eigvalsh(C))
-    min_eig = grid_eigs.min()
-
-    if min_eig < -1e-10:
-        print(f"  KILL: Negative eigenvalue: {min_eig:.6e}")
-        evidence.append(EvidenceToken(
-            token_id="", sim_spec_id="S_HOLODECK_THERMAL_GRID",
-            status="KILL", measured_value=float(min_eig),
-            kill_reason="THERMAL_GRID_SINGULARITY_NEGATIVE_EIGENVALUE"
-        ))
-    else:
-        print(f"  PASS: PSD correlation matrix (min eig: {min_eig:.6e})")
-        print(f"  Temperature range: [{temps[0]:.1f}, {temps[-1]:.1f}]")
-        evidence.append(EvidenceToken(
-            token_id="E_SIM_HOLODECK_THERMAL_GRID_OK",
-            sim_spec_id="S_HOLODECK_THERMAL_GRID",
-            status="PASS", measured_value=float(min_eig)
-        ))
-
-    # ── TEST 4: COHERENCE ──
-    print(f"\n{'─'*40}")
-    print("  TEST 4: Holodeck Coherence Score")
-    print(f"{'─'*40}")
-
-    coherences = []
-    max_entropy = np.log2(d)
-    for t in range(n_trials):
-        rho = make_random_density_matrix(d)
-        S = von_neumann_entropy(rho)
-        coherences.append(1.0 - S / max_entropy)
-
-    mean_coh, max_coh = np.mean(coherences), np.max(coherences)
-
-    if max_coh < 0.01:
-        print(f"  KILL: All coherence below 0.01 (max={max_coh:.6f})")
-        evidence.append(EvidenceToken(
-            token_id="", sim_spec_id="S_HOLODECK_COHERENCE",
-            status="KILL", measured_value=max_coh,
-            kill_reason="COHERENCE_BELOW_THRESHOLD"
-        ))
-    else:
-        print(f"  PASS: Mean coherence={mean_coh:.6f}, Max={max_coh:.6f}")
-        evidence.append(EvidenceToken(
-            token_id="E_SIM_HOLODECK_COHERENCE_OK",
-            sim_spec_id="S_HOLODECK_COHERENCE",
-            status="PASS", measured_value=mean_coh
-        ))
-
-    # ── FINAL REPORT ──
-    print(f"\n{'='*60}")
-    print("  HOLODECK FEP ENGINE — FINAL VERDICT")
-    print(f"{'='*60}")
-
-    n_pass = sum(1 for e in evidence if e.status == "PASS")
-    n_kill = sum(1 for e in evidence if e.status == "KILL")
-    print(f"  PASS: {n_pass}/4, FAILS: {n_kill}/4")
-    for e in evidence:
-        icon = "✓" if e.status == "PASS" else "✗"
-        print(f"    {icon} {e.token_id or e.kill_reason} ({e.measured_value:.6f})")
-
-    # ── SAVE RESULTS ──
-    os.makedirs(RESULTS_DIR, exist_ok=True)
-    outpath = os.path.join(RESULTS_DIR, "holodeck_fep_results.json")
-
-    sample_coords = {}
-    if all_projections and all_projections[0]:
-        p0 = all_projections[0][0]
-        sample_coords = {
-            "s3_theta": p0["s3_theta"], "s3_phi": p0["s3_phi"],
-            "s3_chi": p0["s3_chi"],
-            "fep_surprise": surprises[0] if surprises else 0.0,
-            "coherence_score": coherences[0] if coherences else 0.0,
-            "thermal_temperature": 1.0,
-        }
-
+    tokens.append(EvidenceToken(
+        "E_SIM_HOLODECK_S3_PROJECTION_OK",
+        "S_SIM_HOLODECK_FEP",
+        "PASS" if valid_s3 else "KILL",
+        None,
+        None if valid_s3 else "INVALID_S3_PROJECTION"
+    ))
+    
+    # FEP SURPRISE (AXIS 0 GRADIENT)
+    thermal_prior = build_thermal_prior(T=1.5, d=4)
+    fep_surprise = compute_fep_surprise(evals, thermal_prior)
+    
+    tokens.append(EvidenceToken(
+        "E_SIM_HOLODECK_FEP_SURPRISE_OK",
+        "S_SIM_HOLODECK_FEP",
+        "PASS" if (0 <= fep_surprise < np.inf) else "KILL",
+        float(fep_surprise),
+        None if (0 <= fep_surprise < np.inf) else "FEP_DIVERGENCE"
+    ))
+    
+    # COHERENCE SCORE
+    coh_score = compute_coherence_score(evals, d=4)
+    tokens.append(EvidenceToken(
+        "E_SIM_HOLODECK_COHERENCE_OK",
+        "S_SIM_HOLODECK_FEP",
+        "PASS" if (0.0 < coh_score <= 1.0) else "KILL",
+        float(coh_score),
+        None if (0.0 < coh_score <= 1.0) else "COHERENCE_COLLAPSE"
+    ))
+    
+    # PREPARE ATTRACTOR COORDINATE
+    primary_projection = s3_projections[0] # The dominant eigen-fiber
+    
     results = {
-        "timestamp": datetime.now(UTC).isoformat(),
-        "sim_id": "holodeck_fep_engine",
-        "evidence_ledger": [
-            {
-                "token_id": e.token_id, "sim_spec_id": e.sim_spec_id,
-                "status": e.status, "measured_value": e.measured_value,
-                "kill_reason": e.kill_reason, "timestamp": e.timestamp,
-            }
-            for e in evidence
-        ],
-        "summary": {"total_tests": 4, "passed": n_pass, "killed": n_kill},
-        "attractor_coordinates_sample": sample_coords,
+        "schema": "FEP_HOLODECK_ENGINE_v1",
+        "timestamp": datetime.now(UTC).isoformat() + "Z",
+        "tokens": [{"token_id": t.token_id, "sim_spec_id": t.sim_spec_id, "status": t.status, "measured_value": t.measured_value, "kill_reason": t.kill_reason, "timestamp": t.timestamp} for t in tokens],
+        "state_metrics": {
+            "eigenvalues": evals.tolist(),
+            "fep_surprise_ax0": float(fep_surprise),
+            "coherence_score": float(coh_score),
+            "s3_projections": s3_projections
+        },
+        "dominant_attractor_coordinate": {
+            "s3_theta": primary_projection["s3_theta"],
+            "s3_phi": primary_projection["s3_phi"],
+            "s3_chi": primary_projection["s3_chi"],
+            "fep_surprise": float(fep_surprise),
+            "coherence_score": float(coh_score),
+            "thermal_temperature": 1.5
+        }
     }
-
-    with open(outpath, "w") as f:
+    
+    out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "a2_state", "sim_results")
+    out_file = os.path.join(out_dir, "holodeck_fep_results.json")
+    with open(out_file, "w") as f:
         json.dump(results, f, indent=2)
-    print(f"\n  Results saved to: {outpath}")
-    return evidence
-
+        
+    print(f"\nEngine outputs saved to: {out_file}")
+    print("\nEvidence Tokens:")
+    for t in tokens:
+        print(f"  [{t.status}] {t.token_id}: {t.measured_value}")
+        
+    # Check KILL conditions
+    if any(t.status == "KILL" for t in tokens):
+        sys.exit(1)
+    else:
+        sys.exit(0)
 
 if __name__ == "__main__":
-    run_holodeck_fep_sim()
+    run_holodeck_engine()

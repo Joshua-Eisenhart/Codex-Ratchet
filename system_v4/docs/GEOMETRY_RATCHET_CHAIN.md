@@ -58,19 +58,19 @@ Ax0 is the correlation entropy gradient that pushes the system through the 64 st
 
 ---
 
-## Legacy Metaphor Correlations (Non-Primary)
+## Taijitu Pattern Correlations (Non-Primary)
 
-The yin-yang / taijitu layer is a downstream correlation shorthand, not a proof surface. It may be useful as a mnemonic or historical correlation layer, but it must not be treated as primary mathematical ontology.
+The taijitu was used as a visual pattern-description tool to identify and distinguish the axes. It is a useful mnemonic and correlation layer, not a proof surface or primary mathematical ontology. The mapping below reflects the user's actual descriptions, including honest uncertainty.
 
-| Legacy correlation label | Axis | Best Candidate Formulations |
-|---|---|---|
-| **Black vs white** | **Ax0** | *Meta-axis: Correlation Entropy Gradient* |
-| **Seeds of the other** | Ax1 | Channel type (Dissipation / depolarizing) |
-| **Dots vs teardrops** | Ax2 | Boundary (Concentrated vs spread / projection) |
-| **Flip + invert** (inverted mirror) | Ax3 | Chirality (γ₅-phase family / CP mirror) |
-| **Spin direction** (CW/CCW) | Ax4 | Process direction (*Currently dead/unrecovered*) |
-| **S-curve curvature** | Ax5 | Torus geometry (Partial transport hysteresis) |
-| **Which fish chases which** | Ax6 | Action side (Aρ vs ρA / precedence) |
+| Taijitu visual feature | Axis | User's description | Certainty |
+|---|---|---|---|
+| **Black vs white fields** | **Ax0** | Homeostasis (black) vs Allostasis (white). Similar to Ax5 hot/cold, but not the same. | Proposed |
+| **Black-dot-in-white-teardrop vs white-dot-in-black-teardrop** | Ax1 | The seed in context of its surrounding — which color dot is inside which color teardrop | Moderate |
+| **Dots vs teardrops** | Ax2 | The shapes themselves — concentrated (dot) vs spread (teardrop) | Moderate |
+| **Flipping the symbol over** | Ax3 | Inverted mirror image. Might be just mirror, or just inversion. Exact flipping operation not known. | Unsettled |
+| **Spinning the symbol** | Ax4 | Not literally CW vs CCW rotation — more the direction the tails vs heads of teardrops lead | Unsettled |
+| **Curvature of the S-line** | Ax5 | Hot vs cold. The S-curve dividing the two fields can be more or less curved. | Moderate |
+| *(unsure)* | Ax6 | No confident taijitu mapping identified yet | Unknown |
 
 ---
 

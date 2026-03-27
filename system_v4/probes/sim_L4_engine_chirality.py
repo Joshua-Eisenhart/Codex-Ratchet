@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Layer 4 Validation SIM — Engine Chirality (Axis 3)
+Layer 4 Validation SIM — Engine Chirality (Axis 3: CANON = engine-family split; chirality is HYPOTHESIS)
 ====================================================
 Type 1 vs Type 2 as complete cycles on actual Hopf geometry.
 
 From the source doc:
-  "Axis-3 selects engine type (left/right Weyl spinor)
-   and orients all stages together."
+  CANON: Axis-3 = engine-family split (Type-1 vs Type-2).
+  HYPOTHESIS: This split manifests as left/right Weyl spinor selection.
 
   Type 1: Deductive (Fe/Ti) OUTER, Inductive (Te/Fi) INNER
     = deductive envelope wrapping inductive core
@@ -114,7 +114,7 @@ def run_type2_engine(rho: np.ndarray, n_cycles: int = 5) -> dict:
 
 def run_L4_validation():
     print("=" * 72)
-    print("LAYER 4: ENGINE CHIRALITY VALIDATION (AXIS 3)")
+    print("LAYER 4: ENGINE CHIRALITY VALIDATION (AXIS 3 — CANON: engine-family split)")
     print("  'Type 1 vs Type 2 on actual Hopf geometry'")
     print("=" * 72)
 

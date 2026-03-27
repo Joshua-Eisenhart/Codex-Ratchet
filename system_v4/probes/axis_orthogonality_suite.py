@@ -9,7 +9,7 @@ Anti-Smuggling: ZERO physical analogies. Pure density matrices, CPTP maps.
 
 AXIS 1 (COUPLING_REGIME): Isothermal/CPTP vs Adiabatic/Unitary.
 AXIS 2 (FRAME_REPRESENTATION): Lagrangian/Checkerboard vs Eulerian/Ring.
-AXIS 3 (CHIRAL_FLUX): Type-1/Inward vs Type-2/Outward Weyl orientation.
+AXIS 3 (ENGINE_FAMILY_SPLIT; CHIRAL_FLUX is HYPOTHESIS): Type-1/Inward vs Type-2/Outward Weyl orientation.
 AXIS 4 (VARIANCE_DIRECTION): Deductive/FeTi (S→0) vs Inductive/TeFi (ΔW→max).
 AXIS 5 (GENERATOR_ALGEBRA): Wave/FeFi (Integration) vs Line/TeTi (Differentiation).
 AXIS 6 (ACTION_PRECEDENCE): P-dom/Topo-first vs J-dom/Op-first.
@@ -121,17 +121,32 @@ def A2_frame_representation(rho, d):
 
 
 # ═══════════════════════════════════════════════════════════════════
-# AXIS 3: CHIRAL_FLUX — Weyl Orientation
+# AXIS 3: ENGINE_FAMILY_SPLIT (CANON) / CHIRAL_FLUX (HYPOTHESIS)
+#
+#   CANON (AXES_MASTER_SPEC_v0.2):
+#     Axis 3 = abstract engine-family fork: Type-1 (Deductive) vs Type-2 (Inductive).
+#     "No doc may bind Axis-3 to chirality/handedness/spinor/Berry/flux language in CANON."
+#
+#   HYPOTHESIS (this sim):
+#     Tests whether the engine-family split can be operationalized as
+#     off-diagonal phase asymmetry (Weyl orientation). This is a
+#     falsifiable overlay — if the Choi matrix becomes trivial or
+#     degenerate with Axis 4, the hypothesis fails.
+#
 #   Type-1/Inward  = positive imaginary off-diagonal phases
 #   Type-2/Outward = negative imaginary off-diagonal phases
 # ═══════════════════════════════════════════════════════════════════
 
 def A3_chiral_flux(rho, d):
+    """Axis 3 operational test: off-diagonal phase asymmetry.
+
+    CANON: Axis 3 = engine-family split (Type-1 vs Type-2).
+    THIS SIM: Tests the HYPOTHESIS that this split manifests as
+    chirality (Weyl orientation) in the Choi representation.
+    The hypothesis is falsifiable — see axis3_4_nondegen_diagnostic_sim.py.
+    """
     out = rho.copy().astype(complex)
-    # Type-1 (inward/left-handed): rotate upper off-diagonals by +π/4
-    # Type-2 (outward/right-handed): rotate lower off-diagonals by -π/4
-    # Combined: both chiralities applied simultaneously
-    phase_pos = np.exp(1j * np.pi / 4)  # +45° rotation
+    phase_pos = np.exp(1j * np.pi / 4)   # +45° rotation
     phase_neg = np.exp(-1j * np.pi / 4)  # -45° rotation
     for i in range(d):
         for j in range(d):

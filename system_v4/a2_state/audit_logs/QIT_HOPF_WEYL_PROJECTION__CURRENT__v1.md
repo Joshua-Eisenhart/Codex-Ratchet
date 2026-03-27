@@ -1,6 +1,6 @@
 # QIT Hopf–Weyl Projection (Bounded Read-Only Sidecar)
 
-- generated_utc: `2026-03-27T00:06:39Z`
+- generated_utc: `2026-03-27T00:09:58Z`
 - source_content_hash: `7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff`
 - do_not_promote: `True`
 - mode: `bounded_read_only`
@@ -8,7 +8,7 @@
 ## Report Surface
 - surface_class: `tracked_current_workspace_report`
 - represents: `current workspace Hopf/Weyl sidecar state at generation time; may differ from the last committed snapshot until tracked CURRENT artifacts are committed`
-- git_sha: `cea9e14ec6742760fb8f16f7ca53405ca1ee9de7`
+- git_sha: `446c5350e21cd27f027119d4da759e923e254148`
 
 ## Owner Graph Inputs
 - Torus nodes: `3`
@@ -17,6 +17,11 @@
 - TORUS_NESTING edges: `2`
 - STAGE_ON_TORUS edges: `32`
 - CHIRALITY_COUPLING edges: `1`
+
+## Owner Carrier Evidence
+- carrier_assignment_scope: `owner_scaffold_only`
+- TORUS_NESTING edges recorded: `2`
+- STAGE_ON_TORUS edge count: `32`
 
 ## 1. TopoNetX Candidate Cell-Complex View
 - available: `True`
@@ -34,6 +39,14 @@
 - `inner`: 8 stages
 - `clifford`: 16 stages
 - `outer`: 8 stages
+
+## Runtime Bridge Alignment
+- status: `present`
+- runtime_bridge_json: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json`
+- owner_content_hash_matches_runtime_bridge: `True`
+- runtime_sample_count: `2`
+- `qit::ENGINE::type1_deductive`: first_step=`qit::SUBCYCLE_STEP::type1_deductive_Se_f_Ti`, last_step=`qit::SUBCYCLE_STEP::type1_deductive_Ni_b_Fi`
+- `qit::ENGINE::type2_inductive`: first_step=`qit::SUBCYCLE_STEP::type2_inductive_Se_f_Ti`, last_step=`qit::SUBCYCLE_STEP::type2_inductive_Ni_b_Fi`
 
 ## 3. Chirality Coupling Candidate Mapping (Cl(3,0))
 - available: `True`

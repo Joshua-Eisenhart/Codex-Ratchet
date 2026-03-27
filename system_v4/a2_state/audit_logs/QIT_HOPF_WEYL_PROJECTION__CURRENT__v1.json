@@ -1,6 +1,6 @@
 {
   "schema": "QIT_HOPF_WEYL_PROJECTION_v1",
-  "generated_utc": "2026-03-27T00:06:39Z",
+  "generated_utc": "2026-03-27T00:09:58Z",
   "status": "present_bounded_projection",
   "source": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json",
   "source_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
@@ -18,10 +18,13 @@
       "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json",
       "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md"
     ],
-    "tracked_report_files_dirty_before_generation": [],
+    "tracked_report_files_dirty_before_generation": [
+      " M system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json",
+      " M system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md"
+    ],
     "script_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_hopf_weyl_projection.py",
-    "script_sha256": "d2c3d84856e29284f0d5b699d7a62dcccb5ee89ba3f7ae7991b923ae3550fade",
-    "git_sha": "cea9e14ec6742760fb8f16f7ca53405ca1ee9de7"
+    "script_sha256": "12a2608d8abf4a298d1eeea6cef5025aad621f06dc04e3090f4ba94cbc93864a",
+    "git_sha": "446c5350e21cd27f027119d4da759e923e254148"
   },
   "sidecar_boundary": {
     "mode": "bounded_read_only",
@@ -77,6 +80,90 @@
     "missing_owner_anchors": [
       "WEYL_BRANCH"
     ]
+  },
+  "owner_carrier_evidence": {
+    "torus_carriers": [
+      {
+        "torus_public_id": "qit::TORUS::inner",
+        "label": "inner",
+        "nesting_rank": 0,
+        "stage_count": 8,
+        "stage_public_ids": [
+          "qit::MACRO_STAGE::type1_deductive_Ne_f",
+          "qit::MACRO_STAGE::type1_deductive_Ni_f",
+          "qit::MACRO_STAGE::type1_deductive_Se_f",
+          "qit::MACRO_STAGE::type1_deductive_Si_f",
+          "qit::MACRO_STAGE::type2_inductive_Ne_f",
+          "qit::MACRO_STAGE::type2_inductive_Ni_f",
+          "qit::MACRO_STAGE::type2_inductive_Se_f",
+          "qit::MACRO_STAGE::type2_inductive_Si_f"
+        ],
+        "engine_public_ids": [
+          "qit::ENGINE::type1_deductive",
+          "qit::ENGINE::type2_inductive"
+        ]
+      },
+      {
+        "torus_public_id": "qit::TORUS::clifford",
+        "label": "clifford",
+        "nesting_rank": 1,
+        "stage_count": 16,
+        "stage_public_ids": [
+          "qit::MACRO_STAGE::type1_deductive_Ne_b",
+          "qit::MACRO_STAGE::type1_deductive_Ne_f",
+          "qit::MACRO_STAGE::type1_deductive_Ni_b",
+          "qit::MACRO_STAGE::type1_deductive_Ni_f",
+          "qit::MACRO_STAGE::type1_deductive_Se_b",
+          "qit::MACRO_STAGE::type1_deductive_Se_f",
+          "qit::MACRO_STAGE::type1_deductive_Si_b",
+          "qit::MACRO_STAGE::type1_deductive_Si_f",
+          "qit::MACRO_STAGE::type2_inductive_Ne_b",
+          "qit::MACRO_STAGE::type2_inductive_Ne_f",
+          "qit::MACRO_STAGE::type2_inductive_Ni_b",
+          "qit::MACRO_STAGE::type2_inductive_Ni_f",
+          "qit::MACRO_STAGE::type2_inductive_Se_b",
+          "qit::MACRO_STAGE::type2_inductive_Se_f",
+          "qit::MACRO_STAGE::type2_inductive_Si_b",
+          "qit::MACRO_STAGE::type2_inductive_Si_f"
+        ],
+        "engine_public_ids": [
+          "qit::ENGINE::type1_deductive",
+          "qit::ENGINE::type2_inductive"
+        ]
+      },
+      {
+        "torus_public_id": "qit::TORUS::outer",
+        "label": "outer",
+        "nesting_rank": 2,
+        "stage_count": 8,
+        "stage_public_ids": [
+          "qit::MACRO_STAGE::type1_deductive_Ne_b",
+          "qit::MACRO_STAGE::type1_deductive_Ni_b",
+          "qit::MACRO_STAGE::type1_deductive_Se_b",
+          "qit::MACRO_STAGE::type1_deductive_Si_b",
+          "qit::MACRO_STAGE::type2_inductive_Ne_b",
+          "qit::MACRO_STAGE::type2_inductive_Ni_b",
+          "qit::MACRO_STAGE::type2_inductive_Se_b",
+          "qit::MACRO_STAGE::type2_inductive_Si_b"
+        ],
+        "engine_public_ids": [
+          "qit::ENGINE::type1_deductive",
+          "qit::ENGINE::type2_inductive"
+        ]
+      }
+    ],
+    "torus_nesting_edges": [
+      {
+        "source_public_id": "qit::TORUS::inner",
+        "target_public_id": "qit::TORUS::clifford"
+      },
+      {
+        "source_public_id": "qit::TORUS::clifford",
+        "target_public_id": "qit::TORUS::outer"
+      }
+    ],
+    "stage_on_torus_edge_count": 32,
+    "carrier_assignment_scope": "owner_scaffold_only"
   },
   "torus_cell_complex": {
     "available": true,
@@ -281,6 +368,60 @@
         "type2_inductive_Si_b"
       ]
     },
+    "torus_to_stage_public_ids": {
+      "inner": [
+        "qit::MACRO_STAGE::type1_deductive_Ne_f",
+        "qit::MACRO_STAGE::type1_deductive_Ni_f",
+        "qit::MACRO_STAGE::type1_deductive_Se_f",
+        "qit::MACRO_STAGE::type1_deductive_Si_f",
+        "qit::MACRO_STAGE::type2_inductive_Ne_f",
+        "qit::MACRO_STAGE::type2_inductive_Ni_f",
+        "qit::MACRO_STAGE::type2_inductive_Se_f",
+        "qit::MACRO_STAGE::type2_inductive_Si_f"
+      ],
+      "clifford": [
+        "qit::MACRO_STAGE::type1_deductive_Ne_b",
+        "qit::MACRO_STAGE::type1_deductive_Ne_f",
+        "qit::MACRO_STAGE::type1_deductive_Ni_b",
+        "qit::MACRO_STAGE::type1_deductive_Ni_f",
+        "qit::MACRO_STAGE::type1_deductive_Se_b",
+        "qit::MACRO_STAGE::type1_deductive_Se_f",
+        "qit::MACRO_STAGE::type1_deductive_Si_b",
+        "qit::MACRO_STAGE::type1_deductive_Si_f",
+        "qit::MACRO_STAGE::type2_inductive_Ne_b",
+        "qit::MACRO_STAGE::type2_inductive_Ne_f",
+        "qit::MACRO_STAGE::type2_inductive_Ni_b",
+        "qit::MACRO_STAGE::type2_inductive_Ni_f",
+        "qit::MACRO_STAGE::type2_inductive_Se_b",
+        "qit::MACRO_STAGE::type2_inductive_Se_f",
+        "qit::MACRO_STAGE::type2_inductive_Si_b",
+        "qit::MACRO_STAGE::type2_inductive_Si_f"
+      ],
+      "outer": [
+        "qit::MACRO_STAGE::type1_deductive_Ne_b",
+        "qit::MACRO_STAGE::type1_deductive_Ni_b",
+        "qit::MACRO_STAGE::type1_deductive_Se_b",
+        "qit::MACRO_STAGE::type1_deductive_Si_b",
+        "qit::MACRO_STAGE::type2_inductive_Ne_b",
+        "qit::MACRO_STAGE::type2_inductive_Ni_b",
+        "qit::MACRO_STAGE::type2_inductive_Se_b",
+        "qit::MACRO_STAGE::type2_inductive_Si_b"
+      ]
+    },
+    "torus_to_engine_public_ids": {
+      "inner": [
+        "qit::ENGINE::type1_deductive",
+        "qit::ENGINE::type2_inductive"
+      ],
+      "clifford": [
+        "qit::ENGINE::type1_deductive",
+        "qit::ENGINE::type2_inductive"
+      ],
+      "outer": [
+        "qit::ENGINE::type1_deductive",
+        "qit::ENGINE::type2_inductive"
+      ]
+    },
     "fiber_stages": [
       "type1_deductive_Ne_f",
       "type1_deductive_Ni_f",
@@ -375,6 +516,24 @@
     ],
     "clifford_is_flat": true,
     "transport_distance_inner_to_outer": 1.0
+  },
+  "runtime_bridge_alignment": {
+    "status": "present",
+    "runtime_bridge_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json",
+    "owner_content_hash_matches_runtime_bridge": true,
+    "runtime_sample_count": 2,
+    "engine_sample_refs": [
+      {
+        "engine_public_id": "qit::ENGINE::type1_deductive",
+        "first_step_public_id": "qit::SUBCYCLE_STEP::type1_deductive_Se_f_Ti",
+        "last_step_public_id": "qit::SUBCYCLE_STEP::type1_deductive_Ni_b_Fi"
+      },
+      {
+        "engine_public_id": "qit::ENGINE::type2_inductive",
+        "first_step_public_id": "qit::SUBCYCLE_STEP::type2_inductive_Se_f_Ti",
+        "last_step_public_id": "qit::SUBCYCLE_STEP::type2_inductive_Ni_b_Fi"
+      }
+    ]
   },
   "relevant_negative_evidence": {
     "torus_witnesses": [

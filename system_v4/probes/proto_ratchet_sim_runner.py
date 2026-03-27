@@ -12,7 +12,7 @@ SIM hierarchy:
   T1: N01_NONCOMMUTATION — verify AB != BA for non-trivial operators
   T2: ACTION_PRECEDENCE — verify left vs right composition yields distinct observables
   T3: VARIANCE_DIRECTION — verify deductive vs inductive produce distinct variance trajectories
-  T4: CHIRAL_FLUX — verify convergent vs divergent flows are topologically distinct
+  T4: CHIRAL_FLUX (HYPOTHESIS — CANON Axis 3 = engine-family split) — verify convergent vs divergent flows are topologically distinct
   T5: PROTO_INVARIANT_TARGET_CONVERGENT_SUBSET — verify a convergent_subset forms under iterated CPTP application
 """
 

@@ -1,0 +1,78 @@
+{
+  "schema": "SIM_EVIDENCE_v1",
+  "file": "sim_axis_anti_conflation.py",
+  "timestamp": "2026-03-27T01:40:51.785307+00:00Z",
+  "evidence_ledger": [
+    {
+      "token_id": "",
+      "sim_spec_id": "S_SIM_AXIS_DISAMBIGUATION_V1",
+      "status": "KILL",
+      "measured_value": 0.7149818193431712,
+      "kill_reason": "AXIS_CONFLATION_DETECTED",
+      "timestamp": "2026-03-27T01:40:51.785243"
+    }
+  ],
+  "label_disambiguation": {
+    "axis_0": {
+      "plus": "fine",
+      "minus": "coarse",
+      "math": "fiber_average_level"
+    },
+    "axis_1": {
+      "plus": "open-channel (CPTP)",
+      "minus": "closed-channel (Unitary)",
+      "math": "channel_class"
+    },
+    "axis_2": {
+      "plus": "flux (Eulerian)",
+      "minus": "path (Lagrangian)",
+      "math": "boundary_condition"
+    },
+    "axis_3": {
+      "plus": "inward (+G, Left Weyl, CW)",
+      "minus": "outward (-G, Right Weyl, CCW)",
+      "math": "generator_sign"
+    },
+    "axis_4": {
+      "plus": "constraint-first (B\u2218A)",
+      "minus": "release-first (A\u2218B)",
+      "math": "composition_order"
+    },
+    "axis_5": {
+      "plus": "gradient (FGA, Lindblad)",
+      "minus": "spectral (FSA, Hamiltonian)",
+      "math": "algebra_class"
+    },
+    "axis_6": {
+      "plus": "pre (A\u03c1)",
+      "minus": "post (\u03c1A)",
+      "math": "action_side"
+    }
+  },
+  "danger_pairs": {
+    "ax0_ax3": "coarse-graining vs chirality (both affect purity)",
+    "ax3_ax6": "generator sign vs action side (both called 'left/right')",
+    "ax0_ax6": "coarse-graining vs action side",
+    "ax3_ax4": "chirality vs loop direction (historical conflation)"
+  },
+  "overlap_results": {
+    "d=4": {
+      "ax0_ax3": 0.10285594020129146,
+      "ax3_ax6": 0.7149818193431712,
+      "ax0_ax6": 0.1055761255104542,
+      "ax3_ax4": 0.0
+    },
+    "d=8": {
+      "ax0_ax3": 0.03125754697250879,
+      "ax3_ax6": 0.7123862389212431,
+      "ax0_ax6": 0.03485855276148622,
+      "ax3_ax4": 0.0
+    },
+    "d=16": {
+      "ax0_ax3": 0.016639231186199862,
+      "ax3_ax6": 0.7067390213447521,
+      "ax0_ax6": 0.01389301605158834,
+      "ax3_ax4": 0.0
+    }
+  }
+}

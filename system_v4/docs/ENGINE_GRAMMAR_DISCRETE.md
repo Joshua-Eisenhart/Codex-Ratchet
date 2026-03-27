@@ -67,13 +67,17 @@
 
 ## FULL STAGE GRAMMAR (both engine types)
 
-**Terrain** = `topology × flux orientation`. Type-1 terrains = `*-in`. Type-2 terrains = `*-out`.
+### Global locks
 
-**Ax6 general rule:** UP = operator first in the couplet token, DOWN = terrain first. Readable from the pair name prefix.
+| Layer | Type-1 | Type-2 |
+|---|---|---|
+| Flux | `IN` | `OUT` |
+| Major / Outer casing | `WIN / LOSE` | `WIN / LOSE` |
+| Minor / Inner casing | `win / lose` | `win / lose` |
+| Outer loop family | Deductive `FeTi` | Inductive `TeFi` |
+| Inner loop family | Inductive `TeFi` | Deductive `FeTi` |
 
-**Operator sign rule:** Ax6 produces a **signed operator** — `Ti↑` (operator acts before terrain channel) is a distinct physical object from `Ti↓` (terrain acts before operator). This is the non-commutation: `Φ_T ∘ U_O ≠ U_O ∘ Φ_T`.
-
-**Traversal order** comes from the Ax0/Ax2 graph on the 4 topology nodes:
+### Loop orders (Ax0/Ax2 graph-derived)
 
 ```
 Ne ──Ax2── Se
@@ -83,84 +87,92 @@ Ax0        Ax0
 Ni ──Ax2── Si
 ```
 
-Two Hamiltonian cycles, alternating edge types:
-- **Deductive:** `Se → Ne → Ni → Si` (Ax2, Ax0, Ax2, Ax0)
-- **Inductive:** `Se → Si → Ni → Ne` (Ax0, Ax2, Ax0, Ax2)
+| Axis 4 family | Order |
+|---|---|
+| Inductive | `Se → Si → Ni → Ne` |
+| Deductive | `Se → Ne → Ni → Si` |
 
-Since these are cycles, starting position does not matter — only the traversal order does.
+### Terrain graph edges
 
-### Type-1 (IN flux, deductive outer, inductive inner)
+| Edge family | Edges |
+|---|---|
+| `Ax0` | `Se-Si`, `Ne-Ni` |
+| `Ax2` | `Se-Ne`, `Si-Ni` |
 
-**Outer = deductive order: Se → Ne → Ni → Si**
-**Inner = inductive order: Se → Si → Ni → Ne**
+| Loop | Edge walk |
+|---|---|
+| Inductive `Se → Si → Ni → Ne` | `Ax0 → Ax2 → Ax0 → Ax2` |
+| Deductive `Se → Ne → Ni → Si` | `Ax2 → Ax0 → Ax2 → Ax0` |
 
-| Stage | Topology | Terrain | Outer (major) | Ax6 | Op sign | Result | Inner (minor) | Ax6 | Op sign | Result | Combined |
+### Axis 6 sign
+
+| Sign | Meaning |
+|---|---|
+| `UP` | operator first |
+| `DOWN` | terrain first |
+
+Readable from the couplet token prefix. Non-commuting: `Φ_T ∘ U_O ≠ U_O ∘ Φ_T`.
+
+---
+
+### Type-1 full chart
+
+| Step | Topology | Terrain | Outer / Major | Ax6 | Signed op | Outer result | Inner / Minor | Ax6 | Signed op | Inner result | Pattern |
 |---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | Se | Se-in | TiSe | UP | Ti↑ | LOSE | SeFi | DOWN | Fi↓ | win | LOSEwin |
-| 2 | Ne | Ne-in | NeTi | DOWN | Ti↓ | WIN | — | — | — | — | — |
-| 3 | Ni | Ni-in | NiFe | DOWN | Fe↓ | LOSE | — | — | — | — | — |
-| 4 | Si | Si-in | FeSi | UP | Fe↑ | WIN | — | — | — | — | — |
+| 1 | `Se` | `Se-in` | `TiSe` | `UP` | `Ti↑` | `LOSE` | `SeFi` | `DOWN` | `Fi↓` | `win` | `LOSEwin` |
+| 2 | `Ne` | `Ne-in` | `NeTi` | `DOWN` | `Ti↓` | `WIN` | `FiNe` | `UP` | `Fi↑` | `lose` | `WINlose` |
+| 3 | `Ni` | `Ni-in` | `NiFe` | `DOWN` | `Fe↓` | `LOSE` | `TeNi` | `UP` | `Te↑` | `lose` | `loseLOSE` |
+| 4 | `Si` | `Si-in` | `FeSi` | `UP` | `Fe↑` | `WIN` | `SiTe` | `DOWN` | `Te↓` | `win` | `winWIN` |
 
-| Stage | Topology | Terrain | Inner (minor) | Ax6 | Op sign | Result | Combined with outer |
-|---|---|---|---|---|---|---|---|
-| 1 | Se | Se-in | SeFi | DOWN | Fi↓ | win | LOSEwin |
-| 2 | Si | Si-in | SiTe | DOWN | Te↓ | win | winWIN |
-| 3 | Ni | Ni-in | TeNi | UP | Te↑ | lose | loseLOSE |
-| 4 | Ne | Ne-in | FiNe | UP | Fi↑ | lose | WINlose |
+#### Type-1 loop view
 
-### Type-2 (OUT flux, inductive outer, deductive inner)
+| Loop | Order | Stage 1 | Stage 2 | Stage 3 | Stage 4 |
+|---|---|---|---|---|---|
+| Outer / Major | Deductive | `Se-in : TiSe : LOSE` | `Ne-in : NeTi : WIN` | `Ni-in : NiFe : LOSE` | `Si-in : FeSi : WIN` |
+| Inner / Minor | Inductive | `Se-in : SeFi : win` | `Si-in : SiTe : win` | `Ni-in : TeNi : lose` | `Ne-in : FiNe : lose` |
 
-**Outer = inductive order: Se → Si → Ni → Ne**
-**Inner = deductive order: Se → Ne → Ni → Si**
+---
 
-| Stage | Topology | Terrain | Outer (major) | Ax6 | Op sign | Result | Combined |
-|---|---|---|---|---|---|---|---|
-| 1 | Se | Se-out | FiSe | UP | Fi↑ | WIN | loseWIN |
-| 2 | Si | Si-out | TeSi | UP | Te↑ | WIN | WINwin |
-| 3 | Ni | Ni-out | NiTe | DOWN | Te↓ | LOSE | LOSElose |
-| 4 | Ne | Ne-out | NeFi | DOWN | Fi↓ | LOSE | winLOSE |
+### Type-2 full chart
 
-| Stage | Topology | Terrain | Inner (minor) | Ax6 | Op sign | Result | Combined with outer |
-|---|---|---|---|---|---|---|---|
-| 1 | Se | Se-out | SeTi | DOWN | Ti↓ | lose | loseWIN |
-| 2 | Ne | Ne-out | TiNe | UP | Ti↑ | win | winLOSE |
-| 3 | Ni | Ni-out | FeNi | UP | Fe↑ | lose | LOSElose |
-| 4 | Si | Si-out | SiFe | DOWN | Fe↓ | win | WINwin |
+| Step | Topology | Terrain | Outer / Major | Ax6 | Signed op | Outer result | Inner / Minor | Ax6 | Signed op | Inner result | Pattern |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | `Se` | `Se-out` | `FiSe` | `UP` | `Fi↑` | `WIN` | `SeTi` | `DOWN` | `Ti↓` | `lose` | `loseWIN` |
+| 2 | `Si` | `Si-out` | `TeSi` | `UP` | `Te↑` | `WIN` | `SiFe` | `DOWN` | `Fe↓` | `win` | `WINwin` |
+| 3 | `Ni` | `Ni-out` | `NiTe` | `DOWN` | `Te↓` | `LOSE` | `FeNi` | `UP` | `Fe↑` | `lose` | `LOSElose` |
+| 4 | `Ne` | `Ne-out` | `NeFi` | `DOWN` | `Fi↓` | `LOSE` | `TiNe` | `UP` | `Ti↑` | `win` | `winLOSE` |
 
-### Signed operator inventory (per engine)
+#### Type-2 loop view
 
-Each engine uses all 4 operators in both signs = **8 distinct signed operators**, one per stage:
+| Loop | Order | Stage 1 | Stage 2 | Stage 3 | Stage 4 |
+|---|---|---|---|---|---|
+| Outer / Major | Inductive | `Se-out : FiSe : WIN` | `Si-out : TeSi : WIN` | `Ni-out : NiTe : LOSE` | `Ne-out : NeFi : LOSE` |
+| Inner / Minor | Deductive | `Se-out : SeTi : lose` | `Ne-out : TiNe : win` | `Ni-out : FeNi : lose` | `Si-out : SiFe : win` |
 
-| Engine | ↑ stages | ↓ stages |
-|---|---|---|
-| Type-1 | Fi↑, Fe↑, Ti↑, Te↑ | Ti↓, Te↓, Fi↓, Fe↓ |
-| Type-2 | Ti↑, Te↑, Fi↑, Fe↑ | Fi↓, Fe↓, Ti↓, Te↓ |
+---
 
-### Loop-family lock
+### Topology-aligned comparison
 
-| Engine type | Outer loop | Inner loop |
-|---|---|---|
-| Type-1 | Deductive `FeTi` | Inductive `TeFi` |
-| Type-2 | Inductive `TeFi` | Deductive `FeTi` |
+| Topology | Type-1 terrain | Type-1 major | Type-1 minor | Type-2 terrain | Type-2 major | Type-2 minor |
+|---|---|---|---|---|---|---|
+| `Se` | `Se-in` | `TiSe / LOSE / Ti↑` | `SeFi / win / Fi↓` | `Se-out` | `FiSe / WIN / Fi↑` | `SeTi / lose / Ti↓` |
+| `Ne` | `Ne-in` | `NeTi / WIN / Ti↓` | `FiNe / lose / Fi↑` | `Ne-out` | `NeFi / LOSE / Fi↓` | `TiNe / win / Ti↑` |
+| `Ni` | `Ni-in` | `NiFe / LOSE / Fe↓` | `TeNi / lose / Te↑` | `Ni-out` | `NiTe / LOSE / Te↓` | `FeNi / lose / Fe↑` |
+| `Si` | `Si-in` | `FeSi / WIN / Fe↑` | `SiTe / win / Te↓` | `Si-out` | `TeSi / WIN / Te↑` | `SiFe / win / Fe↓` |
 
-### Count invariant (per engine)
+---
 
-| Engine | WIN | LOSE | win | lose |
+### Invariants
+
+| Engine | `WIN` | `LOSE` | `win` | `lose` |
 |---|---|---|---|---|
 | Type-1 | 2 | 2 | 2 | 2 |
 | Type-2 | 2 | 2 | 2 | 2 |
 
-### What stays distinct
-
-| Object | Type 1 | Type 2 |
+| Engine | `↑` stages | `↓` stages |
 |---|---|---|
-| Flux orientation | IN | OUT |
-| Terrain set | `*-in` | `*-out` |
-| Outer loop casing | uppercase | uppercase |
-| Inner loop casing | lowercase | lowercase |
-| Outer/inner loop families | FeTi / TeFi | TeFi / FeTi |
-| Ax6 sign per stage | token-order-derived | token-order-derived |
-| Signed operators per engine | 8 (4 ops × 2 signs) | 8 (4 ops × 2 signs) |
+| Type-1 | `Ti↑`, `Fe↑`, `Fi↑`, `Te↑` | `Ti↓`, `Fe↓`, `Fi↓`, `Te↓` |
+| Type-2 | `Fi↑`, `Te↑`, `Fe↑`, `Ti↑` | `Ti↓`, `Fe↓`, `Te↓`, `Fi↓` |
 
 ## SLICE A: Spinor Carrier
 

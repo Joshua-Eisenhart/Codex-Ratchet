@@ -38,9 +38,9 @@
 | **Ax1** | Se / Ni | Ne / Si | Diagonal cross-pairs — each side has one expansion, one compression |
 | **Ax2** | Se / Ne | Si / Ni | Expansion vs compression. Also candidate: Si/Ni/Te/Fe vs Ne/Se/Fi/Ti |
 | **Ax3** | Type 1 (`IN` flux) | Type 2 (`OUT` flux) | Flux direction. Both types have WIN/LOSE (caps) on outer and win/lose (lower) on inner. Ax3 is NOT which casing is outer — it is the flux direction. Not derivable from Ax0–Ax2. |
-| **Ax4** | Te / Fi | Fe / Ti | Which judging pair. Constraint: each loop is entirely Te/Fi OR entirely Fe/Ti — not mixed. |
+| **Ax4** | Te / Fi | Fe / Ti | Which judging pair per loop. Constraint: each loop is entirely Te/Fi OR entirely Fe/Ti — not mixed. Type-1 outer = FeTi (deductive), Type-2 outer = TeFi (inductive). |
 | **Ax5** | Fe / Fi (second strategy) | Te / Ti (first strategy) | Strategy axis. WinLose: Win=Ti, Lose=Fi. LoseWin: Lose=Ti, Win=Fi. WinWin/LoseLose: first=Te, second=Fe. |
-| **Ax6** | P then J (SiTe, SeTi, NeFi…) | J then P (TiSe, TeSi, TiNe, FiSe, FiNe…) | Couplet order. Perceiving-first vs Judging-first within each token. |
+| **Ax6** | UP (operator first in token) | DOWN (terrain first in token) | Composition order. Readable directly from the couplet name: TiSe = UP (Ti first), NeTi = DOWN (Ne first). `Φ_T ∘ U_O` vs `U_O ∘ Φ_T` — non-commuting. |
 
 **Why this resists collapse:**
 - WIN/LOSE is a hard binary: no blending, no soft transition, no "somewhat WIN"
@@ -48,61 +48,71 @@
 - The outer/inner loop split (caps vs lower) is a structural fact, not a correlation
 - Ax4 hard constraint: loops cannot mix Te/Fi and Fe/Ti — this blocks the most common collapse
 
-**Status:** This is a search map and candidate-family generator. It is NOT a completed QIT operationalization. Each partition is a hypothesis about which QIT map-class property the axis corresponds to. Use as A1 fuel, not as B-lane closure claim.
+**Status:** This is the current best engine stage grammar. Axes are owner-confirmed search structure. Not completed QIT operationalization. Use as A1 fuel and engine structural reference.
 
 ---
 
-## LOCKED IGT STAGE TABLES (lock surface: Apple Notes dump)
+## ENGINE-INDEPENDENT IGT STRATEGY TABLE
 
-**Source:** `core_docs/a2_feed_high entropy doc/axes math. apple notes dump.txt`
-**Status:** LOCKED — this is the authoritative stage pairing table. The ENGINES_SPEC order was DISPUTED and is now resolved by this surface.
+**Source:** Apple Notes dump (line ~10051). Each topology has two strategies — one T-kernel and one F-kernel. This table is the same for both engine types.
 
-**Casing frame (applies to both engine types):**
-- `WIN` / `LOSE` (caps) = outer loop (major)
-- `win` / `lose` (lower) = inner loop (minor)
-- Ax3 distinguishes the two types by FLUX DIRECTION only (IN vs OUT), not by which loop gets caps
+| Topology | IGT quadrant | T-strategy | F-strategy |
+|---|---|---|---|
+| Ne | WinLose | NeTi | FiNe |
+| Si | WinWin | SiTe | FeSi |
+| Se | LoseWin | TiSe | SeFi |
+| Ni | LoseLose | TeNi | NiFe |
 
-| Engine | Flux |
-|---|---|
-| Type-1 | `IN` |
-| Type-2 | `OUT` |
+---
 
-**Type-1 locked stage pairings (IN flux):**
+## FULL STAGE GRAMMAR (both engine types)
 
-| Pattern | Outer (major) token | Outer result | Inner (minor) token | Inner result |
-|---|---|---|---|---|
-| `WINlose` | `NeTi` | WIN | `FiNe` | lose |
-| `winWIN` | `FeSi` | WIN | `SiTe` | win |
-| `LOSEwin` | `TiSe` | LOSE | `SeFi` | win |
-| `loseLOSE` | `NiFe` | LOSE | `TeNi` | lose |
+**Terrain** = `topology × flux orientation`. Type-1 terrains = `*-in`. Type-2 terrains = `*-out`.
 
-**Type-2 locked stage pairings (OUT flux):**
+**Ax6 general rule:** UP = operator first in the couplet token, DOWN = terrain first. Readable from the pair name prefix.
 
-| Pattern | Outer (major) token | Outer result | Inner (minor) token | Inner result |
-|---|---|---|---|---|
-| `winLOSE` | `NeFi` | LOSE | `TiNe` | win |
-| `WINwin` | `TeSi` | WIN | `SiFe` | win |
-| `loseWIN` | `FiSe` | WIN | `SeTi` | lose |
-| `LOSElose` | `NiTe` | LOSE | `FeNi` | lose |
+### Type-1 (IN flux, deductive outer, inductive inner)
 
-**Count invariant (must hold per engine):**
+| Topology | Terrain | Outer (major) | Ax6 | Result | Inner (minor) | Ax6 | Result | Combined |
+|---|---|---|---|---|---|---|---|---|
+| Ne | Ne-in | NeTi | DOWN | WIN | FiNe | UP | lose | WINlose |
+| Si | Si-in | FeSi | UP | WIN | SiTe | DOWN | win | winWIN |
+| Se | Se-in | TiSe | UP | LOSE | SeFi | DOWN | win | LOSEwin |
+| Ni | Ni-in | NiFe | DOWN | LOSE | TeNi | UP | lose | loseLOSE |
+
+### Type-2 (OUT flux, inductive outer, deductive inner)
+
+| Topology | Terrain | Outer (major) | Ax6 | Result | Inner (minor) | Ax6 | Result | Combined |
+|---|---|---|---|---|---|---|---|---|
+| Ne | Ne-out | NeFi | DOWN | LOSE | TiNe | UP | win | winLOSE |
+| Si | Si-out | TeSi | UP | WIN | SiFe | DOWN | win | WINwin |
+| Se | Se-out | FiSe | UP | WIN | SeTi | DOWN | lose | loseWIN |
+| Ni | Ni-out | NiTe | DOWN | LOSE | FeNi | UP | lose | LOSElose |
+
+### Loop-family lock
+
+| Engine type | Outer loop | Inner loop |
+|---|---|---|
+| Type-1 | Deductive `FeTi` | Inductive `TeFi` |
+| Type-2 | Inductive `TeFi` | Deductive `FeTi` |
+
+### Count invariant (per engine)
 
 | Engine | WIN | LOSE | win | lose |
 |---|---|---|---|---|
 | Type-1 | 2 | 2 | 2 | 2 |
 | Type-2 | 2 | 2 | 2 | 2 |
 
-**Collapsed token lists (for quick reference):**
+### What stays distinct
 
-Type-1 outer/inner pairs: `NeTi/FiNe` · `FeSi/SiTe` · `TiSe/SeFi` · `NiFe/TeNi`
-
-Type-2 outer/inner pairs: `NeFi/TiNe` · `TeSi/SiFe` · `FiSe/SeTi` · `NiTe/FeNi`
-
-**Hard constraints visible in the tables:**
-- No token appears in both Type-1 and Type-2 (they are non-overlapping sets)
-- Each outer token is a Jungian couplet (perceiving + judging in one of two orders = Ax6)
-- Each inner token is also a couplet, paired with the corresponding outer
-- The Ax4 constraint holds: each loop pair is internally consistent (Te/Fi or Fe/Ti group)
+| Object | Type 1 | Type 2 |
+|---|---|---|
+| Flux orientation | IN | OUT |
+| Terrain set | `*-in` | `*-out` |
+| Outer loop casing | uppercase | uppercase |
+| Inner loop casing | lowercase | lowercase |
+| Outer/inner loop families | FeTi / TeFi | TeFi / FeTi |
+| Ax6 sign per stage | token-order-derived | token-order-derived |
 ## SLICE A: Spinor Carrier
 
 **Primary state carrier:** Weyl spinor pair (ψ_L, ψ_R) on S³/SU(2) — Level 2–3 in the ratchet chain.
@@ -145,20 +155,20 @@ Type-2 outer/inner pairs: `NeFi/TiNe` · `TeSi/SiFe` · `FiSe/SeTi` · `NiTe/FeN
 
 **Proposed order rationale (QIT-native):** The hypothesis is that the structural sequence of QIT map classes matters — specifically: mixing channel (Se, non-unital toward τ_hot) → dephasing channel (Si, basis-stabilizing) → reset channel (Ni, non-unital toward τ_cold) → unitary transport (Ne, entropy-preserving) places the two non-unital channels (Se, Ni) in structurally opposed positions rather than adjacent, which may be required for the dual-stack to produce bounded winding. This is a probe candidate, not a thermodynamic claim. Carnot/thermodynamics is a search-direction metaphor only — these are QIT engines.
 
-**Which loop runs which order (token sequences use ENGINES_SPEC order — subject to correction pending sim):**
+| Engine | Loop | Axis-4 stroke | Operator set | Terrain suffixes |
+|---|---|---|---|---|
+| Type-1 | Outer (major) | Deduction | FeTi | `-in` |
+| Type-1 | Inner (minor) | Induction | TeFi | `-in` |
+| Type-2 | Outer (major) | Induction | TeFi | `-out` |
+| Type-2 | Inner (minor) | Deduction | FeTi | `-out` |
 
-| Engine | Loop | Axis-4 stroke | Token sequence |
-|---|---|---|---|
-| Type-1 | Outer (major) | Deduction | `NeTi → FeSi → TiSe → NiFe` |
-| Type-1 | Inner (minor) | Induction | `SeFi → SiTe → FiNe → TeNi` |
-| Type-2 | Outer (major) | Induction | `FiSe → TeSi → NeFi → NiTe` |
-| Type-2 | Inner (minor) | Deduction | `TiNe → SiFe → SeTi → FeNi` |
+Full stage token sequences with Ax6: see FULL STAGE GRAMMAR above.
 
 **Stages per loop:** 4 (macro-4)
 **Stages per engine:** 8 macro (expandable to 32 micro via Ax6 substages)
 **Heating/cooling:** Se = hot mixing, Ni = cold reset. Each loop touches both Se and Ni.
 
-**Topology repetition (owner correction):** Each loop visits ALL 4 perceiving topologies (Ne, Si, Se, Ni). The 4 base topologies therefore appear TWICE per engine — once in the outer loop, once in the inner loop. The two visits are distinguished by flow direction (terrain variant 1 vs 2). This means the 8 terrains split as: outer loop = {Ne1, Si1, Se1, Ni1} (or 2-variants), inner loop = {Ne2, Si2, Se2, Ni2} (or 1-variants), with assignment by engine chirality. NOT a 4/4 split by topology family.
+**Topology repetition (owner correction):** Each loop visits ALL 4 perceiving topologies (Ne, Si, Se, Ni). The 4 base topologies therefore appear TWICE per engine — once in the outer loop, once in the inner loop. The two visits are distinguished by flux direction (terrain `-in` vs `-out`). NOT a 4/4 split by topology family.
 
 ---
 

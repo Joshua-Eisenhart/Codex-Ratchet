@@ -3,6 +3,7 @@
 > **Status**: SPEC — Awaiting SIM Evidence  
 > **Date**: 2026-03-25  
 > **Depends on**: `proto_ratchet_sim_runner.py`, `fep_ratchet_bridge.py`, `evidence_graph.json`
+> **Current implementation note**: `holodeck_fep_engine.py` presently validates the Holodeck pipeline on a synthetic density matrix, not on live engine outputs.
 
 ---
 

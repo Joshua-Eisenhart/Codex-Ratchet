@@ -2,11 +2,11 @@
 
 > **WARNING**: This table functions as a useful structural scaffold, but it currently hard-codes provisional binary meanings for `Ax3` (Spinor Phase), `Ax4` (Process Loop traversal), and `Ax5` (Torus Hysteresis). Given that these axes are still under active operationalization in the probe lane, this document is explicitly fenced as a proposal table, NOT authoritative canonical state-space truth.
 
-This document maps the 6 binary DOFs (Ax1-Ax6) onto the 64 distinct structural configurations of the constraint manifold.
-The engines are generators that traverse this 64-state space along the entropy gradient (Ax0).
+This document proposes a mapping from the 6 binary structural DOFs (Ax1-Ax6) onto 64 distinct structural configurations of the constraint manifold.
+The engines are hypothesized to traverse this 64-state space along the entropy gradient (Ax0), but the runtime-to-structure bridge remains incomplete.
 
 ## Axis Definition (The 6 Lines)
-The mathematically grounded QIT mapping strictly maps the 6 axes into two mutually irreducible Trigrams:
+The current proposal maps the 6 axes into two mutually irreducible trigrams:
 - **Trigram 1 (Inner/Bottom)**: `(Ax6, Ax5, Ax3)` — The Generative Substrate (SU(2) generators)
 - **Trigram 2 (Outer/Top)**: `(Ax4, Ax1, Ax2)` — The Boundary & Heat (Environmental coupling)
 

@@ -7,6 +7,7 @@ Shape:
 - `2 engine types × 8 terrains × 4 operator slots = 64 runtime steps`
 - Type 1 and Type 2 run the same operator order per terrain
 - What changes is dominance/strength by loop and type
+- This table materializes the current live `4-operator-slot` runtime, not a fully first-class `8 signed operator` basis
 
 | Step | Type | Stage | Terrain | Loop | Exp | Open | Slot | Operator | Dominant | Default Ax0 Target | Default Strength |
 |---:|---:|---:|---|---|---:|---:|---:|---|---:|---:|---:|
@@ -80,3 +81,4 @@ Shape:
 - This table documents current runtime semantics only.
 - It should be read alongside the structural 64-state table, not as a replacement for it.
 - If engine semantics change in `engine_core.py`, regenerate this table.
+- Structural bit assignments and signed-operator closure remain bridge-layer hypotheses unless decoded back from runtime state.

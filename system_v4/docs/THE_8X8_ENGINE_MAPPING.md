@@ -2,12 +2,12 @@
 
 > **Note:** This document presents the best current compositional decomposition for the engine, successfully bridging the 8 Terrains and 8 Signed Operators. However, because the exact mathematical bindings for Ax3, Ax4, and Ax5 remain under active experimental probing, this mapping should be treated as an explanatory bridge and proposal scaffold rather than definitive mathematical closure.
 
-The architectural math of the 64-hexagram state space is not an arbitrary list of permutations, nor is it a simplistic procedural loop. It is the Cartesian product of two orthogonal 8-state domains, perfectly matching the 8×8 I-Ching Trigram geometry.
+The architectural math of the 64-hexagram state space is not an arbitrary list of permutations, nor is it a simplistic procedural loop. The best current decomposition is a Cartesian product of two 8-state domains, provisionally matching the 8×8 I-Ching trigram geometry.
 
 **The Equation of the Engine:**
 `8 Terrains × 8 Signed Operators = 64 Hexagram States`
 
-This maps flawlessly to the mathematically grounded Trigram groupings we proved in `QIT_TO_ICHING_MAPPING_PROPOSAL.md`.
+This aligns strongly with the current trigram grouping hypothesis, but it should still be read as a compositional scaffold rather than a closed proof.
 
 ---
 
@@ -47,4 +47,4 @@ Every hexagram in the 64-state space is a unique combination of:
 
 The engine moves through this matrix, dragged along by **Ax0** (The Entropy Gradient / Thermodynamic Drive), generating the 64 execution steps observed in the runtime manifold.
 
-No conflation. No overlapping variables. A powerful current best decomposition.
+This is a powerful current best decomposition, but it still sits above unresolved Ax3/Ax4/Ax5 operationalization work and should not be read as proof of zero conflation.

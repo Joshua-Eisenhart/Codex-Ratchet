@@ -83,14 +83,14 @@ From Codex's `sim_axis_candidate_mass_sweep.py` and `sim_wiggle_exploration.py`:
 
 **Current honest read on candidate math:**
 - **Ax1, Ax2**: Marginal/mixed candidates. Need better state-space construction.
-- **Ax3**: The cleanest disputed family. The best candidate is a chiral/γ₅-phase relative coherence metric, **not** the simple CP mirror swap.
-- **Ax4**: Dead. All endpoint and process-tensor constructions measured so far vanish on normalized states. The Ax4 concept (spin direction) has not been successfully mathematicalized.
-- **Ax5**: Torus-layer candidates (e.g., partial transport hysteresis) are much more promising than density-level proxies (entropy shape, Hamiltonian curvature).
-- **Ax6**: Alive and clearly distinct under multiple formulations (Aρ vs ρA).
+- **Ax3**: The cleanest disputed family. A chiral/γ5-phase relative-coherence family still looks stronger than the simple CP mirror swap, but the exact operationalization is not locked.
+- **Ax4**: Unresolved. Static endpoint formulations failed, while newer process/path probes suggest there may be a real traversal-history signal. No canonical Ax4 math is secured yet.
+- **Ax5**: Torus-layer candidates (for example partial transport hysteresis) look more promising than density-level proxies, but the exact curvature family is still under active repair.
+- **Ax6**: Alive as a family, but exact comparisons must be checked carefully because multiple probes have implemented different right/left action conventions.
 
-### Verified Separations (Subject to Math Refinement)
-- **Ax1 ≠ Ax5**: Channel type (open/closed) ≠ trajectory curvature.
-- **Ax3 ≠ Ax6**: Chirality/phase ≠ action side.
+### Promising Separations (Still Provisional)
+- **Ax1 vs Ax5**: Current evidence pressures them apart conceptually, but exact live-engine operationalization is still unsettled.
+- **Ax3 vs Ax6**: Current evidence pressures chirality/phase apart from action side, but no final canonical split should be claimed yet.
 
 ### Open Questions / Conflations
 - **Ax4 vs Ax6**: Is there a formulation where spin direction (Ax4) and action precedence (Ax6) are not 100% merged?

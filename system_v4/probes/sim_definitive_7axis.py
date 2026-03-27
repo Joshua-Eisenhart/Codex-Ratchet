@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
-Definitive 7-Axis Validation on Mixed States
+7-Axis Exploratory Validation on Mixed States
 ==============================================
 
-Final test: all 7 axes with CORRECTED formulations, tested on mixed states
-at varying entropy. This is the binding validation.
+Exploratory test: all 7 axes with corrected formulations, tested on
+mixed states at varying entropy. Axis formulations are still candidate
+operationalizations, not locked canon.
 
-If all 7 axes maintain separation on mixed states at d=2,4,8,
-the original axis system is validated.
+NOTE: v2 fixes the normalization bug where concatenated Dirac spinor
+had norm sqrt(2) instead of 1, giving trace-2 density matrices.
 """
 
 import numpy as np
@@ -23,13 +24,18 @@ sz = np.array([[1,0],[0,-1]], dtype=complex)
 
 
 def make_mixed_dirac(r, rng):
-    """Mixed state in 4×4 Dirac space at Bloch radius r."""
+    """Mixed state in 4×4 Dirac space at Bloch radius r.
+    
+    FIXED (v2): Concatenated Dirac spinor is renormalized to unit norm
+    before forming ρ_pure. Previously had ||ψ|| = √2 giving Tr(ρ) = 2.
+    """
     psi_L = rng.normal(size=2) + 1j*rng.normal(size=2); psi_L /= np.linalg.norm(psi_L)
     psi_R = rng.normal(size=2) + 1j*rng.normal(size=2); psi_R /= np.linalg.norm(psi_R)
     psi = np.concatenate([psi_L, psi_R])
-    rho_pure = np.outer(psi, np.conj(psi))
+    psi /= np.linalg.norm(psi)  # CRITICAL: normalize the 4-vector
+    rho_pure = np.outer(psi, np.conj(psi))  # now Tr(rho_pure) = 1
     rho_mixed = np.eye(4, dtype=complex) / 4
-    rho = r * rho_pure + (1-r) * rho_mixed
+    rho = r * rho_pure + (1-r) * rho_mixed  # Tr = r·1 + (1-r)·1 = 1 ✓
     return rho, psi_L, psi_R
 
 def ensure_valid(rho):
@@ -151,8 +157,8 @@ def run():
     r_values = [1.0, 0.7, 0.5, 0.3, 0.1]
     
     print("=" * 80)
-    print("DEFINITIVE 7-AXIS VALIDATION ON MIXED STATES")
-    print(f"All corrected formulations, {n_trials} trials per condition")
+    print("7-AXIS EXPLORATORY VALIDATION ON MIXED STATES (v2 — normalized)")
+    print(f"Candidate formulations, {n_trials} trials per condition")
     print("=" * 80)
     
     all_results = {}

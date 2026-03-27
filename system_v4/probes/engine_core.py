@@ -186,11 +186,11 @@ class GeometricEngine:
         if self.engine_type == 1:
             # Left Weyl: Fe/Ti dominant on base
             if loop == "base" and op_name in ("Fe", "Ti"):
-                return base_piston * 1.0  # Full strength
+                strength = base_piston * 1.0  # Full strength
             elif loop == "fiber" and op_name in ("Te", "Fi"):
-                return base_piston * 1.0
+                strength = base_piston * 1.0
             else:
-                return base_piston * 0.3  # Suppressed
+                strength = base_piston * 0.3  # Suppressed
         else:
             # Right Weyl: Te/Fi dominant on base
             if loop == "base" and op_name in ("Te", "Fi"):

@@ -1,0 +1,1195 @@
+{
+  "schema": "SIM_EVIDENCE_v1",
+  "file": "sim_proto_b_runtime_wiggle.py",
+  "timestamp": "2026-03-27T19:57:19.450849+00:00Z",
+  "status": "exploratory",
+  "proto_b_guardrails": [
+    "candidate-family evidence only",
+    "runtime-native metrics only",
+    "no structural 64 closure claims",
+    "no FEP integration claims",
+    "signed and absolute summaries kept separate",
+    "inactive/dead candidates are reported, not hidden"
+  ],
+  "sweep": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "engine_types": [
+      1,
+      2
+    ],
+    "axis0_levels": [
+      0.1,
+      0.9
+    ],
+    "torus_programs": [
+      "constant_clifford",
+      "inner_outer_wave"
+    ],
+    "n_runs": 192
+  },
+  "candidate_summaries": {
+    "carnot_closure_adjusted_yield": {
+      "family": "carnot_style",
+      "active_fraction": 1.0,
+      "inactive_reasons": {},
+      "overall_mean_signed": 1.011879923914794,
+      "overall_mean_abs": 1.011879923914794,
+      "overall_std_signed": 0.16561034318516096,
+      "sign_flip_rate": 0.0,
+      "by_condition": [
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 1.0205641426589993,
+          "mean_abs": 1.0205641426589993,
+          "std_signed": 0.18442984081813213
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 1.1085086079121196,
+          "mean_abs": 1.1085086079121196,
+          "std_signed": 0.11296768498218931
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.9061935872908985,
+          "mean_abs": 0.9061935872908985,
+          "std_signed": 0.20313693435331723
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.9971184760018942,
+          "mean_abs": 0.9971184760018942,
+          "std_signed": 0.08593352538047203
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 1.06381791345982,
+          "mean_abs": 1.06381791345982,
+          "std_signed": 0.15751196261484982
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 1.0952194602802843,
+          "mean_abs": 1.0952194602802843,
+          "std_signed": 0.1071139165262573
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.917614034526827,
+          "mean_abs": 0.917614034526827,
+          "std_signed": 0.20156800130616995
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.9860031691875077,
+          "mean_abs": 0.9860031691875077,
+          "std_signed": 0.08412639820214565
+        }
+      ],
+      "paired_gaps": {
+        "axis0_high_minus_low_mean": -0.12029521432602394,
+        "torus_wave_minus_constant_mean": 0.06966500886131524,
+        "type2_minus_type1_mean": 0.007567440897631866
+      }
+    },
+    "carnot_transport_normalized_work": {
+      "family": "carnot_style",
+      "active_fraction": 0.875,
+      "inactive_reasons": {
+        "zero_transport_cost": 24
+      },
+      "overall_mean_signed": 31.24884099125086,
+      "overall_mean_abs": 31.24884099125086,
+      "overall_std_signed": 27.673255826886862,
+      "sign_flip_rate": 0.0,
+      "by_condition": [
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 18,
+          "mean_signed": 86.14923378608302,
+          "mean_abs": 86.14923378608302,
+          "std_signed": 7.8173476979146574
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 16.21977186244699,
+          "mean_abs": 16.21977186244699,
+          "std_signed": 3.28289288840258
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 18,
+          "mean_signed": 42.328461582252366,
+          "mean_abs": 42.328461582252366,
+          "std_signed": 3.855902186532204
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 6.319554446866365,
+          "mean_abs": 6.319554446866365,
+          "std_signed": 1.3743839909074314
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 18,
+          "mean_signed": 67.9362467693995,
+          "mean_abs": 67.9362467693995,
+          "std_signed": 6.005657693206088
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 13.011663385214325,
+          "mean_abs": 13.011663385214325,
+          "std_signed": 4.504625918781684
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 18,
+          "mean_signed": 39.78717380343052,
+          "mean_abs": 39.78717380343052,
+          "std_signed": 3.512388698382266
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 6.040060288354252,
+          "mean_abs": 6.040060288354252,
+          "std_signed": 1.496112972195804
+        }
+      ],
+      "paired_gaps": {
+        "axis0_high_minus_low_mean": -22.210416420560083,
+        "torus_wave_minus_constant_mean": -48.65251648957087,
+        "type2_minus_type1_mean": -6.060469357812535
+      }
+    },
+    "carnot_expansion_compression_gap": {
+      "family": "carnot_style",
+      "active_fraction": 1.0,
+      "inactive_reasons": {},
+      "overall_mean_signed": -0.11233549265332972,
+      "overall_mean_abs": 0.11245707633861479,
+      "overall_std_signed": 0.029763853887575253,
+      "sign_flip_rate": 0.010416666666666666,
+      "by_condition": [
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.09570918381044956,
+          "mean_abs": 0.09570918381044956,
+          "std_signed": 0.04224712146046048
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.11276318643301868,
+          "mean_abs": 0.11276318643301868,
+          "std_signed": 0.01722336939927164
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.11445640803528805,
+          "mean_abs": 0.11445640803528805,
+          "std_signed": 0.024775809289167325
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.12496661890407924,
+          "mean_abs": 0.12496661890407924,
+          "std_signed": 0.012138441519797436
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.0954283443906669,
+          "mean_abs": 0.09640101387294753,
+          "std_signed": 0.05158709210936372
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.11694045305667748,
+          "mean_abs": 0.11694045305667748,
+          "std_signed": 0.007536524565362373
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.11650753564105826,
+          "mean_abs": 0.11650753564105826,
+          "std_signed": 0.02418634750354348
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.12191221095539957,
+          "mean_abs": 0.12191221095539957,
+          "std_signed": 0.00919812986269695
+        }
+      ],
+      "paired_gaps": {
+        "axis0_high_minus_low_mean": -0.014250401461253125,
+        "torus_wave_minus_constant_mean": -0.013620249367928054,
+        "type2_minus_type1_mean": -0.0007232867152416715
+      }
+    },
+    "carnot_cycle_area_ga0_neg": {
+      "family": "carnot_style",
+      "active_fraction": 1.0,
+      "inactive_reasons": {},
+      "overall_mean_signed": 0.00033097236698194783,
+      "overall_mean_abs": 0.007938556359081549,
+      "overall_std_signed": 0.013174322804685595,
+      "sign_flip_rate": 0.4479166666666667,
+      "by_condition": [
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.004636946671048928,
+          "mean_abs": 0.005134682015647217,
+          "std_signed": 0.009051089785872586
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.0005004835851301296,
+          "mean_abs": 0.0033577322955151887,
+          "std_signed": 0.00703295154383319
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.0012125064507268197,
+          "mean_abs": 0.007093458143295203,
+          "std_signed": 0.008495651636300455
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.0033446907984357316,
+          "mean_abs": 0.005258297697216419,
+          "std_signed": 0.009025877525364278
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.007084691811275857,
+          "mean_abs": 0.008845159135933948,
+          "std_signed": 0.014329750406275564
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.0001598884012337373,
+          "mean_abs": 0.007292982624497496,
+          "std_signed": 0.013909626876569037
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.006479951148994606,
+          "mean_abs": 0.01151958895844884,
+          "std_signed": 0.01372290261471761
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.0028562394342571385,
+          "mean_abs": 0.015006550002098067,
+          "std_signed": 0.01955603985052653
+        }
+      ],
+      "paired_gaps": {
+        "axis0_high_minus_low_mean": 0.0022160032972592934,
+        "torus_wave_minus_constant_mean": -0.0007479050450565328,
+        "type2_minus_type1_mean": -0.0024723789828499593
+      }
+    },
+    "szilard_net_structure_yield": {
+      "family": "szilard_style",
+      "active_fraction": 1.0,
+      "inactive_reasons": {},
+      "overall_mean_signed": -0.15227758720185328,
+      "overall_mean_abs": 0.15304630558930432,
+      "overall_std_signed": 0.0515432560916696,
+      "sign_flip_rate": 0.0625,
+      "by_condition": [
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.1345325177539227,
+          "mean_abs": 0.13504070314007816,
+          "std_signed": 0.07960763379068418
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.17461064350919742,
+          "mean_abs": 0.17461064350919742,
+          "std_signed": 0.017852383755695454
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.13913170274132283,
+          "mean_abs": 0.13913170274132283,
+          "std_signed": 0.047154478572997746
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.16085358991824425,
+          "mean_abs": 0.16085358991824425,
+          "std_signed": 0.013479467398637153
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.1344271302222603,
+          "mean_abs": 0.1400686919357131,
+          "std_signed": 0.0853066213071098
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.1748200529488646,
+          "mean_abs": 0.1748200529488646,
+          "std_signed": 0.017109672630368084
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.14014365411309454,
+          "mean_abs": 0.14014365411309454,
+          "std_signed": 0.04859427372358518
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.15970140640791966,
+          "mean_abs": 0.15970140640791966,
+          "std_signed": 0.013107561333019598
+        }
+      ],
+      "paired_gaps": {
+        "axis0_high_minus_low_mean": 0.004639997813415932,
+        "torus_wave_minus_constant_mean": -0.03043767198840639,
+        "type2_minus_type1_mean": 9.05255763702234e-06
+      }
+    },
+    "szilard_coherence_erasure": {
+      "family": "szilard_style",
+      "active_fraction": 1.0,
+      "inactive_reasons": {},
+      "overall_mean_signed": 0.08206093238755835,
+      "overall_mean_abs": 0.08206093238755835,
+      "overall_std_signed": 0.022534660817839662,
+      "sign_flip_rate": 0.0,
+      "by_condition": [
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.08053180509158579,
+          "mean_abs": 0.08053180509158579,
+          "std_signed": 0.026420709480602263
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.10773227173840856,
+          "mean_abs": 0.10773227173840856,
+          "std_signed": 0.01006093383466272
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.06537838391105665,
+          "mean_abs": 0.06537838391105665,
+          "std_signed": 0.012688875425559392
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.0705676873345702,
+          "mean_abs": 0.0705676873345702,
+          "std_signed": 0.010170735614894908
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.08567888245605727,
+          "mean_abs": 0.08567888245605727,
+          "std_signed": 0.027116301800961064
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.1060084003168275,
+          "mean_abs": 0.1060084003168275,
+          "std_signed": 0.009634711180265869
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.06942539817844724,
+          "mean_abs": 0.06942539817844724,
+          "std_signed": 0.01114959190717005
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.07116463007351352,
+          "mean_abs": 0.07116463007351352,
+          "std_signed": 0.01046947990857606
+        }
+      ],
+      "paired_gaps": {
+        "axis0_high_minus_low_mean": -0.02585381502632288,
+        "torus_wave_minus_constant_mean": 0.013614629956543205,
+        "type2_minus_type1_mean": 0.002016790737306085
+      }
+    },
+    "szilard_ceiling_actuation": {
+      "family": "szilard_style",
+      "active_fraction": 1.0,
+      "inactive_reasons": {},
+      "overall_mean_signed": 0.003707006513972419,
+      "overall_mean_abs": 0.012499999998710409,
+      "overall_std_signed": 0.013993238500752151,
+      "sign_flip_rate": 0.5,
+      "by_condition": [
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.00879299348473799,
+          "mean_abs": 0.00879299348473799,
+          "std_signed": 0.006289731613604203
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.00879299348473799,
+          "mean_abs": 0.00879299348473799,
+          "std_signed": 0.006289731613604203
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.016207006512682826,
+          "mean_abs": 0.016207006512682826,
+          "std_signed": 0.006289731613604202
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.016207006512682826,
+          "mean_abs": 0.016207006512682826,
+          "std_signed": 0.006289731613604202
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.00879299348473799,
+          "mean_abs": 0.00879299348473799,
+          "std_signed": 0.006289731613604203
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.00879299348473799,
+          "mean_abs": 0.00879299348473799,
+          "std_signed": 0.006289731613604203
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.016207006512682826,
+          "mean_abs": 0.016207006512682826,
+          "std_signed": 0.006289731613604202
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.016207006512682826,
+          "mean_abs": 0.016207006512682826,
+          "std_signed": 0.006289731613604202
+        }
+      ],
+      "paired_gaps": {
+        "axis0_high_minus_low_mean": 0.024999999997420815,
+        "torus_wave_minus_constant_mean": 0.0,
+        "type2_minus_type1_mean": 0.0
+      }
+    },
+    "szilard_role_gap": {
+      "family": "szilard_style",
+      "active_fraction": 1.0,
+      "inactive_reasons": {},
+      "overall_mean_signed": 0.2048101936631915,
+      "overall_mean_abs": 0.20617866891665526,
+      "overall_std_signed": 0.08130681921625142,
+      "sign_flip_rate": 0.036458333333333336,
+      "by_condition": [
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.20045167023693242,
+          "mean_abs": 0.20052925463217394,
+          "std_signed": 0.11862960723859314
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.2663312692493753,
+          "mean_abs": 0.2663312692493753,
+          "std_signed": 0.03708546209682506
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.16492310242502572,
+          "mean_abs": 0.16492310242502572,
+          "std_signed": 0.04656792767851727
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.18402110489094434,
+          "mean_abs": 0.18402110489094434,
+          "std_signed": 0.02857963923756623
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.19358321188312658,
+          "mean_abs": 0.2044534295155953,
+          "std_signed": 0.12937956845777124
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.276485050944848,
+          "mean_abs": 0.276485050944848,
+          "std_signed": 0.035976704225721384
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.16164865746463797,
+          "mean_abs": 0.16164865746463797,
+          "std_signed": 0.049940458386212
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.19103748221064162,
+          "mean_abs": 0.19103748221064162,
+          "std_signed": 0.027969997542279905
+        }
+      ],
+      "paired_gaps": {
+        "axis0_high_minus_low_mean": -0.05880521383075815,
+        "torus_wave_minus_constant_mean": 0.049317066321521635,
+        "type2_minus_type1_mean": 0.0017568139252440995
+      }
+    },
+    "control_partition_gap": {
+      "family": "control",
+      "active_fraction": 1.0,
+      "inactive_reasons": {},
+      "overall_mean_signed": -0.22871187923574754,
+      "overall_mean_abs": 0.22871187923574754,
+      "overall_std_signed": 0.0570095195148514,
+      "sign_flip_rate": 0.0,
+      "by_condition": [
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.25724667721780586,
+          "mean_abs": 0.25724667721780586,
+          "std_signed": 0.04213631009660509
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.27988012118974476,
+          "mean_abs": 0.27988012118974476,
+          "std_signed": 0.04114122675920125
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.1794771905960272,
+          "mean_abs": 0.1794771905960272,
+          "std_signed": 0.03581137899850137
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.1900108682098424,
+          "mean_abs": 0.1900108682098424,
+          "std_signed": 0.030503586611788015
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.26482399059242034,
+          "mean_abs": 0.26482399059242034,
+          "std_signed": 0.037982482729645065
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.28397786324198676,
+          "mean_abs": 0.28397786324198676,
+          "std_signed": 0.03740104312372332
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.1796899910154384,
+          "mean_abs": 0.1796899910154384,
+          "std_signed": 0.03671150035665274
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.1945883318227145,
+          "mean_abs": 0.1945883318227145,
+          "std_signed": 0.029158640662669447
+        }
+      ],
+      "paired_gaps": {
+        "axis0_high_minus_low_mean": 0.0855405676494838,
+        "torus_wave_minus_constant_mean": -0.016804833760649153,
+        "type2_minus_type1_mean": -0.004116329864784947
+      }
+    },
+    "szilard_lagged_measure_extract": {
+      "family": "szilard_style",
+      "active_fraction": 1.0,
+      "inactive_reasons": {},
+      "overall_mean_signed": 0.010988110243336138,
+      "overall_mean_abs": 0.080386656430301,
+      "overall_std_signed": 0.09764313820963784,
+      "sign_flip_rate": 0.4947916666666667,
+      "by_condition": [
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.05043349490222886,
+          "mean_abs": 0.06026134610522932,
+          "std_signed": 0.05008216312504109
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.09821823955983529,
+          "mean_abs": 0.09821823955983529,
+          "std_signed": 0.03746492552970084
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.034364746556637404,
+          "mean_abs": 0.040562422761347354,
+          "std_signed": 0.05116191715148113
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.08371123690398789,
+          "mean_abs": 0.08371123690398789,
+          "std_signed": 0.04877060472966878
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.05556689527087754,
+          "mean_abs": 0.0873694632297655,
+          "std_signed": 0.07224464948378602
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.06456129875931134,
+          "mean_abs": 0.06456129875931134,
+          "std_signed": 0.04192914046718314
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.11486441455774878,
+          "mean_abs": 0.14187955702199892,
+          "std_signed": 0.1133312142913075
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.06652968710093236,
+          "mean_abs": 0.06652968710093236,
+          "std_signed": 0.05705579051571575
+        }
+      ],
+      "paired_gaps": {
+        "axis0_high_minus_low_mean": -0.05684684848857671,
+        "torus_wave_minus_constant_mean": -0.015706913329559084,
+        "type2_minus_type1_mean": 0.006688344985952832
+      }
+    }
+  },
+  "rankings": {
+    "axis0_gap": [
+      {
+        "candidate": "carnot_transport_normalized_work",
+        "family": "carnot_style",
+        "value": -22.210416420560083
+      },
+      {
+        "candidate": "carnot_closure_adjusted_yield",
+        "family": "carnot_style",
+        "value": -0.12029521432602394
+      },
+      {
+        "candidate": "control_partition_gap",
+        "family": "control",
+        "value": 0.0855405676494838
+      },
+      {
+        "candidate": "szilard_role_gap",
+        "family": "szilard_style",
+        "value": -0.05880521383075815
+      },
+      {
+        "candidate": "szilard_lagged_measure_extract",
+        "family": "szilard_style",
+        "value": -0.05684684848857671
+      },
+      {
+        "candidate": "szilard_coherence_erasure",
+        "family": "szilard_style",
+        "value": -0.02585381502632288
+      },
+      {
+        "candidate": "szilard_ceiling_actuation",
+        "family": "szilard_style",
+        "value": 0.024999999997420815
+      },
+      {
+        "candidate": "carnot_expansion_compression_gap",
+        "family": "carnot_style",
+        "value": -0.014250401461253125
+      },
+      {
+        "candidate": "szilard_net_structure_yield",
+        "family": "szilard_style",
+        "value": 0.004639997813415932
+      },
+      {
+        "candidate": "carnot_cycle_area_ga0_neg",
+        "family": "carnot_style",
+        "value": 0.0022160032972592934
+      }
+    ],
+    "torus_gap": [
+      {
+        "candidate": "carnot_transport_normalized_work",
+        "family": "carnot_style",
+        "value": -48.65251648957087
+      },
+      {
+        "candidate": "carnot_closure_adjusted_yield",
+        "family": "carnot_style",
+        "value": 0.06966500886131524
+      },
+      {
+        "candidate": "szilard_role_gap",
+        "family": "szilard_style",
+        "value": 0.049317066321521635
+      },
+      {
+        "candidate": "szilard_net_structure_yield",
+        "family": "szilard_style",
+        "value": -0.03043767198840639
+      },
+      {
+        "candidate": "control_partition_gap",
+        "family": "control",
+        "value": -0.016804833760649153
+      },
+      {
+        "candidate": "szilard_lagged_measure_extract",
+        "family": "szilard_style",
+        "value": -0.015706913329559084
+      },
+      {
+        "candidate": "carnot_expansion_compression_gap",
+        "family": "carnot_style",
+        "value": -0.013620249367928054
+      },
+      {
+        "candidate": "szilard_coherence_erasure",
+        "family": "szilard_style",
+        "value": 0.013614629956543205
+      },
+      {
+        "candidate": "carnot_cycle_area_ga0_neg",
+        "family": "carnot_style",
+        "value": -0.0007479050450565328
+      },
+      {
+        "candidate": "szilard_ceiling_actuation",
+        "family": "szilard_style",
+        "value": 0.0
+      }
+    ],
+    "type_gap": [
+      {
+        "candidate": "carnot_transport_normalized_work",
+        "family": "carnot_style",
+        "value": -6.060469357812535
+      },
+      {
+        "candidate": "carnot_closure_adjusted_yield",
+        "family": "carnot_style",
+        "value": 0.007567440897631866
+      },
+      {
+        "candidate": "szilard_lagged_measure_extract",
+        "family": "szilard_style",
+        "value": 0.006688344985952832
+      },
+      {
+        "candidate": "control_partition_gap",
+        "family": "control",
+        "value": -0.004116329864784947
+      },
+      {
+        "candidate": "carnot_cycle_area_ga0_neg",
+        "family": "carnot_style",
+        "value": -0.0024723789828499593
+      },
+      {
+        "candidate": "szilard_coherence_erasure",
+        "family": "szilard_style",
+        "value": 0.002016790737306085
+      },
+      {
+        "candidate": "szilard_role_gap",
+        "family": "szilard_style",
+        "value": 0.0017568139252440995
+      },
+      {
+        "candidate": "carnot_expansion_compression_gap",
+        "family": "carnot_style",
+        "value": -0.0007232867152416715
+      },
+      {
+        "candidate": "szilard_net_structure_yield",
+        "family": "szilard_style",
+        "value": 9.05255763702234e-06
+      },
+      {
+        "candidate": "szilard_ceiling_actuation",
+        "family": "szilard_style",
+        "value": 0.0
+      }
+    ]
+  },
+  "sample_run_meta": [
+    {
+      "engine_type": 1,
+      "seed": 0,
+      "axis0_level": 0.1,
+      "torus_program": "constant_clifford",
+      "work_abs": 6.477640778351791,
+      "work_signed": -6.4548720943269124,
+      "closure": 5.213439753506222,
+      "transport_cost": 0.06719644166856574,
+      "final_pair_trace_distance": 0.9995249002299453,
+      "final_pair_avg_negentropy": 0.6909429634622963
+    },
+    {
+      "engine_type": 1,
+      "seed": 0,
+      "axis0_level": 0.1,
+      "torus_program": "inner_outer_wave",
+      "work_abs": 6.33950951914873,
+      "work_signed": -6.281081485472643,
+      "closure": 5.372419369989151,
+      "transport_cost": 0.41386231227187875,
+      "final_pair_trace_distance": 0.9996568736193046,
+      "final_pair_avg_negentropy": 0.6914993673952174
+    },
+    {
+      "engine_type": 1,
+      "seed": 0,
+      "axis0_level": 0.9,
+      "torus_program": "constant_clifford",
+      "work_abs": 5.955839109923594,
+      "work_signed": -5.950593066397862,
+      "closure": 5.246555417633468,
+      "transport_cost": 0.12425614346845772,
+      "final_pair_trace_distance": 0.9994969067828084,
+      "final_pair_avg_negentropy": 0.6908307003176627
+    },
+    {
+      "engine_type": 1,
+      "seed": 0,
+      "axis0_level": 0.9,
+      "torus_program": "inner_outer_wave",
+      "work_abs": 5.721908244936134,
+      "work_signed": -5.700113984412252,
+      "closure": 5.422620909573688,
+      "transport_cost": 0.994929329315443,
+      "final_pair_trace_distance": 0.9996416939345872,
+      "final_pair_avg_negentropy": 0.6914611784873825
+    },
+    {
+      "engine_type": 2,
+      "seed": 0,
+      "axis0_level": 0.1,
+      "torus_program": "constant_clifford",
+      "work_abs": 6.439453512916492,
+      "work_signed": -6.387589029387915,
+      "closure": 5.211869852131532,
+      "transport_cost": 0.08496590404838594,
+      "final_pair_trace_distance": 0.9993755085233675,
+      "final_pair_avg_negentropy": 0.6904697109870024
+    },
+    {
+      "engine_type": 2,
+      "seed": 0,
+      "axis0_level": 0.1,
+      "torus_program": "inner_outer_wave",
+      "work_abs": 6.073095021402272,
+      "work_signed": -6.018282977869844,
+      "closure": 5.36607620121162,
+      "transport_cost": 0.5707979060260121,
+      "final_pair_trace_distance": 0.9995268108505089,
+      "final_pair_avg_negentropy": 0.6910542270359639
+    },
+    {
+      "engine_type": 2,
+      "seed": 0,
+      "axis0_level": 0.9,
+      "torus_program": "constant_clifford",
+      "work_abs": 5.864878351327745,
+      "work_signed": -5.841124451609443,
+      "closure": 5.268880223304663,
+      "transport_cost": 0.13300716853011324,
+      "final_pair_trace_distance": 0.9989581438936355,
+      "final_pair_avg_negentropy": 0.6889501144007579
+    },
+    {
+      "engine_type": 2,
+      "seed": 0,
+      "axis0_level": 0.9,
+      "torus_program": "inner_outer_wave",
+      "work_abs": 5.419653978735634,
+      "work_signed": -5.388855938879278,
+      "closure": 5.444937543065218,
+      "transport_cost": 1.0646755248408581,
+      "final_pair_trace_distance": 0.9987652766512556,
+      "final_pair_avg_negentropy": 0.6883083890418326
+    }
+  ]
+}

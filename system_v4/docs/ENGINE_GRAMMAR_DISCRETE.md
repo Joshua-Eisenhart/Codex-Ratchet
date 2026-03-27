@@ -1,10 +1,23 @@
 # [Controller-safe] Engine Grammar: Discrete Owned Slices
 
-**Date:** 2026-03-27
-**Status:** Extracted from canonical source docs. No synthesis across slices. Each slice is a separate, owned piece.
-**Source:** `EM_BOOTPACK_v8_0_02_BUNDLE2_ROSETTA_ENGINES.md` (Rosetta Stone + Engines Spec v0.8 + Axis-1/Axis-2 Dual-Stack Szilard)
+**Date:** 2026-03-27 (corrections added 2026-03-27)
+**Status:** Extracted from canonical source docs + owner corrections. No synthesis across slices.
+**Source:** `EM_BOOTPACK_v8_0_02_BUNDLE2_ROSETTA_ENGINES.md` + owner verbal corrections.
 
 > **Anti-collapse rule:** Do not merge these slices. They are distinct grammar layers. A probe that conflates any two slices is already off-manifold.
+
+---
+
+## AXIS OWNER CORRECTIONS (take precedence over extracted spec)
+
+### Ax0 — Correlation Entropy (not VN polarity)
+**Owner definition:** Ax0 is **correlation entropy** — it can be **negative**. This is distinct from VN entropy and from the signed orientation framing in `ENGINES_SPEC.md` (which says N/S polarity of Φ(ρ)). Negative correlation entropy is a real and structurally meaningful state in a QIT engine. The `AXIS_STRUCTURE_EMPIRICAL_AUDIT.md` characterization ("fine/coarse-graining") is a density-layer probe result, not the owner definition.
+
+### Ax5 — Actual Entropy Amount in the System (hot/cold)
+**Owner definition:** Ax5 is the **actual amount of entropy** in the engine system at a given state — the "temperature" in a loose QIT sense, hot vs cold. This bends what was described as the yin-yang curvature line, which may correspond to a real QIT engine property (e.g., mixing parameter, bath temperature, or non-unitality depth). Ax5 is NOT dormant by default — prior probes showing it as dormant were running on insufficient drive amplitude. The `AXIS_STRUCTURE_EMPIRICAL_AUDIT.md` which merged Ax5 with Ax1 was doing density-layer probes; on the spinor constraint manifold these are likely distinct.
+
+### Topology Repetition per Engine
+**Owner definition:** Each loop visits ALL 4 perceiving topologies. Topologies appear **twice per engine** (outer + inner loop), differentiated by terrain flow-direction variant. This overrides any interpretation that the 4 topologies split 2/2 between the two loops.
 
 ---
 
@@ -61,7 +74,9 @@
 
 **Stages per loop:** 4 (macro-4)
 **Stages per engine:** 8 macro (expandable to 32 micro via Ax6 substages)
-**Heating/cooling:** Se = hot mixing ("heating leg"), Ni = cold reset ("cooling leg"). Each loop touches both Se and Ni.
+**Heating/cooling:** Se = hot mixing, Ni = cold reset. Each loop touches both Se and Ni.
+
+**Topology repetition (owner correction):** Each loop visits ALL 4 perceiving topologies (Ne, Si, Se, Ni). The 4 base topologies therefore appear TWICE per engine — once in the outer loop, once in the inner loop. The two visits are distinguished by flow direction (terrain variant 1 vs 2). This means the 8 terrains split as: outer loop = {Ne1, Si1, Se1, Ni1} (or 2-variants), inner loop = {Ne2, Si2, Se2, Ni2} (or 1-variants), with assignment by engine chirality. NOT a 4/4 split by topology family.
 
 ---
 
@@ -95,8 +110,12 @@
 - Ne1 vs Ne2 is pinned (sign flip). Si2/Se2/Ni2 variants are exploration markers for next pass.
 - Do NOT pin the flux direction to a single exact formalization — explore the correlated range.
 
-**Terrain ownership by loop** (from 16-macro-token table):
-Every terrain appears in exactly one slot per engine — each loop visits all 4 base topologies, with flow direction set by engine chirality.
+**Terrain ownership by loop (corrected):**
+- Each loop visits all 4 base topologies — Ne, Si, Se, Ni — in order
+- The same 4 topology types appear in BOTH the outer and inner loop of each engine
+- The two visits are distinguished by terrain flow-direction variant (1 vs 2)
+- Outer loop gets one variant set, inner loop gets the other
+- Assignment of which variant goes to which loop is set by engine chirality (Ax3)
 
 ---
 

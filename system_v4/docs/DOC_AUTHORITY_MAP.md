@@ -7,14 +7,23 @@
 
 ---
 
-## 🟢 TIER 1A: CONTROLLER-SAFE GUARDRAILS
-These documents are the safest routing and anti-collapse surfaces. They are the best starting point for controllers, but some still contain active-investigation material and should not be treated as perfectly settled canon.
+> **Required first read:** `system_v4/docs/ENGINE_KERNEL_MINIMAL.md` — read before any other doc in this repo. It gives the minimal non-collapsible surface and the quarantine list.
 
-- `system_v4/docs/DOC_AUTHORITY_MAP.md` (This authority index)
-- `system_v4/docs/GEOMETRY_RATCHET_CHAIN.md` (Root orientation, active investigation)
-- `system_v4/docs/FAILURES_AND_CORRECTIONS_AUDIT.md` (Epistemic failure guardrails)
-- `system_v4/docs/PHENOMENOLOGICAL_DESIGN_RULES.md` (Probe design rules)
-- `system_v4/docs/RUNTIME_TO_STRUCTURE_BRIDGE.md` (Explicit firewall between runtime reality and structural hypotheses)
+---
+## 🟢 TIER 1A: CONTROLLER-SAFE GUARDRAILS
+These documents are the safest routing and anti-collapse surfaces. Read in this order:
+
+1. `system_v4/docs/ENGINE_KERNEL_MINIMAL.md` **(START HERE — mandatory kernel boot)**
+2. `system_v4/docs/DOC_AUTHORITY_MAP.md` (This authority index)
+3. `system_v4/docs/ENGINE_GRAMMAR_DISCRETE.md` (6 discrete slices + owner corrections)
+4. `system_v4/docs/DUAL_LOOP_SPINOR_GRAMMAR.md` (Dual-loop, role inversion across engine types)
+5. `system_v4/docs/TYPE_FLOW_PRECEDENCE_SEPARATION.md` (Hard bans: type ≠ flow ≠ chirality)
+6. `system_v4/docs/RUNTIME_TO_STRUCTURE_BRIDGE.md` (Firewall before any structural claim)
+7. `system_v4/docs/ENGINE_OWNERSHIP_GRAMMAR_32_32_64.md` (32/32/64 runtime vs structural 8×8)
+8. `system_v4/docs/FAILURES_AND_CORRECTIONS_AUDIT.md` (Epistemic failure guardrails)
+9. `system_v4/docs/PHENOMENOLOGICAL_DESIGN_RULES.md` (Probe design rules)
+10. `system_v4/docs/GEOMETRY_RATCHET_CHAIN.md` (Root orientation, active investigation)
+11. `system_v4/docs/BOOT_LANE_DISPATCH_SETUP.md` (Boot lane definitions, A0/A1/B/SIM roles)
 
 ## 🟢 TIER 1B: LIVE RUNTIME TRUTH
 These documents track what the current engine/runtime actually does. They outrank proposal scaffolds for questions about implemented behavior, but they do not by themselves settle the deeper owner grammar.

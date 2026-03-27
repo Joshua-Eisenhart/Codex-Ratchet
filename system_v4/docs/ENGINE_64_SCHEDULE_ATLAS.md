@@ -1,7 +1,7 @@
 # ENGINE 64-SCHEDULE ATLAS
 
 **Date:** 2026-03-27
-**Status:** Chart surface. No prose. No smoothing.
+**Status:** Scaffold chart. Not runtime closure. Not final authority. Earned by chart alignment, not by proof.
 
 > **Governing split:** IGT = stage grammar. Jung = operator grammar. I Ching = 64-schedule index. They do not overlap. They do not redefine each other.
 

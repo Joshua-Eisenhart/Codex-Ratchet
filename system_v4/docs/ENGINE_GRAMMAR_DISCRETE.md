@@ -71,23 +71,34 @@
 
 **Ax6 general rule:** UP = operator first in the couplet token, DOWN = terrain first. Readable from the pair name prefix.
 
+**Operator sign rule:** Ax6 produces a **signed operator** — `Ti↑` (operator acts before terrain channel) is a distinct physical object from `Ti↓` (terrain acts before operator). This is the non-commutation: `Φ_T ∘ U_O ≠ U_O ∘ Φ_T`.
+
 ### Type-1 (IN flux, deductive outer, inductive inner)
 
-| Topology | Terrain | Outer (major) | Ax6 | Result | Inner (minor) | Ax6 | Result | Combined |
-|---|---|---|---|---|---|---|---|---|
-| Ne | Ne-in | NeTi | DOWN | WIN | FiNe | UP | lose | WINlose |
-| Si | Si-in | FeSi | UP | WIN | SiTe | DOWN | win | winWIN |
-| Se | Se-in | TiSe | UP | LOSE | SeFi | DOWN | win | LOSEwin |
-| Ni | Ni-in | NiFe | DOWN | LOSE | TeNi | UP | lose | loseLOSE |
+| Topology | Terrain | Outer (major) | Ax6 | Op sign | Result | Inner (minor) | Ax6 | Op sign | Result | Combined |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Ne | Ne-in | NeTi | DOWN | Ti↓ | WIN | FiNe | UP | Fi↑ | lose | WINlose |
+| Si | Si-in | FeSi | UP | Fe↑ | WIN | SiTe | DOWN | Te↓ | win | winWIN |
+| Se | Se-in | TiSe | UP | Ti↑ | LOSE | SeFi | DOWN | Fi↓ | win | LOSEwin |
+| Ni | Ni-in | NiFe | DOWN | Fe↓ | LOSE | TeNi | UP | Te↑ | lose | loseLOSE |
 
 ### Type-2 (OUT flux, inductive outer, deductive inner)
 
-| Topology | Terrain | Outer (major) | Ax6 | Result | Inner (minor) | Ax6 | Result | Combined |
-|---|---|---|---|---|---|---|---|---|
-| Ne | Ne-out | NeFi | DOWN | LOSE | TiNe | UP | win | winLOSE |
-| Si | Si-out | TeSi | UP | WIN | SiFe | DOWN | win | WINwin |
-| Se | Se-out | FiSe | UP | WIN | SeTi | DOWN | lose | loseWIN |
-| Ni | Ni-out | NiTe | DOWN | LOSE | FeNi | UP | lose | LOSElose |
+| Topology | Terrain | Outer (major) | Ax6 | Op sign | Result | Inner (minor) | Ax6 | Op sign | Result | Combined |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Ne | Ne-out | NeFi | DOWN | Fi↓ | LOSE | TiNe | UP | Ti↑ | win | winLOSE |
+| Si | Si-out | TeSi | UP | Te↑ | WIN | SiFe | DOWN | Fe↓ | win | WINwin |
+| Se | Se-out | FiSe | UP | Fi↑ | WIN | SeTi | DOWN | Ti↓ | lose | loseWIN |
+| Ni | Ni-out | NiTe | DOWN | Te↓ | LOSE | FeNi | UP | Fe↑ | lose | LOSElose |
+
+### Signed operator inventory (per engine)
+
+Each engine uses all 4 operators in both signs = **8 distinct signed operators**, one per stage:
+
+| Engine | ↑ stages | ↓ stages |
+|---|---|---|
+| Type-1 | Fi↑, Fe↑, Ti↑, Te↑ | Ti↓, Te↓, Fi↓, Fe↓ |
+| Type-2 | Ti↑, Te↑, Fi↑, Fe↑ | Fi↓, Fe↓, Ti↓, Te↓ |
 
 ### Loop-family lock
 
@@ -113,6 +124,8 @@
 | Inner loop casing | lowercase | lowercase |
 | Outer/inner loop families | FeTi / TeFi | TeFi / FeTi |
 | Ax6 sign per stage | token-order-derived | token-order-derived |
+| Signed operators per engine | 8 (4 ops × 2 signs) | 8 (4 ops × 2 signs) |
+
 ## SLICE A: Spinor Carrier
 
 **Primary state carrier:** Weyl spinor pair (ψ_L, ψ_R) on S³/SU(2) — Level 2–3 in the ratchet chain.

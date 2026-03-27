@@ -1,0 +1,64 @@
+{
+  "schema": "AXIS_CANON_CORRECTION_v1",
+  "timestamp": "2026-03-27T00:55:00Z",
+  "source": "axes math. apple notes dump.txt (17701 lines)",
+  "commit": "b9b14b7f",
+  "corrections_applied": [
+    {
+      "axis": 3,
+      "canonical_name": "Chiral Flux Orientation",
+      "math": "rho_dot = ±G(rho)",
+      "type_1": "Left Weyl / Inward Flux / +G / clockwise Hopf fiber",
+      "type_2": "Right Weyl / Outward Flux / -G / counter-clockwise Hopf fiber",
+      "impedance": "outer=low Z, inner=high Z, SAME for both types",
+      "does_NOT_decide": ["impedance hierarchy", "loop order", "deductive/inductive", "operator order", "entropy sign"],
+      "source_lines": [13080, 13237, 14196, 14338]
+    },
+    {
+      "axis": 4,
+      "canonical_name": "Variance Direction / Math Class",
+      "deductive": "V(T_i(rho)) decreases early (constraint first)",
+      "inductive": "V(T_e(rho)) increases early (release first)",
+      "source_lines": [11020, 11073]
+    },
+    {
+      "axis": 5,
+      "canonical_name": "Generator Algebra Class",
+      "old_label_in_rosetta": "AXIS_5_STRATEGY",
+      "corrected_label": "AXIS_5_ALGEBRA",
+      "FGA": "Finite Gradient Algebra (Lindblad/GKSL, {Ti, Te})",
+      "FSA": "Finite Spectral Algebra (Hamiltonian, {Fi, Fe})",
+      "source_lines": [12897, 12960]
+    },
+    {
+      "axis": 6,
+      "canonical_name": "Action Orientation",
+      "old_label_in_rosetta": "AXIS_6_PRECEDENCE",
+      "corrected_label": "AXIS_6_ACTION",
+      "left": "Pre-composition: rho -> A*rho",
+      "right": "Post-composition: rho -> rho*A",
+      "source_lines": [1, 340]
+    }
+  ],
+  "loop_assignment": {
+    "type_1_outer": "Deductive (FeTi)",
+    "type_1_inner": "Inductive (TeFi)",
+    "type_2_outer": "Inductive (TeFi)",
+    "type_2_inner": "Deductive (FeTi)",
+    "impedance_note": "outer=low Z, inner=high Z for BOTH types (does NOT flip)"
+  },
+  "four_superoperators": [
+    {"ax5": "FGA", "ax6": "Left", "class": "Gradient-Left", "equation": "Sigma(L*rho*L_dag - 0.5*{L_dag*L, rho})"},
+    {"ax5": "FGA", "ax6": "Right", "class": "Gradient-Right", "equation": "Sigma(rho*L_dag*L - 0.5*{L_dag*L, rho})"},
+    {"ax5": "FSA", "ax6": "Left", "class": "Spectral-Left", "equation": "rho_dot = -i*H*rho"},
+    {"ax5": "FSA", "ax6": "Right", "class": "Spectral-Right", "equation": "rho_dot = +i*rho*H"}
+  ],
+  "engine_gaps": [
+    "rho_dot = ±G(rho) NOT implemented as unified generator with sign flip",
+    "Z = ||d_rho/dt||^-1 NOT computed anywhere",
+    "FGA/FSA algebra typing NOT applied to operators",
+    "Left/Right action orientation NOT implemented",
+    "Terrain modulation uses arbitrary constants (1.2/0.8), not topology-derived",
+    "Strength uses arbitrary constants (1.0/0.3), not geometry-derived"
+  ]
+}

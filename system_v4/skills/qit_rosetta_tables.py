@@ -8,8 +8,8 @@ class QITAxis(Enum):
     AXIS_2_OPENNESS = 2        # Closed vs Open (Compression vs Expansion of state space)
     AXIS_3_CHIRALITY = 3       # Type 1 (Left) vs Type 2 (Right) topology
     AXIS_4_FLOW = 4            # Induction (release first) vs Deduction (constraint first)
-    AXIS_5_STRATEGY = 5        # First vs Second Strategy (Competitive vs Cooperative)
-    AXIS_6_PRECEDENCE = 6      # Ordering (Topology-first vs Operator-first)
+    AXIS_5_ALGEBRA = 5         # Generator Algebra Class (FGA: Lindblad vs FSA: Hamiltonian)
+    AXIS_6_ACTION = 6          # Action Orientation (Left pre-composition vs Right post-composition)
 
 class QITOperatorPolarity(Enum):
     ABSORPTIVE_MINUS = "-"     # Topology -> Kernel

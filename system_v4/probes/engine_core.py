@@ -92,17 +92,23 @@ class LoopSpec:
     topology_order: str         # "deduction" or "induction" (Ax4 -- DISPUTED)
 
 
-# Type-1 (Left Weyl): outer loop = cooling, inner loop = heating
-# Type-2 (Right Weyl): outer loop = heating, inner loop = cooling [ROLE INVERTED]
+# Ax3 distinguishes the two engine types by FLUX DIRECTION (IN vs OUT), not by casing.
+# Both types have WIN/LOSE (caps) on the outer loop and win/lose (lower) on the inner loop.
+# Type-1 = IN flux. Type-2 = OUT flux.
+#
+# Locked stage token pairs (Apple Notes dump — authoritative):
+#   Type-1 outer/inner: NeTi/FiNe · FeSi/SiTe · TiSe/SeFi · NiFe/TeNi
+#   Type-2 outer/inner: NeFi/TiNe · TeSi/SiFe · FiSe/SeTi · NiTe/FeNi
+#
 # Terrain index mapping: 0-3 = fiber terrains, 4-7 = base terrains
 LOOP_GRAMMAR: Dict[int, Dict[str, LoopSpec]] = {
-    1: {
+    1: {  # Type-1: IN flux
         "outer": LoopSpec("outer", "cooling", [4, 5, 6, 7], "deduction"),   # base terrains
         "inner": LoopSpec("inner", "heating", [0, 1, 2, 3], "induction"),   # fiber terrains
     },
-    2: {
+    2: {  # Type-2: OUT flux [role inverted vs Type-1]
         "outer": LoopSpec("outer", "heating", [0, 1, 2, 3], "induction"),   # fiber terrains
-        "inner": LoopSpec("inner", "cooling", [4, 5, 6, 7], "deduction"),   # base terrains [ROLE INVERTED]
+        "inner": LoopSpec("inner", "cooling", [4, 5, 6, 7], "deduction"),   # base terrains
     },
 }
 

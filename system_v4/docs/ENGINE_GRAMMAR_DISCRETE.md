@@ -37,7 +37,7 @@
 | **Ax0** | Ne / Ni | Se / Si | N-perceiving pair vs S-perceiving pair |
 | **Ax1** | Se / Ni | Ne / Si | Diagonal cross-pairs — each side has one expansion, one compression |
 | **Ax2** | Se / Ne | Si / Ni | Expansion vs compression. Also candidate: Si/Ni/Te/Fe vs Ne/Se/Fi/Ti |
-| **Ax3** | Type 1 (WIN/LOSE outer) | Type 2 (win/lose outer) | Fundamental topology inversion — flux in vs out. Not derivable from Ax0–Ax2. |
+| **Ax3** | Type 1 (`IN` flux) | Type 2 (`OUT` flux) | Flux direction. Both types have WIN/LOSE (caps) on outer and win/lose (lower) on inner. Ax3 is NOT which casing is outer — it is the flux direction. Not derivable from Ax0–Ax2. |
 | **Ax4** | Te / Fi | Fe / Ti | Which judging pair. Constraint: each loop is entirely Te/Fi OR entirely Fe/Ti — not mixed. |
 | **Ax5** | Fe / Fi (second strategy) | Te / Ti (first strategy) | Strategy axis. WinLose: Win=Ti, Lose=Fi. LoseWin: Lose=Ti, Win=Fi. WinWin/LoseLose: first=Te, second=Fe. |
 | **Ax6** | P then J (SiTe, SeTi, NeFi…) | J then P (TiSe, TeSi, TiNe, FiSe, FiNe…) | Couplet order. Perceiving-first vs Judging-first within each token. |
@@ -52,6 +52,57 @@
 
 ---
 
+## LOCKED IGT STAGE TABLES (lock surface: Apple Notes dump)
+
+**Source:** `core_docs/a2_feed_high entropy doc/axes math. apple notes dump.txt`
+**Status:** LOCKED — this is the authoritative stage pairing table. The ENGINES_SPEC order was DISPUTED and is now resolved by this surface.
+
+**Casing frame (applies to both engine types):**
+- `WIN` / `LOSE` (caps) = outer loop (major)
+- `win` / `lose` (lower) = inner loop (minor)
+- Ax3 distinguishes the two types by FLUX DIRECTION only (IN vs OUT), not by which loop gets caps
+
+| Engine | Flux |
+|---|---|
+| Type-1 | `IN` |
+| Type-2 | `OUT` |
+
+**Type-1 locked stage pairings (IN flux):**
+
+| Pattern | Outer (major) token | Outer result | Inner (minor) token | Inner result |
+|---|---|---|---|---|
+| `WINlose` | `NeTi` | WIN | `FiNe` | lose |
+| `winWIN` | `FeSi` | WIN | `SiTe` | win |
+| `LOSEwin` | `TiSe` | LOSE | `SeFi` | win |
+| `loseLOSE` | `NiFe` | LOSE | `TeNi` | lose |
+
+**Type-2 locked stage pairings (OUT flux):**
+
+| Pattern | Outer (major) token | Outer result | Inner (minor) token | Inner result |
+|---|---|---|---|---|
+| `winLOSE` | `NeFi` | LOSE | `TiNe` | win |
+| `WINwin` | `TeSi` | WIN | `SiFe` | win |
+| `loseWIN` | `FiSe` | WIN | `SeTi` | lose |
+| `LOSElose` | `NiTe` | LOSE | `FeNi` | lose |
+
+**Count invariant (must hold per engine):**
+
+| Engine | WIN | LOSE | win | lose |
+|---|---|---|---|---|
+| Type-1 | 2 | 2 | 2 | 2 |
+| Type-2 | 2 | 2 | 2 | 2 |
+
+**Collapsed token lists (for quick reference):**
+
+Type-1 outer/inner pairs: `NeTi/FiNe` · `FeSi/SiTe` · `TiSe/SeFi` · `NiFe/TeNi`
+
+Type-2 outer/inner pairs: `NeFi/TiNe` · `TeSi/SiFe` · `FiSe/SeTi` · `NiTe/FeNi`
+
+**Hard constraints visible in the tables:**
+- No token appears in both Type-1 and Type-2 (they are non-overlapping sets)
+- Each outer token is a Jungian couplet (perceiving + judging in one of two orders = Ax6)
+- Each inner token is also a couplet, paired with the corresponding outer
+- The Ax4 constraint holds: each loop pair is internally consistent (Te/Fi or Fe/Ti group)
 ## SLICE A: Spinor Carrier
 
 **Primary state carrier:** Weyl spinor pair (ψ_L, ψ_R) on S³/SU(2) — Level 2–3 in the ratchet chain.

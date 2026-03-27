@@ -245,6 +245,13 @@ Full stage token sequences with Ax6: see FULL STAGE GRAMMAR above.
 
 **8 terrains = 4 topologies × 2 flow directions:**
 
+> **⚠️ QUARANTINED:** The `Ne1/Ne2` naming below is SUPERSEDED by the `*-in / *-out` terrain scheme
+> in the FULL STAGE GRAMMAR section above. The current authoritative terrain distinction is:
+> - Type-1 terrains = `Se-in, Ne-in, Ni-in, Si-in` (IN flux, base loop = outer)
+> - Type-2 terrains = `Se-out, Ne-out, Ni-out, Si-out` (OUT flux, fiber loop = outer)
+>
+> The `Ne1/Ne2` variant numbering was an earlier proposal. Do NOT mix the two schemes.
+
 | Terrain | Base topology | Flow direction |
 |---|---|---|
 | Ne1 | Ne | U(θ) |
@@ -262,12 +269,13 @@ Full stage token sequences with Ax6: see FULL STAGE GRAMMAR above.
 - Ne1 vs Ne2 is pinned (sign flip). Si2/Se2/Ni2 variants are exploration markers for next pass.
 - Do NOT pin the flux direction to a single exact formalization — explore the correlated range.
 
-**Terrain ownership by loop (corrected):**
+**Terrain ownership by loop (corrected — see FULL STAGE GRAMMAR above for authoritative version):**
 - Each loop visits all 4 base topologies — Ne, Si, Se, Ni — in order
 - The same 4 topology types appear in BOTH the outer and inner loop of each engine
-- The two visits are distinguished by terrain flow-direction variant (1 vs 2)
+- The two visits are distinguished by terrain flux direction (`-in` vs `-out`)
 - Outer loop gets one variant set, inner loop gets the other
 - Assignment of which variant goes to which loop is set by engine chirality (Ax3)
+
 
 ---
 

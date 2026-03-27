@@ -156,20 +156,41 @@ class EngineOwnership:
 
 TERRAINS = [
     # Fiber loop terrains (inner/vertical) -- indices 0-3
-    {"name": "Se_f", "loop": "fiber", "expansion": True,  "open": True},
-    {"name": "Si_f", "loop": "fiber", "expansion": False, "open": False},
-    {"name": "Ne_f", "loop": "fiber", "expansion": True,  "open": False},
-    {"name": "Ni_f", "loop": "fiber", "expansion": False, "open": True},
+    {"name": "Se_f", "topo": "Se", "loop": "fiber", "expansion": True,  "open": True},
+    {"name": "Si_f", "topo": "Si", "loop": "fiber", "expansion": False, "open": False},
+    {"name": "Ne_f", "topo": "Ne", "loop": "fiber", "expansion": True,  "open": False},
+    {"name": "Ni_f", "topo": "Ni", "loop": "fiber", "expansion": False, "open": True},
     # Base loop terrains (outer/horizontal) -- indices 4-7
-    {"name": "Se_b", "loop": "base",  "expansion": True,  "open": True},
-    {"name": "Si_b", "loop": "base",  "expansion": False, "open": False},
-    {"name": "Ne_b", "loop": "base",  "expansion": True,  "open": False},
-    {"name": "Ni_b", "loop": "base",  "expansion": False, "open": True},
+    {"name": "Se_b", "topo": "Se", "loop": "base",  "expansion": True,  "open": True},
+    {"name": "Si_b", "topo": "Si", "loop": "base",  "expansion": False, "open": False},
+    {"name": "Ne_b", "topo": "Ne", "loop": "base",  "expansion": True,  "open": False},
+    {"name": "Ni_b", "topo": "Ni", "loop": "base",  "expansion": False, "open": True},
 ]
 
 OPERATORS = ["Ti", "Fe", "Te", "Fi"]
 
-# 8 stages = 8 terrains (each macro-stage runs all 4 operators internally)
+# ─── LOOP STAGE ORDER ─────────────────────────────────────────────
+# Maps (engine_type) → ordered list of terrain indices to visit.
+# The list is [outer_1, outer_2, outer_3, outer_4, inner_1, inner_2, inner_3, inner_4]
+# following the correct Carnot-grounded loop traversal orders:
+#   Deductive: Se → Ne → Ni → Si
+#   Inductive: Se → Si → Ni → Ne
+#
+# Terrain index lookup:
+#   Fiber: Se=0, Si=1, Ne=2, Ni=3
+#   Base:  Se=4, Si=5, Ne=6, Ni=7
+#
+# Type-1 (IN flux): outer=deductive on base, inner=inductive on fiber
+# Type-2 (OUT flux): outer=inductive on fiber, inner=deductive on base
+
+LOOP_STAGE_ORDER: Dict[int, list] = {
+    1: [4, 6, 7, 5,   # outer deductive: Se_b→Ne_b→Ni_b→Si_b
+        0, 1, 3, 2],  # inner inductive:  Se_f→Si_f→Ni_f→Ne_f
+    2: [0, 1, 3, 2,   # outer inductive:  Se_f→Si_f→Ni_f→Ne_f
+        4, 6, 7, 5],  # inner deductive:  Se_b→Ne_b→Ni_b→Si_b
+}
+
+# Old flat stage list — kept for backward compat but run_cycle uses LOOP_STAGE_ORDER
 STAGES = TERRAINS
 
 
@@ -558,9 +579,13 @@ class GeometricEngine:
                   controls: Dict[int, StageControls] = None) -> EngineState:
         """Run a full 8-macro-stage cycle (32 operator applications).
 
+        Executes stages in the correct Carnot-grounded loop order:
+          Type-1: outer deductive (Se→Ne→Ni→Si on base), then inner inductive (Se→Si→Ni→Ne on fiber)
+          Type-2: outer inductive (Se→Si→Ni→Ne on fiber), then inner deductive (Se→Ne→Ni→Si on base)
+
         Args:
             state: Initial engine state.
-            controls: Optional per-stage controls {stage_idx: StageControls}.
+            controls: Optional per-stage controls {position_in_cycle: StageControls}.
                       Default: StageControls() for all 8 stages.
 
         Returns:
@@ -568,9 +593,10 @@ class GeometricEngine:
         """
         if controls is None:
             controls = {i: StageControls() for i in range(8)}
-        for i in range(8):
-            ctrl = controls.get(i, StageControls())
-            state = self.step(state, stage_idx=i, controls=ctrl)
+        stage_order = LOOP_STAGE_ORDER[self.engine_type]
+        for position, terrain_idx in enumerate(stage_order):
+            ctrl = controls.get(position, StageControls())
+            state = self.step(state, stage_idx=terrain_idx, controls=ctrl)
         return state
 
     def read_axes(self, state: EngineState) -> Dict[str, float]:

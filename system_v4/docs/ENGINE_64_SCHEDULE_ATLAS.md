@@ -2,26 +2,41 @@
 
 **Date:** 2026-03-27
 **Status:** Chart surface. No prose. No smoothing.
-**Grammar layers:** IGT (stage grammar) · Jung (operator grammar) · I Ching (schedule index)
 
-> **Rule:** IGT gives the stage grammar. Jung gives the operator grammar. I Ching gives the 64-schedule grammar. They do not overlap. They do not redefine each other.
+> **Governing split:** IGT = stage grammar. Jung = operator grammar. I Ching = 64-schedule index. They do not overlap. They do not redefine each other.
+
+| System | Job | Must not do |
+|---|---|---|
+| `IGT` | lock `WIN / LOSE / win / lose`, same-sign vs mixed, outer vs inner, first vs second asymmetry | redefine operator order or hexagram semantics |
+| `Jung` | name ordered pair tokens, loop families, and signed operators | replace IGT outcome structure |
+| `I Ching` | index the 64-slot schedule atlas | define runtime truth, line meanings, or axis closure |
 
 ---
 
-## 1. TERRAINS (8)
+## 1. GLOBAL LOCKS
 
-| # | Terrain | Topology | Flux | Engine family | Loop assignment |
-|---|---|---|---|---|---|
-| T1 | `Se-in` | Se | IN | Type-1 | both (outer + inner) |
-| T2 | `Ne-in` | Ne | IN | Type-1 | both |
-| T3 | `Ni-in` | Ni | IN | Type-1 | both |
-| T4 | `Si-in` | Si | IN | Type-1 | both |
-| T5 | `Se-out` | Se | OUT | Type-2 | both |
-| T6 | `Ne-out` | Ne | OUT | Type-2 | both |
-| T7 | `Ni-out` | Ni | OUT | Type-2 | both |
-| T8 | `Si-out` | Si | OUT | Type-2 | both |
+| Layer | Type-1 | Type-2 |
+|---|---|---|
+| Flux | `IN` | `OUT` |
+| Major / Outer casing | `WIN / LOSE` | `WIN / LOSE` |
+| Minor / Inner casing | `win / lose` | `win / lose` |
+| Outer loop family | Deductive `FeTi` | Inductive `TeFi` |
+| Inner loop family | Inductive `TeFi` | Deductive `FeTi` |
 
-### Terrain graph edges
+---
+
+## 2. IGT QUADRANT LOCK
+
+| Topology | IGT quadrant | T-strategy | F-strategy | T1 major | T1 minor | T2 major | T2 minor |
+|---|---|---|---|---|---|---|---|
+| `Ne` | `WinLose` | NeTi | FiNe | `NeTi → WIN` | `FiNe → lose` | `NeFi → LOSE` | `TiNe → win` |
+| `Si` | `WinWin` | SiTe | FeSi | `FeSi → WIN` | `SiTe → win` | `TeSi → WIN` | `SiFe → win` |
+| `Se` | `LoseWin` | TiSe | SeFi | `TiSe → LOSE` | `SeFi → win` | `FiSe → WIN` | `SeTi → lose` |
+| `Ni` | `LoseLose` | TeNi | NiFe | `NiFe → LOSE` | `TeNi → lose` | `NiTe → LOSE` | `FeNi → lose` |
+
+---
+
+## 3. LOOP ORDERS (Ax0/Ax2 graph-derived)
 
 ```
 Ne ──Ax2── Se
@@ -31,133 +46,146 @@ Ax0        Ax0
 Ni ──Ax2── Si
 ```
 
+| Axis 4 family | Order |
+|---|---|
+| Inductive | `Se → Si → Ni → Ne` |
+| Deductive | `Se → Ne → Ni → Si` |
+
 | Edge family | Edges |
 |---|---|
-| Ax0 | Se↔Si, Ne↔Ni |
-| Ax2 | Se↔Ne, Si↔Ni |
+| `Ax0` | `Se-Si`, `Ne-Ni` |
+| `Ax2` | `Se-Ne`, `Si-Ni` |
+
+| Loop | Edge walk |
+|---|---|
+| Inductive `Se → Si → Ni → Ne` | `Ax0 → Ax2 → Ax0 → Ax2` |
+| Deductive `Se → Ne → Ni → Si` | `Ax2 → Ax0 → Ax2 → Ax0` |
 
 ---
 
-## 2. SIGNED OPERATORS (8)
+## 4. TERRAINS (8)
 
-Each operator × Ax6 sign = distinct physical object (non-commuting composition order).
+| # | Terrain | Topology | Flux | Engine family |
+|---|---|---|---|---|
+| T1 | `Se-in` | Se | IN | Type-1 |
+| T2 | `Ne-in` | Ne | IN | Type-1 |
+| T3 | `Ni-in` | Ni | IN | Type-1 |
+| T4 | `Si-in` | Si | IN | Type-1 |
+| T5 | `Se-out` | Se | OUT | Type-2 |
+| T6 | `Si-out` | Si | OUT | Type-2 |
+| T7 | `Ni-out` | Ni | OUT | Type-2 |
+| T8 | `Ne-out` | Ne | OUT | Type-2 |
 
-| # | Signed op | Base op | Ax6 | QIT meaning | Composition |
+---
+
+## 5. SIGNED OPERATORS (8)
+
+`UP` = operator first. `DOWN` = terrain first. Non-commuting: `Φ_T ∘ U_O ≠ U_O ∘ Φ_T`.
+
+| # | Signed op | Ax6 | Token examples | Role surface |
+|---|---|---|---|---|
+| O1 | `Ti↑` | UP | `TiSe`, `TiNe` | T1 major `Se`; T2 minor `Ne` |
+| O2 | `Ti↓` | DOWN | `NeTi`, `SeTi` | T1 major `Ne`; T2 minor `Se` |
+| O3 | `Fe↑` | UP | `FeSi`, `FeNi` | T1 major `Si`; T2 minor `Ni` |
+| O4 | `Fe↓` | DOWN | `NiFe`, `SiFe` | T1 major `Ni`; T2 minor `Si` |
+| O5 | `Te↑` | UP | `TeNi`, `TeSi` | T1 minor `Ni`; T2 major `Si` |
+| O6 | `Te↓` | DOWN | `SiTe`, `NiTe` | T1 minor `Si`; T2 major `Ni` |
+| O7 | `Fi↑` | UP | `FiNe`, `FiSe` | T1 minor `Ne`; T2 major `Se` |
+| O8 | `Fi↓` | DOWN | `SeFi`, `NeFi` | T1 minor `Se`; T2 major `Ne` |
+
+---
+
+## 6. TYPE-1 FULL CHART (IN flux)
+
+| Step | Topology | Terrain | Outer / Major | Ax6 | Signed op | Outer result | Inner / Minor | Ax6 | Signed op | Inner result | Pattern |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | `Se` | `Se-in` | `TiSe` | `UP` | `Ti↑` | `LOSE` | `SeFi` | `DOWN` | `Fi↓` | `win` | `LOSEwin` |
+| 2 | `Ne` | `Ne-in` | `NeTi` | `DOWN` | `Ti↓` | `WIN` | `FiNe` | `UP` | `Fi↑` | `lose` | `WINlose` |
+| 3 | `Ni` | `Ni-in` | `NiFe` | `DOWN` | `Fe↓` | `LOSE` | `TeNi` | `UP` | `Te↑` | `lose` | `loseLOSE` |
+| 4 | `Si` | `Si-in` | `FeSi` | `UP` | `Fe↑` | `WIN` | `SiTe` | `DOWN` | `Te↓` | `win` | `winWIN` |
+
+### Type-1 loop view
+
+| Loop | Order | Stage 1 | Stage 2 | Stage 3 | Stage 4 |
 |---|---|---|---|---|---|
-| O1 | `Ti↑` | Ti | UP | Projector before terrain | `Φ_T(U_Ti · ρ · U_Ti†)` |
-| O2 | `Ti↓` | Ti | DOWN | Terrain before projector | `U_Ti · Φ_T(ρ) · U_Ti†` |
-| O3 | `Fe↑` | Fe | UP | Diffuser before terrain | `Φ_T(L_Fe[ρ])` |
-| O4 | `Fe↓` | Fe | DOWN | Terrain before diffuser | `L_Fe[Φ_T(ρ)]` |
-| O5 | `Te↑` | Te | UP | Gradient before terrain | `Φ_T(-i[H,ρ])` |
-| O6 | `Te↓` | Te | DOWN | Terrain before gradient | `-i[H, Φ_T(ρ)]` |
-| O7 | `Fi↑` | Fi | UP | Filter before terrain | `Φ_T(F_Fi[ρ])` |
-| O8 | `Fi↓` | Fi | DOWN | Terrain before filter | `F_Fi[Φ_T(ρ)]` |
+| Outer / Major | Deductive | `Se-in : TiSe : LOSE` | `Ne-in : NeTi : WIN` | `Ni-in : NiFe : LOSE` | `Si-in : FeSi : WIN` |
+| Inner / Minor | Inductive | `Se-in : SeFi : win` | `Si-in : SiTe : win` | `Ni-in : TeNi : lose` | `Ne-in : FiNe : lose` |
 
 ---
 
-## 3. SIXTEEN MACRO-STAGE ATLAS
+## 7. TYPE-2 FULL CHART (OUT flux)
 
-### IGT layer (stage grammar)
+| Step | Topology | Terrain | Outer / Major | Ax6 | Signed op | Outer result | Inner / Minor | Ax6 | Signed op | Inner result | Pattern |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | `Se` | `Se-out` | `FiSe` | `UP` | `Fi↑` | `WIN` | `SeTi` | `DOWN` | `Ti↓` | `lose` | `loseWIN` |
+| 2 | `Si` | `Si-out` | `TeSi` | `UP` | `Te↑` | `WIN` | `SiFe` | `DOWN` | `Fe↓` | `win` | `WINwin` |
+| 3 | `Ni` | `Ni-out` | `NiTe` | `DOWN` | `Te↓` | `LOSE` | `FeNi` | `UP` | `Fe↑` | `lose` | `LOSElose` |
+| 4 | `Ne` | `Ne-out` | `NeFi` | `DOWN` | `Fi↓` | `LOSE` | `TiNe` | `UP` | `Ti↑` | `win` | `winLOSE` |
 
-| IGT quadrant | Topology | T-strategy | F-strategy |
-|---|---|---|---|
-| WinLose | Ne | NeTi | FiNe |
-| WinWin | Si | SiTe | FeSi |
-| LoseWin | Se | TiSe | SeFi |
-| LoseLose | Ni | TeNi | NiFe |
+### Type-2 loop view
 
-### Type-1 (IN flux)
-
-| Row | Engine | Loop | Step | Terrain | Jung token | Ax6 | Signed op | IGT result | Pattern |
-|---|---|---|---|---|---|---|---|---|---|
-| M01 | T1 | outer | 1 | Se-in | TiSe | UP | Ti↑ | LOSE | LOSEwin |
-| M02 | T1 | outer | 2 | Ne-in | NeTi | DOWN | Ti↓ | WIN | WINlose |
-| M03 | T1 | outer | 3 | Ni-in | NiFe | DOWN | Fe↓ | LOSE | loseLOSE |
-| M04 | T1 | outer | 4 | Si-in | FeSi | UP | Fe↑ | WIN | winWIN |
-| M05 | T1 | inner | 1 | Se-in | SeFi | DOWN | Fi↓ | win | LOSEwin |
-| M06 | T1 | inner | 2 | Si-in | SiTe | DOWN | Te↓ | win | winWIN |
-| M07 | T1 | inner | 3 | Ni-in | TeNi | UP | Te↑ | lose | loseLOSE |
-| M08 | T1 | inner | 4 | Ne-in | FiNe | UP | Fi↑ | lose | WINlose |
-
-### Type-2 (OUT flux)
-
-| Row | Engine | Loop | Step | Terrain | Jung token | Ax6 | Signed op | IGT result | Pattern |
-|---|---|---|---|---|---|---|---|---|---|
-| M09 | T2 | outer | 1 | Se-out | FiSe | UP | Fi↑ | WIN | loseWIN |
-| M10 | T2 | outer | 2 | Si-out | TeSi | UP | Te↑ | WIN | WINwin |
-| M11 | T2 | outer | 3 | Ni-out | NiTe | DOWN | Te↓ | LOSE | LOSElose |
-| M12 | T2 | outer | 4 | Ne-out | NeFi | DOWN | Fi↓ | LOSE | winLOSE |
-| M13 | T2 | inner | 1 | Se-out | SeTi | DOWN | Ti↓ | lose | loseWIN |
-| M14 | T2 | inner | 2 | Ne-out | TiNe | UP | Ti↑ | win | winLOSE |
-| M15 | T2 | inner | 3 | Ni-out | FeNi | UP | Fe↑ | lose | LOSElose |
-| M16 | T2 | inner | 4 | Si-out | SiFe | DOWN | Fe↓ | win | WINwin |
-
-### Loop view (each loop in its own traversal order)
-
-| Engine | Loop | Axis-4 | Order | Stage 1 | Stage 2 | Stage 3 | Stage 4 |
-|---|---|---|---|---|---|---|---|
-| T1 | outer | Deductive | Se→Ne→Ni→Si | `TiSe/Ti↑/LOSE` | `NeTi/Ti↓/WIN` | `NiFe/Fe↓/LOSE` | `FeSi/Fe↑/WIN` |
-| T1 | inner | Inductive | Se→Si→Ni→Ne | `SeFi/Fi↓/win` | `SiTe/Te↓/win` | `TeNi/Te↑/lose` | `FiNe/Fi↑/lose` |
-| T2 | outer | Inductive | Se→Si→Ni→Ne | `FiSe/Fi↑/WIN` | `TeSi/Te↑/WIN` | `NiTe/Te↓/LOSE` | `NeFi/Fi↓/LOSE` |
-| T2 | inner | Deductive | Se→Ne→Ni→Si | `SeTi/Ti↓/lose` | `TiNe/Ti↑/win` | `FeNi/Fe↑/lose` | `SiFe/Fe↓/win` |
+| Loop | Order | Stage 1 | Stage 2 | Stage 3 | Stage 4 |
+|---|---|---|---|---|---|
+| Outer / Major | Inductive | `Se-out : FiSe : WIN` | `Si-out : TeSi : WIN` | `Ni-out : NiTe : LOSE` | `Ne-out : NeFi : LOSE` |
+| Inner / Minor | Deductive | `Se-out : SeTi : lose` | `Ne-out : TiNe : win` | `Ni-out : FeNi : lose` | `Si-out : SiFe : win` |
 
 ---
 
-## 4. SIXTY-FOUR MICROSTEP SCHEDULE
+## 8. TOPOLOGY-ALIGNED COMPARISON
 
-Each macro-stage (M01–M16) runs 4 internal operator substeps in fixed order: Ti → Fe → Te → Fi.
-
-`schedule_id = (macro_row - 1) × 4 + operator_position`
-
-| Macro | Terrain | Token | Sub 1 (Ti) | Sub 2 (Fe) | Sub 3 (Te) | Sub 4 (Fi) |
+| Topology | T1 terrain | T1 major | T1 minor | T2 terrain | T2 major | T2 minor |
 |---|---|---|---|---|---|---|
-| M01 | Se-in | TiSe/Ti↑ | S01: Ti | S02: Fe | S03: Te | S04: Fi |
-| M02 | Ne-in | NeTi/Ti↓ | S05: Ti | S06: Fe | S07: Te | S08: Fi |
-| M03 | Ni-in | NiFe/Fe↓ | S09: Ti | S10: Fe | S11: Te | S12: Fi |
-| M04 | Si-in | FeSi/Fe↑ | S13: Ti | S14: Fe | S15: Te | S16: Fi |
-| M05 | Se-in | SeFi/Fi↓ | S17: Ti | S18: Fe | S19: Te | S20: Fi |
-| M06 | Si-in | SiTe/Te↓ | S21: Ti | S22: Fe | S23: Te | S24: Fi |
-| M07 | Ni-in | TeNi/Te↑ | S25: Ti | S26: Fe | S27: Te | S28: Fi |
-| M08 | Ne-in | FiNe/Fi↑ | S29: Ti | S30: Fe | S31: Te | S32: Fi |
-| M09 | Se-out | FiSe/Fi↑ | S33: Ti | S34: Fe | S35: Te | S36: Fi |
-| M10 | Si-out | TeSi/Te↑ | S37: Ti | S38: Fe | S39: Te | S40: Fi |
-| M11 | Ni-out | NiTe/Te↓ | S41: Ti | S42: Fe | S43: Te | S44: Fi |
-| M12 | Ne-out | NeFi/Fi↓ | S45: Ti | S46: Fe | S47: Te | S48: Fi |
-| M13 | Se-out | SeTi/Ti↓ | S49: Ti | S50: Fe | S51: Te | S52: Fi |
-| M14 | Ne-out | TiNe/Ti↑ | S53: Ti | S54: Fe | S55: Te | S56: Fi |
-| M15 | Ni-out | FeNi/Fe↑ | S57: Ti | S58: Fe | S59: Te | S60: Fi |
-| M16 | Si-out | SiFe/Fe↓ | S61: Ti | S62: Fe | S63: Te | S64: Fi |
-
-**I Ching layer:** Each S01–S64 is one hexagram slot. The hexagram is the schedule index — it labels a unique executable microstep, not an ontological claim. Mapping of hexagram numbers to schedule IDs is a separate indexing task.
+| `Se` | `Se-in` | `TiSe / LOSE / Ti↑` | `SeFi / win / Fi↓` | `Se-out` | `FiSe / WIN / Fi↑` | `SeTi / lose / Ti↓` |
+| `Ne` | `Ne-in` | `NeTi / WIN / Ti↓` | `FiNe / lose / Fi↑` | `Ne-out` | `NeFi / LOSE / Fi↓` | `TiNe / win / Ti↑` |
+| `Ni` | `Ni-in` | `NiFe / LOSE / Fe↓` | `TeNi / lose / Te↑` | `Ni-out` | `NiTe / LOSE / Te↓` | `FeNi / lose / Fe↑` |
+| `Si` | `Si-in` | `FeSi / WIN / Fe↑` | `SiTe / win / Te↓` | `Si-out` | `TeSi / WIN / Te↑` | `SiFe / win / Fe↓` |
 
 ---
 
-## 5. TOPOLOGY-ALIGNED COMPARISON
+## 9. 64-LAYER SPLIT
 
-| Topology | T1 terrain | T1 outer token | T1 outer result | T1 inner token | T1 inner result | T2 terrain | T2 outer token | T2 outer result | T2 inner token | T2 inner result |
-|---|---|---|---|---|---|---|---|---|---|---|
-| Se | Se-in | TiSe/Ti↑ | LOSE | SeFi/Fi↓ | win | Se-out | FiSe/Fi↑ | WIN | SeTi/Ti↓ | lose |
-| Ne | Ne-in | NeTi/Ti↓ | WIN | FiNe/Fi↑ | lose | Ne-out | NeFi/Fi↓ | LOSE | TiNe/Ti↑ | win |
-| Ni | Ni-in | NiFe/Fe↓ | LOSE | TeNi/Te↑ | lose | Ni-out | NiTe/Te↓ | LOSE | FeNi/Fe↑ | lose |
-| Si | Si-in | FeSi/Fe↑ | WIN | SiTe/Te↓ | win | Si-out | TeSi/Te↑ | WIN | SiFe/Fe↓ | win |
-
----
-
-## 6. AXIS OVERLAY
-
-| Axis | Grammar layer | What it governs | Partitions |
-|---|---|---|---|
-| Ax0 | Graph edge | Ne/Ni vs Se/Si | Terrain graph edge family |
-| Ax1 | Graph edge (cross) | Se/Ni vs Ne/Si | Diagonal cross-pairs |
-| Ax2 | Graph edge | Se/Ne vs Si/Ni | Terrain graph edge family |
-| Ax3 | IGT | IN flux vs OUT flux | Engine type (T1 vs T2) |
-| Ax4 | Jung | FeTi (deductive) vs TeFi (inductive) | Loop operator family assignment |
-| Ax5 | IGT | First strategy (Te/Ti) vs second strategy (Fe/Fi) | T vs F kernel in IGT |
-| Ax6 | Jung | UP (operator first) vs DOWN (terrain first) | Token composition order / signed op |
+| Layer | Safe use now | Must not claim |
+|---|---|---|
+| Live runtime `64` | `2 engines × 8 terrains × 4 operator slots` | full signed-operator closure or hexagram equivalence |
+| Chart atlas `64` | `8 terrains × 8 signed operators` as schedule-index surface | that runtime step `N` equals chart slot `N` |
+| Hexagram layer `64` | optional secondary tag family for schedule slots | primary ontology, line semantics, or closure proof |
 
 ---
 
-## 7. INVARIANTS
+## 10. 64 SCHEDULE INDEX GRID (8 × 8)
+
+Rows = terrains. Cols = signed operators. `*` = one of the 16 chart-locked macro-stage occupancies.
+
+| Terrain \ Op | `Ti↑` | `Ti↓` | `Te↑` | `Te↓` | `Fi↑` | `Fi↓` | `Fe↑` | `Fe↓` |
+|---|---|---|---|---|---|---|---|---|
+| `Se-in` | `S01*` | `S02` | `S03` | `S04` | `S05` | `S06*` | `S07` | `S08` |
+| `Ne-in` | `S09` | `S10*` | `S11` | `S12` | `S13*` | `S14` | `S15` | `S16` |
+| `Ni-in` | `S17` | `S18` | `S19*` | `S20` | `S21` | `S22` | `S23` | `S24*` |
+| `Si-in` | `S25` | `S26` | `S27` | `S28*` | `S29` | `S30` | `S31*` | `S32` |
+| `Se-out` | `S33` | `S34*` | `S35` | `S36` | `S37*` | `S38` | `S39` | `S40` |
+| `Si-out` | `S41` | `S42` | `S43*` | `S44` | `S45` | `S46` | `S47` | `S48*` |
+| `Ni-out` | `S49` | `S50` | `S51` | `S52*` | `S53` | `S54` | `S55*` | `S56` |
+| `Ne-out` | `S57*` | `S58` | `S59` | `S60` | `S61` | `S62*` | `S63` | `S64` |
+
+Hexagram labels may be attached to `S01-S64` as schedule tags only. They do not inherit binary line semantics.
+
+---
+
+## 11. AXIS OVERLAY
+
+| Axis | Grammar layer | What it governs |
+|---|---|---|
+| Ax0 | Graph edge | Ne/Ni vs Se/Si |
+| Ax1 | Graph edge (cross) | Se/Ni vs Ne/Si |
+| Ax2 | Graph edge | Se/Ne vs Si/Ni |
+| Ax3 | IGT | IN flux vs OUT flux |
+| Ax4 | Jung | FeTi (deductive) vs TeFi (inductive) |
+| Ax5 | IGT | First strategy (Te/Ti) vs second (Fe/Fi) |
+| Ax6 | Jung | UP (operator first) vs DOWN (terrain first) |
+
+---
+
+## 12. INVARIANTS
 
 | Invariant | Value |
 |---|---|
@@ -169,29 +197,32 @@ Each macro-stage (M01–M16) runs 4 internal operator substeps in fixed order: T
 | LOSE per engine | 2 |
 | win per engine | 2 |
 | lose per engine | 2 |
-| Signed operators per engine | 8 (4 ops × 2 signs, one per macro-stage) |
-| Terrains overlap between engines | 0 (IN set ∩ OUT set = ∅) |
+| Signed operators per engine | 8 (4 ops × 2 signs) |
+| Chart-locked macro-stages | 16 (starred cells in grid) |
+| Terrains overlap between engines | 0 |
+
+| Engine | `↑` stages | `↓` stages |
+|---|---|---|
+| Type-1 | `Ti↑`, `Fe↑`, `Fi↑`, `Te↑` | `Ti↓`, `Fe↓`, `Fi↓`, `Te↓` |
+| Type-2 | `Fi↑`, `Te↑`, `Fe↑`, `Ti↑` | `Ti↓`, `Fe↓`, `Te↓`, `Fi↓` |
 
 ---
 
-## 8. QUARANTINE TABLE
+## 13. HARD NON-CLAIMS
 
-| Tempting collapse | Why it's wrong |
-|---|---|
-| type = flow | Ax3 (flux direction) ≠ Ax4 (loop family). Both types have WIN/LOSE outer. |
-| flow = chirality | Chirality is Left/Right Weyl. Flux IN/OUT is terrain-level. Different objects. |
-| chirality = precedence | Precedence is Ax6 (UP/DOWN token order). Chirality is Ax3. Not interchangeable. |
-| outer/inner = Ax3 | Both engines have outer (caps) and inner (lower). Ax3 is flux direction, not casing. |
-| IGT labels = Jung pairings | IGT gives WIN/LOSE result. Jung gives operator token. Same stage, different grammar layers. |
-| I Ching = ontology | Hexagrams label schedule slots. They are not proofs, not operator definitions, not stage results. |
-| correlation = proof | Correlated axes suggest structure. They do not confirm it. All correlations stay A1 fuel. |
-| schedule label = ontology | S01–S64 are execution indices. They do not define what the operators DO. |
-| thermodynamics = literal | Heating/cooling, Carnot, Szilard are search-direction metaphors. These are QIT engines. |
-| Ne1/Ne2 = *-in/*-out | Old terrain-variant scheme is superseded. Do not mix. |
+- `type ≠ flow ≠ chirality ≠ precedence`
+- `outer / inner ≠ Ax3`
+- `I Ching labels ≠ ontology`
+- `correlations ≠ proof`
+- `runtime step ids ≠ schedule-slot ids`
+- `schedule-slot ids ≠ structural line meanings`
+- `thermodynamics = search metaphor, not literal`
+- `Ne1/Ne2 scheme is superseded by *-in/*-out`
+- `this document ≠ proof of full 64-state closure`
 
 ---
 
-## 9. GRAMMAR LAYER OWNERSHIP
+## 14. GRAMMAR LAYER OWNERSHIP
 
 | Layer | Owned by | NOT owned by |
 |---|---|---|
@@ -203,3 +234,12 @@ Each macro-stage (M01–M16) runs 4 internal operator substeps in fixed order: T
 | UP vs DOWN (composition order) | Jung (Ax6) | IGT |
 | 64-schedule slot identity | I Ching | IGT, Jung |
 | Hexagram-to-microstep mapping | I Ching | IGT, Jung |
+
+---
+
+## Open / Disputed Items
+
+- Loop traversal order is Carnot-grounded and graph-derived, but not yet proven by directional sim.
+- Apple Notes dump contains older loop-order blocks; this chart follows the Ax0/Ax2 graph order.
+- Exact Carnot-cylinder stroke accounting is still open — do not smuggle in as settled.
+- The 48 non-starred cells in the 8×8 grid are schedule slots, not runtime claims.

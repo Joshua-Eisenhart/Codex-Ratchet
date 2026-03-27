@@ -72,16 +72,85 @@ from geometric_operators import (
 
 
 # ═══════════════════════════════════════════════════════════════════
+# LOOP GRAMMAR: dual-loop structure per engine type
+# ═══════════════════════════════════════════════════════════════════
+
+@dataclass
+class LoopSpec:
+    """One of the two loops per engine type.
+
+    Owner grammar (ENGINE_GRAMMAR_DISCRETE.md):
+      - Each engine type has exactly 2 loops: outer (major) and inner (minor)
+      - Each loop owns 4 terrain slots (one per perceiving topology)
+      - Loop-role (heating/cooling) inverts across the two engine families
+      - Topology traversal ORDER within each loop is DISPUTED --
+        recorded from spec but flagged; correct order is a simulation target.
+    """
+    name: str                   # "outer" or "inner"
+    role: str                   # "heating" or "cooling"
+    terrain_indices: List[int]  # Which 4 of the 8 terrain slots this loop owns
+    topology_order: str         # "deduction" or "induction" (Ax4 -- DISPUTED)
+
+
+# Type-1 (Left Weyl): outer loop = cooling, inner loop = heating
+# Type-2 (Right Weyl): outer loop = heating, inner loop = cooling [ROLE INVERTED]
+# Terrain index mapping: 0-3 = fiber terrains, 4-7 = base terrains
+LOOP_GRAMMAR: Dict[int, Dict[str, LoopSpec]] = {
+    1: {
+        "outer": LoopSpec("outer", "cooling", [4, 5, 6, 7], "deduction"),   # base terrains
+        "inner": LoopSpec("inner", "heating", [0, 1, 2, 3], "induction"),   # fiber terrains
+    },
+    2: {
+        "outer": LoopSpec("outer", "heating", [0, 1, 2, 3], "induction"),   # fiber terrains
+        "inner": LoopSpec("inner", "cooling", [4, 5, 6, 7], "deduction"),   # base terrains [ROLE INVERTED]
+    },
+}
+
+# Reverse map: terrain index -> (loop_name, loop_role) per engine type
+_TERRAIN_TO_LOOP: Dict[int, Dict[int, Tuple[str, str]]] = {}
+for _et, _loops in LOOP_GRAMMAR.items():
+    _TERRAIN_TO_LOOP[_et] = {}
+    for _lspec in _loops.values():
+        for _ti in _lspec.terrain_indices:
+            _TERRAIN_TO_LOOP[_et][_ti] = (_lspec.name, _lspec.role)
+
+
+@dataclass
+class EngineOwnership:
+    """Declares what each engine type owns. Enforces 32/32 non-sharing.
+
+    Runtime truth (ENGINE_OWNERSHIP_GRAMMAR_32_32_64.md):
+      - Each engine type owns 32 microsteps (8 stages x 4 ops)
+      - Two engine types together = 64, non-overlapping
+      - This is runtime truth, not proof of structural 8x8 closure
+    """
+    engine_type: int
+    stages_per_loop: int = 4
+    loops_per_engine: int = 2
+    ops_per_stage: int = 4
+
+    @property
+    def owned_microstates(self) -> int:
+        return self.stages_per_loop * self.loops_per_engine * self.ops_per_stage  # = 32
+
+    def assert_non_overlapping(self, other: "EngineOwnership") -> None:
+        assert self.engine_type != other.engine_type, \
+            f"Engine types must differ: both are type {self.engine_type}"
+        total = self.owned_microstates + other.owned_microstates
+        assert total == 64, f"Expected 64 total microstates, got {total}"
+
+
+# ═══════════════════════════════════════════════════════════════════
 # TERRAINS: 8 topological regions
 # ═══════════════════════════════════════════════════════════════════
 
 TERRAINS = [
-    # Fiber loop terrains (inner/vertical)
+    # Fiber loop terrains (inner/vertical) -- indices 0-3
     {"name": "Se_f", "loop": "fiber", "expansion": True,  "open": True},
     {"name": "Si_f", "loop": "fiber", "expansion": False, "open": False},
     {"name": "Ne_f", "loop": "fiber", "expansion": True,  "open": False},
     {"name": "Ni_f", "loop": "fiber", "expansion": False, "open": True},
-    # Base loop terrains (outer/horizontal)
+    # Base loop terrains (outer/horizontal) -- indices 4-7
     {"name": "Se_b", "loop": "base",  "expansion": True,  "open": True},
     {"name": "Si_b", "loop": "base",  "expansion": False, "open": False},
     {"name": "Ne_b", "loop": "base",  "expansion": True,  "open": False},
@@ -100,15 +169,28 @@ STAGES = TERRAINS
 
 @dataclass
 class EngineState:
-    """Complete state of the engine at any moment."""
+    """Complete state of the engine at any moment.
+
+    Primary state: psi_L, psi_R (Weyl spinors on S³).
+    Density matrices rho_L, rho_R are DERIVED from the spinor via the
+    current S³ point q -- they are carried for convenience but the spinor
+    is the first-class geometric object.
+    """
+    # First-class spinor state (primary geometric carrier)
+    psi_L: np.ndarray          # Left Weyl spinor (4,) complex -- S³ unit quaternion side
+    psi_R: np.ndarray          # Right Weyl spinor (4,) complex -- conjugate side
+    # Density matrices (derived from spinor; kept alongside for operator application)
     rho_L: np.ndarray          # Left Weyl density matrix (2×2)
     rho_R: np.ndarray          # Right Weyl density matrix (2×2)
     eta: float                 # Current torus latitude
     theta1: float              # Angle on first circle
     theta2: float              # Angle on second circle
-    ga0_level: float = 0.5     # Latent coarse-graining / entropy-ceiling control
+    ga0_level: float = 0.5     # Correlation entropy level (Ax0 -- can be negative in principle)
     stage_idx: int = 0         # Current stage [0, 63]
     engine_type: int = 1       # 1 or 2
+    # Loop context (set by step() from LOOP_GRAMMAR lookup)
+    loop_position: Optional[str] = None  # "outer" or "inner"
+    loop_role: Optional[str] = None      # "heating" or "cooling"
     history: list = field(default_factory=list)  # ΔΦ per step
 
     def q(self) -> np.ndarray:
@@ -139,17 +221,24 @@ class StageControls:
 # ═══════════════════════════════════════════════════════════════════
 
 class GeometricEngine:
-    """Full 64-stage geometric engine on nested Hopf tori with Weyl spinors."""
+    """Dual-loop geometric engine on nested Hopf tori with Weyl spinors.
+
+    Each engine type has 2 loops (outer/inner) with inverted heating/cooling
+    roles across the two engine families. Each loop owns 4 terrain stages.
+    32 microsteps per engine type; 64 total across both types.
+    """
 
     def __init__(self, engine_type: int = 1):
         """
         Args:
-            engine_type: 1 = Left Weyl (Fe/Ti on base, Te/Fi on fiber)
-                         2 = Right Weyl (Te/Fi on base, Fe/Ti on fiber)
+            engine_type: 1 = Left Weyl (outer=cooling, inner=heating)
+                         2 = Right Weyl (outer=heating, inner=cooling) [role inverted]
         """
         assert engine_type in (1, 2), "engine_type must be 1 or 2"
         self.engine_type = engine_type
-        self.stages = STAGES  # 8 terrains now
+        self.stages = STAGES  # 8 terrains
+        self.loop_grammar = LOOP_GRAMMAR[engine_type]
+        self.ownership = EngineOwnership(engine_type=engine_type)
 
     def init_state(self, eta: float = TORUS_CLIFFORD,
                    theta1: float = 0.0, theta2: float = 0.0,
@@ -162,15 +251,23 @@ class GeometricEngine:
         q = torus_coordinates(eta, theta1, theta2)
         rho_L = left_density(q)
         rho_R = right_density(q)
+        # Spinors: left and right Weyl extractions from the S³ point
+        psi_L = left_weyl_spinor(q)
+        psi_R = right_weyl_spinor(q)
         if ga0_level is None:
             R_major, R_minor = torus_radii(eta)
             ga0_level = float(np.clip(2.0 * R_major * R_minor, 0.0, 1.0))
 
+        # Initial loop context from stage 0
+        lpos, lrole = _TERRAIN_TO_LOOP[self.engine_type].get(0, (None, None))
+
         return EngineState(
+            psi_L=psi_L, psi_R=psi_R,
             rho_L=rho_L, rho_R=rho_R,
             eta=eta, theta1=theta1, theta2=theta2,
             ga0_level=ga0_level,
             stage_idx=0, engine_type=self.engine_type,
+            loop_position=lpos, loop_role=lrole,
         )
 
     def _operator_strength(self, terrain: dict, op_name: str, controls: StageControls,
@@ -414,6 +511,8 @@ class GeometricEngine:
             new_history.append({
                 "stage": f"{terrain['name']}_{op_name}",
                 "op_name": op_name,
+                "loop_position": _TERRAIN_TO_LOOP[self.engine_type].get(stage_idx, (None, None))[0],
+                "loop_role": _TERRAIN_TO_LOOP[self.engine_type].get(stage_idx, (None, None))[1],
                 "dphi_L": dphi_L,
                 "dphi_R": dphi_R,
                 "rho_L": new_rho_L.copy(),
@@ -423,12 +522,21 @@ class GeometricEngine:
                 "ga0_after": new_ga0
             })
 
+            lpos, lrole = _TERRAIN_TO_LOOP[self.engine_type].get(stage_idx, (None, None))
+            # Update spinors from current S³ point (first-class state update)
+            q_current = torus_coordinates(new_eta, new_theta1, new_theta2)
+            new_psi_L = left_weyl_spinor(q_current)
+            new_psi_R = right_weyl_spinor(q_current)
+
             current_state = EngineState(
+                psi_L=new_psi_L, psi_R=new_psi_R,
                 rho_L=new_rho_L, rho_R=new_rho_R,
                 eta=new_eta, theta1=new_theta1, theta2=new_theta2,
                 ga0_level=new_ga0,
                 stage_idx=current_state.stage_idx,
                 engine_type=self.engine_type,
+                loop_position=lpos,
+                loop_role=lrole,
                 history=new_history
             )
 

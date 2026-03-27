@@ -57,6 +57,8 @@ QIT_RETRIEVAL_SIDECAR_JSON = AUDIT_DIR / "QIT_RETRIEVAL_SIDECAR__CURRENT__v1.jso
 QIT_RETRIEVAL_SIDECAR_MD = AUDIT_DIR / "QIT_RETRIEVAL_SIDECAR__CURRENT__v1.md"
 HOPF_WEYL_PROJECTION_JSON = AUDIT_DIR / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json"
 HOPF_WEYL_PROJECTION_MD = AUDIT_DIR / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md"
+HOPF_WEYL_EVIDENCE_AUDIT_JSON = AUDIT_DIR / "QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json"
+HOPF_WEYL_EVIDENCE_AUDIT_MD = AUDIT_DIR / "QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.md"
 GRAPHML_PATH = GRAPH_DIR / "qit_engine_graph_v1.graphml"
 NESTED_GRAPH_PATH = GRAPH_DIR / "nested_graph_v1.json"
 RUNTIME_STATE_PATH = GRAPH_DIR / "qit_runtime_state_v1.json"
@@ -553,6 +555,35 @@ def _hopf_weyl_projection_status(owner_snapshot: dict[str, Any]) -> dict[str, An
     }
 
 
+def _hopf_weyl_evidence_audit_status(owner_snapshot: dict[str, Any]) -> dict[str, Any]:
+    if not HOPF_WEYL_EVIDENCE_AUDIT_JSON.exists():
+        return {
+            "status": "absent",
+            "json_path": str(HOPF_WEYL_EVIDENCE_AUDIT_JSON),
+            "md_path": str(HOPF_WEYL_EVIDENCE_AUDIT_MD),
+        }
+
+    payload = _load_json(HOPF_WEYL_EVIDENCE_AUDIT_JSON)
+    owner = payload.get("owner_snapshot", {}) if isinstance(payload.get("owner_snapshot"), dict) else {}
+    runtime = payload.get("runtime_bridge_alignment", {}) if isinstance(payload.get("runtime_bridge_alignment"), dict) else {}
+    neg = payload.get("relevant_negative_evidence", {}) if isinstance(payload.get("relevant_negative_evidence"), dict) else {}
+    owner_hash_matches = owner.get("qit_graph_content_hash") == owner_snapshot.get("embedded_content_hash")
+    return {
+        "status": "present" if owner_hash_matches else "partial",
+        "json_path": str(HOPF_WEYL_EVIDENCE_AUDIT_JSON),
+        "md_path": str(HOPF_WEYL_EVIDENCE_AUDIT_MD),
+        "schema": payload.get("schema", ""),
+        "generated_utc": payload.get("generated_utc", ""),
+        "audit_only": payload.get("audit_boundary", {}).get("audit_only"),
+        "nonoperative": payload.get("audit_boundary", {}).get("nonoperative"),
+        "do_not_promote": payload.get("audit_boundary", {}).get("do_not_promote"),
+        "owner_content_hash_matches_current_snapshot": owner_hash_matches,
+        "runtime_alignment_status": runtime.get("alignment_status", ""),
+        "torus_witness_count": len(neg.get("torus_witnesses", [])),
+        "chirality_witness_count": len(neg.get("chirality_witnesses", [])),
+    }
+
+
 def _render_markdown(report: dict[str, Any]) -> str:
     owner = report["owner"]
     sidecars = report["sidecars"]
@@ -562,6 +593,7 @@ def _render_markdown(report: dict[str, Any]) -> str:
     bridge = report["runtime_evidence_bridge"]
     retrieval = report["retrieval_sidecar"]
     hopf_weyl = report["hopf_weyl_projection"]
+    hopf_weyl_audit = report["hopf_weyl_evidence_audit"]
     next_actions = "\n".join(f"- {item}" for item in report["next_actions"])
     verifies = "\n".join(f"- {item}" for item in scope["verifies"])
     does_not_verify = "\n".join(f"- {item}" for item in scope["does_not_verify"])
@@ -662,6 +694,18 @@ def _render_markdown(report: dict[str, Any]) -> str:
             f"- torus_carrier_count: `{hopf_weyl.get('torus_carrier_count')}`",
             f"- weyl_projection_status: `{hopf_weyl.get('weyl_projection_status')}`",
             "",
+            "## Hopf/Weyl Evidence Audit",
+            f"- status: `{hopf_weyl_audit['status']}`",
+            f"- json_path: `{hopf_weyl_audit['json_path']}`",
+            f"- md_path: `{hopf_weyl_audit['md_path']}`",
+            f"- owner_content_hash_matches_current_snapshot: `{hopf_weyl_audit.get('owner_content_hash_matches_current_snapshot')}`",
+            f"- audit_only: `{hopf_weyl_audit.get('audit_only')}`",
+            f"- nonoperative: `{hopf_weyl_audit.get('nonoperative')}`",
+            f"- do_not_promote: `{hopf_weyl_audit.get('do_not_promote')}`",
+            f"- runtime_alignment_status: `{hopf_weyl_audit.get('runtime_alignment_status')}`",
+            f"- torus_witness_count: `{hopf_weyl_audit.get('torus_witness_count')}`",
+            f"- chirality_witness_count: `{hopf_weyl_audit.get('chirality_witness_count')}`",
+            "",
             "## Next Actions",
             next_actions,
             "",
@@ -681,6 +725,7 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
     runtime_evidence_bridge = _runtime_evidence_bridge_status(owner_snapshot)
     retrieval_sidecar = _qit_retrieval_sidecar_status()
     hopf_weyl_projection = _hopf_weyl_projection_status(owner_snapshot)
+    hopf_weyl_evidence_audit = _hopf_weyl_evidence_audit_status(owner_snapshot)
 
     live_node_types = sorted({node.get("node_type", "?") for node in nodes.values()})
     schema_ready_not_instantiated = sorted({"WEYL_BRANCH"} - set(live_node_types))
@@ -702,6 +747,8 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
         QIT_RETRIEVAL_SIDECAR_MD,
         HOPF_WEYL_PROJECTION_JSON,
         HOPF_WEYL_PROJECTION_MD,
+        HOPF_WEYL_EVIDENCE_AUDIT_JSON,
+        HOPF_WEYL_EVIDENCE_AUDIT_MD,
         REPORT_JSON,
         REPORT_MD,
     ]
@@ -770,6 +817,7 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
                 "existing runtime evidence bridge presence and owner-snapshot alignment when present",
                 "existing bounded retrieval sidecar presence and safety flags when present",
                 "existing Hopf/Weyl carrier projection presence and owner-snapshot alignment when present",
+                "existing Hopf/Weyl evidence audit presence and owner-snapshot alignment when present",
                 "coarse promotion-gate state for owner structure, cross-layer alignment, runtime state, and history graph presence",
             ],
             "does_not_verify": [
@@ -778,6 +826,7 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
                 "that a present runtime evidence bridge constitutes a promoted runtime-state or history graph",
                 "that a present retrieval sidecar constitutes embedding-backed LightRAG retrieval or owner-authoritative memory",
                 "that a present Hopf/Weyl projection constitutes promoted torus 2-cells, instantiated Weyl branches, or validated spinor semantics",
+                "that a present Hopf/Weyl evidence audit constitutes promotion evidence or validated live Weyl branch semantics",
                 "that sidecar outputs are promotion-ready owner truth",
                 "that any blocked promotion gate should be auto-promoted or auto-repaired",
                 "that a PRECHECK_OK promotion gate satisfies the negative-proof, round-trip, no-sidecar-read, or human-audit requirements from the promotion-gates doc",
@@ -825,6 +874,7 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
         "runtime_evidence_bridge": runtime_evidence_bridge,
         "retrieval_sidecar": retrieval_sidecar,
         "hopf_weyl_projection": hopf_weyl_projection,
+        "hopf_weyl_evidence_audit": hopf_weyl_evidence_audit,
         "promotion_gates": promotion_gates,
         "next_actions": [
             "keep owner verification read-only by default and use refresh flags only for intentional artifact regeneration",
@@ -833,6 +883,7 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
             "persist and expand the read-only runtime evidence bridge before promoting runtime/history semantics inward",
             "use the bounded retrieval sidecar as context only until embedding-backed LightRAG query is configured and explicitly kept non-authoritative",
             "treat the Hopf/Weyl projection as a bounded carrier map only; do not infer promoted torus 2-cells or live Weyl branches from its presence",
+            "treat the Hopf/Weyl evidence audit as a bounded audit surface only; do not treat it as promotion evidence",
             "promote torus/chirality/runtime semantics only after negative-proof and round-trip gates are satisfied",
         ],
     }

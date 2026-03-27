@@ -1,0 +1,144 @@
+{
+  "schema": "BOOT_LANE_REGISTRY_v1",
+  "status": "setup_only",
+  "lanes": [
+    {
+      "lane_id": "A0_CONTROLLER",
+      "purpose": "controller_queue_graveyard_route",
+      "reasoning_now": "xhigh",
+      "reasoning_later": "medium",
+      "boots": [
+        "system_v4/docs/DOC_AUTHORITY_MAP.md",
+        "system_v4/docs/FAILURES_AND_CORRECTIONS_AUDIT.md",
+        "system_v4/docs/PHENOMENOLOGICAL_DESIGN_RULES.md",
+        "system_v4/docs/RUNTIME_TO_STRUCTURE_BRIDGE.md"
+      ],
+      "allowed": [
+        "dispatch_lanes",
+        "route_artifacts",
+        "maintain_graveyard",
+        "block_invalid_work"
+      ],
+      "forbidden": [
+        "invent_axis_math",
+        "promote_exploratory_wins",
+        "run_wide_sims_if_sim_lane_exists"
+      ]
+    },
+    {
+      "lane_id": "A1_WIGGLE_CARRIER",
+      "purpose": "branch_generation_over_carrier_and_manifold_candidates",
+      "reasoning_now": "xhigh",
+      "reasoning_later": "high",
+      "boots": [
+        "core_docs/a1_refined_Ratchet Fuel/CANON_GEOMETRY_CONSTRAINT_MANIFOLD_SPEC_v1.1.md",
+        "system_v4/docs/GEOMETRY_RATCHET_CHAIN.md",
+        "system_v4/docs/PHENOMENOLOGICAL_DESIGN_RULES.md"
+      ],
+      "allowed": [
+        "generate_carrier_candidates",
+        "compare_spinor_s3_hopf_density_roles",
+        "preserve_branch_residue"
+      ],
+      "forbidden": [
+        "declare_runtime_closure",
+        "reduce_carrier_to_density_by_convenience",
+        "rewrite_owner_geometry_from_metaphor"
+      ]
+    },
+    {
+      "lane_id": "A1_WIGGLE_ENGINE_GRAMMAR",
+      "purpose": "branch_generation_over_loop_stage_type_terrain_operator_grammar",
+      "reasoning_now": "xhigh",
+      "reasoning_later": "high",
+      "boots": [
+        "core_docs/ultra high entropy docs/txt/GPT 12_29 pro plan vs browser crashes.md.txt",
+        "core_docs/QIT_GRAPH_LAYER_MAPPING.md",
+        "core_docs/QIT_GRAPH_RUNTIME_MODEL.md"
+      ],
+      "allowed": [
+        "extract_discrete_grammar_objects",
+        "compare_runtime_flattening_against_owner_grammar",
+        "enumerate_ownership_and_order_variants"
+      ],
+      "forbidden": [
+        "flatten_type_flow_precedence_chirality",
+        "treat_runtime_as_faithful_by_default",
+        "discard_high_entropy_owner_statements"
+      ]
+    },
+    {
+      "lane_id": "A1_WIGGLE_MATH_FAMILIES",
+      "purpose": "candidate_math_family_exploration",
+      "reasoning_now": "high",
+      "reasoning_later": "medium",
+      "boots": [
+        "system_v4/docs/PHENOMENOLOGICAL_DESIGN_RULES.md",
+        "system_v4/docs/FAILURES_AND_CORRECTIONS_AUDIT.md",
+        "system_v4/probes/sim_proto_b_runtime_wiggle.py"
+      ],
+      "allowed": [
+        "build_candidate_family_probes",
+        "compare_signed_and_absolute_behavior",
+        "keep_controls_and_dead_candidates_visible"
+      ],
+      "forbidden": [
+        "canonize_any_family",
+        "hide_control_failures",
+        "claim_fep_or_thermo_integration_without_bridge"
+      ]
+    },
+    {
+      "lane_id": "B_SEQUESTRATION",
+      "purpose": "formal_anti_collapse_ratchet",
+      "reasoning_now": "xhigh",
+      "reasoning_later": "high",
+      "boots": [
+        "core_docs/a2_feed_high entropy doc/A0 new thread save before sim run.md",
+        "system_v4/docs/FAILURES_AND_CORRECTIONS_AUDIT.md",
+        "system_v4/docs/RUNTIME_TO_STRUCTURE_BRIDGE.md"
+      ],
+      "allowed": [
+        "admissibility_checks",
+        "order_dependency_checks",
+        "layer_separation",
+        "graveyard_fed_ratcheting"
+      ],
+      "forbidden": [
+        "broad_exploration",
+        "metaphor_first_reasoning",
+        "skipping_branch_residue",
+        "closure_from_absence_of_evidence"
+      ]
+    },
+    {
+      "lane_id": "SIM_RUNTIME",
+      "purpose": "lower_loop_runtime_evidence",
+      "reasoning_now": "high",
+      "reasoning_later": "low",
+      "boots": [
+        "system_v4/probes/engine_core.py",
+        "system_v4/docs/PHENOMENOLOGICAL_DESIGN_RULES.md",
+        "system_v4/docs/RUNTIME_TO_STRUCTURE_BRIDGE.md"
+      ],
+      "allowed": [
+        "run_engine_native_sims",
+        "export_traces",
+        "produce_bounded_evidence_readouts"
+      ],
+      "forbidden": [
+        "axis_canon_claims",
+        "structural_64_closure_claims",
+        "silent_projection_downgrades"
+      ]
+    }
+  ],
+  "launch_order": [
+    "A0_CONTROLLER",
+    "A1_WIGGLE_CARRIER",
+    "A1_WIGGLE_ENGINE_GRAMMAR",
+    "SIM_RUNTIME",
+    "A1_WIGGLE_MATH_FAMILIES",
+    "B_SEQUESTRATION"
+  ]
+}

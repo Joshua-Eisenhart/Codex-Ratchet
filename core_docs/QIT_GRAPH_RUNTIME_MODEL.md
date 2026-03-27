@@ -33,7 +33,7 @@
 |---|---|---|
 | `current_stage` | int 0–7 | Which macro-stage is active |
 | `current_operator` | int 0–3 | Future finer-grain state field. Not yet surfaced by the current packet-only bridge. |
-| `current_engine_type` | enum | Deductive or Inductive |
+| `current_engine_type` | enum | Type 1 or Type 2 engine family |
 | `rho_L` | 2×2 complex | Left Weyl spinor density matrix |
 | `rho_R` | 2×2 complex | Right Weyl spinor density matrix |
 | `eta` | float | Current torus latitude |

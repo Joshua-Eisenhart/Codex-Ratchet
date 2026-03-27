@@ -1,20 +1,24 @@
 # [Controller-safe] Document Authority Map
 
 **Date:** 2026-03-27
-**Purpose:** This index definitively separates mathematically secured geometric constraints from provisional structural hypotheses. Controllers and Agents MUST filter all queries through this map to avoid returning false structural closures or experimental probe wins as established canon.
+**Purpose:** This index is a routing guardrail for separating stronger controller surfaces from proposal scaffolds, exploratory probes, and stale documents. It reduces ontology drift, but does not by itself prove that every Tier 1 statement is equally secured.
 
 > **Language rule:** I Ching, trigram, hexagram, yin/yang, and Jungian labels are downstream correlation or metaphor tags only. They are not primary mathematical authority surfaces.
 
 ---
 
-## 🟢 TIER 1: CONTROLLER-SAFE (Empirical Guardrails)
-These documents represent secured geometric rules, process failures to avoid, and the actual live runtime state. They supersede all other documents in authority.
+## 🟢 TIER 1A: CONTROLLER-SAFE GUARDRAILS
+These documents are the safest routing and anti-collapse surfaces. They are the best starting point for controllers, but some still contain active-investigation material and should not be treated as perfectly settled canon.
 
 - `system_v4/docs/DOC_AUTHORITY_MAP.md` (This authority index)
-- `system_v4/docs/GEOMETRY_RATCHET_CHAIN.md` (Root orientation)
+- `system_v4/docs/GEOMETRY_RATCHET_CHAIN.md` (Root orientation, active investigation)
 - `system_v4/docs/FAILURES_AND_CORRECTIONS_AUDIT.md` (Epistemic failure guardrails)
 - `system_v4/docs/PHENOMENOLOGICAL_DESIGN_RULES.md` (Probe design rules)
 - `system_v4/docs/RUNTIME_TO_STRUCTURE_BRIDGE.md` (Explicit firewall between runtime reality and structural hypotheses)
+
+## 🟢 TIER 1B: LIVE RUNTIME TRUTH
+These documents track what the current engine/runtime actually does. They outrank proposal scaffolds for questions about implemented behavior, but they do not by themselves settle the deeper owner grammar.
+
 - `system_v4/docs/64_RUNTIME_ENGINE_TABLE.md` (The *actual* 64-step live execution array, limited to 4 operator slots)
 
 ## 🟡 TIER 2: PROPOSAL SCAFFOLDS (Not Canon)

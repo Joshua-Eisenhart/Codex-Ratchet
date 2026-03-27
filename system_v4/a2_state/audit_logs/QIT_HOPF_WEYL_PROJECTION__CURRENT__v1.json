@@ -1,8 +1,31 @@
 {
   "schema": "QIT_HOPF_WEYL_PROJECTION_v1",
-  "generated_utc": "2026-03-26T23:48:51Z",
+  "generated_utc": "2026-03-27T00:03:08Z",
+  "status": "present_bounded_projection",
   "source": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json",
   "source_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
+  "owner_snapshot": {
+    "qit_graph_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json",
+    "qit_graph_schema": "QIT_ENGINE_GRAPH_v2",
+    "qit_graph_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
+    "node_count": 105,
+    "edge_count": 272
+  },
+  "report_surface": {
+    "surface_class": "tracked_current_workspace_report",
+    "represents": "current workspace Hopf/Weyl sidecar state at generation time; may differ from the last committed snapshot until tracked CURRENT artifacts are committed",
+    "tracked_report_files": [
+      "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json",
+      "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md"
+    ],
+    "tracked_report_files_dirty_before_generation": [
+      " M system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json",
+      " M system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md"
+    ],
+    "script_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_hopf_weyl_projection.py",
+    "script_sha256": "9ccba4c72c99e62e39ee64c5c4775d294b0c3f0c7bc8a67757246330be39ef19",
+    "git_sha": "ba04c7bf2dce21142fd3289b7c2ada1a5453dde6"
+  },
   "sidecar_boundary": {
     "mode": "bounded_read_only",
     "do_not_promote": true,
@@ -19,6 +42,44 @@
       "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json"
     ],
     "purpose": "Project the owner graph's torus/chirality flat edges into higher-order geometric representations. This is context for future promotion decisions, not proof."
+  },
+  "hopf_stage_projection": {
+    "stage_count": 16,
+    "fiber_stage_count": 8,
+    "base_stage_count": 8,
+    "shared_clifford_stage_count": 16,
+    "torus_carriers": [
+      {
+        "torus_public_id": "qit::TORUS::inner",
+        "label": "inner",
+        "nesting_rank": 0,
+        "description": "Innermost torus \u2014 highest curvature"
+      },
+      {
+        "torus_public_id": "qit::TORUS::clifford",
+        "label": "clifford",
+        "nesting_rank": 1,
+        "description": "Clifford torus \u2014 equal radii, flat"
+      },
+      {
+        "torus_public_id": "qit::TORUS::outer",
+        "label": "outer",
+        "nesting_rank": 2,
+        "description": "Outermost torus \u2014 lowest curvature"
+      }
+    ]
+  },
+  "weyl_projection_readiness": {
+    "projection_status": "engine_pair_only_derived",
+    "weyl_branch_nodes_present": false,
+    "chirality_coupling_edge_present": true,
+    "engine_pair_public_ids": [
+      "qit::ENGINE::type1_deductive",
+      "qit::ENGINE::type2_inductive"
+    ],
+    "missing_owner_anchors": [
+      "WEYL_BRANCH"
+    ]
   },
   "torus_cell_complex": {
     "available": true,

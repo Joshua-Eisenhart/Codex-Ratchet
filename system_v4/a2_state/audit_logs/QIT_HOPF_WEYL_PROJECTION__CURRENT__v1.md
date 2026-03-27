@@ -1,9 +1,14 @@
 # QIT Hopf–Weyl Projection (Bounded Read-Only Sidecar)
 
-- generated_utc: `2026-03-26T23:48:51Z`
+- generated_utc: `2026-03-27T00:03:08Z`
 - source_content_hash: `7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff`
 - do_not_promote: `True`
 - mode: `bounded_read_only`
+
+## Report Surface
+- surface_class: `tracked_current_workspace_report`
+- represents: `current workspace Hopf/Weyl sidecar state at generation time; may differ from the last committed snapshot until tracked CURRENT artifacts are committed`
+- git_sha: `ba04c7bf2dce21142fd3289b7c2ada1a5453dde6`
 
 ## Owner Graph Inputs
 - Torus nodes: `3`
@@ -51,4 +56,7 @@
 - `neg_torus_scrambled` (TORUS, suppressed_pending_owner_concept): Scrambling torus assignment kills coherence
 - `neg_no_chirality` (CHIRALITY, specific_targets): Removing engine type distinction kills asymmetry
 - `neg_type_flatten` (CHIRALITY, specific_targets): Flattening engine types kills chirality separation
+
+## Boundary Note
+- The tracked __CURRENT__ files represent the current workspace after generation, not automatically the last committed snapshot.
 

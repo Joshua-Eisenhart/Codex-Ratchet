@@ -5,8 +5,8 @@ Runtime-to-Structure Decoder
 Status: [Exploratory probe]
 
 This script attempts to decode the live engine's per-microstep runtime
-variables into candidate 6-line hexagram state vectors, aligned with
-the 64-hexagram proposal scaffold.
+variables into candidate 6-line structural state vectors, aligned with
+the 64-state proposal scaffold.
 
 It does NOT assume the mapping is correct. It reports:
   1. What lines can be read unambiguously from runtime state.
@@ -14,12 +14,12 @@ It does NOT assume the mapping is correct. It reports:
   3. How stable the readout is across seeds and engine types.
 
 The 6 candidate lines (from the proposal scaffold) are:
-  L1 = Ax6 (Action Precedence)    : ρA (yin/0) vs Aρ (yang/1)
-  L2 = Ax5 (Curvature)            : Flat (yin/0) vs Hysteresis (yang/1)
-  L3 = Ax3 (Chirality)            : Left-phase (yin/0) vs Right-phase (yang/1)
-  L4 = Ax4 (Process Direction)    : CCW/Inductive (yin/0) vs CW/Deductive (yang/1)
-  L5 = Ax1 (Channel Coupling)     : Closed/Unitary (yin/0) vs Open/Dissipative (yang/1)
-  L6 = Ax2 (Boundary / Frame)     : Spread/Eulerian (yin/0) vs Concentrated/Lagrangian (yang/1)
+  L1 = Ax6 (Action Precedence)    : ρA (0) vs Aρ (1)
+  L2 = Ax5 (Curvature)            : Flat (0) vs Hysteresis (1)
+  L3 = Ax3 (Chirality)            : Left-phase (0) vs Right-phase (1)
+  L4 = Ax4 (Process Direction)    : CCW/Inductive (0) vs CW/Deductive (1)
+  L5 = Ax1 (Channel Coupling)     : Closed/Unitary (0) vs Open/Dissipative (1)
+  L6 = Ax2 (Boundary / Frame)     : Spread/Eulerian (0) vs Concentrated/Lagrangian (1)
 
 For each microstep, we attempt to read these lines from the runtime
 variables that are actually available, and flag which lines are
@@ -45,9 +45,9 @@ from hopf_manifold import torus_radii, density_to_bloch
 
 
 # ═══════════════════════════════════════════════════════════════════
-# LINE DECODERS: one function per candidate structural hexagram line
+# LINE DECODERS: one function per candidate structural line
 # Each returns (line_value: int, confidence: str, rationale: str)
-#   0 = yin (broken), 1 = yang (solid)
+#   0 = inactive, 1 = active
 #   confidence is one of: "DIRECT", "INFERRED", "GUESS"
 # ═══════════════════════════════════════════════════════════════════
 
@@ -79,7 +79,7 @@ def decode_ax3_chirality(terrain: dict, state: EngineState) -> Tuple[int, str, s
     But Ax3 is supposed to vary per-hexagram, not be a global engine constant.
 
     Candidate interpretation: measure L/R asymmetry of the density matrices
-    at each microstep. If trace_distance(rho_L, rho_R) > median → yang.
+    at each microstep. If trace_distance(rho_L, rho_R) > median → active.
     This is INFERRED, not direct.
     """
     td = trace_distance_2x2(state.rho_L, state.rho_R)
@@ -132,7 +132,7 @@ def decode_ax6_precedence(terrain: dict, state: EngineState, op_name: str) -> Tu
         line = 1  # yang / Aρ (generative / explore-first)
     else:
         line = 0  # yin / ρA (receptive / constrain-first)
-    return line, "INFERRED", f"op={op_name} → {'Aρ(yang)' if line else 'ρA(yin)'}"
+    return line, "INFERRED", f"op={op_name} → {'Aρ(active)' if line else 'ρA(inactive)'}"
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -140,13 +140,13 @@ def decode_ax6_precedence(terrain: dict, state: EngineState, op_name: str) -> Tu
 # ═══════════════════════════════════════════════════════════════════
 
 def decode_trajectory(engine_type: int = 1, seed: int = 42, n_cycles: int = 1) -> Dict:
-    """Run one engine and decode every microstep into a candidate 6-line hexagram."""
+    """Run one engine and decode every microstep into a candidate 6-line structural state."""
     rng = np.random.default_rng(seed)
     engine = GeometricEngine(engine_type=engine_type)
     state = engine.init_state(rng=rng)
 
     microsteps = []
-    line_stats = {f"L{i+1}": {"direct": 0, "inferred": 0, "guess": 0, "yang": 0, "total": 0}
+    line_stats = {f"L{i+1}": {"direct": 0, "inferred": 0, "guess": 0, "active": 0, "total": 0}
                   for i in range(6)}
 
     for cycle in range(n_cycles):
@@ -223,7 +223,7 @@ def decode_trajectory(engine_type: int = 1, seed: int = 42, n_cycles: int = 1) -
                     key = f"L{idx+1}"
                     line_stats[key]["total"] += 1
                     line_stats[key][conf.lower()] += 1
-                    line_stats[key]["yang"] += line_val
+                    line_stats[key]["active"] += line_val
 
     return {
         "engine_type": engine_type,
@@ -245,13 +245,13 @@ def print_summary(result: Dict):
 
     # Line confidence breakdown
     print(f"\n  LINE CONFIDENCE BREAKDOWN:")
-    print(f"  {'Line':<6} {'DIRECT':>8} {'INFERRED':>10} {'GUESS':>8} {'% yang':>8}")
+    print(f"  {'Line':<6} {'DIRECT':>8} {'INFERRED':>10} {'GUESS':>8} {'% active':>8}")
     print(f"  {'-'*42}")
     for i in range(1, 7):
         key = f"L{i}"
         s = result["line_stats"][key]
-        pct_yang = 100.0 * s["yang"] / max(s["total"], 1)
-        print(f"  {key:<6} {s['direct']:>8} {s['inferred']:>10} {s['guess']:>8} {pct_yang:>7.1f}%")
+        pct_active = 100.0 * s["active"] / max(s["total"], 1)
+        print(f"  {key:<6} {s['direct']:>8} {s['inferred']:>10} {s['guess']:>8} {pct_active:>7.1f}%")
 
     # Unique hexagram states visited
     hex_counts = {}
@@ -259,7 +259,7 @@ def print_summary(result: Dict):
         ls = step["lines"]
         hex_counts[ls] = hex_counts.get(ls, 0) + 1
 
-    print(f"\n  UNIQUE HEXAGRAM STATES VISITED: {len(hex_counts)} / 64")
+    print(f"\n  UNIQUE STRUCTURAL STATES VISITED: {len(hex_counts)} / 64")
     print(f"  TOP 10 MOST FREQUENT:")
     for ls, count in sorted(hex_counts.items(), key=lambda x: -x[1])[:10]:
         pct = 100.0 * count / n
@@ -283,7 +283,7 @@ def print_summary(result: Dict):
 
 def main():
     print("RUNTIME-TO-STRUCTURE DECODER")
-    print("Attempting to read candidate 6-line hexagram states from live engine.\n")
+    print("Attempting to read candidate 6-line structural states from live engine.\n")
     print("This is an EXPLORATORY probe. Results are hypotheses, not canon.\n")
 
     all_results = {}
@@ -311,7 +311,7 @@ def main():
                     matches = sum(1 for a, b in zip(all_linestrings[i], all_linestrings[j]) if a == b)
                     total = min(len(all_linestrings[i]), len(all_linestrings[j]))
                     pct = 100.0 * matches / max(total, 1)
-                    print(f"  Type {engine_type} {keys[i]} vs {keys[j]}: {pct:.1f}% identical hexagrams")
+                    print(f"  Type {engine_type} {keys[i]} vs {keys[j]}: {pct:.1f}% identical states")
 
     # Save results (just the stats, not the full microstep arrays)
     out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -327,7 +327,7 @@ def main():
             "total_microsteps": v["total_microsteps"],
             "line_stats": v["line_stats"],
             "unique_states": len(set(s["lines"] for s in v["microsteps"])),
-            "first_20_hexagrams": [s["lines"] for s in v["microsteps"][:20]],
+            "first_20_states": [s["lines"] for s in v["microsteps"][:20]],
         }
 
     with open(out_file, "w") as f:

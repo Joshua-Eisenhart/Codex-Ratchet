@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-03-25T21:05:19.116530+00:00",
+  "timestamp": "2026-03-27T00:05:50.679617+00:00",
   "aggregate_score": 1.0,
-  "total_problems": 13,
+  "total_problems": 14,
   "results": [
     {
       "name": "DARK_SECTOR_DUALITY",
@@ -71,16 +71,16 @@
       "name": "CALCULUS_EMERGENCE",
       "description": "Wave/Line orthogonality emerges at large d (integration/differentiation are distinct)",
       "sim_file": "axis5_discrete_calculus_rosetta_sim.py",
-      "target_status": "KILL",
+      "target_status": "PASS",
       "score": 1.0,
       "status": "SOLVED",
       "eval_detail": {
         "sim_file": "axis5_discrete_calculus_rosetta_sim.py",
         "exit_code": 0,
-        "pass_count": 0,
-        "kill_count": 5,
+        "pass_count": 5,
+        "kill_count": 0,
         "total": 5,
-        "score": 0.0
+        "score": 1.0
       }
     },
     {
@@ -210,6 +210,32 @@
         "total": 1,
         "score": 1.0
       }
+    },
+    {
+      "name": "HOLODECK_FEP",
+      "description": "S^3 Hopf projection + FEP surprise minimizes to finite bound over random density matrices",
+      "sim_file": "holodeck_fep_engine.py",
+      "target_status": "PASS",
+      "score": 1.0,
+      "status": "SOLVED",
+      "eval_detail": {
+        "sim_file": "holodeck_fep_engine.py",
+        "exit_code": 0,
+        "pass_count": 5,
+        "kill_count": 0,
+        "total": 5,
+        "score": 1.0
+      }
+    }
+  ],
+  "evidence_ledger": [
+    {
+      "token_id": "E_META_AUTORESEARCH_PASS",
+      "sim_spec_id": "S_META_AUTORESEARCH_HARNESS",
+      "status": "PASS",
+      "measured_value": 1.0,
+      "kill_reason": null,
+      "timestamp": "2026-03-27T00:05:50.678683+00:00"
     }
   ]
 }

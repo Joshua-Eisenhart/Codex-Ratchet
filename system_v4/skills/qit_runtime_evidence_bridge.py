@@ -15,8 +15,10 @@ that runtime/history promotion has happened.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -94,6 +96,37 @@ def _write_json(path: Path, payload: dict[str, Any]) -> None:
 def _write_text(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding="utf-8")
+
+
+def _sha256_path(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _git_sha() -> str:
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            cwd=str(REPO_ROOT),
+            text=True,
+        ).strip()
+    except Exception:
+        return "unknown"
+
+
+def _git_status_porcelain(paths: list[Path] | None = None) -> list[str]:
+    cmd = ["git", "status", "--short"]
+    if paths:
+        cmd.append("--")
+        cmd.extend(str(path) for path in paths)
+    try:
+        output = subprocess.check_output(
+            cmd,
+            cwd=str(REPO_ROOT),
+            text=True,
+        )
+    except Exception:
+        return []
+    return [line.rstrip() for line in output.splitlines() if line.strip()]
 
 
 def _owner_snapshot() -> tuple[dict[str, Any], dict[str, str], dict[str, dict[str, Any]]]:
@@ -208,6 +241,7 @@ def _build_sim_evidence_packets(
 
 
 def build_qit_runtime_evidence_bridge() -> dict[str, Any]:
+    script_path = Path(__file__).resolve()
     owner_payload, public_id_index, nodes = _owner_snapshot()
     runtime_samples = _build_runtime_samples()
     sim_packets = _build_sim_evidence_packets(public_id_index, nodes)
@@ -228,6 +262,21 @@ def build_qit_runtime_evidence_bridge() -> dict[str, Any]:
         "persistence_policy": "persisted_audit_log_packet",
         "runtime_capture_mode": "deterministic_sample_replay",
         "live_runtime_capture": False,
+        "report_surface": {
+            "surface_class": "tracked_current_workspace_report",
+            "represents": (
+                "current workspace runtime/evidence bridge state at generation time; may differ from the last "
+                "committed snapshot until tracked CURRENT artifacts are committed"
+            ),
+            "tracked_report_files": [
+                str(OUT_JSON),
+                str(OUT_MD),
+            ],
+            "tracked_report_files_dirty_before_generation": _git_status_porcelain([OUT_JSON, OUT_MD]),
+            "script_path": str(script_path),
+            "script_sha256": _sha256_path(script_path),
+            "git_sha": _git_sha(),
+        },
         "derived_from": {
             "builder_program": str(Path(__file__).resolve()),
             "runtime_adapter": str((REPO_ROOT / "system_v4" / "skills" / "qit_runtime_state_history_adapter.py").resolve()),
@@ -257,6 +306,7 @@ def build_qit_runtime_evidence_bridge() -> dict[str, Any]:
 
 def _render_markdown(payload: dict[str, Any]) -> str:
     summary = payload["summary"]
+    surface = payload["report_surface"]
     sample_lines = "\n".join(
         f"- {sample['engine_public_id']}: `{sample['history_summary']['total_steps']}` steps, "
         f"last step `{sample['history_summary']['last_step_public_id']}`"
@@ -281,6 +331,11 @@ def _render_markdown(payload: dict[str, Any]) -> str:
             f"- live_runtime_capture: `{payload['live_runtime_capture']}`",
             f"- owner_content_hash: `{payload['owner_snapshot']['qit_graph_content_hash']}`",
             "",
+            "## Report Surface",
+            f"- surface_class: `{surface['surface_class']}`",
+            f"- represents: `{surface['represents']}`",
+            f"- git_sha: `{surface['git_sha']}`",
+            "",
             "## Runtime Samples",
             sample_lines or "- none",
             "",
@@ -300,6 +355,7 @@ def _render_markdown(payload: dict[str, Any]) -> str:
             "- This is a read-only audit-log packet/report surface.",
             "- It is not a promoted runtime-state graph.",
             "- It is not a promoted history graph.",
+            "- The tracked __CURRENT__ files represent the current workspace after generation, not automatically the last committed snapshot.",
         ]
     )
 

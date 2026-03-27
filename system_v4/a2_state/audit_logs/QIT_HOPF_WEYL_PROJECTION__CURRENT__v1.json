@@ -1,6 +1,6 @@
 {
   "schema": "QIT_HOPF_WEYL_PROJECTION_v1",
-  "generated_utc": "2026-03-27T00:03:08Z",
+  "generated_utc": "2026-03-27T00:06:39Z",
   "status": "present_bounded_projection",
   "source": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json",
   "source_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
@@ -18,13 +18,10 @@
       "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json",
       "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md"
     ],
-    "tracked_report_files_dirty_before_generation": [
-      " M system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json",
-      " M system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md"
-    ],
+    "tracked_report_files_dirty_before_generation": [],
     "script_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_hopf_weyl_projection.py",
-    "script_sha256": "9ccba4c72c99e62e39ee64c5c4775d294b0c3f0c7bc8a67757246330be39ef19",
-    "git_sha": "ba04c7bf2dce21142fd3289b7c2ada1a5453dde6"
+    "script_sha256": "d2c3d84856e29284f0d5b699d7a62dcccb5ee89ba3f7ae7991b923ae3550fade",
+    "git_sha": "cea9e14ec6742760fb8f16f7ca53405ca1ee9de7"
   },
   "sidecar_boundary": {
     "mode": "bounded_read_only",
@@ -41,7 +38,7 @@
     "never_writes_to": [
       "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json"
     ],
-    "purpose": "Project the owner graph's torus/chirality flat edges into higher-order geometric representations. This is context for future promotion decisions, not proof."
+    "purpose": "Derive bounded carrier/annotation summaries over admitted torus and chirality owner structure. This is sidecar context for future promotion decisions, not proof."
   },
   "hopf_stage_projection": {
     "stage_count": 16,
@@ -315,19 +312,21 @@
     "pseudoscalar_blade": "e123",
     "type1_deductive": {
       "orientation": "+e123",
-      "spinor_rule": "\u03c8_L \u2192 U\u00b7\u03c8_L (fundamental SU(2))",
-      "fiber_phase": "e^{+i\u03b8} (positive phase accumulation)",
+      "projected_branch_label": "left_like",
+      "conventional_rule_annotation": "psi_L -> U\u00b7psi_L",
+      "non_owner_phase_note": "positive phase convention in sidecar view",
       "operator_dominance": "Fe/Ti on base, Te/Fi on fiber"
     },
     "type2_inductive": {
       "orientation": "-e123",
-      "spinor_rule": "\u03c8_R \u2192 U*\u00b7\u03c8_R (conjugate SU(2))",
-      "fiber_phase": "e^{-i\u03b8} (negative phase accumulation)",
+      "projected_branch_label": "right_like",
+      "conventional_rule_annotation": "psi_R -> U*\u00b7psi_R",
+      "non_owner_phase_note": "negative phase convention in sidecar view",
       "operator_dominance": "Te/Fi on base, Fe/Ti on fiber"
     },
     "coupling_product_grade": "0",
     "coupling_is_scalar": true,
-    "physical_meaning": "The pseudoscalar e\u2081\u2082\u2083 in Cl(3,0) encodes the chirality handedness. Type-1 (deductive) transforms under the fundamental SU(2) representation, Type-2 (inductive) under the conjugate. Their product is a scalar, confirming they are complementary orientations of the same structure.",
+    "physical_meaning": "This sidecar maps the admitted chirality-coupling edge to a Cl(3,0) pseudoscalar candidate. In this representation the projected product is scalar, which is useful as a bounded complementary-orientation annotation.",
     "owner_graph_chirality_edges": 1,
     "owner_graph_engine_nodes": {
       "type1_deductive": {

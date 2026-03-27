@@ -2,9 +2,9 @@
 """
 QIT Hopf–Weyl Projection Sidecar (Bounded Read-Only)
 =====================================================
-Projects the owner graph's torus/chirality structure into higher-order
-geometric representations using TopoNetX (cell complexes) and clifford
-(Cl(3,0) multivectors).
+Derives bounded sidecar summaries over admitted torus/chirality owner
+structure using TopoNetX candidate cell-complex views and clifford
+Cl(3,0) candidate multivector mappings.
 
 This is a BOUNDED READ-ONLY SIDECAR:
   - Reads owner truth: qit_engine_graph_v1.json
@@ -14,11 +14,11 @@ This is a BOUNDED READ-ONLY SIDECAR:
   - Never claims promotion-ready status
 
 Projection surfaces:
-  1. Torus CellComplex — each torus as a 2-cell, stage membership as
-     boundary 1-cells, nesting as filtration
-  2. Stage-Torus Cycle Groupings — which stages form 1-cycles on which torus
-  3. Chirality Coupling — Cl(3,0) pseudoscalar e₁₂₃ for the L/R branch coupling
-  4. Weyl Orientation Summary — left vs right spinor transformation rules
+  1. TopoNetX candidate cell-complex view — models each admitted torus carrier
+     as a provisional 2-cell with stage-boundary 1-cells
+  2. Stage-Torus carrier groupings — which stages attach to which admitted torus
+  3. Chirality coupling candidate mapping — Cl(3,0) pseudoscalar e₁₂₃ sidecar view
+  4. Weyl-readiness annotation — derived branch/coupling notes, not live owner semantics
 
 Usage:
     python3 system_v4/skills/qit_hopf_weyl_projection.py
@@ -29,6 +29,7 @@ from __future__ import annotations
 import hashlib
 import json
 import math
+import subprocess
 import sys
 import time
 from collections import defaultdict
@@ -71,6 +72,37 @@ def _utc_iso() -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
 
+def _sha256_path(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _git_sha() -> str:
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            cwd=str(REPO_ROOT),
+            text=True,
+        ).strip()
+    except Exception:
+        return "unknown"
+
+
+def _git_status_porcelain(paths: list[Path] | None = None) -> list[str]:
+    cmd = ["git", "status", "--short"]
+    if paths:
+        cmd.append("--")
+        cmd.extend(str(path) for path in paths)
+    try:
+        output = subprocess.check_output(
+            cmd,
+            cwd=str(REPO_ROOT),
+            text=True,
+        )
+    except Exception:
+        return []
+    return [line.rstrip() for line in output.splitlines() if line.strip()]
+
+
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # 1. TORUS CELL COMPLEX PROJECTION (TopoNetX)
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -82,7 +114,7 @@ def _build_torus_cell_complex(
     stage_torus_edges: list[dict],
     stage_nodes: dict[str, dict],
 ) -> dict[str, Any]:
-    """Build a TopoNetX CellComplex where tori are 2-cells and stages are 0-cells."""
+    """Build a TopoNetX candidate CellComplex over admitted torus/stage structure."""
     try:
         import toponetx as tnx
     except ImportError:
@@ -194,18 +226,18 @@ def _build_chirality_projection(
     engine_nodes: dict[str, dict],
     chirality_edges: list[dict],
 ) -> dict[str, Any]:
-    """Project chirality coupling into Cl(3,0) pseudoscalar representation."""
+    """Map the admitted chirality edge into a bounded Cl(3,0) sidecar representation."""
     try:
         from clifford import Cl
         layout, blades = Cl(3)
         e1, e2, e3 = blades["e1"], blades["e2"], blades["e3"]
         e123 = blades["e123"]  # pseudoscalar
 
-        # Chirality coupling is the pseudoscalar e₁₂₃
-        # Left spinor transforms under U (grade-even), right under U* (grade-odd parity)
+        # Sidecar candidate mapping: chirality coupling is represented by the
+        # pseudoscalar e123 in this Cl(3,0) view.
         coupling_mv = e123
 
-        # Engine type distinction maps to the two orientations of the pseudoscalar
+        # Engine-family distinction maps to the two orientations in this sidecar.
         type1_orientation = +1.0 * e123  # positive pseudoscalar
         type2_orientation = -1.0 * e123  # negative (conjugate)
 
@@ -218,23 +250,24 @@ def _build_chirality_projection(
             "pseudoscalar_blade": "e123",
             "type1_deductive": {
                 "orientation": "+e123",
-                "spinor_rule": "ψ_L → U·ψ_L (fundamental SU(2))",
-                "fiber_phase": "e^{+iθ} (positive phase accumulation)",
+                "projected_branch_label": "left_like",
+                "conventional_rule_annotation": "psi_L -> U·psi_L",
+                "non_owner_phase_note": "positive phase convention in sidecar view",
                 "operator_dominance": "Fe/Ti on base, Te/Fi on fiber",
             },
             "type2_inductive": {
                 "orientation": "-e123",
-                "spinor_rule": "ψ_R → U*·ψ_R (conjugate SU(2))",
-                "fiber_phase": "e^{-iθ} (negative phase accumulation)",
+                "projected_branch_label": "right_like",
+                "conventional_rule_annotation": "psi_R -> U*·psi_R",
+                "non_owner_phase_note": "negative phase convention in sidecar view",
                 "operator_dominance": "Te/Fi on base, Fe/Ti on fiber",
             },
             "coupling_product_grade": list(coupling_product.grades())[0] if coupling_product.grades() else 0,
             "coupling_is_scalar": bool(coupling_product.grades() == {0}),
             "physical_meaning": (
-                "The pseudoscalar e₁₂₃ in Cl(3,0) encodes the chirality handedness. "
-                "Type-1 (deductive) transforms under the fundamental SU(2) representation, "
-                "Type-2 (inductive) under the conjugate. Their product is a scalar, "
-                "confirming they are complementary orientations of the same structure."
+                "This sidecar maps the admitted chirality-coupling edge to a Cl(3,0) "
+                "pseudoscalar candidate. In this representation the projected product "
+                "is scalar, which is useful as a bounded complementary-orientation annotation."
             ),
         }
     except ImportError:
@@ -244,7 +277,7 @@ def _build_chirality_projection(
             "fallback_summary": {
                 "type1_deductive": "Fe/Ti dominant on base, ψ_L → U·ψ_L",
                 "type2_inductive": "Te/Fi dominant on base, ψ_R → U*·ψ_R",
-                "coupling": "complementary_dominance (flat owner edge)",
+                "coupling": "complementary_dominance (flat owner edge, sidecar annotation only)",
             },
         }
 
@@ -340,6 +373,7 @@ def _relevant_negative_evidence(nodes: dict, edges: list) -> dict[str, Any]:
 
 def build_projection() -> dict[str, Any]:
     """Build the complete Hopf/Weyl projection from the owner graph."""
+    script_path = Path(__file__).resolve()
     g = _load_json(GRAPH_JSON)
     nodes = g.get("nodes", {})
     edges = g.get("edges", [])
@@ -373,6 +407,21 @@ def build_projection() -> dict[str, Any]:
             "node_count": len(nodes),
             "edge_count": len(edges),
         },
+        "report_surface": {
+            "surface_class": "tracked_current_workspace_report",
+            "represents": (
+                "current workspace Hopf/Weyl sidecar state at generation time; may differ from the last "
+                "committed snapshot until tracked CURRENT artifacts are committed"
+            ),
+            "tracked_report_files": [
+                str(OUTPUT_JSON),
+                str(OUTPUT_MD),
+            ],
+            "tracked_report_files_dirty_before_generation": _git_status_porcelain([OUTPUT_JSON, OUTPUT_MD]),
+            "script_path": str(script_path),
+            "script_sha256": _sha256_path(script_path),
+            "git_sha": _git_sha(),
+        },
 
         # ── Sidecar boundary metadata ──
         "sidecar_boundary": {
@@ -384,9 +433,8 @@ def build_projection() -> dict[str, Any]:
             "writes_to": [str(OUTPUT_JSON), str(OUTPUT_MD)],
             "never_writes_to": [str(GRAPH_JSON)],
             "purpose": (
-                "Project the owner graph's torus/chirality flat edges "
-                "into higher-order geometric representations. "
-                "This is context for future promotion decisions, not proof."
+                "Derive bounded carrier/annotation summaries over admitted torus and chirality "
+                "owner structure. This is sidecar context for future promotion decisions, not proof."
             ),
         },
 
@@ -435,6 +483,7 @@ def build_projection() -> dict[str, Any]:
 def _render_markdown(proj: dict[str, Any]) -> str:
     """Render the projection as a human-readable markdown report."""
     boundary = proj["sidecar_boundary"]
+    surface = proj["report_surface"]
     cc = proj["torus_cell_complex"]
     groups = proj["stage_torus_groupings"]
     chiral = proj["chirality_coupling"]
@@ -450,6 +499,11 @@ def _render_markdown(proj: dict[str, Any]) -> str:
         f"- do_not_promote: `{boundary['do_not_promote']}`",
         f"- mode: `{boundary['mode']}`",
         "",
+        "## Report Surface",
+        f"- surface_class: `{surface['surface_class']}`",
+        f"- represents: `{surface['represents']}`",
+        f"- git_sha: `{surface['git_sha']}`",
+        "",
         "## Owner Graph Inputs",
         f"- Torus nodes: `{owner['torus_nodes']}`",
         f"- Engine nodes: `{owner['engine_nodes']}`",
@@ -458,15 +512,15 @@ def _render_markdown(proj: dict[str, Any]) -> str:
         f"- STAGE_ON_TORUS edges: `{owner['stage_torus_edges']}`",
         f"- CHIRALITY_COUPLING edges: `{owner['chirality_edges']}`",
         "",
-        "## 1. Torus Cell Complex (TopoNetX)",
+        "## 1. TopoNetX Candidate Cell-Complex View",
         f"- available: `{cc.get('available', False)}`",
     ]
 
     if cc.get("available"):
-        lines.append(f"- shape: `{cc['shape']}`  (0-cells, 1-cells, 2-cells)")
+        lines.append(f"- shape: `{cc['shape']}`  (0-cells, 1-cells, provisional 2-cells)")
         lines.append(f"- stage 0-cells: `{cc['stage_0cell_count']}`")
         for torus, info in cc.get("torus_2cells", {}).items():
-            lines.append(f"- torus `{torus}`: {info['stage_count']} stages as 2-cell boundary")
+            lines.append(f"- torus `{torus}`: {info['stage_count']} stages in provisional sidecar boundary")
     else:
         lines.append(f"- error: `{cc.get('error', 'unknown')}`")
 
@@ -475,8 +529,8 @@ def _render_markdown(proj: dict[str, Any]) -> str:
         "## 2. Stage–Torus Cycle Groupings",
         f"- fiber stages (inner+clifford): `{groups['fiber_stage_count']}`",
         f"- base stages (outer+clifford): `{groups['base_stage_count']}`",
-        f"- all stages touch Clifford: `{groups['all_stages_touch_clifford']}`",
-        f"- Clifford is universal bridge: `{groups['clifford_is_universal_bridge']}`",
+        f"- all admitted stages attach to Clifford: `{groups['all_stages_touch_clifford']}`",
+        f"- Clifford is universal bridge in current owner scaffold: `{groups['clifford_is_universal_bridge']}`",
     ])
 
     for torus, stages in groups.get("torus_to_stages", {}).items():
@@ -484,7 +538,7 @@ def _render_markdown(proj: dict[str, Any]) -> str:
 
     lines.extend([
         "",
-        "## 3. Chirality Coupling (Cl(3,0))",
+        "## 3. Chirality Coupling Candidate Mapping (Cl(3,0))",
         f"- available: `{chiral.get('available', False)}`",
     ])
 
@@ -506,8 +560,8 @@ def _render_markdown(proj: dict[str, Any]) -> str:
         lines.append(f"- `{name}`: R_major={torus['R_major']:.4f}, R_minor={torus['R_minor']:.4f}, "
                      f"area={torus['area']:.4f}, flatness={torus['flatness']:.4f}, "
                      f"loop={torus['loop_assignment']}")
-    lines.append(f"- Clifford is flat: `{geom['clifford_is_flat']}`")
-    lines.append(f"- Transport distance inner→outer: `{geom['transport_distance_inner_to_outer']}`")
+    lines.append(f"- Clifford equal-radii under imported constants: `{geom['clifford_is_flat']}`")
+    lines.append(f"- Normalized eta-separation inner→outer: `{geom['transport_distance_inner_to_outer']}`")
 
     lines.extend([
         "",
@@ -519,6 +573,9 @@ def _render_markdown(proj: dict[str, Any]) -> str:
         emission = w["owner_edge_emission"]
         lines.append(f"- `{w['label']}` ({w['target_structure']}, {emission}): {w['description']}")
 
+    lines.append("")
+    lines.append("## Boundary Note")
+    lines.append("- The tracked __CURRENT__ files represent the current workspace after generation, not automatically the last committed snapshot.")
     lines.append("")
     return "\n".join(lines) + "\n"
 

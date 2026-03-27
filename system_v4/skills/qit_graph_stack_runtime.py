@@ -55,6 +55,8 @@ RUNTIME_EVIDENCE_BRIDGE_JSON = AUDIT_DIR / "QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT
 RUNTIME_EVIDENCE_BRIDGE_MD = AUDIT_DIR / "QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md"
 QIT_RETRIEVAL_SIDECAR_JSON = AUDIT_DIR / "QIT_RETRIEVAL_SIDECAR__CURRENT__v1.json"
 QIT_RETRIEVAL_SIDECAR_MD = AUDIT_DIR / "QIT_RETRIEVAL_SIDECAR__CURRENT__v1.md"
+HOPF_WEYL_PROJECTION_JSON = AUDIT_DIR / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json"
+HOPF_WEYL_PROJECTION_MD = AUDIT_DIR / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md"
 GRAPHML_PATH = GRAPH_DIR / "qit_engine_graph_v1.graphml"
 NESTED_GRAPH_PATH = GRAPH_DIR / "nested_graph_v1.json"
 RUNTIME_STATE_PATH = GRAPH_DIR / "qit_runtime_state_v1.json"
@@ -510,13 +512,56 @@ def _qit_retrieval_sidecar_status() -> dict[str, Any]:
     }
 
 
+def _hopf_weyl_projection_status(owner_snapshot: dict[str, Any]) -> dict[str, Any]:
+    if not HOPF_WEYL_PROJECTION_JSON.exists():
+        return {
+            "status": "absent",
+            "json_path": str(HOPF_WEYL_PROJECTION_JSON),
+            "md_path": str(HOPF_WEYL_PROJECTION_MD),
+        }
+
+    payload = _load_json(HOPF_WEYL_PROJECTION_JSON)
+    owner = payload.get("owner_snapshot", {}) if isinstance(payload.get("owner_snapshot"), dict) else {}
+    hopf = payload.get("hopf_stage_projection", {}) if isinstance(payload.get("hopf_stage_projection"), dict) else {}
+    weyl = payload.get("weyl_projection_readiness", {}) if isinstance(payload.get("weyl_projection_readiness"), dict) else {}
+    boundary = payload.get("sidecar_boundary", {}) if isinstance(payload.get("sidecar_boundary"), dict) else {}
+    owner_hash_matches = owner.get("qit_graph_content_hash") == owner_snapshot.get("embedded_content_hash")
+    stage_count = int(hopf.get("stage_count", 0) or 0)
+    torus_carriers = hopf.get("torus_carriers", [])
+    torus_count = len(torus_carriers) if isinstance(torus_carriers, list) else 0
+    chirality_present = bool(weyl.get("chirality_coupling_edge_present"))
+    status = "present" if owner_hash_matches and stage_count > 0 and torus_count == 3 and chirality_present else "partial"
+
+    return {
+        "status": status,
+        "json_path": str(HOPF_WEYL_PROJECTION_JSON),
+        "md_path": str(HOPF_WEYL_PROJECTION_MD),
+        "schema": payload.get("schema", ""),
+        "generated_utc": payload.get("generated_utc", ""),
+        "owner_content_hash_matches_current_snapshot": owner_hash_matches,
+        "audit_only": payload.get("audit_only", boundary.get("audit_only")),
+        "observer_only": payload.get("observer_only", boundary.get("observer_only", True)),
+        "do_not_promote": payload.get("do_not_promote", boundary.get("do_not_promote")),
+        "stage_count": stage_count,
+        "fiber_stage_count": hopf.get("fiber_stage_count", 0),
+        "base_stage_count": hopf.get("base_stage_count", 0),
+        "torus_carrier_count": torus_count,
+        "shared_clifford_stage_count": hopf.get("shared_clifford_stage_count", 0),
+        "weyl_projection_status": weyl.get("projection_status", ""),
+        "weyl_branch_nodes_present": weyl.get("weyl_branch_nodes_present"),
+        "chirality_coupling_edge_present": chirality_present,
+    }
+
+
 def _render_markdown(report: dict[str, Any]) -> str:
     owner = report["owner"]
     sidecars = report["sidecars"]
     snapshot = report["snapshot"]
     scope = report["verification_scope"]
+    report_surface = report["report_surface"]
     bridge = report["runtime_evidence_bridge"]
     retrieval = report["retrieval_sidecar"]
+    hopf_weyl = report["hopf_weyl_projection"]
     next_actions = "\n".join(f"- {item}" for item in report["next_actions"])
     verifies = "\n".join(f"- {item}" for item in scope["verifies"])
     does_not_verify = "\n".join(f"- {item}" for item in scope["does_not_verify"])
@@ -533,7 +578,15 @@ def _render_markdown(report: dict[str, Any]) -> str:
             f"- purpose: `{report['purpose']}`",
             f"- snapshot_id: `{snapshot['snapshot_id']}`",
             f"- git_sha: `{report['provenance']['git_sha']}`",
+            f"- git_worktree_dirty: `{report['provenance']['git_worktree_dirty']}`",
             f"- owner_builder_sha256: `{report['provenance']['owner_builder_sha256']}`",
+            "",
+            "## Report Surface",
+            f"- surface_class: `{report_surface['surface_class']}`",
+            f"- represents: `{report_surface['represents']}`",
+            f"- tracked_report_files: `{', '.join(report_surface['tracked_report_files'])}`",
+            f"- tracked_report_files_dirty_before_generation: `{report_surface['tracked_report_files_dirty_before_generation']}`",
+            f"- write_report_required_for_refresh: `{report_surface['write_report_required_for_refresh']}`",
             "",
             "## Owner Layer",
             f"- qit_graph_json: `{owner['qit_graph_json']}`",
@@ -597,6 +650,18 @@ def _render_markdown(report: dict[str, Any]) -> str:
             f"- document_count: `{retrieval.get('document_count')}`",
             f"- top_hit_count: `{retrieval.get('top_hit_count')}`",
             "",
+            "## Hopf/Weyl Projection",
+            f"- status: `{hopf_weyl['status']}`",
+            f"- json_path: `{hopf_weyl['json_path']}`",
+            f"- md_path: `{hopf_weyl['md_path']}`",
+            f"- owner_content_hash_matches_current_snapshot: `{hopf_weyl.get('owner_content_hash_matches_current_snapshot')}`",
+            f"- audit_only: `{hopf_weyl.get('audit_only')}`",
+            f"- observer_only: `{hopf_weyl.get('observer_only')}`",
+            f"- do_not_promote: `{hopf_weyl.get('do_not_promote')}`",
+            f"- stage_count: `{hopf_weyl.get('stage_count')}`",
+            f"- torus_carrier_count: `{hopf_weyl.get('torus_carrier_count')}`",
+            f"- weyl_projection_status: `{hopf_weyl.get('weyl_projection_status')}`",
+            "",
             "## Next Actions",
             next_actions,
             "",
@@ -615,6 +680,7 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
     preferred_interpreter_exists = PREFERRED_INTERPRETER.exists()
     runtime_evidence_bridge = _runtime_evidence_bridge_status(owner_snapshot)
     retrieval_sidecar = _qit_retrieval_sidecar_status()
+    hopf_weyl_projection = _hopf_weyl_projection_status(owner_snapshot)
 
     live_node_types = sorted({node.get("node_type", "?") for node in nodes.values()})
     schema_ready_not_instantiated = sorted({"WEYL_BRANCH"} - set(live_node_types))
@@ -634,6 +700,8 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
         RUNTIME_EVIDENCE_BRIDGE_MD,
         QIT_RETRIEVAL_SIDECAR_JSON,
         QIT_RETRIEVAL_SIDECAR_MD,
+        HOPF_WEYL_PROJECTION_JSON,
+        HOPF_WEYL_PROJECTION_MD,
         REPORT_JSON,
         REPORT_MD,
     ]
@@ -663,6 +731,19 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
         "status": overall_status,
         "generated_utc": _utc_iso(),
         "purpose": "read-only-by-default verification surface over the current QIT owner snapshot and bounded sidecars",
+        "report_surface": {
+            "surface_class": "tracked_current_workspace_report",
+            "represents": (
+                "current workspace state at generation time; may differ from the last committed snapshot "
+                "until tracked CURRENT artifacts are committed"
+            ),
+            "tracked_report_files": [
+                str(REPORT_JSON),
+                str(REPORT_MD),
+            ],
+            "tracked_report_files_dirty_before_generation": _git_status_porcelain([REPORT_JSON, REPORT_MD]),
+            "write_report_required_for_refresh": True,
+        },
         "provenance": {
             "git_sha": git_sha,
             "git_worktree_dirty": worktree_dirty,
@@ -688,6 +769,7 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
                 "sidecar availability and projection summaries over the loaded owner snapshot",
                 "existing runtime evidence bridge presence and owner-snapshot alignment when present",
                 "existing bounded retrieval sidecar presence and safety flags when present",
+                "existing Hopf/Weyl carrier projection presence and owner-snapshot alignment when present",
                 "coarse promotion-gate state for owner structure, cross-layer alignment, runtime state, and history graph presence",
             ],
             "does_not_verify": [
@@ -695,6 +777,7 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
                 "that the existing GraphML snapshot is fresh unless it was explicitly refreshed in this run",
                 "that a present runtime evidence bridge constitutes a promoted runtime-state or history graph",
                 "that a present retrieval sidecar constitutes embedding-backed LightRAG retrieval or owner-authoritative memory",
+                "that a present Hopf/Weyl projection constitutes promoted torus 2-cells, instantiated Weyl branches, or validated spinor semantics",
                 "that sidecar outputs are promotion-ready owner truth",
                 "that any blocked promotion gate should be auto-promoted or auto-repaired",
                 "that a PRECHECK_OK promotion gate satisfies the negative-proof, round-trip, no-sidecar-read, or human-audit requirements from the promotion-gates doc",
@@ -741,6 +824,7 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
         },
         "runtime_evidence_bridge": runtime_evidence_bridge,
         "retrieval_sidecar": retrieval_sidecar,
+        "hopf_weyl_projection": hopf_weyl_projection,
         "promotion_gates": promotion_gates,
         "next_actions": [
             "keep owner verification read-only by default and use refresh flags only for intentional artifact regeneration",
@@ -748,6 +832,7 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
             "admit explicit QIT bridge links through the registry before claiming nested-graph integration beyond summary-level presence",
             "persist and expand the read-only runtime evidence bridge before promoting runtime/history semantics inward",
             "use the bounded retrieval sidecar as context only until embedding-backed LightRAG query is configured and explicitly kept non-authoritative",
+            "treat the Hopf/Weyl projection as a bounded carrier map only; do not infer promoted torus 2-cells or live Weyl branches from its presence",
             "promote torus/chirality/runtime semantics only after negative-proof and round-trip gates are satisfied",
         ],
     }

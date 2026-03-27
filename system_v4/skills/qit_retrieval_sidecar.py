@@ -13,9 +13,11 @@ embedding-backed LightRAG indexing is configured.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import re
+import subprocess
 import time
 from pathlib import Path
 from typing import Any
@@ -47,6 +49,7 @@ QIT_DOCS = [
 AUDIT_DOCS = [
     AUDIT_DIR / "QIT_GRAPH_STACK_STATUS__CURRENT__v1.md",
     AUDIT_DIR / "QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md",
+    AUDIT_DIR / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md",
 ]
 
 AUDIT_JSONS = [
@@ -74,6 +77,37 @@ def _write_json(path: Path, payload: dict[str, Any]) -> None:
 def _write_text(path: Path, text: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(text, encoding="utf-8")
+
+
+def _sha256_path(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _git_sha() -> str:
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"],
+            cwd=str(REPO_ROOT),
+            text=True,
+        ).strip()
+    except Exception:
+        return "unknown"
+
+
+def _git_status_porcelain(paths: list[Path] | None = None) -> list[str]:
+    cmd = ["git", "status", "--short"]
+    if paths:
+        cmd.append("--")
+        cmd.extend(str(path) for path in paths)
+    try:
+        output = subprocess.check_output(
+            cmd,
+            cwd=str(REPO_ROOT),
+            text=True,
+        )
+    except Exception:
+        return []
+    return [line.rstrip() for line in output.splitlines() if line.strip()]
 
 
 def _read_json(path: Path) -> dict[str, Any] | None:
@@ -457,6 +491,7 @@ def build_qit_retrieval_sidecar(query: str) -> dict[str, Any]:
     docs = _build_corpus_documents()
     manifest = _write_corpus(docs)
     query_terms = _tokenize(query)
+    script_path = Path(__file__).resolve()
 
     ranked: list[dict[str, Any]] = []
     for doc in docs:
@@ -482,6 +517,25 @@ def build_qit_retrieval_sidecar(query: str) -> dict[str, Any]:
     return {
         "schema": "QIT_RETRIEVAL_SIDECAR_v1",
         "generated_utc": _utc_iso(),
+        "audit_only": True,
+        "nonoperative": True,
+        "do_not_promote": True,
+        "owner_graph_role": "read_only_reference_only",
+        "report_surface": {
+            "surface_class": "tracked_current_workspace_report",
+            "represents": (
+                "current workspace retrieval-sidecar state at generation time; may differ from the last "
+                "committed snapshot until tracked CURRENT artifacts are committed"
+            ),
+            "tracked_report_files": [
+                str(REPORT_JSON),
+                str(REPORT_MD),
+            ],
+            "tracked_report_files_dirty_before_generation": _git_status_porcelain([REPORT_JSON, REPORT_MD]),
+            "script_path": str(script_path),
+            "script_sha256": _sha256_path(script_path),
+            "git_sha": _git_sha(),
+        },
         "mode": "lexical_fallback_only",
         "retrieval_role": "context_only_non_authoritative",
         "allow_owner_writes": False,
@@ -497,6 +551,7 @@ def build_qit_retrieval_sidecar(query: str) -> dict[str, Any]:
 
 
 def _render_markdown(report: dict[str, Any]) -> str:
+    surface = report["report_surface"]
     hit_lines = "\n".join(
         f"- `{hit['doc_id']}` ({hit['family']}, score={hit['score']}, precision_bonus={hit.get('precision_bonus', 0.0)}): {hit['snippet']}"
         + (
@@ -511,6 +566,10 @@ def _render_markdown(report: dict[str, Any]) -> str:
             "# QIT Retrieval Sidecar",
             "",
             f"- generated_utc: `{report['generated_utc']}`",
+            f"- audit_only: `{report['audit_only']}`",
+            f"- nonoperative: `{report['nonoperative']}`",
+            f"- do_not_promote: `{report['do_not_promote']}`",
+            f"- owner_graph_role: `{report['owner_graph_role']}`",
             f"- mode: `{report['mode']}`",
             f"- retrieval_role: `{report['retrieval_role']}`",
             f"- allow_owner_writes: `{report['allow_owner_writes']}`",
@@ -521,6 +580,11 @@ def _render_markdown(report: dict[str, Any]) -> str:
             f"- corpus_manifest_path: `{report['corpus_manifest_path']}`",
             f"- document_count: `{report['document_count']}`",
             "",
+            "## Report Surface",
+            f"- surface_class: `{surface['surface_class']}`",
+            f"- represents: `{surface['represents']}`",
+            f"- git_sha: `{surface['git_sha']}`",
+            "",
             "## Top Hits",
             hit_lines or "- none",
             "",
@@ -528,6 +592,7 @@ def _render_markdown(report: dict[str, Any]) -> str:
             "- This retrieval surface is sidecar-only and non-authoritative.",
             "- It may read graph-adjacent docs and evidence, but it does not write owner truth.",
             "- Retrieved text is context, not proof.",
+            "- The tracked __CURRENT__ files represent the current workspace after generation, not automatically the last committed snapshot.",
         ]
     )
 

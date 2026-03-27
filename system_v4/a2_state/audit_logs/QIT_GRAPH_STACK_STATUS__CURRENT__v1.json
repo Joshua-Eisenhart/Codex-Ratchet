@@ -1,11 +1,31 @@
 {
-  "generated_utc": "2026-03-26T23:19:57Z",
+  "generated_utc": "2026-03-27T00:06:22Z",
+  "hopf_weyl_projection": {
+    "audit_only": true,
+    "base_stage_count": 8,
+    "chirality_coupling_edge_present": true,
+    "do_not_promote": true,
+    "fiber_stage_count": 8,
+    "generated_utc": "2026-03-27T00:03:08Z",
+    "json_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json",
+    "md_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md",
+    "observer_only": true,
+    "owner_content_hash_matches_current_snapshot": true,
+    "schema": "QIT_HOPF_WEYL_PROJECTION_v1",
+    "shared_clifford_stage_count": 16,
+    "stage_count": 16,
+    "status": "present",
+    "torus_carrier_count": 3,
+    "weyl_branch_nodes_present": false,
+    "weyl_projection_status": "engine_pair_only_derived"
+  },
   "next_actions": [
     "keep owner verification read-only by default and use refresh flags only for intentional artifact regeneration",
     "treat snapshot_id plus file hashes as the join key for future audit/report surfaces",
     "admit explicit QIT bridge links through the registry before claiming nested-graph integration beyond summary-level presence",
     "persist and expand the read-only runtime evidence bridge before promoting runtime/history semantics inward",
     "use the bounded retrieval sidecar as context only until embedding-backed LightRAG query is configured and explicitly kept non-authoritative",
+    "treat the Hopf/Weyl projection as a bounded carrier map only; do not infer promoted torus 2-cells or live Weyl branches from its presence",
     "promote torus/chirality/runtime semantics only after negative-proof and round-trip gates are satisfied"
   ],
   "owner": {
@@ -92,7 +112,7 @@
     }
   },
   "provenance": {
-    "git_sha": "0f724e56f67f24d7a7402e568e3c3658eb2b56c2",
+    "git_sha": "cea9e14ec6742760fb8f16f7ca53405ca1ee9de7",
     "git_worktree_dirty": true,
     "owner_builder_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_engine_graph_builder.py",
     "owner_builder_sha256": "271e5c1681d077ea0994fdd4a5a9ff68e0a21e45e4129943e03858b0e4744822",
@@ -101,26 +121,36 @@
     "relevant_git_status": [
       " M system_v4/a2_state/audit_logs/QIT_GRAPH_STACK_STATUS__CURRENT__v1.json",
       " M system_v4/a2_state/audit_logs/QIT_GRAPH_STACK_STATUS__CURRENT__v1.md",
-      " M system_v4/a2_state/graphs/qit_engine_graph_v1.json",
-      " M system_v4/skills/qit_engine_graph_builder.py",
-      " M system_v4/skills/qit_graph_stack_runtime.py",
-      " M system_v4/skills/qit_owner_schemas.py",
-      "?? system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.json",
-      "?? system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.md",
-      "?? system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json",
-      "?? system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md"
+      " M system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.json",
+      " M system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.md",
+      " M system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json",
+      " M system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md",
+      " M system_v4/skills/qit_graph_stack_runtime.py"
     ],
     "script_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_graph_stack_runtime.py",
-    "script_sha256": "6a07241bc99aaa74c716370c877fdbf93d1887ab453c8b19ebf732c99b1998ed"
+    "script_sha256": "b8cda4e1c24c20e453467522a33bd841d221c0013bfdb075cc95222d7b9e029c"
   },
   "purpose": "read-only-by-default verification surface over the current QIT owner snapshot and bounded sidecars",
+  "report_surface": {
+    "represents": "current workspace state at generation time; may differ from the last committed snapshot until tracked CURRENT artifacts are committed",
+    "surface_class": "tracked_current_workspace_report",
+    "tracked_report_files": [
+      "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_GRAPH_STACK_STATUS__CURRENT__v1.json",
+      "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_GRAPH_STACK_STATUS__CURRENT__v1.md"
+    ],
+    "tracked_report_files_dirty_before_generation": [
+      " M system_v4/a2_state/audit_logs/QIT_GRAPH_STACK_STATUS__CURRENT__v1.json",
+      " M system_v4/a2_state/audit_logs/QIT_GRAPH_STACK_STATUS__CURRENT__v1.md"
+    ],
+    "write_report_required_for_refresh": true
+  },
   "retrieval_sidecar": {
     "allow_owner_writes": false,
     "allow_proof_claims": false,
-    "document_count": 21,
+    "document_count": 22,
     "embedding_backed_query": false,
     "embedding_backed_query_blocker": "LightRAG embedding_func not configured",
-    "generated_utc": "2026-03-26T23:19:46Z",
+    "generated_utc": "2026-03-27T00:06:19Z",
     "json_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.json",
     "md_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.md",
     "mode": "lexical_fallback_only",
@@ -132,7 +162,7 @@
   },
   "runtime_evidence_bridge": {
     "complete_mappings": 4,
-    "generated_utc": "2026-03-26T23:17:37Z",
+    "generated_utc": "2026-03-27T00:04:05Z",
     "json_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json",
     "md_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md",
     "owner_content_hash_matches_current_snapshot": true,
@@ -244,13 +274,13 @@
     },
     "lightrag": {
       "corpus_manifest_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/lightrag_smoke/corpus_manifest.json",
-      "documents_built": 19,
-      "init_error": "embedding_func is required for vector storage. Please provide a valid EmbeddingFunc instance.",
-      "init_success": false,
+      "documents_built": 22,
+      "init_error": null,
+      "init_success": true,
       "role": "read-only retrieval sidecar over internal graph/docs/evidence corpus; not owner memory",
       "smoke_result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/lightrag_smoke/smoke_test_result.json",
-      "status": "sidecar_corpus_ready_needs_embedding_config",
-      "total_corpus_chars": 58225,
+      "status": "sidecar_corpus_ready",
+      "total_corpus_chars": 76545,
       "working_dir": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/lightrag_smoke"
     },
     "preferred_sidecar_interpreter": {
@@ -271,15 +301,15 @@
     }
   },
   "snapshot": {
-    "git_sha": "0f724e56f67f24d7a7402e568e3c3658eb2b56c2",
+    "git_sha": "cea9e14ec6742760fb8f16f7ca53405ca1ee9de7",
     "graphml_exists": true,
     "graphml_file_sha256": "0158f9197931ebf7f6e2938b37ace7a4fb7eae81924d406487ef6faab6125373",
     "owner_builder_sha256": "271e5c1681d077ea0994fdd4a5a9ff68e0a21e45e4129943e03858b0e4744822",
     "owner_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
     "owner_file_sha256": "82ad2bda2f3be37b7c69cf2d436477fb3a8f40d755e170c076dc2a12885dedda",
     "owner_schema_sha256": "5136161e11d0ea93bc8f9d27f0dfa9bd5ddd053bfbed42ea782c4d9e5ec73d25",
-    "script_sha256": "6a07241bc99aaa74c716370c877fdbf93d1887ab453c8b19ebf732c99b1998ed",
-    "snapshot_id": "6a2086366982c4f43a713ecd1b0286ee67a3625d7eed0520acd199f9b92b23ab"
+    "script_sha256": "b8cda4e1c24c20e453467522a33bd841d221c0013bfdb075cc95222d7b9e029c",
+    "snapshot_id": "f3e0fcfaac766c0fe087199dc4eccfceaf9c1c0fccdc2adfca8aad89e67ab995"
   },
   "status": "precheck_blocked",
   "verification_scope": {
@@ -288,6 +318,7 @@
       "that the existing GraphML snapshot is fresh unless it was explicitly refreshed in this run",
       "that a present runtime evidence bridge constitutes a promoted runtime-state or history graph",
       "that a present retrieval sidecar constitutes embedding-backed LightRAG retrieval or owner-authoritative memory",
+      "that a present Hopf/Weyl projection constitutes promoted torus 2-cells, instantiated Weyl branches, or validated spinor semantics",
       "that sidecar outputs are promotion-ready owner truth",
       "that any blocked promotion gate should be auto-promoted or auto-repaired",
       "that a PRECHECK_OK promotion gate satisfies the negative-proof, round-trip, no-sidecar-read, or human-audit requirements from the promotion-gates doc"
@@ -301,6 +332,7 @@
       "sidecar availability and projection summaries over the loaded owner snapshot",
       "existing runtime evidence bridge presence and owner-snapshot alignment when present",
       "existing bounded retrieval sidecar presence and safety flags when present",
+      "existing Hopf/Weyl carrier projection presence and owner-snapshot alignment when present",
       "coarse promotion-gate state for owner structure, cross-layer alignment, runtime state, and history graph presence"
     ]
   }

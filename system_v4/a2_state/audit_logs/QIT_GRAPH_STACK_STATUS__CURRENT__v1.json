@@ -1,5 +1,19 @@
 {
-  "generated_utc": "2026-03-27T00:12:52Z",
+  "generated_utc": "2026-03-27T00:20:17Z",
+  "hopf_weyl_evidence_audit": {
+    "audit_only": true,
+    "chirality_witness_count": 2,
+    "do_not_promote": true,
+    "generated_utc": "2026-03-27T00:18:11Z",
+    "json_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json",
+    "md_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.md",
+    "nonoperative": true,
+    "owner_content_hash_matches_current_snapshot": true,
+    "runtime_alignment_status": "aligned",
+    "schema": "QIT_HOPF_WEYL_EVIDENCE_AUDIT_v1",
+    "status": "present",
+    "torus_witness_count": 2
+  },
   "hopf_weyl_projection": {
     "audit_only": true,
     "base_stage_count": 8,
@@ -26,6 +40,8 @@
     "persist and expand the read-only runtime evidence bridge before promoting runtime/history semantics inward",
     "use the bounded retrieval sidecar as context only until embedding-backed LightRAG query is configured and explicitly kept non-authoritative",
     "treat the Hopf/Weyl projection as a bounded carrier map only; do not infer promoted torus 2-cells or live Weyl branches from its presence",
+    "treat the Hopf/Weyl evidence audit as a bounded audit surface only; do not treat it as promotion evidence",
+    "treat the torus/type repair-gap report as a bounded repair map only; do not treat listed gaps as already repaired",
     "promote torus/chirality/runtime semantics only after negative-proof and round-trip gates are satisfied"
   ],
   "owner": {
@@ -112,7 +128,7 @@
     }
   },
   "provenance": {
-    "git_sha": "d2c98a9ee0b15cda05c2eb881adee4848195747a",
+    "git_sha": "7391077305b05a3e82e5cf38aaf7b42e236f41b3",
     "git_worktree_dirty": true,
     "owner_builder_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_engine_graph_builder.py",
     "owner_builder_sha256": "271e5c1681d077ea0994fdd4a5a9ff68e0a21e45e4129943e03858b0e4744822",
@@ -122,10 +138,17 @@
       " M system_v4/a2_state/audit_logs/QIT_GRAPH_STACK_STATUS__CURRENT__v1.json",
       " M system_v4/a2_state/audit_logs/QIT_GRAPH_STACK_STATUS__CURRENT__v1.md",
       " M system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.json",
-      " M system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.md"
+      " M system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.md",
+      " M system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json",
+      " M system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md",
+      " M system_v4/skills/qit_graph_stack_runtime.py",
+      "?? system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json",
+      "?? system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.md",
+      "?? system_v4/a2_state/audit_logs/QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.json",
+      "?? system_v4/a2_state/audit_logs/QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.md"
     ],
     "script_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_graph_stack_runtime.py",
-    "script_sha256": "b8cda4e1c24c20e453467522a33bd841d221c0013bfdb075cc95222d7b9e029c"
+    "script_sha256": "e32b9a89b71704f2ba25dc374f0971bf8aabd5d1dcdeadf0532d0630e0e4ab9c"
   },
   "purpose": "read-only-by-default verification surface over the current QIT owner snapshot and bounded sidecars",
   "report_surface": {
@@ -144,14 +167,14 @@
   "retrieval_sidecar": {
     "allow_owner_writes": false,
     "allow_proof_claims": false,
-    "document_count": 28,
+    "document_count": 30,
     "embedding_backed_query": false,
     "embedding_backed_query_blocker": "LightRAG embedding_func not configured",
-    "generated_utc": "2026-03-27T00:12:50Z",
+    "generated_utc": "2026-03-27T00:17:25Z",
     "json_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.json",
     "md_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.md",
     "mode": "lexical_fallback_only",
-    "query": "type1 type2 chirality coupling",
+    "query": "Which QIT runtime evidence surfaces are live now, and how do axis 6, missing Fe, and type flatten negatives map into the current graph lane?",
     "retrieval_role": "context_only_non_authoritative",
     "schema": "QIT_RETRIEVAL_SIDECAR_v1",
     "status": "present",
@@ -159,7 +182,7 @@
   },
   "runtime_evidence_bridge": {
     "complete_mappings": 4,
-    "generated_utc": "2026-03-27T00:04:05Z",
+    "generated_utc": "2026-03-27T00:17:24Z",
     "json_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json",
     "md_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md",
     "owner_content_hash_matches_current_snapshot": true,
@@ -298,17 +321,30 @@
     }
   },
   "snapshot": {
-    "git_sha": "d2c98a9ee0b15cda05c2eb881adee4848195747a",
+    "git_sha": "7391077305b05a3e82e5cf38aaf7b42e236f41b3",
     "graphml_exists": true,
     "graphml_file_sha256": "0158f9197931ebf7f6e2938b37ace7a4fb7eae81924d406487ef6faab6125373",
     "owner_builder_sha256": "271e5c1681d077ea0994fdd4a5a9ff68e0a21e45e4129943e03858b0e4744822",
     "owner_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
     "owner_file_sha256": "82ad2bda2f3be37b7c69cf2d436477fb3a8f40d755e170c076dc2a12885dedda",
     "owner_schema_sha256": "5136161e11d0ea93bc8f9d27f0dfa9bd5ddd053bfbed42ea782c4d9e5ec73d25",
-    "script_sha256": "b8cda4e1c24c20e453467522a33bd841d221c0013bfdb075cc95222d7b9e029c",
-    "snapshot_id": "15934ea270cf3b7d5f3fd311c44029d12b16665f0163908dae3a3e12c0f26da8"
+    "script_sha256": "e32b9a89b71704f2ba25dc374f0971bf8aabd5d1dcdeadf0532d0630e0e4ab9c",
+    "snapshot_id": "2549340de478553ad30cb2fcfc875918bc20e036a1a47e23030ee7bc4b716119"
   },
   "status": "precheck_blocked",
+  "torus_type_repair_gap_report": {
+    "audit_only": true,
+    "do_not_promote": true,
+    "generated_utc": "2026-03-27T00:20:13Z",
+    "json_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.json",
+    "md_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.md",
+    "nonoperative": true,
+    "owner_content_hash_matches_current_snapshot": true,
+    "schema": "QIT_TORUS_TYPE_REPAIR_GAP_REPORT_v1",
+    "status": "present",
+    "torus_gap_count": 3,
+    "type_gap_count": 3
+  },
   "verification_scope": {
     "does_not_verify": [
       "that the owner graph matches docs or runtime semantics beyond the stored snapshot",
@@ -316,6 +352,8 @@
       "that a present runtime evidence bridge constitutes a promoted runtime-state or history graph",
       "that a present retrieval sidecar constitutes embedding-backed LightRAG retrieval or owner-authoritative memory",
       "that a present Hopf/Weyl projection constitutes promoted torus 2-cells, instantiated Weyl branches, or validated spinor semantics",
+      "that a present Hopf/Weyl evidence audit constitutes promotion evidence or validated live Weyl branch semantics",
+      "that a present torus/type repair-gap report constitutes repair completion or promotion evidence",
       "that sidecar outputs are promotion-ready owner truth",
       "that any blocked promotion gate should be auto-promoted or auto-repaired",
       "that a PRECHECK_OK promotion gate satisfies the negative-proof, round-trip, no-sidecar-read, or human-audit requirements from the promotion-gates doc"
@@ -330,6 +368,8 @@
       "existing runtime evidence bridge presence and owner-snapshot alignment when present",
       "existing bounded retrieval sidecar presence and safety flags when present",
       "existing Hopf/Weyl carrier projection presence and owner-snapshot alignment when present",
+      "existing Hopf/Weyl evidence audit presence and owner-snapshot alignment when present",
+      "existing torus/type repair-gap report presence and owner-snapshot alignment when present",
       "coarse promotion-gate state for owner structure, cross-layer alignment, runtime state, and history graph presence"
     ]
   }

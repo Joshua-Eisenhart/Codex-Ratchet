@@ -1,10 +1,10 @@
 # QIT Graph Stack Status
 
 - status: `precheck_blocked`
-- generated_utc: `2026-03-27T00:12:52Z`
+- generated_utc: `2026-03-27T00:20:17Z`
 - purpose: `read-only-by-default verification surface over the current QIT owner snapshot and bounded sidecars`
-- snapshot_id: `15934ea270cf3b7d5f3fd311c44029d12b16665f0163908dae3a3e12c0f26da8`
-- git_sha: `d2c98a9ee0b15cda05c2eb881adee4848195747a`
+- snapshot_id: `2549340de478553ad30cb2fcfc875918bc20e036a1a47e23030ee7bc4b716119`
+- git_sha: `7391077305b05a3e82e5cf38aaf7b42e236f41b3`
 - git_worktree_dirty: `True`
 - owner_builder_sha256: `271e5c1681d077ea0994fdd4a5a9ff68e0a21e45e4129943e03858b0e4744822`
 
@@ -40,6 +40,8 @@
 - existing runtime evidence bridge presence and owner-snapshot alignment when present
 - existing bounded retrieval sidecar presence and safety flags when present
 - existing Hopf/Weyl carrier projection presence and owner-snapshot alignment when present
+- existing Hopf/Weyl evidence audit presence and owner-snapshot alignment when present
+- existing torus/type repair-gap report presence and owner-snapshot alignment when present
 - coarse promotion-gate state for owner structure, cross-layer alignment, runtime state, and history graph presence
 - does_not_verify:
 - that the owner graph matches docs or runtime semantics beyond the stored snapshot
@@ -47,6 +49,8 @@
 - that a present runtime evidence bridge constitutes a promoted runtime-state or history graph
 - that a present retrieval sidecar constitutes embedding-backed LightRAG retrieval or owner-authoritative memory
 - that a present Hopf/Weyl projection constitutes promoted torus 2-cells, instantiated Weyl branches, or validated spinor semantics
+- that a present Hopf/Weyl evidence audit constitutes promotion evidence or validated live Weyl branch semantics
+- that a present torus/type repair-gap report constitutes repair completion or promotion evidence
 - that sidecar outputs are promotion-ready owner truth
 - that any blocked promotion gate should be auto-promoted or auto-repaired
 - that a PRECHECK_OK promotion gate satisfies the negative-proof, round-trip, no-sidecar-read, or human-audit requirements from the promotion-gates doc
@@ -91,7 +95,7 @@
 - allow_owner_writes: `False`
 - allow_proof_claims: `False`
 - embedding_backed_query: `False`
-- document_count: `28`
+- document_count: `30`
 - top_hit_count: `8`
 
 ## Hopf/Weyl Projection
@@ -106,6 +110,29 @@
 - torus_carrier_count: `3`
 - weyl_projection_status: `engine_pair_only_derived`
 
+## Hopf/Weyl Evidence Audit
+- status: `present`
+- json_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json`
+- md_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.md`
+- owner_content_hash_matches_current_snapshot: `True`
+- audit_only: `True`
+- nonoperative: `True`
+- do_not_promote: `True`
+- runtime_alignment_status: `aligned`
+- torus_witness_count: `2`
+- chirality_witness_count: `2`
+
+## Torus/Type Repair Gap Report
+- status: `present`
+- json_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.json`
+- md_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.md`
+- owner_content_hash_matches_current_snapshot: `True`
+- audit_only: `True`
+- nonoperative: `True`
+- do_not_promote: `True`
+- torus_gap_count: `3`
+- type_gap_count: `3`
+
 ## Next Actions
 - keep owner verification read-only by default and use refresh flags only for intentional artifact regeneration
 - treat snapshot_id plus file hashes as the join key for future audit/report surfaces
@@ -113,4 +140,6 @@
 - persist and expand the read-only runtime evidence bridge before promoting runtime/history semantics inward
 - use the bounded retrieval sidecar as context only until embedding-backed LightRAG query is configured and explicitly kept non-authoritative
 - treat the Hopf/Weyl projection as a bounded carrier map only; do not infer promoted torus 2-cells or live Weyl branches from its presence
+- treat the Hopf/Weyl evidence audit as a bounded audit surface only; do not treat it as promotion evidence
+- treat the torus/type repair-gap report as a bounded repair map only; do not treat listed gaps as already repaired
 - promote torus/chirality/runtime semantics only after negative-proof and round-trip gates are satisfied

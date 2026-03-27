@@ -59,6 +59,8 @@ HOPF_WEYL_PROJECTION_JSON = AUDIT_DIR / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.j
 HOPF_WEYL_PROJECTION_MD = AUDIT_DIR / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md"
 HOPF_WEYL_EVIDENCE_AUDIT_JSON = AUDIT_DIR / "QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json"
 HOPF_WEYL_EVIDENCE_AUDIT_MD = AUDIT_DIR / "QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.md"
+TORUS_TYPE_REPAIR_GAP_JSON = AUDIT_DIR / "QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.json"
+TORUS_TYPE_REPAIR_GAP_MD = AUDIT_DIR / "QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.md"
 GRAPHML_PATH = GRAPH_DIR / "qit_engine_graph_v1.graphml"
 NESTED_GRAPH_PATH = GRAPH_DIR / "nested_graph_v1.json"
 RUNTIME_STATE_PATH = GRAPH_DIR / "qit_runtime_state_v1.json"
@@ -584,6 +586,32 @@ def _hopf_weyl_evidence_audit_status(owner_snapshot: dict[str, Any]) -> dict[str
     }
 
 
+def _torus_type_repair_gap_status(owner_snapshot: dict[str, Any]) -> dict[str, Any]:
+    if not TORUS_TYPE_REPAIR_GAP_JSON.exists():
+        return {
+            "status": "absent",
+            "json_path": str(TORUS_TYPE_REPAIR_GAP_JSON),
+            "md_path": str(TORUS_TYPE_REPAIR_GAP_MD),
+        }
+    payload = _load_json(TORUS_TYPE_REPAIR_GAP_JSON)
+    derived = payload.get("derived_from", {}) if isinstance(payload.get("derived_from"), dict) else {}
+    summary = payload.get("repair_gap_summary", {}) if isinstance(payload.get("repair_gap_summary"), dict) else {}
+    owner_hash_matches = derived.get("owner_snapshot_hash") == owner_snapshot.get("embedded_content_hash")
+    return {
+        "status": "present" if owner_hash_matches else "partial",
+        "json_path": str(TORUS_TYPE_REPAIR_GAP_JSON),
+        "md_path": str(TORUS_TYPE_REPAIR_GAP_MD),
+        "schema": payload.get("schema", ""),
+        "generated_utc": payload.get("generated_utc", ""),
+        "owner_content_hash_matches_current_snapshot": owner_hash_matches,
+        "audit_only": payload.get("audit_boundary", {}).get("audit_only"),
+        "nonoperative": payload.get("audit_boundary", {}).get("nonoperative"),
+        "do_not_promote": payload.get("audit_boundary", {}).get("do_not_promote"),
+        "torus_gap_count": len(summary.get("torus_placement", {}).get("missing", [])),
+        "type_gap_count": len(summary.get("type_split", {}).get("missing", [])),
+    }
+
+
 def _render_markdown(report: dict[str, Any]) -> str:
     owner = report["owner"]
     sidecars = report["sidecars"]
@@ -594,6 +622,7 @@ def _render_markdown(report: dict[str, Any]) -> str:
     retrieval = report["retrieval_sidecar"]
     hopf_weyl = report["hopf_weyl_projection"]
     hopf_weyl_audit = report["hopf_weyl_evidence_audit"]
+    repair_gap = report["torus_type_repair_gap_report"]
     next_actions = "\n".join(f"- {item}" for item in report["next_actions"])
     verifies = "\n".join(f"- {item}" for item in scope["verifies"])
     does_not_verify = "\n".join(f"- {item}" for item in scope["does_not_verify"])
@@ -706,6 +735,17 @@ def _render_markdown(report: dict[str, Any]) -> str:
             f"- torus_witness_count: `{hopf_weyl_audit.get('torus_witness_count')}`",
             f"- chirality_witness_count: `{hopf_weyl_audit.get('chirality_witness_count')}`",
             "",
+            "## Torus/Type Repair Gap Report",
+            f"- status: `{repair_gap['status']}`",
+            f"- json_path: `{repair_gap['json_path']}`",
+            f"- md_path: `{repair_gap['md_path']}`",
+            f"- owner_content_hash_matches_current_snapshot: `{repair_gap.get('owner_content_hash_matches_current_snapshot')}`",
+            f"- audit_only: `{repair_gap.get('audit_only')}`",
+            f"- nonoperative: `{repair_gap.get('nonoperative')}`",
+            f"- do_not_promote: `{repair_gap.get('do_not_promote')}`",
+            f"- torus_gap_count: `{repair_gap.get('torus_gap_count')}`",
+            f"- type_gap_count: `{repair_gap.get('type_gap_count')}`",
+            "",
             "## Next Actions",
             next_actions,
             "",
@@ -726,6 +766,7 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
     retrieval_sidecar = _qit_retrieval_sidecar_status()
     hopf_weyl_projection = _hopf_weyl_projection_status(owner_snapshot)
     hopf_weyl_evidence_audit = _hopf_weyl_evidence_audit_status(owner_snapshot)
+    torus_type_repair_gap_report = _torus_type_repair_gap_status(owner_snapshot)
 
     live_node_types = sorted({node.get("node_type", "?") for node in nodes.values()})
     schema_ready_not_instantiated = sorted({"WEYL_BRANCH"} - set(live_node_types))
@@ -749,6 +790,8 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
         HOPF_WEYL_PROJECTION_MD,
         HOPF_WEYL_EVIDENCE_AUDIT_JSON,
         HOPF_WEYL_EVIDENCE_AUDIT_MD,
+        TORUS_TYPE_REPAIR_GAP_JSON,
+        TORUS_TYPE_REPAIR_GAP_MD,
         REPORT_JSON,
         REPORT_MD,
     ]
@@ -818,6 +861,7 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
                 "existing bounded retrieval sidecar presence and safety flags when present",
                 "existing Hopf/Weyl carrier projection presence and owner-snapshot alignment when present",
                 "existing Hopf/Weyl evidence audit presence and owner-snapshot alignment when present",
+                "existing torus/type repair-gap report presence and owner-snapshot alignment when present",
                 "coarse promotion-gate state for owner structure, cross-layer alignment, runtime state, and history graph presence",
             ],
             "does_not_verify": [
@@ -827,6 +871,7 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
                 "that a present retrieval sidecar constitutes embedding-backed LightRAG retrieval or owner-authoritative memory",
                 "that a present Hopf/Weyl projection constitutes promoted torus 2-cells, instantiated Weyl branches, or validated spinor semantics",
                 "that a present Hopf/Weyl evidence audit constitutes promotion evidence or validated live Weyl branch semantics",
+                "that a present torus/type repair-gap report constitutes repair completion or promotion evidence",
                 "that sidecar outputs are promotion-ready owner truth",
                 "that any blocked promotion gate should be auto-promoted or auto-repaired",
                 "that a PRECHECK_OK promotion gate satisfies the negative-proof, round-trip, no-sidecar-read, or human-audit requirements from the promotion-gates doc",
@@ -875,6 +920,7 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
         "retrieval_sidecar": retrieval_sidecar,
         "hopf_weyl_projection": hopf_weyl_projection,
         "hopf_weyl_evidence_audit": hopf_weyl_evidence_audit,
+        "torus_type_repair_gap_report": torus_type_repair_gap_report,
         "promotion_gates": promotion_gates,
         "next_actions": [
             "keep owner verification read-only by default and use refresh flags only for intentional artifact regeneration",
@@ -884,6 +930,7 @@ def build_qit_graph_stack_status(refresh_owner: bool = False, refresh_graphml: b
             "use the bounded retrieval sidecar as context only until embedding-backed LightRAG query is configured and explicitly kept non-authoritative",
             "treat the Hopf/Weyl projection as a bounded carrier map only; do not infer promoted torus 2-cells or live Weyl branches from its presence",
             "treat the Hopf/Weyl evidence audit as a bounded audit surface only; do not treat it as promotion evidence",
+            "treat the torus/type repair-gap report as a bounded repair map only; do not treat listed gaps as already repaired",
             "promote torus/chirality/runtime semantics only after negative-proof and round-trip gates are satisfied",
         ],
     }

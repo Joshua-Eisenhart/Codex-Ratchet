@@ -1,6 +1,6 @@
 # QIT Runtime Evidence Bridge
 
-- generated_utc: `2026-03-27T00:04:05Z`
+- generated_utc: `2026-03-27T00:17:24Z`
 - audit_only: `True`
 - nonoperative: `True`
 - do_not_promote: `True`
@@ -13,7 +13,7 @@
 ## Report Surface
 - surface_class: `tracked_current_workspace_report`
 - represents: `current workspace runtime/evidence bridge state at generation time; may differ from the last committed snapshot until tracked CURRENT artifacts are committed`
-- git_sha: `ba04c7bf2dce21142fd3289b7c2ada1a5453dde6`
+- git_sha: `7391077305b05a3e82e5cf38aaf7b42e236f41b3`
 
 ## Runtime Samples
 - qit::ENGINE::type1_deductive: `32` steps, last step `qit::SUBCYCLE_STEP::type1_deductive_Ni_b_Fi`

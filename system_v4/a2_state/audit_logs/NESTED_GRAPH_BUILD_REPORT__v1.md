@@ -1,6 +1,6 @@
 # Nested Graph Build Report
 
-- generated_utc: `2026-03-26T23:26:54Z`
+- generated_utc: `2026-03-27T00:17:28Z`
 - status: `built`
 - layer_count: `6`
 - total_nodes_across_layers: `11139`

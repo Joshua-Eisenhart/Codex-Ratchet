@@ -1,0 +1,360 @@
+{
+  "audit_boundary": {
+    "audit_only": true,
+    "do_not_promote": true,
+    "negative_witness_role": "context_only_non_authoritative",
+    "nonoperative": true,
+    "owner_graph_role": "read_only_reference_only",
+    "promotion_claim": "none",
+    "runtime_bridge_role": "read_only_alignment_input"
+  },
+  "audit_conclusion": {
+    "forbidden_claims_now": [
+      "do not claim live Weyl branch semantics in owner truth",
+      "do not claim torus 2-cells are promoted owner structure",
+      "do not claim runtime bridge packets are runtime/history graphs",
+      "do not claim sidecar candidate mappings are promotion evidence by themselves"
+    ],
+    "missing_now": [
+      "no live WEYL_BRANCH owner nodes",
+      "no promoted torus 2-cells in owner truth",
+      "no promoted spinor-state graph",
+      "no promoted runtime-state graph",
+      "no promoted history graph"
+    ],
+    "safe_use": [
+      "three torus owner nodes are live: inner, clifford, outer",
+      "the owner graph carries a two-edge torus nesting chain",
+      "the owner graph carries thirty-two STAGE_ON_TORUS assignments",
+      "the owner graph carries two engine nodes and one CHIRALITY_COUPLING edge",
+      "the Hopf/Weyl sidecar is aligned to the current owner content hash",
+      "the runtime bridge is aligned to the current owner content hash"
+    ],
+    "summary": "The current QIT lane has live owner torus/chirality scaffold plus aligned bounded sidecars and runtime packets. It supports a bounded carrier-map reading, not promoted Hopf/Weyl semantics."
+  },
+  "candidate_sidecar_evidence": {
+    "cell_complex_candidate_evidence": {
+      "available": true,
+      "shape": [
+        16,
+        34,
+        3
+      ],
+      "status": "candidate_projection_only"
+    },
+    "chirality_mapping_candidate_evidence": {
+      "available": true,
+      "product_is_scalar": true,
+      "pseudoscalar_blade": "e123",
+      "status": "candidate_projection_only"
+    }
+  },
+  "carrier_evidence_summary": {
+    "limits": {
+      "not_live_weyl_semantics": true,
+      "not_owner_promotion": true,
+      "not_runtime_state_truth": true,
+      "not_torus_geometry_proof": true
+    },
+    "promotion_claim": "none",
+    "status": "bounded_owner_linked_summary_only",
+    "torus_placement_evidence": {
+      "carrier_assignment_scope": "owner_scaffold_only",
+      "owner_graph_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
+      "relevant_negative_witnesses": [
+        "qit::NEG_WITNESS::neg_no_torus_transport",
+        "qit::NEG_WITNESS::neg_torus_scrambled"
+      ],
+      "runtime_alignment": {
+        "aligned_engine_public_ids": [
+          "qit::ENGINE::type1_deductive",
+          "qit::ENGINE::type2_inductive"
+        ],
+        "alignment_note": "runtime bridge aligns to owner ids but does not promote torus semantics",
+        "bridge_owner_hash_matches": true
+      },
+      "stage_on_torus_edge_count": 32,
+      "torus_nesting_edges": [
+        [
+          "qit::TORUS::inner",
+          "qit::TORUS::clifford"
+        ],
+        [
+          "qit::TORUS::clifford",
+          "qit::TORUS::outer"
+        ]
+      ],
+      "torus_public_ids": [
+        "qit::TORUS::inner",
+        "qit::TORUS::clifford",
+        "qit::TORUS::outer"
+      ],
+      "torus_stage_counts": {
+        "qit::TORUS::clifford": 16,
+        "qit::TORUS::inner": 8,
+        "qit::TORUS::outer": 8
+      }
+    },
+    "type_split_evidence": {
+      "chirality_coupling_edge_count": 1,
+      "engine_owns_stage_edge_count": 16,
+      "engine_public_ids": [
+        "qit::ENGINE::type1_deductive",
+        "qit::ENGINE::type2_inductive"
+      ],
+      "owner_graph_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
+      "relevant_negative_witnesses": [
+        "qit::NEG_WITNESS::neg_no_chirality",
+        "qit::NEG_WITNESS::neg_type_flatten"
+      ],
+      "runtime_alignment": {
+        "aligned_engine_public_ids": [
+          "qit::ENGINE::type1_deductive",
+          "qit::ENGINE::type2_inductive"
+        ],
+        "aligned_neg_witness_public_ids": [
+          "qit::NEG_WITNESS::neg_type_flatten"
+        ],
+        "alignment_note": "runtime/evidence bridge resolves the type-split witness set to owner engine ids only",
+        "bridge_owner_hash_matches": true
+      },
+      "weyl_branch_nodes_present": false
+    }
+  },
+  "evidence_limits": {
+    "excluded_semantics": [
+      "do not claim live Weyl branch semantics in owner truth",
+      "do not claim torus 2-cells are promoted owner structure",
+      "do not claim runtime bridge packets are runtime/history graphs",
+      "do not claim sidecar candidate mappings are promotion evidence by themselves"
+    ],
+    "not_history_graph": true,
+    "not_live_weyl_branch_evidence": true,
+    "not_owner_truth": true,
+    "not_promotion_evidence": true,
+    "not_runtime_state_graph": true
+  },
+  "generated_utc": "2026-03-27T00:18:11Z",
+  "owner_carrier_evidence": {
+    "carrier_assignment_scope": "owner_scaffold_only",
+    "owner_missing_anchors": [
+      "WEYL_BRANCH"
+    ],
+    "owner_supported_claims": [
+      "three torus owner nodes are live: inner, clifford, outer",
+      "the owner graph carries a two-edge torus nesting chain",
+      "the owner graph carries thirty-two STAGE_ON_TORUS assignments",
+      "the owner graph carries two engine nodes and one CHIRALITY_COUPLING edge",
+      "the Hopf/Weyl sidecar is aligned to the current owner content hash",
+      "the runtime bridge is aligned to the current owner content hash"
+    ],
+    "stage_on_torus_edge_count": 32,
+    "torus_carriers": [
+      {
+        "engine_public_ids": [
+          "qit::ENGINE::type1_deductive",
+          "qit::ENGINE::type2_inductive"
+        ],
+        "label": "inner",
+        "nesting_rank": 0,
+        "stage_count": 8,
+        "stage_public_ids": [
+          "qit::MACRO_STAGE::type1_deductive_Ne_f",
+          "qit::MACRO_STAGE::type1_deductive_Ni_f",
+          "qit::MACRO_STAGE::type1_deductive_Se_f",
+          "qit::MACRO_STAGE::type1_deductive_Si_f",
+          "qit::MACRO_STAGE::type2_inductive_Ne_f",
+          "qit::MACRO_STAGE::type2_inductive_Ni_f",
+          "qit::MACRO_STAGE::type2_inductive_Se_f",
+          "qit::MACRO_STAGE::type2_inductive_Si_f"
+        ],
+        "torus_public_id": "qit::TORUS::inner"
+      },
+      {
+        "engine_public_ids": [
+          "qit::ENGINE::type1_deductive",
+          "qit::ENGINE::type2_inductive"
+        ],
+        "label": "clifford",
+        "nesting_rank": 1,
+        "stage_count": 16,
+        "stage_public_ids": [
+          "qit::MACRO_STAGE::type1_deductive_Ne_b",
+          "qit::MACRO_STAGE::type1_deductive_Ne_f",
+          "qit::MACRO_STAGE::type1_deductive_Ni_b",
+          "qit::MACRO_STAGE::type1_deductive_Ni_f",
+          "qit::MACRO_STAGE::type1_deductive_Se_b",
+          "qit::MACRO_STAGE::type1_deductive_Se_f",
+          "qit::MACRO_STAGE::type1_deductive_Si_b",
+          "qit::MACRO_STAGE::type1_deductive_Si_f",
+          "qit::MACRO_STAGE::type2_inductive_Ne_b",
+          "qit::MACRO_STAGE::type2_inductive_Ne_f",
+          "qit::MACRO_STAGE::type2_inductive_Ni_b",
+          "qit::MACRO_STAGE::type2_inductive_Ni_f",
+          "qit::MACRO_STAGE::type2_inductive_Se_b",
+          "qit::MACRO_STAGE::type2_inductive_Se_f",
+          "qit::MACRO_STAGE::type2_inductive_Si_b",
+          "qit::MACRO_STAGE::type2_inductive_Si_f"
+        ],
+        "torus_public_id": "qit::TORUS::clifford"
+      },
+      {
+        "engine_public_ids": [
+          "qit::ENGINE::type1_deductive",
+          "qit::ENGINE::type2_inductive"
+        ],
+        "label": "outer",
+        "nesting_rank": 2,
+        "stage_count": 8,
+        "stage_public_ids": [
+          "qit::MACRO_STAGE::type1_deductive_Ne_b",
+          "qit::MACRO_STAGE::type1_deductive_Ni_b",
+          "qit::MACRO_STAGE::type1_deductive_Se_b",
+          "qit::MACRO_STAGE::type1_deductive_Si_b",
+          "qit::MACRO_STAGE::type2_inductive_Ne_b",
+          "qit::MACRO_STAGE::type2_inductive_Ni_b",
+          "qit::MACRO_STAGE::type2_inductive_Se_b",
+          "qit::MACRO_STAGE::type2_inductive_Si_b"
+        ],
+        "torus_public_id": "qit::TORUS::outer"
+      }
+    ],
+    "torus_nesting_edges": [
+      {
+        "source_public_id": "qit::TORUS::inner",
+        "target_public_id": "qit::TORUS::clifford"
+      },
+      {
+        "source_public_id": "qit::TORUS::clifford",
+        "target_public_id": "qit::TORUS::outer"
+      }
+    ],
+    "weyl_readiness": {
+      "chirality_coupling_edge_present": true,
+      "engine_pair_public_ids": [
+        "qit::ENGINE::type1_deductive",
+        "qit::ENGINE::type2_inductive"
+      ],
+      "missing_owner_anchors": [
+        "WEYL_BRANCH"
+      ],
+      "projection_status": "engine_pair_only_derived",
+      "weyl_branch_nodes_present": false
+    }
+  },
+  "owner_snapshot": {
+    "edge_count": 272,
+    "node_count": 105,
+    "qit_graph_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
+    "qit_graph_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json",
+    "qit_graph_schema": "QIT_ENGINE_GRAPH_v2"
+  },
+  "relevant_negative_evidence": {
+    "chirality_witnesses": [
+      {
+        "description": "Removing engine type distinction kills asymmetry",
+        "label": "neg_no_chirality",
+        "owner_edge_emission": "specific_targets",
+        "proves_label": "engine_type_asymmetry_is_necessary",
+        "proves_targets": [
+          "qit::ENGINE::type1_deductive",
+          "qit::ENGINE::type2_inductive"
+        ],
+        "target_structure": "CHIRALITY",
+        "witness_id": "qit::NEG_WITNESS::neg_no_chirality"
+      },
+      {
+        "description": "Flattening engine types kills chirality separation",
+        "label": "neg_type_flatten",
+        "owner_edge_emission": "specific_targets",
+        "proves_label": "type_specific_weighting_is_necessary",
+        "proves_targets": [
+          "qit::ENGINE::type1_deductive",
+          "qit::ENGINE::type2_inductive"
+        ],
+        "target_structure": "CHIRALITY",
+        "witness_id": "qit::NEG_WITNESS::neg_type_flatten"
+      }
+    ],
+    "runtime_bridge_mapped_witnesses": [
+      "qit::NEG_WITNESS::neg_axis6_shared",
+      "qit::NEG_WITNESS::neg_missing_fe",
+      "qit::NEG_WITNESS::neg_missing_operator",
+      "qit::NEG_WITNESS::neg_native_only",
+      "qit::NEG_WITNESS::neg_type_flatten"
+    ],
+    "torus_witnesses": [
+      {
+        "description": "Removing torus transport kills the engine",
+        "label": "neg_no_torus_transport",
+        "owner_edge_emission": "suppressed_pending_owner_concept",
+        "proves_label": "torus_transport_regime_is_necessary",
+        "proves_targets": [],
+        "target_structure": "TORUS",
+        "witness_id": "qit::NEG_WITNESS::neg_no_torus_transport"
+      },
+      {
+        "description": "Scrambling torus assignment kills coherence",
+        "label": "neg_torus_scrambled",
+        "owner_edge_emission": "suppressed_pending_owner_concept",
+        "proves_label": "torus_assignment_coherence_is_necessary",
+        "proves_targets": [],
+        "target_structure": "TORUS",
+        "witness_id": "qit::NEG_WITNESS::neg_torus_scrambled"
+      }
+    ],
+    "witness_alignment_notes": [
+      "torus-targeted negatives are present as sidecar-context witnesses but remain suppressed at the owner-edge level pending a better owner concept",
+      "chirality-targeted negatives currently align to the two engine owner nodes"
+    ]
+  },
+  "report_surface": {
+    "git_sha": "7391077305b05a3e82e5cf38aaf7b42e236f41b3",
+    "represents": "current workspace Hopf/Weyl evidence audit state at generation time; may differ from the last committed snapshot until tracked CURRENT artifacts are committed",
+    "script_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_hopf_weyl_evidence_audit.py",
+    "script_sha256": "baa82091d632cee899104b37d258a7cd02a1807bfb001becbc10e7f3d8a51bac",
+    "surface_class": "tracked_current_workspace_report",
+    "tracked_report_files": [
+      "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json",
+      "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.md"
+    ],
+    "tracked_report_files_dirty_before_generation": [
+      "?? system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json",
+      "?? system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.md"
+    ]
+  },
+  "runtime_bridge_alignment": {
+    "aligned_engine_public_ids": [
+      "qit::ENGINE::type1_deductive",
+      "qit::ENGINE::type2_inductive"
+    ],
+    "aligned_neg_witness_public_ids": [
+      "qit::NEG_WITNESS::neg_axis6_shared",
+      "qit::NEG_WITNESS::neg_missing_fe",
+      "qit::NEG_WITNESS::neg_missing_operator",
+      "qit::NEG_WITNESS::neg_native_only",
+      "qit::NEG_WITNESS::neg_type_flatten"
+    ],
+    "aligned_step_public_id_range": [
+      {
+        "engine_public_id": "qit::ENGINE::type1_deductive",
+        "first_step_public_id": "qit::SUBCYCLE_STEP::type1_deductive_Se_f_Ti",
+        "last_step_public_id": "qit::SUBCYCLE_STEP::type1_deductive_Ni_b_Fi"
+      },
+      {
+        "engine_public_id": "qit::ENGINE::type2_inductive",
+        "first_step_public_id": "qit::SUBCYCLE_STEP::type2_inductive_Se_f_Ti",
+        "last_step_public_id": "qit::SUBCYCLE_STEP::type2_inductive_Ni_b_Fi"
+      }
+    ],
+    "alignment_status": "aligned",
+    "bridge_generated_utc": "2026-03-27T00:17:24Z",
+    "bridge_owner_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
+    "bridge_report_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json",
+    "bridge_schema": "QIT_RUNTIME_EVIDENCE_BRIDGE_v1",
+    "owner_hash_matches": true,
+    "unresolved_links": 0
+  },
+  "schema": "QIT_HOPF_WEYL_EVIDENCE_AUDIT_v1",
+  "status": "bounded_evidence_audit_only"
+}

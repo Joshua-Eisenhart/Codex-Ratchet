@@ -220,6 +220,66 @@ def build_qit_hopf_weyl_evidence_audit() -> dict[str, Any]:
             "not_promotion_evidence": True,
             "excluded_semantics": forbidden_claims_now,
         },
+        "carrier_evidence_summary": {
+            "status": "bounded_owner_linked_summary_only",
+            "promotion_claim": "none",
+            "torus_placement_evidence": {
+                "owner_graph_content_hash": owner.get("content_hash", ""),
+                "torus_public_ids": [carrier["torus_public_id"] for carrier in hopf_carrier.get("torus_carriers", [])],
+                "torus_nesting_edges": [
+                    [edge.get("source_public_id", ""), edge.get("target_public_id", "")]
+                    for edge in hopf_carrier.get("torus_nesting_edges", [])
+                ],
+                "stage_on_torus_edge_count": hopf_carrier.get("stage_on_torus_edge_count", len(stage_torus_edges)),
+                "torus_stage_counts": {
+                    carrier["torus_public_id"]: carrier.get("stage_count", 0)
+                    for carrier in hopf_carrier.get("torus_carriers", [])
+                },
+                "carrier_assignment_scope": hopf_carrier.get("carrier_assignment_scope", "owner_scaffold_only"),
+                "runtime_alignment": {
+                    "bridge_owner_hash_matches": runtime_owner_snapshot.get("qit_graph_content_hash", "") == owner.get("content_hash", ""),
+                    "aligned_engine_public_ids": [
+                        sample.get("engine_public_id", "")
+                        for sample in hopf_runtime_alignment.get("engine_sample_refs", [])
+                    ],
+                    "alignment_note": "runtime bridge aligns to owner ids but does not promote torus semantics",
+                },
+                "relevant_negative_witnesses": [
+                    witness.get("witness_id", "")
+                    for witness in hopf_neg.get("torus_witnesses", [])
+                ],
+            },
+            "type_split_evidence": {
+                "owner_graph_content_hash": owner.get("content_hash", ""),
+                "engine_public_ids": [node.get("public_id", "") for node in engine_nodes],
+                "chirality_coupling_edge_count": len(chirality_edges),
+                "engine_owns_stage_edge_count": sum(1 for edge in edges if edge.get("relation") == "ENGINE_OWNS_STAGE"),
+                "weyl_branch_nodes_present": False,
+                "runtime_alignment": {
+                    "bridge_owner_hash_matches": runtime_owner_snapshot.get("qit_graph_content_hash", "") == owner.get("content_hash", ""),
+                    "aligned_engine_public_ids": [
+                        sample.get("engine_public_id", "")
+                        for sample in hopf_runtime_alignment.get("engine_sample_refs", [])
+                    ],
+                    "aligned_neg_witness_public_ids": [
+                        witness
+                        for witness in runtime_mapped_witnesses
+                        if witness in {"qit::NEG_WITNESS::neg_no_chirality", "qit::NEG_WITNESS::neg_type_flatten"}
+                    ],
+                    "alignment_note": "runtime/evidence bridge resolves the type-split witness set to owner engine ids only",
+                },
+                "relevant_negative_witnesses": [
+                    witness.get("witness_id", "")
+                    for witness in hopf_neg.get("chirality_witnesses", [])
+                ],
+            },
+            "limits": {
+                "not_owner_promotion": True,
+                "not_runtime_state_truth": True,
+                "not_live_weyl_semantics": True,
+                "not_torus_geometry_proof": True,
+            },
+        },
         "audit_conclusion": {
             "summary": (
                 "The current QIT lane has live owner torus/chirality scaffold plus aligned bounded sidecars "
@@ -238,6 +298,7 @@ def _render_markdown(payload: dict[str, Any]) -> str:
     runtime = payload["runtime_bridge_alignment"]
     neg = payload["relevant_negative_evidence"]
     candidate = payload["candidate_sidecar_evidence"]
+    summary = payload["carrier_evidence_summary"]
     conclusion = payload["audit_conclusion"]
     surface = payload["report_surface"]
     boundary = payload["audit_boundary"]
@@ -286,6 +347,14 @@ def _render_markdown(payload: dict[str, Any]) -> str:
         f"- cell_complex_available: `{candidate['cell_complex_candidate_evidence']['available']}`",
         f"- chirality_mapping_status: `{candidate['chirality_mapping_candidate_evidence']['status']}`",
         f"- chirality_mapping_available: `{candidate['chirality_mapping_candidate_evidence']['available']}`",
+        "",
+        "## Carrier Evidence Summary",
+        f"- status: `{summary['status']}`",
+        f"- promotion_claim: `{summary['promotion_claim']}`",
+        f"- torus_public_ids: `{', '.join(summary['torus_placement_evidence']['torus_public_ids'])}`",
+        f"- torus_negative_witnesses: `{', '.join(summary['torus_placement_evidence']['relevant_negative_witnesses'])}`",
+        f"- engine_public_ids: `{', '.join(summary['type_split_evidence']['engine_public_ids'])}`",
+        f"- type_split_negative_witnesses: `{', '.join(summary['type_split_evidence']['relevant_negative_witnesses'])}`",
         "",
         "## Evidence Limits",
         "- not owner truth",

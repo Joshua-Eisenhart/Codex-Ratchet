@@ -23,11 +23,13 @@
 | `system_v4/skills/qit_runtime_evidence_bridge.py` | Persists a read-only runtime/evidence audit packet keyed to stable QIT `public_id`s |
 | `system_v4/skills/qit_retrieval_sidecar.py` | Builds a bounded QIT retrieval corpus/query seam with lexical fallback and explicit non-authoritative guards |
 | `system_v4/skills/qit_hopf_weyl_projection.py` | Builds a bounded Hopf/Weyl carrier map over admitted torus/stage/chirality structure |
+| `system_v4/skills/qit_hopf_weyl_evidence_audit.py` | Builds a bounded Hopf/Weyl evidence audit over owner scaffold, runtime bridge alignment, and relevant negatives |
 | `system_v4/skills/qit_owner_schemas.py` | Pydantic contracts for all owner-layer types |
 | `system_v4/a2_state/graphs/qit_engine_graph_v1.json` | The live QIT engine graph (105 nodes, 272 edges) |
 | `system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json` | Persisted read-only runtime/evidence bridge packet/report input |
 | `system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.json` | Persisted bounded retrieval-sidecar report over QIT docs and evidence |
 | `system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json` | Persisted bounded Hopf/Weyl carrier map over the admitted owner scaffold |
+| `system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json` | Persisted bounded Hopf/Weyl evidence audit over owner scaffold, runtime alignment, and relevant negatives |
 
 ---
 
@@ -60,6 +62,7 @@ The **owner stack** is `Pydantic → JSON → NetworkX`, with GraphML as an inte
 | **LightRAG** | Sidecar corpus ready; embedding-backed indexing/query still blocked on embedding config | Intended read-only retrieval/index layer over QIT docs and evidence surfaces; not owner memory |
 | **QIT retrieval seam** | Present (lexical fallback only) | Bounded query surface over QIT docs, structured runtime/evidence bridge packets, stack reports, and selected SIM evidence; context only, not proof |
 | **Hopf/Weyl carrier map** | Present (bounded projection only) | Read-only map of torus carriers, stage-to-torus assignments, and engine-pair chirality readiness; not torus 2-cells or live Weyl branches |
+| **Hopf/Weyl evidence audit** | Present (bounded audit only) | Read-only audit of what torus/chirality structure is live now, what is aligned across sidecars, and what is still forbidden to claim |
 | **kingdon** | Not yet integrated | Optional GA-Torch bridge for differentiable algebra |
 
 **None of these sidecars are semantic owners yet.** They are the correct *next* semantic carriers for their respective domains, pending promotion gates.
@@ -73,6 +76,7 @@ The **owner stack** is `Pydantic → JSON → NetworkX`, with GraphML as an inte
 - ✅ Read-only runtime/evidence bridge packet/report — can be persisted under `a2_state/audit_logs/` without promoting a graph
 - ✅ Bounded retrieval sidecar with lexical fallback over QIT docs and evidence
 - ✅ Bounded Hopf/Weyl carrier projection over admitted torus/stage/chirality structure
+- ✅ Bounded Hopf/Weyl evidence audit over owner scaffold, runtime alignment, and relevant negatives
 - ❌ Live embedding-backed LightRAG indexing/query over the internal QIT corpus
 - ❌ Live TopoNetX torus 2-cells in the owner graph
 - ❌ Live clifford chirality payloads in the owner graph
@@ -116,6 +120,9 @@ python3 system_v4/skills/qit_retrieval_sidecar.py
 
 # Build the bounded Hopf/Weyl carrier projection
 python3 system_v4/skills/qit_hopf_weyl_projection.py
+
+# Build the bounded Hopf/Weyl evidence audit
+python3 system_v4/skills/qit_hopf_weyl_evidence_audit.py
 
 # Persist the tracked status artifacts only when you intentionally want to refresh them
 python3 system_v4/skills/qit_graph_stack_runtime.py --write-report

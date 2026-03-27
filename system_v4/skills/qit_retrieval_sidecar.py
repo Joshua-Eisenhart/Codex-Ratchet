@@ -50,11 +50,13 @@ AUDIT_DOCS = [
     AUDIT_DIR / "QIT_GRAPH_STACK_STATUS__CURRENT__v1.md",
     AUDIT_DIR / "QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md",
     AUDIT_DIR / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md",
+    AUDIT_DIR / "QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.md",
 ]
 
 AUDIT_JSONS = [
     AUDIT_DIR / "QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json",
     AUDIT_DIR / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json",
+    AUDIT_DIR / "QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json",
 ]
 
 SIM_JSONS = [
@@ -534,6 +536,65 @@ def _format_hopf_weyl_docs(path: Path) -> list[dict[str, Any]]:
     return docs
 
 
+def _format_hopf_weyl_evidence_audit_docs(path: Path) -> list[dict[str, Any]]:
+    payload = _read_json(path)
+    if not isinstance(payload, dict):
+        return []
+
+    owner = payload.get("owner_snapshot", {})
+    runtime = payload.get("runtime_bridge_alignment", {})
+    conclusion = payload.get("audit_conclusion", {})
+    neg = payload.get("relevant_negative_evidence", {})
+
+    lines = [
+        "# Structured Hopf/Weyl Evidence Audit",
+        f"source_path: {path}",
+        "query_anchors: hopf, weyl, torus, chirality, evidence audit, safe now, missing now, forbidden claims",
+        f"schema: {payload.get('schema', '')}",
+        f"status: {payload.get('status', '')}",
+        f"audit_only: {payload.get('audit_boundary', {}).get('audit_only')}",
+        f"nonoperative: {payload.get('audit_boundary', {}).get('nonoperative')}",
+        f"do_not_promote: {payload.get('audit_boundary', {}).get('do_not_promote')}",
+        f"owner_content_hash: {owner.get('qit_graph_content_hash', '')}",
+        f"runtime_alignment_status: {runtime.get('alignment_status', '')}",
+        f"aligned_engine_public_ids: {', '.join(runtime.get('aligned_engine_public_ids', []))}",
+        f"torus_witness_count: {len(neg.get('torus_witnesses', []))}",
+        f"chirality_witness_count: {len(neg.get('chirality_witnesses', []))}",
+        "",
+        "## safe_now",
+        *[f"- {item}" for item in conclusion.get("safe_use", [])],
+        "",
+        "## missing_now",
+        *[f"- {item}" for item in conclusion.get("missing_now", [])],
+        "",
+        "## forbidden_claims_now",
+        *[f"- {item}" for item in conclusion.get("forbidden_claims_now", [])],
+        "",
+        "## boundary_note",
+        "- This audit is a bounded evidence surface only.",
+        "- It is not owner truth, not runtime-state graph proof, and not promotion evidence.",
+    ]
+    return [
+        {
+            "doc_id": "qit_hopf_weyl_evidence_audit_structured",
+            "family": "audit_reports",
+            "source_path": str(path),
+            "source_refs": _dedupe_refs(
+                [
+                    str(path),
+                    owner.get("qit_graph_json", ""),
+                    runtime.get("bridge_report_path", ""),
+                    owner.get("qit_graph_content_hash", ""),
+                    *runtime.get("aligned_engine_public_ids", []),
+                ]
+            ),
+            "authoritative": False,
+            "owner_input_read_only": True,
+            "text": "\n".join(lines) + "\n",
+        }
+    ]
+
+
 def _build_corpus_documents() -> list[dict[str, Any]]:
     docs: list[dict[str, Any]] = []
     for path in QIT_DOCS:
@@ -549,6 +610,8 @@ def _build_corpus_documents() -> list[dict[str, Any]]:
             docs.extend(_format_runtime_bridge_docs(path))
         elif path.name == "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json":
             docs.extend(_format_hopf_weyl_docs(path))
+        elif path.name == "QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json":
+            docs.extend(_format_hopf_weyl_evidence_audit_docs(path))
     for path in SIM_JSONS:
         doc = _format_sim_doc(path)
         if doc:

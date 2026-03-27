@@ -1,13 +1,14 @@
-# [Proposal scaffold] The 8×8 Engine Mapping: The True 64-State Generator
+# [Proposal scaffold] The 8×8 Engine Mapping Scaffold
 
 > **Note:** This document presents the best current compositional decomposition for the engine, successfully bridging the 8 Terrains and 8 Signed Operators. However, because the exact mathematical bindings for Ax3, Ax4, and Ax5 remain under active experimental probing, this mapping should be treated as an explanatory bridge and proposal scaffold rather than definitive mathematical closure.
+> **Language warning:** Trigram/I Ching wording in this file is representational shorthand only, not primary mathematical authority.
 
-The architectural math of the 64-hexagram state space is not an arbitrary list of permutations, nor is it a simplistic procedural loop. The best current decomposition is a Cartesian product of two 8-state domains, provisionally matching the 8×8 I-Ching trigram geometry.
+The architectural math of the 64-state structural space is not an arbitrary list of permutations, nor is it a simplistic procedural loop. The best current decomposition is a Cartesian product of two 8-state domains.
 
 **The Equation of the Engine:**
-`8 Terrains × 8 Signed Operators = 64 Hexagram States`
+`8 Terrains × 8 Signed Operators = 64 Structural Configurations`
 
-This aligns strongly with the current trigram grouping hypothesis, but it should still be read as a compositional scaffold rather than a closed proof.
+This aligns strongly with the current grouping hypothesis, but it should still be read as a compositional scaffold rather than a closed proof.
 
 ---
 
@@ -41,9 +42,9 @@ The 3 DOFs in Trigram 2 provide exactly 8 states (2³):
 
 When the engine executes, it is applying one of 8 specific signed operators to one of 8 specific topological terrains. 
 
-Every hexagram in the 64-state space is a unique combination of:
-- **Lower Trigram**: The Terrain you are in.
-- **Upper Trigram**: The Signed Operator you apply.
+Every structural state in the 64-state space is a unique combination of:
+- **Context grouping**: The Terrain you are in.
+- **Action grouping**: The Signed Operator you apply.
 
 The engine moves through this matrix, dragged along by **Ax0** (The Entropy Gradient / Thermodynamic Drive), generating the 64 execution steps observed in the runtime manifold.
 

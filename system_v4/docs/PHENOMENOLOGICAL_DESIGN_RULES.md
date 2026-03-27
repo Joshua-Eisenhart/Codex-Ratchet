@@ -3,7 +3,7 @@
 **Date:** 2026-03-27
 **Subject:** The Epistemology of the 6D Manifold
 
-The QIT engine and its 64-hexagram state space were not derived by picking arbitrary metaphors and forcing math onto them. The epistemic order of discovery was:
+The QIT engine and its 64-state structural space were not derived by picking arbitrary metaphors and forcing math onto them. The epistemic order of discovery was:
 
 **Attractor Basin → Repeated Stable Pattern (35 years) → Engine Forms (Win/Lose) → Symbolic Compressions → Mathematical Recovery**
 

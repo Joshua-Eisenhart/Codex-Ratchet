@@ -1,4 +1,4 @@
-# [Controller-safe] Geometry Ratcheting: The Yin-Yang Constraint Chain
+# [Controller-safe] Geometry Ratcheting: The Constraint Chain
 
 **Status**: Active investigation, not locked canon.  
 **Session**: 2026-03-27, 23 commits, 15 sims.
@@ -50,7 +50,7 @@ Testing Ax0 as a structural displacement (like dephasing or partial trace) is a 
 ```text
 Ax0 = Drive / Entropy Gradient (The thermodynamic arrow)
 Ax1–Ax6 = Six binary structural DOFs (The constraints)
-2⁶ = 64 structural configurations (The Hexagrams / State Space)
+2⁶ = 64 structural configurations (The state space)
 Engines = Generators moving through the 64-state space along Ax0
 ```
 
@@ -58,11 +58,11 @@ Ax0 is the correlation entropy gradient that pushes the system through the 64 st
 
 ---
 
-## Yin-Yang ↔ Axis Mapping
+## Legacy Metaphor Correlations (Non-Primary)
 
-The taijitu IS a stereographic projection of the Clifford torus on S³.
+The yin-yang / taijitu layer is a downstream correlation shorthand, not a proof surface. It may be useful as a mnemonic or historical correlation layer, but it must not be treated as primary mathematical ontology.
 
-| Yin-Yang Feature | Axis | Best Candidate Formulations |
+| Legacy correlation label | Axis | Best Candidate Formulations |
 |---|---|---|
 | **Black vs white** | **Ax0** | *Meta-axis: Correlation Entropy Gradient* |
 | **Seeds of the other** | Ax1 | Channel type (Dissipation / depolarizing) |
@@ -150,4 +150,4 @@ SU(2)_L × SU(2)_R × U(1) × Z₂ = 3 + 3 + 1 + 1 = 8 DOFs
 2. **Build Ax4/Ax6 process-level sweep**, testing if they can be separated.
 3. **Build Ax5 from torus/extrinsic curvature**, directly on the geometric lane, rather than generic Hamiltonian bending.
 4. **Test Ax3 at the spinor/process layer directly** (γ₅ phase vs branch coherence), since density models keep erasing phase information.
-5. **Assign Jungian labels** to the 6 structural DOFs.
+5. **Keep metaphor layers downstream** from the math rather than using them as proof surfaces.

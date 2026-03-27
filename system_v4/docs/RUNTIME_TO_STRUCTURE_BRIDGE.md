@@ -1,7 +1,7 @@
 # [Controller-safe] RUNTIME TO STRUCTURE BRIDGE
 
 **Date:** 2026-03-27
-**Purpose:** This document enforces strict epistemic reality. It explicitly demarcates what is mathematically secured at the runtime layer versus what remains theoretical hypothesis at the structural hexagram layer.
+**Purpose:** This document enforces strict epistemic reality. It explicitly demarcates what is mathematically secured at the runtime layer versus what remains theoretical hypothesis at the structural 64-state layer.
 
 To prevent premature canonization, developers and controllers must consult this bridge before assuming any structural bit mapping has been validated by a live engine.
 

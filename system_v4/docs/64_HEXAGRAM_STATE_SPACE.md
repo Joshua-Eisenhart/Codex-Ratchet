@@ -1,6 +1,7 @@
-# [Proposal scaffold] The 64 Engine State Space (Hexagrams)
+# [Proposal scaffold] The 64 Structural Configuration Scaffold
 
 > **WARNING**: This table functions as a useful structural scaffold, but it currently hard-codes provisional binary meanings for `Ax3` (Spinor Phase), `Ax4` (Process Loop traversal), and `Ax5` (Torus Hysteresis). Given that these axes are still under active operationalization in the probe lane, this document is explicitly fenced as a proposal table, NOT authoritative canonical state-space truth.
+> **Language warning:** The retained I Ching labels in this file are historical correlation tags only. They are not primary mathematical ontology.
 
 This document proposes a mapping from the 6 binary structural DOFs (Ax1-Ax6) onto 64 distinct structural configurations of the constraint manifold.
 The engines are hypothesized to traverse this 64-state space along the entropy gradient (Ax0), but the runtime-to-structure bridge remains incomplete.
@@ -23,7 +24,7 @@ The current proposal maps the 6 axes into two mutually irreducible trigrams:
 
 ## The 64 Configurations
 
-| Hex | Binary | L6 (Ax2) | L5 (Ax1) | L4 (Ax4) | L3 (Ax3) | L2 (Ax5) | L1 (Ax6) | I Ching Hexagram |
+| State | Binary | L6 (Ax2) | L5 (Ax1) | L4 (Ax4) | L3 (Ax3) | L2 (Ax5) | L1 (Ax6) | Legacy I Ching Correlation |
 |:---:|:---:|---|---|---|---|---|---|---|
 | 00 | `000000` | 0 | 0 | 0 | 0 | 0 | 0 | **2**: Kun (Field) |
 | 01 | `000001` | 0 | 0 | 0 | 0 | 0 | 1 | **24**: Fu (Return) |
@@ -91,4 +92,4 @@ The current proposal maps the 6 axes into two mutually irreducible trigrams:
 | 63 | `111111` | 1 | 1 | 1 | 1 | 1 | 1 | **1**: Qian (Creative) |
 
 ---
-*Context: Ax0 is the Drive that pushes the system through these 64 structural states.*
+*Context: Ax0 is the Drive that pushes the system through these 64 structural states. Historical I Ching labels above are optional correlation tags only.*

@@ -3,6 +3,8 @@
 **Date:** 2026-03-27
 **Purpose:** This index definitively separates mathematically secured geometric constraints from provisional structural hypotheses. Controllers and Agents MUST filter all queries through this map to avoid returning false structural closures or experimental probe wins as established canon.
 
+> **Language rule:** I Ching, trigram, hexagram, yin/yang, and Jungian labels are downstream correlation or metaphor tags only. They are not primary mathematical authority surfaces.
+
 ---
 
 ## 🟢 TIER 1: CONTROLLER-SAFE (Empirical Guardrails)
@@ -16,7 +18,7 @@ These documents represent secured geometric rules, process failures to avoid, an
 - `system_v4/docs/64_RUNTIME_ENGINE_TABLE.md` (The *actual* 64-step live execution array, limited to 4 operator slots)
 
 ## 🟡 TIER 2: PROPOSAL SCAFFOLDS (Not Canon)
-These documents map the 8x8 Trigram structure and 64 hexagrams. They are mathematically elegant but rely on un-secured bindings for Ax3, Ax4, and Ax5. **DO NOT** use these to claim zero-conflation or full geometric closure.
+These documents map a proposed 8x8 structural decomposition and 64-state scaffold. Their I Ching/trigram language is correlation shorthand only, not primary ontology. They rely on un-secured bindings for Ax3, Ax4, and Ax5. **DO NOT** use these to claim zero-conflation or full geometric closure.
 
 - `system_v4/docs/64_HEXAGRAM_STATE_SPACE.md` (Proposed structural mapping, NOT a live reflection)
 - `system_v4/docs/THE_8X8_ENGINE_MAPPING.md` (Current best topological decomposition, provisional only)

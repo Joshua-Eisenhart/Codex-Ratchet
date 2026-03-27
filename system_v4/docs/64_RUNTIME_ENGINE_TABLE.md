@@ -1,7 +1,7 @@
 # [Live runtime truth] 64-Step Runtime Engine Table
 
 This is the live execution table generated from `engine_core.py`.
-It is not the same object as the 64 structural hexagram/state-space table.
+It is not the same object as the 64 structural state-space scaffold.
 
 Shape:
 - `2 engine types × 8 terrains × 4 operator slots = 64 runtime steps`

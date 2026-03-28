@@ -13,6 +13,33 @@
 
 ---
 
+## 0. SOURCE-GROUNDED MATH ANCHORS
+
+This chart is downstream of the refined-fuel constraint ladder. The math surfaces below are the things this atlas is trying to correlate, not replace.
+
+| Math object | Source-grounded claim | Current chart consequence |
+|---|---|---|
+| Topology4 | `Se`, `Ne`, `Ni`, `Si` are proposed as 4 real QIT / geometry flow classes | the topology rows in this atlas are not arbitrary labels |
+| Loop families | inner = Hopf fiber loop, outer = lifted base loop on `S^3 / SU(2)` | outer / inner in this atlas are meant to correlate to real loop families |
+| Weyl relation | the same 8 macro-stages exist before choosing left vs right chirality; chirality orients them together | `Type-1 / Type-2` and `*-in / *-out` are correlation surfaces, not yet a closed theorem |
+| Operator class | inductive / deductive is ordering of unitary vs non-unitary CPTP action | `FeTi / TeFi` loop-family language must stay answerable to QIT ordering math |
+
+| Topology | Refined-fuel math class | Geometry | Terrain pair |
+|---|---|---|---|
+| `Se` | dissipative Lindblad radial expansion | outward radial flow on Bloch ball | `Funnel / Cannon` |
+| `Ne` | Hamiltonian-dominated tangential circulation | divergence-free circulation on `S^3` / Hopf-torus side | `Vortex / Spiral` |
+| `Ni` | dissipative Lindblad contraction / attraction | inward radial contraction to attractor | `Pit / Source` |
+| `Si` | commuting Hamiltonian plus invariant subspaces | stratified retention / invariant terraces | `Hill / Citadel` |
+
+| Loop / operator source | Refined-fuel math claim |
+|---|---|
+| Loop math | inner = Hopf fiber loop, outer = lifted base loop |
+| 8-stage claim | `4` stages on each loop = `8` macro-stages before chirality choice |
+| QIT operator math | `U E U E` vs `E U E U` are the two QIT-distinct closed words |
+| Axis-4 math role | operator ordering acts on already-existing stages; it does not create the stage partition |
+
+---
+
 ## 1. GLOBAL LOCKS
 
 | Layer | Type-1 | Type-2 |
@@ -63,7 +90,7 @@ Ni ──Ax2── Si
 
 ---
 
-## 4. TERRAINS (8)
+## 4. TERRAINS (8 chart objects)
 
 | # | Terrain | Topology | Flux | Engine family |
 |---|---|---|---|---|
@@ -75,6 +102,8 @@ Ni ──Ax2── Si
 | T6 | `Si-out` | Si | OUT | Type-2 |
 | T7 | `Ni-out` | Ni | OUT | Type-2 |
 | T8 | `Ne-out` | Ne | OUT | Type-2 |
+
+Source-grounded reading: the refined-fuel ladder strongly supports `4` real topology classes. This atlas’s `8` terrains are the current chart correlation for those `4` under two engine orientations.
 
 ---
 
@@ -171,17 +200,17 @@ Hexagram labels may be attached to `S01-S64` as schedule tags only. They do not 
 
 ---
 
-## 11. AXIS OVERLAY
+## 11. AXIS GROUNDING STATUS
 
-| Axis | Grammar layer | What it governs |
+| Axis | Current best read | Grounding status |
 |---|---|---|
-| Ax0 | Graph edge | Ne/Ni vs Se/Si |
-| Ax1 | Graph edge (cross) | Se/Ni vs Ne/Si |
-| Ax2 | Graph edge | Se/Ne vs Si/Ni |
-| Ax3 | IGT | IN flux vs OUT flux *(scaffold — not closed by proof)* |
-| Ax4 | Jung | FeTi (deductive) vs TeFi (inductive) |
-| Ax5 | IGT | First strategy (Te/Ti) vs second (Fe/Fi) |
-| Ax6 | Jung | UP (operator first) vs DOWN (terrain first) |
+| Ax0 | graph-edge / topology-partition helper | chart-level candidate only |
+| Ax1 | open vs closed boundary, with source naming drift against isothermal / adiabatic wording | source-grounded but not cleanly named |
+| Ax2 | expansion vs compression | strongest source-grounded axis read |
+| Ax3 | open: source math supports chirality / flux orientation; alternative proposal is outer vs inner | unresolved, do not close here |
+| Ax4 | QIT ordering class: inductive vs deductive; chart correlates this to `FeTi / TeFi` | strongest source-grounded operator axis |
+| Ax5 | first vs second strategy (`T` vs `F`) | chart / IGT correlation only |
+| Ax6 | precedence: operator first vs terrain first (`UP / DOWN`) | chart / Jung correlation only |
 
 ---
 
@@ -214,6 +243,7 @@ Hexagram labels may be attached to `S01-S64` as schedule tags only. They do not 
 - `outer / inner ≠ Ax3`
 - `I Ching labels ≠ ontology`
 - `correlations ≠ proof`
+- `8` chart terrains ≠ closed theorem of Weyl geometry
 - `runtime step ids ≠ schedule-slot ids`
 - `schedule-slot ids ≠ structural line meanings`
 - `thermodynamics = search metaphor, not literal`
@@ -242,4 +272,131 @@ Hexagram labels may be attached to `S01-S64` as schedule tags only. They do not 
 - Loop traversal order is Carnot-grounded and graph-derived, but not yet proven by directional sim.
 - Apple Notes dump contains older loop-order blocks; this chart follows the Ax0/Ax2 graph order.
 - Exact Carnot-cylinder stroke accounting is still open — do not smuggle in as settled.
+- The 48 non-starred cells in the 8×8 grid are schedule slots, not runtime claims.
+
+---
+
+## 15. BASE TOPOLOGY MATH (4 flow classes)
+
+**Source:** `constraint ladder/Axis 1 2 topology math…md`
+
+The 4 topologies are 4 inequivalent flow geometries on S³, classified by two independent binary distinctions: expansion vs compression, and isothermal (open) vs adiabatic (closed).
+
+| Topology | Exp/Comp | Iso/Adi | Generator | Bloch vector equation | Terrain pair |
+|---|---|---|---|---|---|
+| Se | Expansion | Isothermal | Dissipative Lindblad (depolarizing) | `ṙ = −λr` (radial decay) | **Funnel / Cannon** |
+| Ne | Expansion | Adiabatic | Unitary Hamiltonian | `ṙ = 2h × r` (pure rotation) | **Vortex / Spiral** |
+| Ni | Compression | Isothermal | Dissipative Lindblad (amplitude damping) | `ṙ_z = −γ(r_z+1)`, `ṙ_{x,y} = −γr/2` | **Pit / Source** |
+| Si | Compression | Adiabatic | Commuting Hamiltonian `[H, P_i] = 0` | `ρ(t) = ρ(0)` within invariant blocks | **Hill / Citadel** |
+
+### Feature matrix
+
+| Feature | Se | Ne | Ni | Si |
+|---|---|---|---|---|
+| Lindblad dissipator | ✔ | ✗ | ✔ | ✗ |
+| Hamiltonian flow | ✗ | ✔ | ✗ | ✔ |
+| Divergence ≠ 0 | ✔ | ✗ | ✔ | ✗ |
+| Attractors exist | ✗ | ✗ | ✔ | ✗ |
+| Circulation | ✗ | ✔ | ✗ | ✗ |
+| Invariant strata | ✗ | ✗ | ✗ | ✔ |
+
+**Key partition:** Se/Ni = dissipative (Lindblad). Ne/Si = Hamiltonian (unitary or commuting).
+
+---
+
+## 16. WEYL SPINOR GROUNDING
+
+**Source:** `constraint ladder/Axis 3 math Hopf fiber loop…md`
+
+### What a generalized spinor provides
+
+On `SU(2) ≅ S³`, two intrinsic loop families exist before any operator acts:
+
+| Loop | Math name | Engine name | Closure | Changes Bloch vector |
+|---|---|---|---|---|
+| **Hopf fiber** | U(1) vertical fiber, `ψ → e^{iθ}ψ` | Inner loop | 360° | No |
+| **Lifted base loop** | Horizontal lift of S² loop into S³ | Outer loop | 720° | Yes (carries Berry phase) |
+
+### How 4 topologies arise
+
+The same constraint-ladder file (line 260-296) shows that on either loop family, exactly **two independent binary distinctions** exist without adding structure:
+
+1. **Expansion vs compression** (radial accessibility)
+2. **Open vs closed** (boundary condition / isothermal vs adiabatic)
+
+2 × 2 = 4 stages per loop. Both loops admit the same 4.
+
+So: **4 topologies × 2 loops = 8 stages per engine.** This is topology, not operator dynamics.
+
+### How 8 terrains arise
+
+Left/right Weyl chirality selects Hamiltonian sign:
+
+| Engine | Weyl sector | Hamiltonian |
+|---|---|---|
+| Type-1 | Left | `H = +n·σ` |
+| Type-2 | Right | `H = −n·σ` |
+
+Lindblad operators are the **same** for both: `Se=σ_z`, `Si=σ_−`, `Ne=σ_x`, `Ni=σ_y`.
+
+**Only the unitary flow direction differs.** Same dissipation, opposite orientation. 4 topologies × 2 chiralities = 8 terrains.
+
+**Source sentence** (Apple Notes 9849): *"Type-1 and Type-2 terrains are identical Lindblad dissipative structures distinguished solely by opposite Weyl chirality of the Hamiltonian, resulting in mirrored unitary flow on the same four terrain geometries."*
+
+---
+
+## 17. OPERATOR MATH (CPTP composition)
+
+**Source:** `constraint ladder/Axis 4 qit math…md`
+
+### Two operator classes
+
+| Class | Type | Properties |
+|---|---|---|
+| **U** (unitary channel) | `U(ρ) = UρU†` | Spectrum-preserving, entropy-preserving, SU(d) |
+| **E** (non-unitary CPTP) | `E(ρ) = Σ K_k ρ K_k†` | Spectrum-changing, entropy-changing, convex cone |
+
+These do not commute: `U ∘ E ≠ E ∘ U`.
+
+### Two loop words (Axis 4)
+
+| Loop | Operator word | Constraint-ladder topology order |
+|---|---|---|
+| **Inductive** | `U ∘ E ∘ U ∘ E` | Ne → Ni → Se → Si |
+| **Deductive** | `E ∘ U ∘ E ∘ U` | Ne → Si → Se → Ni |
+
+**Note:** The constraint-ladder traversal order (starting at Ne) differs from the current chart lock (starting at Se). This discrepancy is real and unresolved — see Open Items.
+
+### Topology ↔ operator class mapping
+
+| Topology | Generator class | Why |
+|---|---|---|
+| Ne | Unitary (U) | Hamiltonian tangential circulation |
+| Si | Unitary (U) | Commuting Hamiltonian, invariant subspaces |
+| Se | Non-unitary (E) | Dissipative Lindblad, radial expansion |
+| Ni | Non-unitary (E) | Dissipative Lindblad, radial contraction |
+
+So the loop word `U ∘ E ∘ U ∘ E` means: unitary stage → dissipative stage → unitary stage → dissipative stage. Alternating.
+
+---
+
+## 18. TERRAIN NAMING (source-anchored)
+
+| Topology | Constraint ladder name (strongest) | Apple Notes T1 name | Apple Notes T2 name |
+|---|---|---|---|
+| Se | Funnel / Cannon | Inward funnel | Outward cannon |
+| Ne | Vortex / Spiral | Spiral-in | Spiral-out |
+| Ni | Pit / Source | Pit (collapse) | Source (emergence) |
+| Si | Hill / Citadel | Hill (accumulation) | Basin (release) |
+
+**Si-out conflict:** Apple Notes (8456) says "Basin". Constraint ladder says "Citadel" is on the Si side. These have not been reconciled.
+
+---
+
+## Updated Open / Disputed Items
+
+- Loop traversal order: Chart uses `Se→…` (Ax0/Ax2 graph). Constraint ladder uses `Ne→…`. Both are 4-node Hamiltonian cycles. Different starting topology AND different edge walk — this is a real structural mismatch, not just a rotation.
+- Ax3: Chart fences as scaffold. Constraint ladder says chirality/Weyl sign. New proposal (Ax3 = outer/inner) is collision-free but not settled.
+- The constraint ladder says "Axis 4 does not define stages, it determines how operators act on them." The chart bakes operators into stages. This is a layer-ordering question.
+- Si-out terrain name: "Basin" vs "Citadel" — not reconciled.
 - The 48 non-starred cells in the 8×8 grid are schedule slots, not runtime claims.

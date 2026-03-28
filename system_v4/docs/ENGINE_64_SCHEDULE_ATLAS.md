@@ -15,44 +15,35 @@
 
 ## 0. SOURCE GROUNDING (owner docs only)
 
-| Concern | Strongest owner source | Safe read now |
+| Concern | Strongest owner source | Exact owner status |
 |---|---|---|
-| 4 topology math | `core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 1 2 topology math...md` | `Se`, `Ne`, `Ni`, `Si` are proposed as 4 real QIT / geometry flow classes |
-| generalized-spinor loop structure | `core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 3 math Hopf fiber loop vs lifted base loop.md` | 8 stages exist before chirality choice: 4 on Hopf fiber loop + 4 on lifted base loop |
-| Terrain8 pipeline | `core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md` and `core_docs/a1_refined_Ratchet Fuel/sims/SIM_RUNBOOK_v1.4.md` | `Terrain8 = Topology4 × Flux2` is an owner-surface proposal |
-| explicit in/out terrain names | `core_docs/a2_feed_high entropy doc/axes math. apple notes dump.txt` | one explicit Type-1 / Type-2 terrain naming surface, not the only alias layer |
+| `Topology4` math | `core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 1 2 topology math...md` | owner math explicitly defines `Se`, `Ne`, `Ni`, `Si` as 4 topology / flow classes |
+| pre-chirality stage structure | `core_docs/a1_refined_Ratchet Fuel/constraint ladder/Axis 3 math Hopf fiber loop vs lifted base loop.md` | owner math explicitly says `8` stages exist before left/right Weyl choice: `4` on Hopf fiber loop + `4` on lifted base loop |
+| `Terrain8` pipeline | `core_docs/a1_refined_Ratchet Fuel/AXIS_FOUNDATION_COMPANION_v1.4.md` | owner companion proposes `Terrain8 = Topology4 × Flux2` as overlay / candidate menu, not closed derivation |
 
-| Topology | Strongest source-grounded math read | Strongest owner pair name | Apple Notes Type-1 / Type-2 names |
-|---|---|---|---|
-| `Se` | dissipative Lindblad radial expansion | `Funnel / Cannon` | `Inward funnel` / `Outward cannon` |
-| `Ne` | Hamiltonian tangential circulation on `S^3` / Hopf side | `Vortex / Spiral` | `Spiral-in` / `Spiral-out` |
-| `Ni` | dissipative Lindblad attraction / contraction | `Pit / Source` | `Pit (collapse)` / `Source (emergence)` |
-| `Si` | commuting Hamiltonian plus invariant subspaces | `Hill / Citadel` | `Hill (accumulation)` / `Basin (release)` |
-
-| Generalized-spinor claim | Safe read now |
-|---|---|
-| pre-chirality stage structure | the same 8 stages exist before choosing left- vs right-handed Weyl representation |
-| inner loop | Hopf fiber loop, `U(1)` fiber circulation, 4 stages |
-| outer loop | lifted base loop, horizontal transport on `S^3`, 4 stages |
-| chirality / flux | chirality orients engine type; it does not create new base topologies |
-
-| Type-1 vs Type-2 geometry | Safe read now |
-|---|---|
-| shared carrier | same Weyl-spinor / `SU(2) ≅ S^3` carrier family |
-| shared topology basis | same `Se`, `Ne`, `Ni`, `Si` topology classes |
-| shared loop basis | same Hopf-fiber and lifted-base loop families |
-| what differs | engine-wide orientation / chirality / flux realization across the same topology set |
-| chart correlation | Type-1 correlates to `*-in`, Type-2 correlates to `*-out` |
-| safest pattern | `Terrain8 = Topology4 x orientation`, not 8 unrelated topology kinds |
-
-| Terrain8 correlation | Type-1 | Type-2 |
+| Topology | Exact owner pair name | Exact owner math read |
 |---|---|---|
-| `Se` family | `Se-in` | `Se-out` |
-| `Ne` family | `Ne-in` | `Ne-out` |
-| `Ni` family | `Ni-in` | `Ni-out` |
-| `Si` family | `Si-in` | `Si-out` |
+| `Se` | `Funnel / Cannon` | radial expansion; dissipative Lindblad / CPTP expansion |
+| `Ne` | `Vortex / Spiral` | tangential Hamiltonian circulation on `S^3`; Hopf-fiber-tangent flow |
+| `Ni` | `Pit / Source` | radial contraction; dissipative Lindblad attraction / cooling |
+| `Si` | `Hill / Citadel` | stratified retention; commuting Hamiltonian plus invariant subspaces |
 
-The atlas keeps neutral IDs (`Se-in`, `Se-out`, etc.) because the owner docs do not yet give one fully unified 8-name canon. Refined-fuel and Apple Notes use overlapping but non-identical naming layers.
+| Generalized-spinor claim | Exact owner read |
+|---|---|
+| same stages before chirality | both left- and right-handed engines have the same `8` stages |
+| inner loop | Hopf fiber loop, `U(1)` fiber circulation, `4` stages |
+| outer loop | lifted base loop, horizontal loop on `S^3`, `4` stages |
+| chirality / flux | selects engine type and orients all stages together; does not create new base stages |
+
+| `Terrain8` overlay claim | Exact companion status |
+|---|---|
+| `Flux2` | chirality / Berry-flux sign |
+| top-level formula | `Terrain8 = Topology4 × Flux2` |
+| intended meaning | same base topology family, opposite flux sign / orientation |
+| math examples offered | Hamiltonian sign flip, damping ↔ pumping, jump-operator swap |
+| status | candidate mapping menu; not yet a reconciled terrain-equation theorem in the owner ladder |
+
+This atlas keeps neutral IDs (`Se-in`, `Se-out`, etc.) because the refined-fuel owner ladder cleanly locks `Topology4`, but does not yet give one final reconciled equation table for all `8` terrain variants.
 
 ---
 
@@ -61,16 +52,17 @@ The atlas keeps neutral IDs (`Se-in`, `Se-out`, etc.) because the owner docs do 
 | Object | Count | Meaning |
 |---|---|---|
 | base terrain families | `4` | `Se`, `Ne`, `Ni`, `Si` as shared topology classes |
-| macro-stages per spinor | `8` | `4` terrains x `2` loops |
-| orientation-tagged terrain IDs | `8` | `4` terrains x `2` Weyl orientations (`in/out`) |
-| total macro-stage realizations across both spinors | `16` | `4` terrains x `2` loops x `2` orientations |
+| macro-stages per spinor | `8` | `4` terrain families x `2` loops |
+| chart terrain IDs | `8` | `4` terrain families x `2` orientation tags (`in/out`) |
+| total macro-stage realizations across both spinors | `16` | `4` terrain families x `2` loops x `2` orientations |
 
-So:
+So, in the current atlas:
 
 - `Se` is the same terrain family on both loops
 - outer `Se` and inner `Se` are different stage realizations on the same terrain
 - left/right or Type-1/Type-2 does not create new topology classes
 - left/right changes how the same terrain family is oriented and enacted
+- the `in/out` IDs below are chart tags for that orientation layer, not a closed owner-equation table by themselves
 
 | Terrain family | Source-grounded math | Left / Type-1 outer | Left / Type-1 inner | Right / Type-2 outer | Right / Type-2 inner |
 |---|---|---|---|---|---|
@@ -89,69 +81,19 @@ This is the actual per-terrain mapping:
 
 ## 0C. EXPLICIT TERRAIN EQUATIONS
 
-**Source:** `axes math. apple notes dump.txt` lines 9695-9761 (Lindblad operators + Hamiltonian sign)
-
-Master equation form for every terrain:
-
-`dρ/dt = -i[H, ρ] + γ(L ρ L† − ½{L†L, ρ})`
-
-### Hamiltonian sign (chirality)
-
-| Chirality | Hamiltonian |
+| Question | Owner-ladder status |
 |---|---|
-| Type-1 (left Weyl) | `H_L = +n·σ` |
-| Type-2 (right Weyl) | `H_R = −n·σ` |
+| Is there a reconciled owner-equation table for all `8` terrain variants? | No. Not yet in the refined-fuel ladder. |
+| What does the owner companion provide? | `Terrain8 = Topology4 × Flux2` plus candidate examples of flux reversal: Hamiltonian sign flip, damping ↔ pumping, jump-operator swap. |
+| Where does an explicit `8`-row equation sketch currently live? | In the high-entropy Apple Notes intake, not in the owner ladder. |
+| Should that intake sketch be treated as kernel-grounded truth here? | No. It needs re-derivation against the refined-fuel `Topology4` math before promotion. |
 
-### Lindblad operators (topology family)
+So the owner-grounded state is:
 
-| Topology | Lindblad operator `L` | Effect |
-|---|---|---|
-| Se | `√γ σ_z` | dephasing in computational basis |
-| Ne | `√γ σ_x` | bit-flip mixing |
-| Ni | `√γ σ_y` | phase-flip with rotation |
-| Si | `√γ σ_−` (`= \|0⟩⟨1\|`) | amplitude damping |
-
-### The 8 terrain equations
-
-| Terrain | Name | Equation |
-|---|---|---|
-| `Se-in` | Funnel | `dρ/dt = -i[+n·σ, ρ] + γ(σ_z ρ σ_z − ρ)` |
-| `Se-out` | Cannon | `dρ/dt = -i[−n·σ, ρ] + γ(σ_z ρ σ_z − ρ)` |
-| `Ne-in` | Vortex | `dρ/dt = -i[+n·σ, ρ] + γ(σ_x ρ σ_x − ρ)` |
-| `Ne-out` | Spiral | `dρ/dt = -i[−n·σ, ρ] + γ(σ_x ρ σ_x − ρ)` |
-| `Ni-in` | Pit | `dρ/dt = -i[+n·σ, ρ] + γ(σ_y ρ σ_y − ρ)` |
-| `Ni-out` | Source | `dρ/dt = -i[−n·σ, ρ] + γ(σ_y ρ σ_y − ρ)` |
-| `Si-in` | Hill | `dρ/dt = -i[+n·σ, ρ] + γ(σ_− ρ σ_+ − ½{σ_+σ_−, ρ})` |
-| `Si-out` | Citadel | `dρ/dt = -i[−n·σ, ρ] + γ(σ_− ρ σ_+ − ½{σ_+σ_−, ρ})` |
-
-### What in/out changes per pair
-
-| Pair | Same `L` | Different `H` | Geometric meaning |
-|---|---|---|---|
-| Funnel / Cannon | `σ_z` | `+n·σ` vs `−n·σ` | same dephasing, opposite unitary rotation |
-| Vortex / Spiral | `σ_x` | `+n·σ` vs `−n·σ` | same mixing, opposite-handed circulation |
-| Pit / Source | `σ_y` | `+n·σ` vs `−n·σ` | same phase-twist, opposite rotational contraction |
-| Hill / Citadel | `σ_−` | `+n·σ` vs `−n·σ` | same amplitude damping, opposite unitary flow |
-
-### Flux current
-
-`J(ρ) = (i/ℏ)[ρ, H]`
-
-Type-1: `J_L(ρ) = (i/ℏ)[ρ, +n·σ]`
-Type-2: `J_R(ρ) = (i/ℏ)[ρ, −n·σ] = −J_L(ρ)`
-
-So flux = sign of the flow generator. Left/right Weyl gives opposite orientation of the same flow.
-
-### Feature matrix
-
-| Feature | Se | Ne | Ni | Si |
-|---|---|---|---|---|
-| Lindblad dissipator | ✔ | ✔ | ✔ | ✔ |
-| Hamiltonian flow | ✔ | ✔ | ✔ | ✔ |
-| Divergence ≠ 0 (dissipative only) | Se ✔ | Ne ✗ (pure rotation if γ→0) | Ni ✔ | Si ✗ (stratified if γ→0) |
-| Attractors exist | ✗ | ✗ | ✔ | ✗ |
-| Circulation | ✗ | ✔ | ✗ | ✗ |
-| Invariant strata | ✗ | ✗ | ✗ | ✔ |
+- `Topology4` math is explicit.
+- pre-chirality `8` stages are explicit.
+- `Terrain8 = Topology4 × Flux2` is explicit as overlay / candidate.
+- a final owner-reconciled equation table for all `8` terrain variants is still missing.
 
 ---
 

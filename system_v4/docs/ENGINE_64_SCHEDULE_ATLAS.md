@@ -79,21 +79,59 @@ This is the actual per-terrain mapping:
 
 ---
 
-## 0C. EXPLICIT TERRAIN EQUATIONS
+## 0C. TERRAIN MATH
 
-| Question | Owner-ladder status |
-|---|---|
-| Is there a reconciled owner-equation table for all `8` terrain variants? | No. Not yet in the refined-fuel ladder. |
-| What does the owner companion provide? | `Terrain8 = Topology4 × Flux2` plus candidate examples of flux reversal: Hamiltonian sign flip, damping ↔ pumping, jump-operator swap. |
-| Where does an explicit `8`-row equation sketch currently live? | In the high-entropy Apple Notes intake, not in the owner ladder. |
-| Should that intake sketch be treated as kernel-grounded truth here? | No. It needs re-derivation against the refined-fuel `Topology4` math before promotion. |
+### Math stack
 
-So the owner-grounded state is:
+```text
+Hamiltonian:       H± = ±(n_x σ_x + n_y σ_y + n_z σ_z)
+Lindblad dissipator: D[L](ρ) = L ρ L† − ½{L†L, ρ}
+```
 
-- `Topology4` math is explicit.
-- pre-chirality `8` stages are explicit.
-- `Terrain8 = Topology4 × Flux2` is explicit as overlay / candidate.
-- a final owner-reconciled equation table for all `8` terrain variants is still missing.
+### 4 topology classes
+
+| Topology | Generator class | Generator form |
+|---|---|---|
+| Se | **dissipative** | `D[L_Se](ρ)` with orientation split |
+| Ne | **Hamiltonian** | `-i[H±, ρ]` |
+| Ni | **dissipative** | `D[L_Ni](ρ)` with orientation split |
+| Si | **Hamiltonian (commuting)** | `-i[H±, ρ]` where `[H±, P_i] = 0` |
+
+Candidate Lindblad operators:
+
+```text
+L_Se ~ √γ σ_z     (dephasing / radial expansion)
+L_Ni ~ √γ σ_y     (phase-twist / radial contraction)
+```
+
+### 8 terrain equations
+
+| Terrain | Name | Perceiving | Generator |
+|---|---|---|---|
+| `Se-in` | Funnel | Se | `D[L_Se](ρ)` + `H+` orientation |
+| `Se-out` | Cannon | Se | `D[L_Se](ρ)` + `H−` orientation |
+| `Ne-in` | Vortex | Ne | `dρ/dt = -i[H+, ρ]` |
+| `Ne-out` | Spiral | Ne | `dρ/dt = -i[H−, ρ]` |
+| `Ni-in` | Pit | Ni | `D[L_Ni](ρ)` + `H+` orientation |
+| `Ni-out` | Source | Ni | `D[L_Ni](ρ)` + `H−` orientation |
+| `Si-in` | Hill | Si | `dρ/dt = -i[H+, ρ]`, `[H+, P_i] = 0` |
+| `Si-out` | Citadel | Si | `dρ/dt = -i[H−, ρ]`, `[H−, P_i] = 0` |
+
+### What in/out changes per pair
+
+| Pair | Same | Different |
+|---|---|---|
+| Funnel / Cannon | `L_Se` | `H+` vs `H−` |
+| Vortex / Spiral | — | `H+` vs `H−` (opposite-handed circulation) |
+| Pit / Source | `L_Ni` | `H+` vs `H−` |
+| Hill / Citadel | `[H, P_i] = 0` structure | `H+` vs `H−` |
+
+### Status
+
+- Pauli matrices as operator basis: **real, standard QIT**
+- `H+` vs `H−` as opposite orientation: **real**
+- 4 topologies × 2 orientations = 8 terrains: **coherent as engine model**
+- exact `L` operator choices per dissipative terrain: **candidate, needs sim testing**
 
 ---
 

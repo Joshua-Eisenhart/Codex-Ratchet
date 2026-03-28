@@ -79,59 +79,54 @@ This is the actual per-terrain mapping:
 
 ---
 
-## 0C. TERRAIN MATH
+## 0C. CANDIDATE TERRAIN REALIZATIONS
+
+This section presents **one candidate QIT realization** of the `Terrain8 = Topology4 × Flux2` overlay. It is not settled math. The owner companion lists multiple flux-split mechanisms; this selects one.
 
 ### Math stack
 
 ```text
-Hamiltonian:       H± = ±(n_x σ_x + n_y σ_y + n_z σ_z)
+Hamiltonian:         H₀ = n_x σ_x + n_y σ_y + n_z σ_z
+Sign parameter:      s = +1 (Type 1) or s = -1 (Type 2)
 Lindblad dissipator: D[L](ρ) = L ρ L† − ½{L†L, ρ}
 ```
 
-### 4 topology classes
+### 4 topology classes (source-grounded)
 
 | Topology | Generator class | Generator form |
 |---|---|---|
-| Se | **dissipative** | `D[L_Se](ρ)` with orientation split |
-| Ne | **Hamiltonian** | `-i[H±, ρ]` |
-| Ni | **dissipative** | `D[L_Ni](ρ)` with orientation split |
-| Si | **Hamiltonian (commuting)** | `-i[H±, ρ]` where `[H±, P_i] = 0` |
+| Se | **dissipative** | `D` dominant, small `H` correction |
+| Ne | **Hamiltonian** | `-is[H₀, ρ]` dominant, small `D` correction |
+| Ni | **dissipative** | `D` dominant, small `H` correction |
+| Si | **Hamiltonian (commuting)** | `-is[H_C, ρ]` where `[H_C, P_i] = 0`, plus projector dissipation |
 
-Candidate Lindblad operators:
+### Candidate 8-terrain equations
 
-```text
-L_Se ~ √γ σ_z     (dephasing / radial expansion)
-L_Ni ~ √γ σ_y     (phase-twist / radial contraction)
-```
-
-### 8 terrain equations
-
-| Terrain | Name | Perceiving | Generator |
+| Engine | Terrain | Name | Candidate generator |
 |---|---|---|---|
-| `Se-in` | Funnel | Se | `D[L_Se](ρ)` + `H+` orientation |
-| `Se-out` | Cannon | Se | `D[L_Se](ρ)` + `H−` orientation |
-| `Ne-in` | Vortex | Ne | `dρ/dt = -i[H+, ρ]` |
-| `Ne-out` | Spiral | Ne | `dρ/dt = -i[H−, ρ]` |
-| `Ni-in` | Pit | Ni | `D[L_Ni](ρ)` + `H+` orientation |
-| `Ni-out` | Source | Ni | `D[L_Ni](ρ)` + `H−` orientation |
-| `Si-in` | Hill | Si | `dρ/dt = -i[H+, ρ]`, `[H+, P_i] = 0` |
-| `Si-out` | Citadel | Si | `dρ/dt = -i[H−, ρ]`, `[H−, P_i] = 0` |
+| Type 1 | `Se-in` | Funnel | `Σ_k D[L_k](ρ) − i ε_F [H₀, ρ]` |
+| Type 1 | `Ne-in` | Vortex | `−i[H₀, ρ] + ε_V Σ_k D[L_k](ρ)` |
+| Type 1 | `Ni-in` | Pit | `D[L_P](ρ) − i ε_P [H₀, ρ]` |
+| Type 1 | `Si-in` | Hill | `−i[H_C, ρ] + Σ_j κ_j (P_j ρ P_j − ½(P_j ρ + ρ P_j))` |
+| Type 2 | `Se-out` | Cannon | `Σ_k D[L_k](ρ) + i ε_F [H₀, ρ]` |
+| Type 2 | `Ne-out` | Spiral | `+i[H₀, ρ] + ε_V Σ_k D[L_k](ρ)` |
+| Type 2 | `Ni-out` | Source | `D[L_P](ρ) + i ε_P [H₀, ρ]` |
+| Type 2 | `Si-out` | Citadel | `+i[H_C, ρ] + Σ_j κ_j (P_j ρ P_j − ½(P_j ρ + ρ P_j))` |
 
-### What in/out changes per pair
+Type 1 vs Type 2 differs **only** by the sign of `i` in the commutator (equivalently `H → −H`).
 
-| Pair | Same | Different |
-|---|---|---|
-| Funnel / Cannon | `L_Se` | `H+` vs `H−` |
-| Vortex / Spiral | — | `H+` vs `H−` (opposite-handed circulation) |
-| Pit / Source | `L_Ni` | `H+` vs `H−` |
-| Hill / Citadel | `[H, P_i] = 0` structure | `H+` vs `H−` |
+### Flux-split mechanism (not yet closed)
 
-### Status
+The owner companion lists multiple candidate flux-split mechanisms:
 
-- Pauli matrices as operator basis: **real, standard QIT**
-- `H+` vs `H−` as opposite orientation: **real**
-- 4 topologies × 2 orientations = 8 terrains: **coherent as engine model**
-- exact `L` operator choices per dissipative terrain: **candidate, needs sim testing**
+| Mechanism | Used here |
+|---|---|
+| Hamiltonian sign flip (`H → −H`) | ✔ selected for Ne/Si |
+| Damping ↔ pumping | not selected |
+| Jump-operator swap | not selected |
+| Orientation of dissipative flow | ✔ selected for Se/Ni via `±i ε[H,ρ]` |
+
+This is **one candidate realization**, not the only one. Exact `L` operators and `ε` parameters need sim testing.
 
 ---
 
@@ -323,7 +318,8 @@ Hexagram labels may be attached to `S01-S64` as schedule tags only. They do not 
 | lose per engine | 2 |
 | Signed operators per engine | 8 (4 ops × 2 signs) |
 | Chart-locked macro-stages | 16 (starred cells in grid) |
-| Terrains overlap between engines | 0 |
+| Chart terrain IDs shared between engines | 0 (`Se-in` ≠ `Se-out`) |
+| Terrain families shared between engines | 4 (`Se`, `Ne`, `Ni`, `Si` are the same families) |
 
 | Engine | `↑` stages | `↓` stages |
 |---|---|---|

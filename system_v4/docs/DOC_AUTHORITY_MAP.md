@@ -50,3 +50,10 @@ These documents contain severe category errors (treating Ax0 as a binary state, 
 - `system_v4/docs/AXES_0_12_LEGACY_CENSUS.md` (Contains outdated peer-axis ontology)
 - `~/.gemini/antigravity/brain/.../walkthrough.md` (Historical narrative surface, not controller authority)
 - `~/.gemini/antigravity/brain/.../implementation_plan.md` (Historical experimental plan, not structural mandate)
+
+## ⚪ QUARANTINED CODEX SCAFFOLDS
+Any future Codex-derived helper docs, crosswalks, ledgers, or scratch matrices belong under:
+
+- `system_v4/docs/_codex_scaffolds/`
+
+These are non-authority working surfaces only. They must not outrank owner source docs, runtime truth, or the chart front door.

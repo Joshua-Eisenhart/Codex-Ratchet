@@ -113,7 +113,7 @@ Lindblad dissipator: D[L](ρ) = L ρ L† − ½{L†L, ρ}
 | Type 2 | `Ni-out` | Source | `D[L_P](ρ) + i ε_P [H₀, ρ]` |
 | Type 2 | `Si-out` | Citadel | `+i[H_C, ρ] + Σ_j κ_j (P_j ρ P_j − ½(P_j ρ + ρ P_j))` |
 
-Type 1 vs Type 2 differs **only** by the sign of `i` in the commutator (equivalently `H → −H`).
+In this candidate realization, Type 1 vs Type 2 is modeled by flipping the sign of `i` in the commutator (equivalently `H → −H`). Other flux-split mechanisms remain open in owner sources.
 
 ### Flux-split mechanism (not yet closed)
 

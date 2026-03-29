@@ -1,6 +1,6 @@
 # Torus/Chirality Evidence Loop Results
 
-- generated_utc: `2026-03-27T00:20:57Z`
+- generated_utc: `2026-03-29T09:40:45Z`
 - do_not_promote: `True`
 
 ## Verdicts
@@ -11,70 +11,70 @@
 
 | Engine | Torus | ΔΦ_L | ΔΦ_R | Chirality | Entropy |
 |--------|-------|------|------|-----------|---------|
-| Type-1 | default  | -0.5113 | -0.4999 | 0.5814 | 0.9906 |
-| Type-1 | inner    | -0.2326 | -0.5285 | 0.7139 | 0.9788 |
-| Type-1 | clifford | -0.5113 | -0.4999 | 0.5814 | 0.9906 |
-| Type-1 | outer    | -0.6708 | -0.5863 | 0.3303 | 0.9884 |
-| Type-2 | default  | -0.2718 | -0.3132 | 0.7997 | 0.9661 |
-| Type-2 | inner    | -0.0857 | -0.2280 | 0.8896 | 0.9549 |
-| Type-2 | clifford | -0.2718 | -0.3132 | 0.7997 | 0.9661 |
-| Type-2 | outer    | -0.5634 | -0.4691 | 0.5548 | 0.9833 |
+| Type-1 | default  | -0.2286 | -0.2940 | 0.8272 | 0.9680 |
+| Type-1 | inner    | -0.0668 | -0.2231 | 0.8961 | 0.9546 |
+| Type-1 | clifford | -0.2286 | -0.2940 | 0.8272 | 0.9680 |
+| Type-1 | outer    | -0.4741 | -0.4191 | 0.6572 | 0.9865 |
+| Type-2 | default  | -0.2680 | -0.2892 | 0.8172 | 0.9724 |
+| Type-2 | inner    | -0.0862 | -0.2153 | 0.9005 | 0.9635 |
+| Type-2 | clifford | -0.2680 | -0.2892 | 0.8172 | 0.9724 |
+| Type-2 | outer    | -0.5584 | -0.4357 | 0.5852 | 0.9850 |
 
 ## Axis Spread (Torus Effect)
 
 ### Type-1
-- `GA0_entropy`: 0.011820
-- `GA1_boundary`: 0.099410
+- `GA0_entropy`: 0.031925
+- `GA1_boundary`: 0.111807
 - `GA2_scale`: 0.000000
-- `GA3_chirality`: 0.383660
-- `GA4_variance`: 0.207149
-- `GA5_coupling`: 0.247989
-- Max spread: `0.383660`
+- `GA3_chirality`: 0.238916
+- `GA4_variance`: 0.137565
+- `GA5_coupling`: 0.301667
+- Max spread: `0.301667`
 
 ### Type-2
-- `GA0_entropy`: 0.028475
-- `GA1_boundary`: 0.100762
+- `GA0_entropy`: 0.021575
+- `GA1_boundary`: 0.104965
 - `GA2_scale`: 0.000000
-- `GA3_chirality`: 0.334811
-- `GA4_variance`: 0.062617
-- `GA5_coupling`: 0.359364
-- Max spread: `0.359364`
+- `GA3_chirality`: 0.315338
+- `GA4_variance`: 0.095234
+- `GA5_coupling`: 0.346269
+- Max spread: `0.346269`
 
 ## Engine Type Differences (at same torus)
 
 ### inner
-- `GA0_entropy`: 0.023959
-- `GA1_boundary`: 0.001295
+- `GA0_entropy`: 0.008855
+- `GA1_boundary`: 0.000028
 - `GA2_scale`: 0.000000
-- `GA3_chirality`: 0.175639
-- `GA4_variance`: 0.359615
-- `GA5_coupling`: 0.223698
-- Chirality diff: `0.175639`
+- `GA3_chirality`: 0.004446
+- `GA4_variance`: 0.053771
+- `GA5_coupling`: 0.005829
+- Chirality diff: `0.004446`
 
 ### clifford
-- `GA0_entropy`: 0.024567
-- `GA1_boundary`: 0.002070
+- `GA0_entropy`: 0.004419
+- `GA1_boundary`: 0.035191
 - `GA2_scale`: 0.000000
-- `GA3_chirality`: 0.218284
-- `GA4_variance`: 0.140490
-- `GA5_coupling`: 0.213082
-- Chirality diff: `0.218284`
+- `GA3_chirality`: 0.010098
+- `GA4_variance`: 0.025569
+- `GA5_coupling`: 0.017304
+- Chirality diff: `0.010098`
 
 ### outer
-- `GA0_entropy`: 0.005048
-- `GA1_boundary`: 0.003422
+- `GA0_entropy`: 0.001495
+- `GA1_boundary`: 0.028349
 - `GA2_scale`: 0.000000
-- `GA3_chirality`: 0.224488
-- `GA4_variance`: 0.241291
-- `GA5_coupling`: 0.112323
-- Chirality diff: `0.224488`
+- `GA3_chirality`: 0.071976
+- `GA4_variance`: 0.011440
+- `GA5_coupling`: 0.050431
+- Chirality diff: `0.071976`
 
 ### default
-- `GA0_entropy`: 0.024567
-- `GA1_boundary`: 0.002070
+- `GA0_entropy`: 0.004419
+- `GA1_boundary`: 0.035191
 - `GA2_scale`: 0.000000
-- `GA3_chirality`: 0.218284
-- `GA4_variance`: 0.140490
-- `GA5_coupling`: 0.213082
-- Chirality diff: `0.218284`
+- `GA3_chirality`: 0.010098
+- `GA4_variance`: 0.025569
+- `GA5_coupling`: 0.017304
+- Chirality diff: `0.010098`
 

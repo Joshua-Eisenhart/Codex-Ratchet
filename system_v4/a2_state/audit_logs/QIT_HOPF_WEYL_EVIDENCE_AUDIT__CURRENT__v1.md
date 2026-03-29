@@ -1,12 +1,12 @@
 # QIT Hopf/Weyl Evidence Audit
 
 - status: `bounded_evidence_audit_only`
-- generated_utc: `2026-03-27T00:18:11Z`
+- generated_utc: `2026-03-29T09:18:26Z`
 
 ## Report Surface
 - surface_class: `tracked_current_workspace_report`
 - represents: `current workspace Hopf/Weyl evidence audit state at generation time; may differ from the last committed snapshot until tracked CURRENT artifacts are committed`
-- git_sha: `7391077305b05a3e82e5cf38aaf7b42e236f41b3`
+- git_sha: `b4426398c08056ecb7d62fcb2c9c0acb06d8a06b`
 
 ## Audit Boundary
 - audit_only: `True`
@@ -16,7 +16,7 @@
 
 ## Owner Snapshot
 - qit_graph_schema: `QIT_ENGINE_GRAPH_v2`
-- qit_graph_content_hash: `7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff`
+- qit_graph_content_hash: `585499a4d13298615601af806cf9c0d01f56ef6e47879c5c82abf39227ef373a`
 - node_count: `105`
 - edge_count: `272`
 
@@ -27,8 +27,8 @@
 - owner_missing_anchors: `WEYL_BRANCH`
 
 ## Runtime Bridge Alignment
-- alignment_status: `aligned`
-- owner_hash_matches: `True`
+- alignment_status: `partially_aligned`
+- owner_hash_matches: `False`
 - aligned_engine_public_ids: `qit::ENGINE::type1_deductive, qit::ENGINE::type2_inductive`
 - unresolved_links: `0`
 
@@ -48,7 +48,7 @@
 - promotion_claim: `none`
 - torus_public_ids: `qit::TORUS::inner, qit::TORUS::clifford, qit::TORUS::outer`
 - torus_negative_witnesses: `qit::NEG_WITNESS::neg_no_torus_transport, qit::NEG_WITNESS::neg_torus_scrambled`
-- engine_public_ids: `qit::ENGINE::type1_deductive, qit::ENGINE::type2_inductive`
+- engine_public_ids: `qit::ENGINE::type1, qit::ENGINE::type2`
 - type_split_negative_witnesses: `qit::NEG_WITNESS::neg_no_chirality, qit::NEG_WITNESS::neg_type_flatten`
 
 ## Evidence Limits

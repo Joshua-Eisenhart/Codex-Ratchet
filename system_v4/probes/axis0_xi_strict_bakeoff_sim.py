@@ -210,17 +210,22 @@ def xi_shell_cq_from_q(q: np.ndarray) -> Tuple[np.ndarray, List[int], Dict[str, 
     return rho, dims, meta
 
 
-def xi_hist_cq_from_pairs(pair_states: Sequence[np.ndarray]) -> Tuple[np.ndarray, List[int], Dict[str, object]]:
+def xi_hist_real_from_pairs(pair_states: Sequence[np.ndarray]) -> Tuple[np.ndarray, List[int], Dict[str, object]]:
     n = len(pair_states)
     if n == 0:
         raise ValueError("Need at least one pair state for Xi_hist")
-    weights = np.full(n, 1.0 / n, dtype=float)
-    rho, dims = build_cq_state(weights, pair_states)
+    
+    rho = np.zeros((4,4), dtype=complex)
+    for p in pair_states:
+        rho += p
+    rho /= n
+    rho = _ensure_valid_density(rho)
+    
     meta = {
         "n_samples": int(n),
         "weight_type": "uniform",
     }
-    return rho, dims, meta
+    return rho, [2, 2], meta
 
 
 def xi_point_ref_cq_from_qs(q_ref: np.ndarray, q_current: np.ndarray) -> Tuple[np.ndarray, List[int], Dict[str, object]]:
@@ -318,8 +323,8 @@ def run_engine_history_suite() -> List[Dict[str, object]]:
             outer_pairs = pair_history[:17]   # initial + first 16 microsteps = outer loop
             cycle_pairs = pair_history        # full 32-microstep cycle + initial
 
-            rho_hist_outer, dims_hist_outer, outer_meta = xi_hist_cq_from_pairs(outer_pairs)
-            rho_hist_cycle, dims_hist_cycle, cycle_meta = xi_hist_cq_from_pairs(cycle_pairs)
+            rho_hist_outer, dims_hist_outer, outer_meta = xi_hist_real_from_pairs(outer_pairs)
+            rho_hist_cycle, dims_hist_cycle, cycle_meta = xi_hist_real_from_pairs(cycle_pairs)
             hist_outer_metrics = metrics_for_cut_state(rho_hist_outer, dims_hist_outer)
             hist_cycle_metrics = metrics_for_cut_state(rho_hist_cycle, dims_hist_cycle)
 

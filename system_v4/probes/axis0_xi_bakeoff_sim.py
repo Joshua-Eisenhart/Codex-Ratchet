@@ -191,20 +191,25 @@ def xi_shell_from_q(q: np.ndarray, delta_eta: float = np.pi / 16) -> Tuple[np.nd
     return rho, [2, 4], meta
 
 
-def xi_hist_from_states(state_a, state_b) -> Tuple[np.ndarray, List[int], Dict[str, float]]:
-    dirac_a = dirac_from_state(state_a)
-    dirac_b = dirac_from_state(state_b)
-    phase = overlap_phase(dirac_a, dirac_b)
-    rho = build_label_superposition(dirac_a, dirac_b, 0.5, 0.5, phase)
+def xi_hist_from_trajectory(snapshots: List) -> Tuple[np.ndarray, List[int], Dict[str, float]]:
+    n = len(snapshots)
+    if n == 0:
+        raise ValueError("Need at least one state for Xi_hist")
+    
+    rho = np.zeros((4, 4), dtype=complex)
+    for state in snapshots:
+        val = np.kron(state.rho_L, state.rho_R)
+        rho += val
+    
+    rho /= n
+    rho = ensure_density(rho)
+    
     meta = {
-        "eta_a": float(state_a.eta),
-        "eta_b": float(state_b.eta),
-        "theta1_a": float(state_a.theta1),
-        "theta1_b": float(state_b.theta1),
-        "theta2_a": float(state_a.theta2),
-        "theta2_b": float(state_b.theta2),
+        "eta_start": float(snapshots[0].eta),
+        "eta_end": float(snapshots[-1].eta),
+        "n_samples": int(n),
     }
-    return rho, [2, 4], meta
+    return rho, [2, 2], meta
 
 
 def xi_lr_control_from_state(state) -> Tuple[np.ndarray, List[int], Dict[str, float]]:
@@ -297,12 +302,12 @@ def run_engine_bakeoff(n_cycles: int = 1) -> List[Dict[str, object]]:
             rho_lr, dims_lr, lr_meta = xi_lr_control_from_state(snapshots[-1])
             lr_metrics = metrics_for_cut_state(rho_lr, dims_lr)
 
-            outer_end = snapshots[half_cycle_idx]
-            cycle_end = snapshots[full_cycle_idx]
-            rho_hist_outer, dims_hist, outer_meta = xi_hist_from_states(snapshots[0], outer_end)
-            rho_hist_cycle, _, cycle_meta = xi_hist_from_states(snapshots[0], cycle_end)
-            hist_outer_metrics = metrics_for_cut_state(rho_hist_outer, dims_hist)
-            hist_cycle_metrics = metrics_for_cut_state(rho_hist_cycle, dims_hist)
+            outer_trajectory = snapshots[:half_cycle_idx+1]
+            cycle_trajectory = snapshots[:full_cycle_idx+1]
+            rho_hist_outer, dims_hist_outer, outer_meta = xi_hist_from_trajectory(outer_trajectory)
+            rho_hist_cycle, dims_hist_cycle, cycle_meta = xi_hist_from_trajectory(cycle_trajectory)
+            hist_outer_metrics = metrics_for_cut_state(rho_hist_outer, dims_hist_outer)
+            hist_cycle_metrics = metrics_for_cut_state(rho_hist_cycle, dims_hist_cycle)
 
             rows.append({
                 "engine_type": engine_type,

@@ -1,13 +1,13 @@
 {
   "schema": "QIT_HOPF_WEYL_PROJECTION_v1",
-  "generated_utc": "2026-03-27T00:34:35Z",
+  "generated_utc": "2026-03-29T09:18:26Z",
   "status": "present_bounded_projection",
   "source": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json",
-  "source_content_hash": "66a8c941ec313aa1277b374a7520144c3077dd6e7275691c65360a9156058bf7",
+  "source_content_hash": "585499a4d13298615601af806cf9c0d01f56ef6e47879c5c82abf39227ef373a",
   "owner_snapshot": {
     "qit_graph_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json",
     "qit_graph_schema": "QIT_ENGINE_GRAPH_v2",
-    "qit_graph_content_hash": "66a8c941ec313aa1277b374a7520144c3077dd6e7275691c65360a9156058bf7",
+    "qit_graph_content_hash": "585499a4d13298615601af806cf9c0d01f56ef6e47879c5c82abf39227ef373a",
     "node_count": 105,
     "edge_count": 272
   },
@@ -21,7 +21,7 @@
     "tracked_report_files_dirty_before_generation": [],
     "script_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_hopf_weyl_projection.py",
     "script_sha256": "9927146caeab509a7a8a18c3010ecbd22d58c9f5fae8dcba50cf45ef0b4896bb",
-    "git_sha": "18dbe09a7c613ba43f3c941f2ad04d4c5afa8db6"
+    "git_sha": "b4426398c08056ecb7d62fcb2c9c0acb06d8a06b"
   },
   "sidecar_boundary": {
     "mode": "bounded_read_only",
@@ -71,8 +71,8 @@
     "weyl_branch_nodes_present": false,
     "chirality_coupling_edge_present": true,
     "engine_pair_public_ids": [
-      "qit::ENGINE::type1_left_weyl",
-      "qit::ENGINE::type2_right_weyl"
+      "qit::ENGINE::type1",
+      "qit::ENGINE::type2"
     ],
     "missing_owner_anchors": [
       "WEYL_BRANCH"
@@ -86,19 +86,16 @@
         "nesting_rank": 0,
         "stage_count": 8,
         "stage_public_ids": [
-          "qit::MACRO_STAGE::type1_left_weyl_Ne_f",
-          "qit::MACRO_STAGE::type1_left_weyl_Ni_f",
-          "qit::MACRO_STAGE::type1_left_weyl_Se_f",
-          "qit::MACRO_STAGE::type1_left_weyl_Si_f",
-          "qit::MACRO_STAGE::type2_right_weyl_Ne_f",
-          "qit::MACRO_STAGE::type2_right_weyl_Ni_f",
-          "qit::MACRO_STAGE::type2_right_weyl_Se_f",
-          "qit::MACRO_STAGE::type2_right_weyl_Si_f"
+          "qit::MACRO_STAGE::type1_Ne_f",
+          "qit::MACRO_STAGE::type1_Ni_f",
+          "qit::MACRO_STAGE::type1_Se_f",
+          "qit::MACRO_STAGE::type1_Si_f",
+          "qit::MACRO_STAGE::type2_Ne_f",
+          "qit::MACRO_STAGE::type2_Ni_f",
+          "qit::MACRO_STAGE::type2_Se_f",
+          "qit::MACRO_STAGE::type2_Si_f"
         ],
-        "engine_public_ids": [
-          "qit::ENGINE::type1_left_weyl",
-          "qit::ENGINE::type2_right_weyl"
-        ]
+        "engine_public_ids": []
       },
       {
         "torus_public_id": "qit::TORUS::clifford",
@@ -106,27 +103,24 @@
         "nesting_rank": 1,
         "stage_count": 16,
         "stage_public_ids": [
-          "qit::MACRO_STAGE::type1_left_weyl_Ne_b",
-          "qit::MACRO_STAGE::type1_left_weyl_Ne_f",
-          "qit::MACRO_STAGE::type1_left_weyl_Ni_b",
-          "qit::MACRO_STAGE::type1_left_weyl_Ni_f",
-          "qit::MACRO_STAGE::type1_left_weyl_Se_b",
-          "qit::MACRO_STAGE::type1_left_weyl_Se_f",
-          "qit::MACRO_STAGE::type1_left_weyl_Si_b",
-          "qit::MACRO_STAGE::type1_left_weyl_Si_f",
-          "qit::MACRO_STAGE::type2_right_weyl_Ne_b",
-          "qit::MACRO_STAGE::type2_right_weyl_Ne_f",
-          "qit::MACRO_STAGE::type2_right_weyl_Ni_b",
-          "qit::MACRO_STAGE::type2_right_weyl_Ni_f",
-          "qit::MACRO_STAGE::type2_right_weyl_Se_b",
-          "qit::MACRO_STAGE::type2_right_weyl_Se_f",
-          "qit::MACRO_STAGE::type2_right_weyl_Si_b",
-          "qit::MACRO_STAGE::type2_right_weyl_Si_f"
+          "qit::MACRO_STAGE::type1_Ne_b",
+          "qit::MACRO_STAGE::type1_Ne_f",
+          "qit::MACRO_STAGE::type1_Ni_b",
+          "qit::MACRO_STAGE::type1_Ni_f",
+          "qit::MACRO_STAGE::type1_Se_b",
+          "qit::MACRO_STAGE::type1_Se_f",
+          "qit::MACRO_STAGE::type1_Si_b",
+          "qit::MACRO_STAGE::type1_Si_f",
+          "qit::MACRO_STAGE::type2_Ne_b",
+          "qit::MACRO_STAGE::type2_Ne_f",
+          "qit::MACRO_STAGE::type2_Ni_b",
+          "qit::MACRO_STAGE::type2_Ni_f",
+          "qit::MACRO_STAGE::type2_Se_b",
+          "qit::MACRO_STAGE::type2_Se_f",
+          "qit::MACRO_STAGE::type2_Si_b",
+          "qit::MACRO_STAGE::type2_Si_f"
         ],
-        "engine_public_ids": [
-          "qit::ENGINE::type1_left_weyl",
-          "qit::ENGINE::type2_right_weyl"
-        ]
+        "engine_public_ids": []
       },
       {
         "torus_public_id": "qit::TORUS::outer",
@@ -134,19 +128,16 @@
         "nesting_rank": 2,
         "stage_count": 8,
         "stage_public_ids": [
-          "qit::MACRO_STAGE::type1_left_weyl_Ne_b",
-          "qit::MACRO_STAGE::type1_left_weyl_Ni_b",
-          "qit::MACRO_STAGE::type1_left_weyl_Se_b",
-          "qit::MACRO_STAGE::type1_left_weyl_Si_b",
-          "qit::MACRO_STAGE::type2_right_weyl_Ne_b",
-          "qit::MACRO_STAGE::type2_right_weyl_Ni_b",
-          "qit::MACRO_STAGE::type2_right_weyl_Se_b",
-          "qit::MACRO_STAGE::type2_right_weyl_Si_b"
+          "qit::MACRO_STAGE::type1_Ne_b",
+          "qit::MACRO_STAGE::type1_Ni_b",
+          "qit::MACRO_STAGE::type1_Se_b",
+          "qit::MACRO_STAGE::type1_Si_b",
+          "qit::MACRO_STAGE::type2_Ne_b",
+          "qit::MACRO_STAGE::type2_Ni_b",
+          "qit::MACRO_STAGE::type2_Se_b",
+          "qit::MACRO_STAGE::type2_Si_b"
         ],
-        "engine_public_ids": [
-          "qit::ENGINE::type1_left_weyl",
-          "qit::ENGINE::type2_right_weyl"
-        ]
+        "engine_public_ids": []
       }
     ],
     "torus_nesting_edges": [
@@ -163,281 +154,176 @@
     "carrier_assignment_scope": "owner_scaffold_only"
   },
   "torus_cell_complex": {
-    "available": true,
-    "shape": [
-      16,
-      34,
-      3
-    ],
-    "stage_0cells": [
-      "type1_left_weyl_Ne_b",
-      "type1_left_weyl_Ne_f",
-      "type1_left_weyl_Ni_b",
-      "type1_left_weyl_Ni_f",
-      "type1_left_weyl_Se_b",
-      "type1_left_weyl_Se_f",
-      "type1_left_weyl_Si_b",
-      "type1_left_weyl_Si_f",
-      "type2_right_weyl_Ne_b",
-      "type2_right_weyl_Ne_f",
-      "type2_right_weyl_Ni_b",
-      "type2_right_weyl_Ni_f",
-      "type2_right_weyl_Se_b",
-      "type2_right_weyl_Se_f",
-      "type2_right_weyl_Si_b",
-      "type2_right_weyl_Si_f"
-    ],
-    "stage_0cell_count": 16,
-    "torus_2cells": {
-      "inner": {
-        "stages": [
-          "type1_left_weyl_Ne_f",
-          "type1_left_weyl_Ni_f",
-          "type1_left_weyl_Se_f",
-          "type1_left_weyl_Si_f",
-          "type2_right_weyl_Ne_f",
-          "type2_right_weyl_Ni_f",
-          "type2_right_weyl_Se_f",
-          "type2_right_weyl_Si_f"
-        ],
-        "stage_count": 8
-      },
-      "clifford": {
-        "stages": [
-          "type1_left_weyl_Ne_b",
-          "type1_left_weyl_Ne_f",
-          "type1_left_weyl_Ni_b",
-          "type1_left_weyl_Ni_f",
-          "type1_left_weyl_Se_b",
-          "type1_left_weyl_Se_f",
-          "type1_left_weyl_Si_b",
-          "type1_left_weyl_Si_f",
-          "type2_right_weyl_Ne_b",
-          "type2_right_weyl_Ne_f",
-          "type2_right_weyl_Ni_b",
-          "type2_right_weyl_Ni_f",
-          "type2_right_weyl_Se_b",
-          "type2_right_weyl_Se_f",
-          "type2_right_weyl_Si_b",
-          "type2_right_weyl_Si_f"
-        ],
-        "stage_count": 16
-      },
-      "outer": {
-        "stages": [
-          "type1_left_weyl_Ne_b",
-          "type1_left_weyl_Ni_b",
-          "type1_left_weyl_Se_b",
-          "type1_left_weyl_Si_b",
-          "type2_right_weyl_Ne_b",
-          "type2_right_weyl_Ni_b",
-          "type2_right_weyl_Se_b",
-          "type2_right_weyl_Si_b"
-        ],
-        "stage_count": 8
-      }
-    },
-    "engine_type1_cycle": [
-      "type1_left_weyl_Ne_b",
-      "type1_left_weyl_Ne_f",
-      "type1_left_weyl_Ni_b",
-      "type1_left_weyl_Ni_f",
-      "type1_left_weyl_Se_b",
-      "type1_left_weyl_Se_f",
-      "type1_left_weyl_Si_b",
-      "type1_left_weyl_Si_f"
-    ],
-    "engine_type2_cycle": [
-      "type2_right_weyl_Ne_b",
-      "type2_right_weyl_Ne_f",
-      "type2_right_weyl_Ni_b",
-      "type2_right_weyl_Ni_f",
-      "type2_right_weyl_Se_b",
-      "type2_right_weyl_Se_f",
-      "type2_right_weyl_Si_b",
-      "type2_right_weyl_Si_f"
-    ]
+    "available": false,
+    "error": "TopoNetX not installed"
   },
   "stage_torus_groupings": {
     "stage_to_tori": {
-      "type1_left_weyl_Se_f": [
+      "type1_Se_f": [
         "inner",
         "clifford"
       ],
-      "type1_left_weyl_Si_f": [
+      "type1_Si_f": [
         "inner",
         "clifford"
       ],
-      "type1_left_weyl_Ne_f": [
+      "type1_Ni_f": [
         "inner",
         "clifford"
       ],
-      "type1_left_weyl_Ni_f": [
+      "type1_Ne_f": [
         "inner",
         "clifford"
       ],
-      "type1_left_weyl_Se_b": [
+      "type1_Se_b": [
         "outer",
         "clifford"
       ],
-      "type1_left_weyl_Si_b": [
+      "type1_Ne_b": [
         "outer",
         "clifford"
       ],
-      "type1_left_weyl_Ne_b": [
+      "type1_Ni_b": [
         "outer",
         "clifford"
       ],
-      "type1_left_weyl_Ni_b": [
+      "type1_Si_b": [
         "outer",
         "clifford"
       ],
-      "type2_right_weyl_Se_f": [
+      "type2_Se_f": [
         "inner",
         "clifford"
       ],
-      "type2_right_weyl_Si_f": [
+      "type2_Ne_f": [
         "inner",
         "clifford"
       ],
-      "type2_right_weyl_Ne_f": [
+      "type2_Ni_f": [
         "inner",
         "clifford"
       ],
-      "type2_right_weyl_Ni_f": [
+      "type2_Si_f": [
         "inner",
         "clifford"
       ],
-      "type2_right_weyl_Se_b": [
+      "type2_Se_b": [
         "outer",
         "clifford"
       ],
-      "type2_right_weyl_Si_b": [
+      "type2_Si_b": [
         "outer",
         "clifford"
       ],
-      "type2_right_weyl_Ne_b": [
+      "type2_Ni_b": [
         "outer",
         "clifford"
       ],
-      "type2_right_weyl_Ni_b": [
+      "type2_Ne_b": [
         "outer",
         "clifford"
       ]
     },
     "torus_to_stages": {
       "inner": [
-        "type1_left_weyl_Ne_f",
-        "type1_left_weyl_Ni_f",
-        "type1_left_weyl_Se_f",
-        "type1_left_weyl_Si_f",
-        "type2_right_weyl_Ne_f",
-        "type2_right_weyl_Ni_f",
-        "type2_right_weyl_Se_f",
-        "type2_right_weyl_Si_f"
+        "type1_Ne_f",
+        "type1_Ni_f",
+        "type1_Se_f",
+        "type1_Si_f",
+        "type2_Ne_f",
+        "type2_Ni_f",
+        "type2_Se_f",
+        "type2_Si_f"
       ],
       "clifford": [
-        "type1_left_weyl_Ne_b",
-        "type1_left_weyl_Ne_f",
-        "type1_left_weyl_Ni_b",
-        "type1_left_weyl_Ni_f",
-        "type1_left_weyl_Se_b",
-        "type1_left_weyl_Se_f",
-        "type1_left_weyl_Si_b",
-        "type1_left_weyl_Si_f",
-        "type2_right_weyl_Ne_b",
-        "type2_right_weyl_Ne_f",
-        "type2_right_weyl_Ni_b",
-        "type2_right_weyl_Ni_f",
-        "type2_right_weyl_Se_b",
-        "type2_right_weyl_Se_f",
-        "type2_right_weyl_Si_b",
-        "type2_right_weyl_Si_f"
+        "type1_Ne_b",
+        "type1_Ne_f",
+        "type1_Ni_b",
+        "type1_Ni_f",
+        "type1_Se_b",
+        "type1_Se_f",
+        "type1_Si_b",
+        "type1_Si_f",
+        "type2_Ne_b",
+        "type2_Ne_f",
+        "type2_Ni_b",
+        "type2_Ni_f",
+        "type2_Se_b",
+        "type2_Se_f",
+        "type2_Si_b",
+        "type2_Si_f"
       ],
       "outer": [
-        "type1_left_weyl_Ne_b",
-        "type1_left_weyl_Ni_b",
-        "type1_left_weyl_Se_b",
-        "type1_left_weyl_Si_b",
-        "type2_right_weyl_Ne_b",
-        "type2_right_weyl_Ni_b",
-        "type2_right_weyl_Se_b",
-        "type2_right_weyl_Si_b"
+        "type1_Ne_b",
+        "type1_Ni_b",
+        "type1_Se_b",
+        "type1_Si_b",
+        "type2_Ne_b",
+        "type2_Ni_b",
+        "type2_Se_b",
+        "type2_Si_b"
       ]
     },
     "torus_to_stage_public_ids": {
       "inner": [
-        "qit::MACRO_STAGE::type1_left_weyl_Ne_f",
-        "qit::MACRO_STAGE::type1_left_weyl_Ni_f",
-        "qit::MACRO_STAGE::type1_left_weyl_Se_f",
-        "qit::MACRO_STAGE::type1_left_weyl_Si_f",
-        "qit::MACRO_STAGE::type2_right_weyl_Ne_f",
-        "qit::MACRO_STAGE::type2_right_weyl_Ni_f",
-        "qit::MACRO_STAGE::type2_right_weyl_Se_f",
-        "qit::MACRO_STAGE::type2_right_weyl_Si_f"
+        "qit::MACRO_STAGE::type1_Ne_f",
+        "qit::MACRO_STAGE::type1_Ni_f",
+        "qit::MACRO_STAGE::type1_Se_f",
+        "qit::MACRO_STAGE::type1_Si_f",
+        "qit::MACRO_STAGE::type2_Ne_f",
+        "qit::MACRO_STAGE::type2_Ni_f",
+        "qit::MACRO_STAGE::type2_Se_f",
+        "qit::MACRO_STAGE::type2_Si_f"
       ],
       "clifford": [
-        "qit::MACRO_STAGE::type1_left_weyl_Ne_b",
-        "qit::MACRO_STAGE::type1_left_weyl_Ne_f",
-        "qit::MACRO_STAGE::type1_left_weyl_Ni_b",
-        "qit::MACRO_STAGE::type1_left_weyl_Ni_f",
-        "qit::MACRO_STAGE::type1_left_weyl_Se_b",
-        "qit::MACRO_STAGE::type1_left_weyl_Se_f",
-        "qit::MACRO_STAGE::type1_left_weyl_Si_b",
-        "qit::MACRO_STAGE::type1_left_weyl_Si_f",
-        "qit::MACRO_STAGE::type2_right_weyl_Ne_b",
-        "qit::MACRO_STAGE::type2_right_weyl_Ne_f",
-        "qit::MACRO_STAGE::type2_right_weyl_Ni_b",
-        "qit::MACRO_STAGE::type2_right_weyl_Ni_f",
-        "qit::MACRO_STAGE::type2_right_weyl_Se_b",
-        "qit::MACRO_STAGE::type2_right_weyl_Se_f",
-        "qit::MACRO_STAGE::type2_right_weyl_Si_b",
-        "qit::MACRO_STAGE::type2_right_weyl_Si_f"
+        "qit::MACRO_STAGE::type1_Ne_b",
+        "qit::MACRO_STAGE::type1_Ne_f",
+        "qit::MACRO_STAGE::type1_Ni_b",
+        "qit::MACRO_STAGE::type1_Ni_f",
+        "qit::MACRO_STAGE::type1_Se_b",
+        "qit::MACRO_STAGE::type1_Se_f",
+        "qit::MACRO_STAGE::type1_Si_b",
+        "qit::MACRO_STAGE::type1_Si_f",
+        "qit::MACRO_STAGE::type2_Ne_b",
+        "qit::MACRO_STAGE::type2_Ne_f",
+        "qit::MACRO_STAGE::type2_Ni_b",
+        "qit::MACRO_STAGE::type2_Ni_f",
+        "qit::MACRO_STAGE::type2_Se_b",
+        "qit::MACRO_STAGE::type2_Se_f",
+        "qit::MACRO_STAGE::type2_Si_b",
+        "qit::MACRO_STAGE::type2_Si_f"
       ],
       "outer": [
-        "qit::MACRO_STAGE::type1_left_weyl_Ne_b",
-        "qit::MACRO_STAGE::type1_left_weyl_Ni_b",
-        "qit::MACRO_STAGE::type1_left_weyl_Se_b",
-        "qit::MACRO_STAGE::type1_left_weyl_Si_b",
-        "qit::MACRO_STAGE::type2_right_weyl_Ne_b",
-        "qit::MACRO_STAGE::type2_right_weyl_Ni_b",
-        "qit::MACRO_STAGE::type2_right_weyl_Se_b",
-        "qit::MACRO_STAGE::type2_right_weyl_Si_b"
+        "qit::MACRO_STAGE::type1_Ne_b",
+        "qit::MACRO_STAGE::type1_Ni_b",
+        "qit::MACRO_STAGE::type1_Se_b",
+        "qit::MACRO_STAGE::type1_Si_b",
+        "qit::MACRO_STAGE::type2_Ne_b",
+        "qit::MACRO_STAGE::type2_Ni_b",
+        "qit::MACRO_STAGE::type2_Se_b",
+        "qit::MACRO_STAGE::type2_Si_b"
       ]
     },
-    "torus_to_engine_public_ids": {
-      "inner": [
-        "qit::ENGINE::type1_left_weyl",
-        "qit::ENGINE::type2_right_weyl"
-      ],
-      "clifford": [
-        "qit::ENGINE::type1_left_weyl",
-        "qit::ENGINE::type2_right_weyl"
-      ],
-      "outer": [
-        "qit::ENGINE::type1_left_weyl",
-        "qit::ENGINE::type2_right_weyl"
-      ]
-    },
+    "torus_to_engine_public_ids": {},
     "fiber_stages": [
-      "type1_left_weyl_Ne_f",
-      "type1_left_weyl_Ni_f",
-      "type1_left_weyl_Se_f",
-      "type1_left_weyl_Si_f",
-      "type2_right_weyl_Ne_f",
-      "type2_right_weyl_Ni_f",
-      "type2_right_weyl_Se_f",
-      "type2_right_weyl_Si_f"
+      "type1_Ne_f",
+      "type1_Ni_f",
+      "type1_Se_f",
+      "type1_Si_f",
+      "type2_Ne_f",
+      "type2_Ni_f",
+      "type2_Se_f",
+      "type2_Si_f"
     ],
     "base_stages": [
-      "type1_left_weyl_Ne_b",
-      "type1_left_weyl_Ni_b",
-      "type1_left_weyl_Se_b",
-      "type1_left_weyl_Si_b",
-      "type2_right_weyl_Ne_b",
-      "type2_right_weyl_Ni_b",
-      "type2_right_weyl_Se_b",
-      "type2_right_weyl_Si_b"
+      "type1_Ne_b",
+      "type1_Ni_b",
+      "type1_Se_b",
+      "type1_Si_b",
+      "type2_Ne_b",
+      "type2_Ni_b",
+      "type2_Se_b",
+      "type2_Si_b"
     ],
     "fiber_stage_count": 8,
     "base_stage_count": 8,
@@ -445,35 +331,22 @@
     "clifford_is_universal_bridge": true
   },
   "chirality_coupling": {
-    "available": true,
-    "algebra": "Cl(3,0)",
-    "pseudoscalar_blade": "e123",
-    "type1_left_weyl": {
-      "orientation": "+e123",
-      "projected_branch_label": "left_like",
-      "conventional_rule_annotation": "psi_L -> U\u00b7psi_L",
-      "non_owner_phase_note": "positive phase convention in sidecar view",
-      "operator_dominance": "Fe/Ti on base, Te/Fi on fiber"
+    "available": false,
+    "error": "clifford not installed",
+    "fallback_summary": {
+      "type1_left_weyl": "Fe/Ti dominant on base, \u03c8_L \u2192 U\u00b7\u03c8_L",
+      "type2_right_weyl": "Te/Fi dominant on base, \u03c8_R \u2192 U*\u00b7\u03c8_R",
+      "coupling": "complementary_dominance (flat owner edge, sidecar annotation only)"
     },
-    "type2_right_weyl": {
-      "orientation": "-e123",
-      "projected_branch_label": "right_like",
-      "conventional_rule_annotation": "psi_R -> U*\u00b7psi_R",
-      "non_owner_phase_note": "negative phase convention in sidecar view",
-      "operator_dominance": "Te/Fi on base, Fe/Ti on fiber"
-    },
-    "coupling_product_grade": "0",
-    "coupling_is_scalar": true,
-    "physical_meaning": "This sidecar maps the admitted chirality-coupling edge to a Cl(3,0) pseudoscalar candidate. In this representation the projected product is scalar, which is useful as a bounded complementary-orientation annotation.",
     "owner_graph_chirality_edges": 1,
     "owner_graph_engine_nodes": {
-      "type1_left_weyl": {
-        "description": "Fe/Ti dominant on base, Te/Fi on fiber",
-        "public_id": "qit::ENGINE::type1_left_weyl"
+      "type1": {
+        "description": "Type-1: Left Weyl spinor, H_L = +n\u00b7\u03c3, Bloch law \u1e59_L = +2n\u00d7r_L",
+        "public_id": "qit::ENGINE::type1"
       },
-      "type2_right_weyl": {
-        "description": "Te/Fi dominant on base, Fe/Ti on fiber",
-        "public_id": "qit::ENGINE::type2_right_weyl"
+      "type2": {
+        "description": "Type-2: Right Weyl spinor, H_R = \u2212n\u00b7\u03c3, Bloch law \u1e59_R = \u22122n\u00d7r_R",
+        "public_id": "qit::ENGINE::type2"
       }
     }
   },
@@ -562,8 +435,8 @@
         "owner_edge_emission": "specific_targets",
         "proves_label": "engine_type_asymmetry_is_necessary",
         "proves_targets": [
-          "qit::ENGINE::type1_left_weyl",
-          "qit::ENGINE::type2_right_weyl"
+          "qit::ENGINE::type1",
+          "qit::ENGINE::type2"
         ]
       },
       {
@@ -574,8 +447,8 @@
         "owner_edge_emission": "specific_targets",
         "proves_label": "type_specific_weighting_is_necessary",
         "proves_targets": [
-          "qit::ENGINE::type1_left_weyl",
-          "qit::ENGINE::type2_right_weyl"
+          "qit::ENGINE::type1",
+          "qit::ENGINE::type2"
         ]
       }
     ],

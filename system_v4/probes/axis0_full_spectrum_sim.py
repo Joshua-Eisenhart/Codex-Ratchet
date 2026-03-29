@@ -276,8 +276,8 @@ def collect_xi_hist_families() -> Dict[str, List[Dict[str, object]]]:
         full_idx = n_macro
         for torus_label, eta in TORUS_CONFIGS:
             _, snapshots = bakeoff.capture_engine_macrostates(engine_type, eta, n_cycles=1)
-            rho_outer, dims_outer, meta_outer = bakeoff.xi_hist_from_states(snapshots[0], snapshots[half_idx])
-            rho_cycle, dims_cycle, meta_cycle = bakeoff.xi_hist_from_states(snapshots[0], snapshots[full_idx])
+            rho_outer, dims_outer, meta_outer = bakeoff.xi_hist_from_trajectory(snapshots[:half_idx+1])
+            rho_cycle, dims_cycle, meta_cycle = bakeoff.xi_hist_from_trajectory(snapshots[:full_idx+1])
             rho_ctl, dims_ctl, meta_ctl = bakeoff.xi_lr_control_from_state(snapshots[-1])
             common = {
                 "engine_type": engine_type,

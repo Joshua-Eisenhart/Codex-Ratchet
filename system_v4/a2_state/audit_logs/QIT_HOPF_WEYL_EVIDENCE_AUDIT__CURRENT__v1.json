@@ -60,7 +60,7 @@
     "status": "bounded_owner_linked_summary_only",
     "torus_placement_evidence": {
       "carrier_assignment_scope": "owner_scaffold_only",
-      "owner_graph_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
+      "owner_graph_content_hash": "585499a4d13298615601af806cf9c0d01f56ef6e47879c5c82abf39227ef373a",
       "relevant_negative_witnesses": [
         "qit::NEG_WITNESS::neg_no_torus_transport",
         "qit::NEG_WITNESS::neg_torus_scrambled"
@@ -71,7 +71,7 @@
           "qit::ENGINE::type2_inductive"
         ],
         "alignment_note": "runtime bridge aligns to owner ids but does not promote torus semantics",
-        "bridge_owner_hash_matches": true
+        "bridge_owner_hash_matches": false
       },
       "stage_on_torus_edge_count": 32,
       "torus_nesting_edges": [
@@ -99,10 +99,10 @@
       "chirality_coupling_edge_count": 1,
       "engine_owns_stage_edge_count": 16,
       "engine_public_ids": [
-        "qit::ENGINE::type1_deductive",
-        "qit::ENGINE::type2_inductive"
+        "qit::ENGINE::type1",
+        "qit::ENGINE::type2"
       ],
-      "owner_graph_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
+      "owner_graph_content_hash": "585499a4d13298615601af806cf9c0d01f56ef6e47879c5c82abf39227ef373a",
       "relevant_negative_witnesses": [
         "qit::NEG_WITNESS::neg_no_chirality",
         "qit::NEG_WITNESS::neg_type_flatten"
@@ -116,7 +116,7 @@
           "qit::NEG_WITNESS::neg_type_flatten"
         ],
         "alignment_note": "runtime/evidence bridge resolves the type-split witness set to owner engine ids only",
-        "bridge_owner_hash_matches": true
+        "bridge_owner_hash_matches": false
       },
       "weyl_branch_nodes_present": false
     }
@@ -134,7 +134,7 @@
     "not_promotion_evidence": true,
     "not_runtime_state_graph": true
   },
-  "generated_utc": "2026-03-27T00:18:11Z",
+  "generated_utc": "2026-03-29T09:18:26Z",
   "owner_carrier_evidence": {
     "carrier_assignment_scope": "owner_scaffold_only",
     "owner_missing_anchors": [
@@ -152,69 +152,69 @@
     "torus_carriers": [
       {
         "engine_public_ids": [
-          "qit::ENGINE::type1_deductive",
-          "qit::ENGINE::type2_inductive"
+          "qit::ENGINE::type1_left_weyl",
+          "qit::ENGINE::type2_right_weyl"
         ],
         "label": "inner",
         "nesting_rank": 0,
         "stage_count": 8,
         "stage_public_ids": [
-          "qit::MACRO_STAGE::type1_deductive_Ne_f",
-          "qit::MACRO_STAGE::type1_deductive_Ni_f",
-          "qit::MACRO_STAGE::type1_deductive_Se_f",
-          "qit::MACRO_STAGE::type1_deductive_Si_f",
-          "qit::MACRO_STAGE::type2_inductive_Ne_f",
-          "qit::MACRO_STAGE::type2_inductive_Ni_f",
-          "qit::MACRO_STAGE::type2_inductive_Se_f",
-          "qit::MACRO_STAGE::type2_inductive_Si_f"
+          "qit::MACRO_STAGE::type1_left_weyl_Ne_f",
+          "qit::MACRO_STAGE::type1_left_weyl_Ni_f",
+          "qit::MACRO_STAGE::type1_left_weyl_Se_f",
+          "qit::MACRO_STAGE::type1_left_weyl_Si_f",
+          "qit::MACRO_STAGE::type2_right_weyl_Ne_f",
+          "qit::MACRO_STAGE::type2_right_weyl_Ni_f",
+          "qit::MACRO_STAGE::type2_right_weyl_Se_f",
+          "qit::MACRO_STAGE::type2_right_weyl_Si_f"
         ],
         "torus_public_id": "qit::TORUS::inner"
       },
       {
         "engine_public_ids": [
-          "qit::ENGINE::type1_deductive",
-          "qit::ENGINE::type2_inductive"
+          "qit::ENGINE::type1_left_weyl",
+          "qit::ENGINE::type2_right_weyl"
         ],
         "label": "clifford",
         "nesting_rank": 1,
         "stage_count": 16,
         "stage_public_ids": [
-          "qit::MACRO_STAGE::type1_deductive_Ne_b",
-          "qit::MACRO_STAGE::type1_deductive_Ne_f",
-          "qit::MACRO_STAGE::type1_deductive_Ni_b",
-          "qit::MACRO_STAGE::type1_deductive_Ni_f",
-          "qit::MACRO_STAGE::type1_deductive_Se_b",
-          "qit::MACRO_STAGE::type1_deductive_Se_f",
-          "qit::MACRO_STAGE::type1_deductive_Si_b",
-          "qit::MACRO_STAGE::type1_deductive_Si_f",
-          "qit::MACRO_STAGE::type2_inductive_Ne_b",
-          "qit::MACRO_STAGE::type2_inductive_Ne_f",
-          "qit::MACRO_STAGE::type2_inductive_Ni_b",
-          "qit::MACRO_STAGE::type2_inductive_Ni_f",
-          "qit::MACRO_STAGE::type2_inductive_Se_b",
-          "qit::MACRO_STAGE::type2_inductive_Se_f",
-          "qit::MACRO_STAGE::type2_inductive_Si_b",
-          "qit::MACRO_STAGE::type2_inductive_Si_f"
+          "qit::MACRO_STAGE::type1_left_weyl_Ne_b",
+          "qit::MACRO_STAGE::type1_left_weyl_Ne_f",
+          "qit::MACRO_STAGE::type1_left_weyl_Ni_b",
+          "qit::MACRO_STAGE::type1_left_weyl_Ni_f",
+          "qit::MACRO_STAGE::type1_left_weyl_Se_b",
+          "qit::MACRO_STAGE::type1_left_weyl_Se_f",
+          "qit::MACRO_STAGE::type1_left_weyl_Si_b",
+          "qit::MACRO_STAGE::type1_left_weyl_Si_f",
+          "qit::MACRO_STAGE::type2_right_weyl_Ne_b",
+          "qit::MACRO_STAGE::type2_right_weyl_Ne_f",
+          "qit::MACRO_STAGE::type2_right_weyl_Ni_b",
+          "qit::MACRO_STAGE::type2_right_weyl_Ni_f",
+          "qit::MACRO_STAGE::type2_right_weyl_Se_b",
+          "qit::MACRO_STAGE::type2_right_weyl_Se_f",
+          "qit::MACRO_STAGE::type2_right_weyl_Si_b",
+          "qit::MACRO_STAGE::type2_right_weyl_Si_f"
         ],
         "torus_public_id": "qit::TORUS::clifford"
       },
       {
         "engine_public_ids": [
-          "qit::ENGINE::type1_deductive",
-          "qit::ENGINE::type2_inductive"
+          "qit::ENGINE::type1_left_weyl",
+          "qit::ENGINE::type2_right_weyl"
         ],
         "label": "outer",
         "nesting_rank": 2,
         "stage_count": 8,
         "stage_public_ids": [
-          "qit::MACRO_STAGE::type1_deductive_Ne_b",
-          "qit::MACRO_STAGE::type1_deductive_Ni_b",
-          "qit::MACRO_STAGE::type1_deductive_Se_b",
-          "qit::MACRO_STAGE::type1_deductive_Si_b",
-          "qit::MACRO_STAGE::type2_inductive_Ne_b",
-          "qit::MACRO_STAGE::type2_inductive_Ni_b",
-          "qit::MACRO_STAGE::type2_inductive_Se_b",
-          "qit::MACRO_STAGE::type2_inductive_Si_b"
+          "qit::MACRO_STAGE::type1_left_weyl_Ne_b",
+          "qit::MACRO_STAGE::type1_left_weyl_Ni_b",
+          "qit::MACRO_STAGE::type1_left_weyl_Se_b",
+          "qit::MACRO_STAGE::type1_left_weyl_Si_b",
+          "qit::MACRO_STAGE::type2_right_weyl_Ne_b",
+          "qit::MACRO_STAGE::type2_right_weyl_Ni_b",
+          "qit::MACRO_STAGE::type2_right_weyl_Se_b",
+          "qit::MACRO_STAGE::type2_right_weyl_Si_b"
         ],
         "torus_public_id": "qit::TORUS::outer"
       }
@@ -232,8 +232,8 @@
     "weyl_readiness": {
       "chirality_coupling_edge_present": true,
       "engine_pair_public_ids": [
-        "qit::ENGINE::type1_deductive",
-        "qit::ENGINE::type2_inductive"
+        "qit::ENGINE::type1_left_weyl",
+        "qit::ENGINE::type2_right_weyl"
       ],
       "missing_owner_anchors": [
         "WEYL_BRANCH"
@@ -245,7 +245,7 @@
   "owner_snapshot": {
     "edge_count": 272,
     "node_count": 105,
-    "qit_graph_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
+    "qit_graph_content_hash": "585499a4d13298615601af806cf9c0d01f56ef6e47879c5c82abf39227ef373a",
     "qit_graph_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json",
     "qit_graph_schema": "QIT_ENGINE_GRAPH_v2"
   },
@@ -257,8 +257,8 @@
         "owner_edge_emission": "specific_targets",
         "proves_label": "engine_type_asymmetry_is_necessary",
         "proves_targets": [
-          "qit::ENGINE::type1_deductive",
-          "qit::ENGINE::type2_inductive"
+          "qit::ENGINE::type1_left_weyl",
+          "qit::ENGINE::type2_right_weyl"
         ],
         "target_structure": "CHIRALITY",
         "witness_id": "qit::NEG_WITNESS::neg_no_chirality"
@@ -269,8 +269,8 @@
         "owner_edge_emission": "specific_targets",
         "proves_label": "type_specific_weighting_is_necessary",
         "proves_targets": [
-          "qit::ENGINE::type1_deductive",
-          "qit::ENGINE::type2_inductive"
+          "qit::ENGINE::type1_left_weyl",
+          "qit::ENGINE::type2_right_weyl"
         ],
         "target_structure": "CHIRALITY",
         "witness_id": "qit::NEG_WITNESS::neg_type_flatten"
@@ -309,7 +309,7 @@
     ]
   },
   "report_surface": {
-    "git_sha": "7391077305b05a3e82e5cf38aaf7b42e236f41b3",
+    "git_sha": "b4426398c08056ecb7d62fcb2c9c0acb06d8a06b",
     "represents": "current workspace Hopf/Weyl evidence audit state at generation time; may differ from the last committed snapshot until tracked CURRENT artifacts are committed",
     "script_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_hopf_weyl_evidence_audit.py",
     "script_sha256": "baa82091d632cee899104b37d258a7cd02a1807bfb001becbc10e7f3d8a51bac",
@@ -318,10 +318,7 @@
       "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json",
       "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.md"
     ],
-    "tracked_report_files_dirty_before_generation": [
-      "?? system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json",
-      "?? system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.md"
-    ]
+    "tracked_report_files_dirty_before_generation": []
   },
   "runtime_bridge_alignment": {
     "aligned_engine_public_ids": [
@@ -347,12 +344,12 @@
         "last_step_public_id": "qit::SUBCYCLE_STEP::type2_inductive_Ni_b_Fi"
       }
     ],
-    "alignment_status": "aligned",
+    "alignment_status": "partially_aligned",
     "bridge_generated_utc": "2026-03-27T00:17:24Z",
     "bridge_owner_content_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff",
     "bridge_report_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json",
     "bridge_schema": "QIT_RUNTIME_EVIDENCE_BRIDGE_v1",
-    "owner_hash_matches": true,
+    "owner_hash_matches": false,
     "unresolved_links": 0
   },
   "schema": "QIT_HOPF_WEYL_EVIDENCE_AUDIT_v1",

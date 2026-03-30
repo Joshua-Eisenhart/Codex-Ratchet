@@ -1,0 +1,303 @@
+{
+  "timestamp": "2026-03-30T22:59:39.299419+00:00",
+  "results": [
+    {
+      "engine_type": 1,
+      "torus": "inner",
+      "test1_temporal_asymmetry": {
+        "mean_forward_mi": 1.7974060368545037,
+        "mean_backward_mi": 1.8017861129218866,
+        "asymmetry_bwd_minus_fwd": 0.004380076067382888,
+        "keep": true,
+        "interpretation": "backward \u2265 forward \u2192 future predicts past (compression-from-future)"
+      },
+      "test2_attractor_vs_drift": {
+        "autocorr_delta_L": 0.18917857642981256,
+        "autocorr_delta_R": 0.2165322778954241,
+        "mean_autocorr": 0.20285542716261834,
+        "keep": false,
+        "interpretation": "positive autocorr \u2192 drift / causal momentum (classical propagation)"
+      },
+      "test3_jk_fuzz_directionality": {
+        "cross_correlations": {
+          "-3": -0.4267,
+          "-2": -0.4857,
+          "-1": 0.4971,
+          "0": 0.5165,
+          "1": -0.4825,
+          "2": -0.4934,
+          "3": 0.4531
+        },
+        "peak_lag": 0,
+        "peak_value": 0.5165322408474209,
+        "keep": true,
+        "interpretation": "peak lag=0 \u2264 0 \u2192 ga0 lags MI (compression is primary, entropy follows structure)"
+      },
+      "test4_trajectory_profile": {
+        "mi_series_mean": 1.7974060368545037,
+        "mi_series_std": 0.20943699499378168,
+        "linear_slope": 0.007427831850066989,
+        "first_half_mean": 1.7257743097540568,
+        "second_half_mean": 1.864560781011173,
+        "second_minus_first": 0.1387864712571163,
+        "early_mi_mean": 1.769050169776287,
+        "late_mi_mean": 1.8829175128002824,
+        "late_leads": true,
+        "keep": true,
+        "interpretation": "MI increases toward trajectory end \u2192 attractor convergence (compression-from-future)"
+      },
+      "keep_count": 3,
+      "verdict": "COMPRESSION-FROM-FUTURE"
+    },
+    {
+      "engine_type": 1,
+      "torus": "clifford",
+      "test1_temporal_asymmetry": {
+        "mean_forward_mi": 0.9430548767458922,
+        "mean_backward_mi": 0.9452064433262428,
+        "asymmetry_bwd_minus_fwd": 0.00215156658035065,
+        "keep": true,
+        "interpretation": "backward \u2265 forward \u2192 future predicts past (compression-from-future)"
+      },
+      "test2_attractor_vs_drift": {
+        "autocorr_delta_L": -0.08164918784370087,
+        "autocorr_delta_R": 0.06509566467935922,
+        "mean_autocorr": -0.008276761582170826,
+        "keep": true,
+        "interpretation": "negative autocorr \u2192 mean-reverting attractor (FEP / compression-from-future)"
+      },
+      "test3_jk_fuzz_directionality": {
+        "cross_correlations": {
+          "-3": 0.0382,
+          "-2": -0.5692,
+          "-1": -0.0042,
+          "0": 0.705,
+          "1": 0.1383,
+          "2": -0.5089,
+          "3": -0.0169
+        },
+        "peak_lag": 0,
+        "peak_value": 0.7049826486273638,
+        "keep": true,
+        "interpretation": "peak lag=0 \u2264 0 \u2192 ga0 lags MI (compression is primary, entropy follows structure)"
+      },
+      "test4_trajectory_profile": {
+        "mi_series_mean": 0.9430548767458922,
+        "mi_series_std": 0.22792926762392368,
+        "linear_slope": -0.013257259717297363,
+        "first_half_mean": 1.0438211979212422,
+        "second_half_mean": 0.8485864506440015,
+        "second_minus_first": -0.19523474727724066,
+        "early_mi_mean": 1.266940689262705,
+        "late_mi_mean": 0.9274954403481322,
+        "late_leads": false,
+        "keep": false,
+        "interpretation": "MI flat or decreasing \u2192 no attractor convergence (no directional compression)"
+      },
+      "keep_count": 3,
+      "verdict": "COMPRESSION-FROM-FUTURE"
+    },
+    {
+      "engine_type": 1,
+      "torus": "outer",
+      "test1_temporal_asymmetry": {
+        "mean_forward_mi": 1.7984689036144954,
+        "mean_backward_mi": 1.8031686461193277,
+        "asymmetry_bwd_minus_fwd": 0.004699742504832294,
+        "keep": true,
+        "interpretation": "backward \u2265 forward \u2192 future predicts past (compression-from-future)"
+      },
+      "test2_attractor_vs_drift": {
+        "autocorr_delta_L": 0.16560325059730066,
+        "autocorr_delta_R": 0.18069956084780125,
+        "mean_autocorr": 0.17315140572255094,
+        "keep": false,
+        "interpretation": "positive autocorr \u2192 drift / causal momentum (classical propagation)"
+      },
+      "test3_jk_fuzz_directionality": {
+        "cross_correlations": {
+          "-3": -0.4214,
+          "-2": -0.4863,
+          "-1": 0.4914,
+          "0": 0.5175,
+          "1": -0.4767,
+          "2": -0.4939,
+          "3": 0.4471
+        },
+        "peak_lag": 0,
+        "peak_value": 0.5174867689754971,
+        "keep": true,
+        "interpretation": "peak lag=0 \u2264 0 \u2192 ga0 lags MI (compression is primary, entropy follows structure)"
+      },
+      "test4_trajectory_profile": {
+        "mi_series_mean": 1.7984689036144954,
+        "mi_series_std": 0.20909037276124173,
+        "linear_slope": 0.00744059640690222,
+        "first_half_mean": 1.7267133870878055,
+        "second_half_mean": 1.8657397003582674,
+        "second_minus_first": 0.1390263132704619,
+        "early_mi_mean": 1.7699582080528462,
+        "late_mi_mean": 1.8844682441346632,
+        "late_leads": true,
+        "keep": true,
+        "interpretation": "MI increases toward trajectory end \u2192 attractor convergence (compression-from-future)"
+      },
+      "keep_count": 3,
+      "verdict": "COMPRESSION-FROM-FUTURE"
+    },
+    {
+      "engine_type": 2,
+      "torus": "inner",
+      "test1_temporal_asymmetry": {
+        "mean_forward_mi": 1.7902517153772184,
+        "mean_backward_mi": 1.794244817512303,
+        "asymmetry_bwd_minus_fwd": 0.003993102135084525,
+        "keep": true,
+        "interpretation": "backward \u2265 forward \u2192 future predicts past (compression-from-future)"
+      },
+      "test2_attractor_vs_drift": {
+        "autocorr_delta_L": 0.17667234015271124,
+        "autocorr_delta_R": 0.24830914827609651,
+        "mean_autocorr": 0.2124907442144039,
+        "keep": false,
+        "interpretation": "positive autocorr \u2192 drift / causal momentum (classical propagation)"
+      },
+      "test3_jk_fuzz_directionality": {
+        "cross_correlations": {
+          "-3": -0.2598,
+          "-2": -0.4732,
+          "-1": 0.3983,
+          "0": 0.4741,
+          "1": -0.3446,
+          "2": -0.4669,
+          "3": 0.3909
+        },
+        "peak_lag": 0,
+        "peak_value": 0.4741316351668009,
+        "keep": true,
+        "interpretation": "peak lag=0 \u2264 0 \u2192 ga0 lags MI (compression is primary, entropy follows structure)"
+      },
+      "test4_trajectory_profile": {
+        "mi_series_mean": 1.7902517153772184,
+        "mi_series_std": 0.22547432790907548,
+        "linear_slope": 0.008881019819985798,
+        "first_half_mean": 1.7028818750967163,
+        "second_half_mean": 1.8721609406401882,
+        "second_minus_first": 0.16927906554347194,
+        "early_mi_mean": 1.7487602873417973,
+        "late_mi_mean": 1.8935419128690043,
+        "late_leads": true,
+        "keep": true,
+        "interpretation": "MI increases toward trajectory end \u2192 attractor convergence (compression-from-future)"
+      },
+      "keep_count": 3,
+      "verdict": "COMPRESSION-FROM-FUTURE"
+    },
+    {
+      "engine_type": 2,
+      "torus": "clifford",
+      "test1_temporal_asymmetry": {
+        "mean_forward_mi": 0.94054721648212,
+        "mean_backward_mi": 0.9446004876788192,
+        "asymmetry_bwd_minus_fwd": 0.004053271196699182,
+        "keep": true,
+        "interpretation": "backward \u2265 forward \u2192 future predicts past (compression-from-future)"
+      },
+      "test2_attractor_vs_drift": {
+        "autocorr_delta_L": -0.1499965578359786,
+        "autocorr_delta_R": -0.0717014107080785,
+        "mean_autocorr": -0.11084898427202855,
+        "keep": true,
+        "interpretation": "negative autocorr \u2192 mean-reverting attractor (FEP / compression-from-future)"
+      },
+      "test3_jk_fuzz_directionality": {
+        "cross_correlations": {
+          "-3": 0.1516,
+          "-2": -0.517,
+          "-1": -0.0502,
+          "0": 0.6337,
+          "1": 0.2832,
+          "2": -0.3867,
+          "3": 0.0632
+        },
+        "peak_lag": 0,
+        "peak_value": 0.6336807528138749,
+        "keep": true,
+        "interpretation": "peak lag=0 \u2264 0 \u2192 ga0 lags MI (compression is primary, entropy follows structure)"
+      },
+      "test4_trajectory_profile": {
+        "mi_series_mean": 0.94054721648212,
+        "mi_series_std": 0.2383999949322648,
+        "linear_slope": -0.0029276555548089617,
+        "first_half_mean": 0.9539429136153527,
+        "second_half_mean": 0.9279887504197143,
+        "second_minus_first": -0.02595416319563837,
+        "early_mi_mean": 1.182408477892868,
+        "late_mi_mean": 1.0828899395370235,
+        "late_leads": false,
+        "keep": false,
+        "interpretation": "MI flat or decreasing \u2192 no attractor convergence (no directional compression)"
+      },
+      "keep_count": 3,
+      "verdict": "COMPRESSION-FROM-FUTURE"
+    },
+    {
+      "engine_type": 2,
+      "torus": "outer",
+      "test1_temporal_asymmetry": {
+        "mean_forward_mi": 1.7891777164802294,
+        "mean_backward_mi": 1.7928847703324922,
+        "asymmetry_bwd_minus_fwd": 0.003707053852262776,
+        "keep": true,
+        "interpretation": "backward \u2265 forward \u2192 future predicts past (compression-from-future)"
+      },
+      "test2_attractor_vs_drift": {
+        "autocorr_delta_L": 0.19960701244374787,
+        "autocorr_delta_R": 0.3053269360560244,
+        "mean_autocorr": 0.2524669742498861,
+        "keep": false,
+        "interpretation": "positive autocorr \u2192 drift / causal momentum (classical propagation)"
+      },
+      "test3_jk_fuzz_directionality": {
+        "cross_correlations": {
+          "-3": -0.2648,
+          "-2": -0.4729,
+          "-1": 0.4036,
+          "0": 0.4736,
+          "1": -0.3495,
+          "2": -0.4667,
+          "3": 0.3952
+        },
+        "peak_lag": 0,
+        "peak_value": 0.4735920287288282,
+        "keep": true,
+        "interpretation": "peak lag=0 \u2264 0 \u2192 ga0 lags MI (compression is primary, entropy follows structure)"
+      },
+      "test4_trajectory_profile": {
+        "mi_series_mean": 1.7891777164802294,
+        "mi_series_std": 0.22604354927258272,
+        "linear_slope": 0.008903899818549978,
+        "first_half_mean": 1.7015187566797991,
+        "second_half_mean": 1.871357991293133,
+        "second_minus_first": 0.16983923461333394,
+        "early_mi_mean": 1.7474987962519988,
+        "late_mi_mean": 1.8925959066091216,
+        "late_leads": true,
+        "keep": true,
+        "interpretation": "MI increases toward trajectory end \u2192 attractor convergence (compression-from-future)"
+      },
+      "keep_count": 3,
+      "verdict": "COMPRESSION-FROM-FUTURE"
+    }
+  ],
+  "summary": {
+    "t1_keep": 6,
+    "t2_keep": 2,
+    "t3_keep": 6,
+    "t4_keep": 4,
+    "compression_verdict": 6,
+    "mixed_verdict": 0,
+    "total": 6,
+    "overall": "STRONG COMPRESSION-FROM-FUTURE"
+  }
+}

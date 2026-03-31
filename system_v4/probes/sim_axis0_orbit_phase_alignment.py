@@ -27,10 +27,18 @@ For the proof strategy:
 """
 
 from __future__ import annotations
+import argparse
 import json, os, sys
 from datetime import UTC, datetime
 import numpy as np
 from collections import defaultdict
+
+_PROBE_DIR = os.path.dirname(os.path.abspath(__file__))
+_REPO_ROOT = os.path.dirname(os.path.dirname(_PROBE_DIR))
+_MPL_CACHE = os.path.join(_REPO_ROOT, "work", "audit_tmp", "mplcache")
+os.makedirs(_MPL_CACHE, exist_ok=True)
+os.environ.setdefault("MPLCONFIGDIR", _MPL_CACHE)
+os.environ.setdefault("XDG_CACHE_HOME", _MPL_CACHE)
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from engine_core import GeometricEngine
@@ -84,7 +92,13 @@ def vne(rho):
     ev = ev[ev > 1e-15]
     return float(-np.sum(ev * np.log2(ev))) if len(ev) else 0.0
 
-def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="strict", node_t=None, node_t1=None, engine_type=None, pub_to_hid=None, hid_to_pyg_idx=None, step_strength=1.0, op_name=None):
+from qit_edge_state_updater import (
+    build_edge_lookup,
+    SLOT_POLARITY, SLOT_ENTANG_WEIGHT, SLOT_CHIRAL_STATUS,
+    SLOT_TOPO_LEGAL, SLOT_CONST_SAT, SLOT_MARG_PRES, SLOT_ADMISSIBILITY,
+)
+
+def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="strict", node_t=None, node_t1=None, engine_type=None, pub_to_hid=None, hid_to_pyg_idx=None, step_strength=1.0, op_name=None, edge_map=None, dphi_L=0.0, dphi_R=0.0):
     p_base = float(np.clip(lr_asym(rho_L, rho_R), 0.01, 0.99))
     
     if negative_mode == "bell_injected":
@@ -95,6 +109,10 @@ def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="
         # Load-bearing penalties mapped strictly to the active timestep transition
         topo_gate = 1.0
         ga_gate = 1.0
+        cos_sim = 1.0
+        c_coeffs = [0.0]*8
+        e_pos = edge_map.get((node_t, node_t1)) if edge_map and node_t and node_t1 else None
+
         phase_gamma = p_base * (np.pi / 2.0)
         
         # TopoNetX Active Link Penalty
@@ -158,21 +176,25 @@ def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="
                 
                 # Natively deduce overarching geometric engine phase by querying the global coupling edge payload
                 chiral_edge = next((e for e in ga_edges if e.get("relation") == "CHIRALITY_COUPLING"), None)
-                chiral_volume = 1.0
                 if chiral_edge and pub_to_hid:
-                    c_coeffs = chiral_edge.get("ga_payload", {}).get("coefficients", [0]*8)
+                    c_coeffs = chiral_edge.get("ga_payload", {}).get("coefficients", [0]*8).copy()
                     engine_hid = pub_to_hid.get(f"qit::ENGINE::type{engine_type}")
+                    if engine_hid == chiral_edge.get("target_id"):
+                        c_coeffs = [-c for c in c_coeffs] # Flip orientation algebraically
                     
-                    # Organic Chirality Destruction: Evaluate purely symmetric scalar space (Grade-0) rather than orientable volume (Grade-3)
-                    grade_idx = 0 if negative_mode == "chirality_destroyed" else 7
+                import clifford as cf
+                layout, blv = cf.Cl(3)
+                mv_seq = layout.MultiVector(seq_coeffs)
+                mv_chiral = layout.MultiVector(c_coeffs)
+                
+                # Organic Chirality Destruction: Project tensor to purely symmetric scalar space (Grade-0) rather than orientable volume (Grade-3)
+                if negative_mode == "chirality_destroyed":
+                    mv_chiral = layout.MultiVector([c_coeffs[0]] + [0]*7)
                     
-                    if engine_hid == chiral_edge.get("source_id"):
-                        chiral_volume = c_coeffs[grade_idx]
-                    elif engine_hid == chiral_edge.get("target_id"):
-                        chiral_volume = c_coeffs[grade_idx] if negative_mode == "chirality_destroyed" else -c_coeffs[grade_idx]
-                    
-                # Mechanical extraction: Phase is structurally dependent on sequence direction and volume twist!
-                phase_gamma = p_base * (seq_coeffs[1] * chiral_volume) * (np.pi / 2.0)
+                # Real Geometric Computation: Phase organically extracts from the resulting bivector rotation 
+                # generated natively by multiplying the sequence vector through the chiral volume!
+                mv_interaction = mv_seq * mv_chiral
+                phase_gamma = p_base * float(abs(mv_interaction)) * (np.pi / 2.0)
             else:
                 ga_gate = 0.0
                 phase_gamma = 0.0
@@ -192,6 +214,16 @@ def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="
         separable = np.kron(rho_L, rho_R)
         rho_AB = _ensure_valid_density(U @ separable @ U.conj().T)
         
+        # Write slot state into dynamic edge tensor via qit_edge_state_updater constants
+        if hetero is not None and e_pos is not None:
+            mean_flux = 0.5 * (dphi_L + dphi_R)
+            ea = hetero["node", "rel", "node"].edge_attr
+            ea[e_pos, SLOT_POLARITY]      = 1.0 if mean_flux > 1e-9 else (-1.0 if mean_flux < -1e-9 else 0.0)
+            ea[e_pos, SLOT_CHIRAL_STATUS] = float(np.sign(c_coeffs[7])) if c_coeffs[7] else 0.0
+            ea[e_pos, SLOT_TOPO_LEGAL]    = topo_gate
+            ea[e_pos, SLOT_CONST_SAT]     = 1.0 if cos_sim >= 0.8 else 0.0
+            ea[e_pos, SLOT_MARG_PRES]     = max(0.0, 1.0 - abs(dphi_L) - abs(dphi_R))
+                
     rho_A = np.trace(rho_AB.reshape(2, 2, 2, 2), axis1=1, axis2=3)
     rho_B = np.trace(rho_AB.reshape(2, 2, 2, 2), axis1=0, axis2=2)
     return max(0.0, vne(rho_A) + vne(rho_B) - vne(rho_AB))
@@ -218,6 +250,8 @@ def analyze_trajectory(
     """
     T = len(history)
     ct_mi = []
+    
+    edge_map = build_edge_lookup(hetero, enriched_edges or [], hid_to_pyg_idx or {})
     for t in range(T):
         step_t = history[t]
         step_t1 = history[min(t+1, T-1)]
@@ -244,6 +278,9 @@ def analyze_trajectory(
             hid_to_pyg_idx=hid_to_pyg_idx,
             step_strength=step_t.get("strength", 1.0),
             op_name=step_t.get("op_name"),
+            edge_map=edge_map,
+            dphi_L=step_t.get("dphi_L", 0.0),
+            dphi_R=step_t.get("dphi_R", 0.0),
         ))
 
     # Graph stack integrations
@@ -342,7 +379,18 @@ def analyze_trajectory(
 # Main                                                                         #
 # --------------------------------------------------------------------------- #
 
+def _parse_args():
+    parser = argparse.ArgumentParser(description="Axis 0 orbit phase alignment probe")
+    parser.add_argument(
+        "--full",
+        action="store_true",
+        help="Run the exhaustive cross-product sweep instead of the bounded regression mode.",
+    )
+    return parser.parse_args()
+
+
 def main():
+    args = _parse_args()
     print("Axis 0 Orbit Phase Alignment Probe (with Full Graph Stack Integration)")
     print("=" * 70)
 
@@ -375,11 +423,22 @@ def main():
     agg_half  = defaultdict(lambda: {"ok": 0, "fail": 0})
     failure_profiles = []   # details on all failure steps
 
-    NEGATIVE_MODES = ["strict", "bell_injected", "topology_flattened", "pyg_bypassed", "chirality_destroyed"]
+    if args.full:
+        negative_modes = ["strict", "bell_injected", "topology_flattened", "pyg_bypassed", "chirality_destroyed"]
+        engine_types = list(ENGINE_TYPES)
+        torus_configs = list(TORUS_CONFIGS)
+        print("Mode: full")
+    else:
+        # Default verify path: keep the graph-integrated negative family live, but
+        # bound the sweep to a single canonical engine/torus lane so it stays mechanical.
+        negative_modes = ["strict", "bell_injected", "topology_flattened", "pyg_bypassed", "chirality_destroyed"]
+        engine_types = [1]
+        torus_configs = [("clifford", TORUS_CLIFFORD)]
+        print("Mode: bounded")
 
-    for negative_mode in NEGATIVE_MODES:
-        for engine_type in ENGINE_TYPES:
-            for torus_name, torus_val in TORUS_CONFIGS:
+    for negative_mode in negative_modes:
+        for engine_type in engine_types:
+            for torus_name, torus_val in torus_configs:
                 try:
                     engine = GeometricEngine(engine_type=engine_type)
                     state  = engine.init_state(eta=torus_val)

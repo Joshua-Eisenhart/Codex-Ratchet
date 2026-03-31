@@ -216,7 +216,7 @@ class EngineState:
     eta: float                 # Current torus latitude
     theta1: float              # Angle on first circle
     theta2: float              # Angle on second circle
-    ga0_level: float = 0.5     # Correlation entropy level (Ax0 -- can be negative in principle)
+    ga0_level: float = 0.5     # Engine control level in [0,1]; runtime proxy, not signed Ic
     stage_idx: int = 0         # Current stage [0, 63]
     engine_type: int = 1       # 1 or 2
     # Loop context (set by step() from LOOP_GRAMMAR lookup)
@@ -245,6 +245,20 @@ class StageControls:
     torus: float = TORUS_CLIFFORD  # Which nested torus (η value)
     spinor: str = "both"       # "left", "right", or "both"
     axis0: Optional[float] = None  # Target coarse-graining / entropy ceiling [0, 1]
+
+
+@dataclass
+class Axis0BridgeSnapshot:
+    """Typed engine-native Axis 0 control bridge snapshot.
+
+    This is intentionally the honest direct L|R control cut-state, not a
+    promoted Xi_hist/Xi_shell doctrine object.
+    """
+    bridge_family: str
+    rho_ab: np.ndarray
+    dims: Tuple[int, int]
+    metrics: Dict[str, float]
+    meta: Dict[str, float]
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -471,9 +485,9 @@ class GeometricEngine:
 
             op_kwargs = {"polarity_up": polarity, "strength": strength}
             if op_name == "Te":
-                op_kwargs["angle"] = 0.3 * angle_mod
+                op_kwargs["q"] = 0.3 * angle_mod
             if op_name == "Fe":
-                op_kwargs["dt"] = 0.05 * dt_mod
+                op_kwargs["phi"] = 0.05 * dt_mod
 
             op_fn = {"Ti": apply_Ti, "Fe": apply_Fe, "Te": apply_Te, "Fi": apply_Fi}[op_name]
 
@@ -506,8 +520,8 @@ class GeometricEngine:
                     new_rho_R = _ensure_valid_density(new_rho_R)
                     applied_op = None  # Already applied
                 elif applied_op == "Fe":
-                    # Conjugate damping: toward |1⟩ instead of |0⟩
-                    # Flip basis, damp, flip back
+                    # Conjugate right-sheet application of the corrected U_z rotation.
+                    # Flip basis, apply the same operator, flip back.
                     sx = SIGMA_X
                     rho_conj = sx @ new_rho_R @ sx
                     rho_conj = op_fn(rho_conj, **right_kwargs)
@@ -515,7 +529,7 @@ class GeometricEngine:
                     new_rho_R = _ensure_valid_density(new_rho_R)
                     applied_op = None
                 elif applied_op == "Fi":
-                    # Conjugate filter: amplify |1⟩ instead of |0⟩
+                    # Conjugate right-sheet application of the corrected U_x rotation.
                     sx = SIGMA_X
                     rho_conj = sx @ new_rho_R @ sx
                     rho_conj = op_fn(rho_conj, **right_kwargs)
@@ -539,6 +553,15 @@ class GeometricEngine:
             dphi_L = negentropy(new_rho_L) - negentropy(current_state.rho_L)
             dphi_R = negentropy(new_rho_R) - negentropy(current_state.rho_R)
 
+            # Ax0 torus-latitude entropy at this step: S(ρ̄(η)) = -cos²η ln cos²η - sin²η ln sin²η
+            _c2 = float(np.cos(new_eta) ** 2)
+            _s2 = float(np.sin(new_eta) ** 2)
+            _ax0_te = 0.0
+            if _c2 > 1e-15:
+                _ax0_te -= _c2 * np.log(_c2)
+            if _s2 > 1e-15:
+                _ax0_te -= _s2 * np.log(_s2)
+
             new_history.append({
                 "stage": f"{terrain['name']}_{op_name}",
                 "op_name": op_name,
@@ -550,7 +573,8 @@ class GeometricEngine:
                 "rho_R": new_rho_R.copy(),
                 "strength": strength,
                 "ga0_before": current_state.ga0_level,
-                "ga0_after": new_ga0
+                "ga0_after": new_ga0,
+                "ax0_torus_entropy": _ax0_te,
             })
 
             lpos, lrole = _TERRAIN_TO_LOOP[self.engine_type].get(stage_idx, (None, None))
@@ -628,6 +652,20 @@ class GeometricEngine:
         # GA5: Coupling (avg negentropy)
         ga5 = (negentropy(rho_L) + negentropy(rho_R)) / 2
 
+        # Ax0 torus-latitude entropy diagnostic
+        # S(ρ̄(η)) = -cos²η ln cos²η - sin²η ln sin²η
+        # This is the entropy of the orbit-averaged state on the Clifford torus
+        # at latitude η. Used to monitor the Ax0 continuous field directly.
+        eta = state.eta
+        c2 = float(np.cos(eta) ** 2)
+        s2 = float(np.sin(eta) ** 2)
+        ax0_torus_entropy = 0.0
+        if c2 > 1e-15:
+            ax0_torus_entropy -= c2 * np.log(c2)
+        if s2 > 1e-15:
+            ax0_torus_entropy -= s2 * np.log(s2)
+        ax0_hemisphere = int(np.sign(np.cos(2 * eta)))  # +1=N, 0=Clifford, -1=S
+
         return {
             "GA0_entropy": ga0,
             "GA1_boundary": ga1,
@@ -635,22 +673,200 @@ class GeometricEngine:
             "GA3_chirality": ga3,
             "GA4_variance": ga4,
             "GA5_coupling": ga5,
+            "Ax0_torus_entropy": float(ax0_torus_entropy),
+            "Ax0_hemisphere": ax0_hemisphere,
         }
+
+    def _axis0_von_neumann_entropy(self, rho: np.ndarray) -> float:
+        """Von Neumann entropy in bits for a density matrix."""
+        rho = (rho + rho.conj().T) / 2
+        evals = np.real(np.linalg.eigvalsh(rho))
+        evals = evals[evals > 1e-15]
+        if len(evals) == 0:
+            return 0.0
+        return float(-np.sum(evals * np.log2(evals)))
+
+    def _axis0_partial_trace(self, rho: np.ndarray,
+                             dims: Tuple[int, int],
+                             keep: int) -> np.ndarray:
+        """Partial trace over one side of a 2-subsystem cut-state."""
+        da, db = dims
+        if keep == 0:
+            reshaped = rho.reshape(da, db, da, db)
+            return np.trace(reshaped, axis1=1, axis2=3)
+        if keep == 1:
+            reshaped = rho.reshape(da, db, da, db)
+            return np.trace(reshaped, axis1=0, axis2=2)
+        raise ValueError("keep must be 0 or 1 for a bipartite cut-state")
+
+    def _axis0_pair_entangler(self, op_name: Optional[str]) -> np.ndarray:
+        """Choose the pair interaction aligned to the active microstep family."""
+        if op_name == "Ti":
+            return np.kron(SIGMA_Z, SIGMA_Z)
+        if op_name == "Te":
+            return np.kron(SIGMA_Y, SIGMA_Y)
+        return np.kron(SIGMA_X, SIGMA_X)
+
+    def _axis0_pair_gamma(
+        self,
+        rho_L: np.ndarray,
+        rho_R: np.ndarray,
+        ga0_level: float,
+        step_info: Optional[Dict[str, float]] = None,
+    ) -> Tuple[float, Optional[str]]:
+        """Derive an engine-native pair coupling strength from live runtime state."""
+        op_name = step_info.get("op_name") if step_info else None
+        strength = float(step_info.get("strength", 0.5)) if step_info else 0.5
+        dphi_L = float(step_info.get("dphi_L", 0.0)) if step_info else 0.0
+        dphi_R = float(step_info.get("dphi_R", 0.0)) if step_info else 0.0
+        torus_entropy = float(step_info.get("ax0_torus_entropy", 0.0)) if step_info else 0.0
+
+        asym = float(np.clip(trace_distance_2x2(rho_L, rho_R), 0.0, 1.0))
+        flux = float(np.clip(abs(dphi_L) + abs(dphi_R), 0.0, 1.0))
+        geom = float(np.clip(ga0_level, 0.0, 1.0))
+        torus_gate = float(np.clip(torus_entropy / np.log(2.0), 0.0, 1.0))
+
+        coupling = asym * (0.35 + 0.45 * geom) * (0.25 + 0.50 * strength) * (0.20 + 0.80 * max(flux, torus_gate))
+        gamma = float(np.clip(coupling * (np.pi / 2.0), 0.0, np.pi / 2.0))
+        return gamma, op_name
+
+    def _axis0_pair_state(
+        self,
+        rho_L: np.ndarray,
+        rho_R: np.ndarray,
+        ga0_level: float,
+        step_info: Optional[Dict[str, float]] = None,
+    ) -> np.ndarray:
+        """Build an engine-native bipartite state instead of a Cartesian product."""
+        separable = np.kron(
+            np.asarray(rho_L, dtype=complex),
+            np.asarray(rho_R, dtype=complex),
+        )
+        gamma, op_name = self._axis0_pair_gamma(rho_L, rho_R, ga0_level, step_info)
+        if gamma <= 1e-12:
+            return _ensure_valid_density(separable)
+
+        H_int = self._axis0_pair_entangler(op_name)
+        U = np.cos(gamma) * np.eye(4, dtype=complex) - 1j * np.sin(gamma) * H_int
+        return _ensure_valid_density(U @ separable @ U.conj().T)
+
+    def pair_cut_state(self, state: EngineState) -> np.ndarray:
+        """Honest direct L|R pair cut-state for the current engine state."""
+        step_info = state.history[-1] if state.history else None
+        return self._axis0_pair_state(
+            state.rho_L,
+            state.rho_R,
+            state.ga0_level,
+            step_info=step_info,
+        )
+
+    def evaluate_axis0_kernel(self, rho_ab: np.ndarray,
+                              dims: Tuple[int, int] = (2, 2)) -> Dict[str, float]:
+        """Evaluate the signed QIT kernel family on a bipartite cut-state.
+
+        This is an engine-native control evaluation surface, not final Ax0 doctrine.
+        """
+        rho_a = self._axis0_partial_trace(rho_ab, dims, keep=0)
+        rho_b = self._axis0_partial_trace(rho_ab, dims, keep=1)
+        s_a = self._axis0_von_neumann_entropy(rho_a)
+        s_b = self._axis0_von_neumann_entropy(rho_b)
+        s_ab = self._axis0_von_neumann_entropy(rho_ab)
+        i_ab = max(0.0, s_a + s_b - s_ab)
+        s_a_given_b = s_ab - s_b
+        i_c = -s_a_given_b
+        return {
+            "I_AB": float(i_ab),
+            "S_A_given_B": float(s_a_given_b),
+            "I_c_A_to_B": float(i_c),
+        }
+
+    def axis0_bridge_snapshot(self, state: EngineState) -> Axis0BridgeSnapshot:
+        """Emit the current engine-native Axis 0 control bridge snapshot."""
+        rho_ab = self.pair_cut_state(state)
+        metrics = self.evaluate_axis0_kernel(rho_ab, dims=(2, 2))
+        meta = {
+            "eta": float(state.eta),
+            "theta1": float(state.theta1),
+            "theta2": float(state.theta2),
+            "ga0_level": float(state.ga0_level),
+            "stage_idx": float(state.stage_idx),
+            "engine_type": float(state.engine_type),
+        }
+        return Axis0BridgeSnapshot(
+            bridge_family="Xi_LR_direct_control",
+            rho_ab=rho_ab,
+            dims=(2, 2),
+            metrics=metrics,
+            meta=meta,
+        )
+
+    def axis0_history_window_snapshot(
+        self,
+        state: EngineState,
+        window_start: int = 0,
+        window_end: Optional[int] = None,
+    ) -> Axis0BridgeSnapshot:
+        """Emit a bounded engine-native history-window Axis 0 control snapshot.
+
+        This stays explicitly below final Xi_hist closure. It is the honest
+        read-only history-window consumer over the live append-only microstep
+        history already carried on EngineState.
+        """
+        history = list(state.history)
+        total = len(history)
+        start = max(0, int(window_start))
+        if window_end is None:
+            stop = total
+            end_inclusive = max(total - 1, -1)
+        else:
+            end_inclusive = min(int(window_end), total - 1)
+            stop = max(start, end_inclusive + 1)
+
+        selected = history[start:stop]
+        if selected:
+            pair_states = [
+                self._axis0_pair_state(
+                    entry["rho_L"],
+                    entry["rho_R"],
+                    float(entry.get("ga0_after", state.ga0_level)),
+                    step_info=entry,
+                )
+                for entry in selected
+            ]
+            rho_ab = _ensure_valid_density(sum(pair_states) / float(len(pair_states)))
+            n_samples = len(pair_states)
+            weight_type = "uniform_history_window"
+        else:
+            rho_ab = self.pair_cut_state(state)
+            n_samples = 1
+            weight_type = "fallback_current_state"
+
+        metrics = self.evaluate_axis0_kernel(rho_ab, dims=(2, 2))
+        meta = {
+            "history_length": float(total),
+            "window_start_index": float(start),
+            "window_end_index": float(end_inclusive),
+            "n_samples": float(n_samples),
+            "engine_type": float(state.engine_type),
+            "ga0_level": float(state.ga0_level),
+            "stage_idx": float(state.stage_idx),
+        }
+        meta["weight_type"] = weight_type
+        return Axis0BridgeSnapshot(
+            bridge_family="Xi_hist_window_control",
+            rho_ab=rho_ab,
+            dims=(2, 2),
+            metrics=metrics,
+            meta=meta,
+        )
 
     def apply_stage_as_tool(self, data: np.ndarray, stage_name: str,
                             strength: float = 0.5) -> np.ndarray:
         """Use a single engine stage as a data processing tool.
 
-        Like gradient descent is ONE tool, each of the 32 stages is its own tool.
-        The engine provides 8 qualitatively different information-processing modes:
-          1. Ti on fiber = constrain/project along fiber (like regularization)
-          2. Fe on fiber = dissipate along fiber (like dropout)
-          3. Te on fiber = explore within fiber (like momentum)
-          4. Fi on fiber = filter on fiber (like attention)
-          5. Ti on base = constrain across base (like batch norm)
-          6. Fe on base = dissipate across base (like learning rate decay)
-          7. Te on base = explore across base (like random search)
-          8. Fi on base = filter across base (like feature selection)
+        Like gradient descent is ONE tool, each stage/operator pair is its own tool.
+        This helper applies the corrected operator family to a named terrain stage
+        without advancing the full engine state.
 
         Args:
             data: 2×2 density matrix (or will be normalized to one).
@@ -660,25 +876,30 @@ class GeometricEngine:
         Returns:
             Transformed 2×2 density matrix.
         """
-        # Find stage
+        # Parse terrain and operator from the stage name, e.g. "Se_f_Ti".
+        terrain_name, op_name = stage_name.rsplit("_", 1)
         stage = None
         for s in self.stages:
-            if s["name"] == stage_name:
+            if s["name"] == terrain_name:
                 stage = s
                 break
         if stage is None:
-            raise ValueError(f"Unknown stage: {stage_name}. Options: {[s['name'] for s in self.stages]}")
+            raise ValueError(f"Unknown terrain stage: {terrain_name}. Options: {[s['name'] for s in self.stages]}")
+        if op_name not in {"Ti", "Te", "Fi", "Fe"}:
+            raise ValueError(f"Unknown operator in stage name: {stage_name}")
 
         rho = _ensure_valid_density(data)
         controls = StageControls(piston=strength, lever=True)
-        eff_strength = self._operator_strength(stage, controls)
-        op_fn = {"Ti": apply_Ti, "Fe": apply_Fe, "Te": apply_Te, "Fi": apply_Fi}[stage["operator"]]
+        eff_strength = self._operator_strength(stage, op_name, controls)
+        op_fn = {"Ti": apply_Ti, "Fe": apply_Fe, "Te": apply_Te, "Fi": apply_Fi}[op_name]
 
         kwargs = {"polarity_up": True, "strength": eff_strength}
-        if stage["operator"] == "Te":
-            kwargs["angle"] = 0.3
-        if stage["operator"] == "Fe":
-            kwargs["dt"] = 0.05
+        if op_name == "Te":
+            kwargs["q"] = 0.3
+        elif op_name == "Fe":
+            kwargs["phi"] = 0.05
+        elif op_name == "Fi":
+            kwargs["theta"] = 0.3
 
         return op_fn(rho, **kwargs)
 

@@ -543,7 +543,10 @@ def main():
                     "phase_stats": traj["phase_stats"],
                     "half_stats": traj["half_stats"],
                     "mi_trace": traj["mi_trace"],
+                    "guard_passed": traj["guard_passed"],
+                    "guard_checked_count": traj["guard_checked_count"],
                     "guard_event_count": traj["guard_event_count"],
+                    "guard_violations": traj["guard_violations"],
                     "guard_events": traj["guard_events"],
                 })
 

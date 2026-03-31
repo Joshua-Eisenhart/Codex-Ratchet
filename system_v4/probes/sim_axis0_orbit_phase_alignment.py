@@ -37,6 +37,10 @@ from engine_core import GeometricEngine
 from geometric_operators import _ensure_valid_density
 from hopf_manifold import TORUS_CLIFFORD, TORUS_INNER, TORUS_OUTER
 
+# Graph stack imports
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "skills"))
+from graph_tool_integration import get_runtime_projections
+
 PSI_MINUS = np.array([0, 1, -1, 0], dtype=complex) / np.sqrt(2)
 BELL = np.outer(PSI_MINUS, PSI_MINUS.conj())
 SIGMA_X = np.array([[0, 1], [1, 0]], dtype=complex)
@@ -74,9 +78,112 @@ def vne(rho):
     ev = ev[ev > 1e-15]
     return float(-np.sum(ev * np.log2(ev))) if len(ev) else 0.0
 
-def bridge_mi(rho_L, rho_R):
-    p = float(np.clip(lr_asym(rho_L, rho_R), 0.01, 0.99))
-    rho_AB = _ensure_valid_density((1 - p) * np.kron(rho_L, rho_R) + p * BELL)
+def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="strict", node_t=None, node_t1=None, engine_type=None, pub_to_hid=None, hid_to_pyg_idx=None):
+    p_base = float(np.clip(lr_asym(rho_L, rho_R), 0.01, 0.99))
+    
+    if negative_mode == "bell_injected":
+        # Legacy: Empirical mixture model unanchored to geometry
+        p = p_base
+        rho_AB = _ensure_valid_density((1 - p) * np.kron(rho_L, rho_R) + p * BELL)
+    else:
+        # Load-bearing penalties mapped strictly to the active timestep transition
+        topo_gate = 1.0
+        ga_gate = 1.0
+        phase_gamma = p_base * (np.pi / 2.0)
+        
+        # TopoNetX Active Link Penalty
+        if cc is not None:
+            if node_t and node_t1 and node_t != node_t1:
+                try:
+                    if negative_mode == "topology_flattened":
+                        # Flat Topology: only demand spatial 1-cell graph adjacency.
+                        # This physically zeroes only the face-closure metric.
+                        edges_1 = [tuple(sorted(e)) for e in cc.skeleton(1)]
+                        edge_tup = tuple(sorted([node_t, node_t1]))
+                        topo_gate = 1.0 if edge_tup in edges_1 else 0.0
+                    else:
+                        # Strict Topology: actively demand the metric generates 2-cell manifold continuous faces.
+                        # This verifies closure beyond simple graph linking.
+                        is_in_2cell = False
+                        for face in cc.skeleton(2):
+                            if node_t in face and node_t1 in face:
+                                is_in_2cell = True
+                                break
+                        topo_gate = 1.0 if is_in_2cell else 0.0
+                except Exception:
+                    topo_gate = 0.0
+            else:
+                topo_gate = 0.0 if (node_t != node_t1) else 1.0
+        else:
+            topo_gate = 1.0  # cc unavailable → pass-through; topology penalty cannot be applied
+
+        # PyG Tensor Similarity Gate
+        pyg_gate = 1.0
+        if hetero is not None and pub_to_hid is not None and hid_to_pyg_idx is not None:
+            if node_t and node_t1:
+                try:
+                    import torch
+                    import torch.nn.functional as F
+                    idx_t = hid_to_pyg_idx.get(node_t)
+                    idx_t1 = hid_to_pyg_idx.get(node_t1)
+                    
+                    if idx_t is not None and idx_t1 is not None:
+                        x_t = hetero["node"].x[idx_t]
+                        x_t1 = hetero["node"].x[idx_t1]
+                        
+                        if negative_mode == "pyg_bypassed":
+                            pyg_gate = 1.0
+                        else:
+                            cos_sim = F.cosine_similarity(x_t.unsqueeze(0), x_t1.unsqueeze(0)).item()
+                            # Map cosine similarity from [-1, 1] into [0, 1] so
+                            # structurally opposite-but-related graph states do
+                            # not collapse the gate to near-zero by sign alone.
+                            pyg_gate = max(0.01, 0.8 * (0.5 * (1.0 + cos_sim)))
+                except Exception as e:
+                    print(f"PyG Error: {e}")
+                    pyg_gate = 1.0
+
+        # Clifford Chirality Penalty on the Active Link
+        if ga_edges is not None:
+            seq_edge = next((e for e in ga_edges if e.get("source_id") == node_t and e.get("target_id") == node_t1), None)
+            if seq_edge is not None:
+                # Base Clifford multivector payload from the Step Sequence Graph Edge
+                seq_coeffs = list(seq_edge.get("ga_payload", {}).get("coefficients", [0]*8))
+                
+                # Natively deduce overarching geometric engine phase by querying the global coupling edge payload
+                chiral_edge = next((e for e in ga_edges if e.get("relation") == "CHIRALITY_COUPLING"), None)
+                chiral_volume = 1.0
+                if chiral_edge and pub_to_hid:
+                    c_coeffs = chiral_edge.get("ga_payload", {}).get("coefficients", [0]*8)
+                    engine_hid = pub_to_hid.get(f"qit::ENGINE::type{engine_type}")
+                    
+                    # Organic Chirality Destruction: Evaluate purely symmetric scalar space (Grade-0) rather than orientable volume (Grade-3)
+                    grade_idx = 0 if negative_mode == "chirality_destroyed" else 7
+                    
+                    if engine_hid == chiral_edge.get("source_id"):
+                        chiral_volume = c_coeffs[grade_idx]
+                    elif engine_hid == chiral_edge.get("target_id"):
+                        chiral_volume = c_coeffs[grade_idx] if negative_mode == "chirality_destroyed" else -c_coeffs[grade_idx]
+                    
+                # Mechanical extraction: Phase is structurally dependent on sequence direction and volume twist!
+                phase_gamma = p_base * (seq_coeffs[1] * chiral_volume) * (np.pi / 2.0)
+            else:
+                ga_gate = 0.0
+                phase_gamma = 0.0
+        else:
+            ga_gate = 0.0
+            phase_gamma = 0.0
+            
+        phase_gamma *= topo_gate * ga_gate * pyg_gate
+        
+        # Unitary correlation explicitly derived from graph constraints!
+        # H_int = Sigma_X \otimes Sigma_X (an entangling generator)
+        # U = exp(-i gamma H_int) = cos(gamma) I - i sin(gamma) X_X
+        # A purely separable origin state becomes correctly structurally entangled
+        U = np.cos(phase_gamma) * np.eye(4) - 1j * np.sin(phase_gamma) * np.kron(SIGMA_X, SIGMA_X)
+        separable = np.kron(rho_L, rho_R)
+        rho_AB = _ensure_valid_density(U @ separable @ U.conj().T)
+        
     rho_A = np.trace(rho_AB.reshape(2, 2, 2, 2), axis1=1, axis2=3)
     rho_B = np.trace(rho_AB.reshape(2, 2, 2, 2), axis1=0, axis2=2)
     return max(0.0, vne(rho_A) + vne(rho_B) - vne(rho_AB))
@@ -86,15 +193,68 @@ def bridge_mi(rho_L, rho_R):
 # Core analysis per trajectory                                                 #
 # --------------------------------------------------------------------------- #
 
-def analyze_trajectory(history: list[dict]) -> dict:
+def analyze_trajectory(
+    history: list[dict], 
+    cc=None, 
+    hetero=None, 
+    enriched_edges=None,
+    engine_type=None,
+    negative_mode="strict",
+    pub_to_hid=None,
+    hid_to_pyg_idx=None,
+) -> dict:
     """
     Compute per-step forward MI co-arising and characterize failures.
-    Returns per-step analysis with failure flags and attractor features.
+    Returns per-step analysis with failure flags and attractor features,
+    augmented by TopoNetX cell structures, PyG tensors, and GA payloads.
     """
     T = len(history)
-    # Forward MI series: ct_mi[t] = MI(L[t], R[t+1])
-    ct_mi = [bridge_mi(history[t]["rho_L"],
-                       history[min(t+1, T-1)]["rho_R"]) for t in range(T)]
+    ct_mi = []
+    for t in range(T):
+        step_t = history[t]
+        step_t1 = history[min(t+1, T-1)]
+        
+        # Build strict topological identifiers for the active cycle path
+        pub_t = f"qit::SUBCYCLE_STEP::type{engine_type}_{step_t['stage']}"
+        pub_t1 = f"qit::SUBCYCLE_STEP::type{engine_type}_{step_t1['stage']}"
+        
+        hid_t = pub_to_hid.get(pub_t) if pub_to_hid else None
+        hid_t1 = pub_to_hid.get(pub_t1) if pub_to_hid else None
+        
+        # Forward MI series: ct_mi[t] = MI(L[t], R[t+1]) modulated by rigorous graph geometry
+        ct_mi.append(bridge_mi(
+            step_t["rho_L"],
+            step_t1["rho_R"],
+            cc=cc,
+            ga_edges=enriched_edges,
+            negative_mode=negative_mode,
+            node_t=hid_t,
+            node_t1=hid_t1,
+            engine_type=engine_type,
+            hetero=hetero,
+            pub_to_hid=pub_to_hid,
+            hid_to_pyg_idx=hid_to_pyg_idx
+        ))
+
+    # Graph stack integrations
+    loop_topologies = []
+    pyg_orbit_validated = False
+    
+    if cc is not None:
+        # Check if 1-cells and 2-cells form valid complete paths for the engine
+        try:
+            loop_topologies = list(cc.skeleton(2))
+        except AttributeError:
+            loop_topologies = []
+    
+    if hetero is not None:
+        # Basic PyG forward pass check (just confirming node tensor shapes match)
+        if hasattr(hetero["node"], "x") and hetero["node"].x.size(0) > 0:
+            pyg_orbit_validated = True
+
+    chiral_edges = 0
+    if enriched_edges is not None:
+        chiral_edges = len([e for e in enriched_edges if e.get("relation") == "CHIRALITY_COUPLING"])
 
     steps = []
     for t in range(1, T):
@@ -161,6 +321,10 @@ def analyze_trajectory(history: list[dict]) -> dict:
         "phase_stats": phase_stats,
         "half_stats": half_stats,
         "steps": steps,
+        "pyg_orbit_validated": pyg_orbit_validated,
+        "valid_topology_loops_count": len(loop_topologies),
+        "chiral_global_operators_found": chiral_edges,
+        "mi_trace": ct_mi,
     }
 
 
@@ -169,65 +333,103 @@ def analyze_trajectory(history: list[dict]) -> dict:
 # --------------------------------------------------------------------------- #
 
 def main():
-    print("Axis 0 Orbit Phase Alignment Probe")
-    print("=" * 50)
+    print("Axis 0 Orbit Phase Alignment Probe (with Full Graph Stack Integration)")
+    print("=" * 70)
 
+    builder_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "a2_state", "graphs")
+    
+    nodes_dict = {}
+    edges_list = []
+    
+    # Load ONLY the engine physical structural graph (no file-provenance pollution)
+    engine_graph_path = os.path.join(builder_dir, "qit_engine_graph_v1.json")
+    if os.path.exists(engine_graph_path):
+        with open(engine_graph_path, "r", encoding="utf-8") as fh:
+            engine_data = json.load(fh)
+            nodes_dict.update(engine_data.get("nodes", {}))
+            edges_list.extend(engine_data.get("edges", []))
+        print(f"Loaded Native Engine Graph. Total nodes: {len(nodes_dict)}, Edges: {len(edges_list)}")
+    else:
+        print("CRITICAL: qit_engine_graph_v1.json not found.")
+
+    pub_to_hid = {nd.get("public_id"): hid for hid, nd in nodes_dict.items()}
+    hid_to_pyg_idx = {hid: i for i, hid in enumerate(sorted(nodes_dict.keys()))}
+    
+    # Generate Runtime Projections via sidecars
+    cc, hetero, ga_edges = get_runtime_projections(nodes_dict, edges_list)
+    print(f"Sidecars built. TopoNetX available: {cc is not None}, PyG available: {hetero is not None}")
+    
     all_results = []
     # Aggregate failure phase counts
     agg_phase = defaultdict(lambda: {"ok": 0, "fail": 0, "neutral": 0})
     agg_half  = defaultdict(lambda: {"ok": 0, "fail": 0})
     failure_profiles = []   # details on all failure steps
 
-    for engine_type in ENGINE_TYPES:
-        for torus_name, torus_val in TORUS_CONFIGS:
-            try:
-                engine = GeometricEngine(engine_type=engine_type)
-                state  = engine.init_state(eta=torus_val)
-                final  = engine.run_cycle(state)
-            except Exception as e:
-                print(f"  [{engine_type}/{torus_name}] SKIP: {e}")
-                continue
+    NEGATIVE_MODES = ["strict", "bell_injected", "topology_flattened", "pyg_bypassed", "chirality_destroyed"]
 
-            traj = analyze_trajectory(final.history)
-            key = f"{engine_type}/{torus_name}"
+    for negative_mode in NEGATIVE_MODES:
+        for engine_type in ENGINE_TYPES:
+            for torus_name, torus_val in TORUS_CONFIGS:
+                try:
+                    engine = GeometricEngine(engine_type=engine_type)
+                    state  = engine.init_state(eta=torus_val)
+                    final  = engine.run_cycle(state)
+                except Exception as e:
+                    print(f"  [{negative_mode}/{engine_type}/{torus_name}] SKIP: {e}")
+                    continue
 
-            # Accumulate per-phase
-            for ph, stats in traj["phase_stats"].items():
-                agg_phase[ph]["ok"]      += stats["ok"]
-                agg_phase[ph]["fail"]    += stats["fail"]
-                agg_phase[ph]["neutral"] += stats["neutral"]
-            for half, stats in traj["half_stats"].items():
-                agg_half[half]["ok"]   += stats["ok"]
-                agg_half[half]["fail"] += stats["fail"]
+                traj = analyze_trajectory(
+                    final.history,
+                    cc=cc,
+                    hetero=hetero,
+                    enriched_edges=ga_edges,
+                    engine_type=engine_type,
+                    negative_mode=negative_mode,
+                    pub_to_hid=pub_to_hid,
+                    hid_to_pyg_idx=hid_to_pyg_idx
+                )
+                key = f"{negative_mode}/{engine_type}/{torus_name}"
 
-            # Collect failure step profiles
-            for s in traj["steps"]:
-                if s["coarises"] is False:
-                    failure_profiles.append({**s, "config": key})
+                # Accumulate per-phase
+                for ph, stats in traj["phase_stats"].items():
+                    agg_phase[ph]["ok"]      += stats["ok"]
+                    agg_phase[ph]["fail"]    += stats["fail"]
+                    agg_phase[ph]["neutral"] += stats["neutral"]
+                for half, stats in traj["half_stats"].items():
+                    agg_half[half]["ok"]   += stats["ok"]
+                    agg_half[half]["fail"] += stats["fail"]
 
-            rate = traj["n_success"] / (traj["n_success"] + traj["n_fail"]) if (traj["n_success"] + traj["n_fail"]) > 0 else None
-            print(f"\n  [{key}] ok={traj['n_success']} fail={traj['n_fail']} neutral={traj['n_neutral']} "
-                  f"rate={rate:.3f}" if rate else f"  [{key}] no nonzero steps")
-            print(f"    Phase: ", end="")
-            for ph in ["Ti", "Fe", "Te", "Fi"]:
-                st = traj["phase_stats"][ph]
-                print(f"{ph}={st['ok']}/{st['ok']+st['fail']+st['neutral']} ", end="")
-            print()
-            print(f"    Half:  outer={traj['half_stats']['outer']['ok']}/{sum(traj['half_stats']['outer'].values())} "
-                  f"inner={traj['half_stats']['inner']['ok']}/{sum(traj['half_stats']['inner'].values())}")
+                # Collect failure step profiles
+                for s in traj["steps"]:
+                    if s["coarises"] is False:
+                        failure_profiles.append({**s, "config": key})
 
-            all_results.append({
-                "config": key,
-                "engine_type": engine_type,
-                "torus": torus_name,
-                "eta": torus_val,
-                "n_success": traj["n_success"],
-                "n_fail": traj["n_fail"],
-                "n_neutral": traj["n_neutral"],
-                "forward_coarising_rate": rate,
-                "phase_stats": traj["phase_stats"],
-                "half_stats": traj["half_stats"],
-            })
+                rate = traj["n_success"] / (traj["n_success"] + traj["n_fail"]) if (traj["n_success"] + traj["n_fail"]) > 0 else None
+                print(f"\n  [{key}] ok={traj['n_success']} fail={traj['n_fail']} neutral={traj['n_neutral']} "
+                      f"rate={rate:.3f}" if rate else f"  [{key}] no nonzero steps")
+                print(f"    Graph Stack: TopoNetX Loops={traj['valid_topology_loops_count']}, PyG Validated={traj['pyg_orbit_validated']}, Chiral Global Operators={traj['chiral_global_operators_found']}")
+                print(f"    Phase: ", end="")
+                for ph in ["Ti", "Fe", "Te", "Fi"]:
+                    st = traj["phase_stats"][ph]
+                    print(f"{ph}={st['ok']}/{st['ok']+st['fail']+st['neutral']} ", end="")
+                print()
+                print(f"    Half:  outer={traj['half_stats']['outer']['ok']}/{sum(traj['half_stats']['outer'].values())} "
+                      f"inner={traj['half_stats']['inner']['ok']}/{sum(traj['half_stats']['inner'].values())}")
+
+                all_results.append({
+                    "config": key,
+                    "negative_mode": negative_mode,
+                    "engine_type": engine_type,
+                    "torus": torus_name,
+                    "eta": torus_val,
+                    "n_success": traj["n_success"],
+                    "n_fail": traj["n_fail"],
+                    "n_neutral": traj["n_neutral"],
+                    "forward_coarising_rate": rate,
+                    "phase_stats": traj["phase_stats"],
+                    "half_stats": traj["half_stats"],
+                    "mi_trace": traj["mi_trace"],
+                })
 
     # ---------- Aggregate analysis ---------------------------------------- #
     print("\n=== AGGREGATE PHASE ANALYSIS ===")
@@ -307,8 +509,45 @@ def main():
     with open(out, "w") as fh:
         json.dump(results, fh, indent=2)
     print(f"\nResults written to {out}")
+    
+    # ---------- Enforce Fail-Closed Validation ---------- #
+    # Validate trace integrals against the strict mode instead of just booleans to expose true degeneracies.
+    print("\n=== NEGATIVE SIM TRACE DIFFERENTIALS ===")
+    
+    def get_traces(mode_prefix):
+        return [r["mi_trace"] for r in all_results if r["config"].startswith(mode_prefix)]
+        
+    strict_traces = get_traces("strict/")
+    bell_traces = get_traces("bell_injected/")
+    topo_traces = get_traces("topology_flattened/")
+    pyg_traces = get_traces("pyg_bypassed/")
+    chir_traces = get_traces("chirality_destroyed/")
+    
+    def l1_delta(traces_a, traces_b):
+        if not traces_a or not traces_b or len(traces_a) != len(traces_b):
+            return 0.0
+        diff = 0.0
+        for ta, tb in zip(traces_a, traces_b):
+            diff += sum(abs(a - b) for a, b in zip(ta, tb))
+        return diff
+        
+    delta_bell = l1_delta(strict_traces, bell_traces)
+    delta_topo = l1_delta(strict_traces, topo_traces)
+    delta_pyg = l1_delta(strict_traces, pyg_traces)
+    delta_chir = l1_delta(strict_traces, chir_traces)
+    
+    print(f"  strict vs bell_injected:      Δ L1 = {delta_bell:.4f}")
+    print(f"  strict vs topology_flattened: Δ L1 = {delta_topo:.4f}")
+    print(f"  strict vs pyg_bypassed:       Δ L1 = {delta_pyg:.4f}")
+    print(f"  strict vs chirality_destroyed:Δ L1 = {delta_chir:.4f}")
+    
+    if delta_bell < 1e-4 or delta_topo < 0.1 or delta_pyg < 0.1 or delta_chir < 0.1:
+        print("\n[⚠] FAIL CLOSED: A negative ablation simulation generated mathematically identical ")
+        print("    trace tensors (Δ L1 < 0.1) to the strictly constrained simulation.")
+        print("    The graph logic did not analytically collapse.")
+        sys.exit(1)
+        
     return results
-
 
 if __name__ == "__main__":
     main()

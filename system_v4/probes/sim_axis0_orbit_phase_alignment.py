@@ -99,7 +99,7 @@ from qit_edge_state_updater import (
 )
 from qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards
 
-def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="strict", node_t=None, node_t1=None, engine_type=None, pub_to_hid=None, hid_to_pyg_idx=None, step_strength=1.0, op_name=None, edge_map=None, dphi_L=0.0, dphi_R=0.0):
+def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="strict", node_t=None, node_t1=None, engine_type=None, pub_to_hid=None, hid_to_pyg_idx=None, step_strength=1.0, op_name=None, edge_map=None, dphi_L=0.0, dphi_R=0.0, guard_events=None, step_index=None):
     p_base = float(np.clip(lr_asym(rho_L, rho_R), 0.01, 0.99))
     
     if negative_mode == "bell_injected":
@@ -235,6 +235,16 @@ def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="
         )
     )
     if not guard_result.passed:
+        if guard_events is not None:
+            guard_events.append({
+                "step": step_index,
+                "negative_mode": negative_mode,
+                "violations": list(guard_result.violations),
+                "op_name": op_name,
+                "engine_type": engine_type,
+                "node_t": node_t,
+                "node_t1": node_t1,
+            })
         return 0.0
                 
     rho_A = np.trace(rho_AB.reshape(2, 2, 2, 2), axis1=1, axis2=3)
@@ -263,6 +273,7 @@ def analyze_trajectory(
     """
     T = len(history)
     ct_mi = []
+    guard_events = []
     
     edge_map = build_edge_lookup(hetero, enriched_edges or [], hid_to_pyg_idx or {})
     for t in range(T):
@@ -294,6 +305,8 @@ def analyze_trajectory(
             edge_map=edge_map,
             dphi_L=step_t.get("dphi_L", 0.0),
             dphi_R=step_t.get("dphi_R", 0.0),
+            guard_events=guard_events,
+            step_index=t,
         ))
 
     # Graph stack integrations
@@ -385,6 +398,8 @@ def analyze_trajectory(
         "valid_topology_loops_count": len(loop_topologies),
         "chiral_global_operators_found": chiral_edges,
         "mi_trace": ct_mi,
+        "guard_event_count": len(guard_events),
+        "guard_events": guard_events,
     }
 
 

@@ -433,7 +433,7 @@ def main():
         # bound the sweep to a single canonical engine/torus lane so it stays mechanical.
         negative_modes = ["strict", "bell_injected", "topology_flattened", "pyg_bypassed", "chirality_destroyed"]
         engine_types = [1]
-        torus_configs = [("clifford", TORUS_CLIFFORD)]
+        torus_configs = [("inner", TORUS_INNER)]
         print("Mode: bounded")
 
     for negative_mode in negative_modes:

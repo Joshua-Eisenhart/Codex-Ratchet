@@ -450,6 +450,7 @@ def main():
     agg_phase = defaultdict(lambda: {"ok": 0, "fail": 0, "neutral": 0})
     agg_half  = defaultdict(lambda: {"ok": 0, "fail": 0})
     failure_profiles = []   # details on all failure steps
+    total_guard_event_count = 0
 
     if args.full:
         negative_modes = ["strict", "bell_injected", "topology_flattened", "pyg_bypassed", "chirality_destroyed"]
@@ -512,6 +513,8 @@ def main():
                 print()
                 print(f"    Half:  outer={traj['half_stats']['outer']['ok']}/{sum(traj['half_stats']['outer'].values())} "
                       f"inner={traj['half_stats']['inner']['ok']}/{sum(traj['half_stats']['inner'].values())}")
+                print(f"    Guard: events={traj['guard_event_count']}")
+                total_guard_event_count += traj["guard_event_count"]
 
                 all_results.append({
                     "config": key,
@@ -526,6 +529,8 @@ def main():
                     "phase_stats": traj["phase_stats"],
                     "half_stats": traj["half_stats"],
                     "mi_trace": traj["mi_trace"],
+                    "guard_event_count": traj["guard_event_count"],
+                    "guard_events": traj["guard_events"],
                 })
 
     # ---------- Aggregate analysis ---------------------------------------- #
@@ -584,6 +589,9 @@ def main():
     for k, vals in sorted(fail_positions.items()):
         print(f"  {k}: {len(vals)} failures, d_ct_mi mean={np.mean(vals):+.4f}")
 
+    print("\n=== GUARD WITNESS SUMMARY ===")
+    print(f"  total_guard_events={total_guard_event_count}")
+
     # Serialize
     def strip(obj):
         if isinstance(obj, dict):   return {k: strip(v) for k, v in obj.items()}
@@ -600,6 +608,7 @@ def main():
         "aggregate_half": dict(agg_half),
         "failure_profiles": strip(failure_profiles),
         "n_total_failures": len(failure_profiles),
+        "guard_event_count": total_guard_event_count,
     }
 
     out = os.path.join(RESULTS_DIR, "axis0_orbit_phase_alignment_results.json")

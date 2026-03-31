@@ -46,6 +46,12 @@ BELL = np.outer(PSI_MINUS, PSI_MINUS.conj())
 SIGMA_X = np.array([[0, 1], [1, 0]], dtype=complex)
 SIGMA_Y = np.array([[0, -1j], [1j, 0]], dtype=complex)
 SIGMA_Z = np.array([[1, 0], [0, -1]], dtype=complex)
+OPERATOR_ENTANGLERS = {
+    "Ti": np.kron(SIGMA_Z, SIGMA_Z),
+    "Fe": np.kron(SIGMA_X, SIGMA_X),
+    "Te": np.kron(SIGMA_Y, SIGMA_Y),
+    "Fi": np.kron(SIGMA_X, SIGMA_X),
+}
 
 RESULTS_DIR = os.path.join(
     os.path.dirname(os.path.abspath(__file__)),
@@ -78,7 +84,7 @@ def vne(rho):
     ev = ev[ev > 1e-15]
     return float(-np.sum(ev * np.log2(ev))) if len(ev) else 0.0
 
-def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="strict", node_t=None, node_t1=None, engine_type=None, pub_to_hid=None, hid_to_pyg_idx=None, step_strength=1.0):
+def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="strict", node_t=None, node_t1=None, engine_type=None, pub_to_hid=None, hid_to_pyg_idx=None, step_strength=1.0, op_name=None):
     p_base = float(np.clip(lr_asym(rho_L, rho_R), 0.01, 0.99))
     
     if negative_mode == "bell_injected":
@@ -176,11 +182,13 @@ def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="
             
         phase_gamma *= topo_gate * ga_gate * pyg_gate * float(step_strength)
         
-        # Unitary correlation explicitly derived from graph constraints!
-        # H_int = Sigma_X \otimes Sigma_X (an entangling generator)
-        # U = exp(-i gamma H_int) = cos(gamma) I - i sin(gamma) X_X
+        # Operator families should not share a single universal entangler.
+        # Keep the generator aligned to the active engine operator while the
+        # graph path, chirality, topology, and PyG gates control its amplitude.
+        H_int = OPERATOR_ENTANGLERS.get(op_name, np.kron(SIGMA_X, SIGMA_X))
+        # U = exp(-i gamma H_int) = cos(gamma) I - i sin(gamma) H_int
         # A purely separable origin state becomes correctly structurally entangled
-        U = np.cos(phase_gamma) * np.eye(4) - 1j * np.sin(phase_gamma) * np.kron(SIGMA_X, SIGMA_X)
+        U = np.cos(phase_gamma) * np.eye(4) - 1j * np.sin(phase_gamma) * H_int
         separable = np.kron(rho_L, rho_R)
         rho_AB = _ensure_valid_density(U @ separable @ U.conj().T)
         
@@ -235,6 +243,7 @@ def analyze_trajectory(
             pub_to_hid=pub_to_hid,
             hid_to_pyg_idx=hid_to_pyg_idx,
             step_strength=step_t.get("strength", 1.0),
+            op_name=step_t.get("op_name"),
         ))
 
     # Graph stack integrations

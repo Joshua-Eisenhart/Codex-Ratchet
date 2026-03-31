@@ -69,6 +69,7 @@ from geometric_operators import (
     negentropy, delta_phi, trace_distance_2x2,
     _ensure_valid_density, I2, SIGMA_X, SIGMA_Y, SIGMA_Z,
 )
+from system_v4.skills.qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -258,7 +259,7 @@ class Axis0BridgeSnapshot:
     rho_ab: np.ndarray
     dims: Tuple[int, int]
     metrics: Dict[str, float]
-    meta: Dict[str, float]
+    meta: Dict[str, object]
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -750,6 +751,30 @@ class GeometricEngine:
         U = np.cos(gamma) * np.eye(4, dtype=complex) - 1j * np.sin(gamma) * H_int
         return _ensure_valid_density(U @ separable @ U.conj().T)
 
+    def _axis0_guard_meta(
+        self,
+        rho_ab: np.ndarray,
+        rho_L: np.ndarray,
+        rho_R: np.ndarray,
+        *,
+        entangling_bridge_claim: bool = True,
+    ) -> Dict[str, object]:
+        """Expose explicit nonclassical bridge-guard witness metadata."""
+        result = check_nonclassical_guards(
+            bridge_guard_input(
+                rho_ab,
+                rho_L,
+                rho_R,
+                entangling_bridge_claim=entangling_bridge_claim,
+            )
+        )
+        return {
+            "guard_passed": bool(result.passed),
+            "guard_checked_count": int(result.checked_count),
+            "guard_event_count": 0 if result.passed else 1,
+            "guard_violations": list(result.violations),
+        }
+
     def pair_cut_state(self, state: EngineState) -> np.ndarray:
         """Honest direct L|R pair cut-state for the current engine state."""
         step_info = state.history[-1] if state.history else None
@@ -792,6 +817,7 @@ class GeometricEngine:
             "stage_idx": float(state.stage_idx),
             "engine_type": float(state.engine_type),
         }
+        meta.update(self._axis0_guard_meta(rho_ab, state.rho_L, state.rho_R))
         return Axis0BridgeSnapshot(
             bridge_family="Xi_LR_direct_control",
             rho_ab=rho_ab,
@@ -852,6 +878,7 @@ class GeometricEngine:
             "stage_idx": float(state.stage_idx),
         }
         meta["weight_type"] = weight_type
+        meta.update(self._axis0_guard_meta(rho_ab, state.rho_L, state.rho_R))
         return Axis0BridgeSnapshot(
             bridge_family="Xi_hist_window_control",
             rho_ab=rho_ab,

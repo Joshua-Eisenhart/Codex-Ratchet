@@ -70,10 +70,10 @@ from geometric_operators import (
     _ensure_valid_density, I2, SIGMA_X, SIGMA_Y, SIGMA_Z,
 )
 try:
-    from system_v4.skills.qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards
+    from system_v4.skills.qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards, guard_witness_dict
 except ImportError:
     sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "skills"))
-    from qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards
+    from qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards, guard_witness_dict
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -772,12 +772,7 @@ class GeometricEngine:
                 entangling_bridge_claim=entangling_bridge_claim,
             )
         )
-        return {
-            "guard_passed": bool(result.passed),
-            "guard_checked_count": int(result.checked_count),
-            "guard_event_count": 0 if result.passed else 1,
-            "guard_violations": list(result.violations),
-        }
+        return guard_witness_dict(result)
 
     def pair_cut_state(self, state: EngineState) -> np.ndarray:
         """Honest direct L|R pair cut-state for the current engine state."""

@@ -97,7 +97,7 @@ from qit_edge_state_updater import (
     SLOT_POLARITY, SLOT_ENTANG_WEIGHT, SLOT_CHIRAL_STATUS,
     SLOT_TOPO_LEGAL, SLOT_CONST_SAT, SLOT_MARG_PRES, SLOT_ADMISSIBILITY,
 )
-from qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards
+from qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards, guard_witness_dict, GuardCheckResult
 
 def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="strict", node_t=None, node_t1=None, engine_type=None, pub_to_hid=None, hid_to_pyg_idx=None, step_strength=1.0, op_name=None, edge_map=None, dphi_L=0.0, dphi_R=0.0, guard_events=None, step_index=None):
     p_base = float(np.clip(lr_asym(rho_L, rho_R), 0.01, 0.99))
@@ -386,6 +386,15 @@ def analyze_trajectory(
         h_bad = sum(1 for s in h_steps if s["coarises"] is False)
         half_stats[half] = {"ok": h_ok, "fail": h_bad}
 
+    witness = guard_witness_dict(
+        GuardCheckResult(
+            passed=(len(guard_events) == 0),
+            violations=sorted({v for ev in guard_events for v in ev.get("violations", [])}),
+            checked_count=6,
+        ),
+        events=guard_events,
+    )
+
     return {
         "n_steps": T,
         "n_success": n_success,
@@ -398,8 +407,7 @@ def analyze_trajectory(
         "valid_topology_loops_count": len(loop_topologies),
         "chiral_global_operators_found": chiral_edges,
         "mi_trace": ct_mi,
-        "guard_event_count": len(guard_events),
-        "guard_events": guard_events,
+        **witness,
     }
 
 

@@ -46,6 +46,25 @@ class GuardCheckResult:
     checked_count: int = 0
 
 
+def guard_witness_dict(
+    result: GuardCheckResult,
+    *,
+    events: list[dict] | None = None,
+) -> dict[str, object]:
+    """Normalize guard outcomes into one shared witness vocabulary."""
+    witness_events = list(events or [])
+    event_count = len(witness_events)
+    if event_count == 0 and not result.passed:
+        event_count = 1
+    return {
+        "guard_passed": bool(result.passed),
+        "guard_checked_count": int(result.checked_count),
+        "guard_event_count": int(event_count),
+        "guard_violations": list(result.violations),
+        "guard_events": witness_events,
+    }
+
+
 def bridge_guard_input(
     rho_ab: np.ndarray,
     rho_L: np.ndarray,

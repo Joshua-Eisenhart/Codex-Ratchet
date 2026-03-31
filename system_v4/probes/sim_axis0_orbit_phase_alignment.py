@@ -78,7 +78,7 @@ def vne(rho):
     ev = ev[ev > 1e-15]
     return float(-np.sum(ev * np.log2(ev))) if len(ev) else 0.0
 
-def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="strict", node_t=None, node_t1=None, engine_type=None, pub_to_hid=None, hid_to_pyg_idx=None):
+def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="strict", node_t=None, node_t1=None, engine_type=None, pub_to_hid=None, hid_to_pyg_idx=None, step_strength=1.0):
     p_base = float(np.clip(lr_asym(rho_L, rho_R), 0.01, 0.99))
     
     if negative_mode == "bell_injected":
@@ -174,7 +174,7 @@ def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="
             ga_gate = 0.0
             phase_gamma = 0.0
             
-        phase_gamma *= topo_gate * ga_gate * pyg_gate
+        phase_gamma *= topo_gate * ga_gate * pyg_gate * float(step_strength)
         
         # Unitary correlation explicitly derived from graph constraints!
         # H_int = Sigma_X \otimes Sigma_X (an entangling generator)
@@ -233,7 +233,8 @@ def analyze_trajectory(
             engine_type=engine_type,
             hetero=hetero,
             pub_to_hid=pub_to_hid,
-            hid_to_pyg_idx=hid_to_pyg_idx
+            hid_to_pyg_idx=hid_to_pyg_idx,
+            step_strength=step_t.get("strength", 1.0),
         ))
 
     # Graph stack integrations

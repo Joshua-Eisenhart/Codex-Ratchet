@@ -65,6 +65,40 @@ def guard_witness_dict(
     }
 
 
+def format_guard_witness_line(label: str, witness: dict[str, object]) -> str:
+    """Render one compact shared summary line for guard witness data."""
+    passed = "PASS" if bool(witness.get("guard_passed", False)) else "FAIL"
+    checked = int(witness.get("guard_checked_count", 0))
+    events = int(witness.get("guard_event_count", 0))
+    violations = list(witness.get("guard_violations", []))
+    suffix = ""
+    if violations:
+        suffix = f" violations={','.join(str(v) for v in violations)}"
+    return f"{label}: {passed} checks={checked} events={events}{suffix}"
+
+
+def format_guard_witness_summary(
+    label: str,
+    witness: dict[str, object],
+    *,
+    indent: str = "",
+) -> list[str]:
+    """Render a stable multi-line witness summary for console probes."""
+    lines = [f"{indent}{format_guard_witness_line(label, witness)}"]
+    events = list(witness.get("guard_events", []))
+    if events:
+        lines.append(f"{indent}guard_events:")
+        for event in events:
+            step = event.get("step", "?")
+            node_t = event.get("node_t", "?")
+            node_t1 = event.get("node_t1", "?")
+            violations = ",".join(str(v) for v in event.get("violations", []))
+            lines.append(
+                f"{indent}  step={step} edge={node_t}->{node_t1} violations={violations}"
+            )
+    return lines
+
+
 def bridge_guard_input(
     rho_ab: np.ndarray,
     rho_L: np.ndarray,

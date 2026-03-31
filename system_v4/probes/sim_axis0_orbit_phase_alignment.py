@@ -97,7 +97,13 @@ from qit_edge_state_updater import (
     SLOT_POLARITY, SLOT_ENTANG_WEIGHT, SLOT_CHIRAL_STATUS,
     SLOT_TOPO_LEGAL, SLOT_CONST_SAT, SLOT_MARG_PRES, SLOT_ADMISSIBILITY,
 )
-from qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards, guard_witness_dict, GuardCheckResult
+from qit_nonclassical_guards import (
+    bridge_guard_input,
+    check_nonclassical_guards,
+    guard_witness_dict,
+    format_guard_witness_line,
+    GuardCheckResult,
+)
 
 def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="strict", node_t=None, node_t1=None, engine_type=None, pub_to_hid=None, hid_to_pyg_idx=None, step_strength=1.0, op_name=None, edge_map=None, dphi_L=0.0, dphi_R=0.0, guard_events=None, step_index=None):
     p_base = float(np.clip(lr_asym(rho_L, rho_R), 0.01, 0.99))
@@ -521,7 +527,7 @@ def main():
                 print()
                 print(f"    Half:  outer={traj['half_stats']['outer']['ok']}/{sum(traj['half_stats']['outer'].values())} "
                       f"inner={traj['half_stats']['inner']['ok']}/{sum(traj['half_stats']['inner'].values())}")
-                print(f"    Guard: events={traj['guard_event_count']}")
+                print(f"    {format_guard_witness_line('Guard', traj)}")
                 total_guard_event_count += traj["guard_event_count"]
 
                 all_results.append({
@@ -598,7 +604,14 @@ def main():
         print(f"  {k}: {len(vals)} failures, d_ct_mi mean={np.mean(vals):+.4f}")
 
     print("\n=== GUARD WITNESS SUMMARY ===")
-    print(f"  total_guard_events={total_guard_event_count}")
+    aggregate_guard_witness = {
+        "guard_passed": total_guard_event_count == 0,
+        "guard_checked_count": sum(int(r.get("guard_checked_count", 0)) for r in all_results),
+        "guard_event_count": total_guard_event_count,
+        "guard_violations": sorted({v for r in all_results for v in r.get("guard_violations", [])}),
+        "guard_events": [],
+    }
+    print(f"  {format_guard_witness_line('Aggregate guard', aggregate_guard_witness)}")
 
     # Serialize
     def strip(obj):

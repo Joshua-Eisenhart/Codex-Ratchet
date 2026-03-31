@@ -97,6 +97,7 @@ from qit_edge_state_updater import (
     SLOT_POLARITY, SLOT_ENTANG_WEIGHT, SLOT_CHIRAL_STATUS,
     SLOT_TOPO_LEGAL, SLOT_CONST_SAT, SLOT_MARG_PRES, SLOT_ADMISSIBILITY,
 )
+from qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards
 
 def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="strict", node_t=None, node_t1=None, engine_type=None, pub_to_hid=None, hid_to_pyg_idx=None, step_strength=1.0, op_name=None, edge_map=None, dphi_L=0.0, dphi_R=0.0):
     p_base = float(np.clip(lr_asym(rho_L, rho_R), 0.01, 0.99))
@@ -223,6 +224,18 @@ def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="
             ea[e_pos, SLOT_TOPO_LEGAL]    = topo_gate
             ea[e_pos, SLOT_CONST_SAT]     = 1.0 if cos_sim >= 0.8 else 0.0
             ea[e_pos, SLOT_MARG_PRES]     = max(0.0, 1.0 - abs(dphi_L) - abs(dphi_R))
+
+    entangling_claim = negative_mode != "chirality_destroyed"
+    guard_result = check_nonclassical_guards(
+        bridge_guard_input(
+            rho_AB,
+            rho_L,
+            rho_R,
+            entangling_bridge_claim=entangling_claim,
+        )
+    )
+    if not guard_result.passed:
+        return 0.0
                 
     rho_A = np.trace(rho_AB.reshape(2, 2, 2, 2), axis1=1, axis2=3)
     rho_B = np.trace(rho_AB.reshape(2, 2, 2, 2), axis1=0, axis2=2)

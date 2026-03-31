@@ -69,7 +69,11 @@ from geometric_operators import (
     negentropy, delta_phi, trace_distance_2x2,
     _ensure_valid_density, I2, SIGMA_X, SIGMA_Y, SIGMA_Z,
 )
-from system_v4.skills.qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards
+try:
+    from system_v4.skills.qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards
+except ImportError:
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "skills"))
+    from qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards
 
 
 # ═══════════════════════════════════════════════════════════════════

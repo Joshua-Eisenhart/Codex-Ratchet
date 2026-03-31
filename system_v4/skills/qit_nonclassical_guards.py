@@ -16,6 +16,7 @@ common classical drifts called out in
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+import numpy as np
 
 try:
     import z3
@@ -43,6 +44,26 @@ class GuardCheckResult:
     passed: bool
     violations: list[str] = field(default_factory=list)
     checked_count: int = 0
+
+
+def bridge_guard_input(
+    rho_ab: np.ndarray,
+    rho_L: np.ndarray,
+    rho_R: np.ndarray,
+    *,
+    tol: float = 1e-8,
+    entangling_bridge_claim: bool = True,
+) -> NonclassicalGuardInput:
+    """Build a guard input from an actual bipartite bridge state."""
+    rho_ab = np.asarray(rho_ab, dtype=complex)
+    rho_L = np.asarray(rho_L, dtype=complex)
+    rho_R = np.asarray(rho_R, dtype=complex)
+    separable = np.kron(rho_L, rho_R)
+    cartesian = bool(np.linalg.norm(rho_ab - separable, ord="fro") <= tol)
+    return NonclassicalGuardInput(
+        entangling_bridge_claim=entangling_bridge_claim,
+        cartesian_product_bridge=cartesian,
+    )
 
 
 def check_nonclassical_guards(inp: NonclassicalGuardInput) -> GuardCheckResult:
@@ -137,6 +158,19 @@ def _selftest() -> int:
 
     optimization = check_nonclassical_guards(NonclassicalGuardInput(unbounded_global_optimization=True))
     assert not optimization.passed and "unbounded_optimization_drift" in optimization.violations
+    passed += 1
+
+    rho0 = np.array([[1.0, 0.0], [0.0, 0.0]], dtype=complex)
+    rho1 = np.array([[0.0, 0.0], [0.0, 1.0]], dtype=complex)
+    sep = np.kron(rho0, rho1)
+    sep_guard = check_nonclassical_guards(bridge_guard_input(sep, rho0, rho1))
+    assert not sep_guard.passed and "cartesian_bridge_leak" in sep_guard.violations
+    passed += 1
+
+    psi_minus = np.array([0.0, 1.0, -1.0, 0.0], dtype=complex) / np.sqrt(2.0)
+    bell = np.outer(psi_minus, psi_minus.conj())
+    bell_guard = check_nonclassical_guards(bridge_guard_input(bell, rho0, rho1))
+    assert bell_guard.passed, bell_guard.violations
     passed += 1
 
     return passed

@@ -30,6 +30,7 @@ from __future__ import annotations
 import argparse
 import json, os, sys
 from datetime import UTC, datetime
+from functools import lru_cache
 import numpy as np
 from collections import defaultdict
 
@@ -74,6 +75,14 @@ TORUS_CONFIGS = [
 ]
 ENGINE_TYPES = [1, 2]
 PHASE_NAMES  = {0: "Ti", 1: "Fe", 2: "Te", 3: "Fi"}
+
+
+@lru_cache(maxsize=1)
+def _get_clifford_layout():
+    import clifford as cf
+
+    layout, _ = cf.Cl(3)
+    return layout
 
 
 def update_pyg_node_features(
@@ -294,8 +303,7 @@ def bridge_mi(rho_L, rho_R, cc=None, ga_edges=None, hetero=None, negative_mode="
                     if engine_hid == chiral_edge.get("target_id"):
                         c_coeffs = [-c for c in c_coeffs]
 
-                import clifford as cf
-                layout, blv = cf.Cl(3)
+                layout = _get_clifford_layout()
                 mv_seq = layout.MultiVector(seq_coeffs)
                 mv_chiral = layout.MultiVector(c_coeffs)
 

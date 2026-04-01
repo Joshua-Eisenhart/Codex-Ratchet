@@ -165,17 +165,25 @@ def main() -> int:
             },
         ),
         gate(
-            level1["Fi"]["universal"]
+            not level1["Ti"]["universal"]
+            and level1["Fi"]["universal"]
             and level2["Fi"]["universal"]
             and not level1["Fe"]["universal"]
             and not level1["Te"]["universal"]
+            and not level2["Ti"]["universal"]
+            and not level2["Fe"]["universal"]
+            and not level2["Te"]["universal"]
             and coarising["algebraic_structure"].startswith("TRAJECTORY-SPECIFIC"),
             "R8_coarising_is_attractor_specific_not_universal_algebra",
             {
+                "ti_level1_universal": level1["Ti"]["universal"],
                 "fi_level1_universal": level1["Fi"]["universal"],
+                "ti_level2_universal": level2["Ti"]["universal"],
                 "fi_level2_universal": level2["Fi"]["universal"],
                 "fe_level1_universal": level1["Fe"]["universal"],
                 "te_level1_universal": level1["Te"]["universal"],
+                "fe_level2_universal": level2["Fe"]["universal"],
+                "te_level2_universal": level2["Te"]["universal"],
                 "algebraic_structure": coarising["algebraic_structure"],
             },
         ),

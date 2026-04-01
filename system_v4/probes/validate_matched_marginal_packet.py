@@ -53,6 +53,12 @@ def main() -> int:
     hist_checks = [row["history_averaged"]["marginal_check"] for row in phase5a_rows]
     phase6_verdict = phase6["verdict"]
     fe_summary = fe_indexed["summary"]
+    fe_rows = fe_indexed["results"]
+    fe_pairs_only_beats_phase4_on_ic_count = sum(
+        1
+        for row in fe_rows
+        if row["bridges"]["C_fe_pairs_only"]["ic"] > row["bridges"]["A_phase4_winner"]["ic"]
+    )
     c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
     signed_bridge_handoff = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]["carrier_handoff"]
 
@@ -137,7 +143,8 @@ def main() -> int:
             and fe_summary["mean_mi"]["C_fe_pairs_only"] > fe_summary["mean_mi"]["D_lag7_pairs"]
             and fe_summary["mean_ic"]["C_fe_pairs_only"] > fe_summary["mean_ic"]["A_phase4_winner"]
             and fe_summary["mean_ic"]["C_fe_pairs_only"] > fe_summary["mean_ic"]["B_fe_indexed"]
-            and fe_summary["mean_ic"]["C_fe_pairs_only"] > fe_summary["mean_ic"]["D_lag7_pairs"],
+            and fe_summary["mean_ic"]["C_fe_pairs_only"] > fe_summary["mean_ic"]["D_lag7_pairs"]
+            and fe_pairs_only_beats_phase4_on_ic_count == 5,
             "M7_fe_indexed_pairs_remain_the_only_structured_refinement_winner",
             {
                 "best_new_bridge": fe_summary["best_new_bridge"],
@@ -146,6 +153,7 @@ def main() -> int:
                 "mean_mi": fe_summary["mean_mi"],
                 "mean_ic": fe_summary["mean_ic"],
                 "winner_counts": fe_summary["winner_counts"],
+                "fe_pairs_only_beats_phase4_on_ic_count": fe_pairs_only_beats_phase4_on_ic_count,
             },
         ),
         gate(

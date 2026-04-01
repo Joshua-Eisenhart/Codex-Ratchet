@@ -42,7 +42,6 @@ def main() -> int:
     entropy_readout = load_json(SIM_RESULTS / "entropy_readout_packet_validation.json")
     formal_gate_map = {item["name"]: item for item in formal_geometry["gates"]}
     root_gate_map = {item["name"]: item for item in root_emergence["gates"]}
-    carrier_gate_map = {item["name"]: item for item in carrier_selection["gates"]}
     pre_entropy_gate_map = {item["name"]: item for item in pre_entropy["gates"]}
     c1_bridge_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
     matched_gate_map = {item["name"]: item for item in matched_marginal["gates"]}

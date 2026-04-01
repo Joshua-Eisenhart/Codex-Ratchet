@@ -55,6 +55,19 @@ def main() -> int:
     necessity = pre_entropy["joint_necessity_witness"]
     joint_summary = joint_ablation["summary"]
     joint_owner_read = joint_ablation["owner_read"]
+    transport_embargo_contract = {
+        "candidate_branch": "chirality-separated loop-sensitive transport deltas",
+        "status": "supported_but_embargoed",
+        "lower_tier_law": "exact_loop_assigned_transport_only",
+        "promotion_blocker": owner_map["pre_axis_law"]["chirality_separated_transport_deltas_blocker"],
+        "nonproxy_support": joint_owner_read["status"],
+        "diagnostic_only": {
+            "raw_delta_packet": owner_map["diagnostic_only"]["raw_delta_packet"],
+            "single_weyl_flux_object": admission_schema["axis_embargo"]["currently_embargoed"]["single_weyl_flux_object"],
+            "entropic_left_right_flux": owner_map["diagnostic_only"]["entropic_left_right_flux"],
+            "post_joint_cut_flux": owner_map["diagnostic_only"]["post_joint_cut_flux"],
+        },
+    }
 
     gates = [
         gate(
@@ -99,7 +112,11 @@ def main() -> int:
             and pre_gate_map["P18_joint_same_carrier_ablation_keeps_proxy_screen_closed"]["pass"]
             and pre_gate_map["P19_transport_gap_scalar_is_live_and_joint_ablation_collapses_it"]["pass"]
             and pre_gate_map["P20_joint_same_carrier_nonproxy_runtime_witness_is_explicit"]["pass"]
-            and pre_gate_map["P21_pre_axis_admission_schema_is_explicit_and_axis_embargoed"]["pass"],
+            and pre_gate_map["P21_pre_axis_admission_schema_is_explicit_and_axis_embargoed"]["pass"]
+            and transport_embargo_contract["status"] == "supported_but_embargoed"
+            and transport_embargo_contract["candidate_branch"] == "chirality-separated loop-sensitive transport deltas"
+            and transport_embargo_contract["lower_tier_law"] == "exact_loop_assigned_transport_only"
+            and transport_embargo_contract["promotion_blocker"] == "awaiting_owner_promotion_decision_after_nonproxy_support",
             "TE3_transport_embargo_branch_is_explicitly_supported_but_not_promoted",
             {
                 "p16_pass": pre_gate_map["P16_transport_delta_branch_survives_but_is_not_owner_law_yet"]["pass"],
@@ -108,6 +125,7 @@ def main() -> int:
                 "p19_pass": pre_gate_map["P19_transport_gap_scalar_is_live_and_joint_ablation_collapses_it"]["pass"],
                 "p20_pass": pre_gate_map["P20_joint_same_carrier_nonproxy_runtime_witness_is_explicit"]["pass"],
                 "p21_pass": pre_gate_map["P21_pre_axis_admission_schema_is_explicit_and_axis_embargoed"]["pass"],
+                "transport_embargo_contract": transport_embargo_contract,
             },
         ),
         gate(
@@ -117,9 +135,9 @@ def main() -> int:
             and joint_summary["live_min_sheet_split"] > 0.1
             and joint_summary["combined_max_sheet_split"] < 1e-12
             and necessity["combined_same_carrier_ablation"]["status"] == "nonproxy_runtime_support"
-            and owner_map["pre_axis_law"]["chirality_separated_transport_deltas"] == "candidate"
-            and owner_map["pre_axis_law"]["chirality_separated_transport_deltas_blocker"]
-            == "awaiting_owner_promotion_decision_after_nonproxy_support"
+            and transport_embargo_contract["candidate_branch"] == "chirality-separated loop-sensitive transport deltas"
+            and transport_embargo_contract["nonproxy_support"] == "nonproxy_runtime_support"
+            and transport_embargo_contract["promotion_blocker"] == "awaiting_owner_promotion_decision_after_nonproxy_support"
             and admission_schema["axis_embargo"]["currently_embargoed"]["chirality_separated_transport_deltas"]
             == "candidate_pending_owner_promotion_after_nonproxy_support",
             "TE4_nonproxy_support_and_embargo_blocker_are_bound_together",
@@ -129,7 +147,7 @@ def main() -> int:
                 "combined_gap_retention": joint_summary["combined_gap_retention"],
                 "live_min_sheet_split": joint_summary["live_min_sheet_split"],
                 "combined_max_sheet_split": joint_summary["combined_max_sheet_split"],
-                "owner_worthiness_pre_axis": owner_map["pre_axis_law"],
+                "transport_embargo_contract": transport_embargo_contract,
                 "axis_embargo": admission_schema["axis_embargo"]["currently_embargoed"],
             },
         ),
@@ -142,19 +160,7 @@ def main() -> int:
         "passed_gates": passed,
         "total_gates": len(gates),
         "score": passed / len(gates) if gates else 0.0,
-        "transport_embargo_contract": {
-            "candidate_branch": "chirality-separated loop-sensitive transport deltas",
-            "status": "supported_but_embargoed",
-            "lower_tier_law": "exact_loop_assigned_transport_only",
-            "promotion_blocker": owner_map["pre_axis_law"]["chirality_separated_transport_deltas_blocker"],
-            "nonproxy_support": joint_owner_read["status"],
-            "diagnostic_only": {
-                "raw_delta_packet": owner_map["diagnostic_only"]["raw_delta_packet"],
-                "single_weyl_flux_object": admission_schema["axis_embargo"]["currently_embargoed"]["single_weyl_flux_object"],
-                "entropic_left_right_flux": owner_map["diagnostic_only"]["entropic_left_right_flux"],
-                "post_joint_cut_flux": owner_map["diagnostic_only"]["post_joint_cut_flux"],
-            },
-        },
+        "transport_embargo_contract": transport_embargo_contract,
         "gates": gates,
     }
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")

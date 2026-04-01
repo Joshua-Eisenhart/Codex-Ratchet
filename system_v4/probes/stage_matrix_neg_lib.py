@@ -163,9 +163,9 @@ def apply_subcycle_variant(
 
     op_kwargs = {"polarity_up": polarity, "strength": strength}
     if op_name == "Te":
-        op_kwargs["angle"] = 0.3 * angle_mod
+        op_kwargs["q"] = 0.3 * angle_mod
     if op_name == "Fe":
-        op_kwargs["dt"] = 0.05 * dt_mod
+        op_kwargs["phi"] = 0.05 * dt_mod
 
     op_fn = OP_FN[op_name]
 

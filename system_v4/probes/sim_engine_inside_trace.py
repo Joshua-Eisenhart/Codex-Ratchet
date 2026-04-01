@@ -173,9 +173,9 @@ def trace_one_cycle(engine_type: int, seed: int = 42, program: str = "default"):
 
             op_kwargs = {"polarity_up": polarity, "strength": strength}
             if op_name == "Te":
-                op_kwargs["angle"] = 0.3 * angle_mod
+                op_kwargs["q"] = 0.3 * angle_mod
             if op_name == "Fe":
-                op_kwargs["dt"] = 0.05 * dt_mod
+                op_kwargs["phi"] = 0.05 * dt_mod
             op_fn = {"Ti": apply_Ti, "Fe": apply_Fe, "Te": apply_Te, "Fi": apply_Fi}[op_name]
 
             new_rho_L = op_fn(new_rho_L, **op_kwargs)
@@ -252,7 +252,7 @@ def trace_one_cycle(engine_type: int, seed: int = 42, program: str = "default"):
                     "operator": op_name,
                     "strength": float(strength),
                     "ga0_before": float(before.ga0_level),
-                    "ga0_target": float(ga0_target),
+                    "ga0_target": None if ga0_target is None else float(ga0_target),
                     "ga0_after": float(new_ga0),
                     "axis0_blend": float(axis0_blend),
                     "axis0_injection_norm": float(axis0_injection_norm),

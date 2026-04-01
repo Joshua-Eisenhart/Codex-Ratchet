@@ -57,6 +57,7 @@ def main() -> int:
     no_chirality_gate_map = {item["name"]: item for item in no_chirality_search["gates"]}
     transport_gate_map = {item["name"]: item for item in lower_tier_transport_search["gates"]}
     operator_gate_map = {item["name"]: item for item in lower_tier_operator_search["gates"]}
+    lower_tier_chiral_detail = chiral_gate_map["L4_search_keeps_single_lower_tier_chiral_law_open_but_unadmitted"]["detail"]
 
     chirality_results = chirality["results"]
     projection = hopf_weyl_projection["weyl_projection_readiness"]
@@ -309,13 +310,23 @@ def main() -> int:
             chiral_gate_map["L1_fake_lower_tier_chiral_law_routes_are_killed"]["pass"]
             and chiral_gate_map["L2_delta_chirality_is_real_signal_but_not_owner_law"]["pass"]
             and chiral_gate_map["L3_compound_transport_chirality_branch_survives_search"]["pass"]
-            and chiral_gate_map["L4_search_keeps_single_lower_tier_chiral_law_open_but_unadmitted"]["pass"],
+            and chiral_gate_map["L4_search_keeps_single_lower_tier_chiral_law_open_but_unadmitted"]["pass"]
+            and lower_tier_chiral_detail["summary"]["winner"] == "chirality_separated_transport_deltas"
+            and lower_tier_chiral_detail["summary"]["winner_status"] == "surviving_compound_candidate"
+            and lower_tier_chiral_detail["summary"]["single_lower_tier_chiral_law"] == "not_supported_yet"
+            and lower_tier_chiral_detail["owner_read"]["status"] == "compound_candidate_only"
+            and "No single lower-tier chiral law is admitted" in lower_tier_chiral_detail["owner_read"]["note"]
+            and "G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion"
+            in lower_tier_chiral_detail["source_support"]["formal_geometry_gates"]
+            and "W8_pre_axis_object_inventory_is_explicit"
+            in lower_tier_chiral_detail["source_support"]["weyl_delta_gates"],
             "G12_lower_tier_chiral_law_search_is_explicit_and_fail_closed",
             {
                 "l1_pass": chiral_gate_map["L1_fake_lower_tier_chiral_law_routes_are_killed"]["pass"],
                 "l2_pass": chiral_gate_map["L2_delta_chirality_is_real_signal_but_not_owner_law"]["pass"],
                 "l3_pass": chiral_gate_map["L3_compound_transport_chirality_branch_survives_search"]["pass"],
                 "l4_pass": chiral_gate_map["L4_search_keeps_single_lower_tier_chiral_law_open_but_unadmitted"]["pass"],
+                "lower_tier_chiral_detail": lower_tier_chiral_detail,
             },
         ),
         gate(

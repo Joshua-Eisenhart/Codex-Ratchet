@@ -39,6 +39,8 @@ def main() -> int:
     ranking = bridge_search["ranking"]
     mispair_summary = mispair["summary"]
     mapping = pre_entropy["pre_axis_admission_schema"]["current_mapping"]
+    placement_relations = pre_entropy["pre_axis_admission_schema"]["placement_relations"]
+    axis_internal_readout = pre_entropy["owner_worthiness_map"]["axis_internal_readout"]
 
     payload = {
         "name": "c1_signed_bridge_candidate_search",
@@ -78,6 +80,8 @@ def main() -> int:
         "support_chain": {
             "matched_marginal_closed": matched_marginal["passed_gates"] == matched_marginal["total_gates"],
             "pre_entropy_mapping": mapping["Xi_chiral_entangle"],
+            "pre_entropy_relation": axis_internal_readout["Xi_chiral_entangle_relation"],
+            "pre_entropy_placement": placement_relations["Xi_chiral_entangle"],
             "entropy_readout_current_bridge_gate": entropy_readout["gates"][9]["name"],
         },
         "unresolved": {

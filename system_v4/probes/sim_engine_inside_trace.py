@@ -48,7 +48,9 @@ from geometric_operators import (  # noqa: E402
 )
 from hopf_manifold import (  # noqa: E402
     left_density,
+    left_weyl_spinor,
     right_density,
+    right_weyl_spinor,
     inter_torus_transport_partial,
     density_to_bloch,
     torus_radii,
@@ -122,7 +124,12 @@ def trace_one_cycle(engine_type: int, seed: int = 42, program: str = "default"):
 
             ga0_target = engine._ga0_target(terrain, op_name, ctrl)
             ga0_alpha = min(1.0, 0.10 + 0.45 * ctrl.piston + (0.10 if terrain["open"] else 0.0))
-            new_ga0 = float(np.clip((1.0 - ga0_alpha) * current_state.ga0_level + ga0_alpha * ga0_target, 0.0, 1.0))
+            if ga0_target is None:
+                new_ga0 = float(current_state.ga0_level)
+            else:
+                new_ga0 = float(
+                    np.clip((1.0 - ga0_alpha) * current_state.ga0_level + ga0_alpha * ga0_target, 0.0, 1.0)
+                )
             strength = engine._operator_strength(terrain, op_name, ctrl, ga0_level=new_ga0)
             polarity = ctrl.lever
             angle_mod, dt_mod = engine._terrain_modulation(terrain)
@@ -211,13 +218,22 @@ def trace_one_cycle(engine_type: int, seed: int = 42, program: str = "default"):
                 new_theta1 = (new_theta1 + d_theta) % (2 * np.pi)
                 new_theta2 = (new_theta2 + 0.5 * d_theta) % (2 * np.pi)
 
+            q_current = np.array(
+                [
+                    np.cos(new_eta) * np.cos(new_theta1),
+                    np.cos(new_eta) * np.sin(new_theta1),
+                    np.sin(new_eta) * np.cos(new_theta2),
+                    np.sin(new_eta) * np.sin(new_theta2),
+                ],
+                dtype=float,
+            )
             current_state = EngineState(
-                rho_L=new_rho_L,
-                rho_R=new_rho_R,
+                psi_L=left_weyl_spinor(q_current),
+                psi_R=right_weyl_spinor(q_current),
+                rho_AB=_ensure_valid_density(np.kron(new_rho_L, new_rho_R)),
                 eta=new_eta,
                 theta1=new_theta1,
                 theta2=new_theta2,
-                ga0_level=new_ga0,
                 stage_idx=current_state.stage_idx,
                 engine_type=engine_type,
                 history=current_state.history + [],

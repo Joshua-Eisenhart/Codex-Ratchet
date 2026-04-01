@@ -75,11 +75,14 @@ def main() -> int:
         gate(
             summary["winner"] == "chirality_separated_transport_deltas"
             and summary["winner_status"] == "surviving_compound_candidate"
+            and summary["fake_law_routes"] == ["ga3_chirality_readout", "symmetric_dphi_bookkeeping"]
+            and summary["signal_only_routes"] == ["delta_chirality_signal"]
             and summary["single_lower_tier_chiral_law"] == "not_supported_yet"
             and owner_read["status"] == "compound_candidate_only"
             and "No single lower-tier chiral law is admitted" in owner_read["note"]
             and "G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion"
             in source_support["formal_geometry_gates"]
+            and "G7_no_chirality_negative_still_incomplete" in source_support["formal_geometry_gates"]
             and "W5_branch_map_keeps_flux_placement_open" in source_support["weyl_delta_gates"]
             and "W7_branch_map_preserves_skeptical_flux_read" in source_support["weyl_delta_gates"]
             and "W8_pre_axis_object_inventory_is_explicit" in source_support["weyl_delta_gates"],

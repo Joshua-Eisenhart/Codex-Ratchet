@@ -1,9 +1,20 @@
 {
   "name": "carrier_selection_packet_validation",
-  "timestamp": "2026-04-01T20:20:30.773560+00:00",
-  "passed_gates": 7,
-  "total_gates": 7,
+  "timestamp": "2026-04-01T21:27:30.732583+00:00",
+  "passed_gates": 8,
+  "total_gates": 8,
   "score": 1.0,
+  "signed_bridge_candidate_handoff": {
+    "object": "c1_signed_bridge_candidate_handoff",
+    "candidate": "Xi_chiral_entangle",
+    "status": "provisional_handoff_ready",
+    "positive_witness_gate": "C3_live_carrier_wins_and_honesty_signal_stays_unique",
+    "bridge_separation_gate": "C4_bridge_search_separates_winning_bridges_from_controls",
+    "counterfeit_guard_gate": "C7_counterfeit_history_games_mi_but_not_coherent_info",
+    "signed_metric": "I_c",
+    "consumer_status": "allowed_for_entropy_readout_not_final_owner_xi",
+    "read": "Xi_chiral_entangle is the current signed bridge candidate handoff object for downstream readout use, but it is not a final owner law."
+  },
   "gates": [
     {
       "name": "C1_search_and_bridge_surfaces_execute_cleanly",
@@ -122,6 +133,29 @@
         "mean_I_c_gap": 0.07042179967142495,
         "counterfeit_beats_live_on_I_AB_count": 4,
         "live_beats_counterfeit_on_I_c_count": 4
+      }
+    },
+    {
+      "name": "C8_provisional_signed_bridge_candidate_handoff_is_explicit",
+      "pass": true,
+      "detail": {
+        "signed_bridge_candidate_handoff": {
+          "object": "c1_signed_bridge_candidate_handoff",
+          "candidate": "Xi_chiral_entangle",
+          "status": "provisional_handoff_ready",
+          "positive_witness_gate": "C3_live_carrier_wins_and_honesty_signal_stays_unique",
+          "bridge_separation_gate": "C4_bridge_search_separates_winning_bridges_from_controls",
+          "counterfeit_guard_gate": "C7_counterfeit_history_games_mi_but_not_coherent_info",
+          "signed_metric": "I_c",
+          "consumer_status": "allowed_for_entropy_readout_not_final_owner_xi",
+          "read": "Xi_chiral_entangle is the current signed bridge candidate handoff object for downstream readout use, but it is not a final owner law."
+        },
+        "bridge_winner": "Xi_chiral_entangle",
+        "live_honesty_candidate": "Xi_chiral_entangle",
+        "live_honesty_mean_i_c": 0.0775200940266869,
+        "lr_direct_mean_mi": 3.3769283665681843e-16,
+        "mean_live_I_c": 0.0775200940266869,
+        "mean_counterfeit_I_c": 0.007098294355261954
       }
     }
   ]

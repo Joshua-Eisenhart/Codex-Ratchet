@@ -50,6 +50,17 @@ def main() -> int:
     dechiralized_control = carrier_best["carrier_dechiralized_history"]
     cartesian_control = carrier_best["carrier_cartesian_nohistory"]
     mispair_summary = mispair["summary"]
+    signed_bridge_candidate_handoff = {
+        "object": "c1_signed_bridge_candidate_handoff",
+        "candidate": "Xi_chiral_entangle",
+        "status": "provisional_handoff_ready",
+        "positive_witness_gate": "C3_live_carrier_wins_and_honesty_signal_stays_unique",
+        "bridge_separation_gate": "C4_bridge_search_separates_winning_bridges_from_controls",
+        "counterfeit_guard_gate": "C7_counterfeit_history_games_mi_but_not_coherent_info",
+        "signed_metric": "I_c",
+        "consumer_status": "allowed_for_entropy_readout_not_final_owner_xi",
+        "read": "Xi_chiral_entangle is the current signed bridge candidate handoff object for downstream readout use, but it is not a final owner law.",
+    }
 
     gates = [
         gate(
@@ -151,6 +162,26 @@ def main() -> int:
                 "live_beats_counterfeit_on_I_c_count": mispair_summary["live_beats_counterfeit_on_I_c_count"],
             },
         ),
+        gate(
+            signed_bridge_candidate_handoff["candidate"] == "Xi_chiral_entangle"
+            and signed_bridge_candidate_handoff["status"] == "provisional_handoff_ready"
+            and signed_bridge_candidate_handoff["consumer_status"] == "allowed_for_entropy_readout_not_final_owner_xi"
+            and bridge_search["winner"] == "Xi_chiral_entangle"
+            and live_honesty["best_candidate"] == "Xi_chiral_entangle"
+            and live_honesty["best_mean_i_c"] > 0.05
+            and mean_mi["Xi_LR_direct"] < 1e-12
+            and mispair_summary["mean_live_I_c"] > mispair_summary["mean_counterfeit_I_c"],
+            "C8_provisional_signed_bridge_candidate_handoff_is_explicit",
+            {
+                "signed_bridge_candidate_handoff": signed_bridge_candidate_handoff,
+                "bridge_winner": bridge_search["winner"],
+                "live_honesty_candidate": live_honesty["best_candidate"],
+                "live_honesty_mean_i_c": live_honesty["best_mean_i_c"],
+                "lr_direct_mean_mi": mean_mi["Xi_LR_direct"],
+                "mean_live_I_c": mispair_summary["mean_live_I_c"],
+                "mean_counterfeit_I_c": mispair_summary["mean_counterfeit_I_c"],
+            },
+        ),
     ]
 
     passed = sum(1 for item in gates if item["pass"])
@@ -160,6 +191,7 @@ def main() -> int:
         "passed_gates": passed,
         "total_gates": len(gates),
         "score": passed / len(gates) if gates else 0.0,
+        "signed_bridge_candidate_handoff": signed_bridge_candidate_handoff,
         "gates": gates,
     }
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")

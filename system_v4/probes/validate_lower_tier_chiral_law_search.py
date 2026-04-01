@@ -74,7 +74,7 @@ def main() -> int:
         gate(
             summary["winner"] == "chirality_separated_transport_deltas"
             and summary["winner_status"] == "surviving_compound_candidate"
-            and summary["single_lower_tier_chiral_law"] == "not_supported_yet",
+            and summary["single_lower_tier_chiral_law"] == "not_supported_yet"
             and owner_read["status"] == "compound_candidate_only",
             "L4_search_keeps_single_lower_tier_chiral_law_open_but_unadmitted",
             {

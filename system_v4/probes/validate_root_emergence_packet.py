@@ -189,13 +189,15 @@ def main() -> int:
         ),
         gate(
             packet_run["all_ok"]
-            and not (level1["Fe"]["universal"] and level1["Te"]["universal"] and level1["Ti"]["universal"]),
+            and not all(result["universal"] for result in level1.values())
+            and not all(result["universal"] for result in level2.values())
+            and coarising["level3_geometry"]["total_trials"] == 0,
             "R9_root_emergence_remains_open_without_smuggling",
             {
                 "all_ok": packet_run["all_ok"],
-                "ti_universal": level1["Ti"]["universal"],
-                "fe_universal": level1["Fe"]["universal"],
-                "te_universal": level1["Te"]["universal"],
+                "all_level1_universal": all(result["universal"] for result in level1.values()),
+                "all_level2_universal": all(result["universal"] for result in level2.values()),
+                "level3_total_trials": coarising["level3_geometry"]["total_trials"],
             },
         ),
         gate(

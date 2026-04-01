@@ -58,8 +58,8 @@ def main() -> int:
     neg_torus_status = neg_torus["evidence_ledger"][0]["status"]
     neg_chiral_status = neg_chiral["evidence_ledger"][0]["status"]
     neg_loop_swap_status = neg_loop_swap["evidence_ledger"][0]["status"]
-    carrier_operator_basis_admission = {
-        "object": "carrier_operator_basis_admission",
+    carrier_geometry_admission = {
+        "object": "carrier_geometry_admission",
         "carrier": "finite Hopf/Weyl carrier",
         "admitted": True,
         "source_gates": [
@@ -266,8 +266,8 @@ def main() -> int:
             },
         ),
         gate(
-            carrier_operator_basis_admission["admitted"]
-            and carrier_operator_basis_admission["basis_status"] == "carrier basis present at geometry tier; explicit operator admission handled by lower-tier operator search"
+            carrier_geometry_admission["admitted"]
+            and carrier_geometry_admission["basis_status"] == "carrier basis present at geometry tier; explicit operator admission handled by lower-tier operator search"
             and classical_leakage_guards["admitted"]
             and classical_leakage_guards["raw_lr_control_blocked"]["status"] == "control_only"
             and classical_leakage_guards["raw_lr_control_blocked"]["max_raw_LR_mutual_information"] < 1e-9
@@ -276,7 +276,7 @@ def main() -> int:
             and classical_leakage_guards["loop_law_swap_kill"]["status"] == "KILL",
             "G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit",
             {
-                "carrier_operator_basis_admission": carrier_operator_basis_admission,
+                "carrier_geometry_admission": carrier_geometry_admission,
                 "classical_leakage_guards": classical_leakage_guards,
             },
         ),
@@ -330,7 +330,7 @@ def main() -> int:
         "passed_gates": passed,
         "total_gates": len(gates),
         "score": passed / len(gates) if gates else 0.0,
-        "carrier_operator_basis_admission": carrier_operator_basis_admission,
+        "carrier_geometry_admission": carrier_geometry_admission,
         "operator_basis_search_admission": operator_basis_search_admission,
         "classical_leakage_guards": classical_leakage_guards,
         "chiral_law_embargo": chiral_law_embargo,

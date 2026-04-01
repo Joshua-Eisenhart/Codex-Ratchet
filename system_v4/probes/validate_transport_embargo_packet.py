@@ -48,6 +48,8 @@ def main() -> int:
     transport_gate_map = {item["name"]: item for item in lower_transport["gates"]}
     pre_gate_map = {item["name"]: item for item in pre_entropy["gates"]}
 
+    weyl_delta_results = load_json(SIM_RESULTS / "weyl_delta_packet_results.json")
+    transport_embargo_boundary = weyl_delta_results["transport_embargo_boundary"]
     owner_map = pre_entropy["owner_worthiness_map"]
     admission_schema = pre_entropy["pre_axis_admission_schema"]
     necessity = pre_entropy["joint_necessity_witness"]
@@ -59,13 +61,23 @@ def main() -> int:
             weyl_gate_map["W5_branch_map_keeps_flux_placement_open"]["pass"]
             and weyl_gate_map["W6_flux_family_is_explicit_without_canonizing_flux"]["pass"]
             and weyl_gate_map["W7_branch_map_preserves_skeptical_flux_read"]["pass"]
-            and weyl_gate_map["W8_pre_axis_object_inventory_is_explicit"]["pass"],
+            and weyl_gate_map["W8_pre_axis_object_inventory_is_explicit"]["pass"]
+            and weyl_gate_map["W9_transport_embargo_boundary_is_explicit"]["pass"]
+            and transport_embargo_boundary["status"] == "candidate_pre_axis_law_not_owner_promoted"
+            and transport_embargo_boundary["surviving_candidate"] == "chirality_separated_transport_deltas"
+            and transport_embargo_boundary["lower_tier_law"] == "exact_loop_assigned_transport_only"
+            and transport_embargo_boundary["blocked_flux"] == "entropic_left_right_flux"
+            and transport_embargo_boundary["unsupported_single_flux"] == "single_weyl_flux_object"
+            and transport_embargo_boundary["downstream_branch"] == "post_joint_cut_flux"
+            and transport_embargo_boundary["promotion_boundary"] == "awaiting_owner_promotion_decision_after_nonproxy_support",
             "TE1_weyl_delta_transport_family_is_live_but_fail_closed",
             {
                 "w5_pass": weyl_gate_map["W5_branch_map_keeps_flux_placement_open"]["pass"],
                 "w6_pass": weyl_gate_map["W6_flux_family_is_explicit_without_canonizing_flux"]["pass"],
                 "w7_pass": weyl_gate_map["W7_branch_map_preserves_skeptical_flux_read"]["pass"],
                 "w8_pass": weyl_gate_map["W8_pre_axis_object_inventory_is_explicit"]["pass"],
+                "w9_pass": weyl_gate_map["W9_transport_embargo_boundary_is_explicit"]["pass"],
+                "transport_embargo_boundary": transport_embargo_boundary,
             },
         ),
         gate(

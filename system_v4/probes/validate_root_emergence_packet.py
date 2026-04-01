@@ -186,7 +186,8 @@ def main() -> int:
             and live_honesty["best_candidate"] == "Xi_chiral_entangle"
             and live_honesty["best_mean_i_c"] > 0.05
             and carrier_rank["best_control_honesty_score"] == 0.0
-            and carrier_rank["best_honesty_margin"] > 0.05,
+            and carrier_rank["best_honesty_margin"] > 0.05
+            and all(row["best_ic"] == "Xi_chiral_entangle" for row in live_row_best_iab),
             "R6_live_carrier_keeps_unique_positive_honesty_signal",
             {
                 "live_honesty_candidate": live_honesty["best_candidate"],
@@ -194,6 +195,7 @@ def main() -> int:
                 "live_honesty_mean_mi": live_honesty["best_mean_mi"],
                 "best_control_honesty_score": carrier_rank["best_control_honesty_score"],
                 "best_honesty_margin": carrier_rank["best_honesty_margin"],
+                "live_row_best_iab": live_row_best_iab,
             },
         ),
         gate(

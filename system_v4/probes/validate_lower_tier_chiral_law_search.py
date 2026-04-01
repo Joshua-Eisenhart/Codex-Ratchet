@@ -35,6 +35,7 @@ def main() -> int:
     search = load_json(SIM_RESULTS / "lower_tier_chiral_law_search_results.json")
     candidates = search["candidate_family"]
     summary = search["summary"]
+    owner_read = search["owner_read"]
 
     gates = [
         gate(
@@ -60,7 +61,7 @@ def main() -> int:
         gate(
             candidates["chirality_separated_transport_deltas"]["status"] == "surviving_compound_candidate"
             and candidates["chirality_separated_transport_deltas"]["keep"]
-            and candidates["chirality_separated_transport_deltas"]["evidence"]["nonproxy_runtime_support"] == "nonproxy_runtime_support",
+            and candidates["chirality_separated_transport_deltas"]["evidence"]["nonproxy_runtime_support"] == "nonproxy_runtime_support"
             and candidates["chirality_separated_transport_deltas"]["evidence"]["transport_active_count"] == 48
             and candidates["chirality_separated_transport_deltas"]["evidence"]["lr_bloch_asymmetry_count"] == 48
             and candidates["chirality_separated_transport_deltas"]["evidence"]["live_min_direct_min_traversal"] > 0.1
@@ -72,9 +73,14 @@ def main() -> int:
         ),
         gate(
             summary["winner"] == "chirality_separated_transport_deltas"
+            and summary["winner_status"] == "surviving_compound_candidate"
             and summary["single_lower_tier_chiral_law"] == "not_supported_yet",
+            and owner_read["status"] == "compound_candidate_only",
             "L4_search_keeps_single_lower_tier_chiral_law_open_but_unadmitted",
-            summary,
+            {
+                "summary": summary,
+                "owner_read": owner_read,
+            },
         ),
     ]
 

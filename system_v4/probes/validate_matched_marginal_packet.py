@@ -43,6 +43,7 @@ def main() -> int:
     phase5a = load_json(SIM_RESULTS / "axis0_phase5a_results.json")
     phase6 = load_json(SIM_RESULTS / "axis0_phase6_point_reference_results.json")
     fe_indexed = load_json(SIM_RESULTS / "axis0_fe_indexed_xi_hist_results.json")
+    carrier_selection = load_json(SIM_RESULTS / "carrier_selection_packet_validation.json")
 
     phase5a_rows = phase5a["results"]
     final_rows = [row["final_state"] for row in phase5a_rows]
@@ -51,6 +52,7 @@ def main() -> int:
     hist_checks = [row["history_averaged"]["marginal_check"] for row in phase5a_rows]
     phase6_verdict = phase6["verdict"]
     fe_summary = fe_indexed["summary"]
+    signed_bridge_handoff = carrier_selection["signed_bridge_candidate_handoff"]
 
     gates = [
         gate(
@@ -134,6 +136,27 @@ def main() -> int:
                 "mean_fe_advantage": fe_summary["mean_fe_advantage"],
                 "mean_mi": fe_summary["mean_mi"],
                 "winner_counts": fe_summary["winner_counts"],
+            },
+        ),
+        gate(
+            signed_bridge_handoff["candidate"] == "Xi_chiral_entangle"
+            and signed_bridge_handoff["status"] == "provisional_handoff_ready"
+            and signed_bridge_handoff["placement_contract"] == "downstream_axis_internal_bridge_candidate_only"
+            and signed_bridge_handoff["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
+            and signed_bridge_handoff["forbidden_reclassification"] == "not_owner_derived_not_final_owner_xi"
+            and signed_bridge_handoff["consumer_status"] == "allowed_for_entropy_readout_not_final_owner_xi"
+            and not phase4["winner_preserves_marginals"]
+            and phase4["matched_marginal_winner"] is None
+            and not phase6_verdict["point_reference_earned_bridge_survives"]
+            and phase6_verdict["point_reference_discriminator_survives"],
+            "M8_matched_marginal_layer_preserves_xi_downstream_handoff_contract",
+            {
+                "signed_bridge_handoff": signed_bridge_handoff,
+                "phase4_winner": phase4["winner"],
+                "phase4_winner_preserves_marginals": phase4["winner_preserves_marginals"],
+                "phase4_matched_marginal_winner": phase4["matched_marginal_winner"],
+                "phase6_point_reference_earned_bridge_survives": phase6_verdict["point_reference_earned_bridge_survives"],
+                "phase6_point_reference_discriminator_survives": phase6_verdict["point_reference_discriminator_survives"],
             },
         ),
     ]

@@ -52,6 +52,9 @@ def main() -> int:
     lower_tier_transport_search = load_json(SIM_RESULTS / "lower_tier_transport_law_search_validation.json")
     lower_tier_operator_search = load_json(SIM_RESULTS / "lower_tier_operator_basis_search_validation.json")
     hopf_weyl_projection = load_json(AUDIT_RESULTS / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json")
+    chiral_gate_map = {item["name"]: item for item in lower_tier_chiral_search["gates"]}
+    transport_gate_map = {item["name"]: item for item in lower_tier_transport_search["gates"]}
+    operator_gate_map = {item["name"]: item for item in lower_tier_operator_search["gates"]}
 
     chirality_results = chirality["results"]
     projection = hopf_weyl_projection["weyl_projection_readiness"]
@@ -290,35 +293,44 @@ def main() -> int:
             chiral_law_embargo,
         ),
         gate(
-            lower_tier_chiral_search["passed_gates"] == lower_tier_chiral_search["total_gates"]
-            and lower_tier_chiral_search["score"] == 1.0,
+            chiral_gate_map["L1_fake_lower_tier_chiral_law_routes_are_killed"]["pass"]
+            and chiral_gate_map["L2_delta_chirality_is_real_signal_but_not_owner_law"]["pass"]
+            and chiral_gate_map["L3_compound_transport_chirality_branch_survives_search"]["pass"]
+            and chiral_gate_map["L4_search_keeps_single_lower_tier_chiral_law_open_but_unadmitted"]["pass"],
             "G12_lower_tier_chiral_law_search_is_explicit_and_fail_closed",
             {
-                "passed_gates": lower_tier_chiral_search["passed_gates"],
-                "total_gates": lower_tier_chiral_search["total_gates"],
-                "score": lower_tier_chiral_search["score"],
+                "l1_pass": chiral_gate_map["L1_fake_lower_tier_chiral_law_routes_are_killed"]["pass"],
+                "l2_pass": chiral_gate_map["L2_delta_chirality_is_real_signal_but_not_owner_law"]["pass"],
+                "l3_pass": chiral_gate_map["L3_compound_transport_chirality_branch_survives_search"]["pass"],
+                "l4_pass": chiral_gate_map["L4_search_keeps_single_lower_tier_chiral_law_open_but_unadmitted"]["pass"],
             },
         ),
         gate(
-            lower_tier_transport_search["passed_gates"] == lower_tier_transport_search["total_gates"]
-            and lower_tier_transport_search["score"] == 1.0,
+            transport_gate_map["T1_exact_same_carrier_loop_law_survives_search"]["pass"]
+            and transport_gate_map["T2_generic_transport_activity_is_not_promoted_to_law"]["pass"]
+            and transport_gate_map["T3_symmetric_motion_summary_is_killed_as_fake_transport_law"]["pass"]
+            and transport_gate_map["T4_downstream_cut_effect_is_fenced_off_from_lower_transport_law"]["pass"],
             "G13_lower_tier_transport_law_search_is_explicit_and_fail_closed",
             {
-                "passed_gates": lower_tier_transport_search["passed_gates"],
-                "total_gates": lower_tier_transport_search["total_gates"],
-                "score": lower_tier_transport_search["score"],
+                "t1_pass": transport_gate_map["T1_exact_same_carrier_loop_law_survives_search"]["pass"],
+                "t2_pass": transport_gate_map["T2_generic_transport_activity_is_not_promoted_to_law"]["pass"],
+                "t3_pass": transport_gate_map["T3_symmetric_motion_summary_is_killed_as_fake_transport_law"]["pass"],
+                "t4_pass": transport_gate_map["T4_downstream_cut_effect_is_fenced_off_from_lower_transport_law"]["pass"],
             },
         ),
         gate(
-            lower_tier_operator_search["passed_gates"] == lower_tier_operator_search["total_gates"]
-            and lower_tier_operator_search["score"] == 1.0
+            operator_gate_map["O1_fixed_carrier_basis_remap_shows_load_bearing_sensitivity"]["pass"]
+            and operator_gate_map["O2_global_coordinate_change_is_not_mistaken_for_substrate_failure"]["pass"]
+            and operator_gate_map["O3_commuting_collapse_degrades_the_local_operator_response"]["pass"]
+            and operator_gate_map["O4_local_unitary_pair_is_not_demoted_by_this_narrow_local_test"]["pass"]
             and operator_basis_search_admission["admitted"],
             "G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed",
             {
                 "operator_basis_search_admission": operator_basis_search_admission,
-                "passed_gates": lower_tier_operator_search["passed_gates"],
-                "total_gates": lower_tier_operator_search["total_gates"],
-                "score": lower_tier_operator_search["score"],
+                "o1_pass": operator_gate_map["O1_fixed_carrier_basis_remap_shows_load_bearing_sensitivity"]["pass"],
+                "o2_pass": operator_gate_map["O2_global_coordinate_change_is_not_mistaken_for_substrate_failure"]["pass"],
+                "o3_pass": operator_gate_map["O3_commuting_collapse_degrades_the_local_operator_response"]["pass"],
+                "o4_pass": operator_gate_map["O4_local_unitary_pair_is_not_demoted_by_this_narrow_local_test"]["pass"],
             },
         ),
     ]

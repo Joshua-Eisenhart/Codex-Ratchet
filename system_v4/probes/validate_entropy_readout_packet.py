@@ -45,7 +45,6 @@ def main() -> int:
     fep = load_json(SIM_RESULTS / "axis0_fep_compression_results.json")
     bridge_search = load_json(SIM_RESULTS / "axis0_bridge_search_results.json")
     mispair = load_json(SIM_RESULTS / "history_mispair_counterfeit_results.json")
-    carrier_selection = load_json(SIM_RESULTS / "carrier_selection_packet_validation.json")
     pre_entropy = load_json(SIM_RESULTS / "pre_entropy_packet_validation.json")
     c1_bridge_object = load_json(SIM_RESULTS / "c1_bridge_object_packet_validation.json")
 
@@ -59,7 +58,8 @@ def main() -> int:
     ranking = bridge_search["ranking"]
     mispair_summary = mispair["summary"]
     pre_entropy_law = pre_entropy["law_summary"]
-    signed_bridge_handoff = carrier_selection["signed_bridge_candidate_handoff"]
+    c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
+    signed_bridge_handoff = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]["carrier_handoff"]
 
     local_only = families["L|R_local_only"]
     coupled_control = families["L|R_coupled_control"]

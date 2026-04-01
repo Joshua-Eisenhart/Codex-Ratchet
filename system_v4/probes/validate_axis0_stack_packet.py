@@ -39,6 +39,7 @@ def main() -> int:
     pre_entropy = load_json(SIM_RESULTS / "pre_entropy_packet_validation.json")
     matched_marginal = load_json(SIM_RESULTS / "matched_marginal_packet_validation.json")
     entropy_readout = load_json(SIM_RESULTS / "entropy_readout_packet_validation.json")
+    formal_gate_map = {item["name"]: item for item in formal_geometry["gates"]}
     root_gate_map = {item["name"]: item for item in root_emergence["gates"]}
     carrier_gate_map = {item["name"]: item for item in carrier_selection["gates"]}
     pre_entropy_gate_map = {item["name"]: item for item in pre_entropy["gates"]}
@@ -154,6 +155,41 @@ def main() -> int:
                 "pre_entropy_p24_pass": pre_entropy_gate_map["P24_carrier_handoff_matches_pre_entropy_downstream_mapping"]["pass"],
                 "matched_m9_pass": matched_gate_map["M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping"]["pass"],
                 "entropy_e10_pass": entropy_gate_map["E10_current_bridge_candidate_is_explicit_and_provisional"]["pass"],
+                "entropy_e12_pass": entropy_gate_map["E12_xi_hist_law_summary_binds_pre_entropy_to_readout"]["pass"],
+            },
+        ),
+        gate(
+            formal_gate_map["G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit"]["pass"]
+            and formal_gate_map["G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion"]["pass"]
+            and formal_gate_map["G12_lower_tier_chiral_law_search_is_explicit_and_fail_closed"]["pass"]
+            and formal_gate_map["G13_lower_tier_transport_law_search_is_explicit_and_fail_closed"]["pass"]
+            and formal_gate_map["G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed"]["pass"]
+            and root_gate_map["R1_formal_geometry_prerequisite_is_closed"]["pass"]
+            and root_gate_map["R7_mispair_counterfeit_games_mi_but_not_coherent_info"]["pass"]
+            and root_gate_map["R9_root_emergence_remains_open_without_smuggling"]["pass"]
+            and matched_gate_map["M6_exact_preserving_point_reference_stays_discriminator_only"]["pass"]
+            and matched_gate_map["M7_fe_indexed_pairs_remain_the_only_structured_refinement_winner"]["pass"]
+            and entropy_gate_map["E2_shannon_diagonal_is_not_geometry_safe"]["pass"]
+            and entropy_gate_map["E3_product_proxy_and_pure_fi_negatives_hold"]["pass"]
+            and entropy_gate_map["E8_history_family_handoff_supports_signed_readout_on_same_objects"]["pass"]
+            and entropy_gate_map["E9_fep_framing_shows_nonclassical_directionality"]["pass"]
+            and entropy_gate_map["E12_xi_hist_law_summary_binds_pre_entropy_to_readout"]["pass"],
+            "S8_axis0_stack_explicitly_consumes_named_foundation_gates",
+            {
+                "formal_g10_pass": formal_gate_map["G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit"]["pass"],
+                "formal_g11_pass": formal_gate_map["G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion"]["pass"],
+                "formal_g12_pass": formal_gate_map["G12_lower_tier_chiral_law_search_is_explicit_and_fail_closed"]["pass"],
+                "formal_g13_pass": formal_gate_map["G13_lower_tier_transport_law_search_is_explicit_and_fail_closed"]["pass"],
+                "formal_g14_pass": formal_gate_map["G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed"]["pass"],
+                "root_r1_pass": root_gate_map["R1_formal_geometry_prerequisite_is_closed"]["pass"],
+                "root_r7_pass": root_gate_map["R7_mispair_counterfeit_games_mi_but_not_coherent_info"]["pass"],
+                "root_r9_pass": root_gate_map["R9_root_emergence_remains_open_without_smuggling"]["pass"],
+                "matched_m6_pass": matched_gate_map["M6_exact_preserving_point_reference_stays_discriminator_only"]["pass"],
+                "matched_m7_pass": matched_gate_map["M7_fe_indexed_pairs_remain_the_only_structured_refinement_winner"]["pass"],
+                "entropy_e2_pass": entropy_gate_map["E2_shannon_diagonal_is_not_geometry_safe"]["pass"],
+                "entropy_e3_pass": entropy_gate_map["E3_product_proxy_and_pure_fi_negatives_hold"]["pass"],
+                "entropy_e8_pass": entropy_gate_map["E8_history_family_handoff_supports_signed_readout_on_same_objects"]["pass"],
+                "entropy_e9_pass": entropy_gate_map["E9_fep_framing_shows_nonclassical_directionality"]["pass"],
                 "entropy_e12_pass": entropy_gate_map["E12_xi_hist_law_summary_binds_pre_entropy_to_readout"]["pass"],
             },
         ),

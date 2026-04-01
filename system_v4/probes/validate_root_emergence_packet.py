@@ -55,6 +55,7 @@ def main() -> int:
     carrier_rank = load_json(SIM_RESULTS / "root_constraint_carrier_rank_results.json")
     mispair = load_json(SIM_RESULTS / "history_mispair_counterfeit_results.json")
     coarising = load_json(SIM_RESULTS / "axis0_coarising_stress_test_results.json")
+    carrier_selection = load_json(SIM_RESULTS / "carrier_selection_packet_validation.json")
 
     steps = packet_run["steps"]
     level1 = coarising["level1_lr_asym"]
@@ -62,6 +63,7 @@ def main() -> int:
     live_carrier = carrier_rank["carrier_best"]["carrier_live_hopf_weyl"]
     live_honesty = carrier_rank["carrier_honesty_best"]["carrier_live_hopf_weyl"]
     mispair_summary = mispair["summary"]
+    signed_bridge_handoff = carrier_selection["signed_bridge_candidate_handoff"]
 
     gates = [
         gate(
@@ -174,6 +176,24 @@ def main() -> int:
                 "ti_universal": level1["Ti"]["universal"],
                 "fe_universal": level1["Fe"]["universal"],
                 "te_universal": level1["Te"]["universal"],
+            },
+        ),
+        gate(
+            bridge_search["winner"] == "Xi_chiral_entangle"
+            and live_carrier["best_candidate"] == "Xi_chiral_entangle"
+            and live_honesty["best_candidate"] == "Xi_chiral_entangle"
+            and signed_bridge_handoff["candidate"] == "Xi_chiral_entangle"
+            and signed_bridge_handoff["status"] == "provisional_handoff_ready"
+            and signed_bridge_handoff["placement_contract"] == "downstream_axis_internal_bridge_candidate_only"
+            and signed_bridge_handoff["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
+            and signed_bridge_handoff["forbidden_reclassification"] == "not_owner_derived_not_final_owner_xi"
+            and signed_bridge_handoff["consumer_status"] == "allowed_for_entropy_readout_not_final_owner_xi",
+            "R10_root_emergence_bridge_winner_respects_xi_handoff_contract",
+            {
+                "bridge_winner": bridge_search["winner"],
+                "live_carrier_best_candidate": live_carrier["best_candidate"],
+                "live_honesty_best_candidate": live_honesty["best_candidate"],
+                "signed_bridge_handoff": signed_bridge_handoff,
             },
         ),
     ]

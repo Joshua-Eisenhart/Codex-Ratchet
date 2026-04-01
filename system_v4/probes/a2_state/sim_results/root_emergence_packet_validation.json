@@ -1,8 +1,8 @@
 {
   "name": "root_emergence_packet_validation",
-  "timestamp": "2026-04-01T11:25:23.139299+00:00",
-  "passed_gates": 9,
-  "total_gates": 9,
+  "timestamp": "2026-04-01T21:42:27.447304+00:00",
+  "passed_gates": 10,
+  "total_gates": 10,
   "score": 1.0,
   "gates": [
     {
@@ -10,8 +10,8 @@
       "pass": true,
       "detail": {
         "score": 1.0,
-        "passed_gates": 9,
-        "total_gates": 9
+        "passed_gates": 14,
+        "total_gates": 14
       }
     },
     {
@@ -93,6 +93,29 @@
         "ti_universal": false,
         "fe_universal": false,
         "te_universal": false
+      }
+    },
+    {
+      "name": "R10_root_emergence_bridge_winner_respects_xi_handoff_contract",
+      "pass": true,
+      "detail": {
+        "bridge_winner": "Xi_chiral_entangle",
+        "live_carrier_best_candidate": "Xi_chiral_entangle",
+        "live_honesty_best_candidate": "Xi_chiral_entangle",
+        "signed_bridge_handoff": {
+          "object": "c1_signed_bridge_candidate_handoff",
+          "candidate": "Xi_chiral_entangle",
+          "status": "provisional_handoff_ready",
+          "placement_contract": "downstream_axis_internal_bridge_candidate_only",
+          "owner_dependency": "must_bind_under_xi_hist_signed_law",
+          "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+          "positive_witness_gate": "C3_live_carrier_wins_and_honesty_signal_stays_unique",
+          "bridge_separation_gate": "C4_bridge_search_separates_winning_bridges_from_controls",
+          "counterfeit_guard_gate": "C7_counterfeit_history_games_mi_but_not_coherent_info",
+          "signed_metric": "I_c",
+          "consumer_status": "allowed_for_entropy_readout_not_final_owner_xi",
+          "read": "Xi_chiral_entangle is the current signed bridge candidate handoff object for downstream readout use, but it is not a final owner law."
+        }
       }
     }
   ]

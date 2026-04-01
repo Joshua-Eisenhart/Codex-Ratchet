@@ -44,6 +44,7 @@ def main() -> int:
     phase6 = load_json(SIM_RESULTS / "axis0_phase6_point_reference_results.json")
     fe_indexed = load_json(SIM_RESULTS / "axis0_fe_indexed_xi_hist_results.json")
     carrier_selection = load_json(SIM_RESULTS / "carrier_selection_packet_validation.json")
+    pre_entropy = load_json(SIM_RESULTS / "pre_entropy_packet_validation.json")
 
     phase5a_rows = phase5a["results"]
     final_rows = [row["final_state"] for row in phase5a_rows]
@@ -153,6 +154,39 @@ def main() -> int:
             {
                 "signed_bridge_handoff": signed_bridge_handoff,
                 "phase4_winner": phase4["winner"],
+                "phase4_winner_preserves_marginals": phase4["winner_preserves_marginals"],
+                "phase4_matched_marginal_winner": phase4["matched_marginal_winner"],
+                "phase6_point_reference_earned_bridge_survives": phase6_verdict["point_reference_earned_bridge_survives"],
+                "phase6_point_reference_discriminator_survives": phase6_verdict["point_reference_discriminator_survives"],
+            },
+        ),
+        gate(
+            pre_entropy["owner_worthiness_map"]["owner_derived"]["xi_hist_signed_law"] == "admitted"
+            and pre_entropy["owner_worthiness_map"]["axis_internal_readout"]["Xi_chiral_entangle"] == "current_bridge_candidate"
+            and pre_entropy["owner_worthiness_map"]["axis_internal_readout"]["Xi_chiral_entangle_relation"]
+            == "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+            and pre_entropy["pre_axis_admission_schema"]["current_mapping"]["Xi_chiral_entangle"]
+            == "axis_internal_candidate_not_final_owner_law"
+            and pre_entropy["pre_axis_admission_schema"]["placement_relations"]["Xi_chiral_entangle"]
+            == "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law"
+            and pre_entropy["pre_axis_admission_schema"]["placement_relations"]["xi_hist_signed_law"]
+            == "owner_derived_law_that_binds_bridge_handoff"
+            and signed_bridge_handoff["candidate"] == "Xi_chiral_entangle"
+            and signed_bridge_handoff["status"] == "provisional_handoff_ready"
+            and signed_bridge_handoff["placement_contract"] == "downstream_axis_internal_bridge_candidate_only"
+            and signed_bridge_handoff["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
+            and signed_bridge_handoff["forbidden_reclassification"] == "not_owner_derived_not_final_owner_xi"
+            and signed_bridge_handoff["consumer_status"] == "allowed_for_entropy_readout_not_final_owner_xi"
+            and not phase4["winner_preserves_marginals"]
+            and phase4["matched_marginal_winner"] is None
+            and not phase6_verdict["point_reference_earned_bridge_survives"]
+            and phase6_verdict["point_reference_discriminator_survives"],
+            "M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping",
+            {
+                "signed_bridge_handoff": signed_bridge_handoff,
+                "pre_entropy_axis_internal_readout": pre_entropy["owner_worthiness_map"]["axis_internal_readout"],
+                "pre_entropy_current_mapping": pre_entropy["pre_axis_admission_schema"]["current_mapping"],
+                "pre_entropy_placement_relations": pre_entropy["pre_axis_admission_schema"]["placement_relations"],
                 "phase4_winner_preserves_marginals": phase4["winner_preserves_marginals"],
                 "phase4_matched_marginal_winner": phase4["matched_marginal_winner"],
                 "phase6_point_reference_earned_bridge_survives": phase6_verdict["point_reference_earned_bridge_survives"],

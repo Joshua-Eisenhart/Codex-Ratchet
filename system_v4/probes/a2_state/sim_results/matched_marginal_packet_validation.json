@@ -1,8 +1,8 @@
 {
   "name": "matched_marginal_packet_validation",
-  "timestamp": "2026-04-01T21:38:47.012986+00:00",
-  "passed_gates": 8,
-  "total_gates": 8,
+  "timestamp": "2026-04-01T21:39:38.808516+00:00",
+  "passed_gates": 9,
+  "total_gates": 9,
   "score": 1.0,
   "gates": [
     {
@@ -127,6 +127,51 @@
           "read": "Xi_chiral_entangle is the current signed bridge candidate handoff object for downstream readout use, but it is not a final owner law."
         },
         "phase4_winner": "20_cross_s1_symmetric_retro",
+        "phase4_winner_preserves_marginals": false,
+        "phase4_matched_marginal_winner": null,
+        "phase6_point_reference_earned_bridge_survives": false,
+        "phase6_point_reference_discriminator_survives": true
+      }
+    },
+    {
+      "name": "M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping",
+      "pass": true,
+      "detail": {
+        "signed_bridge_handoff": {
+          "object": "c1_signed_bridge_candidate_handoff",
+          "candidate": "Xi_chiral_entangle",
+          "status": "provisional_handoff_ready",
+          "placement_contract": "downstream_axis_internal_bridge_candidate_only",
+          "owner_dependency": "must_bind_under_xi_hist_signed_law",
+          "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+          "positive_witness_gate": "C3_live_carrier_wins_and_honesty_signal_stays_unique",
+          "bridge_separation_gate": "C4_bridge_search_separates_winning_bridges_from_controls",
+          "counterfeit_guard_gate": "C7_counterfeit_history_games_mi_but_not_coherent_info",
+          "signed_metric": "I_c",
+          "consumer_status": "allowed_for_entropy_readout_not_final_owner_xi",
+          "read": "Xi_chiral_entangle is the current signed bridge candidate handoff object for downstream readout use, but it is not a final owner law."
+        },
+        "pre_entropy_axis_internal_readout": {
+          "I_c_A_to_B": "readout",
+          "S_A_given_B": "readout",
+          "Xi_chiral_entangle": "current_bridge_candidate",
+          "Xi_chiral_entangle_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+        },
+        "pre_entropy_current_mapping": {
+          "hopf_carrier_point": "qit_grounded",
+          "nested_torus_seat": "qit_grounded",
+          "weyl_sheet_pair": "sim_live",
+          "loop_sensitive_transport_surface": "sim_live_candidate",
+          "chirality_differential_surface": "sim_live_candidate",
+          "bloch_differential_surface": "sim_live_candidate",
+          "chirality_separated_transport_deltas": "neg_tested_candidate_with_nonproxy_runtime_support_not_axis_eligible",
+          "Xi_chiral_entangle": "axis_internal_candidate_not_final_owner_law",
+          "xi_hist_signed_law": "axis_eligible_owner_derived"
+        },
+        "pre_entropy_placement_relations": {
+          "Xi_chiral_entangle": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+          "xi_hist_signed_law": "owner_derived_law_that_binds_bridge_handoff"
+        },
         "phase4_winner_preserves_marginals": false,
         "phase4_matched_marginal_winner": null,
         "phase6_point_reference_earned_bridge_survives": false,

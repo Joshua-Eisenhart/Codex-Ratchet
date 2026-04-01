@@ -21,7 +21,7 @@ from geometric_operators import (
     negentropy, trace_distance_2x2, _ensure_valid_density, SIGMA_X,
 )
 from hopf_manifold import left_density, right_density, inter_torus_transport_partial
-from process_cycle_stage_matrix_sim import terrain_name_from_row, torus_for_loop
+from exploratory_process_cycle_stage_matrix_sim import terrain_name_from_row, torus_for_loop
 from type2_engine_sim import TYPE1_STAGES, TYPE2_STAGES
 
 

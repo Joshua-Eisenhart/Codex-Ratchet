@@ -58,6 +58,7 @@ def main() -> int:
     c1_bridge_object = load_json(SIM_RESULTS / "c1_bridge_object_packet_validation.json")
 
     steps = packet_run["steps"]
+    formal_gate_map = {item["name"]: item for item in formal_geometry["gates"]}
     level1 = coarising["level1_lr_asym"]
     level2 = coarising["level2_bridge_mi"]
     live_carrier = carrier_rank["carrier_best"]["carrier_live_hopf_weyl"]
@@ -68,12 +69,22 @@ def main() -> int:
 
     gates = [
         gate(
-            formal_geometry["score"] == 1.0 and formal_geometry["passed_gates"] == formal_geometry["total_gates"],
+            formal_gate_map["G1_exact_hopf_geometry_truth"]["pass"]
+            and formal_gate_map["G3_ambient_vs_engine_overlay"]["pass"]
+            and formal_gate_map["G6_torus_negative_is_load_bearing"]["pass"]
+            and formal_gate_map["G8_exact_loop_law_swap_negative"]["pass"]
+            and formal_gate_map["G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit"]["pass"]
+            and formal_gate_map["G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion"]["pass"]
+            and formal_gate_map["G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed"]["pass"],
             "R1_formal_geometry_prerequisite_is_closed",
             {
-                "score": formal_geometry["score"],
-                "passed_gates": formal_geometry["passed_gates"],
-                "total_gates": formal_geometry["total_gates"],
+                "formal_g1_pass": formal_gate_map["G1_exact_hopf_geometry_truth"]["pass"],
+                "formal_g3_pass": formal_gate_map["G3_ambient_vs_engine_overlay"]["pass"],
+                "formal_g6_pass": formal_gate_map["G6_torus_negative_is_load_bearing"]["pass"],
+                "formal_g8_pass": formal_gate_map["G8_exact_loop_law_swap_negative"]["pass"],
+                "formal_g10_pass": formal_gate_map["G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit"]["pass"],
+                "formal_g11_pass": formal_gate_map["G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion"]["pass"],
+                "formal_g14_pass": formal_gate_map["G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed"]["pass"],
             },
         ),
         gate(

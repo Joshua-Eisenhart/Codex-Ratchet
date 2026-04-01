@@ -233,7 +233,7 @@ def main() -> int:
             neg_chiral_status == "KILL"
             and neg_chiral["chirality_matters"]
             and neg_chiral["d_chiral"] > neg_chiral["d_flat"]
-            and neg_chiral["d_flat"] > 0.05,
+            and neg_chiral["d_flat"] > 0.05
             and no_chirality_gate_map["N1_no_chirality_kill_is_real_but_not_total"]["pass"]
             and no_chirality_gate_map["N2_no_chirality_residual_is_explicitly_nontrivial"]["pass"]
             and no_chirality_gate_map["N3_chiral_run_keeps_stronger_sheet_split_than_flattened_run"]["pass"],

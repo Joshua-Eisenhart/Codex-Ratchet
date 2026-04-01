@@ -47,6 +47,7 @@ def main() -> int:
     mispair = load_json(SIM_RESULTS / "history_mispair_counterfeit_results.json")
     carrier_selection = load_json(SIM_RESULTS / "carrier_selection_packet_validation.json")
     pre_entropy = load_json(SIM_RESULTS / "pre_entropy_packet_validation.json")
+    c1_bridge_object = load_json(SIM_RESULTS / "c1_bridge_object_packet_validation.json")
 
     b = battery["results"]
     rec = battery["recommendation"]
@@ -209,6 +210,8 @@ def main() -> int:
         ),
         gate(
             bridge_search["winner"] == "Xi_chiral_entangle"
+            and c1_bridge_object["passed_gates"] == c1_bridge_object["total_gates"]
+            and c1_bridge_object["score"] == 1.0
             and signed_bridge_handoff["candidate"] == "Xi_chiral_entangle"
             and signed_bridge_handoff["status"] == "provisional_handoff_ready"
             and signed_bridge_handoff["placement_contract"] == "downstream_axis_internal_bridge_candidate_only"
@@ -221,6 +224,9 @@ def main() -> int:
             "E10_current_bridge_candidate_is_explicit_and_provisional",
             {
                 "current_bridge_candidate": bridge_search["winner"],
+                "c1_bridge_object_passed_gates": c1_bridge_object["passed_gates"],
+                "c1_bridge_object_total_gates": c1_bridge_object["total_gates"],
+                "c1_bridge_object_score": c1_bridge_object["score"],
                 "signed_bridge_handoff_candidate": signed_bridge_handoff["candidate"],
                 "signed_bridge_handoff_status": signed_bridge_handoff["status"],
                 "signed_bridge_handoff_placement_contract": signed_bridge_handoff["placement_contract"],

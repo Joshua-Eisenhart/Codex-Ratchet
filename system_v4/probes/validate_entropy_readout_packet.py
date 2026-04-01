@@ -211,6 +211,9 @@ def main() -> int:
             bridge_search["winner"] == "Xi_chiral_entangle"
             and signed_bridge_handoff["candidate"] == "Xi_chiral_entangle"
             and signed_bridge_handoff["status"] == "provisional_handoff_ready"
+            and signed_bridge_handoff["placement_contract"] == "downstream_axis_internal_bridge_candidate_only"
+            and signed_bridge_handoff["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
+            and signed_bridge_handoff["forbidden_reclassification"] == "not_owner_derived_not_final_owner_xi"
             and signed_bridge_handoff["consumer_status"] == "allowed_for_entropy_readout_not_final_owner_xi"
             and ranking[0] == "Xi_chiral_entangle"
             and mean_mi["Xi_chiral_entangle"] > mean_mi["Xi_chiral_hist_entangle"]
@@ -220,6 +223,9 @@ def main() -> int:
                 "current_bridge_candidate": bridge_search["winner"],
                 "signed_bridge_handoff_candidate": signed_bridge_handoff["candidate"],
                 "signed_bridge_handoff_status": signed_bridge_handoff["status"],
+                "signed_bridge_handoff_placement_contract": signed_bridge_handoff["placement_contract"],
+                "signed_bridge_handoff_owner_dependency": signed_bridge_handoff["owner_dependency"],
+                "signed_bridge_handoff_forbidden_reclassification": signed_bridge_handoff["forbidden_reclassification"],
                 "signed_bridge_handoff_consumer_status": signed_bridge_handoff["consumer_status"],
                 "current_bridge_candidate_mean_mi": mean_mi["Xi_chiral_entangle"],
                 "current_bridge_candidate_mean_i_c": mean_ic["Xi_chiral_entangle"],

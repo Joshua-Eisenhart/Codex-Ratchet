@@ -59,6 +59,8 @@ from geometric_operators import (  # noqa: E402
     apply_Te,
     apply_Ti,
     negentropy,
+    partial_trace_A,
+    partial_trace_B,
     trace_distance_2x2,
 )
 from hopf_manifold import (  # noqa: E402
@@ -192,8 +194,9 @@ def trace_one_cycle(engine_type: int, seed: int, axis0_level: float, torus_progr
                 new_rho_L = current_state.rho_L.copy()
                 new_rho_R = current_state.rho_R.copy()
 
-            rho_L_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0, "left")
-            rho_R_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0, "right")
+            rho_AB_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0)
+            rho_L_axis0 = _ensure_valid_density(partial_trace_B(rho_AB_axis0))
+            rho_R_axis0 = _ensure_valid_density(partial_trace_A(rho_AB_axis0))
             axis0_blend = min(0.45, strength * (0.05 + 0.30 * new_ga0))
             axis0_injection_norm = float(
                 np.linalg.norm(rho_L_axis0 - new_rho_L) + np.linalg.norm(rho_R_axis0 - new_rho_R)

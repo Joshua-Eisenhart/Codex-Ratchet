@@ -18,7 +18,7 @@ from engine_core import (
 )
 from geometric_operators import (
     apply_Ti, apply_Fe, apply_Te, apply_Fi,
-    negentropy, trace_distance_2x2, _ensure_valid_density, SIGMA_X,
+    negentropy, partial_trace_A, partial_trace_B, trace_distance_2x2, _ensure_valid_density, SIGMA_X,
 )
 from hopf_manifold import left_density, right_density, inter_torus_transport_partial
 from exploratory_process_cycle_stage_matrix_sim import terrain_name_from_row, torus_for_loop
@@ -145,8 +145,9 @@ def apply_subcycle_variant(
         new_rho_L = state.rho_L.copy()
         new_rho_R = state.rho_R.copy()
 
-    rho_L_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0, "left")
-    rho_R_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0, "right")
+    rho_AB_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0)
+    rho_L_axis0 = _ensure_valid_density(partial_trace_B(rho_AB_axis0))
+    rho_R_axis0 = _ensure_valid_density(partial_trace_A(rho_AB_axis0))
     axis0_blend = min(0.45, strength * (0.05 + 0.30 * new_ga0))
     new_rho_L = _ensure_valid_density((1.0 - axis0_blend) * new_rho_L + axis0_blend * rho_L_axis0)
     new_rho_R = _ensure_valid_density((1.0 - axis0_blend) * new_rho_R + axis0_blend * rho_R_axis0)

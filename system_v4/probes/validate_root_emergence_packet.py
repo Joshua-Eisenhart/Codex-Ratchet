@@ -212,7 +212,7 @@ def main() -> int:
             and ti_failure_threshold <= 0.05
             and min_trajectory_lr_asym > 0.5
             and ti_boundary_gap > 0.5,
-            "R10_attractor_basin_keeps_trajectory_far_from_ti_failure_boundary",
+            "R10A_attractor_basin_keeps_trajectory_far_from_ti_failure_boundary",
             {
                 "threshold_accuracy": q3_basin["threshold_accuracy"],
                 "ti_failure_threshold": ti_failure_threshold,
@@ -230,7 +230,7 @@ def main() -> int:
             and signed_bridge_handoff["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
             and signed_bridge_handoff["forbidden_reclassification"] == "not_owner_derived_not_final_owner_xi"
             and signed_bridge_handoff["consumer_status"] == "allowed_for_entropy_readout_not_final_owner_xi",
-            "R11_root_emergence_bridge_winner_respects_xi_handoff_contract",
+            "R10_root_emergence_bridge_winner_respects_xi_handoff_contract",
             {
                 "bridge_winner": bridge_search["winner"],
                 "live_carrier_best_candidate": live_carrier["best_candidate"],

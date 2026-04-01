@@ -57,6 +57,7 @@ def main() -> int:
     discriminators = strict_verdict["discriminators"]
     row_summary = strict_verdict["rowwise_advantage_summary"]
     history_profile = strict_verdict["history_window_profile_summary"]
+    history_window_sweep = strict_verdict["history_window_sweep_summary"]
     placement_profile = strict_verdict["history_window_placement_summary"]
     early_width_profile = strict_verdict["history_early_width_summary"]
     prefix_drop_profile = strict_verdict["history_prefix_drop_summary"]
@@ -270,7 +271,12 @@ def main() -> int:
             and row_summary["history_outer_beats_lr_while_shell_flat_count"] >= 4
             and abs(history_profile["mean_history_outer_minus_cycle_mi"]) < 1e-12
             and history_profile["outer_window_beats_cycle_count"] == 0
-            and history_profile["cycle_window_beats_outer_count"] == 0,
+            and history_profile["cycle_window_beats_outer_count"] == 0
+            and history_window_sweep["best_window_by_mi_counts"]["0_7"] == history_window_sweep["total_rows"]
+            and history_window_sweep["history_window_mi_monotonic_decay_count"] == history_window_sweep["total_rows"]
+            and all(abs(row["mi_0_7_minus_0_31"]) < 1e-12 for row in history_window_sweep["rows"])
+            and all(abs(row["mi_0_15_minus_0_31"]) < 1e-12 for row in history_window_sweep["rows"])
+            and all(abs(row["mi_0_23_minus_0_31"]) < 1e-12 for row in history_window_sweep["rows"]),
             "P3_history_windows_currently_degenerate",
             {
                 "history_outer_beats_lr_count": row_summary["history_outer_beats_lr_count"],
@@ -278,6 +284,11 @@ def main() -> int:
                 "outer_window_beats_cycle_count": history_profile["outer_window_beats_cycle_count"],
                 "cycle_window_beats_outer_count": history_profile["cycle_window_beats_outer_count"],
                 "mean_history_outer_minus_cycle_mi": history_profile["mean_history_outer_minus_cycle_mi"],
+                "best_window_by_mi_counts": history_window_sweep["best_window_by_mi_counts"],
+                "history_window_mi_monotonic_decay_count": history_window_sweep["history_window_mi_monotonic_decay_count"],
+                "max_abs_mi_0_7_minus_0_31": max(abs(row["mi_0_7_minus_0_31"]) for row in history_window_sweep["rows"]),
+                "max_abs_mi_0_15_minus_0_31": max(abs(row["mi_0_15_minus_0_31"]) for row in history_window_sweep["rows"]),
+                "max_abs_mi_0_23_minus_0_31": max(abs(row["mi_0_23_minus_0_31"]) for row in history_window_sweep["rows"]),
             },
         ),
         gate(

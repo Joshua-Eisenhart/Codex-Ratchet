@@ -45,6 +45,9 @@ def main() -> int:
             and candidate["evidence"]["bridge_winner"] == "Xi_chiral_entangle"
             and candidate["evidence"]["winner_mean_mi"] > 0.5
             and candidate["evidence"]["winner_mean_i_c"] > 0.05
+            and candidate["evidence"]["runner_up"] == "Xi_chiral_hist_entangle"
+            and candidate["evidence"]["runner_up_mean_i_c"] < 0.0
+            and candidate["evidence"]["winner_mean_i_c"] > candidate["evidence"]["runner_up_mean_i_c"]
             and candidate["evidence"]["lr_direct_mean_mi"] < 1e-12,
             "C1S1_current_signed_bridge_candidate_is_explicit",
             candidate,

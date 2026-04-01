@@ -51,6 +51,7 @@ def main() -> int:
     joint_ablation = load_json(SIM_RESULTS / "neg_transport_delta_joint_ablation_results.json")
     carrier_selection = load_json(SIM_RESULTS / "carrier_selection_packet_validation.json")
     c1_signed_bridge = load_json(SIM_RESULTS / "c1_signed_bridge_candidate_search_validation.json")
+    c1_bridge_object = load_json(SIM_RESULTS / "c1_bridge_object_packet_validation.json")
 
     strict_verdict = xi_strict["verdict"]
     discriminators = strict_verdict["discriminators"]
@@ -651,6 +652,25 @@ def main() -> int:
             "P24_carrier_handoff_matches_pre_entropy_downstream_mapping",
             {
                 "carrier_handoff": carrier_handoff,
+                "axis_internal_readout": owner_worthiness_map["axis_internal_readout"],
+                "current_mapping": pre_axis_admission_schema["current_mapping"],
+                "placement_relations": pre_axis_admission_schema["placement_relations"],
+            },
+        ),
+        gate(
+            c1_bridge_object["passed_gates"] == c1_bridge_object["total_gates"]
+            and c1_bridge_object["score"] == 1.0
+            and owner_worthiness_map["axis_internal_readout"]["Xi_chiral_entangle"] == "current_bridge_candidate"
+            and owner_worthiness_map["axis_internal_readout"]["Xi_chiral_entangle_relation"]
+            == "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+            and pre_axis_admission_schema["current_mapping"]["Xi_chiral_entangle"] == "axis_internal_candidate_not_final_owner_law"
+            and pre_axis_admission_schema["placement_relations"]["Xi_chiral_entangle"]
+            == "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+            "P25_standalone_c1_bridge_object_matches_pre_entropy_contract",
+            {
+                "c1_bridge_object_passed_gates": c1_bridge_object["passed_gates"],
+                "c1_bridge_object_total_gates": c1_bridge_object["total_gates"],
+                "c1_bridge_object_score": c1_bridge_object["score"],
                 "axis_internal_readout": owner_worthiness_map["axis_internal_readout"],
                 "current_mapping": pre_axis_admission_schema["current_mapping"],
                 "placement_relations": pre_axis_admission_schema["placement_relations"],

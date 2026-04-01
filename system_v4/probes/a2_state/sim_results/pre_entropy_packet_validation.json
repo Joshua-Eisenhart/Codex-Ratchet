@@ -1,8 +1,8 @@
 {
   "name": "pre_entropy_packet_validation",
-  "timestamp": "2026-04-01T21:50:31.359959+00:00",
-  "passed_gates": 24,
-  "total_gates": 24,
+  "timestamp": "2026-04-01T21:59:58.030775+00:00",
+  "passed_gates": 25,
+  "total_gates": 25,
   "score": 1.0,
   "xi_hist_signed_law": {
     "object": "Xi_hist signed law",
@@ -823,6 +823,36 @@
           "consumer_status": "allowed_for_entropy_readout_not_final_owner_xi",
           "read": "Xi_chiral_entangle is the current signed bridge candidate handoff object for downstream readout use, but it is not a final owner law."
         },
+        "axis_internal_readout": {
+          "I_c_A_to_B": "readout",
+          "S_A_given_B": "readout",
+          "Xi_chiral_entangle": "current_bridge_candidate",
+          "Xi_chiral_entangle_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+        },
+        "current_mapping": {
+          "hopf_carrier_point": "qit_grounded",
+          "nested_torus_seat": "qit_grounded",
+          "weyl_sheet_pair": "sim_live",
+          "loop_sensitive_transport_surface": "sim_live_candidate",
+          "chirality_differential_surface": "sim_live_candidate",
+          "bloch_differential_surface": "sim_live_candidate",
+          "chirality_separated_transport_deltas": "neg_tested_candidate_with_nonproxy_runtime_support_not_axis_eligible",
+          "Xi_chiral_entangle": "axis_internal_candidate_not_final_owner_law",
+          "xi_hist_signed_law": "axis_eligible_owner_derived"
+        },
+        "placement_relations": {
+          "Xi_chiral_entangle": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+          "xi_hist_signed_law": "owner_derived_law_that_binds_bridge_handoff"
+        }
+      }
+    },
+    {
+      "name": "P25_standalone_c1_bridge_object_matches_pre_entropy_contract",
+      "pass": true,
+      "detail": {
+        "c1_bridge_object_passed_gates": 4,
+        "c1_bridge_object_total_gates": 4,
+        "c1_bridge_object_score": 1.0,
         "axis_internal_readout": {
           "I_c_A_to_B": "readout",
           "S_A_given_B": "readout",

@@ -39,7 +39,10 @@ def main() -> int:
     pre_entropy = load_json(SIM_RESULTS / "pre_entropy_packet_validation.json")
     matched_marginal = load_json(SIM_RESULTS / "matched_marginal_packet_validation.json")
     entropy_readout = load_json(SIM_RESULTS / "entropy_readout_packet_validation.json")
+    root_gate_map = {item["name"]: item for item in root_emergence["gates"]}
     carrier_gate_map = {item["name"]: item for item in carrier_selection["gates"]}
+    pre_entropy_gate_map = {item["name"]: item for item in pre_entropy["gates"]}
+    matched_gate_map = {item["name"]: item for item in matched_marginal["gates"]}
     entropy_gate_map = {item["name"]: item for item in entropy_readout["gates"]}
 
     packet_map = {
@@ -135,6 +138,23 @@ def main() -> int:
                 "xi_hist_owner_status": pre_entropy["owner_worthiness_map"]["owner_derived"]["xi_hist_signed_law"],
                 "xi_current_mapping": pre_entropy["pre_axis_admission_schema"]["current_mapping"]["Xi_chiral_entangle"],
                 "xi_placement_relation": pre_entropy["pre_axis_admission_schema"]["placement_relations"]["Xi_chiral_entangle"],
+            },
+        ),
+        gate(
+            root_gate_map["R10_root_emergence_bridge_winner_respects_xi_handoff_contract"]["pass"]
+            and carrier_gate_map["C9_handoff_contract_freezes_downstream_only_placement"]["pass"]
+            and pre_entropy_gate_map["P24_carrier_handoff_matches_pre_entropy_downstream_mapping"]["pass"]
+            and matched_gate_map["M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping"]["pass"]
+            and entropy_gate_map["E10_current_bridge_candidate_is_explicit_and_provisional"]["pass"]
+            and entropy_gate_map["E12_xi_hist_law_summary_binds_pre_entropy_to_readout"]["pass"],
+            "S7_axis0_stack_explicitly_consumes_named_contract_gates",
+            {
+                "root_r10_pass": root_gate_map["R10_root_emergence_bridge_winner_respects_xi_handoff_contract"]["pass"],
+                "carrier_c9_pass": carrier_gate_map["C9_handoff_contract_freezes_downstream_only_placement"]["pass"],
+                "pre_entropy_p24_pass": pre_entropy_gate_map["P24_carrier_handoff_matches_pre_entropy_downstream_mapping"]["pass"],
+                "matched_m9_pass": matched_gate_map["M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping"]["pass"],
+                "entropy_e10_pass": entropy_gate_map["E10_current_bridge_candidate_is_explicit_and_provisional"]["pass"],
+                "entropy_e12_pass": entropy_gate_map["E12_xi_hist_law_summary_binds_pre_entropy_to_readout"]["pass"],
             },
         ),
     ]

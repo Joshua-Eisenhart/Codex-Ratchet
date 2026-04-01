@@ -78,6 +78,16 @@ def main() -> int:
     coupling_strength_residual = missing_axis_candidates["B: coupling_strength"]["residual"]
     live_carrier = carrier_rank["carrier_best"]["carrier_live_hopf_weyl"]
     live_honesty = carrier_rank["carrier_honesty_best"]["carrier_live_hopf_weyl"]
+    carrier_rank_rows = carrier_rank["rows"]
+    live_row_best_iab = [
+        {
+            "engine_type": row["engine_type"],
+            "torus": row["torus"],
+            "best_iab": max(row["carriers"]["carrier_live_hopf_weyl"].items(), key=lambda item: item[1]["I_AB"])[0],
+            "best_ic": max(row["carriers"]["carrier_live_hopf_weyl"].items(), key=lambda item: item[1]["I_c"])[0],
+        }
+        for row in carrier_rank_rows
+    ]
     mispair_summary = mispair["summary"]
     c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
     signed_bridge_handoff = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]["carrier_handoff"]
@@ -148,13 +158,27 @@ def main() -> int:
             and live_carrier["best_candidate"] == "Xi_chiral_entangle"
             and live_carrier["best_mean_mi"] > 0.5
             and carrier_rank["best_control_mean_mi"] < 1e-3
-            and carrier_rank["best_root_rank_margin"] > 0.5,
+            and carrier_rank["best_root_rank_margin"] > 0.5
+            and all(row["best_ic"] == "Xi_chiral_entangle" for row in live_row_best_iab)
+            and sum(row["best_iab"] == "Xi_chiral_entangle" for row in live_row_best_iab) == 4
+            and sum(row["best_iab"] == "Xi_chiral_hist_entangle" for row in live_row_best_iab) == 2
+            and all(
+                row["best_iab"] == "Xi_chiral_hist_entangle"
+                for row in live_row_best_iab
+                if row["engine_type"] == 1 and row["torus"] in {"inner", "outer"}
+            )
+            and all(
+                row["best_iab"] == "Xi_chiral_entangle"
+                for row in live_row_best_iab
+                if not (row["engine_type"] == 1 and row["torus"] in {"inner", "outer"})
+            ),
             "R5_small_carrier_family_selects_live_hopf_weyl",
             {
                 "live_best_candidate": live_carrier["best_candidate"],
                 "live_best_mean_mi": live_carrier["best_mean_mi"],
                 "best_control_mean_mi": carrier_rank["best_control_mean_mi"],
                 "best_root_rank_margin": carrier_rank["best_root_rank_margin"],
+                "live_row_best_iab": live_row_best_iab,
             },
         ),
         gate(

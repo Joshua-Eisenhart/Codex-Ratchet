@@ -31,6 +31,7 @@ def load_json(path: Path) -> dict:
 
 def main() -> int:
     formal_geometry = load_json(SIM_RESULTS / "formal_geometry_packet_validation.json")
+    no_chirality_search = load_json(SIM_RESULTS / "no_chirality_search_validation.json")
     weyl_delta = load_json(SIM_RESULTS / "weyl_delta_packet_results.json")
     weyl_delta_validation = load_json(SIM_RESULTS / "weyl_delta_packet_validation.json")
     chirality = load_json(SIM_RESULTS / "L4_engine_chirality_results.json")
@@ -111,6 +112,7 @@ def main() -> int:
         },
         "source_support": {
             "formal_geometry_gates": [item["name"] for item in formal_geometry["gates"] if item["pass"]],
+            "no_chirality_gates": [item["name"] for item in no_chirality_search["gates"] if item["pass"]],
             "weyl_delta_gates": [item["name"] for item in weyl_delta_validation["gates"] if item["pass"]],
         },
     }

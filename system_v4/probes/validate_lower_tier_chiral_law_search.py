@@ -82,7 +82,9 @@ def main() -> int:
             and "No single lower-tier chiral law is admitted" in owner_read["note"]
             and "G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion"
             in source_support["formal_geometry_gates"]
-            and "G7_no_chirality_negative_still_incomplete" in source_support["formal_geometry_gates"]
+            and "N1_no_chirality_kill_is_real_but_not_total" in source_support["no_chirality_gates"]
+            and "N2_no_chirality_residual_is_explicitly_nontrivial" in source_support["no_chirality_gates"]
+            and "N3_chiral_run_keeps_stronger_sheet_split_than_flattened_run" in source_support["no_chirality_gates"]
             and "W5_branch_map_keeps_flux_placement_open" in source_support["weyl_delta_gates"]
             and "W7_branch_map_preserves_skeptical_flux_read" in source_support["weyl_delta_gates"]
             and "W8_pre_axis_object_inventory_is_explicit" in source_support["weyl_delta_gates"],

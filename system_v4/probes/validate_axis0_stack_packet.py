@@ -117,17 +117,13 @@ def main() -> int:
             },
         ),
         gate(
-            carrier_gate_map["C9_handoff_contract_freezes_downstream_only_placement"]["pass"]
+            c1_bridge_gate_map["C1B1_bridge_object_is_explicit_and_downstream_only"]["pass"]
+            and c1_bridge_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"]
+            and c1_bridge_gate_map["C1B4_bridge_object_keeps_owner_doctrine_questions_open"]["pass"]
             and entropy_gate_map["E10_current_bridge_candidate_is_explicit_and_provisional"]["pass"]
             and entropy_gate_map["E12_xi_hist_law_summary_binds_pre_entropy_to_readout"]["pass"]
             and entropy_gate_map["E10_current_bridge_candidate_is_explicit_and_provisional"]["detail"]["status"]
             == "admitted_executable_candidate_not_final_owner_law"
-            and carrier_selection["signed_bridge_candidate_handoff"]["placement_contract"]
-            == "downstream_axis_internal_bridge_candidate_only"
-            and carrier_selection["signed_bridge_candidate_handoff"]["owner_dependency"]
-            == "must_bind_under_xi_hist_signed_law"
-            and carrier_selection["signed_bridge_candidate_handoff"]["forbidden_reclassification"]
-            == "not_owner_derived_not_final_owner_xi"
             and pre_entropy["owner_worthiness_map"]["axis_internal_readout"]["Xi_chiral_entangle"] == "current_bridge_candidate"
             and pre_entropy["owner_worthiness_map"]["owner_derived"]["xi_hist_signed_law"] == "admitted"
             and pre_entropy["pre_axis_admission_schema"]["current_mapping"]["Xi_chiral_entangle"]
@@ -136,10 +132,9 @@ def main() -> int:
             == "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
             "S6_xi_chiral_entangle_remains_axis_internal_and_not_owner_law",
             {
-                "carrier_c9_pass": carrier_gate_map["C9_handoff_contract_freezes_downstream_only_placement"]["pass"],
-                "carrier_placement_contract": carrier_selection["signed_bridge_candidate_handoff"]["placement_contract"],
-                "carrier_owner_dependency": carrier_selection["signed_bridge_candidate_handoff"]["owner_dependency"],
-                "carrier_forbidden_reclassification": carrier_selection["signed_bridge_candidate_handoff"]["forbidden_reclassification"],
+                "c1b1_pass": c1_bridge_gate_map["C1B1_bridge_object_is_explicit_and_downstream_only"]["pass"],
+                "c1b3_pass": c1_bridge_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"],
+                "c1b4_pass": c1_bridge_gate_map["C1B4_bridge_object_keeps_owner_doctrine_questions_open"]["pass"],
                 "entropy_e10_status": entropy_gate_map["E10_current_bridge_candidate_is_explicit_and_provisional"]["detail"]["status"],
                 "entropy_e12_pass": entropy_gate_map["E12_xi_hist_law_summary_binds_pre_entropy_to_readout"]["pass"],
                 "xi_axis_internal_status": pre_entropy["owner_worthiness_map"]["axis_internal_readout"]["Xi_chiral_entangle"],

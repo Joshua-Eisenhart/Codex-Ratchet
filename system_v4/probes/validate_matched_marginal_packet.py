@@ -130,13 +130,21 @@ def main() -> int:
             fe_summary["best_new_bridge"] == "C_fe_pairs_only"
             and fe_summary["best_gain"] > 0.1
             and fe_summary["mean_fe_advantage"] > 0.1
-            and fe_summary["mean_mi"]["C_fe_pairs_only"] > fe_summary["mean_mi"]["D_lag7_pairs"],
+            and fe_summary["winner_counts"]["A_phase4_winner"] >= 1
+            and fe_summary["winner_counts"]["B_fe_indexed"] == 0
+            and fe_summary["winner_counts"]["C_fe_pairs_only"] > fe_summary["winner_counts"]["A_phase4_winner"]
+            and fe_summary["winner_counts"]["D_lag7_pairs"] == 0
+            and fe_summary["mean_mi"]["C_fe_pairs_only"] > fe_summary["mean_mi"]["D_lag7_pairs"]
+            and fe_summary["mean_ic"]["C_fe_pairs_only"] > fe_summary["mean_ic"]["A_phase4_winner"]
+            and fe_summary["mean_ic"]["C_fe_pairs_only"] > fe_summary["mean_ic"]["B_fe_indexed"]
+            and fe_summary["mean_ic"]["C_fe_pairs_only"] > fe_summary["mean_ic"]["D_lag7_pairs"],
             "M7_fe_indexed_pairs_remain_the_only_structured_refinement_winner",
             {
                 "best_new_bridge": fe_summary["best_new_bridge"],
                 "best_gain": fe_summary["best_gain"],
                 "mean_fe_advantage": fe_summary["mean_fe_advantage"],
                 "mean_mi": fe_summary["mean_mi"],
+                "mean_ic": fe_summary["mean_ic"],
                 "winner_counts": fe_summary["winner_counts"],
             },
         ),

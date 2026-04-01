@@ -39,6 +39,7 @@ def main() -> int:
     pre_entropy = load_json(SIM_RESULTS / "pre_entropy_packet_validation.json")
     matched_marginal = load_json(SIM_RESULTS / "matched_marginal_packet_validation.json")
     entropy_readout = load_json(SIM_RESULTS / "entropy_readout_packet_validation.json")
+    entropy_gate_map = {item["name"]: item for item in entropy_readout["gates"]}
 
     packet_map = {
         "formal_geometry": formal_geometry,
@@ -101,6 +102,27 @@ def main() -> int:
                 "root_emergence_score": root_emergence["score"],
                 "pre_entropy_score": pre_entropy["score"],
                 "entropy_readout_score": entropy_readout["score"],
+            },
+        ),
+        gate(
+            entropy_gate_map["E10_current_bridge_candidate_is_explicit_and_provisional"]["pass"]
+            and entropy_gate_map["E12_xi_hist_law_summary_binds_pre_entropy_to_readout"]["pass"]
+            and entropy_gate_map["E10_current_bridge_candidate_is_explicit_and_provisional"]["detail"]["status"]
+            == "admitted_executable_candidate_not_final_owner_law"
+            and pre_entropy["owner_worthiness_map"]["axis_internal_readout"]["Xi_chiral_entangle"] == "current_bridge_candidate"
+            and pre_entropy["owner_worthiness_map"]["owner_derived"]["xi_hist_signed_law"] == "admitted"
+            and pre_entropy["pre_axis_admission_schema"]["current_mapping"]["Xi_chiral_entangle"]
+            == "axis_internal_candidate_not_final_owner_law"
+            and pre_entropy["pre_axis_admission_schema"]["placement_relations"]["Xi_chiral_entangle"]
+            == "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+            "S6_xi_chiral_entangle_remains_axis_internal_and_not_owner_law",
+            {
+                "entropy_e10_status": entropy_gate_map["E10_current_bridge_candidate_is_explicit_and_provisional"]["detail"]["status"],
+                "entropy_e12_pass": entropy_gate_map["E12_xi_hist_law_summary_binds_pre_entropy_to_readout"]["pass"],
+                "xi_axis_internal_status": pre_entropy["owner_worthiness_map"]["axis_internal_readout"]["Xi_chiral_entangle"],
+                "xi_hist_owner_status": pre_entropy["owner_worthiness_map"]["owner_derived"]["xi_hist_signed_law"],
+                "xi_current_mapping": pre_entropy["pre_axis_admission_schema"]["current_mapping"]["Xi_chiral_entangle"],
+                "xi_placement_relation": pre_entropy["pre_axis_admission_schema"]["placement_relations"]["Xi_chiral_entangle"],
             },
         ),
     ]

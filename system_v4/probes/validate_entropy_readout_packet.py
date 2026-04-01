@@ -151,13 +151,39 @@ def main() -> int:
             xi_shell["base_metrics"]["I_AB"]["mean"] > 0.25
             and xi_shell["base_metrics"]["I_c_A_to_B"]["mean"] > 0.1
             and xi_shell["base_metrics"]["S_A_given_B"]["mean"] < -0.1
-            and xi_shell["verdict"]["eta_sensitive"],
+            and xi_shell["verdict"]["eta_sensitive"]
+            and xi_shell["group_means"]["torus_Ic_means"]["clifford"] > xi_shell["group_means"]["torus_Ic_means"]["inner"]
+            and xi_shell["group_means"]["torus_Ic_means"]["clifford"] > xi_shell["group_means"]["torus_Ic_means"]["outer"]
+            and (
+                xi_shell["group_means"]["torus_Ic_means"]["clifford"]
+                - max(
+                    xi_shell["group_means"]["torus_Ic_means"]["inner"],
+                    xi_shell["group_means"]["torus_Ic_means"]["outer"],
+                )
+            ) > 0.09
+            and abs(
+                xi_shell["group_means"]["torus_Ic_means"]["inner"]
+                - xi_shell["group_means"]["torus_Ic_means"]["outer"]
+            ) < 1e-12
+            and abs(
+                xi_shell["group_means"]["loop_Ic_means"]["fiber"]
+                - xi_shell["group_means"]["loop_Ic_means"]["base"]
+            ) < 1e-12,
             "E6_shell_bridge_supports_signed_entropy_readout",
             {
                 "I_AB_mean": xi_shell["base_metrics"]["I_AB"]["mean"],
                 "I_c_mean": xi_shell["base_metrics"]["I_c_A_to_B"]["mean"],
                 "S_A_given_B_mean": xi_shell["base_metrics"]["S_A_given_B"]["mean"],
                 "eta_sensitive": xi_shell["verdict"]["eta_sensitive"],
+                "torus_Ic_means": xi_shell["group_means"]["torus_Ic_means"],
+                "loop_Ic_means": xi_shell["group_means"]["loop_Ic_means"],
+                "clifford_torus_lift": (
+                    xi_shell["group_means"]["torus_Ic_means"]["clifford"]
+                    - max(
+                        xi_shell["group_means"]["torus_Ic_means"]["inner"],
+                        xi_shell["group_means"]["torus_Ic_means"]["outer"],
+                    )
+                ),
             },
         ),
         gate(
@@ -188,6 +214,12 @@ def main() -> int:
             and xi_hist_cycle["base_metrics"]["I_AB"]["mean"] > 0.001
             and xi_hist_cycle["base_metrics"]["I_c_A_to_B"]["mean"] < -0.1
             and xi_hist_cycle["base_metrics"]["S_A_given_B"]["mean"] > 0.1
+            and xi_hist_outer["base_metrics"]["I_AB"]["mean"] > xi_hist_cycle["base_metrics"]["I_AB"]["mean"]
+            and xi_hist_outer["base_metrics"]["I_c_A_to_B"]["mean"] > xi_hist_cycle["base_metrics"]["I_c_A_to_B"]["mean"]
+            and xi_hist_outer["base_metrics"]["S_A_given_B"]["mean"] < xi_hist_cycle["base_metrics"]["S_A_given_B"]["mean"]
+            and xi_hist_outer["group_means"]["torus_Ic_means"]["inner"] > xi_hist_cycle["group_means"]["torus_Ic_means"]["inner"]
+            and xi_hist_outer["group_means"]["torus_Ic_means"]["clifford"] > xi_hist_cycle["group_means"]["torus_Ic_means"]["clifford"]
+            and xi_hist_outer["group_means"]["torus_Ic_means"]["outer"] > xi_hist_cycle["group_means"]["torus_Ic_means"]["outer"]
             and xi_lr_control["base_metrics"]["I_AB"]["max"] < 1e-12,
             "E8_history_family_handoff_supports_signed_readout_on_same_objects",
             {
@@ -197,6 +229,8 @@ def main() -> int:
                 "hist_cycle_I_AB_mean": xi_hist_cycle["base_metrics"]["I_AB"]["mean"],
                 "hist_cycle_I_c_mean": xi_hist_cycle["base_metrics"]["I_c_A_to_B"]["mean"],
                 "hist_cycle_S_A_given_B_mean": xi_hist_cycle["base_metrics"]["S_A_given_B"]["mean"],
+                "hist_outer_torus_Ic_means": xi_hist_outer["group_means"]["torus_Ic_means"],
+                "hist_cycle_torus_Ic_means": xi_hist_cycle["group_means"]["torus_Ic_means"],
                 "lr_control_I_AB_max": xi_lr_control["base_metrics"]["I_AB"]["max"],
             },
         ),

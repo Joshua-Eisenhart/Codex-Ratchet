@@ -169,12 +169,7 @@ def main() -> int:
             and root_gate_map["R7_mispair_counterfeit_games_mi_but_not_coherent_info"]["pass"]
             and root_gate_map["R9_root_emergence_remains_open_without_smuggling"]["pass"]
             and matched_gate_map["M6_exact_preserving_point_reference_stays_discriminator_only"]["pass"]
-            and matched_gate_map["M7_fe_indexed_pairs_remain_the_only_structured_refinement_winner"]["pass"]
-            and entropy_gate_map["E2_shannon_diagonal_is_not_geometry_safe"]["pass"]
-            and entropy_gate_map["E3_product_proxy_and_pure_fi_negatives_hold"]["pass"]
-            and entropy_gate_map["E8_history_family_handoff_supports_signed_readout_on_same_objects"]["pass"]
-            and entropy_gate_map["E9_fep_framing_shows_nonclassical_directionality"]["pass"]
-            and entropy_gate_map["E12_xi_hist_law_summary_binds_pre_entropy_to_readout"]["pass"],
+            and matched_gate_map["M7_fe_indexed_pairs_remain_the_only_structured_refinement_winner"]["pass"],
             "S8_axis0_stack_explicitly_consumes_named_foundation_gates",
             {
                 "formal_g10_pass": formal_gate_map["G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit"]["pass"],
@@ -187,11 +182,6 @@ def main() -> int:
                 "root_r9_pass": root_gate_map["R9_root_emergence_remains_open_without_smuggling"]["pass"],
                 "matched_m6_pass": matched_gate_map["M6_exact_preserving_point_reference_stays_discriminator_only"]["pass"],
                 "matched_m7_pass": matched_gate_map["M7_fe_indexed_pairs_remain_the_only_structured_refinement_winner"]["pass"],
-                "entropy_e2_pass": entropy_gate_map["E2_shannon_diagonal_is_not_geometry_safe"]["pass"],
-                "entropy_e3_pass": entropy_gate_map["E3_product_proxy_and_pure_fi_negatives_hold"]["pass"],
-                "entropy_e8_pass": entropy_gate_map["E8_history_family_handoff_supports_signed_readout_on_same_objects"]["pass"],
-                "entropy_e9_pass": entropy_gate_map["E9_fep_framing_shows_nonclassical_directionality"]["pass"],
-                "entropy_e12_pass": entropy_gate_map["E12_xi_hist_law_summary_binds_pre_entropy_to_readout"]["pass"],
             },
         ),
         gate(

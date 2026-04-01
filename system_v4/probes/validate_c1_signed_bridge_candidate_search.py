@@ -59,9 +59,9 @@ def main() -> int:
             counterfeit,
         ),
         gate(
-            support["carrier_selection_closed"]
-            and support["matched_marginal_closed"]
-            and support["pre_entropy_mapping"] == "axis_internal_candidate_not_final_owner_law",
+            support["matched_marginal_closed"]
+            and support["pre_entropy_mapping"] == "axis_internal_candidate_not_final_owner_law"
+            and support["entropy_readout_current_bridge_gate"] == "E10_current_bridge_candidate_is_explicit_and_provisional",
             "C1S3_support_chain_is_closed_before_candidate_packaging",
             support,
         ),

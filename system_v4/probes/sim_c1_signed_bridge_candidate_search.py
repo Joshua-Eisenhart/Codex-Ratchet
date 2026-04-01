@@ -30,7 +30,6 @@ def load_json(path: Path) -> dict:
 def main() -> int:
     bridge_search = load_json(SIM_RESULTS / "axis0_bridge_search_results.json")
     mispair = load_json(SIM_RESULTS / "history_mispair_counterfeit_results.json")
-    carrier_selection = load_json(SIM_RESULTS / "carrier_selection_packet_validation.json")
     matched_marginal = load_json(SIM_RESULTS / "matched_marginal_packet_validation.json")
     pre_entropy = load_json(SIM_RESULTS / "pre_entropy_packet_validation.json")
     entropy_readout = load_json(SIM_RESULTS / "entropy_readout_packet_validation.json")
@@ -77,7 +76,6 @@ def main() -> int:
             },
         },
         "support_chain": {
-            "carrier_selection_closed": carrier_selection["passed_gates"] == carrier_selection["total_gates"],
             "matched_marginal_closed": matched_marginal["passed_gates"] == matched_marginal["total_gates"],
             "pre_entropy_mapping": mapping["Xi_chiral_entangle"],
             "entropy_readout_current_bridge_gate": entropy_readout["gates"][9]["name"],

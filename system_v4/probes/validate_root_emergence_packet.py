@@ -112,9 +112,12 @@ def main() -> int:
         ),
         gate(
             missing_axis["best_residual"] > 0.85
-            and missing_axis["best_candidate"] in {"A: measurement_basis", "G: squeezing"}
+            and missing_axis["best_candidate"] == "A: measurement_basis"
             and measurement_basis_residual > 0.85
             and squeezing_residual > 0.85
+            and measurement_basis_residual > squeezing_residual > coupling_strength_residual
+            and measurement_basis_residual - squeezing_residual > 0.05
+            and squeezing_residual - coupling_strength_residual > 0.05
             and coupling_strength_residual < 0.85
             and missing_axis["candidates"]["C: coherence_class"]["residual"] < 1e-10,
             "R3_missing_axis_search_finds_uncaptured_structure",
@@ -124,6 +127,8 @@ def main() -> int:
                 "measurement_basis_residual": measurement_basis_residual,
                 "squeezing_residual": squeezing_residual,
                 "coupling_strength_residual": coupling_strength_residual,
+                "measurement_basis_minus_squeezing": measurement_basis_residual - squeezing_residual,
+                "squeezing_minus_coupling_strength": squeezing_residual - coupling_strength_residual,
                 "coherence_class_residual": missing_axis["candidates"]["C: coherence_class"]["residual"],
             },
         ),

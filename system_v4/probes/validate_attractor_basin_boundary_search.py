@@ -70,6 +70,17 @@ def main() -> int:
                 "trajectory_margin": trajectory_margin,
             },
         ),
+        gate(
+            q3["failure_asym_before_mean"] < q3["success_asym_before_mean"]
+            and q3["failure_z_diff_mean"] < q3["success_z_diff_mean"],
+            "AB3_ti_failure_population_is_separable_from_success_population",
+            {
+                "failure_asym_before_mean": q3["failure_asym_before_mean"],
+                "success_asym_before_mean": q3["success_asym_before_mean"],
+                "failure_z_diff_mean": q3["failure_z_diff_mean"],
+                "success_z_diff_mean": q3["success_z_diff_mean"],
+            },
+        ),
     ]
 
     passed = sum(1 for item in gates if item["pass"])

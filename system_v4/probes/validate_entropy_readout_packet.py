@@ -161,18 +161,24 @@ def main() -> int:
             },
         ),
         gate(
-            xi_hist_outer["base_metrics"]["I_AB"]["mean"] > 0.001
-            and xi_hist_cycle["base_metrics"]["I_AB"]["mean"] > 0.001
-            and xi_hist_outer["verdict"]["eta_sensitive"]
-            and xi_hist_cycle["verdict"]["eta_sensitive"]
-            and not xi_hist_outer["verdict"]["trivial"]
-            and not xi_hist_cycle["verdict"]["trivial"],
+            xi_hist_outer["group_means"]["torus_Ic_means"]["clifford"] < xi_hist_outer["group_means"]["torus_Ic_means"]["inner"]
+            and xi_hist_outer["group_means"]["torus_Ic_means"]["clifford"] < xi_hist_outer["group_means"]["torus_Ic_means"]["outer"]
+            and xi_hist_cycle["group_means"]["torus_Ic_means"]["clifford"] < xi_hist_cycle["group_means"]["torus_Ic_means"]["inner"]
+            and xi_hist_cycle["group_means"]["torus_Ic_means"]["clifford"] < xi_hist_cycle["group_means"]["torus_Ic_means"]["outer"]
+            and abs(xi_hist_outer["group_means"]["torus_Ic_means"]["inner"] - xi_hist_outer["group_means"]["torus_Ic_means"]["outer"]) < 0.01
+            and abs(xi_hist_cycle["group_means"]["torus_Ic_means"]["inner"] - xi_hist_cycle["group_means"]["torus_Ic_means"]["outer"]) < 0.01
+            and xi_shell["group_means"]["torus_Ic_means"]["clifford"] > xi_shell["group_means"]["torus_Ic_means"]["inner"]
+            and xi_shell["group_means"]["torus_Ic_means"]["clifford"] > xi_shell["group_means"]["torus_Ic_means"]["outer"]
+            and abs(xi_shell["group_means"]["torus_Ic_means"]["inner"] - xi_shell["group_means"]["torus_Ic_means"]["outer"]) < 0.01,
             "E7_history_bridges_are_nontrivial_and_torus_sensitive",
             {
                 "hist_outer_I_AB_mean": xi_hist_outer["base_metrics"]["I_AB"]["mean"],
                 "hist_cycle_I_AB_mean": xi_hist_cycle["base_metrics"]["I_AB"]["mean"],
                 "hist_outer_eta_sensitive": xi_hist_outer["verdict"]["eta_sensitive"],
                 "hist_cycle_eta_sensitive": xi_hist_cycle["verdict"]["eta_sensitive"],
+                "hist_outer_torus_Ic_means": xi_hist_outer["group_means"]["torus_Ic_means"],
+                "hist_cycle_torus_Ic_means": xi_hist_cycle["group_means"]["torus_Ic_means"],
+                "shell_torus_Ic_means": xi_shell["group_means"]["torus_Ic_means"],
             },
         ),
         gate(

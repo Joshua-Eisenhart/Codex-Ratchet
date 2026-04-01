@@ -145,7 +145,7 @@ def main() -> int:
         ),
         gate(
             root_gate_map["R10_root_emergence_bridge_winner_respects_xi_handoff_contract"]["pass"]
-            and carrier_gate_map["C9_handoff_contract_freezes_downstream_only_placement"]["pass"]
+            and c1_bridge_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"]
             and pre_entropy_gate_map["P24_carrier_handoff_matches_pre_entropy_downstream_mapping"]["pass"]
             and matched_gate_map["M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping"]["pass"]
             and entropy_gate_map["E10_current_bridge_candidate_is_explicit_and_provisional"]["pass"]
@@ -153,7 +153,7 @@ def main() -> int:
             "S7_axis0_stack_explicitly_consumes_named_contract_gates",
             {
                 "root_r10_pass": root_gate_map["R10_root_emergence_bridge_winner_respects_xi_handoff_contract"]["pass"],
-                "carrier_c9_pass": carrier_gate_map["C9_handoff_contract_freezes_downstream_only_placement"]["pass"],
+                "c1b3_pass": c1_bridge_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"],
                 "pre_entropy_p24_pass": pre_entropy_gate_map["P24_carrier_handoff_matches_pre_entropy_downstream_mapping"]["pass"],
                 "matched_m9_pass": matched_gate_map["M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping"]["pass"],
                 "entropy_e10_pass": entropy_gate_map["E10_current_bridge_candidate_is_explicit_and_provisional"]["pass"],

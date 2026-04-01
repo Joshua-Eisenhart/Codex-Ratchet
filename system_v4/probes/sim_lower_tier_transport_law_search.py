@@ -32,6 +32,7 @@ def main() -> int:
     geometry_truth = load_json(SIM_RESULTS / "geometry_truth_results.json")
     formal_geometry = load_json(SIM_RESULTS / "formal_geometry_packet_validation.json")
     weyl_delta = load_json(SIM_RESULTS / "weyl_delta_packet_results.json")
+    weyl_delta_validation = load_json(SIM_RESULTS / "weyl_delta_packet_validation.json")
     neg_loop_swap = load_json(SIM_RESULTS / "neg_loop_law_swap_results.json")
 
     delta_summary = weyl_delta["global_summary"]
@@ -104,6 +105,7 @@ def main() -> int:
         },
         "source_support": {
             "formal_geometry_gates": [item["name"] for item in formal_geometry["gates"] if item["pass"]],
+            "weyl_delta_gates": [item["name"] for item in weyl_delta_validation["gates"] if item["pass"]],
         },
     }
 

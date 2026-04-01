@@ -35,6 +35,8 @@ def main() -> int:
     search = load_json(SIM_RESULTS / "lower_tier_transport_law_search_results.json")
     candidates = search["candidate_family"]
     summary = search["summary"]
+    owner_read = search["owner_read"]
+    source_support = search["source_support"]
 
     gates = [
         gate(
@@ -63,12 +65,21 @@ def main() -> int:
         gate(
             candidates["downstream_cut_effect"]["status"] == "downstream_not_lower_tier"
             and not candidates["downstream_cut_effect"]["keep"]
+            and candidates["downstream_cut_effect"]["evidence"]["status"] == "downstream_branch"
+            and "rho_AB and later bridge/readout structure"
+            in candidates["downstream_cut_effect"]["evidence"]["reason"]
             and summary["winner"] == "exact_loop_assigned_transport"
-            and summary["single_transport_law"] == "exact_loop_assigned_transport_only",
+            and summary["single_transport_law"] == "exact_loop_assigned_transport_only"
+            and owner_read["status"] == "exact_loop_law_only"
+            and "W5_branch_map_keeps_flux_placement_open" in source_support["weyl_delta_gates"]
+            and "W6_flux_family_is_explicit_without_canonizing_flux" in source_support["weyl_delta_gates"]
+            and "W8_pre_axis_object_inventory_is_explicit" in source_support["weyl_delta_gates"],
             "T4_downstream_cut_effect_is_fenced_off_from_lower_transport_law",
             {
                 "downstream_cut_effect": candidates["downstream_cut_effect"],
                 "summary": summary,
+                "owner_read": owner_read,
+                "source_support": source_support,
             },
         ),
     ]

@@ -50,6 +50,7 @@ def main() -> int:
     weyl_delta = load_json(SIM_RESULTS / "weyl_delta_packet_results.json")
     lower_tier_chiral_search = load_json(SIM_RESULTS / "lower_tier_chiral_law_search_validation.json")
     lower_tier_transport_search = load_json(SIM_RESULTS / "lower_tier_transport_law_search_validation.json")
+    lower_tier_operator_search = load_json(SIM_RESULTS / "lower_tier_operator_basis_search_validation.json")
     hopf_weyl_projection = load_json(AUDIT_RESULTS / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json")
 
     chirality_results = chirality["results"]
@@ -68,13 +69,25 @@ def main() -> int:
             "G4_live_engine_family_split",
             "G9_owner_anchor_state_explicit",
         ],
-        "basis_status": "operator-basis admitted at geometry tier",
+        "basis_status": "carrier basis present at geometry tier; explicit operator admission handled by lower-tier operator search",
         "owner_anchor_state": {
             "projection_status": projection["projection_status"],
             "weyl_branch_nodes_present": projection["weyl_branch_nodes_present"],
             "missing_owner_anchors": projection["missing_owner_anchors"],
         },
         "read": "Finite Hopf/Weyl carrier geometry and Weyl-sheet overlay are admitted as lower-tier pre-Axis machinery.",
+    }
+    operator_basis_search_admission = {
+        "object": "operator_basis_search_admission",
+        "admitted": lower_tier_operator_search["passed_gates"] == lower_tier_operator_search["total_gates"],
+        "source_gates": [
+            "O1_fixed_carrier_basis_remap_shows_load_bearing_sensitivity",
+            "O2_global_coordinate_change_is_not_mistaken_for_substrate_failure",
+            "O3_commuting_collapse_degrades_the_local_operator_response",
+            "O4_local_unitary_pair_is_not_demoted_by_this_narrow_local_test",
+        ],
+        "status": "lower-tier noncommuting basis split survives local operator search",
+        "read": "The lower-tier operator search now explicitly supports a noncommuting basis split and coordinate-relativity guard, while leaving Fe/Fi undemoted in this narrow local search.",
     }
     classical_leakage_guards = {
         "object": "classical_leakage_guards",
@@ -254,7 +267,7 @@ def main() -> int:
         ),
         gate(
             carrier_operator_basis_admission["admitted"]
-            and carrier_operator_basis_admission["basis_status"] == "operator-basis admitted at geometry tier"
+            and carrier_operator_basis_admission["basis_status"] == "carrier basis present at geometry tier; explicit operator admission handled by lower-tier operator search"
             and classical_leakage_guards["admitted"]
             and classical_leakage_guards["raw_lr_control_blocked"]["status"] == "control_only"
             and classical_leakage_guards["raw_lr_control_blocked"]["max_raw_LR_mutual_information"] < 1e-9
@@ -296,6 +309,18 @@ def main() -> int:
                 "score": lower_tier_transport_search["score"],
             },
         ),
+        gate(
+            lower_tier_operator_search["passed_gates"] == lower_tier_operator_search["total_gates"]
+            and lower_tier_operator_search["score"] == 1.0
+            and operator_basis_search_admission["admitted"],
+            "G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed",
+            {
+                "operator_basis_search_admission": operator_basis_search_admission,
+                "passed_gates": lower_tier_operator_search["passed_gates"],
+                "total_gates": lower_tier_operator_search["total_gates"],
+                "score": lower_tier_operator_search["score"],
+            },
+        ),
     ]
 
     passed = sum(1 for item in gates if item["pass"])
@@ -306,6 +331,7 @@ def main() -> int:
         "total_gates": len(gates),
         "score": passed / len(gates) if gates else 0.0,
         "carrier_operator_basis_admission": carrier_operator_basis_admission,
+        "operator_basis_search_admission": operator_basis_search_admission,
         "classical_leakage_guards": classical_leakage_guards,
         "chiral_law_embargo": chiral_law_embargo,
         "gates": gates,

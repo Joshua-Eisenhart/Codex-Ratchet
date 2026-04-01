@@ -1,0 +1,69 @@
+{
+  "name": "lower_tier_operator_basis_search_validation",
+  "timestamp": "2026-04-01T21:19:36.196196+00:00",
+  "passed_gates": 4,
+  "total_gates": 4,
+  "score": 1.0,
+  "gates": [
+    {
+      "name": "O1_fixed_carrier_basis_remap_shows_load_bearing_sensitivity",
+      "pass": true,
+      "detail": {
+        "status": "surviving_lower_tier_candidate",
+        "keep": true,
+        "reason": "A fixed-carrier remap and same-axis commuting collapse both change the local operator response, so the X/Z split remains load-bearing in this lower-tier local search.",
+        "evidence": {
+          "remap_kills": 4,
+          "ablation_kills": 4,
+          "total_stages": 16
+        }
+      }
+    },
+    {
+      "name": "O2_global_coordinate_change_is_not_mistaken_for_substrate_failure",
+      "pass": true,
+      "detail": {
+        "status": "representation_only",
+        "keep": false,
+        "reason": "A coherent global SU(2) change of coordinates leaves the local response invariant across all stage rows.",
+        "evidence": {
+          "coord_invariant_count": 16,
+          "total_stages": 16
+        }
+      }
+    },
+    {
+      "name": "O3_commuting_collapse_degrades_the_local_operator_response",
+      "pass": true,
+      "detail": {
+        "status": "surviving_lower_tier_candidate",
+        "keep": true,
+        "reason": "A fixed-carrier remap and same-axis commuting collapse both change the local operator response, so the X/Z split remains load-bearing in this lower-tier local search.",
+        "evidence": {
+          "remap_kills": 4,
+          "ablation_kills": 4,
+          "total_stages": 16
+        }
+      }
+    },
+    {
+      "name": "O4_local_unitary_pair_is_not_demoted_by_this_narrow_local_test",
+      "pass": true,
+      "detail": {
+        "local_unitary_pair_Fe_Fi": {
+          "status": "not_proven_load_bearing_in_local_test",
+          "keep": false,
+          "reason": "Removing Fe and Fi does not change the one-step local dphi response here; this is not enough to demote them from substrate use in higher tiers.",
+          "evidence": {
+            "demotion_structural_changes": 0,
+            "total_stages": 16
+          }
+        },
+        "owner_read": {
+          "status": "lower_tier_noncommuting_basis_split_survives_local_search",
+          "note": "This search supports a lower-tier noncommuting basis split and rejects pure coordinate relabeling as substrate, but it does not yet justify promoting Fe/Fi as demoted or representation-only."
+        }
+      }
+    }
+  ]
+}

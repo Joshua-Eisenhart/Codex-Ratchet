@@ -1,8 +1,8 @@
 {
   "name": "formal_geometry_packet_validation",
-  "timestamp": "2026-04-01T20:26:26.591248+00:00",
-  "passed_gates": 13,
-  "total_gates": 13,
+  "timestamp": "2026-04-01T21:19:36.199443+00:00",
+  "passed_gates": 14,
+  "total_gates": 14,
   "score": 1.0,
   "carrier_operator_basis_admission": {
     "object": "carrier_operator_basis_admission",
@@ -15,13 +15,25 @@
       "G4_live_engine_family_split",
       "G9_owner_anchor_state_explicit"
     ],
-    "basis_status": "operator-basis admitted at geometry tier",
+    "basis_status": "carrier basis present at geometry tier; explicit operator admission handled by lower-tier operator search",
     "owner_anchor_state": {
       "projection_status": "owner_weyl_branch_materialized",
       "weyl_branch_nodes_present": true,
       "missing_owner_anchors": []
     },
     "read": "Finite Hopf/Weyl carrier geometry and Weyl-sheet overlay are admitted as lower-tier pre-Axis machinery."
+  },
+  "operator_basis_search_admission": {
+    "object": "operator_basis_search_admission",
+    "admitted": true,
+    "source_gates": [
+      "O1_fixed_carrier_basis_remap_shows_load_bearing_sensitivity",
+      "O2_global_coordinate_change_is_not_mistaken_for_substrate_failure",
+      "O3_commuting_collapse_degrades_the_local_operator_response",
+      "O4_local_unitary_pair_is_not_demoted_by_this_narrow_local_test"
+    ],
+    "status": "lower-tier noncommuting basis split survives local operator search",
+    "read": "The lower-tier operator search now explicitly supports a noncommuting basis split and coordinate-relativity guard, while leaving Fe/Fi undemoted in this narrow local search."
   },
   "classical_leakage_guards": {
     "object": "classical_leakage_guards",
@@ -180,7 +192,7 @@
             "G4_live_engine_family_split",
             "G9_owner_anchor_state_explicit"
           ],
-          "basis_status": "operator-basis admitted at geometry tier",
+          "basis_status": "carrier basis present at geometry tier; explicit operator admission handled by lower-tier operator search",
           "owner_anchor_state": {
             "projection_status": "owner_weyl_branch_materialized",
             "weyl_branch_nodes_present": true,
@@ -258,6 +270,27 @@
       "name": "G13_lower_tier_transport_law_search_is_explicit_and_fail_closed",
       "pass": true,
       "detail": {
+        "passed_gates": 4,
+        "total_gates": 4,
+        "score": 1.0
+      }
+    },
+    {
+      "name": "G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed",
+      "pass": true,
+      "detail": {
+        "operator_basis_search_admission": {
+          "object": "operator_basis_search_admission",
+          "admitted": true,
+          "source_gates": [
+            "O1_fixed_carrier_basis_remap_shows_load_bearing_sensitivity",
+            "O2_global_coordinate_change_is_not_mistaken_for_substrate_failure",
+            "O3_commuting_collapse_degrades_the_local_operator_response",
+            "O4_local_unitary_pair_is_not_demoted_by_this_narrow_local_test"
+          ],
+          "status": "lower-tier noncommuting basis split survives local operator search",
+          "read": "The lower-tier operator search now explicitly supports a noncommuting basis split and coordinate-relativity guard, while leaving Fe/Fi undemoted in this narrow local search."
+        },
         "passed_gates": 4,
         "total_gates": 4,
         "score": 1.0

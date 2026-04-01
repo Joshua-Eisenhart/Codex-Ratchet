@@ -561,15 +561,18 @@ def main() -> int:
         gate(
             delta_inventory["raw_delta_packet"]["status"] == "diagnostic_surface_not_final_owner_law"
             and delta_branches["single_weyl_flux_object"]["status"] == "not_supported_yet"
+            and delta_branches["post_joint_cut_flux"]["status"] == "downstream_branch"
             and owner_worthiness_map["owner_derived"]["xi_hist_signed_law"] == "admitted"
             and owner_worthiness_map["pre_axis_law"]["chirality_separated_transport_deltas"] == "candidate"
             and owner_worthiness_map["diagnostic_only"]["raw_delta_packet"] == "diagnostic_only"
-            and owner_worthiness_map["diagnostic_only"]["entropic_left_right_flux"] == "blocked",
+            and owner_worthiness_map["diagnostic_only"]["entropic_left_right_flux"] == "blocked"
+            and owner_worthiness_map["diagnostic_only"]["post_joint_cut_flux"] == "downstream_branch",
             "P15_owner_worthiness_map_demotes_raw_deltas_and_open_flux_labels",
             {
                 "owner_worthiness_map": owner_worthiness_map,
                 "delta_raw_surface_status": delta_inventory["raw_delta_packet"]["status"],
                 "single_weyl_flux_object": delta_branches["single_weyl_flux_object"],
+                "post_joint_cut_flux": delta_branches["post_joint_cut_flux"],
             },
         ),
         gate(
@@ -652,6 +655,7 @@ def main() -> int:
             and pre_axis_admission_schema["axis_embargo"]["currently_axis_eligible"]["xi_hist_signed_law"] == "owner_derived"
             and pre_axis_admission_schema["axis_embargo"]["currently_embargoed"]["chirality_separated_transport_deltas"] == "candidate_pending_owner_promotion_after_nonproxy_support"
             and pre_axis_admission_schema["axis_embargo"]["currently_embargoed"]["single_weyl_flux_object"] == "not_supported_yet"
+            and pre_axis_admission_schema["axis_embargo"]["currently_embargoed"]["post_joint_cut_flux"] == "downstream_branch"
             and pre_axis_admission_schema["current_mapping"]["Xi_chiral_entangle"] == "axis_internal_candidate_not_final_owner_law",
             "P21_pre_axis_admission_schema_is_explicit_and_axis_embargoed",
             pre_axis_admission_schema,

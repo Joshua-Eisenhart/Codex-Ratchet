@@ -43,8 +43,8 @@ def main() -> int:
     phase5a = load_json(SIM_RESULTS / "axis0_phase5a_results.json")
     phase6 = load_json(SIM_RESULTS / "axis0_phase6_point_reference_results.json")
     fe_indexed = load_json(SIM_RESULTS / "axis0_fe_indexed_xi_hist_results.json")
-    carrier_selection = load_json(SIM_RESULTS / "carrier_selection_packet_validation.json")
     pre_entropy = load_json(SIM_RESULTS / "pre_entropy_packet_validation.json")
+    c1_bridge_object = load_json(SIM_RESULTS / "c1_bridge_object_packet_validation.json")
 
     phase5a_rows = phase5a["results"]
     final_rows = [row["final_state"] for row in phase5a_rows]
@@ -53,7 +53,8 @@ def main() -> int:
     hist_checks = [row["history_averaged"]["marginal_check"] for row in phase5a_rows]
     phase6_verdict = phase6["verdict"]
     fe_summary = fe_indexed["summary"]
-    signed_bridge_handoff = carrier_selection["signed_bridge_candidate_handoff"]
+    c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
+    signed_bridge_handoff = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]["carrier_handoff"]
 
     gates = [
         gate(

@@ -55,7 +55,7 @@ def main() -> int:
     carrier_rank = load_json(SIM_RESULTS / "root_constraint_carrier_rank_results.json")
     mispair = load_json(SIM_RESULTS / "history_mispair_counterfeit_results.json")
     coarising = load_json(SIM_RESULTS / "axis0_coarising_stress_test_results.json")
-    carrier_selection = load_json(SIM_RESULTS / "carrier_selection_packet_validation.json")
+    c1_bridge_object = load_json(SIM_RESULTS / "c1_bridge_object_packet_validation.json")
 
     steps = packet_run["steps"]
     level1 = coarising["level1_lr_asym"]
@@ -63,7 +63,8 @@ def main() -> int:
     live_carrier = carrier_rank["carrier_best"]["carrier_live_hopf_weyl"]
     live_honesty = carrier_rank["carrier_honesty_best"]["carrier_live_hopf_weyl"]
     mispair_summary = mispair["summary"]
-    signed_bridge_handoff = carrier_selection["signed_bridge_candidate_handoff"]
+    c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
+    signed_bridge_handoff = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]["carrier_handoff"]
 
     gates = [
         gate(

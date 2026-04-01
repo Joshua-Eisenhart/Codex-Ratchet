@@ -14,6 +14,7 @@ import os, sys, json
 from datetime import datetime, UTC
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from hopf_manifold import density_to_bloch
 from engine_core import GeometricEngine, EngineState, StageControls
 from geometric_operators import (
     apply_Ti, apply_Fe, apply_Te, apply_Fi,
@@ -21,6 +22,28 @@ from geometric_operators import (
     partial_trace_A, partial_trace_B,
 )
 from proto_ratchet_sim_runner import EvidenceToken
+
+
+def summarize_sheet_split(history: list[dict]) -> dict:
+    trace_gaps = []
+    bloch_gaps = []
+    for row in history:
+        rho_L = row["rho_L"]
+        rho_R = row["rho_R"]
+        trace_gaps.append(float(trace_distance_2x2(rho_L, rho_R)))
+        bloch_L = np.array(density_to_bloch(rho_L))
+        bloch_R = np.array(density_to_bloch(rho_R))
+        bloch_gaps.append(float(np.linalg.norm(bloch_L - bloch_R)))
+
+    return {
+        "rows": len(history),
+        "min_trace_gap": float(min(trace_gaps)),
+        "max_trace_gap": float(max(trace_gaps)),
+        "mean_trace_gap": float(np.mean(trace_gaps)),
+        "min_bloch_gap": float(min(bloch_gaps)),
+        "max_bloch_gap": float(max(bloch_gaps)),
+        "mean_bloch_gap": float(np.mean(bloch_gaps)),
+    }
 
 
 def step_no_chirality(engine: GeometricEngine, state: EngineState,
@@ -150,10 +173,16 @@ def run():
         ctrl = StageControls(piston=0.8, spinor="both")
         s_flat = step_no_chirality(e, s_flat, stage_idx=i, controls=ctrl)
     d_flat = trace_distance_2x2(s_flat.rho_L, s_flat.rho_R)
+    history_summary = {
+        "chiral": summarize_sheet_split(s_chiral.history),
+        "flat": summarize_sheet_split(s_flat.history),
+    }
+    history_summary["final_residual_ratio"] = float(d_flat / d_chiral) if d_chiral > 0 else 0.0
 
     print(f"No-Chirality Negative:")
     print(f"  Chiral engine D(L,R): {d_chiral:.4f}")
     print(f"  De-chiralized D(L,R): {d_flat:.4f}")
+    print(f"  Residual ratio D_flat / D_chiral: {history_summary['final_residual_ratio']:.4f}")
     print(f"  Chirality creates divergence: {d_chiral > 0.05}")
     print(f"  → KILL (chirality removal must flatten L/R)")
 
@@ -170,6 +199,7 @@ def run():
             "d_chiral": float(d_chiral),
             "d_flat": float(d_flat),
             "chirality_matters": d_chiral > 0.05,
+            "history_summary": history_summary,
             "evidence_ledger": [t.__dict__ for t in tokens],
         }, f, indent=2)
     return tokens

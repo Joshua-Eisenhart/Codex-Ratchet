@@ -46,6 +46,7 @@ def main() -> int:
     dual_weyl = load_json(SIM_RESULTS / "dual_weyl_results.json")
     neg_torus = load_json(SIM_RESULTS / "neg_torus_scrambled_results.json")
     neg_chiral = load_json(SIM_RESULTS / "neg_no_chirality_results.json")
+    no_chirality_search = load_json(SIM_RESULTS / "no_chirality_search_validation.json")
     neg_loop_swap = load_json(SIM_RESULTS / "neg_loop_law_swap_results.json")
     weyl_delta = load_json(SIM_RESULTS / "weyl_delta_packet_results.json")
     lower_tier_chiral_search = load_json(SIM_RESULTS / "lower_tier_chiral_law_search_validation.json")
@@ -53,6 +54,7 @@ def main() -> int:
     lower_tier_operator_search = load_json(SIM_RESULTS / "lower_tier_operator_basis_search_validation.json")
     hopf_weyl_projection = load_json(AUDIT_RESULTS / "QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json")
     chiral_gate_map = {item["name"]: item for item in lower_tier_chiral_search["gates"]}
+    no_chirality_gate_map = {item["name"]: item for item in no_chirality_search["gates"]}
     transport_gate_map = {item["name"]: item for item in lower_tier_transport_search["gates"]}
     operator_gate_map = {item["name"]: item for item in lower_tier_operator_search["gates"]}
 
@@ -114,6 +116,11 @@ def main() -> int:
             "status": neg_chiral_status,
             "chirality_matters": bool(neg_chiral["chirality_matters"]),
             "residual_gap": float(neg_chiral["d_flat"] / neg_chiral["d_chiral"]),
+            "source_probe_gates": [
+                "N1_no_chirality_kill_is_real_but_not_total",
+                "N2_no_chirality_residual_is_explicitly_nontrivial",
+                "N3_chiral_run_keeps_stronger_sheet_split_than_flattened_run",
+            ],
         },
         "loop_law_swap_kill": {
             "status": neg_loop_swap_status,
@@ -227,12 +234,18 @@ def main() -> int:
             and neg_chiral["chirality_matters"]
             and neg_chiral["d_chiral"] > neg_chiral["d_flat"]
             and neg_chiral["d_flat"] > 0.05,
+            and no_chirality_gate_map["N1_no_chirality_kill_is_real_but_not_total"]["pass"]
+            and no_chirality_gate_map["N2_no_chirality_residual_is_explicitly_nontrivial"]["pass"]
+            and no_chirality_gate_map["N3_chiral_run_keeps_stronger_sheet_split_than_flattened_run"]["pass"],
             "G7_no_chirality_negative_still_incomplete",
             {
                 "status": neg_chiral_status,
                 "d_chiral": neg_chiral["d_chiral"],
                 "d_flat": neg_chiral["d_flat"],
                 "residual_gap": neg_chiral["d_flat"] / neg_chiral["d_chiral"],
+                "n1_pass": no_chirality_gate_map["N1_no_chirality_kill_is_real_but_not_total"]["pass"],
+                "n2_pass": no_chirality_gate_map["N2_no_chirality_residual_is_explicitly_nontrivial"]["pass"],
+                "n3_pass": no_chirality_gate_map["N3_chiral_run_keeps_stronger_sheet_split_than_flattened_run"]["pass"],
             },
         ),
         gate(

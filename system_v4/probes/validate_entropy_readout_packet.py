@@ -61,6 +61,7 @@ def main() -> int:
     mean_ic = bridge_search["mean_ic_by_candidate"]
     ranking = bridge_search["ranking"]
     mispair_summary = mispair["summary"]
+    pre_gate_map = {item["name"]: item for item in pre_entropy["gates"]}
     pre_entropy_law = pre_entropy["law_summary"]
     c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
     signed_bridge_handoff = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]["carrier_handoff"]
@@ -319,7 +320,10 @@ def main() -> int:
             },
         ),
         gate(
-            pre_entropy_law["strict_bakeoff_owner_object_present"]
+            pre_gate_map["P11_xi_hist_signed_late_anchor_is_equivalent_not_free_placement"]["pass"]
+            and pre_gate_map["P12_xi_hist_short_width_stress_is_clifford_local_not_global"]["pass"]
+            and pre_gate_map["P14_xi_hist_signed_law_is_explicit_in_strict_bakeoff"]["pass"]
+            and pre_entropy_law["strict_bakeoff_owner_object_present"]
             and pre_entropy_law["late_anchor_equivalence"]["placement_8_23_equals_16_31_count"] == pre_entropy_law["total_rows"]
             and pre_entropy_law["late_anchor_equivalence"]["placement_8_23_equals_prefix_8_15_on_ic_count"] == pre_entropy_law["total_rows"]
             and pre_entropy_law["clifford_local_short_width_stress"]["placement_8_23_beats_0_3_on_ic_off_clifford_count"] == 4
@@ -332,6 +336,9 @@ def main() -> int:
             and xi_hist_cycle["base_metrics"]["S_A_given_B"]["mean"] > 0.1,
             "E12_xi_hist_law_summary_binds_pre_entropy_to_readout",
             {
+                "p11_pass": pre_gate_map["P11_xi_hist_signed_late_anchor_is_equivalent_not_free_placement"]["pass"],
+                "p12_pass": pre_gate_map["P12_xi_hist_short_width_stress_is_clifford_local_not_global"]["pass"],
+                "p14_pass": pre_gate_map["P14_xi_hist_signed_law_is_explicit_in_strict_bakeoff"]["pass"],
                 "law_summary_name": pre_entropy_law["name"],
                 "strict_bakeoff_owner_object_present": pre_entropy_law["strict_bakeoff_owner_object_present"],
                 "late_anchor_equivalence": pre_entropy_law["late_anchor_equivalence"],

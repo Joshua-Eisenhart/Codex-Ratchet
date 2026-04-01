@@ -45,6 +45,7 @@ def main() -> int:
     fep = load_json(SIM_RESULTS / "axis0_fep_compression_results.json")
     bridge_search = load_json(SIM_RESULTS / "axis0_bridge_search_results.json")
     mispair = load_json(SIM_RESULTS / "history_mispair_counterfeit_results.json")
+    carrier_selection = load_json(SIM_RESULTS / "carrier_selection_packet_validation.json")
     pre_entropy = load_json(SIM_RESULTS / "pre_entropy_packet_validation.json")
 
     b = battery["results"]
@@ -57,6 +58,7 @@ def main() -> int:
     ranking = bridge_search["ranking"]
     mispair_summary = mispair["summary"]
     pre_entropy_law = pre_entropy["law_summary"]
+    signed_bridge_handoff = carrier_selection["signed_bridge_candidate_handoff"]
 
     local_only = families["L|R_local_only"]
     coupled_control = families["L|R_coupled_control"]
@@ -207,12 +209,18 @@ def main() -> int:
         ),
         gate(
             bridge_search["winner"] == "Xi_chiral_entangle"
+            and signed_bridge_handoff["candidate"] == "Xi_chiral_entangle"
+            and signed_bridge_handoff["status"] == "provisional_handoff_ready"
+            and signed_bridge_handoff["consumer_status"] == "allowed_for_entropy_readout_not_final_owner_xi"
             and ranking[0] == "Xi_chiral_entangle"
             and mean_mi["Xi_chiral_entangle"] > mean_mi["Xi_chiral_hist_entangle"]
             and mean_mi["Xi_chiral_entangle"] > 0.5,
             "E10_current_bridge_candidate_is_explicit_and_provisional",
             {
                 "current_bridge_candidate": bridge_search["winner"],
+                "signed_bridge_handoff_candidate": signed_bridge_handoff["candidate"],
+                "signed_bridge_handoff_status": signed_bridge_handoff["status"],
+                "signed_bridge_handoff_consumer_status": signed_bridge_handoff["consumer_status"],
                 "current_bridge_candidate_mean_mi": mean_mi["Xi_chiral_entangle"],
                 "current_bridge_candidate_mean_i_c": mean_ic["Xi_chiral_entangle"],
                 "runner_up": "Xi_chiral_hist_entangle",

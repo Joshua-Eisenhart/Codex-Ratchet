@@ -77,6 +77,7 @@ def main() -> int:
     shell_summary = dynamic_shell["summary"]
     delta_branches = weyl_delta["branch_map"]
     delta_inventory = weyl_delta["pre_axis_object_inventory"]
+    c1_signed_gate_map = {item["name"]: item for item in c1_signed_bridge["gates"]}
     c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
     carrier_handoff = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]["carrier_handoff"]
     chirality_retention_ratio = float(neg_no_chirality["d_flat"] / neg_no_chirality["d_chiral"])
@@ -616,13 +617,16 @@ def main() -> int:
             pre_axis_admission_schema,
         ),
         gate(
-            c1_signed_bridge["passed_gates"] == c1_signed_bridge["total_gates"]
-            and c1_signed_bridge["score"] == 1.0,
+            c1_signed_gate_map["C1S1_current_signed_bridge_candidate_is_explicit"]["pass"]
+            and c1_signed_gate_map["C1S2_counterfeit_pressure_keeps_signed_honesty_load_bearing"]["pass"]
+            and c1_signed_gate_map["C1S3_support_chain_is_closed_before_candidate_packaging"]["pass"]
+            and c1_signed_gate_map["C1S4_candidate_stays_provisional_and_does_not_overpromote"]["pass"],
             "P22_c1_signed_bridge_candidate_is_explicit_and_provisional",
             {
-                "passed_gates": c1_signed_bridge["passed_gates"],
-                "total_gates": c1_signed_bridge["total_gates"],
-                "score": c1_signed_bridge["score"],
+                "c1s1_pass": c1_signed_gate_map["C1S1_current_signed_bridge_candidate_is_explicit"]["pass"],
+                "c1s2_pass": c1_signed_gate_map["C1S2_counterfeit_pressure_keeps_signed_honesty_load_bearing"]["pass"],
+                "c1s3_pass": c1_signed_gate_map["C1S3_support_chain_is_closed_before_candidate_packaging"]["pass"],
+                "c1s4_pass": c1_signed_gate_map["C1S4_candidate_stays_provisional_and_does_not_overpromote"]["pass"],
             },
         ),
         gate(
@@ -658,8 +662,10 @@ def main() -> int:
             },
         ),
         gate(
-            c1_bridge_object["passed_gates"] == c1_bridge_object["total_gates"]
-            and c1_bridge_object["score"] == 1.0
+            c1_gate_map["C1B1_bridge_object_is_explicit_and_downstream_only"]["pass"]
+            and c1_gate_map["C1B2_counterfeit_pressure_remains_bound_to_the_bridge_object"]["pass"]
+            and c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"]
+            and c1_gate_map["C1B4_bridge_object_keeps_owner_doctrine_questions_open"]["pass"]
             and owner_worthiness_map["axis_internal_readout"]["Xi_chiral_entangle"] == "current_bridge_candidate"
             and owner_worthiness_map["axis_internal_readout"]["Xi_chiral_entangle_relation"]
             == "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
@@ -668,9 +674,10 @@ def main() -> int:
             == "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
             "P25_standalone_c1_bridge_object_matches_pre_entropy_contract",
             {
-                "c1_bridge_object_passed_gates": c1_bridge_object["passed_gates"],
-                "c1_bridge_object_total_gates": c1_bridge_object["total_gates"],
-                "c1_bridge_object_score": c1_bridge_object["score"],
+                "c1b1_pass": c1_gate_map["C1B1_bridge_object_is_explicit_and_downstream_only"]["pass"],
+                "c1b2_pass": c1_gate_map["C1B2_counterfeit_pressure_remains_bound_to_the_bridge_object"]["pass"],
+                "c1b3_pass": c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"],
+                "c1b4_pass": c1_gate_map["C1B4_bridge_object_keeps_owner_doctrine_questions_open"]["pass"],
                 "axis_internal_readout": owner_worthiness_map["axis_internal_readout"],
                 "current_mapping": pre_axis_admission_schema["current_mapping"],
                 "placement_relations": pre_axis_admission_schema["placement_relations"],

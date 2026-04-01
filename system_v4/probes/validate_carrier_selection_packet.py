@@ -47,6 +47,16 @@ def main() -> int:
     carrier_honesty_best = carrier_rank["carrier_honesty_best"]
     live_carrier = carrier_best["carrier_live_hopf_weyl"]
     live_honesty = carrier_honesty_best["carrier_live_hopf_weyl"]
+    carrier_rank_rows = carrier_rank["rows"]
+    live_row_best_iab = [
+        {
+            "engine_type": row["engine_type"],
+            "torus": row["torus"],
+            "best_iab": max(row["carriers"]["carrier_live_hopf_weyl"].items(), key=lambda item: item[1]["I_AB"])[0],
+            "best_ic": max(row["carriers"]["carrier_live_hopf_weyl"].items(), key=lambda item: item[1]["I_c"])[0],
+        }
+        for row in carrier_rank_rows
+    ]
     dechiralized_control = carrier_best["carrier_dechiralized_history"]
     cartesian_control = carrier_best["carrier_cartesian_nohistory"]
     mispair_summary = mispair["summary"]
@@ -93,7 +103,20 @@ def main() -> int:
             and carrier_rank["best_control_mean_mi"] < 1e-3
             and carrier_rank["best_root_rank_margin"] > 0.5
             and carrier_rank["best_control_honesty_score"] == 0.0
-            and carrier_rank["best_honesty_margin"] > 0.05,
+            and carrier_rank["best_honesty_margin"] > 0.05
+            and all(row["best_ic"] == "Xi_chiral_entangle" for row in live_row_best_iab)
+            and sum(row["best_iab"] == "Xi_chiral_entangle" for row in live_row_best_iab) == 4
+            and sum(row["best_iab"] == "Xi_chiral_hist_entangle" for row in live_row_best_iab) == 2
+            and all(
+                row["best_iab"] == "Xi_chiral_hist_entangle"
+                for row in live_row_best_iab
+                if row["engine_type"] == 1 and row["torus"] in {"inner", "outer"}
+            )
+            and all(
+                row["best_iab"] == "Xi_chiral_entangle"
+                for row in live_row_best_iab
+                if not (row["engine_type"] == 1 and row["torus"] in {"inner", "outer"})
+            ),
             "C3_live_carrier_wins_and_honesty_signal_stays_unique",
             {
                 "live_best_candidate": live_carrier["best_candidate"],
@@ -108,6 +131,7 @@ def main() -> int:
                 "best_root_rank_margin": carrier_rank["best_root_rank_margin"],
                 "best_control_honesty_score": carrier_rank["best_control_honesty_score"],
                 "best_honesty_margin": carrier_rank["best_honesty_margin"],
+                "live_row_best_iab": live_row_best_iab,
             },
         ),
         gate(

@@ -1,15 +1,15 @@
 {
   "schema": "QIT_HOPF_WEYL_PROJECTION_v1",
-  "generated_utc": "2026-03-29T09:18:26Z",
+  "generated_utc": "2026-04-01T11:00:49Z",
   "status": "present_bounded_projection",
   "source": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json",
-  "source_content_hash": "585499a4d13298615601af806cf9c0d01f56ef6e47879c5c82abf39227ef373a",
+  "source_content_hash": "965d5add46bbe8bf747763faea7c432157f14278644e9644bd726ca2928c0105",
   "owner_snapshot": {
     "qit_graph_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json",
     "qit_graph_schema": "QIT_ENGINE_GRAPH_v2",
-    "qit_graph_content_hash": "585499a4d13298615601af806cf9c0d01f56ef6e47879c5c82abf39227ef373a",
-    "node_count": 105,
-    "edge_count": 272
+    "qit_graph_content_hash": "965d5add46bbe8bf747763faea7c432157f14278644e9644bd726ca2928c0105",
+    "node_count": 107,
+    "edge_count": 290
   },
   "report_surface": {
     "surface_class": "tracked_current_workspace_report",
@@ -18,10 +18,13 @@
       "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json",
       "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md"
     ],
-    "tracked_report_files_dirty_before_generation": [],
+    "tracked_report_files_dirty_before_generation": [
+      " M system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json",
+      " M system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md"
+    ],
     "script_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_hopf_weyl_projection.py",
-    "script_sha256": "9927146caeab509a7a8a18c3010ecbd22d58c9f5fae8dcba50cf45ef0b4896bb",
-    "git_sha": "b4426398c08056ecb7d62fcb2c9c0acb06d8a06b"
+    "script_sha256": "9cb1e85b662ebfba883f49ddc4c917154f4e84ba9604f286bcb9edd240475a94",
+    "git_sha": "092ec33193f1b18fdf4d5b12da35e08b26f9b50e"
   },
   "sidecar_boundary": {
     "mode": "bounded_read_only",
@@ -67,16 +70,19 @@
     ]
   },
   "weyl_projection_readiness": {
-    "projection_status": "engine_pair_only_derived",
-    "weyl_branch_nodes_present": false,
+    "projection_status": "owner_weyl_branch_materialized",
+    "weyl_branch_nodes_present": true,
     "chirality_coupling_edge_present": true,
     "engine_pair_public_ids": [
       "qit::ENGINE::type1",
       "qit::ENGINE::type2"
     ],
-    "missing_owner_anchors": [
-      "WEYL_BRANCH"
-    ]
+    "weyl_branch_public_ids": [
+      "qit::WEYL_BRANCH::left",
+      "qit::WEYL_BRANCH::right"
+    ],
+    "engine_branch_edge_count": 2,
+    "missing_owner_anchors": []
   },
   "owner_carrier_evidence": {
     "torus_carriers": [
@@ -392,16 +398,29 @@
     "runtime_bridge_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json",
     "owner_content_hash_matches_runtime_bridge": false,
     "runtime_sample_count": 2,
+    "axis0_control_plane_summary": {
+      "direct_bridge_families": [
+        "Xi_LR_direct_control"
+      ],
+      "history_window_bridge_families": [
+        "Xi_hist_window_control"
+      ],
+      "history_window_sample_counts": [
+        32
+      ],
+      "runtime_sample_count": 2,
+      "surface_status": "read_only_control_plane_summary_only"
+    },
     "engine_sample_refs": [
       {
-        "engine_public_id": "qit::ENGINE::type1_deductive",
-        "first_step_public_id": "qit::SUBCYCLE_STEP::type1_deductive_Se_f_Ti",
-        "last_step_public_id": "qit::SUBCYCLE_STEP::type1_deductive_Ni_b_Fi"
+        "engine_public_id": "qit::ENGINE::type1_left_weyl",
+        "first_step_public_id": "qit::SUBCYCLE_STEP::type1_left_weyl_Se_b_Ti",
+        "last_step_public_id": "qit::SUBCYCLE_STEP::type1_left_weyl_Ne_f_Fi"
       },
       {
-        "engine_public_id": "qit::ENGINE::type2_inductive",
-        "first_step_public_id": "qit::SUBCYCLE_STEP::type2_inductive_Se_f_Ti",
-        "last_step_public_id": "qit::SUBCYCLE_STEP::type2_inductive_Ni_b_Fi"
+        "engine_public_id": "qit::ENGINE::type2_right_weyl",
+        "first_step_public_id": "qit::SUBCYCLE_STEP::type2_right_weyl_Se_f_Ti",
+        "last_step_public_id": "qit::SUBCYCLE_STEP::type2_right_weyl_Si_b_Fi"
       }
     ]
   },

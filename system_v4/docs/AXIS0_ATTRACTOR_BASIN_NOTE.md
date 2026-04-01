@@ -159,3 +159,144 @@ See AXIS0_FI_LEMMA.md for the full proof. Key result:
 | Te inversion mechanism | PARTIALLY CLOSED — Fi re-establishes; full orbit proof OPEN |
 | Fi algebraic invariance | CLOSED — see AXIS0_FI_LEMMA.md |
 | Forward vs backward pairing | CLOSED — forward (L[t]⊗R[t+1]) is the FEP T3 measure; backward gives lower co-arising |
+
+---
+
+## 7. 2026-03-31 Addendum — Current Understanding And Build Plan
+
+This section preserves the current 2026-03-31 understanding after the bridge,
+engine-state, guard, admissibility, and graph-law audits. It is intentionally
+separate from the probe-specific findings above.
+
+### 7.1 What Axis 0 is currently understood to require
+
+Axis 0 is no longer treated as a probe-local scalar. The current working claim
+is that Axis 0 should be the information entropy of the active joint state,
+measured from the inside of the model:
+
+- the model should carry a primary joint state `rho_AB`
+- marginals `rho_L`, `rho_R` are derived by partial trace
+- `ga0_level` should be read as `S(Tr_R(rho_AB))`
+- transitions should be admitted by internal law, not by external patching
+
+This means Axis 0 sits at the meeting point of:
+
+- engine ontology
+- bridge / cut construction
+- graph admissibility
+- operator semantics
+- nonclassical guard enforcement
+
+### 7.2 Stable discrete grammar that remains in force
+
+The clear engine grammar has not been discarded:
+
+- two engine types: `type1`, `type2`
+- two loops per engine: `outer`, `inner`
+- four terrain stages per loop
+- `type1`: outer = deductive, inner = inductive
+- `type2`: outer = inductive, inner = deductive
+- deductive bundle = `Fe + Ti`
+- inductive bundle = `Te + Fi`
+
+The symbolic/Jung-facing language is secondary. The operator bundles and loop
+grammar are the actual mathematical scaffold.
+
+### 7.3 Ring-checkerboard hypothesis status
+
+The ring-checkerboard model is treated as a geometry hypothesis, not canon by
+declaration. The current status is:
+
+- the hypothesis is partially formalized and testable
+- the terrain perimeter law is consistent with the current `STEP_SEQUENCE`
+- `64/64` `STEP_SEQUENCE` edges are admissible under the four-rule checkerboard law
+- the missing `Fi -> Ti` transitions were identified as lawful `ring carry`
+  operations, not geometry contradictions
+- Weyl handedness aligns with ring traversal direction:
+  - `type1`: b-loop clockwise, f-loop counter-clockwise
+  - `type2`: exact mirror
+
+The current conclusion is that the graph/cell complex is under-encoded, not
+that the checkerboard geometry has failed.
+
+### 7.4 Constraint-first stance
+
+The system should be understood and rebuilt from the inside of the model:
+
+- constraints are native law, not post-hoc validators
+- legal action should be derived from admissibility, not authored externally
+- the ring-checkerboard geometry should be seen from inside the state space,
+  not imposed from outside as metaphor
+- positive-path constructs must be justified by the model or remain provisional
+
+This is the current epistemic rule:
+
+- vision supplies hypotheses
+- corpus tools formalize or falsify them
+- runtime only adopts what survives that process
+
+### 7.5 Corpus tools currently judged most relevant
+
+The current appropriate tools for this phase are:
+
+- `z3`: formal admissibility and anti-classical constraint testing
+- `TopoNetX`: cell-complex and missing-face/topology checks
+- `PyG`: live tensor graph runtime after legality is established
+- `clifford`: orientation, chirality, and geometric algebra structure
+- `codex-autoresearch`: bounded ratchet/controller work
+
+Other corpus tools may matter later, but the current work should stay centered
+on the set above.
+
+### 7.6 Two parallel tracks that must converge
+
+The current build plan is explicitly two-track, not single-track:
+
+1. Engine track
+   - stabilize the attractor basin
+   - keep Axis 0 bounded and probe-backed
+   - rebuild joint-state ontology
+   - align bridge/cut law with nonclassical constraints
+   - make operator semantics and graph dynamics load-bearing
+
+2. System track
+   - build the canonical system graph
+   - formalize admissibility as graph law
+   - use the skills/proof/graph corpus as active support
+   - preserve candidate geometries, test outcomes, and surviving rules
+   - later converge into graph/skill-native control
+
+These tracks should share:
+
+- the same constraints
+- the same geometry vocabulary
+- the same graph law
+- the same nonclassical fail-closed philosophy
+
+The goal is convergence, not a later rewrite.
+
+### 7.7 Immediate next steps (preserved)
+
+The current next-step order is:
+
+1. treat checkerboard/ring position mapping as an explicit construction surface
+2. encode admissibility, including ring-carry, directly in `z3`
+3. rebuild the cell complex to include the 16 lawful carry faces
+4. keep Axis 0 hot-path guard execution real and fail-closed
+5. tighten operator semantics so deductive/inductive behavior is not only an
+   effect of combined channels
+6. continue making `PyG` and edge-state dynamics actually load-bearing
+
+### 7.8 Anti-drift note
+
+This addendum exists to prevent loss of the current understanding:
+
+- Axis 0 is not "just a probe"
+- the ring-checkerboard hypothesis is not random imagery anymore; it has a
+  partially formalized, test-backed role
+- the engine grammar remains intact
+- the broader target is still a graph-and-skill-based system built from
+  constraints first
+
+If future work drifts, this section should be used as the preserved checkpoint
+for what is currently believed, what is provisional, and what the plan is.

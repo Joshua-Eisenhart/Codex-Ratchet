@@ -1,0 +1,112 @@
+{
+  "name": "matched_marginal_packet_validation",
+  "timestamp": "2026-04-01T11:19:24.549208+00:00",
+  "passed_gates": 7,
+  "total_gates": 7,
+  "score": 1.0,
+  "gates": [
+    {
+      "name": "M1_phase4_and_phase5a_execute_cleanly",
+      "pass": true,
+      "detail": {
+        "all_ok": true,
+        "steps": [
+          {
+            "label": "phase4_bridge_landscape",
+            "ok": true,
+            "returncode": 0
+          },
+          {
+            "label": "phase5a_marginal_preserving",
+            "ok": true,
+            "returncode": 0
+          },
+          {
+            "label": "phase6_point_reference",
+            "ok": true,
+            "returncode": 0
+          },
+          {
+            "label": "fe_indexed_history",
+            "ok": true,
+            "returncode": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "M2_phase4_winner_fails_matched_marginal_filter",
+      "pass": true,
+      "detail": {
+        "winner": "20_cross_s1_symmetric_retro",
+        "winner_preserves_marginals": false,
+        "matched_marginal_winner": null,
+        "matched_marginal_tolerance": 0.001
+      }
+    },
+    {
+      "name": "M3_phase5a_certifies_marginal_preserving_family",
+      "pass": true,
+      "detail": {
+        "certified_blocks": 12,
+        "total_blocks": 12,
+        "failed_blocks": 0,
+        "max_final_dev_A": 4.3753564023070306e-16,
+        "max_final_dev_B": 5.471894787807448e-16,
+        "max_hist_dev_A": 3.6295124768498446e-16,
+        "max_hist_dev_B": 4.783309287441108e-16
+      }
+    },
+    {
+      "name": "M4_preserving_mi_collapses_while_chiral_mi_stays_large",
+      "pass": true,
+      "detail": {
+        "mean_preserving": 4.440892098500626e-16,
+        "mean_chiral": 1.635766746086287,
+        "max_ratio_preserving_to_chiral": 5.194426056211188e-16
+      }
+    },
+    {
+      "name": "M5_optimizer_finds_no_nonproduct_preserving_advantage",
+      "pass": true,
+      "detail": {
+        "best_sources": [
+          "product_seed"
+        ],
+        "max_preserving_MI": 9.992007221626409e-16
+      }
+    },
+    {
+      "name": "M6_exact_preserving_point_reference_stays_discriminator_only",
+      "pass": true,
+      "detail": {
+        "mean_best_exact_I_AB": 5.921189464667501e-16,
+        "mean_best_tol_1e3_I_AB": 5.921189464667501e-16,
+        "base_exact_nontrivial_count": 0,
+        "fiber_exact_nontrivial_count": 0,
+        "controller_read": "point_reference_remains_discriminator_only"
+      }
+    },
+    {
+      "name": "M7_fe_indexed_pairs_remain_the_only_structured_refinement_winner",
+      "pass": true,
+      "detail": {
+        "best_new_bridge": "C_fe_pairs_only",
+        "best_gain": 0.15375653780456644,
+        "mean_fe_advantage": 0.11738124811376545,
+        "mean_mi": {
+          "A_phase4_winner": 1.4828908499635307,
+          "B_fe_indexed": 1.461058045270187,
+          "C_fe_pairs_only": 1.636647387768097,
+          "D_lag7_pairs": 1.2371225765407867
+        },
+        "winner_counts": {
+          "A_phase4_winner": 1,
+          "B_fe_indexed": 0,
+          "C_fe_pairs_only": 5,
+          "D_lag7_pairs": 0
+        }
+      }
+    }
+  ]
+}

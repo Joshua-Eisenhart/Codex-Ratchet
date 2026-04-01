@@ -8,6 +8,8 @@
 
 ## 1. The Pattern
 
+- [AXIS0_ACTIVE_PACKET_INDEX.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_ACTIVE_PACKET_INDEX.md) is the compact entrypoint for the current active `Axis 0` packet stack.
+
 Across every Phase5 probe and the new dynamic shell sim, the Clifford torus behaves
 differently from inner and outer:
 
@@ -59,7 +61,7 @@ where the Hopf fibration is maximally degenerate in the following sense:
   normal operating regime. Clifford is a control point that happens to be geometrically
   degenerate.
 
-- This does **not change the Ax0 open items.** Final Xi, shell algebra, and bridge/cut
+- This does **not change the Axis 0 open items.** Final Xi, shell algebra, and bridge/cut
   doctrine remain open regardless.
 
 ---

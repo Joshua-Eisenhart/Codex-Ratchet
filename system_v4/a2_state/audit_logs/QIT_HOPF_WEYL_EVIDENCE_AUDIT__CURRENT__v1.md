@@ -1,12 +1,12 @@
 # QIT Hopf/Weyl Evidence Audit
 
 - status: `bounded_evidence_audit_only`
-- generated_utc: `2026-03-29T09:18:26Z`
+- generated_utc: `2026-03-30T11:00:30Z`
 
 ## Report Surface
 - surface_class: `tracked_current_workspace_report`
 - represents: `current workspace Hopf/Weyl evidence audit state at generation time; may differ from the last committed snapshot until tracked CURRENT artifacts are committed`
-- git_sha: `b4426398c08056ecb7d62fcb2c9c0acb06d8a06b`
+- git_sha: `56e79ea13dac0552c8ec43f6fa7da2e55c764e44`
 
 ## Audit Boundary
 - audit_only: `True`
@@ -28,9 +28,14 @@
 
 ## Runtime Bridge Alignment
 - alignment_status: `partially_aligned`
-- owner_hash_matches: `False`
-- aligned_engine_public_ids: `qit::ENGINE::type1_deductive, qit::ENGINE::type2_inductive`
-- unresolved_links: `0`
+- owner_hash_matches: `True`
+- aligned_engine_public_ids: `qit::ENGINE::type1_left_weyl, qit::ENGINE::type2_right_weyl`
+- unresolved_links: `2`
+- axis0_surface_status: `read_only_control_plane_summary_only`
+- axis0_runtime_sample_count: `2`
+- axis0_direct_bridge_families: `['Xi_LR_direct_control']`
+- axis0_history_window_bridge_families: `['Xi_hist_window_control']`
+- axis0_history_window_sample_counts: `[32]`
 
 ## Relevant Negative Evidence
 - torus_witnesses: `2`
@@ -39,9 +44,9 @@
 
 ## Candidate Sidecar Evidence
 - cell_complex_status: `candidate_projection_only`
-- cell_complex_available: `True`
+- cell_complex_available: `False`
 - chirality_mapping_status: `candidate_projection_only`
-- chirality_mapping_available: `True`
+- chirality_mapping_available: `False`
 
 ## Carrier Evidence Summary
 - status: `bounded_owner_linked_summary_only`

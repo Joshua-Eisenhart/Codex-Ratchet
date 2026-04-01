@@ -1,0 +1,88 @@
+{
+  "timestamp": "2026-03-30T04:00:17.663493+00:00",
+  "name": "Ax4_commutation",
+  "source": "sim_Ax4_commutation.py",
+  "axis": "Ax4",
+  "claim": "UEUE != EUEU for non-trivial initial states (non-commutative CPTP semigroup)",
+  "tests": [
+    {
+      "id": "T1",
+      "name": "trace_distance_non_zero",
+      "distances": {
+        "north_pole": 0.16319851067964136,
+        "south_pole": 0.16319851067964142,
+        "equator_x": 4.579669976578772e-17,
+        "equator_y": 0.1631985106796416,
+        "mixed_half": 0.09867420605508828,
+        "upper_mixed": 0.1279755670279678,
+        "lower_mixed": 0.150818445564566,
+        "maximally_mixed": 0.0
+      },
+      "non_trivial_count": 6,
+      "pass": true
+    },
+    {
+      "id": "T2",
+      "name": "entropy_trajectory_diff",
+      "traj_ueue": [
+        2.220446049250313e-16,
+        0.38805504158478765,
+        0.38805504158478754,
+        0.42677559033599977,
+        0.4267755903360001
+      ],
+      "traj_eueu": [
+        2.220446049250313e-16,
+        2.220446049250313e-16,
+        0.3193349702480439,
+        0.3193349702480439,
+        0.39272526266960084
+      ],
+      "max_diff": 0.38805504158478743,
+      "pass": true
+    },
+    {
+      "id": "T3",
+      "name": "robustness_across_params",
+      "robustness_rate": 1.0,
+      "pass": true
+    },
+    {
+      "id": "T4",
+      "name": "single_commutator",
+      "trace_distance": 0.13629641980802784,
+      "pass": true
+    },
+    {
+      "id": "T5",
+      "name": "final_entropy_non_degenerate",
+      "ueue_lower_rate": 0.66,
+      "pass": true
+    }
+  ],
+  "evidence_tokens": [
+    {
+      "token": "AX4_UEUE_EUEU_DISTINCT",
+      "value": "PASS",
+      "witness": "non_trivial_distance_count=6/8"
+    },
+    {
+      "token": "AX4_ENTROPY_TRAJECTORY_DIFFERS",
+      "value": "PASS",
+      "witness": "max_traj_diff=0.3881"
+    },
+    {
+      "token": "AX4_LOOP_ORDERING_NONCOMMUTATIVE",
+      "value": "PASS",
+      "witness": "robustness_rate=1.000"
+    },
+    {
+      "token": "AX4_UE_COMMUTATOR_NONZERO",
+      "value": "PASS",
+      "witness": "D(UoE, EoU)=0.1363"
+    }
+  ],
+  "verdict": "PASS",
+  "n_pass": 5,
+  "n_total": 5
+}

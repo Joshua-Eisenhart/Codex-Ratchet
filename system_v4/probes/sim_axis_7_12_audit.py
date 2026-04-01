@@ -26,8 +26,22 @@ import numpy as np
 import scipy.linalg as la
 import json, os, sys
 from datetime import datetime, UTC
-
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "skills"))
+
+try:
+    from v4_graph_builder import SystemGraphBuilder, GraphNode, GraphEdge
+    from graph_tool_integration import get_runtime_projections
+except ImportError:
+    pass
+
+try:
+    import clifford as cf
+except ImportError:
+    print("\n[ERROR] Missing 'clifford' library. This probe requires geometric algebra support.", file=sys.stderr)
+    print("        Please run this script inside the graph toolchain environment:", file=sys.stderr)
+    print("        ./.venv_spec_graph/bin/python system_v4/probes/sim_axis_7_12_audit.py\n", file=sys.stderr)
+    sys.exit(1)
 
 try:
     from proto_ratchet_sim_runner import make_random_density_matrix
@@ -155,6 +169,74 @@ def non_markovianity(rho, d):
 # MAIN TEST
 # ═══════════════════════════════════════════════════════════════════
 
+def load_ga_edges_via_builder():
+    builder_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "a2_state", "graphs")
+    builder = SystemGraphBuilder(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+    
+    prov_path = os.path.join(builder_dir, "full_stack_provenance_graph.json")
+    if os.path.exists(prov_path):
+        builder.load_multi_repo_provenance(prov_path)
+    
+    engine_path = os.path.join(builder_dir, "qit_engine_graph_v1.json")
+    if os.path.exists(engine_path):
+        with open(engine_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            for n_id, n_data in data.get("nodes", {}).items():
+                gn = GraphNode(id=n_id, node_type=n_data.get("node_type", "GENERIC"), layer="ENGINE", name=n_data.get("name", "n"), description="", properties=n_data)
+                builder.add_node(gn)
+            for e_data in data.get("edges", []):
+                ge = GraphEdge(source_id=e_data["source_id"], target_id=e_data["target_id"], relation=e_data["relation"])
+                builder.add_edge(ge)
+                
+    nodes_dict = {k: v.model_dump() for k, v in builder.pydantic_model.nodes.items()}
+    edges_list = [e.model_dump() for e in builder.pydantic_model.edges]
+    _, _, ga_edges = get_runtime_projections(nodes_dict, edges_list)
+    return ga_edges, nodes_dict
+
+def demonstrate_ti_fe_noncommutation(ga_edges, nodes_dict):
+    layout, blv = cf.Cl(3)
+    
+    hid_to_pub = {hid: n.get("public_id", "").lower() for hid, n in nodes_dict.items()}
+    ti_edge, fe_edge = None, None
+    for e in ga_edges:
+        src = hid_to_pub.get(e.get("source_id", ""), "")
+        tgt = hid_to_pub.get(e.get("target_id", ""), "")
+        if "ti" in src or "ti" in tgt: ti_edge = e
+        if "fe" in src or "fe" in tgt: fe_edge = e
+            
+    if not ti_edge or not fe_edge:
+        print("Fallback to synthetic STEP_IN_STAGE edges for Ti and Fe.")
+        coeffs_ti = [0, 0.2, 0, 0.8, 0, 0, 0, 0]
+        coeffs_fe = [0, 0.8, 0.2, 0, 0, 0, 0, 0]
+        fallback_used = True
+    else:
+        coeffs_ti = ti_edge["ga_payload"]["coefficients"]
+        coeffs_fe = fe_edge["ga_payload"]["coefficients"]
+        fallback_used = False
+        
+    mv_ti = layout.MultiVector(coeffs_ti)
+    mv_fe = layout.MultiVector(coeffs_fe)
+    
+    commutator = mv_ti * mv_fe - mv_fe * mv_ti
+    norm_comm = float(abs(commutator))
+    
+    print("\n  STEP 0: GA Commutation Contract (Ti -> Fe)")
+    print(f"    Ti Edge Payload: {mv_ti}")
+    print(f"    Fe Edge Payload: {mv_fe}")
+    print(f"    [Ti, Fe] Commutator: {commutator}")
+    print(f"    Commutator Norm: {norm_comm:.4f}")
+    if norm_comm > 1e-6:
+        if fallback_used:
+            print("    [⚠ FALLBACK] Rigorous mathematical contract holds with synthetic edges.")
+            print("                 Cannot claim actual GA rigor until real ga_payloads are populated.")
+        else:
+            print("    ✅ SUCCESS: Rigorous mathematical contract using validated topology shows Ti -> Fe path is non-commutative.")
+            print("       A scalar path logic would incorrectly allow this sequence to commute.")
+    else:
+        print("    ❌ FAIL: The path is commutative. Contract broken.")
+        
+    return {"mv_ti": str(mv_ti), "mv_fe": str(mv_fe), "commutator": str(commutator), "norm": norm_comm, "fallback_used": fallback_used}
+
 def run_axis_7_12_audit():
     d = 8
     n_trials = 100
@@ -173,6 +255,10 @@ def run_axis_7_12_audit():
         ("A11=[A2,A6]", disp_ax2, disp_ax6),
         ("A12=[A1,A5]", disp_ax1, disp_ax5),
     ]
+    
+    # Step 0: Clifford check
+    ga_edges, nodes_dict = load_ga_edges_via_builder()
+    ti_fe_contract = demonstrate_ti_fe_noncommutation(ga_edges, nodes_dict)
     
     # Step 1: Check if each commutator produces non-trivial displacement
     print("\n  STEP 1: Commutator norms (is it even non-zero?)")
@@ -274,6 +360,7 @@ def run_axis_7_12_audit():
     results = {
         "schema": "AXIS_7_12_AUDIT_v1",
         "timestamp": datetime.now(UTC).isoformat() + "Z",
+        "ti_fe_contract": ti_fe_contract,
         "d": d, "n_trials": n_trials,
         "comm_norms": comm_norms,
         "comm_overlap": comm_overlap.tolist(),

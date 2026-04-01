@@ -1,30 +1,27 @@
 #!/usr/bin/env python3
 """
-Layer 4 Validation SIM — Engine Chirality (Axis 3: CANON = engine-family split; chirality is HYPOTHESIS)
-====================================================
-Type 1 vs Type 2 as complete cycles on actual Hopf geometry.
+Layer 4 Validation SIM — Engine Family Split
+============================================
+Type 1 vs Type 2 as complete cycles on the live engine core.
 
 From the source doc:
   CANON: Axis-3 = engine-family split (Type-1 vs Type-2).
   HYPOTHESIS: This split manifests as left/right Weyl spinor selection.
 
-  Type 1: Left Weyl — Fe/Ti dominant on base, Te/Fi on fiber
-    = left-handed Weyl spinor topology
-    = Fe/Ti acts on base loop, Te/Fi acts on fiber loop
+  Type 1: Fe/Ti dominant on base, Te/Fi on fiber
 
-  Type 2: Right Weyl — Te/Fi dominant on base, Fe/Ti on fiber
-    = right-handed Weyl spinor topology
-    = Te/Fi acts on base loop, Fe/Ti acts on fiber loop
+  Type 2: Te/Fi dominant on base, Fe/Ti on fiber
 
-Key Chiral Properties:
-  - Type 1 ρ_final ≠ Type 2 ρ_final
-  - SG/EE pattern matches canonical table
-  - Se and Ne are chiral mirrors (flip between types)
-  - Si and Ni are chiral invariants (same in both types)
+Conservative engine-family properties:
+  - Type 1 final sheet states differ from Type 2 on the same initial state
+  - Type 1 and Type 2 produce different negentropy trajectories
+  - Type 1 and Type 2 differ in runtime axis readouts
+  - Type 1 and Type 2 swap operator-family dominance across base and fiber
 
 Token: E_ENGINE_CHIRALITY_VALID
 """
 
+import copy
 import numpy as np
 import os
 import sys
@@ -37,85 +34,41 @@ from hopf_manifold import (
     hopf_map, torus_coordinates,
 )
 from geometric_operators import (
-    apply_Ti, apply_Fe, apply_Te, apply_Fi,
-    negentropy, delta_phi, trace_distance_2x2,
-    _ensure_valid_density, I2,
+    trace_distance_2x2,
 )
-from sim_L2_eight_stages import classify_stage, stage_invariants
+from engine_core import GeometricEngine, StageControls
 from proto_ratchet_sim_runner import EvidenceToken
 
 
-def run_type1_engine(rho: np.ndarray, n_cycles: int = 5) -> dict:
-    """Type 1: Left Weyl OUTER, Right Weyl INNER.
+def run_live_engine_pair(shared_state) -> tuple[dict, dict]:
+    """Run the actual engine core for both families from one shared initial state."""
+    engine1 = GeometricEngine(engine_type=1)
+    engine2 = GeometricEngine(engine_type=2)
+    state1 = engine1.run_cycle(copy.deepcopy(shared_state))
+    state2 = engine2.run_cycle(copy.deepcopy(shared_state))
+    axes1 = engine1.read_axes(state1)
+    axes2 = engine2.read_axes(state2)
 
-    Each cycle:
-      1. Inner loop (fiber): Te then Fi (Te/Fi exploration)
-      2. Outer loop (base): Fe then Ti (Fe/Ti constraint)
-
-    Left Weyl: Fe/Ti dominant on base (outer), Te/Fi on fiber (inner).
-    """
-    phi_history = [negentropy(rho)]
-    stage_deltas = {"Se": [], "Si": [], "Ne": [], "Ni": []}
-
-    for cycle in range(n_cycles):
-        # ── INNER LOOP (fiber): Te then Fi (explore+filter) ──
-        rho_before_inner = rho.copy()
-        rho = apply_Te(rho, polarity_up=True)   # Explore (fiber rotation)
-        rho = apply_Fi(rho, polarity_up=False)   # Select (gentle filter)
-
-        # Classify terrain of inner loop
-        bloch = density_to_bloch(rho)
-        eta_approx = np.arccos(np.clip(abs(bloch[2]), 0, 1))
-        inner_dphi = negentropy(rho) - negentropy(rho_before_inner)
-
-        # ── OUTER LOOP (base): Fe then Ti (dominant in Left Weyl) ──
-        rho_before_outer = rho.copy()
-        rho = apply_Fe(rho, polarity_up=True)    # Dissipate (base transport)
-        rho = apply_Ti(rho, polarity_up=True)    # Constrain (fiber projection)
-
-        outer_dphi = negentropy(rho) - negentropy(rho_before_outer)
-        phi_history.append(negentropy(rho))
-
-    return {
-        "rho_final": rho,
-        "phi_history": phi_history,
-        "total_dphi": phi_history[-1] - phi_history[0],
-    }
-
-
-def run_type2_engine(rho: np.ndarray, n_cycles: int = 5) -> dict:
-    """Type 2: Right Weyl — Te/Fi on base, Fe/Ti on fiber.
-
-    Each cycle:
-      1. Inner loop (fiber): Fe then Ti (Fe/Ti constraint)
-      2. Outer loop (base): Te then Fi (Te/Fi exploration)
-
-    Right Weyl: Te/Fi dominant on base (outer), Fe/Ti on fiber (inner).
-    """
-    phi_history = [negentropy(rho)]
-
-    for cycle in range(n_cycles):
-        # ── INNER LOOP (fiber): Fe then Ti (dominant in Right Weyl) ──
-        rho = apply_Fe(rho, polarity_up=True)    # Dissipate
-        rho = apply_Ti(rho, polarity_up=True)    # Constrain
-
-        # ── OUTER LOOP (base): Te then Fi (explore+filter) ──
-        rho = apply_Te(rho, polarity_up=True)    # Explore
-        rho = apply_Fi(rho, polarity_up=True)    # Select (strong filter)
-
-        phi_history.append(negentropy(rho))
-
-    return {
-        "rho_final": rho,
-        "phi_history": phi_history,
-        "total_dphi": phi_history[-1] - phi_history[0],
-    }
+    return (
+        {
+            "state": state1,
+            "axes": axes1,
+            "total_dphi_L": float(sum(h["dphi_L"] for h in state1.history)),
+            "total_dphi_R": float(sum(h["dphi_R"] for h in state1.history)),
+        },
+        {
+            "state": state2,
+            "axes": axes2,
+            "total_dphi_L": float(sum(h["dphi_L"] for h in state2.history)),
+            "total_dphi_R": float(sum(h["dphi_R"] for h in state2.history)),
+        },
+    )
 
 
 def run_L4_validation():
     print("=" * 72)
-    print("LAYER 4: ENGINE CHIRALITY VALIDATION (AXIS 3 — CANON: engine-family split)")
-    print("  'Type 1 vs Type 2 on actual Hopf geometry'")
+    print("LAYER 4: ENGINE FAMILY VALIDATION (AXIS 3 — CANON: engine-family split)")
+    print("  'Type 1 vs Type 2 on the live engine core'")
     print("=" * 72)
 
     rng = np.random.default_rng(42)
@@ -123,39 +76,38 @@ def run_L4_validation():
     all_pass = True
     results = {}
 
-    # ── Test 1: Type 1 ≠ Type 2 (chirality produces different output) ──
-    print("\n  [T1] Engine chirality: Type 1 ≠ Type 2...")
-    chirality_distinct = True
-    total_dist = 0.0
+    # ── Test 1: Type 1 ≠ Type 2 on same initial state ────────────
+    print("\n  [T1] Engine-family distinction on the live engine...")
+    family_distinct = True
+    total_dist_L = 0.0
+    total_dist_R = 0.0
     for _ in range(n_trials):
-        q = random_s3_point(rng)
-        rho = 0.7 * coherent_state_density(q) + 0.3 * I2 / 2
+        shared = GeometricEngine(engine_type=1).init_state(rng=rng)
+        r1, r2 = run_live_engine_pair(shared)
+        dist_L = trace_distance_2x2(r1["state"].rho_L, r2["state"].rho_L)
+        dist_R = trace_distance_2x2(r1["state"].rho_R, r2["state"].rho_R)
+        total_dist_L += dist_L
+        total_dist_R += dist_R
+        if dist_L < 1e-4 and dist_R < 1e-4:
+            family_distinct = False
 
-        r1 = run_type1_engine(rho.copy(), n_cycles=5)
-        r2 = run_type2_engine(rho.copy(), n_cycles=5)
-
-        dist = trace_distance_2x2(r1["rho_final"], r2["rho_final"])
-        total_dist += dist
-        if dist < 1e-8:
-            chirality_distinct = False
-
-    avg_dist = total_dist / n_trials
-    results["chirality_distinct"] = bool(chirality_distinct)
-    results["avg_chirality_distance"] = float(avg_dist)
-    print(f"    {'✓' if chirality_distinct else '✗'} Type 1 ≠ Type 2: avg trace distance = {avg_dist:.4f}")
-    all_pass = all_pass and chirality_distinct
+    avg_dist_L = total_dist_L / n_trials
+    avg_dist_R = total_dist_R / n_trials
+    results["family_distinct"] = bool(family_distinct)
+    results["avg_left_sheet_distance"] = float(avg_dist_L)
+    results["avg_right_sheet_distance"] = float(avg_dist_R)
+    print(f"    {'✓' if family_distinct else '✗'} Left-sheet avg distance = {avg_dist_L:.4f}")
+    print(f"      Right-sheet avg distance = {avg_dist_R:.4f}")
+    all_pass = all_pass and family_distinct
 
     # ── Test 2: Both engines are CPTP (output is valid density) ──
     print("\n  [T2] Engine output validity...")
     output_valid = True
     for _ in range(n_trials):
-        q = random_s3_point(rng)
-        rho = 0.6 * coherent_state_density(q) + 0.4 * I2 / 2
+        shared = GeometricEngine(engine_type=1).init_state(rng=rng)
+        r1, r2 = run_live_engine_pair(shared)
 
-        r1 = run_type1_engine(rho.copy())
-        r2 = run_type2_engine(rho.copy())
-
-        for rho_out in [r1["rho_final"], r2["rho_final"]]:
+        for rho_out in [r1["state"].rho_L, r1["state"].rho_R, r2["state"].rho_L, r2["state"].rho_R]:
             evals = np.linalg.eigvalsh(rho_out)
             if np.min(evals) < -1e-8 or abs(np.real(np.trace(rho_out)) - 1.0) > 1e-8:
                 output_valid = False
@@ -164,73 +116,65 @@ def run_L4_validation():
     all_pass = all_pass and output_valid
 
     # ── Test 3: Negentropy evolution differs between types ───────
-    print("\n  [T3] Negentropy trajectory divergence...")
-    q = random_s3_point(rng)
-    rho = 0.5 * coherent_state_density(q) + 0.5 * I2 / 2
-    r1 = run_type1_engine(rho.copy(), n_cycles=10)
-    r2 = run_type2_engine(rho.copy(), n_cycles=10)
-
-    phi_divergence = abs(r1["total_dphi"] - r2["total_dphi"])
-    diverges = phi_divergence > 1e-4
-    results["phi_divergence"] = float(phi_divergence)
-    results["type1_total_dphi"] = float(r1["total_dphi"])
-    results["type2_total_dphi"] = float(r2["total_dphi"])
-    print(f"    Type 1 total ΔΦ: {r1['total_dphi']:+.6f}")
-    print(f"    Type 2 total ΔΦ: {r2['total_dphi']:+.6f}")
-    print(f"    {'✓' if diverges else '✗'} Divergence: {phi_divergence:.6f}")
+    print("\n  [T3] Sheet negentropy trajectory divergence...")
+    shared = GeometricEngine(engine_type=1).init_state(rng=rng)
+    r1, r2 = run_live_engine_pair(shared)
+    dphi_L_divergence = abs(r1["total_dphi_L"] - r2["total_dphi_L"])
+    dphi_R_divergence = abs(r1["total_dphi_R"] - r2["total_dphi_R"])
+    diverges = dphi_L_divergence > 1e-4 and dphi_R_divergence > 1e-4
+    results["dphi_L_divergence"] = float(dphi_L_divergence)
+    results["dphi_R_divergence"] = float(dphi_R_divergence)
+    results["type1_total_dphi_L"] = float(r1["total_dphi_L"])
+    results["type2_total_dphi_L"] = float(r2["total_dphi_L"])
+    results["type1_total_dphi_R"] = float(r1["total_dphi_R"])
+    results["type2_total_dphi_R"] = float(r2["total_dphi_R"])
+    print(f"    Type 1 total ΔΦ_L: {r1['total_dphi_L']:+.6f}")
+    print(f"    Type 2 total ΔΦ_L: {r2['total_dphi_L']:+.6f}")
+    print(f"    Type 1 total ΔΦ_R: {r1['total_dphi_R']:+.6f}")
+    print(f"    Type 2 total ΔΦ_R: {r2['total_dphi_R']:+.6f}")
+    print(f"    {'✓' if diverges else '✗'} Left/right sheet trajectories diverge across engine families")
     all_pass = all_pass and diverges
 
-    # ── Test 4: Chiral mirror test (Se/Ne flip, Si/Ni invariant) ─
-    print("\n  [T4] Chiral mirror test...")
-    # Run both engines from multiple initial states and check which
-    # topological stages each engine traverses differently
-    n_mirror = 30
-    t1_bloch_z = []
-    t2_bloch_z = []
-    for _ in range(n_mirror):
-        q = random_s3_point(rng)
-        rho = 0.6 * coherent_state_density(q) + 0.4 * I2 / 2
+    # ── Test 4: Runtime axis readouts differ between types ───────
+    print("\n  [T4] Runtime axis-readout divergence...")
+    ga4_diff = abs(r1["axes"]["GA4_variance"] - r2["axes"]["GA4_variance"])
+    ga5_diff = abs(r1["axes"]["GA5_coupling"] - r2["axes"]["GA5_coupling"])
+    axes_diverge = ga4_diff > 1e-4 and ga5_diff > 1e-4
+    results["ga4_difference"] = float(ga4_diff)
+    results["ga5_difference"] = float(ga5_diff)
+    results["axes_diverge"] = bool(axes_diverge)
+    print(f"    GA4 difference: {ga4_diff:.6f}")
+    print(f"    GA5 difference: {ga5_diff:.6f}")
+    print(f"    {'✓' if axes_diverge else '✗'} Runtime axis readouts differ across engine families")
+    all_pass = all_pass and axes_diverge
 
-        r1 = run_type1_engine(rho.copy(), n_cycles=3)
-        r2 = run_type2_engine(rho.copy(), n_cycles=3)
+    # ── Test 5: Dominance allocation swaps across base/fiber ─────
+    print("\n  [T5] Operator-family dominance swap...")
+    controls = StageControls(piston=0.5, lever=True)
+    engine1 = GeometricEngine(engine_type=1)
+    engine2 = GeometricEngine(engine_type=2)
+    fiber = next(stage for stage in engine1.stages if stage["name"] == "Se_f")
+    base = next(stage for stage in engine1.stages if stage["name"] == "Se_b")
 
-        b1 = density_to_bloch(r1["rho_final"])
-        b2 = density_to_bloch(r2["rho_final"])
-        t1_bloch_z.append(b1[2])
-        t2_bloch_z.append(b2[2])
+    e1_fiber = {op: engine1._operator_strength(fiber, op, controls, ga0_level=0.5) for op in ("Ti", "Fe", "Te", "Fi")}
+    e1_base = {op: engine1._operator_strength(base, op, controls, ga0_level=0.5) for op in ("Ti", "Fe", "Te", "Fi")}
+    e2_fiber = {op: engine2._operator_strength(fiber, op, controls, ga0_level=0.5) for op in ("Ti", "Fe", "Te", "Fi")}
+    e2_base = {op: engine2._operator_strength(base, op, controls, ga0_level=0.5) for op in ("Ti", "Fe", "Te", "Fi")}
 
-    t1_bloch_z = np.array(t1_bloch_z)
-    t2_bloch_z = np.array(t2_bloch_z)
-
-    # Type 1 (left Weyl) should drive toward constraint (higher z)
-    # Type 2 (right Weyl) should drive toward exploration (different z)
-    z_difference = abs(np.mean(t1_bloch_z) - np.mean(t2_bloch_z))
-    mirror_detected = z_difference > 0.01
-    results["avg_t1_bloch_z"] = float(np.mean(t1_bloch_z))
-    results["avg_t2_bloch_z"] = float(np.mean(t2_bloch_z))
-    results["z_mirror_diff"] = float(z_difference)
-    results["mirror_detected"] = bool(mirror_detected)
-    print(f"    Type 1 avg Bloch z: {np.mean(t1_bloch_z):+.4f}")
-    print(f"    Type 2 avg Bloch z: {np.mean(t2_bloch_z):+.4f}")
-    print(f"    {'✓' if mirror_detected else '✗'} Chiral mirror difference: {z_difference:.4f}")
-    all_pass = all_pass and mirror_detected
-
-    # ── Test 5: Chirality reversal = swapping inner/outer ────────
-    print("\n  [T5] Chirality = inner/outer swap...")
-    # Type 1 with swapped loops should equal Type 2
-    q = random_s3_point(rng)
-    rho = 0.5 * coherent_state_density(q) + 0.5 * I2 / 2
-    r1 = run_type1_engine(rho.copy(), n_cycles=5)
-    r2 = run_type2_engine(rho.copy(), n_cycles=5)
-
-    # They should be different (chirality is not trivial)
-    swap_dist = trace_distance_2x2(r1["rho_final"], r2["rho_final"])
-    swap_nontrivial = swap_dist > 1e-4
-    results["swap_distance"] = float(swap_dist)
-    results["swap_nontrivial"] = bool(swap_nontrivial)
-    print(f"    Swap distance: {swap_dist:.6f}")
-    print(f"    {'✓' if swap_nontrivial else '✗'} Swapping inner/outer produces different engine")
-    all_pass = all_pass and swap_nontrivial
+    type1_swap = e1_base["Ti"] > e1_base["Te"] and e1_base["Fe"] > e1_base["Fi"] and e1_fiber["Te"] > e1_fiber["Ti"] and e1_fiber["Fi"] > e1_fiber["Fe"]
+    type2_swap = e2_base["Te"] > e2_base["Ti"] and e2_base["Fi"] > e2_base["Fe"] and e2_fiber["Ti"] > e2_fiber["Te"] and e2_fiber["Fe"] > e2_fiber["Fi"]
+    dominance_swap = type1_swap and type2_swap
+    results["type1_base_strengths"] = e1_base
+    results["type1_fiber_strengths"] = e1_fiber
+    results["type2_base_strengths"] = e2_base
+    results["type2_fiber_strengths"] = e2_fiber
+    results["dominance_swap"] = bool(dominance_swap)
+    print(f"    Type 1 base strengths: {e1_base}")
+    print(f"    Type 1 fiber strengths: {e1_fiber}")
+    print(f"    Type 2 base strengths: {e2_base}")
+    print(f"    Type 2 fiber strengths: {e2_fiber}")
+    print(f"    {'✓' if dominance_swap else '✗'} Base/fiber dominance swaps between engine families")
+    all_pass = all_pass and dominance_swap
 
     # ── Verdict ───────────────────────────────────────────────────
     print(f"\n{'=' * 72}")
@@ -241,7 +185,7 @@ def run_L4_validation():
     if all_pass:
         tokens.append(EvidenceToken(
             "E_ENGINE_CHIRALITY_VALID", "S_L4_ENGINE_CHIRALITY",
-            "PASS", float(avg_dist)
+            "PASS", float(avg_dist_L + avg_dist_R)
         ))
     else:
         failed = [k for k, v in results.items() if v is False]

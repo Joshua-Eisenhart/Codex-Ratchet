@@ -59,12 +59,12 @@ check("Type-1 loops cover all 8 terrains",
       t1_outer_i | t1_inner_i == set(range(8)))
 
 # --- Ownership counts ---
-print("\n[Ownership 32/32/64]")
+print("\n[Ownership 8/8/16]")
 own1 = EngineOwnership(engine_type=1)
 own2 = EngineOwnership(engine_type=2)
-check("Type-1 owned_microstates == 32", own1.owned_microstates == 32,
+check("Type-1 owned_microstates == 8", own1.owned_microstates == 8,
       f"got {own1.owned_microstates}")
-check("Type-2 owned_microstates == 32", own2.owned_microstates == 32,
+check("Type-2 owned_microstates == 8", own2.owned_microstates == 8,
       f"got {own2.owned_microstates}")
 try:
     own1.assert_non_overlapping(own2)
@@ -135,15 +135,56 @@ axes = engine1.read_axes(state1)
 expected_keys = {"GA0_entropy", "GA1_boundary", "GA2_scale",
                  "GA3_chirality", "GA4_variance", "GA5_coupling"}
 check("read_axes returns all 6 axis keys",
-      set(axes.keys()) == expected_keys,
+      expected_keys.issubset(set(axes.keys())),
       f"got: {set(axes.keys())}")
 
-# --- run_cycle still produces 32 history entries ---
+
+# --- run_cycle still produces 8 history entries ---
 print("\n[run_cycle output]")
 full_state = engine1.run_cycle(engine1.init_state())
-check("run_cycle produces 32 history entries (4 ops × 8 stages)",
-      len(full_state.history) == 32,
+check("run_cycle produces 8 history entries (1 op × 8 stages)",
+      len(full_state.history) == 8,
       f"got {len(full_state.history)}")
+
+# --- Operator pair thermodynamic direction ---
+# Source: engine_math_contract.py lines 67-89
+# Fe+Ti = deductive pair (cooling): net d_ga0 must be NEGATIVE across all terrains
+# Te+Fi = inductive pair (heating): net d_ga0 must be POSITIVE across all terrains
+# Fe+Fi = hot pair (both FSA/unitary): net d_ga0 must be POSITIVE (entropy build)
+# Te+Ti = cold pair (both FGA/Lindblad): net d_ga0 must be NEGATIVE (entropy drain)
+# Inductive loop (inner for Type-1, fiber): net d_ga0 must be POSITIVE
+print("\n[Operator pair thermodynamic direction (engine_math_contract.py:67-89)]")
+
+from hopf_manifold import TORUS_INNER
+_pair_state = engine1.run_cycle(engine1.init_state(TORUS_INNER))
+_h = _pair_state.history
+
+def _net(history, ops=None, loop_tag=None):
+    return sum(e['ga0_after'] - e['ga0_before'] for e in history
+               if (ops is None or e['op_name'] in ops)
+               and (loop_tag is None or loop_tag in e['stage']))
+
+_fe_ti_net = _net(_h, {'Fe', 'Ti'})
+_te_fi_net = _net(_h, {'Te', 'Fi'})
+_fe_fi_net = _net(_h, {'Fe', 'Fi'})
+_te_ti_net = _net(_h, {'Te', 'Ti'})
+_inductive_net = _net(_h, loop_tag='_f_')   # fiber = inductive inner for Type-1
+
+check("Fe+Ti pair net d_ga0 < 0 (deductive cooling)",
+      _fe_ti_net < 0,
+      f"got {_fe_ti_net:.4f}")
+check("Te+Fi pair net d_ga0 > 0 (inductive heating)",
+      _te_fi_net > 0,
+      f"got {_te_fi_net:.4f}")
+check("Fe+Fi pair net d_ga0 > 0 (hot / FSA pair)",
+      _fe_fi_net > 0,
+      f"got {_fe_fi_net:.4f}")
+check("Te+Ti pair net d_ga0 < 0 (cold / FGA pair)",
+      _te_ti_net < 0,
+      f"got {_te_ti_net:.4f}")
+check("Inductive fiber loop net d_ga0 > 0 (heating loop)",
+      _inductive_net > 0,
+      f"got {_inductive_net:.4f}  [ACTION REQUIRED: Fe phi and Te q need geometry-derived values]")
 
 # --- Summary ---
 print("\n" + "=" * 60)

@@ -1,6 +1,6 @@
 {
   "schema": "QIT_ENGINE_GRAPH_v2",
-  "generated_utc": "2026-03-28T22:46:37Z",
+  "generated_utc": "2026-04-01T11:00:11Z",
   "owner_layer": "QIT_ENGINE",
   "materialized": true,
   "build_status": "MATERIALIZED",
@@ -9,12 +9,12 @@
     "owner_schemas": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_owner_schemas.py"
   },
   "selection_contract": {
-    "included_node_rule": "Materialize only the explicit QIT owner structures enumerated in this builder: engine types, macro-stages, fixed operators, torus identities, proven axes, negative witnesses, and 64 subcycle steps. Do not infer runtime state, history/evidence, Weyl branches, or sidecar payloads.",
+    "included_node_rule": "Materialize only the explicit QIT owner structures enumerated in this builder: engine types, macro-stages, fixed operators, torus identities, Weyl branches, proven axes, negative witnesses, and 64 subcycle steps. Do not infer runtime state, history/evidence, or sidecar payloads.",
     "edge_rule": "Materialize only the explicitly constructed edges in this builder: structural topology edges between emitted owner nodes plus bounded NEGATIVE_PROVES witness edges. Do not infer extra relations from simulations, sidecars, or documentation.",
     "validation_gate": "Each emitted node must pass its owner-schema Pydantic model before the graph is materialized. Validation failures fail the build rather than emitting partial owner truth.",
     "bridge_policy": "public_id/public_id_index are stable join handles only. Cross-layer integration requires explicit bridge admission outside this owner builder."
   },
-  "description": "Owner graph encoding of the Geometric Engine's structural topology plus bounded negative-witness nodes/edges: 8 macro-stages \u00d7 2 engine types, 4 fixed subcycle operators, 64 subcycle steps (16\u00d74 runtime grain), 3 nested Hopf tori, 7 proven axes, and 9 negative witnesses. All nodes carry stable public_id for cross-layer joining.",
+  "description": "Owner graph encoding of the Geometric Engine's structural topology plus bounded negative-witness nodes/edges: 8 macro-stages \u00d7 2 engine types, 4 fixed subcycle operators, 64 subcycle steps (16\u00d74 runtime grain), 3 nested Hopf tori, 2 Weyl branches, 7 proven axes, and 9 negative witnesses. All nodes carry stable public_id for cross-layer joining.",
   "nodes": {
     "a75ac4befa5e56b2": {
       "public_id": "qit::ENGINE::type1",
@@ -364,6 +364,24 @@
       "label": "outer",
       "nesting_rank": 2,
       "description": "Outermost torus \u2014 lowest curvature"
+    },
+    "e4540b8ff8445ba1": {
+      "public_id": "qit::WEYL_BRANCH::left",
+      "node_type": "WEYL_BRANCH",
+      "label": "left",
+      "description": "Left Weyl spinor branch carried by the Type-1 engine family.",
+      "engine_type": "type1",
+      "spinor_type": "L",
+      "hamiltonian_sign": 1
+    },
+    "e7c59b9f74128ec7": {
+      "public_id": "qit::WEYL_BRANCH::right",
+      "node_type": "WEYL_BRANCH",
+      "label": "right",
+      "description": "Right Weyl spinor branch carried by the Type-2 engine family.",
+      "engine_type": "type2",
+      "spinor_type": "R",
+      "hamiltonian_sign": -1
     },
     "1504af1f377932d9": {
       "public_id": "qit::AXIS::axis_0",
@@ -1106,6 +1124,30 @@
     }
   },
   "edges": [
+    {
+      "edge_id": "90c76039f71c7b6c3df1",
+      "source_id": "a75ac4befa5e56b2",
+      "target_id": "e4540b8ff8445ba1",
+      "source_public_id": "qit::ENGINE::type1",
+      "target_public_id": "qit::WEYL_BRANCH::left",
+      "relation": "ENGINE_REALIZES_WEYL_BRANCH",
+      "attributes": {
+        "engine_type": "type1",
+        "branch": "left"
+      }
+    },
+    {
+      "edge_id": "07579b905fbfe0c79acc",
+      "source_id": "01df452782c169e2",
+      "target_id": "e7c59b9f74128ec7",
+      "source_public_id": "qit::ENGINE::type2",
+      "target_public_id": "qit::WEYL_BRANCH::right",
+      "relation": "ENGINE_REALIZES_WEYL_BRANCH",
+      "attributes": {
+        "engine_type": "type2",
+        "branch": "right"
+      }
+    },
     {
       "edge_id": "786e63e6fb5f0976d1e1",
       "source_id": "f09832c90802915c",
@@ -2841,6 +2883,18 @@
       }
     },
     {
+      "edge_id": "9a69bfcd85118ab63cfb",
+      "source_id": "14698c7da0c4fe88",
+      "target_id": "e8b177df8c5c4caf",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
       "edge_id": "f08e2954e698cc996ae0",
       "source_id": "e8b177df8c5c4caf",
       "target_id": "ce7e4f41e3f95b8c",
@@ -2871,6 +2925,18 @@
       "relation": "STEP_SEQUENCE",
       "attributes": {
         "position": 2
+      }
+    },
+    {
+      "edge_id": "bfd0f1621615f9afccbd",
+      "source_id": "e0a24dedd299375e",
+      "target_id": "56d6b760e03ec9c9",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_f_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
       }
     },
     {
@@ -2907,6 +2973,18 @@
       }
     },
     {
+      "edge_id": "673a84ff4ec2b26b4ca0",
+      "source_id": "362d419b183d7a4c",
+      "target_id": "37f6a5d1cffecf9a",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_f_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
       "edge_id": "d4b6964c3d6b7e25db5d",
       "source_id": "37f6a5d1cffecf9a",
       "target_id": "289bbd9e8a2e620c",
@@ -2937,6 +3015,18 @@
       "relation": "STEP_SEQUENCE",
       "attributes": {
         "position": 2
+      }
+    },
+    {
+      "edge_id": "99ee714fcbf2276b6565",
+      "source_id": "6eb49efdc3b158ab",
+      "target_id": "34490aa94af650b7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_f_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
       }
     },
     {
@@ -2973,6 +3063,18 @@
       }
     },
     {
+      "edge_id": "d5a8e037a85e560e987c",
+      "source_id": "26a04171bf592b89",
+      "target_id": "cbad16977652bcf1",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Se_b_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
       "edge_id": "a4b78cc74fa8260f18ff",
       "source_id": "cbad16977652bcf1",
       "target_id": "c0eac1d7ec75cf24",
@@ -3003,6 +3105,18 @@
       "relation": "STEP_SEQUENCE",
       "attributes": {
         "position": 2
+      }
+    },
+    {
+      "edge_id": "429c8ac051b5c7463eb7",
+      "source_id": "2d596e2426c1efbb",
+      "target_id": "20ddc8e1cf409639",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ne_b_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
       }
     },
     {
@@ -3039,6 +3153,18 @@
       }
     },
     {
+      "edge_id": "96c8b9bc0e0d7796c941",
+      "source_id": "6014f86cab364932",
+      "target_id": "657b2289254b9a93",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Ni_b_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
       "edge_id": "5f3fbbc2d72a896f48e7",
       "source_id": "657b2289254b9a93",
       "target_id": "82517e7bd9c3558e",
@@ -3069,6 +3195,18 @@
       "relation": "STEP_SEQUENCE",
       "attributes": {
         "position": 2
+      }
+    },
+    {
+      "edge_id": "db8d1b60986b457eec87",
+      "source_id": "868260ae099fe531",
+      "target_id": "7f7d7c5e8dd38601",
+      "source_public_id": "qit::SUBCYCLE_STEP::type1_Si_b_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type1_Se_f_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
       }
     },
     {
@@ -3105,6 +3243,18 @@
       }
     },
     {
+      "edge_id": "112f8361c4aa8b691338",
+      "source_id": "3e66c763705ae01f",
+      "target_id": "bdff3f657435da4f",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
       "edge_id": "ca6b35b3630ac8636d65",
       "source_id": "bdff3f657435da4f",
       "target_id": "3de7f6c55e6683d3",
@@ -3135,6 +3285,18 @@
       "relation": "STEP_SEQUENCE",
       "attributes": {
         "position": 2
+      }
+    },
+    {
+      "edge_id": "3904e82057eba28a57df",
+      "source_id": "8bbfd38b2a85feb0",
+      "target_id": "0c05dd931e7dbf20",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_f_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
       }
     },
     {
@@ -3171,6 +3333,18 @@
       }
     },
     {
+      "edge_id": "d5a6d720db6373c16278",
+      "source_id": "d28602d1b99cf592",
+      "target_id": "4842995a13860036",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_f_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
       "edge_id": "00fd9ff933f6c59aa1f0",
       "source_id": "4842995a13860036",
       "target_id": "76944af8e803625b",
@@ -3201,6 +3375,18 @@
       "relation": "STEP_SEQUENCE",
       "attributes": {
         "position": 2
+      }
+    },
+    {
+      "edge_id": "91240c5a5fa196bf154f",
+      "source_id": "55291f7b1de030ef",
+      "target_id": "46347dee9d3b2bb7",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_f_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
       }
     },
     {
@@ -3237,6 +3423,18 @@
       }
     },
     {
+      "edge_id": "204a59504f86a130e2b9",
+      "source_id": "66a077c41296c568",
+      "target_id": "e177dcf11934e238",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Se_b_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
       "edge_id": "bbee69f9727fbbd60eac",
       "source_id": "e177dcf11934e238",
       "target_id": "b9e15ea0979dcca9",
@@ -3267,6 +3465,18 @@
       "relation": "STEP_SEQUENCE",
       "attributes": {
         "position": 2
+      }
+    },
+    {
+      "edge_id": "8e13839029b72405028e",
+      "source_id": "bfa209615a805c12",
+      "target_id": "034b16d45773ed92",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Si_b_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
       }
     },
     {
@@ -3303,6 +3513,18 @@
       }
     },
     {
+      "edge_id": "1ab356c89086f511e936",
+      "source_id": "ac4070c285df9f71",
+      "target_id": "294bf662f0438fef",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ni_b_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
+      }
+    },
+    {
       "edge_id": "2b957c9c8d27bce95518",
       "source_id": "294bf662f0438fef",
       "target_id": "c67747ebf582fd14",
@@ -3333,6 +3555,18 @@
       "relation": "STEP_SEQUENCE",
       "attributes": {
         "position": 2
+      }
+    },
+    {
+      "edge_id": "c28ed3ee9fe8e9f53980",
+      "source_id": "04b1c1831899ba22",
+      "target_id": "2d3aae1128c5bdc6",
+      "source_public_id": "qit::SUBCYCLE_STEP::type2_Ne_b_Fi",
+      "target_public_id": "qit::SUBCYCLE_STEP::type2_Se_f_Ti",
+      "relation": "STEP_SEQUENCE",
+      "attributes": {
+        "position": 3,
+        "boundary_transition": true
       }
     },
     {
@@ -4032,6 +4266,8 @@
     "qit::TORUS::inner": "19b85b6cae8c1a90",
     "qit::TORUS::clifford": "e48112a947938934",
     "qit::TORUS::outer": "b03a3a6e42889795",
+    "qit::WEYL_BRANCH::left": "e4540b8ff8445ba1",
+    "qit::WEYL_BRANCH::right": "e7c59b9f74128ec7",
     "qit::AXIS::axis_0": "1504af1f377932d9",
     "qit::AXIS::axis_1": "d5f161a324a94f20",
     "qit::AXIS::axis_2": "2cee085667f098e2",
@@ -4114,18 +4350,20 @@
     "qit::SUBCYCLE_STEP::type2_Ne_b_Fi": "04b1c1831899ba22"
   },
   "summary": {
-    "node_count": 105,
-    "edge_count": 272,
+    "node_count": 107,
+    "edge_count": 290,
     "node_types": {
       "ENGINE": 2,
       "MACRO_STAGE": 16,
       "OPERATOR": 4,
       "TORUS": 3,
+      "WEYL_BRANCH": 2,
       "AXIS": 7,
       "NEG_WITNESS": 9,
       "SUBCYCLE_STEP": 64
     },
     "relation_types": {
+      "ENGINE_REALIZES_WEYL_BRANCH": 2,
       "SUBCYCLE_ORDER": 4,
       "STAGE_SEQUENCE": 16,
       "TORUS_NESTING": 2,
@@ -4133,12 +4371,12 @@
       "CHIRALITY_COUPLING": 1,
       "STEP_IN_STAGE": 64,
       "STEP_USES_OPERATOR": 64,
-      "STEP_SEQUENCE": 48,
+      "STEP_SEQUENCE": 64,
       "STAGE_ON_TORUS": 32,
       "AXIS_GOVERNS": 14,
       "NEGATIVE_PROVES": 11
     },
     "validation_errors": []
   },
-  "content_hash": "585499a4d13298615601af806cf9c0d01f56ef6e47879c5c82abf39227ef373a"
+  "content_hash": "965d5add46bbe8bf747763faea7c432157f14278644e9644bd726ca2928c0105"
 }

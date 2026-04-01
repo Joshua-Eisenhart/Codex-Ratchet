@@ -170,7 +170,7 @@ def run_entropy_form_negative_battery():
     basis_shifts = []
     for _ in range(32):
         rho = random_density(rng)
-        rho_rot = apply_Te(rho, polarity_up=True, strength=1.0, angle=0.73)
+        rho_rot = apply_Fi(rho, polarity_up=True, strength=1.0, theta=0.73)
         s_vn_before = von_neumann_entropy_2x2(rho)
         s_vn_after = von_neumann_entropy_2x2(rho_rot)
         s_diag_before = shannon_diag_entropy(rho)
@@ -216,10 +216,8 @@ def run_entropy_form_negative_battery():
 
     # ── T4: Pure-state Fi remains entropy-blind across spectral forms ──
     print("\n  [T4] Pure-state Fi blind spot across spectral entropy forms...")
-    eng = GeometricEngine(engine_type=1)
-    state = eng.init_state(rng=np.random.default_rng(42))
-    rho0 = state.rho_L.copy()
-    rho1 = apply_Fi(rho0, polarity_up=True, strength=1.0)
+    rho0 = np.array([[1.0, 0.0], [0.0, 0.0]], dtype=complex)
+    rho1 = apply_Fi(rho0, polarity_up=True, strength=1.0, theta=0.73)
     vn_delta = abs(von_neumann_entropy_2x2(rho1) - von_neumann_entropy_2x2(rho0))
     lin_delta = abs(linear_entropy(rho1) - linear_entropy(rho0))
     renyi_delta = abs(renyi2_entropy(rho1) - renyi2_entropy(rho0))

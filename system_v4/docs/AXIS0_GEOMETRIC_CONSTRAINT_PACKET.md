@@ -1,11 +1,13 @@
 # Axis 0 Geometric Constraint Packet
 
 **Date:** 2026-03-29
-**Status:** Working packet. The geometry spine is strong. The simple `Ax0` kernel is strong. The bridge from geometry/history into a cut state is still open.
+**Status:** Working packet. The geometry spine is strong. The simple `Axis 0` kernel is strong. The bridge from geometry/history into a cut state is still open.
 
 ---
 
 ## 1. Direct Geometry Spine
+
+- [AXIS0_ACTIVE_PACKET_INDEX.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_ACTIVE_PACKET_INDEX.md) is the compact entrypoint for the active `Axis 0` controller, owner, support, and geometry-side packet stack.
 
 This is the clean geometry that is actually source-backed by the screenshot packet and probe code.
 
@@ -33,7 +35,7 @@ This part is already executable and numerically validated.
 
 ## 2. What Axis 0 Needs
 
-`Ax0` is not a terrain law and not an operator map. It is an external scalar on a cut state.
+`Axis 0` is not a terrain law and not an operator map. It is an external scalar on a cut state.
 
 The clean shape is:
 
@@ -49,7 +51,7 @@ So the real unresolved object is:
 
 `Xi : geometry/history -> rho_AB in D(H_A tensor H_B)`
 
-without that bridge, `Ax0` is not finished.
+without that bridge, `Axis 0` is not finished.
 
 ---
 
@@ -65,8 +67,8 @@ These are the live kernel candidates, ranked by current support.
 
 Current practical read:
 
-- if `Ax0` needs a signed battery-like quantity, `-S(A|B)` is the best simple kernel
-- if `Ax0` is global over shell cuts, the weighted coherent-information sum is the best source-backed form
+- if `Axis 0` needs a signed battery-like quantity, `-S(A|B)` is the best simple kernel
+- if `Axis 0` is global over shell cuts, the weighted coherent-information sum is the best source-backed form
 - `I(A:B)` is still useful, but as a companion diagnostic rather than the whole kernel
 
 ---
@@ -86,7 +88,7 @@ Why `Xi_LR` is not locked:
 
 - the screenshot note says a coupled left/right state is one possible input
 - local runtime/probe surfaces already use `rho_LR` for a different inter-chirality block meaning
-- an uncoupled pair `rho_L tensor rho_R` gives trivial correlation, so it does not solve `Ax0`
+- an uncoupled pair `rho_L tensor rho_R` gives trivial correlation, so it does not solve `Axis 0`
 
 So the clean rule is:
 
@@ -110,7 +112,7 @@ Fresh result:
 What it supports:
 
 - `I(A:B)` cannot supply the negative branch by itself
-- `-S(A|B)` is the clean simple signed primitive for `Ax0`
+- `-S(A|B)` is the clean simple signed primitive for `Axis 0`
 
 Artifacts:
 
@@ -127,7 +129,7 @@ Fresh result:
 
 What it supports:
 
-- shell-cut and history-like `Ax0` forms stay live
+- shell-cut and history-like `Axis 0` forms stay live
 - coarse-graining / shell accumulation is compatible with the weighted coherent-information family
 
 Artifacts:
@@ -161,14 +163,14 @@ Artifacts:
 
 Fresh result:
 
-- `torus_transport x Ax0:coarse = 0.7071` on inner and outer torus strata
-- `torus_transport x Ax0:coarse = 0.0000` on random `S^3`, Clifford torus, and mixed states
+- `torus_transport x Axis 0:coarse = 0.7071` on inner and outer torus strata
+- `torus_transport x Axis 0:coarse = 0.0000` on random `S^3`, Clifford torus, and mixed states
 - `fiber_phase x Ax3:chirality = 0.0000`
 
 What it supports:
 
-- torus transport can couple to a coarse `Ax0` proxy on some torus strata
-- torus transport is not the universal `Ax0` kernel
+- torus transport can couple to a coarse `Axis 0` proxy on some torus strata
+- torus transport is not the universal `Axis 0` kernel
 - coarse-graining proxies and direct geometry are not identical objects
 
 Artifacts:
@@ -207,7 +209,7 @@ Fresh result:
 What it supports:
 
 - the current runtime `ga0` control is load-bearing
-- this still does not prove that the runtime control variable is the same object as the clean cut-state `Ax0` kernel
+- this still does not prove that the runtime control variable is the same object as the clean cut-state `Axis 0` kernel
 
 Artifacts:
 
@@ -221,17 +223,20 @@ Artifacts:
 | Piece | Best current read |
 |---|---|
 | direct manifold | `S^3 -> T_eta -> gamma_fiber / gamma_base -> rho(psi)` |
-| simple `Ax0` kernel | `Phi_0(rho_AB) = -S(A|B)_rho = I_c(A>B)_rho` |
-| strongest global `Ax0` form | `sum_r w_r I_c(A_r > B_r)_rho` |
-| strongest bridge family | shell-cut or history-window |
+| simple `Axis 0` kernel | `Phi_0(rho_AB) = -S(A|B)_rho = I_c(A>B)_rho` |
+| strongest global `Axis 0` form | `sum_r w_r I_c(A_r > B_r)_rho` |
+| strongest live executable bridge family | history-window |
+| strongest exploratory constructive bridge family | cross-temporal chiral (Weyl/chirality-weighted) bridge |
+| strongest live pointwise discriminator | point-reference |
 | safest status for `rho_LR` bridge | possible but not locked |
-| runtime `ga0` variable | load-bearing proxy, not yet the finished `Ax0` kernel |
+| runtime `ga0` variable | load-bearing proxy, not yet the finished `Axis 0` kernel |
+| fixed-marginal preserving lane | certified near-zero on the current carrier |
 
 ---
 
 ## 7. What Is Still Missing
 
-`Ax0` is still unfinished because these pieces are not closed:
+`Axis 0` is still unfinished because these pieces are not closed:
 
 1. the exact cut family `A|B`
 2. the exact bridge `Xi`
@@ -241,8 +246,11 @@ Artifacts:
 So the honest status is:
 
 - geometry spine: strong
-- simple `Ax0` kernel: strong
+- simple `Axis 0` kernel: strong
 - shell-cut global form: strong
+- point-reference: strongest live pointwise discriminator
+- cross-temporal bridge family: strongest exploratory constructive candidate, not closure
+- fixed-marginal preserving lane: near-zero on the current carrier
 - bridge from geometry/history into `rho_AB`: still open
 
 ---
@@ -253,6 +261,6 @@ So the honest status is:
 |---|---|---|---|
 | kernel discriminator | fixed small `rho_AB` families | `-S(A|B)`, `I(A:B)`, `sum_r w_r I_c` | which kernel should be primary vs companion |
 | pointwise shell-cut pullback | fixed torus samples on one `T_eta` | constancy on fiber, variation on base | whether `phi_0(x)` is meaningful as a pointwise manifold field |
-| history vs pointwise | one short trajectory with a fixed cut family | `phi_0(x_t)` vs `phi_0[h]` | whether `Ax0` is fundamentally pointwise, history-shaped, or both |
+| history vs pointwise | one short trajectory with a fixed cut family | `phi_0(x_t)` vs `phi_0[h]` | whether `Axis 0` is fundamentally pointwise, history-shaped, or both |
 | bridge bakeoff | same sample under shell-cut, history-window, and tentative L/R pair bridges | sign, stability, perturbation sensitivity | least-arbitrary `Xi` family |
-| runtime bridge test | current `ga0` runtime surface and a clean shell-cut evaluation on the same run | correlation and lag | whether runtime `ga0` is a proxy for the clean `Ax0` kernel or a different control variable |
+| runtime bridge test | current `ga0` runtime surface and a clean shell-cut evaluation on the same run | correlation and lag | whether runtime `ga0` is a proxy for the clean `Axis 0` kernel or a different control variable |

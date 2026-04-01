@@ -179,11 +179,16 @@ def _graphml_attr(value: Any) -> str | int | float | bool:
 def _validate_owner_schemas() -> dict[str, Any]:
     sample_stage = MacroStage(
         terrain="Se_f",
-        engine_type=EngineTypeEnum.LEFT_WEYL,
+        engine_type=EngineTypeEnum.TYPE1,
         stage_index=0,
         loop=LoopEnum.FIBER,
         mode=ModeEnum.EXPAND,
         boundary=BoundaryEnum.OPEN,
+        spinor_type="L",
+        terrain_family="Se",
+        terrain_name="Funnel",
+        hamiltonian_sign=1,
+        generator="X_F^L",
     )
     return {
         "operators": len(CANONICAL_OPERATORS),
@@ -461,6 +466,11 @@ def _runtime_evidence_bridge_status(owner_snapshot: dict[str, Any]) -> dict[str,
     payload = _load_json(RUNTIME_EVIDENCE_BRIDGE_JSON)
     summary = payload.get("summary", {}) if isinstance(payload.get("summary"), dict) else {}
     owner = payload.get("owner_snapshot", {}) if isinstance(payload.get("owner_snapshot"), dict) else {}
+    axis0_summary = (
+        payload.get("axis0_control_plane_summary", {})
+        if isinstance(payload.get("axis0_control_plane_summary"), dict)
+        else {}
+    )
     owner_hash_matches = owner.get("qit_graph_content_hash") == owner_snapshot.get("embedded_content_hash")
     runtime_sample_count = int(summary.get("runtime_sample_count", 0) or 0)
     sim_packet_count = int(summary.get("sim_packet_count", 0) or 0)
@@ -485,6 +495,7 @@ def _runtime_evidence_bridge_status(owner_snapshot: dict[str, Any]) -> dict[str,
         "complete_mappings": complete_mappings,
         "partial_mappings": partial_mappings,
         "unresolved_owner_links": unresolved_links,
+        "axis0_control_plane_summary": axis0_summary,
     }
 
 
@@ -623,6 +634,7 @@ def _render_markdown(report: dict[str, Any]) -> str:
     hopf_weyl = report["hopf_weyl_projection"]
     hopf_weyl_audit = report["hopf_weyl_evidence_audit"]
     repair_gap = report["torus_type_repair_gap_report"]
+    axis0_summary = bridge.get("axis0_control_plane_summary", {}) if isinstance(bridge.get("axis0_control_plane_summary"), dict) else {}
     next_actions = "\n".join(f"- {item}" for item in report["next_actions"])
     verifies = "\n".join(f"- {item}" for item in scope["verifies"])
     does_not_verify = "\n".join(f"- {item}" for item in scope["does_not_verify"])
@@ -698,6 +710,11 @@ def _render_markdown(report: dict[str, Any]) -> str:
             f"- sim_packet_count: `{bridge.get('sim_packet_count')}`",
             f"- complete_mappings: `{bridge.get('complete_mappings')}`",
             f"- partial_mappings: `{bridge.get('partial_mappings')}`",
+            f"- axis0_surface_status: `{axis0_summary.get('surface_status')}`",
+            f"- axis0_runtime_sample_count: `{axis0_summary.get('runtime_sample_count')}`",
+            f"- axis0_direct_bridge_families: `{axis0_summary.get('direct_bridge_families', [])}`",
+            f"- axis0_history_window_bridge_families: `{axis0_summary.get('history_window_bridge_families', [])}`",
+            f"- axis0_history_window_sample_counts: `{axis0_summary.get('history_window_sample_counts', [])}`",
             "",
             "## Retrieval Sidecar",
             f"- status: `{retrieval['status']}`",

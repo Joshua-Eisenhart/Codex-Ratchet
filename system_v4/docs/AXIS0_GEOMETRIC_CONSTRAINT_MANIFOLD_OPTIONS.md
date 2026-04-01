@@ -7,6 +7,8 @@
 
 ## Scope
 
+- [AXIS0_ACTIVE_PACKET_INDEX.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_ACTIVE_PACKET_INDEX.md) is the compact entrypoint for the active `Axis 0` controller, owner, support, and geometry-side packet stack.
+
 This packet isolates only:
 
 1. the geometric constraint manifold
@@ -121,17 +123,20 @@ These are useful search surfaces, but they are not the strongest current lock.
 | Probe | Result | What it supports | What it does not support |
 |---|---|---|---|
 | `system_v4/probes/axis0_gradient_sim.py` | separable: `I=0`, `S(A|B)=1`; Bell: `I=2`, `S(A|B)=-1` | `-S(A|B)` is the strongest simple signed kernel | does not choose the cut or the bridge |
-| `system_v4/probes/axis0_path_integral_sim.py` | negative conditional entropy, coherent-information shell cuts, and MI monotonicity all appear in one bundle | shell-cut and history-shaped Ax0 remain live | mixes several proxies, so it does not settle one final bridge |
+| `system_v4/probes/axis0_path_integral_sim.py` | negative conditional entropy, coherent-information shell cuts, and MI monotonicity all appear in one bundle | shell-cut and history-shaped Axis 0 remain live | mixes several proxies, so it does not settle one final bridge |
 | `system_v4/probes/axis0_xi_strict_bakeoff_sim.py` | direct `L|R` stays MI-trivial on the live engine, shell-strata pointwise is geometry-blind, point-reference varies on base while staying constant on fiber, and history-window stays nontrivial | the bridge problem can now be tested on the live Hopf/Weyl engine without superposition shortcuts | still does not settle one final doctrine-level bridge |
 | `system_v4/probes/sim_L0_s3_valid.py` | `S^3`, SU(2), Hopf map, fiber/base behavior, Berry phase, torus coordinates all validate | the direct geometry spine is executable | says nothing by itself about the cut state |
-| `system_v4/probes/sim_axis_hopf_geometry.py` | torus transport overlaps with coarse Ax0 on some torus strata, but not universally | torus transport can affect coarse Ax0-like proxies in specific strata | torus transport is not the full Ax0 kernel |
-| `system_v4/probes/sim_weyl_dof_analysis.py` | Weyl-pair layer has 8 independent DOF clusters and treats `rho_LR` as an inter-chirality coherence block | the Weyl pair is richer than one torus slice | warns against casually reusing `rho_LR` as the Ax0 cut-state symbol |
-| `results_axis0_traj_corr_suite.json` | tracks trajectory means of `I(A:B)` and `S(A|B)` across cycle families | history-window Ax0 is plausible | still not a clean source-backed bridge from geometry into a chosen cut |
+| `system_v4/probes/sim_axis_hopf_geometry.py` | torus transport overlaps with coarse Axis 0 on some torus strata, but not universally | torus transport can affect coarse Axis 0-like proxies in specific strata | torus transport is not the full Axis 0 kernel |
+| `system_v4/probes/sim_weyl_dof_analysis.py` | Weyl-pair layer has 8 independent DOF clusters and treats `rho_LR` as an inter-chirality coherence block | the Weyl pair is richer than one torus slice | warns against casually reusing `rho_LR` as the Axis 0 cut-state symbol |
+| `results_axis0_traj_corr_suite.json` | tracks trajectory means of `I(A:B)` and `S(A|B)` across cycle families | history-window Axis 0 is plausible | still not a clean source-backed bridge from geometry into a chosen cut |
 
 Operational read:
 
 - the geometry layer is real
-- the signed Ax0 primitive is real
+- the signed Axis 0 primitive is real
+- point-reference is the strongest live pointwise discriminator
+- the strongest exploratory constructive bridge family is cross-temporal chiral (Weyl/chirality-weighted)
+- the fixed-marginal preserving lane is certified near-zero on the current carrier
 - the bridge is the missing object
 
 ---
@@ -150,8 +155,8 @@ Operational read:
 
 | Candidate | Pure Math | Why it is tempting | Why it is not locked |
 |---|---|---|---|
-| left/right sheet cut | `rho_{LR}(x)` | directly available from the Weyl working layer | `rho_LR` already has another repo meaning; the uncoupled product version is trivial for Ax0 |
-| fiber/base cut | `rho_{fiber,base}(x)` | directly tied to loop geometry | not source-backed as the Ax0 cut |
+| left/right sheet cut | `rho_{LR}(x)` | directly available from the Weyl working layer | `rho_LR` already has another repo meaning; the uncoupled product version is trivial for Axis 0 |
+| fiber/base cut | `rho_{fiber,base}(x)` | directly tied to loop geometry | not source-backed as the Axis 0 cut |
 | torus-latitude cut | a cut induced by `eta` or inner/outer shell latitude | directly geometric | still only a proposal |
 | fixed-reference pointwise bridge | `x -> {(ref, rho_ref), (x, rho(x))}` | passes the fiber/base discriminator on the live engine geometry | compiled executable candidate, not source-locked doctrine |
 
@@ -171,7 +176,7 @@ and
 
 for pure single-qubit factors.
 
-So a useful Ax0 bridge cannot just be "take two independent pure sheet states and tensor them together." It needs a genuinely coupled cut state or a nontrivial reduced multipartite state.
+So a useful Axis 0 bridge cannot just be "take two independent pure sheet states and tensor them together." It needs a genuinely coupled cut state or a nontrivial reduced multipartite state.
 
 ---
 
@@ -182,13 +187,15 @@ So a useful Ax0 bridge cannot just be "take two independent pure sheet states an
 | shell boundary/interior | `I_r | B_r` | strongest screenshot-style cut | exact shell algebra not written |
 | generic bipartite cut | `A|B` | minimal QIT requirement | too abstract by itself |
 | history cut family | `cut in C` along `rho_h(t)` | strongest canon history form | needs a concrete trajectory state construction |
-| left/right sheet cut | `L|R` | geometrically available | currently overloaded and not source-locked as Ax0 doctrine |
+| left/right sheet cut | `L|R` | geometrically available | currently overloaded and not source-locked as Axis 0 doctrine |
 
 Best current read:
 
 - shell boundary/interior is the strongest geometric-QIT cut family
 - generic `A|B` is the safest abstract notation
 - `L|R` stays only as a candidate, not the lock
+- point-reference remains the strongest live pointwise discriminator
+- the strongest constructive bridge family is not yet an earned cut closure
 
 ---
 
@@ -196,15 +203,15 @@ Best current read:
 
 | Item | Status |
 |---|---|
-| `S^3 -> Hopf -> T_eta -> fiber/base -> rho(psi)` geometry spine | finished enough for working use |
-| Axis 0 as an external cut-state correlation family | finished enough for working use |
-| `-S(A|B)` as strongest simple kernel | finished enough for working use |
-| shell-cut coherent-information family | finished enough for working use |
+| `S^3 -> Hopf -> T_eta -> fiber/base -> rho(psi)` geometry spine | stable enough for working use |
+| Axis 0 as an external cut-state correlation family | stable enough for working use |
+| `-S(A|B)` as strongest simple kernel | stable enough for working use |
+| shell-cut coherent-information family | stable enough for working use |
 | exact cut `A|B` | unfinished |
 | exact bridge `Xi` | unfinished |
 | pointwise vs history unification | unfinished |
 | discrete projection rule from continuous `Phi_0` to a local sign or class | unfinished |
-| any claim that torus transport by itself is Ax0 | not supported |
+| any claim that torus transport by itself is Axis 0 | not supported |
 
 ---
 
@@ -213,8 +220,8 @@ Best current read:
 | Sim | Input | Compare | Kill criterion |
 |---|---|---|---|
 | bridge bakeoff | same geometry sample under `Xi_pt`, `Xi_shell`, `Xi_hist` | sign stability, perturbation response, loop-family behavior | any bridge with unstable sign under tiny geometric perturbation dies first |
-| pointwise fiber/base Ax0 | fixed `T_eta` with fiber and base paths | compare shell-strata and fixed-reference realizations of `varphi_0(gamma_fiber(u))` vs `varphi_0(gamma_base(u))` | if both are constant under a reasonable bridge, the bridge is probably empty |
-| history vs pointwise Ax0 | same trajectory sampled both pointwise and as a history window | `varphi_0(x_t)` vs `varphi_0[h]` | if one collapses to noise while the other carries signal, they are not the same object |
+| pointwise fiber/base Axis 0 | fixed `T_eta` with fiber and base paths | compare shell-strata and fixed-reference realizations of `varphi_0(gamma_fiber(u))` vs `varphi_0(gamma_base(u))` | if both are constant under a reasonable bridge, the bridge is probably empty |
+| history vs pointwise Axis 0 | same trajectory sampled both pointwise and as a history window | `varphi_0(x_t)` vs `varphi_0[h]` | if one collapses to noise while the other carries signal, they are not the same object |
 | shell-cut geometry probe | explicit shell/interior construction on nested torus samples | `sum_r w_r I_c(A_r > B_r)` | if no nontrivial cut state can be attached, shell-cut remains only a slogan |
 
 ---

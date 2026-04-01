@@ -1,0 +1,99 @@
+{
+  "name": "root_emergence_packet_validation",
+  "timestamp": "2026-04-01T11:25:23.139299+00:00",
+  "passed_gates": 9,
+  "total_gates": 9,
+  "score": 1.0,
+  "gates": [
+    {
+      "name": "R1_formal_geometry_prerequisite_is_closed",
+      "pass": true,
+      "detail": {
+        "score": 1.0,
+        "passed_gates": 9,
+        "total_gates": 9
+      }
+    },
+    {
+      "name": "R2_root_guards_and_ec3_execute_cleanly",
+      "pass": true,
+      "detail": {
+        "nonclassical_guard_ok": true,
+        "ec3_identity_ok": true
+      }
+    },
+    {
+      "name": "R3_missing_axis_search_finds_uncaptured_structure",
+      "pass": true,
+      "detail": {
+        "best_candidate": "A: measurement_basis",
+        "best_residual": 0.9459762214871965,
+        "coherence_class_residual": 1.3469822409568326e-16
+      }
+    },
+    {
+      "name": "R4_bridge_search_rejects_direct_cartesian_carrier",
+      "pass": true,
+      "detail": {
+        "winner": "Xi_chiral_entangle",
+        "winner_mean_mi": 0.5850944299846628,
+        "lr_direct_mean_mi": 3.3769283665681843e-16
+      }
+    },
+    {
+      "name": "R5_small_carrier_family_selects_live_hopf_weyl",
+      "pass": true,
+      "detail": {
+        "live_best_candidate": "Xi_chiral_entangle",
+        "live_best_mean_mi": 0.5850944299846628,
+        "best_control_mean_mi": 7.822432235948806e-05,
+        "best_root_rank_margin": 0.5850162056623033
+      }
+    },
+    {
+      "name": "R6_live_carrier_keeps_unique_positive_honesty_signal",
+      "pass": true,
+      "detail": {
+        "live_honesty_candidate": "Xi_chiral_entangle",
+        "live_honesty_mean_i_c": 0.0775200940266869,
+        "live_honesty_mean_mi": 0.5850944299846628,
+        "best_control_honesty_score": 0.0,
+        "best_honesty_margin": 0.0775200940266869
+      }
+    },
+    {
+      "name": "R7_mispair_counterfeit_games_mi_but_not_coherent_info",
+      "pass": true,
+      "detail": {
+        "mean_live_I_AB": 0.5850944299846628,
+        "mean_counterfeit_I_AB": 0.7929333246640154,
+        "mean_live_I_c": 0.0775200940266869,
+        "mean_counterfeit_I_c": 0.007098294355261954,
+        "mean_I_c_gap": 0.07042179967142495,
+        "counterfeit_beats_live_on_I_AB_count": 4,
+        "live_beats_counterfeit_on_I_c_count": 4
+      }
+    },
+    {
+      "name": "R8_coarising_is_attractor_specific_not_universal_algebra",
+      "pass": true,
+      "detail": {
+        "fi_level1_universal": true,
+        "fi_level2_universal": true,
+        "fe_level1_universal": false,
+        "te_level1_universal": false,
+        "algebraic_structure": "TRAJECTORY-SPECIFIC: Co-arising is attractor-dependent, not operator-algebraic. The theorem requires the attractor as a precondition. Proof strategy: characterize the attractor basin, then prove co-arising within it."
+      }
+    },
+    {
+      "name": "R9_root_emergence_remains_open_without_smuggling",
+      "pass": true,
+      "detail": {
+        "all_ok": true,
+        "ti_universal": false,
+        "fe_universal": false,
+        "te_universal": false
+      }
+    }
+  ]
+}

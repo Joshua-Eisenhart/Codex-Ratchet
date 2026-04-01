@@ -1,0 +1,170 @@
+{
+  "name": "entropy_readout_packet_validation",
+  "timestamp": "2026-04-01T20:18:28.154218+00:00",
+  "passed_gates": 12,
+  "total_gates": 12,
+  "score": 1.0,
+  "gates": [
+    {
+      "name": "E1_qubit_spectral_family_is_order_equivalent",
+      "pass": true,
+      "detail": {
+        "spectral_pair_total": 2016,
+        "linear_disagreements": 0,
+        "renyi2_disagreements": 0,
+        "tsallis2_disagreements": 0,
+        "purity_disagreements": 0,
+        "rel_to_maxmix_affine_err": 0.0,
+        "renyi2_proxy_ok": true
+      }
+    },
+    {
+      "name": "E2_shannon_diagonal_is_not_geometry_safe",
+      "pass": true,
+      "detail": {
+        "shannon_basis_failures": 32,
+        "shannon_basis_shift_avg": 0.1602678507010491,
+        "not_geometry_safe": [
+          "shannon_diag_entropy"
+        ]
+      }
+    },
+    {
+      "name": "E3_product_proxy_and_pure_fi_negatives_hold",
+      "pass": true,
+      "detail": {
+        "conditional_proxy_max_error": 3.3306690738754696e-16,
+        "conditional_proxy_max_mutual": 3.3306690738754696e-16,
+        "fi_vn_delta": 0.0,
+        "fi_linear_delta": 0.0,
+        "fi_renyi2_delta": 0.0,
+        "fi_state_distance": 0.3569492944769113,
+        "fi_z_shift": 0.25482559765512947
+      }
+    },
+    {
+      "name": "E4_bridge_family_ranking_is_separated",
+      "pass": true,
+      "detail": {
+        "ranked_keep": [
+          "Xi_shell",
+          "Xi_hist_outer",
+          "Xi_hist_cycle"
+        ],
+        "ranked_kill": [
+          "L|R_local_only",
+          "Xi_LR_control"
+        ],
+        "ranked_control": [
+          "L|R_coupled_control"
+        ]
+      }
+    },
+    {
+      "name": "E5_raw_and_lr_controls_stay_entropy_trivial",
+      "pass": true,
+      "detail": {
+        "local_only_I_AB_max": 4.440892098500626e-16,
+        "xi_lr_control_I_AB_max": 6.406853007629834e-16,
+        "local_only_trivial": true,
+        "xi_lr_control_trivial": true,
+        "coupled_control_only": true
+      }
+    },
+    {
+      "name": "E6_shell_bridge_supports_signed_entropy_readout",
+      "pass": true,
+      "detail": {
+        "I_AB_mean": 0.33396941742583613,
+        "I_c_mean": 0.16698470871291804,
+        "S_A_given_B_mean": -0.16698470871291804,
+        "eta_sensitive": true
+      }
+    },
+    {
+      "name": "E7_history_bridges_are_nontrivial_and_torus_sensitive",
+      "pass": true,
+      "detail": {
+        "hist_outer_I_AB_mean": 0.0035526853013598445,
+        "hist_cycle_I_AB_mean": 0.0024759698500263125,
+        "hist_outer_eta_sensitive": true,
+        "hist_cycle_eta_sensitive": true
+      }
+    },
+    {
+      "name": "E8_history_family_handoff_supports_signed_readout_on_same_objects",
+      "pass": true,
+      "detail": {
+        "hist_outer_I_AB_mean": 0.0035526853013598445,
+        "hist_outer_I_c_mean": -0.43405055032231243,
+        "hist_outer_S_A_given_B_mean": 0.43405055032231243,
+        "hist_cycle_I_AB_mean": 0.0024759698500263125,
+        "hist_cycle_I_c_mean": -0.46894812508080613,
+        "hist_cycle_S_A_given_B_mean": 0.46894812508080613,
+        "lr_control_I_AB_max": 6.406853007629834e-16
+      }
+    },
+    {
+      "name": "E9_fep_framing_shows_nonclassical_directionality",
+      "pass": true,
+      "detail": {
+        "overall": "PARTIAL COMPRESSION-FROM-FUTURE",
+        "compression_verdict": 3,
+        "total": 6,
+        "t1_keep": 6,
+        "t2_keep": 2,
+        "t3_keep": 4,
+        "t4_keep": 5
+      }
+    },
+    {
+      "name": "E10_current_bridge_candidate_is_explicit_and_provisional",
+      "pass": true,
+      "detail": {
+        "current_bridge_candidate": "Xi_chiral_entangle",
+        "current_bridge_candidate_mean_mi": 0.5850944299846628,
+        "current_bridge_candidate_mean_i_c": 0.0775200940266869,
+        "runner_up": "Xi_chiral_hist_entangle",
+        "runner_up_mean_mi": 0.5153548066316724,
+        "runner_up_mean_i_c": -0.09313964667615891,
+        "status": "admitted_executable_candidate_not_final_owner_law"
+      }
+    },
+    {
+      "name": "E11_xi_chiral_entangle_signed_honesty_beats_mispair_counterfeit",
+      "pass": true,
+      "detail": {
+        "bridge_candidate": "Xi_chiral_entangle",
+        "mean_live_I_AB": 0.5850944299846628,
+        "mean_counterfeit_I_AB": 0.7929333246640154,
+        "mean_live_I_c": 0.0775200940266869,
+        "mean_counterfeit_I_c": 0.007098294355261954,
+        "mean_I_c_gap": 0.07042179967142495,
+        "counterfeit_beats_live_on_I_AB_count": 4,
+        "live_beats_counterfeit_on_I_c_count": 4
+      }
+    },
+    {
+      "name": "E12_xi_hist_law_summary_binds_pre_entropy_to_readout",
+      "pass": true,
+      "detail": {
+        "law_summary_name": "late-anchor-equivalence_plus_clifford-local-short-width-stress",
+        "strict_bakeoff_owner_object_present": true,
+        "late_anchor_equivalence": {
+          "placement_8_23_equals_16_31_count": 6,
+          "placement_8_23_equals_prefix_8_15_on_mi_count": 6,
+          "placement_8_23_equals_prefix_8_15_on_ic_count": 6,
+          "placement_8_23_equals_prefix_8_15_on_signed_count": 6
+        },
+        "clifford_local_short_width_stress": {
+          "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
+          "short_width_0_3_beats_8_23_on_ic_clifford_count": 2
+        },
+        "hist_outer_I_c_mean": -0.43405055032231243,
+        "hist_cycle_I_c_mean": -0.46894812508080613,
+        "hist_outer_S_A_given_B_mean": 0.43405055032231243,
+        "hist_cycle_S_A_given_B_mean": 0.46894812508080613
+      }
+    }
+  ]
+}

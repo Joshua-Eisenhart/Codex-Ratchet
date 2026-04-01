@@ -7,6 +7,8 @@
 
 ## Direct Geometry That Is Actually Locked
 
+- [AXIS0_ACTIVE_PACKET_INDEX.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_ACTIVE_PACKET_INDEX.md) is the compact entrypoint for the active `Axis 0` controller, owner, support, and geometry-side packet stack.
+
 | Layer | Pure math | Status |
 |---|---|---|
 | carrier | `S^3 = {psi in C^2 : ||psi|| = 1}` | source-backed |
@@ -65,8 +67,8 @@ Current best read:
 | pointwise shell-cut bridge | `Xi_shell : x -> {(r, w_r, rho_(A_r B_r)(x))}_r` | strongest screenshot-backed pointwise family | lets `phi_0(x)` live directly on the manifold | no concrete construction of `rho_(A_r B_r)(x)` |
 | history-window bridge | `Xi_hist : h|_[t0,t1] -> {(t, cut, w_cut, rho_cut(t))}_{t,cut}` | strongest canon-backed family | matches the exact history functional already supplied | still needs a concrete cut family and trajectory-to-state map |
 | pointwise abstract bridge | `Xi_pt : x -> (c_x, rho_(c_x)(x))` | abstract source-backed shape | minimal statement of what pointwise Axis 0 would need | too abstract to run |
-| coupled L/R bridge | `Xi_LR : x -> rho_LR(x)` | only a tempting candidate, not locked | natural from the Weyl-sheet picture | current repo already uses `rho_LR` as an inter-chirality coherence block; not a safe final Ax0 bridge |
-| torus-latitude bridge | `x -> eta(x)` plus a cut derived from torus shells | geometric candidate only | ties Ax0 directly to nested Hopf tori | `eta` is a real geometric DOF, but not yet a cut state |
+| coupled L/R bridge | `Xi_LR : x -> rho_LR(x)` | only a tempting candidate, not locked | natural from the Weyl-sheet picture | current repo already uses `rho_LR` as an inter-chirality coherence block; not a safe final Axis 0 bridge |
+| torus-latitude bridge | `x -> eta(x)` plus a cut derived from torus shells | geometric candidate only | ties Axis 0 directly to nested Hopf tori | `eta` is a real geometric DOF, but not yet a cut state |
 | runtime coarse-graining proxy | engine state -> `GA0` level or coarse/fine knob | runtime-supported proxy only | executable control signal in the engine sims | not the same mathematical object as the cut-state kernel |
 
 ---
@@ -76,12 +78,12 @@ Current best read:
 | Probe | Fresh result | What it actually supports | What it does not prove |
 |---|---|---|---|
 | `system_v4/probes/axis0_gradient_sim.py` | separable: `I(A:B)=0`, `S(A|B)=1`; Bell: `I(A:B)=2`, `S(A|B)=-1` | the simple signed kernel should be `-S(A|B)` / coherent information | any concrete geometry-to-cut bridge |
-| `system_v4/probes/axis0_path_integral_sim.py` | negative conditional entropy, shell-cut coherent info, and coarse-graining monotonicity all pass in one bundle | shell-cut and history-shaped Axis 0 remain live | a clean final proof of one single Ax0 formula |
+| `system_v4/probes/axis0_path_integral_sim.py` | negative conditional entropy, shell-cut coherent info, and coarse-graining monotonicity all pass in one bundle | shell-cut and history-shaped Axis 0 remain live | not a clean final proof of one single Axis 0 formula |
 | `system_v4/probes/sim_L0_s3_valid.py` | `S^3`, SU(2), Hopf map, fiber invariance, Berry phase, torus coordinates, and Bloch roundtrip all pass | the direct carrier geometry is real and executable | anything about the cut `A|B` |
-| `system_v4/probes/sim_axis_hopf_geometry.py` | torus transport couples to coarse `Ax0` only on some torus strata | geometry can modulate coarse Axis-0-like behavior | torus transport is the finished Axis 0 kernel |
-| `system_v4/probes/axis0_correlation_sim.py` | builds and burns mutual information, but uses retensorization | older battery proxy is still informative at a rough level | a defensible finished Ax0 proof |
+| `system_v4/probes/sim_axis_hopf_geometry.py` | torus transport couples to coarse `Axis 0` only on some torus strata | geometry can modulate coarse Axis-0-like behavior | torus transport is not the finished Axis 0 kernel |
+| `system_v4/probes/axis0_correlation_sim.py` | builds and burns mutual information, but uses retensorization | older battery proxy is still informative at a rough level | not a defensible finished Axis 0 proof |
 | `system_v4/probes/sim_neg_axis0_frozen.py` | freezing runtime Axis 0 degrades the trajectory | the runtime `GA0` control is load-bearing | that runtime `GA0` is already the source-backed cut-state kernel |
-| `system_v4/probes/sim_weyl_dof_analysis.py` | Weyl pair analysis reports 8 independent DOF clusters and uses `rho_LR` as an inter-chirality coherence block | the Weyl pair is a rich ambient layer | that `rho_LR` is the final Ax0 cut state |
+| `system_v4/probes/sim_weyl_dof_analysis.py` | Weyl pair analysis reports 8 independent DOF clusters and uses `rho_LR` as an inter-chirality coherence block | the Weyl pair is a rich ambient layer | that `rho_LR` is the final Axis 0 cut state |
 
 ---
 
@@ -121,6 +123,13 @@ Treat:
 
 as the two serious live bridge families.
 
+Current strict cross-lane read:
+
+- strongest live executable bridge family = `Xi_hist`
+- strongest exploratory constructive bridge family = cross-temporal chiral (Weyl/chirality-weighted)
+- strongest live pointwise discriminator = point-reference
+- fixed-marginal preserving lane = certified near-zero on the current carrier
+
 Do not overclose:
 
 - `Xi_LR`
@@ -138,6 +147,7 @@ into the final kernel.
 | exact cut `A|B` | without this, `Phi_0` is still only a family |
 | explicit `Xi_shell` | needed for a pointwise manifold realization |
 | explicit `Xi_hist` | needed for a history-shaped realization |
+| earned-vs-constructed bridge closure | strongest exploratory constructive candidate is now identified, but fixed-marginal preserving closure is still near-zero |
 | pointwise vs history unification | currently both are live surfaces |
 | relation between `Phi_0` and the discrete black/white projection | still not fully closed |
 | relation between `eta` and any axis | geometric DOF is real, but not axis-locked |

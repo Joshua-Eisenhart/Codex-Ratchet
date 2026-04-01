@@ -1,14 +1,14 @@
 # QIT Hopf–Weyl Projection (Bounded Read-Only Sidecar)
 
-- generated_utc: `2026-03-29T09:18:26Z`
-- source_content_hash: `585499a4d13298615601af806cf9c0d01f56ef6e47879c5c82abf39227ef373a`
+- generated_utc: `2026-04-01T10:59:59Z`
+- source_content_hash: `859aa5c7babcc5057780232f5ffffbd463764180ece8f53dee2cad18e4ffaf36`
 - do_not_promote: `True`
 - mode: `bounded_read_only`
 
 ## Report Surface
 - surface_class: `tracked_current_workspace_report`
 - represents: `current workspace Hopf/Weyl sidecar state at generation time; may differ from the last committed snapshot until tracked CURRENT artifacts are committed`
-- git_sha: `b4426398c08056ecb7d62fcb2c9c0acb06d8a06b`
+- git_sha: `092ec33193f1b18fdf4d5b12da35e08b26f9b50e`
 
 ## Owner Graph Inputs
 - Torus nodes: `3`
@@ -41,8 +41,13 @@
 - runtime_bridge_json: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json`
 - owner_content_hash_matches_runtime_bridge: `False`
 - runtime_sample_count: `2`
-- `qit::ENGINE::type1_deductive`: first_step=`qit::SUBCYCLE_STEP::type1_deductive_Se_f_Ti`, last_step=`qit::SUBCYCLE_STEP::type1_deductive_Ni_b_Fi`
-- `qit::ENGINE::type2_inductive`: first_step=`qit::SUBCYCLE_STEP::type2_inductive_Se_f_Ti`, last_step=`qit::SUBCYCLE_STEP::type2_inductive_Ni_b_Fi`
+- axis0_surface_status: `read_only_control_plane_summary_only`
+- axis0_runtime_sample_count: `2`
+- axis0_direct_bridge_families: `['Xi_LR_direct_control']`
+- axis0_history_window_bridge_families: `['Xi_hist_window_control']`
+- axis0_history_window_sample_counts: `[32]`
+- `qit::ENGINE::type1_left_weyl`: first_step=`qit::SUBCYCLE_STEP::type1_left_weyl_Se_b_Ti`, last_step=`qit::SUBCYCLE_STEP::type1_left_weyl_Ne_f_Fi`
+- `qit::ENGINE::type2_right_weyl`: first_step=`qit::SUBCYCLE_STEP::type2_right_weyl_Se_f_Ti`, last_step=`qit::SUBCYCLE_STEP::type2_right_weyl_Si_b_Fi`
 
 ## 3. Chirality Coupling Candidate Mapping (Cl(3,0))
 - available: `False`

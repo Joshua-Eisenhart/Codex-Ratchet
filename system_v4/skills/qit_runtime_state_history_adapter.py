@@ -22,6 +22,8 @@ from typing import Any
 
 import os
 import sys
+import numpy as np
+import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "probes"))
@@ -33,7 +35,7 @@ from qit_owner_schemas import (
     OperatorEnum,
     RuntimeStateOverlay,
 )
-from engine_core import EngineState, TERRAINS
+from engine_core import EngineState, GeometricEngine, TERRAINS
 
 
 def _utc_tag() -> str:
@@ -50,7 +52,7 @@ def _engine_public_id(engine_type: int) -> str:
 
 
 def _engine_enum(engine_type: int) -> EngineTypeEnum:
-    return EngineTypeEnum.LEFT_WEYL if engine_type == 1 else EngineTypeEnum.RIGHT_WEYL
+    return EngineTypeEnum.TYPE1 if engine_type == 1 else EngineTypeEnum.TYPE2
 
 
 def _terrain_name(stage_idx_mod8: int) -> str:
@@ -70,6 +72,52 @@ def _step_public_id(engine_type: int, terrain: str, operator: str) -> str:
 def _parse_history_stage_token(stage_token: str) -> tuple[str, str]:
     terrain, operator = stage_token.rsplit("_", 1)
     return terrain, operator
+
+
+def _axis0_bridge_snapshot_packet(state: EngineState) -> dict[str, Any]:
+    """Expose the engine-native Axis 0 control snapshot as a JSON-safe packet."""
+    engine = GeometricEngine(engine_type=int(state.engine_type))
+    snapshot = engine.axis0_bridge_snapshot(state)
+    return {
+        "bridge_family": str(snapshot.bridge_family),
+        "dims": [int(dim) for dim in snapshot.dims],
+        "metrics": {str(key): float(value) for key, value in snapshot.metrics.items()},
+        "meta": {str(key): float(value) for key, value in snapshot.meta.items()},
+    }
+
+
+def _axis0_history_window_snapshot_packet(state: EngineState) -> dict[str, Any]:
+    """Expose a bounded read-only history-window Axis 0 consumer from live engine history."""
+    if state.history:
+        pair_states = [
+            np.kron(np.asarray(entry["rho_L"], dtype=complex), np.asarray(entry["rho_R"], dtype=complex))
+            for entry in state.history
+        ]
+        rho_ab = sum(pair_states) / float(len(pair_states))
+        n_samples = len(pair_states)
+    else:
+        rho_ab = np.kron(np.asarray(state.rho_L, dtype=complex), np.asarray(state.rho_R, dtype=complex))
+        n_samples = 1
+
+    engine = GeometricEngine(engine_type=int(state.engine_type))
+    metrics = engine.evaluate_axis0_kernel(rho_ab, dims=(2, 2))
+    return {
+        "bridge_family": "Xi_hist_window_control",
+        "bridge_status": "read_only_history_consumer_not_final_xi",
+        "cut_family": "history_window",
+        "dims": [2, 2],
+        "weight_type": "uniform",
+        "n_samples": int(n_samples),
+        "metrics": {str(key): float(value) for key, value in metrics.items()},
+        "meta": {
+            "history_length": float(len(state.history)),
+            "window_start_index": 0.0,
+            "window_end_index": float(max(n_samples - 1, 0)),
+            "macro_stages_completed": float(state.stage_idx),
+            "engine_type": float(state.engine_type),
+            "ga0_level": float(state.ga0_level),
+        },
+    }
 
 
 def build_runtime_state_overlay(state: EngineState) -> RuntimeStateOverlay:
@@ -133,6 +181,8 @@ def build_runtime_slice(state: EngineState, run_id: str | None = None) -> dict[s
         "persistence_policy": "ephemeral_packet_only",
         "state_overlay": overlay.model_dump(),
         "history_packet": history.model_dump(),
+        "axis0_bridge_snapshot": _axis0_bridge_snapshot_packet(state),
+        "axis0_history_window_snapshot": _axis0_history_window_snapshot_packet(state),
     }
 
 

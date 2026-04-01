@@ -1,0 +1,82 @@
+{
+  "schema": "FULL_STACK_GRAPH_INGESTION_v1",
+  "comment": "Strict ingestion bounds defining what feeds the graph layer. Sidecars do not overwrite canon.",
+  "canonical_graph_substrate": {
+    "authority_class": "canon_runtime",
+    "repos": ["Codex Ratchet"],
+    "paths": [
+      "system_v4/skills/v4_graph_builder.py",
+      "system_v4/a2_understanding/graph_models.py",
+      "system_v4/a2_state/graphs",
+      "system_v4/ctx",
+      "core_docs/QIT_GRAPH_SCHEMA.md",
+      "core_docs/QIT_GRAPH_SYNC_README.md",
+      "core_docs/QIT_GRAPH_RUNTIME_MODEL.md"
+    ],
+    "description": "The only surfaces allowed to define canonical graph nodes and edge semantics."
+  },
+  "graph_toolchain_sidecars": {
+    "authority_class": "graph_toolchain",
+    "repos": ["Codex Ratchet"],
+    "paths": [
+      ".venv_spec_graph",
+      "system_v4/skills/graph_tool_integration.py",
+      "system_v4/skill_specs/toponetx-projection-adapter-audit",
+      "system_v4/skill_specs/pyg-heterograph-projection-audit",
+      "work/lightrag_smoke"
+    ],
+    "required_packages": [
+      "networkx",
+      "toponetx",
+      "torch-geometric",
+      "hypernetx",
+      "xgi",
+      "clifford",
+      "kingdon",
+      "pyquaternion"
+    ],
+    "description": "Tools that project over the graph but do not define canon truth."
+  },
+  "secondary_evidence_corpus": {
+    "authority_class": "evidence_returns",
+    "repos": ["Codex Ratchet", "Leviathan-Arbitrage"],
+    "paths": [
+      "core_docs",
+      "obsidian_vault",
+      "system_v4/thread_returns",
+      "system_v4/a2_state/antigravity_prompt_batches",
+      "system_v4/probes",
+      "system_v4/docs",
+      "Leviathan-Arbitrage/ctx"
+    ],
+    "description": "Sims, audits, math, geometry work. Enriches graph as attributed evidence layers only."
+  },
+  "proposal_corpus": {
+    "authority_class": "proposal_corpus",
+    "repos": ["Codex Ratchet"],
+    "paths": [
+      ".gemini/antigravity/brain",
+      "system_v4/a2_state/antigravity_prompt_batches",
+      "system_v4/controller_boot"
+    ],
+    "description": "Antigravity brains, prompt batches, external audits. Must enter as staging/proposal nodes."
+  },
+  "legacy_or_staging": {
+    "authority_class": "legacy_or_staging",
+    "repos": ["Codex Ratchet"],
+    "paths": [
+      "system_v3",
+      "system_v5",
+      "system_v4/thread_archive"
+    ],
+    "description": "Use with caution. Must not be flattened into canon."
+  },
+  "ingestion_rules": [
+    "fingerprint every source by repo + path + commit/file hash",
+    "tag each node with authority_class",
+    "keep provenance edges explicit",
+    "never merge semantically similar nodes unless provenance and authority match",
+    "allow contradiction to remain visible in the graph",
+    "fail-closed on graph merges"
+  ]
+}

@@ -109,7 +109,67 @@ def commuting_axis_hamiltonian(q: np.ndarray) -> np.ndarray:
     return n[0] * sx + n[1] * sy + n[2] * sz
 
 
+def terrain_joint_step(
+    rho_lr: np.ndarray,
+    terrain: str,
+    q: np.ndarray,
+    dt: float,
+    J_coupling: float = 0.1,
+) -> np.ndarray:
+    """Evolve the JOINT 4×4 state rho_lr for one terrain step.
+
+    Each terrain generator acts on L and R separately (via localize()), plus
+    a cross-coupling Hamiltonian J·σ_z⊗σ_z that can generate entanglement.
+
+    Without J_coupling, local-only dynamics provably cannot create MI from a
+    product state (no-entanglement-from-LOCC theorem). With J_coupling > 0,
+    the joint state can develop nonzero MI — that is the honest physics test.
+
+    The previous implementation rebuilt rho_lr = kron(rho_l, rho_r) each step,
+    making MI structurally zero (not a physical discovery). This version
+    maintains the joint state across steps.
+    """
+    H_l, H_r = geometry_hamiltonians(q)
+    axis_h = commuting_axis_hamiltonian(q)
+    # Joint Hamiltonian: H_L⊗I + I⊗H_R + J·σ_z⊗σ_z
+    H_joint_local = np.kron(H_l, I2) + np.kron(I2, H_r)
+    H_coupling = J_coupling * np.kron(sz, sz)
+    H_joint = H_joint_local + H_coupling
+
+    if terrain == "Se":
+        jumps_L = [np.kron(np.sqrt(0.20 / 3.0) * s, I2) for s in (sx, sy, sz)]
+        jumps_R = [np.kron(I2, np.sqrt(0.20 / 3.0) * s) for s in (sx, sy, sz)]
+        jumps = jumps_L + jumps_R
+        drho = -1j * (H_joint @ rho_lr - rho_lr @ H_joint) * 0.05
+        for j in jumps:
+            drho += dissipator(j, rho_lr)
+        return ensure_valid_density(rho_lr + dt * drho)
+    if terrain == "Ne":
+        drho = -1j * (H_joint @ rho_lr - rho_lr @ H_joint)
+        return ensure_valid_density(rho_lr + dt * drho)
+    if terrain == "Ni":
+        jump_L = np.kron(np.sqrt(0.25) * sm, I2)
+        jump_R = np.kron(I2, np.sqrt(0.25) * sp)
+        drho = -1j * (H_joint @ rho_lr - rho_lr @ H_joint) * 0.05
+        for j in (jump_L, jump_R):
+            drho += dissipator(j, rho_lr)
+        return ensure_valid_density(rho_lr + dt * drho)
+    if terrain == "Si":
+        H_si = 0.50 * (np.kron(axis_h, I2) - np.kron(I2, axis_h)) + H_coupling
+        jump_L = np.kron(np.sqrt(0.10) * axis_h, I2)
+        jump_R = np.kron(I2, np.sqrt(0.10) * axis_h)
+        drho = -1j * (H_si @ rho_lr - rho_lr @ H_si)
+        for j in (jump_L, jump_R):
+            drho += dissipator(j, rho_lr)
+        return ensure_valid_density(rho_lr + dt * drho)
+    raise ValueError(f"unknown terrain: {terrain}")
+
+
 def terrain_single_step(rho_l: np.ndarray, rho_r: np.ndarray, terrain: str, q: np.ndarray, dt: float) -> tuple[np.ndarray, np.ndarray]:
+    """Legacy local evolution — kept for Bloch-vector trajectory tracking only.
+    DO NOT use for MI/Axis-0 computation: local-only dynamics cannot create MI.
+    Use terrain_joint_step on the 4×4 joint state for any Axis-0 probe.
+    """
     H_l, H_r = geometry_hamiltonians(q)
     axis_h = commuting_axis_hamiltonian(q)
 
@@ -146,13 +206,17 @@ def bloch_from_density(rho: np.ndarray) -> np.ndarray:
     return np.array([np.real(np.trace(rho @ s)) for s in (sx, sy, sz)])
 
 
-def run_cycle(loop_type: str, cycle_name: str, eta: float, n_substeps: int = 24, dt: float = 0.01) -> dict:
+def run_cycle(loop_type: str, cycle_name: str, eta: float, n_substeps: int = 24, dt: float = 0.01,
+              J_coupling: float = 0.1) -> dict:
     order = DED_ORDER if cycle_name == "DED" else IND_ORDER
     q0 = q_on_loop(loop_type, eta, 0.0)
     psi_l = left_weyl_spinor(q0)
     psi_r = right_weyl_spinor(q0)
     rho_l = density(psi_l)
     rho_r = density(psi_r)
+    # Honest physics initialization: product state at t=0.
+    # rho_lr is maintained as a proper joint 4×4 state from here on.
+    # It is NOT rebuilt from kron each step — that would structurally force MI=0.
     rho_lr = np.kron(rho_l, rho_r)
 
     mi_trace = [mutual_information(rho_lr)]
@@ -169,28 +233,41 @@ def run_cycle(loop_type: str, cycle_name: str, eta: float, n_substeps: int = 24,
         for _ in range(n_substeps):
             u += du
             q = q_on_loop(loop_type, eta, u)
-            rho_l, rho_r = terrain_single_step(rho_l, rho_r, terrain, q, dt)
-            rho_lr = np.kron(rho_l, rho_r)
-            sep_err = float(np.linalg.norm(rho_lr - np.kron(rho_l, rho_r), ord="fro"))
+            # Joint evolution on 4×4 state (entanglement-capable)
+            rho_lr = terrain_joint_step(rho_lr, terrain, q, dt, J_coupling=J_coupling)
+            # Extract marginals for Bloch tracking (read-only, not for MI)
+            rho_l_marg = ptrace_right(rho_lr)
+            rho_r_marg = ptrace_left(rho_lr)
+            # sep_err: how far rho_lr is from its own marginal product
+            sep_err = float(np.linalg.norm(
+                rho_lr - np.kron(rho_l_marg, rho_r_marg), ord="fro"
+            ))
             sep_trace.append(sep_err)
-            bloch_l_trace.append(bloch_from_density(rho_l))
-            bloch_r_trace.append(bloch_from_density(rho_r))
+            bloch_l_trace.append(bloch_from_density(rho_l_marg))
+            bloch_r_trace.append(bloch_from_density(rho_r_marg))
             mi_trace.append(mutual_information(rho_lr))
             ci_trace.append(coherent_information(rho_lr))
 
+    mi_max = float(max(mi_trace))
+    structural_zero = (J_coupling == 0.0 and mi_max < 1e-12)
     return {
         "eta": float(eta),
         "eta_over_pi": float(eta / np.pi),
         "loop": loop_type,
         "cycle": cycle_name,
+        "J_coupling": float(J_coupling),
         "mi_initial": float(mi_trace[0]),
         "mi_final": float(mi_trace[-1]),
-        "mi_max": float(max(mi_trace)),
+        "mi_max": mi_max,
         "ci_final": float(ci_trace[-1]),
         "sep_err_max": float(max(sep_trace) if sep_trace else 0.0),
         "sep_err_final": float(sep_trace[-1] if sep_trace else 0.0),
         "bloch_l_std": np.std(np.array(bloch_l_trace), axis=0).tolist(),
         "bloch_r_std": np.std(np.array(bloch_r_trace), axis=0).tolist(),
+        # Explicit flag: if MI_max == 0 with J=0 that is expected physics (LOCC),
+        # not a discovered finding. Fails if MI_max == 0 with J > 0 (coupling should work).
+        "mi_zero_with_coupling_WARNING": bool(J_coupling > 0.0 and mi_max < 1e-6),
+        "structural_zero_note": "LOCC: MI=0 is expected with J=0; not a finding" if structural_zero else "",
     }
 
 

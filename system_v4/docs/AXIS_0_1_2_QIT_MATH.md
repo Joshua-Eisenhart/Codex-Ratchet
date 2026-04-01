@@ -333,14 +333,16 @@ The note source itself says one of the symbol-axis orientations could be inverte
 
 ## Open Points
 
-| Missing | Why it still matters |
+| Item | Status |
 |---|---|
-| explicit bridge Ξ | Ax0 still needs a concrete map from geometry/history data to a chosen cut state |
-| exact cut `A\|B` for Ax0 | needed before the Ax0 kernel can be evaluated concretely |
-| explicit V(t) tied to geometry | Ax2 has clean representation math, but not yet a geometry-locked transport law |
-| η not assigned to any axis | torus latitude is real geometry with no settled axis role yet |
-| full terrain laws vs reduced product equations | the reduced `Ax1 × Ax2` packet is solid, but it is not yet the full terrain law ledger |
-| symbol orientation caveat | the note-layer symbol projection is still not fully closed |
+| explicit bridge Ξ | still open — concrete map from geometry/history data to cut state not finalized |
+| exact cut `A\|B` for Ax0 | still open — needed for numerical Φ₀ evaluation |
+| V(t) tied to geometry | **resolved** — Ax2 frame unitary is $V_s(u) = e^{-iH_su}$ (Weyl sheet evolution); see `AXIS_3_4_5_6_QIT_MATH.md` |
+| η torus latitude assignment | **resolved** — η is the Ax0 continuous field; $b_0 = \text{sgn}(\cos(2\eta))$; see `AXIS_3_4_5_6_QIT_MATH.md` |
+| full terrain laws vs reduced product equations | still open — reduced Ax1×Ax2 packet is solid; full ledger pending |
+| symbol orientation caveat | note-layer only — not promoted to kernel |
+
+**Companion document:** [AXIS_3_4_5_6_QIT_MATH.md](AXIS_3_4_5_6_QIT_MATH.md) — derives and locks Ax3 (fiber/base), Ax4 (UEUE/EUEU), Ax5 (T/F kernel), Ax6 (derived: Ax0 × Ax3), and closes the Ax0 binarization rule.
 
 ### Epistemic status summary
 

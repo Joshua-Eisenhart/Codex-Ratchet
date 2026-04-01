@@ -5,6 +5,7 @@
 #   sim_evidence_pack.txt  (1 SIM_EVIDENCE block for S_SIM_AXIS0_SAGB_ENTANGLE_SEED)
 
 from __future__ import annotations
+import argparse
 import json, hashlib, os
 import numpy as np
 
@@ -166,20 +167,36 @@ def run_branch(seq: list[str], *, seed: int, trials: int, cycles: int,
         "neg_SAgB_frac": float(np.mean((sg_arr < 0.0).astype(float))),
     }
 
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="Run the Axis0 entangled-seed branch witness.")
+    parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--trials", type=int, default=512)
+    parser.add_argument("--cycles", type=int, default=64)
+    parser.add_argument("--axis3-sign", type=int, default=1, choices=[-1, 1])
+    parser.add_argument("--theta", type=float, default=0.07)
+    parser.add_argument("--nx", type=float, default=0.3)
+    parser.add_argument("--ny", type=float, default=0.4)
+    parser.add_argument("--nz", type=float, default=0.866025403784)
+    parser.add_argument("--gamma", type=float, default=0.0)
+    parser.add_argument("--p", type=float, default=0.0)
+    parser.add_argument("--q", type=float, default=0.0)
+    parser.add_argument("--entangle-reps", type=int, default=2)
+    return parser
+
+
 def main():
     SEQ01 = ["Se","Ne","Ni","Si"]
     SEQ02 = ["Se","Si","Ni","Ne"]
+    args = build_parser().parse_args()
 
-    seed = 0
-    trials = 512
-    cycles = 64
-    axis3_sign = +1
-    theta = 0.07
-    n_vec = (0.3, 0.4, 0.866025403784)
-
-    # weak noise
-    params = {"gamma": 0.005, "p": 0.005, "q": 0.005}
-    entangle_reps = 2
+    seed = args.seed
+    trials = args.trials
+    cycles = args.cycles
+    axis3_sign = args.axis3_sign
+    theta = args.theta
+    n_vec = (args.nx, args.ny, args.nz)
+    params = {"gamma": args.gamma, "p": args.p, "q": args.q}
+    entangle_reps = args.entangle_reps
 
     r1 = run_branch(SEQ01, seed=seed, trials=trials, cycles=cycles, axis3_sign=axis3_sign,
                     theta=theta, n_vec=n_vec, params=params, entangle_reps=entangle_reps)

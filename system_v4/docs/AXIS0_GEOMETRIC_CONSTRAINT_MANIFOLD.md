@@ -7,6 +7,8 @@
 
 ## Scope
 
+- [AXIS0_ACTIVE_PACKET_INDEX.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_ACTIVE_PACKET_INDEX.md) is the compact entrypoint for the active `Axis 0` controller, owner, support, and geometry-side packet stack.
+
 This file isolates only:
 
 - the geometric constraint manifold
@@ -63,135 +65,72 @@ This is the clean separation:
 
 ## Axis 0 Role
 
-`Axis 0` is not an operator and not a terrain.
+`Axis 0` is the **external scalar field** on the constraint manifold.
 
-The strongest source-backed role is:
+This packet keeps two things separate:
 
-`Axis 0 = external scalar field on the constraint manifold through a cut-state functional`
+- the geometric seat and diagnostics of `Axis 0`
+- the later cut-state kernel family that still depends on bridge `Xi` and cut `A|B`
 
-Pointwise shape:
+### Geometric Seat: $\eta \in [0, \pi/2]$
 
-```text
-phi_0(x) = Phi_0(rho(x))
-```
+Axis 0 is seated geometrically in the $\eta$ direction of the $S^3$ manifold.
 
-History shape:
-
-```text
-phi_0[h] = (1/T) integral_0^T sum_{cut in C} w_cut I_c(cut; rho_h(t)) dt
-```
-
-So `Axis 0` has at least two live shapes:
-
-- pointwise pullback on the manifold
-- history functional over a trajectory
-
-Their exact unification is still open.
+- **Pointwise Field**: $\varphi_0(x) = S(\bar{\rho}(\eta(x)))$
+  - This is the entropy of the orbit-averaged density state at latitude $\eta$.
+  - $\varphi_0$ is zero at the poles (pure states) and maximum at the Clifford torus ($\eta = \pi/4$).
+- **Discrete Bit**: $b_0 = \text{sgn}(\cos(2\eta)) = \text{sgn}(r_z)$
+  - Binarizes the manifold into North ($+1$) and South ($-1$) hemispheres.
 
 ---
 
 ## Kernel Family Ranking
 
-### Best simple working kernel
+### 1. Geometric Diagnostic Seat (Torus Entropy)
 
 ```text
-Phi_0(rho_AB) = -S(A|B)_rho = I_c(A>B)_rho
+Phi_0(eta) = S(bar_rho_eta) = -cos^2(eta) ln(cos^2(eta)) - sin^2(eta) ln(sin^2(eta))
 ```
 
-Why it currently ranks first:
+Why it remains important:
+- It is derived directly from the $S^3 \to S^2$ Hopf mapping.
+- It provides a universal entropy coordinate for all nested tori.
+- It naturally defines $\eta = \pi/4$ as the phase transition point.
+- It is a geometric diagnostic, not a finished cut-state bridge theorem.
 
-- it is source-backed
-- it can go negative
-- the local `axis0_gradient_sim.py` run cleanly separates it from plain mutual information
-
-### Strongest global/shell-cut form
+### 2. Preferred Simple Cut-State Kernel (Bipartite $I_c$)
 
 ```text
-Phi_0(rho) = sum_r w_r I_c(A_r > B_r)_rho
-           = - sum_r w_r S(A_r|B_r)_rho
+Phi_0(rho_AB) = I_c(A|B) = S(rho_B) - S(rho_AB)
 ```
 
-Why it stays live:
+Why it currently ranks above plain geometric diagnostics:
+- It is the QIT-grounded version used for engine entropy bookkeeping.
+- It matches the signed-gradient behavior required for the "negative battery" effect.
+- It still depends on an admitted bridge and cut on the same stack.
 
-- it is the strongest screenshot-backed global form
-- it matches the "external scalar field on M" idea better than a single fixed two-part cut
+Compatibility note:
 
-### Strong companion diagnostic
-
-```text
-I(A:B)_rho = S(rho_A) + S(rho_B) - S(rho_AB)
-```
-
-Why it is not ranked first:
-
-- it is always non-negative
-- it can track total correlation
-- it does not by itself supply the signed "negative battery" behavior
-
-### Current ranking
-
-| Role | Pure math | Current status |
-|---|---|---|
-| primary simple kernel | `-S(A|B)_rho` | strongest current working lock |
-| primary global kernel | `sum_r w_r I_c(A_r > B_r)_rho` | strongest global/shell form |
-| companion diagnostic | `I(A:B)_rho` | useful but secondary |
+- $b_0 = \text{sign}(I_c)$ may align with $b_0 = \text{sign}(r_z)$ on favored families
+- that alignment does not erase the bridge/cut dependence of the QIT kernel
 
 ---
 
-## Bridge `Xi` Options
+## Bridge `Xi` Update
 
-The unresolved problem is not the existence of the kernel family. It is the bridge into the cut state.
+The bridge $\Xi$ into the cut state is still open.
 
-Required shape:
+What this packet keeps:
 
-```text
-Xi : (geometry sample or history window) -> rho_AB in D(H_A tensor H_B)
-```
+- raw torus latitude is a real geometric diagnostic
+- raw averaged left/right product states are honest controls
+- trajectory-shaped readouts remain live as bridge-family candidates
 
-### Option 1: Pointwise shell-cut bridge
+What this packet does not claim:
 
-```text
-Xi_shell : x -> { (r, w_r, rho_{A_r B_r}(x)) }_r
-```
-
-Status:
-
-- strongest source-backed pointwise family
-- aligns with the saved shell-cut formula
-- still missing an explicit construction rule for `rho_{A_r B_r}(x)`
-
-### Option 2: History-window bridge
-
-```text
-Xi_hist : h|_[t0,t1] -> { (t, cut, w_cut, rho_cut(t)) }_{t,cut}
-```
-
-Status:
-
-- strongest canon-backed family
-- matches the explicit history integral form
-- probably the least arbitrary if `Axis 0` is fundamentally trajectory-shaped
-
-### Option 3: Left/right paired bridge
-
-```text
-Xi_LR : x -> rho_AB(x) built from paired sheet data
-```
-
-Status:
-
-- intuitively tempting
-- not source-locked as the final `Axis 0` cut
-- currently unsafe to identify with `rho_LR`
-
-### Why `rho_LR` should not be overloaded
-
-In current probe usage, `rho_LR` already means an inter-chirality coherence block inside a larger Weyl-pair construction, not a settled `Axis 0` cut-state symbol.
-
-So the correct statement is:
-
-- `Xi_LR` remains a possible bridge family
-- `rho_LR` should not be silently reused as if that were already the finished `Axis 0` object
+- one product construction closes the bridge
+- one trajectory readout is already final `Xi`
+- geometry by itself is already the cut-state bridge
 
 ---
 
@@ -245,8 +184,8 @@ So it shows correlation accumulation and burn, but it does not give the negative
 
 The strongest warning signal from that sim:
 
-- `torus_transport x Ax0:coarse = 0.7071` on inner and outer torus strata
-- `torus_transport x Ax0:coarse = 0.0000` on random `S^3` and Clifford torus samples
+- `torus_transport x Axis 0:coarse = 0.7071` on inner and outer torus strata
+- `torus_transport x Axis 0:coarse = 0.0000` on random `S^3` and Clifford torus samples
 
 So:
 

@@ -1,194 +1,294 @@
 # Axis 0 Manifold and Bridge Options
 
 **Date:** 2026-03-29  
-**Epistemic status:** Working packet. The geometric carrier is strongly source-backed and strongly probe-backed. `Ax0` is source-backed as an external correlation functional on cut states, but the exact bridge from geometry/history into the cut state is still open. This file ranks what is strongest now and what remains candidate-only.
+**Epistemic status:** Strict working owner packet for the `Axis 0` bridge layer. The upstream geometry packet is source-backed and probe-backed. The `Axis 0` kernel family is source-backed. The exact bridge `Xi : geometry/history -> rho_AB` is still open. This file tracks bridge contract, bridge families, executable evidence, killed options, and open gaps without upgrading proxies into doctrine.
 
 ---
 
-## 1. Hard Lock
+## 1. Scope And Status
 
-| Layer | Pure Math | Status |
-|---|---|---|
-| carrier | \(S^3=\{\psi\in \mathbb C^2:\|\psi\|=1\}\) | source-backed, probe-backed |
-| projection | \(\pi(\psi)=\psi^\dagger \vec\sigma\,\psi\in S^2\) | source-backed, probe-backed |
-| density reduction | \(\rho(\psi)=|\psi\rangle\langle\psi|=\frac12(I+\vec r\cdot\vec\sigma)\) | source-backed, probe-backed |
-| torus stratum | \(T_\eta\subset S^3\) | source-backed, probe-backed |
-| loop families | \(\gamma_{\mathrm{fiber}},\gamma_{\mathrm{base}}\subset T_\eta\) | source-backed, probe-backed |
-| Weyl sheet layer | \(H_L=+H_0,\ H_R=-H_0\) | source-backed working layer |
-| Axis 0 role | \(\varphi_0=\Phi_0\circ \Xi\) | source-backed role, unfinished bridge |
-| Axis 0 domain | \(\Phi_0:D(H_A\otimes H_B)\to \mathbb R\) or shell-cut/history generalization | source-backed family |
+This file is only about the bridge layer for `Axis 0`.
 
-The main category split is:
+It assumes the upstream separation already holds:
 
-- geometry gives the constrained carrier
-- `Ax0` does not replace that geometry
-- `Ax0` acts on a cut state derived from geometry or history
+- constraints are not geometry
+- geometry is not `Axis 0`
+- `Axis 0` acts on a cut-state functional after a bridge has been chosen
+
+Upstream owner packet:
+
+- [CONSTRAINT_GEOMETRY_AXIS0_SEPARATION.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/CONSTRAINT_GEOMETRY_AXIS0_SEPARATION.md)
+
+Broad proto basin index:
+
+- [PROTO_RATCHET_CONSTRAINT_GEOMETRY_BASIN.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/PROTO_RATCHET_CONSTRAINT_GEOMETRY_BASIN.md)
+- [AXIS0_XI_HIST_STRICT_OPTIONS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_XI_HIST_STRICT_OPTIONS.md)
+- [AXIS0_ACTIVE_PACKET_INDEX.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_ACTIVE_PACKET_INDEX.md)
 
 ---
 
-## 2. Best Current Geometry Spine
+## 2. Upstream Preconditions
 
-| Layer | Pure Math | Meaning |
+The bridge layer starts only after these are already in place:
+
+| Layer | Pure math | Status |
 |---|---|---|
-| carrier | \(S^3\) | normalized spinor carrier |
-| Hopf map | \(\pi:S^3\to S^2\) | Bloch-sphere image |
-| torus foliation | \(T_\eta=\{(e^{i\alpha}\cos\eta,\ e^{i\beta}\sin\eta)\}\subset S^3\) | nested Hopf tori |
-| connection | \(\mathcal A=-i\psi^\dagger d\psi=d\phi+\cos(2\eta)d\chi\) | separates fiber from horizontal motion |
-| fiber loop | \(\gamma_{\mathrm{fiber}}^s(u)=\psi_s(\phi_0+u,\chi_0;\eta_0)\) | density-stationary family |
-| base loop | \(\gamma_{\mathrm{base}}^s(u)=\psi_s(\phi_0-\cos(2\eta_0)u,\chi_0+u;\eta_0)\) | density-traversing family |
-| horizontal condition | \(\mathcal A(\dot\gamma_{\mathrm{base}}^s)=0\) | base-loop constraint |
-| sheet sign | \(H_L=+H_0,\ H_R=-H_0\) | coherent orientation flip |
+| constraint manifold | \(M(C)\) | thin canon |
+| geometry carrier | \(S^3 \to T_\eta \to \gamma_{\mathrm{fiber}},\gamma_{\mathrm{base}} \to \rho(\psi)\) | source-backed, probe-backed |
+| favored realization | \((\psi_L,\psi_R,\rho_L,\rho_R)\) with Weyl working layer | compiled working layer |
+| `Axis 0` kernel family | \(\Phi_0(\rho_{AB})\in\{-S(A|B),\ \sum_r w_r I_c(A_r\rangle B_r),\ I(A:B)\}\) | source-backed family |
 
-What this does **not** give by itself:
+What geometry does **not** provide by itself:
 
-- a bipartite cut state \(\rho_{AB}\)
+- a bipartite cut-state \(\rho_{AB}\)
 - a final cut \(A|B\)
 - a finished bridge \(\Xi\)
 
 ---
 
-## 3. Axis 0 Kernel Candidates
+## 3. Bridge Contract
 
-### 3.1 Ranked candidates
+The minimum bridge object is:
 
-| Rank | Pure Math | Role | Status |
-|---|---|---|---|
-| 1 | \(\Phi_0(\rho_{AB})=-S(A|B)_\rho=I_c(A\rangle B)_\rho\) | strongest simple signed primitive | best current working kernel |
-| 2 | \(\Phi_0(\rho)=\sum_r w_r I_c(A_r\rangle B_r)_\rho\) | strongest global shell-cut form | source-backed, bridge still open |
-| 3 | \(\Phi_0(\rho_{AB})=I(A:B)_\rho\) | total-correlation diagnostic | useful companion, not enough alone |
+\[
+\Xi:\text{geometry sample or history window}\to \rho_{AB}
+\]
 
-### 3.2 Why the ranking looks like this
+with
 
-| Candidate | What it can do | What it cannot do |
-|---|---|---|
-| \(-S(A|B)\) | goes negative on entangled cuts; gives a signed battery-like primitive | does not choose the cut or bridge by itself |
-| \(\sum_r w_r I_c(A_r\rangle B_r)\) | matches the screenshot shell-cut form; scales naturally to manifold/history families | still needs explicit shell construction |
-| \(I(A:B)\) | measures total correlation cleanly; useful for diagnostics and monotonicity tests | cannot go negative, so it cannot be the full signed primitive alone |
+\[
+\Phi_0(\rho_{AB})
+\]
 
----
+as the later `Axis 0` kernel evaluation.
 
-## 4. Axis 0 Shape Family
+### 3.1 Required contract
 
-| Shape | Pure Math | Status |
-|---|---|---|
-| pointwise manifold pullback | \(\varphi_0(x)=\Phi_0(\rho(x))\) | screenshot-backed shape |
-| shell-cut pointwise pullback | \(\varphi_0(x)=\sum_r w_r I_c(A_r\rangle B_r)_{\rho(x)}\) | strongest screenshot-backed pointwise family |
-| history functional | \(\varphi_0[h]=\frac1T\int_0^T \sum_{cut\in C} w_{cut} I_c(cut;\rho_h(t))\,dt\) | strongest canon-backed history family |
+| Requirement | Meaning |
+|---|---|
+| bipartite target | bridge must output a real cut-state \(\rho_{AB}\) or a clearly typed shell/history generalization |
+| no geometry-only shortcut | raw \(x\in T_\eta\), raw \(\eta\), raw transport, or one reduced density \(\rho(\psi)\) are not enough |
+| cut declared | the cut \(A|B\) must be explicit or at least typed as a candidate family |
+| kernel-compatible | output must be meaningful for \(-S(A|B)\), \(I_c\), or \(I(A:B)\) |
+| notation-safe | do not reuse repo symbols in ways that collide with existing runtime meanings |
 
-The unresolved issue is not whether these shapes exist.  
-The unresolved issue is how they are unified, if at all.
+### 3.2 Hard non-admitted inputs
 
----
-
-## 5. Bridge Families (Simulated via Exact Liouvillian Integration)
-
-Recent max-real-geometry simulations (`sim_max_real_constraint_manifold.py`) using exact 16-dimensional continuous superoperator integration mathematically prove how each bridge generates correlation, definitively ruling out isolated pointwise tracking. 
-
-### 5.1 The Null Baseline (Why Pointwise Isolated Tracking Fails)
-
-| Evolution | Mathematical Reality | Status |
-|---|---|---|
-| Uncoupled local evaluation | \(\mathcal{L}_{total} = \mathcal{L}_L \otimes I + I \otimes \mathcal{L}_R \) on product state | Mathematically locked to \(I(L:R) \equiv 0\) permanently. |
-
-To evaluate Axis 0 mathematically, the tracking must move beyond isolated deterministic points.
-
-### 5.2 Viable Correlation-Generating Bridge Options
-
-| Candidate | Pure Math (Simulated Mechanism) | Simulated Result | Status |
-|---|---|---|---|
-| shell-cut pointwise (\(\Xi_{\mathrm{shell}}\)) | \(x\mapsto \frac{1}{(2\pi)^2}\int\int |\psi_L\rangle\langle\psi_L| \otimes |\psi_R\rangle\langle\psi_R| d\phi d\chi\) | Native \(I(L:R) \sim 0.50\) | **Strongest candidate.** Geometry natively structures spatial envelopes (torus strata) mapping non-local state correlations perfectly matching previous approximations. |
-| history-window (\(\Xi_{\mathrm{hist}}\)) | \(h\mapsto \frac{1}{T}\int \rho_{LR}(t) dt\) | Native \(I(L:R) \sim 0.01\) | Strong candidate. Classical trajectory mixing naturally builds global correlation independent of any explicit geometric pairing. |
-| constrained coupling (\(\Xi_{\mathrm{coupled}}\)) | \(\mathcal{L}_{total} = \mathcal{L}_{local} - i[H_{int}, \rho]\) | Native \(I(L:R) \sim 0.12\) | Strong candidate. Explicit physics layer enforcing the geometric horizontal constraint \(A(\dot{\gamma}) = 0\). |
-| point-reference bridge | \(x\mapsto \{(\mathrm{ref},\rho_{\mathrm{ref}}), (x,\rho(x))\}\) | Evaluates fiber/base distinction but \(I=0\) | Nontrivial scalar diagnostic, but doesn't solve the bipartite correlation requirement. |
-
-### 5.3 What is explicitly not enough
-
-| Object | Problem |
+| Object | Why not enough |
 |---|---|
 | single isolated spinor \(\psi\) | not bipartite |
-| single reduced density \(\rho(\psi)\) | not bipartite |
-| raw torus parameter \(\eta\) alone | geometric coordinate, not a cut state |
-| mutual information alone | unsigned diagnostic only |
-| pointwise decoupled \(\rho_{LR}\) evolution | tensor structure algebraically enforces exactly 0 correlation |
+| single reduced density \(\rho(\psi)\) | not a cut-state |
+| raw torus latitude \(\eta\) | coordinate only |
+| raw local `L|R` product pair | honest control, but not enough for nontrivial `Axis 0` |
 
 ---
 
-## 6. Probe Ranking
+## 4. Bridge Family Table
 
-### 6.1 Most credible probes
-
-| Rank | Probe | Output | What it actually supports |
+| Family | Pure math shape | Current status | What it is not |
 |---|---|---|---|
-| 1 | [sim_L0_s3_valid.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/sim_L0_s3_valid.py) | [L0_hopf_manifold_results.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/a2_state/sim_results/L0_hopf_manifold_results.json) | the direct carrier geometry is executable: \(S^3\), SU(2), Hopf map, fiber/base behavior, Berry phase, torus coordinates, Bloch round-trip |
-| 2 | [axis0_gradient_sim.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/axis0_gradient_sim.py) | [axis0_gradient_results.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/a2_state/sim_results/axis0_gradient_results.json) | the simple `Ax0` primitive must be able to go negative; \(-S(A|B)\) clears that bar and \(I(A:B)\) does not |
-| 3 | [axis0_xi_strict_bakeoff_sim.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/axis0_xi_strict_bakeoff_sim.py) | [axis0_xi_strict_bakeoff_results.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/a2_state/sim_results/axis0_xi_strict_bakeoff_results.json) | on the live Hopf/Weyl engine, direct `L|R` stays MI-trivial, the shell-strata bridge is pointwise geometry-blind, the point-reference bridge passes the fiber/base discriminator, and the history-window bridge stays nontrivial |
-| 4 | [axis0_path_integral_sim.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/axis0_path_integral_sim.py) | [axis0_path_integral_results.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/a2_state/sim_results/axis0_path_integral_results.json) | shell-cut and history-shaped `Ax0` remain live possibilities |
-| 5 | [sim_neg_axis0_frozen.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/sim_neg_axis0_frozen.py) | [neg_axis0_frozen_results.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/a2_state/sim_results/neg_axis0_frozen_results.json) | current runtime proxy uses something load-bearing called `axis0`, but this does not by itself identify the source-backed kernel |
+| abstract pointwise | \(\Xi_{\mathrm{pt}}:x\mapsto \rho_{AB}(x)\) | admitted shape only | not a finished executable bridge |
+| shell family | \(\Xi_{\mathrm{shell}}:x\mapsto \rho_{AB}^{\mathrm{shell}}(x)\) | live family, exact shell algebra unfinished | not identical to old shell-strata implementation |
+| history family | \(\Xi_{\mathrm{hist}}:h\mapsto \rho_{AB}^{\mathrm{hist}}(h)\) | strongest live bridge family | not final canon `Xi` |
+| cross-temporal constructive family | chiral (Weyl/chirality-weighted) bridge on cross-time L/R pairings | current strongest exploratory constructive family from strict sweeps, but still a constructed cut-state | not earned fixed-marginal closure |
+| point-reference family | \(\Xi_{\mathrm{ref}}:(x_{\mathrm{ref}},x)\mapsto \rho_{AB}^{\mathrm{ref}}(x)\) | strongest live pointwise discriminator | not full bridge doctrine |
+| direct `L|R` control | \(\Xi_{L|R}:(\rho_L,\rho_R)\mapsto \rho_L\otimes \rho_R\) | killed as sufficient, keep as control | not a promoted bridge |
+| coupled control | explicit nonlocal control coupling | control only | not a candidate bridge doctrine |
 
-### 6.2 Useful but lower-authority probes
+### 4.1 Current strict bridge read
 
-| Probe | Why it is useful | Why it does not close `Ax0` |
+- strongest live executable bridge family = `Xi_hist`
+- strongest exploratory constructive search family = cross-temporal chiral (Weyl/chirality-weighted) bridge
+- strongest live pointwise discriminator = point-reference
+- fixed-marginal preserving bridge lane = certified near-zero on the current carrier
+- therefore the current bridge problem is earned-versus-constructed closure, not mere winner discovery
+
+---
+
+## 5. Cut Candidates
+
+| Cut candidate | Status | Why it matters |
 |---|---|---|
-| [axis0_correlation_sim.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/axis0_correlation_sim.py) | shows MI can be built and burned in a toy coupled system | re-tensorizes states and reports verdicts only on MI |
-| [sim_axis_hopf_geometry.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/sim_axis_hopf_geometry.py) | shows some coarse geometric couplings vary by torus stratum | several axis definitions inside the sim are synthetic probes, not source-locked objects |
-| [sim_weyl_dof_analysis.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/sim_weyl_dof_analysis.py) | useful warning that the Weyl pair is richer than one torus slice | does not supply a finished `Ax0` cut-state bridge |
+| generic bipartite cut \(A|B\) | admitted abstract form | minimum QIT requirement |
+| shell/interior-boundary cut | strongest geometric-QIT cut candidate | best match to shell-cut coherent-information family |
+| history-window cut | strongest live executable family | aligns with surviving `Xi_hist` behavior |
+| raw `L|R` cut | control only | useful guardrail, not enough alone |
+
+Open point:
+
+\[
+A|B
+\]
+
+is still not fixed as one final doctrine-level cut.
+
+Exact-cut owner packet:
+
+- [AXIS0_CUT_TAXONOMY.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_CUT_TAXONOMY.md)
+
+Shell-specific cut clarification:
+
+- shell/interior-boundary doctrine belongs to the cut owner packet, not this bridge packet
+- this file only owns how a future strict `Xi_shell` might land in that cut family
+
+Typed shell cut contract:
+
+- [AXIS0_TYPED_SHELL_CUT_CONTRACT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_TYPED_SHELL_CUT_CONTRACT.md)
+
+History-window cut clarification:
+
+- history-window cut ownership remains in the cut owner packet
+- this file only owns how a strict `Xi_hist` might land in that cut family
+- typed history-window cut contract = minimum executable cut target for Xi_hist
+- Xi_hist emission is owned in AXIS0_XI_HIST_EMISSION_PACKET.md
+- the typed contract packet owns the minimum (t,c,w_c,rho_c(t)) target that Xi_hist must land in
+
+Typed history-window cut contract:
+
+- [AXIS0_TYPED_HISTORY_WINDOW_CUT_CONTRACT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_TYPED_HISTORY_WINDOW_CUT_CONTRACT.md)
+
+Strict shell replacement packet:
+
+- [AXIS0_XI_SHELL_STRICT_OPTIONS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_XI_SHELL_STRICT_OPTIONS.md)
+
+Strict history replacement packet:
+
+- [AXIS0_XI_HIST_STRICT_OPTIONS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_XI_HIST_STRICT_OPTIONS.md)
+
+Strict point-reference packet:
+
+- [AXIS0_XI_REF_STRICT_OPTIONS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_XI_REF_STRICT_OPTIONS.md)
+
+Point-reference cut-role lock:
+
+- point-reference cut-role is OPEN but SECONDARY
+- point-reference cut-role does not outrank history-window as executable cut family
+- point-reference cut-role does not outrank shell/interior-boundary as doctrine-facing cut family
+- point-reference remains the strongest live pointwise discriminator and must stay visible in ranking work even when it does not settle doctrine by itself
+
+Bridge relation packet:
+
+- [AXIS0_BRIDGE_RELATION_PACKET.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_BRIDGE_RELATION_PACKET.md)
+
+Typed cut sync card:
+
+- typed cut sync card = non-equivalence lock between typed history and typed shell targets
+- [AXIS0_TYPED_CUT_SYNC_CARD.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_TYPED_CUT_SYNC_CARD.md)
+
+Closeout card:
+
+- [AXIS0_BRIDGE_CLOSEOUT_CARD.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_BRIDGE_CLOSEOUT_CARD.md)
 
 ---
 
-## 7. What The Current Runs Say
+## 6. Acceptance Tests
 
-| Claim | Current status |
+A bridge candidate should be judged against these tests.
+
+| Test | Desired outcome | Kill condition |
+|---|---|---|
+| nontriviality | \(I(A:B)\) not identically zero on the live target family | remains trivial everywhere like raw local `L|R` |
+| geometry sensitivity | varies with real geometry where appropriate | constant on both fiber and base |
+| pointwise discrimination | can distinguish fiber from base if it claims to be pointwise | no difference between fiber and base |
+| history sensitivity | history version should reflect actual trajectory windows | independent of history choice |
+| kernel compatibility | works with \(-S(A|B)\), \(I_c\), \(I(A:B)\) | only supports an unsigned or ad hoc scalar |
+| notation safety | does not collide with repo runtime symbols | reuses `rho_LR` or similar in conflicting ways |
+
+---
+
+## 7. Runtime Proxy Separation
+
+These distinctions must stay explicit.
+
+| Object | Current role | Why not promote directly |
+|---|---|---|
+| runtime `GA0` | live engine proxy | not the same object as source-backed \(\Phi_0(\rho_{AB})\) |
+| `rho_LR` in repo probes | inter-chirality coherence block naming | collides with generic `Axis 0` cut-state notation |
+| per-sheet Hopf coarse-graining | runtime executable mechanism | useful proxy, not a finished bridge theorem |
+
+Key refs:
+
+- [engine_core.py#L376](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/engine_core.py#L376)
+- [engine_core.py#L602](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/engine_core.py#L602)
+- [sim_weyl_dof_analysis.py#L84](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/sim_weyl_dof_analysis.py#L84)
+
+---
+
+## 8. Executable Evidence
+
+### 8.1 Strongest real surfaces
+
+| Surface | What it supports | Current read |
+|---|---|---|
+| [axis0_full_constraint_manifold_guardrail_sim.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/axis0_full_constraint_manifold_guardrail_sim.py) | real geometry + honest raw `L|R` control | local-only `L|R` stays MI-trivial; coupling works only as control |
+| [axis0_xi_strict_bakeoff_sim.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/axis0_xi_strict_bakeoff_sim.py) | strict bridge audit on live Hopf/Weyl engine | shell-strata pointwise killed, point-reference survives as pointwise discriminator, history stays live, direct `L|R` trivial |
+| [axis0_full_spectrum_sim.py](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/axis0_full_spectrum_sim.py) | broad bridge-family ranking | useful option sweep, but imports older bridge family surfaces and must stay lower-authority than the strict bakeoff |
+
+### 8.2 Key result anchors
+
+| Result | Anchor |
 |---|---|
-| the direct manifold \(S^3 \to S^2\) packet is real | supported |
-| nested Hopf tori are real carrier structure, not just metaphor | supported |
-| `Ax0` needs a signed correlation primitive | supported |
-| \(-S(A|B)\) / \(I_c(A\rangle B)\) is the strongest simple kernel | supported |
-| shell-cut coherent-information forms remain live | supported, but one naive shell-strata pointwise realization is geometry-blind |
-| a pointwise bridge can be made geometry-sensitive on fiber/base loops | supported by the point-reference executable candidate |
-| a history-window bridge can be made nontrivial on the live engine without reusing `rho_LR` | supported |
-| mutual information is enough by itself | not supported |
-| torus transport is the same thing as `Ax0` | not supported |
-| the bridge \(\Xi\) is already finished math | not supported |
+| raw local `L|R` remains trivial | [axis0_full_constraint_manifold_guardrail_results.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/a2_state/sim_results/axis0_full_constraint_manifold_guardrail_results.json) |
+| shell-strata pointwise is loop-blind | [axis0_xi_strict_bakeoff_results.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/a2_state/sim_results/axis0_xi_strict_bakeoff_results.json) |
+| point-reference varies on base but stays constant on fiber | [axis0_xi_strict_bakeoff_results.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/a2_state/sim_results/axis0_xi_strict_bakeoff_results.json) |
+| history family stays nontrivial | [axis0_xi_strict_bakeoff_results.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/a2_state/sim_results/axis0_xi_strict_bakeoff_results.json) |
+| broad sweep keeps `Xi_shell` and `Xi_hist_*` as options, but not as final doctrine | [axis0_full_spectrum_results.json](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/probes/a2_state/sim_results/axis0_full_spectrum_results.json) |
 
 ---
 
-## 8. Fastest Next Experiments
+## 9. Current Verdict
 
-| Experiment | Input object | Observable | What it kills or keeps |
-|---|---|---|---|
-| kernel discriminator | small cut states \(\rho_{AB}\) | compare \(-S(A|B)\), \(I(A:B)\), and \(\sum_r w_r I_c\) on the same family | strongest entropy primitive |
-| pointwise shell discriminator | fixed \(x\in T_\eta\) across fiber/base trajectories | compare shell-strata vs point-reference realizations | kills pointwise bridges that stay constant on both fiber and base |
-| history-vs-pointwise test | short stage trajectory \(h(t)\) | compare point-reference \( \varphi_0(x_t)\) and history-window \( \varphi_0[h]\) | whether both shapes are needed |
-| bridge bakeoff | same sample under \(\Xi_{\mathrm{shell}}\), point-reference, \(\Xi_{\mathrm{hist}}\), and Weyl-pair toy bridge | sign stability, monotonicity, perturbation sensitivity | least-arbitrary bridge family |
+### 9.1 Strongest live bridge candidates
+
+| Candidate | Verdict |
+|---|---|
+| `Xi_hist` | strongest live bridge family |
+| point-reference | strongest live pointwise discriminator |
+| shell family | still live only as a family; strongest replacement read is a boundary/interior shell-indexed cut-state family, while old shell-strata pointwise is killed |
+
+### 9.2 Killed or demoted options
+
+| Candidate | Verdict |
+|---|---|
+| raw local `L|R` | killed as sufficient |
+| shell-strata pointwise | killed as pointwise bridge |
+| coupled control | keep only as control |
+| runtime `GA0` | keep only as proxy |
+
+### 9.3 Short read
+
+\[
+\text{real geometry} + (L|R\ \text{cut}) \Rightarrow \text{trivial Axis 0}
+\]
+
+\[
+\text{real geometry} + \Xi_{\mathrm{hist}} \Rightarrow \text{strongest live bridge family}
+\]
+
+\[
+\text{real geometry} + \Xi_{\mathrm{ref}} \Rightarrow \text{best current pointwise discriminator}
+\]
 
 ---
 
-## 9. Current Best Read
+## 10. Open Items
 
-The cleanest current packet is:
+| Open item | Why it remains open |
+|---|---|
+| exact cut \(A|B\) | still not fixed as one doctrine-level cut |
+| exact `Xi_shell` | old shell-strata pointwise implementation is killed; strict shell replacement still needed, with the minimum shell cut target now typed in [AXIS0_TYPED_SHELL_CUT_CONTRACT.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_TYPED_SHELL_CUT_CONTRACT.md) and the strongest live replacement read tracked in [AXIS0_XI_SHELL_STRICT_OPTIONS.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/system_v4/docs/AXIS0_XI_SHELL_STRICT_OPTIONS.md) |
+| exact `Xi_hist` construction | strongest live family, but still needs a typed history-window cut family and explicit \(\rho_c(t)\) construction before it becomes a strict contract |
+| point-reference doctrinal role | strongest live pointwise discriminator, but still needs a clean answer to whether it remains only a discriminator or matures into an explicit open cut family |
+| pointwise vs history unification | both remain live shapes |
+| relation to runtime `GA0` | proxy-to-kernel relation still unresolved |
 
-\[
-S^3 \to T_\eta \to \gamma_{\mathrm{fiber}},\gamma_{\mathrm{base}} \to \rho(\psi)
-\]
+---
 
-for the geometry, and
+## 11. Do Not Smooth
 
-\[
-\Phi_0(\rho_{AB})=-S(A|B)_\rho=I_c(A\rangle B)_\rho
-\]
-
-as the best simple `Ax0` kernel, with
-
-\[
-\Phi_0(\rho)=\sum_r w_r I_c(A_r\rangle B_r)_\rho
-\]
-
-as the strongest global shell-cut form.
-
-The missing object is still:
-
-\[
-\Xi:\text{geometry/history} \to \rho_{AB}
-\]
-
-plus the exact choice of cut \(A|B\).
+- Do not promote raw `L|R` from guardrail control to doctrine.
+- Do not promote runtime `GA0` from proxy to kernel.
+- Do not reuse `rho_LR` as the generic `Axis 0` cut-state symbol.
+- Do not promote old shell-strata pointwise behavior as the surviving shell story.
+- Do not confuse point-reference discrimination with a finished bridge theorem.
+- Do not confuse broad-spectrum ranking with strict bridge-quality proof.

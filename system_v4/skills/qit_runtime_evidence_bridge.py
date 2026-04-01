@@ -147,6 +147,8 @@ def _build_runtime_samples() -> list[dict[str, Any]]:
         runtime_slice = build_runtime_slice(state, run_id=run_id)
         overlay = runtime_slice["state_overlay"]
         history = runtime_slice["history_packet"]
+        axis0_bridge_snapshot = runtime_slice["axis0_bridge_snapshot"]
+        axis0_history_window_snapshot = runtime_slice["axis0_history_window_snapshot"]
         samples.append(
             {
                 "run_id": history["run_id"],
@@ -156,6 +158,8 @@ def _build_runtime_samples() -> list[dict[str, Any]]:
                 "runtime_slice_schema": runtime_slice["schema"],
                 "persistence_policy": runtime_slice["persistence_policy"],
                 "overlay": overlay,
+                "axis0_bridge_snapshot": axis0_bridge_snapshot,
+                "axis0_history_window_snapshot": axis0_history_window_snapshot,
                 "history_summary": {
                     "total_steps": history["total_steps"],
                     "macro_stages_completed": history["macro_stages_completed"],
@@ -240,6 +244,37 @@ def _build_sim_evidence_packets(
     return packets
 
 
+def _axis0_control_plane_summary(runtime_samples: list[dict[str, Any]]) -> dict[str, Any]:
+    direct_families = sorted(
+        {
+            str(sample.get("axis0_bridge_snapshot", {}).get("bridge_family", ""))
+            for sample in runtime_samples
+            if sample.get("axis0_bridge_snapshot")
+        }
+    )
+    history_window_families = sorted(
+        {
+            str(sample.get("axis0_history_window_snapshot", {}).get("bridge_family", ""))
+            for sample in runtime_samples
+            if sample.get("axis0_history_window_snapshot")
+        }
+    )
+    history_window_sample_counts = sorted(
+        {
+            int(sample.get("axis0_history_window_snapshot", {}).get("n_samples", 0))
+            for sample in runtime_samples
+            if sample.get("axis0_history_window_snapshot")
+        }
+    )
+    return {
+        "surface_status": "read_only_control_plane_summary_only",
+        "runtime_sample_count": len(runtime_samples),
+        "direct_bridge_families": [family for family in direct_families if family],
+        "history_window_bridge_families": [family for family in history_window_families if family],
+        "history_window_sample_counts": history_window_sample_counts,
+    }
+
+
 def build_qit_runtime_evidence_bridge() -> dict[str, Any]:
     script_path = Path(__file__).resolve()
     owner_payload, public_id_index, nodes = _owner_snapshot()
@@ -290,6 +325,7 @@ def build_qit_runtime_evidence_bridge() -> dict[str, Any]:
             "edge_count": len(owner_payload.get("edges", [])),
             "public_id_index_size": len(public_id_index),
         },
+        "axis0_control_plane_summary": _axis0_control_plane_summary(runtime_samples),
         "runtime_samples": runtime_samples,
         "sim_evidence_packets": sim_packets,
         "summary": {
@@ -307,9 +343,13 @@ def build_qit_runtime_evidence_bridge() -> dict[str, Any]:
 def _render_markdown(payload: dict[str, Any]) -> str:
     summary = payload["summary"]
     surface = payload["report_surface"]
+    axis0_summary = payload["axis0_control_plane_summary"]
     sample_lines = "\n".join(
         f"- {sample['engine_public_id']}: `{sample['history_summary']['total_steps']}` steps, "
-        f"last step `{sample['history_summary']['last_step_public_id']}`"
+        f"last step `{sample['history_summary']['last_step_public_id']}`, "
+        f"`axis0_bridge_snapshot` `{sample['axis0_bridge_snapshot']['bridge_family']}`, "
+        f"`axis0_history_window_snapshot` `{sample['axis0_history_window_snapshot']['bridge_family']}` "
+        f"({sample['axis0_history_window_snapshot']['n_samples']} samples)"
         for sample in payload["runtime_samples"]
     )
     packet_lines = "\n".join(
@@ -335,6 +375,13 @@ def _render_markdown(payload: dict[str, Any]) -> str:
             f"- surface_class: `{surface['surface_class']}`",
             f"- represents: `{surface['represents']}`",
             f"- git_sha: `{surface['git_sha']}`",
+            "",
+            "## Axis0 Control-Plane Summary",
+            f"- surface_status: `{axis0_summary['surface_status']}`",
+            f"- runtime_sample_count: `{axis0_summary['runtime_sample_count']}`",
+            f"- direct_bridge_families: `{', '.join(axis0_summary['direct_bridge_families']) or 'none'}`",
+            f"- history_window_bridge_families: `{', '.join(axis0_summary['history_window_bridge_families']) or 'none'}`",
+            f"- history_window_sample_counts: `{', '.join(str(v) for v in axis0_summary['history_window_sample_counts']) or 'none'}`",
             "",
             "## Runtime Samples",
             sample_lines or "- none",

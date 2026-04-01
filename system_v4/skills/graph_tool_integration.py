@@ -116,25 +116,70 @@ def build_toponetx_complex(nodes: dict, edges: list) -> dict[str, Any]:
     }
 
 
+_CL3_LAYOUT = None
+_CL3_BLADES = None
+_CL3_BASIS_KEYS = ["", "e1", "e2", "e3", "e12", "e13", "e23", "e123"]
+
+
+def _init_cl3() -> bool:
+    """Lazy-initialize the Cl(3,0) algebra. Returns True if available."""
+    global _CL3_LAYOUT, _CL3_BLADES
+    if _CL3_LAYOUT is not None:
+        return True
+    try:
+        import clifford
+        _CL3_LAYOUT, _CL3_BLADES = clifford.Cl(3)
+        return True
+    except ImportError:
+        return False
+
+
+def coeffs_to_multivector(coeffs: list) -> Any:
+    """
+    Convert an 8-element Cl(3,0) coefficient list to a live clifford.MultiVector.
+    Basis order: [scalar, e1, e2, e3, e12, e13, e23, e123].
+    Returns None if clifford is not available.
+    """
+    if not _init_cl3():
+        return None
+    mv = _CL3_LAYOUT.scalar * float(coeffs[0])
+    for c, k in zip(coeffs[1:], _CL3_BASIS_KEYS[1:]):
+        if c:
+            mv = mv + float(c) * _CL3_BLADES[k]
+    return mv
+
+
 def build_ga_edge_payloads(edges: list, nodes: dict) -> list[dict[str, Any]]:
-    """Build Cl(3) multivector payloads for each edge."""
+    """Build Cl(3) multivector payloads for each edge.
+
+    Each enriched edge gains:
+      ga_payload.coefficients  — 8-element float list (always present, serializable)
+      ga_multivector           — live clifford.MultiVector (present when clifford is installed)
+    """
+    cl3_live = _init_cl3()
     enriched = []
     for e in edges:
         if not isinstance(e, dict):
             continue
         rel = e.get("relation", "?")
         ga_spec = RELATION_GA_SPEC.get(rel, DEFAULT_GA)
+        coeffs = ga_spec["coeffs"]
 
         enriched_edge = {
             **e,
             "ga_payload": {
                 "algebra": "Cl(3,0)",
                 "grade": ga_spec["grade"],
-                "coefficients": ga_spec["coeffs"],
+                "coefficients": coeffs,
                 "relation": rel,
                 "basis_labels": ["scalar", "e1", "e2", "e3", "e12", "e13", "e23", "e123"],
             },
         }
+
+        # Step 3: promote to live multivector when clifford is available
+        if cl3_live:
+            enriched_edge["ga_multivector"] = coeffs_to_multivector(coeffs)
+
         enriched.append(enriched_edge)
     return enriched
 
@@ -166,7 +211,9 @@ def build_pyg_tensors(nodes: dict, edges: list) -> dict[str, Any]:
         deg = G.degree(nid) if nid in G else 0
         in_deg = G.in_degree(nid) if nid in G else 0
         out_deg = G.out_degree(nid) if nid in G else 0
-        node_features.append([float(deg), float(in_deg), float(out_deg)])
+        # 10-dim: [degree, in_deg, out_deg, bx_L, by_L, bz_L, bx_R, by_R, bz_R, vne_L]
+        node_features.append([float(deg), float(in_deg), float(out_deg),
+                              0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
 
     edge_src, edge_tgt = [], []
     edge_ga_features = []
@@ -178,7 +225,9 @@ def build_pyg_tensors(nodes: dict, edges: list) -> dict[str, Any]:
                 edge_tgt.append(node_idx[tgt])
                 rel = e.get("relation", "?")
                 ga_spec = RELATION_GA_SPEC.get(rel, DEFAULT_GA)
-                edge_ga_features.append(ga_spec["coeffs"])
+                # Expand payload beyond GA (8D) to support dynamic runtime tracking (15D).
+                # New slots: [polarity, entang_weight, chiral_status, topo_legal, const_sat, marg_pres, admissibility]
+                edge_ga_features.append(ga_spec["coeffs"] + [0.0] * 7)
 
     hetero = HeteroData()
     hetero["node"].x = torch.tensor(node_features, dtype=torch.float32)
@@ -189,15 +238,99 @@ def build_pyg_tensors(nodes: dict, edges: list) -> dict[str, Any]:
     return {
         "available": True,
         "node_count": len(node_list),
-        "node_feature_dim": 3,
+        "node_feature_dim": 10,
         "edge_count": len(edge_src),
-        "edge_feature_dim": 8,
+        "edge_feature_dim": 15,
         "heterodata_constructed": True,
         "heterodata_node_store_count": len(hetero.node_types),
         "heterodata_edge_store_count": len(hetero.edge_types),
         "node_features_sample": node_features[:3],
         "edge_features_sample": edge_ga_features[:3],
     }
+
+
+def get_runtime_projections(nodes: dict, edges: list) -> tuple[Any, Any, list[dict[str, Any]]]:
+    """
+    Returns actual TopoNetX CellComplex and PyG HeteroData objects for runtime simulation usage, 
+    along with the enriched Clifford GA edges.
+    """
+    cc = None
+    hetero = None
+    
+    # 1. TopoNetX CellComplex
+    try:
+        import toponetx as tnx
+        import networkx as nx
+        G = nx.Graph()
+        for nid in nodes:
+            G.add_node(nid)
+        for e in edges:
+            if isinstance(e, dict) and e.get("source_id") in nodes and e.get("target_id") in nodes:
+                G.add_edge(e["source_id"], e["target_id"], relation=e.get("relation", "?"))
+        
+        cc = tnx.CellComplex(G)
+        
+        # Add 2-cells
+        for n in G.nodes():
+            neighbors = set(G.neighbors(n))
+            for n2 in neighbors:
+                for n3 in set(G.neighbors(n2)) & neighbors:
+                    if n < n2 < n3:
+                        try:
+                            cc.add_cell([n, n2, n3], rank=2)
+                        except Exception:
+                            pass
+    except ImportError:
+        pass
+
+    # 2. Clifford GA Edges
+    enriched_edges = build_ga_edge_payloads(edges, nodes)
+    
+    # 3. PyG HeteroData
+    try:
+        import torch
+        from torch_geometric.data import HeteroData
+        import networkx as nx
+        
+        node_list = sorted(nodes.keys())
+        node_idx = {nid: i for i, nid in enumerate(node_list)}
+        
+        G_di = nx.DiGraph()
+        for nid in nodes:
+            G_di.add_node(nid)
+        for e in edges:
+            if isinstance(e, dict) and e.get("source_id") in nodes and e.get("target_id") in nodes:
+                G_di.add_edge(e["source_id"], e["target_id"])
+                
+        node_features = []
+        for nid in node_list:
+            # 10-dim feature: [degree, in_deg, out_deg, bx_L, by_L, bz_L, bx_R, by_R, bz_R, vne_L]
+            # First 3 are static graph features.
+            # Dims 3-9 are dynamic QIT state, populated by update_pyg_node_features.
+            node_features.append([
+                float(G_di.degree(nid)), float(G_di.in_degree(nid)), float(G_di.out_degree(nid)),
+                0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+            ])
+            
+        edge_src, edge_tgt, edge_attr = [], [], []
+        for e in enriched_edges:
+            if e.get("source_id") in node_idx and e.get("target_id") in node_idx:
+                edge_src.append(node_idx[e["source_id"]])
+                edge_tgt.append(node_idx[e["target_id"]])
+                
+                # Expand payload beyond GA (8D) to support dynamic runtime tracking (15D).
+                base_coeffs = e["ga_payload"]["coefficients"]
+                edge_attr.append(base_coeffs + [0.0] * 7)
+                
+        hetero = HeteroData()
+        hetero["node"].x = torch.tensor(node_features, dtype=torch.float32)
+        if edge_src:
+            hetero["node", "rel", "node"].edge_index = torch.tensor([edge_src, edge_tgt], dtype=torch.long)
+            hetero["node", "rel", "node"].edge_attr = torch.tensor(edge_attr, dtype=torch.float32)
+    except ImportError:
+        pass
+
+    return cc, hetero, enriched_edges
 
 
 def integrate_graph_tools(

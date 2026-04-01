@@ -157,6 +157,38 @@ class SystemGraphBuilder:
         self._rebuild_runtime_views()
         return True
 
+    def load_multi_repo_provenance(self, json_path: str | Path) -> bool:
+        """
+        Merge the multi-repo provenance graph directly into the active system graph.
+        These nodes are added to a special read-only PROVENANCE_INGEST layer, preserving
+        their authority_class and repo fingerprints, ensuring they do not overwrite canon.
+        """
+        path = Path(json_path)
+        if not path.exists():
+            return False
+        
+        with path.open("r", encoding="utf-8") as f:
+            prov_graph = json.load(f)
+            
+        for n_id, n_data in prov_graph.get("nodes", {}).items():
+            provenance = n_data.get("provenance", {})
+            auth_class = provenance.get("authority_class", "UNKNOWN")
+            
+            node = GraphNode(
+                id=n_id,
+                node_type=n_data.get("node_type", "DOCUMENT"),
+                layer="PROVENANCE_INGEST",
+                name=n_data.get("label", n_id),
+                description=f"Ingested node from {provenance.get('repo', '?')}",
+                original_path=provenance.get("path"),
+                authority=auth_class,
+                properties={"provenance": provenance}
+            )
+            # Use add_node so it handles the pydantic Model and nx sync
+            self.add_node(node)
+            
+        return True
+
     def save_graph_snapshot_paths(
         self,
         json_path: str | Path,

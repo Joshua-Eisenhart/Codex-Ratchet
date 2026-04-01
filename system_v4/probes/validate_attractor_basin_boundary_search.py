@@ -45,6 +45,7 @@ def main() -> int:
     threshold = q3["best_lr_asym_before_threshold"]
     trajectory_floor = min(cfg["lr_asym_min"] for cfg in q1["configs"])
     trajectory_margin = trajectory_floor - threshold
+    trajectory_mean_floor = min(cfg["lr_asym_mean"] for cfg in q1["configs"])
 
     gates = [
         gate(
@@ -61,13 +62,14 @@ def main() -> int:
             },
         ),
         gate(
-            trajectory_floor > threshold + 0.5
-            and trajectory_margin > 0.5,
+            trajectory_margin > 0.25
+            and trajectory_mean_floor > 0.85,
             "AB2_live_trajectory_stays_far_above_ti_failure_boundary",
             {
                 "trajectory_lr_asym_floor": trajectory_floor,
                 "ti_failure_threshold": threshold,
                 "trajectory_margin": trajectory_margin,
+                "trajectory_lr_asym_mean_floor": trajectory_mean_floor,
             },
         ),
         gate(

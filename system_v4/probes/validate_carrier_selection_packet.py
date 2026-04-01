@@ -54,6 +54,9 @@ def main() -> int:
         "object": "c1_signed_bridge_candidate_handoff",
         "candidate": "Xi_chiral_entangle",
         "status": "provisional_handoff_ready",
+        "placement_contract": "downstream_axis_internal_bridge_candidate_only",
+        "owner_dependency": "must_bind_under_xi_hist_signed_law",
+        "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
         "positive_witness_gate": "C3_live_carrier_wins_and_honesty_signal_stays_unique",
         "bridge_separation_gate": "C4_bridge_search_separates_winning_bridges_from_controls",
         "counterfeit_guard_gate": "C7_counterfeit_history_games_mi_but_not_coherent_info",
@@ -180,6 +183,23 @@ def main() -> int:
                 "lr_direct_mean_mi": mean_mi["Xi_LR_direct"],
                 "mean_live_I_c": mispair_summary["mean_live_I_c"],
                 "mean_counterfeit_I_c": mispair_summary["mean_counterfeit_I_c"],
+            },
+        ),
+        gate(
+            signed_bridge_candidate_handoff["candidate"] == "Xi_chiral_entangle"
+            and signed_bridge_candidate_handoff["status"] == "provisional_handoff_ready"
+            and signed_bridge_candidate_handoff["placement_contract"] == "downstream_axis_internal_bridge_candidate_only"
+            and signed_bridge_candidate_handoff["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
+            and signed_bridge_candidate_handoff["forbidden_reclassification"] == "not_owner_derived_not_final_owner_xi"
+            and signed_bridge_candidate_handoff["consumer_status"] == "allowed_for_entropy_readout_not_final_owner_xi",
+            "C9_handoff_contract_freezes_downstream_only_placement",
+            {
+                "candidate": signed_bridge_candidate_handoff["candidate"],
+                "status": signed_bridge_candidate_handoff["status"],
+                "placement_contract": signed_bridge_candidate_handoff["placement_contract"],
+                "owner_dependency": signed_bridge_candidate_handoff["owner_dependency"],
+                "forbidden_reclassification": signed_bridge_candidate_handoff["forbidden_reclassification"],
+                "consumer_status": signed_bridge_candidate_handoff["consumer_status"],
             },
         ),
     ]

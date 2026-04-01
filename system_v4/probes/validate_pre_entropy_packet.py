@@ -60,8 +60,10 @@ def main() -> int:
     history_window_sweep = strict_verdict["history_window_sweep_summary"]
     placement_profile = strict_verdict["history_window_placement_summary"]
     early_width_profile = strict_verdict["history_early_width_summary"]
+    early_order_profile = strict_verdict["history_early_order_summary"]
     prefix_drop_profile = strict_verdict["history_prefix_drop_summary"]
     late_anchor_profile = strict_verdict["history_late_anchor_equivalence_summary"]
+    seat_aware_profile = strict_verdict["history_seat_aware_summary"]
     xi_hist_signed_law = strict_verdict["xi_hist_signed_law_summary"]
     shell_variation = strict_verdict["pointwise_shell_loop_variation"]
     best_bridge = bridge_search["winner"]
@@ -405,7 +407,12 @@ def main() -> int:
             and min(
                 row["signed_cut_by_prefix_drop"]["2_15"] - row["signed_cut_by_prefix_drop"]["8_15"]
                 for row in prefix_drop_profile["rows"]
-            ) > 0.04,
+            ) > 0.04
+            and early_order_profile["first_half_beats_second_half_on_signed_cut_count"] == early_order_profile["total_rows"]
+            and early_order_profile["second_half_beats_first_half_on_signed_cut_count"] == 0
+            and seat_aware_profile["inner"]["signed_cut_half_preference"] == "front_half"
+            and seat_aware_profile["clifford"]["signed_cut_half_preference"] == "front_half"
+            and seat_aware_profile["outer"]["signed_cut_half_preference"] == "front_half",
             "P10_xi_hist_signed_handoff_prefers_back_half_and_short_stress",
             {
                 "best_placement_by_ic_counts": {
@@ -446,6 +453,12 @@ def main() -> int:
                     row["signed_cut_by_prefix_drop"]["2_15"] - row["signed_cut_by_prefix_drop"]["8_15"]
                     for row in prefix_drop_profile["rows"]
                 ),
+                "first_half_beats_second_half_on_signed_cut_count": early_order_profile["first_half_beats_second_half_on_signed_cut_count"],
+                "second_half_beats_first_half_on_signed_cut_count": early_order_profile["second_half_beats_first_half_on_signed_cut_count"],
+                "seat_signed_cut_half_preference": {
+                    seat: seat_aware_profile[seat]["signed_cut_half_preference"]
+                    for seat in ("inner", "clifford", "outer")
+                },
             },
         ),
         gate(

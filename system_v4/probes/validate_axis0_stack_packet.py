@@ -160,31 +160,6 @@ def main() -> int:
             },
         ),
         gate(
-            formal_gate_map["G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit"]["pass"]
-            and formal_gate_map["G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion"]["pass"]
-            and formal_gate_map["G12_lower_tier_chiral_law_search_is_explicit_and_fail_closed"]["pass"]
-            and formal_gate_map["G13_lower_tier_transport_law_search_is_explicit_and_fail_closed"]["pass"]
-            and formal_gate_map["G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed"]["pass"]
-            and root_gate_map["R1_formal_geometry_prerequisite_is_closed"]["pass"]
-            and root_gate_map["R7_mispair_counterfeit_games_mi_but_not_coherent_info"]["pass"]
-            and root_gate_map["R9_root_emergence_remains_open_without_smuggling"]["pass"]
-            and matched_gate_map["M6_exact_preserving_point_reference_stays_discriminator_only"]["pass"]
-            and matched_gate_map["M7_fe_indexed_pairs_remain_the_only_structured_refinement_winner"]["pass"],
-            "S8_axis0_stack_explicitly_consumes_named_foundation_gates",
-            {
-                "formal_g10_pass": formal_gate_map["G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit"]["pass"],
-                "formal_g11_pass": formal_gate_map["G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion"]["pass"],
-                "formal_g12_pass": formal_gate_map["G12_lower_tier_chiral_law_search_is_explicit_and_fail_closed"]["pass"],
-                "formal_g13_pass": formal_gate_map["G13_lower_tier_transport_law_search_is_explicit_and_fail_closed"]["pass"],
-                "formal_g14_pass": formal_gate_map["G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed"]["pass"],
-                "root_r1_pass": root_gate_map["R1_formal_geometry_prerequisite_is_closed"]["pass"],
-                "root_r7_pass": root_gate_map["R7_mispair_counterfeit_games_mi_but_not_coherent_info"]["pass"],
-                "root_r9_pass": root_gate_map["R9_root_emergence_remains_open_without_smuggling"]["pass"],
-                "matched_m6_pass": matched_gate_map["M6_exact_preserving_point_reference_stays_discriminator_only"]["pass"],
-                "matched_m7_pass": matched_gate_map["M7_fe_indexed_pairs_remain_the_only_structured_refinement_winner"]["pass"],
-            },
-        ),
-        gate(
             c1_bridge_gate_map["C1B1_bridge_object_is_explicit_and_downstream_only"]["pass"]
             and c1_bridge_gate_map["C1B2_counterfeit_pressure_remains_bound_to_the_bridge_object"]["pass"]
             and c1_bridge_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"]

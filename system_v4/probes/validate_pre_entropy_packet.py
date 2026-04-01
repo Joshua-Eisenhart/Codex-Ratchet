@@ -49,7 +49,6 @@ def main() -> int:
     neg_no_chirality = load_json(SIM_RESULTS / "neg_no_chirality_results.json")
     neg_loop_law_swap = load_json(SIM_RESULTS / "neg_loop_law_swap_results.json")
     joint_ablation = load_json(SIM_RESULTS / "neg_transport_delta_joint_ablation_results.json")
-    carrier_selection = load_json(SIM_RESULTS / "carrier_selection_packet_validation.json")
     c1_signed_bridge = load_json(SIM_RESULTS / "c1_signed_bridge_candidate_search_validation.json")
     c1_bridge_object = load_json(SIM_RESULTS / "c1_bridge_object_packet_validation.json")
 
@@ -78,7 +77,8 @@ def main() -> int:
     shell_summary = dynamic_shell["summary"]
     delta_branches = weyl_delta["branch_map"]
     delta_inventory = weyl_delta["pre_axis_object_inventory"]
-    carrier_handoff = carrier_selection["signed_bridge_candidate_handoff"]
+    c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
+    carrier_handoff = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]["carrier_handoff"]
     chirality_retention_ratio = float(neg_no_chirality["d_flat"] / neg_no_chirality["d_chiral"])
     owner_worthiness_map = {
         "owner_derived": {

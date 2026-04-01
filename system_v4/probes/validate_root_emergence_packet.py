@@ -55,12 +55,18 @@ def main() -> int:
     carrier_rank = load_json(SIM_RESULTS / "root_constraint_carrier_rank_results.json")
     mispair = load_json(SIM_RESULTS / "history_mispair_counterfeit_results.json")
     coarising = load_json(SIM_RESULTS / "axis0_coarising_stress_test_results.json")
+    attractor_basin = load_json(SIM_RESULTS / "axis0_attractor_basin_boundary_results.json")
     c1_bridge_object = load_json(SIM_RESULTS / "c1_bridge_object_packet_validation.json")
 
     steps = packet_run["steps"]
     formal_gate_map = {item["name"]: item for item in formal_geometry["gates"]}
     level1 = coarising["level1_lr_asym"]
     level2 = coarising["level2_bridge_mi"]
+    q1_basin = attractor_basin["q1_trajectory_lr_asym"]["configs"]
+    q3_basin = attractor_basin["q3_ti_boundary"]
+    min_trajectory_lr_asym = min(config["lr_asym_min"] for config in q1_basin)
+    ti_failure_threshold = q3_basin["best_lr_asym_before_threshold"]
+    ti_boundary_gap = min_trajectory_lr_asym - ti_failure_threshold
     live_carrier = carrier_rank["carrier_best"]["carrier_live_hopf_weyl"]
     live_honesty = carrier_rank["carrier_honesty_best"]["carrier_live_hopf_weyl"]
     mispair_summary = mispair["summary"]
@@ -201,6 +207,20 @@ def main() -> int:
             },
         ),
         gate(
+            step_ok(steps, "attractor_basin_boundary")
+            and q3_basin["threshold_accuracy"] > 0.9
+            and ti_failure_threshold <= 0.05
+            and min_trajectory_lr_asym > 0.5
+            and ti_boundary_gap > 0.5,
+            "R10_attractor_basin_keeps_trajectory_far_from_ti_failure_boundary",
+            {
+                "threshold_accuracy": q3_basin["threshold_accuracy"],
+                "ti_failure_threshold": ti_failure_threshold,
+                "min_trajectory_lr_asym": min_trajectory_lr_asym,
+                "ti_boundary_gap": ti_boundary_gap,
+            },
+        ),
+        gate(
             bridge_search["winner"] == "Xi_chiral_entangle"
             and live_carrier["best_candidate"] == "Xi_chiral_entangle"
             and live_honesty["best_candidate"] == "Xi_chiral_entangle"
@@ -210,7 +230,7 @@ def main() -> int:
             and signed_bridge_handoff["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
             and signed_bridge_handoff["forbidden_reclassification"] == "not_owner_derived_not_final_owner_xi"
             and signed_bridge_handoff["consumer_status"] == "allowed_for_entropy_readout_not_final_owner_xi",
-            "R10_root_emergence_bridge_winner_respects_xi_handoff_contract",
+            "R11_root_emergence_bridge_winner_respects_xi_handoff_contract",
             {
                 "bridge_winner": bridge_search["winner"],
                 "live_carrier_best_candidate": live_carrier["best_candidate"],

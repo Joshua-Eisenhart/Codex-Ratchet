@@ -44,6 +44,7 @@ def main() -> int:
         ("root_emergence", "run_root_emergence_packet.py"),
         ("carrier_selection", "run_carrier_selection_packet.py"),
         ("pre_entropy", "run_pre_entropy_packet.py"),
+        ("c1_bridge_object", "validate_c1_bridge_object_packet.py"),
         ("matched_marginal", "run_matched_marginal_packet.py"),
         ("entropy_readout", "run_entropy_readout_packet.py"),
     ]

@@ -37,12 +37,14 @@ def main() -> int:
     root_emergence = load_json(SIM_RESULTS / "root_emergence_packet_validation.json")
     carrier_selection = load_json(SIM_RESULTS / "carrier_selection_packet_validation.json")
     pre_entropy = load_json(SIM_RESULTS / "pre_entropy_packet_validation.json")
+    c1_bridge_object = load_json(SIM_RESULTS / "c1_bridge_object_packet_validation.json")
     matched_marginal = load_json(SIM_RESULTS / "matched_marginal_packet_validation.json")
     entropy_readout = load_json(SIM_RESULTS / "entropy_readout_packet_validation.json")
     formal_gate_map = {item["name"]: item for item in formal_geometry["gates"]}
     root_gate_map = {item["name"]: item for item in root_emergence["gates"]}
     carrier_gate_map = {item["name"]: item for item in carrier_selection["gates"]}
     pre_entropy_gate_map = {item["name"]: item for item in pre_entropy["gates"]}
+    c1_bridge_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
     matched_gate_map = {item["name"]: item for item in matched_marginal["gates"]}
     entropy_gate_map = {item["name"]: item for item in entropy_readout["gates"]}
 
@@ -51,6 +53,7 @@ def main() -> int:
         "root_emergence": root_emergence,
         "carrier_selection": carrier_selection,
         "pre_entropy": pre_entropy,
+        "c1_bridge_object": c1_bridge_object,
         "matched_marginal": matched_marginal,
         "entropy_readout": entropy_readout,
     }
@@ -89,11 +92,13 @@ def main() -> int:
         ),
         gate(
             pre_entropy["score"] == 1.0
+            and c1_bridge_object["score"] == 1.0
             and matched_marginal["score"] == 1.0
             and entropy_readout["score"] == 1.0,
             "S4_upper_ladder_is_coherent",
             {
                 "pre_entropy_score": pre_entropy["score"],
+                "c1_bridge_object_score": c1_bridge_object["score"],
                 "matched_marginal_score": matched_marginal["score"],
                 "entropy_readout_score": entropy_readout["score"],
             },
@@ -101,11 +106,13 @@ def main() -> int:
         gate(
             root_emergence["score"] == 1.0
             and pre_entropy["score"] == 1.0
+            and c1_bridge_object["score"] == 1.0
             and entropy_readout["score"] == 1.0,
             "S5_axis0_ladder_is_mechanically_traversable",
             {
                 "root_emergence_score": root_emergence["score"],
                 "pre_entropy_score": pre_entropy["score"],
+                "c1_bridge_object_score": c1_bridge_object["score"],
                 "entropy_readout_score": entropy_readout["score"],
             },
         ),
@@ -190,6 +197,23 @@ def main() -> int:
                 "entropy_e3_pass": entropy_gate_map["E3_product_proxy_and_pure_fi_negatives_hold"]["pass"],
                 "entropy_e8_pass": entropy_gate_map["E8_history_family_handoff_supports_signed_readout_on_same_objects"]["pass"],
                 "entropy_e9_pass": entropy_gate_map["E9_fep_framing_shows_nonclassical_directionality"]["pass"],
+                "entropy_e12_pass": entropy_gate_map["E12_xi_hist_law_summary_binds_pre_entropy_to_readout"]["pass"],
+            },
+        ),
+        gate(
+            c1_bridge_gate_map["C1B1_bridge_object_is_explicit_and_downstream_only"]["pass"]
+            and c1_bridge_gate_map["C1B2_counterfeit_pressure_remains_bound_to_the_bridge_object"]["pass"]
+            and c1_bridge_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"]
+            and c1_bridge_gate_map["C1B4_bridge_object_keeps_owner_doctrine_questions_open"]["pass"]
+            and entropy_gate_map["E10_current_bridge_candidate_is_explicit_and_provisional"]["pass"]
+            and entropy_gate_map["E12_xi_hist_law_summary_binds_pre_entropy_to_readout"]["pass"],
+            "S9_axis0_stack_consumes_standalone_c1_bridge_object_contract",
+            {
+                "c1b1_pass": c1_bridge_gate_map["C1B1_bridge_object_is_explicit_and_downstream_only"]["pass"],
+                "c1b2_pass": c1_bridge_gate_map["C1B2_counterfeit_pressure_remains_bound_to_the_bridge_object"]["pass"],
+                "c1b3_pass": c1_bridge_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"],
+                "c1b4_pass": c1_bridge_gate_map["C1B4_bridge_object_keeps_owner_doctrine_questions_open"]["pass"],
+                "entropy_e10_pass": entropy_gate_map["E10_current_bridge_candidate_is_explicit_and_provisional"]["pass"],
                 "entropy_e12_pass": entropy_gate_map["E12_xi_hist_law_summary_binds_pre_entropy_to_readout"]["pass"],
             },
         ),

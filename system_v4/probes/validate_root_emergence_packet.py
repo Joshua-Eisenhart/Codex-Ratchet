@@ -72,6 +72,10 @@ def main() -> int:
     min_q4_norm_cyz = min(step["norm_cyz"] for step in q4_te_steps)
     max_q4_norm_cyz = max(step["norm_cyz"] for step in q4_te_steps)
     min_q4_lr_asym = min(step["lr_asym"] for step in q4_te_steps)
+    missing_axis_candidates = missing_axis["candidates"]
+    measurement_basis_residual = missing_axis_candidates["A: measurement_basis"]["residual"]
+    squeezing_residual = missing_axis_candidates["G: squeezing"]["residual"]
+    coupling_strength_residual = missing_axis_candidates["B: coupling_strength"]["residual"]
     live_carrier = carrier_rank["carrier_best"]["carrier_live_hopf_weyl"]
     live_honesty = carrier_rank["carrier_honesty_best"]["carrier_live_hopf_weyl"]
     mispair_summary = mispair["summary"]
@@ -109,11 +113,17 @@ def main() -> int:
         gate(
             missing_axis["best_residual"] > 0.85
             and missing_axis["best_candidate"] in {"A: measurement_basis", "G: squeezing"}
+            and measurement_basis_residual > 0.85
+            and squeezing_residual > 0.85
+            and coupling_strength_residual < 0.85
             and missing_axis["candidates"]["C: coherence_class"]["residual"] < 1e-10,
             "R3_missing_axis_search_finds_uncaptured_structure",
             {
                 "best_candidate": missing_axis["best_candidate"],
                 "best_residual": missing_axis["best_residual"],
+                "measurement_basis_residual": measurement_basis_residual,
+                "squeezing_residual": squeezing_residual,
+                "coupling_strength_residual": coupling_strength_residual,
                 "coherence_class_residual": missing_axis["candidates"]["C: coherence_class"]["residual"],
             },
         ),

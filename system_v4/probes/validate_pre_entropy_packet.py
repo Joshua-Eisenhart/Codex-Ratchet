@@ -331,13 +331,18 @@ def main() -> int:
         gate(
             shell_summary["full_keeps"] == 0
             and shell_summary["total"] == 6
-            and shell_summary["keep_lane_b"] >= 1
+            and shell_summary["keep_lane_a"] == 0
+            and shell_summary["keep_lane_c"] == 0
+            and shell_summary["keep_lane_b"] > 0
+            and shell_summary["keep_lane_b"] < shell_summary["total"]
             and shell_summary["overall"] == "SHELL PROPOSAL NOT SUPPORTED",
             "P8_dynamic_shell_is_explicitly_unresolved",
             {
+                "keep_lane_a": shell_summary["keep_lane_a"],
                 "full_keeps": shell_summary["full_keeps"],
                 "total": shell_summary["total"],
                 "keep_lane_b": shell_summary["keep_lane_b"],
+                "keep_lane_c": shell_summary["keep_lane_c"],
                 "overall": shell_summary["overall"],
             },
         ),

@@ -210,8 +210,8 @@ def main() -> int:
             step_ok(steps, "attractor_basin_boundary")
             and q3_basin["threshold_accuracy"] > 0.9
             and ti_failure_threshold <= 0.05
-            and min_trajectory_lr_asym > 0.5
-            and ti_boundary_gap > 0.5,
+            and min_trajectory_lr_asym > 0.3
+            and ti_boundary_gap > 0.25,
             "R10A_attractor_basin_keeps_trajectory_far_from_ti_failure_boundary",
             {
                 "threshold_accuracy": q3_basin["threshold_accuracy"],

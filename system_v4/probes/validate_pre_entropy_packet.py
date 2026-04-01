@@ -317,7 +317,10 @@ def main() -> int:
         ),
         gate(
             fe_summary["best_new_bridge"] == "C_fe_pairs_only"
+            and fe_summary["winner_counts"]["A_phase4_winner"] >= 1
+            and fe_summary["winner_counts"]["B_fe_indexed"] == 0
             and fe_summary["winner_counts"]["C_fe_pairs_only"] >= 4
+            and fe_summary["winner_counts"]["D_lag7_pairs"] == 0
             and fe_summary["best_gain"] > 0.1
             and fe_summary["mean_fe_advantage"] > 0.1,
             "P7_fe_indexed_is_partial_refinement_not_replacement",

@@ -64,9 +64,14 @@ def main() -> int:
     level2 = coarising["level2_bridge_mi"]
     q1_basin = attractor_basin["q1_trajectory_lr_asym"]["configs"]
     q3_basin = attractor_basin["q3_ti_boundary"]
+    q4_basin = attractor_basin["q4_te_inversion"]["configs"]
     min_trajectory_lr_asym = min(config["lr_asym_min"] for config in q1_basin)
     ti_failure_threshold = q3_basin["best_lr_asym_before_threshold"]
     ti_boundary_gap = min_trajectory_lr_asym - ti_failure_threshold
+    q4_te_steps = [step for config in q4_basin for step in config["te_step_details"]]
+    min_q4_norm_cyz = min(step["norm_cyz"] for step in q4_te_steps)
+    max_q4_norm_cyz = max(step["norm_cyz"] for step in q4_te_steps)
+    min_q4_lr_asym = min(step["lr_asym"] for step in q4_te_steps)
     live_carrier = carrier_rank["carrier_best"]["carrier_live_hopf_weyl"]
     live_honesty = carrier_rank["carrier_honesty_best"]["carrier_live_hopf_weyl"]
     mispair_summary = mispair["summary"]
@@ -218,6 +223,19 @@ def main() -> int:
                 "ti_failure_threshold": ti_failure_threshold,
                 "min_trajectory_lr_asym": min_trajectory_lr_asym,
                 "ti_boundary_gap": ti_boundary_gap,
+            },
+        ),
+        gate(
+            step_ok(steps, "attractor_basin_boundary")
+            and all(config["n_te_steps"] == 2 for config in q4_basin)
+            and max_q4_norm_cyz <= -0.99
+            and min_q4_lr_asym > 0.9,
+            "R10B_te_steps_stay_on_antiparallel_yz_band_on_attractor",
+            {
+                "config_count": len(q4_basin),
+                "max_q4_norm_cyz": max_q4_norm_cyz,
+                "min_q4_norm_cyz": min_q4_norm_cyz,
+                "min_q4_lr_asym": min_q4_lr_asym,
             },
         ),
         gate(

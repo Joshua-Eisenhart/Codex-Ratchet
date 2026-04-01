@@ -40,6 +40,7 @@ def main() -> int:
     flux = delta["flux_candidate_status"]
     branches = delta["branch_map"]
     inventory = delta["pre_axis_object_inventory"]
+    embargo = delta["transport_embargo_boundary"]
     gates = [
         gate(
             summary["rows"] == 48
@@ -141,6 +142,25 @@ def main() -> int:
             "W8_pre_axis_object_inventory_is_explicit",
             {
                 "pre_axis_object_inventory": inventory,
+            },
+        ),
+        gate(
+            embargo["status"] == "candidate_pre_axis_law_not_owner_promoted"
+            and embargo["surviving_candidate"] == "chirality_separated_transport_deltas"
+            and embargo["lower_tier_law"] == "exact_loop_assigned_transport_only"
+            and embargo["blocked_flux"] == "entropic_left_right_flux"
+            and embargo["blocked_flux_reason"] == "blocked_by_symmetric_compat_shim"
+            and embargo["unsupported_single_flux"] == "single_weyl_flux_object"
+            and embargo["unsupported_single_flux_status"] == "not_supported_yet"
+            and embargo["downstream_branch"] == "post_joint_cut_flux"
+            and embargo["downstream_branch_status"] == "downstream_existing_branch"
+            and embargo["promotion_boundary"] == "awaiting_owner_promotion_decision_after_nonproxy_support"
+            and embargo["support_rows"]["transport_active_count"] == summary["transport_active_count"]
+            and embargo["support_rows"]["chirality_active_count"] == summary["chirality_active_count"]
+            and embargo["support_rows"]["lr_bloch_asymmetry_count"] == summary["lr_bloch_asymmetry_count"],
+            "W9_transport_embargo_boundary_is_explicit",
+            {
+                "transport_embargo_boundary": embargo,
             },
         ),
     ]

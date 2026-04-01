@@ -81,6 +81,7 @@ def main() -> int:
     shell_summary = dynamic_shell["summary"]
     delta_branches = weyl_delta["branch_map"]
     delta_inventory = weyl_delta["pre_axis_object_inventory"]
+    transport_embargo = weyl_delta["transport_embargo_boundary"]
     weyl_delta_gate_map = {item["name"]: item for item in weyl_delta_validation["gates"]}
     c1_signed_gate_map = {item["name"]: item for item in c1_signed_bridge["gates"]}
     c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
@@ -579,15 +580,22 @@ def main() -> int:
             weyl_delta_gate_map["W5_branch_map_keeps_flux_placement_open"]["pass"]
             and weyl_delta_gate_map["W7_branch_map_preserves_skeptical_flux_read"]["pass"]
             and weyl_delta_gate_map["W8_pre_axis_object_inventory_is_explicit"]["pass"]
-            and delta_branches["chirality_separated_transport_deltas"]["status"] == "surviving_pre_axis_candidate"
+            and weyl_delta_gate_map["W9_transport_embargo_boundary_is_explicit"]["pass"]
+            and transport_embargo["status"] == "candidate_pre_axis_law_not_owner_promoted"
+            and transport_embargo["surviving_candidate"] == "chirality_separated_transport_deltas"
+            and transport_embargo["promotion_boundary"] == "awaiting_owner_promotion_decision_after_nonproxy_support"
+            and transport_embargo["lower_tier_law"] == "exact_loop_assigned_transport_only"
+            and transport_embargo["blocked_flux"] == "entropic_left_right_flux"
+            and transport_embargo["downstream_branch"] == "post_joint_cut_flux"
             and owner_worthiness_map["pre_axis_law"]["chirality_separated_transport_deltas"] == "candidate"
-            and owner_worthiness_map["pre_axis_law"]["chirality_separated_transport_deltas_blocker"] == "awaiting_owner_promotion_decision_after_nonproxy_support",
+            and owner_worthiness_map["pre_axis_law"]["chirality_separated_transport_deltas_blocker"] == transport_embargo["promotion_boundary"],
             "P16_transport_delta_branch_survives_but_is_not_owner_law_yet",
             {
                 "w5_pass": weyl_delta_gate_map["W5_branch_map_keeps_flux_placement_open"]["pass"],
                 "w7_pass": weyl_delta_gate_map["W7_branch_map_preserves_skeptical_flux_read"]["pass"],
                 "w8_pass": weyl_delta_gate_map["W8_pre_axis_object_inventory_is_explicit"]["pass"],
-                "chirality_separated_transport_deltas": delta_branches["chirality_separated_transport_deltas"],
+                "w9_pass": weyl_delta_gate_map["W9_transport_embargo_boundary_is_explicit"]["pass"],
+                "transport_embargo_boundary": transport_embargo,
                 "blocker": owner_worthiness_map["pre_axis_law"]["chirality_separated_transport_deltas_blocker"],
             },
         ),

@@ -238,6 +238,27 @@ def pre_axis_object_inventory(summary: dict) -> dict:
     }
 
 
+def transport_embargo_boundary(summary: dict) -> dict:
+    return {
+        "object": "transport_embargo_boundary",
+        "status": "candidate_pre_axis_law_not_owner_promoted",
+        "surviving_candidate": "chirality_separated_transport_deltas",
+        "lower_tier_law": "exact_loop_assigned_transport_only",
+        "blocked_flux": "entropic_left_right_flux",
+        "blocked_flux_reason": "blocked_by_symmetric_compat_shim",
+        "unsupported_single_flux": "single_weyl_flux_object",
+        "unsupported_single_flux_status": "not_supported_yet",
+        "downstream_branch": "post_joint_cut_flux",
+        "downstream_branch_status": "downstream_existing_branch",
+        "promotion_boundary": "awaiting_owner_promotion_decision_after_nonproxy_support",
+        "support_rows": {
+            "transport_active_count": int(summary["transport_active_count"]),
+            "chirality_active_count": int(summary["chirality_active_count"]),
+            "lr_bloch_asymmetry_count": int(summary["lr_bloch_asymmetry_count"]),
+        },
+    }
+
+
 def run_case(engine_type: int, init_eta: float, theta1: float, theta2: float) -> dict:
     engine = GeometricEngine(engine_type=engine_type)
     controls = stage_controls()
@@ -274,6 +295,7 @@ def main() -> int:
         "flux_candidate_status": flux_candidate_status(global_summary),
         "branch_map": branch_map(global_summary),
         "pre_axis_object_inventory": pre_axis_object_inventory(global_summary),
+        "transport_embargo_boundary": transport_embargo_boundary(global_summary),
         "owner_read": {
             "delta_packet_status": "raw_pre_axis_objects_only",
             "note": "This packet exposes stagewise geometry/chirality deltas without promoting a final flux doctrine.",

@@ -55,6 +55,7 @@ def main() -> int:
     carrier_rank = load_json(SIM_RESULTS / "root_constraint_carrier_rank_results.json")
     mispair = load_json(SIM_RESULTS / "history_mispair_counterfeit_results.json")
     coarising = load_json(SIM_RESULTS / "axis0_coarising_stress_test_results.json")
+    orbit_phase = load_json(SIM_RESULTS / "axis0_orbit_phase_alignment_results.json")
     attractor_basin = load_json(SIM_RESULTS / "axis0_attractor_basin_boundary_results.json")
     c1_bridge_object = load_json(SIM_RESULTS / "c1_bridge_object_packet_validation.json")
 
@@ -62,6 +63,8 @@ def main() -> int:
     formal_gate_map = {item["name"]: item for item in formal_geometry["gates"]}
     level1 = coarising["level1_lr_asym"]
     level2 = coarising["level2_bridge_mi"]
+    orbit_phase_stats = orbit_phase["aggregate_phase"]
+    orbit_half_stats = orbit_phase["aggregate_half"]
     q1_basin = attractor_basin["q1_trajectory_lr_asym"]["configs"]
     q3_basin = attractor_basin["q3_ti_boundary"]
     q4_basin = attractor_basin["q4_te_inversion"]["configs"]
@@ -243,13 +246,24 @@ def main() -> int:
             packet_run["all_ok"]
             and not all(result["universal"] for result in level1.values())
             and not all(result["universal"] for result in level2.values())
-            and coarising["level3_geometry"]["total_trials"] == 0,
+            and coarising["level3_geometry"]["total_trials"] == 0
+            and step_ok(steps, "orbit_phase_alignment")
+            and orbit_phase["guard_event_count"] == 0
+            and orbit_phase["n_total_failures"] > 0
+            and orbit_phase_stats["Fe"]["ok"] == 0
+            and orbit_phase_stats["Fe"]["fail"] > 0
+            and orbit_half_stats["inner"]["fail"] > orbit_half_stats["inner"]["ok"],
             "R9_root_emergence_remains_open_without_smuggling",
             {
                 "all_ok": packet_run["all_ok"],
                 "all_level1_universal": all(result["universal"] for result in level1.values()),
                 "all_level2_universal": all(result["universal"] for result in level2.values()),
                 "level3_total_trials": coarising["level3_geometry"]["total_trials"],
+                "orbit_phase_alignment_ok": step_ok(steps, "orbit_phase_alignment"),
+                "orbit_guard_event_count": orbit_phase["guard_event_count"],
+                "orbit_total_failures": orbit_phase["n_total_failures"],
+                "orbit_phase_stats": orbit_phase_stats,
+                "orbit_half_stats": orbit_half_stats,
             },
         ),
         gate(

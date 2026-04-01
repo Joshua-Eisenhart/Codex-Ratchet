@@ -57,6 +57,7 @@ def main() -> int:
         ("carrier_rank", "sim_root_constraint_carrier_rank.py", False),
         ("history_mispair_counterfeit", "sim_history_mispair_counterfeit.py", False),
         ("coarising_stress", "sim_axis0_coarising_stress_test.py", False),
+        ("orbit_phase_alignment", "sim_axis0_orbit_phase_alignment.py", False),
         ("attractor_basin_boundary", "sim_axis0_attractor_basin_boundary.py", False),
     ]
     step_results = [run_step(label, script_name, require_spec_graph) for label, script_name, require_spec_graph in steps]

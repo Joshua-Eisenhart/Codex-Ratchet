@@ -46,6 +46,7 @@ def main() -> int:
     fe_indexed = load_json(SIM_RESULTS / "axis0_fe_indexed_xi_hist_results.json")
     dynamic_shell = load_json(SIM_RESULTS / "axis0_dynamic_shell_results.json")
     weyl_delta = load_json(SIM_RESULTS / "weyl_delta_packet_results.json")
+    weyl_delta_validation = load_json(SIM_RESULTS / "weyl_delta_packet_validation.json")
     neg_no_chirality = load_json(SIM_RESULTS / "neg_no_chirality_results.json")
     neg_loop_law_swap = load_json(SIM_RESULTS / "neg_loop_law_swap_results.json")
     joint_ablation = load_json(SIM_RESULTS / "neg_transport_delta_joint_ablation_results.json")
@@ -77,6 +78,7 @@ def main() -> int:
     shell_summary = dynamic_shell["summary"]
     delta_branches = weyl_delta["branch_map"]
     delta_inventory = weyl_delta["pre_axis_object_inventory"]
+    weyl_delta_gate_map = {item["name"]: item for item in weyl_delta_validation["gates"]}
     c1_signed_gate_map = {item["name"]: item for item in c1_signed_bridge["gates"]}
     c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
     carrier_handoff = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]["carrier_handoff"]
@@ -539,11 +541,17 @@ def main() -> int:
             },
         ),
         gate(
-            delta_branches["chirality_separated_transport_deltas"]["status"] == "surviving_pre_axis_candidate"
+            weyl_delta_gate_map["W5_branch_map_keeps_flux_placement_open"]["pass"]
+            and weyl_delta_gate_map["W7_branch_map_preserves_skeptical_flux_read"]["pass"]
+            and weyl_delta_gate_map["W8_pre_axis_object_inventory_is_explicit"]["pass"]
+            and delta_branches["chirality_separated_transport_deltas"]["status"] == "surviving_pre_axis_candidate"
             and owner_worthiness_map["pre_axis_law"]["chirality_separated_transport_deltas"] == "candidate"
             and owner_worthiness_map["pre_axis_law"]["chirality_separated_transport_deltas_blocker"] == "awaiting_owner_promotion_decision_after_nonproxy_support",
             "P16_transport_delta_branch_survives_but_is_not_owner_law_yet",
             {
+                "w5_pass": weyl_delta_gate_map["W5_branch_map_keeps_flux_placement_open"]["pass"],
+                "w7_pass": weyl_delta_gate_map["W7_branch_map_preserves_skeptical_flux_read"]["pass"],
+                "w8_pass": weyl_delta_gate_map["W8_pre_axis_object_inventory_is_explicit"]["pass"],
                 "chirality_separated_transport_deltas": delta_branches["chirality_separated_transport_deltas"],
                 "blocker": owner_worthiness_map["pre_axis_law"]["chirality_separated_transport_deltas_blocker"],
             },

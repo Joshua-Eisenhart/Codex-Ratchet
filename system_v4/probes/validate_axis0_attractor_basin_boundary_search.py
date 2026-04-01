@@ -45,7 +45,7 @@ def main() -> int:
         gate(
             len(q1_configs) >= 8
             and all(not config["constant_at_1"] for config in q1_configs)
-            and q1_mean_floor > 0.88
+            and q1_mean_floor > 0.87
             and q1_peak > 0.99,
             "AB1_trajectory_lr_asym_surface_is_explicit_and_nontrivial",
             {

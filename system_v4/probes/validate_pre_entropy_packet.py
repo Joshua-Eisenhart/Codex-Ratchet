@@ -92,6 +92,7 @@ def main() -> int:
             "I_c_A_to_B": "readout",
             "S_A_given_B": "readout",
             "Xi_chiral_entangle": "current_bridge_candidate",
+            "Xi_chiral_entangle_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law",
         },
         "diagnostic_only": {
             "raw_delta_packet": "diagnostic_only",
@@ -217,6 +218,10 @@ def main() -> int:
             "chirality_separated_transport_deltas": "neg_tested_candidate_with_nonproxy_runtime_support_not_axis_eligible",
             "Xi_chiral_entangle": "axis_internal_candidate_not_final_owner_law",
             "xi_hist_signed_law": "axis_eligible_owner_derived",
+        },
+        "placement_relations": {
+            "Xi_chiral_entangle": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+            "xi_hist_signed_law": "owner_derived_law_that_binds_bridge_handoff",
         },
     }
 
@@ -615,6 +620,22 @@ def main() -> int:
                 "passed_gates": c1_signed_bridge["passed_gates"],
                 "total_gates": c1_signed_bridge["total_gates"],
                 "score": c1_signed_bridge["score"],
+            },
+        ),
+        gate(
+            owner_worthiness_map["owner_derived"]["xi_hist_signed_law"] == "admitted"
+            and owner_worthiness_map["axis_internal_readout"]["Xi_chiral_entangle"] == "current_bridge_candidate"
+            and owner_worthiness_map["axis_internal_readout"]["Xi_chiral_entangle_relation"] == "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+            and pre_axis_admission_schema["axis_embargo"]["currently_axis_eligible"]["xi_hist_signed_law"] == "owner_derived"
+            and pre_axis_admission_schema["current_mapping"]["Xi_chiral_entangle"] == "axis_internal_candidate_not_final_owner_law"
+            and pre_axis_admission_schema["placement_relations"]["Xi_chiral_entangle"] == "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law"
+            and pre_axis_admission_schema["placement_relations"]["xi_hist_signed_law"] == "owner_derived_law_that_binds_bridge_handoff",
+            "P23_xi_chiral_entangle_remains_downstream_of_xi_hist_signed_law",
+            {
+                "owner_worthiness_map": owner_worthiness_map,
+                "placement_relations": pre_axis_admission_schema["placement_relations"],
+                "current_mapping": pre_axis_admission_schema["current_mapping"],
+                "axis_eligible": pre_axis_admission_schema["axis_embargo"]["currently_axis_eligible"],
             },
         ),
     ]

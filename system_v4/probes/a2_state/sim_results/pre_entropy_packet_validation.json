@@ -1,8 +1,8 @@
 {
   "name": "pre_entropy_packet_validation",
-  "timestamp": "2026-04-01T21:24:45.566826+00:00",
-  "passed_gates": 22,
-  "total_gates": 22,
+  "timestamp": "2026-04-01T21:29:08.965245+00:00",
+  "passed_gates": 23,
+  "total_gates": 23,
   "score": 1.0,
   "xi_hist_signed_law": {
     "object": "Xi_hist signed law",
@@ -90,7 +90,8 @@
     "axis_internal_readout": {
       "I_c_A_to_B": "readout",
       "S_A_given_B": "readout",
-      "Xi_chiral_entangle": "current_bridge_candidate"
+      "Xi_chiral_entangle": "current_bridge_candidate",
+      "Xi_chiral_entangle_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
     },
     "diagnostic_only": {
       "raw_delta_packet": "diagnostic_only",
@@ -251,6 +252,10 @@
       "chirality_separated_transport_deltas": "neg_tested_candidate_with_nonproxy_runtime_support_not_axis_eligible",
       "Xi_chiral_entangle": "axis_internal_candidate_not_final_owner_law",
       "xi_hist_signed_law": "axis_eligible_owner_derived"
+    },
+    "placement_relations": {
+      "Xi_chiral_entangle": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+      "xi_hist_signed_law": "owner_derived_law_that_binds_bridge_handoff"
     }
   },
   "gates": [
@@ -490,7 +495,8 @@
           "axis_internal_readout": {
             "I_c_A_to_B": "readout",
             "S_A_given_B": "readout",
-            "Xi_chiral_entangle": "current_bridge_candidate"
+            "Xi_chiral_entangle": "current_bridge_candidate",
+            "Xi_chiral_entangle_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
           },
           "diagnostic_only": {
             "raw_delta_packet": "diagnostic_only",
@@ -734,6 +740,10 @@
           "chirality_separated_transport_deltas": "neg_tested_candidate_with_nonproxy_runtime_support_not_axis_eligible",
           "Xi_chiral_entangle": "axis_internal_candidate_not_final_owner_law",
           "xi_hist_signed_law": "axis_eligible_owner_derived"
+        },
+        "placement_relations": {
+          "Xi_chiral_entangle": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+          "xi_hist_signed_law": "owner_derived_law_that_binds_bridge_handoff"
         }
       }
     },
@@ -744,6 +754,55 @@
         "passed_gates": 4,
         "total_gates": 4,
         "score": 1.0
+      }
+    },
+    {
+      "name": "P23_xi_chiral_entangle_remains_downstream_of_xi_hist_signed_law",
+      "pass": true,
+      "detail": {
+        "owner_worthiness_map": {
+          "owner_derived": {
+            "xi_hist_signed_law": "admitted",
+            "bridge_admission_rule": "admitted"
+          },
+          "pre_axis_law": {
+            "late_anchor_equivalence": "admitted",
+            "clifford_local_short_width_stress": "admitted",
+            "chirality_separated_transport_deltas": "candidate",
+            "chirality_separated_transport_deltas_blocker": "awaiting_owner_promotion_decision_after_nonproxy_support"
+          },
+          "axis_internal_readout": {
+            "I_c_A_to_B": "readout",
+            "S_A_given_B": "readout",
+            "Xi_chiral_entangle": "current_bridge_candidate",
+            "Xi_chiral_entangle_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+          },
+          "diagnostic_only": {
+            "raw_delta_packet": "diagnostic_only",
+            "single_weyl_flux_object": "not_supported_yet",
+            "entropic_left_right_flux": "blocked",
+            "post_joint_cut_flux": "downstream_branch"
+          }
+        },
+        "placement_relations": {
+          "Xi_chiral_entangle": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+          "xi_hist_signed_law": "owner_derived_law_that_binds_bridge_handoff"
+        },
+        "current_mapping": {
+          "hopf_carrier_point": "qit_grounded",
+          "nested_torus_seat": "qit_grounded",
+          "weyl_sheet_pair": "sim_live",
+          "loop_sensitive_transport_surface": "sim_live_candidate",
+          "chirality_differential_surface": "sim_live_candidate",
+          "bloch_differential_surface": "sim_live_candidate",
+          "chirality_separated_transport_deltas": "neg_tested_candidate_with_nonproxy_runtime_support_not_axis_eligible",
+          "Xi_chiral_entangle": "axis_internal_candidate_not_final_owner_law",
+          "xi_hist_signed_law": "axis_eligible_owner_derived"
+        },
+        "axis_eligible": {
+          "xi_hist_signed_law": "owner_derived",
+          "bridge_admission_rule": "owner_derived"
+        }
       }
     }
   ]

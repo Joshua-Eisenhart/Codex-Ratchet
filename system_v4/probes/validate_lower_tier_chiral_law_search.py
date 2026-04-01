@@ -61,6 +61,10 @@ def main() -> int:
             candidates["chirality_separated_transport_deltas"]["status"] == "surviving_compound_candidate"
             and candidates["chirality_separated_transport_deltas"]["keep"]
             and candidates["chirality_separated_transport_deltas"]["evidence"]["nonproxy_runtime_support"] == "nonproxy_runtime_support",
+            and candidates["chirality_separated_transport_deltas"]["evidence"]["transport_active_count"] == 48
+            and candidates["chirality_separated_transport_deltas"]["evidence"]["lr_bloch_asymmetry_count"] == 48
+            and candidates["chirality_separated_transport_deltas"]["evidence"]["live_min_direct_min_traversal"] > 0.1
+            and candidates["chirality_separated_transport_deltas"]["evidence"]["live_min_sheet_split"] > 1.4,
             "L3_compound_transport_chirality_branch_survives_search",
             {
                 "chirality_separated_transport_deltas": candidates["chirality_separated_transport_deltas"],

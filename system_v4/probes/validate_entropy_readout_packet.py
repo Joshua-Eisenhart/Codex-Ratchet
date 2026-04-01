@@ -53,6 +53,10 @@ def main() -> int:
     families = spectrum["families"]
     summary = spectrum["summary"]
     fsum = fep["summary"]
+    fep_rows = fep["results"]
+    engine1_fep_rows = [row for row in fep_rows if row["engine_type"] == 1]
+    engine2_fep_rows = [row for row in fep_rows if row["engine_type"] == 2]
+    engine1_off_clifford_rows = [row for row in engine1_fep_rows if row["torus"] in {"inner", "outer"}]
     mean_mi = bridge_search["mean_mi_by_candidate"]
     mean_ic = bridge_search["mean_ic_by_candidate"]
     ranking = bridge_search["ranking"]
@@ -191,12 +195,18 @@ def main() -> int:
             },
         ),
         gate(
-            fsum["overall"] in {"STRONG COMPRESSION-FROM-FUTURE", "PARTIAL COMPRESSION-FROM-FUTURE"}
-            and fsum["compression_verdict"] >= 3
-            and fsum["t1_keep"] == fsum["total"]
-            and fsum["t3_keep"] >= 4
-            and fsum["t4_keep"] >= 4
-            and fsum["t2_keep"] >= 2,
+            len(engine1_fep_rows) == 3
+            and len(engine2_fep_rows) == 3
+            and all(row["verdict"] == "COMPRESSION-FROM-FUTURE" for row in engine1_fep_rows)
+            and all(row["test1_temporal_asymmetry"]["keep"] for row in engine1_fep_rows)
+            and all(row["test3_jk_fuzz_directionality"]["keep"] for row in engine1_fep_rows)
+            and all(row["test4_trajectory_profile"]["keep"] for row in engine1_fep_rows)
+            and all(row["test2_attractor_vs_drift"]["keep"] for row in engine1_off_clifford_rows)
+            and not any(row["test2_attractor_vs_drift"]["keep"] for row in engine2_fep_rows)
+            and all(row["verdict"] == "MIXED" for row in engine2_fep_rows)
+            and sum(row["test4_trajectory_profile"]["keep"] for row in engine2_fep_rows) == 2
+            and all(row["test4_trajectory_profile"]["second_minus_first"] > 0.0 for row in engine2_fep_rows if row["torus"] in {"inner", "outer"})
+            and all(row["test4_trajectory_profile"]["second_minus_first"] < 0.0 for row in engine2_fep_rows if row["torus"] == "clifford"),
             "E9_fep_framing_shows_nonclassical_directionality",
             {
                 "overall": fsum["overall"],
@@ -206,6 +216,13 @@ def main() -> int:
                 "t2_keep": fsum["t2_keep"],
                 "t3_keep": fsum["t3_keep"],
                 "t4_keep": fsum["t4_keep"],
+                "engine1_verdicts": {row["torus"]: row["verdict"] for row in engine1_fep_rows},
+                "engine2_verdicts": {row["torus"]: row["verdict"] for row in engine2_fep_rows},
+                "engine1_test2_keep": {row["torus"]: row["test2_attractor_vs_drift"]["keep"] for row in engine1_fep_rows},
+                "engine2_test2_keep": {row["torus"]: row["test2_attractor_vs_drift"]["keep"] for row in engine2_fep_rows},
+                "engine2_second_minus_first": {
+                    row["torus"]: row["test4_trajectory_profile"]["second_minus_first"] for row in engine2_fep_rows
+                },
             },
         ),
         gate(

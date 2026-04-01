@@ -1,0 +1,77 @@
+{
+  "name": "c1_signed_bridge_candidate_search_validation",
+  "timestamp": "2026-04-01T21:24:45.561843+00:00",
+  "passed_gates": 4,
+  "total_gates": 4,
+  "score": 1.0,
+  "gates": [
+    {
+      "name": "C1S1_current_signed_bridge_candidate_is_explicit",
+      "pass": true,
+      "detail": {
+        "name": "Xi_chiral_entangle",
+        "status": "provisional_signed_bridge_candidate",
+        "keep": true,
+        "reason": "Xi_chiral_entangle is the current live bridge winner on the admitted carrier and survives counterfeit pressure only when signed honesty is enforced.",
+        "evidence": {
+          "bridge_winner": "Xi_chiral_entangle",
+          "ranking_head": [
+            "Xi_chiral_entangle",
+            "Xi_chiral_hist_entangle",
+            "Xi_loop_phase"
+          ],
+          "winner_mean_mi": 0.5850944299846628,
+          "winner_mean_i_c": 0.0775200940266869,
+          "lr_direct_mean_mi": 3.3769283665681843e-16,
+          "runner_up": "Xi_chiral_hist_entangle",
+          "runner_up_mean_mi": 0.5153548066316724,
+          "runner_up_mean_i_c": -0.09313964667615891
+        }
+      }
+    },
+    {
+      "name": "C1S2_counterfeit_pressure_keeps_signed_honesty_load_bearing",
+      "pass": true,
+      "detail": {
+        "status": "counterfeit_beats_mi_but_loses_signed_honesty",
+        "keep": true,
+        "reason": "The counterfeit history construction can inflate raw mutual information while still losing on signed coherent-information honesty.",
+        "evidence": {
+          "mean_live_I_AB": 0.5850944299846628,
+          "mean_counterfeit_I_AB": 0.7929333246640154,
+          "mean_live_I_c": 0.0775200940266869,
+          "mean_counterfeit_I_c": 0.007098294355261954,
+          "mean_I_c_gap": 0.07042179967142495,
+          "counterfeit_beats_live_on_I_AB_count": 4,
+          "live_beats_counterfeit_on_I_c_count": 4
+        }
+      }
+    },
+    {
+      "name": "C1S3_support_chain_is_closed_before_candidate_packaging",
+      "pass": true,
+      "detail": {
+        "carrier_selection_closed": true,
+        "matched_marginal_closed": true,
+        "pre_entropy_mapping": "axis_internal_candidate_not_final_owner_law",
+        "entropy_readout_current_bridge_gate": "E10_current_bridge_candidate_is_explicit_and_provisional"
+      }
+    },
+    {
+      "name": "C1S4_candidate_stays_provisional_and_does_not_overpromote",
+      "pass": true,
+      "detail": {
+        "unresolved": {
+          "final_xi_owner_law": "open",
+          "shell_doctrine": "open",
+          "history_law_replacement": "open",
+          "entropy_family_owner_doctrine": "open"
+        },
+        "owner_read": {
+          "status": "admitted_executable_candidate_not_final_owner_law",
+          "note": "This C1 surface packages the current signed bridge candidate without replacing xi_hist signed law or promoting Xi_chiral_entangle to final owner doctrine."
+        }
+      }
+    }
+  ]
+}

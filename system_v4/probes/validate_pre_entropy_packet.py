@@ -49,6 +49,7 @@ def main() -> int:
     neg_no_chirality = load_json(SIM_RESULTS / "neg_no_chirality_results.json")
     neg_loop_law_swap = load_json(SIM_RESULTS / "neg_loop_law_swap_results.json")
     joint_ablation = load_json(SIM_RESULTS / "neg_transport_delta_joint_ablation_results.json")
+    c1_signed_bridge = load_json(SIM_RESULTS / "c1_signed_bridge_candidate_search_validation.json")
 
     strict_verdict = xi_strict["verdict"]
     discriminators = strict_verdict["discriminators"]
@@ -605,6 +606,16 @@ def main() -> int:
             and pre_axis_admission_schema["current_mapping"]["Xi_chiral_entangle"] == "axis_internal_candidate_not_final_owner_law",
             "P21_pre_axis_admission_schema_is_explicit_and_axis_embargoed",
             pre_axis_admission_schema,
+        ),
+        gate(
+            c1_signed_bridge["passed_gates"] == c1_signed_bridge["total_gates"]
+            and c1_signed_bridge["score"] == 1.0,
+            "P22_c1_signed_bridge_candidate_is_explicit_and_provisional",
+            {
+                "passed_gates": c1_signed_bridge["passed_gates"],
+                "total_gates": c1_signed_bridge["total_gates"],
+                "score": c1_signed_bridge["score"],
+            },
         ),
     ]
 

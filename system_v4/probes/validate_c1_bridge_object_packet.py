@@ -46,6 +46,9 @@ def main() -> int:
             and bridge_object["evidence"]["bridge_winner"] == "Xi_chiral_entangle"
             and bridge_object["evidence"]["winner_mean_mi"] > 0.5
             and bridge_object["evidence"]["winner_mean_i_c"] > 0.05
+            and bridge_object["evidence"]["runner_up"] == "Xi_chiral_hist_entangle"
+            and bridge_object["evidence"]["runner_up_mean_i_c"] < 0.0
+            and bridge_object["evidence"]["winner_mean_i_c"] > bridge_object["evidence"]["runner_up_mean_i_c"]
             and bridge_object["evidence"]["lr_direct_mean_mi"] < 1e-12,
             "C1B1_bridge_object_is_explicit_and_downstream_only",
             bridge_object,

@@ -62,7 +62,10 @@ def main() -> int:
     ranking = bridge_search["ranking"]
     mispair_summary = mispair["summary"]
     pre_gate_map = {item["name"]: item for item in pre_entropy["gates"]}
-    pre_entropy_law = pre_entropy["law_summary"]
+    p11_detail = pre_gate_map["P11_xi_hist_signed_late_anchor_is_equivalent_not_free_placement"]["detail"]
+    p12_detail = pre_gate_map["P12_xi_hist_short_width_stress_is_clifford_local_not_global"]["detail"]
+    p13_detail = pre_gate_map["P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_3"]["detail"]
+    p14_detail = pre_gate_map["P14_xi_hist_signed_law_is_explicit_in_strict_bakeoff"]["detail"]
     c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
     signed_bridge_handoff = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]["carrier_handoff"]
 
@@ -322,12 +325,21 @@ def main() -> int:
         gate(
             pre_gate_map["P11_xi_hist_signed_late_anchor_is_equivalent_not_free_placement"]["pass"]
             and pre_gate_map["P12_xi_hist_short_width_stress_is_clifford_local_not_global"]["pass"]
+            and pre_gate_map["P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_3"]["pass"]
             and pre_gate_map["P14_xi_hist_signed_law_is_explicit_in_strict_bakeoff"]["pass"]
-            and pre_entropy_law["strict_bakeoff_owner_object_present"]
-            and pre_entropy_law["late_anchor_equivalence"]["placement_8_23_equals_16_31_count"] == pre_entropy_law["total_rows"]
-            and pre_entropy_law["late_anchor_equivalence"]["placement_8_23_equals_prefix_8_15_on_ic_count"] == pre_entropy_law["total_rows"]
-            and pre_entropy_law["clifford_local_short_width_stress"]["placement_8_23_beats_0_3_on_ic_off_clifford_count"] == 4
-            and pre_entropy_law["clifford_local_short_width_stress"]["short_width_0_3_beats_8_23_on_ic_clifford_count"] == 2
+            and p11_detail["placement_8_23_equals_16_31_count"] == p11_detail["total_rows"]
+            and p11_detail["placement_8_23_equals_prefix_8_15_on_ic_count"] == p11_detail["total_rows"]
+            and p12_detail["placement_8_23_beats_0_3_on_ic_off_clifford_count"] == 4
+            and p12_detail["short_width_0_3_beats_8_23_on_ic_clifford_count"] == 2
+            and p13_detail["best_early_width_by_ic_counts"]["0_3"] == p12_detail["total_rows"]
+            and p13_detail["best_prefix_drop_by_ic_counts"]["8_15"] == p12_detail["total_rows"]
+            and p13_detail["min_ic_8_15_minus_2_15"] > 0.04
+            and p13_detail["off_clifford_min_ic_8_23_minus_0_3"] > 0.14
+            and p13_detail["clifford_max_ic_8_23_minus_0_3"] < -0.02
+            and p14_detail["law_name"] == "Xi_hist signed law"
+            and p14_detail["counts"]["total_rows"] == p11_detail["total_rows"]
+            and p14_detail["counts"]["off_clifford_rows"] == 4
+            and p14_detail["counts"]["clifford_rows"] == 2
             and xi_hist_outer["verdict"]["eta_sensitive"]
             and xi_hist_cycle["verdict"]["eta_sensitive"]
             and xi_hist_outer["base_metrics"]["I_c_A_to_B"]["mean"] < -0.1
@@ -338,11 +350,12 @@ def main() -> int:
             {
                 "p11_pass": pre_gate_map["P11_xi_hist_signed_late_anchor_is_equivalent_not_free_placement"]["pass"],
                 "p12_pass": pre_gate_map["P12_xi_hist_short_width_stress_is_clifford_local_not_global"]["pass"],
+                "p13_pass": pre_gate_map["P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_3"]["pass"],
                 "p14_pass": pre_gate_map["P14_xi_hist_signed_law_is_explicit_in_strict_bakeoff"]["pass"],
-                "law_summary_name": pre_entropy_law["name"],
-                "strict_bakeoff_owner_object_present": pre_entropy_law["strict_bakeoff_owner_object_present"],
-                "late_anchor_equivalence": pre_entropy_law["late_anchor_equivalence"],
-                "clifford_local_short_width_stress": pre_entropy_law["clifford_local_short_width_stress"],
+                "p11_detail": p11_detail,
+                "p12_detail": p12_detail,
+                "p13_detail": p13_detail,
+                "p14_detail": p14_detail,
                 "hist_outer_I_c_mean": xi_hist_outer["base_metrics"]["I_c_A_to_B"]["mean"],
                 "hist_cycle_I_c_mean": xi_hist_cycle["base_metrics"]["I_c_A_to_B"]["mean"],
                 "hist_outer_S_A_given_B_mean": xi_hist_outer["base_metrics"]["S_A_given_B"]["mean"],

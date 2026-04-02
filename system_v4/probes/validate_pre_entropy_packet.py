@@ -93,6 +93,8 @@ def main() -> int:
     c1s3_detail = c1_signed_gate_map["C1S3_support_chain_is_closed_before_candidate_packaging"]["detail"]
     c1s4_detail = c1_signed_gate_map["C1S4_candidate_stays_provisional_and_does_not_overpromote"]["detail"]
     c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
+    c1b3_detail = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]
+    c1b4_detail = c1_gate_map["C1B4_bridge_object_keeps_owner_doctrine_questions_open"]["detail"]
     carrier_handoff = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]["carrier_handoff"]
     chirality_retention_ratio = float(neg_no_chirality["d_flat"] / neg_no_chirality["d_chiral"])
     owner_worthiness_map = {
@@ -775,6 +777,17 @@ def main() -> int:
             and c1_gate_map["C1B2_counterfeit_pressure_remains_bound_to_the_bridge_object"]["pass"]
             and c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"]
             and c1_gate_map["C1B4_bridge_object_keeps_owner_doctrine_questions_open"]["pass"]
+            and c1b3_detail["carrier_handoff"]["candidate"] == "Xi_chiral_entangle"
+            and c1b3_detail["carrier_handoff"]["placement_contract"] == "downstream_axis_internal_bridge_candidate_only"
+            and c1b3_detail["carrier_handoff"]["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
+            and c1b3_detail["carrier_handoff"]["forbidden_reclassification"] == "not_owner_derived_not_final_owner_xi"
+            and c1b3_detail["pre_entropy_mapping"] == "axis_internal_candidate_not_final_owner_law"
+            and c1b3_detail["pre_entropy_relation"] == "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+            and c1b3_detail["pre_entropy_placement"] == "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law"
+            and c1b4_detail["status"] == "explicit_non_owner_reservation"
+            and c1b4_detail["final_xi_owner_law"] == "reserved_for_future_owner_doctrine_not_claimed_by_c1"
+            and c1b4_detail["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
+            and c1b4_detail["consumer_scope"] == "downstream_readout_only"
             and owner_worthiness_map["axis_internal_readout"]["Xi_chiral_entangle"] == "current_bridge_candidate"
             and owner_worthiness_map["axis_internal_readout"]["Xi_chiral_entangle_relation"]
             == "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
@@ -787,6 +800,23 @@ def main() -> int:
                 "c1b2_pass": c1_gate_map["C1B2_counterfeit_pressure_remains_bound_to_the_bridge_object"]["pass"],
                 "c1b3_pass": c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"],
                 "c1b4_pass": c1_gate_map["C1B4_bridge_object_keeps_owner_doctrine_questions_open"]["pass"],
+                "c1b3_detail": {
+                    "carrier_handoff": {
+                        "candidate": c1b3_detail["carrier_handoff"]["candidate"],
+                        "placement_contract": c1b3_detail["carrier_handoff"]["placement_contract"],
+                        "owner_dependency": c1b3_detail["carrier_handoff"]["owner_dependency"],
+                        "forbidden_reclassification": c1b3_detail["carrier_handoff"]["forbidden_reclassification"],
+                    },
+                    "pre_entropy_mapping": c1b3_detail["pre_entropy_mapping"],
+                    "pre_entropy_relation": c1b3_detail["pre_entropy_relation"],
+                    "pre_entropy_placement": c1b3_detail["pre_entropy_placement"],
+                },
+                "c1b4_detail": {
+                    "status": c1b4_detail["status"],
+                    "final_xi_owner_law": c1b4_detail["final_xi_owner_law"],
+                    "owner_dependency": c1b4_detail["owner_dependency"],
+                    "consumer_scope": c1b4_detail["consumer_scope"],
+                },
                 "axis_internal_readout": owner_worthiness_map["axis_internal_readout"],
                 "current_mapping": pre_axis_admission_schema["current_mapping"],
                 "placement_relations": pre_axis_admission_schema["placement_relations"],

@@ -619,9 +619,11 @@ def main():
         torus_configs = list(TORUS_CONFIGS)
         print("Mode: full")
     else:
-        # Default verify path: keep the graph-integrated negative family live, but
-        # bound the sweep to a single canonical engine/torus lane so it stays mechanical.
-        negative_modes = ["strict", "bell_injected", "topology_flattened", "pyg_bypassed", "chirality_destroyed"]
+        # Default packet witness path: R9 only consumes failure existence,
+        # zero guard events, Fe failure dominance, and inner-half failure bias.
+        # The strict canonical lane is sufficient for those predicates while
+        # avoiding the wider negative-family sweep reserved for --full.
+        negative_modes = ["strict"]
         engine_types = [1]
         torus_configs = [("inner", TORUS_INNER)]
         print("Mode: bounded")

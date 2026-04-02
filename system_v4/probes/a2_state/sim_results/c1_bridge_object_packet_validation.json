@@ -1,6 +1,6 @@
 {
   "name": "c1_bridge_object_packet_validation",
-  "timestamp": "2026-04-01T21:56:09.574850+00:00",
+  "timestamp": "2026-04-02T00:41:48.283742+00:00",
   "passed_gates": 4,
   "total_gates": 4,
   "score": 1.0,
@@ -77,10 +77,13 @@
       "name": "C1B4_bridge_object_keeps_owner_doctrine_questions_open",
       "pass": true,
       "detail": {
-        "final_xi_owner_law": "open",
-        "shell_doctrine": "open",
-        "history_law_replacement": "open",
-        "entropy_family_owner_doctrine": "open"
+        "status": "explicit_non_owner_reservation",
+        "final_xi_owner_law": "reserved_for_future_owner_doctrine_not_claimed_by_c1",
+        "shell_doctrine": "reserved_for_future_shell_doctrine_not_claimed_by_c1",
+        "history_law_replacement": "reserved_for_future_history_law_replacement_not_claimed_by_c1",
+        "entropy_family_owner_doctrine": "reserved_for_future_entropy_owner_doctrine_not_claimed_by_c1",
+        "owner_dependency": "must_bind_under_xi_hist_signed_law",
+        "consumer_scope": "downstream_readout_only"
       }
     }
   ]

@@ -88,6 +88,10 @@ def main() -> int:
         "transport_embargo_boundary"
     ]
     c1_signed_gate_map = {item["name"]: item for item in c1_signed_bridge["gates"]}
+    c1s1_detail = c1_signed_gate_map["C1S1_current_signed_bridge_candidate_is_explicit"]["detail"]
+    c1s2_detail = c1_signed_gate_map["C1S2_counterfeit_pressure_keeps_signed_honesty_load_bearing"]["detail"]
+    c1s3_detail = c1_signed_gate_map["C1S3_support_chain_is_closed_before_candidate_packaging"]["detail"]
+    c1s4_detail = c1_signed_gate_map["C1S4_candidate_stays_provisional_and_does_not_overpromote"]["detail"]
     c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
     carrier_handoff = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]["carrier_handoff"]
     chirality_retention_ratio = float(neg_no_chirality["d_flat"] / neg_no_chirality["d_chiral"])
@@ -692,13 +696,44 @@ def main() -> int:
             c1_signed_gate_map["C1S1_current_signed_bridge_candidate_is_explicit"]["pass"]
             and c1_signed_gate_map["C1S2_counterfeit_pressure_keeps_signed_honesty_load_bearing"]["pass"]
             and c1_signed_gate_map["C1S3_support_chain_is_closed_before_candidate_packaging"]["pass"]
-            and c1_signed_gate_map["C1S4_candidate_stays_provisional_and_does_not_overpromote"]["pass"],
+            and c1_signed_gate_map["C1S4_candidate_stays_provisional_and_does_not_overpromote"]["pass"]
+            and c1s1_detail["status"] == "provisional_signed_bridge_candidate"
+            and c1s1_detail["evidence"]["bridge_winner"] == "Xi_chiral_entangle"
+            and c1s1_detail["evidence"]["winner_mean_i_c"] > 0.05
+            and c1s1_detail["evidence"]["runner_up"] == "Xi_chiral_hist_entangle"
+            and c1s1_detail["evidence"]["runner_up_mean_i_c"] < 0.0
+            and c1s2_detail["status"] == "counterfeit_beats_mi_but_loses_signed_honesty"
+            and c1s2_detail["evidence"]["mean_I_c_gap"] > 0.05
+            and c1s3_detail["pre_entropy_mapping"] == "axis_internal_candidate_not_final_owner_law"
+            and c1s3_detail["pre_entropy_relation"] == "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+            and c1s3_detail["pre_entropy_placement"] == "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law"
+            and c1s3_detail["entropy_readout_current_bridge_gate"] == "E10_current_bridge_candidate_is_explicit_and_provisional"
+            and c1s4_detail["unresolved"]["status"] == "explicit_non_owner_reservation"
+            and c1s4_detail["unresolved"]["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
+            and c1s4_detail["unresolved"]["consumer_scope"] == "downstream_readout_only",
             "P22_c1_signed_bridge_candidate_is_explicit_and_provisional",
             {
                 "c1s1_pass": c1_signed_gate_map["C1S1_current_signed_bridge_candidate_is_explicit"]["pass"],
                 "c1s2_pass": c1_signed_gate_map["C1S2_counterfeit_pressure_keeps_signed_honesty_load_bearing"]["pass"],
                 "c1s3_pass": c1_signed_gate_map["C1S3_support_chain_is_closed_before_candidate_packaging"]["pass"],
                 "c1s4_pass": c1_signed_gate_map["C1S4_candidate_stays_provisional_and_does_not_overpromote"]["pass"],
+                "c1s1_detail": {
+                    "status": c1s1_detail["status"],
+                    "bridge_winner": c1s1_detail["evidence"]["bridge_winner"],
+                    "winner_mean_i_c": c1s1_detail["evidence"]["winner_mean_i_c"],
+                    "runner_up": c1s1_detail["evidence"]["runner_up"],
+                    "runner_up_mean_i_c": c1s1_detail["evidence"]["runner_up_mean_i_c"],
+                },
+                "c1s2_detail": {
+                    "status": c1s2_detail["status"],
+                    "mean_I_c_gap": c1s2_detail["evidence"]["mean_I_c_gap"],
+                },
+                "c1s3_detail": c1s3_detail,
+                "c1s4_detail": {
+                    "status": c1s4_detail["unresolved"]["status"],
+                    "owner_dependency": c1s4_detail["unresolved"]["owner_dependency"],
+                    "consumer_scope": c1s4_detail["unresolved"]["consumer_scope"],
+                },
             },
         ),
         gate(

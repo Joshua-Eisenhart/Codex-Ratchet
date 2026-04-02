@@ -1,6 +1,6 @@
 {
   "name": "pre_entropy_packet_validation",
-  "timestamp": "2026-04-01T22:05:20.010845+00:00",
+  "timestamp": "2026-04-02T00:35:09.791849+00:00",
   "passed_gates": 25,
   "total_gates": 25,
   "score": 1.0,
@@ -292,7 +292,17 @@
         "history_outer_beats_lr_while_shell_flat_count": 4,
         "outer_window_beats_cycle_count": 0,
         "cycle_window_beats_outer_count": 0,
-        "mean_history_outer_minus_cycle_mi": 0.0
+        "mean_history_outer_minus_cycle_mi": 0.0,
+        "best_window_by_mi_counts": {
+          "0_7": 6,
+          "0_15": 0,
+          "0_23": 0,
+          "0_31": 0
+        },
+        "history_window_mi_monotonic_decay_count": 6,
+        "max_abs_mi_0_7_minus_0_31": 0.0,
+        "max_abs_mi_0_15_minus_0_31": 0.0,
+        "max_abs_mi_0_23_minus_0_31": 0.0
       }
     },
     {
@@ -342,9 +352,11 @@
       "name": "P8_dynamic_shell_is_explicitly_unresolved",
       "pass": true,
       "detail": {
+        "keep_lane_a": 0,
         "full_keeps": 0,
         "total": 6,
         "keep_lane_b": 4,
+        "keep_lane_c": 0,
         "overall": "SHELL PROPOSAL NOT SUPPORTED"
       }
     },
@@ -404,7 +416,14 @@
         "min_signed_0_15_minus_8_23": 0.040457502984151406,
         "min_signed_0_15_minus_0_3": 0.014260395036189144,
         "positive_signed_0_15_minus_2_15_count": 5,
-        "min_signed_2_15_minus_8_15": 0.04563198324576534
+        "min_signed_2_15_minus_8_15": 0.04563198324576534,
+        "first_half_beats_second_half_on_signed_cut_count": 6,
+        "second_half_beats_first_half_on_signed_cut_count": 0,
+        "seat_signed_cut_half_preference": {
+          "inner": "front_half",
+          "clifford": "front_half",
+          "outer": "front_half"
+        }
       }
     },
     {
@@ -509,6 +528,10 @@
         "single_weyl_flux_object": {
           "status": "not_supported_yet",
           "reason": "current evidence resolves a compound delta family, not one isolated owner-worthy flux object"
+        },
+        "post_joint_cut_flux": {
+          "status": "downstream_branch",
+          "reason": "cut/coupling flux depends on rho_AB and later bridge/readout structure"
         }
       }
     },
@@ -516,9 +539,40 @@
       "name": "P16_transport_delta_branch_survives_but_is_not_owner_law_yet",
       "pass": true,
       "detail": {
-        "chirality_separated_transport_deltas": {
-          "status": "surviving_pre_axis_candidate",
-          "reason": "transport, chirality, and Bloch differential deltas are all mechanically active before Axis 0 readout"
+        "w5_pass": true,
+        "w7_pass": true,
+        "w8_pass": true,
+        "w9_pass": true,
+        "w5_detail": {
+          "geometric_transport_delta": "pre-axis",
+          "chirality_differential_delta": "pre-axis",
+          "bloch_differential_delta": "pre-axis",
+          "entropic_left_right_flux": "unresolved_not_owner_worthy_yet",
+          "post_joint_cut_flux": "axis_internal_or_cross_axis"
+        },
+        "w9_detail": {
+          "blocked_flux_reason": "blocked_by_symmetric_compat_shim",
+          "unsupported_single_flux": "single_weyl_flux_object",
+          "unsupported_single_flux_status": "not_supported_yet",
+          "downstream_branch_status": "downstream_existing_branch"
+        },
+        "transport_embargo_boundary": {
+          "object": "transport_embargo_boundary",
+          "status": "candidate_pre_axis_law_not_owner_promoted",
+          "surviving_candidate": "chirality_separated_transport_deltas",
+          "lower_tier_law": "exact_loop_assigned_transport_only",
+          "blocked_flux": "entropic_left_right_flux",
+          "blocked_flux_reason": "blocked_by_symmetric_compat_shim",
+          "unsupported_single_flux": "single_weyl_flux_object",
+          "unsupported_single_flux_status": "not_supported_yet",
+          "downstream_branch": "post_joint_cut_flux",
+          "downstream_branch_status": "downstream_existing_branch",
+          "promotion_boundary": "awaiting_owner_promotion_decision_after_nonproxy_support",
+          "support_rows": {
+            "transport_active_count": 48,
+            "chirality_active_count": 48,
+            "lr_bloch_asymmetry_count": 48
+          }
         },
         "blocker": "awaiting_owner_promotion_decision_after_nonproxy_support"
       }
@@ -751,9 +805,10 @@
       "name": "P22_c1_signed_bridge_candidate_is_explicit_and_provisional",
       "pass": true,
       "detail": {
-        "passed_gates": 4,
-        "total_gates": 4,
-        "score": 1.0
+        "c1s1_pass": true,
+        "c1s2_pass": true,
+        "c1s3_pass": true,
+        "c1s4_pass": true
       }
     },
     {
@@ -850,9 +905,10 @@
       "name": "P25_standalone_c1_bridge_object_matches_pre_entropy_contract",
       "pass": true,
       "detail": {
-        "c1_bridge_object_passed_gates": 4,
-        "c1_bridge_object_total_gates": 4,
-        "c1_bridge_object_score": 1.0,
+        "c1b1_pass": true,
+        "c1b2_pass": true,
+        "c1b3_pass": true,
+        "c1b4_pass": true,
         "axis_internal_readout": {
           "I_c_A_to_B": "readout",
           "S_A_given_B": "readout",

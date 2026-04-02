@@ -83,6 +83,10 @@ def main() -> int:
     delta_inventory = weyl_delta["pre_axis_object_inventory"]
     transport_embargo = weyl_delta["transport_embargo_boundary"]
     weyl_delta_gate_map = {item["name"]: item for item in weyl_delta_validation["gates"]}
+    w5_detail = weyl_delta_gate_map["W5_branch_map_keeps_flux_placement_open"]["detail"]["placement_hints"]
+    w9_detail = weyl_delta_gate_map["W9_transport_embargo_boundary_is_explicit"]["detail"][
+        "transport_embargo_boundary"
+    ]
     c1_signed_gate_map = {item["name"]: item for item in c1_signed_bridge["gates"]}
     c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
     carrier_handoff = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]["carrier_handoff"]
@@ -581,12 +585,21 @@ def main() -> int:
             and weyl_delta_gate_map["W7_branch_map_preserves_skeptical_flux_read"]["pass"]
             and weyl_delta_gate_map["W8_pre_axis_object_inventory_is_explicit"]["pass"]
             and weyl_delta_gate_map["W9_transport_embargo_boundary_is_explicit"]["pass"]
+            and w5_detail["geometric_transport_delta"] == "pre-axis"
+            and w5_detail["chirality_differential_delta"] == "pre-axis"
+            and w5_detail["bloch_differential_delta"] == "pre-axis"
+            and w5_detail["entropic_left_right_flux"] == "unresolved_not_owner_worthy_yet"
+            and w5_detail["post_joint_cut_flux"] == "axis_internal_or_cross_axis"
             and transport_embargo["status"] == "candidate_pre_axis_law_not_owner_promoted"
             and transport_embargo["surviving_candidate"] == "chirality_separated_transport_deltas"
             and transport_embargo["promotion_boundary"] == "awaiting_owner_promotion_decision_after_nonproxy_support"
             and transport_embargo["lower_tier_law"] == "exact_loop_assigned_transport_only"
             and transport_embargo["blocked_flux"] == "entropic_left_right_flux"
             and transport_embargo["downstream_branch"] == "post_joint_cut_flux"
+            and w9_detail["blocked_flux_reason"] == "blocked_by_symmetric_compat_shim"
+            and w9_detail["unsupported_single_flux"] == "single_weyl_flux_object"
+            and w9_detail["unsupported_single_flux_status"] == "not_supported_yet"
+            and w9_detail["downstream_branch_status"] == "downstream_existing_branch"
             and owner_worthiness_map["pre_axis_law"]["chirality_separated_transport_deltas"] == "candidate"
             and owner_worthiness_map["pre_axis_law"]["chirality_separated_transport_deltas_blocker"] == transport_embargo["promotion_boundary"],
             "P16_transport_delta_branch_survives_but_is_not_owner_law_yet",
@@ -595,6 +608,13 @@ def main() -> int:
                 "w7_pass": weyl_delta_gate_map["W7_branch_map_preserves_skeptical_flux_read"]["pass"],
                 "w8_pass": weyl_delta_gate_map["W8_pre_axis_object_inventory_is_explicit"]["pass"],
                 "w9_pass": weyl_delta_gate_map["W9_transport_embargo_boundary_is_explicit"]["pass"],
+                "w5_detail": w5_detail,
+                "w9_detail": {
+                    "blocked_flux_reason": w9_detail["blocked_flux_reason"],
+                    "unsupported_single_flux": w9_detail["unsupported_single_flux"],
+                    "unsupported_single_flux_status": w9_detail["unsupported_single_flux_status"],
+                    "downstream_branch_status": w9_detail["downstream_branch_status"],
+                },
                 "transport_embargo_boundary": transport_embargo,
                 "blocker": owner_worthiness_map["pre_axis_law"]["chirality_separated_transport_deltas_blocker"],
             },

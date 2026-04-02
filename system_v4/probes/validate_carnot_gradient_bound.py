@@ -72,13 +72,20 @@ def main() -> int:
             abs(summary["r_ga0_work"]) < 0.05
             and summary["r_curve_work"] < -0.9
             and summary["efficiency_mean"] > 10.0
-            and summary["efficiency_cv"] > 0.9,
-            "CB2_work_tracks_curvature_much_more_than_ga0_and_has_no_stable_carnot_bound",
+            and summary["efficiency_cv"] > 0.9
+            and summary["runtime_efficiency_mean"] > 20.0
+            and summary["runtime_efficiency_cv"] > summary["efficiency_cv"]
+            and summary["hybrid_efficiency_cv"] >= summary["runtime_efficiency_cv"],
+            "CB2_static_and_runtime_denominators_both_fail_to_produce_a_stable_carnot_bound",
             {
                 "r_ga0_work": summary["r_ga0_work"],
                 "r_curve_work": summary["r_curve_work"],
                 "efficiency_mean": summary["efficiency_mean"],
                 "efficiency_cv": summary["efficiency_cv"],
+                "runtime_efficiency_mean": summary["runtime_efficiency_mean"],
+                "runtime_efficiency_cv": summary["runtime_efficiency_cv"],
+                "hybrid_efficiency_mean": summary["hybrid_efficiency_mean"],
+                "hybrid_efficiency_cv": summary["hybrid_efficiency_cv"],
             },
         ),
         gate(

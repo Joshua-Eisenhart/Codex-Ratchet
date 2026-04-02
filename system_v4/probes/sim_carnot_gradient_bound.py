@@ -166,13 +166,21 @@ def analyze_bounds(results):
         r_curve_work = 0.0
     print(f"    curvature vs |ΔΦ| work: r = {r_curve_work:+.4f}")
 
-    # Test 2: Does something like η = work / (ga0 * curvature) stabilize?
+    # Test 2: Compare a static-geometry denominator against realized transport cost.
     efficiencies = []
+    runtime_efficiencies = []
+    hybrid_efficiencies = []
     for r in results:
         denom = r["ga0_program"] * r["curvature_proxy"]
         if denom > 1e-12:
             eta = r["total_work"] / denom
             efficiencies.append(eta)
+        runtime_denom = r["ga0_program"] * r["eta_delta"]
+        if runtime_denom > 1e-12:
+            runtime_efficiencies.append(r["total_work"] / runtime_denom)
+        hybrid_denom = r["ga0_program"] * r["eta_delta"] * r["curvature_proxy"]
+        if hybrid_denom > 1e-12:
+            hybrid_efficiencies.append(r["total_work"] / hybrid_denom)
 
     if efficiencies:
         eff_arr = np.array(efficiencies)
@@ -184,6 +192,20 @@ def analyze_bounds(results):
             print(f"      → LOW VARIANCE: candidate bound relation found")
         else:
             print(f"      → HIGH VARIANCE: no stable bound at this parameterization")
+
+    if runtime_efficiencies:
+        runtime_eff_arr = np.array(runtime_efficiencies)
+        print(f"\n    η_runtime = work / (ga0 × eta_delta):")
+        print(f"      mean = {np.mean(runtime_eff_arr):.6f}")
+        print(f"      std  = {np.std(runtime_eff_arr):.6f}")
+        print(f"      CV   = {np.std(runtime_eff_arr)/max(np.mean(runtime_eff_arr), 1e-12):.4f}")
+
+    if hybrid_efficiencies:
+        hybrid_eff_arr = np.array(hybrid_efficiencies)
+        print(f"\n    η_hybrid = work / (ga0 × eta_delta × curvature):")
+        print(f"      mean = {np.mean(hybrid_eff_arr):.6f}")
+        print(f"      std  = {np.std(hybrid_eff_arr):.6f}")
+        print(f"      CV   = {np.std(hybrid_eff_arr)/max(np.mean(hybrid_eff_arr), 1e-12):.4f}")
 
     # Test 3: Ax0 vs Ax5 separation check
     ga0_deltas = np.array([r["GA0_after"] - r["GA0_before"] for r in results])
@@ -206,6 +228,18 @@ def analyze_bounds(results):
         "r_ax0_ax5": float(r_ax0_ax5),
         "efficiency_mean": float(np.mean(efficiencies)) if efficiencies else None,
         "efficiency_cv": float(np.std(efficiencies) / max(np.mean(efficiencies), 1e-12)) if efficiencies else None,
+        "runtime_efficiency_mean": float(np.mean(runtime_efficiencies)) if runtime_efficiencies else None,
+        "runtime_efficiency_cv": (
+            float(np.std(runtime_efficiencies) / max(np.mean(runtime_efficiencies), 1e-12))
+            if runtime_efficiencies
+            else None
+        ),
+        "hybrid_efficiency_mean": float(np.mean(hybrid_efficiencies)) if hybrid_efficiencies else None,
+        "hybrid_efficiency_cv": (
+            float(np.std(hybrid_efficiencies) / max(np.mean(hybrid_efficiencies), 1e-12))
+            if hybrid_efficiencies
+            else None
+        ),
     }
 
 

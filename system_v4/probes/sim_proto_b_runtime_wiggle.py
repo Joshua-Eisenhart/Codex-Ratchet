@@ -485,10 +485,14 @@ def evaluate_run(trace: dict) -> dict:
     add_candidate(
         "szilard_ceiling_actuation",
         "szilard_style",
-        mean_or_zero([s["ga0_after"] - s["ga0_before"] for s in steps]),
+        sum((s["ga0_after"] - s["ga0_before"]) * s["axis0_effective_gain"] for s in steps)
+        / (sum(abs(s["axis0_effective_gain"]) for s in steps) + 1e-6),
         len(steps) > 0,
         None,
-        {},
+        {
+            "mean_ga0_delta": mean_or_zero([s["ga0_after"] - s["ga0_before"] for s in steps]),
+            "mean_axis0_effective_gain": mean_or_zero([s["axis0_effective_gain"] for s in steps]),
+        },
     )
     add_candidate(
         "szilard_role_gap",

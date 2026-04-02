@@ -44,6 +44,7 @@ def main() -> int:
     transport_norm = summaries["carnot_transport_normalized_work"]
     closure_yield = summaries["carnot_closure_adjusted_yield"]
     ceiling = summaries["szilard_ceiling_actuation"]
+    ceiling_by_condition = ceiling["by_condition"]
 
     gates = [
         gate(
@@ -97,9 +98,20 @@ def main() -> int:
             ceiling["family"] == "szilard_style"
             and ceiling["active_fraction"] == 1.0
             and ceiling["sign_flip_rate"] == 0.5
-            and ceiling["paired_gaps"]["axis0_high_minus_low_mean"] > 0.3
-            and ceiling["paired_gaps"]["torus_wave_minus_constant_mean"] > 0.05,
-            "PB4_szilard_ceiling_actuation_tracks_axis0_regime_shift",
+            and ceiling["paired_gaps"]["axis0_high_minus_low_mean"] > 0.45
+            and ceiling["paired_gaps"]["torus_wave_minus_constant_mean"] > 0.04
+            and all(
+                row["mean_signed"] < -0.25
+                for row in ceiling_by_condition
+                if row["axis0_level"] == 0.1
+            )
+            and all(
+                row["mean_signed"] > 0.12
+                for row in ceiling_by_condition
+                if row["axis0_level"] == 0.9
+            )
+            and max(row["std_signed"] for row in ceiling_by_condition) < 0.07,
+            "PB4_szilard_ceiling_actuation_tracks_axis0_regime_shift_via_effective_gain_weighting",
             {
                 "szilard_ceiling_actuation": ceiling,
             },

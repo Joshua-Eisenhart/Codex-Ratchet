@@ -701,6 +701,8 @@ def main() -> int:
             carrier_handoff["candidate"] == "Xi_chiral_entangle"
             and carrier_handoff["status"] == "provisional_handoff_ready"
             and carrier_handoff["consumer_status"] == "allowed_for_entropy_readout_not_final_owner_xi"
+            and carrier_handoff["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
+            and carrier_handoff["forbidden_reclassification"] == "not_owner_derived_not_final_owner_xi"
             and owner_worthiness_map["axis_internal_readout"]["Xi_chiral_entangle"] == "current_bridge_candidate"
             and owner_worthiness_map["axis_internal_readout"]["Xi_chiral_entangle_relation"] == "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
             and pre_axis_admission_schema["current_mapping"]["Xi_chiral_entangle"] == "axis_internal_candidate_not_final_owner_law"

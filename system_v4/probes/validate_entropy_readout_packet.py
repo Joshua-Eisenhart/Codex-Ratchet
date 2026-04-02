@@ -68,6 +68,7 @@ def main() -> int:
     p14_detail = pre_gate_map["P14_xi_hist_signed_law_is_explicit_in_strict_bakeoff"]["detail"]
     c1_gate_map = {item["name"]: item for item in c1_bridge_object["gates"]}
     signed_bridge_handoff = c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["detail"]["carrier_handoff"]
+    c1b4_detail = c1_gate_map["C1B4_bridge_object_keeps_owner_doctrine_questions_open"]["detail"]
 
     local_only = families["L|R_local_only"]
     coupled_control = families["L|R_coupled_control"]
@@ -274,6 +275,10 @@ def main() -> int:
             and c1_gate_map["C1B1_bridge_object_is_explicit_and_downstream_only"]["pass"]
             and c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"]
             and c1_gate_map["C1B4_bridge_object_keeps_owner_doctrine_questions_open"]["pass"]
+            and c1b4_detail["status"] == "explicit_non_owner_reservation"
+            and c1b4_detail["final_xi_owner_law"] == "reserved_for_future_owner_doctrine_not_claimed_by_c1"
+            and c1b4_detail["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
+            and c1b4_detail["consumer_scope"] == "downstream_readout_only"
             and signed_bridge_handoff["candidate"] == "Xi_chiral_entangle"
             and signed_bridge_handoff["status"] == "provisional_handoff_ready"
             and signed_bridge_handoff["placement_contract"] == "downstream_axis_internal_bridge_candidate_only"
@@ -289,6 +294,7 @@ def main() -> int:
                 "c1b1_pass": c1_gate_map["C1B1_bridge_object_is_explicit_and_downstream_only"]["pass"],
                 "c1b3_pass": c1_gate_map["C1B3_bridge_object_is_bound_to_the_existing_support_contract"]["pass"],
                 "c1b4_pass": c1_gate_map["C1B4_bridge_object_keeps_owner_doctrine_questions_open"]["pass"],
+                "c1b4_detail": c1b4_detail,
                 "signed_bridge_handoff_candidate": signed_bridge_handoff["candidate"],
                 "signed_bridge_handoff_status": signed_bridge_handoff["status"],
                 "signed_bridge_handoff_placement_contract": signed_bridge_handoff["placement_contract"],

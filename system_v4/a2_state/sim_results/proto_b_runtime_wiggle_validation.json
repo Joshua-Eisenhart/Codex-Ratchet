@@ -1,0 +1,89 @@
+{
+  "name": "proto_b_runtime_wiggle_validation",
+  "timestamp": "2026-04-02T00:50:18.172196+00:00",
+  "passed_gates": 4,
+  "total_gates": 4,
+  "score": 1.0,
+  "gates": [
+    {
+      "name": "PB1_proto_b_probe_surface_is_explicit_and_fail_closed",
+      "pass": true,
+      "detail": {
+        "schema": "SIM_EVIDENCE_v1",
+        "status": "exploratory",
+        "n_runs": 192,
+        "guardrails": [
+          "candidate-family evidence only",
+          "runtime-native metrics only",
+          "no structural 64 closure claims",
+          "no FEP integration claims",
+          "signed and absolute summaries kept separate",
+          "inactive/dead candidates are reported, not hidden"
+        ]
+      }
+    },
+    {
+      "name": "PB2_transport_normalized_work_shows_live_transport_cost_sensitivity",
+      "pass": true,
+      "detail": {
+        "active_fraction": 0.875,
+        "inactive_reasons": {
+          "zero_transport_cost": 24
+        },
+        "torus_gap": -84.83127433214857,
+        "axis0_gap": -21.028515880037272
+      }
+    },
+    {
+      "name": "PB3_closure_adjusted_yield_stays_stable_while_torus_program_matters",
+      "pass": true,
+      "detail": {
+        "active_fraction": 1.0,
+        "sign_flip_rate": 0.0,
+        "torus_gap": 0.23617160476793647,
+        "axis0_gap": -0.004044455801286151
+      }
+    },
+    {
+      "name": "PB4_runtime_rankings_separate_cost_dominated_and_yield_dominated_candidates",
+      "pass": true,
+      "detail": {
+        "axis0_top": [
+          {
+            "candidate": "carnot_transport_normalized_work",
+            "family": "carnot_style",
+            "value": -21.028515880037272
+          },
+          {
+            "candidate": "szilard_ceiling_actuation",
+            "family": "szilard_style",
+            "value": 0.42222391749662813
+          },
+          {
+            "candidate": "szilard_lagged_measure_extract",
+            "family": "szilard_style",
+            "value": -0.09249091932707594
+          }
+        ],
+        "torus_top": [
+          {
+            "candidate": "carnot_transport_normalized_work",
+            "family": "carnot_style",
+            "value": -84.83127433214857
+          },
+          {
+            "candidate": "carnot_closure_adjusted_yield",
+            "family": "carnot_style",
+            "value": 0.23617160476793647
+          },
+          {
+            "candidate": "carnot_cycle_area_ga0_neg",
+            "family": "carnot_style",
+            "value": 0.12332061884028399
+          }
+        ],
+        "cycle_area_torus_gap": 0.12332061884028399
+      }
+    }
+  ]
+}

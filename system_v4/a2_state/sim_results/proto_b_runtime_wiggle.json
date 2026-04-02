@@ -1,7 +1,7 @@
 {
   "schema": "SIM_EVIDENCE_v1",
   "file": "sim_proto_b_runtime_wiggle.py",
-  "timestamp": "2026-04-02T01:04:39.969869+00:00Z",
+  "timestamp": "2026-04-02T01:08:57.513444+00:00Z",
   "status": "exploratory",
   "proto_b_guardrails": [
     "candidate-family evidence only",
@@ -227,6 +227,94 @@
         "axis0_high_minus_low_mean": -0.18549876367902363,
         "torus_wave_minus_constant_mean": -1.7602373431454899,
         "type2_minus_type1_mean": -0.05087790449716356
+      }
+    },
+    "hybrid_transport_actuation": {
+      "family": "runtime_hybrid",
+      "active_fraction": 1.0,
+      "inactive_reasons": {},
+      "overall_mean_signed": -0.18132281442072803,
+      "overall_mean_abs": 0.6542364531886523,
+      "overall_std_signed": 0.7451952508005447,
+      "sign_flip_rate": 0.4375,
+      "by_condition": [
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -1.0503527424883574,
+          "mean_abs": 1.0503527424883574,
+          "std_signed": 0.6198523317690671
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.6996151728445117,
+          "mean_abs": 0.6996151728445117,
+          "std_signed": 0.12390735878749867
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.4806137837050173,
+          "mean_abs": 0.4806137837050173,
+          "std_signed": 0.29648442406563075
+        },
+        {
+          "engine_type": 1,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.4286125018855334,
+          "mean_abs": 0.4286125018855334,
+          "std_signed": 0.06002890926986474
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": -0.887327905736111,
+          "mean_abs": 0.887327905736111,
+          "std_signed": 0.52717160870752
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.1,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": -0.7049412493685415,
+          "mean_abs": 0.7049412493685415,
+          "std_signed": 0.1200050594070426
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "constant_clifford",
+          "count": 24,
+          "mean_signed": 0.586387185715975,
+          "mean_abs": 0.586387185715975,
+          "std_signed": 0.35596310760321315
+        },
+        {
+          "engine_type": 2,
+          "axis0_level": 0.9,
+          "torus_program": "inner_outer_wave",
+          "count": 24,
+          "mean_signed": 0.39604108376517155,
+          "mean_abs": 0.39604108376517155,
+          "std_signed": 0.05533630368137331
+        }
+      ],
+      "paired_gaps": {
+        "axis0_high_minus_low_mean": 1.3084729063773048,
+        "torus_wave_minus_constant_mean": 0.07269421056028195,
+        "type2_minus_type1_mean": 0.05772518602970313
       }
     },
     "carnot_expansion_compression_gap": {
@@ -937,6 +1025,11 @@
   "rankings": {
     "axis0_gap": [
       {
+        "candidate": "hybrid_transport_actuation",
+        "family": "runtime_hybrid",
+        "value": 1.3084729063773048
+      },
+      {
         "candidate": "szilard_ceiling_actuation",
         "family": "szilard_style",
         "value": 0.4565275988716039
@@ -1009,6 +1102,11 @@
         "value": -0.08762477853478204
       },
       {
+        "candidate": "hybrid_transport_actuation",
+        "family": "runtime_hybrid",
+        "value": 0.07269421056028195
+      },
+      {
         "candidate": "szilard_ceiling_actuation",
         "family": "szilard_style",
         "value": 0.04424216083043365
@@ -1040,6 +1138,11 @@
       }
     ],
     "type_gap": [
+      {
+        "candidate": "hybrid_transport_actuation",
+        "family": "runtime_hybrid",
+        "value": 0.05772518602970313
+      },
       {
         "candidate": "carnot_transport_normalized_work",
         "family": "carnot_style",

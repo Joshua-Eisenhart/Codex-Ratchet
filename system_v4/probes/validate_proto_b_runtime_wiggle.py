@@ -42,6 +42,7 @@ def main() -> int:
     sweep = probe["sweep"]
 
     transport_norm = summaries["carnot_transport_normalized_work"]
+    hybrid_transport = summaries["hybrid_transport_actuation"]
     closure_yield = summaries["carnot_closure_adjusted_yield"]
     ceiling = summaries["szilard_ceiling_actuation"]
     ceiling_by_condition = ceiling["by_condition"]
@@ -69,16 +70,33 @@ def main() -> int:
             and transport_norm["overall_mean_signed"] > 1.0
             and transport_norm["paired_gaps"]["axis0_high_minus_low_mean"] < -0.1
             and transport_norm["paired_gaps"]["torus_wave_minus_constant_mean"] < -1.0
-            and transport_norm["paired_gaps"]["type2_minus_type1_mean"] < -0.01
             and rankings["torus_gap"][0]["candidate"] == "carnot_transport_normalized_work"
-            and rankings["type_gap"][0]["candidate"] == "carnot_transport_normalized_work",
-            "PB2_transport_normalized_work_is_nondegenerate_and_dominates_torus_type_gaps",
+            and rankings["torus_gap"][0]["value"] < -1.0,
+            "PB2_transport_normalized_work_is_nondegenerate_and_still_owns_torus_gap",
             {
                 "transport_normalized_work": transport_norm,
                 "top_rankings": {
                     "axis0_gap": rankings["axis0_gap"][0],
                     "torus_gap": rankings["torus_gap"][0],
                     "type_gap": rankings["type_gap"][0],
+                },
+            },
+        ),
+        gate(
+            hybrid_transport["family"] == "runtime_hybrid"
+            and hybrid_transport["active_fraction"] == 1.0
+            and hybrid_transport["sign_flip_rate"] < 0.5
+            and hybrid_transport["paired_gaps"]["axis0_high_minus_low_mean"] > 1.0
+            and hybrid_transport["paired_gaps"]["torus_wave_minus_constant_mean"] > 0.05
+            and hybrid_transport["paired_gaps"]["type2_minus_type1_mean"] > 0.05
+            and rankings["axis0_gap"][0]["candidate"] == "hybrid_transport_actuation"
+            and rankings["type_gap"][0]["candidate"] == "hybrid_transport_actuation",
+            "PB3_hybrid_transport_actuation_bridges_axis0_and_type_structure",
+            {
+                "hybrid_transport_actuation": hybrid_transport,
+                "top_rankings": {
+                    "axis0_gap": rankings["axis0_gap"][:3],
+                    "type_gap": rankings["type_gap"][:3],
                 },
             },
         ),
@@ -115,9 +133,8 @@ def main() -> int:
                 if row["axis0_level"] == 0.9
             )
             and max(row["std_signed"] for row in ceiling_by_condition) < 0.07
-            and rankings["axis0_gap"][0]["candidate"] == "szilard_ceiling_actuation"
-            and rankings["axis0_gap"][1]["candidate"] == "carnot_transport_normalized_work",
-            "PB4_szilard_ceiling_actuation_tracks_axis0_regime_shift_via_effective_gain_weighting",
+            and rankings["axis0_gap"][1]["candidate"] == "szilard_ceiling_actuation",
+            "PB5_szilard_ceiling_actuation_remains_the_stable_secondary_axis0_surface",
             {
                 "szilard_ceiling_actuation": ceiling,
                 "axis0_gap_top_rankings": rankings["axis0_gap"][:3],

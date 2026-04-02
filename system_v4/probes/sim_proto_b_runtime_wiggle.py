@@ -388,6 +388,7 @@ def evaluate_run(trace: dict) -> dict:
 
     work_abs = float(sum(abs(s["dphi_total"]) for s in steps))
     work_signed = float(sum(s["dphi_total"] for s in steps))
+    transport_work_abs = float(sum(abs(s["dphi_total"]) for s in steps if s["transport_alpha"] > 0.0))
     eta_closure = abs(final_state["eta"] - init_state["eta"])
     theta1_closure = abs(wrapped_delta(final_state["theta1"], init_state["theta1"]))
     theta2_closure = abs(wrapped_delta(final_state["theta2"], init_state["theta2"]))
@@ -446,6 +447,22 @@ def evaluate_run(trace: dict) -> dict:
         transport_cost > 1e-10,
         None if transport_cost > 1e-10 else "zero_transport_cost",
         {"work_abs": work_abs, "transport_cost": transport_cost},
+    )
+    add_candidate(
+        "hybrid_transport_actuation",
+        "runtime_hybrid",
+        (
+            sum((s["ga0_after"] - s["ga0_before"]) * s["axis0_effective_gain"] for s in steps)
+            / (sum(abs(s["axis0_effective_gain"]) for s in steps) + 1e-6)
+        )
+        * (transport_work_abs / (transport_cost + 1e-6)),
+        len(steps) > 0 and transport_cost > 1e-10,
+        None if transport_cost > 1e-10 else "zero_transport_cost",
+        {
+            "transport_work_abs": transport_work_abs,
+            "transport_cost": transport_cost,
+            "mean_axis0_effective_gain": mean_or_zero([s["axis0_effective_gain"] for s in steps]),
+        },
     )
     add_candidate(
         "carnot_expansion_compression_gap",

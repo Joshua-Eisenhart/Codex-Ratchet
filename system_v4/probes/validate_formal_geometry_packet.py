@@ -355,6 +355,7 @@ def main() -> int:
                 "o2_pass": operator_gate_map["O2_global_coordinate_change_is_not_mistaken_for_substrate_failure"]["pass"],
                 "o3_pass": operator_gate_map["O3_commuting_collapse_degrades_the_local_operator_response"]["pass"],
                 "o4_pass": operator_gate_map["O4_local_unitary_pair_is_not_demoted_by_this_narrow_local_test"]["pass"],
+                "o4_detail": operator_gate_map["O4_local_unitary_pair_is_not_demoted_by_this_narrow_local_test"]["detail"],
             },
         ),
     ]

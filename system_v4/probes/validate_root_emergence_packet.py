@@ -61,6 +61,7 @@ def main() -> int:
 
     steps = packet_run["steps"]
     formal_gate_map = {item["name"]: item for item in formal_geometry["gates"]}
+    g14_detail = formal_gate_map["G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed"]["detail"]
     level1 = coarising["level1_lr_asym"]
     level2 = coarising["level2_bridge_mi"]
     orbit_phase_stats = orbit_phase["aggregate_phase"]
@@ -103,7 +104,9 @@ def main() -> int:
             and formal_gate_map["G8_exact_loop_law_swap_negative"]["pass"]
             and formal_gate_map["G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit"]["pass"]
             and formal_gate_map["G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion"]["pass"]
-            and formal_gate_map["G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed"]["pass"],
+            and formal_gate_map["G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed"]["pass"]
+            and g14_detail["o4_detail"]["local_unitary_pair_Fe_Fi"]["status"] == "not_proven_load_bearing_in_local_test"
+            and g14_detail["o4_detail"]["owner_read"]["status"] == "lower_tier_noncommuting_basis_split_survives_local_search",
             "R1_formal_geometry_prerequisite_is_closed",
             {
                 "formal_g1_pass": formal_gate_map["G1_exact_hopf_geometry_truth"]["pass"],
@@ -113,6 +116,7 @@ def main() -> int:
                 "formal_g10_pass": formal_gate_map["G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit"]["pass"],
                 "formal_g11_pass": formal_gate_map["G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion"]["pass"],
                 "formal_g14_pass": formal_gate_map["G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed"]["pass"],
+                "formal_g14_o4_detail": g14_detail["o4_detail"],
             },
         ),
         gate(

@@ -575,6 +575,11 @@ def _parse_args():
         action="store_true",
         help="Run the exhaustive cross-product sweep instead of the bounded regression mode.",
     )
+    parser.add_argument(
+        "--packet-witness",
+        action="store_true",
+        help="Run the minimal packet-safe witness path used by root_emergence R9.",
+    )
     return parser.parse_args()
 
 
@@ -582,29 +587,35 @@ def main():
     args = _parse_args()
     print("Axis 0 Orbit Phase Alignment Probe (with Full Graph Stack Integration)")
     print("=" * 70)
+    cc = hetero = ga_edges = None
+    pub_to_hid = {}
+    hid_to_pyg_idx = {}
 
-    builder_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "a2_state", "graphs")
-    
-    nodes_dict = {}
-    edges_list = []
-    
-    # Load ONLY the engine physical structural graph (no file-provenance pollution)
-    engine_graph_path = os.path.join(builder_dir, "qit_engine_graph_v1.json")
-    if os.path.exists(engine_graph_path):
-        with open(engine_graph_path, "r", encoding="utf-8") as fh:
-            engine_data = json.load(fh)
-            nodes_dict.update(engine_data.get("nodes", {}))
-            edges_list.extend(engine_data.get("edges", []))
-        print(f"Loaded Native Engine Graph. Total nodes: {len(nodes_dict)}, Edges: {len(edges_list)}")
+    if not args.packet_witness:
+        builder_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "a2_state", "graphs")
+        nodes_dict = {}
+        edges_list = []
+
+        # Load ONLY the engine physical structural graph (no file-provenance pollution)
+        engine_graph_path = os.path.join(builder_dir, "qit_engine_graph_v1.json")
+        if os.path.exists(engine_graph_path):
+            with open(engine_graph_path, "r", encoding="utf-8") as fh:
+                engine_data = json.load(fh)
+                nodes_dict.update(engine_data.get("nodes", {}))
+                edges_list.extend(engine_data.get("edges", []))
+            print(f"Loaded Native Engine Graph. Total nodes: {len(nodes_dict)}, Edges: {len(edges_list)}")
+        else:
+            print("CRITICAL: qit_engine_graph_v1.json not found.")
+
+        pub_to_hid = {nd.get("public_id"): hid for hid, nd in nodes_dict.items()}
+        hid_to_pyg_idx = {hid: i for i, hid in enumerate(sorted(nodes_dict.keys()))}
+
+        # Generate Runtime Projections via sidecars
+        cc, hetero, ga_edges = get_runtime_projections(nodes_dict, edges_list)
+        print(f"Sidecars built. TopoNetX available: {cc is not None}, PyG available: {hetero is not None}")
     else:
-        print("CRITICAL: qit_engine_graph_v1.json not found.")
-
-    pub_to_hid = {nd.get("public_id"): hid for hid, nd in nodes_dict.items()}
-    hid_to_pyg_idx = {hid: i for i, hid in enumerate(sorted(nodes_dict.keys()))}
-    
-    # Generate Runtime Projections via sidecars
-    cc, hetero, ga_edges = get_runtime_projections(nodes_dict, edges_list)
-    print(f"Sidecars built. TopoNetX available: {cc is not None}, PyG available: {hetero is not None}")
+        print("Mode: packet-witness")
+        print("Skipping graph sidecars; using packet-safe pyg_bypassed witness lane.")
     
     all_results = []
     # Aggregate failure phase counts
@@ -618,6 +629,10 @@ def main():
         engine_types = list(ENGINE_TYPES)
         torus_configs = list(TORUS_CONFIGS)
         print("Mode: full")
+    elif args.packet_witness:
+        negative_modes = ["pyg_bypassed"]
+        engine_types = [1]
+        torus_configs = [("inner", TORUS_INNER)]
     else:
         # Default packet witness path: R9 only consumes failure existence,
         # zero guard events, Fe failure dominance, and inner-half failure bias.

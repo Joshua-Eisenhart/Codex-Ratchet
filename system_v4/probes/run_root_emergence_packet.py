@@ -28,10 +28,10 @@ def choose_python(require_spec_graph: bool) -> str:
     return sys.executable
 
 
-def run_step(label: str, script_name: str, require_spec_graph: bool = False) -> dict:
+def run_step(label: str, script_name: str, require_spec_graph: bool = False, extra_args: list[str] | None = None) -> dict:
     script_path = ROOT / script_name
     python_bin = choose_python(require_spec_graph=require_spec_graph)
-    cmd = [python_bin, str(script_path)]
+    cmd = [python_bin, str(script_path), *(extra_args or [])]
     started = time.time()
     proc = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
     elapsed = time.time() - started
@@ -50,17 +50,20 @@ def run_step(label: str, script_name: str, require_spec_graph: bool = False) -> 
 def main() -> int:
     RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
     steps = [
-        ("nonclassical_guard", "sim_nonclassical_guard_probe.py", False),
-        ("ec3_identity", "sim_ec3_identity_principle.py", False),
-        ("missing_axis_search", "sim_missing_axis_search.py", False),
-        ("bridge_search", "sim_axis0_bridge_search.py", False),
-        ("carrier_rank", "sim_root_constraint_carrier_rank.py", False),
-        ("history_mispair_counterfeit", "sim_history_mispair_counterfeit.py", False),
-        ("coarising_stress", "sim_axis0_coarising_stress_test.py", False),
-        ("orbit_phase_alignment", "sim_axis0_orbit_phase_alignment.py", True),
-        ("attractor_basin_boundary", "sim_axis0_attractor_basin_boundary.py", False),
+        ("nonclassical_guard", "sim_nonclassical_guard_probe.py", False, []),
+        ("ec3_identity", "sim_ec3_identity_principle.py", False, []),
+        ("missing_axis_search", "sim_missing_axis_search.py", False, []),
+        ("bridge_search", "sim_axis0_bridge_search.py", False, []),
+        ("carrier_rank", "sim_root_constraint_carrier_rank.py", False, []),
+        ("history_mispair_counterfeit", "sim_history_mispair_counterfeit.py", False, []),
+        ("coarising_stress", "sim_axis0_coarising_stress_test.py", False, []),
+        ("orbit_phase_alignment", "sim_axis0_orbit_phase_alignment.py", True, ["--packet-witness"]),
+        ("attractor_basin_boundary", "sim_axis0_attractor_basin_boundary.py", False, []),
     ]
-    step_results = [run_step(label, script_name, require_spec_graph) for label, script_name, require_spec_graph in steps]
+    step_results = [
+        run_step(label, script_name, require_spec_graph, extra_args)
+        for label, script_name, require_spec_graph, extra_args in steps
+    ]
     all_ok = all(step["ok"] for step in step_results)
 
     payload = {

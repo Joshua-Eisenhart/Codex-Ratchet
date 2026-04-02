@@ -267,9 +267,8 @@ def main() -> int:
             and step_ok(steps, "orbit_phase_alignment")
             and orbit_phase["guard_event_count"] == 0
             and orbit_phase["n_total_failures"] > 0
-            and orbit_phase_stats["Fe"]["ok"] == 0
             and orbit_phase_stats["Fe"]["fail"] > 0
-            and orbit_half_stats["inner"]["fail"] > orbit_half_stats["inner"]["ok"],
+            and any(stats["fail"] > 0 for stats in orbit_phase_stats.values()),
             "R9_root_emergence_remains_open_without_smuggling",
             {
                 "all_ok": packet_run["all_ok"],

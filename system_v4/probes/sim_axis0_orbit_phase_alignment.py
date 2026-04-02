@@ -797,41 +797,44 @@ def main():
     print(f"\nResults written to {out}")
     
     # ---------- Enforce Fail-Closed Validation ---------- #
-    # Validate trace integrals against the strict mode instead of just booleans to expose true degeneracies.
-    print("\n=== NEGATIVE SIM TRACE DIFFERENTIALS ===")
-    
-    def get_traces(mode_prefix):
-        return [r["mi_trace"] for r in all_results if r["config"].startswith(mode_prefix)]
-        
-    strict_traces = get_traces("strict/")
-    bell_traces = get_traces("bell_injected/")
-    topo_traces = get_traces("topology_flattened/")
-    pyg_traces = get_traces("pyg_bypassed/")
-    chir_traces = get_traces("chirality_destroyed/")
-    
-    def l1_delta(traces_a, traces_b):
-        if not traces_a or not traces_b or len(traces_a) != len(traces_b):
-            return 0.0
-        diff = 0.0
-        for ta, tb in zip(traces_a, traces_b):
-            diff += sum(abs(a - b) for a, b in zip(ta, tb))
-        return diff
-        
-    delta_bell = l1_delta(strict_traces, bell_traces)
-    delta_topo = l1_delta(strict_traces, topo_traces)
-    delta_pyg = l1_delta(strict_traces, pyg_traces)
-    delta_chir = l1_delta(strict_traces, chir_traces)
-    
-    print(f"  strict vs bell_injected:      Δ L1 = {delta_bell:.4f}")
-    print(f"  strict vs topology_flattened: Δ L1 = {delta_topo:.4f}")
-    print(f"  strict vs pyg_bypassed:       Δ L1 = {delta_pyg:.4f}")
-    print(f"  strict vs chirality_destroyed:Δ L1 = {delta_chir:.4f}")
-    
-    if delta_bell < 1e-4 or delta_topo < 0.1 or delta_pyg < 0.1 or delta_chir < 0.1:
-        print("\n[⚠] FAIL CLOSED: A negative ablation simulation generated mathematically identical ")
-        print("    trace tensors (Δ L1 < 0.1) to the strictly constrained simulation.")
-        print("    The graph logic did not analytically collapse.")
-        sys.exit(1)
+    # Only the exhaustive --full sweep carries the negative-family traces needed
+    # for these differential checks. The bounded packet path intentionally runs a
+    # single strict lane for R9's witness fields only.
+    if args.full:
+        print("\n=== NEGATIVE SIM TRACE DIFFERENTIALS ===")
+
+        def get_traces(mode_prefix):
+            return [r["mi_trace"] for r in all_results if r["config"].startswith(mode_prefix)]
+
+        strict_traces = get_traces("strict/")
+        bell_traces = get_traces("bell_injected/")
+        topo_traces = get_traces("topology_flattened/")
+        pyg_traces = get_traces("pyg_bypassed/")
+        chir_traces = get_traces("chirality_destroyed/")
+
+        def l1_delta(traces_a, traces_b):
+            if not traces_a or not traces_b or len(traces_a) != len(traces_b):
+                return 0.0
+            diff = 0.0
+            for ta, tb in zip(traces_a, traces_b):
+                diff += sum(abs(a - b) for a, b in zip(ta, tb))
+            return diff
+
+        delta_bell = l1_delta(strict_traces, bell_traces)
+        delta_topo = l1_delta(strict_traces, topo_traces)
+        delta_pyg = l1_delta(strict_traces, pyg_traces)
+        delta_chir = l1_delta(strict_traces, chir_traces)
+
+        print(f"  strict vs bell_injected:      Δ L1 = {delta_bell:.4f}")
+        print(f"  strict vs topology_flattened: Δ L1 = {delta_topo:.4f}")
+        print(f"  strict vs pyg_bypassed:       Δ L1 = {delta_pyg:.4f}")
+        print(f"  strict vs chirality_destroyed:Δ L1 = {delta_chir:.4f}")
+
+        if delta_bell < 1e-4 or delta_topo < 0.1 or delta_pyg < 0.1 or delta_chir < 0.1:
+            print("\n[⚠] FAIL CLOSED: A negative ablation simulation generated mathematically identical ")
+            print("    trace tensors (Δ L1 < 0.1) to the strictly constrained simulation.")
+            print("    The graph logic did not analytically collapse.")
+            sys.exit(1)
         
     return results
 

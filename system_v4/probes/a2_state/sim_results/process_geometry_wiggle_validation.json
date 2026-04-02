@@ -1,0 +1,116 @@
+{
+  "name": "process_geometry_wiggle_validation",
+  "timestamp": "2026-04-02T01:19:55.350800+00:00",
+  "passed_gates": 4,
+  "total_gates": 4,
+  "score": 1.0,
+  "gates": [
+    {
+      "name": "PG1_process_geometry_surface_is_explicit_and_exploratory",
+      "pass": true,
+      "detail": {
+        "schema": "PROCESS_GEOMETRY_WIGGLE_v1",
+        "note": "Exploratory process/geometry wiggle; normalized states; not canon.",
+        "process_keys": [
+          "r=0.2",
+          "r=0.4",
+          "r=0.7",
+          "r=1.0"
+        ],
+        "geometry_keys": [
+          "norms",
+          "overlaps"
+        ]
+      }
+    },
+    {
+      "name": "PG2_ax4_process_observables_stay_effectively_dead_across_the_r_sweep",
+      "pass": true,
+      "detail": {
+        "r=1.0": {
+          "overlaps": {
+            "ax4_endpoint_vs_ax6_endpoint": 0.0,
+            "ax4_path_vs_ax6_path": 0.0,
+            "ax4_path_vs_ax6_endpoint": 0.0
+          },
+          "ax4_norms": {
+            "ax4_endpoint": 4.426233624072074e-16,
+            "ax4_path": 1.7219203721341132e-15
+          }
+        },
+        "r=0.7": {
+          "overlaps": {
+            "ax4_endpoint_vs_ax6_endpoint": 0.0,
+            "ax4_path_vs_ax6_path": 0.0,
+            "ax4_path_vs_ax6_endpoint": 0.0
+          },
+          "ax4_norms": {
+            "ax4_endpoint": 4.0017282325638073e-16,
+            "ax4_path": 1.776730463734433e-15
+          }
+        },
+        "r=0.4": {
+          "overlaps": {
+            "ax4_endpoint_vs_ax6_endpoint": 0.0,
+            "ax4_path_vs_ax6_path": 0.0,
+            "ax4_path_vs_ax6_endpoint": 0.0
+          },
+          "ax4_norms": {
+            "ax4_endpoint": 3.8869795943958193e-16,
+            "ax4_path": 1.7754005496277798e-15
+          }
+        },
+        "r=0.2": {
+          "overlaps": {
+            "ax4_endpoint_vs_ax6_endpoint": 0.0,
+            "ax4_path_vs_ax6_path": 0.0,
+            "ax4_path_vs_ax6_endpoint": 0.0
+          },
+          "ax4_norms": {
+            "ax4_endpoint": 3.8608320676662527e-16,
+            "ax4_path": 1.82214588706706e-15
+          }
+        }
+      }
+    },
+    {
+      "name": "PG3_ax6_path_records_dominate_endpoints_and_strengthen_as_r_drops",
+      "pass": true,
+      "detail": {
+        "r=1.0": {
+          "ax6_endpoint": 0.6392334312861123,
+          "ax6_path": 0.9642090835812608
+        },
+        "r=0.7": {
+          "ax6_endpoint": 0.4328124071822207,
+          "ax6_path": 1.0309635666253565
+        },
+        "r=0.4": {
+          "ax6_endpoint": 0.25345369546249147,
+          "ax6_path": 1.0944280842223644
+        },
+        "r=0.2": {
+          "ax6_endpoint": 0.12587404993243206,
+          "ax6_path": 1.123397795902892
+        }
+      }
+    },
+    {
+      "name": "PG4_torus_curvature_scalar_decouples_from_ax0_while_other_geometry_proxies_do_not",
+      "pass": true,
+      "detail": {
+        "overlaps": {
+          "ax0_vs_generic_curvature": 0.6697041890998443,
+          "ax0_vs_torus_extrinsic_transport": 0.6502851243459634,
+          "ax0_vs_torus_curvature_scalar": 2.7785176159421725e-17
+        },
+        "norms": {
+          "ax0": 0.27880268811954273,
+          "generic_curvature": 0.015273141403762243,
+          "torus_extrinsic_transport": 0.4142135623730931,
+          "torus_curvature_scalar": 1.0
+        }
+      }
+    }
+  ]
+}

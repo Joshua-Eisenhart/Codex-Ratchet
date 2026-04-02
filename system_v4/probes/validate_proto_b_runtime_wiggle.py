@@ -88,10 +88,14 @@ def main() -> int:
             and closure_yield["sign_flip_rate"] == 0.0
             and closure_yield["overall_mean_signed"] > 1.0
             and abs(closure_yield["paired_gaps"]["axis0_high_minus_low_mean"]) < 0.01
-            and closure_yield["paired_gaps"]["torus_wave_minus_constant_mean"] > 0.2,
-            "PB3_closure_adjusted_yield_is_stable_and_torus_sensitive",
+            and closure_yield["paired_gaps"]["torus_wave_minus_constant_mean"] > 0.2
+            and rankings["torus_gap"][0]["candidate"] == "carnot_transport_normalized_work"
+            and rankings["torus_gap"][1]["candidate"] == "carnot_closure_adjusted_yield"
+            and rankings["torus_gap"][1]["value"] > 0.2,
+            "PB3_closure_adjusted_yield_is_stable_and_second_to_transport_on_torus_gap",
             {
                 "closure_adjusted_yield": closure_yield,
+                "torus_gap_top_rankings": rankings["torus_gap"][:3],
             },
         ),
         gate(
@@ -110,10 +114,13 @@ def main() -> int:
                 for row in ceiling_by_condition
                 if row["axis0_level"] == 0.9
             )
-            and max(row["std_signed"] for row in ceiling_by_condition) < 0.07,
+            and max(row["std_signed"] for row in ceiling_by_condition) < 0.07
+            and rankings["axis0_gap"][0]["candidate"] == "szilard_ceiling_actuation"
+            and rankings["axis0_gap"][1]["candidate"] == "carnot_transport_normalized_work",
             "PB4_szilard_ceiling_actuation_tracks_axis0_regime_shift_via_effective_gain_weighting",
             {
                 "szilard_ceiling_actuation": ceiling,
+                "axis0_gap_top_rankings": rankings["axis0_gap"][:3],
             },
         ),
     ]

@@ -615,7 +615,7 @@ def main():
         print(f"Sidecars built. TopoNetX available: {cc is not None}, PyG available: {hetero is not None}")
     else:
         print("Mode: packet-witness")
-        print("Skipping graph sidecars; using packet-safe pyg_bypassed witness lane.")
+        print("Skipping graph sidecars; using packet-safe strict witness lane.")
     
     all_results = []
     # Aggregate failure phase counts
@@ -630,7 +630,7 @@ def main():
         torus_configs = list(TORUS_CONFIGS)
         print("Mode: full")
     elif args.packet_witness:
-        negative_modes = ["pyg_bypassed"]
+        negative_modes = ["strict"]
         engine_types = [1]
         torus_configs = [("inner", TORUS_INNER)]
     else:

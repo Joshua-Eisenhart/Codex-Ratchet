@@ -75,10 +75,13 @@ def main() -> int:
             support,
         ),
         gate(
-            non_claims["final_xi_owner_law"] == "open"
-            and non_claims["shell_doctrine"] == "open"
-            and non_claims["history_law_replacement"] == "open"
-            and non_claims["entropy_family_owner_doctrine"] == "open",
+            non_claims["status"] == "explicit_non_owner_reservation"
+            and non_claims["final_xi_owner_law"] == "reserved_for_future_owner_doctrine_not_claimed_by_c1"
+            and non_claims["shell_doctrine"] == "reserved_for_future_shell_doctrine_not_claimed_by_c1"
+            and non_claims["history_law_replacement"] == "reserved_for_future_history_law_replacement_not_claimed_by_c1"
+            and non_claims["entropy_family_owner_doctrine"] == "reserved_for_future_entropy_owner_doctrine_not_claimed_by_c1"
+            and non_claims["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
+            and non_claims["consumer_scope"] == "downstream_readout_only",
             "C1B4_bridge_object_keeps_owner_doctrine_questions_open",
             non_claims,
         ),

@@ -71,10 +71,13 @@ def main() -> int:
             support,
         ),
         gate(
-            unresolved["final_xi_owner_law"] == "open"
-            and unresolved["shell_doctrine"] == "open"
-            and unresolved["history_law_replacement"] == "open"
-            and unresolved["entropy_family_owner_doctrine"] == "open"
+            unresolved["status"] == "explicit_non_owner_reservation"
+            and unresolved["final_xi_owner_law"] == "reserved_for_future_owner_doctrine_not_claimed_by_c1"
+            and unresolved["shell_doctrine"] == "reserved_for_future_shell_doctrine_not_claimed_by_c1"
+            and unresolved["history_law_replacement"] == "reserved_for_future_history_law_replacement_not_claimed_by_c1"
+            and unresolved["entropy_family_owner_doctrine"] == "reserved_for_future_entropy_owner_doctrine_not_claimed_by_c1"
+            and unresolved["owner_dependency"] == "must_bind_under_xi_hist_signed_law"
+            and unresolved["consumer_scope"] == "downstream_readout_only"
             and search["owner_read"]["status"] == "admitted_executable_candidate_not_final_owner_law",
             "C1S4_candidate_stays_provisional_and_does_not_overpromote",
             {

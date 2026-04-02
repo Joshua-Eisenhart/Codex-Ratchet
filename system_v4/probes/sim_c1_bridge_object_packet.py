@@ -78,10 +78,13 @@ def main() -> int:
             "entropy_gate_status": "admitted_executable_candidate_not_final_owner_law",
         },
         "non_claims": {
-            "final_xi_owner_law": "open",
-            "shell_doctrine": "open",
-            "history_law_replacement": "open",
-            "entropy_family_owner_doctrine": "open",
+            "status": "explicit_non_owner_reservation",
+            "final_xi_owner_law": "reserved_for_future_owner_doctrine_not_claimed_by_c1",
+            "shell_doctrine": "reserved_for_future_shell_doctrine_not_claimed_by_c1",
+            "history_law_replacement": "reserved_for_future_history_law_replacement_not_claimed_by_c1",
+            "entropy_family_owner_doctrine": "reserved_for_future_entropy_owner_doctrine_not_claimed_by_c1",
+            "owner_dependency": handoff["owner_dependency"],
+            "consumer_scope": "downstream_readout_only",
         },
     }
 

@@ -1,0 +1,64 @@
+{
+  "name": "carnot_gradient_bound_validation",
+  "timestamp": "2026-04-02T00:54:02.695094+00:00",
+  "passed_gates": 4,
+  "total_gates": 4,
+  "score": 1.0,
+  "gates": [
+    {
+      "name": "CG1_carnot_probe_sweep_is_complete_and_explicit",
+      "pass": true,
+      "detail": {
+        "n_points": 54,
+        "engine_types": [
+          1,
+          2
+        ],
+        "ga0_programs": [
+          0.1,
+          0.2,
+          0.3,
+          0.4,
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.9
+        ],
+        "torus_names": [
+          "clifford",
+          "inner",
+          "outer"
+        ]
+      }
+    },
+    {
+      "name": "CG2_work_tracks_curvature_far_more_than_ga0_and_ax0_ax5_are_only_partially_coupled",
+      "pass": true,
+      "detail": {
+        "r_ga0_work": 0.0018632964025046112,
+        "r_curve_work": -0.9424811233753201,
+        "r_ax0_ax5": -0.6032430886940445,
+        "efficiency_mean": 11.763704888591374,
+        "efficiency_cv": 0.9574754077392711
+      }
+    },
+    {
+      "name": "CG3_no_stable_carnot_like_efficiency_bound_emerges_at_this_parameterization",
+      "pass": true,
+      "detail": {
+        "efficiency_mean": 11.763704888591374,
+        "efficiency_cv": 0.9574754077392711
+      }
+    },
+    {
+      "name": "CG4_inner_and_outer_outperform_clifford_on_runtime_work",
+      "pass": true,
+      "detail": {
+        "inner_mean_total_work": 1.580043083851483,
+        "clifford_mean_total_work": 1.132409171578886,
+        "outer_mean_total_work": 1.5800479814793225
+      }
+    }
+  ]
+}

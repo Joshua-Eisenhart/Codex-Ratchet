@@ -53,6 +53,7 @@ def main() -> int:
     owner_map = pre_entropy["owner_worthiness_map"]
     admission_schema = pre_entropy["pre_axis_admission_schema"]
     necessity = pre_entropy["joint_necessity_witness"]
+    p16_detail = pre_gate_map["P16_transport_delta_branch_survives_but_is_not_owner_law_yet"]["detail"]
     joint_summary = joint_ablation["summary"]
     joint_owner_read = joint_ablation["owner_read"]
     transport_embargo_contract = {
@@ -113,6 +114,15 @@ def main() -> int:
             and pre_gate_map["P19_transport_gap_scalar_is_live_and_joint_ablation_collapses_it"]["pass"]
             and pre_gate_map["P20_joint_same_carrier_nonproxy_runtime_witness_is_explicit"]["pass"]
             and pre_gate_map["P21_pre_axis_admission_schema_is_explicit_and_axis_embargoed"]["pass"]
+            and p16_detail["w5_detail"]["geometric_transport_delta"] == "pre-axis"
+            and p16_detail["w5_detail"]["chirality_differential_delta"] == "pre-axis"
+            and p16_detail["w5_detail"]["bloch_differential_delta"] == "pre-axis"
+            and p16_detail["w5_detail"]["entropic_left_right_flux"] == "unresolved_not_owner_worthy_yet"
+            and p16_detail["w5_detail"]["post_joint_cut_flux"] == "axis_internal_or_cross_axis"
+            and p16_detail["w9_detail"]["blocked_flux_reason"] == "blocked_by_symmetric_compat_shim"
+            and p16_detail["w9_detail"]["unsupported_single_flux"] == "single_weyl_flux_object"
+            and p16_detail["w9_detail"]["unsupported_single_flux_status"] == "not_supported_yet"
+            and p16_detail["w9_detail"]["downstream_branch_status"] == "downstream_existing_branch"
             and transport_embargo_contract["status"] == "supported_but_embargoed"
             and transport_embargo_contract["candidate_branch"] == "chirality-separated loop-sensitive transport deltas"
             and transport_embargo_contract["lower_tier_law"] == "exact_loop_assigned_transport_only"
@@ -125,6 +135,16 @@ def main() -> int:
                 "p19_pass": pre_gate_map["P19_transport_gap_scalar_is_live_and_joint_ablation_collapses_it"]["pass"],
                 "p20_pass": pre_gate_map["P20_joint_same_carrier_nonproxy_runtime_witness_is_explicit"]["pass"],
                 "p21_pass": pre_gate_map["P21_pre_axis_admission_schema_is_explicit_and_axis_embargoed"]["pass"],
+                "p16_detail": {
+                    "w5_detail": {
+                        "geometric_transport_delta": p16_detail["w5_detail"]["geometric_transport_delta"],
+                        "chirality_differential_delta": p16_detail["w5_detail"]["chirality_differential_delta"],
+                        "bloch_differential_delta": p16_detail["w5_detail"]["bloch_differential_delta"],
+                        "entropic_left_right_flux": p16_detail["w5_detail"]["entropic_left_right_flux"],
+                        "post_joint_cut_flux": p16_detail["w5_detail"]["post_joint_cut_flux"],
+                    },
+                    "w9_detail": p16_detail["w9_detail"],
+                },
                 "transport_embargo_contract": transport_embargo_contract,
             },
         ),

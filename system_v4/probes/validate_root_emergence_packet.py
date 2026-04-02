@@ -61,6 +61,8 @@ def main() -> int:
 
     steps = packet_run["steps"]
     formal_gate_map = {item["name"]: item for item in formal_geometry["gates"]}
+    g10_detail = formal_gate_map["G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit"]["detail"]
+    g11_detail = formal_gate_map["G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion"]["detail"]
     g14_detail = formal_gate_map["G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed"]["detail"]
     level1 = coarising["level1_lr_asym"]
     level2 = coarising["level2_bridge_mi"]
@@ -105,6 +107,13 @@ def main() -> int:
             and formal_gate_map["G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit"]["pass"]
             and formal_gate_map["G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion"]["pass"]
             and formal_gate_map["G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed"]["pass"]
+            and g10_detail["classical_leakage_guards"]["raw_lr_control_blocked"]["status"] == "control_only"
+            and g10_detail["classical_leakage_guards"]["torus_scramble_kill"]["status"] == "KILL"
+            and g10_detail["classical_leakage_guards"]["no_chirality_kill"]["status"] == "KILL"
+            and g10_detail["classical_leakage_guards"]["loop_law_swap_kill"]["status"] == "KILL"
+            and g11_detail["ga3_chirality"]["status"] == "readout_only"
+            and g11_detail["symmetric_dphi_bookkeeping"]["status"] == "bookkeeping_only"
+            and g11_detail["promotion_block"] == "awaiting_real_lower_tier_chiral_differential_law"
             and g14_detail["o4_detail"]["local_unitary_pair_Fe_Fi"]["status"] == "not_proven_load_bearing_in_local_test"
             and g14_detail["o4_detail"]["owner_read"]["status"] == "lower_tier_noncommuting_basis_split_survives_local_search",
             "R1_formal_geometry_prerequisite_is_closed",
@@ -115,6 +124,8 @@ def main() -> int:
                 "formal_g8_pass": formal_gate_map["G8_exact_loop_law_swap_negative"]["pass"],
                 "formal_g10_pass": formal_gate_map["G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit"]["pass"],
                 "formal_g11_pass": formal_gate_map["G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion"]["pass"],
+                "formal_g10_detail": g10_detail,
+                "formal_g11_detail": g11_detail,
                 "formal_g14_pass": formal_gate_map["G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed"]["pass"],
                 "formal_g14_o4_detail": g14_detail["o4_detail"],
             },

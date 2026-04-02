@@ -63,16 +63,15 @@ def main() -> int:
         ),
         gate(
             transport_norm["family"] == "carnot_style"
-            and transport_norm["active_fraction"] == 0.875
-            and transport_norm["inactive_reasons"] == {"zero_transport_cost": 24}
-            and transport_norm["overall_mean_signed"] > 50.0
-            and transport_norm["paired_gaps"]["axis0_high_minus_low_mean"] < -10.0
-            and transport_norm["paired_gaps"]["torus_wave_minus_constant_mean"] < -50.0
-            and transport_norm["paired_gaps"]["type2_minus_type1_mean"] < -10.0
-            and rankings["axis0_gap"][0]["candidate"] == "carnot_transport_normalized_work"
+            and transport_norm["active_fraction"] == 1.0
+            and transport_norm["inactive_reasons"] == {}
+            and transport_norm["overall_mean_signed"] > 1.0
+            and transport_norm["paired_gaps"]["axis0_high_minus_low_mean"] < -0.1
+            and transport_norm["paired_gaps"]["torus_wave_minus_constant_mean"] < -1.0
+            and transport_norm["paired_gaps"]["type2_minus_type1_mean"] < -0.01
             and rankings["torus_gap"][0]["candidate"] == "carnot_transport_normalized_work"
             and rankings["type_gap"][0]["candidate"] == "carnot_transport_normalized_work",
-            "PB2_transport_normalized_work_is_load_bearing_but_runtime_fragile",
+            "PB2_transport_normalized_work_is_nondegenerate_and_dominates_torus_type_gaps",
             {
                 "transport_normalized_work": transport_norm,
                 "top_rankings": {

@@ -1,6 +1,6 @@
 {
   "name": "proto_b_runtime_wiggle_validation",
-  "timestamp": "2026-04-02T00:51:13.529124+00:00",
+  "timestamp": "2026-04-02T00:55:54.329891+00:00",
   "passed_gates": 4,
   "total_gates": 4,
   "score": 1.0,
@@ -62,114 +62,112 @@
       }
     },
     {
-      "name": "PB2_transport_normalized_work_is_load_bearing_but_runtime_fragile",
+      "name": "PB2_transport_normalized_work_is_nondegenerate_and_dominates_torus_type_gaps",
       "pass": true,
       "detail": {
         "transport_normalized_work": {
           "family": "carnot_style",
-          "active_fraction": 0.875,
-          "inactive_reasons": {
-            "zero_transport_cost": 24
-          },
-          "overall_mean_signed": 53.42266506562721,
-          "overall_mean_abs": 53.42266506562721,
-          "overall_std_signed": 45.968676305366046,
+          "active_fraction": 1.0,
+          "inactive_reasons": {},
+          "overall_mean_signed": 3.2911948325721476,
+          "overall_mean_abs": 3.2911948325721476,
+          "overall_std_signed": 1.1145696362699453,
           "sign_flip_rate": 0.0,
           "by_condition": [
             {
               "engine_type": 1,
               "axis0_level": 0.1,
               "torus_program": "constant_clifford",
-              "count": 18,
-              "mean_signed": 136.72091347993137,
-              "mean_abs": 136.72091347993137,
-              "std_signed": 15.496762600965651
+              "count": 24,
+              "mean_signed": 4.178243752767078,
+              "mean_abs": 4.178243752767078,
+              "std_signed": 0.9485504593681336
             },
             {
               "engine_type": 1,
               "axis0_level": 0.1,
               "torus_program": "inner_outer_wave",
               "count": 24,
-              "mean_signed": 22.70577284233939,
-              "mean_abs": 22.70577284233939,
-              "std_signed": 4.717713835529232
+              "mean_signed": 2.6507353129246805,
+              "mean_abs": 2.6507353129246805,
+              "std_signed": 0.3828689248203274
             },
             {
               "engine_type": 1,
               "axis0_level": 0.9,
               "torus_program": "constant_clifford",
-              "count": 18,
-              "mean_signed": 100.95671036218765,
-              "mean_abs": 100.95671036218765,
-              "std_signed": 14.105484274626365
+              "count": 24,
+              "mean_signed": 4.223721050404509,
+              "mean_abs": 4.223721050404509,
+              "std_signed": 0.6695515265087041
             },
             {
               "engine_type": 1,
               "axis0_level": 0.9,
               "torus_program": "inner_outer_wave",
               "count": 24,
-              "mean_signed": 14.348395879341425,
-              "mean_abs": 14.348395879341425,
-              "std_signed": 3.337024655400679
+              "mean_signed": 2.2138350231866517,
+              "mean_abs": 2.2138350231866517,
+              "std_signed": 0.3723950875274603
             },
             {
               "engine_type": 2,
               "axis0_level": 0.1,
               "torus_program": "constant_clifford",
-              "count": 18,
-              "mean_signed": 101.57330850572163,
-              "mean_abs": 101.57330850572163,
-              "std_signed": 13.180346538312946
+              "count": 24,
+              "mean_signed": 4.1070772942259595,
+              "mean_abs": 4.1070772942259595,
+              "std_signed": 1.0326418808804902
             },
             {
               "engine_type": 2,
               "axis0_level": 0.1,
               "torus_program": "inner_outer_wave",
               "count": 24,
-              "mean_signed": 18.985204146633414,
-              "mean_abs": 18.985204146633414,
-              "std_signed": 6.242343143406412
+              "mean_signed": 2.5997204977289217,
+              "mean_abs": 2.5997204977289217,
+              "std_signed": 0.38981390667264604
             },
             {
               "engine_type": 2,
               "axis0_level": 0.9,
               "torus_program": "constant_clifford",
-              "count": 18,
-              "mean_signed": 68.33978353100773,
-              "mean_abs": 68.33978353100773,
-              "std_signed": 10.689349787740152
+              "count": 24,
+              "mean_signed": 4.176211919182025,
+              "mean_abs": 4.176211919182025,
+              "std_signed": 0.7468450645784331
             },
             {
               "engine_type": 2,
               "axis0_level": 0.9,
               "torus_program": "inner_outer_wave",
               "count": 24,
-              "mean_signed": 12.226245681939906,
-              "mean_abs": 12.226245681939906,
-              "std_signed": 4.052823886552472
+              "mean_signed": 2.180013810157359,
+              "mean_abs": 2.180013810157359,
+              "std_signed": 0.3736244461592309
             }
           ],
           "paired_gaps": {
-            "axis0_high_minus_low_mean": -21.028515880037272,
-            "torus_wave_minus_constant_mean": -84.83127433214857,
-            "type2_minus_type1_mean": -18.401812674624292
+            "axis0_high_minus_low_mean": -0.18549876367902363,
+            "torus_wave_minus_constant_mean": -1.7602373431454899,
+            "type2_minus_type1_mean": -0.05087790449716356
           }
         },
         "top_rankings": {
           "axis0_gap": {
-            "candidate": "carnot_transport_normalized_work",
-            "family": "carnot_style",
-            "value": -21.028515880037272
+            "candidate": "szilard_ceiling_actuation",
+            "family": "szilard_style",
+            "value": 0.42222391749662813
           },
           "torus_gap": {
             "candidate": "carnot_transport_normalized_work",
             "family": "carnot_style",
-            "value": -84.83127433214857
+            "value": -1.7602373431454899
           },
           "type_gap": {
             "candidate": "carnot_transport_normalized_work",
             "family": "carnot_style",
-            "value": -18.401812674624292
+            "value": -0.05087790449716356
           }
         }
       }

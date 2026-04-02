@@ -395,12 +395,10 @@ def evaluate_run(trace: dict) -> dict:
 
     transport_cost = float(
         sum(
-            s["transport_alpha"]
-            * (
-                abs(s["deta"])
-                + abs(s["radii_after"][0] - s["radii_before"][0])
-                + abs(s["radii_after"][1] - s["radii_before"][1])
-            )
+            abs(s["deta"])
+            + abs(s["radii_after"][0] - s["radii_before"][0])
+            + abs(s["radii_after"][1] - s["radii_before"][1])
+            + 0.25 * (abs(s["dtheta1"]) + abs(s["dtheta2"]))
             for s in steps
         )
     )

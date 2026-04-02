@@ -3,11 +3,11 @@
 validate_proto_b_runtime_wiggle.py
 ==================================
 
-Mechanical validator for the exploratory Proto-B runtime wiggle probe.
+Mechanical validator for the runtime-native Proto-B wiggle probe.
 
-This stays outside the old packet ladder. It only checks whether the
-runtime-native candidate-family sweep is producing a stable, explicit
-surface worth using for follow-on work.
+This validator does not promote any candidate family into doctrine.
+It only checks that the exploratory runtime-native surface is explicit,
+fail-closed, and exposes stable differential signals worth further study.
 """
 
 from __future__ import annotations
@@ -18,10 +18,9 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parent.parent
-SIM_RESULTS = ROOT / "a2_state" / "sim_results"
-INPUT_PATH = SIM_RESULTS / "proto_b_runtime_wiggle.json"
-OUTPUT_PATH = SIM_RESULTS / "proto_b_runtime_wiggle_validation.json"
+ROOT = Path(__file__).resolve().parent
+PROBE_RESULTS = ROOT.parent / "a2_state" / "sim_results"
+OUTPUT_PATH = ROOT / "a2_state" / "sim_results" / "proto_b_runtime_wiggle_validation.json"
 
 
 def load_json(path: Path) -> dict:
@@ -37,66 +36,73 @@ def main() -> int:
     parser.add_argument("--pretty", action="store_true")
     args = parser.parse_args()
 
-    probe = load_json(INPUT_PATH)
-    sweep = probe["sweep"]
+    probe = load_json(PROBE_RESULTS / "proto_b_runtime_wiggle.json")
     summaries = probe["candidate_summaries"]
     rankings = probe["rankings"]
+    sweep = probe["sweep"]
 
-    normalized_work = summaries["carnot_transport_normalized_work"]
+    transport_norm = summaries["carnot_transport_normalized_work"]
     closure_yield = summaries["carnot_closure_adjusted_yield"]
-    cycle_area = summaries["carnot_cycle_area_ga0_neg"]
+    ceiling = summaries["szilard_ceiling_actuation"]
 
     gates = [
         gate(
-            probe["schema"] == "SIM_EVIDENCE_v1"
-            and probe["status"] == "exploratory"
-            and sweep["n_runs"] == len(sweep["seeds"]) * len(sweep["engine_types"]) * len(sweep["axis0_levels"]) * len(sweep["torus_programs"])
+            probe["status"] == "exploratory"
+            and "candidate-family evidence only" in probe["proto_b_guardrails"]
             and "runtime-native metrics only" in probe["proto_b_guardrails"]
-            and "inactive/dead candidates are reported, not hidden" in probe["proto_b_guardrails"],
-            "PB1_proto_b_probe_surface_is_explicit_and_fail_closed",
+            and sweep["n_runs"] == 192
+            and sweep["engine_types"] == [1, 2]
+            and sweep["axis0_levels"] == [0.1, 0.9]
+            and sweep["torus_programs"] == ["constant_clifford", "inner_outer_wave"],
+            "PB1_proto_b_runtime_surface_is_explicit_and_exploratory",
             {
-                "schema": probe["schema"],
                 "status": probe["status"],
-                "n_runs": sweep["n_runs"],
-                "guardrails": probe["proto_b_guardrails"],
+                "proto_b_guardrails": probe["proto_b_guardrails"],
+                "sweep": sweep,
             },
         ),
         gate(
-            normalized_work["active_fraction"] == 0.875
-            and normalized_work["inactive_reasons"].get("zero_transport_cost") == 24
-            and normalized_work["paired_gaps"]["torus_wave_minus_constant_mean"] < -50.0
-            and normalized_work["paired_gaps"]["axis0_high_minus_low_mean"] < -10.0,
-            "PB2_transport_normalized_work_shows_live_transport_cost_sensitivity",
-            {
-                "active_fraction": normalized_work["active_fraction"],
-                "inactive_reasons": normalized_work["inactive_reasons"],
-                "torus_gap": normalized_work["paired_gaps"]["torus_wave_minus_constant_mean"],
-                "axis0_gap": normalized_work["paired_gaps"]["axis0_high_minus_low_mean"],
-            },
-        ),
-        gate(
-            closure_yield["active_fraction"] == 1.0
-            and closure_yield["sign_flip_rate"] == 0.0
-            and closure_yield["paired_gaps"]["torus_wave_minus_constant_mean"] > 0.2
-            and abs(closure_yield["paired_gaps"]["axis0_high_minus_low_mean"]) < 0.02,
-            "PB3_closure_adjusted_yield_stays_stable_while_torus_program_matters",
-            {
-                "active_fraction": closure_yield["active_fraction"],
-                "sign_flip_rate": closure_yield["sign_flip_rate"],
-                "torus_gap": closure_yield["paired_gaps"]["torus_wave_minus_constant_mean"],
-                "axis0_gap": closure_yield["paired_gaps"]["axis0_high_minus_low_mean"],
-            },
-        ),
-        gate(
-            rankings["axis0_gap"][0]["candidate"] == "carnot_transport_normalized_work"
+            transport_norm["family"] == "carnot_style"
+            and transport_norm["active_fraction"] == 0.875
+            and transport_norm["inactive_reasons"] == {"zero_transport_cost": 24}
+            and transport_norm["overall_mean_signed"] > 50.0
+            and transport_norm["paired_gaps"]["axis0_high_minus_low_mean"] < -10.0
+            and transport_norm["paired_gaps"]["torus_wave_minus_constant_mean"] < -50.0
+            and transport_norm["paired_gaps"]["type2_minus_type1_mean"] < -10.0
+            and rankings["axis0_gap"][0]["candidate"] == "carnot_transport_normalized_work"
             and rankings["torus_gap"][0]["candidate"] == "carnot_transport_normalized_work"
-            and rankings["torus_gap"][1]["candidate"] == "carnot_closure_adjusted_yield"
-            and cycle_area["paired_gaps"]["torus_wave_minus_constant_mean"] > 0.1,
-            "PB4_runtime_rankings_separate_cost_dominated_and_yield_dominated_candidates",
+            and rankings["type_gap"][0]["candidate"] == "carnot_transport_normalized_work",
+            "PB2_transport_normalized_work_is_load_bearing_but_runtime_fragile",
             {
-                "axis0_top": rankings["axis0_gap"][:3],
-                "torus_top": rankings["torus_gap"][:3],
-                "cycle_area_torus_gap": cycle_area["paired_gaps"]["torus_wave_minus_constant_mean"],
+                "transport_normalized_work": transport_norm,
+                "top_rankings": {
+                    "axis0_gap": rankings["axis0_gap"][0],
+                    "torus_gap": rankings["torus_gap"][0],
+                    "type_gap": rankings["type_gap"][0],
+                },
+            },
+        ),
+        gate(
+            closure_yield["family"] == "carnot_style"
+            and closure_yield["active_fraction"] == 1.0
+            and closure_yield["sign_flip_rate"] == 0.0
+            and closure_yield["overall_mean_signed"] > 1.0
+            and abs(closure_yield["paired_gaps"]["axis0_high_minus_low_mean"]) < 0.01
+            and closure_yield["paired_gaps"]["torus_wave_minus_constant_mean"] > 0.2,
+            "PB3_closure_adjusted_yield_is_stable_and_torus_sensitive",
+            {
+                "closure_adjusted_yield": closure_yield,
+            },
+        ),
+        gate(
+            ceiling["family"] == "szilard_style"
+            and ceiling["active_fraction"] == 1.0
+            and ceiling["sign_flip_rate"] == 0.5
+            and ceiling["paired_gaps"]["axis0_high_minus_low_mean"] > 0.3
+            and ceiling["paired_gaps"]["torus_wave_minus_constant_mean"] > 0.05,
+            "PB4_szilard_ceiling_actuation_tracks_axis0_regime_shift",
+            {
+                "szilard_ceiling_actuation": ceiling,
             },
         ),
     ]
@@ -111,6 +117,7 @@ def main() -> int:
         "gates": gates,
     }
 
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT_PATH.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
     if args.pretty:
@@ -119,7 +126,7 @@ def main() -> int:
         print("=" * 72)
         for item in gates:
             status = "PASS" if item["pass"] else "FAIL"
-            print(f"{status:4}  {item['name']}")
+            print(f"{status:<5} {item['name']}")
         print()
         print(f"passed_gates: {passed}/{len(gates)}")
         print(f"score: {payload['score']:.6f}")

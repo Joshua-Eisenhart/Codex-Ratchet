@@ -93,22 +93,30 @@ def main() -> int:
             and wave_2["abs_dphase"] > default_2["abs_dphase"]
             and wave_1["abs_dtrace"] > default_1["abs_dtrace"]
             and wave_2["abs_dtrace"] > default_2["abs_dtrace"]
+            and wave_1["abs_dneg"] > default_1["abs_dneg"]
+            and wave_2["abs_dneg"] > default_2["abs_dneg"]
             and wave_1["abs_dchi"] > default_1["abs_dchi"]
             and wave_2["abs_dchi"] > default_2["abs_dchi"]
+            and wave_1["q_total_move"] > default_1["q_total_move"]
+            and wave_2["q_total_move"] > default_2["q_total_move"]
             and wave_1["axis0_effective_gain"] < default_1["axis0_effective_gain"]
             and wave_2["axis0_effective_gain"] < default_2["axis0_effective_gain"],
-            "EM3_wave_program_trades_axis0_effective_gain_for_phase_trace_and_chirality_motion",
+            "EM3_wave_program_trades_axis0_effective_gain_for_transport_negentropy_and_motion",
             {
                 "type1_gaps": {
                     "abs_dphase_gap": wave_1["abs_dphase"] - default_1["abs_dphase"],
                     "abs_dtrace_gap": wave_1["abs_dtrace"] - default_1["abs_dtrace"],
+                    "abs_dneg_gap": wave_1["abs_dneg"] - default_1["abs_dneg"],
                     "abs_dchi_gap": wave_1["abs_dchi"] - default_1["abs_dchi"],
+                    "q_total_move_gap": wave_1["q_total_move"] - default_1["q_total_move"],
                     "axis0_effective_gain_gap": wave_1["axis0_effective_gain"] - default_1["axis0_effective_gain"],
                 },
                 "type2_gaps": {
                     "abs_dphase_gap": wave_2["abs_dphase"] - default_2["abs_dphase"],
                     "abs_dtrace_gap": wave_2["abs_dtrace"] - default_2["abs_dtrace"],
+                    "abs_dneg_gap": wave_2["abs_dneg"] - default_2["abs_dneg"],
                     "abs_dchi_gap": wave_2["abs_dchi"] - default_2["abs_dchi"],
+                    "q_total_move_gap": wave_2["q_total_move"] - default_2["q_total_move"],
                     "axis0_effective_gain_gap": wave_2["axis0_effective_gain"] - default_2["axis0_effective_gain"],
                 },
             },

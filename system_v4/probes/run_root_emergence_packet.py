@@ -19,7 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 RESULTS_PATH = ROOT / "a2_state" / "sim_results" / "root_emergence_packet_run_results.json"
-SPEC_GRAPH_PYTHON = ROOT.parent.parent / ".venv_spec_graph" / "bin" / "python3"
+SPEC_GRAPH_PYTHON = ROOT.parent.parent / ".venv_spec_graph" / "bin" / "python3"  # legacy; no step requires this now
 
 
 def choose_python(require_spec_graph: bool) -> str:
@@ -57,7 +57,7 @@ def main() -> int:
         ("carrier_rank", "sim_root_constraint_carrier_rank.py", False, []),
         ("history_mispair_counterfeit", "sim_history_mispair_counterfeit.py", False, []),
         ("coarising_stress", "sim_axis0_coarising_stress_test.py", False, []),
-        ("orbit_phase_alignment", "sim_axis0_orbit_phase_alignment.py", True, ["--packet-witness"]),
+        ("orbit_phase_alignment", "sim_axis0_orbit_phase_alignment.py", False, ["--packet-witness"]),  # numpy+repo-local only; canonical interpreter sufficient
         ("attractor_basin_boundary", "sim_axis0_attractor_basin_boundary.py", False, []),
     ]
     step_results = [

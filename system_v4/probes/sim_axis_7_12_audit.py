@@ -40,7 +40,7 @@ try:
 except ImportError:
     print("\n[ERROR] Missing 'clifford' library. This probe requires geometric algebra support.", file=sys.stderr)
     print("        Please run this script inside the graph toolchain environment:", file=sys.stderr)
-    print("        ./.venv_spec_graph/bin/python system_v4/probes/sim_axis_7_12_audit.py\n", file=sys.stderr)
+    print("        /opt/homebrew/bin/python3 system_v4/probes/sim_axis_7_12_audit.py\n", file=sys.stderr)
     sys.exit(1)
 
 try:

@@ -1,5 +1,5 @@
-# REQUIRES: .venv_spec_graph
-# Run as: ../../.venv_spec_graph/bin/python3 sim_nonclassical_guard_probe.py
+# REQUIRES: z3, engine_core (available under /opt/homebrew/bin/python3)
+# Run as: /opt/homebrew/bin/python3 sim_nonclassical_guard_probe.py  (from system_v4/probes/)
 """
 Nonclassical Guard Probe
 =========================

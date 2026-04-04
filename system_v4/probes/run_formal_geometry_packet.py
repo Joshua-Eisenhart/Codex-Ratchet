@@ -30,7 +30,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 RESULTS_PATH = ROOT / "a2_state" / "sim_results" / "formal_geometry_packet_run_results.json"
-SPEC_GRAPH_PYTHON = ROOT.parent.parent / ".venv_spec_graph" / "bin" / "python3"
+SPEC_GRAPH_PYTHON = ROOT.parent.parent / ".venv_spec_graph" / "bin" / "python3"  # legacy; no step requires this now
 
 
 def choose_python(require_spec_graph: bool) -> str:
@@ -62,7 +62,7 @@ def main() -> int:
     RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
 
     steps = [
-        ("geometry_truth", "sim_geometry_truth.py", True),
+        ("geometry_truth", "sim_geometry_truth.py", False),  # numpy+repo-local only; canonical interpreter sufficient
         ("weyl_geometry_ladder", "sim_weyl_geometry_ladder_audit.py", False),
         ("weyl_ambient_overlay", "sim_weyl_ambient_vs_engine_overlay.py", False),
         ("engine_chirality", "sim_L4_engine_chirality.py", False),

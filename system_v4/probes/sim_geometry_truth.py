@@ -1,5 +1,5 @@
-# REQUIRES: .venv_spec_graph
-# Run as: ../../.venv_spec_graph/bin/python3 sim_geometry_truth.py
+# REQUIRES: numpy (available under /opt/homebrew/bin/python3)
+# Run as: /opt/homebrew/bin/python3 sim_geometry_truth.py  (from system_v4/probes/)
 """
 Geometry Truth Probe  [Class 1 — geometry truth]
 =================================================

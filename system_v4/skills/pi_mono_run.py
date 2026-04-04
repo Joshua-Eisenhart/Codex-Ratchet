@@ -94,13 +94,17 @@ def _find_claude() -> str | None:
 def _open_watch_window(plan_path: str) -> None:
     watch_script = str(REPO_ROOT / "system_v4" / "skills" / "pi_mono_watch.py")
     python = "/opt/homebrew/bin/python3"
-    cmd = f"cd '{REPO_ROOT}' && {python} {watch_script} --plan '{plan_path}'; echo '[watch] done — press Enter to close'; read"
+    cmd = f"cd '{REPO_ROOT}' && '{python}' '{watch_script}' --plan '{plan_path}'; echo ''; echo '=== Pi-Mono complete. Press Enter to close ==='; read"
+    # Activate Terminal to bring it to front, then open the script in a new window
+    script = (
+        'tell application "Terminal"\n'
+        f'  do script "{cmd}"\n'
+        '  activate\n'
+        'end tell'
+    )
     try:
-        subprocess.Popen([
-            "osascript", "-e",
-            f'tell application "Terminal" to do script "{cmd}"'
-        ])
-        print("[run] Opened status window in Terminal.app")
+        subprocess.Popen(["osascript", "-e", script])
+        print("[run] Opened status window in Terminal.app (brought to front)")
     except Exception as e:
         print(f"[run] Could not open Terminal.app window: {e}")
         print(f"[run] Run manually: {python} {watch_script} --plan {plan_path}")

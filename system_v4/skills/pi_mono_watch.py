@@ -112,8 +112,8 @@ def watch(batch_id: str | None = None, once: bool = False) -> None:
                 print(render(data, status_path))
                 overall = data.get("overall_status", "")
                 if not once and overall in OVERALL_DONE:
-                    print(f"\n  All done! Exiting watch.")
-                    return
+                    print(f"\n  All done! (Ctrl+C to close)")
+                    # Keep displaying — don't exit so the user can see final state
 
         if once:
             return

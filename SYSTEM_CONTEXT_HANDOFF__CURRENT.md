@@ -66,11 +66,10 @@ Main planning bundle currently includes:
 
 - Main repo remains on Desktop.
 - Git repos remain in `~/GitHub`.
-- Clean external Python-related folder chosen: `/Users/joshuaeisenhart/python`
-- Homebrew Python is the current likely canonical interpreter family.
-- `.venv_spec_graph` inside the repo is a cleanup target, but not deletable yet because repo code still references it.
-- The cleanup should happen slowly: standardize/install/test first, delete redundancy later.
-- Hidden environment/tooling surfaces known so far include at least: `~/Library/Python/3.13`, `~/Library/Python/3.9`, `~/.local`, `~/.conda`, `~/.hermes/hermes-agent/venv`, `~/LevRatchet`, and `~/GitHub/reference/*`.
+- `/opt/homebrew/bin/python3` is **confirmed canonical interpreter**. All core graph/proof/geometry packages installed and verified: z3, hypothesis, PyG, clifford, TopoNetX, pyquaternion, kingdon, hypernetx, xgi, gudhi, sympy, networkx, pydantic, torch.
+- `.venv_spec_graph` — all tier 1 runtime references migrated to canonical interpreter. Tier 2 batch (4 audit skills) still references `.venv_spec_graph` string but is lower priority. **Not deletable yet** pending tier 2 patch and full reference sweep. Shrink/delete readiness ledger exists: `VENV_SPEC_GRAPH_SHRINK_DELETE_READINESS_LEDGER.md`.
+- `.agent/` coordination layer is live and gitignored by design. Hermes issues handoffs there; Claude Code executes and leaves review notes.
+- Hidden environment/tooling surfaces known: `~/Library/Python/3.13`, `~/Library/Python/3.9`, `~/.local`, `~/.conda`, `~/.hermes/hermes-agent/venv`, `~/LevRatchet`, `~/GitHub/reference/*`.
 
 ## 8. Important external/reference surfaces
 
@@ -121,8 +120,9 @@ A real daemon/heartbeat layer appears to already exist in `system_v4`, including
 
 This means the daemon/heartbeat + YAML/constraint layer is not just external inspiration; it already exists in the repo and needs bounded reading.
 
-Operational note:
-- the graph-rich writeback path is no longer just a false green problem; with the richer stack available it reports real failures in `sim_edge_state_writeback.py`, so the writeback path itself is a real code/workflow problem to fix later.
+Operational note (updated 2026-04-04):
+- `sim_edge_state_writeback.py` is **FIXED and passing** (✓ ALL PASS: P1/P3/P4/P5). Root cause was runtime-trajectory edge pairs not matching canonical STEP_SEQUENCE ring. Fixed by building canonical_next map. TOPO_LEGAL also wired to live cc.skeleton(1). CONST_SAT confirmed honest.
+- Pi-Mono batch launcher (`system_v4/skills/pi_mono_claude_batch_launcher.py`) is built and working — dry-run + live mode (up to 3 terminals). Eliminates manual copy-paste terminal launches.
 
 ## 12. Current best bounded next read packs
 
@@ -167,15 +167,24 @@ When a bounded read pack finishes, update this handoff with:
 - `HEARTBEAT_DAEMON_AND_REACTIVE_SYSTEM_PLAN.md`
 - `HERMES_REPOS_AND_ECOSYSTEM_CLASSIFICATION.md`
 
-## 15. Short handoff summary
+## 15. Short handoff summary (updated 2026-04-04)
 
 A new Hermes thread should start from this frame:
 - the QIT proto and pre-Axis sim ladder come first
 - constraints/manifold/geometry/bridge/cut/kernel must stay separated
 - Hermes is the bounded A2 high-entropy ingestion plane
-- the repo needs slow stabilization, not mass deletion
-- Homebrew Python is the current likely canonical interpreter family
-- current richer tool stack is available under that canonical interpreter for most core graph/proof/geometry work, but `cvc5`, `quimb`, `qutip`, and `ripser` are still missing there
-- `.venv_spec_graph` remains a legacy environment with additional packages and still-hardcoded references; it is not deletable yet
-- system_v4 now needs deeper bounded reading to understand the active machinery
-- the next recommended bounded read is the daemon/heartbeat/intent-compiler packet
+- `/opt/homebrew/bin/python3` is the confirmed canonical interpreter; full graph/proof/geometry stack installed
+- `.venv_spec_graph` is not yet deletable; tier 2 skill batch still references it; see `VENV_SPEC_GRAPH_SHRINK_DELETE_READINESS_LEDGER.md`
+- `cvc5`, `quimb`, `qutip`, `ripser` are still missing from the canonical interpreter
+- `sim_edge_state_writeback.py` is fixed and passing — not an open problem
+- Pi-Mono launcher is built and working — use it instead of manual terminal launches
+- `.agent/` multi-agent coordination layer is live; handoffs issued by Hermes, executed by Claude Code
+- Currently active open work (Wave 4/5):
+  - `claude__c1_witness_redesign_packet.md`
+  - `claude__c2_graph_artifact_and_contract_update.md`
+  - `claude__operator_basis_proof_surface_feasibility.md`
+  - `claude__operator_basis_sympy_proof.md`
+  - `claude__c1_concurrence_negativity_probe.md`
+  - `claude__preaxis_status_and_ordering_note.md`
+  - misc: `claude__proper_location_install_surface_note.md`
+- Pimono planning handoffs (dry-run spec, transport decision, etc.) are pre-work; the implementation is already done

@@ -1,0 +1,106 @@
+{
+  "name": "operator_basis_packet_validation",
+  "timestamp": "2026-04-04T09:37:12.559340+00:00",
+  "passed_gates": 4,
+  "total_gates": 4,
+  "score": 1.0,
+  "operator_basis_verdict": "admitted_lower_tier_substrate",
+  "noncomm_verdict": "noncommutation_is_load_bearing",
+  "layer_status": "B3_operator_basis_closed",
+  "operator_status_map": {
+    "Te": {
+      "status": "admitted_substrate",
+      "gap_drop_fraction": 1.7241075322322625
+    },
+    "Fi": {
+      "status": "admitted_substrate",
+      "gap_drop_fraction": 0.27589246776773496
+    },
+    "Ti": {
+      "status": "admitted_substrate",
+      "gap_drop_fraction": 1.0219505475793331
+    },
+    "Fe": {
+      "status": "admitted_substrate",
+      "gap_drop_fraction": 3.021950547579326
+    }
+  },
+  "canonical_measures": {
+    "fiber_base_gap": 0.02296013749137532,
+    "mean_fiber_drift": 0.48966244123482877,
+    "mean_base_traversal": 0.5126225787262041,
+    "mean_sheet_gap": 1.6653345369377348e-16,
+    "mean_noncomm_residual": 0.18191115843090125
+  },
+  "gates": [
+    {
+      "name": "B3_1_basis_remap_kills_lower_tier_grammar",
+      "pass": true,
+      "detail": {
+        "canonical_gap": 0.02296013749137532,
+        "remapped_gap": 0.41734632352430906,
+        "gap_change_fraction": 17.176995833804558,
+        "threshold": 0.1,
+        "verdict": "remap_kills_grammar"
+      }
+    },
+    {
+      "name": "B3_2_coord_change_control_preserves_grammar",
+      "pass": true,
+      "detail": {
+        "canonical_gap": 0.02296013749137532,
+        "coord_changed_gap": 0.022960137491375154,
+        "gap_change_fraction": 7.25315576861548e-15,
+        "threshold": 0.05,
+        "verdict": "coord_change_preserved \u2014 remap in B3.1 is a real substrate change, not relabeling"
+      }
+    },
+    {
+      "name": "B3_3_noncommutation_ablation_degrades_lower_tier_grammar",
+      "pass": true,
+      "detail": {
+        "canonical_gap": 0.02296013749137532,
+        "commuted_gap": 0.030400124409027007,
+        "gap_change_fraction": 0.3240393016133471,
+        "canonical_noncomm": 0.18191115843090125,
+        "ablated_noncomm": 1.2647831792467087e-17,
+        "noncomm_ratio": 6.952752047517389e-17,
+        "threshold": 0.1,
+        "verdict": "noncomm_is_load_bearing"
+      }
+    },
+    {
+      "name": "B3_4_representation_demotion_analysis_is_explicit",
+      "pass": true,
+      "detail": {
+        "n_load_bearing": 4,
+        "n_demotion_candidates": 0,
+        "at_least_one_load_bearing": true,
+        "at_least_one_demotion_candidate": false,
+        "per_operator": {
+          "Te": {
+            "fiber_base_gap_without": 0.06254588348134388,
+            "gap_drop_fraction": 1.7241075322322625,
+            "load_bearing": true
+          },
+          "Fi": {
+            "fiber_base_gap_without": 0.01662560849859329,
+            "gap_drop_fraction": 0.27589246776773496,
+            "load_bearing": true
+          },
+          "Ti": {
+            "fiber_base_gap_without": 0.046424262573183106,
+            "gap_drop_fraction": 1.0219505475793331,
+            "load_bearing": true
+          },
+          "Fe": {
+            "fiber_base_gap_without": 0.09234453755593358,
+            "gap_drop_fraction": 3.021950547579326,
+            "load_bearing": true
+          }
+        },
+        "verdict": "all_operators_load_bearing \u2014 basis is non-reducible; no operator demoted at 20% threshold"
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "attractor_basin_boundary_search_validation",
+  "timestamp": "2026-04-02T06:41:20.743377+00:00",
+  "passed_gates": 3,
+  "total_gates": 3,
+  "score": 1.0,
+  "status": "search_surface_only_not_packet_admission",
+  "gates": [
+    {
+      "name": "AB1_ti_failure_boundary_is_mechanical",
+      "pass": true,
+      "detail": {
+        "n_failures": 152,
+        "n_successes": 2473,
+        "best_lr_asym_before_threshold": 0.05,
+        "threshold_accuracy": 0.9344761904761905
+      }
+    },
+    {
+      "name": "AB2_live_trajectory_stays_far_above_ti_failure_boundary",
+      "pass": true,
+      "detail": {
+        "trajectory_lr_asym_floor": 0.3560945879274837,
+        "ti_failure_threshold": 0.05,
+        "trajectory_margin": 0.30609458792748373,
+        "trajectory_lr_asym_mean_floor": 0.870953081411979
+      }
+    },
+    {
+      "name": "AB3_ti_failure_population_is_separable_from_success_population",
+      "pass": true,
+      "detail": {
+        "failure_asym_before_mean": 0.20850511394913246,
+        "success_asym_before_mean": 0.37598262919954006,
+        "failure_z_diff_mean": 0.23145698391568037,
+        "success_z_diff_mean": 0.37406668195479603
+      }
+    }
+  ]
+}

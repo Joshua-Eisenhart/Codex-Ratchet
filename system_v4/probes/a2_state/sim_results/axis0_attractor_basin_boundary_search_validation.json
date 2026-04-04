@@ -1,0 +1,41 @@
+{
+  "name": "axis0_attractor_basin_boundary_search_validation",
+  "timestamp": "2026-04-02T06:41:20.803465+00:00",
+  "passed_gates": 3,
+  "total_gates": 3,
+  "score": 1.0,
+  "gates": [
+    {
+      "name": "AB1_trajectory_lr_asym_surface_is_explicit_and_nontrivial",
+      "pass": true,
+      "detail": {
+        "config_count": 8,
+        "all_nonconstant": true,
+        "q1_mean_floor": 0.870953081411979,
+        "q1_peak": 0.9974593241343997
+      }
+    },
+    {
+      "name": "AB2_ti_failure_boundary_is_explicit_and_predictive",
+      "pass": true,
+      "detail": {
+        "threshold": 0.05,
+        "threshold_accuracy": 0.9344761904761905,
+        "n_successes": 2473,
+        "n_failures": 152,
+        "failure_asym_before_mean": 0.20850511394913246,
+        "success_asym_before_mean": 0.37598262919954006
+      }
+    },
+    {
+      "name": "AB3_observed_trajectory_stays_clear_of_the_ti_failure_regime",
+      "pass": true,
+      "detail": {
+        "q1_min_floor": 0.3560945879274837,
+        "q1_mean_floor": 0.870953081411979,
+        "threshold": 0.05,
+        "success_asym_before_mean": 0.37598262919954006
+      }
+    }
+  ]
+}

@@ -28,7 +28,7 @@ PACKET_JSON = "system_v4/a2_state/audit_logs/PYG_HETEROGRAPH_PROJECTION_PACKET__
 
 SKILL_ID = "pyg-heterograph-projection-audit"
 PROJECTION_ID = "PYG_PROJECTION::control_subgraph_v1"
-PREFERRED_INTERPRETER = ".venv_spec_graph/bin/python"
+PREFERRED_INTERPRETER = "/opt/homebrew/bin/python3"
 
 FOCUS_NODE_TYPES = (
     "KERNEL_CONCEPT",

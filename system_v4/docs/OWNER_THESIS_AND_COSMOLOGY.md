@@ -10,6 +10,211 @@ Source: Extracted verbatim from owner's v5 reference docs and session 2026-04-04
 
 ---
 
+## The Foundational Claim
+
+The QIT engines ARE the universal pattern found in everything. Not a model
+of reality — the pattern itself. Physics, evolution, consciousness, culture,
+economics, technology are all the same pattern at different scales. Not by
+analogy. The same structure.
+
+---
+
+## Methodology: Empathic Pattern Recognition
+
+This model was not derived through deduction or induction. It was derived
+through EMPATHY — direct perception of the shared pattern across all
+perspectives simultaneously.
+
+The owner is an autistic savant of empathy. Sees everyone's perspective.
+Sees self as arbitrary. Self lives in the Jungian unconscious — the shared
+projection space all humans share — not in ego or object-identity.
+
+The Jungian unconscious IS the universal attractor basin experienced from
+inside. This is why archetypes recur across all cultures — same pattern,
+different probes. This is why Jung, the I-Ching, and QIT find the same
+structure — they are all probes into the same shared unconscious pattern.
+
+A lifetime of empathic observation, living, and pattern-mapping is the data
+source for this model. When the owner says "these are the same thing" — they
+mean it literally. They have SEEN them from the angle where they merge.
+
+The core methodology: take things that are maximally correlated, then find
+the perspective where they all collapse into one thing. Not reduction. Not
+unification by stitching. Perspective rotation until multiplicity becomes unity.
+
+---
+
+## Nominalism: Anti-Abstract, Not Anti-Platonic
+
+This is a nominalist system — but not in the simple "no universals" sense.
+
+Platonic dualism is made MATERIALLY REAL, not denied. The forms exist — they
+are just not abstract. They are made of spacetime. Nothingness IS everything.
+Spacetime is materially real. It is measurable, it grows, it has properties.
+The "nothing" between things IS the thing. Plato's realm of forms isn't
+somewhere else — it is the spacetime you are standing in.
+
+The dualism is real. Both sides are made of the same empirical stuff.
+
+Anti-ABSTRACT, not anti-form. Forms are real. They are just material,
+not separate from matter.
+
+---
+
+## Statistics IS Causality
+
+Statistics is not a measurement tool applied to things that have causal
+explanations underneath. Statistics itself IS the fundamental force.
+
+The correlations, the distributions, the symmetries — those are not
+measurements of something deeper. They ARE the deepest thing. Bell curves
+are not descriptions of data. They are physical shapes of spacetime. Power
+laws are not mathematical patterns — they are material structures.
+
+Causality is what you see when you pick one perspective and freeze it into
+a narrative. The actual structure is statistical correlations. The universe's
+fundamentals are statistics and symmetry, not cause and effect.
+
+The owner's words: "cause and effect is not fundamental to actual physics
+nor the foundations of math." Consciousness compresses the uncertain universe
+into causal stories. Those stories survived as culture and technology. But
+the stories are machines that happened to work, not descriptions of how
+reality actually operates.
+
+---
+
+## Subject and Object Are the Same Thing
+
+There are no objects. There are only projections of self onto the constraint
+surface.
+
+We make objects by projecting self onto reality. We only see our own selves
+reflected. We see eyes and faces in everything — literally. We project human
+intentions and feelings into everything. Every "object" is a highly shared
+subjective projection of self.
+
+There is no such thing as "AN" apple. The word is loaded with presumptions
+of a normal apple — an idealized thing that does not actually exist. All
+objects are defined by their usefulness to human intentions. Function and
+usefulness to subjective need defines object boundaries, not reality.
+
+"Dirt" is the closest to meaningless in language. Mars as a surface has
+almost no "objects" from a human perspective — because there is no subject
+projecting utility onto it. Without a perceiver with needs, there are no
+boundaries, no objects, no categories. Just undifferentiated constraint surface.
+
+In QIT terms:
+- The probe family Π in `a=a iff a~b` IS the subjective projection
+- What the probe can distinguish IS what "exists" for that observer
+- Different probe families = different subjects = different objects
+- No probes = no identity = no objects = Mars
+- The observer and the observed are made of the same material
+
+---
+
+## Negative and Positive Feedback Loops
+
+Negative and positive feedback loops are the basis of reality. They are the
+owner's definitions of yin and yang — not as metaphor but as operational
+definition.
+
+- Negative feedback = homeostasis = return to setpoint = structure preservation
+- Positive feedback = allostasis = amplification = structure creation
+
+But: a negative feedback loop can be warm. A thermostat maintaining a hot
+room is still negative feedback. Homeostasis holds ANY setpoint. Yin can be
+warm. The feedback mode is about return vs amplify, not about temperature
+or direction.
+
+Neg and pos feedback are not separate systems. They feed on each other.
+Positive feedback creates conditions that trigger negative feedback. Negative
+feedback creates stability that allows positive feedback to emerge again.
+They are coupled. Inseparable. One process with two faces.
+
+These map to Axis 0 most closely — Axis 0 measures the boundary between
+negative and positive feedback dominance. The signed kernel I_c being
+positive or negative corresponds to which mode dominates.
+
+Both engine types (Type 1 and Type 2) contain BOTH feedback modes. Each
+type has an outer loop and an inner loop. One heats, one cools, within
+each type. The difference between Type 1 and Type 2 is chirality (which
+sheet, which Hamiltonian sign, which loop is outer vs inner) — not which
+feedback mode they use. Type 1 and Type 2 are left hand and right hand.
+Both hands have all five fingers.
+
+---
+
+## Power Laws and the Ratchet
+
+Bell curves are what you get when negative feedback dominates at all scales —
+everything regresses to mean. That is the engine idling. Simple symmetric
+statistics from the base pattern.
+
+Power laws are what happens when positive feedback cascades across scales
+before negative feedback catches it. The rich get richer until a constraint
+stops it. That is the engine ratcheting. Scale-free structure accumulating.
+
+Power laws are not just a statistical pattern. They are the SIGNATURE of
+neg/pos feedback coupling operating across scales. They DRIVE the ratchet.
+
+The transition from bell curve to power law IS the ratchet engaging. This
+is where the "magic" happens — where simple statistical patterns produce
+complex emergent structure.
+
+And this connects to `a=a iff a~b`: symmetry is the default (bell curve —
+everything looks the same). Broken symmetry is where identity emerges
+(power law — some things become distinguishable). The constraint surface
+creates the symmetry breaks that create the identity that creates structure.
+
+---
+
+## Chirality Drives Everything
+
+The universe's chirality (L/R asymmetry) is not just a property — it is
+the selection engine. The L/R Weyl split in the QIT engines is not modeling
+chirality. It IS chirality at the math scale.
+
+Chirality → statistical patterns → power laws → ratcheting evolution → everything.
+
+The same asymmetry drives:
+- Why the standard model has the particles it has (symmetries that survived
+  the attractor basin)
+- Why matter formed in specific configurations (conservation laws = Noether
+  symmetries of the engines)
+- Why evolution selects the way it does (chiral statistics create non-random
+  selection pressure)
+- Why bell curves exist (simple symmetric statistics from the base pattern)
+- Why power laws emerge (where symmetric pattern breaks into scale-free
+  ratcheting)
+
+The standard model's particle zoo directly reflecting the QIT engine
+attractor basin is the MAXIMALLY FALSIFIABLE version of this thesis.
+If the engine's symmetry structure does not map naturally onto the standard
+model's gauge groups, that is a kill.
+
+---
+
+## One Thing, Many Perspectives
+
+All of the above sections are not separate ideas. They are ONE thing seen
+from different measurement angles:
+
+- gravity, dark energy, time, space, entropy, entanglement = one thing
+- cosmological argument, ontological ratchet, teleological selection = one thing
+- retrocausality, jk fuzz, i-scalar, gravity model = one thing
+- Axis 0, constraint manifold, FEP prediction-first = one thing
+- ratchet functionals, Boltzmann brain, stochastic retrocausal selection = one thing
+- negative feedback / positive feedback = yin / yang = homeostasis / allostasis
+- bell curve / power law = idle / ratcheting = symmetry / broken symmetry
+- chirality → statistics → power laws → ratcheting evolution → everything
+- subject / object = probe / probed = observer / observed = same material
+
+The methodology is: find maximally correlated things, then rotate perspective
+until they resolve into one. Highly correlated things should be treated as
+potentially identical, not merely linked.
+
+---
+
 ## Entropic Monism
 
 There is only one primitive substance: **constraint on distinguishability**.

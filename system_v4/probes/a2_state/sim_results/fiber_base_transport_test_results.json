@@ -1,0 +1,220 @@
+{
+  "metadata": {
+    "name": "fiber_base_transport_test",
+    "timestamp": "2026-04-04T20:32:59.756446+00:00",
+    "results_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/fiber_base_transport_test_results.json",
+    "n_samples_per_loop": 64,
+    "H0": "sigma_z",
+    "V_formula": "V_s(u) = exp(-i H_s u), H_L=+H0, H_R=-H0",
+    "ax0_kernel": "I_c(A>B) = S(B) - S(AB)",
+    "bridge": "Bell-mixing: (1-p)*rho_L x rho_R + p*|psi_minus><psi_minus|"
+  },
+  "cases": [
+    {
+      "torus": "inner",
+      "eta": 0.39269908169872414,
+      "fiber": {
+        "loop": "fiber",
+        "n_samples": 64,
+        "ic_direct_mean": 1.0,
+        "ic_direct_std": 0.0,
+        "ic_transported_mean": 1.0,
+        "ic_transported_std": 0.0,
+        "ic_gap_max": 0.0,
+        "ic_gap_mean": 0.0,
+        "mi_direct_mean": 2.0,
+        "mi_direct_std": 0.0,
+        "mi_transported_mean": 2.0,
+        "mi_transported_std": 0.0,
+        "mi_gap_max": 0.0,
+        "mi_gap_mean": 0.0,
+        "bloch_L_first": [
+          0.7071067811865476,
+          0.0,
+          0.7071067811865475
+        ],
+        "bloch_L_last": [
+          0.7071067811865476,
+          -7.968496249370379e-18,
+          0.7071067811865476
+        ]
+      },
+      "base": {
+        "loop": "base",
+        "n_samples": 64,
+        "ic_direct_mean": 0.8606083068981665,
+        "ic_direct_std": 0.1214985074806222,
+        "ic_transported_mean": 0.8606083068981666,
+        "ic_transported_std": 0.1214985074806222,
+        "ic_gap_max": 6.661338147750939e-16,
+        "ic_gap_mean": 1.0234868508263162e-16,
+        "mi_direct_mean": 1.721216613796333,
+        "mi_direct_std": 0.24299701496124437,
+        "mi_transported_mean": 1.7212166137963332,
+        "mi_transported_std": 0.24299701496124446,
+        "mi_gap_max": 1.3322676295501878e-15,
+        "mi_gap_mean": 1.6306400674181987e-16,
+        "bloch_L_first": [
+          0.7071067811865476,
+          0.0,
+          0.7071067811865475
+        ],
+        "bloch_L_last": [
+          0.6935199226610738,
+          0.13794968964147197,
+          0.7071067811865475
+        ]
+      },
+      "verdicts": {
+        "fiber_ic_constant": true,
+        "fiber_transport_invariant": true,
+        "base_ic_varies": true,
+        "base_transport_invariant": true,
+        "base_transport_ic_gap_max": 6.661338147750939e-16
+      }
+    },
+    {
+      "torus": "clifford",
+      "eta": 0.7853981633974483,
+      "fiber": {
+        "loop": "fiber",
+        "n_samples": 64,
+        "ic_direct_mean": 1.0,
+        "ic_direct_std": 0.0,
+        "ic_transported_mean": 1.0,
+        "ic_transported_std": 0.0,
+        "ic_gap_max": 0.0,
+        "ic_gap_mean": 0.0,
+        "mi_direct_mean": 2.0,
+        "mi_direct_std": 0.0,
+        "mi_transported_mean": 2.0,
+        "mi_transported_std": 0.0,
+        "mi_gap_max": 0.0,
+        "mi_gap_mean": 0.0,
+        "bloch_L_first": [
+          1.0,
+          0.0,
+          2.220446049250313e-16
+        ],
+        "bloch_L_last": [
+          1.0,
+          2.0710265719984514e-18,
+          1.6653345369377348e-16
+        ]
+      },
+      "base": {
+        "loop": "base",
+        "n_samples": 64,
+        "ic_direct_mean": 0.8606083068981665,
+        "ic_direct_std": 0.1214985074806222,
+        "ic_transported_mean": 0.8606083068981666,
+        "ic_transported_std": 0.12149850748062224,
+        "ic_gap_max": 9.992007221626409e-16,
+        "ic_gap_mean": 1.2663481374630692e-16,
+        "mi_direct_mean": 1.721216613796333,
+        "mi_direct_std": 0.24299701496124437,
+        "mi_transported_mean": 1.7212166137963332,
+        "mi_transported_std": 0.24299701496124448,
+        "mi_gap_max": 1.3322676295501878e-15,
+        "mi_gap_mean": 1.7694179454963432e-16,
+        "bloch_L_first": [
+          1.0,
+          0.0,
+          2.220446049250313e-16
+        ],
+        "bloch_L_last": [
+          0.9807852804032302,
+          0.19509032201612894,
+          5.551115123125783e-17
+        ]
+      },
+      "verdicts": {
+        "fiber_ic_constant": true,
+        "fiber_transport_invariant": true,
+        "base_ic_varies": true,
+        "base_transport_invariant": true,
+        "base_transport_ic_gap_max": 9.992007221626409e-16
+      }
+    },
+    {
+      "torus": "outer",
+      "eta": 1.1780972450961724,
+      "fiber": {
+        "loop": "fiber",
+        "n_samples": 64,
+        "ic_direct_mean": 1.0,
+        "ic_direct_std": 0.0,
+        "ic_transported_mean": 1.0,
+        "ic_transported_std": 0.0,
+        "ic_gap_max": 0.0,
+        "ic_gap_mean": 0.0,
+        "mi_direct_mean": 2.0,
+        "mi_direct_std": 0.0,
+        "mi_transported_mean": 2.0,
+        "mi_transported_std": 0.0,
+        "mi_gap_max": 0.0,
+        "mi_gap_mean": 0.0,
+        "bloch_L_first": [
+          0.7071067811865477,
+          0.0,
+          -0.7071067811865475
+        ],
+        "bloch_L_last": [
+          0.7071067811865477,
+          2.382565654587179e-18,
+          -0.7071067811865476
+        ]
+      },
+      "base": {
+        "loop": "base",
+        "n_samples": 64,
+        "ic_direct_mean": 0.8606083068981665,
+        "ic_direct_std": 0.12149850748062219,
+        "ic_transported_mean": 0.8606083068981665,
+        "ic_transported_std": 0.12149850748062221,
+        "ic_gap_max": 9.992007221626409e-16,
+        "ic_gap_mean": 1.1275702593849246e-16,
+        "mi_direct_mean": 1.721216613796333,
+        "mi_direct_std": 0.24299701496124435,
+        "mi_transported_mean": 1.721216613796333,
+        "mi_transported_std": 0.24299701496124448,
+        "mi_gap_max": 1.3322676295501878e-15,
+        "mi_gap_mean": 1.5612511283791264e-16,
+        "bloch_L_first": [
+          0.7071067811865477,
+          0.0,
+          -0.7071067811865475
+        ],
+        "bloch_L_last": [
+          0.6935199226610739,
+          0.13794968964147158,
+          -0.7071067811865475
+        ]
+      },
+      "verdicts": {
+        "fiber_ic_constant": true,
+        "fiber_transport_invariant": true,
+        "base_ic_varies": true,
+        "base_transport_invariant": true,
+        "base_transport_ic_gap_max": 9.992007221626409e-16
+      }
+    }
+  ],
+  "overall": {
+    "all_fiber_ok": true,
+    "any_base_varies": true,
+    "all_base_transport_invariant": true
+  },
+  "verdict": {
+    "result": "PASS",
+    "read": "PASS \u2014 Ax2 frame transport V(u) does NOT change the Ax0 kernel. Transport geometry belongs purely to Ax2, confirming Ax0/Ax2 separation."
+  },
+  "evidence_token": {
+    "token_id": "E_SIM_FIBER_BASE_TRANSPORT_OK",
+    "sim_spec_id": "S_SIM_FIBER_BASE_TRANSPORT_TEST",
+    "status": "PASS",
+    "measured_value": 9.992007221626409e-16,
+    "kill_reason": null,
+    "timestamp": "2026-04-04T20:32:59.755301"
+  }
+}

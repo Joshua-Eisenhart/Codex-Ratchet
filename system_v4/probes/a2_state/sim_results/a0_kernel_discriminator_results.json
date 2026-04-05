@@ -1,0 +1,239 @@
+{
+  "timestamp": "2026-04-05T06:46:35.714443+00:00",
+  "probe": "sim_a0_kernel_discriminator",
+  "verdict": "PASS",
+  "winner": "K1_Ic",
+  "state_battery_size": 24,
+  "scorecard": {
+    "K1_Ic": {
+      "R1_signed": true,
+      "R2_sep_anchor": false,
+      "R3_bell_ceiling": true,
+      "R4_werner_monotone": true,
+      "R5_schmidt_sensitive": true,
+      "R6_cq_honest": true,
+      "score": 5,
+      "max_score": 6
+    },
+    "K2_MI": {
+      "R1_signed": false,
+      "R2_sep_anchor": true,
+      "R3_bell_ceiling": true,
+      "R4_werner_monotone": true,
+      "R5_schmidt_sensitive": true,
+      "R6_cq_honest": false,
+      "score": 4,
+      "max_score": 6
+    },
+    "K3_shell_Ic": {
+      "R1_signed": true,
+      "R2_sep_anchor": false,
+      "R3_bell_ceiling": false,
+      "R4_werner_monotone": true,
+      "R5_schmidt_sensitive": true,
+      "R6_cq_honest": true,
+      "score": 4,
+      "max_score": 6
+    }
+  },
+  "bridge_assumption": "none (pure cut-state evaluation)",
+  "kernel_candidates": {
+    "K1_Ic": "-S(A|B) = I_c(A>B) (coherent information)",
+    "K2_MI": "I(A:B) (mutual information)",
+    "K3_shell_Ic": "sum_r w_r I_c(A_r>B_r) (shell-cut weighted coherent info, depolarisation proxy)"
+  },
+  "results": [
+    {
+      "label": "sep_00",
+      "class": "separable",
+      "param": null,
+      "K1_Ic": 0.0,
+      "K2_MI": 0.0,
+      "K3_shell_Ic": -0.44689526
+    },
+    {
+      "label": "sep_plus_minus",
+      "class": "separable",
+      "param": null,
+      "K1_Ic": 0.0,
+      "K2_MI": 0.0,
+      "K3_shell_Ic": -0.44689526
+    },
+    {
+      "label": "sep_maxmix",
+      "class": "separable",
+      "param": null,
+      "K1_Ic": -1.0,
+      "K2_MI": 0.0,
+      "K3_shell_Ic": -1.0
+    },
+    {
+      "label": "bell_Phi+",
+      "class": "bell",
+      "param": null,
+      "K1_Ic": 1.0,
+      "K2_MI": 2.0,
+      "K3_shell_Ic": 0.05606101
+    },
+    {
+      "label": "bell_Phi-",
+      "class": "bell",
+      "param": null,
+      "K1_Ic": 1.0,
+      "K2_MI": 2.0,
+      "K3_shell_Ic": 0.05606101
+    },
+    {
+      "label": "bell_Psi+",
+      "class": "bell",
+      "param": null,
+      "K1_Ic": 1.0,
+      "K2_MI": 2.0,
+      "K3_shell_Ic": 0.05606101
+    },
+    {
+      "label": "bell_Psi-",
+      "class": "bell",
+      "param": null,
+      "K1_Ic": 1.0,
+      "K2_MI": 2.0,
+      "K3_shell_Ic": 0.05606101
+    },
+    {
+      "label": "werner_p0.0",
+      "class": "werner",
+      "param": 0.0,
+      "K1_Ic": -1.0,
+      "K2_MI": 0.0,
+      "K3_shell_Ic": -1.0
+    },
+    {
+      "label": "werner_p0.2",
+      "class": "werner",
+      "param": 0.2,
+      "K1_Ic": -0.92192809,
+      "K2_MI": 0.07807191,
+      "K3_shell_Ic": -0.95649362
+    },
+    {
+      "label": "werner_p0.4",
+      "class": "werner",
+      "param": 0.4,
+      "K1_Ic": -0.70600758,
+      "K2_MI": 0.29399242,
+      "K3_shell_Ic": -0.83548808
+    },
+    {
+      "label": "werner_p0.6",
+      "class": "werner",
+      "param": 0.6,
+      "K1_Ic": -0.35677965,
+      "K2_MI": 0.64322035,
+      "K3_shell_Ic": -0.64108555
+    },
+    {
+      "label": "werner_p0.8",
+      "class": "werner",
+      "param": 0.8,
+      "K1_Ic": 0.15241532,
+      "K2_MI": 1.15241532,
+      "K3_shell_Ic": -0.36453033
+    },
+    {
+      "label": "werner_p1.0",
+      "class": "werner",
+      "param": 1.0,
+      "K1_Ic": 1.0,
+      "K2_MI": 2.0,
+      "K3_shell_Ic": 0.05606101
+    },
+    {
+      "label": "schmidt_10deg",
+      "class": "schmidt",
+      "param": 10,
+      "K1_Ic": 0.19516202,
+      "K2_MI": 0.39032404,
+      "K3_shell_Ic": -0.36029466
+    },
+    {
+      "label": "schmidt_20deg",
+      "class": "schmidt",
+      "param": 20,
+      "K1_Ic": 0.52061073,
+      "K2_MI": 1.04122146,
+      "K3_shell_Ic": -0.19958494
+    },
+    {
+      "label": "schmidt_30deg",
+      "class": "schmidt",
+      "param": 30,
+      "K1_Ic": 0.81127812,
+      "K2_MI": 1.62255625,
+      "K3_shell_Ic": -0.04661738
+    },
+    {
+      "label": "schmidt_45deg",
+      "class": "schmidt",
+      "param": 45,
+      "K1_Ic": 1.0,
+      "K2_MI": 2.0,
+      "K3_shell_Ic": 0.05606101
+    },
+    {
+      "label": "schmidt_60deg",
+      "class": "schmidt",
+      "param": 60,
+      "K1_Ic": 0.81127812,
+      "K2_MI": 1.62255625,
+      "K3_shell_Ic": -0.04661738
+    },
+    {
+      "label": "schmidt_70deg",
+      "class": "schmidt",
+      "param": 70,
+      "K1_Ic": 0.52061073,
+      "K2_MI": 1.04122146,
+      "K3_shell_Ic": -0.19958494
+    },
+    {
+      "label": "schmidt_80deg",
+      "class": "schmidt",
+      "param": 80,
+      "K1_Ic": 0.19516202,
+      "K2_MI": 0.39032404,
+      "K3_shell_Ic": -0.36029466
+    },
+    {
+      "label": "cq_p0.3",
+      "class": "classical_quantum",
+      "param": 0.3,
+      "K1_Ic": -0.65877546,
+      "K2_MI": 0.22251544,
+      "K3_shell_Ic": -0.81437648
+    },
+    {
+      "label": "cq_p0.5",
+      "class": "classical_quantum",
+      "param": 0.5,
+      "K1_Ic": -0.73607685,
+      "K2_MI": 0.26392315,
+      "K3_shell_Ic": -0.85738898
+    },
+    {
+      "label": "cq_p0.7",
+      "class": "classical_quantum",
+      "param": 0.7,
+      "K1_Ic": -0.65578546,
+      "K2_MI": 0.22550544,
+      "K3_shell_Ic": -0.81108223
+    },
+    {
+      "label": "rank_deficient_mix",
+      "class": "rank_deficient",
+      "param": null,
+      "K1_Ic": -0.21040209,
+      "K2_MI": 0.39047395,
+      "K3_shell_Ic": -0.59862801
+    }
+  ]
+}

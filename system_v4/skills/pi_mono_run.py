@@ -35,16 +35,134 @@ STATE_DIR = REPO_ROOT / ".agent" / "state"
 POLL_INTERVAL = 10       # seconds between evidence checks per task
 DEFAULT_TIMEOUT = 900    # seconds per task
 
+LIVE_NOTE_PATH = REPO_ROOT / ".agent" / "state" / "PI_MONO_LIVE_STATUS_NOTE__CURRENT.md"
+CURRENT_STATUS_JSON = STATE_DIR / "pi_mono_batch_status__current.json"
+CURRENT_STATUS_MD = STATE_DIR / "pi_mono_batch_status__current.md"
+
 CLAUDE_FALLBACKS = [
     "/Users/joshuaeisenhart/.claude/local/claude",
     str(Path.home() / ".claude" / "local" / "claude"),
 ]
 
 
+# ── Notifications ─────────────────────────────────────────────────────────────
+
+def _notify(title: str, message: str) -> None:
+    """Send a macOS notification via osascript. Fails silently."""
+    try:
+        subprocess.Popen(
+            ["osascript", "-e",
+             f'display notification "{message}" with title "{title}"'],
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        )
+    except Exception:
+        pass
+
+
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
 def _utc() -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+
+
+def _archive_stale_current(new_batch_id: str) -> None:
+    """If __current status files belong to a different batch, rename them as archives."""
+    if CURRENT_STATUS_JSON.is_file():
+        try:
+            old = json.loads(CURRENT_STATUS_JSON.read_text())
+            old_id = old.get("batch_id", "")
+            if old_id and old_id != new_batch_id:
+                archive_json = STATE_DIR / f"pi_mono_batch_status__{old_id}__archived.json"
+                CURRENT_STATUS_JSON.rename(archive_json)
+                print(f"[run] Archived stale __current.json → {archive_json.name}")
+                archive_md = STATE_DIR / f"pi_mono_batch_status__{old_id}__archived.md"
+                if CURRENT_STATUS_MD.is_file():
+                    CURRENT_STATUS_MD.rename(archive_md)
+                    print(f"[run] Archived stale __current.md → {archive_md.name}")
+        except (json.JSONDecodeError, OSError) as e:
+            print(f"[run] Warning: could not archive stale __current: {e}")
+
+
+def _sync_current_surfaces(batch_id: str, terminals: list[dict], overall: str) -> None:
+    """Write the __current.json and __current.md surfaces from live state."""
+    payload = {
+        "batch_id": batch_id,
+        "checked_at": _utc(),
+        "dry_run": False,
+        "overall_status": overall,
+        "plan_errors": [],
+        "terminals": [],
+    }
+    md_rows = []
+    for t in terminals:
+        tid = t.get("terminal_id", "?")
+        hf = t.get("handoff_file", "")
+        ern = t.get("expected_review_note", "")
+        rnp = t.get("review_note_present", False)
+        st = t.get("status", "?")
+        notes = t.get("notes", "")
+        payload["terminals"].append({
+            "terminal_id": tid,
+            "handoff_file": hf,
+            "expected_review_note": ern,
+            "handoff_file_exists": (REPO_ROOT / hf).is_file() if hf else False,
+            "review_note_present": rnp,
+            "status": st,
+            "notes": notes,
+        })
+        md_rows.append(f"| {tid} | {(REPO_ROOT / hf).is_file() if hf else False} | {rnp} | {st} | {notes} |")
+
+    try:
+        CURRENT_STATUS_JSON.write_text(json.dumps(payload, indent=2) + "\n")
+    except OSError:
+        pass
+    try:
+        md = (
+            "# Pi-Mono Batch Status\n\n"
+            f"- **batch_id**: `{batch_id}`\n"
+            f"- **checked_at**: `{payload['checked_at']}`\n"
+            f"- **overall_status**: `{overall}`\n"
+            f"- **dry_run**: `false`\n\n"
+            "## Terminals\n\n"
+            "| terminal_id | handoff_exists | review_present | status | notes |\n"
+            "|---|---|---|---|---|\n"
+            + "\n".join(md_rows) + "\n"
+        )
+        CURRENT_STATUS_MD.write_text(md)
+    except OSError:
+        pass
+
+
+def _write_live_note(batch_id: str, overall: str, terminals: list[dict]) -> None:
+    """Write a short human-readable markdown status note."""
+    icon = {"all_complete": "complete", "has_errors": "has errors",
+            "has_timeouts": "has timeouts", "launched": "running",
+            "not_started": "not started"}.get(overall, overall)
+    lines = [
+        "# Pi-Mono Live Status — Current",
+        "",
+        f"Date: {time.strftime('%Y-%m-%d')}",
+        f"Updated: {_utc()}",
+        "",
+        f"## Batch: {batch_id}",
+        f"Overall: **{icon}**",
+        "",
+        "## Tasks",
+    ]
+    for t in terminals:
+        tid = t.get("terminal_id", "?")
+        st = t.get("status", "?")
+        note = t.get("notes", "")
+        suffix = f" — {note}" if note else ""
+        lines.append(f"- {tid}: `{st}`{suffix}")
+    lines.append("")
+    lines.append("## Status file")
+    lines.append(f"- `.agent/state/pi_mono_batch_status__{batch_id}.json`")
+    lines.append("")
+    try:
+        LIVE_NOTE_PATH.write_text("\n".join(lines) + "\n")
+    except OSError:
+        pass  # non-critical; don't break the run
 
 
 def _write_status(batch_id: str, terminals: list[dict]) -> Path:
@@ -69,6 +187,8 @@ def _write_status(batch_id: str, terminals: list[dict]) -> Path:
     out = STATE_DIR / f"pi_mono_batch_status__{batch_id}.json"
     STATE_DIR.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(payload, indent=2) + "\n")
+    _write_live_note(batch_id, overall, terminals)
+    _sync_current_surfaces(batch_id, terminals, overall)
     return out
 
 
@@ -94,7 +214,7 @@ def _find_claude() -> str | None:
 def _open_watch_window(plan_path: str) -> None:
     watch_script = str(REPO_ROOT / "system_v4" / "skills" / "pi_mono_watch.py")
     python = "/opt/homebrew/bin/python3"
-    cmd = f"cd '{REPO_ROOT}' && '{python}' '{watch_script}' --plan '{plan_path}'; echo ''; echo '=== Pi-Mono complete. Press Enter to close ==='; read"
+    cmd = f"cd '{REPO_ROOT}' && '{python}' '{watch_script}' --plan '{plan_path}'; echo ''; echo '\\033[1;32m=== Pi-Mono batch finished ===\\033[0m'; echo 'Press Enter to close this window.'; read"
     # Activate Terminal to bring it to front, then open the script in a new window
     script = (
         'tell application "Terminal"\n'
@@ -181,13 +301,16 @@ def _run_task(t: dict, claude_bin: str, timeout: int,
     elif time.monotonic() >= deadline:
         print(f"[run] '{tid}': TIMEOUT after {timeout}s")
         _update("timeout", f"timed out after {timeout}s — evidence not confirmed")
+        _notify("Pi-Mono: Timeout", f"{tid} timed out after {timeout}s")
     elif proc.returncode != 0:
         msg = f"exit {proc.returncode}" + (f"; stderr: {stderr_out[:300]}" if stderr_out else "")
         print(f"[run] '{tid}': ERROR — {msg}")
         _update("error", msg)
+        _notify("Pi-Mono: Error", f"{tid} failed — exit {proc.returncode}")
     else:
         print(f"[run] '{tid}': exited 0 but evidence not confirmed")
         _update("error", "exited 0 but review note / required outputs not found")
+        _notify("Pi-Mono: Blocked", f"{tid} exited 0 but evidence missing")
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────
@@ -215,6 +338,9 @@ def main() -> int:
     batch_id = str(plan.get("batch_id", "unknown")).strip()
     task_list = plan.get("terminals", [])
     timeout = int(plan.get("timeout_sec", DEFAULT_TIMEOUT))
+
+    # Archive stale __current surfaces from a previous batch
+    _archive_stale_current(batch_id)
 
     if not task_list:
         print("[run] ERROR: no terminals in plan", file=sys.stderr)
@@ -269,7 +395,14 @@ def main() -> int:
     print(f"\n[run] All done. Statuses: {statuses}")
     _write_status(batch_id, terminals)
 
-    return 0 if all(s == "complete" for s in statuses) else 1
+    all_ok = all(s == "complete" for s in statuses)
+    if all_ok:
+        _notify("Pi-Mono: Batch Complete", f"All {len(statuses)} tasks finished successfully")
+    else:
+        failed = sum(1 for s in statuses if s in ("error", "timeout"))
+        _notify("Pi-Mono: Batch Done", f"{failed}/{len(statuses)} tasks had errors or timeouts")
+
+    return 0 if all_ok else 1
 
 
 if __name__ == "__main__":

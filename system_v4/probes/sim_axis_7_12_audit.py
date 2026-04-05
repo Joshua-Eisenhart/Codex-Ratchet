@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# REQUIRES: clifford, scipy, engine_core (available under /opt/homebrew/bin/python3)
+# Run as: /opt/homebrew/bin/python3 sim_axis_7_12_audit.py  (from system_v4/probes/)
 """
 Axes 7-12 Audit: Redundancy Check + New Candidate Mapping
 ============================================================

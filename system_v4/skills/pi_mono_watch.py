@@ -19,6 +19,7 @@ import argparse
 import glob
 import json
 import os
+import subprocess
 import sys
 import time
 from datetime import datetime
@@ -39,6 +40,51 @@ STATUS_ICONS = {
 }
 
 OVERALL_DONE = {"all_complete", "all_already_complete"}
+OVERALL_ERROR = {"has_errors", "has_timeouts"}
+ACTIVE_STATES = {"launched"}
+
+# Rotating heartbeat frames to show the dashboard is alive
+HEARTBEAT_FRAMES = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
+
+# ANSI helpers — degrade gracefully on dumb terminals
+_BOLD = "\033[1m"
+_DIM = "\033[2m"
+_GREEN = "\033[32m"
+_YELLOW = "\033[33m"
+_RED = "\033[31m"
+_CYAN = "\033[36m"
+_RESET = "\033[0m"
+
+OVERALL_COLORS = {
+    "all_complete": _GREEN,
+    "all_already_complete": _GREEN,
+    "launched": _YELLOW,
+    "not_started": _DIM,
+    "has_errors": _RED,
+    "has_timeouts": _RED,
+}
+
+STATUS_COLORS = {
+    "complete": _GREEN,
+    "already_complete": _GREEN,
+    "launched": _YELLOW,
+    "not_started": _DIM,
+    "timeout": _RED,
+    "failed": _RED,
+    "error": _RED,
+}
+
+
+def _notify(title: str, message: str) -> None:
+    """Send a macOS notification via osascript. Fails silently."""
+    try:
+        subprocess.Popen(
+            ["osascript", "-e",
+             f'display notification "{message}" with title "{title}"'],
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        )
+    except Exception:
+        pass
 
 
 def find_latest_status_file(batch_id: str | None = None) -> Path | None:
@@ -54,35 +100,63 @@ def find_latest_status_file(batch_id: str | None = None) -> Path | None:
     return candidates[0] if candidates else None
 
 
-def render(data: dict, status_path: Path) -> str:
+def _progress_bar(done: int, total: int, width: int = 20) -> str:
+    if total == 0:
+        return "░" * width
+    filled = int(width * done / total)
+    return "█" * filled + "░" * (width - filled)
+
+
+def render(data: dict, status_path: Path, tick: int) -> str:
     batch_id = data.get("batch_id", "?")
     overall = data.get("overall_status", "?")
     updated = data.get("updated_at", "?")
     terminals = data.get("terminals", [])
+    now_str = datetime.now().strftime("%H:%M:%S")
+    heartbeat = HEARTBEAT_FRAMES[tick % len(HEARTBEAT_FRAMES)]
+    oc = OVERALL_COLORS.get(overall, "")
+
+    # Count summary
+    n_total = len(terminals)
+    n_active = sum(1 for t in terminals if t.get("status") in ACTIVE_STATES)
+    n_done = sum(1 for t in terminals if t.get("status") in {"complete", "already_complete"})
+    n_fail = sum(1 for t in terminals if t.get("status") in {"failed", "error", "timeout"})
+    bar = _progress_bar(n_done, n_total)
 
     lines = []
-    lines.append("=" * 64)
-    lines.append(f"  Pi-Mono Watch  |  batch: {batch_id}")
-    lines.append(f"  Overall: {overall}")
-    lines.append(f"  Updated: {updated}")
-    lines.append(f"  Source:  {status_path.name}")
-    lines.append("-" * 64)
+    lines.append("")
+    lines.append(f"  {_BOLD}{_CYAN}╔{'═' * 60}╗{_RESET}")
+    lines.append(f"  {_BOLD}{_CYAN}║{_RESET}  {heartbeat}  {_BOLD}Pi-Mono Watch{_RESET}  │  batch: {_BOLD}{batch_id}{_RESET}")
+    lines.append(f"  {_BOLD}{_CYAN}╚{'═' * 60}╝{_RESET}")
+    lines.append("")
+    lines.append(f"  Overall : {oc}{_BOLD}{overall}{_RESET}")
+    lines.append(f"  Progress: {bar}  {n_done}/{n_total}")
+    lines.append(f"  Active {_YELLOW}{n_active}{_RESET}  Done {_GREEN}{n_done}{_RESET}  Failed {_RED}{n_fail}{_RESET}")
+    lines.append(f"  {_DIM}Written {updated}  │  Refreshed {now_str}  │  tick #{tick}{_RESET}")
+    lines.append(f"  {_DIM}Source: {status_path.name}{_RESET}")
+    lines.append(f"  {'─' * 58}")
 
     for t in terminals:
         tid = t.get("terminal_id", "?")
         st = t.get("status", "?")
         icon = STATUS_ICONS.get(st, "?")
+        sc = STATUS_COLORS.get(st, "")
+        # Pulse indicator for active terminals
+        if st in ACTIVE_STATES:
+            pulse = HEARTBEAT_FRAMES[tick % len(HEARTBEAT_FRAMES)]
+            state_display = f"{sc}{_BOLD}{st}{_RESET} {pulse}"
+        else:
+            state_display = f"{sc}{st}{_RESET}"
         hf = t.get("handoff_file", "")
-        # shorten handoff path to just the filename
-        hf_short = Path(hf).name if hf else "?"
-        review_ok = "✓ review" if t.get("review_note_present") else "· review"
-        outputs_ok = "✓ outputs" if t.get("required_outputs_present") else "· outputs"
-        lines.append(f"  {icon}  {tid:<22}  [{st}]")
-        lines.append(f"      {hf_short}")
-        lines.append(f"      {review_ok}  {outputs_ok}")
+        hf_short = Path(hf).name if hf else "—"
+        review_ok = f"{_GREEN}✓ review{_RESET}" if t.get("review_note_present") else f"{_DIM}· review{_RESET}"
+        outputs_ok = f"{_GREEN}✓ outputs{_RESET}" if t.get("required_outputs_present") else f"{_DIM}· outputs{_RESET}"
+        lines.append(f"  {icon}  {tid:<22}  {state_display}")
+        lines.append(f"     {_DIM}{hf_short}{_RESET}  │  {review_ok}  {outputs_ok}")
 
-    lines.append("=" * 64)
-    lines.append(f"  [refreshing every {POLL_INTERVAL}s — Ctrl+C to exit]")
+    lines.append(f"  {'─' * 58}")
+    lines.append(f"  {heartbeat} {_GREEN}alive{_RESET} │ refresh {POLL_INTERVAL}s │ {_DIM}Ctrl+C to exit{_RESET}")
+    lines.append("")
     return "\n".join(lines)
 
 
@@ -91,33 +165,42 @@ def clear_screen() -> None:
 
 
 def watch(batch_id: str | None = None, once: bool = False) -> None:
+    tick = 0
+    notified_terminal = False  # fire notification at most once
     while True:
         status_path = find_latest_status_file(batch_id)
         timestamp = datetime.now().strftime("%H:%M:%S")
+        heartbeat = HEARTBEAT_FRAMES[tick % len(HEARTBEAT_FRAMES)]
 
         if status_path is None:
             clear_screen()
-            print(f"[{timestamp}] No status file found in {STATE_DIR}")
-            print("Run the launcher first:")
-            print("  /opt/homebrew/bin/python3 system_v4/skills/pi_mono_claude_batch_launcher.py \\")
-            print("      --plan .agent/state/pi_mono_claude_launch_plan__wave2.json --mode dry-run")
+            print(f"\n  {heartbeat} {_YELLOW}Waiting for status file...{_RESET}  [{timestamp}]")
+            print(f"  {_DIM}Looking in: {STATE_DIR}{_RESET}")
+            print(f"\n  {_DIM}Launch a batch first to generate a status file.{_RESET}")
         else:
             try:
                 data = json.loads(status_path.read_text())
             except Exception as e:
                 clear_screen()
-                print(f"[{timestamp}] Error reading {status_path.name}: {e}")
+                print(f"\n  {heartbeat} {_RED}Read error{_RESET} [{timestamp}]  {status_path.name}")
+                print(f"  {_DIM}{e}{_RESET}")
             else:
                 clear_screen()
-                print(render(data, status_path))
+                print(render(data, status_path, tick))
                 overall = data.get("overall_status", "")
+                if not notified_terminal and overall in OVERALL_DONE:
+                    _notify("Pi-Mono Watch", "Batch complete — all tasks finished")
+                    notified_terminal = True
+                if not notified_terminal and overall in OVERALL_ERROR:
+                    _notify("Pi-Mono Watch", f"Batch ended with status: {overall}")
+                    notified_terminal = True
                 if not once and overall in OVERALL_DONE:
-                    print(f"\n  All done! (Ctrl+C to close)")
-                    # Keep displaying — don't exit so the user can see final state
+                    print(f"  {_GREEN}{_BOLD}All done!{_RESET} {_DIM}(Ctrl+C to close){_RESET}")
 
         if once:
             return
 
+        tick += 1
         try:
             time.sleep(POLL_INTERVAL)
         except KeyboardInterrupt:

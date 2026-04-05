@@ -166,6 +166,7 @@ def main() -> int:
 
     berry_gaps = [case["berry_gap"] for case in ambient_cases]
     engine_type1_deltas = [case["engine_type_1"]["axis_delta_l2"] for case in engine_cases]
+    engine_type2_deltas = [case["engine_type_2"]["axis_delta_l2"] for case in engine_cases]
     engine_type_diff = [
         abs(case["engine_type_1"]["axis_delta_l2"] - case["engine_type_2"]["axis_delta_l2"])
         for case in engine_cases
@@ -175,11 +176,14 @@ def main() -> int:
     ambient_nontrivial = sum(int(gap > 0.1) for gap in berry_gaps)
     clifford_neutral = ambient_cases[1]["berry_gap"] < 1e-6
     engine_nontrivial = max_pairwise_difference(engine_type1_deltas) > 1e-3
+    engine_type2_nontrivial = max_pairwise_difference(engine_type2_deltas) > 1e-3
     overlay_nontrivial = max_pairwise_difference(engine_type_diff) > 1e-4
 
     ambient_norm = normalize(berry_gaps)
     engine_norm = normalize(engine_type1_deltas)
+    engine_type2_norm = normalize(engine_type2_deltas)
     witness_separable = max(abs(a - b) for a, b in zip(ambient_norm, engine_norm)) > 0.2
+    type2_witness_separable = max(abs(a - b) for a, b in zip(ambient_norm, engine_type2_norm)) > 0.2
     guardrail_ok = max(abs(v) for v in raw_lr_mis) < 1e-9
 
     overall_pass = ambient_nontrivial >= 2 and clifford_neutral and engine_nontrivial and overlay_nontrivial and witness_separable and guardrail_ok
@@ -188,14 +192,18 @@ def main() -> int:
         "ambient_nontrivial_count": int(ambient_nontrivial),
         "clifford_neutral": bool(clifford_neutral),
         "engine_nontrivial": bool(engine_nontrivial),
+        "engine_type2_nontrivial": bool(engine_type2_nontrivial),
         "overlay_nontrivial": bool(overlay_nontrivial),
         "witness_separable": bool(witness_separable),
+        "type2_witness_separable": bool(type2_witness_separable),
         "guardrail_pass": bool(guardrail_ok),
         "berry_gap_vector": berry_gaps,
         "engine_type1_axis_delta_vector": engine_type1_deltas,
+        "engine_type2_axis_delta_vector": engine_type2_deltas,
         "engine_type_difference_vector": engine_type_diff,
         "ambient_norm_vector": ambient_norm,
         "engine_norm_vector": engine_norm,
+        "engine_type2_norm_vector": engine_type2_norm,
     }
 
     verdict = {
@@ -237,9 +245,11 @@ def main() -> int:
     print("\nSummary")
     print(f"  Ambient nontrivial torus cases: {ambient_nontrivial}/3")
     print(f"  Clifford neutral witness: {clifford_neutral}")
-    print(f"  Engine nontrivial across torus ladder: {engine_nontrivial}")
+    print(f"  Engine Type1 nontrivial across torus ladder: {engine_nontrivial}")
+    print(f"  Engine Type2 nontrivial across torus ladder: {engine_type2_nontrivial}")
     print(f"  Engine-type overlay difference present: {overlay_nontrivial}")
-    print(f"  Ambient/engine witnesses separable: {witness_separable}")
+    print(f"  Ambient/Type1-engine witnesses separable: {witness_separable}")
+    print(f"  Ambient/Type2-engine witnesses separable: {type2_witness_separable}")
     print(f"  Max raw L|R MI at init: {max(abs(v) for v in raw_lr_mis):.6e}")
     print("\nVerdict")
     print(f"  {verdict['result']}: {verdict['read']}")

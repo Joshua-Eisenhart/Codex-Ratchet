@@ -1,8 +1,12 @@
 # Audit: Platonic Residue and Gaps in Clean Docs
 
-Date: 2026-04-05
-Purpose: Self-audit of OWNER_THESIS_AND_COSMOLOGY.md for LLM bias residue,
-         causal language leaks, and missing/flattened content.
+Date: 2026-04-05 (updated with process doc audit and missing doc notes)
+Purpose: Self-audit of ALL clean docs for LLM bias residue, causal language
+         leaks, missing/flattened content, and suggested fixes.
+
+NOTE: Do not delete content based on this audit. Add fixes alongside existing
+text, or note the issue for the next rewrite pass. The audit identifies
+problems — it does not authorize mass changes.
 
 ---
 
@@ -157,3 +161,146 @@ The thesis doc has:
 
 The thesis doc preserves the owner's voice and core claims accurately.
 The framing has LLM bias residue that should be cleaned in the next pass.
+
+---
+
+## PROCESS DOC AUDIT (CONSTRAINT_SURFACE_AND_PROCESS.md)
+
+### Platonic Residue
+
+Line 11: "Two root constraints DEFINE an admissible surface M(C)"
+- "define" implies the constraints are prior to and separate from the surface
+- Nominalist fix: the constraints and the surface are not separate — the
+  surface is the constraints. "M(C) is the constraints" not "defined by" them.
+
+Line 19: "M(C) = {x : x SATISFIES F01 and N01...}"
+- Set-builder notation with "satisfies" implies a test against an external
+  standard. This is formal math notation and may be unavoidable, but the
+  framing should note: the constraints are not external judges, they are
+  the structure itself.
+
+Line 51: "The ratchet IS F01 and N01 applied to themselves"
+- "IS" — Platonic identity. Better: the ratchet and F01+N01 applied to
+  themselves have not been distinguished. But this may be a case where
+  the owner's intended meaning IS identity (same material), not Platonic
+  identity (abstract essence). Flag for owner review.
+
+Line 76-79: Candidate described as a sequence with arrows (→)
+- Arrows imply construction sequence / causal chain. The doc says
+  elsewhere (line 201) that tiers are resolution levels, not floors.
+  But the candidate description still uses arrow notation. Suggested
+  fix: note that the arrows are notational convenience for a finite
+  agent's exploration order, not ontological sequence.
+
+Lines 205-213: Tier list formatted as numbered list (0-8)
+- Still visually looks like a ladder despite the disclaimer on line 215.
+  Suggested fix: present as an unordered set with a NOTE that the
+  numbering is exploration convenience, or use a different visual format
+  (table, unordered bullets with resolution labels).
+
+### Causal Language
+
+Line 46: "The order of exploration matters (checking A then B ≠ checking B then A)"
+- This is N01 correctly stated. Not causal — operational. OK.
+
+Line 48: "Kills are irreversible within a pass — a point shown to be
+off-surface stays off"
+- "Stays off" implies temporal persistence. Better framing: within a
+  single pass, a kill is not reversed. The kill is a measurement result,
+  not a temporal event.
+
+Line 229: "The constraints CORRECT the prediction by KILLING what doesn't fit"
+- "correct" and "killing" are both active verbs implying agency in the
+  constraints. Constraints don't act — they are the structure. What
+  doesn't fit is distinguished from M(C), which is a measurement outcome,
+  not an action.
+
+### Structural Issues
+
+Line 47: "Information flows in one direction" derived from N01
+- This derivation is a STRETCH (noted in earlier audit). N01 says
+  composition order matters, not that information flow is one-directional.
+  The downward-blind rule is sound practice motivated by N01 + anti-salience,
+  but claiming it's a strict N01 consequence is overclaiming.
+  Suggested fix: present as "motivated by N01" not "derived from N01."
+
+Lines 219-236: FEP Alignment section uses "IS" three times
+- "The candidate IS the prediction" — identity assertion
+- "The constraint chain IS the sensory error-correction" — identity assertion
+- Better: these are mappings/correspondences that have not been
+  distinguished under the relevant probes, not identities.
+  But "under probing" was flagged as meaningless mantra — so use the
+  actual formal concept: these are STRUCTURAL CORRESPONDENCES (a real
+  term in comparative mathematics) not IDENTITIES.
+
+Line 331-332: Source Chain lists "Owner corrections in session 2026-04-04/05"
+TWICE — duplicate entry. Remove one.
+
+---
+
+## OWNER THESIS DOC — ADDITIONAL AUDIT NOTES
+
+### Constraint on Distinguishability is buried
+
+The derivation chain (constraint → matter/energy/geometry/dynamics/information
+→ entropy as later measure → entropic monism as doctrine name) appears at
+lines 218-244 but is buried as one section among 15+. This should be the
+OPENING of the doc — it is the primitive from which everything else derives.
+Currently the doc opens with "The Foundational Claim" (QIT engines are the
+universal pattern) which is the CONCLUSION, not the foundation.
+
+Suggested structural fix: open with constraint on distinguishability as
+the primitive, THEN derive the downstream identifications, THEN present
+the engine claim as what this primitive produces.
+
+### "One Thing, Many Perspectives" section (lines 197-214)
+
+This section lists correlations but doesn't explain WHY they're correlated.
+The methodology (perspective rotation until multiplicity resolves to unity)
+is stated but the derivation from constraint on distinguishability is missing.
+WHY does constraint on distinguishability produce these correlations?
+The answer (a=a iff a~b — identity requires contrast, which generates all
+the dual-pair structures) is not stated in this section.
+
+---
+
+## MISSING DOCS (items 1-4 from validation)
+
+### 1. Constraint on Distinguishability Formal Reference — NOT YET WRITTEN
+
+Research agent running. This is the MOST CRITICAL missing doc.
+Should cover: trace distance, operational equivalence, Blackwell order,
+data processing inequality, Fisher information, identity of indiscernibles,
+coarse-graining, resource theory of distinguishability.
+
+Status: research agent launched, doc will be written when results return.
+
+### 2. LLM Bias Formal Reference — NOT YET WRITTEN
+
+Research agent running. Should cover with ACTUAL PAPER CITATIONS:
+sycophancy (Perez 2022, Sharma 2023), hallucination (Ji 2023),
+narrative smoothing, summary bias (Liu 2023 Lost in the Middle),
+calibration (Kadavath 2022), RLHF reward hacking (Gao 2023),
+context window effects, mitigations.
+
+Status: research agent launched, doc will be written when results return.
+
+### 3. Mapping Between Reference Traditions and System — NOT YET WRITTEN
+
+9 reference docs exist. None map their concepts onto the system.
+This is a SYNTHESIS doc, not a research doc — it requires holding
+the system and the external traditions simultaneously and finding
+the structural correspondences. High risk of smoothing/flattening.
+
+Should probably be written AFTER items 1 and 2, and AFTER the owner
+reviews the existing reference docs against their own model.
+
+### 4. Boot Prompt Templates (The Actual Harness) — NOT YET WRITTEN
+
+Discussed as meta-goal. No actual templates exist. Each boot type
+(A0/A1/A2/B/SIM) needs a concrete prompt template that an agent
+(Hermes or human) can use to launch a Claude terminal.
+
+Depends on: items 1-3 (need the formal vocabulary before writing prompts)
+and the philosophical harness work (nominalism + Chinese philosophy +
+owner's specific twists).

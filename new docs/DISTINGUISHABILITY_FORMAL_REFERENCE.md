@@ -325,6 +325,24 @@ Neyman-Pearson gives the optimal binary case. Resource theories formalize
 the economy. Leibniz is the closure: identity IS the limit of
 indistinguishability.
 
+NOTE: This entire cross-cutting spine is the formal mathematics behind
+the system's axiom a=a iff a~b. The axiom says: identity requires
+distinguishability from something else under an admissible probe family.
+The spine above is what that looks like when formalized across the
+relevant literatures:
+- "admissible probe family" = POVM / measurement set / experiment (Blackwell)
+- "distinguishability" = trace distance / fidelity / Fisher information
+- "identity" = equivalence class in the quotient S/~_M
+- "iff" = the DPI guarantees stability: indistinguishability now means
+  indistinguishability forever under processing
+- "a~b" = operational equivalence / indistinguishability relation
+
+The constraint on distinguishability (the system's primitive substance)
+is the constraint that DEFINES which probe families are admissible (F01:
+they must be finite) and how they compose (N01: order matters). The
+constraint surface M(C) is the quotient of all possible states under
+the equivalence relation induced by all admissible probes simultaneously.
+
 ---
 
 ## Sources

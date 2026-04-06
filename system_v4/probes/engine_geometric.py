@@ -41,6 +41,16 @@ from engine_core import (
 from toponetx_torus_bridge import (
     build_torus_complex, map_engine_cycle_to_complex, compute_shell_structure,
 )
+from bipartite_spinor_algebra import (
+    bloch_to_density as bipartite_bloch_to_density,
+    build_joint_density,
+    correlation_tensor,
+    concurrence_4x4,
+    entangling_hamiltonian,
+    involution_unitary,
+    partial_trace_A as bipartite_partial_trace_A,
+    partial_trace_B as bipartite_partial_trace_B,
+)
 
 
 # =====================================================================
@@ -231,93 +241,32 @@ class GeometricEngine:
     def apply_entangling_coupling(self, state, strength):
         """Genuine geometric L-R entanglement via Cl(3) bivector coupling.
 
-        The mechanism operates directly on the 4x4 joint density matrix.
-        The entangling rotor is built from the cross product of L and R
-        Bloch vectors, then applied as a two-qubit unitary to the joint
-        state. This is the honest geometric path: the Cl(3) rotor
-        generates a U(4) gate that creates real entanglement.
-
-        After applying the joint unitary, the correlation matrix C_{ij}
-        is extracted from the resulting rho_AB, and the marginal Bloch
-        vectors r_L, r_R are updated from the partial traces.
+        The coupling axis is the cross product of the Bloch vectors, and the
+        joint gate is built as (n·σ) ⊗ (n·σ) in the explicit tensor-product
+        algebra. This keeps the 4D joint structure alive instead of flattening
+        to an ad hoc kron call at the call site.
         """
         bL = state.r_L.copy()
         bR = state.r_R.copy()
         n = np.cross(bL, bR)
         n_mag = np.linalg.norm(n)
-
         if n_mag < 1e-10:
-            return state  # parallel/anti-parallel: no coupling axis
+            return state
 
-        # Build entangling rotor axis and angle
         n_hat = n / n_mag
         angle = strength * n_mag
-
-        # Construct the two-qubit entangling unitary from the Cl(3) rotor.
-        # The interaction Hamiltonian is H_int = (angle/2) * (n . sigma) x (n . sigma)
-        # This is the genuine geometric content: the SAME rotation axis
-        # acts on both qubits, creating sigma_i x sigma_j correlations.
-        sx = np.array([[0, 1], [1, 0]], dtype=complex)
-        sy = np.array([[0, -1j], [1j, 0]], dtype=complex)
-        sz = np.array([[1, 0], [0, -1]], dtype=complex)
-        sigma = [sx, sy, sz]
-
-        # n.sigma for each qubit
-        n_dot_sigma = sum(float(n_hat[i]) * sigma[i] for i in range(3))
-
-        # Joint Hamiltonian: (n.sigma) tensor (n.sigma)
-        H_int = np.kron(n_dot_sigma, n_dot_sigma)
-
-        # Unitary: U = exp(-i * angle/2 * H_int)
-        evals_H, evecs_H = np.linalg.eigh(H_int)
-        U = evecs_H @ np.diag(np.exp(-1j * angle / 2.0 * evals_H)) @ evecs_H.conj().T
-
-        # Get current joint density matrix
+        H_int = entangling_hamiltonian(n_hat)
+        U = involution_unitary(H_int, angle)
         rho = self.get_joint_density_matrix(state)
-
-        # Apply: rho' = U rho U^dag
         rho_new = U @ rho @ U.conj().T
-
-        # Force Hermiticity and normalization
         rho_new = (rho_new + rho_new.conj().T) / 2.0
         rho_new = rho_new / np.real(np.trace(rho_new))
 
-        # Extract updated marginals and correlation matrix
-        I2 = np.eye(2, dtype=complex)
-        # Partial traces for marginal Bloch vectors
-        rho_L = np.zeros((2, 2), dtype=complex)
-        rho_R = np.zeros((2, 2), dtype=complex)
-        for i in range(2):
-            for j in range(2):
-                # Tr_R: rho_L[i,j] = sum_k rho[2*i+k, 2*j+k]
-                rho_L[i, j] = rho_new[2*i, 2*j] + rho_new[2*i+1, 2*j+1]
-                # Tr_L: rho_R[i,j] = sum_k rho[k*2+i, k*2+j]
-                rho_R[i, j] = rho_new[i, j] + rho_new[i+2, j+2]
-
-        # Bloch vectors from marginals
-        new_bL = np.array([
-            np.real(np.trace(sigma[k] @ rho_L)) for k in range(3)
-        ])
-        new_bR = np.array([
-            np.real(np.trace(sigma[k] @ rho_R)) for k in range(3)
-        ])
-
-        # Extract excess correlation: C_{ij} = T_{ij} - r_Li * r_Rj
-        # where T_{ij} = Tr(rho * sigma_i x sigma_j)
-        C_new = np.zeros((3, 3))
-        for i in range(3):
-            for j in range(3):
-                T_ij = np.real(np.trace(
-                    rho_new @ np.kron(sigma[i], sigma[j])
-                ))
-                C_new[i, j] = T_ij - new_bL[i] * new_bR[j]
-
-        # Update state: Bloch vectors reflect the entangled marginals
+        new_bL, new_bR, C_new = correlation_tensor(rho_new)
         state.r_L = new_bL
         state.r_R = new_bR
         state.correlation = C_new
 
-        # Clamp Bloch vectors to ball
         for r in [state.r_L, state.r_R]:
             nm = np.linalg.norm(r)
             if nm > 1.0:
@@ -326,35 +275,8 @@ class GeometricEngine:
         return state
 
     def _build_joint_density(self, r_L, r_R, C):
-        """Build 4x4 density matrix from Bloch vectors and correlation matrix.
-
-        rho_AB = (I x I + r_L . sigma x I + I x r_R . sigma
-                  + sum_{ij} T_{ij} sigma_i x sigma_j) / 4
-
-        where T_{ij} = outer(r_L, r_R)_{ij} + C_{ij}.
-
-        C stores the EXCESS correlation beyond the product state.
-        When C=0 and |r_L|=|r_R|=1 this gives the correct separable
-        pure product state.
-        """
-        sx = np.array([[0, 1], [1, 0]], dtype=complex)
-        sy = np.array([[0, -1j], [1j, 0]], dtype=complex)
-        sz = np.array([[1, 0], [0, -1]], dtype=complex)
-        sigma = [sx, sy, sz]
-        I2 = np.eye(2, dtype=complex)
-
-        # Full correlation tensor: product part + excess
-        T = np.outer(r_L, r_R) + C
-
-        rho = np.kron(I2, I2).astype(complex)
-        for i in range(3):
-            rho = rho + r_L[i] * np.kron(sigma[i], I2)
-            rho = rho + r_R[i] * np.kron(I2, sigma[i])
-        for i in range(3):
-            for j in range(3):
-                rho = rho + T[i, j] * np.kron(sigma[i], sigma[j])
-        rho = rho / 4.0
-        return rho
+        """Build 4x4 density matrix from Bloch vectors and correlation matrix."""
+        return build_joint_density(r_L, r_R, C)
 
     def get_joint_density_matrix(self, state):
         """Return the 4x4 joint density matrix from geometric state.
@@ -373,12 +295,7 @@ class GeometricEngine:
     def get_concurrence(self, state):
         """Wootters concurrence from the 4x4 joint density matrix."""
         rho = self.get_joint_density_matrix(state)
-        sy = np.array([[0, -1j], [1j, 0]], dtype=complex)
-        sy_sy = np.kron(sy, sy)
-        rho_tilde = sy_sy @ rho.conj() @ sy_sy
-        R = rho @ rho_tilde
-        evals = np.sort(np.real(np.sqrt(np.maximum(np.linalg.eigvals(R), 0))))[::-1]
-        return float(max(0, evals[0] - evals[1] - evals[2] - evals[3]))
+        return concurrence_4x4(rho)
 
     # -- Berry --
     def _accumulate_berry(self, r_old, r_new):
@@ -588,12 +505,7 @@ class GeometricEngine:
 
 def _concurrence_4x4(rho_AB):
     """Wootters concurrence for a 4x4 density matrix (standalone)."""
-    sy = np.array([[0, -1j], [1j, 0]], dtype=complex)
-    sy_sy = np.kron(sy, sy)
-    rho_tilde = sy_sy @ rho_AB.conj() @ sy_sy
-    R = rho_AB @ rho_tilde
-    evals = np.sort(np.real(np.sqrt(np.maximum(np.linalg.eigvals(R), 0))))[::-1]
-    return float(max(0, evals[0] - evals[1] - evals[2] - evals[3]))
+    return concurrence_4x4(rho_AB)
 
 
 def _run_old_engine(n_cycles=10):

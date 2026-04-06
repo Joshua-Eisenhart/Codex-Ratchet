@@ -45,6 +45,10 @@ from hopf_manifold import (
     von_neumann_entropy_2x2, density_to_bloch, torus_radii,
     TORUS_INNER, TORUS_CLIFFORD, TORUS_OUTER,
 )
+from toponetx_torus_bridge import (
+    build_torus_complex, map_engine_cycle_to_complex, compute_shell_structure,
+    transport_allowed,
+)
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -203,7 +207,7 @@ def update_operator_state(data, op_idx: int, strength: float):
     data['operator'].live_state[op_idx, 3] += 1.0
 
 
-def run_graph_cycle(data, rho_AB: np.ndarray, strength: float = 0.5):
+def run_graph_cycle(data, rho_AB: np.ndarray, strength: float = 0.5, shells=None):
     """Run one engine cycle driven entirely by graph structure.
 
     1. Follow sequence edges to determine traversal order.
@@ -252,7 +256,8 @@ def run_graph_cycle(data, rho_AB: np.ndarray, strength: float = 0.5):
         current_torus = get_torus_level(data, terrain_idx)
         did_transport = False
         if prev_torus is not None and current_torus is not None and prev_torus != current_torus:
-            if has_transport_edge(data, prev_torus, current_torus):
+            topo_ok = transport_allowed(shells or [], prev_torus, current_torus)
+            if topo_ok and has_transport_edge(data, prev_torus, current_torus):
                 # Apply torus radii scaling
                 _, eta_to = TORUS_LEVELS[current_torus]
                 R_maj, R_min = torus_radii(eta_to)
@@ -264,6 +269,8 @@ def run_graph_cycle(data, rho_AB: np.ndarray, strength: float = 0.5):
                     (1.0 - transport_mix) * rho_AB + transport_mix * I4
                 )
                 did_transport = True
+            else:
+                did_transport = False
 
         # Apply the 4x4 operator
         op_fn = OPERATOR_MAP_4X4[op_name]
@@ -313,6 +320,8 @@ class GraphDrivenEngine:
     def __init__(self, engine_type: int = 1):
         self.engine_type = engine_type
         self.data = build_engine_graph(engine_type)
+        self.cc, self.node_map = build_torus_complex()
+        self.shells = compute_shell_structure(self.cc, self.node_map)
         self.rho_AB = None
         self.cycle_count = 0
         self.entropy_trajectory = []
@@ -340,7 +349,7 @@ class GraphDrivenEngine:
     def run_cycle(self, strength: float = 0.5):
         """Run one full cycle driven by graph structure."""
         self.data, self.rho_AB, log = run_graph_cycle(
-            self.data, self.rho_AB, strength=strength
+            self.data, self.rho_AB, strength=strength, shells=self.shells
         )
         self.cycle_count += 1
         self.entropy_trajectory.append(self.get_entropy())

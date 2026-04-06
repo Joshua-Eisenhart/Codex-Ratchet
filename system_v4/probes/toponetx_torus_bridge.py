@@ -160,6 +160,21 @@ def compute_shell_structure(cc, node_map, n_per_ring=8):
     return shells
 
 
+def transport_allowed(shells, from_layer, to_layer):
+    """Return True only if the requested transport is supported by shell adjacency.
+
+    This is the runtime TopoNetX gate: the cell-complex shell structure
+    must explicitly admit the layer transition.
+    """
+    if from_layer == to_layer:
+        return True
+    a, b = sorted((from_layer, to_layer))
+    for shell in shells:
+        if shell['inner_layer'] == a and shell['outer_layer'] == b:
+            return True
+    return False
+
+
 # ── Verification ─────────────────────────────────────────────────────
 
 if __name__ == "__main__":

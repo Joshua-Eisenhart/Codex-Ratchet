@@ -37,11 +37,12 @@ The stages (Se/Si/Ne/Ni) are pre-existing topology from Layer 2.
 import numpy as np
 from typing import Tuple
 
-# Pauli matrices (the generators of SU(2))
-SIGMA_X = np.array([[0, 1], [1, 0]], dtype=complex)
-SIGMA_Y = np.array([[0, -1j], [1j, 0]], dtype=complex)
-SIGMA_Z = np.array([[1, 0], [0, -1]], dtype=complex)
-I2 = np.eye(2, dtype=complex)
+from bipartite_spinor_algebra import (
+    I2, I4, SIGMA_X, SIGMA_Y, SIGMA_Z,
+    XX, YY, XZ, ZZ, tensor2,
+    ensure_valid_density, partial_trace_A as bipartite_partial_trace_A,
+    partial_trace_B as bipartite_partial_trace_B,
+)
 
 
 def _ensure_valid_density(rho: np.ndarray) -> np.ndarray:
@@ -60,26 +61,14 @@ def _ensure_valid_density(rho: np.ndarray) -> np.ndarray:
 
 def partial_trace_A(rho_AB: np.ndarray, dims: Tuple[int, int] = (2, 2)) -> np.ndarray:
     """Tr_A(rho_AB) = sum_i (<i| ⊗ I) rho_AB (|i> ⊗ I). Returns 2x2 density matrix for B subsystem."""
-    d_A, d_B = dims
-    rho_B = np.zeros((d_B, d_B), dtype=complex)
-    for i in range(d_A):
-        bra_i = np.zeros(d_A, dtype=complex)
-        bra_i[i] = 1.0
-        proj = np.kron(bra_i.reshape(1, -1), np.eye(d_B, dtype=complex))
-        rho_B += proj @ rho_AB @ proj.conj().T
-    return rho_B
+    _ = dims
+    return bipartite_partial_trace_A(rho_AB)
 
 
 def partial_trace_B(rho_AB: np.ndarray, dims: Tuple[int, int] = (2, 2)) -> np.ndarray:
     """Tr_B(rho_AB) = sum_j (I ⊗ <j|) rho_AB (I ⊗ |j>). Returns 2x2 density matrix for A subsystem."""
-    d_A, d_B = dims
-    rho_A = np.zeros((d_A, d_A), dtype=complex)
-    for j in range(d_B):
-        bra_j = np.zeros(d_B, dtype=complex)
-        bra_j[j] = 1.0
-        proj = np.kron(np.eye(d_A, dtype=complex), bra_j.reshape(1, -1))
-        rho_A += proj @ rho_AB @ proj.conj().T
-    return rho_A
+    _ = dims
+    return bipartite_partial_trace_B(rho_AB)
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -265,54 +254,41 @@ def trace_distance_4x4(rho: np.ndarray, sigma: np.ndarray) -> float:
 
 def apply_Ti_4x4(rho_AB: np.ndarray, polarity_up: bool = True, strength: float = 1.0) -> np.ndarray:
     """Ti — Lüders projection natively on 4x4 joint space using ZZ interaction."""
-    # Ti entangler is ZZ
-    op = np.kron(SIGMA_Z, SIGMA_Z)
-    
-    # We apply the dephasing native to the bipartite state
-    P0 = (np.eye(4, dtype=complex) + op) / 2
-    P1 = (np.eye(4, dtype=complex) - op) / 2
-    
+    op = ZZ
+    P0 = (I4 + op) / 2
+    P1 = (I4 - op) / 2
     rho_projected = P0 @ rho_AB @ P0 + P1 @ rho_AB @ P1
     mix = strength if polarity_up else 0.3 * strength
-    
     rho_out = mix * rho_projected + (1 - mix) * rho_AB
-    return _ensure_valid_density(rho_out)
+    return ensure_valid_density(rho_out)
 
 def apply_Fe_4x4(rho_AB: np.ndarray, polarity_up: bool = True, strength: float = 1.0, phi: float = 0.4) -> np.ndarray:
     """Fe — U_xx rotation natively on 4x4 joint space."""
-    # Fe rotates using XX entangling Hamiltonian
     sign = 1.0 if polarity_up else -1.0
     angle = sign * phi * strength
-    H_int = np.kron(SIGMA_X, SIGMA_X)
-    U = np.cos(angle / 2) * np.eye(4, dtype=complex) - 1j * np.sin(angle / 2) * H_int
-    
+    H_int = XX
+    U = np.cos(angle / 2) * I4 - 1j * np.sin(angle / 2) * H_int
     rho_out = U @ rho_AB @ U.conj().T
-    return _ensure_valid_density(rho_out)
+    return ensure_valid_density(rho_out)
 
 def apply_Te_4x4(rho_AB: np.ndarray, polarity_up: bool = True, strength: float = 1.0, q: float = 0.7) -> np.ndarray:
     """Te — Dephasing natively on 4x4 joint space using YY interaction."""
-    op = np.kron(SIGMA_Y, SIGMA_Y)
-    
-    # YY Eigenprojectors
-    P_plus = (np.eye(4, dtype=complex) + op) / 2
-    P_minus = (np.eye(4, dtype=complex) - op) / 2
-    
+    op = YY
+    P_plus = (I4 + op) / 2
+    P_minus = (I4 - op) / 2
     mix = min(strength * (q if polarity_up else 0.3 * q), 1.0)
     rho_projected = P_plus @ rho_AB @ P_plus + P_minus @ rho_AB @ P_minus
-    
     rho_out = (1 - mix) * rho_AB + mix * rho_projected
-    return _ensure_valid_density(rho_out)
+    return ensure_valid_density(rho_out)
 
 def apply_Fi_4x4(rho_AB: np.ndarray, polarity_up: bool = True, strength: float = 1.0, theta: float = 0.4) -> np.ndarray:
     """Fi — U_xz rotation natively on 4x4 joint space (selection logic mapping)."""
-    # Fi rotates using XZ entangling Hamiltonian so it is distinct from Fe (XX)
     sign = 1.0 if polarity_up else -1.0
     angle = sign * theta * strength
-    H_int = np.kron(SIGMA_X, SIGMA_Z)
-    U = np.cos(angle / 2) * np.eye(4, dtype=complex) - 1j * np.sin(angle / 2) * H_int
-    
+    H_int = XZ
+    U = np.cos(angle / 2) * I4 - 1j * np.sin(angle / 2) * H_int
     rho_out = U @ rho_AB @ U.conj().T
-    return _ensure_valid_density(rho_out)
+    return ensure_valid_density(rho_out)
 
 OPERATOR_MAP_4X4 = {
     "Ti": apply_Ti_4x4,

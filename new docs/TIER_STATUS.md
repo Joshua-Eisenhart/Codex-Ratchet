@@ -154,7 +154,7 @@ Results:
 - P1-P5 all survived
 - Ring topology closed: 64-element lookup fully populated
 - 7/7 dynamic slot columns with nonzero variance
-- TOPO_LEGAL wired to live TopoNetX cc.skeleton(1)
+- TOPO_LEGAL has historical TopoNetX bridge evidence, but current tooling status treats `toponetx` as installed/not-actively-used until the live runtime path is re-confirmed
 - CONST_SAT confirmed honest
 
 ---

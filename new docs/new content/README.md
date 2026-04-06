@@ -20,6 +20,10 @@ Current preprocessed digests:
 - `preprocessed/02_model_math_geometry_source_digest.md`
 - `preprocessed/03_aligned_sim_backlog_source_digest.md`
 - `preprocessed/04_foundation_research_digest.md`
+- `preprocessed/05_cross_domain_equivalence_source_digest.md`
+- `preprocessed/06_mass_equivalence_engine_digest.md`
+- `preprocessed/07_mimetic_meme_manifold_boot_dictionary_digest.md`
+- `preprocessed/08_mimetic_meme_manifold_macro_corpus_digest.md`
 
 Rule:
 - nothing here is canonical until it has been promoted into `new docs/`

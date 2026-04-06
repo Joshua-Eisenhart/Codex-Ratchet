@@ -110,6 +110,11 @@ Missing anything → fails closed.
 
 Enough to build graph structure, proof gates, sim contracts, fail-closed promotion.
 
+NOTE (2026-04-06): z3 is installed but not directly imported at module level
+in the current codebase (pySMT is the abstraction layer; z3 is backend only).
+See TOOLING_STATUS.md for current operational classification. This table
+describes the TARGET stack, not the current live state.
+
 ---
 
 ## 6 Enforcement Principles

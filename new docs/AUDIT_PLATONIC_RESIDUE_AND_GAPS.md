@@ -266,41 +266,31 @@ the dual-pair structures) is not stated in this section.
 
 ## MISSING DOCS (items 1-4 from validation)
 
-### 1. Constraint on Distinguishability Formal Reference — NOT YET WRITTEN
+**UPDATE 2026-04-06: All 4 items have been completed.**
 
-Research agent running. This is the MOST CRITICAL missing doc.
-Should cover: trace distance, operational equivalence, Blackwell order,
-data processing inequality, Fisher information, identity of indiscernibles,
-coarse-graining, resource theory of distinguishability.
+### 1. Constraint on Distinguishability Formal Reference — COMPLETED
 
-Status: research agent launched, doc will be written when results return.
+Written as `CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md` (12,446 bytes).
+Covers: axiom, carrier, Hopf geometry, connection, chirality, 4 topologies,
+4 operators, algebra (su(2)×u(1)), composition grammar, entropy structure,
+bipartite correlation measures, entanglement dynamics, full derivation chain.
 
-### 2. LLM Bias Formal Reference — NOT YET WRITTEN
+Also: `references/DISTINGUISHABILITY_FORMAL_REFERENCE.md` covers the
+external tradition (trace distance, operational equivalence, Blackwell order,
+DPI, Fisher information, identity of indiscernibles, coarse-graining).
 
-Research agent running. Should cover with ACTUAL PAPER CITATIONS:
-sycophancy (Perez 2022, Sharma 2023), hallucination (Ji 2023),
-narrative smoothing, summary bias (Liu 2023 Lost in the Middle),
-calibration (Kadavath 2022), RLHF reward hacking (Gao 2023),
-context window effects, mitigations.
+### 2. LLM Bias Formal Reference — COMPLETED
 
-Status: research agent launched, doc will be written when results return.
+Written as `references/LLM_BIAS_AND_FAILURE_MODES_REFERENCE.md` (8,778 bytes).
 
-### 3. Mapping Between Reference Traditions and System — NOT YET WRITTEN
+### 3. Mapping Between Reference Traditions and System — COMPLETED
 
-9 reference docs exist. None map their concepts onto the system.
-This is a SYNTHESIS doc, not a research doc — it requires holding
-the system and the external traditions simultaneously and finding
-the structural correspondences. High risk of smoothing/flattening.
+Written as `TRADITION_SYSTEM_MAPPING_DETAILED.md` (8,766 bytes).
+Maps 12 external traditions to the system with fit/mismatch columns.
+Status: DRAFT — needs audit for smoothing and forced fit.
 
-Should probably be written AFTER items 1 and 2, and AFTER the owner
-reviews the existing reference docs against their own model.
+### 4. Boot Prompt Templates (The Actual Harness) — COMPLETED
 
-### 4. Boot Prompt Templates (The Actual Harness) — NOT YET WRITTEN
-
-Discussed as meta-goal. No actual templates exist. Each boot type
-(A0/A1/A2/B/SIM) needs a concrete prompt template that an agent
-(Hermes or human) can use to launch a Claude terminal.
-
-Depends on: items 1-3 (need the formal vocabulary before writing prompts)
-and the philosophical harness work (nominalism + Chinese philosophy +
-owner's specific twists).
+Written as `BOOT_PROMPT_TEMPLATES.md` (7,593 bytes).
+Paste-ready prompts for A1/B/A0/A2/SIM boots. Status: operational.
+TODO: test by actually launching terminals via Hermes.

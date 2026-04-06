@@ -42,6 +42,9 @@ from bipartite_spinor_algebra import (
     XX, YY, XZ, ZZ, tensor2,
     ensure_valid_density, partial_trace_A as bipartite_partial_trace_A,
     partial_trace_B as bipartite_partial_trace_B,
+    apply_local_channel_both,
+    kraus_Ti, kraus_Fe, kraus_Te, kraus_Fi,
+    KRAUS_MAP,
 )
 
 
@@ -253,42 +256,32 @@ def trace_distance_4x4(rho: np.ndarray, sigma: np.ndarray) -> float:
 # ═══════════════════════════════════════════════════════════════════
 
 def apply_Ti_4x4(rho_AB: np.ndarray, polarity_up: bool = True, strength: float = 1.0) -> np.ndarray:
-    """Ti — Lüders projection natively on 4x4 joint space using ZZ interaction."""
-    op = ZZ
-    P0 = (I4 + op) / 2
-    P1 = (I4 - op) / 2
-    rho_projected = P0 @ rho_AB @ P0 + P1 @ rho_AB @ P1
-    mix = strength if polarity_up else 0.3 * strength
-    rho_out = mix * rho_projected + (1 - mix) * rho_AB
-    return ensure_valid_density(rho_out)
+    """Ti — Lüders projection on 4x4 joint space via algebraic Kraus lift.
+
+    Applies independent Ti channels on both subsystems using the exact
+    Kraus decomposition from bipartite_spinor_algebra.
+    """
+    K = kraus_Ti(polarity_up=polarity_up, strength=strength)
+    K_rev = kraus_Ti(polarity_up=not polarity_up, strength=strength)
+    return ensure_valid_density(apply_local_channel_both(rho_AB, K, K_rev))
 
 def apply_Fe_4x4(rho_AB: np.ndarray, polarity_up: bool = True, strength: float = 1.0, phi: float = 0.4) -> np.ndarray:
-    """Fe — U_xx rotation natively on 4x4 joint space."""
-    sign = 1.0 if polarity_up else -1.0
-    angle = sign * phi * strength
-    H_int = XX
-    U = np.cos(angle / 2) * I4 - 1j * np.sin(angle / 2) * H_int
-    rho_out = U @ rho_AB @ U.conj().T
-    return ensure_valid_density(rho_out)
+    """Fe — U_z rotation on 4x4 joint space via algebraic Kraus lift."""
+    K = kraus_Fe(polarity_up=polarity_up, strength=strength, phi=phi)
+    K_rev = kraus_Fe(polarity_up=not polarity_up, strength=strength, phi=phi)
+    return ensure_valid_density(apply_local_channel_both(rho_AB, K, K_rev))
 
 def apply_Te_4x4(rho_AB: np.ndarray, polarity_up: bool = True, strength: float = 1.0, q: float = 0.7) -> np.ndarray:
-    """Te — Dephasing natively on 4x4 joint space using YY interaction."""
-    op = YY
-    P_plus = (I4 + op) / 2
-    P_minus = (I4 - op) / 2
-    mix = min(strength * (q if polarity_up else 0.3 * q), 1.0)
-    rho_projected = P_plus @ rho_AB @ P_plus + P_minus @ rho_AB @ P_minus
-    rho_out = (1 - mix) * rho_AB + mix * rho_projected
-    return ensure_valid_density(rho_out)
+    """Te — σ_x dephasing on 4x4 joint space via algebraic Kraus lift."""
+    K = kraus_Te(polarity_up=polarity_up, strength=strength, q=q)
+    K_rev = kraus_Te(polarity_up=not polarity_up, strength=strength, q=q)
+    return ensure_valid_density(apply_local_channel_both(rho_AB, K, K_rev))
 
 def apply_Fi_4x4(rho_AB: np.ndarray, polarity_up: bool = True, strength: float = 1.0, theta: float = 0.4) -> np.ndarray:
-    """Fi — U_xz rotation natively on 4x4 joint space (selection logic mapping)."""
-    sign = 1.0 if polarity_up else -1.0
-    angle = sign * theta * strength
-    H_int = XZ
-    U = np.cos(angle / 2) * I4 - 1j * np.sin(angle / 2) * H_int
-    rho_out = U @ rho_AB @ U.conj().T
-    return ensure_valid_density(rho_out)
+    """Fi — U_x rotation on 4x4 joint space via algebraic Kraus lift."""
+    K = kraus_Fi(polarity_up=polarity_up, strength=strength, theta=theta)
+    K_rev = kraus_Fi(polarity_up=not polarity_up, strength=strength, theta=theta)
+    return ensure_valid_density(apply_local_channel_both(rho_AB, K, K_rev))
 
 OPERATOR_MAP_4X4 = {
     "Ti": apply_Ti_4x4,

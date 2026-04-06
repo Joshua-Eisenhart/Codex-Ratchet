@@ -50,6 +50,12 @@ from bipartite_spinor_algebra import (
     involution_unitary,
     partial_trace_A as bipartite_partial_trace_A,
     partial_trace_B as bipartite_partial_trace_B,
+    apply_local_channel_both,
+    ensure_valid_density,
+    KRAUS_MAP,
+    bloch_map_from_kraus,
+    correlation_transform,
+    density_to_bloch as bipartite_density_to_bloch,
 )
 
 
@@ -376,24 +382,82 @@ class GeometricEngine:
                 state.torus_level = new
         return state
 
-    def _apply_local_ops_to_joint(self, state, op_name, is_up, strength):
-        """Apply local (non-entangling) operators to the full joint state.
+    def _cl3_kraus_ops(self, op_name, is_up, state, strength):
+        """Build Kraus operators that match the Cl(3) geometric action.
 
-        Lifts the single-qubit Cl(3) operations to 4x4 by applying them
-        as local channels on the joint density matrix.  This keeps the
-        correlation matrix C consistent with the updated marginals.
+        F-kernels (Fe, Fi) are unitary rotors → single Kraus operator.
+        T-kernels (Ti, Te) are rotor + contraction → 3 Kraus operators.
+        Parameters are derived from the same geometry as _apply_operator.
         """
+        R_maj, R_min = torus_radii(state.eta)
+        sign = 1.0 if is_up else -1.0
+        I2_m = np.eye(2, dtype=complex)
         sx = np.array([[0, 1], [1, 0]], dtype=complex)
-        sy = np.array([[0, -1j], [1j, 0]], dtype=complex)
         sz = np.array([[1, 0], [0, -1]], dtype=complex)
-        sigma = [sx, sy, sz]
-        I2 = np.eye(2, dtype=complex)
 
-        # Get old Bloch vectors to compute the operator parameters
-        r_L_old = state.r_L.copy()
-        r_R_old = state.r_R.copy()
+        if op_name == "Ti":
+            # Cl(3): z-rotor(sign * strength * R_min * 0.4) then z-dephase(strength * R_min * 0.12)
+            rot_angle = sign * strength * R_min * 0.4
+            deph = strength * R_min * 0.12
+            deph = min(deph, 1.0)
+            # Rotor as unitary
+            U_rot = np.array([[np.exp(-1j * rot_angle / 2), 0],
+                              [0, np.exp(1j * rot_angle / 2)]], dtype=complex)
+            # Dephasing Kraus: {√(1-p) I, √p P0, √p P1}
+            P0 = np.array([[1, 0], [0, 0]], dtype=complex)
+            P1 = np.array([[0, 0], [0, 1]], dtype=complex)
+            # Compose: first rotate, then dephase → K_i' = K_deph_i @ U_rot
+            return [np.sqrt(1 - deph) * U_rot,
+                    np.sqrt(deph) * P0 @ U_rot,
+                    np.sqrt(deph) * P1 @ U_rot]
 
-        # Apply operators to individual Bloch multivectors to get new values
+        elif op_name == "Fe":
+            # Pure z-rotor (purity-preserving)
+            angle = sign * state.phi * strength * 0.5
+            if abs(angle) < 1e-12:
+                angle = sign * strength * 0.25
+            U = np.array([[np.exp(-1j * angle / 2), 0],
+                          [0, np.exp(1j * angle / 2)]], dtype=complex)
+            return [U]
+
+        elif op_name == "Te":
+            # Cl(3): x-rotor(sign * strength * R_maj * 0.4) then x-dephase(strength * R_maj * 0.12)
+            rot_angle = sign * strength * R_maj * 0.4
+            deph = strength * R_maj * 0.12
+            deph = min(deph, 1.0)
+            # Rotor as unitary around x-axis
+            U_rot = np.cos(rot_angle / 2) * I2_m - 1j * np.sin(rot_angle / 2) * sx
+            # x-dephasing Kraus: {√(1-p) I, √p Q+, √p Q-}
+            Q_plus = np.array([[1, 1], [1, 1]], dtype=complex) / 2
+            Q_minus = np.array([[1, -1], [-1, 1]], dtype=complex) / 2
+            return [np.sqrt(1 - deph) * U_rot,
+                    np.sqrt(deph) * Q_plus @ U_rot,
+                    np.sqrt(deph) * Q_minus @ U_rot]
+
+        elif op_name == "Fi":
+            # Pure x-rotor (purity-preserving)
+            angle = sign * state.theta * strength * 0.5
+            if abs(angle) < 1e-12:
+                angle = sign * strength * 0.25
+            U = np.cos(angle / 2) * I2_m - 1j * np.sin(angle / 2) * sx
+            return [U]
+
+        else:
+            raise ValueError(f"Unknown operator: {op_name}")
+
+    def _apply_local_ops_to_joint(self, state, op_name, is_up, strength):
+        """Apply local operators to the full joint state via algebraic Kraus lift.
+
+        Builds exact Kraus operators matching the Cl(3) geometric action,
+        then uses bloch_map_from_kraus() to compute the 3×3 Bloch map
+        algebraically (no basis probing). The correlation tensor C transforms
+        as C' = M_L @ C @ M_R^T under the local channels.
+        """
+        # Build Kraus ops matching Cl(3) geometry for L (is_up) and R (not is_up)
+        kraus_L = self._cl3_kraus_ops(op_name, is_up, state, strength)
+        kraus_R = self._cl3_kraus_ops(op_name, not is_up, state, strength)
+
+        # Apply Cl(3) operators to Bloch multivectors (primary state evolution)
         mv_L = _bloch_to_mv(state.r_L)
         mv_R = _bloch_to_mv(state.r_R)
         mv_L_new = self._apply_operator(mv_L, op_name, is_up, state, strength)
@@ -407,27 +471,12 @@ class GeometricEngine:
             if nm > 1.0:
                 r[:] = r / nm
 
-        # Infer the linear maps M_L, M_R that transform the Bloch vectors.
-        # For rotors (F-kernels): M is an SO(3) rotation matrix.
-        # For contractions (T-kernels): M is a diagonal-ish contraction.
-        # We approximate M from the operator's effect on the three basis vectors.
-        def _infer_map(op_fn, is_up_local):
-            M = np.zeros((3, 3))
-            for k in range(3):
-                basis = np.zeros(3)
-                basis[k] = 1.0
-                mv_in = _bloch_to_mv(basis)
-                mv_out = self._apply_operator(mv_in, op_name, is_up_local, state, strength)
-                M[:, k] = _mv_to_bloch(mv_out)
-            return M
-
-        M_L = _infer_map(self._apply_operator, is_up)
-        M_R = _infer_map(self._apply_operator, not is_up)
+        # Algebraic Bloch maps from Kraus decomposition (exact, no probing)
+        M_L, _t_L = bloch_map_from_kraus(kraus_L)
+        M_R, _t_R = bloch_map_from_kraus(kraus_R)
 
         # Transform correlation: C' = M_L @ C @ M_R^T
-        # This is the correct transformation for the excess correlation
-        # under local CPTP maps (exact for unitaries, approximate for contractions)
-        C_new = M_L @ state.correlation @ M_R.T
+        C_new = correlation_transform(state.correlation, M_L, M_R)
 
         state.r_L = new_bL
         state.r_R = new_bR

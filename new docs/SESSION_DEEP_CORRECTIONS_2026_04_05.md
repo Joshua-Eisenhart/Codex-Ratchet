@@ -308,9 +308,9 @@ doesn't map onto the standard model's gauge groups, that's a kill.
 2. OWNER_THESIS_AND_COSMOLOGY.md — thesis/model doc (expanded with deep session insights)
 3. SESSION_DEEP_CORRECTIONS_2026_04_05.md — this document
 
-## Docs planned but NOT yet written
+## Docs planned and COMPLETED (updated 2026-04-06)
 
-4. TIER_LADDER_AND_STATUS.md — per-tier status with new vocabulary
-5. TOOLING_STATUS.md — tool inventory consolidation (partially started)
-6. AGENT_WORKFLOW.md — Hermes/Claude boot architecture, terminal model
-7. VENV_MIGRATION_STATUS.md — single-page migration consolidation
+4. TIER_STATUS.md — per-tier status with new vocabulary ✅
+5. TOOLING_STATUS.md — tool inventory consolidation ✅
+6. AGENT_WORKFLOW_AND_BOOT_ARCHITECTURE.md — Hermes/Claude boot architecture, terminal model ✅
+7. VENV_MIGRATION_STATUS.md — single-page migration consolidation ✅

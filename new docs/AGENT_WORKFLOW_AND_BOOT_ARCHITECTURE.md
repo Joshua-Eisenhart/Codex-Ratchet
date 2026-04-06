@@ -96,6 +96,7 @@ default to classical thinking and flatten everything.
 
 Role: Enforce rules about what sims must declare and produce.
 Not a sim runner — a sim auditor.
+Execution owner lives in the runner layer (for example `system_v4.runners.run_real_ratchet`); SIM only audits the resulting artifacts.
 
 Rules:
 - Every sim must declare: role, tier/resolution, tools, artifacts,

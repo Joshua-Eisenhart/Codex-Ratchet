@@ -1,0 +1,181 @@
+{
+  "name": "axis6_action_orientation",
+  "definition": "Left (Arho) vs Right (rhoA) multiplication under noncommutation",
+  "positive": {
+    "P1_left_ne_right": {
+      "pass": true,
+      "trace_distance": 0.70710678
+    },
+    "P2_state_dependence": {
+      "bloch_sweep": [
+        0.0,
+        0.2618,
+        0.5236,
+        0.7854,
+        1.0472,
+        1.309,
+        1.5708,
+        1.8326,
+        2.0944,
+        2.3562,
+        2.618,
+        2.8798,
+        3.1416,
+        3.4034,
+        3.6652,
+        3.927,
+        4.1888,
+        4.4506,
+        4.7124,
+        4.9742,
+        5.236,
+        5.4978,
+        5.7596,
+        6.0214,
+        6.2832
+      ],
+      "td_per_angle": [
+        0.0,
+        0.1830127,
+        0.35355339,
+        0.5,
+        0.61237244,
+        0.6830127,
+        0.70710678,
+        0.6830127,
+        0.61237244,
+        0.5,
+        0.35355339,
+        0.1830127,
+        0.0,
+        0.1830127,
+        0.35355339,
+        0.5,
+        0.61237244,
+        0.6830127,
+        0.70710678,
+        0.6830127,
+        0.61237244,
+        0.5,
+        0.35355339,
+        0.1830127,
+        0.0
+      ],
+      "max_td": 0.70710678,
+      "min_td": 0.0,
+      "state_dependent": true
+    },
+    "P3_cycle_comparison": {
+      "all_left": {
+        "concurrence": 0.02917261,
+        "berry_approx": 5.21251748,
+        "entropy": 0.76688487
+      },
+      "mixed": {
+        "concurrence": 0.01134543,
+        "berry_approx": 5.21251748,
+        "entropy": 0.80281994
+      },
+      "all_right": {
+        "concurrence": 0.03478907,
+        "berry_approx": 5.21251748,
+        "entropy": 0.76671144
+      },
+      "differ": true
+    },
+    "P4_orthogonal_to_axis0": {
+      "correlation": 0.0,
+      "orthogonal": true,
+      "td_samples": [
+        0.0,
+        0.331414,
+        0.612372,
+        0.800103,
+        0.866025,
+        0.800103,
+        0.612372,
+        0.331414,
+        0.0,
+        0.331414,
+        0.612372,
+        0.800103,
+        0.866025,
+        0.800103,
+        0.612372,
+        0.331414,
+        0.0
+      ],
+      "ic_samples": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -0.0,
+        -0.0,
+        0.0,
+        -0.0,
+        -0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "negative": {
+    "N1_commuting_kills": {
+      "left_eq_right": true,
+      "td": 0.0
+    },
+    "N2_identity_trivial": {
+      "left_eq_right": true,
+      "td": 0.0
+    }
+  },
+  "token_mapping": {
+    "type_1": {
+      "TiSe": "UP",
+      "SeFi": "DOWN",
+      "NeTi": "DOWN",
+      "FiNe": "UP",
+      "NiFe": "DOWN",
+      "TeNi": "UP",
+      "FeSi": "UP",
+      "SiTe": "DOWN"
+    },
+    "type_2": {
+      "FiSe": "UP",
+      "SeTi": "DOWN",
+      "TeSi": "UP",
+      "SiFe": "DOWN",
+      "NiTe": "DOWN",
+      "FeNi": "UP",
+      "NeFi": "DOWN",
+      "TiNe": "UP"
+    },
+    "total_up": 8,
+    "total_down": 8,
+    "balanced": true
+  },
+  "magnitude": {
+    "max_td_per_cycle": [
+      0.6272477,
+      0.77181823,
+      0.77813681,
+      0.57360907,
+      0.45333749,
+      0.43403763,
+      0.3246142,
+      0.14567982,
+      0.14891291,
+      0.25846936
+    ],
+    "ax0_ic_range": 0.19768056,
+    "axis6_vs_axis0_ratio": 3.936335
+  },
+  "timestamp": "2026-04-06"
+}

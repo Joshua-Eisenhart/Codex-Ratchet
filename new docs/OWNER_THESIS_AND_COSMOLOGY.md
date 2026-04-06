@@ -10,12 +10,40 @@ Source: Extracted verbatim from owner's v5 reference docs and session 2026-04-04
 
 ---
 
+## The Primitive Substance
+
+There is only one primitive substance: **constraint on distinguishability.**
+
+Not "everything is entropy." Entropy is a later admissible measure on the
+substrate. The primitive is the constraint itself: what limits what can be
+told apart, under what probes, with what composition rules.
+
+From this single primitive, the downstream identifications:
+- matter = constraint
+- energy = constraint flow
+- geometry = constraint compatibility
+- dynamics = constraint-respecting transformation
+- information = constraint bookkeeping
+- entropy = a later quantitative measure of distinguishability under constraint
+
+The identity axiom `a=a iff a~b` restates this: a thing has identity only
+relative to what it is distinguishable from under an admissible probe family.
+No probes, no identity. The constraint on distinguishability IS the substrate
+in which identity, and therefore everything else, exists.
+
+---
+
 ## The Foundational Claim
 
-The QIT engines ARE the universal pattern found in everything. Not a model
-of reality — the pattern itself. Physics, evolution, consciousness, culture,
-economics, technology are all the same pattern at different scales. Not by
-analogy. The same structure.
+Under every probe family applied across physics, evolution, consciousness,
+culture, economics, and technology — the QIT engine's statistical correlation
+structure has not been distinguished from the patterns found at those scales.
+The claim: these are the same structure. Not by analogy.
+
+(NOTE: "ARE the universal pattern" is Platonic identity language. The
+nominalist version: no probe has yet separated the engine pattern from
+patterns at other scales. The indistinguishability is the claim. It
+survives or dies by whether any probe can separate them.)
 
 ---
 

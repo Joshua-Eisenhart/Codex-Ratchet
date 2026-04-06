@@ -14,7 +14,7 @@ Two root constraints define an admissible surface M(C):
 probes, finite operators, finite paths. No completed infinities.
 
 **N01 (Noncommutation):** Order-sensitive composition. AB ≠ BA in general.
-Sequence of construction belongs to the object.
+Sequence of composition belongs to the object.
 
 M(C) = {x : x satisfies F01 and N01 and all constraints derived from them}.
 
@@ -199,36 +199,41 @@ Each layer adds a finer coordinate chart. Sims test whether the charted points
 lie on M(C). What doesn't survive the new constraint resolution is graveyard.
 
 The process order is NOT a claim about which constraints are more fundamental.
-It is a finite agent's strategy for exploring a simultaneous surface. The tiers
-are convenience labels for resolution levels of the coordinate chart:
+It is a finite agent's strategy for exploring a simultaneous surface. The labels
+below are resolution levels of the coordinate chart, not floors in a building.
+The numbering is exploration convenience, not ontological rank.
 
-  0: Root constraints (F01, N01)
-  1: Admissibility charter (24 constraints)
-  2: Constraint manifold M(C) characterization
-  3: Geometry / operator basis
-  4: Weyl working layer
-  5: Bridge family
-  6: Cut / entropy / entanglement
-  7: Kernel
-  8: Edge writeback / graph topology
+| Resolution | What is explored at this resolution |
+|---|---|
+| Analytical | Root constraints F01+N01, admissibility charter, M(C) characterization |
+| Geometric | Operator basis, Weyl working layer |
+| Relational | Bridge family, cut / entropy / entanglement |
+| Functional | Kernel, edge writeback / graph topology |
 
-Each tier is a resolution level, not a floor in a building.
+These resolutions are not sequential gates. They are regions of the same
+surface explored at different levels of coordinate detail. Work at any
+resolution can reveal structure relevant to any other.
 
 ---
 
 ## Prediction-First (FEP Alignment)
 
-The process follows the Free Energy Principle's active inference loop:
+The process has a structural correspondence with the Free Energy Principle's
+active inference loop:
 
-1. The candidate IS the prediction (generative model)
-2. The constraint chain IS the sensory error-correction
-3. What survives is the updated prediction
-4. Re-entry is the next prediction cycle
+1. The candidate functions as the prediction (generative model)
+2. The constraint chain functions as sensory error-correction
+3. What survives functions as the updated prediction
+4. Re-entry functions as the next prediction cycle
+
+This correspondence has not been formally derived — it is a structural
+parallel noted by the owner and not yet killed. The formal FEP reference
+doc (FEP_AND_ACTIVE_INFERENCE_REFERENCE.md) documents the actual framework.
 
 Prediction comes first. You enter with a candidate (prediction about what will
-survive). The constraints correct the prediction by killing what doesn't fit.
+survive). The constraints narrow what remains by killing what doesn't fit.
 The prediction doesn't have to be right to be useful — a wrong candidate that
-dies at layer 3 teaches you about layer 3's constraint surface.
+is killed at the geometric resolution teaches about that region of M(C).
 
 The failure mode is not entering wrong predictions. It is:
 - Holding onto predictions after the constraints killed them (salience bias)
@@ -328,5 +333,3 @@ Derived from:
 - System tools and plan.md (process contract, claim gates, no-smoothing rule)
 - INTENT_SUMMARY copy.md (anti-LLM-bias, graveyard as workspace)
 - preaxis sim run.md (recon vs formal distinction, diagnostic vs admitted)
-- Owner corrections in session 2026-04-04/05 (surface not ladder, finite not fixed,
-  candidate blindness, evolutionary logic, Popper pressure, prediction-first)

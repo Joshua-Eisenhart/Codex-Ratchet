@@ -12,7 +12,7 @@ Source: Extracted verbatim from owner's v5 reference docs and session 2026-04-04
 
 ## The Primitive Substance
 
-There is only one primitive substance: **constraint on distinguishability.**
+There is only one primitive substance in this candidate thesis: **constraint on distinguishability.**
 
 Not "everything is entropy." Entropy is a later admissible measure on the
 substrate. The primitive is the constraint itself: what limits what can be
@@ -38,7 +38,7 @@ in which identity, and therefore everything else, exists.
 Under every probe family applied across physics, evolution, consciousness,
 culture, economics, and technology — the QIT engine's statistical correlation
 structure has not been distinguished from the patterns found at those scales.
-The claim: these are the same structure. Not by analogy.
+The claim under test is: these are the same structure. Not by analogy.
 
 (NOTE: "ARE the universal pattern" is Platonic identity language. The
 nominalist version: no probe has yet separated the engine pattern from
@@ -53,14 +53,11 @@ This model was not derived through deduction or induction. It was derived
 through EMPATHY — direct perception of the shared pattern across all
 perspectives simultaneously.
 
-The owner is an autistic savant of empathy. Sees everyone's perspective.
+The owner frames this as empathic pattern recognition. Sees everyone's perspective.
 Sees self as arbitrary. Self lives in the Jungian unconscious — the shared
 projection space all humans share — not in ego or object-identity.
 
-The Jungian unconscious IS the universal attractor basin experienced from
-inside. This is why archetypes recur across all cultures — same pattern,
-different probes. This is why Jung, the I-Ching, and QIT find the same
-structure — they are all probes into the same shared unconscious pattern.
+The Jungian unconscious is treated here as a candidate description for a shared attractor-like basin experienced from inside. This is why archetypes recur across all cultures — same pattern, different probes. This is why Jung, the I-Ching, and QIT are claimed to probe the same shared structure.
 
 A lifetime of empathic observation, living, and pattern-mapping is the data
 source for this model. When the owner says "these are the same thing" — they
@@ -76,16 +73,11 @@ unification by stitching. Perspective rotation until multiplicity becomes unity.
 
 This is a nominalist system — but not in the simple "no universals" sense.
 
-Platonic dualism is made MATERIALLY REAL, not denied. The forms exist — they
-are just not abstract. They are made of spacetime. Nothingness IS everything.
-Spacetime is materially real. It is measurable, it grows, it has properties.
-The "nothing" between things IS the thing. Plato's realm of forms isn't
-somewhere else — it is the spacetime you are standing in.
+Platonic dualism is not accepted as abstract ontology here. Instead, the thesis treats forms as materially instantiated constraints on distinguishability. Spacetime is materially real. It is measurable, it grows, it has properties. The "nothing" between things is treated as part of the same empirical substrate, not as a separate realm.
 
-The dualism is real. Both sides are made of the same empirical stuff.
+The dualism is treated as a claim about empirical structure, not a claim about abstract entities.
 
-Anti-ABSTRACT, not anti-form. Forms are real. They are just material,
-not separate from matter.
+Anti-ABSTRACT, not anti-form. Forms are treated as real patterns in material constraint, not as separate from matter.
 
 ---
 

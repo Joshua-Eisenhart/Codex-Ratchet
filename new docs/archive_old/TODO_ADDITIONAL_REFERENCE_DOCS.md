@@ -29,6 +29,12 @@ Based on the v5-facing docs and the current system grammar, the strongest additi
 7. Topos theory / topos quantum mechanics
 - Best support for contextual admissibility and non-Boolean truth values, but narrower than the other fields
 
+8. Differential geometry / fiber bundles / spin geometry
+- Best support for geometry buildup and transport structure
+
+9. Formal methods / proof-carrying code / witness discipline
+- Best support for fail-closed admissibility and certificate language
+
 ---
 
 ## Constraint on Distinguishability (HIGH PRIORITY)

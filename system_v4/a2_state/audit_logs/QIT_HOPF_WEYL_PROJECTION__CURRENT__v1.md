@@ -1,14 +1,14 @@
 # QIT Hopf–Weyl Projection (Bounded Read-Only Sidecar)
 
-- generated_utc: `2026-03-27T00:34:35Z`
-- source_content_hash: `66a8c941ec313aa1277b374a7520144c3077dd6e7275691c65360a9156058bf7`
+- generated_utc: `2026-04-01T10:59:59Z`
+- source_content_hash: `859aa5c7babcc5057780232f5ffffbd463764180ece8f53dee2cad18e4ffaf36`
 - do_not_promote: `True`
 - mode: `bounded_read_only`
 
 ## Report Surface
 - surface_class: `tracked_current_workspace_report`
 - represents: `current workspace Hopf/Weyl sidecar state at generation time; may differ from the last committed snapshot until tracked CURRENT artifacts are committed`
-- git_sha: `18dbe09a7c613ba43f3c941f2ad04d4c5afa8db6`
+- git_sha: `092ec33193f1b18fdf4d5b12da35e08b26f9b50e`
 
 ## Owner Graph Inputs
 - Torus nodes: `3`
@@ -24,12 +24,8 @@
 - STAGE_ON_TORUS edge count: `32`
 
 ## 1. TopoNetX Candidate Cell-Complex View
-- available: `True`
-- shape: `[16, 34, 3]`  (0-cells, 1-cells, provisional 2-cells)
-- stage 0-cells: `16`
-- torus `inner`: 8 stages in provisional sidecar boundary
-- torus `clifford`: 16 stages in provisional sidecar boundary
-- torus `outer`: 8 stages in provisional sidecar boundary
+- available: `False`
+- error: `TopoNetX not installed`
 
 ## 2. Stage–Torus Cycle Groupings
 - fiber stages (inner+clifford): `8`
@@ -45,15 +41,19 @@
 - runtime_bridge_json: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json`
 - owner_content_hash_matches_runtime_bridge: `False`
 - runtime_sample_count: `2`
-- `qit::ENGINE::type1_deductive`: first_step=`qit::SUBCYCLE_STEP::type1_deductive_Se_f_Ti`, last_step=`qit::SUBCYCLE_STEP::type1_deductive_Ni_b_Fi`
-- `qit::ENGINE::type2_inductive`: first_step=`qit::SUBCYCLE_STEP::type2_inductive_Se_f_Ti`, last_step=`qit::SUBCYCLE_STEP::type2_inductive_Ni_b_Fi`
+- axis0_surface_status: `read_only_control_plane_summary_only`
+- axis0_runtime_sample_count: `2`
+- axis0_direct_bridge_families: `['Xi_LR_direct_control']`
+- axis0_history_window_bridge_families: `['Xi_hist_window_control']`
+- axis0_history_window_sample_counts: `[32]`
+- `qit::ENGINE::type1_left_weyl`: first_step=`qit::SUBCYCLE_STEP::type1_left_weyl_Se_b_Ti`, last_step=`qit::SUBCYCLE_STEP::type1_left_weyl_Ne_f_Fi`
+- `qit::ENGINE::type2_right_weyl`: first_step=`qit::SUBCYCLE_STEP::type2_right_weyl_Se_f_Ti`, last_step=`qit::SUBCYCLE_STEP::type2_right_weyl_Si_b_Fi`
 
 ## 3. Chirality Coupling Candidate Mapping (Cl(3,0))
-- available: `True`
-- pseudoscalar: `e123`
-- Type-1 orientation: `+e123`
-- Type-2 orientation: `-e123`
-- coupling product is scalar: `True`
+- available: `False`
+- type1_left_weyl: `Fe/Ti dominant on base, ψ_L → U·ψ_L`
+- type2_right_weyl: `Te/Fi dominant on base, ψ_R → U*·ψ_R`
+- coupling: `complementary_dominance (flat owner edge, sidecar annotation only)`
 
 ## 4. Torus Geometry
 - `inner`: R_major=0.9239, R_minor=0.3827, area=0.3536, flatness=0.4142, loop=fiber

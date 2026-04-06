@@ -1,0 +1,614 @@
+{
+  "name": "bc1_fence_investigation",
+  "description": "Investigates which alternation fences actually hold for LOOP_STAGE_ORDER traversals",
+  "stage_order_type1": [
+    {
+      "position": 0,
+      "terrain_idx": 4,
+      "name": "Se_b",
+      "topo": "Se",
+      "loop": "base",
+      "expansion": true,
+      "open": true,
+      "operator": "Ti",
+      "polarity_up": true,
+      "engine_loop": "outer"
+    },
+    {
+      "position": 1,
+      "terrain_idx": 6,
+      "name": "Ne_b",
+      "topo": "Ne",
+      "loop": "base",
+      "expansion": true,
+      "open": false,
+      "operator": "Ti",
+      "polarity_up": false,
+      "engine_loop": "outer"
+    },
+    {
+      "position": 2,
+      "terrain_idx": 7,
+      "name": "Ni_b",
+      "topo": "Ni",
+      "loop": "base",
+      "expansion": false,
+      "open": true,
+      "operator": "Fe",
+      "polarity_up": false,
+      "engine_loop": "outer"
+    },
+    {
+      "position": 3,
+      "terrain_idx": 5,
+      "name": "Si_b",
+      "topo": "Si",
+      "loop": "base",
+      "expansion": false,
+      "open": false,
+      "operator": "Fe",
+      "polarity_up": true,
+      "engine_loop": "outer"
+    },
+    {
+      "position": 4,
+      "terrain_idx": 0,
+      "name": "Se_f",
+      "topo": "Se",
+      "loop": "fiber",
+      "expansion": true,
+      "open": true,
+      "operator": "Fi",
+      "polarity_up": false,
+      "engine_loop": "inner"
+    },
+    {
+      "position": 5,
+      "terrain_idx": 1,
+      "name": "Si_f",
+      "topo": "Si",
+      "loop": "fiber",
+      "expansion": false,
+      "open": false,
+      "operator": "Te",
+      "polarity_up": false,
+      "engine_loop": "inner"
+    },
+    {
+      "position": 6,
+      "terrain_idx": 3,
+      "name": "Ni_f",
+      "topo": "Ni",
+      "loop": "fiber",
+      "expansion": false,
+      "open": true,
+      "operator": "Te",
+      "polarity_up": true,
+      "engine_loop": "inner"
+    },
+    {
+      "position": 7,
+      "terrain_idx": 2,
+      "name": "Ne_f",
+      "topo": "Ne",
+      "loop": "fiber",
+      "expansion": true,
+      "open": false,
+      "operator": "Fi",
+      "polarity_up": true,
+      "engine_loop": "inner"
+    }
+  ],
+  "stage_order_type2": [
+    {
+      "position": 0,
+      "terrain_idx": 0,
+      "name": "Se_f",
+      "topo": "Se",
+      "loop": "fiber",
+      "expansion": true,
+      "open": true,
+      "operator": "Ti",
+      "polarity_up": false,
+      "engine_loop": "outer"
+    },
+    {
+      "position": 1,
+      "terrain_idx": 1,
+      "name": "Si_f",
+      "topo": "Si",
+      "loop": "fiber",
+      "expansion": false,
+      "open": false,
+      "operator": "Fe",
+      "polarity_up": false,
+      "engine_loop": "outer"
+    },
+    {
+      "position": 2,
+      "terrain_idx": 3,
+      "name": "Ni_f",
+      "topo": "Ni",
+      "loop": "fiber",
+      "expansion": false,
+      "open": true,
+      "operator": "Fe",
+      "polarity_up": true,
+      "engine_loop": "outer"
+    },
+    {
+      "position": 3,
+      "terrain_idx": 2,
+      "name": "Ne_f",
+      "topo": "Ne",
+      "loop": "fiber",
+      "expansion": true,
+      "open": false,
+      "operator": "Ti",
+      "polarity_up": true,
+      "engine_loop": "outer"
+    },
+    {
+      "position": 4,
+      "terrain_idx": 4,
+      "name": "Se_b",
+      "topo": "Se",
+      "loop": "base",
+      "expansion": true,
+      "open": true,
+      "operator": "Fi",
+      "polarity_up": true,
+      "engine_loop": "inner"
+    },
+    {
+      "position": 5,
+      "terrain_idx": 6,
+      "name": "Ne_b",
+      "topo": "Ne",
+      "loop": "base",
+      "expansion": true,
+      "open": false,
+      "operator": "Fi",
+      "polarity_up": false,
+      "engine_loop": "inner"
+    },
+    {
+      "position": 6,
+      "terrain_idx": 7,
+      "name": "Ni_b",
+      "topo": "Ni",
+      "loop": "base",
+      "expansion": false,
+      "open": true,
+      "operator": "Te",
+      "polarity_up": false,
+      "engine_loop": "inner"
+    },
+    {
+      "position": 7,
+      "terrain_idx": 5,
+      "name": "Si_b",
+      "topo": "Si",
+      "loop": "base",
+      "expansion": false,
+      "open": false,
+      "operator": "Te",
+      "polarity_up": true,
+      "engine_loop": "inner"
+    }
+  ],
+  "alternation_checks": {
+    "type1": {
+      "expansion_global": {
+        "violations": 3,
+        "holds": false,
+        "details": [
+          {
+            "pos_a": 0,
+            "pos_b": 1,
+            "val_a": true,
+            "val_b": true,
+            "name_a": "Se_b",
+            "name_b": "Ne_b"
+          },
+          {
+            "pos_a": 2,
+            "pos_b": 3,
+            "val_a": false,
+            "val_b": false,
+            "name_a": "Ni_b",
+            "name_b": "Si_b"
+          },
+          {
+            "pos_a": 5,
+            "pos_b": 6,
+            "val_a": false,
+            "val_b": false,
+            "name_a": "Si_f",
+            "name_b": "Ni_f"
+          }
+        ]
+      },
+      "expansion_within_loop": {
+        "violations": 3,
+        "holds": false,
+        "details": [
+          {
+            "pos_a": 0,
+            "pos_b": 1,
+            "val_a": true,
+            "val_b": true,
+            "name_a": "Se_b",
+            "name_b": "Ne_b"
+          },
+          {
+            "pos_a": 2,
+            "pos_b": 3,
+            "val_a": false,
+            "val_b": false,
+            "name_a": "Ni_b",
+            "name_b": "Si_b"
+          },
+          {
+            "pos_a": 5,
+            "pos_b": 6,
+            "val_a": false,
+            "val_b": false,
+            "name_a": "Si_f",
+            "name_b": "Ni_f"
+          }
+        ]
+      },
+      "expansion_wrap_within_loop": {
+        "violations": 4,
+        "holds": false,
+        "details": [
+          {
+            "pos_a": 0,
+            "pos_b": 1,
+            "val_a": true,
+            "val_b": true,
+            "name_a": "Se_b",
+            "name_b": "Ne_b"
+          },
+          {
+            "pos_a": 2,
+            "pos_b": 3,
+            "val_a": false,
+            "val_b": false,
+            "name_a": "Ni_b",
+            "name_b": "Si_b"
+          },
+          {
+            "pos_a": 5,
+            "pos_b": 6,
+            "val_a": false,
+            "val_b": false,
+            "name_a": "Si_f",
+            "name_b": "Ni_f"
+          },
+          {
+            "pos_a": 7,
+            "pos_b": 4,
+            "val_a": true,
+            "val_b": true,
+            "name_a": "Ne_f",
+            "name_b": "Se_f"
+          }
+        ]
+      },
+      "open_global": {
+        "violations": 0,
+        "holds": true,
+        "details": []
+      },
+      "open_within_loop": {
+        "violations": 0,
+        "holds": true,
+        "details": []
+      },
+      "open_wrap_within_loop": {
+        "violations": 0,
+        "holds": true,
+        "details": []
+      },
+      "topo_no_repeat_global": {
+        "violations": 0,
+        "holds": true,
+        "details": []
+      },
+      "topo_no_repeat_within_loop": {
+        "violations": 0,
+        "holds": true,
+        "details": []
+      },
+      "topo_coverage_per_loop": {
+        "holds": true,
+        "detail": "each loop has {Se,Si,Ne,Ni} exactly once"
+      },
+      "topo_dual_coverage": {
+        "holds": true,
+        "detail": "each (topo,loop) pair appears exactly once"
+      },
+      "polarity_alternates_within_loop": {
+        "violations": 3,
+        "holds": false,
+        "details": [
+          {
+            "pos_a": 1,
+            "pos_b": 2,
+            "val_a": false,
+            "val_b": false,
+            "name_a": "Ne_b",
+            "name_b": "Ni_b"
+          },
+          {
+            "pos_a": 4,
+            "pos_b": 5,
+            "val_a": false,
+            "val_b": false,
+            "name_a": "Se_f",
+            "name_b": "Si_f"
+          },
+          {
+            "pos_a": 6,
+            "pos_b": 7,
+            "val_a": true,
+            "val_b": true,
+            "name_a": "Ni_f",
+            "name_b": "Ne_f"
+          }
+        ]
+      },
+      "loop_constant_within_engine_loop": {
+        "violations": 0,
+        "holds": true,
+        "details": []
+      }
+    },
+    "type2": {
+      "expansion_global": {
+        "violations": 4,
+        "holds": false,
+        "details": [
+          {
+            "pos_a": 1,
+            "pos_b": 2,
+            "val_a": false,
+            "val_b": false,
+            "name_a": "Si_f",
+            "name_b": "Ni_f"
+          },
+          {
+            "pos_a": 3,
+            "pos_b": 4,
+            "val_a": true,
+            "val_b": true,
+            "name_a": "Ne_f",
+            "name_b": "Se_b"
+          },
+          {
+            "pos_a": 4,
+            "pos_b": 5,
+            "val_a": true,
+            "val_b": true,
+            "name_a": "Se_b",
+            "name_b": "Ne_b"
+          },
+          {
+            "pos_a": 6,
+            "pos_b": 7,
+            "val_a": false,
+            "val_b": false,
+            "name_a": "Ni_b",
+            "name_b": "Si_b"
+          }
+        ]
+      },
+      "expansion_within_loop": {
+        "violations": 3,
+        "holds": false,
+        "details": [
+          {
+            "pos_a": 1,
+            "pos_b": 2,
+            "val_a": false,
+            "val_b": false,
+            "name_a": "Si_f",
+            "name_b": "Ni_f"
+          },
+          {
+            "pos_a": 4,
+            "pos_b": 5,
+            "val_a": true,
+            "val_b": true,
+            "name_a": "Se_b",
+            "name_b": "Ne_b"
+          },
+          {
+            "pos_a": 6,
+            "pos_b": 7,
+            "val_a": false,
+            "val_b": false,
+            "name_a": "Ni_b",
+            "name_b": "Si_b"
+          }
+        ]
+      },
+      "expansion_wrap_within_loop": {
+        "violations": 4,
+        "holds": false,
+        "details": [
+          {
+            "pos_a": 1,
+            "pos_b": 2,
+            "val_a": false,
+            "val_b": false,
+            "name_a": "Si_f",
+            "name_b": "Ni_f"
+          },
+          {
+            "pos_a": 3,
+            "pos_b": 0,
+            "val_a": true,
+            "val_b": true,
+            "name_a": "Ne_f",
+            "name_b": "Se_f"
+          },
+          {
+            "pos_a": 4,
+            "pos_b": 5,
+            "val_a": true,
+            "val_b": true,
+            "name_a": "Se_b",
+            "name_b": "Ne_b"
+          },
+          {
+            "pos_a": 6,
+            "pos_b": 7,
+            "val_a": false,
+            "val_b": false,
+            "name_a": "Ni_b",
+            "name_b": "Si_b"
+          }
+        ]
+      },
+      "open_global": {
+        "violations": 0,
+        "holds": true,
+        "details": []
+      },
+      "open_within_loop": {
+        "violations": 0,
+        "holds": true,
+        "details": []
+      },
+      "open_wrap_within_loop": {
+        "violations": 0,
+        "holds": true,
+        "details": []
+      },
+      "topo_no_repeat_global": {
+        "violations": 0,
+        "holds": true,
+        "details": []
+      },
+      "topo_no_repeat_within_loop": {
+        "violations": 0,
+        "holds": true,
+        "details": []
+      },
+      "topo_coverage_per_loop": {
+        "holds": true,
+        "detail": "each loop has {Se,Si,Ne,Ni} exactly once"
+      },
+      "topo_dual_coverage": {
+        "holds": true,
+        "detail": "each (topo,loop) pair appears exactly once"
+      },
+      "polarity_alternates_within_loop": {
+        "violations": 3,
+        "holds": false,
+        "details": [
+          {
+            "pos_a": 0,
+            "pos_b": 1,
+            "val_a": false,
+            "val_b": false,
+            "name_a": "Se_f",
+            "name_b": "Si_f"
+          },
+          {
+            "pos_a": 2,
+            "pos_b": 3,
+            "val_a": true,
+            "val_b": true,
+            "name_a": "Ni_f",
+            "name_b": "Ne_f"
+          },
+          {
+            "pos_a": 5,
+            "pos_b": 6,
+            "val_a": false,
+            "val_b": false,
+            "name_a": "Ne_b",
+            "name_b": "Ni_b"
+          }
+        ]
+      },
+      "loop_constant_within_engine_loop": {
+        "violations": 0,
+        "holds": true,
+        "details": []
+      }
+    }
+  },
+  "z3_invariant_tests": {
+    "type1": {
+      "expansion_alternates_global": "unsat",
+      "expansion_alternates_within_loop": "unsat",
+      "expansion_alternates_within_loop_wrap": "unsat",
+      "open_alternates_global": "sat",
+      "open_alternates_within_loop": "sat",
+      "open_alternates_within_loop_wrap": "sat",
+      "topo_no_repeat_global": "sat",
+      "topo_no_repeat_within_loop": "sat",
+      "topo_coverage_per_loop": "sat",
+      "loop_constant_within_engine_loop": "sat",
+      "expansion_open_relationship": {
+        "exp_eq_open": "unsat",
+        "exp_eq_not_open": "unsat"
+      },
+      "polarity_alternates_within_loop": "unsat"
+    },
+    "type2": {
+      "expansion_alternates_global": "unsat",
+      "expansion_alternates_within_loop": "unsat",
+      "expansion_alternates_within_loop_wrap": "unsat",
+      "open_alternates_global": "sat",
+      "open_alternates_within_loop": "sat",
+      "open_alternates_within_loop_wrap": "sat",
+      "topo_no_repeat_global": "sat",
+      "topo_no_repeat_within_loop": "sat",
+      "topo_coverage_per_loop": "sat",
+      "loop_constant_within_engine_loop": "sat",
+      "expansion_open_relationship": {
+        "exp_eq_open": "unsat",
+        "exp_eq_not_open": "unsat"
+      },
+      "polarity_alternates_within_loop": "unsat"
+    }
+  },
+  "true_invariants": [
+    "open_alternates_global",
+    "open_alternates_within_loop",
+    "open_alternates_within_loop_wrap",
+    "topo_no_repeat_global",
+    "topo_no_repeat_within_loop",
+    "topo_coverage_per_loop",
+    "loop_constant_within_engine_loop"
+  ],
+  "false_invariants": [
+    {
+      "name": "expansion_alternates_global",
+      "type1": "unsat",
+      "type2": "unsat"
+    },
+    {
+      "name": "expansion_alternates_within_loop",
+      "type1": "unsat",
+      "type2": "unsat"
+    },
+    {
+      "name": "expansion_alternates_within_loop_wrap",
+      "type1": "unsat",
+      "type2": "unsat"
+    },
+    {
+      "name": "polarity_alternates_within_loop",
+      "type1": "unsat",
+      "type2": "unsat"
+    }
+  ],
+  "timestamp": "2026-04-06"
+}

@@ -1,0 +1,109 @@
+{
+  "layer": 4,
+  "name": "Weyl Chirality",
+  "positive": {
+    "P1_pyg": {
+      "passed": true,
+      "detail": {
+        "state_shape": [
+          8,
+          10
+        ],
+        "bloch_L_sample": [
+          0.7324360013008118,
+          -0.40883496403694153,
+          0.00020370670245029032
+        ],
+        "bloch_R_sample": [
+          -0.7560694217681885,
+          0.3248583674430847,
+          0.00020370673155412078
+        ]
+      }
+    },
+    "P2_pyg": {
+      "passed": true,
+      "detail": {
+        "type_1": {
+          "bloch_L": [
+            0.7324360013008118,
+            -0.40883496403694153,
+            0.00020370670245029032
+          ],
+          "bloch_R": [
+            -0.7560694217681885,
+            0.3248583674430847,
+            0.00020370673155412078
+          ],
+          "dot_product": -0.6865858435630798,
+          "anti_aligned": true
+        },
+        "type_2": {
+          "bloch_L": [
+            0.6317165493965149,
+            0.4110806882381439,
+            -0.0003796757955569774
+          ],
+          "bloch_R": [
+            -0.6430593729019165,
+            -0.39048898220062256,
+            -0.0003797263780143112
+          ],
+          "dot_product": -0.5667535662651062,
+          "anti_aligned": true
+        }
+      }
+    },
+    "P3_pyg": {
+      "passed": true,
+      "detail": {
+        "type_1": {
+          "n_assignment_edges": 8,
+          "n_sequence_edges": 8,
+          "cycle_closed": true
+        },
+        "type_2": {
+          "n_assignment_edges": 8,
+          "n_sequence_edges": 8,
+          "cycle_closed": true
+        }
+      }
+    },
+    "P4_clifford": {
+      "passed": true,
+      "detail": {
+        "bloch_L": [
+          0.9800665778412416,
+          -0.19866933079506122,
+          1.1102230246251565e-16
+        ],
+        "bloch_R": [
+          -0.9800665778412416,
+          0.19866933079506122,
+          -1.1102230246251565e-16
+        ],
+        "dot_product_grade0": -1.0,
+        "wedge_grade2_norm": 0.0,
+        "dot_negative_anti_aligned": true,
+        "encodes_chirality_distinction": true
+      }
+    }
+  },
+  "negative": {
+    "N1_clifford": {
+      "passed": true,
+      "detail": {
+        "forced_same_chirality": true,
+        "product_grade2_norm": 0.0,
+        "is_scalar_only": true
+      }
+    }
+  },
+  "tools_used": [
+    "torch_geometric (PyG)",
+    "clifford (Cl(3))"
+  ],
+  "timestamp": "2026-04-06",
+  "all_passed": true,
+  "summary": "Layer 4 (Weyl Chirality): 5/5 tests passed using torch_geometric (PyG), clifford (Cl(3))"
+}

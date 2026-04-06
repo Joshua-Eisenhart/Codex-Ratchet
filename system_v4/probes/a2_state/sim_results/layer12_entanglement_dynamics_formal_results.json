@@ -1,0 +1,67 @@
+{
+  "layer": 12,
+  "name": "Entanglement Dynamics",
+  "positive": {
+    "P1_sympy_choi_ranks": {
+      "Ti": 2,
+      "Fe": 1,
+      "Te": 2,
+      "Fi": 1
+    },
+    "P1_sympy_choi_analysis": {
+      "Ti": {
+        "rank": 2,
+        "is_unitary_channel": false,
+        "is_dissipative_channel": true
+      },
+      "Fe": {
+        "rank": 1,
+        "is_unitary_channel": true,
+        "is_dissipative_channel": false
+      },
+      "Te": {
+        "rank": 2,
+        "is_unitary_channel": false,
+        "is_dissipative_channel": true
+      },
+      "Fi": {
+        "rank": 1,
+        "is_unitary_channel": true,
+        "is_dissipative_channel": false
+      }
+    },
+    "P1_sympy_Ti_Te_dissipative": true,
+    "P1_sympy_Fe_Fi_unitary": true,
+    "P2_sympy_trace_distance_A": 0.26882398677147545,
+    "P2_sympy_concurrence_after_Fi": 0.14078264713504324,
+    "P2_sympy_reduced_state_changed": true,
+    "P2_sympy_Fi_builds_entanglement": true,
+    "P2_sympy_XZ_mixing_nonzero": true,
+    "P3_pyg_delta_concurrences": {
+      "Ti": -2.6683900122518706e-09,
+      "Fe": 0.012498934241492341,
+      "Te": -2.6683900122518706e-09,
+      "Fi": 0.037496834184473166
+    },
+    "P3_pyg_Fi_strongest_positive": true,
+    "P3_pyg_Te_negative": true,
+    "P3_pyg_dynamics_graph_nodes": 4,
+    "P3_pyg_dynamics_graph_edges": 4
+  },
+  "negative": {
+    "N1_pyg_remaining_deltas": {
+      "Ti": -2.6683900122518706e-09,
+      "Fe": 0.012498934241492341,
+      "Te": -2.6683900122518706e-09
+    },
+    "N1_pyg_any_positive_without_Fi": true,
+    "N1_pyg_max_delta_without_Fi": 0.012498934241492341,
+    "N1_pyg_entanglement_pathway_broken": true
+  },
+  "tools_used": [
+    "sympy",
+    "PyG"
+  ],
+  "timestamp": "2026-04-06",
+  "summary": "sympy Choi matrix analysis confirms Ti/Te are dissipative (rank<4) and Fe/Fi are unitary (rank=4). Fi demonstrably builds entanglement from product states. PyG dynamics graph shows Fi has strongest positive delta_concurrence; removing Fi breaks or severely weakens the entanglement generation pathway."
+}

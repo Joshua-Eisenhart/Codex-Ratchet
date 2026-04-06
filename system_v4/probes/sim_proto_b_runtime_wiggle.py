@@ -59,13 +59,17 @@ from geometric_operators import (  # noqa: E402
     apply_Te,
     apply_Ti,
     negentropy,
+    partial_trace_A,
+    partial_trace_B,
     trace_distance_2x2,
 )
 from hopf_manifold import (  # noqa: E402
     density_to_bloch,
     inter_torus_transport_partial,
     left_density,
+    left_weyl_spinor,
     right_density,
+    right_weyl_spinor,
     torus_coordinates,
     torus_radii,
 )
@@ -162,7 +166,12 @@ def trace_one_cycle(engine_type: int, seed: int, axis0_level: float, torus_progr
 
             ga0_target = engine._ga0_target(terrain, op_name, ctrl)
             ga0_alpha = min(1.0, 0.10 + 0.45 * ctrl.piston + (0.10 if terrain["open"] else 0.0))
-            new_ga0 = float(np.clip((1.0 - ga0_alpha) * current_state.ga0_level + ga0_alpha * ga0_target, 0.0, 1.0))
+            if ga0_target is None:
+                new_ga0 = float(current_state.ga0_level)
+            else:
+                new_ga0 = float(
+                    np.clip((1.0 - ga0_alpha) * current_state.ga0_level + ga0_alpha * ga0_target, 0.0, 1.0)
+                )
             strength = engine._operator_strength(terrain, op_name, ctrl, ga0_level=new_ga0)
             polarity = ctrl.lever
             angle_mod, dt_mod = engine._terrain_modulation(terrain)
@@ -192,8 +201,9 @@ def trace_one_cycle(engine_type: int, seed: int, axis0_level: float, torus_progr
                 new_rho_L = current_state.rho_L.copy()
                 new_rho_R = current_state.rho_R.copy()
 
-            rho_L_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0, "left")
-            rho_R_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0, "right")
+            rho_AB_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0)
+            rho_L_axis0 = _ensure_valid_density(partial_trace_B(rho_AB_axis0))
+            rho_R_axis0 = _ensure_valid_density(partial_trace_A(rho_AB_axis0))
             axis0_blend = min(0.45, strength * (0.05 + 0.30 * new_ga0))
             axis0_injection_norm = float(
                 np.linalg.norm(rho_L_axis0 - new_rho_L) + np.linalg.norm(rho_R_axis0 - new_rho_R)
@@ -204,9 +214,9 @@ def trace_one_cycle(engine_type: int, seed: int, axis0_level: float, torus_progr
 
             op_kwargs = {"polarity_up": polarity, "strength": strength}
             if op_name == "Te":
-                op_kwargs["angle"] = 0.3 * angle_mod
+                op_kwargs["q"] = 0.3 * angle_mod
             if op_name == "Fe":
-                op_kwargs["dt"] = 0.05 * dt_mod
+                op_kwargs["phi"] = 0.05 * dt_mod
             op_fn = {"Ti": apply_Ti, "Fe": apply_Fe, "Te": apply_Te, "Fi": apply_Fi}[op_name]
 
             left_before = density_summary(new_rho_L)
@@ -247,13 +257,22 @@ def trace_one_cycle(engine_type: int, seed: int, axis0_level: float, torus_progr
                 new_theta1 = (new_theta1 + d_theta) % (2.0 * np.pi)
                 new_theta2 = (new_theta2 + 0.5 * d_theta) % (2.0 * np.pi)
 
+            q_current = np.array(
+                [
+                    np.cos(new_eta) * np.cos(new_theta1),
+                    np.cos(new_eta) * np.sin(new_theta1),
+                    np.sin(new_eta) * np.cos(new_theta2),
+                    np.sin(new_eta) * np.sin(new_theta2),
+                ],
+                dtype=float,
+            )
             current_state = EngineState(
-                rho_L=new_rho_L,
-                rho_R=new_rho_R,
+                psi_L=left_weyl_spinor(q_current),
+                psi_R=right_weyl_spinor(q_current),
+                rho_AB=_ensure_valid_density(np.kron(new_rho_L, new_rho_R)),
                 eta=new_eta,
                 theta1=new_theta1,
                 theta2=new_theta2,
-                ga0_level=new_ga0,
                 stage_idx=current_state.stage_idx,
                 engine_type=engine_type,
                 history=current_state.history + [],
@@ -278,7 +297,7 @@ def trace_one_cycle(engine_type: int, seed: int, axis0_level: float, torus_progr
                     "operator_slot": op_slot,
                     "strength": float(strength),
                     "ga0_before": float(before.ga0_level),
-                    "ga0_target": float(ga0_target),
+                    "ga0_target": None if ga0_target is None else float(ga0_target),
                     "ga0_after": float(new_ga0),
                     "axis0_blend": float(axis0_blend),
                     "axis0_injection_norm": float(axis0_injection_norm),
@@ -369,6 +388,7 @@ def evaluate_run(trace: dict) -> dict:
 
     work_abs = float(sum(abs(s["dphi_total"]) for s in steps))
     work_signed = float(sum(s["dphi_total"] for s in steps))
+    transport_work_abs = float(sum(abs(s["dphi_total"]) for s in steps if s["transport_alpha"] > 0.0))
     eta_closure = abs(final_state["eta"] - init_state["eta"])
     theta1_closure = abs(wrapped_delta(final_state["theta1"], init_state["theta1"]))
     theta2_closure = abs(wrapped_delta(final_state["theta2"], init_state["theta2"]))
@@ -376,12 +396,10 @@ def evaluate_run(trace: dict) -> dict:
 
     transport_cost = float(
         sum(
-            s["transport_alpha"]
-            * (
-                abs(s["deta"])
-                + abs(s["radii_after"][0] - s["radii_before"][0])
-                + abs(s["radii_after"][1] - s["radii_before"][1])
-            )
+            abs(s["deta"])
+            + abs(s["radii_after"][0] - s["radii_before"][0])
+            + abs(s["radii_after"][1] - s["radii_before"][1])
+            + 0.25 * (abs(s["dtheta1"]) + abs(s["dtheta2"]))
             for s in steps
         )
     )
@@ -431,6 +449,22 @@ def evaluate_run(trace: dict) -> dict:
         {"work_abs": work_abs, "transport_cost": transport_cost},
     )
     add_candidate(
+        "hybrid_transport_actuation",
+        "runtime_hybrid",
+        (
+            sum((s["ga0_after"] - s["ga0_before"]) * s["axis0_effective_gain"] for s in steps)
+            / (sum(abs(s["axis0_effective_gain"]) for s in steps) + 1e-6)
+        )
+        * (transport_work_abs / (transport_cost + 1e-6)),
+        len(steps) > 0 and transport_cost > 1e-10,
+        None if transport_cost > 1e-10 else "zero_transport_cost",
+        {
+            "transport_work_abs": transport_work_abs,
+            "transport_cost": transport_cost,
+            "mean_axis0_effective_gain": mean_or_zero([s["axis0_effective_gain"] for s in steps]),
+        },
+    )
+    add_candidate(
         "carnot_expansion_compression_gap",
         "carnot_style",
         mean_or_zero(expansion) - mean_or_zero(compression),
@@ -468,10 +502,14 @@ def evaluate_run(trace: dict) -> dict:
     add_candidate(
         "szilard_ceiling_actuation",
         "szilard_style",
-        mean_or_zero([s["ga0_after"] - s["ga0_before"] for s in steps]),
+        sum((s["ga0_after"] - s["ga0_before"]) * s["axis0_effective_gain"] for s in steps)
+        / (sum(abs(s["axis0_effective_gain"]) for s in steps) + 1e-6),
         len(steps) > 0,
         None,
-        {},
+        {
+            "mean_ga0_delta": mean_or_zero([s["ga0_after"] - s["ga0_before"] for s in steps]),
+            "mean_axis0_effective_gain": mean_or_zero([s["axis0_effective_gain"] for s in steps]),
+        },
     )
     add_candidate(
         "szilard_role_gap",

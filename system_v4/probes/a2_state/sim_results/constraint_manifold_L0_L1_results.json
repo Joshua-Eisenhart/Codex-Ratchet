@@ -1,0 +1,4295 @@
+{
+  "name": "constraint_manifold_L0_L1",
+  "L0_allowed_space": {
+    "d_cutoff": 2,
+    "z3_sat_by_dim": {
+      "d1": "UNSAT",
+      "d2": "SAT",
+      "d3": "SAT",
+      "d4": "SAT",
+      "d5": "SAT"
+    },
+    "algebras_by_dim": {
+      "d2": {
+        "algebra": "su(2)",
+        "generators": 3,
+        "traceless": true,
+        "hermitian": true,
+        "closure_verified": true,
+        "density_params": 3,
+        "unitary_params": 4,
+        "cptp_params": 12
+      },
+      "d3": {
+        "algebra": "su(3)",
+        "generators": 8,
+        "traceless": true,
+        "hermitian": true,
+        "closure_verified": true,
+        "density_params": 8,
+        "unitary_params": 9,
+        "cptp_params": 72
+      },
+      "d4": {
+        "algebra": "su(4)",
+        "generators": 15,
+        "traceless": true,
+        "hermitian": true,
+        "closure_verified": true,
+        "density_params": 15,
+        "unitary_params": 16,
+        "cptp_params": 240
+      },
+      "d5": {
+        "algebra": "su(5)",
+        "generators": 24,
+        "traceless": true,
+        "hermitian": true,
+        "closure_verified": "skipped_large_d",
+        "density_params": 24,
+        "unitary_params": 25,
+        "cptp_params": 600
+      }
+    }
+  },
+  "L1_restriction": {
+    "total_configurations_unconstrained_abstract": 72057594037927936,
+    "unconstrained_breakdown_abstract": {
+      "topo_configs": 65536,
+      "open_configs": 256,
+      "op_configs": 65536,
+      "loop_configs": 256,
+      "exp_configs": 256,
+      "total": 72057594037927936
+    },
+    "unconstrained_orderings_per_type": 576,
+    "analytical_cumulative_restriction": {
+      "unconstrained": {
+        "total": 72057594037927936,
+        "dimensions": {
+          "topo": 65536,
+          "open": 256,
+          "loop": 256,
+          "exp": 256,
+          "ops": 65536
+        }
+      },
+      "fence_1_open_alternates": {
+        "open_configs": 4,
+        "analytical": "2 loops x 2 starting values = 4",
+        "total": 1125899906842624
+      },
+      "fence_1_2_3_topo_coverage": {
+        "topo_configs": 576,
+        "analytical": "2 loops x 4! permutations = 576",
+        "total": 9895604649984
+      },
+      "fence_4_loop_constant": {
+        "loop_configs": 4,
+        "analytical": "2 loops x 2 choices = 4",
+        "total": 154618822656
+      },
+      "fence_5_expansion_balanced": {
+        "exp_configs": 36,
+        "analytical": "2 loops x C(4,2) = 36",
+        "total": 21743271936
+      },
+      "fence_7_op_appears_twice": {
+        "op_configs": 2520,
+        "analytical": "8! / (2!)^4 = 2520",
+        "total": 836075520
+      },
+      "fence_8_9_kernel_coupling": {
+        "op_configs_constrained": 36,
+        "analytical": "C(4,2) for T-group x C(4,2) for F-group = 36",
+        "total": 11943936
+      },
+      "fence_10_type_determines": {
+        "op_configs_fixed": 1,
+        "analytical": "ops fully determined by engine type",
+        "total": 331776
+      },
+      "analytical_summary": {
+        "pre_z3_total": 331776,
+        "note": "Fences 11-15 further constrain; exact count from z3 enumeration below"
+      }
+    },
+    "per_fence_sat_type1": {
+      "fence_1_open_alternates": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_2_no_topo_repeat": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_3_topo_coverage": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_4_loop_constant": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_5_expansion_balanced": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_6_one_op_per_terrain": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_7_op_appears_twice": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_8_f_kernel_expansion": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_9_t_kernel_expansion": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_10_type_determines_ops": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_11_eight_terrains": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_12_four_operators": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_13_stage_cycle": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_14_no_self_loops": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_15_weyl_chirality": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      }
+    },
+    "per_fence_sat_type2": {
+      "fence_1_open_alternates": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_2_no_topo_repeat": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_3_topo_coverage": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_4_loop_constant": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_5_expansion_balanced": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_6_one_op_per_terrain": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_7_op_appears_twice": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_8_f_kernel_expansion": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_9_t_kernel_expansion": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_10_type_determines_ops": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_11_eight_terrains": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_12_four_operators": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_13_stage_cycle": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_14_no_self_loops": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      },
+      "fence_15_weyl_chirality": {
+        "with_all_fences": "sat",
+        "without_this_fence": "sat"
+      }
+    },
+    "total_with_all_fences_type1": 48,
+    "total_with_all_fences_type2": 48,
+    "total_with_all_fences_combined": 96,
+    "ordering_restriction_ratio": 0.08333333333333333,
+    "abstract_restriction_ratio": 1.3322676295501878e-15,
+    "all_valid_assignments_type1": [
+      {
+        "ordering_indices": [
+          4,
+          5,
+          7,
+          6,
+          0,
+          1,
+          3,
+          2
+        ],
+        "terrain_names": [
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Ne_f"
+        ],
+        "topo_seq": [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          4,
+          5,
+          7,
+          6,
+          0,
+          2,
+          3,
+          1
+        ],
+        "terrain_names": [
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Si_f"
+        ],
+        "topo_seq": [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          4,
+          5,
+          7,
+          6,
+          1,
+          0,
+          2,
+          3
+        ],
+        "terrain_names": [
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Ni_f"
+        ],
+        "topo_seq": [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          4,
+          5,
+          7,
+          6,
+          1,
+          3,
+          2,
+          0
+        ],
+        "terrain_names": [
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Se_f"
+        ],
+        "topo_seq": [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          4,
+          5,
+          7,
+          6,
+          3,
+          1,
+          0,
+          2
+        ],
+        "terrain_names": [
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Ne_f"
+        ],
+        "topo_seq": [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          4,
+          5,
+          7,
+          6,
+          3,
+          2,
+          0,
+          1
+        ],
+        "terrain_names": [
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Si_f"
+        ],
+        "topo_seq": [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          4,
+          6,
+          7,
+          5,
+          0,
+          1,
+          3,
+          2
+        ],
+        "terrain_names": [
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Ne_f"
+        ],
+        "topo_seq": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          4,
+          6,
+          7,
+          5,
+          0,
+          2,
+          3,
+          1
+        ],
+        "terrain_names": [
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Si_f"
+        ],
+        "topo_seq": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          4,
+          6,
+          7,
+          5,
+          2,
+          0,
+          1,
+          3
+        ],
+        "terrain_names": [
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Ni_f"
+        ],
+        "topo_seq": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          4,
+          6,
+          7,
+          5,
+          2,
+          3,
+          1,
+          0
+        ],
+        "terrain_names": [
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Se_f"
+        ],
+        "topo_seq": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          4,
+          6,
+          7,
+          5,
+          3,
+          1,
+          0,
+          2
+        ],
+        "terrain_names": [
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Ne_f"
+        ],
+        "topo_seq": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          4,
+          6,
+          7,
+          5,
+          3,
+          2,
+          0,
+          1
+        ],
+        "terrain_names": [
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Si_f"
+        ],
+        "topo_seq": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          5,
+          4,
+          6,
+          7,
+          0,
+          1,
+          3,
+          2
+        ],
+        "terrain_names": [
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Ne_f"
+        ],
+        "topo_seq": [
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          5,
+          4,
+          6,
+          7,
+          0,
+          2,
+          3,
+          1
+        ],
+        "terrain_names": [
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Si_f"
+        ],
+        "topo_seq": [
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          5,
+          4,
+          6,
+          7,
+          1,
+          0,
+          2,
+          3
+        ],
+        "terrain_names": [
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Ni_f"
+        ],
+        "topo_seq": [
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          5,
+          4,
+          6,
+          7,
+          1,
+          3,
+          2,
+          0
+        ],
+        "terrain_names": [
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Se_f"
+        ],
+        "topo_seq": [
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          5,
+          4,
+          6,
+          7,
+          2,
+          0,
+          1,
+          3
+        ],
+        "terrain_names": [
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Ni_f"
+        ],
+        "topo_seq": [
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          5,
+          4,
+          6,
+          7,
+          2,
+          3,
+          1,
+          0
+        ],
+        "terrain_names": [
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Se_f"
+        ],
+        "topo_seq": [
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          5,
+          7,
+          6,
+          4,
+          1,
+          0,
+          2,
+          3
+        ],
+        "terrain_names": [
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Ni_f"
+        ],
+        "topo_seq": [
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          5,
+          7,
+          6,
+          4,
+          1,
+          3,
+          2,
+          0
+        ],
+        "terrain_names": [
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Se_f"
+        ],
+        "topo_seq": [
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          5,
+          7,
+          6,
+          4,
+          2,
+          0,
+          1,
+          3
+        ],
+        "terrain_names": [
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Ni_f"
+        ],
+        "topo_seq": [
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          5,
+          7,
+          6,
+          4,
+          2,
+          3,
+          1,
+          0
+        ],
+        "terrain_names": [
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Se_f"
+        ],
+        "topo_seq": [
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          5,
+          7,
+          6,
+          4,
+          3,
+          1,
+          0,
+          2
+        ],
+        "terrain_names": [
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Ne_f"
+        ],
+        "topo_seq": [
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          5,
+          7,
+          6,
+          4,
+          3,
+          2,
+          0,
+          1
+        ],
+        "terrain_names": [
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Si_f"
+        ],
+        "topo_seq": [
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          6,
+          4,
+          5,
+          7,
+          0,
+          1,
+          3,
+          2
+        ],
+        "terrain_names": [
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Ne_f"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          6,
+          4,
+          5,
+          7,
+          0,
+          2,
+          3,
+          1
+        ],
+        "terrain_names": [
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Si_f"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          6,
+          4,
+          5,
+          7,
+          1,
+          0,
+          2,
+          3
+        ],
+        "terrain_names": [
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Ni_f"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          6,
+          4,
+          5,
+          7,
+          1,
+          3,
+          2,
+          0
+        ],
+        "terrain_names": [
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Se_f"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          6,
+          4,
+          5,
+          7,
+          2,
+          0,
+          1,
+          3
+        ],
+        "terrain_names": [
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Ni_f"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          6,
+          4,
+          5,
+          7,
+          2,
+          3,
+          1,
+          0
+        ],
+        "terrain_names": [
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Se_f"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          6,
+          7,
+          5,
+          4,
+          1,
+          0,
+          2,
+          3
+        ],
+        "terrain_names": [
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Ni_f"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          6,
+          7,
+          5,
+          4,
+          1,
+          3,
+          2,
+          0
+        ],
+        "terrain_names": [
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Se_f"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          6,
+          7,
+          5,
+          4,
+          2,
+          0,
+          1,
+          3
+        ],
+        "terrain_names": [
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Ni_f"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          6,
+          7,
+          5,
+          4,
+          2,
+          3,
+          1,
+          0
+        ],
+        "terrain_names": [
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Se_f"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          6,
+          7,
+          5,
+          4,
+          3,
+          1,
+          0,
+          2
+        ],
+        "terrain_names": [
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Ne_f"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          6,
+          7,
+          5,
+          4,
+          3,
+          2,
+          0,
+          1
+        ],
+        "terrain_names": [
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Si_f"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          7,
+          5,
+          4,
+          6,
+          0,
+          1,
+          3,
+          2
+        ],
+        "terrain_names": [
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Ne_f"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          7,
+          5,
+          4,
+          6,
+          0,
+          2,
+          3,
+          1
+        ],
+        "terrain_names": [
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Si_f"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          7,
+          5,
+          4,
+          6,
+          1,
+          0,
+          2,
+          3
+        ],
+        "terrain_names": [
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Ni_f"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          7,
+          5,
+          4,
+          6,
+          1,
+          3,
+          2,
+          0
+        ],
+        "terrain_names": [
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Se_f"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          7,
+          5,
+          4,
+          6,
+          3,
+          1,
+          0,
+          2
+        ],
+        "terrain_names": [
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Ne_f"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          7,
+          5,
+          4,
+          6,
+          3,
+          2,
+          0,
+          1
+        ],
+        "terrain_names": [
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Si_f"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          7,
+          6,
+          4,
+          5,
+          0,
+          1,
+          3,
+          2
+        ],
+        "terrain_names": [
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Ne_f"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          7,
+          6,
+          4,
+          5,
+          0,
+          2,
+          3,
+          1
+        ],
+        "terrain_names": [
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Si_f"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          7,
+          6,
+          4,
+          5,
+          2,
+          0,
+          1,
+          3
+        ],
+        "terrain_names": [
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Ni_f"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          7,
+          6,
+          4,
+          5,
+          2,
+          3,
+          1,
+          0
+        ],
+        "terrain_names": [
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Se_f"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          7,
+          6,
+          4,
+          5,
+          3,
+          1,
+          0,
+          2
+        ],
+        "terrain_names": [
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Ne_f"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          7,
+          6,
+          4,
+          5,
+          3,
+          2,
+          0,
+          1
+        ],
+        "terrain_names": [
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Si_f"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      }
+    ],
+    "all_valid_assignments_type2": [
+      {
+        "ordering_indices": [
+          0,
+          1,
+          3,
+          2,
+          4,
+          5,
+          7,
+          6
+        ],
+        "terrain_names": [
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Ne_b"
+        ],
+        "topo_seq": [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          0,
+          1,
+          3,
+          2,
+          4,
+          6,
+          7,
+          5
+        ],
+        "terrain_names": [
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Si_b"
+        ],
+        "topo_seq": [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          0,
+          1,
+          3,
+          2,
+          5,
+          4,
+          6,
+          7
+        ],
+        "terrain_names": [
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Ni_b"
+        ],
+        "topo_seq": [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          0,
+          1,
+          3,
+          2,
+          5,
+          7,
+          6,
+          4
+        ],
+        "terrain_names": [
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Se_b"
+        ],
+        "topo_seq": [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          0,
+          1,
+          3,
+          2,
+          7,
+          5,
+          4,
+          6
+        ],
+        "terrain_names": [
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Ne_b"
+        ],
+        "topo_seq": [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          0,
+          1,
+          3,
+          2,
+          7,
+          6,
+          4,
+          5
+        ],
+        "terrain_names": [
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Si_b"
+        ],
+        "topo_seq": [
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          0,
+          2,
+          3,
+          1,
+          4,
+          5,
+          7,
+          6
+        ],
+        "terrain_names": [
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Ne_b"
+        ],
+        "topo_seq": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          0,
+          2,
+          3,
+          1,
+          4,
+          6,
+          7,
+          5
+        ],
+        "terrain_names": [
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Si_b"
+        ],
+        "topo_seq": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          0,
+          2,
+          3,
+          1,
+          6,
+          4,
+          5,
+          7
+        ],
+        "terrain_names": [
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Ni_b"
+        ],
+        "topo_seq": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          0,
+          2,
+          3,
+          1,
+          6,
+          7,
+          5,
+          4
+        ],
+        "terrain_names": [
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Se_b"
+        ],
+        "topo_seq": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          0,
+          2,
+          3,
+          1,
+          7,
+          5,
+          4,
+          6
+        ],
+        "terrain_names": [
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Ne_b"
+        ],
+        "topo_seq": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          0,
+          2,
+          3,
+          1,
+          7,
+          6,
+          4,
+          5
+        ],
+        "terrain_names": [
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Si_b"
+        ],
+        "topo_seq": [
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          1,
+          0,
+          2,
+          3,
+          4,
+          5,
+          7,
+          6
+        ],
+        "terrain_names": [
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Ne_b"
+        ],
+        "topo_seq": [
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          1,
+          0,
+          2,
+          3,
+          4,
+          6,
+          7,
+          5
+        ],
+        "terrain_names": [
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Si_b"
+        ],
+        "topo_seq": [
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          1,
+          0,
+          2,
+          3,
+          5,
+          4,
+          6,
+          7
+        ],
+        "terrain_names": [
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Ni_b"
+        ],
+        "topo_seq": [
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          1,
+          0,
+          2,
+          3,
+          5,
+          7,
+          6,
+          4
+        ],
+        "terrain_names": [
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Se_b"
+        ],
+        "topo_seq": [
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          1,
+          0,
+          2,
+          3,
+          6,
+          4,
+          5,
+          7
+        ],
+        "terrain_names": [
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Ni_b"
+        ],
+        "topo_seq": [
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          1,
+          0,
+          2,
+          3,
+          6,
+          7,
+          5,
+          4
+        ],
+        "terrain_names": [
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Ni_f",
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Se_b"
+        ],
+        "topo_seq": [
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          1,
+          3,
+          2,
+          0,
+          5,
+          4,
+          6,
+          7
+        ],
+        "terrain_names": [
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Ni_b"
+        ],
+        "topo_seq": [
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          1,
+          3,
+          2,
+          0,
+          5,
+          7,
+          6,
+          4
+        ],
+        "terrain_names": [
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Se_b"
+        ],
+        "topo_seq": [
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          1,
+          3,
+          2,
+          0,
+          6,
+          4,
+          5,
+          7
+        ],
+        "terrain_names": [
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Ni_b"
+        ],
+        "topo_seq": [
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          1,
+          3,
+          2,
+          0,
+          6,
+          7,
+          5,
+          4
+        ],
+        "terrain_names": [
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Se_b"
+        ],
+        "topo_seq": [
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          1,
+          3,
+          2,
+          0,
+          7,
+          5,
+          4,
+          6
+        ],
+        "terrain_names": [
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Ne_b"
+        ],
+        "topo_seq": [
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          1,
+          3,
+          2,
+          0,
+          7,
+          6,
+          4,
+          5
+        ],
+        "terrain_names": [
+          "Si_f",
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Si_b"
+        ],
+        "topo_seq": [
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          2,
+          0,
+          1,
+          3,
+          4,
+          5,
+          7,
+          6
+        ],
+        "terrain_names": [
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Ne_b"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          2,
+          0,
+          1,
+          3,
+          4,
+          6,
+          7,
+          5
+        ],
+        "terrain_names": [
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Si_b"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          2,
+          0,
+          1,
+          3,
+          5,
+          4,
+          6,
+          7
+        ],
+        "terrain_names": [
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Ni_b"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          2,
+          0,
+          1,
+          3,
+          5,
+          7,
+          6,
+          4
+        ],
+        "terrain_names": [
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Se_b"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          2,
+          0,
+          1,
+          3,
+          6,
+          4,
+          5,
+          7
+        ],
+        "terrain_names": [
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Ni_b"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          2,
+          0,
+          1,
+          3,
+          6,
+          7,
+          5,
+          4
+        ],
+        "terrain_names": [
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Ni_f",
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Se_b"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          2,
+          3,
+          1,
+          0,
+          5,
+          4,
+          6,
+          7
+        ],
+        "terrain_names": [
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Ni_b"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          2,
+          3,
+          1,
+          0,
+          5,
+          7,
+          6,
+          4
+        ],
+        "terrain_names": [
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Se_b"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          2,
+          3,
+          1,
+          0,
+          6,
+          4,
+          5,
+          7
+        ],
+        "terrain_names": [
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Ni_b"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          2,
+          3,
+          1,
+          0,
+          6,
+          7,
+          5,
+          4
+        ],
+        "terrain_names": [
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Se_b"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          2,
+          3,
+          1,
+          0,
+          7,
+          5,
+          4,
+          6
+        ],
+        "terrain_names": [
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Ne_b"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          2,
+          3,
+          1,
+          0,
+          7,
+          6,
+          4,
+          5
+        ],
+        "terrain_names": [
+          "Ne_f",
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Si_b"
+        ],
+        "topo_seq": [
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si"
+        ],
+        "open_seq": [
+          false,
+          true,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          3,
+          1,
+          0,
+          2,
+          4,
+          5,
+          7,
+          6
+        ],
+        "terrain_names": [
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Ne_b"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          3,
+          1,
+          0,
+          2,
+          4,
+          6,
+          7,
+          5
+        ],
+        "terrain_names": [
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Si_b"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          3,
+          1,
+          0,
+          2,
+          5,
+          4,
+          6,
+          7
+        ],
+        "terrain_names": [
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Si_b",
+          "Se_b",
+          "Ne_b",
+          "Ni_b"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          3,
+          1,
+          0,
+          2,
+          5,
+          7,
+          6,
+          4
+        ],
+        "terrain_names": [
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Si_b",
+          "Ni_b",
+          "Ne_b",
+          "Se_b"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          3,
+          1,
+          0,
+          2,
+          7,
+          5,
+          4,
+          6
+        ],
+        "terrain_names": [
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Ne_b"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          3,
+          1,
+          0,
+          2,
+          7,
+          6,
+          4,
+          5
+        ],
+        "terrain_names": [
+          "Ni_f",
+          "Si_f",
+          "Se_f",
+          "Ne_f",
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Si_b"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          3,
+          2,
+          0,
+          1,
+          4,
+          5,
+          7,
+          6
+        ],
+        "terrain_names": [
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Se_b",
+          "Si_b",
+          "Ni_b",
+          "Ne_b"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          3,
+          2,
+          0,
+          1,
+          4,
+          6,
+          7,
+          5
+        ],
+        "terrain_names": [
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Se_b",
+          "Ne_b",
+          "Ni_b",
+          "Si_b"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Se",
+          "Ne",
+          "Ni",
+          "Si"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          3,
+          2,
+          0,
+          1,
+          6,
+          4,
+          5,
+          7
+        ],
+        "terrain_names": [
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Ne_b",
+          "Se_b",
+          "Si_b",
+          "Ni_b"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          3,
+          2,
+          0,
+          1,
+          6,
+          7,
+          5,
+          4
+        ],
+        "terrain_names": [
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Ne_b",
+          "Ni_b",
+          "Si_b",
+          "Se_b"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Ne",
+          "Ni",
+          "Si",
+          "Se"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          true
+        ]
+      },
+      {
+        "ordering_indices": [
+          3,
+          2,
+          0,
+          1,
+          7,
+          5,
+          4,
+          6
+        ],
+        "terrain_names": [
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Ni_b",
+          "Si_b",
+          "Se_b",
+          "Ne_b"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Si",
+          "Se",
+          "Ne"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "ordering_indices": [
+          3,
+          2,
+          0,
+          1,
+          7,
+          6,
+          4,
+          5
+        ],
+        "terrain_names": [
+          "Ni_f",
+          "Ne_f",
+          "Se_f",
+          "Si_f",
+          "Ni_b",
+          "Ne_b",
+          "Se_b",
+          "Si_b"
+        ],
+        "topo_seq": [
+          "Ni",
+          "Ne",
+          "Se",
+          "Si",
+          "Ni",
+          "Ne",
+          "Se",
+          "Si"
+        ],
+        "open_seq": [
+          true,
+          false,
+          true,
+          false,
+          true,
+          false,
+          true,
+          false
+        ]
+      }
+    ]
+  },
+  "constraint_power": {
+    "L0_allows": "any su(d) for d >= 2, continuous parameter spaces",
+    "L0_d2_density_params": 3,
+    "L0_d2_unitary_params": 4,
+    "L0_d2_cptp_params": 12,
+    "L1_restricts_to": "8 terrains, 4 operators, specific ordering",
+    "L1_valid_configs": 96,
+    "unconstrained_total": 1152,
+    "space_reduction_ratio": 0.08333333333333333,
+    "space_reduction_factor": 12.0
+  },
+  "timestamp": "2026-04-06"
+}

@@ -1,17 +1,17 @@
 {
-  "generated_utc": "2026-03-27T00:34:32Z",
+  "generated_utc": "2026-04-01T11:05:18Z",
   "hopf_weyl_evidence_audit": {
     "audit_only": true,
     "chirality_witness_count": 2,
     "do_not_promote": true,
-    "generated_utc": "2026-03-27T00:18:11Z",
+    "generated_utc": "2026-04-01T11:04:42Z",
     "json_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json",
     "md_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.md",
     "nonoperative": true,
-    "owner_content_hash_matches_current_snapshot": false,
-    "runtime_alignment_status": "aligned",
+    "owner_content_hash_matches_current_snapshot": true,
+    "runtime_alignment_status": "partially_aligned",
     "schema": "QIT_HOPF_WEYL_EVIDENCE_AUDIT_v1",
-    "status": "partial",
+    "status": "present",
     "torus_witness_count": 2
   },
   "hopf_weyl_projection": {
@@ -20,18 +20,18 @@
     "chirality_coupling_edge_present": true,
     "do_not_promote": true,
     "fiber_stage_count": 8,
-    "generated_utc": "2026-03-27T00:09:58Z",
+    "generated_utc": "2026-04-01T11:00:49Z",
     "json_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json",
     "md_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md",
     "observer_only": true,
-    "owner_content_hash_matches_current_snapshot": false,
+    "owner_content_hash_matches_current_snapshot": true,
     "schema": "QIT_HOPF_WEYL_PROJECTION_v1",
     "shared_clifford_stage_count": 16,
     "stage_count": 16,
-    "status": "partial",
+    "status": "present",
     "torus_carrier_count": 3,
-    "weyl_branch_nodes_present": false,
-    "weyl_projection_status": "engine_pair_only_derived"
+    "weyl_branch_nodes_present": true,
+    "weyl_projection_status": "owner_weyl_branch_materialized"
   },
   "next_actions": [
     "keep owner verification read-only by default and use refresh flags only for intentional artifact regeneration",
@@ -45,7 +45,7 @@
     "promote torus/chirality/runtime semantics only after negative-proof and round-trip gates are satisfied"
   ],
   "owner": {
-    "edge_count": 272,
+    "edge_count": 290,
     "graphml_export": {
       "action": "read_existing_snapshot",
       "edge_count": 297,
@@ -64,32 +64,36 @@
       "NEG_WITNESS",
       "OPERATOR",
       "SUBCYCLE_STEP",
-      "TORUS"
-    ],
-    "node_count": 105,
-    "owner_summary_validation_errors": [],
-    "qit_graph_action": "read_existing_snapshot",
-    "qit_graph_content_hash": "66a8c941ec313aa1277b374a7520144c3077dd6e7275691c65360a9156058bf7",
-    "qit_graph_content_hash_matches_recomputed": true,
-    "qit_graph_content_hash_recomputed": "66a8c941ec313aa1277b374a7520144c3077dd6e7275691c65360a9156058bf7",
-    "qit_graph_generated_utc": "2026-03-27T00:33:06Z",
-    "qit_graph_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json",
-    "qit_graph_schema": "QIT_ENGINE_GRAPH_v2",
-    "qit_graph_sha256": "a51bfa4f886979b450508a41401e3df8d3c47fcc419ebf16d0c8893c641cee36",
-    "qit_graph_size_bytes": 137491,
-    "schema_ready_not_instantiated": [
+      "TORUS",
       "WEYL_BRANCH"
     ],
+    "node_count": 107,
+    "owner_summary_validation_errors": [],
+    "qit_graph_action": "read_existing_snapshot",
+    "qit_graph_content_hash": "965d5add46bbe8bf747763faea7c432157f14278644e9644bd726ca2928c0105",
+    "qit_graph_content_hash_matches_recomputed": true,
+    "qit_graph_content_hash_recomputed": "965d5add46bbe8bf747763faea7c432157f14278644e9644bd726ca2928c0105",
+    "qit_graph_generated_utc": "2026-04-01T11:00:11Z",
+    "qit_graph_json": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json",
+    "qit_graph_schema": "QIT_ENGINE_GRAPH_v2",
+    "qit_graph_sha256": "2c3f969fc0db2f710bff604b0a0aea73483157738d78868c533bfcb99dd306d8",
+    "qit_graph_size_bytes": 141749,
+    "schema_ready_not_instantiated": [],
     "schema_validation": {
       "engine_types": 2,
       "operators": 4,
       "sample_stage": {
         "boundary": "open",
-        "engine_type": "type1_left_weyl",
+        "engine_type": "type1",
+        "generator": "X_F^L",
+        "hamiltonian_sign": 1,
         "loop": "fiber",
         "mode": "expand",
+        "spinor_type": "L",
         "stage_index": 0,
-        "terrain": "Se_f"
+        "terrain": "Se_f",
+        "terrain_family": "Se",
+        "terrain_name": "Funnel"
       },
       "tori": 3
     }
@@ -97,7 +101,7 @@
   "promotion_gates": {
     "cross_layer_alignment_gate": {
       "full_promotion_gate_passed": false,
-      "qit_nested_cross_layer_edges": 7,
+      "qit_nested_cross_layer_edges": 5,
       "status": "PRECHECK_OK",
       "verification_level": "bridge_presence_only"
     },
@@ -128,26 +132,30 @@
     }
   },
   "provenance": {
-    "git_sha": "18dbe09a7c613ba43f3c941f2ad04d4c5afa8db6",
+    "git_sha": "092ec33193f1b18fdf4d5b12da35e08b26f9b50e",
     "git_worktree_dirty": true,
     "owner_builder_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_engine_graph_builder.py",
-    "owner_builder_sha256": "a9a45b8d6afd05d09ade953aec9569145850beab0b98f4e5c12ce4507bfb091b",
+    "owner_builder_sha256": "e1015f23bdd660e547ac3c22a0e251f04f948075444d4b1e0755ec3e8b650145",
     "owner_schema_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_owner_schemas.py",
-    "owner_schema_sha256": "6fb10f2358176f1e28e7eb55ed38e5f403e930112976e20340630d4bdcbf224f",
+    "owner_schema_sha256": "e0318c07a766662e879ff4aef5caccc6144447a085371dd60e7ee9a694e58bd3",
     "relevant_git_status": [
       " M system_v4/a2_state/audit_logs/QIT_GRAPH_STACK_STATUS__CURRENT__v1.json",
       " M system_v4/a2_state/audit_logs/QIT_GRAPH_STACK_STATUS__CURRENT__v1.md",
+      " M system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json",
+      " M system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.md",
+      " M system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json",
+      " M system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md",
       " M system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.json",
       " M system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.md",
+      " M system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json",
+      " M system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md",
       " M system_v4/a2_state/audit_logs/QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.json",
-      " M system_v4/a2_state/audit_logs/QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.md",
       " M system_v4/a2_state/graphs/qit_engine_graph_v1.json",
       " M system_v4/skills/qit_engine_graph_builder.py",
-      " M system_v4/skills/qit_graph_stack_runtime.py",
-      " M system_v4/skills/qit_owner_schemas.py"
+      " M system_v4/skills/qit_graph_stack_runtime.py"
     ],
     "script_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_graph_stack_runtime.py",
-    "script_sha256": "86728b480c18faf9b2838db9c98bae140e4a3b767b0df9bd33e17a8a74ed1eb1"
+    "script_sha256": "3e6034bf10656dbfc400cff03d52b68035cdd0aa829c572bf5f84a5fa694fe86"
   },
   "purpose": "read-only-by-default verification surface over the current QIT owner snapshot and bounded sidecars",
   "report_surface": {
@@ -169,7 +177,7 @@
     "document_count": 34,
     "embedding_backed_query": false,
     "embedding_backed_query_blocker": "LightRAG embedding_func not configured",
-    "generated_utc": "2026-03-27T00:25:32Z",
+    "generated_utc": "2026-03-30T10:56:52Z",
     "json_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.json",
     "md_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.md",
     "mode": "lexical_fallback_only",
@@ -180,24 +188,37 @@
     "top_hit_count": 8
   },
   "runtime_evidence_bridge": {
-    "complete_mappings": 4,
-    "generated_utc": "2026-03-27T00:17:24Z",
+    "axis0_control_plane_summary": {
+      "direct_bridge_families": [
+        "Xi_LR_direct_control"
+      ],
+      "history_window_bridge_families": [
+        "Xi_hist_window_control"
+      ],
+      "history_window_sample_counts": [
+        32
+      ],
+      "runtime_sample_count": 2,
+      "surface_status": "read_only_control_plane_summary_only"
+    },
+    "complete_mappings": 3,
+    "generated_utc": "2026-03-30T10:46:52Z",
     "json_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json",
     "md_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md",
     "owner_content_hash_matches_current_snapshot": false,
-    "partial_mappings": 1,
+    "partial_mappings": 2,
     "runtime_sample_count": 2,
     "schema": "QIT_RUNTIME_EVIDENCE_BRIDGE_v1",
     "sim_packet_count": 5,
     "status": "partial",
-    "unresolved_owner_links": 0
+    "unresolved_owner_links": 2
   },
   "schema": "QIT_GRAPH_STACK_STATUS_v1",
   "sidecars": {
     "clifford": {
-      "edges_enriched": 272,
+      "edges_enriched": 290,
       "grade_counts": {
-        "1": 226,
+        "1": 244,
         "2": 45,
         "3": 1
       },
@@ -209,16 +230,30 @@
         {
           "coefficients": [
             0,
-            1.0,
-            0,
-            0,
+            0.1,
+            0.1,
+            0.1,
             0,
             0,
             0,
             0
           ],
           "grade": 1,
-          "relation": "SUBCYCLE_ORDER"
+          "relation": "ENGINE_REALIZES_WEYL_BRANCH"
+        },
+        {
+          "coefficients": [
+            0,
+            0.1,
+            0.1,
+            0.1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "grade": 1,
+          "relation": "ENGINE_REALIZES_WEYL_BRANCH"
         },
         {
           "coefficients": [
@@ -261,31 +296,18 @@
           ],
           "grade": 1,
           "relation": "SUBCYCLE_ORDER"
-        },
-        {
-          "coefficients": [
-            0,
-            0.8,
-            0.2,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          "grade": 1,
-          "relation": "STAGE_SEQUENCE"
         }
       ],
       "relation_counts": {
         "AXIS_GOVERNS": 14,
         "CHIRALITY_COUPLING": 1,
         "ENGINE_OWNS_STAGE": 16,
+        "ENGINE_REALIZES_WEYL_BRANCH": 2,
         "NEGATIVE_PROVES": 11,
         "STAGE_ON_TORUS": 32,
         "STAGE_SEQUENCE": 16,
         "STEP_IN_STAGE": 64,
-        "STEP_SEQUENCE": 48,
+        "STEP_SEQUENCE": 64,
         "STEP_USES_OPERATOR": 64,
         "SUBCYCLE_ORDER": 4,
         "TORUS_NESTING": 2
@@ -293,13 +315,9 @@
     },
     "lightrag": {
       "corpus_manifest_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/lightrag_smoke/corpus_manifest.json",
-      "documents_built": 22,
-      "init_error": null,
-      "init_success": true,
       "role": "read-only retrieval sidecar over internal graph/docs/evidence corpus; not owner memory",
       "smoke_result_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/lightrag_smoke/smoke_test_result.json",
-      "status": "sidecar_corpus_ready",
-      "total_corpus_chars": 76545,
+      "status": "registered_not_integrated",
       "working_dir": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/work/lightrag_smoke"
     },
     "preferred_sidecar_interpreter": {
@@ -320,29 +338,29 @@
     }
   },
   "snapshot": {
-    "git_sha": "18dbe09a7c613ba43f3c941f2ad04d4c5afa8db6",
+    "git_sha": "092ec33193f1b18fdf4d5b12da35e08b26f9b50e",
     "graphml_exists": true,
     "graphml_file_sha256": "0158f9197931ebf7f6e2938b37ace7a4fb7eae81924d406487ef6faab6125373",
-    "owner_builder_sha256": "a9a45b8d6afd05d09ade953aec9569145850beab0b98f4e5c12ce4507bfb091b",
-    "owner_content_hash": "66a8c941ec313aa1277b374a7520144c3077dd6e7275691c65360a9156058bf7",
-    "owner_file_sha256": "a51bfa4f886979b450508a41401e3df8d3c47fcc419ebf16d0c8893c641cee36",
-    "owner_schema_sha256": "6fb10f2358176f1e28e7eb55ed38e5f403e930112976e20340630d4bdcbf224f",
-    "script_sha256": "86728b480c18faf9b2838db9c98bae140e4a3b767b0df9bd33e17a8a74ed1eb1",
-    "snapshot_id": "b6087561db1be4a124aca861a18a15601a056fac2b5c583f8b0e4a0ed787c527"
+    "owner_builder_sha256": "e1015f23bdd660e547ac3c22a0e251f04f948075444d4b1e0755ec3e8b650145",
+    "owner_content_hash": "965d5add46bbe8bf747763faea7c432157f14278644e9644bd726ca2928c0105",
+    "owner_file_sha256": "2c3f969fc0db2f710bff604b0a0aea73483157738d78868c533bfcb99dd306d8",
+    "owner_schema_sha256": "e0318c07a766662e879ff4aef5caccc6144447a085371dd60e7ee9a694e58bd3",
+    "script_sha256": "3e6034bf10656dbfc400cff03d52b68035cdd0aa829c572bf5f84a5fa694fe86",
+    "snapshot_id": "d554c3e2883c23a735447ceffee16264df16ceb92f6700790257fffa855b745b"
   },
   "status": "precheck_blocked",
   "torus_type_repair_gap_report": {
     "audit_only": true,
     "do_not_promote": true,
-    "generated_utc": "2026-03-27T00:24:21Z",
+    "generated_utc": "2026-04-01T11:04:42Z",
     "json_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.json",
     "md_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.md",
     "nonoperative": true,
-    "owner_content_hash_matches_current_snapshot": false,
+    "owner_content_hash_matches_current_snapshot": true,
     "schema": "QIT_TORUS_TYPE_REPAIR_GAP_REPORT_v1",
-    "status": "partial",
+    "status": "present",
     "torus_gap_count": 3,
-    "type_gap_count": 3
+    "type_gap_count": 2
   },
   "verification_scope": {
     "does_not_verify": [

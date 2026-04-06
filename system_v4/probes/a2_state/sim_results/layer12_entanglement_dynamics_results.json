@@ -1,0 +1,70 @@
+{
+  "layer": 12,
+  "name": "entanglement_dynamics",
+  "positive": {
+    "P1_Fi_builds_entanglement": {
+      "pass": true,
+      "Fi_delta_concurrence": 0.08530680563338612,
+      "Fe_delta_concurrence": 0.01043223497661934,
+      "Fi_avg_delta_over_trace": 0.0008728579881676522,
+      "note": "HERMES CORRECTION: Fi is the STRONGEST builder (+0.085) but Fe also builds (+0.010). 'Only builder' is too absolute. Fi is necessary (N1 confirms removing it kills concurrence) and dominant, but Fe contributes."
+    },
+    "P2_Te_destroys_vs_Fi": {
+      "pass": true,
+      "Te_delta_concurrence": -0.0003953740341273368,
+      "Fi_delta_concurrence": 0.08530680563338612,
+      "Te_avg_delta_over_trace": -0.0006664235804786723,
+      "note": "Te dephasing does not build entanglement like Fi"
+    }
+  },
+  "negative": {
+    "N1_remove_Fi_kills_concurrence": {
+      "pass": true,
+      "concurrence_with_Fi": 0.049240429385882474,
+      "concurrence_without_Fi": 1.887379141862766e-15,
+      "note": "Without Fi, concurrence stays low or zero"
+    }
+  },
+  "operator_effects": {
+    "Ti": {
+      "concurrence_before": 0.042678406663580484,
+      "concurrence_after": 0.04202282977702999,
+      "delta_concurrence": -0.0006555768865504977
+    },
+    "Fe": {
+      "concurrence_before": 0.042678406663580484,
+      "concurrence_after": 0.053110641640199824,
+      "delta_concurrence": 0.01043223497661934
+    },
+    "Te": {
+      "concurrence_before": 0.042678406663580484,
+      "concurrence_after": 0.04228303262945315,
+      "delta_concurrence": -0.0003953740341273368
+    },
+    "Fi": {
+      "concurrence_before": 0.042678406663580484,
+      "concurrence_after": 0.1279852122969666,
+      "delta_concurrence": 0.08530680563338612
+    }
+  },
+  "trace_log_summary": {
+    "Fi_avg_delta": 0.0008728579881676522,
+    "Te_avg_delta": -0.0006664235804786723,
+    "Ti_avg_delta": -0.0014255282094333766,
+    "Fe_avg_delta": 0.0006001110887892637
+  },
+  "tools_used": [
+    "apply_Ti_4x4",
+    "apply_Fe_4x4",
+    "apply_Te_4x4",
+    "apply_Fi_4x4",
+    "concurrence_4x4",
+    "GeometricEngine"
+  ],
+  "timestamp": "2026-04-05",
+  "summary": {
+    "passed": 3,
+    "total": 3,
+    "all_pass": true
+  }
+}

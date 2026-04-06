@@ -1,0 +1,34 @@
+{
+  "sim": "entanglement_structure_survey",
+  "timestamp": "2026-04-05",
+  "findings": {
+    "torus_entanglement": {
+      "clifford_is_max": true,
+      "inner_outer_equal": true,
+      "type1_clifford_mi": 0.2336,
+      "type1_inner_mi": 0.0425,
+      "type2_clifford_mi": 0.2883,
+      "type2_inner_mi": 0.0033,
+      "note": "Entanglement is 5-85x stronger at Clifford than inner/outer"
+    },
+    "dual_stack_buildup": {
+      "pattern": "T1 cycles produce lower MI, T2 cycles produce higher MI",
+      "purity_trend": "decreasing (0.81 \u2192 0.78 over 20 cycles)",
+      "mi_trend": "T2 MI decreasing from 0.375 to 0.247 over 20 cycles",
+      "ic_always_negative": true,
+      "note": "Dual stack produces sustained entanglement with oscillating pattern"
+    },
+    "i_c_sign": {
+      "always_negative": true,
+      "range_type1": [
+        -0.16,
+        -0.01
+      ],
+      "range_type2": [
+        -0.21,
+        -0.01
+      ],
+      "note": "I_c < 0 everywhere means S(A|B) > 0 \u2014 classical conditional entropy. No quantum advantage yet at this engine scale."
+    }
+  }
+}

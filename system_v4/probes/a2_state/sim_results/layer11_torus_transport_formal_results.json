@@ -1,0 +1,70 @@
+{
+  "layer": 11,
+  "name": "Torus Transport",
+  "positive": {
+    "P1_toponetx_shell_deltas": [
+      {
+        "inner_layer": 0,
+        "outer_layer": 1,
+        "inner_eta": 0.39269908169872414,
+        "outer_eta": 0.7853981633974483,
+        "delta_eta": 0.39269908169872414
+      },
+      {
+        "inner_layer": 1,
+        "outer_layer": 2,
+        "inner_eta": 0.7853981633974483,
+        "outer_eta": 1.1780972450961724,
+        "delta_eta": 0.39269908169872414
+      }
+    ],
+    "P1_toponetx_clifford_balanced": true,
+    "P2_toponetx_edges_before": 40,
+    "P2_toponetx_edges_without_transport": 24,
+    "P2_toponetx_is_block_diagonal": true,
+    "P2_toponetx_cross_layer_connections": 0,
+    "P3_clifford_rotors": [
+      {
+        "from": "inner",
+        "to": "clifford",
+        "transport_angle": 0.7853981633974492,
+        "bloch_from": [
+          0.6930117232058354,
+          -0.14048043101898117,
+          0.7071067811865476
+        ],
+        "bloch_to": [
+          0.9800665778412416,
+          -0.19866933079506122,
+          1.1102230246251565e-16
+        ]
+      },
+      {
+        "from": "clifford",
+        "to": "outer",
+        "transport_angle": 0.7853981633974493,
+        "bloch_from": [
+          0.9800665778412416,
+          -0.19866933079506122,
+          1.1102230246251565e-16
+        ],
+        "bloch_to": [
+          0.6930117232058354,
+          -0.14048043101898117,
+          -0.7071067811865472
+        ]
+      }
+    ],
+    "P3_clifford_rotors_nontrivial": true
+  },
+  "negative": {
+    "N1_clifford_degenerate_distance": 1.999999999999941e-08,
+    "N1_clifford_transport_trivial": true
+  },
+  "tools_used": [
+    "TopoNetX",
+    "clifford"
+  ],
+  "timestamp": "2026-04-06",
+  "summary": "TopoNetX shell structure confirms Clifford torus has balanced eta deltas. Removing transport edges makes adjacency block-diagonal (rings disconnected). Clifford Cl(3) rotors show non-trivial transport between levels, collapsing to identity at degenerate torus."
+}

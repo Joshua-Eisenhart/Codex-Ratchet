@@ -90,7 +90,7 @@ CROSS_LAYER_RELATIONS = {
     "QIT_OPERATOR_FAMILY_BRIDGE",
 }
 
-PREFERRED_INTERPRETER = ".venv_spec_graph/bin/python"
+PREFERRED_INTERPRETER = "/opt/homebrew/bin/python3"
 
 
 def _utc_iso() -> str:

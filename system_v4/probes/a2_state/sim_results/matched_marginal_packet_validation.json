@@ -1,0 +1,182 @@
+{
+  "name": "matched_marginal_packet_validation",
+  "timestamp": "2026-04-01T21:46:31.776311+00:00",
+  "passed_gates": 9,
+  "total_gates": 9,
+  "score": 1.0,
+  "gates": [
+    {
+      "name": "M1_phase4_and_phase5a_execute_cleanly",
+      "pass": true,
+      "detail": {
+        "all_ok": true,
+        "steps": [
+          {
+            "label": "phase4_bridge_landscape",
+            "ok": true,
+            "returncode": 0
+          },
+          {
+            "label": "phase5a_marginal_preserving",
+            "ok": true,
+            "returncode": 0
+          },
+          {
+            "label": "phase6_point_reference",
+            "ok": true,
+            "returncode": 0
+          },
+          {
+            "label": "fe_indexed_history",
+            "ok": true,
+            "returncode": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "M2_phase4_winner_fails_matched_marginal_filter",
+      "pass": true,
+      "detail": {
+        "winner": "20_cross_s1_symmetric_retro",
+        "winner_preserves_marginals": false,
+        "matched_marginal_winner": null,
+        "matched_marginal_tolerance": 0.001
+      }
+    },
+    {
+      "name": "M3_phase5a_certifies_marginal_preserving_family",
+      "pass": true,
+      "detail": {
+        "certified_blocks": 12,
+        "total_blocks": 12,
+        "failed_blocks": 0,
+        "max_final_dev_A": 4.3753564023070306e-16,
+        "max_final_dev_B": 5.471894787807448e-16,
+        "max_hist_dev_A": 3.6295124768498446e-16,
+        "max_hist_dev_B": 4.783309287441108e-16
+      }
+    },
+    {
+      "name": "M4_preserving_mi_collapses_while_chiral_mi_stays_large",
+      "pass": true,
+      "detail": {
+        "mean_preserving": 4.440892098500626e-16,
+        "mean_chiral": 1.635766746086287,
+        "max_ratio_preserving_to_chiral": 5.194426056211188e-16
+      }
+    },
+    {
+      "name": "M5_optimizer_finds_no_nonproduct_preserving_advantage",
+      "pass": true,
+      "detail": {
+        "best_sources": [
+          "product_seed"
+        ],
+        "max_preserving_MI": 9.992007221626409e-16
+      }
+    },
+    {
+      "name": "M6_exact_preserving_point_reference_stays_discriminator_only",
+      "pass": true,
+      "detail": {
+        "mean_best_exact_I_AB": 5.921189464667501e-16,
+        "mean_best_tol_1e3_I_AB": 5.921189464667501e-16,
+        "base_exact_nontrivial_count": 0,
+        "fiber_exact_nontrivial_count": 0,
+        "controller_read": "point_reference_remains_discriminator_only"
+      }
+    },
+    {
+      "name": "M7_fe_indexed_pairs_remain_the_only_structured_refinement_winner",
+      "pass": true,
+      "detail": {
+        "best_new_bridge": "C_fe_pairs_only",
+        "best_gain": 0.15375653780456644,
+        "mean_fe_advantage": 0.11738124811376545,
+        "mean_mi": {
+          "A_phase4_winner": 1.4828908499635307,
+          "B_fe_indexed": 1.461058045270187,
+          "C_fe_pairs_only": 1.636647387768097,
+          "D_lag7_pairs": 1.2371225765407867
+        },
+        "winner_counts": {
+          "A_phase4_winner": 1,
+          "B_fe_indexed": 0,
+          "C_fe_pairs_only": 5,
+          "D_lag7_pairs": 0
+        }
+      }
+    },
+    {
+      "name": "M8_matched_marginal_layer_preserves_xi_downstream_handoff_contract",
+      "pass": true,
+      "detail": {
+        "signed_bridge_handoff": {
+          "object": "c1_signed_bridge_candidate_handoff",
+          "candidate": "Xi_chiral_entangle",
+          "status": "provisional_handoff_ready",
+          "placement_contract": "downstream_axis_internal_bridge_candidate_only",
+          "owner_dependency": "must_bind_under_xi_hist_signed_law",
+          "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+          "positive_witness_gate": "C3_live_carrier_wins_and_honesty_signal_stays_unique",
+          "bridge_separation_gate": "C4_bridge_search_separates_winning_bridges_from_controls",
+          "counterfeit_guard_gate": "C7_counterfeit_history_games_mi_but_not_coherent_info",
+          "signed_metric": "I_c",
+          "consumer_status": "allowed_for_entropy_readout_not_final_owner_xi",
+          "read": "Xi_chiral_entangle is the current signed bridge candidate handoff object for downstream readout use, but it is not a final owner law."
+        },
+        "phase4_winner": "20_cross_s1_symmetric_retro",
+        "phase4_winner_preserves_marginals": false,
+        "phase4_matched_marginal_winner": null,
+        "phase6_point_reference_earned_bridge_survives": false,
+        "phase6_point_reference_discriminator_survives": true
+      }
+    },
+    {
+      "name": "M9_matched_marginal_stays_subordinate_to_xi_downstream_mapping",
+      "pass": true,
+      "detail": {
+        "signed_bridge_handoff": {
+          "object": "c1_signed_bridge_candidate_handoff",
+          "candidate": "Xi_chiral_entangle",
+          "status": "provisional_handoff_ready",
+          "placement_contract": "downstream_axis_internal_bridge_candidate_only",
+          "owner_dependency": "must_bind_under_xi_hist_signed_law",
+          "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+          "positive_witness_gate": "C3_live_carrier_wins_and_honesty_signal_stays_unique",
+          "bridge_separation_gate": "C4_bridge_search_separates_winning_bridges_from_controls",
+          "counterfeit_guard_gate": "C7_counterfeit_history_games_mi_but_not_coherent_info",
+          "signed_metric": "I_c",
+          "consumer_status": "allowed_for_entropy_readout_not_final_owner_xi",
+          "read": "Xi_chiral_entangle is the current signed bridge candidate handoff object for downstream readout use, but it is not a final owner law."
+        },
+        "pre_entropy_axis_internal_readout": {
+          "I_c_A_to_B": "readout",
+          "S_A_given_B": "readout",
+          "Xi_chiral_entangle": "current_bridge_candidate",
+          "Xi_chiral_entangle_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+        },
+        "pre_entropy_current_mapping": {
+          "hopf_carrier_point": "qit_grounded",
+          "nested_torus_seat": "qit_grounded",
+          "weyl_sheet_pair": "sim_live",
+          "loop_sensitive_transport_surface": "sim_live_candidate",
+          "chirality_differential_surface": "sim_live_candidate",
+          "bloch_differential_surface": "sim_live_candidate",
+          "chirality_separated_transport_deltas": "neg_tested_candidate_with_nonproxy_runtime_support_not_axis_eligible",
+          "Xi_chiral_entangle": "axis_internal_candidate_not_final_owner_law",
+          "xi_hist_signed_law": "axis_eligible_owner_derived"
+        },
+        "pre_entropy_placement_relations": {
+          "Xi_chiral_entangle": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+          "xi_hist_signed_law": "owner_derived_law_that_binds_bridge_handoff"
+        },
+        "phase4_winner_preserves_marginals": false,
+        "phase4_matched_marginal_winner": null,
+        "phase6_point_reference_earned_bridge_survives": false,
+        "phase6_point_reference_discriminator_survives": true
+      }
+    }
+  ]
+}

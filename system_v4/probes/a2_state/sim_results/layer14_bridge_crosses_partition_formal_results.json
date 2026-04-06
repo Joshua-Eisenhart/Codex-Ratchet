@@ -1,0 +1,39 @@
+{
+  "layer": 14,
+  "name": "Bridge Crosses Partition",
+  "positive": {
+    "P1_z3_bridge_necessity": {
+      "description": "Fe present => I_c positive possible (SAT); Fe absent => I_c positive impossible (UNSAT)",
+      "fe_present_sat": "sat",
+      "fe_absent_unsat": "unsat",
+      "passed": true
+    },
+    "P2_sympy_Fe_commutator": {
+      "description": "[XX x I, |000><000|] is non-zero: Fe generates dynamics from separable states",
+      "commutator_nonzero": true,
+      "passed": true
+    },
+    "P3_sympy_Fi_product_evolution": {
+      "description": "Fi commutator is non-zero but evolved state remains product (X x I x Z on |000>)",
+      "commutator_nonzero": true,
+      "H_Fi_ket000_equals_ket100": true,
+      "evolved_state_is_product": true,
+      "explanation": "U_Fi|000> = (cos(t)|0> - i*sin(t)|1>) x |0> x |0> -- tensor product for all t",
+      "passed": true
+    }
+  },
+  "negative": {
+    "N1_sympy_Z_eigenstate": {
+      "description": "Z|0> = +|0>: the Z gate on q3 in |0> eigenstate acts as identity",
+      "Z_ket0_equals_ket0": true,
+      "implication": "Fi = X x I x Z cannot entangle when q3 starts in Z eigenstate |0>",
+      "passed": true
+    }
+  },
+  "tools_used": [
+    "z3",
+    "sympy"
+  ],
+  "timestamp": "2026-04-06",
+  "summary": "Bridge crosses partition: Fe necessity SAT/UNSAT correct, Fe commutator nonzero=True, Fi product evolution verified, Z|0>=|0> confirmed"
+}

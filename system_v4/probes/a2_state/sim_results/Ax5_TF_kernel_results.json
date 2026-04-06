@@ -1,0 +1,33 @@
+{
+  "timestamp": "2026-03-30T06:26:27.257456+00:00",
+  "axis": 5,
+  "name": "Ax5_T_vs_F_Kernel_Validation",
+  "definition": "T={Ti,Te}=dephasing, F={Fi,Fe}=unitary-rotation",
+  "source": "AXIS_3_4_5_6_QIT_MATH.md + v5_OPERATOR_MATH_LEDGER.md",
+  "warning": "geometric_operators.py DIVERGES from locked spec: runtime Fe=amplitude-damping (should be U_z rotation), runtime Te=sigma_y rotation (should be sigma_x dephasing)",
+  "verdict": "PASS",
+  "evidence_token": "E_AX5_TF_KERNEL_VALID",
+  "results": {
+    "T_reduces_coherence": true,
+    "Ti_min_offdiag_reduction": 0.03290716848461376,
+    "Te_min_offdiag_reduction": 3.8026440207700185e-05,
+    "F_preserves_purity": true,
+    "Fi_max_purity_change": 2.220446049250313e-16,
+    "Fe_max_purity_change": 2.220446049250313e-16,
+    "T_changes_eigenvalues": true,
+    "Ti_avg_eval_change": 0.27312825510271693,
+    "Te_avg_eval_change": 0.24981198046417977,
+    "F_preserves_eigenvalues": true,
+    "Fi_max_eval_change": 4.965068306494546e-16,
+    "Fe_max_eval_change": 5.721958498152797e-16,
+    "Ti_kills_Z_basis_offdiag": true,
+    "Te_kills_X_basis_coherence": true,
+    "basis_specificity": true,
+    "T_F_noncommuting": true,
+    "d_TiFi": 0.06952980811212285,
+    "d_TeFe": 0.08391634190663266,
+    "runtime_discrepancy_detected": false,
+    "locked_Te_is_dephasing": true,
+    "runtime_Te_is_unitary": false
+  }
+}

@@ -8,9 +8,9 @@
   },
   "derived_from": {
     "carrier_evidence_summary_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json",
-    "owner_snapshot_hash": "7d25ff22e49d8606ddb8e5dd8e3ee4b6b1cce934fe7da51cd1ad36cc75a768ff"
+    "owner_snapshot_hash": "965d5add46bbe8bf747763faea7c432157f14278644e9644bd726ca2928c0105"
   },
-  "generated_utc": "2026-03-27T00:24:21Z",
+  "generated_utc": "2026-04-01T11:04:42Z",
   "minimal_next_repairs": {
     "torus_placement": [
       "add a bounded runtime-side torus join table keyed by existing stage ids",
@@ -19,7 +19,7 @@
     ],
     "type_split": [
       "keep type split anchored at the two engine owner ids",
-      "avoid live WEYL_BRANCH owner nodes until a faithful owner anchor exists",
+      "treat admitted WEYL_BRANCH owner nodes as anchor-level structure only until branch-runtime and promotion gates are satisfied",
       "treat chirality algebra as candidate sidecar evidence only until promotion gates are satisfied"
     ]
   },
@@ -62,11 +62,11 @@
       "aligned_only": [
         "runtime bridge resolves type-split alignment to owner engine ids",
         "runtime bridge maps neg_type_flatten to the current engine-family ids",
-        "sidecar readiness says engine-pair-only, not branch-level"
+        "sidecar readiness reports materialized branch anchors, not just engine-pair-only readiness"
       ],
       "engine_public_ids": [
-        "qit::ENGINE::type1_deductive",
-        "qit::ENGINE::type2_inductive"
+        "qit::ENGINE::type1",
+        "qit::ENGINE::type2"
       ],
       "forbidden_to_infer": [
         "live Weyl branch semantics",
@@ -75,7 +75,6 @@
         "promotion-ready type-split evidence"
       ],
       "missing": [
-        "no live WEYL_BRANCH owner nodes",
         "no promoted chirality algebra payload in owner truth",
         "no runtime/history graph proving branch-level type semantics"
       ],
@@ -87,21 +86,24 @@
         "owner graph has 2 engine-family nodes",
         "owner graph has 1 CHIRALITY_COUPLING edge",
         "owner graph has stage ownership split by engine family",
-        "negative witnesses exist for no-chirality and type-flatten"
+        "negative witnesses exist for no-chirality and type-flatten",
+        "owner graph has 2 live WEYL_BRANCH nodes anchored to the engine families"
       ]
     }
   },
   "report_surface": {
-    "git_sha": "18dbe09a7c613ba43f3c941f2ad04d4c5afa8db6",
+    "git_sha": "092ec33193f1b18fdf4d5b12da35e08b26f9b50e",
     "represents": "current workspace torus/type repair-gap state at generation time; may differ from the last committed snapshot until tracked CURRENT artifacts are committed",
     "script_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/skills/qit_torus_type_repair_gap_report.py",
-    "script_sha256": "602f284d924f98663c00607bcfaf667a4d5309ec048e0b7541596f96321f945e",
+    "script_sha256": "32546f4ac36b2dd121cd3cd6185e166a94436f33048c0ee4fd3f8ad900896c67",
     "surface_class": "tracked_current_workspace_report",
     "tracked_report_files": [
       "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.json",
       "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.md"
     ],
-    "tracked_report_files_dirty_before_generation": []
+    "tracked_report_files_dirty_before_generation": [
+      " M system_v4/a2_state/audit_logs/QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.json"
+    ]
   },
   "schema": "QIT_TORUS_TYPE_REPAIR_GAP_REPORT_v1",
   "status": "bounded_non_promotional_gap_summary"

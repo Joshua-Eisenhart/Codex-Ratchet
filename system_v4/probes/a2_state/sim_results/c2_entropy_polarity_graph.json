@@ -1,0 +1,346 @@
+{
+  "artifact_type": "c2_entropy_polarity_contrast_graph",
+  "description": "Bipartite-within-terrain entropy polarity contrast graph. Directed edges from vn_Ic-positive nodes to vn_Ic-negative nodes within each terrain label. Edge weight = vn_Ic gap. Captures Fe/Fi (positive) vs Ti/Te (negative) operator entropy contrast structure. Discrimination audit trail on each edge.",
+  "node_count": 16,
+  "edge_count": 16,
+  "nodes": [
+    {
+      "id": "WIN_Ti",
+      "stage": "WIN",
+      "op": "Ti",
+      "vn_Ic": -0.114364,
+      "purity_Ic": 0.0528,
+      "is_vn_positive": false,
+      "is_shortcut_killed": false,
+      "is_purity_proxy_killed": false
+    },
+    {
+      "id": "WIN_Fe",
+      "stage": "WIN",
+      "op": "Fe",
+      "vn_Ic": 0.066069,
+      "purity_Ic": -0.015547,
+      "is_vn_positive": true,
+      "is_shortcut_killed": true,
+      "is_purity_proxy_killed": true
+    },
+    {
+      "id": "LOSE_Ti",
+      "stage": "LOSE",
+      "op": "Ti",
+      "vn_Ic": -0.204566,
+      "purity_Ic": 0.12,
+      "is_vn_positive": false,
+      "is_shortcut_killed": false,
+      "is_purity_proxy_killed": false
+    },
+    {
+      "id": "LOSE_Fe",
+      "stage": "LOSE",
+      "op": "Fe",
+      "vn_Ic": 0.076506,
+      "purity_Ic": -0.018541,
+      "is_vn_positive": true,
+      "is_shortcut_killed": true,
+      "is_purity_proxy_killed": true
+    },
+    {
+      "id": "win_Fi",
+      "stage": "win",
+      "op": "Fi",
+      "vn_Ic": 0.055774,
+      "purity_Ic": -0.012699,
+      "is_vn_positive": true,
+      "is_shortcut_killed": true,
+      "is_purity_proxy_killed": true
+    },
+    {
+      "id": "win_Te",
+      "stage": "win",
+      "op": "Te",
+      "vn_Ic": -0.081444,
+      "purity_Ic": 0.036157,
+      "is_vn_positive": false,
+      "is_shortcut_killed": false,
+      "is_purity_proxy_killed": false
+    },
+    {
+      "id": "lose_Fi",
+      "stage": "lose",
+      "op": "Fi",
+      "vn_Ic": 0.060145,
+      "purity_Ic": -0.013894,
+      "is_vn_positive": true,
+      "is_shortcut_killed": true,
+      "is_purity_proxy_killed": true
+    },
+    {
+      "id": "lose_Te",
+      "stage": "lose",
+      "op": "Te",
+      "vn_Ic": -0.140248,
+      "purity_Ic": 0.08447,
+      "is_vn_positive": false,
+      "is_shortcut_killed": false,
+      "is_purity_proxy_killed": false
+    },
+    {
+      "id": "WIN_Fi",
+      "stage": "WIN",
+      "op": "Fi",
+      "vn_Ic": 0.095976,
+      "purity_Ic": -0.024388,
+      "is_vn_positive": true,
+      "is_shortcut_killed": true,
+      "is_purity_proxy_killed": true
+    },
+    {
+      "id": "WIN_Te",
+      "stage": "WIN",
+      "op": "Te",
+      "vn_Ic": -0.001494,
+      "purity_Ic": 0.000721,
+      "is_vn_positive": false,
+      "is_shortcut_killed": false,
+      "is_purity_proxy_killed": false
+    },
+    {
+      "id": "LOSE_Fi",
+      "stage": "LOSE",
+      "op": "Fi",
+      "vn_Ic": 0.096592,
+      "purity_Ic": -0.024579,
+      "is_vn_positive": true,
+      "is_shortcut_killed": true,
+      "is_purity_proxy_killed": true
+    },
+    {
+      "id": "LOSE_Te",
+      "stage": "LOSE",
+      "op": "Te",
+      "vn_Ic": -0.151372,
+      "purity_Ic": 0.090037,
+      "is_vn_positive": false,
+      "is_shortcut_killed": false,
+      "is_purity_proxy_killed": false
+    },
+    {
+      "id": "win_Ti",
+      "stage": "win",
+      "op": "Ti",
+      "vn_Ic": -0.204566,
+      "purity_Ic": 0.12,
+      "is_vn_positive": false,
+      "is_shortcut_killed": false,
+      "is_purity_proxy_killed": false
+    },
+    {
+      "id": "win_Fe",
+      "stage": "win",
+      "op": "Fe",
+      "vn_Ic": 0.15219,
+      "purity_Ic": -0.042914,
+      "is_vn_positive": true,
+      "is_shortcut_killed": true,
+      "is_purity_proxy_killed": true
+    },
+    {
+      "id": "lose_Ti",
+      "stage": "lose",
+      "op": "Ti",
+      "vn_Ic": -0.114364,
+      "purity_Ic": 0.0528,
+      "is_vn_positive": false,
+      "is_shortcut_killed": false,
+      "is_purity_proxy_killed": false
+    },
+    {
+      "id": "lose_Fe",
+      "stage": "lose",
+      "op": "Fe",
+      "vn_Ic": 0.054589,
+      "purity_Ic": -0.012378,
+      "is_vn_positive": true,
+      "is_shortcut_killed": true,
+      "is_purity_proxy_killed": true
+    }
+  ],
+  "edges": [
+    {
+      "src": "LOSE_Fe",
+      "dst": "LOSE_Ti",
+      "terrain": "LOSE",
+      "edge_type": "entropy_polarity_contrast",
+      "vn_Ic_gap": 0.281072,
+      "src_shortcut_killed": true,
+      "src_purity_killed": true,
+      "dst_shortcut_killed": false,
+      "dst_purity_killed": false
+    },
+    {
+      "src": "LOSE_Fe",
+      "dst": "LOSE_Te",
+      "terrain": "LOSE",
+      "edge_type": "entropy_polarity_contrast",
+      "vn_Ic_gap": 0.227878,
+      "src_shortcut_killed": true,
+      "src_purity_killed": true,
+      "dst_shortcut_killed": false,
+      "dst_purity_killed": false
+    },
+    {
+      "src": "LOSE_Fi",
+      "dst": "LOSE_Ti",
+      "terrain": "LOSE",
+      "edge_type": "entropy_polarity_contrast",
+      "vn_Ic_gap": 0.301158,
+      "src_shortcut_killed": true,
+      "src_purity_killed": true,
+      "dst_shortcut_killed": false,
+      "dst_purity_killed": false
+    },
+    {
+      "src": "LOSE_Fi",
+      "dst": "LOSE_Te",
+      "terrain": "LOSE",
+      "edge_type": "entropy_polarity_contrast",
+      "vn_Ic_gap": 0.247964,
+      "src_shortcut_killed": true,
+      "src_purity_killed": true,
+      "dst_shortcut_killed": false,
+      "dst_purity_killed": false
+    },
+    {
+      "src": "WIN_Fe",
+      "dst": "WIN_Ti",
+      "terrain": "WIN",
+      "edge_type": "entropy_polarity_contrast",
+      "vn_Ic_gap": 0.180433,
+      "src_shortcut_killed": true,
+      "src_purity_killed": true,
+      "dst_shortcut_killed": false,
+      "dst_purity_killed": false
+    },
+    {
+      "src": "WIN_Fe",
+      "dst": "WIN_Te",
+      "terrain": "WIN",
+      "edge_type": "entropy_polarity_contrast",
+      "vn_Ic_gap": 0.067563,
+      "src_shortcut_killed": true,
+      "src_purity_killed": true,
+      "dst_shortcut_killed": false,
+      "dst_purity_killed": false
+    },
+    {
+      "src": "WIN_Fi",
+      "dst": "WIN_Ti",
+      "terrain": "WIN",
+      "edge_type": "entropy_polarity_contrast",
+      "vn_Ic_gap": 0.21034,
+      "src_shortcut_killed": true,
+      "src_purity_killed": true,
+      "dst_shortcut_killed": false,
+      "dst_purity_killed": false
+    },
+    {
+      "src": "WIN_Fi",
+      "dst": "WIN_Te",
+      "terrain": "WIN",
+      "edge_type": "entropy_polarity_contrast",
+      "vn_Ic_gap": 0.09747,
+      "src_shortcut_killed": true,
+      "src_purity_killed": true,
+      "dst_shortcut_killed": false,
+      "dst_purity_killed": false
+    },
+    {
+      "src": "lose_Fi",
+      "dst": "lose_Te",
+      "terrain": "lose",
+      "edge_type": "entropy_polarity_contrast",
+      "vn_Ic_gap": 0.200393,
+      "src_shortcut_killed": true,
+      "src_purity_killed": true,
+      "dst_shortcut_killed": false,
+      "dst_purity_killed": false
+    },
+    {
+      "src": "lose_Fi",
+      "dst": "lose_Ti",
+      "terrain": "lose",
+      "edge_type": "entropy_polarity_contrast",
+      "vn_Ic_gap": 0.174509,
+      "src_shortcut_killed": true,
+      "src_purity_killed": true,
+      "dst_shortcut_killed": false,
+      "dst_purity_killed": false
+    },
+    {
+      "src": "lose_Fe",
+      "dst": "lose_Te",
+      "terrain": "lose",
+      "edge_type": "entropy_polarity_contrast",
+      "vn_Ic_gap": 0.194837,
+      "src_shortcut_killed": true,
+      "src_purity_killed": true,
+      "dst_shortcut_killed": false,
+      "dst_purity_killed": false
+    },
+    {
+      "src": "lose_Fe",
+      "dst": "lose_Ti",
+      "terrain": "lose",
+      "edge_type": "entropy_polarity_contrast",
+      "vn_Ic_gap": 0.168953,
+      "src_shortcut_killed": true,
+      "src_purity_killed": true,
+      "dst_shortcut_killed": false,
+      "dst_purity_killed": false
+    },
+    {
+      "src": "win_Fi",
+      "dst": "win_Te",
+      "terrain": "win",
+      "edge_type": "entropy_polarity_contrast",
+      "vn_Ic_gap": 0.137218,
+      "src_shortcut_killed": true,
+      "src_purity_killed": true,
+      "dst_shortcut_killed": false,
+      "dst_purity_killed": false
+    },
+    {
+      "src": "win_Fi",
+      "dst": "win_Ti",
+      "terrain": "win",
+      "edge_type": "entropy_polarity_contrast",
+      "vn_Ic_gap": 0.26034,
+      "src_shortcut_killed": true,
+      "src_purity_killed": true,
+      "dst_shortcut_killed": false,
+      "dst_purity_killed": false
+    },
+    {
+      "src": "win_Fe",
+      "dst": "win_Te",
+      "terrain": "win",
+      "edge_type": "entropy_polarity_contrast",
+      "vn_Ic_gap": 0.233634,
+      "src_shortcut_killed": true,
+      "src_purity_killed": true,
+      "dst_shortcut_killed": false,
+      "dst_purity_killed": false
+    },
+    {
+      "src": "win_Fe",
+      "dst": "win_Ti",
+      "terrain": "win",
+      "edge_type": "entropy_polarity_contrast",
+      "vn_Ic_gap": 0.356756,
+      "src_shortcut_killed": true,
+      "src_purity_killed": true,
+      "dst_shortcut_killed": false,
+      "dst_purity_killed": false
+    }
+  ]
+}

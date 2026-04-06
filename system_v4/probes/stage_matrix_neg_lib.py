@@ -18,10 +18,16 @@ from engine_core import (
 )
 from geometric_operators import (
     apply_Ti, apply_Fe, apply_Te, apply_Fi,
-    negentropy, trace_distance_2x2, _ensure_valid_density, SIGMA_X,
+    negentropy, partial_trace_A, partial_trace_B, trace_distance_2x2, _ensure_valid_density, SIGMA_X,
 )
-from hopf_manifold import left_density, right_density, inter_torus_transport_partial
-from process_cycle_stage_matrix_sim import terrain_name_from_row, torus_for_loop
+from hopf_manifold import (
+    inter_torus_transport_partial,
+    left_density,
+    left_weyl_spinor,
+    right_density,
+    right_weyl_spinor,
+)
+from exploratory_process_cycle_stage_matrix_sim import terrain_name_from_row, torus_for_loop
 from type2_engine_sim import TYPE1_STAGES, TYPE2_STAGES
 
 
@@ -105,7 +111,10 @@ def apply_subcycle_variant(
 ) -> EngineState:
     ga0_target = engine._ga0_target(terrain, op_name, controls)
     ga0_alpha = min(1.0, 0.10 + 0.45 * controls.piston + (0.10 if terrain["open"] else 0.0))
-    new_ga0 = float(np.clip((1.0 - ga0_alpha) * state.ga0_level + ga0_alpha * ga0_target, 0.0, 1.0))
+    if ga0_target is None:
+        new_ga0 = float(state.ga0_level)
+    else:
+        new_ga0 = float(np.clip((1.0 - ga0_alpha) * state.ga0_level + ga0_alpha * ga0_target, 0.0, 1.0))
 
     if flatten_type_weighting:
         strength = controls.piston
@@ -145,17 +154,18 @@ def apply_subcycle_variant(
         new_rho_L = state.rho_L.copy()
         new_rho_R = state.rho_R.copy()
 
-    rho_L_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0, "left")
-    rho_R_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0, "right")
+    rho_AB_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0)
+    rho_L_axis0 = _ensure_valid_density(partial_trace_B(rho_AB_axis0))
+    rho_R_axis0 = _ensure_valid_density(partial_trace_A(rho_AB_axis0))
     axis0_blend = min(0.45, strength * (0.05 + 0.30 * new_ga0))
     new_rho_L = _ensure_valid_density((1.0 - axis0_blend) * new_rho_L + axis0_blend * rho_L_axis0)
     new_rho_R = _ensure_valid_density((1.0 - axis0_blend) * new_rho_R + axis0_blend * rho_R_axis0)
 
     op_kwargs = {"polarity_up": polarity, "strength": strength}
     if op_name == "Te":
-        op_kwargs["angle"] = 0.3 * angle_mod
+        op_kwargs["q"] = 0.3 * angle_mod
     if op_name == "Fe":
-        op_kwargs["dt"] = 0.05 * dt_mod
+        op_kwargs["phi"] = 0.05 * dt_mod
 
     op_fn = OP_FN[op_name]
 
@@ -202,13 +212,22 @@ def apply_subcycle_variant(
         new_theta1 = (new_theta1 + d_theta) % (2 * np.pi)
         new_theta2 = (new_theta2 + 0.5 * d_theta) % (2 * np.pi)
 
+    q_new = np.array(
+        [
+            np.cos(new_eta) * np.cos(new_theta1),
+            np.cos(new_eta) * np.sin(new_theta1),
+            np.sin(new_eta) * np.cos(new_theta2),
+            np.sin(new_eta) * np.sin(new_theta2),
+        ],
+        dtype=float,
+    )
     return EngineState(
-        rho_L=new_rho_L,
-        rho_R=new_rho_R,
+        psi_L=left_weyl_spinor(q_new),
+        psi_R=right_weyl_spinor(q_new),
+        rho_AB=_ensure_valid_density(np.kron(new_rho_L, new_rho_R)),
         eta=new_eta,
         theta1=new_theta1,
         theta2=new_theta2,
-        ga0_level=new_ga0,
         stage_idx=state.stage_idx,
         engine_type=state.engine_type,
         history=list(state.history),

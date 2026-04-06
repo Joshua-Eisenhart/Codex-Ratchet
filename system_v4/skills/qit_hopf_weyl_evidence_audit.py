@@ -100,6 +100,7 @@ def build_qit_hopf_weyl_evidence_audit() -> dict[str, Any]:
     runtime_summary = runtime.get("summary", {}) if isinstance(runtime.get("summary"), dict) else {}
     runtime_owner_snapshot = runtime.get("owner_snapshot", {}) if isinstance(runtime.get("owner_snapshot"), dict) else {}
     runtime_packets = runtime.get("sim_evidence_packets", []) if isinstance(runtime.get("sim_evidence_packets"), list) else []
+    axis0_summary = runtime.get("axis0_control_plane_summary", {}) if isinstance(runtime.get("axis0_control_plane_summary"), dict) else {}
     runtime_mapped_witnesses = sorted(
         {
             packet.get("neg_witness_public_id", "")
@@ -116,15 +117,18 @@ def build_qit_hopf_weyl_evidence_audit() -> dict[str, Any]:
         "the Hopf/Weyl sidecar is aligned to the current owner content hash",
         "the runtime bridge is aligned to the current owner content hash",
     ]
+    if hopf_readiness.get("weyl_branch_nodes_present"):
+        safe_now.append("two live WEYL_BRANCH owner nodes are present")
     missing_now = [
-        "no live WEYL_BRANCH owner nodes",
         "no promoted torus 2-cells in owner truth",
         "no promoted spinor-state graph",
         "no promoted runtime-state graph",
         "no promoted history graph",
     ]
+    if not hopf_readiness.get("weyl_branch_nodes_present"):
+        missing_now.insert(0, "no live WEYL_BRANCH owner nodes")
     forbidden_claims_now = [
-        "do not claim live Weyl branch semantics in owner truth",
+        "do not claim full branch-runtime semantics beyond the admitted WEYL_BRANCH owner nodes",
         "do not claim torus 2-cells are promoted owner structure",
         "do not claim runtime bridge packets are runtime/history graphs",
         "do not claim sidecar candidate mappings are promotion evidence by themselves",
@@ -169,7 +173,7 @@ def build_qit_hopf_weyl_evidence_audit() -> dict[str, Any]:
             "carrier_assignment_scope": hopf_carrier.get("carrier_assignment_scope", "owner_scaffold_only"),
             "weyl_readiness": hopf_readiness,
             "owner_supported_claims": safe_now,
-            "owner_missing_anchors": hopf_readiness.get("missing_owner_anchors", ["WEYL_BRANCH"]),
+            "owner_missing_anchors": hopf_readiness.get("missing_owner_anchors", []),
         },
         "runtime_bridge_alignment": {
             "bridge_report_path": str(RUNTIME_BRIDGE_JSON),
@@ -184,6 +188,7 @@ def build_qit_hopf_weyl_evidence_audit() -> dict[str, Any]:
             "aligned_step_public_id_range": hopf_runtime_alignment.get("engine_sample_refs", []),
             "aligned_neg_witness_public_ids": runtime_mapped_witnesses,
             "unresolved_links": runtime_summary.get("unresolved_owner_links", 0),
+            "axis0_control_plane_summary": axis0_summary,
             "alignment_status": (
                 "aligned"
                 if hopf_runtime_alignment.get("owner_content_hash_matches_runtime_bridge") and runtime_summary.get("unresolved_owner_links", 1) == 0
@@ -216,7 +221,7 @@ def build_qit_hopf_weyl_evidence_audit() -> dict[str, Any]:
             "not_owner_truth": True,
             "not_runtime_state_graph": True,
             "not_history_graph": True,
-            "not_live_weyl_branch_evidence": True,
+            "not_full_live_weyl_branch_runtime_evidence": True,
             "not_promotion_evidence": True,
             "excluded_semantics": forbidden_claims_now,
         },
@@ -254,7 +259,11 @@ def build_qit_hopf_weyl_evidence_audit() -> dict[str, Any]:
                 "engine_public_ids": [node.get("public_id", "") for node in engine_nodes],
                 "chirality_coupling_edge_count": len(chirality_edges),
                 "engine_owns_stage_edge_count": sum(1 for edge in edges if edge.get("relation") == "ENGINE_OWNS_STAGE"),
-                "weyl_branch_nodes_present": False,
+                "projection_status": hopf_readiness.get("projection_status", ""),
+                "weyl_branch_nodes_present": bool(hopf_readiness.get("weyl_branch_nodes_present")),
+                "weyl_branch_public_ids": hopf_readiness.get("weyl_branch_public_ids", []),
+                "engine_branch_edge_count": hopf_readiness.get("engine_branch_edge_count", 0),
+                "missing_owner_anchors": hopf_readiness.get("missing_owner_anchors", []),
                 "runtime_alignment": {
                     "bridge_owner_hash_matches": runtime_owner_snapshot.get("qit_graph_content_hash", "") == owner.get("content_hash", ""),
                     "aligned_engine_public_ids": [
@@ -336,6 +345,17 @@ def _render_markdown(payload: dict[str, Any]) -> str:
         f"- owner_hash_matches: `{runtime['owner_hash_matches']}`",
         f"- aligned_engine_public_ids: `{', '.join(runtime['aligned_engine_public_ids'])}`",
         f"- unresolved_links: `{runtime['unresolved_links']}`",
+    ]
+    axis0_summary = runtime.get("axis0_control_plane_summary", {})
+    if axis0_summary:
+        lines.extend([
+            f"- axis0_surface_status: `{axis0_summary.get('surface_status')}`",
+            f"- axis0_runtime_sample_count: `{axis0_summary.get('runtime_sample_count')}`",
+            f"- axis0_direct_bridge_families: `{axis0_summary.get('direct_bridge_families', [])}`",
+            f"- axis0_history_window_bridge_families: `{axis0_summary.get('history_window_bridge_families', [])}`",
+            f"- axis0_history_window_sample_counts: `{axis0_summary.get('history_window_sample_counts', {})}`",
+        ])
+    lines.extend([
         "",
         "## Relevant Negative Evidence",
         f"- torus_witnesses: `{len(neg['torus_witnesses'])}`",
@@ -372,7 +392,7 @@ def _render_markdown(payload: dict[str, Any]) -> str:
         "- forbidden_claims_now:",
         *[f"  - {item}" for item in conclusion["forbidden_claims_now"]],
         "",
-    ]
+    ])
     return "\n".join(lines)
 
 

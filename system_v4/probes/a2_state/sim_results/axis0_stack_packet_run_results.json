@@ -1,0 +1,70 @@
+{
+  "name": "axis0_stack_packet_run",
+  "timestamp": "2026-04-01T21:56:46.652721+00:00",
+  "all_ok": true,
+  "steps": [
+    {
+      "label": "formal_geometry",
+      "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/run_formal_geometry_packet.py",
+      "returncode": 0,
+      "elapsed_sec": 8.239659070968628,
+      "stdout_tail": "========================================================================\nFORMAL GEOMETRY PACKET RUN\n========================================================================\nPASS  geometry_truth           rc=0  t=0.20s\nPASS  weyl_geometry_ladder     rc=0  t=0.38s\nPASS  weyl_ambient_overlay     rc=0  t=0.48s\nPASS  engine_chirality         rc=0  t=6.41s\nPASS  dual_weyl_cycle          rc=0  t=0.24s\nPASS  neg_torus_scrambled      rc=0  t=0.22s\nPASS  neg_no_chirality         rc=0  t=0.18s\nPASS  neg_loop_law_swap        rc=0  t=0.09s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/formal_geometry_packet_run_results.json\n",
+      "stderr_tail": "",
+      "ok": true
+    },
+    {
+      "label": "root_emergence",
+      "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/run_root_emergence_packet.py",
+      "returncode": 0,
+      "elapsed_sec": 7.3283538818359375,
+      "stdout_tail": "========================================================================\nROOT EMERGENCE PACKET RUN\n========================================================================\nPASS  nonclassical_guard       rc=0  t=0.37s\nPASS  ec3_identity             rc=0  t=0.07s\nPASS  missing_axis_search      rc=0  t=0.41s\nPASS  bridge_search            rc=0  t=0.66s\nPASS  carrier_rank             rc=0  t=1.19s\nPASS  history_mispair_counterfeit rc=0  t=0.57s\nPASS  coarising_stress         rc=0  t=4.00s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/root_emergence_packet_run_results.json\n",
+      "stderr_tail": "",
+      "ok": true
+    },
+    {
+      "label": "carrier_selection",
+      "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/run_carrier_selection_packet.py",
+      "returncode": 0,
+      "elapsed_sec": 3.1495251655578613,
+      "stdout_tail": "========================================================================\nCARRIER SELECTION PACKET RUN\n========================================================================\nPASS  missing_axis_search      rc=0  t=0.40s\nPASS  bridge_search            rc=0  t=0.61s\nPASS  xi_strict_bakeoff        rc=0  t=0.46s\nPASS  carrier_rank             rc=0  t=1.06s\nPASS  history_mispair_counterfeit rc=0  t=0.56s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/carrier_selection_packet_run_results.json\n",
+      "stderr_tail": "",
+      "ok": true
+    },
+    {
+      "label": "pre_entropy",
+      "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/run_pre_entropy_packet.py",
+      "returncode": 0,
+      "elapsed_sec": 4.926151990890503,
+      "stdout_tail": "========================================================================\nPRE-ENTROPY PACKET RUN\n========================================================================\nPASS  xi_bakeoff               rc=0  t=0.34s\nPASS  xi_strict_bakeoff        rc=0  t=0.47s\nPASS  bridge_search            rc=0  t=0.59s\nPASS  phase5b_stability        rc=0  t=2.81s\nPASS  fe_indexed_history       rc=0  t=0.31s\nPASS  dynamic_shell            rc=0  t=0.36s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/pre_entropy_packet_run_results.json\n",
+      "stderr_tail": "",
+      "ok": true
+    },
+    {
+      "label": "c1_bridge_object",
+      "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/validate_c1_bridge_object_packet.py",
+      "returncode": 0,
+      "elapsed_sec": 0.03650403022766113,
+      "stdout_tail": "amp\": \"2026-04-01T21:56:09.574850+00:00\",\n  \"passed_gates\": 4,\n  \"total_gates\": 4,\n  \"score\": 1.0,\n  \"gates\": [\n    {\n      \"name\": \"C1B1_bridge_object_is_explicit_and_downstream_only\",\n      \"pass\": true,\n      \"detail\": {\n        \"name\": \"Xi_chiral_entangle\",\n        \"status\": \"admitted_bridge_object_for_downstream_readout_not_final_owner_law\",\n        \"keep\": true,\n        \"scope\": \"downstream_readout_only\",\n        \"consumer_status\": \"allowed_for_entropy_readout_not_final_owner_xi\",\n        \"read\": \"Xi_chiral_entangle is the current admitted bridge object for downstream readout use. It is not a final Xi owner law, shell doctrine, history-law replacement, or entropy-family owner doctrine.\",\n        \"evidence\": {\n          \"bridge_winner\": \"Xi_chiral_entangle\",\n          \"winner_mean_mi\": 0.5850944299846628,\n          \"winner_mean_i_c\": 0.0775200940266869,\n          \"runner_up\": \"Xi_chiral_hist_entangle\",\n          \"runner_up_mean_mi\": 0.5153548066316724,\n          \"runner_up_mean_i_c\": -0.09313964667615891,\n          \"lr_direct_mean_mi\": 3.3769283665681843e-16,\n          \"counterfeit_status\": \"counterfeit_beats_mi_but_loses_signed_honesty\",\n          \"counterfeit_mean_live_I_c\": 0.0775200940266869,\n          \"counterfeit_mean_counterfeit_I_c\": 0.007098294355261954,\n          \"counterfeit_mean_I_c_gap\": 0.07042179967142495\n        }\n      }\n    },\n    {\n      \"name\": \"C1B2_counterfeit_pressure_remains_bound_to_the_bridge_object\",\n      \"pass\": true,\n      \"detail\": {\n        \"bridge_winner\": \"Xi_chiral_entangle\",\n        \"winner_mean_mi\": 0.5850944299846628,\n        \"winner_mean_i_c\": 0.0775200940266869,\n        \"runner_up\": \"Xi_chiral_hist_entangle\",\n        \"runner_up_mean_mi\": 0.5153548066316724,\n        \"runner_up_mean_i_c\": -0.09313964667615891,\n        \"lr_direct_mean_mi\": 3.3769283665681843e-16,\n        \"counterfeit_status\": \"counterfeit_beats_mi_but_loses_signed_honesty\",\n        \"counterfeit_mean_live_I_c\": 0.0775200940266869,\n        \"counterfeit_mean_counterfeit_I_c\": 0.007098294355261954,\n        \"counterfeit_mean_I_c_gap\": 0.07042179967142495\n      }\n    },\n    {\n      \"name\": \"C1B3_bridge_object_is_bound_to_the_existing_support_contract\",\n      \"pass\": true,\n      \"detail\": {\n        \"c1_search_closed\": true,\n        \"carrier_handoff\": {\n          \"object\": \"c1_signed_bridge_candidate_handoff\",\n          \"candidate\": \"Xi_chiral_entangle\",\n          \"status\": \"provisional_handoff_ready\",\n          \"placement_contract\": \"downstream_axis_internal_bridge_candidate_only\",\n          \"owner_dependency\": \"must_bind_under_xi_hist_signed_law\",\n          \"forbidden_reclassification\": \"not_owner_derived_not_final_owner_xi\",\n          \"positive_witness_gate\": \"C3_live_carrier_wins_and_honesty_signal_stays_unique\",\n          \"bridge_separation_gate\": \"C4_bridge_search_separates_winning_bridges_from_controls\",\n          \"counterfeit_guard_gate\": \"C7_counterfeit_history_games_mi_but_not_coherent_info\",\n          \"signed_metric\": \"I_c\",\n          \"consumer_status\": \"allowed_for_entropy_readout_not_final_owner_xi\",\n          \"read\": \"Xi_chiral_entangle is the current signed bridge candidate handoff object for downstream readout use, but it is not a final owner law.\"\n        },\n        \"pre_entropy_mapping\": \"axis_internal_candidate_not_final_owner_law\",\n        \"pre_entropy_relation\": \"downstream_of_xi_hist_signed_law_not_alternate_owner_law\",\n        \"pre_entropy_placement\": \"downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law\",\n        \"entropy_gate_name\": \"E10_current_bridge_candidate_is_explicit_and_provisional\",\n        \"entropy_gate_status\": \"admitted_executable_candidate_not_final_owner_law\"\n      }\n    },\n    {\n      \"name\": \"C1B4_bridge_object_keeps_owner_doctrine_questions_open\",\n      \"pass\": true,\n      \"detail\": {\n        \"final_xi_owner_law\": \"open\",\n        \"shell_doctrine\": \"open\",\n        \"history_law_replacement\": \"open\",\n        \"entropy_family_owner_doctrine\": \"open\"\n      }\n    }\n  ]\n}\n",
+      "stderr_tail": "",
+      "ok": true
+    },
+    {
+      "label": "matched_marginal",
+      "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/run_matched_marginal_packet.py",
+      "returncode": 0,
+      "elapsed_sec": 28.10982394218445,
+      "stdout_tail": "========================================================================\nMATCHED MARGINAL PACKET RUN\n========================================================================\nPASS  phase4_bridge_landscape      rc=0  t=0.80s\nPASS  phase5a_marginal_preserving  rc=0  t=26.79s\nPASS  phase6_point_reference       rc=0  t=0.19s\nPASS  fe_indexed_history           rc=0  t=0.30s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/matched_marginal_packet_run_results.json\n",
+      "stderr_tail": "",
+      "ok": true
+    },
+    {
+      "label": "entropy_readout",
+      "script": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/run_entropy_readout_packet.py",
+      "returncode": 0,
+      "elapsed_sec": 8.9636070728302,
+      "stdout_tail": "========================================================================\nENTROPY READOUT PACKET RUN\n========================================================================\nPASS  entropy_negative_battery     rc=0  t=0.68s\nPASS  axis0_full_spectrum          rc=0  t=7.78s\nPASS  axis0_fep_compression        rc=0  t=0.47s\n\nrun_results: /Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/entropy_readout_packet_run_results.json\n",
+      "stderr_tail": "",
+      "ok": true
+    }
+  ]
+}

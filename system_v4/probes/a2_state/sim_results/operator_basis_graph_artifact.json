@@ -1,0 +1,98 @@
+{
+  "artifact": "operator_basis_graph",
+  "timestamp": "2026-04-04T09:52:06.141491+00:00",
+  "scope": "B3 operator basis \u2014 minimal node/edge structure derived from sim results",
+  "nodes": [
+    {
+      "id": "Ti",
+      "family": "z_axis",
+      "action": "z_dephasing",
+      "load_bearing": true,
+      "gap_drop_fraction": 1.0219505475793331
+    },
+    {
+      "id": "Te",
+      "family": "x_axis",
+      "action": "x_dephasing",
+      "load_bearing": true,
+      "gap_drop_fraction": 1.7241075322322625
+    },
+    {
+      "id": "Fi",
+      "family": "x_axis",
+      "action": "x_rotation",
+      "load_bearing": true,
+      "gap_drop_fraction": 0.27589246776773496
+    },
+    {
+      "id": "Fe",
+      "family": "z_axis",
+      "action": "z_rotation",
+      "load_bearing": true,
+      "gap_drop_fraction": 3.021950547579326
+    }
+  ],
+  "edges": [
+    {
+      "from": "Fi",
+      "to": "Te",
+      "type": "fiber_loop_pair",
+      "engine_type": 1,
+      "source": "engine_core STAGE_OPERATOR_LUT"
+    },
+    {
+      "from": "Fe",
+      "to": "Ti",
+      "type": "base_loop_pair",
+      "engine_type": 1,
+      "source": "engine_core STAGE_OPERATOR_LUT"
+    },
+    {
+      "from": "Fe",
+      "to": "Ti",
+      "type": "fiber_loop_pair",
+      "engine_type": 2,
+      "source": "engine_core STAGE_OPERATOR_LUT"
+    },
+    {
+      "from": "Fi",
+      "to": "Te",
+      "type": "base_loop_pair",
+      "engine_type": 2,
+      "source": "engine_core STAGE_OPERATOR_LUT"
+    },
+    {
+      "from": "Ti",
+      "to": "Te",
+      "type": "cross_axis_noncomm",
+      "noncomm_ratio": 6.952752047517389e-17,
+      "noncomm_is_load_bearing": true
+    },
+    {
+      "from": "Ti",
+      "to": "Fi",
+      "type": "cross_axis_noncomm",
+      "noncomm_ratio": 6.952752047517389e-17,
+      "noncomm_is_load_bearing": true
+    },
+    {
+      "from": "Fe",
+      "to": "Te",
+      "type": "cross_axis_noncomm",
+      "noncomm_ratio": 6.952752047517389e-17,
+      "noncomm_is_load_bearing": true
+    },
+    {
+      "from": "Fe",
+      "to": "Fi",
+      "type": "cross_axis_noncomm",
+      "noncomm_ratio": 6.952752047517389e-17,
+      "noncomm_is_load_bearing": true
+    }
+  ],
+  "geometry_crosscheck_summary": {
+    "type1_fully_matches": true,
+    "type2_fully_matches": false,
+    "probe_canonical_scope": "Type-1 bounded: probe canonical matches Type-1 engine assignment; Type-2 has inverted fiber/base grammar (z-family on fiber, x-family on base)"
+  }
+}

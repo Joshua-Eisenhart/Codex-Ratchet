@@ -1,0 +1,245 @@
+{
+  "schema": "SYSTEM_INTEGRATION_LEDGER__v1",
+  "description": "Single integration contract for the full QIT runtime stack. Each layer declares its owner files, source corpus entries, live tools, proof guard status, runtime status, and open gaps. Nothing is 'live' unless this ledger says so.",
+  "generated_utc": "2026-03-31",
+  "integration_rules": [
+    "nothing is live just because it exists in the corpus",
+    "nothing is proved unless it passes the nonclassical guard layer",
+    "nothing is graph-integrated unless dynamic state is written and read back",
+    "nothing is math-integrated unless real algebra objects affect the runtime",
+    "nothing is system-integrated unless retrieval/context supports the same stack without overwriting canon"
+  ],
+  "layers": {
+    "source": {
+      "purpose": "Master source universe. Repos, papers, method bundles, imported skill corpora. Not done just because it is saved.",
+      "owner_files": [
+        "Leviathan-Arbitrage/outside docs for refernce/SKILL_SOURCE_CORPUS.md",
+        "Leviathan-Arbitrage/outside docs for refernce/LOCAL_SOURCE_REPO_INVENTORY.md",
+        "system_v4/V4_IMPORTED_SKILL_CLUSTER_MAP__CURRENT.md"
+      ],
+      "corpus_entries": {
+        "active_runtime": [
+          "TOOLCHAIN::BASE_GRAPH_STACK",
+          "TOOL::PYDANTIC",
+          "TOOL::NETWORKX",
+          "REPO::Z3"
+        ],
+        "partial": [
+          "CORPUS::LEV_OS_AGENTS_CURATED",
+          "CORPUS::LEV_OS_AGENTS_LIBRARY",
+          "REPO::LEV_OS_LEVIATHAN",
+          "REPO::PI_MONO",
+          "SUBCORPUS::PI_MONO_PACKAGES",
+          "REPO::CONTEXT_ENGINEERING",
+          "REPO::SPEC_KIT",
+          "REPO::SUPERPOWERS",
+          "REPO::MEM0",
+          "METHOD_CORPUS::RETOOLED_EXTERNAL_METHODS",
+          "DOC::LEV_NONCLASSICAL_RUNTIME_DESIGN",
+          "TOOLCHAIN::SPEC_GRAPH_VENV",
+          "TOOL::PYTORCH_GEOMETRIC",
+          "TOOL::TOPONETX",
+          "TOOL::CLIFFORD",
+          "TOOL::KINGDON",
+          "SUBSTRATE::V4_RUNTIME_CORE"
+        ],
+        "undercaptured_next": [
+          "REPO::ALPHAGEOMETRY",
+          "REPO::AUTORESEARCHCLAW",
+          "REPO::DREAMCODER_EC",
+          "TOOL::HYPERNETX",
+          "TOOL::XGI"
+        ],
+        "home_local_pools": [
+          "~/GitHub/pi-mono",
+          "~/GitHub/reference/other/AutoResearchClaw",
+          "~/GitHub/reference/other/dreamcoder-ec",
+          "~/GitHub/reference/other/z3",
+          "~/GitHub/reference/other/z3guide",
+          "~/GitHub/leviathan",
+          "~/GitHub/leviathan-agents",
+          "~/GitHub/leviathan-agentping",
+          "~/GitHub/leviathan-agent-lease",
+          "~/GitHub/leviathan-lev-agentfs",
+          "~/GitHub/leviathan-lev-content",
+          "~/GitHub/codex-autoresearch"
+        ]
+      },
+      "method_family": {
+        "name": "29 Retooled External Methods",
+        "canonical_source": "core_docs/v4 upgrades/29 thing.txt",
+        "audited_rendering": "core_docs/v4 upgrades/lev_nonclassical_runtime_design_audited.md",
+        "canonical_path_in_megaboot": "mega legacy/megaboot UPGRADE/lev_nonclassical_runtime_design_audited.md",
+        "obsidian_vault_path": "obsidian_vault/lev_nonclassical_runtime_design_audited.md.md",
+        "retool_contract": "keep the useful process, identify the flattening assumption, retool to respect finitude and non-commutation",
+        "methods_include": [
+          "Nested Hopf Tori",
+          "Topology/Orchestration/Dispatch",
+          "Graph Topology Thinking",
+          "Nonclassical State Space",
+          "Phase/Loop-Scale Runtime Model"
+        ]
+      },
+      "runtime_status": "partial",
+      "missing": "unified intake pass over home_local_pools; undercaptured repos not yet given bounded live slices"
+    },
+
+    "proof": {
+      "purpose": "Nonclassical constraint enforcement. Anti-classical guardrails. Machine-checkable admissibility rules. Must be built BEFORE broader proof search tools.",
+      "owner_files": [],
+      "corpus_entries": {
+        "immediate_tool": "REPO::Z3",
+        "later_pattern_sources": [
+          "REPO::ALPHAGEOMETRY",
+          "REPO::DREAMCODER_EC"
+        ]
+      },
+      "z3_role": {
+        "encode": [
+          "forbidden classical assumptions",
+          "admissible vs non-admissible transitions",
+          "no hidden center",
+          "no separable primitive fallback",
+          "no silent commutativity",
+          "no fixed marginals unless declared",
+          "no Cartesian product leak",
+          "no classical retrocausality (bridge MI is forward-only)"
+        ],
+        "contract": "every proof candidate must pass z3 guard before it is treated as meaningful"
+      },
+      "nonclassical_constraints_to_encode": [
+        "RC-1: Hopf fibration as spatial entropy gradient field",
+        "RC-2: EC-3 cycle as operator algebra closure condition",
+        "GA0_OFFSET balance sum = -0.10 (not arbitrary)",
+        "chirality is grade-3 pseudoscalar, not scalar",
+        "topo_gate is 2-cell legality, not mere graph adjacency",
+        "ADMISSIBILITY = sign(d_ga0) == sign(d_ct_mi), not any other co-arising definition",
+        "marginal preservation: Tr_B(rho_AB) = rho_A must hold except at declared bridge steps"
+      ],
+      "runtime_status": "NOT STARTED",
+      "missing": "z3 constraint ledger file; anti-classical guard module; proof candidate test harness"
+    },
+
+    "math": {
+      "purpose": "Live noncommutative algebra. Real multivectors and rotors affecting runtime. Not coefficient arrays.",
+      "owner_files": [
+        "system_v4/skills/graph_tool_integration.py (coeffs_to_multivector, build_ga_edge_payloads)"
+      ],
+      "corpus_entries": [
+        "TOOL::CLIFFORD",
+        "TOOL::KINGDON"
+      ],
+      "live_status": {
+        "clifford_multivectors_on_enriched_edges": true,
+        "multivector_product_in_bridge_mi": true,
+        "phase_gamma_from_mv_interaction": "partial — abs(mv_interaction) used, not a principled invariant extraction",
+        "rotors_in_operator_path": false,
+        "kingdon_pytorch_coupled": false
+      },
+      "open_gap": "GA invariant extraction: e1 * e123 = e23 (grade-2 bivector). The scalar part is 0. What invariant from the geometric product is the right phase scalar? Inner product? Grade projection? Magnitude? Not yet defined.",
+      "runtime_status": "partial",
+      "missing": "principled invariant extraction from multivector product; rotor-based operator application; kingdon bridge for differentiable GA"
+    },
+
+    "graph": {
+      "purpose": "Live dynamic graph tensor state. Every edge carries evolving state written and read back per engine step.",
+      "owner_files": [
+        "system_v4/skills/graph_tool_integration.py",
+        "system_v4/skills/qit_edge_state_updater.py",
+        "system_v4/skills/qit_engine_graph_builder.py",
+        "system_v4/a2_state/graphs/qit_engine_graph_v1.json"
+      ],
+      "corpus_entries": [
+        "TOOLCHAIN::BASE_GRAPH_STACK",
+        "TOOL::NETWORKX",
+        "TOOL::PYTORCH_GEOMETRIC",
+        "TOOL::TOPONETX",
+        "TOOL::HYPERNETX",
+        "TOOL::XGI"
+      ],
+      "live_status": {
+        "static_graph_built": true,
+        "pyg_edge_attr_15d": true,
+        "dynamic_slots_8_14_defined": true,
+        "slots_written_in_strict_path": "5/7 (POLARITY, CHIRAL_STATUS, TOPO_LEGAL, CONST_SAT, MARG_PRES)",
+        "slot_entang_weight_written": false,
+        "slot_admissibility_written": false,
+        "position_stability_guarded": true,
+        "clifford_multivectors_live": true,
+        "toponetx_loops_121": true,
+        "hypernetx_xgi": "installed, not load-bearing"
+      },
+      "runtime_status": "partial",
+      "missing": "ENTANG_WEIGHT and ADMISSIBILITY slot writes from analyze_trajectory; constraint tensors (step 4); cut-state family over live graph state"
+    },
+
+    "runtime": {
+      "purpose": "Engine, Axes 0-6, cut-state construction, negative sim families. The proving lane.",
+      "owner_files": [
+        "system_v4/probes/engine_core.py",
+        "system_v4/probes/sim_L6_master_engine.py",
+        "system_v4/probes/sim_axis0_orbit_phase_alignment.py",
+        "system_v4/probes/sim_edge_state_writeback.py",
+        "system_v4/skills/qit_engine_graph_builder.py",
+        "system_v4/skills/nested_graph_builder.py"
+      ],
+      "corpus_entries": [
+        "SUBSTRATE::V4_RUNTIME_CORE"
+      ],
+      "live_status": {
+        "engine_L0_L6_legality": true,
+        "axis_0_proving_lane": true,
+        "axis_1_6_deferred": true,
+        "negative_modes": ["strict", "bell_injected", "topology_flattened", "pyg_bypassed", "chirality_destroyed"],
+        "cut_state_honest": false,
+        "constraint_machine_checked": false,
+        "full_negative_families": "partial — 5 modes exist, fixed-marginal and Cartesian-leak not yet wired",
+        "bridge_mi_proxy": "bell_injected still used for co-arising rate; strict mode 55-61%"
+      },
+      "open_proofs": {
+        "OPEN_1_co_arising": "ga0=MI co-arising trajectory-specific; T3 cross-corr peak at lag=0; outer 94.4%, inner 72.9%",
+        "i_scalar": "ga0*=0.50 derived from GA0_OFFSET balance; formal derivation from RC-1+RC-2 open",
+        "cut_state_legality": "NOT STARTED — bridge_mi is still a proxy"
+      },
+      "runtime_status": "partial",
+      "missing": "legal cut-state families; machine-checked constraints; full negative matrix (fixed-marginal, Cartesian-leak, ordering-shuffle)"
+    },
+
+    "context": {
+      "purpose": "Corpus retrieval, graph memory, skills, operator support. Read-only. Non-canonical. Separate from sim truth.",
+      "owner_files": [],
+      "corpus_entries": [
+        "REPO::EVERMEMOS",
+        "REPO::MSA",
+        "REPO::MEM0",
+        "REPO::AUTORESEARCHCLAW"
+      ],
+      "candidates": [
+        "LightRAG",
+        "HippoRAG"
+      ],
+      "runtime_status": "NOT STARTED",
+      "missing": "graph-RAG retrieval; corpus intake pipeline; skill execution support; operator context assembly",
+      "build_order_constraint": "do not start until cut-state layer is honest (runtime step 5)"
+    }
+  },
+
+  "build_order": [
+    "1. foundation locked (sim_L6_master_engine.py guard, Axes 7-12 deferred) — DONE",
+    "2. dynamic PyG edge tensors — IN PROGRESS (5/7 slots live, 2 open)",
+    "3. clifford in runtime math path — PARTIAL (multivectors live, invariant extraction open)",
+    "4. z3 nonclassical constraint ledger and anti-classical guardrails — NOT STARTED",
+    "5. legal cut-state family over live graph — NOT STARTED",
+    "6. full negative sim families — PARTIAL",
+    "7. HyperNetX/XGI only when pairwise edges lose many-to-many structure — DEFERRED",
+    "8. LightRAG/graph-RAG retrieval for context — NOT STARTED (blocked on step 5)"
+  ],
+
+  "immediate_next": {
+    "step": 4,
+    "action": "Build z3 nonclassical constraint ledger",
+    "rationale": "Without this, every proof attempt drifts back to classical defaults. z3 is the only tool that can machine-check the forbidden-assumption boundary.",
+    "z3_repo_local": "work/reference_repos/other/z3",
+    "first_deliverable": "qit_nonclassical_guards.py — z3 Solver encoding of core nonclassical constraints from the QIT engine"
+  }
+}

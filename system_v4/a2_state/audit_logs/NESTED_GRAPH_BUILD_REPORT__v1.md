@@ -1,16 +1,16 @@
 # Nested Graph Build Report
 
-- generated_utc: `2026-03-27T00:17:28Z`
+- generated_utc: `2026-03-28T21:36:07Z`
 - status: `built`
 - layer_count: `6`
 - total_nodes_across_layers: `11139`
 - total_edges_across_layers: `22706`
-- cross_layer_edge_count: `9137`
-- toponetx_available: `True`
-- toponetx_shape: `[5, 4, 1]`
-- pyg_available: `True`
-- gudhi_available: `True`
-- gudhi_betti_numbers: `[294]`
+- cross_layer_edge_count: `9135`
+- toponetx_available: `False`
+- toponetx_shape: `[]`
+- pyg_available: `False`
+- gudhi_available: `False`
+- gudhi_betti_numbers: `[]`
 
 ## Layers
 
@@ -50,4 +50,3 @@
 - `A2_LOW_CONTROL → QIT_ENGINE`: 5
 - `B_LAYER → A2_LOW_CONTROL`: 2
 - `GRAVEYARD → SKILLS`: 2
-- `A2_MID_REFINEMENT → QIT_ENGINE`: 2

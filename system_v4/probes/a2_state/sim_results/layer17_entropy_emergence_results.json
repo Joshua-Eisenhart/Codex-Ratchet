@@ -1,0 +1,117 @@
+{
+  "layer": 17,
+  "name": "Entropy emerges from constraints",
+  "positive": {
+    "P1_monotonic_entropy_increase": {
+      "description": "S(rho) increases monotonically over first 5 cycles from pure |000>",
+      "entropies": [
+        -0.0,
+        0.12716372,
+        0.21593879,
+        0.2892952,
+        0.35238135,
+        0.40774183
+      ],
+      "monotonic": true,
+      "entropy_produced": true,
+      "pass": true
+    },
+    "P2_dissipative_vs_unitary": {
+      "description": "Dissipative ops (Ti,Te) produce \u0394S>0, unitary ops (Fe,Fi) preserve \u0394S\u22480",
+      "dissipative_positive_count": 10,
+      "dissipative_total": 20,
+      "unitary_all_near_zero": true,
+      "sample_dissipative": [
+        [
+          "Ti",
+          0,
+          0.0
+        ],
+        [
+          "Te",
+          0,
+          0.1271637227
+        ],
+        [
+          "Ti",
+          1,
+          -0.0
+        ],
+        [
+          "Te",
+          1,
+          0.088775071
+        ]
+      ],
+      "sample_unitary": [
+        [
+          "Fe",
+          0,
+          0.0
+        ],
+        [
+          "Fi",
+          0,
+          -0.0
+        ],
+        [
+          "Fe",
+          1,
+          0.0
+        ],
+        [
+          "Fi",
+          1,
+          0.0
+        ]
+      ],
+      "pass": true
+    },
+    "P3_max_mixed_fixed_point": {
+      "description": "I/8 is a fixed point: one full cycle returns ~I/8",
+      "distance_from_I8": 0.0,
+      "is_fixed_point": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_max_mixed_no_entropy_increase": {
+      "description": "Starting from max mixed, \u0394S \u2264 0 (already at maximum)",
+      "entropy_deltas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "no_increase": true,
+      "pass": true
+    },
+    "N2_no_dissipation_no_entropy": {
+      "description": "Without Ti,Te (dissipative ops), pure state stays pure (S=0)",
+      "entropies": [
+        -0.0,
+        -0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "stays_zero": true,
+      "pass": true
+    }
+  },
+  "tools_used": [
+    "von_neumann_entropy",
+    "build_3q_Ti/Fe/Te/Fi",
+    "ensure_valid_density"
+  ],
+  "timestamp": "2026-04-05",
+  "summary": "Positive: 3/3, Negative: 2/2",
+  "all_pass": true
+}

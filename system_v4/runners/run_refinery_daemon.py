@@ -56,6 +56,9 @@ from typing import Optional
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(REPO_ROOT))
+QIT_RUNTIME_EVIDENCE_BRIDGE_PATH = (
+    REPO_ROOT / "system_v4" / "a2_state" / "audit_logs" / "QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json"
+)
 
 
 # ── File Filter ───────────────────────────────────────────────────────
@@ -85,6 +88,72 @@ def content_hash(path: Path) -> str:
         return hashlib.sha256(path.read_bytes()).hexdigest()[:16]
     except (OSError, PermissionError):
         return ""
+
+
+def _load_axis0_runtime_status() -> Optional[dict]:
+    """Read the current persisted QIT runtime evidence bridge as a read-only status surface."""
+    if not QIT_RUNTIME_EVIDENCE_BRIDGE_PATH.exists():
+        return None
+    try:
+        payload = json.loads(QIT_RUNTIME_EVIDENCE_BRIDGE_PATH.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return None
+
+    axis0_summary = payload.get("axis0_control_plane_summary")
+    if isinstance(axis0_summary, dict):
+        return {
+            "status": str(axis0_summary.get("surface_status", "available")),
+            "runtime_sample_count": int(axis0_summary.get("runtime_sample_count", 0)),
+            "direct_families": [str(v) for v in axis0_summary.get("direct_bridge_families", []) if str(v)],
+            "history_window_families": [
+                str(v) for v in axis0_summary.get("history_window_bridge_families", []) if str(v)
+            ],
+            "history_window_sample_counts": [
+                int(v) for v in axis0_summary.get("history_window_sample_counts", [])
+            ],
+            "generated_utc": payload.get("generated_utc", ""),
+            "path": str(QIT_RUNTIME_EVIDENCE_BRIDGE_PATH),
+            "source_contract": "axis0_control_plane_summary",
+        }
+
+    runtime_samples = payload.get("runtime_samples", [])
+    if not runtime_samples:
+        return {
+            "status": "present_but_empty",
+            "runtime_sample_count": 0,
+        }
+
+    direct_families = sorted(
+        {
+            str(sample.get("axis0_bridge_snapshot", {}).get("bridge_family", ""))
+            for sample in runtime_samples
+            if sample.get("axis0_bridge_snapshot")
+        }
+    )
+    history_families = sorted(
+        {
+            str(sample.get("axis0_history_window_snapshot", {}).get("bridge_family", ""))
+            for sample in runtime_samples
+            if sample.get("axis0_history_window_snapshot")
+        }
+    )
+    history_sample_counts = sorted(
+        {
+            int(sample.get("axis0_history_window_snapshot", {}).get("n_samples", 0))
+            for sample in runtime_samples
+            if sample.get("axis0_history_window_snapshot")
+        }
+    )
+    return {
+        "status": "available",
+        "runtime_sample_count": len(runtime_samples),
+        "direct_families": [family for family in direct_families if family],
+        "history_window_families": [family for family in history_families if family],
+        "history_window_sample_counts": history_sample_counts,
+        "generated_utc": payload.get("generated_utc", ""),
+        "path": str(QIT_RUNTIME_EVIDENCE_BRIDGE_PATH),
+        "source_contract": "runtime_samples_fallback",
+    }
 
 
 # ── Queue ─────────────────────────────────────────────────────────────
@@ -349,6 +418,27 @@ def print_status(state: DaemonState):
     print(f"  Last checkpoint:    {state.stats['last_checkpoint_utc'] or 'never'}")
     print(f"  Pending in queue:   {sum(1 for i in state.queue if i.status == 'PENDING')}")
     print(f"  Processed hashes:   {len(state.processed_hashes)}")
+
+    axis0_status = _load_axis0_runtime_status()
+    print("  Axis0 control-plane evidence:")
+    if axis0_status is None:
+        print("    Runtime evidence bridge: unavailable")
+        return
+    print(f"    Runtime evidence bridge: {axis0_status['status']}")
+    print(f"    Runtime samples:         {axis0_status.get('runtime_sample_count', 0)}")
+    if axis0_status.get("source_contract"):
+        print(f"    Source contract:        {axis0_status['source_contract']}")
+    if axis0_status.get("generated_utc"):
+        print(f"    Evidence generated:      {axis0_status['generated_utc']}")
+    if axis0_status.get("direct_families"):
+        print(f"    Direct bridge family:    {', '.join(axis0_status['direct_families'])}")
+    if axis0_status.get("history_window_families"):
+        print(
+            f"    History-window family:   {', '.join(axis0_status['history_window_families'])}"
+        )
+    if axis0_status.get("history_window_sample_counts"):
+        counts = ", ".join(str(count) for count in axis0_status["history_window_sample_counts"])
+        print(f"    History-window samples:  {counts}")
 
 
 # ── CLI ───────────────────────────────────────────────────────────────

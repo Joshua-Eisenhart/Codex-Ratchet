@@ -99,10 +99,11 @@ for et in (1, 2):
     engine = GeometricEngine(engine_type=et)
     state = engine.run_cycle(engine.init_state())
 
-    # Extract topology names from history (4 ops per stage, so every 4th)
+    # run_cycle produces 1 history entry per stage (8 total).
+    # Extract topology from each entry's stage field (e.g. "Se_b_Ti" → "Se").
     stage_terrains = []
-    for i in range(0, len(state.history), 4):
-        stage_name = state.history[i]["stage"]  # e.g. "Se_b_Ti"
+    for entry in state.history:
+        stage_name = entry["stage"]  # e.g. "Se_b_Ti"
         topo = stage_name.split("_")[0]  # "Se"
         stage_terrains.append(topo)
 
@@ -123,19 +124,11 @@ for et in (1, 2):
     engine = GeometricEngine(engine_type=et)
     state = engine.run_cycle(engine.init_state())
 
-    # First 16 history entries = outer loop (4 stages × 4 ops)
-    outer_positions = set()
-    for i in range(16):
-        pos = state.history[i].get("loop_position")
-        if pos is not None:
-            outer_positions.add(pos)
-
-    # Last 16 = inner loop
-    inner_positions = set()
-    for i in range(16, 32):
-        pos = state.history[i].get("loop_position")
-        if pos is not None:
-            inner_positions.add(pos)
+    # run_cycle produces 8 history entries: first 4 = outer loop, last 4 = inner loop.
+    n = len(state.history)
+    half = n // 2
+    outer_positions = {state.history[i].get("loop_position") for i in range(half)} - {None}
+    inner_positions = {state.history[i].get("loop_position") for i in range(half, n)} - {None}
 
     check(f"Type-{et} first 16 history entries are 'outer'",
           outer_positions == {"outer"},

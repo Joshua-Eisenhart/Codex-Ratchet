@@ -1,0 +1,40 @@
+{
+  "layer": 8,
+  "name": "polarity_dynamics",
+  "positive": {
+    "P1_polarity_difference": {
+      "pass": true,
+      "rho_distance_up_vs_down": 0.09899494936611669,
+      "note": "Up vs down polarity on Ti survives coupled with different outputs"
+    },
+    "P2_entropy_direction": {
+      "pass": true,
+      "S_original": 0.7549427179427943,
+      "S_up": 0.8504896251021616,
+      "S_down": 0.7908781238928476,
+      "delta_S": 0.05961150120931402,
+      "note": "Polarity flips change entropy magnitude"
+    }
+  },
+  "negative": {
+    "N1_uniform_vs_mixed_polarity": {
+      "pass": true,
+      "weak_discriminator": true,
+      "entropy_all_up": 0.9999953324820805,
+      "entropy_all_down": 0.9886451726668865,
+      "entropy_mixed": 0.9999953324820805,
+      "note": "HERMES CORRECTION: all_up and mixed produce identical entropy — N1 does not discriminate well. Polarity effects are real (P1,P2 confirm) but this negative test needs revision. Do not cite as strong falsifier."
+    }
+  },
+  "tools_used": [
+    "apply_Ti",
+    "von_neumann_entropy_2x2",
+    "GeometricEngine"
+  ],
+  "timestamp": "2026-04-05",
+  "summary": {
+    "passed": 3,
+    "total": 3,
+    "all_pass": true
+  }
+}

@@ -1,0 +1,406 @@
+{
+  "layer": 19,
+  "name": "Axis 0 = signed entropy kernel (I_c = -S(A|B))",
+  "positive": {
+    "P1_axis0_gradient": {
+      "description": "I_c varies with torus position eta \u2014 Axis 0 has a spatial gradient",
+      "ic_by_eta": {
+        "TORUS_INNER": {
+          "eta": 0.392699,
+          "radii": [
+            0.9238795325112867,
+            0.3826834323650898
+          ],
+          "ic_trajectory": [
+            0.00404454,
+            0.10041887,
+            0.16182782,
+            0.13228468,
+            0.00798624,
+            -0.16847062,
+            -0.32249553,
+            -0.38580262,
+            -0.3519136,
+            -0.27764994
+          ],
+          "mean_ic": -0.10997702,
+          "max_ic": 0.16182782
+        },
+        "TORUS_CLIFFORD": {
+          "eta": 0.785398,
+          "radii": [
+            0.7071067811865476,
+            0.7071067811865475
+          ],
+          "ic_trajectory": [
+            -0.16214789,
+            -0.2468684,
+            -0.29961762,
+            -0.35245762,
+            -0.42473226,
+            -0.51413473,
+            -0.59901686,
+            -0.65337698,
+            -0.66764763,
+            -0.65708687
+          ],
+          "mean_ic": -0.45770869,
+          "max_ic": -0.16214789
+        },
+        "TORUS_OUTER": {
+          "eta": 1.178097,
+          "radii": [
+            0.38268343236508984,
+            0.9238795325112867
+          ],
+          "ic_trajectory": [
+            0.00404454,
+            0.10041887,
+            0.16182782,
+            0.13228468,
+            0.00798624,
+            -0.16847062,
+            -0.32249553,
+            -0.38580262,
+            -0.3519136,
+            -0.27764994
+          ],
+          "mean_ic": -0.10997702,
+          "max_ic": 0.16182782
+        }
+      },
+      "mean_ics": {
+        "TORUS_INNER": -0.10997702,
+        "TORUS_CLIFFORD": -0.45770869,
+        "TORUS_OUTER": -0.10997702
+      },
+      "gradient_exists": true,
+      "caveat": "INNER and OUTER trajectories are identical — 3q operators do not depend on eta. Gradient is 2-value (inner/outer vs Clifford), not a true 3-point spatial gradient.",
+      "pass": true
+    },
+    "P2_axis0_irreversible": {
+      "description": "Mean I_c over 20 cycles > 0: ratchet accumulates, does not return to 0",
+      "ic_trajectory": [
+        0.1825126,
+        0.45442784,
+        0.63280603,
+        0.6471561,
+        0.50291777,
+        0.26950013,
+        0.06426185,
+        0.00180574,
+        0.09141328,
+        0.23359799,
+        0.32931528,
+        0.33101159,
+        0.24470686,
+        0.1188797,
+        0.02202405,
+        0.0035477,
+        0.05791295,
+        0.13514535,
+        0.18347753,
+        0.17752302
+      ],
+      "mean_ic": 0.23419717,
+      "max_ic": 0.6471561,
+      "min_ic": 0.00180574,
+      "net_positive": true,
+      "pass": true
+    },
+    "P3_type1_vs_type2": {
+      "description": "Different Fi coupling strengths (theta=pi vs pi/2) produce different Axis 0 (I_c) signatures. The axis is coupling-dependent.",
+      "type1_theta_pi": {
+        "ic_trajectory": [
+          0.1825126,
+          0.45442784,
+          0.63280603,
+          0.6471561,
+          0.50291777,
+          0.26950013,
+          0.06426185,
+          0.00180574,
+          0.09141328,
+          0.23359799,
+          0.32931528,
+          0.33101159,
+          0.24470686,
+          0.1188797,
+          0.02202405,
+          0.0035477,
+          0.05791295,
+          0.13514535,
+          0.18347753,
+          0.17752302
+        ],
+        "ic_all_cuts": [
+          {
+            "cut1_1vs23": 0.1825126,
+            "cut2_12vs3": -0.12716372,
+            "cut3_13vs2": 0.1825126
+          },
+          {
+            "cut1_1vs23": 0.45442784,
+            "cut2_12vs3": -0.21593879,
+            "cut3_13vs2": 0.45442784
+          },
+          {
+            "cut1_1vs23": 0.63280603,
+            "cut2_12vs3": -0.2892952,
+            "cut3_13vs2": 0.63280603
+          },
+          {
+            "cut1_1vs23": 0.6471561,
+            "cut2_12vs3": -0.35238135,
+            "cut3_13vs2": 0.6471561
+          },
+          {
+            "cut1_1vs23": 0.50291777,
+            "cut2_12vs3": -0.40774183,
+            "cut3_13vs2": 0.50291777
+          },
+          {
+            "cut1_1vs23": 0.26950013,
+            "cut2_12vs3": -0.45693025,
+            "cut3_13vs2": 0.26950013
+          },
+          {
+            "cut1_1vs23": 0.06426185,
+            "cut2_12vs3": -0.50100719,
+            "cut3_13vs2": 0.06426185
+          },
+          {
+            "cut1_1vs23": 0.00180574,
+            "cut2_12vs3": -0.54074885,
+            "cut3_13vs2": 0.00180574
+          },
+          {
+            "cut1_1vs23": 0.09141328,
+            "cut2_12vs3": -0.57675103,
+            "cut3_13vs2": 0.09141328
+          },
+          {
+            "cut1_1vs23": 0.23359799,
+            "cut2_12vs3": -0.609487,
+            "cut3_13vs2": 0.23359799
+          },
+          {
+            "cut1_1vs23": 0.32931528,
+            "cut2_12vs3": -0.63934255,
+            "cut3_13vs2": 0.32931528
+          },
+          {
+            "cut1_1vs23": 0.33101159,
+            "cut2_12vs3": -0.66663855,
+            "cut3_13vs2": 0.33101159
+          },
+          {
+            "cut1_1vs23": 0.24470686,
+            "cut2_12vs3": -0.69164615,
+            "cut3_13vs2": 0.24470686
+          },
+          {
+            "cut1_1vs23": 0.1188797,
+            "cut2_12vs3": -0.71459745,
+            "cut3_13vs2": 0.1188797
+          },
+          {
+            "cut1_1vs23": 0.02202405,
+            "cut2_12vs3": -0.73569328,
+            "cut3_13vs2": 0.02202405
+          },
+          {
+            "cut1_1vs23": 0.0035477,
+            "cut2_12vs3": -0.7551089,
+            "cut3_13vs2": 0.0035477
+          },
+          {
+            "cut1_1vs23": 0.05791295,
+            "cut2_12vs3": -0.77299842,
+            "cut3_13vs2": 0.05791295
+          },
+          {
+            "cut1_1vs23": 0.13514535,
+            "cut2_12vs3": -0.78949825,
+            "cut3_13vs2": 0.13514535
+          },
+          {
+            "cut1_1vs23": 0.18347753,
+            "cut2_12vs3": -0.80472973,
+            "cut3_13vs2": 0.18347753
+          },
+          {
+            "cut1_1vs23": 0.17752302,
+            "cut2_12vs3": -0.81880135,
+            "cut3_13vs2": 0.17752302
+          }
+        ],
+        "mean_ic": 0.23419717,
+        "max_ic": 0.6471561
+      },
+      "type2_theta_pi2": {
+        "ic_trajectory": [
+          0.1825126,
+          0.25564409,
+          0.42272494,
+          0.31379279,
+          0.15842192,
+          -0.16994814,
+          -0.38537479,
+          -0.5242098,
+          -0.44372894,
+          -0.36425485,
+          -0.27663685,
+          -0.32704479,
+          -0.42049981,
+          -0.58995081,
+          -0.69309748,
+          -0.74828802,
+          -0.69944381,
+          -0.6532238,
+          -0.60972694,
+          -0.64194646
+        ],
+        "ic_all_cuts": [
+          {
+            "cut1_1vs23": 0.1825126,
+            "cut2_12vs3": -0.12716372,
+            "cut3_13vs2": 0.1825126
+          },
+          {
+            "cut1_1vs23": 0.25564409,
+            "cut2_12vs3": -0.41472254,
+            "cut3_13vs2": 0.25564409
+          },
+          {
+            "cut1_1vs23": 0.42272494,
+            "cut2_12vs3": -0.49937629,
+            "cut3_13vs2": 0.42272494
+          },
+          {
+            "cut1_1vs23": 0.31379279,
+            "cut2_12vs3": -0.68574466,
+            "cut3_13vs2": 0.31379279
+          },
+          {
+            "cut1_1vs23": 0.15842192,
+            "cut2_12vs3": -0.75223767,
+            "cut3_13vs2": 0.15842192
+          },
+          {
+            "cut1_1vs23": -0.16994814,
+            "cut2_12vs3": -0.89637852,
+            "cut3_13vs2": -0.16994814
+          },
+          {
+            "cut1_1vs23": -0.38537479,
+            "cut2_12vs3": -0.95064383,
+            "cut3_13vs2": -0.38537479
+          },
+          {
+            "cut1_1vs23": -0.5242098,
+            "cut2_12vs3": -1.06676439,
+            "cut3_13vs2": -0.5242098
+          },
+          {
+            "cut1_1vs23": -0.44372894,
+            "cut2_12vs3": -1.11189326,
+            "cut3_13vs2": -0.44372894
+          },
+          {
+            "cut1_1vs23": -0.36425485,
+            "cut2_12vs3": -1.20733983,
+            "cut3_13vs2": -0.36425485
+          },
+          {
+            "cut1_1vs23": -0.27663685,
+            "cut2_12vs3": -1.24529467,
+            "cut3_13vs2": -0.27663685
+          },
+          {
+            "cut1_1vs23": -0.32704479,
+            "cut2_12vs3": -1.32469493,
+            "cut3_13vs2": -0.32704479
+          },
+          {
+            "cut1_1vs23": -0.42049981,
+            "cut2_12vs3": -1.35685281,
+            "cut3_13vs2": -0.42049981
+          },
+          {
+            "cut1_1vs23": -0.58995081,
+            "cut2_12vs3": -1.42342796,
+            "cut3_13vs2": -0.58995081
+          },
+          {
+            "cut1_1vs23": -0.69309748,
+            "cut2_12vs3": -1.45081481,
+            "cut3_13vs2": -0.69309748
+          },
+          {
+            "cut1_1vs23": -0.74828802,
+            "cut2_12vs3": -1.50694461,
+            "cut3_13vs2": -0.74828802
+          },
+          {
+            "cut1_1vs23": -0.69944381,
+            "cut2_12vs3": -1.53035518,
+            "cut3_13vs2": -0.69944381
+          },
+          {
+            "cut1_1vs23": -0.6532238,
+            "cut2_12vs3": -1.5778674,
+            "cut3_13vs2": -0.6532238
+          },
+          {
+            "cut1_1vs23": -0.60972694,
+            "cut2_12vs3": -1.59793419,
+            "cut3_13vs2": -0.60972694
+          },
+          {
+            "cut1_1vs23": -0.64194646,
+            "cut2_12vs3": -1.63827082,
+            "cut3_13vs2": -0.64194646
+          }
+        ],
+        "mean_ic": -0.31071395,
+        "max_ic": 0.42272494
+      },
+      "trajectories_differ": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_no_entangling_no_axis0": {
+      "description": "Product (single-qubit) operators cannot produce I_c > 0. Entangling operators are required for Axis 0.",
+      "product_ops_max_ic": -0.11118513,
+      "product_ops_all_ic_nonpositive": true,
+      "entangling_ops_ic_positive": true,
+      "pass": true
+    },
+    "N2_classical_vs_quantum": {
+      "description": "I(A:B) >= 0 always (classical). I_c > 0 requires quantum entanglement (S(A|B)<0).",
+      "classical_always_nonneg": true,
+      "quantum_ic_positive_found": true,
+      "axis0_is_quantum": true,
+      "pass": true
+    }
+  },
+  "tools_used": [
+    "GeometricEngine3Q",
+    "compute_info_measures",
+    "torus_coordinates",
+    "partial_trace_keep",
+    "von_neumann_entropy",
+    "build_3q_Ti/Fe/Te/Fi"
+  ],
+  "timestamp": "2026-04-05",
+  "summary": "Positive: 3/3, Negative: 2/2",
+  "all_pass": true,
+  "hermes_corrections_applied": [
+    "Fe (XX on q1,q2) is the actual bridge operator, not Fi (X x I x Z). Fi contributes zero I_c from separable starts. See bridge_operator_cut_analysis_results.json.",
+    "cut1 = cut3 always (symmetry). cut2 always negative (q3 never entangled).",
+    "P1 gradient is 2-value not 3-point — 3q operators do not incorporate eta.",
+    "I_c > 0 regime is dephasing/coupling dependent (phase diagram: all 400 cells positive, but mean I_c varies strongly)."
+  ]
+}

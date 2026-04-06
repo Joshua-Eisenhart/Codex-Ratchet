@@ -1,0 +1,44 @@
+{
+  "layer": 9,
+  "name": "strength_goldilocks",
+  "positive": {
+    "P1_midrange_nonzero": {
+      "pass": true,
+      "concurrence_at_0.5": 0.049240429385882474,
+      "note": "strength=0.5 survives coupled with nonzero entanglement. HERMES CORRECTION: sampled peak is at 0.75 (C=0.1195), not 0.5. Do not hard-code 0.5 as optimum without denser sweep."
+    }
+  },
+  "negative": {
+    "N1_zero_strength_identity": {
+      "pass": true,
+      "concurrence_at_0.0": 1.095190871451083e-08,
+      "note": "strength=0 produces no entanglement (identity)"
+    },
+    "N2_extremes_vs_midrange": {
+      "pass": true,
+      "concurrence_sweep": {
+        "0.0": 1.095190871451083e-08,
+        "0.1": 0.0013587135911259276,
+        "0.25": 0.012049816536115934,
+        "0.5": 0.049240429385882474,
+        "0.75": 0.11948731241500071,
+        "1.0": 0.0739117095080239
+      },
+      "best_midrange": 0.11948731241500071,
+      "concurrence_at_0.0": 1.095190871451083e-08,
+      "concurrence_at_1.0": 0.0739117095080239,
+      "note": "Midrange strength >= extreme strengths"
+    }
+  },
+  "tools_used": [
+    "GeometricEngine",
+    "StageControls",
+    "concurrence_4x4"
+  ],
+  "timestamp": "2026-04-05",
+  "summary": {
+    "passed": 3,
+    "total": 3,
+    "all_pass": true
+  }
+}

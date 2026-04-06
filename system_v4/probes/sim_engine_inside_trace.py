@@ -40,13 +40,17 @@ from geometric_operators import (  # noqa: E402
     apply_Te,
     apply_Fi,
     negentropy,
+    partial_trace_A,
+    partial_trace_B,
     trace_distance_2x2,
     _ensure_valid_density,
     SIGMA_X,
 )
 from hopf_manifold import (  # noqa: E402
     left_density,
+    left_weyl_spinor,
     right_density,
+    right_weyl_spinor,
     inter_torus_transport_partial,
     density_to_bloch,
     torus_radii,
@@ -120,7 +124,12 @@ def trace_one_cycle(engine_type: int, seed: int = 42, program: str = "default"):
 
             ga0_target = engine._ga0_target(terrain, op_name, ctrl)
             ga0_alpha = min(1.0, 0.10 + 0.45 * ctrl.piston + (0.10 if terrain["open"] else 0.0))
-            new_ga0 = float(np.clip((1.0 - ga0_alpha) * current_state.ga0_level + ga0_alpha * ga0_target, 0.0, 1.0))
+            if ga0_target is None:
+                new_ga0 = float(current_state.ga0_level)
+            else:
+                new_ga0 = float(
+                    np.clip((1.0 - ga0_alpha) * current_state.ga0_level + ga0_alpha * ga0_target, 0.0, 1.0)
+                )
             strength = engine._operator_strength(terrain, op_name, ctrl, ga0_level=new_ga0)
             polarity = ctrl.lever
             angle_mod, dt_mod = engine._terrain_modulation(terrain)
@@ -151,8 +160,9 @@ def trace_one_cycle(engine_type: int, seed: int = 42, program: str = "default"):
                 new_rho_L = current_state.rho_L.copy()
                 new_rho_R = current_state.rho_R.copy()
 
-            rho_L_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0, "left")
-            rho_R_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0, "right")
+            rho_AB_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0)
+            rho_L_axis0 = _ensure_valid_density(partial_trace_B(rho_AB_axis0))
+            rho_R_axis0 = _ensure_valid_density(partial_trace_A(rho_AB_axis0))
             axis0_blend = min(0.45, strength * (0.05 + 0.30 * new_ga0))
             axis0_injection_norm = float(
                 np.linalg.norm(rho_L_axis0 - new_rho_L) + np.linalg.norm(rho_R_axis0 - new_rho_R)
@@ -163,9 +173,9 @@ def trace_one_cycle(engine_type: int, seed: int = 42, program: str = "default"):
 
             op_kwargs = {"polarity_up": polarity, "strength": strength}
             if op_name == "Te":
-                op_kwargs["angle"] = 0.3 * angle_mod
+                op_kwargs["q"] = 0.3 * angle_mod
             if op_name == "Fe":
-                op_kwargs["dt"] = 0.05 * dt_mod
+                op_kwargs["phi"] = 0.05 * dt_mod
             op_fn = {"Ti": apply_Ti, "Fe": apply_Fe, "Te": apply_Te, "Fi": apply_Fi}[op_name]
 
             new_rho_L = op_fn(new_rho_L, **op_kwargs)
@@ -208,13 +218,22 @@ def trace_one_cycle(engine_type: int, seed: int = 42, program: str = "default"):
                 new_theta1 = (new_theta1 + d_theta) % (2 * np.pi)
                 new_theta2 = (new_theta2 + 0.5 * d_theta) % (2 * np.pi)
 
+            q_current = np.array(
+                [
+                    np.cos(new_eta) * np.cos(new_theta1),
+                    np.cos(new_eta) * np.sin(new_theta1),
+                    np.sin(new_eta) * np.cos(new_theta2),
+                    np.sin(new_eta) * np.sin(new_theta2),
+                ],
+                dtype=float,
+            )
             current_state = EngineState(
-                rho_L=new_rho_L,
-                rho_R=new_rho_R,
+                psi_L=left_weyl_spinor(q_current),
+                psi_R=right_weyl_spinor(q_current),
+                rho_AB=_ensure_valid_density(np.kron(new_rho_L, new_rho_R)),
                 eta=new_eta,
                 theta1=new_theta1,
                 theta2=new_theta2,
-                ga0_level=new_ga0,
                 stage_idx=current_state.stage_idx,
                 engine_type=engine_type,
                 history=current_state.history + [],
@@ -233,7 +252,7 @@ def trace_one_cycle(engine_type: int, seed: int = 42, program: str = "default"):
                     "operator": op_name,
                     "strength": float(strength),
                     "ga0_before": float(before.ga0_level),
-                    "ga0_target": float(ga0_target),
+                    "ga0_target": None if ga0_target is None else float(ga0_target),
                     "ga0_after": float(new_ga0),
                     "axis0_blend": float(axis0_blend),
                     "axis0_injection_norm": float(axis0_injection_norm),

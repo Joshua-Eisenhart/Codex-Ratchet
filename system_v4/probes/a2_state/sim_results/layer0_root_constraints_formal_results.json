@@ -1,0 +1,103 @@
+{
+  "layer": 0,
+  "name": "Root Constraints (F01 + N01)",
+  "positive": {
+    "P1_z3_F01_finitude": {
+      "description": "F01: dim(H) is a positive finite integer",
+      "finite_satisfiable": "sat",
+      "infinite_unsatisfiable": "unsat",
+      "verdict": "PASS"
+    },
+    "P2_z3_N01_noncommutation": {
+      "description": "N01: commutative=True is inconsistent with [sigma_x, sigma_z] = -2i*sigma_y != 0",
+      "commutator_entries": {
+        "01_re": -2,
+        "01_im": 0,
+        "10_re": 2,
+        "10_im": 0
+      },
+      "commutative_true_result": "unsat",
+      "verdict": "PASS"
+    },
+    "P3_sympy_commutator": {
+      "description": "[sigma_x, sigma_z] = -2i * sigma_y (exact symbolic)",
+      "commutator": "Matrix([[0, -2], [2, 0]])",
+      "expected": "Matrix([[0, -2], [2, 0]])",
+      "difference_simplified": "Matrix([[0, 0], [0, 0]])",
+      "exact_match": true,
+      "verdict": "PASS"
+    },
+    "P4_sympy_pauli_squares": {
+      "description": "sigma_i^2 = I for i = x, y, z (exact symbolic)",
+      "sigma_x_squared_minus_I": "Matrix([[0, 0], [0, 0]])",
+      "sigma_y_squared_minus_I": "Matrix([[0, 0], [0, 0]])",
+      "sigma_z_squared_minus_I": "Matrix([[0, 0], [0, 0]])",
+      "all_identity": true,
+      "verdict": "PASS"
+    },
+    "P5_sympy_pauli_traces": {
+      "description": "Tr(sigma_i) = 0 for i = x, y, z (exact symbolic)",
+      "trace_x": "0",
+      "trace_y": "0",
+      "trace_z": "0",
+      "all_zero": true,
+      "verdict": "PASS"
+    },
+    "P6_clifford_geometric_product": {
+      "description": "Cl(3): e1*e2 = e12 (bivector), e1*e2 = -e2*e1 (anticommutative)",
+      "e1_times_e2": "(1^e12)",
+      "e2_times_e1": "-(1^e12)",
+      "product_is_e12": true,
+      "anticommutative": true,
+      "verdict": "PASS"
+    }
+  },
+  "negative": {
+    "N1_z3_not_F01": {
+      "description": "NOT(F01): without finite bound, any fence K can be exceeded",
+      "unbounded_sat": "sat",
+      "fence_evasion_tests": [
+        {
+          "K": 10,
+          "exceeds_fence": "sat"
+        },
+        {
+          "K": 100,
+          "exceeds_fence": "sat"
+        },
+        {
+          "K": 1000000,
+          "exceeds_fence": "sat"
+        },
+        {
+          "K": 1000000000,
+          "exceeds_fence": "sat"
+        }
+      ],
+      "verdict": "PASS (correctly shows F01 is load-bearing)"
+    },
+    "N2_z3_not_N01": {
+      "description": "NOT(N01): if all operators commute, non-diagonal generators forced to vanish -> u(1) collapse",
+      "non_diagonal_A_commutes_with_diagonal_B": "unsat",
+      "interpretation": "Without noncommutation, algebra collapses to simultaneously diagonalizable (u(1)^n)",
+      "verdict": "PASS (correctly shows N01 is load-bearing)"
+    },
+    "N3_clifford_Cl1_commutative": {
+      "description": "Cl(1): all elements commute -> N01 requires dim >= 2",
+      "Cl1_is_commutative": true,
+      "Cl1_basis": [
+        "1",
+        "e1"
+      ],
+      "interpretation": "In 1D, no noncommutation exists. N01 demands at least 2 generators.",
+      "verdict": "PASS"
+    }
+  },
+  "tools_used": [
+    "z3",
+    "sympy",
+    "clifford"
+  ],
+  "timestamp": "2026-04-06",
+  "summary": "Layer 0: 6 positive tests, 3 negative tests. Positive: ALL PASS. Negative: ALL PASS."
+}

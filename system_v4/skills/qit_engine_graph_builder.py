@@ -30,8 +30,10 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from qit_owner_schemas import (
     EngineType, EngineTypeEnum,
     MacroStage, LoopEnum, ModeEnum, BoundaryEnum,
+    SpinorEnum, TerrainFamilyEnum, TerrainNameEnum,
     SubcycleOperator, OperatorEnum, SubcycleStep,
     TorusState, TorusEnum,
+    WeylBranch, WeylEnum,
     AxisState, NegativeWitness, NegTargetEnum,
 )
 
@@ -44,16 +46,57 @@ OWNER_LAYER = "QIT_ENGINE"
 
 # ── Physical Constants ──
 
-TERRAINS = [
-    ("Se_f", "fiber", "expand", "open"),
-    ("Si_f", "fiber", "compress", "closed"),
-    ("Ne_f", "fiber", "expand", "closed"),
-    ("Ni_f", "fiber", "compress", "open"),
-    ("Se_b", "base", "expand", "open"),
-    ("Si_b", "base", "compress", "closed"),
-    ("Ne_b", "base", "expand", "closed"),
-    ("Ni_b", "base", "compress", "open"),
-]
+# Terrain ordering is engine-type-dependent (loop-order class, Axis-4).
+# Source of truth: TERRAIN_MATH_LEDGER_v1.md Section 6 (Loop Order Definitions).
+#
+# O_ded = (Se, Ne, Ni, Si)   O_ind = (Se, Si, Ni, Ne)
+# Type-1 inner = IND → Se, Si, Ni, Ne   (stage_index 0–3)
+# Type-1 outer = DED → Se, Ne, Ni, Si   (stage_index 4–7)
+# Type-2 inner = DED → Se, Ne, Ni, Si   (stage_index 0–3)
+# Type-2 outer = IND → Se, Si, Ni, Ne   (stage_index 4–7)
+#
+# Each entry: (code, loop, mode, boundary, terrain_family, loop_order, loop_label)
+TERRAINS_BY_ENGINE: dict[str, list] = {
+    "type1": [
+        # Inductive inner (γ_f^L): Se, Si, Ni, Ne
+        ("Se_f", "fiber", "expand",   "open",   "Se", "inductive", "Type-1 Engine Inductive Inner Loop"),
+        ("Si_f", "fiber", "compress", "closed", "Si", "inductive", "Type-1 Engine Inductive Inner Loop"),
+        ("Ni_f", "fiber", "compress", "open",   "Ni", "inductive", "Type-1 Engine Inductive Inner Loop"),
+        ("Ne_f", "fiber", "expand",   "closed", "Ne", "inductive", "Type-1 Engine Inductive Inner Loop"),
+        # Deductive outer (γ_b^L): Se, Ne, Ni, Si
+        ("Se_b", "base",  "expand",   "open",   "Se", "deductive", "Type-1 Engine Deductive Outer Loop"),
+        ("Ne_b", "base",  "expand",   "closed", "Ne", "deductive", "Type-1 Engine Deductive Outer Loop"),
+        ("Ni_b", "base",  "compress", "open",   "Ni", "deductive", "Type-1 Engine Deductive Outer Loop"),
+        ("Si_b", "base",  "compress", "closed", "Si", "deductive", "Type-1 Engine Deductive Outer Loop"),
+    ],
+    "type2": [
+        # Deductive inner (γ_f^R): Se, Ne, Ni, Si
+        ("Se_f", "fiber", "expand",   "open",   "Se", "deductive", "Type-2 Engine Deductive Inner Loop"),
+        ("Ne_f", "fiber", "expand",   "closed", "Ne", "deductive", "Type-2 Engine Deductive Inner Loop"),
+        ("Ni_f", "fiber", "compress", "open",   "Ni", "deductive", "Type-2 Engine Deductive Inner Loop"),
+        ("Si_f", "fiber", "compress", "closed", "Si", "deductive", "Type-2 Engine Deductive Inner Loop"),
+        # Inductive outer (γ_b^R): Se, Si, Ni, Ne
+        ("Se_b", "base",  "expand",   "open",   "Se", "inductive", "Type-2 Engine Inductive Outer Loop"),
+        ("Si_b", "base",  "compress", "closed", "Si", "inductive", "Type-2 Engine Inductive Outer Loop"),
+        ("Ni_b", "base",  "compress", "open",   "Ni", "inductive", "Type-2 Engine Inductive Outer Loop"),
+        ("Ne_b", "base",  "expand",   "closed", "Ne", "inductive", "Type-2 Engine Inductive Outer Loop"),
+    ],
+}
+
+# Terrain name and generator by (engine_type, terrain_family).
+# Source of truth: TERRAIN_MATH_LEDGER_v1.md Section 5 (Structural Lock).
+_TERRAIN_NAME_BY_ENGINE: dict[tuple, str] = {
+    ("type1", "Se"): "Funnel",  ("type1", "Ne"): "Vortex",
+    ("type1", "Ni"): "Pit",     ("type1", "Si"): "Hill",
+    ("type2", "Se"): "Cannon",  ("type2", "Ne"): "Spiral",
+    ("type2", "Ni"): "Source",  ("type2", "Si"): "Citadel",
+}
+_GENERATOR_BY_ENGINE: dict[tuple, str] = {
+    ("type1", "Se"): "X_F^L",    ("type1", "Ne"): "X_V^L",
+    ("type1", "Ni"): "X_P^L",    ("type1", "Si"): "X_H^L",
+    ("type2", "Se"): "X_C^R",    ("type2", "Ne"): "X_S^R",
+    ("type2", "Ni"): "X_{So}^R", ("type2", "Si"): "X_{Ci}^R",
+}
 
 OPERATORS = [
     ("Ti", "constrain", "Thinking introvert"),
@@ -68,19 +111,23 @@ TORI = [
     ("outer", 2, "Outermost torus — lowest curvature"),
 ]
 
+# Engine types match EngineTypeEnum.TYPE1 / TYPE2 values.
+# Spinor assignment: type1 → Left Weyl (H_L = +n·σ), type2 → Right Weyl (H_R = −n·σ).
 ENGINE_TYPES = [
-    ("type1_left_weyl", "Fe/Ti dominant on base, Te/Fi on fiber"),
-    ("type2_right_weyl", "Te/Fi dominant on base, Fe/Ti on fiber"),
+    ("type1", "Type-1: Left Weyl spinor, H_L = +n·σ, Bloch law ṙ_L = +2n×r_L"),
+    ("type2", "Type-2: Right Weyl spinor, H_R = −n·σ, Bloch law ṙ_R = −2n×r_R"),
 ]
 
 PROVEN_AXES = [
-    ("axis_0", "Identity / entropy gradient", True, "sim_neg_axis0_frozen.py"),
-    ("axis_1", "Parity / expansion-compression", True, None),
-    ("axis_2", "Scale / dimension-dependent shift", True, None),
-    ("axis_3", "Engine-family split (Type-1 / Type-2); chirality remains derived/noncanon here", True, None),
-    ("axis_4", "Variance direction / information flow", True, None),
-    ("axis_5", "Coupling strength / interaction weight", True, None),
-    ("axis_6", "Polarity / torus latitude sign", True, "neg_axis6_shared_stage_matrix_sim.py"),
+    # Descriptions aligned to AXES_0_12_MASTER.md (DATE: 2026-03-25, AUTHORITY: CANON OVERLAY)
+    # and AXES_MASTER_SPEC_v0.2.md (DATE: 2026-02-02, AUTHORITY: CANON).
+    ("axis_0", "Polarity: base state moderator — admissible/non-admissible subsets (gradient_up / gradient_down)", True, "sim_neg_axis0_frozen.py"),
+    ("axis_1", "Topology4 boundary openness: open system (CPTP/Lindblad families) vs closed system (unitary families)", True, None),
+    ("axis_2", "Topology4 radial accessibility: expand (larger equivalence classes) vs compress (smaller equivalence classes)", True, None),
+    ("axis_3", "Engine-family split: Type-1 (inward, Left Weyl H_L=+n·σ) vs Type-2 (outward, Right Weyl H_R=−n·σ). Physical chirality overlays noncanon — see AXIS3_HYPOTHESES.md", True, None),
+    ("axis_4", "Thermodynamic path: Deductive (FeTi — S→0, sequence constraint) vs Inductive (TeFi — ΔW→max, sequence drive)", True, None),
+    ("axis_5", "Generator algebra: Line/TeTi (differentiation, Gradient+DiracDelta, discrete boundary) vs Wave/FeFi (integration, Laplacian+Fourier, continuous field)", True, None),
+    ("axis_6", "Precedence / composition sidedness: UP vs DOWN (left-action Aρ vs right-action ρA)", True, "neg_axis6_shared_stage_matrix_sim.py"),
 ]
 
 # Each negative witness carries:
@@ -107,7 +154,7 @@ NEGATIVE_WITNESSES: list[tuple[str, str, str, list[str], str, str]] = [
         "neg_no_chirality",
         "Removing engine type distinction kills asymmetry",
         "CHIRALITY",
-        ["type1_left_weyl", "type2_right_weyl"],
+        ["type1", "type2"],
         "specific_targets",
         "engine_type_asymmetry_is_necessary",
     ),
@@ -155,7 +202,7 @@ NEGATIVE_WITNESSES: list[tuple[str, str, str, list[str], str, str]] = [
         "neg_type_flatten",
         "Flattening engine types kills chirality separation",
         "CHIRALITY",
-        ["type1_left_weyl", "type2_right_weyl"],
+        ["type1", "type2"],
         "specific_targets",
         "type_specific_weighting_is_necessary",
     ),
@@ -249,8 +296,16 @@ def build_qit_engine_graph() -> dict[str, Any]:
         nodes[hid] = node
 
     # ── 2. MACRO_STAGE nodes (Pydantic-validated) ──
+    # Stage ordering is engine-type-dependent (see TERRAINS_BY_ENGINE).
+    _SPINOR = {"type1": SpinorEnum.LEFT, "type2": SpinorEnum.RIGHT}
+    _HAMSIGN = {"type1": +1, "type2": -1}
     for etype_id, _ in ENGINE_TYPES:
-        for stage_idx, (terrain, loop, mode, boundary) in enumerate(TERRAINS):
+        spinor = _SPINOR[etype_id]
+        ham_sign = _HAMSIGN[etype_id]
+        for stage_idx, (terrain, loop, mode, boundary, tfamily, loop_order, loop_label) in enumerate(TERRAINS_BY_ENGINE[etype_id]):
+            key = (etype_id, tfamily)
+            tname = _TERRAIN_NAME_BY_ENGINE[key]
+            gen = _GENERATOR_BY_ENGINE[key]
             try:
                 model = MacroStage(
                     terrain=terrain,
@@ -259,6 +314,11 @@ def build_qit_engine_graph() -> dict[str, Any]:
                     loop=LoopEnum(loop),
                     mode=ModeEnum(mode),
                     boundary=BoundaryEnum(boundary),
+                    spinor_type=spinor,
+                    terrain_family=TerrainFamilyEnum(tfamily),
+                    terrain_name=TerrainNameEnum(tname),
+                    hamiltonian_sign=ham_sign,
+                    generator=gen,
                 )
             except Exception as e:
                 validation_errors.append(f"MACRO_STAGE {etype_id}_{terrain}: {e}")
@@ -268,10 +328,17 @@ def build_qit_engine_graph() -> dict[str, Any]:
                     "label": f"{etype_id}::{terrain}",
                     "engine_type": model.engine_type.value,
                     "terrain": model.terrain,
+                    "terrain_family": model.terrain_family.value,
+                    "terrain_name": model.terrain_name.value,
                     "loop": model.loop.value,
+                    "loop_order": loop_order,
+                    "loop_label": loop_label,
                     "mode": model.mode.value,
                     "boundary": model.boundary.value,
                     "stage_index": model.stage_index,
+                    "spinor_type": model.spinor_type.value,
+                    "hamiltonian_sign": model.hamiltonian_sign,
+                    "generator": model.generator,
                 })
             nodes[hid] = node
 
@@ -310,7 +377,29 @@ def build_qit_engine_graph() -> dict[str, Any]:
         })
         nodes[hid] = node
 
-    # ── 5. AXIS nodes (Pydantic-validated) ──
+    # ── 5. WEYL_BRANCH nodes (Pydantic-validated) ──
+    for branch_id, branch_desc, engine_type, spinor_type, ham_sign in [
+        ("left", "Left Weyl spinor branch carried by the Type-1 engine family.", "type1", "L", +1),
+        ("right", "Right Weyl spinor branch carried by the Type-2 engine family.", "type2", "R", -1),
+    ]:
+        try:
+            model = WeylBranch(
+                branch=WeylEnum(branch_id),
+                description=branch_desc,
+            )
+        except Exception as e:
+            validation_errors.append(f"WEYL_BRANCH {branch_id}: {e}")
+            continue
+        hid, node = _make_node("WEYL_BRANCH", branch_id, "WEYL_BRANCH", {
+            "label": model.branch.value,
+            "description": model.description,
+            "engine_type": engine_type,
+            "spinor_type": spinor_type,
+            "hamiltonian_sign": ham_sign,
+        })
+        nodes[hid] = node
+
+    # ── 6. AXIS nodes (Pydantic-validated) ──
     for axis_id, axis_desc, axis_proven, axis_neg in PROVEN_AXES:
         try:
             model = AxisState(
@@ -330,7 +419,7 @@ def build_qit_engine_graph() -> dict[str, Any]:
         })
         nodes[hid] = node
 
-    # ── 6. NEGATIVE_WITNESS nodes (Pydantic-validated) ──
+    # ── 7. NEGATIVE_WITNESS nodes (Pydantic-validated) ──
     for neg_id, neg_desc, neg_target, specific_targets, owner_edge_emission, proves_label in NEGATIVE_WITNESSES:
         try:
             model = NegativeWitness(
@@ -354,10 +443,10 @@ def build_qit_engine_graph() -> dict[str, Any]:
         })
         nodes[hid] = node
 
-    # ── 7. SUBCYCLE_STEP nodes — the 64 operator applications ──
+    # ── 8. SUBCYCLE_STEP nodes — the 64 operator applications ──
     op_order = ["Ti", "Fe", "Te", "Fi"]
     for etype_id, _ in ENGINE_TYPES:
-        for terrain, loop, mode, boundary in TERRAINS:
+        for terrain, loop, mode, boundary, *_ in TERRAINS_BY_ENGINE[etype_id]:
             for op_idx, op_name in enumerate(op_order):
                 step_name = f"{etype_id}_{terrain}_{op_name}"
                 try:
@@ -388,7 +477,16 @@ def build_qit_engine_graph() -> dict[str, Any]:
     def _p(pfx, nm):
         return _public_id(pfx, nm)
 
-    # 8a. SUBCYCLE_ORDER: Ti → Fe → Te → Fi → Ti
+    # 8a. ENGINE_REALIZES_WEYL_BRANCH
+    for engine_id, branch_id in [("type1", "left"), ("type2", "right")]:
+        edges.append(_make_edge(
+            "ENGINE_REALIZES_WEYL_BRANCH",
+            _h("ENGINE", engine_id), _h("WEYL_BRANCH", branch_id),
+            _p("ENGINE", engine_id), _p("WEYL_BRANCH", branch_id),
+            {"engine_type": engine_id, "branch": branch_id},
+        ))
+
+    # 8b. SUBCYCLE_ORDER: Ti → Fe → Te → Fi → Ti
     for i in range(len(op_order)):
         src, tgt = op_order[i], op_order[(i + 1) % 4]
         edges.append(_make_edge(
@@ -397,21 +495,22 @@ def build_qit_engine_graph() -> dict[str, Any]:
             {"position": i, "closes_cycle": i == 3, "proven": True},
         ))
 
-    # 8b. STAGE_SEQUENCE: macro-stage n → n+1 within each engine type
+    # 8c. STAGE_SEQUENCE: macro-stage n → n+1 within each engine type
     for etype_id, _ in ENGINE_TYPES:
-        for i in range(len(TERRAINS)):
-            src_t = TERRAINS[i][0]
-            tgt_t = TERRAINS[(i + 1) % len(TERRAINS)][0]
+        terrains_e = TERRAINS_BY_ENGINE[etype_id]
+        for i in range(len(terrains_e)):
+            src_t = terrains_e[i][0]
+            tgt_t = terrains_e[(i + 1) % len(terrains_e)][0]
             src_key = f"{etype_id}_{src_t}"
             tgt_key = f"{etype_id}_{tgt_t}"
             edges.append(_make_edge(
                 "STAGE_SEQUENCE",
                 _h("MACRO_STAGE", src_key), _h("MACRO_STAGE", tgt_key),
                 _p("MACRO_STAGE", src_key), _p("MACRO_STAGE", tgt_key),
-                {"engine_type": etype_id, "closes_cycle": i == len(TERRAINS) - 1},
+                {"engine_type": etype_id, "closes_cycle": i == len(terrains_e) - 1},
             ))
 
-    # 8c. TORUS_NESTING: inner → Clifford → outer
+    # 8d. TORUS_NESTING: inner → Clifford → outer
     for i in range(len(TORI) - 1):
         edges.append(_make_edge(
             "TORUS_NESTING",
@@ -420,9 +519,9 @@ def build_qit_engine_graph() -> dict[str, Any]:
             {"direction": "outward"},
         ))
 
-    # 8d. ENGINE_OWNS_STAGE
+    # 8e. ENGINE_OWNS_STAGE
     for etype_id, _ in ENGINE_TYPES:
-        for terrain, _, _, _ in TERRAINS:
+        for terrain, *_ in TERRAINS_BY_ENGINE[etype_id]:
             stage_key = f"{etype_id}_{terrain}"
             edges.append(_make_edge(
                 "ENGINE_OWNS_STAGE",
@@ -430,17 +529,17 @@ def build_qit_engine_graph() -> dict[str, Any]:
                 _p("ENGINE", etype_id), _p("MACRO_STAGE", stage_key),
             ))
 
-    # 8e. CHIRALITY_COUPLING
+    # 8f. CHIRALITY_COUPLING
     edges.append(_make_edge(
         "CHIRALITY_COUPLING",
-        _h("ENGINE", "type1_left_weyl"), _h("ENGINE", "type2_right_weyl"),
-        _p("ENGINE", "type1_left_weyl"), _p("ENGINE", "type2_right_weyl"),
+        _h("ENGINE", "type1"), _h("ENGINE", "type2"),
+        _p("ENGINE", "type1"), _p("ENGINE", "type2"),
         {"coupling_type": "complementary_dominance"},
     ))
 
-    # 8f. STEP_IN_STAGE: each SUBCYCLE_STEP belongs to its MACRO_STAGE
+    # 8g. STEP_IN_STAGE: each SUBCYCLE_STEP belongs to its MACRO_STAGE
     for etype_id, _ in ENGINE_TYPES:
-        for terrain, _, _, _ in TERRAINS:
+        for terrain, *_ in TERRAINS_BY_ENGINE[etype_id]:
             stage_key = f"{etype_id}_{terrain}"
             for op_name in op_order:
                 step_key = f"{etype_id}_{terrain}_{op_name}"
@@ -451,9 +550,9 @@ def build_qit_engine_graph() -> dict[str, Any]:
                     {"operator": op_name},
                 ))
 
-    # 8g. STEP_USES_OPERATOR: each SUBCYCLE_STEP uses its OPERATOR
+    # 8h. STEP_USES_OPERATOR: each SUBCYCLE_STEP uses its OPERATOR
     for etype_id, _ in ENGINE_TYPES:
-        for terrain, _, _, _ in TERRAINS:
+        for terrain, *_ in TERRAINS_BY_ENGINE[etype_id]:
             for op_name in op_order:
                 step_key = f"{etype_id}_{terrain}_{op_name}"
                 edges.append(_make_edge(
@@ -462,9 +561,10 @@ def build_qit_engine_graph() -> dict[str, Any]:
                     _p("SUBCYCLE_STEP", step_key), _p("OPERATOR", op_name),
                 ))
 
-    # 8h. STEP_SEQUENCE: within each stage, Ti→Fe→Te→Fi subcycle ordering
+    # 8i. STEP_SEQUENCE: within each stage, Ti→Fe→Te→Fi subcycle ordering
     for etype_id, _ in ENGINE_TYPES:
-        for terrain, _, _, _ in TERRAINS:
+        terrains_e = TERRAINS_BY_ENGINE[etype_id]
+        for t_idx, (terrain, *_) in enumerate(terrains_e):
             for i in range(len(op_order) - 1):
                 src_step = f"{etype_id}_{terrain}_{op_order[i]}"
                 tgt_step = f"{etype_id}_{terrain}_{op_order[i + 1]}"
@@ -474,10 +574,20 @@ def build_qit_engine_graph() -> dict[str, Any]:
                     _p("SUBCYCLE_STEP", src_step), _p("SUBCYCLE_STEP", tgt_step),
                     {"position": i},
                 ))
+            # Cross-boundary sequence link: Fi of current stage to Ti of next stage
+            next_terrain = terrains_e[(t_idx + 1) % len(terrains_e)][0]
+            src_boundary = f"{etype_id}_{terrain}_{op_order[-1]}"
+            tgt_boundary = f"{etype_id}_{next_terrain}_{op_order[0]}"
+            edges.append(_make_edge(
+                "STEP_SEQUENCE",
+                _h("SUBCYCLE_STEP", src_boundary), _h("SUBCYCLE_STEP", tgt_boundary),
+                _p("SUBCYCLE_STEP", src_boundary), _p("SUBCYCLE_STEP", tgt_boundary),
+                {"position": 3, "boundary_transition": True},
+            ))
 
-    # 8i. STAGE_ON_TORUS: fiber → inner, base → outer, all → clifford
+    # 8j. STAGE_ON_TORUS: fiber → inner, base → outer, all → clifford
     for etype_id, _ in ENGINE_TYPES:
-        for terrain, loop, _, _ in TERRAINS:
+        for terrain, loop, *_ in TERRAINS_BY_ENGINE[etype_id]:
             stage_key = f"{etype_id}_{terrain}"
             primary_torus = "inner" if loop == "fiber" else "outer"
             edges.append(_make_edge(
@@ -493,7 +603,7 @@ def build_qit_engine_graph() -> dict[str, Any]:
                 {"shared": True, "primary": False},
             ))
 
-    # 8j. AXIS_GOVERNS
+    # 8k. AXIS_GOVERNS
     for axis_id, _, _, _ in PROVEN_AXES:
         for etype_id, _ in ENGINE_TYPES:
             edges.append(_make_edge(
@@ -503,7 +613,7 @@ def build_qit_engine_graph() -> dict[str, Any]:
                 {"axis": axis_id},
             ))
 
-    # 8k. NEGATIVE_PROVES — only emit owner proof edges when the witness names
+    # 8l. NEGATIVE_PROVES — only emit owner proof edges when the witness names
     #     a faithful owner-level target. Relation/transport witnesses remain
     #     represented by the NEG_WITNESS node until a better owner concept exists.
     for neg_id, _, neg_target, specific_targets, owner_edge_emission, proves_label in NEGATIVE_WITNESSES:
@@ -562,8 +672,8 @@ def build_qit_engine_graph() -> dict[str, Any]:
             "included_node_rule": (
                 "Materialize only the explicit QIT owner structures enumerated in this "
                 "builder: engine types, macro-stages, fixed operators, torus identities, "
-                "proven axes, negative witnesses, and 64 subcycle steps. Do not infer "
-                "runtime state, history/evidence, Weyl branches, or sidecar payloads."
+                "Weyl branches, proven axes, negative witnesses, and 64 subcycle steps. "
+                "Do not infer runtime state, history/evidence, or sidecar payloads."
             ),
             "edge_rule": (
                 "Materialize only the explicitly constructed edges in this builder: "
@@ -586,7 +696,7 @@ def build_qit_engine_graph() -> dict[str, Any]:
             "bounded negative-witness nodes/edges: "
             "8 macro-stages × 2 engine types, 4 fixed subcycle operators, "
             "64 subcycle steps (16×4 runtime grain), "
-            "3 nested Hopf tori, 7 proven axes, and 9 negative witnesses. "
+            "3 nested Hopf tori, 2 Weyl branches, 7 proven axes, and 9 negative witnesses. "
             "All nodes carry stable public_id for cross-layer joining."
         ),
         "nodes": nodes,

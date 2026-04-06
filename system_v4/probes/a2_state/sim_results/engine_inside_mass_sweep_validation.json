@@ -1,0 +1,287 @@
+{
+  "name": "engine_inside_mass_sweep_validation",
+  "timestamp": "2026-04-02T01:15:26.866539+00:00",
+  "passed_gates": 4,
+  "total_gates": 4,
+  "score": 1.0,
+  "gates": [
+    {
+      "name": "EM1_engine_inside_mass_sweep_surface_is_complete_and_runtime_native",
+      "pass": true,
+      "detail": {
+        "programs": [
+          "default",
+          "inner_outer_wave"
+        ],
+        "engine_types": [
+          1,
+          2
+        ],
+        "n_seeds": 24,
+        "overall_rows": 4
+      }
+    },
+    {
+      "name": "EM2_wave_program_activates_transport_while_default_stays_transport_free",
+      "pass": true,
+      "detail": {
+        "default_type1": {
+          "transport_alpha": 0.0,
+          "transport_triggered": 0.0
+        },
+        "default_type2": {
+          "transport_alpha": 0.0,
+          "transport_triggered": 0.0
+        },
+        "wave_type1": {
+          "transport_alpha": 0.09084776711014965,
+          "transport_triggered": 1.0
+        },
+        "wave_type2": {
+          "transport_alpha": 0.09258952168594986,
+          "transport_triggered": 1.0
+        }
+      }
+    },
+    {
+      "name": "EM3_wave_program_trades_axis0_effective_gain_for_transport_negentropy_and_motion",
+      "pass": true,
+      "detail": {
+        "type1_gaps": {
+          "abs_dphase_gap": 0.02262473879487343,
+          "abs_dtrace_gap": 0.11062565776726974,
+          "abs_dneg_gap": 0.19905138135676062,
+          "abs_dchi_gap": 0.15864718568074052,
+          "q_total_move_gap": 0.041822207335802206,
+          "axis0_effective_gain_gap": -0.043450729502377106
+        },
+        "type2_gaps": {
+          "abs_dphase_gap": 0.021731245172792624,
+          "abs_dtrace_gap": 0.10656912894468057,
+          "abs_dneg_gap": 0.21116501900589377,
+          "abs_dchi_gap": 0.1849761314961328,
+          "q_total_move_gap": 0.040470626317565477,
+          "axis0_effective_gain_gap": -0.04938228402674311
+        }
+      }
+    },
+    {
+      "name": "EM4_transport_and_trace_extremes_live_inside_wave_specific_operator_terrain_pockets",
+      "pass": true,
+      "detail": {
+        "operator_by_transport_alpha_top4": [
+          {
+            "program": "inner_outer_wave",
+            "engine_type": 2,
+            "operator": "Fe",
+            "count": 192,
+            "abs_deta": 0.0449876399738058,
+            "abs_dtheta1": 0.06740044734433388,
+            "abs_dtheta2": 0.10107474244017674,
+            "abs_dphase": 0.056158396594836964,
+            "axis0_blend": 0.1532291888100665,
+            "axis0_injection_norm": 0.04025662288671277,
+            "axis0_effective_gain": 0.008614409747904318,
+            "transport_alpha": 0.1400871552430558,
+            "transport_triggered": 1.0,
+            "q_transport_move": 0.04496205180915643,
+            "q_total_move": 0.1023130990134078,
+            "dtrace": 0.2761878491839321,
+            "abs_dtrace": 0.2761878491839321,
+            "dneg": 0.42100593000733033,
+            "abs_dneg": 0.42100593000733033,
+            "dchi": -0.014289164793531484,
+            "abs_dchi": 0.19013001028086865,
+            "strength": 0.5720247305077346,
+            "ga0_delta": 0.0,
+            "ga0_after": 0.6006895926918423
+          },
+          {
+            "program": "inner_outer_wave",
+            "engine_type": 1,
+            "operator": "Fe",
+            "count": 192,
+            "abs_deta": 0.04250705076346323,
+            "abs_dtheta1": 0.10107966692862987,
+            "abs_dtheta2": 0.06759163440197764,
+            "abs_dphase": 0.056223767110202494,
+            "axis0_blend": 0.15204150171545008,
+            "axis0_injection_norm": 0.04027117881694652,
+            "axis0_effective_gain": 0.009196088968388649,
+            "transport_alpha": 0.13576803864566925,
+            "transport_triggered": 1.0,
+            "q_transport_move": 0.04248355329507766,
+            "q_total_move": 0.10088225758338226,
+            "dtrace": 0.2844429725364116,
+            "abs_dtrace": 0.2844429725364116,
+            "dneg": 0.41383661373575525,
+            "abs_dneg": 0.41383661373575525,
+            "dchi": 0.014677558741339906,
+            "abs_dchi": 0.17920167347145324,
+            "strength": 0.5726905891095203,
+            "ga0_delta": 0.0,
+            "ga0_after": 0.602767805955533
+          },
+          {
+            "program": "inner_outer_wave",
+            "engine_type": 2,
+            "operator": "Ti",
+            "count": 192,
+            "abs_deta": 0.0401051193981439,
+            "abs_dtheta1": 0.07940859018378683,
+            "abs_dtheta2": 0.11333537291040419,
+            "abs_dphase": 0.0642479876980637,
+            "axis0_blend": 0.03485425138249994,
+            "axis0_injection_norm": 0.02143156213939039,
+            "axis0_effective_gain": 0.0006336653105806759,
+            "transport_alpha": 0.10432176852664977,
+            "transport_triggered": 1.0,
+            "q_transport_move": 0.040086242118633174,
+            "q_total_move": 0.11090920328699276,
+            "dtrace": -0.29364586915051616,
+            "abs_dtrace": 0.29364586915051616,
+            "dneg": -0.4840485875087026,
+            "abs_dneg": 0.4840485875087026,
+            "dchi": -0.04420879267240352,
+            "abs_dchi": 0.28461139984406314,
+            "strength": 0.6544246288546633,
+            "ga0_delta": 0.0,
+            "ga0_after": 0.014690272375233035
+          },
+          {
+            "program": "inner_outer_wave",
+            "engine_type": 1,
+            "operator": "Ti",
+            "count": 192,
+            "abs_deta": 0.03799043633626101,
+            "abs_dtheta1": 0.11342198431666317,
+            "abs_dtheta2": 0.07958181299630489,
+            "abs_dphase": 0.06433459910432264,
+            "axis0_blend": 0.03471905580779609,
+            "axis0_injection_norm": 0.019363606359331282,
+            "axis0_effective_gain": 0.0006799545140902329,
+            "transport_alpha": 0.10147615925093119,
+            "transport_triggered": 1.0,
+            "q_transport_move": 0.03797126552796007,
+            "q_total_move": 0.10981721168482854,
+            "dtrace": -0.30252902157619826,
+            "abs_dtrace": 0.30252902157619826,
+            "dneg": -0.47851402905073254,
+            "abs_dneg": 0.47851402905073254,
+            "dchi": 0.10516816165351284,
+            "abs_dchi": 0.24978937940464516,
+            "strength": 0.6553068453944562,
+            "ga0_delta": 0.0,
+            "ga0_after": 0.009836910561754049
+          }
+        ],
+        "terrain_by_abs_dtrace_top4": [
+          {
+            "program": "inner_outer_wave",
+            "engine_type": 1,
+            "terrain": "Se_b",
+            "count": 96,
+            "abs_deta": 0.029946022242918674,
+            "abs_dtheta1": 0.12189308308499008,
+            "abs_dtheta2": 0.06094654154249507,
+            "abs_dphase": 0.060946541542495014,
+            "axis0_blend": 0.10755647277612888,
+            "axis0_injection_norm": 0.03797974285177328,
+            "axis0_effective_gain": 0.0090072221918758,
+            "transport_alpha": 0.11412513486392922,
+            "transport_triggered": 1.0,
+            "q_transport_move": 0.02994229575997002,
+            "q_total_move": 0.09250543659831796,
+            "dtrace": 0.00031996498963737796,
+            "abs_dtrace": 0.42511776672407314,
+            "dneg": 0.0014496824238043882,
+            "abs_dneg": 0.47617914110019316,
+            "dchi": 0.03935927773159137,
+            "abs_dchi": 0.2764520013362872,
+            "strength": 0.6207963744539927,
+            "ga0_delta": 0.0,
+            "ga0_after": 0.3094549633668922
+          },
+          {
+            "program": "inner_outer_wave",
+            "engine_type": 2,
+            "terrain": "Ne_f",
+            "count": 96,
+            "abs_deta": 0.07893028485784481,
+            "abs_dtheta1": 0.060932530069777946,
+            "abs_dtheta2": 0.121865060139556,
+            "abs_dphase": 0.06093253006977808,
+            "axis0_blend": 0.110954917056147,
+            "axis0_injection_norm": 0.03198094269770183,
+            "axis0_effective_gain": 0.007464547406674917,
+            "transport_alpha": 0.18388691892565634,
+            "transport_triggered": 1.0,
+            "q_transport_move": 0.07885907857036657,
+            "q_total_move": 0.1284438718883836,
+            "dtrace": -0.00035344756652741505,
+            "abs_dtrace": 0.3527516468338174,
+            "dneg": -0.001801215970994835,
+            "abs_dneg": 0.4295088673199132,
+            "dchi": -0.24675466245104963,
+            "abs_dchi": 0.28907668935179814,
+            "strength": 0.6206536547648461,
+            "ga0_delta": 0.0,
+            "ga0_after": 0.31617852393190304
+          },
+          {
+            "program": "inner_outer_wave",
+            "engine_type": 1,
+            "terrain": "Ne_b",
+            "count": 96,
+            "abs_deta": 0.08168518905950972,
+            "abs_dtheta1": 0.12232483157265428,
+            "abs_dtheta2": 0.061162415786327196,
+            "abs_dphase": 0.061162415786327085,
+            "axis0_blend": 0.10957985237010805,
+            "axis0_injection_norm": 0.0306395962145647,
+            "axis0_effective_gain": 0.0066223521043502626,
+            "transport_alpha": 0.1866423263360969,
+            "transport_triggered": 1.0,
+            "q_transport_move": 0.08160590796608658,
+            "q_total_move": 0.13054967517815771,
+            "dtrace": 5.291125392242746e-06,
+            "abs_dtrace": 0.3138077676804782,
+            "dneg": 3.529637316435075e-05,
+            "abs_dneg": 0.3856738504813086,
+            "dchi": 0.3482199550076477,
+            "abs_dchi": 0.3482199550076477,
+            "strength": 0.6229952514454874,
+            "ga0_delta": 0.0,
+            "ga0_after": 0.2994523223945547
+          },
+          {
+            "program": "inner_outer_wave",
+            "engine_type": 2,
+            "terrain": "Se_f",
+            "count": 96,
+            "abs_deta": 0.047157005775524535,
+            "abs_dtheta1": 0.06117372670420013,
+            "abs_dtheta2": 0.12234745340840027,
+            "abs_dphase": 0.06117372670420013,
+            "axis0_blend": 0.10858600048320166,
+            "axis0_injection_norm": 0.025554990888872583,
+            "axis0_effective_gain": 0.005840090389566102,
+            "transport_alpha": 0.14312168447395635,
+            "transport_triggered": 1.0,
+            "q_transport_move": 0.04714201940093309,
+            "q_total_move": 0.1030461905282588,
+            "dtrace": -0.000246828810070876,
+            "abs_dtrace": 0.24996144690512292,
+            "dneg": -0.0015103187756325548,
+            "abs_dneg": 0.25709579016514617,
+            "dchi": 0.19317560853466387,
+            "abs_dchi": 0.19317560853466387,
+            "strength": 0.6231104635088723,
+            "ga0_delta": 0.0,
+            "ga0_after": 0.29901928539687506
+          }
+        ]
+      }
+    }
+  ]
+}

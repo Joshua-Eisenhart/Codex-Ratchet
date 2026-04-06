@@ -11,20 +11,20 @@ The four operators as CPTP maps on 2×2 density matrices (SU(2)):
     Acts ALONG the fiber direction.
     Reduces off-diagonal coherence.
 
-  Fe (dissipation/release):
-    Lindblad dissipation along the base S².
-    Acts ACROSS fibers (base transport).
-    Drives toward a fixed point via jump operators.
+  Fe (release/frame rotation):
+    U_z(φ) unitary rotation on the Bloch sphere.
+    F-kernel (rotation class) per locked Ax5 ledger.
+    Preserves purity; z-axis phase evolution.
 
-  Te (rotation/exploration):
-    Hamiltonian rotation around the fiber S¹.
-    Unitary evolution WITHIN a fiber.
-    Preserves purity, redistributes coherence.
+  Te (exploration/dephasing):
+    σ_x dephasing channel (T-kernel per locked Ax5 ledger).
+    Destroys x-coherence while preserving σ_x populations.
+    Dissipative: increases entropy.
 
   Fi (filter/selection):
-    Spectral filter on the base S².
-    Selects which fiber states survive.
-    Amplifies dominant eigenstates.
+    U_x(θ) unitary rotation on the Bloch sphere.
+    F-kernel (rotation class) per locked Ax5 ledger.
+    Preserves purity; x-axis phase evolution.
 
 Each operator has polarity (up/down):
   UP = active/forward direction
@@ -56,6 +56,30 @@ def _ensure_valid_density(rho: np.ndarray) -> np.ndarray:
     else:
         rho = I2 / 2  # Fallback to maximally mixed
     return rho
+
+
+def partial_trace_A(rho_AB: np.ndarray, dims: Tuple[int, int] = (2, 2)) -> np.ndarray:
+    """Tr_A(rho_AB) = sum_i (<i| ⊗ I) rho_AB (|i> ⊗ I). Returns 2x2 density matrix for B subsystem."""
+    d_A, d_B = dims
+    rho_B = np.zeros((d_B, d_B), dtype=complex)
+    for i in range(d_A):
+        bra_i = np.zeros(d_A, dtype=complex)
+        bra_i[i] = 1.0
+        proj = np.kron(bra_i.reshape(1, -1), np.eye(d_B, dtype=complex))
+        rho_B += proj @ rho_AB @ proj.conj().T
+    return rho_B
+
+
+def partial_trace_B(rho_AB: np.ndarray, dims: Tuple[int, int] = (2, 2)) -> np.ndarray:
+    """Tr_B(rho_AB) = sum_j (I ⊗ <j|) rho_AB (I ⊗ |j>). Returns 2x2 density matrix for A subsystem."""
+    d_A, d_B = dims
+    rho_A = np.zeros((d_A, d_A), dtype=complex)
+    for j in range(d_B):
+        bra_j = np.zeros(d_B, dtype=complex)
+        bra_j[j] = 1.0
+        proj = np.kron(np.eye(d_A, dtype=complex), bra_j.reshape(1, -1))
+        rho_A += proj @ rho_AB @ proj.conj().T
+    return rho_A
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -95,27 +119,27 @@ def apply_Ti(rho: np.ndarray, polarity_up: bool = True, strength: float = 1.0) -
 # ═══════════════════════════════════════════════════════════════════
 
 def apply_Fe(rho: np.ndarray, polarity_up: bool = True,
-             strength: float = 1.0, dt: float = 0.05) -> np.ndarray:
-    """Fe — Lindblad dissipation (release operator).
+             strength: float = 1.0, phi: float = 0.4) -> np.ndarray:
+    """Fe — U_z(φ) rotation (F-kernel, release operator).
 
-    Drives ρ toward a fixed point via amplitude damping.
-    This acts ACROSS the Hopf fibers: it transports population
-    from one fiber to another (base motion on S²).
+    Unitary evolution: ρ → U_z(φ) ρ U_z(φ)†
+    where U_z(φ) = exp(-i φ/2 σ_z) = diag(e^{-iφ/2}, e^{iφ/2}).
+    F-kernel = rotation class per locked Ax5 ledger.
 
-    UP polarity: strong coupling (fast decay)
-    DOWN polarity: weak coupling (slow decay)
+    UP polarity: positive rotation angle
+    DOWN polarity: negative rotation angle
 
-    CPTP: amplitude damping channel with γ = strength × dt
+    Unitary: preserves purity and eigenvalues of ρ.
+
+    NOTE: Previously implemented as amplitude damping — corrected 2026-03-29
+    per v5_OPERATOR_MATH_LEDGER.md (Ax5 T/F kernel lock).
     """
-    # Amplitude damping: decay toward |0⟩
-    gamma = strength * dt * (3.0 if polarity_up else 1.0)
-    gamma = min(gamma, 1.0)  # Clamp
-
-    # Kraus operators for amplitude damping
-    K0 = np.array([[1, 0], [0, np.sqrt(1 - gamma)]], dtype=complex)
-    K1 = np.array([[0, np.sqrt(gamma)], [0, 0]], dtype=complex)
-
-    rho_out = K0 @ rho @ K0.conj().T + K1 @ rho @ K1.conj().T
+    sign = 1.0 if polarity_up else -1.0
+    angle = sign * phi * strength
+    # U_z(φ) = diag(e^{-iφ/2}, e^{iφ/2})
+    U = np.array([[np.exp(-1j * angle / 2), 0],
+                  [0, np.exp(1j * angle / 2)]], dtype=complex)
+    rho_out = U @ rho @ U.conj().T
     return _ensure_valid_density(rho_out)
 
 
@@ -124,26 +148,28 @@ def apply_Fe(rho: np.ndarray, polarity_up: bool = True,
 # ═══════════════════════════════════════════════════════════════════
 
 def apply_Te(rho: np.ndarray, polarity_up: bool = True,
-             strength: float = 1.0, angle: float = 0.3) -> np.ndarray:
-    """Te — Hamiltonian rotation (exploration operator).
+             strength: float = 1.0, q: float = 0.7) -> np.ndarray:
+    """Te — σ_x dephasing (T-kernel, exploration operator).
 
-    Unitary evolution: ρ → U ρ U† where U = exp(-i θ H).
-    This acts WITHIN the Hopf fiber: it rotates the state
-    around the Bloch sphere without leaving the fiber.
+    CPTP map: (1 - q₂)ρ + q₂(Q₊ρQ₊ + Q₋ρQ₋)
+    where Q₊ = |+⟩⟨+| = [[1,1],[1,1]]/2 and Q₋ = |-⟩⟨-| = [[1,-1],[-1,1]]/2
+    are the σ_x eigenprojectors.
+    T-kernel = dissipative dephasing class per locked Ax5 ledger.
 
-    UP polarity: positive rotation (explore forward)
-    DOWN polarity: negative rotation (explore backward)
+    UP polarity: strong dephasing (mix = q)
+    DOWN polarity: weak dephasing (mix = 0.3 × q)
 
-    Unitary: preserves eigenvalues of ρ (isometric).
+    Dissipative: destroys x-coherence, increases entropy toward σ_x eigenstate.
+
+    NOTE: Previously implemented as σ_y Hamiltonian rotation — corrected 2026-03-29
+    per v5_OPERATOR_MATH_LEDGER.md (Ax5 T/F kernel lock).
     """
-    # Hamiltonian: rotation around y-axis (moves between |0⟩ and |1⟩)
-    H = SIGMA_Y
-    sign = 1.0 if polarity_up else -1.0
-    theta = sign * angle * strength
-
-    # U = exp(-i θ H) = cos(θ)I - i sin(θ)H for Pauli matrix
-    U = np.cos(theta) * I2 - 1j * np.sin(theta) * H
-    rho_out = U @ rho @ U.conj().T
+    mix = strength * (q if polarity_up else 0.3 * q)
+    mix = min(mix, 1.0)
+    # σ_x eigenprojectors: Q± = |±⟩⟨±|
+    Q_plus = np.array([[1, 1], [1, 1]], dtype=complex) / 2
+    Q_minus = np.array([[1, -1], [-1, 1]], dtype=complex) / 2
+    rho_out = (1 - mix) * rho + mix * (Q_plus @ rho @ Q_plus + Q_minus @ rho @ Q_minus)
     return _ensure_valid_density(rho_out)
 
 
@@ -152,36 +178,28 @@ def apply_Te(rho: np.ndarray, polarity_up: bool = True,
 # ═══════════════════════════════════════════════════════════════════
 
 def apply_Fi(rho: np.ndarray, polarity_up: bool = True,
-             strength: float = 1.0) -> np.ndarray:
-    """Fi — Spectral filter (selection operator).
+             strength: float = 1.0, theta: float = 0.4) -> np.ndarray:
+    """Fi — U_x(θ) rotation (F-kernel, selection operator).
 
-    Selectively amplifies one eigenstate of ρ.
-    This acts ON the base S²: it selects which fiber
-    (which Bloch direction) survives.
+    Unitary evolution: ρ → U_x(θ) ρ U_x(θ)†
+    where U_x(θ) = exp(-i θ/2 σ_x) = cos(θ/2)I - i sin(θ/2)σ_x.
+    F-kernel = rotation class per locked Ax5 ledger.
+    Unlike Fe (U_z), Fi rotates around the x-axis, mixing |0⟩ and |1⟩
+    populations — produces genuine non-commutativity with Ti (σ_z dephasing).
 
-    UP polarity: emissive (amplify dominant, suppress rest)
-    DOWN polarity: absorptive (retain more, gentle selection)
+    UP polarity: positive rotation angle
+    DOWN polarity: negative rotation angle
 
-    CPTP: generalized measurement with selective amplification.
+    Unitary: preserves purity and eigenvalues of ρ.
 
-    Important nuance:
-      - On mixed inputs, Fi typically changes eigenvalues and therefore entropy.
-      - On pure inputs, Fi can preserve purity (ΔΦ ≈ 0) while still strongly
-        changing direction/population bias after renormalization.
+    NOTE: Previously implemented as spectral amplitude filter — corrected 2026-03-29
+    per v5_OPERATOR_MATH_LEDGER.md (Ax5 T/F kernel lock).
     """
-    # Filter operator: amplify |0⟩ component relative to |1⟩
-    # r = attenuation factor for |1⟩ component. r=1 → identity, r→0 → project onto |0⟩.
-    # At strength=0, r must be 1 (identity). At strength=1, maximum filtering.
-    if polarity_up:
-        r = 1.0 - 0.7 * strength  # Strong filter at s=1: r=0.3
-    else:
-        r = 1.0 - 0.3 * strength  # Gentle filter at s=1: r=0.7
-
-    F = np.array([[1, 0], [0, r]], dtype=complex)
-    rho_out = F @ rho @ F.conj().T
-    tr = np.real(np.trace(rho_out))
-    if tr > 1e-15:
-        rho_out /= tr
+    sign = 1.0 if polarity_up else -1.0
+    angle = sign * theta * strength
+    # U_x(θ) = cos(θ/2)I - i sin(θ/2)σ_x
+    U = np.cos(angle / 2) * I2 - 1j * np.sin(angle / 2) * SIGMA_X
+    rho_out = U @ rho @ U.conj().T
     return _ensure_valid_density(rho_out)
 
 
@@ -217,9 +235,91 @@ def apply_operator(name: str, rho: np.ndarray,
 
 
 def negentropy(rho: np.ndarray) -> float:
-    """Negentropy Φ = log(d) - S(ρ) for d=2."""
+    """Negentropy Φ = log(d) - S(ρ). For 2x2 d=2, for 4x4 d=4."""
     from hopf_manifold import von_neumann_entropy_2x2
-    return np.log(2) - von_neumann_entropy_2x2(rho) * np.log(2)
+    # Determine dimension from shape
+    d = rho.shape[0]
+    # Re-use the entropy compute logic which works for any hermitian PSD matrix
+    rho_copy = (rho + rho.conj().T) / 2
+    evals = np.linalg.eigvalsh(rho_copy)
+    evals = evals[evals > 1e-15]
+    s = float(-np.sum(evals * np.log2(evals))) if len(evals) > 0 else 0.0
+    return np.log2(d) - s
+
+
+def delta_phi(rho_before: np.ndarray, rho_after: np.ndarray) -> float:
+    """Change in negentropy: ΔΦ = Φ(after) - Φ(before)."""
+    return negentropy(rho_after) - negentropy(rho_before)
+
+
+def trace_distance_4x4(rho: np.ndarray, sigma: np.ndarray) -> float:
+    """Trace distance D(ρ, σ) = ½ Tr|ρ - σ| for 4x4 matrices."""
+    diff = rho - sigma
+    evals = np.linalg.eigvalsh(diff)
+    return float(0.5 * np.sum(np.abs(evals)))
+
+
+# ═══════════════════════════════════════════════════════════════════
+# JOINT 4x4 OPERATORS
+# ═══════════════════════════════════════════════════════════════════
+
+def apply_Ti_4x4(rho_AB: np.ndarray, polarity_up: bool = True, strength: float = 1.0) -> np.ndarray:
+    """Ti — Lüders projection natively on 4x4 joint space using ZZ interaction."""
+    # Ti entangler is ZZ
+    op = np.kron(SIGMA_Z, SIGMA_Z)
+    
+    # We apply the dephasing native to the bipartite state
+    P0 = (np.eye(4, dtype=complex) + op) / 2
+    P1 = (np.eye(4, dtype=complex) - op) / 2
+    
+    rho_projected = P0 @ rho_AB @ P0 + P1 @ rho_AB @ P1
+    mix = strength if polarity_up else 0.3 * strength
+    
+    rho_out = mix * rho_projected + (1 - mix) * rho_AB
+    return _ensure_valid_density(rho_out)
+
+def apply_Fe_4x4(rho_AB: np.ndarray, polarity_up: bool = True, strength: float = 1.0, phi: float = 0.4) -> np.ndarray:
+    """Fe — U_xx rotation natively on 4x4 joint space."""
+    # Fe rotates using XX entangling Hamiltonian
+    sign = 1.0 if polarity_up else -1.0
+    angle = sign * phi * strength
+    H_int = np.kron(SIGMA_X, SIGMA_X)
+    U = np.cos(angle / 2) * np.eye(4, dtype=complex) - 1j * np.sin(angle / 2) * H_int
+    
+    rho_out = U @ rho_AB @ U.conj().T
+    return _ensure_valid_density(rho_out)
+
+def apply_Te_4x4(rho_AB: np.ndarray, polarity_up: bool = True, strength: float = 1.0, q: float = 0.7) -> np.ndarray:
+    """Te — Dephasing natively on 4x4 joint space using YY interaction."""
+    op = np.kron(SIGMA_Y, SIGMA_Y)
+    
+    # YY Eigenprojectors
+    P_plus = (np.eye(4, dtype=complex) + op) / 2
+    P_minus = (np.eye(4, dtype=complex) - op) / 2
+    
+    mix = min(strength * (q if polarity_up else 0.3 * q), 1.0)
+    rho_projected = P_plus @ rho_AB @ P_plus + P_minus @ rho_AB @ P_minus
+    
+    rho_out = (1 - mix) * rho_AB + mix * rho_projected
+    return _ensure_valid_density(rho_out)
+
+def apply_Fi_4x4(rho_AB: np.ndarray, polarity_up: bool = True, strength: float = 1.0, theta: float = 0.4) -> np.ndarray:
+    """Fi — U_xz rotation natively on 4x4 joint space (selection logic mapping)."""
+    # Fi rotates using XZ entangling Hamiltonian so it is distinct from Fe (XX)
+    sign = 1.0 if polarity_up else -1.0
+    angle = sign * theta * strength
+    H_int = np.kron(SIGMA_X, SIGMA_Z)
+    U = np.cos(angle / 2) * np.eye(4, dtype=complex) - 1j * np.sin(angle / 2) * H_int
+    
+    rho_out = U @ rho_AB @ U.conj().T
+    return _ensure_valid_density(rho_out)
+
+OPERATOR_MAP_4X4 = {
+    "Ti": apply_Ti_4x4,
+    "Fe": apply_Fe_4x4,
+    "Te": apply_Te_4x4,
+    "Fi": apply_Fi_4x4,
+}
 
 
 def delta_phi(rho_before: np.ndarray, rho_after: np.ndarray) -> float:

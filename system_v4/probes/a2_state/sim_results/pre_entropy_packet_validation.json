@@ -1,0 +1,976 @@
+{
+  "name": "pre_entropy_packet_validation",
+  "timestamp": "2026-04-02T00:44:25.754534+00:00",
+  "passed_gates": 25,
+  "total_gates": 25,
+  "score": 1.0,
+  "xi_hist_signed_law": {
+    "object": "Xi_hist signed law",
+    "admitted": true,
+    "source_gates": [
+      "P11_xi_hist_signed_late_anchor_is_equivalent_not_free_placement",
+      "P12_xi_hist_short_width_stress_is_clifford_local_not_global",
+      "P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_3"
+    ],
+    "late_anchor": {
+      "placement_label": "8_23",
+      "equivalent_labels": [
+        "16_31",
+        "8_15"
+      ],
+      "detail": {
+        "total_rows": 6,
+        "placement_8_23_equals_16_31_count": 6,
+        "placement_8_23_equals_prefix_8_15_on_mi_count": 6,
+        "placement_8_23_equals_prefix_8_15_on_ic_count": 6,
+        "placement_8_23_equals_prefix_8_15_on_signed_count": 6,
+        "placement_8_23_beats_0_3_on_ic_count": 4
+      }
+    },
+    "short_width_exception": {
+      "width_label": "0_3",
+      "scope": "clifford only",
+      "detail": {
+        "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
+        "short_width_0_3_beats_8_23_on_ic_clifford_count": 2,
+        "total_rows": 6
+      }
+    },
+    "typed_ordering": {
+      "winner": "8_15",
+      "midpoint_probe": "2_15",
+      "local_stress_probe": "0_3",
+      "detail": {
+        "best_early_width_by_ic_counts": {
+          "0_3": 6,
+          "0_7": 0,
+          "0_11": 0,
+          "0_15": 0
+        },
+        "best_prefix_drop_by_ic_counts": {
+          "0_15": 0,
+          "1_15": 0,
+          "2_15": 0,
+          "4_15": 0,
+          "8_15": 6
+        },
+        "min_ic_8_15_minus_2_15": 0.04563198324576534,
+        "min_signed_2_15_minus_8_15": 0.04563198324576534,
+        "off_clifford_min_ic_8_23_minus_0_3": 0.14308503210605894,
+        "clifford_max_ic_8_23_minus_0_3": -0.02342179765536795
+      }
+    }
+  },
+  "law_summary": {
+    "name": "late-anchor-equivalence_plus_clifford-local-short-width-stress",
+    "total_rows": 6,
+    "strict_bakeoff_owner_object_present": true,
+    "late_anchor_equivalence": {
+      "placement_8_23_equals_16_31_count": 6,
+      "placement_8_23_equals_prefix_8_15_on_mi_count": 6,
+      "placement_8_23_equals_prefix_8_15_on_ic_count": 6,
+      "placement_8_23_equals_prefix_8_15_on_signed_count": 6
+    },
+    "clifford_local_short_width_stress": {
+      "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
+      "short_width_0_3_beats_8_23_on_ic_clifford_count": 2
+    }
+  },
+  "owner_worthiness_map": {
+    "owner_derived": {
+      "xi_hist_signed_law": "admitted",
+      "bridge_admission_rule": "admitted"
+    },
+    "pre_axis_law": {
+      "late_anchor_equivalence": "admitted",
+      "clifford_local_short_width_stress": "admitted",
+      "chirality_separated_transport_deltas": "candidate",
+      "chirality_separated_transport_deltas_blocker": "awaiting_owner_promotion_decision_after_nonproxy_support"
+    },
+    "axis_internal_readout": {
+      "I_c_A_to_B": "readout",
+      "S_A_given_B": "readout",
+      "Xi_chiral_entangle": "current_bridge_candidate",
+      "Xi_chiral_entangle_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+    },
+    "diagnostic_only": {
+      "raw_delta_packet": "diagnostic_only",
+      "single_weyl_flux_object": "not_supported_yet",
+      "entropic_left_right_flux": "blocked",
+      "post_joint_cut_flux": "downstream_branch"
+    }
+  },
+  "joint_necessity_witness": {
+    "transport_delta_candidate": "chirality-separated loop-sensitive transport deltas",
+    "same_carrier_chirality_ablation": {
+      "status": "partial_support",
+      "d_chiral": 0.8234140396807214,
+      "d_flat": 0.5450291097571088,
+      "retention_ratio": 0.6619137924444958
+    },
+    "same_carrier_loop_law_ablation": {
+      "status": "strong_support",
+      "structure_matters": true,
+      "max_true_fiber_drift": 1.4694327085712575e-16,
+      "min_true_base_traversal": 0.11476546161121078,
+      "min_swapped_base_as_fiber": 0.11476546161121078,
+      "min_swapped_fiber_as_base": 1.0
+    },
+    "combined_same_carrier_ablation": {
+      "status": "nonproxy_runtime_support",
+      "summary": {
+        "live_min_score": 0.16230287230258308,
+        "live_mean_score": 0.6020989636893793,
+        "flat_max_score": 0.0,
+        "flat_mean_score": 0.0,
+        "swapped_max_score": 2.0780916654561039e-16,
+        "swapped_mean_score": 1.4218841473442104e-16,
+        "combined_max_score": 0.0,
+        "combined_mean_score": 0.0,
+        "flat_beats_live_count": 0,
+        "swapped_beats_live_count": 0,
+        "combined_beats_live_count": 0,
+        "live_min_transport_gap": 0.11476546161121066,
+        "flat_max_transport_gap": 0.6212832187530508,
+        "swapped_max_transport_gap": 1.4694327085712575e-16,
+        "combined_max_transport_gap": 1.4694327085712575e-16,
+        "combined_gap_retention": 1.2803788595816693e-15,
+        "live_min_sheet_split": 1.4142135623730947,
+        "flat_max_sheet_split": 0.0,
+        "swapped_max_sheet_split": 1.4142135623730951,
+        "combined_max_sheet_split": 0.0,
+        "live_min_direct_min_traversal": 0.11476546161121078,
+        "flat_min_direct_min_traversal": 0.11476546161121078,
+        "swapped_max_direct_min_traversal": 1.4694327085712575e-16,
+        "combined_max_direct_min_traversal": 1.4694327085712575e-16
+      },
+      "blocker": "awaiting_owner_promotion_decision_after_nonproxy_support"
+    }
+  },
+  "pre_axis_admission_schema": {
+    "object": "pre_axis_admission_schema",
+    "scope": "constraint-aligned QIT-grounded machinery before Axis 0 promotion",
+    "lifecycle": [
+      {
+        "stage": "formalized",
+        "requirement": "explicit math object and dependency placement",
+        "axis_usable": false
+      },
+      {
+        "stage": "qit_grounded",
+        "requirement": "finite-carrier density/operator realization",
+        "axis_usable": false
+      },
+      {
+        "stage": "sim_live",
+        "requirement": "mechanically active runner or packet artifact",
+        "axis_usable": false
+      },
+      {
+        "stage": "neg_tested",
+        "requirement": "same-carrier negatives or falsification pressure",
+        "axis_usable": false
+      },
+      {
+        "stage": "placement_classified",
+        "requirement": "owner-derived vs pre-axis vs axis-internal vs diagnostic-only",
+        "axis_usable": false
+      },
+      {
+        "stage": "axis_eligible",
+        "requirement": "admitted or owner-derived object with downstream use allowed",
+        "axis_usable": true
+      }
+    ],
+    "machinery_families": {
+      "carrier_basis": {
+        "status": "qit_grounded_upstream",
+        "objects": [
+          "hopf_carrier_point",
+          "nested_torus_seat"
+        ]
+      },
+      "weyl_refinement": {
+        "status": "sim_live",
+        "objects": [
+          "weyl_sheet_pair"
+        ]
+      },
+      "transport_differential": {
+        "status": "candidate_pre_axis_law",
+        "objects": [
+          "loop_sensitive_transport_surface",
+          "chirality_differential_surface",
+          "bloch_differential_surface"
+        ]
+      },
+      "bridge_entropy_entry": {
+        "status": "downstream_axis_entry_only",
+        "objects": [
+          "bridge_ready_cut_object",
+          "Xi_chiral_entangle",
+          "I_c_A_to_B",
+          "S_A_given_B"
+        ]
+      }
+    },
+    "classical_leakage_guards": {
+      "continuum_flow": "guarded_by_finite_qit_carrier_and_stagewise_deltas",
+      "entropy_first_readout": "guarded_by_pre_entropy_before_entropy_readout",
+      "flux_shorthand": "guarded_by_branch_map_and_diagnostic_demotion",
+      "same_carrier_necessity": "guarded_by_nonproxy_runtime_support_but_not_promoted",
+      "same_carrier_runtime_witness": "direct_sheet_split_and_direct_per_sheet_traversal_are_now_explicit",
+      "downstream_cut_smuggling": "guarded_by_downstream_not_pre_axis_fence"
+    },
+    "axis_embargo": {
+      "rule": "No object may function as Axis math before QIT grounding, live simulation, negative support, and placement classification are closed.",
+      "required_before_axis_use": [
+        "qit_grounded",
+        "sim_live",
+        "neg_tested",
+        "placement_classified"
+      ],
+      "currently_axis_eligible": {
+        "xi_hist_signed_law": "owner_derived",
+        "bridge_admission_rule": "owner_derived"
+      },
+      "currently_embargoed": {
+        "chirality_separated_transport_deltas": "candidate_pending_owner_promotion_after_nonproxy_support",
+        "raw_delta_packet": "diagnostic_only",
+        "single_weyl_flux_object": "not_supported_yet",
+        "entropic_left_right_flux": "blocked",
+        "post_joint_cut_flux": "downstream_branch"
+      }
+    },
+    "current_mapping": {
+      "hopf_carrier_point": "qit_grounded",
+      "nested_torus_seat": "qit_grounded",
+      "weyl_sheet_pair": "sim_live",
+      "loop_sensitive_transport_surface": "sim_live_candidate",
+      "chirality_differential_surface": "sim_live_candidate",
+      "bloch_differential_surface": "sim_live_candidate",
+      "chirality_separated_transport_deltas": "neg_tested_candidate_with_nonproxy_runtime_support_not_axis_eligible",
+      "Xi_chiral_entangle": "axis_internal_candidate_not_final_owner_law",
+      "xi_hist_signed_law": "axis_eligible_owner_derived"
+    },
+    "placement_relations": {
+      "Xi_chiral_entangle": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+      "xi_hist_signed_law": "owner_derived_law_that_binds_bridge_handoff"
+    }
+  },
+  "gates": [
+    {
+      "name": "P1_bridge_admission_is_fail_closed",
+      "pass": true,
+      "detail": {
+        "winner": "Xi_chiral_entangle",
+        "winner_mean_mi": 0.5850944299846628,
+        "winner_mean_i_c": 0.0775200940266869,
+        "runner_up": "Xi_chiral_hist_entangle",
+        "runner_up_mean_mi": 0.5153548066316724,
+        "runner_up_mean_i_c": -0.09313964667615891,
+        "winner_margin": 0.06973962335299033,
+        "lr_direct_mean_mi": 3.3769283665681843e-16
+      }
+    },
+    {
+      "name": "P2_strict_bakeoff_separates_bridge_from_controls",
+      "pass": true,
+      "detail": {
+        "hist_outer_minus_lr_mi": 0.011421614360603044,
+        "hist_cycle_minus_lr_mi": 0.011421614360603044,
+        "history_nontrivial_while_shell_flat": true,
+        "xi_lr_direct_MI": 0.20932035556626527,
+        "point_ref_minus_shell_base_std": 0.2992748479986896
+      }
+    },
+    {
+      "name": "P3_history_windows_currently_degenerate",
+      "pass": true,
+      "detail": {
+        "history_outer_beats_lr_count": 4,
+        "history_outer_beats_lr_while_shell_flat_count": 4,
+        "outer_window_beats_cycle_count": 0,
+        "cycle_window_beats_outer_count": 0,
+        "mean_history_outer_minus_cycle_mi": 0.0,
+        "best_window_by_mi_counts": {
+          "0_7": 6,
+          "0_15": 0,
+          "0_23": 0,
+          "0_31": 0
+        },
+        "history_window_mi_monotonic_decay_count": 6,
+        "max_abs_mi_0_7_minus_0_31": 0.0,
+        "max_abs_mi_0_15_minus_0_31": 0.0,
+        "max_abs_mi_0_23_minus_0_31": 0.0
+      }
+    },
+    {
+      "name": "P4_shell_flat_pointref_varies",
+      "pass": true,
+      "detail": {
+        "inner_shell_fiber_I_std": 5.20740757162067e-16,
+        "inner_pointref_base_I_std": 0.2769167239465605,
+        "clifford_pointref_base_I_std": 0.3439910961029495,
+        "outer_pointref_base_I_std": 0.27691672394656064
+      }
+    },
+    {
+      "name": "P5_bridge_is_multicycle_stable_off_clifford",
+      "pass": true,
+      "detail": {
+        "inner_min_winner_cumulative_MI": 1.5972914558971791,
+        "outer_min_winner_cumulative_MI": 1.597357721295048,
+        "inner_max_product_cumulative_MI": 0.011457400276617014,
+        "outer_max_product_cumulative_MI": 0.011457825362577445
+      }
+    },
+    {
+      "name": "P6_clifford_is_the_edge_case_not_the_norm",
+      "pass": true,
+      "detail": {
+        "clifford_max_winner_cumulative_MI": 1.1639553352298315,
+        "clifford_max_product_cumulative_MI": 0.004292586529197395
+      }
+    },
+    {
+      "name": "P7_fe_indexed_is_partial_refinement_not_replacement",
+      "pass": true,
+      "detail": {
+        "best_new_bridge": "C_fe_pairs_only",
+        "best_gain": 0.15375653780456644,
+        "winner_counts": {
+          "A_phase4_winner": 1,
+          "B_fe_indexed": 0,
+          "C_fe_pairs_only": 5,
+          "D_lag7_pairs": 0
+        },
+        "mean_fe_advantage": 0.11738124811376545
+      }
+    },
+    {
+      "name": "P8_dynamic_shell_is_explicitly_unresolved",
+      "pass": true,
+      "detail": {
+        "keep_lane_a": 0,
+        "full_keeps": 0,
+        "total": 6,
+        "keep_lane_b": 4,
+        "keep_lane_c": 0,
+        "overall": "SHELL PROPOSAL NOT SUPPORTED"
+      }
+    },
+    {
+      "name": "P9_xi_hist_handoff_is_placement_sensitive_not_width_accumulative",
+      "pass": true,
+      "detail": {
+        "best_placement_by_mi_counts": {
+          "0_15": 4,
+          "8_23": 2,
+          "16_31": 0
+        },
+        "early_window_beats_shifted_count": 4,
+        "best_early_width_by_mi_counts": {
+          "0_3": 6,
+          "0_7": 0,
+          "0_11": 0,
+          "0_15": 0
+        },
+        "early_width_mi_monotonic_growth_count": 0,
+        "best_prefix_drop_by_mi_counts": {
+          "0_15": 3,
+          "1_15": 0,
+          "2_15": 1,
+          "4_15": 0,
+          "8_15": 2
+        },
+        "prefix_drop_mi_monotonic_loss_count": 0
+      }
+    },
+    {
+      "name": "P10_xi_hist_signed_handoff_prefers_back_half_and_short_stress",
+      "pass": true,
+      "detail": {
+        "best_placement_by_ic_counts": {
+          "0_15": 0,
+          "8_23": 6,
+          "16_31": 0
+        },
+        "best_early_width_by_ic_counts": {
+          "0_3": 6,
+          "0_7": 0,
+          "0_11": 0,
+          "0_15": 0
+        },
+        "best_prefix_drop_by_ic_counts": {
+          "0_15": 0,
+          "1_15": 0,
+          "2_15": 0,
+          "4_15": 0,
+          "8_15": 6
+        },
+        "min_ic_0_15_minus_8_23": -0.1983852809782908,
+        "min_ic_0_15_minus_0_3": -0.10934488920366203,
+        "negative_ic_0_15_minus_2_15_count": 5,
+        "min_ic_8_15_minus_2_15": 0.04563198324576534,
+        "min_signed_0_15_minus_8_23": 0.040457502984151406,
+        "min_signed_0_15_minus_0_3": 0.014260395036189144,
+        "positive_signed_0_15_minus_2_15_count": 5,
+        "min_signed_2_15_minus_8_15": 0.04563198324576534,
+        "first_half_beats_second_half_on_signed_cut_count": 6,
+        "second_half_beats_first_half_on_signed_cut_count": 0,
+        "seat_signed_cut_half_preference": {
+          "inner": "front_half",
+          "clifford": "front_half",
+          "outer": "front_half"
+        }
+      }
+    },
+    {
+      "name": "P11_xi_hist_signed_late_anchor_is_equivalent_not_free_placement",
+      "pass": true,
+      "detail": {
+        "total_rows": 6,
+        "placement_8_23_equals_16_31_count": 6,
+        "placement_8_23_equals_prefix_8_15_on_mi_count": 6,
+        "placement_8_23_equals_prefix_8_15_on_ic_count": 6,
+        "placement_8_23_equals_prefix_8_15_on_signed_count": 6,
+        "placement_8_23_beats_0_3_on_ic_count": 4
+      }
+    },
+    {
+      "name": "P12_xi_hist_short_width_stress_is_clifford_local_not_global",
+      "pass": true,
+      "detail": {
+        "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
+        "short_width_0_3_beats_8_23_on_ic_clifford_count": 2,
+        "total_rows": 6
+      }
+    },
+    {
+      "name": "P13_xi_hist_typing_law_8_15_vs_2_15_vs_0_3",
+      "pass": true,
+      "detail": {
+        "best_early_width_by_ic_counts": {
+          "0_3": 6,
+          "0_7": 0,
+          "0_11": 0,
+          "0_15": 0
+        },
+        "best_prefix_drop_by_ic_counts": {
+          "0_15": 0,
+          "1_15": 0,
+          "2_15": 0,
+          "4_15": 0,
+          "8_15": 6
+        },
+        "min_ic_8_15_minus_2_15": 0.04563198324576534,
+        "min_signed_2_15_minus_8_15": 0.04563198324576534,
+        "off_clifford_min_ic_8_23_minus_0_3": 0.14308503210605894,
+        "clifford_max_ic_8_23_minus_0_3": -0.02342179765536795
+      }
+    },
+    {
+      "name": "P14_xi_hist_signed_law_is_explicit_in_strict_bakeoff",
+      "pass": true,
+      "detail": {
+        "law_name": "Xi_hist signed law",
+        "owner_read": "late-anchor equivalence plus clifford-local short-width stress",
+        "late_anchor_equivalence": {
+          "placement_8_23_equals_16_31": true,
+          "placement_8_23_equals_prefix_8_15_on_mi": true,
+          "placement_8_23_equals_prefix_8_15_on_ic": true,
+          "placement_8_23_equals_prefix_8_15_on_signed_cut": true
+        },
+        "short_width_stress": {
+          "best_early_width_by_ic_is_0_3": true,
+          "late_anchor_beats_0_3_off_clifford": true,
+          "0_3_beats_late_anchor_on_clifford_only": true
+        },
+        "counts": {
+          "total_rows": 6,
+          "off_clifford_rows": 4,
+          "clifford_rows": 2,
+          "placement_8_23_beats_0_3_on_ic_off_clifford_count": 4,
+          "short_width_0_3_beats_8_23_on_ic_clifford_count": 2
+        }
+      }
+    },
+    {
+      "name": "P15_owner_worthiness_map_demotes_raw_deltas_and_open_flux_labels",
+      "pass": true,
+      "detail": {
+        "owner_worthiness_map": {
+          "owner_derived": {
+            "xi_hist_signed_law": "admitted",
+            "bridge_admission_rule": "admitted"
+          },
+          "pre_axis_law": {
+            "late_anchor_equivalence": "admitted",
+            "clifford_local_short_width_stress": "admitted",
+            "chirality_separated_transport_deltas": "candidate",
+            "chirality_separated_transport_deltas_blocker": "awaiting_owner_promotion_decision_after_nonproxy_support"
+          },
+          "axis_internal_readout": {
+            "I_c_A_to_B": "readout",
+            "S_A_given_B": "readout",
+            "Xi_chiral_entangle": "current_bridge_candidate",
+            "Xi_chiral_entangle_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+          },
+          "diagnostic_only": {
+            "raw_delta_packet": "diagnostic_only",
+            "single_weyl_flux_object": "not_supported_yet",
+            "entropic_left_right_flux": "blocked",
+            "post_joint_cut_flux": "downstream_branch"
+          }
+        },
+        "delta_raw_surface_status": "diagnostic_surface_not_final_owner_law",
+        "single_weyl_flux_object": {
+          "status": "not_supported_yet",
+          "reason": "current evidence resolves a compound delta family, not one isolated owner-worthy flux object"
+        },
+        "post_joint_cut_flux": {
+          "status": "downstream_branch",
+          "reason": "cut/coupling flux depends on rho_AB and later bridge/readout structure"
+        }
+      }
+    },
+    {
+      "name": "P16_transport_delta_branch_survives_but_is_not_owner_law_yet",
+      "pass": true,
+      "detail": {
+        "w5_pass": true,
+        "w7_pass": true,
+        "w8_pass": true,
+        "w9_pass": true,
+        "w5_detail": {
+          "geometric_transport_delta": "pre-axis",
+          "chirality_differential_delta": "pre-axis",
+          "bloch_differential_delta": "pre-axis",
+          "entropic_left_right_flux": "unresolved_not_owner_worthy_yet",
+          "post_joint_cut_flux": "axis_internal_or_cross_axis"
+        },
+        "w9_detail": {
+          "blocked_flux_reason": "blocked_by_symmetric_compat_shim",
+          "unsupported_single_flux": "single_weyl_flux_object",
+          "unsupported_single_flux_status": "not_supported_yet",
+          "downstream_branch_status": "downstream_existing_branch"
+        },
+        "transport_embargo_boundary": {
+          "object": "transport_embargo_boundary",
+          "status": "candidate_pre_axis_law_not_owner_promoted",
+          "surviving_candidate": "chirality_separated_transport_deltas",
+          "lower_tier_law": "exact_loop_assigned_transport_only",
+          "blocked_flux": "entropic_left_right_flux",
+          "blocked_flux_reason": "blocked_by_symmetric_compat_shim",
+          "unsupported_single_flux": "single_weyl_flux_object",
+          "unsupported_single_flux_status": "not_supported_yet",
+          "downstream_branch": "post_joint_cut_flux",
+          "downstream_branch_status": "downstream_existing_branch",
+          "promotion_boundary": "awaiting_owner_promotion_decision_after_nonproxy_support",
+          "support_rows": {
+            "transport_active_count": 48,
+            "chirality_active_count": 48,
+            "lr_bloch_asymmetry_count": 48
+          }
+        },
+        "blocker": "awaiting_owner_promotion_decision_after_nonproxy_support"
+      }
+    },
+    {
+      "name": "P17_transport_delta_branch_now_has_nonproxy_joint_necessity_support",
+      "pass": true,
+      "detail": {
+        "transport_delta_candidate": "chirality-separated loop-sensitive transport deltas",
+        "same_carrier_chirality_ablation": {
+          "status": "partial_support",
+          "d_chiral": 0.8234140396807214,
+          "d_flat": 0.5450291097571088,
+          "retention_ratio": 0.6619137924444958
+        },
+        "same_carrier_loop_law_ablation": {
+          "status": "strong_support",
+          "structure_matters": true,
+          "max_true_fiber_drift": 1.4694327085712575e-16,
+          "min_true_base_traversal": 0.11476546161121078,
+          "min_swapped_base_as_fiber": 0.11476546161121078,
+          "min_swapped_fiber_as_base": 1.0
+        },
+        "combined_same_carrier_ablation": {
+          "status": "nonproxy_runtime_support",
+          "summary": {
+            "live_min_score": 0.16230287230258308,
+            "live_mean_score": 0.6020989636893793,
+            "flat_max_score": 0.0,
+            "flat_mean_score": 0.0,
+            "swapped_max_score": 2.0780916654561039e-16,
+            "swapped_mean_score": 1.4218841473442104e-16,
+            "combined_max_score": 0.0,
+            "combined_mean_score": 0.0,
+            "flat_beats_live_count": 0,
+            "swapped_beats_live_count": 0,
+            "combined_beats_live_count": 0,
+            "live_min_transport_gap": 0.11476546161121066,
+            "flat_max_transport_gap": 0.6212832187530508,
+            "swapped_max_transport_gap": 1.4694327085712575e-16,
+            "combined_max_transport_gap": 1.4694327085712575e-16,
+            "combined_gap_retention": 1.2803788595816693e-15,
+            "live_min_sheet_split": 1.4142135623730947,
+            "flat_max_sheet_split": 0.0,
+            "swapped_max_sheet_split": 1.4142135623730951,
+            "combined_max_sheet_split": 0.0,
+            "live_min_direct_min_traversal": 0.11476546161121078,
+            "flat_min_direct_min_traversal": 0.11476546161121078,
+            "swapped_max_direct_min_traversal": 1.4694327085712575e-16,
+            "combined_max_direct_min_traversal": 1.4694327085712575e-16
+          },
+          "blocker": "awaiting_owner_promotion_decision_after_nonproxy_support"
+        }
+      }
+    },
+    {
+      "name": "P18_joint_same_carrier_ablation_keeps_proxy_screen_closed",
+      "pass": true,
+      "detail": {
+        "live_min_score": 0.16230287230258308,
+        "live_mean_score": 0.6020989636893793,
+        "flat_max_score": 0.0,
+        "flat_mean_score": 0.0,
+        "swapped_max_score": 2.0780916654561039e-16,
+        "swapped_mean_score": 1.4218841473442104e-16,
+        "combined_max_score": 0.0,
+        "combined_mean_score": 0.0,
+        "flat_beats_live_count": 0,
+        "swapped_beats_live_count": 0,
+        "combined_beats_live_count": 0,
+        "live_min_transport_gap": 0.11476546161121066,
+        "flat_max_transport_gap": 0.6212832187530508,
+        "swapped_max_transport_gap": 1.4694327085712575e-16,
+        "combined_max_transport_gap": 1.4694327085712575e-16,
+        "combined_gap_retention": 1.2803788595816693e-15,
+        "live_min_sheet_split": 1.4142135623730947,
+        "flat_max_sheet_split": 0.0,
+        "swapped_max_sheet_split": 1.4142135623730951,
+        "combined_max_sheet_split": 0.0,
+        "live_min_direct_min_traversal": 0.11476546161121078,
+        "flat_min_direct_min_traversal": 0.11476546161121078,
+        "swapped_max_direct_min_traversal": 1.4694327085712575e-16,
+        "combined_max_direct_min_traversal": 1.4694327085712575e-16
+      }
+    },
+    {
+      "name": "P19_transport_gap_scalar_is_live_and_joint_ablation_collapses_it",
+      "pass": true,
+      "detail": {
+        "live_min_transport_gap": 0.11476546161121066,
+        "combined_max_transport_gap": 1.4694327085712575e-16,
+        "swapped_max_transport_gap": 1.4694327085712575e-16,
+        "combined_gap_retention": 1.2803788595816693e-15
+      }
+    },
+    {
+      "name": "P20_joint_same_carrier_nonproxy_runtime_witness_is_explicit",
+      "pass": true,
+      "detail": {
+        "owner_read": {
+          "status": "nonproxy_runtime_support",
+          "candidate_branch": "chirality-separated loop-sensitive transport deltas",
+          "interpretation": "live branch keeps direct sheet-split and direct per-sheet traversal on the same carrier while no-chirality and swapped-loop ablations collapse those observables"
+        },
+        "live_min_sheet_split": 1.4142135623730947,
+        "flat_max_sheet_split": 0.0,
+        "swapped_max_sheet_split": 1.4142135623730951,
+        "combined_max_sheet_split": 0.0,
+        "live_min_direct_min_traversal": 0.11476546161121078,
+        "swapped_max_direct_min_traversal": 1.4694327085712575e-16,
+        "combined_max_direct_min_traversal": 1.4694327085712575e-16
+      }
+    },
+    {
+      "name": "P21_pre_axis_admission_schema_is_explicit_and_axis_embargoed",
+      "pass": true,
+      "detail": {
+        "object": "pre_axis_admission_schema",
+        "scope": "constraint-aligned QIT-grounded machinery before Axis 0 promotion",
+        "lifecycle": [
+          {
+            "stage": "formalized",
+            "requirement": "explicit math object and dependency placement",
+            "axis_usable": false
+          },
+          {
+            "stage": "qit_grounded",
+            "requirement": "finite-carrier density/operator realization",
+            "axis_usable": false
+          },
+          {
+            "stage": "sim_live",
+            "requirement": "mechanically active runner or packet artifact",
+            "axis_usable": false
+          },
+          {
+            "stage": "neg_tested",
+            "requirement": "same-carrier negatives or falsification pressure",
+            "axis_usable": false
+          },
+          {
+            "stage": "placement_classified",
+            "requirement": "owner-derived vs pre-axis vs axis-internal vs diagnostic-only",
+            "axis_usable": false
+          },
+          {
+            "stage": "axis_eligible",
+            "requirement": "admitted or owner-derived object with downstream use allowed",
+            "axis_usable": true
+          }
+        ],
+        "machinery_families": {
+          "carrier_basis": {
+            "status": "qit_grounded_upstream",
+            "objects": [
+              "hopf_carrier_point",
+              "nested_torus_seat"
+            ]
+          },
+          "weyl_refinement": {
+            "status": "sim_live",
+            "objects": [
+              "weyl_sheet_pair"
+            ]
+          },
+          "transport_differential": {
+            "status": "candidate_pre_axis_law",
+            "objects": [
+              "loop_sensitive_transport_surface",
+              "chirality_differential_surface",
+              "bloch_differential_surface"
+            ]
+          },
+          "bridge_entropy_entry": {
+            "status": "downstream_axis_entry_only",
+            "objects": [
+              "bridge_ready_cut_object",
+              "Xi_chiral_entangle",
+              "I_c_A_to_B",
+              "S_A_given_B"
+            ]
+          }
+        },
+        "classical_leakage_guards": {
+          "continuum_flow": "guarded_by_finite_qit_carrier_and_stagewise_deltas",
+          "entropy_first_readout": "guarded_by_pre_entropy_before_entropy_readout",
+          "flux_shorthand": "guarded_by_branch_map_and_diagnostic_demotion",
+          "same_carrier_necessity": "guarded_by_nonproxy_runtime_support_but_not_promoted",
+          "same_carrier_runtime_witness": "direct_sheet_split_and_direct_per_sheet_traversal_are_now_explicit",
+          "downstream_cut_smuggling": "guarded_by_downstream_not_pre_axis_fence"
+        },
+        "axis_embargo": {
+          "rule": "No object may function as Axis math before QIT grounding, live simulation, negative support, and placement classification are closed.",
+          "required_before_axis_use": [
+            "qit_grounded",
+            "sim_live",
+            "neg_tested",
+            "placement_classified"
+          ],
+          "currently_axis_eligible": {
+            "xi_hist_signed_law": "owner_derived",
+            "bridge_admission_rule": "owner_derived"
+          },
+          "currently_embargoed": {
+            "chirality_separated_transport_deltas": "candidate_pending_owner_promotion_after_nonproxy_support",
+            "raw_delta_packet": "diagnostic_only",
+            "single_weyl_flux_object": "not_supported_yet",
+            "entropic_left_right_flux": "blocked",
+            "post_joint_cut_flux": "downstream_branch"
+          }
+        },
+        "current_mapping": {
+          "hopf_carrier_point": "qit_grounded",
+          "nested_torus_seat": "qit_grounded",
+          "weyl_sheet_pair": "sim_live",
+          "loop_sensitive_transport_surface": "sim_live_candidate",
+          "chirality_differential_surface": "sim_live_candidate",
+          "bloch_differential_surface": "sim_live_candidate",
+          "chirality_separated_transport_deltas": "neg_tested_candidate_with_nonproxy_runtime_support_not_axis_eligible",
+          "Xi_chiral_entangle": "axis_internal_candidate_not_final_owner_law",
+          "xi_hist_signed_law": "axis_eligible_owner_derived"
+        },
+        "placement_relations": {
+          "Xi_chiral_entangle": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+          "xi_hist_signed_law": "owner_derived_law_that_binds_bridge_handoff"
+        }
+      }
+    },
+    {
+      "name": "P22_c1_signed_bridge_candidate_is_explicit_and_provisional",
+      "pass": true,
+      "detail": {
+        "c1s1_pass": true,
+        "c1s2_pass": true,
+        "c1s3_pass": true,
+        "c1s4_pass": true,
+        "c1s1_detail": {
+          "status": "provisional_signed_bridge_candidate",
+          "bridge_winner": "Xi_chiral_entangle",
+          "winner_mean_i_c": 0.0775200940266869,
+          "runner_up": "Xi_chiral_hist_entangle",
+          "runner_up_mean_i_c": -0.09313964667615891
+        },
+        "c1s2_detail": {
+          "status": "counterfeit_beats_mi_but_loses_signed_honesty",
+          "mean_I_c_gap": 0.07042179967142495
+        },
+        "c1s3_detail": {
+          "matched_marginal_closed": true,
+          "pre_entropy_mapping": "axis_internal_candidate_not_final_owner_law",
+          "pre_entropy_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law",
+          "pre_entropy_placement": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+          "entropy_readout_current_bridge_gate": "E10_current_bridge_candidate_is_explicit_and_provisional"
+        },
+        "c1s4_detail": {
+          "status": "explicit_non_owner_reservation",
+          "owner_dependency": "must_bind_under_xi_hist_signed_law",
+          "consumer_scope": "downstream_readout_only"
+        }
+      }
+    },
+    {
+      "name": "P23_xi_chiral_entangle_remains_downstream_of_xi_hist_signed_law",
+      "pass": true,
+      "detail": {
+        "owner_worthiness_map": {
+          "owner_derived": {
+            "xi_hist_signed_law": "admitted",
+            "bridge_admission_rule": "admitted"
+          },
+          "pre_axis_law": {
+            "late_anchor_equivalence": "admitted",
+            "clifford_local_short_width_stress": "admitted",
+            "chirality_separated_transport_deltas": "candidate",
+            "chirality_separated_transport_deltas_blocker": "awaiting_owner_promotion_decision_after_nonproxy_support"
+          },
+          "axis_internal_readout": {
+            "I_c_A_to_B": "readout",
+            "S_A_given_B": "readout",
+            "Xi_chiral_entangle": "current_bridge_candidate",
+            "Xi_chiral_entangle_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+          },
+          "diagnostic_only": {
+            "raw_delta_packet": "diagnostic_only",
+            "single_weyl_flux_object": "not_supported_yet",
+            "entropic_left_right_flux": "blocked",
+            "post_joint_cut_flux": "downstream_branch"
+          }
+        },
+        "placement_relations": {
+          "Xi_chiral_entangle": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+          "xi_hist_signed_law": "owner_derived_law_that_binds_bridge_handoff"
+        },
+        "current_mapping": {
+          "hopf_carrier_point": "qit_grounded",
+          "nested_torus_seat": "qit_grounded",
+          "weyl_sheet_pair": "sim_live",
+          "loop_sensitive_transport_surface": "sim_live_candidate",
+          "chirality_differential_surface": "sim_live_candidate",
+          "bloch_differential_surface": "sim_live_candidate",
+          "chirality_separated_transport_deltas": "neg_tested_candidate_with_nonproxy_runtime_support_not_axis_eligible",
+          "Xi_chiral_entangle": "axis_internal_candidate_not_final_owner_law",
+          "xi_hist_signed_law": "axis_eligible_owner_derived"
+        },
+        "axis_eligible": {
+          "xi_hist_signed_law": "owner_derived",
+          "bridge_admission_rule": "owner_derived"
+        }
+      }
+    },
+    {
+      "name": "P24_carrier_handoff_matches_pre_entropy_downstream_mapping",
+      "pass": true,
+      "detail": {
+        "carrier_handoff": {
+          "object": "c1_signed_bridge_candidate_handoff",
+          "candidate": "Xi_chiral_entangle",
+          "status": "provisional_handoff_ready",
+          "placement_contract": "downstream_axis_internal_bridge_candidate_only",
+          "owner_dependency": "must_bind_under_xi_hist_signed_law",
+          "forbidden_reclassification": "not_owner_derived_not_final_owner_xi",
+          "positive_witness_gate": "C3_live_carrier_wins_and_honesty_signal_stays_unique",
+          "bridge_separation_gate": "C4_bridge_search_separates_winning_bridges_from_controls",
+          "counterfeit_guard_gate": "C7_counterfeit_history_games_mi_but_not_coherent_info",
+          "signed_metric": "I_c",
+          "consumer_status": "allowed_for_entropy_readout_not_final_owner_xi",
+          "read": "Xi_chiral_entangle is the current signed bridge candidate handoff object for downstream readout use, but it is not a final owner law."
+        },
+        "axis_internal_readout": {
+          "I_c_A_to_B": "readout",
+          "S_A_given_B": "readout",
+          "Xi_chiral_entangle": "current_bridge_candidate",
+          "Xi_chiral_entangle_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+        },
+        "current_mapping": {
+          "hopf_carrier_point": "qit_grounded",
+          "nested_torus_seat": "qit_grounded",
+          "weyl_sheet_pair": "sim_live",
+          "loop_sensitive_transport_surface": "sim_live_candidate",
+          "chirality_differential_surface": "sim_live_candidate",
+          "bloch_differential_surface": "sim_live_candidate",
+          "chirality_separated_transport_deltas": "neg_tested_candidate_with_nonproxy_runtime_support_not_axis_eligible",
+          "Xi_chiral_entangle": "axis_internal_candidate_not_final_owner_law",
+          "xi_hist_signed_law": "axis_eligible_owner_derived"
+        },
+        "placement_relations": {
+          "Xi_chiral_entangle": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+          "xi_hist_signed_law": "owner_derived_law_that_binds_bridge_handoff"
+        }
+      }
+    },
+    {
+      "name": "P25_standalone_c1_bridge_object_matches_pre_entropy_contract",
+      "pass": true,
+      "detail": {
+        "c1b1_pass": true,
+        "c1b2_pass": true,
+        "c1b3_pass": true,
+        "c1b4_pass": true,
+        "c1b3_detail": {
+          "carrier_handoff": {
+            "candidate": "Xi_chiral_entangle",
+            "placement_contract": "downstream_axis_internal_bridge_candidate_only",
+            "owner_dependency": "must_bind_under_xi_hist_signed_law",
+            "forbidden_reclassification": "not_owner_derived_not_final_owner_xi"
+          },
+          "pre_entropy_mapping": "axis_internal_candidate_not_final_owner_law",
+          "pre_entropy_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law",
+          "pre_entropy_placement": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law"
+        },
+        "c1b4_detail": {
+          "status": "explicit_non_owner_reservation",
+          "final_xi_owner_law": "reserved_for_future_owner_doctrine_not_claimed_by_c1",
+          "owner_dependency": "must_bind_under_xi_hist_signed_law",
+          "consumer_scope": "downstream_readout_only"
+        },
+        "axis_internal_readout": {
+          "I_c_A_to_B": "readout",
+          "S_A_given_B": "readout",
+          "Xi_chiral_entangle": "current_bridge_candidate",
+          "Xi_chiral_entangle_relation": "downstream_of_xi_hist_signed_law_not_alternate_owner_law"
+        },
+        "current_mapping": {
+          "hopf_carrier_point": "qit_grounded",
+          "nested_torus_seat": "qit_grounded",
+          "weyl_sheet_pair": "sim_live",
+          "loop_sensitive_transport_surface": "sim_live_candidate",
+          "chirality_differential_surface": "sim_live_candidate",
+          "bloch_differential_surface": "sim_live_candidate",
+          "chirality_separated_transport_deltas": "neg_tested_candidate_with_nonproxy_runtime_support_not_axis_eligible",
+          "Xi_chiral_entangle": "axis_internal_candidate_not_final_owner_law",
+          "xi_hist_signed_law": "axis_eligible_owner_derived"
+        },
+        "placement_relations": {
+          "Xi_chiral_entangle": "downstream_axis_internal_bridge_candidate_derived_from_xi_hist_signed_law",
+          "xi_hist_signed_law": "owner_derived_law_that_binds_bridge_handoff"
+        }
+      }
+    }
+  ]
+}

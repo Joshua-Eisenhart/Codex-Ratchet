@@ -1,0 +1,84 @@
+{
+  "name": "lower_tier_transport_law_search_validation",
+  "timestamp": "2026-04-01T20:26:26.586510+00:00",
+  "passed_gates": 4,
+  "total_gates": 4,
+  "score": 1.0,
+  "gates": [
+    {
+      "name": "T1_exact_same_carrier_loop_law_survives_search",
+      "pass": true,
+      "detail": {
+        "status": "surviving_lower_tier_candidate",
+        "keep": true,
+        "reason": "fiber stationarity and base traversal survive only under the exact assigned loop law on the same carrier",
+        "evidence": {
+          "geometry_truth_all_pass": true,
+          "structure_matters": true,
+          "max_true_fiber_drift": 1.4694327085712575e-16,
+          "min_true_base_traversal": 0.11476546161121078,
+          "min_swapped_base_as_fiber": 0.11476546161121078,
+          "min_swapped_fiber_as_base": 1.0
+        }
+      }
+    },
+    {
+      "name": "T2_generic_transport_activity_is_not_promoted_to_law",
+      "pass": true,
+      "detail": {
+        "status": "too_generic_not_law",
+        "keep": false,
+        "reason": "mere movement or angle change does not distinguish the exact loop law from other motion summaries",
+        "evidence": {
+          "transport_active_count": 48,
+          "max_abs_delta_eta": 0.3077479703483704,
+          "max_abs_delta_theta1": 0.7853981633974482,
+          "max_abs_delta_theta2": 0.7853981633974482
+        }
+      }
+    },
+    {
+      "name": "T3_symmetric_motion_summary_is_killed_as_fake_transport_law",
+      "pass": true,
+      "detail": {
+        "status": "fake_lower_tier_law",
+        "keep": false,
+        "reason": "symmetric or undifferentiated motion summaries do not preserve loop-role asymmetry",
+        "evidence": {
+          "transport_active_count": 48,
+          "loop_counts": {
+            "fiber": 24,
+            "base": 24
+          }
+        }
+      }
+    },
+    {
+      "name": "T4_downstream_cut_effect_is_fenced_off_from_lower_transport_law",
+      "pass": true,
+      "detail": {
+        "downstream_cut_effect": {
+          "status": "downstream_not_lower_tier",
+          "keep": false,
+          "reason": "cut and bridge effects belong above the lower transport tier",
+          "evidence": {
+            "status": "downstream_branch",
+            "reason": "cut/coupling flux depends on rho_AB and later bridge/readout structure"
+          }
+        },
+        "summary": {
+          "winner": "exact_loop_assigned_transport",
+          "winner_status": "surviving_lower_tier_candidate",
+          "fake_law_routes": [
+            "generic_transport_activity",
+            "symmetric_motion_summary"
+          ],
+          "downstream_routes": [
+            "downstream_cut_effect"
+          ],
+          "single_transport_law": "exact_loop_assigned_transport_only"
+        }
+      }
+    }
+  ]
+}

@@ -1,12 +1,12 @@
 # QIT Graph Stack Status
 
 - status: `precheck_blocked`
-- generated_utc: `2026-03-27T00:34:32Z`
+- generated_utc: `2026-03-30T11:04:54Z`
 - purpose: `read-only-by-default verification surface over the current QIT owner snapshot and bounded sidecars`
-- snapshot_id: `b6087561db1be4a124aca861a18a15601a056fac2b5c583f8b0e4a0ed787c527`
-- git_sha: `18dbe09a7c613ba43f3c941f2ad04d4c5afa8db6`
+- snapshot_id: `ae9951d07249376c52a1c57b8f0f2ceefd9116f1eee944074cb28791561e4393`
+- git_sha: `56e79ea13dac0552c8ec43f6fa7da2e55c764e44`
 - git_worktree_dirty: `True`
-- owner_builder_sha256: `a9a45b8d6afd05d09ade953aec9569145850beab0b98f4e5c12ce4507bfb091b`
+- owner_builder_sha256: `e28d9102328a55222cdfaf58db179f1539de8d21192883022a1c24d2eb708f90`
 
 ## Report Surface
 - surface_class: `tracked_current_workspace_report`
@@ -18,8 +18,8 @@
 ## Owner Layer
 - qit_graph_json: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.json`
 - qit_graph_action: `read_existing_snapshot`
-- qit_graph_sha256: `a51bfa4f886979b450508a41401e3df8d3c47fcc419ebf16d0c8893c641cee36`
-- qit_graph_content_hash: `66a8c941ec313aa1277b374a7520144c3077dd6e7275691c65360a9156058bf7`
+- qit_graph_sha256: `b49b52d5d8d9c406ea6e6ac1cbf7b029f517b8d692cd320171f15ebd607a7fed`
+- qit_graph_content_hash: `585499a4d13298615601af806cf9c0d01f56ef6e47879c5c82abf39227ef373a`
 - qit_graph_content_hash_matches_recomputed: `True`
 - graphml_export: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/graphs/qit_engine_graph_v1.graphml`
 - graphml_action: `read_existing_snapshot`
@@ -74,17 +74,22 @@
 - kingdon importable (preferred interpreter): `True`
 - PyG available (current interpreter): `False`
 - PyG importable (preferred interpreter): `True`
-- LightRAG status: `sidecar_corpus_ready`
+- LightRAG status: `registered_not_integrated`
 
 ## Runtime Evidence Bridge
 - status: `partial`
 - json_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json`
 - md_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.md`
-- owner_content_hash_matches_current_snapshot: `False`
+- owner_content_hash_matches_current_snapshot: `True`
 - runtime_sample_count: `2`
 - sim_packet_count: `5`
-- complete_mappings: `4`
-- partial_mappings: `1`
+- complete_mappings: `3`
+- partial_mappings: `2`
+- axis0_surface_status: `read_only_control_plane_summary_only`
+- axis0_runtime_sample_count: `2`
+- axis0_direct_bridge_families: `['Xi_LR_direct_control']`
+- axis0_history_window_bridge_families: `['Xi_hist_window_control']`
+- axis0_history_window_sample_counts: `[32]`
 
 ## Retrieval Sidecar
 - status: `present`
@@ -99,10 +104,10 @@
 - top_hit_count: `8`
 
 ## Hopf/Weyl Projection
-- status: `partial`
+- status: `present`
 - json_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json`
 - md_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.md`
-- owner_content_hash_matches_current_snapshot: `False`
+- owner_content_hash_matches_current_snapshot: `True`
 - audit_only: `True`
 - observer_only: `True`
 - do_not_promote: `True`
@@ -111,14 +116,14 @@
 - weyl_projection_status: `engine_pair_only_derived`
 
 ## Hopf/Weyl Evidence Audit
-- status: `partial`
+- status: `present`
 - json_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json`
 - md_path: `/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.md`
-- owner_content_hash_matches_current_snapshot: `False`
+- owner_content_hash_matches_current_snapshot: `True`
 - audit_only: `True`
 - nonoperative: `True`
 - do_not_promote: `True`
-- runtime_alignment_status: `aligned`
+- runtime_alignment_status: `partially_aligned`
 - torus_witness_count: `2`
 - chirality_witness_count: `2`
 

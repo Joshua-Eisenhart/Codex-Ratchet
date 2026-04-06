@@ -75,6 +75,7 @@ def build_qit_torus_type_repair_gap_report() -> dict[str, Any]:
     summary = source.get("carrier_evidence_summary", {})
     torus = summary.get("torus_placement_evidence", {})
     type_split = summary.get("type_split_evidence", {})
+    branch_nodes_present = bool(type_split.get("weyl_branch_nodes_present"))
     script_path = Path(__file__).resolve()
 
     payload = {
@@ -142,10 +143,8 @@ def build_qit_torus_type_repair_gap_report() -> dict[str, Any]:
                 "aligned_only": [
                     "runtime bridge resolves type-split alignment to owner engine ids",
                     "runtime bridge maps neg_type_flatten to the current engine-family ids",
-                    "sidecar readiness says engine-pair-only, not branch-level",
                 ],
                 "missing": [
-                    "no live WEYL_BRANCH owner nodes",
                     "no promoted chirality algebra payload in owner truth",
                     "no runtime/history graph proving branch-level type semantics",
                 ],
@@ -167,11 +166,25 @@ def build_qit_torus_type_repair_gap_report() -> dict[str, Any]:
             ],
             "type_split": [
                 "keep type split anchored at the two engine owner ids",
-                "avoid live WEYL_BRANCH owner nodes until a faithful owner anchor exists",
+                "treat admitted WEYL_BRANCH owner nodes as anchor-level structure only until branch-runtime and promotion gates are satisfied",
                 "treat chirality algebra as candidate sidecar evidence only until promotion gates are satisfied",
             ],
         },
     }
+    if branch_nodes_present:
+        payload["repair_gap_summary"]["type_split"]["supported_now"].append(
+            "owner graph has 2 live WEYL_BRANCH nodes anchored to the engine families"
+        )
+        payload["repair_gap_summary"]["type_split"]["aligned_only"].append(
+            "sidecar readiness reports materialized branch anchors, not just engine-pair-only readiness"
+        )
+    else:
+        payload["repair_gap_summary"]["type_split"]["aligned_only"].append(
+            "sidecar readiness says engine-pair-only, not branch-level"
+        )
+        payload["repair_gap_summary"]["type_split"]["missing"].insert(
+            0, "no live WEYL_BRANCH owner nodes"
+        )
     return payload
 
 

@@ -1,0 +1,300 @@
+{
+  "name": "formal_geometry_packet_validation",
+  "timestamp": "2026-04-01T21:47:00.649575+00:00",
+  "passed_gates": 14,
+  "total_gates": 14,
+  "score": 1.0,
+  "carrier_geometry_admission": {
+    "object": "carrier_geometry_admission",
+    "carrier": "finite Hopf/Weyl carrier",
+    "admitted": true,
+    "source_gates": [
+      "G1_exact_hopf_geometry_truth",
+      "G2_weyl_ambient_rung",
+      "G3_ambient_vs_engine_overlay",
+      "G4_live_engine_family_split",
+      "G9_owner_anchor_state_explicit"
+    ],
+    "basis_status": "carrier basis present at geometry tier; explicit operator admission handled by lower-tier operator search",
+    "owner_anchor_state": {
+      "projection_status": "owner_weyl_branch_materialized",
+      "weyl_branch_nodes_present": true,
+      "missing_owner_anchors": []
+    },
+    "read": "Finite Hopf/Weyl carrier geometry and Weyl-sheet overlay are admitted as lower-tier pre-Axis machinery."
+  },
+  "operator_basis_search_admission": {
+    "object": "operator_basis_search_admission",
+    "admitted": true,
+    "source_gates": [
+      "O1_fixed_carrier_basis_remap_shows_load_bearing_sensitivity",
+      "O2_global_coordinate_change_is_not_mistaken_for_substrate_failure",
+      "O3_commuting_collapse_degrades_the_local_operator_response",
+      "O4_local_unitary_pair_is_not_demoted_by_this_narrow_local_test"
+    ],
+    "status": "lower-tier noncommuting basis split survives local operator search",
+    "read": "The lower-tier operator search now explicitly supports a noncommuting basis split and coordinate-relativity guard, while leaving Fe/Fi undemoted in this narrow local search."
+  },
+  "classical_leakage_guards": {
+    "object": "classical_leakage_guards",
+    "admitted": true,
+    "source_gates": [
+      "G3_ambient_vs_engine_overlay",
+      "G6_torus_negative_is_load_bearing",
+      "G7_no_chirality_negative_still_incomplete",
+      "G8_exact_loop_law_swap_negative"
+    ],
+    "raw_lr_control_blocked": {
+      "status": "control_only",
+      "max_raw_LR_mutual_information": 0.0
+    },
+    "torus_scramble_kill": {
+      "status": "KILL",
+      "structure_matters": true,
+      "n_axis_diff": 4
+    },
+    "no_chirality_kill": {
+      "status": "KILL",
+      "chirality_matters": true,
+      "residual_gap": 0.6619137924444958
+    },
+    "loop_law_swap_kill": {
+      "status": "KILL",
+      "structure_matters": true,
+      "max_true_fiber_drift": 1.4694327085712575e-16,
+      "min_true_base_traversal": 0.11476546161121078
+    },
+    "read": "Classicalized collapse routes are blocked at the lower geometry tier; raw L|R control stays trivial and exact torus or loop-law corruption fails."
+  },
+  "chiral_law_embargo": {
+    "object": "chiral_law_embargo",
+    "admitted": true,
+    "source_gates": [
+      "G3_ambient_vs_engine_overlay",
+      "G4_live_engine_family_split",
+      "G7_no_chirality_negative_still_incomplete"
+    ],
+    "ga3_chirality": {
+      "status": "readout_only",
+      "reason": "GA3 is a valid asymmetry readout but not yet a lower-tier signed differential law"
+    },
+    "symmetric_dphi_bookkeeping": {
+      "status": "bookkeeping_only",
+      "max_abs_compat_dphi_gap": 0.0,
+      "reason": "runtime dphi_L and dphi_R are symmetric compatibility shims in engine history"
+    },
+    "promotion_block": "awaiting_real_lower_tier_chiral_differential_law",
+    "read": "Lower-tier chirality is real as a carrier/readout asymmetry, but GA3 and symmetric dphi bookkeeping are embargoed from promotion as chiral law objects."
+  },
+  "gates": [
+    {
+      "name": "G1_exact_hopf_geometry_truth",
+      "pass": true,
+      "detail": {
+        "passed": 117,
+        "total": 117,
+        "all_pass": true
+      }
+    },
+    {
+      "name": "G2_weyl_ambient_rung",
+      "pass": true,
+      "detail": {
+        "verdict": "PASS",
+        "ambient_nontrivial_count": 2,
+        "clifford_neutral": true,
+        "overlay_nontrivial": true,
+        "witness_separable": true
+      }
+    },
+    {
+      "name": "G3_ambient_vs_engine_overlay",
+      "pass": true,
+      "detail": {
+        "verdict": "PASS",
+        "overlay_nontrivial_count": 3,
+        "ambient_nontrivial_count": 3,
+        "max_raw_LR_mutual_information": 0.0
+      }
+    },
+    {
+      "name": "G4_live_engine_family_split",
+      "pass": true,
+      "detail": {
+        "family_distinct": true,
+        "output_valid": true,
+        "axes_diverge": true,
+        "dominance_swap": true,
+        "avg_left_sheet_distance": 0.4130394760604442,
+        "avg_right_sheet_distance": 0.3621095976953866
+      }
+    },
+    {
+      "name": "G5_dual_weyl_cycle_stability",
+      "pass": true,
+      "detail": {
+        "passed": 4,
+        "killed": 0
+      }
+    },
+    {
+      "name": "G6_torus_negative_is_load_bearing",
+      "pass": true,
+      "detail": {
+        "status": "KILL",
+        "d_L": 0.07746018469980029,
+        "d_R": 0.07511415031458818,
+        "n_axis_diff": 4
+      }
+    },
+    {
+      "name": "G7_no_chirality_negative_still_incomplete",
+      "pass": true,
+      "detail": {
+        "status": "KILL",
+        "d_chiral": 0.8234140396807214,
+        "d_flat": 0.5450291097571088,
+        "residual_gap": 0.6619137924444958
+      }
+    },
+    {
+      "name": "G8_exact_loop_law_swap_negative",
+      "pass": true,
+      "detail": {
+        "status": "KILL",
+        "max_true_fiber_drift": 1.4694327085712575e-16,
+        "min_true_base_traversal": 0.11476546161121078,
+        "min_swapped_base_as_fiber": 0.11476546161121078,
+        "min_swapped_fiber_as_base": 1.0
+      }
+    },
+    {
+      "name": "G9_owner_anchor_state_explicit",
+      "pass": true,
+      "detail": {
+        "projection_status": "owner_weyl_branch_materialized",
+        "weyl_branch_nodes_present": true,
+        "missing_owner_anchors": []
+      }
+    },
+    {
+      "name": "G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit",
+      "pass": true,
+      "detail": {
+        "carrier_geometry_admission": {
+          "object": "carrier_geometry_admission",
+          "carrier": "finite Hopf/Weyl carrier",
+          "admitted": true,
+          "source_gates": [
+            "G1_exact_hopf_geometry_truth",
+            "G2_weyl_ambient_rung",
+            "G3_ambient_vs_engine_overlay",
+            "G4_live_engine_family_split",
+            "G9_owner_anchor_state_explicit"
+          ],
+          "basis_status": "carrier basis present at geometry tier; explicit operator admission handled by lower-tier operator search",
+          "owner_anchor_state": {
+            "projection_status": "owner_weyl_branch_materialized",
+            "weyl_branch_nodes_present": true,
+            "missing_owner_anchors": []
+          },
+          "read": "Finite Hopf/Weyl carrier geometry and Weyl-sheet overlay are admitted as lower-tier pre-Axis machinery."
+        },
+        "classical_leakage_guards": {
+          "object": "classical_leakage_guards",
+          "admitted": true,
+          "source_gates": [
+            "G3_ambient_vs_engine_overlay",
+            "G6_torus_negative_is_load_bearing",
+            "G7_no_chirality_negative_still_incomplete",
+            "G8_exact_loop_law_swap_negative"
+          ],
+          "raw_lr_control_blocked": {
+            "status": "control_only",
+            "max_raw_LR_mutual_information": 0.0
+          },
+          "torus_scramble_kill": {
+            "status": "KILL",
+            "structure_matters": true,
+            "n_axis_diff": 4
+          },
+          "no_chirality_kill": {
+            "status": "KILL",
+            "chirality_matters": true,
+            "residual_gap": 0.6619137924444958
+          },
+          "loop_law_swap_kill": {
+            "status": "KILL",
+            "structure_matters": true,
+            "max_true_fiber_drift": 1.4694327085712575e-16,
+            "min_true_base_traversal": 0.11476546161121078
+          },
+          "read": "Classicalized collapse routes are blocked at the lower geometry tier; raw L|R control stays trivial and exact torus or loop-law corruption fails."
+        }
+      }
+    },
+    {
+      "name": "G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion",
+      "pass": true,
+      "detail": {
+        "object": "chiral_law_embargo",
+        "admitted": true,
+        "source_gates": [
+          "G3_ambient_vs_engine_overlay",
+          "G4_live_engine_family_split",
+          "G7_no_chirality_negative_still_incomplete"
+        ],
+        "ga3_chirality": {
+          "status": "readout_only",
+          "reason": "GA3 is a valid asymmetry readout but not yet a lower-tier signed differential law"
+        },
+        "symmetric_dphi_bookkeeping": {
+          "status": "bookkeeping_only",
+          "max_abs_compat_dphi_gap": 0.0,
+          "reason": "runtime dphi_L and dphi_R are symmetric compatibility shims in engine history"
+        },
+        "promotion_block": "awaiting_real_lower_tier_chiral_differential_law",
+        "read": "Lower-tier chirality is real as a carrier/readout asymmetry, but GA3 and symmetric dphi bookkeeping are embargoed from promotion as chiral law objects."
+      }
+    },
+    {
+      "name": "G12_lower_tier_chiral_law_search_is_explicit_and_fail_closed",
+      "pass": true,
+      "detail": {
+        "passed_gates": 4,
+        "total_gates": 4,
+        "score": 1.0
+      }
+    },
+    {
+      "name": "G13_lower_tier_transport_law_search_is_explicit_and_fail_closed",
+      "pass": true,
+      "detail": {
+        "passed_gates": 4,
+        "total_gates": 4,
+        "score": 1.0
+      }
+    },
+    {
+      "name": "G14_lower_tier_operator_basis_search_is_explicit_and_fail_closed",
+      "pass": true,
+      "detail": {
+        "operator_basis_search_admission": {
+          "object": "operator_basis_search_admission",
+          "admitted": true,
+          "source_gates": [
+            "O1_fixed_carrier_basis_remap_shows_load_bearing_sensitivity",
+            "O2_global_coordinate_change_is_not_mistaken_for_substrate_failure",
+            "O3_commuting_collapse_degrades_the_local_operator_response",
+            "O4_local_unitary_pair_is_not_demoted_by_this_narrow_local_test"
+          ],
+          "status": "lower-tier noncommuting basis split survives local operator search",
+          "read": "The lower-tier operator search now explicitly supports a noncommuting basis split and coordinate-relativity guard, while leaving Fe/Fi undemoted in this narrow local search."
+        },
+        "passed_gates": 4,
+        "total_gates": 4,
+        "score": 1.0
+      }
+    }
+  ]
+}

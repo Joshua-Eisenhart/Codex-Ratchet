@@ -1,0 +1,194 @@
+{
+  "name": "formal_ladder_geometric_engine_comparison",
+  "n_cycles": 5,
+  "layers_tested": [
+    0,
+    2,
+    3,
+    4,
+    6,
+    7,
+    9,
+    11
+  ],
+  "results": [
+    {
+      "layer": 0,
+      "name": "root_constraints_same_init",
+      "bloch_diff_L": 0.0,
+      "bloch_diff_R": 3.885780586188048e-16,
+      "trace_dist_L": 0.0,
+      "trace_dist_R": 1.942890293094024e-16,
+      "verdict": "MATCH",
+      "passed": true
+    },
+    {
+      "layer": 2,
+      "name": "carrier_nontrivial_entropy",
+      "old_max_S": {
+        "L": 0.40426561336558536,
+        "R": 0.4316014790523333
+      },
+      "new_max_S": {
+        "L": 0.7795894360258078,
+        "R": 0.7468573871522006
+      },
+      "avg_trace_dist": 0.6971532188267566,
+      "trace_distances": [
+        {
+          "cycle": 1,
+          "td_L": 0.7973611991168594,
+          "td_R": 0.7315055664443841,
+          "td_avg": 0.7644333827806218
+        },
+        {
+          "cycle": 2,
+          "td_L": 0.727596683875172,
+          "td_R": 0.7389111695668058,
+          "td_avg": 0.7332539267209889
+        },
+        {
+          "cycle": 3,
+          "td_L": 0.7265503400398121,
+          "td_R": 0.6590146407746192,
+          "td_avg": 0.6927824904072157
+        },
+        {
+          "cycle": 4,
+          "td_L": 0.6492407626948467,
+          "td_R": 0.666685514089,
+          "td_avg": 0.6579631383919233
+        },
+        {
+          "cycle": 5,
+          "td_L": 0.6693992229676056,
+          "td_R": 0.6052670886984619,
+          "td_avg": 0.6373331558330337
+        }
+      ],
+      "verdict": "DIVERGE",
+      "passed": true
+    },
+    {
+      "layer": 3,
+      "name": "connection_berry_phase",
+      "old_berry": -5.563720908449641e-16,
+      "old_note": "Old engine has no native Berry accumulation; q-loop subtends ~0 solid angle (expected)",
+      "new_berry_L": -1.1481719644365858,
+      "new_berry_R": -2.1443648255214787,
+      "new_nontrivial": true,
+      "passed": true
+    },
+    {
+      "layer": 4,
+      "name": "weyl_chirality_anti_alignment",
+      "old_avg_dot": -0.9948522967923921,
+      "new_avg_dot": -0.22669675421182153,
+      "old_dots": [
+        -0.9946703721339507,
+        -0.9946960464730782,
+        -0.9948287835373455,
+        -0.9949645558756233,
+        -0.9951017259419623
+      ],
+      "new_dots": [
+        -0.5362460371565526,
+        -0.10398112868402998,
+        -0.30289650628563225,
+        -0.012117079842159206,
+        -0.17824301909073353
+      ],
+      "passed": true
+    },
+    {
+      "layer": 6,
+      "name": "operator_algebra_noncommutation",
+      "old_commutator_td": 0.019866933079506124,
+      "new_type_divergence_td": 0.3730033352891959,
+      "old_noncommuting": true,
+      "new_noncommuting": true,
+      "passed": true
+    },
+    {
+      "layer": 7,
+      "name": "composition_order_sensitivity",
+      "old_ordering_td": 0.35867606904330007,
+      "new_ordering_td": 0.3913775519770529,
+      "old_sensitive": true,
+      "new_sensitive": true,
+      "passed": true
+    },
+    {
+      "layer": 9,
+      "name": "strength_goldilocks",
+      "old_by_strength": {
+        "0.0": {
+          "old_final_sL": 3.2034265038149176e-16,
+          "old_final_sR": 6.775611077558636e-14
+        },
+        "0.5": {
+          "old_final_sL": 0.39060618218747545,
+          "old_final_sR": 0.4210851718291058
+        },
+        "1.0": {
+          "old_final_sL": 0.428290097534076,
+          "old_final_sR": 0.5294430360044816
+        }
+      },
+      "new_by_eta": {
+        "0.39269908169872414": 0.7570243993369393,
+        "0.7853981633974483": 0.7795894360258078,
+        "1.1780972450961724": 0.7743362860018596
+      },
+      "old_goldilocks": true,
+      "new_goldilocks": true,
+      "passed": true
+    },
+    {
+      "layer": 11,
+      "name": "torus_transport_eta_dependence",
+      "old_results": {
+        "inner": {
+          "final_sL": 0.052300673802705165,
+          "final_sR": 0.05379858206345109
+        },
+        "clifford": {
+          "final_sL": 0.39060618218747545,
+          "final_sR": 0.4210851718291058
+        },
+        "outer": {
+          "final_sL": 0.052302606886229855,
+          "final_sR": 0.053810620878704446
+        }
+      },
+      "new_results": {
+        "inner": {
+          "final_sL": 0.7570243993369393,
+          "final_sR": 0.7604037844558313,
+          "final_eta": 0.7853981633974483,
+          "torus_level": 1
+        },
+        "clifford": {
+          "final_sL": 0.7795894360258078,
+          "final_sR": 0.7468573871522006,
+          "final_eta": 0.39269908169872414,
+          "torus_level": 0
+        },
+        "outer": {
+          "final_sL": 0.7743362860018596,
+          "final_sR": 0.777435259201119,
+          "final_eta": 0.7853981633974483,
+          "torus_level": 1
+        }
+      },
+      "old_eta_dependent": true,
+      "new_eta_dependent": true,
+      "passed": true
+    }
+  ],
+  "summary": {
+    "passed": 8,
+    "total": 8,
+    "all_passed": true
+  }
+}

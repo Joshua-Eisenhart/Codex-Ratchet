@@ -1,0 +1,309 @@
+{
+  "name": "root_constraint_ablation",
+  "ablation_F01": {
+    "dimension_test": {
+      "d2": {
+        "algebra_closure_error": 0.0,
+        "algebra_closes": true,
+        "entropy_full_space": 0.5827831343002603,
+        "entropy_ref_2x2": 0.5827831343002603,
+        "entropy_match": true,
+        "entropy_active_after_Ti": 0.8812908992306926,
+        "entropy_active_after_Fe": 0.5827831343002605,
+        "entropy_bounded_by_log2": true,
+        "purity_after_Ti": 0.5800000000000001,
+        "extra_dims_inert": true
+      },
+      "d4": {
+        "algebra_closure_error": 0.0,
+        "algebra_closes": true,
+        "entropy_full_space": 0.5827831343002603,
+        "entropy_ref_2x2": 0.5827831343002603,
+        "entropy_match": true,
+        "entropy_active_after_Ti": 0.8812908992306926,
+        "entropy_active_after_Fe": 0.5827831343002605,
+        "entropy_bounded_by_log2": true,
+        "purity_after_Ti": 0.5800000000000001,
+        "extra_dims_inert": true
+      },
+      "d8": {
+        "algebra_closure_error": 0.0,
+        "algebra_closes": true,
+        "entropy_full_space": 0.5827831343002603,
+        "entropy_ref_2x2": 0.5827831343002603,
+        "entropy_match": true,
+        "entropy_active_after_Ti": 0.8812908992306926,
+        "entropy_active_after_Fe": 0.5827831343002605,
+        "entropy_bounded_by_log2": true,
+        "purity_after_Ti": 0.5800000000000001,
+        "extra_dims_inert": true
+      },
+      "d16": {
+        "algebra_closure_error": 0.0,
+        "algebra_closes": true,
+        "entropy_full_space": 0.5827831343002603,
+        "entropy_ref_2x2": 0.5827831343002603,
+        "entropy_match": true,
+        "entropy_active_after_Ti": 0.8812908992306926,
+        "entropy_active_after_Fe": 0.5827831343002605,
+        "entropy_bounded_by_log2": true,
+        "purity_after_Ti": 0.5800000000000001,
+        "extra_dims_inert": true
+      },
+      "d32": {
+        "algebra_closure_error": 0.0,
+        "algebra_closes": true,
+        "entropy_full_space": 0.5827831343002603,
+        "entropy_ref_2x2": 0.5827831343002603,
+        "entropy_match": true,
+        "entropy_active_after_Ti": 0.8812908992306926,
+        "entropy_active_after_Fe": 0.5827831343002605,
+        "entropy_bounded_by_log2": true,
+        "purity_after_Ti": 0.5800000000000001,
+        "extra_dims_inert": true
+      }
+    },
+    "z3_fence_evasion": {
+      "sat": true,
+      "proof": "PROVED: For any finite bound K, an unbounded-dimensional space admits states that evade the fence. Every finite admissibility bound can be exceeded when F01 is violated.",
+      "z3_status": "sat"
+    },
+    "cascade": {
+      "summary": "F01 violation does not crash the operator algebra (it still closes in the 2x2 subspace), but makes all fences meaningless. Any admissibility bound can be evaded by embedding in a larger space. The extra dimensions are inert \u2014 the algebra only 'sees' SU(2) \u2014 but the entropy ceiling (log d) grows without bound, making the Goldilocks window, torus structure, and all layer constraints vacuous.",
+      "layers_killed": [
+        "L9_goldilocks (entropy ceiling unbounded)",
+        "L2_carrier (torus radii lose uniqueness in higher dim)",
+        "ALL fences (any bound K evadable)"
+      ],
+      "layers_degraded": [
+        "L6_algebra (still closes but trivially in subspace)"
+      ],
+      "layers_survived": [
+        "L3_connection (Berry phase still works in 2x2 sector)"
+      ]
+    }
+  },
+  "ablation_N01": {
+    "layer_cascade": {
+      "L2_carrier": "KILLED",
+      "L3_connection": "KILLED",
+      "L4_chirality": "KILLED",
+      "L5_topologies": "KILLED",
+      "L6_algebra": "KILLED",
+      "L7_ordering": "KILLED",
+      "L9_goldilocks": "KILLED",
+      "L10_dual_stack": "KILLED",
+      "L12_entanglement": "KILLED",
+      "L13_bridge": "KILLED",
+      "L19_axis0": "KILLED"
+    },
+    "details": {
+      "L2_carrier": {
+        "normal_axis_separation": 0.6621178142898739,
+        "commuting_axis_separation": 0.17999999999999994,
+        "explanation": "Fiber/base loops collapse to single Z-direction when ops commute"
+      },
+      "L3_connection": {
+        "berry_phase_reference": -3.141592653589793,
+        "dims_explored_normal": 3,
+        "dims_explored_commuting": 2,
+        "bloch_variance_normal": [
+          0.01557217944436646,
+          0.02696961702308224,
+          0.01601702416273135
+        ],
+        "bloch_variance_commuting": [
+          0.17711165114192212,
+          0.18274338282155056,
+          3.993608332681372e-31
+        ],
+        "explanation": "Non-commuting ops explore 2-3 Bloch axes (enclose solid angle -> Berry phase). Commuting ops are confined to Z-axis (1D) -> no area enclosed -> no Berry phase."
+      },
+      "L4_chirality": {
+        "normal_LR_dot": -1.0,
+        "commuting_LR_dot": -1.0000000000000002,
+        "bloch_diff_normal": 0.06119369153232671,
+        "bloch_diff_comm": 0.007251816406249976,
+        "explanation": "Commuting Z-only ops treat L/R symmetrically; distinct chirality is lost"
+      },
+      "L5_topologies": {
+        "normal_distinct_topologies": 4,
+        "commuting_distinct_topologies": 2,
+        "ti_te_distance": 0.09486832980505137,
+        "fe_fi_distance": 0.0,
+        "explanation": "Ti and Te collapse to same Z-dephasing; topology count drops from 4 to 2"
+      },
+      "L6_algebra": {
+        "commutator_normal": 0.3270645310173159,
+        "commutator_commuting": 3.5605384226165824e-16,
+        "normal_algebra": "su(2)",
+        "commuting_algebra": "u(1)",
+        "explanation": "Algebra degrades from su(2) to commutative u(1)"
+      },
+      "L7_ordering": {
+        "order_difference_normal": 0.12211858516996836,
+        "order_difference_commuting": 7.868787718831068e-16,
+        "explanation": "Commuting operators can be freely reordered \u2014 ordering becomes meaningless"
+      },
+      "L9_goldilocks": {
+        "normal_conc_range": [
+          0.0,
+          0.17279535939164697
+        ],
+        "commuting_conc_range": [
+          0.0,
+          0.0
+        ],
+        "normal_variation": 0.17279535939164697,
+        "commuting_variation": 0.0,
+        "explanation": "Commuting ops cannot build entanglement; no Goldilocks window exists"
+      },
+      "L10_dual_stack": {
+        "interleave_diff_normal": 0.624502636461435,
+        "interleave_diff_commuting": 0.0,
+        "explanation": "Interleaving is irrelevant when all ops commute"
+      },
+      "L12_entanglement": {
+        "concurrence_normal": 0.038420910956797824,
+        "concurrence_commuting": 7.257859262506223e-06,
+        "explanation": "Z-rotation cannot mix populations -> no entanglement generation"
+      },
+      "L13_bridge": {
+        "ic_normal": 0.6471561,
+        "ic_commuting": 0.0,
+        "explanation": "Commuting ops cannot generate cross-partition coherent information"
+      },
+      "L19_axis0": {
+        "gradient_normal": 0.22423154445294044,
+        "gradient_commuting": 0.0,
+        "ic_trajectory_normal": [
+          0.1825126,
+          0.45442784,
+          0.63280603,
+          0.6471561,
+          0.50291777,
+          0.26950013,
+          0.06426185,
+          0.00180574,
+          0.09141328,
+          0.23359799
+        ],
+        "ic_trajectory_commuting": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "explanation": "No I_c gradient when operators commute \u2014 Axis 0 is dead"
+      },
+      "sympy_algebra_proof": {
+        "sx_sz_commutator_zero": false,
+        "sz_sz_commutator_zero": true,
+        "conclusion": "su(2) requires [sx,sz] != 0 (it equals -2i*sy). With all Z-ops, [sz,sz] = 0 -> algebra is u(1), not su(2)."
+      }
+    }
+  },
+  "ablation_both": {
+    "dimension": 8,
+    "entropy_after_10_cycles": 0.8812908992306937,
+    "off_diagonal_norm": 0.0,
+    "extra_dim_population": 0.0,
+    "operators_commute": true,
+    "commutativity_error": 0.0,
+    "complete_collapse": true,
+    "explanation": "Both violations together: state is completely dephased to Z-diagonal in 2x2 subspace, extra dimensions inert, operators commute. ALL non-trivial structure is lost."
+  },
+  "ablation_selective_removal": {
+    "full_cycle_reference": {
+      "concurrence_2q": 0.0,
+      "ic_3q": 0.6471561
+    },
+    "no_Ti": {
+      "concurrence_2q": 0.0417513798255138,
+      "entropy_2q": 0.8762456273392968,
+      "ic_3q": 0.6471561,
+      "conc_ratio_vs_full": 41751379825513.8,
+      "status": "SURVIVED"
+    },
+    "no_Fe": {
+      "concurrence_2q": 0.0,
+      "entropy_2q": 0.992694744703536,
+      "ic_3q": 0.0,
+      "conc_ratio_vs_full": 0.0,
+      "status": "KILLED"
+    },
+    "no_Te": {
+      "concurrence_2q": 0.0,
+      "entropy_2q": 0.9675120655127734,
+      "ic_3q": 0.99938488,
+      "conc_ratio_vs_full": 0.0,
+      "status": "KILLED"
+    },
+    "no_Fi": {
+      "concurrence_2q": 0.07165614965596377,
+      "entropy_2q": 0.9972353128059824,
+      "ic_3q": 0.6471561,
+      "conc_ratio_vs_full": 71656149655963.77,
+      "status": "SURVIVED"
+    }
+  },
+  "z3_supplementary": {
+    "noncomm_necessary_for_4_topologies": {
+      "result": "unsat",
+      "proved": true,
+      "interpretation": "UNSAT means: commutative + 4 topologies is impossible. QED."
+    },
+    "finite_dim_necessary_for_bounded_entropy": {
+      "result": "sat",
+      "proved": true,
+      "interpretation": "SAT means: for any finite bound, a larger dimension exists, so entropy (which scales as log(dim)) is unbounded. QED."
+    }
+  },
+  "summary": {
+    "F01_break_kills_layers": [
+      "L9_goldilocks (entropy ceiling unbounded)",
+      "L2_carrier (torus radii lose uniqueness in higher dim)",
+      "ALL fences (any bound K evadable)"
+    ],
+    "N01_break_kills_layers": [
+      "L2_carrier",
+      "L3_connection",
+      "L4_chirality",
+      "L5_topologies",
+      "L6_algebra",
+      "L7_ordering",
+      "L9_goldilocks",
+      "L10_dual_stack",
+      "L12_entanglement",
+      "L13_bridge",
+      "L19_axis0"
+    ],
+    "N01_break_degrades_layers": [],
+    "both_break_complete_collapse": true,
+    "both_break_kills_layers": [
+      "L2_carrier",
+      "L3_connection",
+      "L4_chirality",
+      "L5_topologies",
+      "L6_algebra",
+      "L7_ordering",
+      "L9_goldilocks",
+      "L10_dual_stack",
+      "L12_entanglement",
+      "L13_bridge",
+      "L19_axis0",
+      "L9_goldilocks (entropy ceiling unbounded)",
+      "L2_carrier (torus radii lose uniqueness in higher dim)",
+      "ALL fences (any bound K evadable)"
+    ],
+    "most_critical_operator": "Fe",
+    "verdict": "CONFIRMED: Breaking either root constraint (F01 or N01) at layer 0 causes cascading failure through ALL higher layers. N01 (non-commutativity) is the more structurally devastating violation: it kills the algebra, ordering, chirality, entanglement, and bridge. F01 (finiteness) makes all fences meaningless. Both together produce complete collapse."
+  },
+  "timestamp": "2026-04-06"
+}

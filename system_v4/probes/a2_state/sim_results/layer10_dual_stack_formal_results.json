@@ -1,0 +1,32 @@
+{
+  "layer": 10,
+  "name": "Dual-Stack",
+  "positive": {
+    "P1_pyg_same_node_types": true,
+    "P1_pyg_assignment_edges_differ": true,
+    "P1_pyg_sequence_edges_differ": true,
+    "P2_pyg_state_distance": 4.449063777923584,
+    "P2_pyg_states_differ": true,
+    "P3_toponetx_type1_layers": [
+      0,
+      2
+    ],
+    "P3_toponetx_type2_layers": [
+      0,
+      2
+    ],
+    "P3_toponetx_both_visit_inner_outer": true,
+    "P3_toponetx_patterns_differ": true
+  },
+  "negative": {
+    "N1_toponetx_single_coverage": 0.3333333333333333,
+    "N1_toponetx_dual_coverage": 0.6666666666666666,
+    "N1_toponetx_dual_covers_more": true
+  },
+  "tools_used": [
+    "PyG",
+    "TopoNetX"
+  ],
+  "timestamp": "2026-04-06",
+  "summary": "PyG confirms Type 1 and Type 2 share node types but differ in edge patterns and live state features. TopoNetX shows both types visit inner and outer torus layers but in different patterns; dual-stack covers more of the cell complex."
+}

@@ -1,0 +1,90 @@
+{
+  "name": "lower_tier_chiral_law_search",
+  "timestamp": "2026-04-01T20:24:13.155387+00:00",
+  "candidate_family": {
+    "ga3_chirality_readout": {
+      "status": "readout_only",
+      "keep": false,
+      "reason": "GA3 is a valid asymmetry readout but not yet a lower-tier signed differential law",
+      "evidence": {
+        "avg_left_sheet_distance": 0.4130394760604442,
+        "avg_right_sheet_distance": 0.3621095976953866
+      }
+    },
+    "symmetric_dphi_bookkeeping": {
+      "status": "bookkeeping_only",
+      "keep": false,
+      "reason": "runtime dphi_L and dphi_R are symmetric compatibility shims in engine history",
+      "evidence": {
+        "max_abs_compat_dphi_gap": 0.0,
+        "type1_total_dphi_L": -0.5863364568795325,
+        "type1_total_dphi_R": -0.5863364568795325,
+        "type2_total_dphi_L": -0.6152461274399333,
+        "type2_total_dphi_R": -0.6152461274399333
+      }
+    },
+    "delta_chirality_signal": {
+      "status": "real_signal_not_law",
+      "keep": false,
+      "reason": "delta trace_distance(rho_L, rho_R) is mechanically active but does not yet survive as a separate lower-tier owner law",
+      "evidence": {
+        "chirality_active_count": 48,
+        "mean_abs_delta_chirality": 0.2847180188219112,
+        "chirality_retention_ratio": 0.6619137924444958
+      }
+    },
+    "chirality_separated_transport_deltas": {
+      "status": "surviving_compound_candidate",
+      "keep": true,
+      "reason": "transport, chirality, and Bloch differential deltas are all mechanically active before Axis 0 readout",
+      "evidence": {
+        "transport_active_count": 48,
+        "lr_bloch_asymmetry_count": 48,
+        "nonproxy_runtime_support": "nonproxy_runtime_support",
+        "live_min_direct_min_traversal": 0.11476546161121078,
+        "live_min_sheet_split": 1.4142135623730947
+      }
+    }
+  },
+  "summary": {
+    "winner": "chirality_separated_transport_deltas",
+    "winner_status": "surviving_compound_candidate",
+    "fake_law_routes": [
+      "ga3_chirality_readout",
+      "symmetric_dphi_bookkeeping"
+    ],
+    "signal_only_routes": [
+      "delta_chirality_signal"
+    ],
+    "single_lower_tier_chiral_law": "not_supported_yet"
+  },
+  "owner_read": {
+    "status": "compound_candidate_only",
+    "note": "No single lower-tier chiral law is admitted; the best surviving branch remains the compound transport/chirality candidate."
+  },
+  "source_support": {
+    "formal_geometry_gates": [
+      "G1_exact_hopf_geometry_truth",
+      "G2_weyl_ambient_rung",
+      "G3_ambient_vs_engine_overlay",
+      "G4_live_engine_family_split",
+      "G5_dual_weyl_cycle_stability",
+      "G6_torus_negative_is_load_bearing",
+      "G7_no_chirality_negative_still_incomplete",
+      "G8_exact_loop_law_swap_negative",
+      "G9_owner_anchor_state_explicit",
+      "G10_lower_tier_carrier_admission_and_classical_leakage_guards_are_explicit",
+      "G11_chiral_readout_and_symmetric_bookkeeping_are_embargoed_from_law_promotion"
+    ],
+    "weyl_delta_gates": [
+      "W1_stagewise_raw_delta_surfaces_exist",
+      "W2_transport_geometry_is_mechanically_nontrivial",
+      "W3_chirality_differential_is_real_pre_axis_signal",
+      "W4_raw_lr_deltas_are_not_reducible_to_symmetric_dphi_shim",
+      "W5_branch_map_keeps_flux_placement_open",
+      "W6_flux_family_is_explicit_without_canonizing_flux",
+      "W7_branch_map_preserves_skeptical_flux_read",
+      "W8_pre_axis_object_inventory_is_explicit"
+    ]
+  }
+}

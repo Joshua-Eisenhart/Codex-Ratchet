@@ -1,0 +1,916 @@
+{
+  "name": "z3_fence_exhaustive_negatives",
+  "total_fences": 15,
+  "single_removal_tests": {
+    "fence_1_open_alternates": {
+      "description": "open/closed alternates at every step within each loop",
+      "violation_description": "two consecutive open=True",
+      "type1": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "type2": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "load_bearing": true
+    },
+    "fence_2_no_topo_repeat": {
+      "description": "topology never repeats consecutively within each loop",
+      "violation_description": "two consecutive same topology",
+      "type1": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": false,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": false
+      },
+      "type2": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": false,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": false
+      },
+      "load_bearing": false
+    },
+    "fence_3_topo_coverage": {
+      "description": "each loop visits {Se,Si,Ne,Ni} exactly once",
+      "violation_description": "loop visits Se twice, skips Ni",
+      "type1": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": false,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": false
+      },
+      "type2": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": false,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": false
+      },
+      "load_bearing": false
+    },
+    "fence_4_loop_constant": {
+      "description": "fiber/base is constant within each engine loop",
+      "violation_description": "mixed fiber/base in one engine loop",
+      "type1": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "type2": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "load_bearing": true
+    },
+    "fence_5_expansion_balanced": {
+      "description": "expansion exactly 2 True and 2 False per loop",
+      "violation_description": "expansion 3 True in one loop (unbalanced)",
+      "type1": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "type2": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "load_bearing": true
+    },
+    "fence_6_one_op_per_terrain": {
+      "description": "each terrain operator in range [0,3]",
+      "violation_description": "operator value 5 (outside 0-3)",
+      "type1": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": false,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": false
+      },
+      "type2": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": false,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": false
+      },
+      "load_bearing": false
+    },
+    "fence_7_op_appears_twice": {
+      "description": "each operator appears exactly twice per engine type",
+      "violation_description": "Ti appears 3 times (not exactly 2)",
+      "type1": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": false,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": false
+      },
+      "type2": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": false,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": false
+      },
+      "load_bearing": false
+    },
+    "fence_8_f_kernel_expansion": {
+      "description": "Fe on expansion=False, Fi on expansion=True terrains",
+      "violation_description": "Fe on expansion=True terrain",
+      "type1": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": false,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": false
+      },
+      "type2": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": false,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": false
+      },
+      "load_bearing": false
+    },
+    "fence_9_t_kernel_expansion": {
+      "description": "Ti on expansion=True, Te on expansion=False terrains",
+      "violation_description": "Ti on expansion=False terrain",
+      "type1": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": false,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": false
+      },
+      "type2": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "load_bearing": true
+    },
+    "fence_10_type_determines_ops": {
+      "description": "operator assignment fully determined by engine type",
+      "violation_description": "ops from wrong engine type",
+      "type1": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "type2": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "load_bearing": true
+    },
+    "fence_11_eight_terrains": {
+      "description": "exactly 8 terrains total",
+      "violation_description": "terrain count = 6",
+      "type1": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "type2": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "load_bearing": true
+    },
+    "fence_12_four_operators": {
+      "description": "exactly 4 operators",
+      "violation_description": "operator count = 5",
+      "type1": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "type2": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "load_bearing": true
+    },
+    "fence_13_stage_cycle": {
+      "description": "stage order wraps (last != first per loop)",
+      "violation_description": "last topo = first in outer loop",
+      "type1": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": false,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": false
+      },
+      "type2": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": false,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": false
+      },
+      "load_bearing": false
+    },
+    "fence_14_no_self_loops": {
+      "description": "no consecutive identical topos across all 8 steps",
+      "violation_description": "step 3 topo = step 4 topo",
+      "type1": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "type2": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "load_bearing": true
+    },
+    "fence_15_weyl_chirality": {
+      "description": "Weyl chirality: L/R anti-aligned (dot < 0)",
+      "violation_description": "L/R Bloch vectors aligned (dot > 0)",
+      "type1": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "type2": {
+        "full_system_sat": "sat",
+        "without_fence_violation_reachable": true,
+        "with_fence_violation_blocked": "unsat",
+        "load_bearing": true
+      },
+      "load_bearing": true
+    }
+  },
+  "pair_removal_tests": {
+    "fence_1_AND_2": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "open_alternates",
+      "fence_b": "no_topo_repeat"
+    },
+    "fence_1_AND_3": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "open_alternates",
+      "fence_b": "topo_coverage"
+    },
+    "fence_1_AND_4": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "open_alternates",
+      "fence_b": "loop_constant"
+    },
+    "fence_1_AND_5": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "open_alternates",
+      "fence_b": "expansion_balanced"
+    },
+    "fence_1_AND_6": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "open_alternates",
+      "fence_b": "one_op_per_terrain"
+    },
+    "fence_1_AND_7": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "open_alternates",
+      "fence_b": "op_appears_twice"
+    },
+    "fence_1_AND_8": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "open_alternates",
+      "fence_b": "f_kernel_expansion"
+    },
+    "fence_1_AND_9": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "open_alternates",
+      "fence_b": "t_kernel_expansion"
+    },
+    "fence_1_AND_10": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "open_alternates",
+      "fence_b": "type_determines_ops"
+    },
+    "fence_1_AND_11": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "open_alternates",
+      "fence_b": "eight_terrains"
+    },
+    "fence_1_AND_12": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "open_alternates",
+      "fence_b": "four_operators"
+    },
+    "fence_1_AND_13": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "open_alternates",
+      "fence_b": "stage_cycle"
+    },
+    "fence_1_AND_14": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "open_alternates",
+      "fence_b": "no_self_loops"
+    },
+    "fence_1_AND_15": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "open_alternates",
+      "fence_b": "weyl_chirality"
+    },
+    "fence_2_AND_3": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "no_topo_repeat",
+      "fence_b": "topo_coverage"
+    },
+    "fence_2_AND_4": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "no_topo_repeat",
+      "fence_b": "loop_constant"
+    },
+    "fence_2_AND_5": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "no_topo_repeat",
+      "fence_b": "expansion_balanced"
+    },
+    "fence_2_AND_6": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "no_topo_repeat",
+      "fence_b": "one_op_per_terrain"
+    },
+    "fence_2_AND_7": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "no_topo_repeat",
+      "fence_b": "op_appears_twice"
+    },
+    "fence_2_AND_8": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "no_topo_repeat",
+      "fence_b": "f_kernel_expansion"
+    },
+    "fence_2_AND_9": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "no_topo_repeat",
+      "fence_b": "t_kernel_expansion"
+    },
+    "fence_2_AND_10": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "no_topo_repeat",
+      "fence_b": "type_determines_ops"
+    },
+    "fence_2_AND_11": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "no_topo_repeat",
+      "fence_b": "eight_terrains"
+    },
+    "fence_2_AND_12": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "no_topo_repeat",
+      "fence_b": "four_operators"
+    },
+    "fence_2_AND_13": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "no_topo_repeat",
+      "fence_b": "stage_cycle"
+    },
+    "fence_2_AND_14": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "no_topo_repeat",
+      "fence_b": "no_self_loops"
+    },
+    "fence_2_AND_15": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "no_topo_repeat",
+      "fence_b": "weyl_chirality"
+    },
+    "fence_3_AND_4": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "topo_coverage",
+      "fence_b": "loop_constant"
+    },
+    "fence_3_AND_5": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "topo_coverage",
+      "fence_b": "expansion_balanced"
+    },
+    "fence_3_AND_6": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "topo_coverage",
+      "fence_b": "one_op_per_terrain"
+    },
+    "fence_3_AND_7": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "topo_coverage",
+      "fence_b": "op_appears_twice"
+    },
+    "fence_3_AND_8": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "topo_coverage",
+      "fence_b": "f_kernel_expansion"
+    },
+    "fence_3_AND_9": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "topo_coverage",
+      "fence_b": "t_kernel_expansion"
+    },
+    "fence_3_AND_10": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "topo_coverage",
+      "fence_b": "type_determines_ops"
+    },
+    "fence_3_AND_11": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "topo_coverage",
+      "fence_b": "eight_terrains"
+    },
+    "fence_3_AND_12": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "topo_coverage",
+      "fence_b": "four_operators"
+    },
+    "fence_3_AND_13": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "topo_coverage",
+      "fence_b": "stage_cycle"
+    },
+    "fence_3_AND_14": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "topo_coverage",
+      "fence_b": "no_self_loops"
+    },
+    "fence_3_AND_15": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "topo_coverage",
+      "fence_b": "weyl_chirality"
+    },
+    "fence_4_AND_5": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "loop_constant",
+      "fence_b": "expansion_balanced"
+    },
+    "fence_4_AND_6": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "loop_constant",
+      "fence_b": "one_op_per_terrain"
+    },
+    "fence_4_AND_7": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "loop_constant",
+      "fence_b": "op_appears_twice"
+    },
+    "fence_4_AND_8": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "loop_constant",
+      "fence_b": "f_kernel_expansion"
+    },
+    "fence_4_AND_9": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "loop_constant",
+      "fence_b": "t_kernel_expansion"
+    },
+    "fence_4_AND_10": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "loop_constant",
+      "fence_b": "type_determines_ops"
+    },
+    "fence_4_AND_11": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "loop_constant",
+      "fence_b": "eight_terrains"
+    },
+    "fence_4_AND_12": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "loop_constant",
+      "fence_b": "four_operators"
+    },
+    "fence_4_AND_13": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "loop_constant",
+      "fence_b": "stage_cycle"
+    },
+    "fence_4_AND_14": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "loop_constant",
+      "fence_b": "no_self_loops"
+    },
+    "fence_4_AND_15": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "loop_constant",
+      "fence_b": "weyl_chirality"
+    },
+    "fence_5_AND_6": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "expansion_balanced",
+      "fence_b": "one_op_per_terrain"
+    },
+    "fence_5_AND_7": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "expansion_balanced",
+      "fence_b": "op_appears_twice"
+    },
+    "fence_5_AND_8": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "expansion_balanced",
+      "fence_b": "f_kernel_expansion"
+    },
+    "fence_5_AND_9": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "expansion_balanced",
+      "fence_b": "t_kernel_expansion"
+    },
+    "fence_5_AND_10": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "expansion_balanced",
+      "fence_b": "type_determines_ops"
+    },
+    "fence_5_AND_11": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "expansion_balanced",
+      "fence_b": "eight_terrains"
+    },
+    "fence_5_AND_12": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "expansion_balanced",
+      "fence_b": "four_operators"
+    },
+    "fence_5_AND_13": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "expansion_balanced",
+      "fence_b": "stage_cycle"
+    },
+    "fence_5_AND_14": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "expansion_balanced",
+      "fence_b": "no_self_loops"
+    },
+    "fence_5_AND_15": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "expansion_balanced",
+      "fence_b": "weyl_chirality"
+    },
+    "fence_6_AND_7": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "one_op_per_terrain",
+      "fence_b": "op_appears_twice"
+    },
+    "fence_6_AND_8": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "one_op_per_terrain",
+      "fence_b": "f_kernel_expansion"
+    },
+    "fence_6_AND_9": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "one_op_per_terrain",
+      "fence_b": "t_kernel_expansion"
+    },
+    "fence_6_AND_10": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "one_op_per_terrain",
+      "fence_b": "type_determines_ops"
+    },
+    "fence_6_AND_11": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "one_op_per_terrain",
+      "fence_b": "eight_terrains"
+    },
+    "fence_6_AND_12": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "one_op_per_terrain",
+      "fence_b": "four_operators"
+    },
+    "fence_6_AND_13": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "one_op_per_terrain",
+      "fence_b": "stage_cycle"
+    },
+    "fence_6_AND_14": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "one_op_per_terrain",
+      "fence_b": "no_self_loops"
+    },
+    "fence_6_AND_15": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "one_op_per_terrain",
+      "fence_b": "weyl_chirality"
+    },
+    "fence_7_AND_8": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "op_appears_twice",
+      "fence_b": "f_kernel_expansion"
+    },
+    "fence_7_AND_9": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "op_appears_twice",
+      "fence_b": "t_kernel_expansion"
+    },
+    "fence_7_AND_10": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "op_appears_twice",
+      "fence_b": "type_determines_ops"
+    },
+    "fence_7_AND_11": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "op_appears_twice",
+      "fence_b": "eight_terrains"
+    },
+    "fence_7_AND_12": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "op_appears_twice",
+      "fence_b": "four_operators"
+    },
+    "fence_7_AND_13": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "op_appears_twice",
+      "fence_b": "stage_cycle"
+    },
+    "fence_7_AND_14": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "op_appears_twice",
+      "fence_b": "no_self_loops"
+    },
+    "fence_7_AND_15": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "op_appears_twice",
+      "fence_b": "weyl_chirality"
+    },
+    "fence_8_AND_9": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "f_kernel_expansion",
+      "fence_b": "t_kernel_expansion"
+    },
+    "fence_8_AND_10": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "f_kernel_expansion",
+      "fence_b": "type_determines_ops"
+    },
+    "fence_8_AND_11": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "f_kernel_expansion",
+      "fence_b": "eight_terrains"
+    },
+    "fence_8_AND_12": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "f_kernel_expansion",
+      "fence_b": "four_operators"
+    },
+    "fence_8_AND_13": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "f_kernel_expansion",
+      "fence_b": "stage_cycle"
+    },
+    "fence_8_AND_14": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "f_kernel_expansion",
+      "fence_b": "no_self_loops"
+    },
+    "fence_8_AND_15": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "f_kernel_expansion",
+      "fence_b": "weyl_chirality"
+    },
+    "fence_9_AND_10": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "t_kernel_expansion",
+      "fence_b": "type_determines_ops"
+    },
+    "fence_9_AND_11": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "t_kernel_expansion",
+      "fence_b": "eight_terrains"
+    },
+    "fence_9_AND_12": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "t_kernel_expansion",
+      "fence_b": "four_operators"
+    },
+    "fence_9_AND_13": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "t_kernel_expansion",
+      "fence_b": "stage_cycle"
+    },
+    "fence_9_AND_14": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "t_kernel_expansion",
+      "fence_b": "no_self_loops"
+    },
+    "fence_9_AND_15": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "t_kernel_expansion",
+      "fence_b": "weyl_chirality"
+    },
+    "fence_10_AND_11": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "type_determines_ops",
+      "fence_b": "eight_terrains"
+    },
+    "fence_10_AND_12": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "type_determines_ops",
+      "fence_b": "four_operators"
+    },
+    "fence_10_AND_13": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "type_determines_ops",
+      "fence_b": "stage_cycle"
+    },
+    "fence_10_AND_14": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "type_determines_ops",
+      "fence_b": "no_self_loops"
+    },
+    "fence_10_AND_15": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "type_determines_ops",
+      "fence_b": "weyl_chirality"
+    },
+    "fence_11_AND_12": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "eight_terrains",
+      "fence_b": "four_operators"
+    },
+    "fence_11_AND_13": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "eight_terrains",
+      "fence_b": "stage_cycle"
+    },
+    "fence_11_AND_14": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "eight_terrains",
+      "fence_b": "no_self_loops"
+    },
+    "fence_11_AND_15": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "eight_terrains",
+      "fence_b": "weyl_chirality"
+    },
+    "fence_12_AND_13": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "four_operators",
+      "fence_b": "stage_cycle"
+    },
+    "fence_12_AND_14": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "four_operators",
+      "fence_b": "no_self_loops"
+    },
+    "fence_12_AND_15": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "four_operators",
+      "fence_b": "weyl_chirality"
+    },
+    "fence_13_AND_14": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "stage_cycle",
+      "fence_b": "no_self_loops"
+    },
+    "fence_13_AND_15": {
+      "combined_violation_reachable": false,
+      "extra_violations_vs_single": false,
+      "fence_a": "stage_cycle",
+      "fence_b": "weyl_chirality"
+    },
+    "fence_14_AND_15": {
+      "combined_violation_reachable": true,
+      "extra_violations_vs_single": false,
+      "fence_a": "no_self_loops",
+      "fence_b": "weyl_chirality"
+    }
+  },
+  "summary": {
+    "load_bearing_fences": [
+      "fence_1_open_alternates",
+      "fence_4_loop_constant",
+      "fence_5_expansion_balanced",
+      "fence_9_t_kernel_expansion",
+      "fence_10_type_determines_ops",
+      "fence_11_eight_terrains",
+      "fence_12_four_operators",
+      "fence_14_no_self_loops",
+      "fence_15_weyl_chirality"
+    ],
+    "redundant_fences": [
+      "fence_2_no_topo_repeat",
+      "fence_3_topo_coverage",
+      "fence_6_one_op_per_terrain",
+      "fence_7_op_appears_twice",
+      "fence_8_f_kernel_expansion",
+      "fence_13_stage_cycle"
+    ],
+    "jointly_necessary_pairs": []
+  },
+  "timestamp": "2026-04-06"
+}

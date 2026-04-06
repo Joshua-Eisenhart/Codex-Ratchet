@@ -1,0 +1,87 @@
+{
+  "layer": 18,
+  "name": "Axes emerge from entropy + geometry",
+  "positive": {
+    "P1_different_bipartitions_different_Ic": {
+      "description": "Different bipartitions yield different I_c (geometry matters)",
+      "ic_by_cycle": {
+        "1": {
+          "cut1_1vs23": 0.1825126,
+          "cut2_12vs3": -0.12716372,
+          "cut3_13vs2": 0.1825126
+        },
+        "5": {
+          "cut1_1vs23": 0.50291777,
+          "cut2_12vs3": -0.40774183,
+          "cut3_13vs2": 0.50291777
+        },
+        "10": {
+          "cut1_1vs23": 0.23359799,
+          "cut2_12vs3": -0.609487,
+          "cut3_13vs2": 0.23359799
+        },
+        "20": {
+          "cut1_1vs23": 0.17752302,
+          "cut2_12vs3": -0.81880135,
+          "cut3_13vs2": 0.17752302
+        }
+      },
+      "any_different": true,
+      "pass": true
+    },
+    "P2_Ic_is_signed": {
+      "description": "I_c takes both positive and negative values across cuts/cycles",
+      "has_positive": true,
+      "has_negative": true,
+      "min_Ic": -0.81880135,
+      "max_Ic": 0.6471561,
+      "pass": true
+    },
+    "P3_mutual_info_nonnegative": {
+      "description": "I(A:B) = S(A)+S(B)-S(AB) >= 0 always (QIT theorem)",
+      "all_nonnegative": true,
+      "min_mutual_info": 0.0,
+      "max_mutual_info": 1.64669355,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_product_state_Ic_leq_0": {
+      "description": "For product state, I_c = S(B)-S(AB) = -S(A) <= 0",
+      "ic_values": {
+        "cut1_1vs23": 0.0,
+        "cut2_12vs3": 0.0,
+        "cut3_13vs2": 0.0
+      },
+      "all_leq_zero": true,
+      "pass": true
+    },
+    "N2_permutation_changes_Ic_structure": {
+      "description": "Permuting qubits changes which cut gives I_c>0 (geometry-dependent)",
+      "original_ic": {
+        "cut1_1vs23": 0.23359799,
+        "cut2_12vs3": -0.609487,
+        "cut3_13vs2": 0.23359799
+      },
+      "permuted_ic": {
+        "cut1_1vs23": 0.0,
+        "cut2_12vs3": 0.23359799,
+        "cut3_13vs2": 0.23359799
+      },
+      "best_cut_original": "cut1_1vs23",
+      "best_cut_permuted": "cut2_12vs3",
+      "structure_changed": true,
+      "values_differ": true,
+      "pass": true
+    }
+  },
+  "tools_used": [
+    "compute_info_measures",
+    "partial_trace_keep",
+    "von_neumann_entropy",
+    "build_3q_Ti/Fe/Te/Fi"
+  ],
+  "timestamp": "2026-04-05",
+  "summary": "Positive: 3/3, Negative: 2/2",
+  "all_pass": true
+}

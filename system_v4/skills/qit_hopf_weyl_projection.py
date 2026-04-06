@@ -267,16 +267,19 @@ def _runtime_bridge_alignment(owner_content_hash: str) -> dict[str, Any]:
         return {
             "status": "absent",
             "runtime_bridge_json": str(RUNTIME_BRIDGE_JSON),
+            "axis0_control_plane_summary": {},
         }
 
     payload = _load_json(RUNTIME_BRIDGE_JSON)
     owner_snapshot = payload.get("owner_snapshot", {})
     runtime_samples = payload.get("runtime_samples", [])
+    axis0_summary = payload.get("axis0_control_plane_summary", {})
     return {
         "status": "present" if runtime_samples else "partial",
         "runtime_bridge_json": str(RUNTIME_BRIDGE_JSON),
         "owner_content_hash_matches_runtime_bridge": owner_snapshot.get("qit_graph_content_hash") == owner_content_hash,
         "runtime_sample_count": len(runtime_samples),
+        "axis0_control_plane_summary": axis0_summary,
         "engine_sample_refs": [
             {
                 "engine_public_id": sample.get("engine_public_id", ""),
@@ -453,10 +456,12 @@ def build_projection() -> dict[str, Any]:
     torus_nodes = {n["public_id"]: n for n in nodes.values() if n.get("node_type") == "TORUS"}
     engine_nodes = {n["public_id"]: n for n in nodes.values() if n.get("node_type") == "ENGINE"}
     stage_nodes = {n["public_id"]: n for n in nodes.values() if n.get("node_type") == "MACRO_STAGE"}
+    weyl_branch_nodes = {n["public_id"]: n for n in nodes.values() if n.get("node_type") == "WEYL_BRANCH"}
 
     nesting_edges = [e for e in edges if e["relation"] == "TORUS_NESTING"]
     stage_torus_edges = [e for e in edges if e["relation"] == "STAGE_ON_TORUS"]
     chirality_edges = [e for e in edges if e["relation"] == "CHIRALITY_COUPLING"]
+    engine_branch_edges = [e for e in edges if e["relation"] == "ENGINE_REALIZES_WEYL_BRANCH"]
 
     # Build projections
     cell_complex = _build_torus_cell_complex(torus_nodes, nesting_edges, stage_torus_edges, stage_nodes)
@@ -471,6 +476,11 @@ def build_projection() -> dict[str, Any]:
         cycle_groupings,
     )
     runtime_bridge = _runtime_bridge_alignment(g.get("content_hash", "unknown"))
+
+    missing_owner_anchors = []
+    if len(weyl_branch_nodes) < 2:
+        missing_owner_anchors.append("WEYL_BRANCH")
+    projection_status = "owner_weyl_branch_materialized" if not missing_owner_anchors else "engine_pair_only_derived"
 
     return {
         "schema": "QIT_HOPF_WEYL_PROJECTION_v1",
@@ -532,11 +542,13 @@ def build_projection() -> dict[str, Any]:
             ],
         },
         "weyl_projection_readiness": {
-            "projection_status": "engine_pair_only_derived",
-            "weyl_branch_nodes_present": False,
+            "projection_status": projection_status,
+            "weyl_branch_nodes_present": len(weyl_branch_nodes) == 2,
             "chirality_coupling_edge_present": len(chirality_edges) > 0,
             "engine_pair_public_ids": sorted(engine_nodes.keys()),
-            "missing_owner_anchors": ["WEYL_BRANCH"],
+            "weyl_branch_public_ids": sorted(weyl_branch_nodes.keys()),
+            "engine_branch_edge_count": len(engine_branch_edges),
+            "missing_owner_anchors": missing_owner_anchors,
         },
 
         # ── Projections ──
@@ -630,6 +642,15 @@ def _render_markdown(proj: dict[str, Any]) -> str:
         f"- owner_content_hash_matches_runtime_bridge: `{runtime_bridge.get('owner_content_hash_matches_runtime_bridge')}`",
         f"- runtime_sample_count: `{runtime_bridge.get('runtime_sample_count')}`",
     ])
+    axis0_summary = runtime_bridge.get("axis0_control_plane_summary", {})
+    if axis0_summary:
+        lines.extend([
+            f"- axis0_surface_status: `{axis0_summary.get('surface_status')}`",
+            f"- axis0_runtime_sample_count: `{axis0_summary.get('runtime_sample_count')}`",
+            f"- axis0_direct_bridge_families: `{axis0_summary.get('direct_bridge_families', [])}`",
+            f"- axis0_history_window_bridge_families: `{axis0_summary.get('history_window_bridge_families', [])}`",
+            f"- axis0_history_window_sample_counts: `{axis0_summary.get('history_window_sample_counts', {})}`",
+        ])
     for sample in runtime_bridge.get("engine_sample_refs", []):
         lines.append(
             f"- `{sample['engine_public_id']}`: first_step=`{sample['first_step_public_id']}`, "

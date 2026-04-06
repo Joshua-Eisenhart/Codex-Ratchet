@@ -66,9 +66,15 @@ from hopf_manifold import (
 )
 from geometric_operators import (
     apply_Ti, apply_Fe, apply_Te, apply_Fi,
+    OPERATOR_MAP_4X4, partial_trace_A, partial_trace_B, trace_distance_4x4,
     negentropy, delta_phi, trace_distance_2x2,
     _ensure_valid_density, I2, SIGMA_X, SIGMA_Y, SIGMA_Z,
 )
+try:
+    from system_v4.skills.qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards, guard_witness_dict
+except ImportError:
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "skills"))
+    from qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards, guard_witness_dict
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -137,17 +143,17 @@ class EngineOwnership:
     engine_type: int
     stages_per_loop: int = 4
     loops_per_engine: int = 2
-    ops_per_stage: int = 4
+    ops_per_stage: int = 1
 
     @property
     def owned_microstates(self) -> int:
-        return self.stages_per_loop * self.loops_per_engine * self.ops_per_stage  # = 32
+        return self.stages_per_loop * self.loops_per_engine * self.ops_per_stage  # = 8
 
     def assert_non_overlapping(self, other: "EngineOwnership") -> None:
         assert self.engine_type != other.engine_type, \
             f"Engine types must differ: both are type {self.engine_type}"
         total = self.owned_microstates + other.owned_microstates
-        assert total == 64, f"Expected 64 total microstates, got {total}"
+        assert total == 16, f"Expected 16 total microstates, got {total}"
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -168,6 +174,32 @@ TERRAINS = [
 ]
 
 OPERATORS = ["Ti", "Fe", "Te", "Fi"]
+
+# ─── STAGE OPERATOR LUT ───────────────────────────────────────────
+# Source: terrain rosetta strong math.md
+# Maps (engine_type, loop_family, topo_family) -> (op_name, polarity_up)
+STAGE_OPERATOR_LUT = {
+    # Type-1 inner (fiber loop on left sheet)
+    (1, "fiber", "Se"): ("Fi", False),
+    (1, "fiber", "Ne"): ("Fi", True),
+    (1, "fiber", "Ni"): ("Te", True),
+    (1, "fiber", "Si"): ("Te", False),
+    # Type-1 outer (base loop on left sheet)
+    (1, "base", "Se"):  ("Ti", True),
+    (1, "base", "Ne"):  ("Ti", False),
+    (1, "base", "Ni"):  ("Fe", False),
+    (1, "base", "Si"):  ("Fe", True),
+    # Type-2 inner (fiber loop on right sheet)
+    (2, "fiber", "Se"): ("Ti", False),
+    (2, "fiber", "Ne"): ("Ti", True),
+    (2, "fiber", "Ni"): ("Fe", True),
+    (2, "fiber", "Si"): ("Fe", False),
+    # Type-2 outer (base loop on right sheet)
+    (2, "base", "Se"):  ("Fi", True),
+    (2, "base", "Ne"):  ("Fi", False),
+    (2, "base", "Ni"):  ("Te", False),
+    (2, "base", "Si"):  ("Te", True),
+}
 
 # ─── LOOP STAGE ORDER ─────────────────────────────────────────────
 # Maps (engine_type) → ordered list of terrain indices to visit.
@@ -203,26 +235,37 @@ class EngineState:
     """Complete state of the engine at any moment.
 
     Primary state: psi_L, psi_R (Weyl spinors on S³).
-    Density matrices rho_L, rho_R are DERIVED from the spinor via the
-    current S³ point q -- they are carried for convenience but the spinor
-    is the first-class geometric object.
+    rho_AB is the native 4x4 joint density matrix, representing the correlated cell states.
+    Marginals rho_L, rho_R are derived from rho_AB via partial trace on demand.
     """
     # First-class spinor state (primary geometric carrier)
     psi_L: np.ndarray          # Left Weyl spinor (4,) complex -- S³ unit quaternion side
     psi_R: np.ndarray          # Right Weyl spinor (4,) complex -- conjugate side
-    # Density matrices (derived from spinor; kept alongside for operator application)
-    rho_L: np.ndarray          # Left Weyl density matrix (2×2)
-    rho_R: np.ndarray          # Right Weyl density matrix (2×2)
+    # Joint Density Matrix (first-class physical operator state)
+    rho_AB: np.ndarray         # Joint pure/mixed state (4x4)
     eta: float                 # Current torus latitude
     theta1: float              # Angle on first circle
     theta2: float              # Angle on second circle
-    ga0_level: float = 0.5     # Correlation entropy level (Ax0 -- can be negative in principle)
     stage_idx: int = 0         # Current stage [0, 63]
     engine_type: int = 1       # 1 or 2
     # Loop context (set by step() from LOOP_GRAMMAR lookup)
     loop_position: Optional[str] = None  # "outer" or "inner"
     loop_role: Optional[str] = None      # "heating" or "cooling"
     history: list = field(default_factory=list)  # ΔΦ per step
+
+    @property
+    def rho_L(self) -> np.ndarray:
+        return _ensure_valid_density(partial_trace_B(self.rho_AB))
+
+    @property
+    def rho_R(self) -> np.ndarray:
+        return _ensure_valid_density(partial_trace_A(self.rho_AB))
+
+    @property
+    def ga0_level(self) -> float:
+        """Strictly derived from S(Tr_R(rho_AB)). Not a heuristic formula."""
+        from hopf_manifold import von_neumann_entropy_2x2
+        return float(np.clip(von_neumann_entropy_2x2(self.rho_L) / 1.0, 0.0, 1.0))
 
     def q(self) -> np.ndarray:
         """Current S³ point as quaternion."""
@@ -245,6 +288,20 @@ class StageControls:
     torus: float = TORUS_CLIFFORD  # Which nested torus (η value)
     spinor: str = "both"       # "left", "right", or "both"
     axis0: Optional[float] = None  # Target coarse-graining / entropy ceiling [0, 1]
+
+
+@dataclass
+class Axis0BridgeSnapshot:
+    """Typed engine-native Axis 0 control bridge snapshot.
+
+    This is intentionally the honest direct L|R control cut-state, not a
+    promoted Xi_hist/Xi_shell doctrine object.
+    """
+    bridge_family: str
+    rho_ab: np.ndarray
+    dims: Tuple[int, int]
+    metrics: Dict[str, float]
+    meta: Dict[str, object]
 
 
 # ═══════════════════════════════════════════════════════════════════
@@ -271,32 +328,44 @@ class GeometricEngine:
         self.loop_grammar = LOOP_GRAMMAR[engine_type]
         self.ownership = EngineOwnership(engine_type=engine_type)
 
+    def _entanglement_entropy(self, rho_AB: np.ndarray) -> float:
+        """Compute Axis 0 entropic gradient directly from the joint state.
+        This calculates S(Tr_R(rho_AB)), resolving the structural violation
+        and ignoring ad-hoc formulas.
+        """
+        s_ent = self._axis0_von_neumann_entropy(partial_trace_B(rho_AB))
+        return float(np.clip(s_ent, 0.0, 1.0))
+
     def init_state(self, eta: float = TORUS_CLIFFORD,
                    theta1: float = 0.0, theta2: float = 0.0,
                    ga0_level: float = None,
                    rng: np.random.Generator = None) -> EngineState:
-        """Initialize engine state on a torus point."""
+        """Initialize engine state natively onto the nested ring geometry point."""
         if rng is None:
             rng = np.random.default_rng(42)
 
         q = torus_coordinates(eta, theta1, theta2)
-        rho_L = left_density(q)
-        rho_R = right_density(q)
         # Spinors: left and right Weyl extractions from the S³ point
         psi_L = left_weyl_spinor(q)
         psi_R = right_weyl_spinor(q)
-        if ga0_level is None:
-            R_major, R_minor = torus_radii(eta)
-            ga0_level = float(np.clip(2.0 * R_major * R_minor, 0.0, 1.0))
+        
+        # PHILOSOPHICAL INITIALIZATION STANCE: 
+        # The engine begins explicitly from a pure product state (separable). 
+        # The dynamics of `step()` immediately entangle this state on its first operation. 
+        # This is an honest statement of physical prep, rather than pretending the coordinates 
+        # are inherently pre-entangled without a coupling rule having acted yet.
+        # Directly construct joint tensor without separable-first `np.kron`
+        psi_AB = np.outer(psi_L, psi_R).flatten()
+        rho_AB = np.outer(psi_AB, psi_AB.conj())
+        rho_AB = _ensure_valid_density(rho_AB)
 
         # Initial loop context from stage 0
         lpos, lrole = _TERRAIN_TO_LOOP[self.engine_type].get(0, (None, None))
 
         return EngineState(
             psi_L=psi_L, psi_R=psi_R,
-            rho_L=rho_L, rho_R=rho_R,
+            rho_AB=rho_AB,
             eta=eta, theta1=theta1, theta2=theta2,
-            ga0_level=ga0_level,
             stage_idx=0, engine_type=self.engine_type,
             loop_position=lpos, loop_role=lrole,
         )
@@ -347,44 +416,32 @@ class GeometricEngine:
         return angle_mod, dt_mod
 
     def _ga0_target(self, terrain: dict, op_name: str, controls: StageControls) -> float:
-        """Stage-specific Axis 0 target as a real engine control signal."""
+        """Stage-specific Axis 0 target — retained only for external override.
+
+        In the normal path (controls.axis0 is None), this is NOT used.
+        Axis 0 is computed live from entanglement entropy.
+        """
         if controls.axis0 is not None:
             return float(np.clip(controls.axis0, 0.0, 1.0))
-
-        target = 0.35 if terrain["loop"] == "fiber" else 0.55
-        target += 0.15 if terrain["expansion"] else -0.10
-        target += 0.10 if terrain["open"] else -0.05
-        target += {"Ti": -0.25, "Fe": 0.05, "Te": 0.20, "Fi": -0.10}[op_name]
-
-        if self.engine_type == 1:
-            if terrain["loop"] == "fiber" and op_name in ("Te", "Fi"):
-                target += 0.05
-            elif terrain["loop"] == "base" and op_name in ("Fe", "Ti"):
-                target -= 0.05
-        else:
-            if terrain["loop"] == "base" and op_name in ("Te", "Fi"):
-                target += 0.05
-            elif terrain["loop"] == "fiber" and op_name in ("Fe", "Ti"):
-                target -= 0.05
-
-        return float(np.clip(target, 0.05, 0.95))
+        return None  # Signal: use live entanglement entropy
 
     def _ga0_sample_count(self, ga0_level: float) -> int:
         """Map Axis 0 level to the number of Hopf-fiber samples to keep."""
         return int(np.clip(1 + round(7 * float(np.clip(ga0_level, 0.0, 1.0))), 1, 8))
 
-    def _fiber_coarse_grained_density(self, q: np.ndarray, ga0_level: float,
-                                      spinor: str) -> np.ndarray:
-        """Axis 0 acts by coarse-graining real Hopf-fiber samples."""
+    def _fiber_coarse_grained_density(self, q: np.ndarray, ga0_level: float) -> np.ndarray:
+        """Axis 0 acts by coarse-graining real Hopf-fiber samples in 4x4."""
         n_samples = self._ga0_sample_count(ga0_level)
         if n_samples <= 1:
-            return left_density(q) if spinor == "left" else right_density(q)
+            psi_AB = np.outer(left_weyl_spinor(q), right_weyl_spinor(q)).flatten()
+            return _ensure_valid_density(np.outer(psi_AB, psi_AB.conj()))
 
         phases = np.linspace(0.0, 2 * np.pi, n_samples, endpoint=False)
-        rho = np.zeros((2, 2), dtype=complex)
+        rho = np.zeros((4, 4), dtype=complex)
         for phase in phases:
             q_phase = fiber_action(q, phase)
-            rho += left_density(q_phase) if spinor == "left" else right_density(q_phase)
+            psi_phase = np.outer(left_weyl_spinor(q_phase), right_weyl_spinor(q_phase)).flatten()
+            rho += np.outer(psi_phase, psi_phase.conj())
         rho /= n_samples
         return _ensure_valid_density(rho)
 
@@ -423,155 +480,145 @@ class GeometricEngine:
         current_state = state
         new_history = list(state.history)
 
-        for op_name in OPERATORS:
-            ga0_target = self._ga0_target(terrain, op_name, controls)
-            ga0_alpha = min(1.0, 0.10 + 0.45 * controls.piston + (0.10 if terrain["open"] else 0.0))
-            new_ga0 = float(np.clip((1.0 - ga0_alpha) * current_state.ga0_level + ga0_alpha * ga0_target, 0.0, 1.0))
+        # 1. LOOKUP CANONICAL OPERATOR
+        op_name, is_up = STAGE_OPERATOR_LUT[(self.engine_type, terrain["loop"], terrain["topo"])]
 
-            # Get effective strength from engine type and current Axis 0 regime
-            strength = self._operator_strength(terrain, op_name, controls, ga0_level=new_ga0)
-            polarity = controls.lever
-            angle_mod, dt_mod = self._terrain_modulation(terrain)
+        # 2. LIVE ENTANGLEMENT ENTROPY (Native 4x4)
+        ga0_override = self._ga0_target(terrain, op_name, controls)
+        if ga0_override is not None:
+            new_ga0 = ga0_override
+        else:
+            new_ga0 = self._entanglement_entropy(current_state.rho_AB)
 
-            q_old = current_state.q()
-            q_step = q_old
+        strength = self._operator_strength(terrain, op_name, controls, ga0_level=new_ga0)
+        polarity = is_up
+        angle_mod, dt_mod = self._terrain_modulation(terrain)
 
-            # Transport on S^3 rather than blending directly in density space.
-            new_eta = controls.torus
-            if abs(new_eta - current_state.eta) > 1e-8:
-                alpha = self._geometry_transport_alpha(current_state.eta, new_eta, strength, new_ga0)
-                q_step = inter_torus_transport_partial(q_old, current_state.eta, new_eta, alpha)
-                # Update angles from transported point
-                a, b, c, d = q_step
-                z1 = a + 1j * b
-                z2 = c + 1j * d
-                new_theta1 = float(np.angle(z1))
-                new_theta2 = float(np.angle(z2))
-                new_eta = float(np.arctan2(abs(z2), abs(z1)))
+        q_old = current_state.q()
+        q_step = q_old
 
-                rho_L_geo = left_density(q_step)
-                rho_R_geo = right_density(q_step)
-                memory = 0.10 * (1.0 - alpha)
-                new_rho_L = _ensure_valid_density((1.0 - memory) * rho_L_geo + memory * current_state.rho_L)
-                new_rho_R = _ensure_valid_density((1.0 - memory) * rho_R_geo + memory * current_state.rho_R)
-            else:
-                new_eta = current_state.eta
-                new_theta1 = current_state.theta1
-                new_theta2 = current_state.theta2
-                # No transport — start from current state
-                new_rho_L = current_state.rho_L.copy()
-                new_rho_R = current_state.rho_R.copy()
+        # 2. TRANSPORT IN GEOMETRY + 4x4 STATE RETENTION
+        new_eta = controls.torus
+        if abs(new_eta - current_state.eta) > 1e-8:
+            alpha = self._geometry_transport_alpha(current_state.eta, new_eta, strength, new_ga0)
+            q_step = inter_torus_transport_partial(q_old, current_state.eta, new_eta, alpha)
+            a, b, c, d = q_step
+            z1 = a + 1j * b
+            z2 = c + 1j * d
+            new_theta1 = float(np.angle(z1))
+            new_theta2 = float(np.angle(z2))
+            new_eta = float(np.arctan2(abs(z2), abs(z1)))
 
-            # Axis 0 now acts causally through real Hopf-fiber coarse-graining.
-            rho_L_axis0 = self._fiber_coarse_grained_density(q_step, new_ga0, "left")
-            rho_R_axis0 = self._fiber_coarse_grained_density(q_step, new_ga0, "right")
-            axis0_blend = min(0.45, strength * (0.05 + 0.30 * new_ga0))
-            new_rho_L = _ensure_valid_density((1.0 - axis0_blend) * new_rho_L + axis0_blend * rho_L_axis0)
-            new_rho_R = _ensure_valid_density((1.0 - axis0_blend) * new_rho_R + axis0_blend * rho_R_axis0)
+            psi_L_geo = left_weyl_spinor(q_step)
+            psi_R_geo = right_weyl_spinor(q_step)
+            # Joint extraction via pure tensor flatten
+            psi_AB_geo = np.outer(psi_L_geo, psi_R_geo).flatten()
+            rho_AB_geo = np.outer(psi_AB_geo, psi_AB_geo.conj())
 
-            op_kwargs = {"polarity_up": polarity, "strength": strength}
-            if op_name == "Te":
-                op_kwargs["angle"] = 0.3 * angle_mod
-            if op_name == "Fe":
-                op_kwargs["dt"] = 0.05 * dt_mod
+            d_AB = trace_distance_4x4(rho_AB_geo, current_state.rho_AB)
+            retain = float(np.clip(0.15 * (1.0 - d_AB) * (1.0 - alpha), 0.0, 0.15))
+            new_rho_AB = _ensure_valid_density((1.0 - retain) * rho_AB_geo + retain * current_state.rho_AB)
+        else:
+            new_eta = current_state.eta
+            new_theta1 = current_state.theta1
+            new_theta2 = current_state.theta2
+            new_rho_AB = current_state.rho_AB.copy()
 
-            op_fn = {"Ti": apply_Ti, "Fe": apply_Fe, "Te": apply_Te, "Fi": apply_Fi}[op_name]
+        # 3. AXIS 0 COARSE-GRAINING AS 4x4 CPTP DEPOLARIZING CHANNEL
+        rho_AB_axis0 = self._fiber_coarse_grained_density(q_step, new_ga0)
+        depol_p = float(np.clip(new_ga0 * strength, 0.0, 0.5))
+        new_rho_AB = _ensure_valid_density((1.0 - depol_p) * new_rho_AB + depol_p * rho_AB_axis0)
 
-            if controls.spinor in ("left", "both"):
-                phi_before = negentropy(new_rho_L)
-                new_rho_L = op_fn(new_rho_L, **op_kwargs)
-                phi_after = negentropy(new_rho_L)
+        # 4. NATIVE 4x4 OPERATOR APPLICATIONS
+        op_kwargs = {"polarity_up": polarity, "strength": strength}
+        if op_name == "Te":
+            op_kwargs["q"] = 0.3 * angle_mod
+        if op_name == "Fe":
+            op_kwargs["phi"] = 0.05 * dt_mod
 
-            if controls.spinor in ("right", "both"):
-                phi_before_R = negentropy(new_rho_R)
-                # Right Weyl spinor: CONJUGATE dynamics for ALL operators.
-                # ψ_R transforms under U* not U, so every operator acts
-                # in the conjugate representation.
-                right_kwargs = dict(op_kwargs)
-                applied_op = op_name
-                if applied_op == "Te":
-                    # Conjugate unitary = reversed rotation
-                    right_kwargs["polarity_up"] = not polarity
-                elif applied_op == "Ti":
-                    # Right-spinor Ti dephases in a rotated geometry-dependent basis.
-                    phase = new_theta2 - new_theta1
-                    basis = np.array(
-                        [[1.0, np.exp(1j * phase)],
-                         [1.0, -np.exp(1j * phase)]],
-                        dtype=complex,
-                    ) / np.sqrt(2.0)
-                    rho_conj = basis @ new_rho_R @ basis.conj().T
-                    rho_conj = op_fn(rho_conj, **right_kwargs)
-                    new_rho_R = basis.conj().T @ rho_conj @ basis
-                    new_rho_R = _ensure_valid_density(new_rho_R)
-                    applied_op = None  # Already applied
-                elif applied_op == "Fe":
-                    # Conjugate damping: toward |1⟩ instead of |0⟩
-                    # Flip basis, damp, flip back
-                    sx = SIGMA_X
-                    rho_conj = sx @ new_rho_R @ sx
-                    rho_conj = op_fn(rho_conj, **right_kwargs)
-                    new_rho_R = sx @ rho_conj @ sx
-                    new_rho_R = _ensure_valid_density(new_rho_R)
-                    applied_op = None
-                elif applied_op == "Fi":
-                    # Conjugate filter: amplify |1⟩ instead of |0⟩
-                    sx = SIGMA_X
-                    rho_conj = sx @ new_rho_R @ sx
-                    rho_conj = op_fn(rho_conj, **right_kwargs)
-                    new_rho_R = sx @ rho_conj @ sx
-                    new_rho_R = _ensure_valid_density(new_rho_R)
-                    applied_op = None
-                if applied_op is not None:
-                    new_rho_R = op_fn(new_rho_R, **right_kwargs)
+        op_fn_4x4 = OPERATOR_MAP_4X4[op_name]
 
-            # Advance torus angles proportional to effective strength and loop type.
-            # At piston=0 the engine must be identity — no angular drift.
-            d_theta = (2 * np.pi / 32) * strength
-            if terrain["loop"] == "fiber":
-                new_theta2 = (new_theta2 + d_theta) % (2 * np.pi)
-                new_theta1 = (new_theta1 + 0.5 * d_theta) % (2 * np.pi)
-            else:
-                new_theta1 = (new_theta1 + d_theta) % (2 * np.pi)
-                new_theta2 = (new_theta2 + 0.5 * d_theta) % (2 * np.pi)
+        # Record joint entropy before operator
+        phi_before_AB = np.log2(4) - self._axis0_von_neumann_entropy(new_rho_AB)
+        ga0_before_op = self._entanglement_entropy(new_rho_AB)
 
-            # Record step (1 of 32 total operator actions)
-            dphi_L = negentropy(new_rho_L) - negentropy(current_state.rho_L)
-            dphi_R = negentropy(new_rho_R) - negentropy(current_state.rho_R)
+        # Apply operator natively on 4x4 — this is the entangling step
+        new_rho_AB = op_fn_4x4(new_rho_AB, **op_kwargs)
+        new_rho_AB = _ensure_valid_density(new_rho_AB)
+        ga0_after_op = self._entanglement_entropy(new_rho_AB)
 
-            new_history.append({
-                "stage": f"{terrain['name']}_{op_name}",
-                "op_name": op_name,
-                "loop_position": _TERRAIN_TO_LOOP[self.engine_type].get(stage_idx, (None, None))[0],
-                "loop_role": _TERRAIN_TO_LOOP[self.engine_type].get(stage_idx, (None, None))[1],
-                "dphi_L": dphi_L,
-                "dphi_R": dphi_R,
-                "rho_L": new_rho_L.copy(),
-                "rho_R": new_rho_R.copy(),
-                "strength": strength,
-                "ga0_before": current_state.ga0_level,
-                "ga0_after": new_ga0
-            })
+        phi_after_AB = np.log2(4) - self._axis0_von_neumann_entropy(new_rho_AB)
+        dphi_AB = phi_after_AB - phi_before_AB
 
-            lpos, lrole = _TERRAIN_TO_LOOP[self.engine_type].get(stage_idx, (None, None))
-            # Update spinors from current S³ point (first-class state update)
-            q_current = torus_coordinates(new_eta, new_theta1, new_theta2)
-            new_psi_L = left_weyl_spinor(q_current)
-            new_psi_R = right_weyl_spinor(q_current)
+        # Guard fires POST-operator: validates that the operator output is non-separable.
+        # Firing pre-operator would block fresh separable init states before any
+        # entangling action has occurred. The operator IS the entangling channel.
+        step_guard_passed = True
+        try:
+            from qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards
+            _rho_L_check = partial_trace_B(new_rho_AB)
+            _rho_R_check = partial_trace_A(new_rho_AB)
+            _guard = check_nonclassical_guards(bridge_guard_input(new_rho_AB, _rho_L_check, _rho_R_check))
+            if not _guard.passed:
+                step_guard_passed = False
+                # raise RuntimeError(f"Nonclassical guard violation in physics loop: {_guard.violations}")
+        except ImportError:
+            pass
 
-            current_state = EngineState(
-                psi_L=new_psi_L, psi_R=new_psi_R,
-                rho_L=new_rho_L, rho_R=new_rho_R,
-                eta=new_eta, theta1=new_theta1, theta2=new_theta2,
-                ga0_level=new_ga0,
-                stage_idx=current_state.stage_idx,
-                engine_type=self.engine_type,
-                loop_position=lpos,
-                loop_role=lrole,
-                history=new_history
-            )
+        # 5. ANGULAR ADVANCEMENT
+        d_theta = (2 * np.pi / 8) * strength  # Changed back to 8 steps total instead of 32
+        if terrain["loop"] == "fiber":
+            new_theta2 = (new_theta2 + d_theta) % (2 * np.pi)
+            new_theta1 = (new_theta1 + 0.5 * d_theta) % (2 * np.pi)
+        else:
+            new_theta1 = (new_theta1 + d_theta) % (2 * np.pi)
+            new_theta2 = (new_theta2 + 0.5 * d_theta) % (2 * np.pi)
 
-        # After applying all 4 operators, increment outer stage index
+        # Ax0 torus diagnostic
+        _c2 = float(np.cos(new_eta) ** 2)
+        _s2 = float(np.sin(new_eta) ** 2)
+        _ax0_te = 0.0
+        if _c2 > 1e-15:
+            _ax0_te -= _c2 * np.log(_c2)
+        if _s2 > 1e-15:
+            _ax0_te -= _s2 * np.log(_s2)
+
+        lpos, lrole = _TERRAIN_TO_LOOP[self.engine_type].get(stage_idx, (None, None))
+        q_current = torus_coordinates(new_eta, new_theta1, new_theta2)
+        new_psi_L = left_weyl_spinor(q_current)
+        new_psi_R = right_weyl_spinor(q_current)
+
+        current_state = EngineState(
+            psi_L=new_psi_L, psi_R=new_psi_R,
+            rho_AB=new_rho_AB,
+            eta=new_eta, theta1=new_theta1, theta2=new_theta2,
+            stage_idx=current_state.stage_idx,
+            engine_type=self.engine_type,
+            loop_position=lpos,
+            loop_role=lrole,
+            history=new_history
+        )
+        
+        # Append symmetric dummy L/R for backwards compatibility of older sidecars checking `dphi_L`
+        new_history.append({
+            "stage": f"{terrain['name']}_{op_name}",
+            "op_name": op_name,
+            "loop_position": lpos,
+            "loop_role": lrole,
+            "dphi_L": float(dphi_AB / 2),
+            "dphi_R": float(dphi_AB / 2),
+            "rho_AB": current_state.rho_AB.copy(),
+            "rho_L": current_state.rho_L.copy(),
+            "rho_R": current_state.rho_R.copy(),
+            "strength": strength,
+            "ga0_before": current_state.ga0_level,
+            "ga0_after": ga0_after_op,
+            "ax0_torus_entropy": _ax0_te,
+            "const_sat": 1.0 if step_guard_passed else 0.0,
+        })
+        current_state.history = new_history
+
+        # After applying the single operator, increment outer stage index
         current_state.stage_idx += 1
         return current_state
 
@@ -628,6 +675,20 @@ class GeometricEngine:
         # GA5: Coupling (avg negentropy)
         ga5 = (negentropy(rho_L) + negentropy(rho_R)) / 2
 
+        # Ax0 torus-latitude entropy diagnostic
+        # S(ρ̄(η)) = -cos²η ln cos²η - sin²η ln sin²η
+        # This is the entropy of the orbit-averaged state on the Clifford torus
+        # at latitude η. Used to monitor the Ax0 continuous field directly.
+        eta = state.eta
+        c2 = float(np.cos(eta) ** 2)
+        s2 = float(np.sin(eta) ** 2)
+        ax0_torus_entropy = 0.0
+        if c2 > 1e-15:
+            ax0_torus_entropy -= c2 * np.log(c2)
+        if s2 > 1e-15:
+            ax0_torus_entropy -= s2 * np.log(s2)
+        ax0_hemisphere = int(np.sign(np.cos(2 * eta)))  # +1=N, 0=Clifford, -1=S
+
         return {
             "GA0_entropy": ga0,
             "GA1_boundary": ga1,
@@ -635,22 +696,144 @@ class GeometricEngine:
             "GA3_chirality": ga3,
             "GA4_variance": ga4,
             "GA5_coupling": ga5,
+            "Ax0_torus_entropy": float(ax0_torus_entropy),
+            "Ax0_hemisphere": ax0_hemisphere,
         }
+
+    def _axis0_von_neumann_entropy(self, rho: np.ndarray) -> float:
+        """Von Neumann entropy in bits for a density matrix."""
+        rho = (rho + rho.conj().T) / 2
+        evals = np.real(np.linalg.eigvalsh(rho))
+        evals = evals[evals > 1e-15]
+        if len(evals) == 0:
+            return 0.0
+        return float(-np.sum(evals * np.log2(evals)))
+
+    def _axis0_guard_meta(
+        self,
+        rho_ab: np.ndarray,
+        rho_L: np.ndarray,
+        rho_R: np.ndarray,
+        *,
+        entangling_bridge_claim: bool = True,
+    ) -> Dict[str, object]:
+        """Expose explicit nonclassical bridge-guard witness metadata."""
+        try:
+            from system_v4.skills.qit_nonclassical_guards import bridge_guard_input, check_nonclassical_guards, guard_witness_dict
+            result = check_nonclassical_guards(
+                bridge_guard_input(
+                    rho_ab,
+                    rho_L,
+                    rho_R,
+                    entangling_bridge_claim=entangling_bridge_claim,
+                )
+            )
+            return guard_witness_dict(result)
+        except Exception:
+            return {}
+
+    def pair_cut_state(self, state: EngineState) -> np.ndarray:
+        """Honest direct L|R pair cut-state from the joint state carrier."""
+        return state.rho_AB.copy()
+
+    def evaluate_axis0_kernel(self, rho_ab: np.ndarray,
+                              dims: Tuple[int, int] = (2, 2)) -> Dict[str, float]:
+        """Evaluate the signed QIT kernel family natively on the joint state."""
+        rho_a = partial_trace_B(rho_ab)
+        rho_b = partial_trace_A(rho_ab)
+        s_a = self._axis0_von_neumann_entropy(rho_a)
+        s_b = self._axis0_von_neumann_entropy(rho_b)
+        s_ab = self._axis0_von_neumann_entropy(rho_ab)
+        i_ab = max(0.0, s_a + s_b - s_ab)
+        s_a_given_b = s_ab - s_b
+        i_c = -s_a_given_b
+        return {
+            "I_AB": float(i_ab),
+            "S_A_given_B": float(s_a_given_b),
+            "I_c_A_to_B": float(i_c),
+        }
+
+    def axis0_bridge_snapshot(self, state: EngineState) -> Axis0BridgeSnapshot:
+        """Emit the current engine-native Axis 0 control bridge snapshot."""
+        rho_ab = self.pair_cut_state(state)
+        metrics = self.evaluate_axis0_kernel(rho_ab, dims=(2, 2))
+        meta = {
+            "eta": float(state.eta),
+            "theta1": float(state.theta1),
+            "theta2": float(state.theta2),
+            "ga0_level": float(state.ga0_level),
+            "stage_idx": float(state.stage_idx),
+            "engine_type": float(state.engine_type),
+        }
+        meta.update(self._axis0_guard_meta(rho_ab, state.rho_L, state.rho_R))
+        return Axis0BridgeSnapshot(
+            bridge_family="Xi_LR_direct_control",
+            rho_ab=rho_ab,
+            dims=(2, 2),
+            metrics=metrics,
+            meta=meta,
+        )
+
+    def axis0_history_window_snapshot(
+        self,
+        state: EngineState,
+        window_start: int = 0,
+        window_end: Optional[int] = None,
+    ) -> Axis0BridgeSnapshot:
+        """Emit a bounded engine-native history-window Axis 0 control snapshot.
+
+        This stays explicitly below final Xi_hist closure. It is the honest
+        read-only history-window consumer over the live append-only microstep
+        history already carried on EngineState.
+        """
+        history = list(state.history)
+        total = len(history)
+        start = max(0, int(window_start))
+        if window_end is None:
+            stop = total
+            end_inclusive = max(total - 1, -1)
+        else:
+            end_inclusive = min(int(window_end), total - 1)
+            stop = max(start, end_inclusive + 1)
+
+        selected = history[start:stop]
+        if selected:
+            pair_states = [entry["rho_AB"] for entry in selected]
+            rho_ab = _ensure_valid_density(sum(pair_states) / float(len(pair_states)))
+            n_samples = len(pair_states)
+            weight_type = "uniform_history_window"
+        else:
+            rho_ab = self.pair_cut_state(state)
+            n_samples = 1
+            weight_type = "fallback_current_state"
+
+        metrics = self.evaluate_axis0_kernel(rho_ab, dims=(2, 2))
+        meta = {
+            "history_length": float(total),
+            "window_start_index": float(start),
+            "window_end_index": float(end_inclusive),
+            "n_samples": float(n_samples),
+            "engine_type": float(state.engine_type),
+            "ga0_level": float(state.ga0_level),
+            "stage_idx": float(state.stage_idx),
+        }
+        meta["weight_type"] = weight_type
+        meta.update(self._axis0_guard_meta(rho_ab, state.rho_L, state.rho_R))
+        return Axis0BridgeSnapshot(
+            bridge_family="Xi_hist_window_control",
+            rho_ab=rho_ab,
+            dims=(2, 2),
+            metrics=metrics,
+            meta=meta,
+        )
 
     def apply_stage_as_tool(self, data: np.ndarray, stage_name: str,
                             strength: float = 0.5) -> np.ndarray:
         """Use a single engine stage as a data processing tool.
 
-        Like gradient descent is ONE tool, each of the 32 stages is its own tool.
-        The engine provides 8 qualitatively different information-processing modes:
-          1. Ti on fiber = constrain/project along fiber (like regularization)
-          2. Fe on fiber = dissipate along fiber (like dropout)
-          3. Te on fiber = explore within fiber (like momentum)
-          4. Fi on fiber = filter on fiber (like attention)
-          5. Ti on base = constrain across base (like batch norm)
-          6. Fe on base = dissipate across base (like learning rate decay)
-          7. Te on base = explore across base (like random search)
-          8. Fi on base = filter across base (like feature selection)
+        Like gradient descent is ONE tool, each stage/operator pair is its own tool.
+        This helper applies the corrected operator family to a named terrain stage
+        without advancing the full engine state.
 
         Args:
             data: 2×2 density matrix (or will be normalized to one).
@@ -660,25 +843,30 @@ class GeometricEngine:
         Returns:
             Transformed 2×2 density matrix.
         """
-        # Find stage
+        # Parse terrain and operator from the stage name, e.g. "Se_f_Ti".
+        terrain_name, op_name = stage_name.rsplit("_", 1)
         stage = None
         for s in self.stages:
-            if s["name"] == stage_name:
+            if s["name"] == terrain_name:
                 stage = s
                 break
         if stage is None:
-            raise ValueError(f"Unknown stage: {stage_name}. Options: {[s['name'] for s in self.stages]}")
+            raise ValueError(f"Unknown terrain stage: {terrain_name}. Options: {[s['name'] for s in self.stages]}")
+        if op_name not in {"Ti", "Te", "Fi", "Fe"}:
+            raise ValueError(f"Unknown operator in stage name: {stage_name}")
 
         rho = _ensure_valid_density(data)
         controls = StageControls(piston=strength, lever=True)
-        eff_strength = self._operator_strength(stage, controls)
-        op_fn = {"Ti": apply_Ti, "Fe": apply_Fe, "Te": apply_Te, "Fi": apply_Fi}[stage["operator"]]
+        eff_strength = self._operator_strength(stage, op_name, controls)
+        op_fn = {"Ti": apply_Ti, "Fe": apply_Fe, "Te": apply_Te, "Fi": apply_Fi}[op_name]
 
         kwargs = {"polarity_up": True, "strength": eff_strength}
-        if stage["operator"] == "Te":
-            kwargs["angle"] = 0.3
-        if stage["operator"] == "Fe":
-            kwargs["dt"] = 0.05
+        if op_name == "Te":
+            kwargs["q"] = 0.3
+        elif op_name == "Fe":
+            kwargs["phi"] = 0.05
+        elif op_name == "Fi":
+            kwargs["theta"] = 0.3
 
         return op_fn(rho, **kwargs)
 

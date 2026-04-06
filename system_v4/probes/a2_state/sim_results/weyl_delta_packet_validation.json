@@ -1,0 +1,148 @@
+{
+  "name": "weyl_delta_packet_validation",
+  "timestamp": "2026-04-01T20:18:28.157342+00:00",
+  "passed_gates": 8,
+  "total_gates": 8,
+  "score": 1.0,
+  "gates": [
+    {
+      "name": "W1_stagewise_raw_delta_surfaces_exist",
+      "pass": true,
+      "detail": {
+        "rows": 48,
+        "transport_active_count": 48,
+        "mean_delta_rho_L_frob": 0.3705368326431209,
+        "mean_delta_rho_R_frob": 0.35583375316256377,
+        "loop_counts": {
+          "fiber": 24,
+          "base": 24
+        }
+      }
+    },
+    {
+      "name": "W2_transport_geometry_is_mechanically_nontrivial",
+      "pass": true,
+      "detail": {
+        "max_abs_delta_eta": 0.3077479703483704,
+        "max_abs_delta_theta1": 0.7853981633974482,
+        "max_abs_delta_theta2": 0.7853981633974482,
+        "seat_transition_counts": {
+          "inner->inner": 2,
+          "inner->unknown": 2,
+          "unknown->unknown": 40,
+          "clifford->unknown": 2,
+          "outer->unknown": 2
+        }
+      }
+    },
+    {
+      "name": "W3_chirality_differential_is_real_pre_axis_signal",
+      "pass": true,
+      "detail": {
+        "chirality_active_count": 48,
+        "mean_abs_delta_chirality": 0.2847180188219112,
+        "neg_no_chirality_chirality_matters": true,
+        "d_chiral": 0.8234140396807214,
+        "d_flat": 0.5450291097571088
+      }
+    },
+    {
+      "name": "W4_raw_lr_deltas_are_not_reducible_to_symmetric_dphi_shim",
+      "pass": true,
+      "detail": {
+        "lr_state_asymmetry_count": 45,
+        "lr_bloch_asymmetry_count": 48,
+        "max_abs_compat_dphi_gap": 0.0,
+        "entropic_left_right_flux": "blocked_by_symmetric_compat_shim"
+      }
+    },
+    {
+      "name": "W5_branch_map_keeps_flux_placement_open",
+      "pass": true,
+      "detail": {
+        "placement_hints": {
+          "geometric_transport_delta": "pre-axis",
+          "chirality_differential_delta": "pre-axis",
+          "bloch_differential_delta": "pre-axis",
+          "entropic_left_right_flux": "unresolved_not_owner_worthy_yet",
+          "post_joint_cut_flux": "axis_internal_or_cross_axis"
+        }
+      }
+    },
+    {
+      "name": "W6_flux_family_is_explicit_without_canonizing_flux",
+      "pass": true,
+      "detail": {
+        "flux_candidate_status": {
+          "geometric_transport_flux": "candidate_ready",
+          "bloch_current_flux": "candidate_ready",
+          "chirality_differential_flux": "candidate_ready",
+          "entropic_left_right_flux": "blocked_by_symmetric_compat_shim",
+          "post_joint_cut_flux": "downstream_existing_branch"
+        }
+      }
+    },
+    {
+      "name": "W7_branch_map_preserves_skeptical_flux_read",
+      "pass": true,
+      "detail": {
+        "single_weyl_flux_object": {
+          "status": "not_supported_yet",
+          "reason": "current evidence resolves a compound delta family, not one isolated owner-worthy flux object"
+        },
+        "chirality_separated_transport_deltas": {
+          "status": "surviving_pre_axis_candidate",
+          "reason": "transport, chirality, and Bloch differential deltas are all mechanically active before Axis 0 readout"
+        },
+        "compound_owner_phrase_candidate": {
+          "status": "survives_better_than_single_flux",
+          "phrase": "chirality-separated loop-sensitive transport deltas",
+          "support_rows": 48
+        }
+      }
+    },
+    {
+      "name": "W8_pre_axis_object_inventory_is_explicit",
+      "pass": true,
+      "detail": {
+        "pre_axis_object_inventory": {
+          "hopf_carrier_point": {
+            "status": "live_pre_axis_geometry",
+            "math": "q in S^3"
+          },
+          "nested_torus_seat": {
+            "status": "live_pre_axis_geometry",
+            "math": "eta, theta1, theta2 with seat labels inner/clifford/outer"
+          },
+          "weyl_sheet_pair": {
+            "status": "live_pre_axis_refinement",
+            "math": "(psi_L(q), psi_R(q)) and (rho_L, rho_R)"
+          },
+          "loop_sensitive_transport_surface": {
+            "status": "live_pre_axis_candidate",
+            "math": "delta_eta, delta_theta1, delta_theta2 with base/fiber loop ownership",
+            "support_rows": 48
+          },
+          "chirality_differential_surface": {
+            "status": "live_pre_axis_candidate",
+            "math": "delta trace_distance(rho_L, rho_R)",
+            "support_rows": 48
+          },
+          "bloch_differential_surface": {
+            "status": "live_pre_axis_candidate",
+            "math": "delta r_L - delta r_R",
+            "support_rows": 48
+          },
+          "raw_delta_packet": {
+            "status": "diagnostic_surface_not_final_owner_law",
+            "math": "stagewise before/after packet"
+          },
+          "bridge_ready_cut_object": {
+            "status": "downstream_not_pre_axis",
+            "math": "rho_AB / Xi / signed cut metrics"
+          }
+        }
+      }
+    }
+  ]
+}

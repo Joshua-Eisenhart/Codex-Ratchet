@@ -14,12 +14,36 @@ import os, sys, json
 from datetime import datetime, UTC
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from hopf_manifold import density_to_bloch
 from engine_core import GeometricEngine, EngineState, StageControls
 from geometric_operators import (
     apply_Ti, apply_Fe, apply_Te, apply_Fi,
     trace_distance_2x2, negentropy, _ensure_valid_density,
+    partial_trace_A, partial_trace_B,
 )
 from proto_ratchet_sim_runner import EvidenceToken
+
+
+def summarize_sheet_split(history: list[dict]) -> dict:
+    trace_gaps = []
+    bloch_gaps = []
+    for row in history:
+        rho_L = row["rho_L"]
+        rho_R = row["rho_R"]
+        trace_gaps.append(float(trace_distance_2x2(rho_L, rho_R)))
+        bloch_L = np.array(density_to_bloch(rho_L))
+        bloch_R = np.array(density_to_bloch(rho_R))
+        bloch_gaps.append(float(np.linalg.norm(bloch_L - bloch_R)))
+
+    return {
+        "rows": len(history),
+        "min_trace_gap": float(min(trace_gaps)),
+        "max_trace_gap": float(max(trace_gaps)),
+        "mean_trace_gap": float(np.mean(trace_gaps)),
+        "min_bloch_gap": float(min(bloch_gaps)),
+        "max_bloch_gap": float(max(bloch_gaps)),
+        "mean_bloch_gap": float(np.mean(bloch_gaps)),
+    }
 
 
 def step_no_chirality(engine: GeometricEngine, state: EngineState,
@@ -35,12 +59,14 @@ def step_no_chirality(engine: GeometricEngine, state: EngineState,
     current_state = state
     new_history = list(state.history)
 
-    from engine_core import OPERATORS, inter_torus_transport_partial, left_density, right_density, SIGMA_X, torus_coordinates
+    from engine_core import OPERATORS, inter_torus_transport_partial, left_density, right_density
 
     for op_name in OPERATORS:
         ga0_target = engine._ga0_target(terrain, op_name, controls)
-        ga0_alpha = min(1.0, 0.10 + 0.45 * controls.piston + (0.10 if terrain["open"] else 0.0))
-        new_ga0 = float(np.clip((1.0 - ga0_alpha) * current_state.ga0_level + ga0_alpha * ga0_target, 0.0, 1.0))
+        if ga0_target is not None:
+            new_ga0 = ga0_target
+        else:
+            new_ga0 = engine._entanglement_entropy(current_state.rho_AB)
 
         strength = engine._operator_strength(terrain, op_name, controls, ga0_level=new_ga0)
         polarity = controls.lever
@@ -72,17 +98,18 @@ def step_no_chirality(engine: GeometricEngine, state: EngineState,
             new_rho_L = current_state.rho_L.copy()
             new_rho_R = current_state.rho_R.copy()
 
-        rho_L_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0, "left")
-        rho_R_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0, "right")
+        rho_AB_axis0 = engine._fiber_coarse_grained_density(q_step, new_ga0)
+        rho_L_axis0 = _ensure_valid_density(partial_trace_B(rho_AB_axis0))
+        rho_R_axis0 = _ensure_valid_density(partial_trace_A(rho_AB_axis0))
         axis0_blend = min(0.45, strength * (0.05 + 0.30 * new_ga0))
         new_rho_L = _ensure_valid_density((1.0 - axis0_blend) * new_rho_L + axis0_blend * rho_L_axis0)
         new_rho_R = _ensure_valid_density((1.0 - axis0_blend) * new_rho_R + axis0_blend * rho_R_axis0)
 
         op_kwargs = {"polarity_up": polarity, "strength": strength}
         if op_name == "Te":
-            op_kwargs["angle"] = 0.3 * angle_mod
+            op_kwargs["q"] = 0.3 * angle_mod
         if op_name == "Fe":
-            op_kwargs["dt"] = 0.05 * dt_mod
+            op_kwargs["phi"] = 0.05 * dt_mod
 
         op_fn = {"Ti": apply_Ti, "Fe": apply_Fe, "Te": apply_Te, "Fi": apply_Fi}[op_name]
 
@@ -113,10 +140,12 @@ def step_no_chirality(engine: GeometricEngine, state: EngineState,
             "ga0_after": new_ga0
         })
 
+        new_rho_AB = np.kron(new_rho_L, new_rho_R)
+
         current_state = EngineState(
-            rho_L=new_rho_L, rho_R=new_rho_R,
+            psi_L=current_state.psi_L, psi_R=current_state.psi_R,
+            rho_AB=new_rho_AB,
             eta=new_eta, theta1=new_theta1, theta2=new_theta2,
-            ga0_level=new_ga0,
             stage_idx=current_state.stage_idx,
             engine_type=engine.engine_type,
             history=new_history
@@ -144,10 +173,16 @@ def run():
         ctrl = StageControls(piston=0.8, spinor="both")
         s_flat = step_no_chirality(e, s_flat, stage_idx=i, controls=ctrl)
     d_flat = trace_distance_2x2(s_flat.rho_L, s_flat.rho_R)
+    history_summary = {
+        "chiral": summarize_sheet_split(s_chiral.history),
+        "flat": summarize_sheet_split(s_flat.history),
+    }
+    history_summary["final_residual_ratio"] = float(d_flat / d_chiral) if d_chiral > 0 else 0.0
 
     print(f"No-Chirality Negative:")
     print(f"  Chiral engine D(L,R): {d_chiral:.4f}")
     print(f"  De-chiralized D(L,R): {d_flat:.4f}")
+    print(f"  Residual ratio D_flat / D_chiral: {history_summary['final_residual_ratio']:.4f}")
     print(f"  Chirality creates divergence: {d_chiral > 0.05}")
     print(f"  → KILL (chirality removal must flatten L/R)")
 
@@ -164,6 +199,7 @@ def run():
             "d_chiral": float(d_chiral),
             "d_flat": float(d_flat),
             "chirality_matters": d_chiral > 0.05,
+            "history_summary": history_summary,
             "evidence_ledger": [t.__dict__ for t in tokens],
         }, f, indent=2)
     return tokens

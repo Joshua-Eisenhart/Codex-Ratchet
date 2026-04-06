@@ -1,0 +1,145 @@
+# QIT Graph Sync README
+
+> Front-door file for any IDE, agent, or human working on the QIT graph lane.
+> Read this first to understand what is real, what is bounded, and what is not yet admitted.
+
+**Important:** files named `__CURRENT__` under `system_v4/a2_state/audit_logs/` are tracked current-workspace reports, not guaranteed committed snapshots. If you run a writer like `python3 system_v4/skills/qit_graph_stack_runtime.py --write-report`, those tracked artifacts may change and show git diffs until committed.
+
+---
+
+## Where Things Live
+
+| File | Purpose |
+|---|---|
+| `core_docs/QIT_GRAPH_LAYER_MAPPING.md` | Conceptual Rosetta stone: which physics concept lives in which graph layer |
+| `core_docs/QIT_GRAPH_SCHEMA.md` | Canonical node and edge inventory (7 live node types + 1 schema-ready type, 11 edge types, 105 nodes, 272 edges) |
+| `core_docs/QIT_GRAPH_SIDECAR_POLICY.md` | What each sidecar may and may not do |
+| `core_docs/QIT_GRAPH_RUNTIME_MODEL.md` | Structure vs state vs history graph separation |
+| `core_docs/QIT_GRAPH_PROMOTION_GATES.md` | When a concept moves from sidecar to owner truth |
+| `core_docs/QIT_COMPRESSION_FUTURE_REFERENCES.md` | Later-only compression references (QJL, TurboQuant, PolarQuant) and revisit triggers |
+| `core_docs/C_LAYER_ARCHITECTURE.md` | C1/C2/C3 external layer: pi-mono, AutoResearchClaw, MiroFish, OpenClaw-RL |
+| `system_v4/skills/qit_engine_graph_builder.py` | Builds the QIT engine graph layer |
+| `system_v4/skills/qit_graph_stack_runtime.py` | Read-only-by-default verifier over the existing QIT owner snapshot, GraphML export, bounded sidecars, and promotion gates |
+| `system_v4/skills/qit_runtime_evidence_bridge.py` | Persists a read-only runtime/evidence audit packet keyed to stable QIT `public_id`s |
+| `system_v4/skills/qit_retrieval_sidecar.py` | Builds a bounded QIT retrieval corpus/query seam with lexical fallback and explicit non-authoritative guards |
+| `system_v4/skills/qit_hopf_weyl_projection.py` | Builds a bounded Hopf/Weyl carrier map over admitted torus/stage/chirality structure |
+| `system_v4/skills/qit_hopf_weyl_evidence_audit.py` | Builds a bounded Hopf/Weyl evidence audit over owner scaffold, runtime bridge alignment, and relevant negatives |
+| `system_v4/skills/qit_torus_type_repair_gap_report.py` | Builds a bounded torus/type repair-gap report derived from the Hopf/Weyl evidence audit’s carrier evidence summary |
+| `system_v4/skills/qit_owner_schemas.py` | Pydantic contracts for all owner-layer types |
+| `system_v4/a2_state/graphs/qit_engine_graph_v1.json` | The live QIT engine graph (105 nodes, 272 edges) |
+| `system_v4/a2_state/audit_logs/QIT_RUNTIME_EVIDENCE_BRIDGE__CURRENT__v1.json` | Persisted read-only runtime/evidence bridge packet/report input |
+| `system_v4/a2_state/audit_logs/QIT_RETRIEVAL_SIDECAR__CURRENT__v1.json` | Persisted bounded retrieval-sidecar report over QIT docs and evidence |
+| `system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_PROJECTION__CURRENT__v1.json` | Persisted bounded Hopf/Weyl carrier map over the admitted owner scaffold |
+| `system_v4/a2_state/audit_logs/QIT_HOPF_WEYL_EVIDENCE_AUDIT__CURRENT__v1.json` | Persisted bounded Hopf/Weyl evidence audit over owner scaffold, runtime alignment, and relevant negatives |
+| `system_v4/a2_state/audit_logs/QIT_TORUS_TYPE_REPAIR_GAP_REPORT__CURRENT__v1.json` | Persisted bounded repair-gap map over torus-placement and type-split gaps; not repair completion and not promotion evidence |
+
+---
+
+## What Is Owner Truth (Read These First)
+
+The **owner stack** is `Pydantic → JSON → NetworkX`, with GraphML as an interoperability/export view. These are real:
+
+- ✅ Engine type identities (Deductive / Inductive)
+- ✅ 16 macro-stage nodes with terrain attributes
+- ✅ 4 fixed subcycle operators (Ti → Fe → Te → Fi)
+- ✅ 3 nested Hopf torus identities
+- ✅ 7 proven load-bearing axes (0–6)
+- ✅ 9 negative witness nodes (graveyard kills)
+- ✅ 64 subcycle step nodes (full 16×4 runtime grain)
+- ✅ 272 structural edges (stage sequence, step-in-stage, step-uses-operator, step-sequence, torus nesting, chirality coupling, and only evidence-backed negative proofs)
+- ✅ Stable `public_id` on every node for cross-layer joining
+- ✅ `content_hash` for snapshot provenance
+- ✅ GraphML export as an owner-stack interoperability view
+- ⚠️ `WEYL_BRANCH` is schema-ready, but not yet instantiated in the live owner graph
+
+---
+
+## What Is Bounded / Not Yet Admitted
+
+| Sidecar | Current Status | What It Does |
+|---|---|---|
+| **TopoNetX** | Bounded read-only projection | Builds CellComplex, identifies cycles and 2-cells from owner data |
+| **clifford** | Bounded read-only sidecar | Computes Cl(3,0) multivector edge payloads from owner edge types |
+| **PyG** | Bounded read-only sidecar | Builds HeteroData tensor projections from owner data |
+| **LightRAG** | Sidecar corpus ready; embedding-backed indexing/query still blocked on embedding config | Intended read-only retrieval/index layer over QIT docs and evidence surfaces; not owner memory |
+| **QIT retrieval seam** | Present (lexical fallback only) | Bounded query surface over QIT docs, structured runtime/evidence bridge packets, stack reports, and selected SIM evidence; context only, not proof |
+| **Hopf/Weyl carrier map** | Present (bounded projection only) | Read-only map of torus carriers, stage-to-torus assignments, and engine-pair chirality readiness; not torus 2-cells or live Weyl branches |
+| **Hopf/Weyl evidence audit** | Present (bounded audit only) | Read-only audit of what torus/chirality structure is live now, what is aligned across sidecars, and what is still forbidden to claim |
+| **Torus/type repair-gap report** | Present (bounded repair map only) | Read-only gap summary derived from current carrier evidence; lists missing repair surfaces and forbidden inferences; not repair completion and not promotion evidence |
+| **kingdon** | Not yet integrated | Optional GA-Torch bridge for differentiable algebra |
+
+**None of these sidecars are semantic owners yet.** They are the correct *next* semantic carriers for their respective domains, pending promotion gates.
+
+---
+
+## What Is NOT Real Yet
+
+- ❌ Runtime state graph (engine position during execution) — still in `engine_core.py` dataclass, not a graph
+- ❌ History/evidence graph — still flat JSON files in `a2_state/sim_results/`
+- ✅ Read-only runtime/evidence bridge packet/report — can be persisted under `a2_state/audit_logs/` without promoting a graph
+- ✅ Bounded retrieval sidecar with lexical fallback over QIT docs and evidence
+- ✅ Bounded Hopf/Weyl carrier projection over admitted torus/stage/chirality structure
+- ✅ Bounded Hopf/Weyl evidence audit over owner scaffold, runtime alignment, and relevant negatives
+- ✅ Bounded torus/type repair-gap report over current carrier evidence and forbidden inferences
+- ❌ Live embedding-backed LightRAG indexing/query over the internal QIT corpus
+- ❌ Live TopoNetX torus 2-cells in the owner graph
+- ❌ Live clifford chirality payloads in the owner graph
+- ❌ Live Weyl branch nodes or promoted spinor-state graph structure
+- ❌ Any promotion gate fully passed
+- ❌ Any claim that torus-placement or type-split repair is complete just because a repair-gap report exists
+- ❌ Any live compression layer over QIT graph state, retrieval embeddings, or history graph
+
+---
+
+## How to Read Order
+
+If you are a new IDE or agent encountering this for the first time:
+
+1. **Start here** — you're reading it
+2. `QIT_GRAPH_SCHEMA.md` — learn the node and edge types
+3. `QIT_GRAPH_LAYER_MAPPING.md` — understand where physics concepts map
+4. `QIT_GRAPH_SIDECAR_POLICY.md` — know what you may and may not do
+5. `QIT_GRAPH_RUNTIME_MODEL.md` — understand structure vs state vs history
+6. `QIT_GRAPH_PROMOTION_GATES.md` — know when things move inward
+7. `QIT_COMPRESSION_FUTURE_REFERENCES.md` — know which compression papers matter later and why they are not build-now work
+
+---
+
+## Verification
+
+```bash
+# Validate Pydantic schemas
+python3 system_v4/skills/qit_owner_schemas.py
+
+# Rebuild the QIT engine graph
+python3 system_v4/skills/qit_engine_graph_builder.py
+
+# Verify the existing owner snapshot, GraphML surface, bounded sidecars, and promotion gates
+python3 system_v4/skills/qit_graph_stack_runtime.py
+
+# Persist a read-only runtime/evidence bridge packet and markdown summary
+python3 system_v4/skills/qit_runtime_evidence_bridge.py
+
+# Build the bounded retrieval sidecar and run its default context-only query
+python3 system_v4/skills/qit_retrieval_sidecar.py
+
+# Build the bounded Hopf/Weyl carrier projection
+python3 system_v4/skills/qit_hopf_weyl_projection.py
+
+# Build the bounded Hopf/Weyl evidence audit
+python3 system_v4/skills/qit_hopf_weyl_evidence_audit.py
+
+# Build the bounded torus/type repair-gap report derived from the Hopf/Weyl evidence audit
+python3 system_v4/skills/qit_torus_type_repair_gap_report.py
+
+# Persist the tracked status artifacts only when you intentionally want to refresh them
+python3 system_v4/skills/qit_graph_stack_runtime.py --write-report
+
+# Note: the tracked __CURRENT__ audit-log artifacts represent the current workspace after refresh,
+# not automatically the last committed snapshot
+# Note: the repair-gap report is a bounded repair map over current gaps and forbidden inferences.
+# Its presence does not mean those gaps are repaired.
+
+# Rebuild the full nested graph (QIT is present as a 6th layer, but live nested linkage is still only a thin admitted bridge foothold: 7 explicit QIT bridge edges, not broad integration)
+python3 system_v4/skills/nested_graph_builder.py
+```

@@ -1,0 +1,31 @@
+{
+  "layer": 17,
+  "name": "Entropy Emergence",
+  "positive": {
+    "P1_sympy_vn_entropy_formula": {
+      "description": "S(rho) = -p*log(p) - (1-p)*log(1-p) for diagonal 2x2",
+      "formula": "-p*log2(p) - (1-p)*log2(1-p)",
+      "S_at_half": 1.0,
+      "passed": true
+    },
+    "P2_sympy_max_mixed_entropy": {
+      "description": "S(I/d) = log(d). For d=8: S = 3 bits",
+      "formula": "log2(d)",
+      "S_at_d8": 3.0,
+      "passed": true
+    }
+  },
+  "negative": {
+    "N1_sympy_pure_state_zero_entropy": {
+      "description": "S(|psi><psi|) = 0 for any pure state",
+      "S_pure_symbolic": 0.0,
+      "S_000_numerical": -0.0,
+      "passed": true
+    }
+  },
+  "tools_used": [
+    "sympy"
+  ],
+  "timestamp": "2026-04-06",
+  "summary": "Entropy emergence: S(p=1/2)=1.0, S(I/8)=3.0, S(pure)=0.0"
+}

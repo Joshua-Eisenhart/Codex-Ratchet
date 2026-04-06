@@ -30,8 +30,8 @@ from pydantic import BaseModel, Field, model_validator
 # ── Enums ──
 
 class EngineTypeEnum(str, Enum):
-    LEFT_WEYL = "type1_left_weyl"
-    RIGHT_WEYL = "type2_right_weyl"
+    TYPE1 = "type1"   # Left Weyl, H_L = +n·σ
+    TYPE2 = "type2"   # Right Weyl, H_R = −n·σ
 
 
 class OperatorEnum(str, Enum):
@@ -85,41 +85,157 @@ class EngineType(BaseModel):
         frozen = True
 
 
+class SpinorEnum(str, Enum):
+    LEFT = "L"    # Type-1, H_L = +n·σ
+    RIGHT = "R"   # Type-2, H_R = −n·σ
+
+
+class TerrainFamilyEnum(str, Enum):
+    Se = "Se"   # radial expansion, open boundary (Lindblad div>0)
+    Ne = "Ne"   # tangential circulation, closed boundary (Hamiltonian div=0)
+    Ni = "Ni"   # radial contraction, open boundary (Lindblad div<0)
+    Si = "Si"   # stratified retention, closed boundary ([H,Pk]=0)
+
+
+class TerrainNameEnum(str, Enum):
+    # Type-1 names (topology × engine_type=type1)
+    FUNNEL = "Funnel"   # Se, type1
+    VORTEX = "Vortex"   # Ne, type1
+    PIT = "Pit"         # Ni, type1
+    HILL = "Hill"       # Si, type1
+    # Type-2 names (topology × engine_type=type2)
+    CANNON = "Cannon"   # Se, type2
+    SPIRAL = "Spiral"   # Ne, type2
+    SOURCE = "Source"   # Ni, type2
+    CITADEL = "Citadel" # Si, type2
+
+
 class MacroStage(BaseModel):
-    """One of 8 terrains within an engine type.
-    
-    Terrains are named by loop + mode + boundary:
-      Se_f = fiber, expand, open
-      Si_f = fiber, compress, closed
-      etc.
+    """One macro-stage: a single (topology × loop × spinor) placement.
+
+    16 total placements = 4 topologies × 2 loops × 2 engine_types.
+    8 terrain names = 4 topologies × 2 engine_types (NOT × loop).
+    8 generators = 4 per engine_type; same generator used on both loops.
+    Loop selects the carrier curve (γ_f vs γ_b) only.
+
+    Terrain name by (engine_type × topology):
+      type1: Se→Funnel, Ne→Vortex, Ni→Pit,  Si→Hill
+      type2: Se→Cannon, Ne→Spiral, Ni→Source, Si→Citadel
+
+    Generator by (engine_type × topology):
+      type1: Se→X_F^L, Ne→X_V^L, Ni→X_P^L, Si→X_H^L
+      type2: Se→X_C^R, Ne→X_S^R, Ni→X_{So}^R, Si→X_{Ci}^R
     """
-    terrain: str = Field(..., pattern=r"^[SNe][ei]_[fb]$",
+    terrain: str = Field(..., pattern=r"^[SN][ei]_[fb]$",
                          description="Terrain code e.g. 'Se_f'")
     engine_type: EngineTypeEnum
     stage_index: int = Field(..., ge=0, le=7)
     loop: LoopEnum
     mode: ModeEnum
     boundary: BoundaryEnum
+    spinor_type: SpinorEnum = Field(
+        ..., description="L=Type-1 H_L=+n·σ, R=Type-2 H_R=−n·σ"
+    )
+    terrain_family: TerrainFamilyEnum = Field(
+        ..., description="One of the 4 base topologies (Se/Ne/Ni/Si)"
+    )
+    terrain_name: TerrainNameEnum = Field(
+        ..., description="Name from (engine_type × topology), NOT from loop"
+    )
+    hamiltonian_sign: int = Field(
+        ..., description="+1 for Type-1 (H_L=+n·σ), -1 for Type-2 (H_R=−n·σ)"
+    )
+    generator: str = Field(
+        ..., description="Generator symbol e.g. 'X_F^L' per TERRAIN_MATH_LEDGER_v1.md"
+    )
 
-    _TERRAIN_SPEC: ClassVar[dict[str, tuple[LoopEnum, ModeEnum, BoundaryEnum, int]]] = {
-        "Se_f": (LoopEnum.FIBER, ModeEnum.EXPAND, BoundaryEnum.OPEN, 0),
-        "Si_f": (LoopEnum.FIBER, ModeEnum.COMPRESS, BoundaryEnum.CLOSED, 1),
-        "Ne_f": (LoopEnum.FIBER, ModeEnum.EXPAND, BoundaryEnum.CLOSED, 2),
-        "Ni_f": (LoopEnum.FIBER, ModeEnum.COMPRESS, BoundaryEnum.OPEN, 3),
-        "Se_b": (LoopEnum.BASE, ModeEnum.EXPAND, BoundaryEnum.OPEN, 4),
-        "Si_b": (LoopEnum.BASE, ModeEnum.COMPRESS, BoundaryEnum.CLOSED, 5),
-        "Ne_b": (LoopEnum.BASE, ModeEnum.EXPAND, BoundaryEnum.CLOSED, 6),
-        "Ni_b": (LoopEnum.BASE, ModeEnum.COMPRESS, BoundaryEnum.OPEN, 7),
+    # Terrain code → (family, loop, mode, boundary)  [engine-type-agnostic]
+    # Stage index is engine-type-dependent; validated separately via _STAGE_INDEX_SPEC.
+    _TERRAIN_SPEC: ClassVar[dict[str, tuple[TerrainFamilyEnum, LoopEnum, ModeEnum, BoundaryEnum]]] = {
+        "Se_f": (TerrainFamilyEnum.Se, LoopEnum.FIBER, ModeEnum.EXPAND,   BoundaryEnum.OPEN),
+        "Ne_f": (TerrainFamilyEnum.Ne, LoopEnum.FIBER, ModeEnum.EXPAND,   BoundaryEnum.CLOSED),
+        "Ni_f": (TerrainFamilyEnum.Ni, LoopEnum.FIBER, ModeEnum.COMPRESS, BoundaryEnum.OPEN),
+        "Si_f": (TerrainFamilyEnum.Si, LoopEnum.FIBER, ModeEnum.COMPRESS, BoundaryEnum.CLOSED),
+        "Se_b": (TerrainFamilyEnum.Se, LoopEnum.BASE,  ModeEnum.EXPAND,   BoundaryEnum.OPEN),
+        "Ne_b": (TerrainFamilyEnum.Ne, LoopEnum.BASE,  ModeEnum.EXPAND,   BoundaryEnum.CLOSED),
+        "Ni_b": (TerrainFamilyEnum.Ni, LoopEnum.BASE,  ModeEnum.COMPRESS, BoundaryEnum.OPEN),
+        "Si_b": (TerrainFamilyEnum.Si, LoopEnum.BASE,  ModeEnum.COMPRESS, BoundaryEnum.CLOSED),
+    }
+
+    # Stage index: (engine_type_value, terrain_code) → stage_index (0–7).
+    # Order is engine-type-dependent (O_ind vs O_ded, see TERRAIN_MATH_LEDGER_v1.md §6).
+    # Type-1 inner=IND (Se0,Si1,Ni2,Ne3), outer=DED (Se4,Ne5,Ni6,Si7)
+    # Type-2 inner=DED (Se0,Ne1,Ni2,Si3), outer=IND (Se4,Si5,Ni6,Ne7)
+    _STAGE_INDEX_SPEC: ClassVar[dict[tuple, int]] = {
+        ("type1", "Se_f"): 0, ("type1", "Si_f"): 1, ("type1", "Ni_f"): 2, ("type1", "Ne_f"): 3,
+        ("type1", "Se_b"): 4, ("type1", "Ne_b"): 5, ("type1", "Ni_b"): 6, ("type1", "Si_b"): 7,
+        ("type2", "Se_f"): 0, ("type2", "Ne_f"): 1, ("type2", "Ni_f"): 2, ("type2", "Si_f"): 3,
+        ("type2", "Se_b"): 4, ("type2", "Si_b"): 5, ("type2", "Ni_b"): 6, ("type2", "Ne_b"): 7,
+    }
+
+    # Terrain name: (engine_type_value, terrain_family_value) → TerrainNameEnum
+    _TERRAIN_NAME_BY_ENGINE: ClassVar[dict[tuple, TerrainNameEnum]] = {
+        ("type1", "Se"): TerrainNameEnum.FUNNEL,
+        ("type1", "Ne"): TerrainNameEnum.VORTEX,
+        ("type1", "Ni"): TerrainNameEnum.PIT,
+        ("type1", "Si"): TerrainNameEnum.HILL,
+        ("type2", "Se"): TerrainNameEnum.CANNON,
+        ("type2", "Ne"): TerrainNameEnum.SPIRAL,
+        ("type2", "Ni"): TerrainNameEnum.SOURCE,
+        ("type2", "Si"): TerrainNameEnum.CITADEL,
+    }
+
+    # Generator: (engine_type_value, terrain_family_value) → generator symbol
+    _GENERATOR_BY_ENGINE: ClassVar[dict[tuple, str]] = {
+        ("type1", "Se"): "X_F^L",
+        ("type1", "Ne"): "X_V^L",
+        ("type1", "Ni"): "X_P^L",
+        ("type1", "Si"): "X_H^L",
+        ("type2", "Se"): "X_C^R",
+        ("type2", "Ne"): "X_S^R",
+        ("type2", "Ni"): "X_{So}^R",
+        ("type2", "Si"): "X_{Ci}^R",
     }
 
     @model_validator(mode="after")
     def validate_terrain_contract(self) -> "MacroStage":
-        expected = self._TERRAIN_SPEC[self.terrain]
-        if (self.loop, self.mode, self.boundary, self.stage_index) != expected:
+        spec = self._TERRAIN_SPEC[self.terrain]
+        fam, lp, md, bd = spec
+        expected_idx = self._STAGE_INDEX_SPEC[(self.engine_type.value, self.terrain)]
+        if (self.loop, self.mode, self.boundary) != (lp, md, bd):
             raise ValueError(
-                "MacroStage fields must match the canonical terrain contract "
-                f"for {self.terrain}: loop={expected[0].value}, mode={expected[1].value}, "
-                f"boundary={expected[2].value}, stage_index={expected[3]}"
+                f"MacroStage fields must match terrain contract for {self.terrain}: "
+                f"loop={lp.value}, mode={md.value}, boundary={bd.value}"
+            )
+        if self.stage_index != expected_idx:
+            raise ValueError(
+                f"stage_index must be {expected_idx} for "
+                f"engine_type={self.engine_type.value}, terrain={self.terrain}"
+            )
+        if self.terrain_family != fam:
+            raise ValueError(f"terrain_family must be {fam.value} for terrain {self.terrain}")
+        key = (self.engine_type.value, self.terrain_family.value)
+        expected_name = self._TERRAIN_NAME_BY_ENGINE[key]
+        if self.terrain_name != expected_name:
+            raise ValueError(
+                f"terrain_name must be {expected_name.value} for "
+                f"engine_type={self.engine_type.value}, topology={self.terrain_family.value}"
+            )
+        expected_gen = self._GENERATOR_BY_ENGINE[key]
+        if self.generator != expected_gen:
+            raise ValueError(
+                f"generator must be '{expected_gen}' for "
+                f"engine_type={self.engine_type.value}, topology={self.terrain_family.value}"
+            )
+        expected_sign = +1 if self.spinor_type == SpinorEnum.LEFT else -1
+        if self.hamiltonian_sign != expected_sign:
+            raise ValueError(
+                f"hamiltonian_sign must be {expected_sign} for spinor {self.spinor_type.value}"
+            )
+        expected_engine = EngineTypeEnum.TYPE1 if self.spinor_type == SpinorEnum.LEFT else EngineTypeEnum.TYPE2
+        if self.engine_type != expected_engine:
+            raise ValueError(
+                f"engine_type must be {expected_engine.value} for spinor {self.spinor_type.value}"
             )
         return self
 
@@ -140,7 +256,7 @@ class SubcycleStep(BaseModel):
     """A single operator application at a specific macro-stage."""
     operator: OperatorEnum
     stage_terrain: str = Field(..., pattern=r"^[SN][ei]_[fb]$")
-    engine_type: EngineTypeEnum
+    engine_type: EngineTypeEnum  # type1 or type2
     position_in_subcycle: int = Field(..., ge=0, le=3,
                                       description="0=Ti, 1=Fe, 2=Te, 3=Fi")
 
@@ -353,10 +469,10 @@ CANONICAL_TORI = [
 ]
 
 CANONICAL_ENGINE_TYPES = [
-    EngineType(engine_type=EngineTypeEnum.LEFT_WEYL,
-               description="Left-handed Weyl spinor: Fe/Ti dominant on base, Te/Fi on fiber"),
-    EngineType(engine_type=EngineTypeEnum.RIGHT_WEYL,
-               description="Right-handed Weyl spinor: Te/Fi dominant on base, Fe/Ti on fiber"),
+    EngineType(engine_type=EngineTypeEnum.TYPE1,
+               description="Type-1 engine: Left Weyl spinor, H_L = +n·σ, Bloch law ṙ_L = +2n×r_L"),
+    EngineType(engine_type=EngineTypeEnum.TYPE2,
+               description="Type-2 engine: Right Weyl spinor, H_R = −n·σ, Bloch law ṙ_R = −2n×r_R"),
 ]
 
 
@@ -373,11 +489,26 @@ if __name__ == "__main__":
     for e in CANONICAL_ENGINE_TYPES:
         print(f"    {e.engine_type.value}: {e.description}")
 
-    # Validate one macro-stage
-    stage = MacroStage(terrain="Se_f", engine_type=EngineTypeEnum.LEFT_WEYL,
-                       stage_index=0, loop=LoopEnum.FIBER,
-                       mode=ModeEnum.EXPAND, boundary=BoundaryEnum.OPEN)
-    print(f"\n  Sample stage: {stage.terrain} (idx={stage.stage_index})")
+    # Validate one macro-stage (Type-1, Se, fiber → Funnel, X_F^L)
+    stage = MacroStage(
+        terrain="Se_f", engine_type=EngineTypeEnum.TYPE1,
+        stage_index=0, loop=LoopEnum.FIBER,
+        mode=ModeEnum.EXPAND, boundary=BoundaryEnum.OPEN,
+        spinor_type=SpinorEnum.LEFT, terrain_family=TerrainFamilyEnum.Se,
+        terrain_name=TerrainNameEnum.FUNNEL, hamiltonian_sign=+1,
+        generator="X_F^L",
+    )
+    print(f"\n  Sample stage: {stage.terrain} ({stage.terrain_name.value}, gen={stage.generator}) idx={stage.stage_index}")
+    # Validate Type-2 base stage → Cannon, X_C^R (same generator as fiber — loop only sets carrier curve)
+    stage2 = MacroStage(
+        terrain="Se_b", engine_type=EngineTypeEnum.TYPE2,
+        stage_index=4, loop=LoopEnum.BASE,
+        mode=ModeEnum.EXPAND, boundary=BoundaryEnum.OPEN,
+        spinor_type=SpinorEnum.RIGHT, terrain_family=TerrainFamilyEnum.Se,
+        terrain_name=TerrainNameEnum.CANNON, hamiltonian_sign=-1,
+        generator="X_C^R",
+    )
+    print(f"  Sample stage: {stage2.terrain} ({stage2.terrain_name.value}, gen={stage2.generator}) idx={stage2.stage_index}")
 
     # Validate one clifford payload
     payload = CliffordEdgePayload(
@@ -389,7 +520,7 @@ if __name__ == "__main__":
     # Validate one TopoNetX projection
     proj = TopoNetXCellProjection(
         shape=[105, 272, 0],
-        stage_cycles=["type1_left_weyl_8stage_loop", "type2_right_weyl_8stage_loop"],
+        stage_cycles=["type1_8stage_loop", "type2_8stage_loop"],
         torus_2cells=[],
         stage_diamonds=[]
     )

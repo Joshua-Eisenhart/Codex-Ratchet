@@ -28,7 +28,6 @@ from geometric_operators import (
     apply_Ti, apply_Fe, apply_Te, apply_Fi,
     _ensure_valid_density, I2, trace_distance_2x2,
 )
-from sim_L4_engine_chirality import run_type1_engine, run_type2_engine
 from proto_ratchet_sim_runner import EvidenceToken
 
 

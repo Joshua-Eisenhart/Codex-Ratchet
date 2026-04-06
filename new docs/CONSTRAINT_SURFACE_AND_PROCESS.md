@@ -8,7 +8,10 @@ Status: Active governing document.
 
 ## The Surface
 
-Two root constraints define an admissible surface M(C):
+Two root constraints constitute an admissible surface M(C).
+(NOTE: "define" implies constraints are prior to and separate from the
+surface. The constraints and the surface are not separate — the surface
+IS the constraints. "Constitute" is more accurate.)
 
 **F01 (Finitude):** All distinguishability is bounded. Finite carriers, finite
 probes, finite operators, finite paths. No completed infinities.
@@ -44,11 +47,17 @@ From F01:
 
 From N01:
 - The order of exploration matters (checking A then B ≠ checking B then A)
-- Information flows in one direction: what you've checked informs what you check next
-- Kills are irreversible within a pass — a point shown to be off-surface stays off
-- You cannot peek at unchecked regions and use that to bias current checks
+- What you've checked informs what you check next (motivated by N01 and
+  anti-salience; not a strict mathematical consequence of N01 alone)
+- Kills are irreversible within a pass — a point distinguished from M(C)
+  remains distinguished (DPI: processing cannot restore lost distinctions)
+- Peeking at unchecked regions to bias current checks is an anti-salience
+  rule, not a strict N01 derivation
 
-The ratchet IS F01 and N01 applied to themselves.
+The ratchet and F01+N01 applied to themselves have not been
+distinguished — they appear to be the same structure.
+(NOTE on "IS": this may be a case where the owner intends material
+identity, not Platonic identity. Flagged for owner review.)
 
 ---
 
@@ -73,10 +82,12 @@ is governed only by F01, N01, and what follows from them.
 
 ## The Candidate
 
-The current candidate is: S³ (spinor carrier) → nested Hopf tori T_η →
-left/right Weyl spinors (ψ_L, ψ_R) with H_L = +H₀, H_R = -H₀ → fiber/base
-loop geometry → four geometric operators (Ti, Fe, Te, Fi) → eight terrains →
-dual loop grammar → 64-step engine cycle → joint bipartite density ρ_AB.
+The current candidate geometry is a coordinate chart on M(C) with these
+components: S³ (spinor carrier), nested Hopf tori T_η, left/right Weyl
+spinors (ψ_L, ψ_R) with H_L = +H₀, H_R = -H₀, fiber/base loop geometry,
+four geometric operators (Ti, Fe, Te, Fi), eight terrains, dual loop grammar,
+64-step engine cycle, joint bipartite density ρ_AB. The arrow notation
+S³ → Hopf → Weyl → ... describes chart structure, not a construction sequence.
 
 This candidate charts points on M(C). The question is not "is this candidate
 correct?" — that is Platonic framing. The question is: "do the points this
@@ -190,13 +201,14 @@ correct — collapsing them into one is the failure mode.
 The constraints are simultaneous on M(C), but a finite agent (F01) must check
 them in some order (N01 — order matters). The process order is:
 
-Layer 0-2 (analytical): Work out what F01, N01, and the charter forbid.
+Resolution 0–2 (analytical): Work out what F01, N01, and the charter forbid.
 Small targeted probes. z3/pySMT guards. Enumerate what's killed analytically.
 Not a full sim campaign — a reasonable exploration of the allowed math.
 
-Layer 3+ (sims begin): Concrete objects exist (S³, density matrices, operators).
-Each layer adds a finer coordinate chart. Sims test whether the charted points
-lie on M(C). What doesn't survive the new constraint resolution is graveyard.
+Resolution 3+ (sims begin): Concrete objects exist (S³, density matrices,
+operators). Each resolution band adds a finer coordinate chart on M(C). Sims
+test whether the charted points lie on the surface. What doesn't survive the
+new constraint resolution is graveyard.
 
 The process order is NOT a claim about which constraints are more fundamental.
 It is a finite agent's strategy for exploring a simultaneous surface. The labels
@@ -251,7 +263,7 @@ The process has three operations:
 1. Constrain — apply the next resolution's filter, check what survives
 2. Kill — what doesn't survive is graveyard (irreversible within this pass)
 3. Re-enter — new candidate or modified candidate enters at the lowest
-   relevant resolution and traverses the chain again
+   relevant resolution and is checked against the surface again
 
 Kills are permanent within a pass. The candidate space can expand across passes.
 New math discovered at high resolution goes back to low resolution and gets

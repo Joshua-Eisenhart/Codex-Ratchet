@@ -1,0 +1,1807 @@
+{
+  "probe": "sim_constrain_legos_L4",
+  "purpose": "L4 constraint: operator composition and process cycles. Legos must survive iterated CPTP cycling.",
+  "timestamp": "2026-04-07T09:52:24.133162+00:00",
+  "L4_constraints": {
+    "composition": "Operators must COMPOSE in specific orders (N01). Not all legos are composable.",
+    "order_dependence": "A.B != B.A for nontrivial processes. Commutativity = no process arrow.",
+    "cycling": "4-operator cycle (Z-deph, Z-rot, X-deph, X-rot) x 10 rounds. Legos that converge to trivial (max entropy, zero correlation) are KILLED.",
+    "fixed_point": "The cycle's fixed point is maximally mixed. Legos that can't distinguish mm from anything else are useless."
+  },
+  "cycle_definition": {
+    "operators": [
+      "Z_dephasing(p=0.3)",
+      "Z_rotation(pi/6)",
+      "X_dephasing(p=0.3)",
+      "X_rotation(pi/6)"
+    ],
+    "rounds": 10,
+    "rationale": "Dephasing in two bases + rotation in two bases = full Bloch sphere coverage. No basis is privileged. This is the MINIMAL cycle that respects N01 (order matters) and covers all orientations."
+  },
+  "test_1_composition_compatibility": {
+    "density_matrix": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Structural decomposition: descriptive, not dynamical. Survives as diagnostic."
+    },
+    "bloch_vector": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "stokes_parameters": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "eigenvalue_decomposition": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Structural decomposition: descriptive, not dynamical. Survives as diagnostic."
+    },
+    "wigner_function": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "husimi_q": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "coherence_vector": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "purification": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Structural decomposition: descriptive, not dynamical. Survives as diagnostic."
+    },
+    "characteristic_function": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "von_neumann": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "renyi": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "tsallis": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "min_entropy": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "max_entropy": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "linear_entropy": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "participation_ratio": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "relative_entropy": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Distance function: compares two states, does not transform. Survives as diagnostic."
+    },
+    "conditional_entropy": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "mutual_information": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "coherent_information": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "entanglement_entropy": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "fubini_study": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Distance function: compares two states, does not transform. Survives as diagnostic."
+    },
+    "bures_distance": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Distance function: compares two states, does not transform. Survives as diagnostic."
+    },
+    "berry_phase": {
+      "composable": false,
+      "pure_only_killed": true,
+      "reason": "REQUIRES pure state. Cycles with dephasing produce mixed states. Cannot be composed into a mixed-state cycle. KILLED at composition level unless reformulated for mixed states."
+    },
+    "qgt_curvature": {
+      "composable": false,
+      "pure_only_killed": true,
+      "reason": "REQUIRES pure state. Cycles with dephasing produce mixed states. Cannot be composed into a mixed-state cycle. KILLED at composition level unless reformulated for mixed states."
+    },
+    "hs_distance": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Distance function: compares two states, does not transform. Survives as diagnostic."
+    },
+    "trace_distance": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Distance function: compares two states, does not transform. Survives as diagnostic."
+    },
+    "z_dephasing": {
+      "composable": true,
+      "reason": "CPTP map: always composable with other CPTP maps"
+    },
+    "x_dephasing": {
+      "composable": true,
+      "reason": "CPTP map: always composable with other CPTP maps"
+    },
+    "depolarizing": {
+      "composable": true,
+      "reason": "CPTP map: always composable with other CPTP maps"
+    },
+    "amplitude_damping": {
+      "composable": true,
+      "reason": "CPTP map: always composable with other CPTP maps"
+    },
+    "phase_damping": {
+      "composable": true,
+      "reason": "CPTP map: always composable with other CPTP maps"
+    },
+    "bit_flip": {
+      "composable": true,
+      "reason": "CPTP map: always composable with other CPTP maps"
+    },
+    "phase_flip": {
+      "composable": true,
+      "reason": "CPTP map: always composable with other CPTP maps"
+    },
+    "bit_phase_flip": {
+      "composable": true,
+      "reason": "CPTP map: always composable with other CPTP maps"
+    },
+    "unitary_rotation": {
+      "composable": true,
+      "reason": "CPTP map: always composable with other CPTP maps"
+    },
+    "z_measurement": {
+      "composable": true,
+      "reason": "CPTP map: always composable with other CPTP maps"
+    },
+    "concurrence": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "negativity": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "mutual_information_corr": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "quantum_discord": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "entanglement_of_formation": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "CNOT": {
+      "composable": true,
+      "reason": "Unitary: always composable (group closure)"
+    },
+    "CZ": {
+      "composable": true,
+      "reason": "Unitary: always composable (group closure)"
+    },
+    "SWAP": {
+      "composable": true,
+      "reason": "Unitary: always composable (group closure)"
+    },
+    "Hadamard": {
+      "composable": true,
+      "reason": "Unitary: always composable (group closure)"
+    },
+    "T_gate": {
+      "composable": true,
+      "reason": "Unitary: always composable (group closure)"
+    },
+    "iSWAP": {
+      "composable": true,
+      "reason": "Unitary: always composable (group closure)"
+    },
+    "schmidt": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Structural decomposition: descriptive, not dynamical. Survives as diagnostic."
+    },
+    "svd": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Structural decomposition: descriptive, not dynamical. Survives as diagnostic."
+    },
+    "spectral": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Structural decomposition: descriptive, not dynamical. Survives as diagnostic."
+    },
+    "pauli_decomposition": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Structural decomposition: descriptive, not dynamical. Survives as diagnostic."
+    },
+    "cartan_kak": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Structural decomposition: descriptive, not dynamical. Survives as diagnostic."
+    },
+    "l1_coherence": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "relative_entropy_coherence": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "wigner_negativity": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "hopf_fiber_coordinate": {
+      "composable": false,
+      "pure_only_killed": true,
+      "reason": "REQUIRES pure state. Cycles with dephasing produce mixed states. Cannot be composed into a mixed-state cycle. KILLED at composition level unless reformulated for mixed states."
+    },
+    "hopf_invariant": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Structural decomposition: descriptive, not dynamical. Survives as diagnostic."
+    },
+    "monopole_curvature": {
+      "composable": false,
+      "pure_only_killed": true,
+      "reason": "REQUIRES pure state. Cycles with dephasing produce mixed states. Cannot be composed into a mixed-state cycle. KILLED at composition level unless reformulated for mixed states."
+    },
+    "hopf_connection": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Structural decomposition: descriptive, not dynamical. Survives as diagnostic."
+    },
+    "geometric_phase_quantization": {
+      "composable": false,
+      "pure_only_killed": true,
+      "reason": "REQUIRES pure state. Cycles with dephasing produce mixed states. Cannot be composed into a mixed-state cycle. KILLED at composition level unless reformulated for mixed states."
+    },
+    "chirality_operator_C": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Structural decomposition: descriptive, not dynamical. Survives as diagnostic."
+    },
+    "chiral_overlap": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "chiral_current": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Observable/measure: reads state, does not transform it. Survives as diagnostic."
+    },
+    "berry_holonomy_operator": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Structural decomposition: descriptive, not dynamical. Survives as diagnostic."
+    },
+    "chirality_bipartition_marker": {
+      "composable": false,
+      "is_observable": true,
+      "reason": "Structural decomposition: descriptive, not dynamical. Survives as diagnostic."
+    }
+  },
+  "test_2_order_dependence": {
+    "pairwise_results": {
+      "z_dephasing | x_dephasing": {
+        "commutes": "True",
+        "diff_norm": 0.0
+      },
+      "z_dephasing | z_rotation": {
+        "commutes": "True",
+        "diff_norm": 7.911556306605241e-17
+      },
+      "z_dephasing | x_rotation": {
+        "commutes": "False",
+        "diff_norm": 0.03534649899102551
+      },
+      "z_dephasing | depolarizing": {
+        "commutes": "True",
+        "diff_norm": 7.850462293418876e-17
+      },
+      "z_dephasing | amplitude_damping": {
+        "commutes": "True",
+        "diff_norm": 1.1145513959121702e-16
+      },
+      "z_dephasing | phase_damping": {
+        "commutes": "True",
+        "diff_norm": 9.813077866773595e-18
+      },
+      "z_dephasing | bit_flip": {
+        "commutes": "True",
+        "diff_norm": 1.302776175515676e-16
+      },
+      "z_dephasing | phase_flip": {
+        "commutes": "True",
+        "diff_norm": 4.9065389333867974e-18
+      },
+      "z_dephasing | bit_phase_flip": {
+        "commutes": "True",
+        "diff_norm": 1.2566871346510768e-16
+      },
+      "x_dephasing | z_rotation": {
+        "commutes": "False",
+        "diff_norm": 0.0685534344318049
+      },
+      "x_dephasing | x_rotation": {
+        "commutes": "True",
+        "diff_norm": 1.2794688166302258e-16
+      },
+      "x_dephasing | depolarizing": {
+        "commutes": "True",
+        "diff_norm": 5.551115123125783e-17
+      },
+      "x_dephasing | amplitude_damping": {
+        "commutes": "False",
+        "diff_norm": 0.06363961030678926
+      },
+      "x_dephasing | phase_damping": {
+        "commutes": "True",
+        "diff_norm": 5.637184056103667e-17
+      },
+      "x_dephasing | bit_flip": {
+        "commutes": "True",
+        "diff_norm": 5.572756979560851e-17
+      },
+      "x_dephasing | phase_flip": {
+        "commutes": "True",
+        "diff_norm": 5.908255262090379e-17
+      },
+      "x_dephasing | bit_phase_flip": {
+        "commutes": "True",
+        "diff_norm": 6.206335383118183e-17
+      },
+      "z_rotation | x_rotation": {
+        "commutes": "False",
+        "diff_norm": 0.1310456516283562
+      },
+      "z_rotation | depolarizing": {
+        "commutes": "True",
+        "diff_norm": 1.4515728213413393e-16
+      },
+      "z_rotation | amplitude_damping": {
+        "commutes": "True",
+        "diff_norm": 9.632824337678801e-17
+      },
+      "z_rotation | phase_damping": {
+        "commutes": "True",
+        "diff_norm": 8.092071311423672e-17
+      },
+      "z_rotation | bit_flip": {
+        "commutes": "False",
+        "diff_norm": 0.1371068688636098
+      },
+      "z_rotation | phase_flip": {
+        "commutes": "True",
+        "diff_norm": 7.850462293418876e-17
+      },
+      "z_rotation | bit_phase_flip": {
+        "commutes": "False",
+        "diff_norm": 0.1371068688636097
+      },
+      "x_rotation | depolarizing": {
+        "commutes": "True",
+        "diff_norm": 6.359601310784502e-17
+      },
+      "x_rotation | amplitude_damping": {
+        "commutes": "False",
+        "diff_norm": 0.10051225676882868
+      },
+      "x_rotation | phase_damping": {
+        "commutes": "False",
+        "diff_norm": 0.01924498735769139
+      },
+      "x_rotation | bit_flip": {
+        "commutes": "True",
+        "diff_norm": 1.1316993474494503e-16
+      },
+      "x_rotation | phase_flip": {
+        "commutes": "False",
+        "diff_norm": 0.07069299798205095
+      },
+      "x_rotation | bit_phase_flip": {
+        "commutes": "False",
+        "diff_norm": 0.07069299798205089
+      },
+      "depolarizing | amplitude_damping": {
+        "commutes": "False",
+        "diff_norm": 0.06363961030678934
+      },
+      "depolarizing | phase_damping": {
+        "commutes": "True",
+        "diff_norm": 5.637184056103667e-17
+      },
+      "depolarizing | bit_flip": {
+        "commutes": "True",
+        "diff_norm": 6.816381731413086e-17
+      },
+      "depolarizing | phase_flip": {
+        "commutes": "True",
+        "diff_norm": 5.572756979560851e-17
+      },
+      "depolarizing | bit_phase_flip": {
+        "commutes": "True",
+        "diff_norm": 5.887846720064156e-17
+      },
+      "amplitude_damping | phase_damping": {
+        "commutes": "True",
+        "diff_norm": 0.0
+      },
+      "amplitude_damping | bit_flip": {
+        "commutes": "False",
+        "diff_norm": 0.12727922061357844
+      },
+      "amplitude_damping | phase_flip": {
+        "commutes": "True",
+        "diff_norm": 1.962615573354719e-17
+      },
+      "amplitude_damping | bit_phase_flip": {
+        "commutes": "False",
+        "diff_norm": 0.12727922061357844
+      },
+      "phase_damping | bit_flip": {
+        "commutes": "True",
+        "diff_norm": 0.0
+      },
+      "phase_damping | phase_flip": {
+        "commutes": "True",
+        "diff_norm": 1.962615573354719e-17
+      },
+      "phase_damping | bit_phase_flip": {
+        "commutes": "True",
+        "diff_norm": 1.962615573354719e-17
+      },
+      "bit_flip | phase_flip": {
+        "commutes": "True",
+        "diff_norm": 1.1102230246251565e-16
+      },
+      "bit_flip | bit_phase_flip": {
+        "commutes": "True",
+        "diff_norm": 0.0
+      },
+      "phase_flip | bit_phase_flip": {
+        "commutes": "True",
+        "diff_norm": 1.1102230246251565e-16
+      }
+    },
+    "always_commutative": [],
+    "N01_interpretation": "Channels that commute with ALL others lack composition order. N01 says order matters. These are SUSPICIOUS but not automatically killed -- they might commute with the cycle operators but not with future operators."
+  },
+  "test_3_fixed_point": {
+    "per_state": {
+      "pure_z_up": {
+        "trajectory": [
+          {
+            "cycle": 1,
+            "trace_dist_to_mm": 0.35000000000000003,
+            "bloch_length": 0.7000000000000001,
+            "purity": 0.7450000000000001
+          },
+          {
+            "cycle": 2,
+            "trace_dist_to_mm": 0.2329916508697254,
+            "bloch_length": 0.46598330173945085,
+            "purity": 0.6085702187500004
+          },
+          {
+            "cycle": 3,
+            "trace_dist_to_mm": 0.15225624576936986,
+            "bloch_length": 0.30451249153873977,
+            "purity": 0.546363928751566
+          },
+          {
+            "cycle": 4,
+            "trace_dist_to_mm": 0.10477788710296529,
+            "bloch_length": 0.2095557742059306,
+            "purity": 0.5219568112515245
+          },
+          {
+            "cycle": 5,
+            "trace_dist_to_mm": 0.07299062124102815,
+            "bloch_length": 0.1459812424820563,
+            "purity": 0.5106552615783037
+          },
+          {
+            "cycle": 6,
+            "trace_dist_to_mm": 0.04849156684548207,
+            "bloch_length": 0.09698313369096416,
+            "purity": 0.5047028641102609
+          },
+          {
+            "cycle": 7,
+            "trace_dist_to_mm": 0.031000324576285203,
+            "bloch_length": 0.06200064915257042,
+            "purity": 0.5019220402476711
+          },
+          {
+            "cycle": 8,
+            "trace_dist_to_mm": 0.02013390596750514,
+            "bloch_length": 0.0402678119350103,
+            "purity": 0.5008107483390177
+          },
+          {
+            "cycle": 9,
+            "trace_dist_to_mm": 0.01368777573235291,
+            "bloch_length": 0.027375551464705827,
+            "purity": 0.5003747104089996
+          },
+          {
+            "cycle": 10,
+            "trace_dist_to_mm": 0.009544391140171814,
+            "bloch_length": 0.01908878228034363,
+            "purity": 0.5001821908044743
+          }
+        ],
+        "final_trace_dist_to_mm": 0.009544391140171814,
+        "final_bloch_length": 0.01908878228034363,
+        "final_purity": 0.5001821908044743,
+        "converged_to_maximally_mixed": true
+      },
+      "pure_z_down": {
+        "trajectory": [
+          {
+            "cycle": 1,
+            "trace_dist_to_mm": 0.35000000000000003,
+            "bloch_length": 0.7000000000000001,
+            "purity": 0.7450000000000001
+          },
+          {
+            "cycle": 2,
+            "trace_dist_to_mm": 0.2329916508697254,
+            "bloch_length": 0.46598330173945085,
+            "purity": 0.6085702187500004
+          },
+          {
+            "cycle": 3,
+            "trace_dist_to_mm": 0.1522562457693699,
+            "bloch_length": 0.30451249153873977,
+            "purity": 0.546363928751566
+          },
+          {
+            "cycle": 4,
+            "trace_dist_to_mm": 0.10477788710296529,
+            "bloch_length": 0.2095557742059306,
+            "purity": 0.5219568112515245
+          },
+          {
+            "cycle": 5,
+            "trace_dist_to_mm": 0.07299062124102815,
+            "bloch_length": 0.1459812424820563,
+            "purity": 0.5106552615783037
+          },
+          {
+            "cycle": 6,
+            "trace_dist_to_mm": 0.04849156684548207,
+            "bloch_length": 0.09698313369096416,
+            "purity": 0.5047028641102609
+          },
+          {
+            "cycle": 7,
+            "trace_dist_to_mm": 0.031000324576285217,
+            "bloch_length": 0.06200064915257042,
+            "purity": 0.5019220402476711
+          },
+          {
+            "cycle": 8,
+            "trace_dist_to_mm": 0.02013390596750515,
+            "bloch_length": 0.0402678119350103,
+            "purity": 0.5008107483390178
+          },
+          {
+            "cycle": 9,
+            "trace_dist_to_mm": 0.013687775732352919,
+            "bloch_length": 0.027375551464705827,
+            "purity": 0.5003747104089996
+          },
+          {
+            "cycle": 10,
+            "trace_dist_to_mm": 0.009544391140171813,
+            "bloch_length": 0.01908878228034363,
+            "purity": 0.5001821908044743
+          }
+        ],
+        "final_trace_dist_to_mm": 0.009544391140171813,
+        "final_bloch_length": 0.01908878228034363,
+        "final_purity": 0.5001821908044743,
+        "converged_to_maximally_mixed": true
+      },
+      "pure_x_plus": {
+        "trajectory": [
+          {
+            "cycle": 1,
+            "trace_dist_to_mm": 0.3269269796147146,
+            "bloch_length": 0.6538539592294293,
+            "purity": 0.7137625000000004
+          },
+          {
+            "cycle": 2,
+            "trace_dist_to_mm": 0.19381244680267756,
+            "bloch_length": 0.3876248936053551,
+            "purity": 0.5751265290712818
+          },
+          {
+            "cycle": 3,
+            "trace_dist_to_mm": 0.11493191876827166,
+            "bloch_length": 0.2298638375365434,
+            "purity": 0.5264186919035136
+          },
+          {
+            "cycle": 4,
+            "trace_dist_to_mm": 0.07582765546676704,
+            "bloch_length": 0.15165531093353407,
+            "purity": 0.5114996666671742
+          },
+          {
+            "cycle": 5,
+            "trace_dist_to_mm": 0.053026261987716615,
+            "bloch_length": 0.10605252397543324,
+            "purity": 0.505623568920781
+          },
+          {
+            "cycle": 6,
+            "trace_dist_to_mm": 0.03680762444724467,
+            "bloch_length": 0.07361524889448937,
+            "purity": 0.5027096024349001
+          },
+          {
+            "cycle": 7,
+            "trace_dist_to_mm": 0.02553998395136313,
+            "bloch_length": 0.051079967902726287,
+            "purity": 0.5013045815604734
+          },
+          {
+            "cycle": 8,
+            "trace_dist_to_mm": 0.01787694311656687,
+            "bloch_length": 0.03575388623313374,
+            "purity": 0.5006391701903877
+          },
+          {
+            "cycle": 9,
+            "trace_dist_to_mm": 0.012381775658742253,
+            "bloch_length": 0.024763551317484492,
+            "purity": 0.5003066167369288
+          },
+          {
+            "cycle": 10,
+            "trace_dist_to_mm": 0.008374241475088973,
+            "bloch_length": 0.01674848295017792,
+            "purity": 0.5001402558405683
+          }
+        ],
+        "final_trace_dist_to_mm": 0.008374241475088973,
+        "final_bloch_length": 0.01674848295017792,
+        "final_purity": 0.5001402558405683,
+        "converged_to_maximally_mixed": true
+      },
+      "pure_y_plus": {
+        "trajectory": [
+          {
+            "cycle": 1,
+            "trace_dist_to_mm": 0.27503408879628005,
+            "bloch_length": 0.5500681775925602,
+            "purity": 0.6512875000000004
+          },
+          {
+            "cycle": 2,
+            "trace_dist_to_mm": 0.18916436965139424,
+            "bloch_length": 0.3783287393027886,
+            "purity": 0.5715663174912189
+          },
+          {
+            "cycle": 3,
+            "trace_dist_to_mm": 0.12434983836874144,
+            "bloch_length": 0.24869967673748283,
+            "purity": 0.5309257646046646
+          },
+          {
+            "cycle": 4,
+            "trace_dist_to_mm": 0.0679849624076248,
+            "bloch_length": 0.13596992481524967,
+            "purity": 0.5092439102271329
+          },
+          {
+            "cycle": 5,
+            "trace_dist_to_mm": 0.033774863432678194,
+            "bloch_length": 0.06754972686535637,
+            "purity": 0.5022814827997929
+          },
+          {
+            "cycle": 6,
+            "trace_dist_to_mm": 0.020587074190333766,
+            "bloch_length": 0.04117414838066754,
+            "purity": 0.5008476552474375
+          },
+          {
+            "cycle": 7,
+            "trace_dist_to_mm": 0.014387557281435915,
+            "bloch_length": 0.02877511456287185,
+            "purity": 0.5004140036090543
+          },
+          {
+            "cycle": 8,
+            "trace_dist_to_mm": 0.009046883942173449,
+            "bloch_length": 0.01809376788434691,
+            "purity": 0.5001636922181274
+          },
+          {
+            "cycle": 9,
+            "trace_dist_to_mm": 0.005335341306940448,
+            "bloch_length": 0.010670682613880909,
+            "purity": 0.5000569317337243
+          },
+          {
+            "cycle": 10,
+            "trace_dist_to_mm": 0.00348927963937537,
+            "bloch_length": 0.0069785592787507825,
+            "purity": 0.500024350144805
+          }
+        ],
+        "final_trace_dist_to_mm": 0.00348927963937537,
+        "final_bloch_length": 0.0069785592787507825,
+        "final_purity": 0.500024350144805,
+        "converged_to_maximally_mixed": true
+      },
+      "mixed_r07": {
+        "trajectory": [
+          {
+            "cycle": 1,
+            "trace_dist_to_mm": 0.21428067624855313,
+            "bloch_length": 0.4285613524971063,
+            "purity": 0.5918324164270745
+          },
+          {
+            "cycle": 2,
+            "trace_dist_to_mm": 0.14749809352330417,
+            "bloch_length": 0.2949961870466083,
+            "purity": 0.5435113751860191
+          },
+          {
+            "cycle": 3,
+            "trace_dist_to_mm": 0.10272144128651683,
+            "bloch_length": 0.20544288257303367,
+            "purity": 0.5211033889999591
+          },
+          {
+            "cycle": 4,
+            "trace_dist_to_mm": 0.07049686574277556,
+            "bloch_length": 0.1409937314855511,
+            "purity": 0.5099396161591107
+          },
+          {
+            "cycle": 5,
+            "trace_dist_to_mm": 0.04900500504102913,
+            "bloch_length": 0.09801001008205827,
+            "purity": 0.5048029810381435
+          },
+          {
+            "cycle": 6,
+            "trace_dist_to_mm": 0.03424855659845429,
+            "bloch_length": 0.0684971131969086,
+            "purity": 0.502345927258156
+          },
+          {
+            "cycle": 7,
+            "trace_dist_to_mm": 0.02339211218976147,
+            "bloch_length": 0.046784224379522975,
+            "purity": 0.5010943818253979
+          },
+          {
+            "cycle": 8,
+            "trace_dist_to_mm": 0.015581453370730237,
+            "bloch_length": 0.03116290674146048,
+            "purity": 0.5004855633782896
+          },
+          {
+            "cycle": 9,
+            "trace_dist_to_mm": 0.01037293418688352,
+            "bloch_length": 0.020745868373767046,
+            "purity": 0.5002151955272921
+          },
+          {
+            "cycle": 10,
+            "trace_dist_to_mm": 0.007047978342543695,
+            "bloch_length": 0.014095956685087388,
+            "purity": 0.5000993479974354
+          }
+        ],
+        "final_trace_dist_to_mm": 0.007047978342543695,
+        "final_bloch_length": 0.014095956685087388,
+        "final_purity": 0.5000993479974354,
+        "converged_to_maximally_mixed": true
+      },
+      "mixed_r03": {
+        "trajectory": [
+          {
+            "cycle": 1,
+            "trace_dist_to_mm": 0.09891679364179422,
+            "bloch_length": 0.19783358728358844,
+            "purity": 0.5195690641287467
+          },
+          {
+            "cycle": 2,
+            "trace_dist_to_mm": 0.06895625701208857,
+            "bloch_length": 0.13791251402417715,
+            "purity": 0.5095099307622348
+          },
+          {
+            "cycle": 3,
+            "trace_dist_to_mm": 0.045832960240185495,
+            "bloch_length": 0.09166592048037099,
+            "purity": 0.5042013204887575
+          },
+          {
+            "cycle": 4,
+            "trace_dist_to_mm": 0.03066699299748261,
+            "bloch_length": 0.0613339859949652,
+            "purity": 0.501880928919016
+          },
+          {
+            "cycle": 5,
+            "trace_dist_to_mm": 0.021387788962311218,
+            "bloch_length": 0.042775577924622415,
+            "purity": 0.5009148750333936
+          },
+          {
+            "cycle": 6,
+            "trace_dist_to_mm": 0.014757856158474948,
+            "bloch_length": 0.029515712316949876,
+            "purity": 0.5004355886367895
+          },
+          {
+            "cycle": 7,
+            "trace_dist_to_mm": 0.009723651332861297,
+            "bloch_length": 0.019447302665722574,
+            "purity": 0.5001890987904872
+          },
+          {
+            "cycle": 8,
+            "trace_dist_to_mm": 0.006271017433075699,
+            "bloch_length": 0.012542034866151392,
+            "purity": 0.500078651319293
+          },
+          {
+            "cycle": 9,
+            "trace_dist_to_mm": 0.004149687417036334,
+            "bloch_length": 0.008299374834072663,
+            "purity": 0.5000344398113192
+          },
+          {
+            "cycle": 10,
+            "trace_dist_to_mm": 0.0028513157260427542,
+            "bloch_length": 0.0057026314520854954,
+            "purity": 0.5000162600027402
+          }
+        ],
+        "final_trace_dist_to_mm": 0.0028513157260427542,
+        "final_bloch_length": 0.0057026314520854954,
+        "final_purity": 0.5000162600027402,
+        "converged_to_maximally_mixed": true
+      }
+    },
+    "all_converge_to_mm": true,
+    "conclusion": "ALL initial states converge to maximally mixed under the cycle."
+  },
+  "test_4_cycle_survival": {
+    "a_entropies": {
+      "von_neumann": {
+        "before_1q": -0.0,
+        "after_10_cycles_1q": 0.9996734824807065,
+        "at_maximally_mixed": 1.0,
+        "at_max_after_cycle": "True",
+        "killed": "True",
+        "kill_reason": "Entropy at max -> no discrimination"
+      },
+      "renyi": {
+        "before_1q": -0.0,
+        "after_10_cycles_1q": 0.9993471619599663,
+        "at_maximally_mixed": 1.0,
+        "at_max_after_cycle": "True",
+        "killed": "True",
+        "kill_reason": "Entropy at max -> no discrimination"
+      },
+      "tsallis": {
+        "before_1q": 0.0,
+        "after_10_cycles_1q": 0.4997736923769025,
+        "at_maximally_mixed": 0.5,
+        "at_max_after_cycle": "True",
+        "killed": "True",
+        "kill_reason": "Entropy at max -> no discrimination"
+      },
+      "min_entropy": {
+        "before_1q": -0.0,
+        "after_10_cycles_1q": 0.9696289497430524,
+        "at_maximally_mixed": 1.0,
+        "at_max_after_cycle": "True",
+        "killed": "True",
+        "kill_reason": "Entropy at max -> no discrimination"
+      },
+      "max_entropy": {
+        "before_1q": 0.0,
+        "after_10_cycles_1q": 1.0,
+        "at_maximally_mixed": 1.0,
+        "at_max_after_cycle": "True",
+        "killed": "True",
+        "kill_reason": "Entropy at max -> no discrimination"
+      },
+      "linear_entropy": {
+        "before_1q": 0.0,
+        "after_10_cycles_1q": 0.9995473847538054,
+        "at_maximally_mixed": 1.0,
+        "at_max_after_cycle": "True",
+        "killed": "True",
+        "kill_reason": "Entropy at max -> no discrimination"
+      },
+      "participation_ratio": {
+        "before_1q": 1.0,
+        "after_10_cycles_1q": 1.9990951790433709,
+        "at_maximally_mixed": 2.0,
+        "at_max_after_cycle": "True",
+        "killed": "True",
+        "kill_reason": "Entropy at max -> no discrimination"
+      },
+      "entanglement_entropy": {
+        "before_2q_bell": 0.9999999999999999,
+        "after_10_cycles_2q": 0.9999999999999991,
+        "at_maximally_mixed_2q": 1.0,
+        "at_max_after_cycle": "True",
+        "killed": "True",
+        "kill_reason": "Entropy at max -> no discrimination"
+      },
+      "conditional_entropy": {
+        "before_2q_bell": -1.0000000000000002,
+        "after_10_cycles_2q": 0.9999997514362717,
+        "at_maximally_mixed_2q": 1.0,
+        "at_max_after_cycle": "True",
+        "killed": "True",
+        "kill_reason": "Entropy at max -> no discrimination"
+      },
+      "mutual_information": {
+        "before_2q_bell": 2.0,
+        "after_10_cycles_2q": 2.4856372737858123e-07,
+        "at_maximally_mixed_2q": 0.0,
+        "at_max_after_cycle": "False",
+        "killed": "False",
+        "kill_reason": "Still discriminating"
+      },
+      "coherent_information": {
+        "before_2q_bell": 1.0000000000000002,
+        "after_10_cycles_2q": -0.9999997514362716,
+        "at_maximally_mixed_2q": -1.0,
+        "at_max_after_cycle": "True",
+        "killed": "True",
+        "kill_reason": "Entropy at max -> no discrimination"
+      }
+    },
+    "b_correlations": {
+      "concurrence": {
+        "before_bell": 1.0,
+        "after_10_cycles_bell": 0.0,
+        "after_10_cycles_mixed": 0.0,
+        "killed": true,
+        "kill_reason": "Correlation -> 0 under cycle: decoherence kills it"
+      },
+      "negativity": {
+        "before_bell": 0.5000000000000001,
+        "after_10_cycles_bell": 0.0,
+        "after_10_cycles_mixed": 0.0,
+        "killed": true,
+        "kill_reason": "Correlation -> 0 under cycle: decoherence kills it"
+      },
+      "mutual_information_corr": {
+        "before_bell": 2.0,
+        "after_10_cycles_bell": 2.4856372737858123e-07,
+        "after_10_cycles_mixed": 1.0301031139192673e-08,
+        "killed": "False",
+        "kill_reason": "Survived with residual"
+      },
+      "entanglement_of_formation": {
+        "before_bell": 1.0,
+        "after_10_cycles_bell": 0.0,
+        "after_10_cycles_mixed": 0.0,
+        "killed": true,
+        "kill_reason": "Correlation -> 0 under cycle: decoherence kills it"
+      },
+      "quantum_discord": {
+        "after_10_cycles_bell": 2.4856372737858123e-07,
+        "killed": "False",
+        "kill_reason": "Residual discord survives"
+      }
+    },
+    "c_geometric": {
+      "trace_distance_final_vs_mm": {
+        "value": 0.010637378039167669,
+        "nontrivial": "True",
+        "interpretation": "Still distinguishable from mm"
+      },
+      "hs_distance_final_vs_mm": {
+        "value": 0.015043524291080653,
+        "nontrivial": "True",
+        "interpretation": "Still distinguishable from mm"
+      },
+      "bures_distance_final_vs_mm": {
+        "value": 0.010638130478781536,
+        "nontrivial": "True",
+        "interpretation": "Still distinguishable from mm"
+      },
+      "fubini_study_final_vs_mm": {
+        "value": 0.010638180642558217,
+        "nontrivial": "True",
+        "interpretation": "Still distinguishable from mm"
+      },
+      "l1_coherence_after_cycle": {
+        "value": 0.01507913102413554,
+        "nontrivial": "True"
+      },
+      "relative_entropy_coherence_after_cycle": {
+        "value": 0.000164038672111122,
+        "nontrivial": "True"
+      },
+      "chiral_overlap_after_cycle": {
+        "value": 0.49977369237690455,
+        "at_mm_value": 0.5,
+        "nontrivial": "True"
+      },
+      "chiral_current_after_cycle": {
+        "value": -0.006586369049301349,
+        "nontrivial": "True"
+      },
+      "wigner_origin_after_cycle": {
+        "value": 0.0047771416394803605,
+        "at_mm": 0.0,
+        "nontrivial": "True"
+      }
+    },
+    "d_z3_proofs": {
+      "theorem_1_bloch_contraction": {
+        "statement": "After 10 rounds of (Z-deph, Z-rot, X-deph, X-rot) with p=0.3, Bloch length^2 <= (1-p)^(2N) <= 7.98e-4 for ANY initial state.",
+        "z3_query": "Can Bloch length^2 > 0.01 after 10 rounds?",
+        "z3_result": "unsat",
+        "proved": true,
+        "analytic_bound": 0.0007979226629761189,
+        "interpretation": "PROVED: cycling MUST shrink Bloch vector to near-zero. All 1-qubit measures that depend on Bloch length are KILLED."
+      },
+      "theorem_1_analytic_verification": {
+        "contraction_per_round": 0.7,
+        "after_10_rounds": 0.02824752489999998,
+        "bloch_length_bound": 0.02824752489999998,
+        "bloch_length_sq_bound": 0.0007979226629761189,
+        "conclusion": "Bloch vector magnitude <= 0.028 after 10 rounds. ALL Bloch-dependent measures lose >97% discrimination. KILLED."
+      },
+      "theorem_2_entanglement_death": {
+        "statement": "Concurrence and negativity MUST reach ~0 under 10 rounds of bilateral local dephasing.",
+        "z3_query": "Can off-diagonal magnitude > 0.001 after 10 bilateral dephasing rounds?",
+        "z3_result": "unsat",
+        "proved": true,
+        "analytic_bound": 0.0007979226629761198,
+        "interpretation": "PROVED: entanglement measures (concurrence, negativity, EoF) are KILLED by cycling."
+      },
+      "theorem_2_analytic_verification": {
+        "bilateral_contraction_per_round": 0.49,
+        "after_10_rounds": 0.0007979226629761198,
+        "conclusion": "Off-diagonal elements contract by 0.49^10 ~ 7.4e-4. Concurrence, negativity, EoF -> 0. KILLED."
+      },
+      "theorem_3_purity_death": {
+        "statement": "After 10 rounds, purity <= (1 + 0.7^20)/2 = 0.5004. ANY lego requiring purity > 0.5 is KILLED.",
+        "max_purity_after_10_rounds": 0.5003989613314881,
+        "pure_state_purity": 1.0,
+        "maximally_mixed_purity": 0.5,
+        "kills": [
+          "berry_phase (requires pure state)",
+          "qgt_curvature (requires pure state)",
+          "fubini_study (requires pure states for meaningful value)",
+          "hopf_fiber_coordinate (requires pure state)",
+          "monopole_curvature (requires pure state on Bloch sphere)",
+          "geometric_phase_quantization (requires pure state)"
+        ],
+        "conclusion": "Pure-state-only legos are KILLED: cycling produces mixed states. Purity converges to 0.5 (maximally mixed)."
+      }
+    }
+  },
+  "survival_table": [
+    {
+      "lego": "density_matrix",
+      "type": "structural",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "structural_framework",
+      "L4_detail": "Structural decomposition: not a dynamical quantity. Survives as framework."
+    },
+    {
+      "lego": "bloch_vector",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "observable",
+      "L4_detail": "Observable survives cycling with nontrivial values."
+    },
+    {
+      "lego": "stokes_parameters",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "observable",
+      "L4_detail": "Observable survives cycling with nontrivial values."
+    },
+    {
+      "lego": "eigenvalue_decomposition",
+      "type": "structural",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "structural_framework",
+      "L4_detail": "Structural decomposition: not a dynamical quantity. Survives as framework."
+    },
+    {
+      "lego": "wigner_function",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "observable",
+      "L4_detail": "Observable survives cycling with nontrivial values."
+    },
+    {
+      "lego": "husimi_q",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "observable",
+      "L4_detail": "Observable survives cycling with nontrivial values."
+    },
+    {
+      "lego": "coherence_vector",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "observable",
+      "L4_detail": "Observable survives cycling with nontrivial values."
+    },
+    {
+      "lego": "purification",
+      "type": "structural",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "structural_framework",
+      "L4_detail": "Structural decomposition: not a dynamical quantity. Survives as framework."
+    },
+    {
+      "lego": "characteristic_function",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "observable",
+      "L4_detail": "Observable survives cycling with nontrivial values."
+    },
+    {
+      "lego": "von_neumann",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Entropy at max under cycle: no discrimination"
+      ]
+    },
+    {
+      "lego": "renyi",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Entropy at max under cycle: no discrimination"
+      ]
+    },
+    {
+      "lego": "tsallis",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Entropy at max under cycle: no discrimination"
+      ]
+    },
+    {
+      "lego": "min_entropy",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Entropy at max under cycle: no discrimination"
+      ]
+    },
+    {
+      "lego": "max_entropy",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Entropy at max under cycle: no discrimination"
+      ]
+    },
+    {
+      "lego": "linear_entropy",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Entropy at max under cycle: no discrimination"
+      ]
+    },
+    {
+      "lego": "participation_ratio",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Entropy at max under cycle: no discrimination"
+      ]
+    },
+    {
+      "lego": "relative_entropy",
+      "type": "distance",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "diagnostic",
+      "L4_detail": "Distance function: measures distinguishability. Survives if meaningful between cycle states."
+    },
+    {
+      "lego": "conditional_entropy",
+      "type": "measure_2q",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Entropy at max under cycle: no discrimination"
+      ]
+    },
+    {
+      "lego": "mutual_information",
+      "type": "measure_2q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "observable",
+      "L4_detail": "Observable survives cycling with nontrivial values."
+    },
+    {
+      "lego": "coherent_information",
+      "type": "measure_2q",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Entropy at max under cycle: no discrimination"
+      ]
+    },
+    {
+      "lego": "entanglement_entropy",
+      "type": "measure_2q",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Entropy at max under cycle: no discrimination"
+      ]
+    },
+    {
+      "lego": "fubini_study",
+      "type": "distance",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "diagnostic",
+      "L4_detail": "Distance function: measures distinguishability. Survives if meaningful between cycle states."
+    },
+    {
+      "lego": "bures_distance",
+      "type": "distance",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "diagnostic",
+      "L4_detail": "Distance function: measures distinguishability. Survives if meaningful between cycle states."
+    },
+    {
+      "lego": "berry_phase",
+      "type": "pure_only",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Pure-state-only: cycling produces mixed states"
+      ]
+    },
+    {
+      "lego": "qgt_curvature",
+      "type": "pure_only",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Pure-state-only: cycling produces mixed states"
+      ]
+    },
+    {
+      "lego": "hs_distance",
+      "type": "distance",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "diagnostic",
+      "L4_detail": "Distance function: measures distinguishability. Survives if meaningful between cycle states."
+    },
+    {
+      "lego": "trace_distance",
+      "type": "distance",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "diagnostic",
+      "L4_detail": "Distance function: measures distinguishability. Survives if meaningful between cycle states."
+    },
+    {
+      "lego": "z_dephasing",
+      "type": "channel_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "operator",
+      "L4_detail": "Composable operator in process cycle."
+    },
+    {
+      "lego": "x_dephasing",
+      "type": "channel_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "operator",
+      "L4_detail": "Composable operator in process cycle."
+    },
+    {
+      "lego": "depolarizing",
+      "type": "channel_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "operator",
+      "L4_detail": "Composable operator in process cycle."
+    },
+    {
+      "lego": "amplitude_damping",
+      "type": "channel_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "operator",
+      "L4_detail": "Composable operator in process cycle."
+    },
+    {
+      "lego": "phase_damping",
+      "type": "channel_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "operator",
+      "L4_detail": "Composable operator in process cycle."
+    },
+    {
+      "lego": "bit_flip",
+      "type": "channel_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "operator",
+      "L4_detail": "Composable operator in process cycle."
+    },
+    {
+      "lego": "phase_flip",
+      "type": "channel_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "operator",
+      "L4_detail": "Composable operator in process cycle."
+    },
+    {
+      "lego": "bit_phase_flip",
+      "type": "channel_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "operator",
+      "L4_detail": "Composable operator in process cycle."
+    },
+    {
+      "lego": "unitary_rotation",
+      "type": "channel_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "operator",
+      "L4_detail": "Composable operator in process cycle."
+    },
+    {
+      "lego": "z_measurement",
+      "type": "channel_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "operator",
+      "L4_detail": "Composable operator in process cycle."
+    },
+    {
+      "lego": "concurrence",
+      "type": "measure_2q",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Correlation -> 0 under cycle: decoherence kills entanglement"
+      ]
+    },
+    {
+      "lego": "negativity",
+      "type": "measure_2q",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Correlation -> 0 under cycle: decoherence kills entanglement"
+      ]
+    },
+    {
+      "lego": "mutual_information_corr",
+      "type": "measure_2q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "observable",
+      "L4_detail": "Observable survives cycling with nontrivial values."
+    },
+    {
+      "lego": "quantum_discord",
+      "type": "measure_2q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "observable",
+      "L4_detail": "Observable survives cycling with nontrivial values."
+    },
+    {
+      "lego": "entanglement_of_formation",
+      "type": "measure_2q",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Correlation -> 0 under cycle: decoherence kills entanglement"
+      ]
+    },
+    {
+      "lego": "CNOT",
+      "type": "gate_2q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "operator",
+      "L4_detail": "Composable operator in process cycle."
+    },
+    {
+      "lego": "CZ",
+      "type": "gate_2q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "operator",
+      "L4_detail": "Composable operator in process cycle."
+    },
+    {
+      "lego": "SWAP",
+      "type": "gate_2q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "operator",
+      "L4_detail": "Composable operator in process cycle."
+    },
+    {
+      "lego": "Hadamard",
+      "type": "gate_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "operator",
+      "L4_detail": "Composable operator in process cycle."
+    },
+    {
+      "lego": "T_gate",
+      "type": "gate_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "operator",
+      "L4_detail": "Composable operator in process cycle."
+    },
+    {
+      "lego": "iSWAP",
+      "type": "gate_2q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "operator",
+      "L4_detail": "Composable operator in process cycle."
+    },
+    {
+      "lego": "schmidt",
+      "type": "structural",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "structural_framework",
+      "L4_detail": "Structural decomposition: not a dynamical quantity. Survives as framework."
+    },
+    {
+      "lego": "svd",
+      "type": "structural",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "structural_framework",
+      "L4_detail": "Structural decomposition: not a dynamical quantity. Survives as framework."
+    },
+    {
+      "lego": "spectral",
+      "type": "structural",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "structural_framework",
+      "L4_detail": "Structural decomposition: not a dynamical quantity. Survives as framework."
+    },
+    {
+      "lego": "pauli_decomposition",
+      "type": "structural",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "structural_framework",
+      "L4_detail": "Structural decomposition: not a dynamical quantity. Survives as framework."
+    },
+    {
+      "lego": "cartan_kak",
+      "type": "structural",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "structural_framework",
+      "L4_detail": "Structural decomposition: not a dynamical quantity. Survives as framework."
+    },
+    {
+      "lego": "l1_coherence",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "observable",
+      "L4_detail": "Observable survives cycling with nontrivial values."
+    },
+    {
+      "lego": "relative_entropy_coherence",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "observable",
+      "L4_detail": "Observable survives cycling with nontrivial values."
+    },
+    {
+      "lego": "wigner_negativity",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "observable",
+      "L4_detail": "Observable survives cycling with nontrivial values."
+    },
+    {
+      "lego": "hopf_fiber_coordinate",
+      "type": "pure_only",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Pure-state-only: cycling produces mixed states"
+      ]
+    },
+    {
+      "lego": "hopf_invariant",
+      "type": "structural",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "structural_framework",
+      "L4_detail": "Structural decomposition: not a dynamical quantity. Survives as framework."
+    },
+    {
+      "lego": "monopole_curvature",
+      "type": "pure_only",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Pure-state-only: cycling produces mixed states"
+      ]
+    },
+    {
+      "lego": "hopf_connection",
+      "type": "structural",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "structural_framework",
+      "L4_detail": "Structural decomposition: not a dynamical quantity. Survives as framework."
+    },
+    {
+      "lego": "geometric_phase_quantization",
+      "type": "pure_only",
+      "L3": "YES",
+      "L4": "KILLED",
+      "L4_kill_reasons": [
+        "Pure-state-only: cycling produces mixed states"
+      ]
+    },
+    {
+      "lego": "chirality_operator_C",
+      "type": "structural",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "structural_framework",
+      "L4_detail": "Structural decomposition: not a dynamical quantity. Survives as framework."
+    },
+    {
+      "lego": "chiral_overlap",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "observable",
+      "L4_detail": "Observable survives cycling with nontrivial values."
+    },
+    {
+      "lego": "chiral_current",
+      "type": "measure_1q",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "observable",
+      "L4_detail": "Observable survives cycling with nontrivial values."
+    },
+    {
+      "lego": "berry_holonomy_operator",
+      "type": "structural",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "structural_framework",
+      "L4_detail": "Structural decomposition: not a dynamical quantity. Survives as framework."
+    },
+    {
+      "lego": "chirality_bipartition_marker",
+      "type": "structural",
+      "L3": "YES",
+      "L4": "SURVIVES",
+      "L4_role": "structural_framework",
+      "L4_detail": "Structural decomposition: not a dynamical quantity. Survives as framework."
+    }
+  ],
+  "summary": {
+    "runtime_seconds": 0.05,
+    "errors": [],
+    "all_passed": true,
+    "total_legos_tested": 66,
+    "L4_survived": 48,
+    "L4_killed": 18,
+    "killed_names": [
+      "von_neumann",
+      "renyi",
+      "tsallis",
+      "min_entropy",
+      "max_entropy",
+      "linear_entropy",
+      "participation_ratio",
+      "conditional_entropy",
+      "coherent_information",
+      "entanglement_entropy",
+      "berry_phase",
+      "qgt_curvature",
+      "concurrence",
+      "negativity",
+      "entanglement_of_formation",
+      "hopf_fiber_coordinate",
+      "monopole_curvature",
+      "geometric_phase_quantization"
+    ],
+    "survived_names": [
+      "density_matrix",
+      "bloch_vector",
+      "stokes_parameters",
+      "eigenvalue_decomposition",
+      "wigner_function",
+      "husimi_q",
+      "coherence_vector",
+      "purification",
+      "characteristic_function",
+      "relative_entropy",
+      "mutual_information",
+      "fubini_study",
+      "bures_distance",
+      "hs_distance",
+      "trace_distance",
+      "z_dephasing",
+      "x_dephasing",
+      "depolarizing",
+      "amplitude_damping",
+      "phase_damping",
+      "bit_flip",
+      "phase_flip",
+      "bit_phase_flip",
+      "unitary_rotation",
+      "z_measurement",
+      "mutual_information_corr",
+      "quantum_discord",
+      "CNOT",
+      "CZ",
+      "SWAP",
+      "Hadamard",
+      "T_gate",
+      "iSWAP",
+      "schmidt",
+      "svd",
+      "spectral",
+      "pauli_decomposition",
+      "cartan_kak",
+      "l1_coherence",
+      "relative_entropy_coherence",
+      "wigner_negativity",
+      "hopf_invariant",
+      "hopf_connection",
+      "chirality_operator_C",
+      "chiral_overlap",
+      "chiral_current",
+      "berry_holonomy_operator",
+      "chirality_bipartition_marker"
+    ],
+    "kill_categories": {
+      "pure_state_only": [
+        "berry_phase",
+        "qgt_curvature",
+        "hopf_fiber_coordinate",
+        "monopole_curvature",
+        "geometric_phase_quantization"
+      ],
+      "entropy_at_max": [
+        "von_neumann",
+        "renyi",
+        "tsallis",
+        "min_entropy",
+        "max_entropy",
+        "linear_entropy",
+        "participation_ratio",
+        "conditional_entropy",
+        "coherent_information",
+        "entanglement_entropy"
+      ],
+      "correlation_dead": [
+        "concurrence",
+        "negativity",
+        "entanglement_of_formation"
+      ],
+      "coherence_dead": []
+    },
+    "headline": "L4 complete. 48 survived, 18 KILLED by process cycling."
+  }
+}

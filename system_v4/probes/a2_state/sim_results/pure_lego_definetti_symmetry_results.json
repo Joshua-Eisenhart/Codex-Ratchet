@@ -1,0 +1,147 @@
+{
+  "probe": "sim_pure_lego_definetti_symmetry",
+  "timestamp": "2026-04-07T10:20:13.945563+00:00",
+  "sections": {
+    "classical_definetti": {
+      "joint_distribution": [
+        [
+          0.29,
+          0.21000000000000002
+        ],
+        [
+          0.21000000000000002,
+          0.29
+        ]
+      ],
+      "sum_joint": 1.0,
+      "exchangeability_max_diff": 0.0,
+      "is_exchangeable": true,
+      "swap_invariance_residual": 0.0,
+      "swap_symmetric": true,
+      "mixture_of_iid_residual": 0.0,
+      "confirmed_mixture_of_iid": true
+    },
+    "quantum_definetti": {
+      "dicke_state_norm": 1.0000000000000002,
+      "dicke_state_purity": 1.0000000000000007,
+      "swap_01_overlap": 1.0000000000000004,
+      "swap_01_symmetric": true,
+      "reduced_trace": 1.0000000000000002,
+      "reduced_purity": 0.5000000000000003,
+      "reduced_is_PPT": false,
+      "reduced_PT_min_eigenvalue": -0.16666666666666674,
+      "trace_distance_to_maximally_mixed": 0.4166666666666667,
+      "fidelity_to_maximally_mixed": 0.6666666666666663,
+      "trace_distance_to_product": 0.4166666666666667,
+      "definetti_bound_k_d2_over_n": 2.0,
+      "bound_is_vacuous": true,
+      "reduced_negativity": 0.16666666666666674,
+      "reduced_eigenvalues": [
+        0.6666666666666669,
+        0.1666666666666667,
+        0.1666666666666667,
+        0.0
+      ],
+      "convergence_toward_separable": {
+        "n=4": {
+          "PT_min_eigenvalue": -0.16666666666666674,
+          "is_PPT": false,
+          "negativity": 0.16666666666666674
+        },
+        "n=6": {
+          "PT_min_eigenvalue": -0.09999999999999998,
+          "is_PPT": false,
+          "negativity": 0.09999999999999998
+        },
+        "n=8": {
+          "PT_min_eigenvalue": -0.0714285714285714,
+          "is_PPT": false,
+          "negativity": 0.0714285714285714
+        },
+        "n=10": {
+          "PT_min_eigenvalue": -0.055555555555555386,
+          "is_PPT": false,
+          "negativity": 0.055555555555555386
+        }
+      }
+    },
+    "swap_test": {
+      "swap_action_correct": true,
+      "swap_residual": 0.0,
+      "swap_is_unitary": true,
+      "swap_is_hermitian": true,
+      "swap_squared_is_identity": true,
+      "swap_eigenvalues": [
+        -1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "swap_test": {
+        "same_state": {
+          "exact_overlap_sq": 1.0,
+          "formula_p0": 1.0,
+          "circuit_p0": 0.9999999999999996,
+          "sampled_p0": 1.0,
+          "n_shots": 100000,
+          "formula_matches_circuit": true
+        },
+        "orthogonal": {
+          "exact_overlap_sq": 0.0,
+          "formula_p0": 0.5,
+          "circuit_p0": 0.4999999999999998,
+          "sampled_p0": 0.49834,
+          "n_shots": 100000,
+          "formula_matches_circuit": true
+        },
+        "partial_overlap": {
+          "exact_overlap_sq": 0.4999999999999999,
+          "formula_p0": 0.75,
+          "circuit_p0": 0.7499999999999998,
+          "sampled_p0": 0.74953,
+          "n_shots": 100000,
+          "formula_matches_circuit": true
+        }
+      }
+    },
+    "bell_symmetry": {
+      "Phi+": {
+        "swap_eigenvalue": 0.9999999999999998,
+        "classification": "symmetric (triplet)",
+        "is_symmetric": true,
+        "is_antisymmetric": false
+      },
+      "Phi-": {
+        "swap_eigenvalue": 0.9999999999999998,
+        "classification": "symmetric (triplet)",
+        "is_symmetric": true,
+        "is_antisymmetric": false
+      },
+      "Psi+": {
+        "swap_eigenvalue": 0.9999999999999998,
+        "classification": "symmetric (triplet)",
+        "is_symmetric": true,
+        "is_antisymmetric": false
+      },
+      "Psi-": {
+        "swap_eigenvalue": -0.9999999999999998,
+        "classification": "antisymmetric (singlet)",
+        "is_symmetric": false,
+        "is_antisymmetric": true
+      },
+      "subspace_dimensions": {
+        "symmetric_dim": 3,
+        "antisymmetric_dim": 1
+      },
+      "singlet_is_Psi_minus": true,
+      "triplet_count": 3
+    }
+  },
+  "verdicts": {
+    "classical_definetti": "PASS",
+    "quantum_definetti": "PASS",
+    "swap_test": "PASS",
+    "bell_symmetry": "PASS"
+  },
+  "overall": "ALL PASS"
+}

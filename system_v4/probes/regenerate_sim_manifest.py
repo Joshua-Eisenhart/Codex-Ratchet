@@ -33,6 +33,8 @@ def classify(filename: str) -> str:
         return "cross_field"
     if "geometric_engine" in fn or "unified_engine" in fn:
         return "geometric_canonical"
+    if fn.startswith("sim_negative") or fn.startswith("negative_"):
+        return "negative_battery"
     if "negative" in fn or "ablation" in fn or "propagation" in fn:
         return "negative_battery"
     if fn.startswith("layer"):

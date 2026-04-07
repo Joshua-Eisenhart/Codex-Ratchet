@@ -1,0 +1,126 @@
+#!/usr/bin/env python3
+"""
+SIM TEMPLATE -- All new sims must start from this template.
+See new docs/ENFORCEMENT_AND_PROCESS_RULES.md for rules.
+
+Usage:
+  1. Copy this file to sim_<your_name>.py
+  2. Rename "TEMPLATE" throughout
+  3. Implement positive, negative, and boundary tests
+  4. Update TOOL_MANIFEST entries with used=True and reason for each tool
+  5. Run and commit the result JSON
+"""
+
+import json
+import os
+import numpy as np
+
+# =====================================================================
+# TOOL MANIFEST -- Document which tools were tried
+# =====================================================================
+
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": ""},
+    "z3": {"tried": False, "used": False, "reason": ""},
+    "sympy": {"tried": False, "used": False, "reason": ""},
+    "clifford": {"tried": False, "used": False, "reason": ""},
+    "toponetx": {"tried": False, "used": False, "reason": ""},
+    "pyg": {"tried": False, "used": False, "reason": ""},
+}
+
+# Try importing each tool
+try:
+    import torch
+    TOOL_MANIFEST["pytorch"]["tried"] = True
+except ImportError:
+    TOOL_MANIFEST["pytorch"]["reason"] = "not installed"
+
+try:
+    from z3 import *  # noqa: F401,F403
+    TOOL_MANIFEST["z3"]["tried"] = True
+except ImportError:
+    TOOL_MANIFEST["z3"]["reason"] = "not installed"
+
+try:
+    import sympy as sp  # noqa: F401
+    TOOL_MANIFEST["sympy"]["tried"] = True
+except ImportError:
+    TOOL_MANIFEST["sympy"]["reason"] = "not installed"
+
+try:
+    from clifford import Cl  # noqa: F401
+    TOOL_MANIFEST["clifford"]["tried"] = True
+except ImportError:
+    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+
+try:
+    from toponetx.classes import CellComplex  # noqa: F401
+    TOOL_MANIFEST["toponetx"]["tried"] = True
+except ImportError:
+    TOOL_MANIFEST["toponetx"]["reason"] = "not installed"
+
+try:
+    import torch_geometric  # noqa: F401
+    TOOL_MANIFEST["pyg"]["tried"] = True
+except ImportError:
+    TOOL_MANIFEST["pyg"]["reason"] = "not installed"
+
+
+# =====================================================================
+# POSITIVE TESTS
+# =====================================================================
+
+def run_positive_tests():
+    results = {}
+    # TODO: implement positive tests
+    # Each test needs:
+    # - Multiple test states
+    # - Theoretical value comparison
+    # - Cross-validation against different method
+    return results
+
+
+# =====================================================================
+# NEGATIVE TESTS (mandatory)
+# =====================================================================
+
+def run_negative_tests():
+    results = {}
+    # TODO: implement negative/failure tests
+    # Each positive test needs a corresponding negative
+    return results
+
+
+# =====================================================================
+# BOUNDARY TESTS
+# =====================================================================
+
+def run_boundary_tests():
+    results = {}
+    # TODO: edge cases, numerical precision limits
+    return results
+
+
+# =====================================================================
+# MAIN
+# =====================================================================
+
+if __name__ == "__main__":
+    results = {
+        "name": "TEMPLATE -- RENAME THIS",
+        "tool_manifest": TOOL_MANIFEST,
+        "positive": run_positive_tests(),
+        "negative": run_negative_tests(),
+        "boundary": run_boundary_tests(),
+        "classification": "classical_baseline",  # or "canonical" if torch-native
+    }
+
+    # Mark tools as used based on what was actually called
+    # (update TOOL_MANIFEST entries with used=True and reason)
+
+    out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
+    os.makedirs(out_dir, exist_ok=True)
+    out_path = os.path.join(out_dir, "TEMPLATE_results.json")
+    with open(out_path, "w") as f:
+        json.dump(results, f, indent=2, default=str)
+    print(f"Results written to {out_path}")

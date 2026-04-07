@@ -1,177 +1,227 @@
 # PyTorch Ratchet Build Plan
 
-## The Architectural Insight
+## Architectural model
+The ratchet is a nested family of simultaneous constraint shells, not a ladder of replacements.
 
-The PyTorch computational graph IS the ratchet. Not a tool for simulating the ratchet — the architecture itself.
+Let S0 ⊃ S1 ⊃ S2 ⊃ ... denote nested admissible state sets. Each layer adds constraints to the same state space. Higher layers do not erase lower layers; they refine them.
 
-**Forward pass** = exploring the allowed mathematical space. All the density matrices, operators, geometries that COULD exist at this constraint layer.
+- Hopf tori are one shell.
+- Weyl spinors are a more constrained shell.
+- Clifford layers encode still more structure.
+- Operator layers live on top of those shells.
+- The engine runs at the most constrained level where all active shells are simultaneously present.
 
-**Backward pass** = constraints flowing from output back to input, selecting what survives. The gradient at layer k depends on layers k+1, k+2, ... all the way to the output. The future constrains the past. This is the non-classical "retrocausality" — not future-causes-past, but constraints-from-output-determine-input.
+## The computational claim
+The PyTorch computational graph IS the ratchet.
 
-**Graph topology** = the constraint manifold. Which nodes connect to which determines what's computable. The topology IS the constraint, not a container for the constraint.
+Not a tool for simulating the ratchet — the architecture itself.
 
-**Gradient** = what's load-bearing. If ∂output/∂parameter ≈ 0, that parameter doesn't matter — it's redundant.
+- Forward pass = exploring the allowed mathematical space.
+- Backward pass = constraints flowing from output back to input, selecting what survives.
+- Graph topology = the constraint manifold.
+- Gradient = what is load-bearing.
+- Zero gradient = what is redundant.
 
-**Axis 0** = ∇I_c on the shell topology. The gradient of coherent information with respect to the torus shell parameter η, flowing backward through the computational graph. Not a scalar at one cut. A gradient field on the manifold.
+This is the non-classical retrocausal reading: not future-causes-past, but constraints-from-output-determine-input.
+
+### Disconfirmation criteria
+This claim is falsifiable. It would be wrong if:
+1. Autograd gradient nabla I_c gives no additional information beyond the numpy scalar I_c
+2. The computational graph topology has no effect on the dynamics (any graph gives same result)
+3. Backprop constraint flow produces the same selection as forward-only evaluation
+4. PyTorch-native legos match numpy baselines exactly with zero divergence
+
+If any of these hold, the substrate does not matter and numpy is sufficient. The Phase 3 migration will test all four conditions explicitly.
+
+## Axis 0
+Axis 0 is not a scalar at one cut. It is a gradient field on the shell topology.
+
+Formally:
+- let η parameterize the shell family
+- let ρ(η) be a differentiable state on the nested shells
+- let I_c(ρ) be coherent information
+- then Axis 0 is ∇_η I_c
 
 ```python
-# Axis 0 as autograd
 eta = torch.tensor(eta_value, requires_grad=True)
-state = hopf_torus_state(eta)           # differentiable: geometry → state
-rho_AB = entangle(state)                # differentiable: state → joint
-ic = coherent_information(rho_AB)       # differentiable: joint → I_c
-ic.backward()                           # constraint flow: I_c → η
-axis_0 = eta.grad                       # THIS IS AXIS 0
+state = hopf_torus_state(eta)
+rho_AB = entangle(state)
+ic = coherent_information(rho_AB)
+ic.backward()
+axis_0 = eta.grad
 ```
 
-## Why numpy fails
+## Why numpy is only the baseline
+numpy arrays are Cartesian grids. They represent states as coordinate vectors in a fixed basis.
 
-numpy arrays are Cartesian grids. They represent states as coordinate vectors in a fixed basis. This imports:
-- **Cartesian ontology**: states have definite values at grid points
-- **Platonic representation**: the array IS the state (reification)
-- **Classical computation**: no gradient flow, no constraint propagation
+That imports:
+- Cartesian ontology
+- Platonic representation
+- classical computation without gradient flow
 
 PyTorch tensors with autograd are:
-- **Relational**: the computational graph traces RELATIONSHIPS between operations
-- **Constraint-based**: backprop flows constraints backward (what must the input have been to produce this output?)
-- **Non-Cartesian**: the graph topology, not a coordinate system, determines what's computable
+- relational
+- constraint-based
+- non-Cartesian
 
-## What exists (Phase 1-2: DONE)
+## Phase 1: classical baselines (done)
+84 numpy legos are the classical baseline set. They are useful because they show what works before the constraint layers are applied.
 
-### Phase 1: Classical baselines
-84 numpy legos verified against theory. These show what math works in a classical computation substrate. They are the BEFORE picture — not the answer.
+Their job is not to define the target architecture. Their job is to reduce presupposition.
 
-Legos cover: density matrices, Hopf tori, spinor transport, Cl(3)/Cl(6), gates, decompositions (Schmidt/SVD/Cartan), all operator axes, QFI/WY/QGT, channels/Choi/Lindblad/Stinespring, majorization/steering/coherence, Bell/witnesses/steering, symplectic/Kähler/Weyl, ML mappings, QEC (3-qubit + Steane + surface), SIC-POVM/MUB, Majorana/spinor reps, quantum thermo/Landauer, Wigner quasi-probability, Petz recovery, resource theories, quaternions/octonions, channel capacity/degradability, process tomography/diamond norm, Lorentz/SLOCC, contextuality/KS, DFS/noiseless, quantum Markov, teleportation/superdense, state discrimination/Helstrom, quantum walks, f-divergences/sandwiched Rényi, quantum chaos/ETH, random circuits/typicality, stabilizer/magic, de Finetti/symmetry, no-go theorems, hypothesis testing, entanglement swapping/distillation, quantum metrology, quantum Shannon protocols, tensor networks (MPS/MERA), cloning/QKD/illumination, QCA/Lieb-Robinson/OTOC, quantum games/Bayesian/Sanov, Wasserstein transport, reference frames/asymmetry, quantum combs/process tensors, holographic codes/toy AdS-CFT, knot invariants/topological entropy, adiabatic/VQE/QAOA, free probability/RMT, Pauli/Clifford hierarchy/Jordan/Schur-Weyl algebras.
+The baseline families include density matrices, Hopf tori, spinor transport, Cl(3)/Cl(6), channels, entropies, steering/coherence, Bell tests, topology, QEC, tensor networks, quantum Shannon, QKD, QCA, holography, RMT, and the rest of the current lego inventory.
 
-### Phase 2: Constraint cascade
-L0-L7 mapped. The narrowing pattern discovered:
-- L0 (N01): 53 legos. BIFURCATION: 34 spectral + 19 geometric. z3 proves Berry without complex = UNSAT.
-- L1 (CPTP): 53 survive. 8 reduced by monotonicity.
-- L2 (d=2+Hopf): 61 survive. +5 new Hopf legos. z3 proves d=2 forces exactly 3 Pauli generators.
-- L3 (chirality): 66 survive. +5 chirality legos. 37 require chirality. z3 proves σ_y forced as antisymmetric.
-- L4 (composition): 48 survive. **18 KILLED.** Absolute measures die. Relative survive.
-- L5 (su(2)): 48 survive. 27 require su(2).
-- L6 (irreversibility): 43 survive. **5 KILLED.** Reversible legos die. z3 proves fixed-point uniqueness.
-- L7 (dual-type): 43 survive. 21 type-sensitive.
-- Minimal set: 28 irreducible (15 redundant purity proxies). 9 independent observables.
+## Phase 2: constraint cascade (done)
+The L0-L7 cascade is the discovered narrowing pattern.
 
-**The pattern:** Geometry enriches (L0-L3: 53→66). Dynamics selects (L4: 66→48). Ratchet kills reversible (L6: 48→43). Redundancy collapses (43→28→9 independent).
+- L0 (N01): 53 legos. Bifurcation into spectral + geometric.
+- L1 (CPTP): 53 survive.
+- L2 (d=2+Hopf): 61 survive.
+- L3 (chirality): 66 survive.
+- L4 (composition): 48 survive. Absolute measures die.
+- L5 (su(2)): 48 survive.
+- L6 (irreversibility): 43 survive. Reversible legos die.
+- L7 (dual-type): 43 survive.
+- Minimal set: 28 irreducible.
+- Independent observables: 9.
 
-### Negative batteries (11 complete, 107+ failure modes)
-Density matrices, entropy boundaries, channels, entanglement, geometry, topology, compound failures, advanced legos, constraint cascade stress test, boundary sweeps, mega boundaries.
+Core pattern:
+- geometry enriches (L0-L3)
+- dynamics selects (L4)
+- ratchet kills reversible (L6)
+- redundancy collapses (43 → 28 → 9)
 
-### Key findings
-- Engine is SEPARABLE without entangling gate (discord only, zero entanglement)
-- Discord-without-entanglement gap = 0.25 (engine's regime)
-- I_c = +0.457 on 2-qubit WITH entangling gate
-- Entropy: MI + min-entropy constraint-selected, vN is 9th
-- Geometry: CP¹/Fubini-Study THE surviving geometry
-- Y-axis not special (rotational symmetry, convention only)
-- Mass equivalence: evolution = engine (Fisher = Cramér-Rao exact, error threshold +14%)
-- z3: L4 requires L0, L6 requires L4. Dependencies structural (UNSAT). Kills commute.
+## Negative batteries
+The negative batteries are not optional. They are the boundary structure of the system.
+
+Current status:
+- 11 negative batteries
+- 107+ failure modes
+
+They cover density matrices, entropy boundaries, channels, entanglement, geometry, topology, compound failures, advanced legos, cascade stress tests, boundary sweeps, and mega boundary sweeps.
+
+## What the current math says
+- The engine is separable without an entangling gate.
+- Discord can remain when entanglement is zero.
+- Geometry that survives is CP¹ / Fubini-Study.
+- L4 and L6 are structural kill points.
+- Kills commute under the discovered ordering.
+- The classical baseline is not wasted; it is the prerequisite comparison class.
 
 ---
 
-## What's needed (Phase 3-7: NEXT)
+## Phase 3: PyTorch-native legos (next)
+The next phase is not “more demos.” It is rebuilding the irreducible set as differentiable modules.
 
-### Phase 3: PyTorch-native legos
-Rebuild the 28 irreducible legos as differentiable PyTorch modules. Each becomes a `torch.nn.Module` with parameters that autograd can differentiate through.
+Goal:
+- each surviving family becomes a `torch.nn.Module`
+- each module exposes parameters, forward maps, and gradients
+- each module is tested against a classical baseline and at least one negative control
 
+Example shape:
 ```python
 class DensityMatrix(torch.nn.Module):
-    """Density matrix as differentiable torch module."""
     def __init__(self, bloch_params):
         super().__init__()
-        self.bloch = torch.nn.Parameter(bloch_params)  # 3 real params
-    
+        self.bloch = torch.nn.Parameter(bloch_params)
+
     def forward(self):
-        # Pauli decomposition: ρ = (I + r·σ)/2
         rho = torch.eye(2, dtype=torch.complex64) / 2
         for i, sigma in enumerate(paulis):
             rho = rho + self.bloch[i] * sigma / 2
         return rho
-    
-    def entropy(self):
-        rho = self.forward()
-        evals = torch.linalg.eigvalsh(rho)
-        return -torch.sum(evals * torch.log2(evals.clamp(min=1e-15)))
 ```
 
-Key: `torch.nn.Parameter` makes it differentiable. `autograd` can compute ∂entropy/∂bloch.
+## Phase 4: constraint graph as differentiable pipeline
+L0-L7 becomes a pipeline of differentiable constraint modules.
 
-### Phase 4: Constraint graph as differentiable pipeline
-Build L0-L7 as a sequence of differentiable transformations:
+The important point is not that the graph exists.
+The important point is that the graph encodes the admissibility structure.
 
-```python
-class ConstraintCascade(torch.nn.Module):
-    def __init__(self):
-        self.L0_noncommutation = NoncommutationConstraint()
-        self.L1_cptp = CPTPConstraint()
-        self.L2_hopf = HopfCarrierConstraint()
-        # ... through L7
-    
-    def forward(self, lego_set):
-        surviving = self.L0_noncommutation(lego_set)
-        surviving = self.L1_cptp(surviving)
-        # ... through L7
-        return surviving
-    
-    # Backward: gradient flows from what survived back to what was tested
-    # The gradient at each layer = the selection pressure at that layer
-```
-
-### Phase 5: Axis 0 via autograd
-The gradient of coherent information with respect to torus shell parameter η:
+## Phase 5: Axis 0 via autograd
+Axis 0 is the gradient field of coherent information across shell parameters.
 
 ```python
 eta = torch.tensor([TORUS_INNER, TORUS_CLIFFORD, TORUS_OUTER], requires_grad=True)
-states = hopf_torus_states(eta)          # differentiable torus → spinor
-rho_AB = entangling_channel(states)      # differentiable entangling
-ic = coherent_information(rho_AB)        # differentiable I_c
-ic.sum().backward()                      # constraint flow backward
-axis_0_gradient = eta.grad               # ∇I_c on shell manifold = Axis 0
+states = hopf_torus_states(eta)
+rho_AB = entangling_channel(states)
+ic = coherent_information(rho_AB)
+ic.sum().backward()
+axis_0_gradient = eta.grad
 ```
 
-This is not a scalar. It's a gradient FIELD on the nested torus structure.
+This is the formal version of your retrocausal point:
+constraints flow backward through the shell graph.
 
-### Phase 6: Full ratchet as GNN
-PyG graph neural network where:
-- Terrain nodes carry quantum state features (torch tensors)
-- Operator nodes carry channel parameters (learnable)
-- Torus nodes carry geometric parameters (η, differentiable)
-- Message passing = dynamics (state flows along edges)
-- The GNN IS the engine (not a simulation OF the engine)
-- Training objective: maximize sustained I_c (Axis 0 gradient)
-- The learned parameters ARE the constraint manifold
+## Phase 6: full ratchet as GNN
+PyG is not decorative. It is the graph substrate for the computation.
 
-### Phase 7: Validation against classical baselines
-- Run PyTorch ratchet against numpy baselines
-- Same physics, different computation substrate
-- Where they AGREE: substrate-independent truth (the math is correct regardless)
-- Where they DISAGREE: the substrate matters (classical vs quantum computation)
-- The disagreements ARE the quantum content — what numpy can't capture
+- terrain nodes carry state features
+- operator nodes carry channel parameters
+- shell nodes carry geometric parameters
+- message passing is the dynamics
+- training objective is a constraint-aware quantity such as sustained I_c
+
+## Phase 7: validation against classical baselines
+PyTorch-native results must be compared against the numpy baseline.
+
+Where they agree: substrate-independent truth.
+Where they diverge: that divergence is the quantum content that the classical substrate misses.
 
 ---
 
 ## Tool integration requirements
 
-| Tool | Role | Not this | This instead |
-|------|------|----------|--------------|
-| PyTorch | Core computation substrate | Wrapper around numpy | ALL tensors, ALL operations, ALL gradients |
-| PyG | Message passing dynamics | Build graph, inspect | Message passing IS the dynamics. GNN IS the engine. |
-| z3 | Constraint proofs | Post-hoc SAT check | UNSAT impossibility proofs at every structural claim |
-| sympy | Symbolic derivation | Verify known formula | Derive gradient formulas BEFORE numerical computation |
-| clifford | Geometric algebra | Roundtrip test | Cl(3)/Cl(6) as torch-compatible computation substrate |
-| TopoNetX | Topology | Verify Betti numbers | Cell complex topology SHAPES the PyG graph |
+| Tool | Role | Must do | Must not be reduced to |
+|------|------|---------|------------------------|
+| PyTorch | core substrate | tensors, gradients, autograd | numpy wrapper |
+| PyG | graph dynamics | message passing as computation | graph inspection only |
+| z3 | structural proof | UNSAT impossibility checks | post-hoc SAT check |
+| sympy | symbolic derivation | derive formulas before numerics | verify-only layer |
+| clifford | geometric algebra | native geometric computation | roundtrip test |
+| TopoNetX | topology | shape the graph by cell-complex structure | Betti-number checker |
 
----
+## Migration Registry
+
+All 28 irreducible families from the minimal surviving set. Each must be migrated from numpy baseline to torch module, tested against baseline, and paired with a negative battery.
+
+| # | Irreducible family | Numpy baseline | Torch target | Tools needed | Negative battery | Status |
+|---|---|---|---|---|---|---|
+| 1 | density_matrix | sim_pure_lego_density_matrices.py | torch DensityMatrix module | sympy, z3 | negative_density_matrices | NOT STARTED |
+| 2 | purification | sim_pure_lego_density_matrices.py | torch Purification module | sympy, z3 | negative_density_matrices | NOT STARTED |
+| 3 | z_dephasing | sim_pure_lego_channels.py | torch ZDephasing module | z3, clifford | negative_channels | NOT STARTED |
+| 4 | x_dephasing | sim_pure_lego_channels.py | torch XDephasing module | z3, clifford | negative_channels | NOT STARTED |
+| 5 | depolarizing | sim_pure_lego_channels.py | torch Depolarizing module | z3 | negative_channels | NOT STARTED |
+| 6 | amplitude_damping | sim_pure_lego_channels.py | torch AmplitudeDamping module | z3, sympy | negative_channels | NOT STARTED |
+| 7 | phase_damping | sim_pure_lego_channels.py | torch PhaseDamping module | z3 | negative_channels | NOT STARTED |
+| 8 | bit_flip | sim_pure_lego_channels.py | torch BitFlip module | z3 | negative_channels | NOT STARTED |
+| 9 | phase_flip | sim_pure_lego_channels.py | torch PhaseFlip module | z3 | negative_channels | NOT STARTED |
+| 10 | bit_phase_flip | sim_pure_lego_channels.py | torch BitPhaseFlip module | z3 | negative_channels | NOT STARTED |
+| 11 | unitary_rotation | sim_pure_lego_channels.py | torch UnitaryRotation module | clifford, sympy | negative_channels | NOT STARTED |
+| 12 | z_measurement | sim_pure_lego_channels.py | torch ZMeasurement module | z3 | negative_channels | NOT STARTED |
+| 13 | CNOT | sim_pure_lego_entanglement.py | torch CNOT module | z3, sympy | negative_entanglement | NOT STARTED |
+| 14 | CZ | sim_pure_lego_entanglement.py | torch CZ module | z3 | negative_entanglement | NOT STARTED |
+| 15 | SWAP | sim_pure_lego_entanglement.py | torch SWAP module | z3 | negative_entanglement | NOT STARTED |
+| 16 | Hadamard | sim_pure_lego_channels.py | torch Hadamard module | z3, clifford | negative_channels | NOT STARTED |
+| 17 | T_gate | sim_pure_lego_channels.py | torch TGate module | z3 | negative_channels | NOT STARTED |
+| 18 | iSWAP | sim_pure_lego_entanglement.py | torch iSWAP module | z3 | negative_entanglement | NOT STARTED |
+| 19 | cartan_kak | sim_pure_lego_entanglement.py | torch CartanKAK module | sympy, clifford | negative_entanglement | NOT STARTED |
+| 20 | eigenvalue_decomposition | sim_pure_lego_density_matrices.py | torch EigenDecomp module | sympy | negative_density_matrices | NOT STARTED |
+| 21 | husimi_q | sim_pure_lego_density_matrices.py | torch HusimiQ module | sympy | negative_density_matrices | NOT STARTED |
+| 22 | l1_coherence | sim_pure_lego_coherence.py | torch L1Coherence module | z3, sympy | negative_entropy_boundaries | NOT STARTED |
+| 23 | relative_entropy_coherence | sim_pure_lego_coherence.py | torch RECoherence module | z3, sympy | negative_entropy_boundaries | NOT STARTED |
+| 24 | wigner_negativity | sim_pure_lego_density_matrices.py | torch WignerNegativity module | sympy | negative_density_matrices | NOT STARTED |
+| 25 | hopf_connection | sim_pure_lego_geometry.py | torch HopfConnection module | clifford, toponetx | negative_geometry | NOT STARTED |
+| 26 | chiral_overlap | sim_pure_lego_geometry.py | torch ChiralOverlap module | clifford | negative_geometry | NOT STARTED |
+| 27 | mutual_information | sim_pure_lego_entropy.py | torch MutualInformation module | z3, sympy | negative_entropy_boundaries | NOT STARTED |
+| 28 | quantum_discord | sim_pure_lego_entropy.py | torch QuantumDiscord module | z3, sympy | negative_entropy_boundaries | NOT STARTED |
 
 ## Folder structure
 ```
-/new docs/                             ← Active prototyping docs
-/new docs/new content/                 ← Research reference (18+ math files)
-/system_v4/probes/                     ← Sim code (84 numpy legos + engines)
-/system_v4/probes/a2_state/sim_results/ ← 530+ JSON results
-/READ ONLY Legacy core_docs/           ← Archived old core_docs
-/system_v5/READ ONLY Reference Docs/   ← Selected legacy reference
+/new docs/                              ← active prototyping docs
+/new docs/new content/                  ← research reference
+/system_v4/probes/                      ← sim code
+/system_v4/probes/a2_state/sim_results/  ← JSON results
+/READ ONLY Legacy core_docs/            ← archived old core_docs
+/system_v5/READ ONLY Reference Docs/     ← selected legacy reference
 ```

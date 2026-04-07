@@ -1,0 +1,201 @@
+{
+  "probe": "pure_lego_quantum_shannon",
+  "timestamp": "2026-04-07T07:12:24",
+  "protocols": {
+    "1_schumacher_compression": [
+      {
+        "n": 1,
+        "total_dim": 2,
+        "typical_dim": 2,
+        "theory_typical_dim": 1.38,
+        "fidelity": 1.0,
+        "S_rho_bits": 0.468996,
+        "pass": true
+      },
+      {
+        "n": 5,
+        "total_dim": 32,
+        "typical_dim": 16,
+        "theory_typical_dim": 5.08,
+        "fidelity": 0.99144,
+        "S_rho_bits": 0.468996,
+        "pass": true
+      },
+      {
+        "n": 10,
+        "total_dim": 1024,
+        "typical_dim": 176,
+        "theory_typical_dim": 25.81,
+        "fidelity": 0.9872048,
+        "S_rho_bits": 0.468996,
+        "pass": true
+      },
+      {
+        "n": 20,
+        "total_dim": 1048576,
+        "typical_dim": 60460,
+        "theory_typical_dim": 666.25,
+        "fidelity": 0.99761391,
+        "S_rho_bits": 0.468996,
+        "pass": true
+      }
+    ],
+    "2_state_merging": [
+      {
+        "state": "Bell |Phi+>",
+        "S_A_given_B": -1.0,
+        "interpretation": "gain",
+        "expected": -1.0,
+        "pass": true
+      },
+      {
+        "state": "Product |00>",
+        "S_A_given_B": 0.0,
+        "interpretation": "zero cost (product)",
+        "expected": 0.0,
+        "pass": true
+      },
+      {
+        "state": "Classical correlation",
+        "S_A_given_B": 0.0,
+        "interpretation": "zero cost (perfectly correlated classically)",
+        "expected": 0.0,
+        "pass": true
+      },
+      {
+        "state": "Maximally mixed I/4",
+        "S_A_given_B": 1.0,
+        "interpretation": "full cost (no correlation)",
+        "expected": 1.0,
+        "pass": true
+      },
+      {
+        "state": "Partial entanglement",
+        "S_A_given_B": -0.468996,
+        "interpretation": "gain (negative conditional entropy)",
+        "expected": -0.468996,
+        "pass": true
+      }
+    ],
+    "3_state_redistribution": [
+      {
+        "state": "GHZ",
+        "S_A_given_B": 0.0,
+        "S_A_given_BC": -1.0,
+        "side_info_gain_I_A_C_given_B": 1.0,
+        "net_redistribution_cost": -1.0,
+        "pass": true
+      },
+      {
+        "state": "W",
+        "S_A_given_B": 0.0,
+        "S_A_given_BC": -0.918296,
+        "side_info_gain_I_A_C_given_B": 0.918296,
+        "net_redistribution_cost": -0.918296,
+        "pass": true
+      },
+      {
+        "state": "Product |000>",
+        "S_A_given_B": 0.0,
+        "S_A_given_BC": 0.0,
+        "side_info_gain_I_A_C_given_B": 0.0,
+        "net_redistribution_cost": 0.0,
+        "pass": true
+      },
+      {
+        "state": "Bell_AB x |0>_C",
+        "S_A_given_B": -1.0,
+        "S_A_given_BC": -1.0,
+        "side_info_gain_I_A_C_given_B": 0.0,
+        "note": "C uncorrelated => side info gain ~ 0",
+        "net_redistribution_cost": -1.0,
+        "pass": true
+      }
+    ],
+    "4_mother_protocol": [
+      {
+        "channel": "Amplitude damping g=0.1",
+        "max_coherent_info_bits": 0.709417,
+        "hashing_ent_distill_rate": 0.354709,
+        "quantum_capacity_lower_bound": 0.709417,
+        "positive_capacity": true
+      },
+      {
+        "channel": "Amplitude damping g=0.3",
+        "max_coherent_info_bits": 0.327953,
+        "hashing_ent_distill_rate": 0.163977,
+        "quantum_capacity_lower_bound": 0.327953,
+        "positive_capacity": true
+      },
+      {
+        "channel": "Dephasing p=0.05",
+        "max_coherent_info_bits": 0.713603,
+        "hashing_ent_distill_rate": 0.356802,
+        "quantum_capacity_lower_bound": 0.713603,
+        "positive_capacity": true
+      },
+      {
+        "channel": "Depolarizing p=0.05",
+        "max_coherent_info_bits": 0.634342,
+        "hashing_ent_distill_rate": 0.317171,
+        "quantum_capacity_lower_bound": 0.634342,
+        "positive_capacity": true
+      },
+      {
+        "channel": "Bit-flip p=0.05",
+        "max_coherent_info_bits": 0.713603,
+        "hashing_ent_distill_rate": 0.356802,
+        "quantum_capacity_lower_bound": 0.713603,
+        "positive_capacity": true
+      }
+    ],
+    "5_coherent_info_additivity": [
+      {
+        "channel": "Amp damp g=0.3 (degradable)",
+        "I_c_single": 0.327953,
+        "I_c_double": 0.654129,
+        "2_times_single": 0.655907,
+        "ratio_double_over_2single": 0.9973,
+        "is_degradable": true,
+        "additive_within_tolerance": true,
+        "superadditive": false,
+        "pass": true
+      },
+      {
+        "channel": "Dephasing p=0.1 (degradable)",
+        "I_c_single": 0.530996,
+        "I_c_double": 1.062005,
+        "2_times_single": 1.061991,
+        "ratio_double_over_2single": 1.0,
+        "is_degradable": true,
+        "additive_within_tolerance": true,
+        "superadditive": false,
+        "pass": true
+      },
+      {
+        "channel": "Depolarizing p=0.1",
+        "I_c_single": 0.372508,
+        "I_c_double": 0.745014,
+        "2_times_single": 0.745015,
+        "ratio_double_over_2single": 1.0,
+        "is_degradable": false,
+        "additive_within_tolerance": true,
+        "superadditive": false,
+        "pass": true
+      },
+      {
+        "channel": "Bit-flip p=0.1",
+        "I_c_single": 0.531002,
+        "I_c_double": 1.062005,
+        "2_times_single": 1.062003,
+        "ratio_double_over_2single": 1.0,
+        "is_degradable": true,
+        "additive_within_tolerance": true,
+        "superadditive": false,
+        "pass": true
+      }
+    ]
+  },
+  "all_validations_pass": true,
+  "total_elapsed_s": 1.685
+}

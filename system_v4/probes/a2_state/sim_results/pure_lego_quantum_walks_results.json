@@ -1,0 +1,189 @@
+{
+  "coined_walk_line": {
+    "n_sites": 20,
+    "n_steps": 100,
+    "final_probability_distribution": [
+      0.0066625348995995514,
+      0.0,
+      0.028362886338616354,
+      0.0,
+      0.029622755803511383,
+      0.0,
+      0.023849130635592134,
+      0.0,
+      0.027852381950289662,
+      0.0,
+      0.019531583172851176,
+      0.0,
+      0.010816929543592937,
+      0.0,
+      0.018802631128313964,
+      0.0,
+      0.0295924787999362,
+      0.0,
+      0.010004784042194384,
+      0.0
+    ],
+    "non_gaussian_verification": {
+      "mean": 1.7830522309136487,
+      "variance": 15.535386047854567,
+      "std_dev": 3.9414954075648203,
+      "kurtosis": 10.675895618290221,
+      "gaussian_kurtosis": 3.0,
+      "top_peak_positions": [
+        4,
+        16,
+        2,
+        8
+      ],
+      "avg_peak_distance_from_center": 5.5,
+      "is_non_gaussian": true,
+      "verdict": "PASS: distribution is non-Gaussian (quantum walk signature)"
+    }
+  },
+  "ctqw_cycle_C8": {
+    "graph": "cycle_C8",
+    "t_max": 50,
+    "n_time_points": 101,
+    "return_prob_samples": {
+      "t=0.0": 1.0,
+      "t=5.0": 0.15437518053837276,
+      "t=10.0": 0.12217554419585838,
+      "t=15.0": 0.0045718864180189665,
+      "t=20.0": 0.17364708059316988,
+      "t=25.0": 0.020194404024820214,
+      "t=30.0": 0.00037440325730626255,
+      "t=35.0": 0.5897899811742651,
+      "t=40.0": 0.521723705581635,
+      "t=45.0": 0.23381300858719434,
+      "t=50.0": 0.20535334153308235
+    },
+    "local_maxima_times": [
+      9.0,
+      13.0,
+      22.0,
+      31.5,
+      35.0,
+      40.5,
+      44.0
+    ],
+    "local_maxima_values": [
+      0.8254969697041976,
+      0.7373485441410379,
+      0.9548213209534727,
+      0.8439238394691964,
+      0.5897899811742651,
+      0.6687370878666956,
+      0.8293376651347536
+    ],
+    "has_periodicity": true,
+    "estimated_period": 5.833333333333333,
+    "verdict": "PASS: periodic return probability observed"
+  },
+  "ctqw_complete_graph": {
+    "graph": "complete_graph_suite",
+    "K4_result": {
+      "n_nodes": 4,
+      "target_uniform_prob": 0.25,
+      "symmetry_among_non_initial_nodes": true,
+      "max_non_initial_node_prob": 0.2499968714382983,
+      "best_mixing_time": 13.350000000000001,
+      "best_l2_from_uniform": 1.0837655643931148e-05,
+      "probs_at_best_mixing": [
+        0.2500093856851051,
+        0.2499968714382983,
+        0.2499968714382983,
+        0.2499968714382983
+      ],
+      "achieves_uniform_mixing": true
+    },
+    "K8_result": {
+      "n_nodes": 8,
+      "target_uniform_prob": 0.125,
+      "symmetry_among_non_initial_nodes": true,
+      "max_non_initial_node_prob": 0.062499561293970746,
+      "best_mixing_time": 16.1,
+      "best_l2_from_uniform": 0.46771045632205177,
+      "probs_at_best_mixing": [
+        0.5625030709422038,
+        0.06249956129397062,
+        0.062499561293970565,
+        0.06249956129397058,
+        0.06249956129397066,
+        0.062499561293970746,
+        0.062499561293970704,
+        0.062499561293970704
+      ],
+      "achieves_uniform_mixing": false
+    },
+    "K4_uniform_mixing": true,
+    "K8_symmetry_confirmed": true,
+    "K8_note": "K_8 does NOT achieve exact uniform mixing (known result for n>4). Max non-initial prob = 0.062500 vs target 1/8 = 0.125. This equals 4/n^2 = 0.062500 as expected.",
+    "verdict": "PASS: K4 achieves exact uniform mixing, K8 shows correct symmetry"
+  },
+  "spread_comparison": {
+    "spread_by_step": {
+      "10": {
+        "classical_std": 3.1622776601683795,
+        "quantum_std": 5.472944819747409,
+        "ratio_q_over_c": 1.7306971138821488,
+        "expected_classical_sqrt_t": 3.1622776601683795
+      },
+      "20": {
+        "classical_std": 4.47213595499958,
+        "quantum_std": 10.844142587904166,
+        "ratio_q_over_c": 2.42482399842542,
+        "expected_classical_sqrt_t": 4.47213595499958
+      },
+      "30": {
+        "classical_std": 5.477225575051661,
+        "quantum_std": 16.25449957723839,
+        "ratio_q_over_c": 2.967652026470551,
+        "expected_classical_sqrt_t": 5.477225575051661
+      },
+      "50": {
+        "classical_std": 7.0710678118654755,
+        "quantum_std": 27.07065953385012,
+        "ratio_q_over_c": 3.8283693855155363,
+        "expected_classical_sqrt_t": 7.0710678118654755
+      },
+      "70": {
+        "classical_std": 8.366600265340756,
+        "quantum_std": 37.89136156273627,
+        "ratio_q_over_c": 4.528883938641597,
+        "expected_classical_sqrt_t": 8.366600265340756
+      },
+      "100": {
+        "classical_std": 10.0,
+        "quantum_std": 54.12413815289787,
+        "ratio_q_over_c": 5.412413815289787,
+        "expected_classical_sqrt_t": 10.0
+      }
+    },
+    "ratio_trend_increasing": true,
+    "quantum_advantage_explanation": "Quantum walk spread grows linearly in t, classical grows as sqrt(t). The ratio quantum_std / classical_std grows as ~sqrt(t), demonstrating quadratic speedup in spatial spread (hitting time).",
+    "verdict": "PASS: quantum walk shows quadratic speedup over classical"
+  },
+  "hitting_time": {
+    "n_sites": 20,
+    "start": 0,
+    "target": 19,
+    "threshold": 0.005,
+    "classical_hitting_step": 53,
+    "quantum_hitting_step": 25,
+    "speedup_ratio": 2.12,
+    "expected_scaling": "classical O(n^2) vs quantum O(n)",
+    "verdict": "PASS: quantum hits 2.1x faster"
+  },
+  "summary": {
+    "all_pass": true,
+    "verdicts": [
+      "PASS: distribution is non-Gaussian (quantum walk signature)",
+      "PASS: periodic return probability observed",
+      "PASS: K4 achieves exact uniform mixing, K8 shows correct symmetry",
+      "PASS: quantum walk shows quadratic speedup over classical",
+      "PASS: quantum hits 2.1x faster"
+    ],
+    "description": "Pure-lego quantum walks on graphs. Coined discrete-time walk on line, continuous-time walks on cycle and complete graph, spread comparison, and hitting time comparison."
+  }
+}

@@ -1,0 +1,423 @@
+{
+  "1_peres_mermin_magic_square": {
+    "tests": {
+      "t1_all_square_to_identity": {
+        "details": {
+          "XI": true,
+          "IX": true,
+          "XX": true,
+          "IZ": true,
+          "ZI": true,
+          "ZZ": true,
+          "XZ": true,
+          "ZX": true,
+          "YY": true
+        },
+        "pass": true
+      },
+      "t2_rows_commute": {
+        "details": {
+          "row_0": {
+            "pairs": {
+              "XI,IX": true,
+              "XI,XX": true,
+              "IX,XX": true
+            },
+            "all_commute": true
+          },
+          "row_1": {
+            "pairs": {
+              "IZ,ZI": true,
+              "IZ,ZZ": true,
+              "ZI,ZZ": true
+            },
+            "all_commute": true
+          },
+          "row_2": {
+            "pairs": {
+              "XZ,ZX": true,
+              "XZ,YY": true,
+              "ZX,YY": true
+            },
+            "all_commute": true
+          }
+        },
+        "pass": true
+      },
+      "t3_columns_commute": {
+        "details": {
+          "col_0": {
+            "pairs": {
+              "XI,IZ": true,
+              "XI,XZ": true,
+              "IZ,XZ": true
+            },
+            "all_commute": true
+          },
+          "col_1": {
+            "pairs": {
+              "IX,ZI": true,
+              "IX,ZX": true,
+              "ZI,ZX": true
+            },
+            "all_commute": true
+          },
+          "col_2": {
+            "pairs": {
+              "XX,ZZ": true,
+              "XX,YY": true,
+              "ZZ,YY": true
+            },
+            "all_commute": true
+          }
+        },
+        "pass": true
+      },
+      "t4_row_products_plus_I": {
+        "details": {
+          "row_0": {
+            "product_is_+I": true,
+            "labels": "XI * IX * XX"
+          },
+          "row_1": {
+            "product_is_+I": true,
+            "labels": "IZ * ZI * ZZ"
+          },
+          "row_2": {
+            "product_is_+I": true,
+            "labels": "XZ * ZX * YY"
+          }
+        },
+        "pass": true
+      },
+      "t5_column_products": {
+        "details": {
+          "col_0": {
+            "expected_sign": 1,
+            "matches": true,
+            "labels": "XI * IZ * XZ"
+          },
+          "col_1": {
+            "expected_sign": 1,
+            "matches": true,
+            "labels": "IX * ZI * ZX"
+          },
+          "col_2": {
+            "expected_sign": -1,
+            "matches": true,
+            "labels": "XX * ZZ * YY"
+          }
+        },
+        "pass": true
+      },
+      "t6_no_noncontextual_assignment": {
+        "total_assignments_checked": 512,
+        "satisfying_assignments": 0,
+        "kochen_specker_proven": true,
+        "explanation": "Rows force product of all 9 values = (+1)^3 = +1. Columns force product = (+1)(+1)(-1) = -1. Same 9 values cannot have product both +1 and -1.",
+        "pass": true
+      }
+    },
+    "all_pass": true
+  },
+  "2_chsh_contextuality": {
+    "tests": {
+      "t1_optimal_chsh": {
+        "chsh_value": 2.8284271247461894,
+        "tsirelson_bound": 2.8284271247461903,
+        "matches_tsirelson": true,
+        "violates_classical": true,
+        "pass": true
+      },
+      "t2_chsh_eigenvalues": {
+        "eigenvalues": [
+          2.82842712474619,
+          2.6803154833089315e-16,
+          -2.6803154833089315e-16,
+          -2.82842712474619
+        ],
+        "max_eigenvalue": 2.82842712474619,
+        "tsirelson_bound": 2.8284271247461903,
+        "max_equals_tsirelson": true,
+        "note": "Max eigenvalue of CHSH operator = Tsirelson bound (quantum max)",
+        "pass": true
+      },
+      "t3_product_states_classical": {
+        "num_sampled": 2000,
+        "max_chsh_product": 1.414213546132454,
+        "within_classical_bound": true,
+        "note": "Product states = noncontextual model for CHSH scenario",
+        "pass": true
+      },
+      "t4_marginal_consistency_contextual_correlations": {
+        "exp_Ap_marginal": 0.0,
+        "marginal_is_zero": true,
+        "corr_ApB": 0.7071067811865474,
+        "corr_ApBp": -0.7071067811865474,
+        "correlations_differ": true,
+        "note": "Marginal <A'>=0 is the same regardless of Bob's setting (no-signaling), but correlation <A'B> differs from <A'B'>. The 'context' (Bob's choice) changes the joint statistics without changing Alice's local statistics. This IS contextuality.",
+        "pass": true
+      },
+      "t5_werner_chsh_threshold": {
+        "threshold_p": 0.7074148296593186,
+        "theory": 0.7071067811865475,
+        "matches": true,
+        "note": "CHSH violation threshold for Werner states = 1/sqrt(2)",
+        "pass": true
+      }
+    },
+    "all_pass": true
+  },
+  "3_spekkens_toy_model": {
+    "tests": {
+      "t1_knowledge_balance": {
+        "all_have_2_ontic_states": true,
+        "epistemic_states": {
+          "|0>": [
+            0,
+            1
+          ],
+          "|1>": [
+            2,
+            3
+          ],
+          "|+>": [
+            0,
+            2
+          ],
+          "|->": [
+            1,
+            3
+          ],
+          "|i>": [
+            0,
+            3
+          ],
+          "|-i>": [
+            1,
+            2
+          ]
+        },
+        "pass": true
+      },
+      "t2_complementarity_disjoint": {
+        "pairs": {
+          "|0>,|1>": {
+            "intersection": [],
+            "disjoint": true
+          },
+          "|+>,|->": {
+            "intersection": [],
+            "disjoint": true
+          },
+          "|i>,|-i>": {
+            "intersection": [],
+            "disjoint": true
+          }
+        },
+        "all_disjoint": true,
+        "pass": true
+      },
+      "t3_nonorthogonal_overlap": {
+        "pairs": {
+          "|0>,|+>": {
+            "overlap_size": 1,
+            "has_overlap_1": true
+          },
+          "|0>,|->": {
+            "overlap_size": 1,
+            "has_overlap_1": true
+          },
+          "|0>,|i>": {
+            "overlap_size": 1,
+            "has_overlap_1": true
+          },
+          "|0>,|-i>": {
+            "overlap_size": 1,
+            "has_overlap_1": true
+          },
+          "|1>,|+>": {
+            "overlap_size": 1,
+            "has_overlap_1": true
+          },
+          "|1>,|->": {
+            "overlap_size": 1,
+            "has_overlap_1": true
+          }
+        },
+        "all_overlap_1": true,
+        "note": "Non-orthogonal states share exactly 1 ontic state (Born rule analog)",
+        "pass": true
+      },
+      "t4_spekkens_noncontextual": {
+        "ontic_outcome_table": {
+          "0": {
+            "Z": 0,
+            "X": 0,
+            "Y": 0
+          },
+          "1": {
+            "Z": 0,
+            "X": 1,
+            "Y": 1
+          },
+          "2": {
+            "Z": 1,
+            "X": 0,
+            "Y": 1
+          },
+          "3": {
+            "Z": 1,
+            "X": 1,
+            "Y": 0
+          }
+        },
+        "is_noncontextual": true,
+        "note": "Spekkens model is non-contextual by construction: outcomes are functions of ontic state only",
+        "pass": true
+      },
+      "t5_spekkens_cannot_reproduce_KS": {
+        "claim": "No non-contextual hidden variable model (including Spekkens) can assign consistent values to Peres-Mermin observables",
+        "algebraic_argument": "Row products force v1*...*v9 = +1. Column products force v1*...*v9 = -1. Contradiction.",
+        "computational_verification": {
+          "n_ontic=2": {
+            "valid_assignments_per_state": 0,
+            "impossible": true
+          },
+          "n_ontic=4": {
+            "valid_assignments_per_state": 0,
+            "impossible": true
+          },
+          "n_ontic=8": {
+            "valid_assignments_per_state": 0,
+            "impossible": true
+          },
+          "n_ontic=16": {
+            "valid_assignments_per_state": 0,
+            "impossible": true
+          }
+        },
+        "fails_for_all_ontic_spaces": true,
+        "pass": true
+      }
+    },
+    "all_pass": true
+  },
+  "4_kcbs_contextuality": {
+    "tests": {
+      "t1_kcbs_orthogonality": {
+        "adjacent_pairs": {
+          "v0_v1": {
+            "dot_product": 0.0,
+            "orthogonal": true
+          },
+          "v1_v2": {
+            "dot_product": -5.551115123125783e-17,
+            "orthogonal": true
+          },
+          "v2_v3": {
+            "dot_product": -1.1102230246251565e-16,
+            "orthogonal": true
+          },
+          "v3_v4": {
+            "dot_product": -5.551115123125783e-17,
+            "orthogonal": true
+          },
+          "v4_v0": {
+            "dot_product": -1.6653345369377348e-16,
+            "orthogonal": true
+          }
+        },
+        "all_orthogonal": true,
+        "vectors": [
+          [
+            0.743496068920369,
+            0.0,
+            0.668740304976422
+          ],
+          [
+            -0.6015009550075456,
+            0.4370160244488212,
+            0.668740304976422
+          ],
+          [
+            0.22975292054736104,
+            -0.7071067811865476,
+            0.668740304976422
+          ],
+          [
+            0.22975292054736143,
+            0.7071067811865476,
+            0.668740304976422
+          ],
+          [
+            -0.6015009550075459,
+            -0.4370160244488209,
+            0.668740304976422
+          ]
+        ],
+        "cone_angle_deg": 48.030084765624565,
+        "pass": true
+      },
+      "t2_nchv_bound": {
+        "max_nchv_sum": 2,
+        "bound_is_2": true,
+        "note": "Max independent set of C_5 = 2, so sum P_i <= 2 classically",
+        "pass": true
+      },
+      "t3_quantum_violation": {
+        "optimal_state": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "sum_P_i": 2.23606797749979,
+        "5_cos2_theta": 2.2360679774997894,
+        "theory_sqrt5": 2.23606797749979,
+        "matches_sqrt5": true,
+        "exceeds_nchv_bound_2": true,
+        "violation_ratio": 1.118033988749895,
+        "note": "Quantum: sum<P_i> = sqrt(5) ~ 2.2361 > 2 (NCHV bound). This is state-dependent contextuality: single qutrit, no entanglement.",
+        "pass": true
+      },
+      "t4_nonadjacent_not_orthogonal": {
+        "nonadjacent_pairs": {
+          "v0_v2": {
+            "dot_product": 0.6180339887498947,
+            "is_orthogonal": false
+          },
+          "v1_v3": {
+            "dot_product": 0.6180339887498949,
+            "is_orthogonal": false
+          },
+          "v2_v4": {
+            "dot_product": 0.6180339887498947,
+            "is_orthogonal": false
+          },
+          "v3_v0": {
+            "dot_product": 0.618033988749895,
+            "is_orthogonal": false
+          },
+          "v4_v1": {
+            "dot_product": 0.6180339887498949,
+            "is_orthogonal": false
+          }
+        },
+        "none_are_orthogonal": true,
+        "note": "Non-adjacent projectors are NOT orthogonal. This partial compatibility structure is what makes contextuality possible. If all were orthogonal (or all compatible), no contradiction would arise.",
+        "pass": true
+      }
+    },
+    "all_pass": true
+  },
+  "meta": {
+    "total_time_s": 0.05,
+    "all_sections_pass": true,
+    "sections": {
+      "1_peres_mermin": true,
+      "2_chsh_contextuality": true,
+      "3_spekkens": true,
+      "4_kcbs_contextuality": true
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "probe": "sim_pure_lego_quaternion_octonion",
+  "timestamp": "2026-04-07T09:24:45.546234+00:00",
+  "sections": {
+    "1_quaternion_algebra_H": {
+      "i_squared_eq_neg1": true,
+      "j_squared_eq_neg1": true,
+      "k_squared_eq_neg1": true,
+      "ijk_eq_neg1": true,
+      "ij_eq_k": true,
+      "jk_eq_i": true,
+      "ki_eq_j": true,
+      "ji_eq_neg_k": true,
+      "non_commutative": true,
+      "associative": true,
+      "norm_multiplicative": true,
+      "has_inverse": true
+    },
+    "2_su2_unit_quaternions": {
+      "is_unit_quaternion": true,
+      "unitary": true,
+      "det_eq_1": true,
+      "homomorphism": true,
+      "neg_q_gives_neg_U": true,
+      "all_on_S3": true
+    },
+    "3_rotation_comparison": {
+      "quat_eq_su2": true,
+      "quat_eq_cl3": true,
+      "su2_eq_cl3": true,
+      "quat_preserves_norm": true,
+      "double_cover_q_neg_q_same_rotation": true,
+      "cl3_even_iso_H": true,
+      "100_random_rotations_all_agree": true
+    },
+    "4_octonion_algebra_O": {
+      "fano_plane_verified": true,
+      "imaginary_units_square_to_neg1": true,
+      "non_commutative": true,
+      "non_associative_basis": true,
+      "non_associative_random": true,
+      "alternative_left": true,
+      "alternative_right": true,
+      "alternative_flexible": true,
+      "norm_multiplicative": true,
+      "norm_multiplicative_50_random": true
+    },
+    "5_hopf_fibrations": {
+      "hopf_C_lands_on_S2": true,
+      "hopf_C_fiber_is_S1": true,
+      "hopf_C_fiber_S1_100_phases": true,
+      "hopf_H_lands_on_S4": true,
+      "hopf_H_fiber_is_S3": true,
+      "hopf_H_fiber_S3_50_quats": true,
+      "hopf_O_lands_on_S8": true,
+      "hopf_O_norm_part_invariant": true,
+      "hopf_O_cross_NOT_invariant_naive_right_mult": true,
+      "hopf_O_fiber_image_on_S8": true,
+      "hopf_O_exists_but_non_algebraic_fiber": true,
+      "adams_theorem": {
+        "statement": "The only Hopf fibrations S^(2n-1) -> S^n are for n=2,4,8",
+        "equivalently": "R(1), C(2), H(4), O(8) are the only normed division algebras",
+        "hurwitz_1898": "Only dimensions 1, 2, 4, 8 admit normed division algebras",
+        "adams_1960": "Only S^1, S^3, S^7 are H-spaces (admit continuous multiplication)",
+        "verified_numerically": true
+      }
+    },
+    "6_qit_division_algebra": {
+      "qubit_state_is_complex": true,
+      "qubit_hilbert_space_over_C": true,
+      "bloch_vector_on_S2": true,
+      "bloch_map_IS_hopf_C": true,
+      "su2_gate_preserves_norm": true,
+      "gate_group_is_unit_quaternions": true,
+      "why_not_quaternionic_qm": {
+        "tensor_product_fails": "H is non-commutative, so H-bilinear maps are problematic",
+        "no_spectral_theorem": "Self-adjoint operators over H don't decompose cleanly",
+        "complex_suffices": "C + SU(2) symmetry recovers all quaternionic structure needed",
+        "su2_is_already_H": "The gate group SU(2) = unit quaternions, so H is already present"
+      },
+      "why_not_octonionic_qm": {
+        "non_associative": "O is non-associative, breaking operator composition: (AB)C != A(BC)",
+        "no_matrix_algebra": "Mat_n(O) is not an algebra for n >= 2",
+        "exceptional_appearances": "O appears in E8, Jordan algebras (J3(O)), but not as QIT base",
+        "hopf_O_exists": "S^7 -> S^15 -> S^8 exists but has no standard QM interpretation"
+      },
+      "division_algebra_tower_for_qit": {
+        "R_dim1": "Classical probability (no interference)",
+        "C_dim2": "Standard QIT -- Hilbert space base field",
+        "H_dim4": "SU(2) = unit quaternions = qubit gate group = S^3",
+        "O_dim8": "Exceptional structures only, not QIT base field",
+        "answer": "d=2 QIT uses C, but SU(2) = unit quaternion sphere S^3 is the gate group"
+      }
+    }
+  },
+  "verdict": {
+    "total_bool_checks": 52,
+    "passed": 52,
+    "failed": 0,
+    "all_pass": true
+  }
+}

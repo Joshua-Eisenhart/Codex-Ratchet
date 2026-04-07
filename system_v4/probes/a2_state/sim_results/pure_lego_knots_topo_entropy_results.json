@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "title": "Pure Lego: Knots & Topological Entropy",
+    "timestamp": "2026-04-07T19:23:54.041735+00:00",
+    "engine": "none (numpy only)"
+  },
+  "block_1_temperley_lieb": {
+    "delta": 2,
+    "e1_squared_equals_delta_e1": true,
+    "max_diff_e1_squared": 0.0,
+    "traces": {
+      "1": 2.0,
+      "2": 4.0,
+      "3": 8.0
+    },
+    "trace_expected": {
+      "1": 2.0,
+      "2": 4.0,
+      "3": 8.0
+    },
+    "all_traces_match": true
+  },
+  "block_2_kauffman_yang_baxter": {
+    "q_parameter": {
+      "real": 0.30901699437494745,
+      "imag": 0.9510565162951535
+    },
+    "braid_yang_baxter_holds": true,
+    "braid_yang_baxter_diff": 4.965068306494546e-16,
+    "algebraic_yang_baxter_holds": true,
+    "algebraic_yang_baxter_diff": 4.965068306494546e-16,
+    "yang_baxter_any_form": true,
+    "R_determinant": {
+      "real": -0.8090169943749473,
+      "imag": 0.5877852522924732
+    },
+    "R_invertible": true
+  },
+  "block_3_topological_entropy": {
+    "ghz_state": {
+      "entropies": {
+        "q0": 1.0,
+        "q1": 1.0,
+        "q2": 1.0,
+        "q3": 1.0,
+        "q01": 1.0,
+        "q23": 1.0,
+        "q02": 1.0,
+        "q13": 1.0,
+        "q03": 1.0,
+        "q12": 1.0,
+        "q012": 1.0,
+        "q013": 1.0,
+        "q023": 1.0,
+        "q123": 1.0
+      },
+      "gamma": 1.0,
+      "gamma_matches_D2": true
+    },
+    "toric_code_state": {
+      "entropies": {
+        "q0": 1.0,
+        "q1": 1.0,
+        "q2": 1.0,
+        "q3": 1.0,
+        "q01": 1.0,
+        "q23": 1.0,
+        "q02": 1.0,
+        "q13": 1.0,
+        "q03": 1.0,
+        "q12": 1.0,
+        "q012": 1.0,
+        "q013": 1.0,
+        "q023": 1.0,
+        "q123": 1.0
+      },
+      "gamma": 1.0,
+      "gamma_positive": true
+    },
+    "gamma_expected_D2": 1.0,
+    "ghz_area_law": true
+  },
+  "block_4_braid_group": {
+    "braid_relation_Rcheck": {
+      "holds": true,
+      "max_diff": 4.965068306494546e-16
+    },
+    "Rcheck_unitary": false,
+    "Rcheck_unitarity_diff": 3.618033988749895,
+    "burau_representation": {
+      "t": {
+        "real": 0.8090169943749475,
+        "imag": 0.5877852522924731
+      },
+      "braid_relation_holds": true,
+      "braid_relation_diff": 0.0
+    },
+    "alexander_polynomial": {
+      "trefoil": {
+        "real": 0.0,
+        "imag": 0.0
+      },
+      "figure_eight": {
+        "real": 3.618033988749896,
+        "imag": -8.892413719514638e-17
+      },
+      "knots_distinguished": true
+    },
+    "braid_word_traces": {
+      "trefoil": {
+        "real": 1.3090169943749475,
+        "imag": -0.9510565162951536
+      },
+      "figure_eight": {
+        "real": -1.618033988749895,
+        "imag": 0.0
+      },
+      "unknot": 2.0,
+      "traces_distinct": true
+    },
+    "adjacent_noncommutativity": 1.0000000000000002
+  },
+  "summary": {
+    "checks": {
+      "TL: e1^2 = delta*e1": true,
+      "TL: all traces Tr(e1^n)=d^n": true,
+      "YB: braid-form Yang-Baxter": true,
+      "YB: algebraic Yang-Baxter": true,
+      "TE: GHZ gamma=1 (D=2)": true,
+      "TE: toric code gamma>0": true,
+      "BG: braid relation (Rcheck)": true,
+      "BG: braid relation (Burau)": true,
+      "BG: Alexander poly discrimination": true
+    },
+    "all_pass": true
+  }
+}

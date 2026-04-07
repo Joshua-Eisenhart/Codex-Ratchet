@@ -1,0 +1,619 @@
+{
+  "dense_coding_capacity": {
+    "bell_pair": {
+      "S_A": 1.0,
+      "capacity": 2.0,
+      "expected": 2.0,
+      "pass": "True"
+    },
+    "product_state": {
+      "S_A": -0.0,
+      "capacity": 1.0,
+      "expected": 1.0,
+      "pass": "True"
+    },
+    "partial_entanglement": {
+      "theta": 0.523599,
+      "S_A": 0.811278,
+      "capacity": 1.811278,
+      "in_range": "True"
+    },
+    "all_pass": "True"
+  },
+  "entanglement_catalysis": {
+    "without_catalyst": {
+      "psi1_osc": [
+        0.4,
+        0.4,
+        0.1,
+        0.1
+      ],
+      "psi2_osc": [
+        0.5,
+        0.25,
+        0.25,
+        0.0
+      ],
+      "psi2_majorizes_psi1": false,
+      "psi1_to_psi2_by_LOCC": false,
+      "cumsum_psi1": [
+        0.4,
+        0.8,
+        0.9,
+        1.0
+      ],
+      "cumsum_psi2": [
+        0.5,
+        0.75,
+        1.0,
+        1.0
+      ],
+      "note": "Fails at k=2: 0.75 < 0.8. psi1->psi2 is impossible by LOCC."
+    },
+    "with_catalyst": {
+      "chi_osc": [
+        0.6,
+        0.4
+      ],
+      "psi1_x_chi_osc": [
+        0.24,
+        0.24,
+        0.16,
+        0.16,
+        0.06,
+        0.06,
+        0.04,
+        0.04
+      ],
+      "psi2_x_chi_osc": [
+        0.3,
+        0.2,
+        0.15,
+        0.15,
+        0.1,
+        0.1,
+        0.0,
+        0.0
+      ],
+      "psi2chi_majorizes_psi1chi": true,
+      "transform_with_catalyst": true,
+      "cumsum_psi1_chi": [
+        0.24,
+        0.48,
+        0.64,
+        0.8,
+        0.86,
+        0.92,
+        0.96,
+        1.0
+      ],
+      "cumsum_psi2_chi": [
+        0.3,
+        0.5,
+        0.65,
+        0.8,
+        0.9,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "note": "Jonathan-Plenio Eq.(5): catalyst enables the forbidden transformation"
+    },
+    "catalysis_demonstrated": true,
+    "all_pass": true
+  },
+  "quantum_repeater": {
+    "perfect_swap": {
+      "F_AB": 1.0,
+      "F_BC": 1.0,
+      "F_AC_after_swap": 1.0,
+      "pass": "True"
+    },
+    "noisy_swap": {
+      "p_werner": 0.9,
+      "F_AB": 0.925,
+      "F_AC_after_swap": 0.8575,
+      "degrades": "True"
+    },
+    "distillation": {
+      "F_raw": 0.925,
+      "F_distilled": 0.946133,
+      "improves": true
+    },
+    "all_pass": true
+  },
+  "no_communication": {
+    "num_tests": 25,
+    "max_violation": 0.0,
+    "details": [
+      {
+        "channel": "depolarizing",
+        "state": "bell_phi_plus",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "depolarizing",
+        "state": "product_01",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "depolarizing",
+        "state": "random_pure_1",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "depolarizing",
+        "state": "random_mixed",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "depolarizing",
+        "state": "werner_0.7",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "amplitude_damping",
+        "state": "bell_phi_plus",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "amplitude_damping",
+        "state": "product_01",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "amplitude_damping",
+        "state": "random_pure_1",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "amplitude_damping",
+        "state": "random_mixed",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "amplitude_damping",
+        "state": "werner_0.7",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "phase_damping",
+        "state": "bell_phi_plus",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "phase_damping",
+        "state": "product_01",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "phase_damping",
+        "state": "random_pure_1",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "phase_damping",
+        "state": "random_mixed",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "phase_damping",
+        "state": "werner_0.7",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "unitary_rotation",
+        "state": "bell_phi_plus",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "unitary_rotation",
+        "state": "product_01",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "unitary_rotation",
+        "state": "random_pure_1",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "unitary_rotation",
+        "state": "random_mixed",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "unitary_rotation",
+        "state": "werner_0.7",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "random_unitary_mix",
+        "state": "bell_phi_plus",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "random_unitary_mix",
+        "state": "product_01",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "random_unitary_mix",
+        "state": "random_pure_1",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "random_unitary_mix",
+        "state": "random_mixed",
+        "max_diff": 0.0,
+        "pass": "True"
+      },
+      {
+        "channel": "random_unitary_mix",
+        "state": "werner_0.7",
+        "max_diff": 0.0,
+        "pass": "True"
+      }
+    ],
+    "all_pass": true
+  },
+  "quantum_erasure": {
+    "p=0.0": {
+      "erasure_prob": 0.0,
+      "quantum_capacity": 1.0,
+      "classical_capacity": 1.0,
+      "Q_formula_check": true,
+      "C_formula_check": true
+    },
+    "p=0.3": {
+      "erasure_prob": 0.3,
+      "quantum_capacity": 0.4,
+      "classical_capacity": 0.7,
+      "Q_formula_check": true,
+      "C_formula_check": true
+    },
+    "p=0.5": {
+      "erasure_prob": 0.5,
+      "quantum_capacity": 0.0,
+      "classical_capacity": 0.5,
+      "Q_formula_check": true,
+      "C_formula_check": true
+    },
+    "p=0.7": {
+      "erasure_prob": 0.7,
+      "quantum_capacity": 0.0,
+      "classical_capacity": 0.3,
+      "Q_formula_check": true,
+      "C_formula_check": true
+    },
+    "p=1.0": {
+      "erasure_prob": 1.0,
+      "quantum_capacity": 0.0,
+      "classical_capacity": 0.0,
+      "Q_formula_check": true,
+      "C_formula_check": true
+    },
+    "numerical_verification": {
+      "p=0.0": {
+        "coherent_info": 1.0,
+        "expected_Q": 1.0,
+        "match": "True"
+      },
+      "p=0.3": {
+        "coherent_info": 0.4,
+        "expected_Q": 0.4,
+        "match": "True"
+      },
+      "p=0.5": {
+        "coherent_info": 0.0,
+        "expected_Q": 0,
+        "match": "True"
+      }
+    },
+    "all_pass": true
+  },
+  "quantum_zeno": {
+    "no_measurement": {
+      "T_total": 1.570796,
+      "fidelity_with_initial": 0.0,
+      "note": "Full pi/2 rotation, fidelity ~ 0"
+    },
+    "zeno_measurements": [
+      {
+        "N_measurements": 1,
+        "fidelity_with_initial": 0.0
+      },
+      {
+        "N_measurements": 5,
+        "fidelity_with_initial": 1.0
+      },
+      {
+        "N_measurements": 10,
+        "fidelity_with_initial": 1.0
+      },
+      {
+        "N_measurements": 50,
+        "fidelity_with_initial": 1.0
+      },
+      {
+        "N_measurements": 100,
+        "fidelity_with_initial": 1.0
+      }
+    ],
+    "analytic_zeno": [
+      {
+        "N_measurements": 1,
+        "analytic_survival_prob": 0.0
+      },
+      {
+        "N_measurements": 5,
+        "analytic_survival_prob": 0.605429
+      },
+      {
+        "N_measurements": 10,
+        "analytic_survival_prob": 0.780546
+      },
+      {
+        "N_measurements": 50,
+        "analytic_survival_prob": 0.951842
+      },
+      {
+        "N_measurements": 100,
+        "analytic_survival_prob": 0.975627
+      }
+    ],
+    "zeno_limit_confirmed": "True",
+    "all_pass": "True"
+  },
+  "decoherent_histories": {
+    "z_basis_histories": {
+      "num_histories": 8,
+      "off_diagonal_max": 0.0,
+      "consistent": true,
+      "note": "[H, P_z] = 0 implies Z-histories are consistent"
+    },
+    "x_basis_histories": {
+      "off_diagonal_max": 0.0574622118,
+      "inconsistent": "True",
+      "note": "[H_z, P_x] != 0 implies X-histories are NOT consistent"
+    },
+    "all_pass": "True"
+  },
+  "quantum_darwinism": {
+    "mi_per_fragment": [
+      {
+        "env_qubit": 0,
+        "S_system": 1.0,
+        "S_env_k": 1.0,
+        "S_joint": 1.0,
+        "MI": 1.0
+      },
+      {
+        "env_qubit": 1,
+        "S_system": 1.0,
+        "S_env_k": 1.0,
+        "S_joint": 1.0,
+        "MI": 1.0
+      },
+      {
+        "env_qubit": 2,
+        "S_system": 1.0,
+        "S_env_k": 1.0,
+        "S_joint": 1.0,
+        "MI": 1.0
+      },
+      {
+        "env_qubit": 3,
+        "S_system": 1.0,
+        "S_env_k": 1.0,
+        "S_joint": 1.0,
+        "MI": 1.0
+      }
+    ],
+    "redundancy_check": {
+      "all_fragments_have_full_classical_info": true,
+      "num_fragments": 4,
+      "note": "GHZ-like state: each env fragment has 1 bit of classical info about system"
+    },
+    "darwinism_signature": {
+      "mi_plateau_value": 1.0,
+      "plateau_is_classical": true
+    },
+    "all_pass": true
+  },
+  "measurement_disturbance": {
+    "tradeoff_curve": [
+      {
+        "strength": 0.0,
+        "info_gain": 0.0,
+        "disturbance": 0.0
+      },
+      {
+        "strength": 0.05,
+        "info_gain": 0.001804,
+        "disturbance": 0.000625
+      },
+      {
+        "strength": 0.1,
+        "info_gain": 0.007226,
+        "disturbance": 0.002506
+      },
+      {
+        "strength": 0.15,
+        "info_gain": 0.016292,
+        "disturbance": 0.005657
+      },
+      {
+        "strength": 0.2,
+        "info_gain": 0.029049,
+        "disturbance": 0.010102
+      },
+      {
+        "strength": 0.25,
+        "info_gain": 0.045566,
+        "disturbance": 0.015877
+      },
+      {
+        "strength": 0.3,
+        "info_gain": 0.065932,
+        "disturbance": 0.02303
+      },
+      {
+        "strength": 0.35,
+        "info_gain": 0.090264,
+        "disturbance": 0.031625
+      },
+      {
+        "strength": 0.4,
+        "info_gain": 0.118709,
+        "disturbance": 0.041742
+      },
+      {
+        "strength": 0.45,
+        "info_gain": 0.151452,
+        "disturbance": 0.053486
+      },
+      {
+        "strength": 0.5,
+        "info_gain": 0.188722,
+        "disturbance": 0.066987
+      },
+      {
+        "strength": 0.55,
+        "info_gain": 0.230807,
+        "disturbance": 0.082418
+      },
+      {
+        "strength": 0.6,
+        "info_gain": 0.278072,
+        "disturbance": 0.1
+      },
+      {
+        "strength": 0.65,
+        "info_gain": 0.330984,
+        "disturbance": 0.120033
+      },
+      {
+        "strength": 0.7,
+        "info_gain": 0.39016,
+        "disturbance": 0.142929
+      },
+      {
+        "strength": 0.75,
+        "info_gain": 0.456436,
+        "disturbance": 0.169281
+      },
+      {
+        "strength": 0.8,
+        "info_gain": 0.531004,
+        "disturbance": 0.2
+      },
+      {
+        "strength": 0.85,
+        "info_gain": 0.615688,
+        "disturbance": 0.236609
+      },
+      {
+        "strength": 0.9,
+        "info_gain": 0.713603,
+        "disturbance": 0.282055
+      },
+      {
+        "strength": 0.95,
+        "info_gain": 0.831339,
+        "disturbance": 0.343875
+      },
+      {
+        "strength": 1.0,
+        "info_gain": 1.0,
+        "disturbance": 0.5
+      }
+    ],
+    "monotonicity": {
+      "gain_monotone_increasing": true,
+      "disturbance_monotone_increasing": true
+    },
+    "boundary_conditions": {
+      "s0_gain_zero": true,
+      "s0_disturbance_zero": true,
+      "s1_gain_max": true,
+      "s1_disturbance_max": true
+    },
+    "all_pass": true
+  },
+  "quantum_gambling": {
+    "classical_strategy": {
+      "strategy": "both_output_0",
+      "win_prob": 0.75,
+      "expected_max": 0.75
+    },
+    "quantum_strategy": {
+      "strategy": "optimal_CHSH_angles",
+      "win_prob": 0.853553,
+      "expected": 0.853553,
+      "game_details": [
+        {
+          "x": 0,
+          "y": 0,
+          "win_prob": 0.853553
+        },
+        {
+          "x": 0,
+          "y": 1,
+          "win_prob": 0.853553
+        },
+        {
+          "x": 1,
+          "y": 0,
+          "win_prob": 0.853553
+        },
+        {
+          "x": 1,
+          "y": 1,
+          "win_prob": 0.853553
+        }
+      ]
+    },
+    "quantum_advantage": {
+      "classical_max": 0.75,
+      "quantum_achieved": 0.853553,
+      "advantage": 0.103553,
+      "advantage_exists": "True"
+    },
+    "tsirelson_bound": {
+      "bound": 0.853553,
+      "achieved": 0.853553,
+      "saturated": "True"
+    },
+    "all_pass": "True"
+  },
+  "_summary": {
+    "total_protocols": 10,
+    "passed": 10,
+    "failed": 0,
+    "all_pass": true,
+    "timestamp": "2026-04-07T19:30:59.392293+00:00"
+  }
+}

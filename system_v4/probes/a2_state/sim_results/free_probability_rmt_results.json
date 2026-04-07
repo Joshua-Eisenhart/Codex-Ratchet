@@ -1,0 +1,97 @@
+{
+  "timestamp": "2026-04-07T19:15:15.082268+00:00",
+  "modules": {
+    "free_convolution": {
+      "test": "free_convolution_semicircle",
+      "d": 200,
+      "n_trials": 50,
+      "total_eigenvalues": 10000,
+      "R_sum_theory": 2.0,
+      "empirical_std": 0.9997,
+      "theory_std": 1.0,
+      "l1_error": 0.054332,
+      "passed": true
+    },
+    "universality": {
+      "test": "universality_level_spacing",
+      "d": 50,
+      "n_matrices": 500,
+      "results": {
+        "GOE": {
+          "beta": 1,
+          "r_target": 0.5307,
+          "r_measured": 0.5254,
+          "deviation": 0.0053,
+          "n_ratios": 14000,
+          "tolerance": 0.025,
+          "passed": true
+        },
+        "GUE": {
+          "beta": 2,
+          "r_target": 0.5996,
+          "r_measured": 0.5969,
+          "deviation": 0.0027,
+          "n_ratios": 14000,
+          "tolerance": 0.025,
+          "passed": true
+        },
+        "GSE": {
+          "beta": 4,
+          "r_target": 0.6744,
+          "r_measured": 0.6757,
+          "deviation": 0.0013,
+          "n_ratios": 14000,
+          "tolerance": 0.025,
+          "passed": true
+        },
+        "poisson_r_reference": 0.3863
+      }
+    },
+    "marchenko_pastur": {
+      "test": "marchenko_pastur",
+      "d": 100,
+      "n": 200,
+      "gamma": 0.5,
+      "n_trials": 50,
+      "lambda_minus": 0.0858,
+      "lambda_plus": 2.9142,
+      "empirical_min": 0.0723,
+      "empirical_max": 2.9726,
+      "l1_error": 0.075787,
+      "frac_outside_support": 0.0002,
+      "passed": true
+    },
+    "tracy_widom": {
+      "test": "tracy_widom_largest_eigenvalue",
+      "d": 200,
+      "n_matrices": 3000,
+      "centering": 1.414214,
+      "scaling": 0.020676,
+      "empirical_mean": -1.8052,
+      "empirical_var": 0.8394,
+      "empirical_skewness": 0.2306,
+      "tw2_reference_mean": -1.7711,
+      "tw2_reference_var": 0.8132,
+      "tw2_reference_skewness": 0.2241,
+      "frac_below_edge": 0.9683,
+      "mean_ok": true,
+      "var_ok": true,
+      "passed": true
+    },
+    "wishart_density": {
+      "test": "wishart_density_matrix",
+      "d": 20,
+      "n_trials": 200,
+      "trace_1_check": true,
+      "psd_check": true,
+      "hermitian_check": true,
+      "min_eigenvalue_across_all": 7.21878e-07,
+      "max_trace_deviation": 0.0,
+      "avg_von_neumann_entropy": 2.4977,
+      "max_entropy_log_d": 2.9957,
+      "avg_purity": 0.099612,
+      "passed": true
+    }
+  },
+  "all_passed": true
+}

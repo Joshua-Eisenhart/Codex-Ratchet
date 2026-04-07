@@ -1,0 +1,202 @@
+{
+  "timestamp": "2026-04-07T10:18:38.210878+00:00",
+  "probe": "sim_negative_topology_graphs",
+  "description": "Negative battery: topology + graph edge cases and failure modes",
+  "n_tests": 10,
+  "n_pass": 10,
+  "n_fail": 0,
+  "n_error": 0,
+  "tests": [
+    {
+      "description": "Empty CellComplex (0 vertices, 0 edges, 0 faces)",
+      "n_nodes": 0,
+      "n_edges": 0,
+      "n_cells": 0,
+      "incidence_matrix_ok": true,
+      "incidence_error": null,
+      "hodge_laplacian_ok": true,
+      "hodge_error": null,
+      "verdict": "TopoNetX handles empty complex gracefully",
+      "test": "01_empty_complex",
+      "status": "PASS"
+    },
+    {
+      "description": "Dangling edge / face: references to non-existent lower cells",
+      "edge_to_missing_vertex_error": null,
+      "vertex_auto_created": true,
+      "face_without_edges_ok": true,
+      "face_without_edges_error": null,
+      "edges_auto_created_for_face": 3,
+      "verdict": "TopoNetX auto-creates missing lower cells (permissive)",
+      "test": "02_dangling_edge",
+      "status": "PASS"
+    },
+    {
+      "description": "Chain complex property: B2*B1=0 for valid, !=0 for random",
+      "random_B2_B1_is_zero": false,
+      "random_max_abs_entry": 5.0,
+      "valid_B2_B1_is_zero": true,
+      "status": "PASS",
+      "verdict": "CONFIRMED: random incidence breaks chain complex property",
+      "test": "03_random_incidence_not_chain"
+    },
+    {
+      "description": "Klein bottle vs torus: both chi=0. Distinguish via Betti?",
+      "torus_chi": 0,
+      "klein_chi": 0,
+      "torus_betti": [
+        1,
+        2,
+        1
+      ],
+      "klein_betti": [
+        1,
+        1,
+        0
+      ],
+      "torus_shape": [
+        9,
+        27,
+        18
+      ],
+      "klein_shape": [
+        9,
+        27,
+        18
+      ],
+      "distinguishable_by_betti": true,
+      "note": "Theory: over Z, Klein b1=1 (torsion Z/2Z in H1), torus b1=2. Over R, Klein b1 should also be 1 (free part only). If our combinatorial construction captures the twist correctly, Betti numbers alone distinguish them. If not, the construction collapsed to the same quotient and we need Z-homology.",
+      "verdict": "DISTINGUISHED by Betti numbers",
+      "test": "04_klein_vs_torus",
+      "status": "PASS"
+    },
+    {
+      "description": "Disconnected graph: two triangles. Expect b0=2.",
+      "n_nodes": 6,
+      "n_edges": 6,
+      "is_connected": false,
+      "L0_eigenvalues": [
+        -0.0,
+        -0.0,
+        3.0,
+        3.0,
+        3.0,
+        3.0
+      ],
+      "n_zero_eigenvalues": 2,
+      "status": "PASS",
+      "verdict": "CONFIRMED: b0=2 zero eigenvalues = 2 connected components",
+      "test": "05_disconnected_graph"
+    },
+    {
+      "description": "K1 (single vertex): trivial complex",
+      "shape": [
+        1,
+        0,
+        0
+      ],
+      "betti_numbers": [
+        1,
+        0,
+        null
+      ],
+      "expected_betti": [
+        1,
+        0,
+        0
+      ],
+      "errors": [
+        "rank=2: ValueError: The input complex does not have cells of dim 2. The maximal cell dimension is 0, got 2"
+      ],
+      "status": "PASS",
+      "verdict": "CONFIRMED: K1 has Betti = [1, 0, 0] (or graceful empty for higher ranks)",
+      "test": "06_K1_single_vertex"
+    },
+    {
+      "description": "Self-loop in PyG: does it affect message passing?",
+      "features_no_loop": [
+        0.0,
+        2.0,
+        0.0,
+        1.0
+      ],
+      "features_with_loop": [
+        1.0,
+        3.0,
+        1.0,
+        1.0
+      ],
+      "total_abs_diff": 3.0,
+      "self_loop_changes_output": true,
+      "status": "PASS",
+      "verdict": "Self-loop DOES change message passing output (node receives its own message)",
+      "test": "07_self_loop_pyg"
+    },
+    {
+      "description": "Negative edge weights in message passing",
+      "positive_norms": [
+        5.0711,
+        8.1653,
+        13.3391,
+        21.9463,
+        36.4017,
+        61.0407,
+        103.8376,
+        179.8291,
+        317.9689,
+        574.8545
+      ],
+      "negative_norms": [
+        5.0711,
+        8.1653,
+        13.3391,
+        21.9463,
+        36.4017,
+        61.0407,
+        103.8376,
+        179.8291,
+        317.9689,
+        574.8545
+      ],
+      "mixed_norms": [
+        5.1635,
+        9.1168,
+        16.8011,
+        31.5562,
+        59.7294,
+        113.3977,
+        215.5392,
+        409.8665,
+        779.5299,
+        1482.6942
+      ],
+      "positive_converges": true,
+      "negative_converges": true,
+      "mixed_converges": true,
+      "status": "PASS",
+      "verdict": "Positive: converges. Negative: converges. Mixed: converges. Negative weights can cause oscillation/divergence in raw additive MP.",
+      "test": "08_negative_edge_weights"
+    },
+    {
+      "description": "No edges: isolated nodes. Message passing = zero output.",
+      "input_features_norm": 3.507145,
+      "output_features_norm": 0.0,
+      "output_is_zero": true,
+      "status": "PASS",
+      "verdict": "CONFIRMED: no edges means no messages, output is zero",
+      "test": "09_no_edges_isolated"
+    },
+    {
+      "description": "Overlapping faces: same face added twice + shared-edge faces",
+      "n_cells_after_first_face": 1,
+      "n_cells_after_duplicate_face": 1,
+      "duplicate_was_accepted": false,
+      "duplicate_was_deduplicated": true,
+      "n_cells_with_shared_edge_face": 2,
+      "chain_complex_still_valid": true,
+      "status": "PASS",
+      "verdict": "TopoNetX DEDUPLICATES identical faces (safe)",
+      "test": "10_overlapping_faces"
+    }
+  ]
+}

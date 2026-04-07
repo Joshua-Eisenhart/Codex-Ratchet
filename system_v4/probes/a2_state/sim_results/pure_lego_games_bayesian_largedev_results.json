@@ -1,0 +1,300 @@
+{
+  "timestamp": "2026-04-07T18:32:15.425057+00:00",
+  "probe": "sim_pure_lego_games_bayesian_largedev",
+  "modules": {
+    "quantum_prisoners_dilemma": {
+      "module": "quantum_prisoners_dilemma",
+      "tests": [
+        {
+          "name": "classical_nash_via_density_matrix",
+          "payoff_A": 1.0,
+          "payoff_B": 1.0,
+          "matches_analytic": true
+        },
+        {
+          "name": "entangled_bell_state_payoff",
+          "payoff_A": 1.9999999999999996,
+          "payoff_B": 1.9999999999999996,
+          "note": "Bell state = mutual cooperation/defection superposition"
+        },
+        {
+          "name": "quantum_beats_classical_nash",
+          "quantum_payoff": [
+            1.9999999999999996,
+            1.9999999999999996
+          ],
+          "classical_nash_payoff": [
+            1.0,
+            1.0
+          ],
+          "quantum_wins": true
+        }
+      ],
+      "classical_nash": {
+        "p_cooperate_A": 0.0,
+        "p_cooperate_B": 0.0,
+        "payoff_A": 1.0,
+        "payoff_B": 1.0
+      },
+      "separable_nash_fixedpoint": {
+        "payoff_A": 1.0,
+        "payoff_B": 1.0,
+        "rho_A_diag": [
+          8.476075059738337e-32,
+          1.0
+        ],
+        "rho_B_diag": [
+          4.830302172372847e-32,
+          1.0
+        ],
+        "converged_steps": 200
+      },
+      "verdict": {
+        "classical_nash_is_defect_defect": true,
+        "quantum_entangled_beats_classical": true,
+        "payoff_operator_consistent": true
+      }
+    },
+    "quantum_bayesian_update": {
+      "module": "quantum_bayesian_update",
+      "tests": [],
+      "quantum_updates": {
+        "initial_entropy": 0.3424060289887843,
+        "final_entropy": 0.0002876435910724648,
+        "entropy_trace": [
+          0.3424060289887843,
+          0.32420933986621403,
+          0.22645254691053746,
+          0.09586221954524167,
+          0.04313262358039863,
+          0.02295647323106832,
+          0.011422691744942742,
+          0.003949549922460556,
+          0.0007403047293513191,
+          0.00018942014166205992,
+          0.0002876435910724648
+        ],
+        "entropy_decreased_overall": true,
+        "decrease_steps": 9,
+        "update_log": [
+          {
+            "step": 0,
+            "entropy_prior": 0.3424060289887843,
+            "entropy_posterior": 0.32420933986621403,
+            "purity": 0.8206358489218685
+          },
+          {
+            "step": 1,
+            "entropy_prior": 0.32420933986621403,
+            "entropy_posterior": 0.22645254691053746,
+            "purity": 0.8875292718606391
+          },
+          {
+            "step": 2,
+            "entropy_prior": 0.22645254691053746,
+            "entropy_posterior": 0.09586221954524167,
+            "purity": 0.9618706303650302
+          },
+          {
+            "step": 3,
+            "entropy_prior": 0.09586221954524167,
+            "entropy_posterior": 0.04313262358039863,
+            "purity": 0.9855289611734528
+          },
+          {
+            "step": 4,
+            "entropy_prior": 0.04313262358039863,
+            "entropy_posterior": 0.02295647323106832,
+            "purity": 0.9931402541811505
+          },
+          {
+            "step": 5,
+            "entropy_prior": 0.02295647323106832,
+            "entropy_posterior": 0.011422691744942742,
+            "purity": 0.996952169628586
+          },
+          {
+            "step": 6,
+            "entropy_prior": 0.011422691744942742,
+            "entropy_posterior": 0.003949549922460556,
+            "purity": 0.9990921455247768
+          },
+          {
+            "step": 7,
+            "entropy_prior": 0.003949549922460556,
+            "entropy_posterior": 0.0007403047293513191,
+            "purity": 0.9998598810126834
+          },
+          {
+            "step": 8,
+            "entropy_prior": 0.0007403047293513191,
+            "entropy_posterior": 0.00018942014166205992,
+            "purity": 0.9999685915936548
+          },
+          {
+            "step": 9,
+            "entropy_prior": 0.00018942014166205992,
+            "entropy_posterior": 0.0002876435910724648,
+            "purity": 0.9999504298645177
+          }
+        ]
+      },
+      "classical_limit": {
+        "prior": [
+          0.33057482730268484,
+          0.6694251726973152
+        ],
+        "likelihoods": [
+          0.19539550388839588,
+          0.16574224743538057
+        ],
+        "posterior_quantum": [
+          0.36795627151692534,
+          0.6320437284830749
+        ],
+        "posterior_classical": [
+          0.3679562715169252,
+          0.6320437284830748
+        ],
+        "match": true,
+        "max_deviation": 1.1102230246251565e-16
+      },
+      "verdict": {
+        "entropy_decreases_overall": true,
+        "majority_steps_decrease": true,
+        "classical_limit_matches_bayes": true
+      }
+    },
+    "quantum_sanov_theorem": {
+      "module": "quantum_sanov_theorem",
+      "tests": [
+        {
+          "n_copies": 10,
+          "p_true": [
+            0.7,
+            0.3
+          ],
+          "mean_empirical_freq": [
+            0.7000319999999748,
+            0.2999679999999834
+          ],
+          "std_empirical_freq": [
+            0.1452322243030139,
+            0.1452322243030209
+          ],
+          "concentration_error": 3.2000000016574326e-05,
+          "concentration_ok": true,
+          "sigma_uniform": {
+            "sigma": [
+              0.5,
+              0.5
+            ],
+            "D_sigma_p_analytic": 0.08717669357238891,
+            "fraction_near_sigma": 0.10386,
+            "empirical_rate": 0.22647114405659644,
+            "rate_ratio": 2.5978404866725255
+          },
+          "sigma_close": {
+            "sigma": [
+              0.6,
+              0.4
+            ],
+            "D_sigma_p_analytic": 0.022582421084357485,
+            "fraction_near_sigma": 0.1997,
+            "empirical_rate": 0.16109390385603678,
+            "rate_ratio": 7.133597556004489
+          }
+        },
+        {
+          "n_copies": 50,
+          "p_true": [
+            0.7,
+            0.3
+          ],
+          "mean_empirical_freq": [
+            0.6996388000000557,
+            0.3003611999999746
+          ],
+          "std_empirical_freq": [
+            0.06454869119169596,
+            0.06454869119168825
+          ],
+          "concentration_error": 0.00036119999997463736,
+          "concentration_ok": true,
+          "sigma_uniform": {
+            "sigma": [
+              0.5,
+              0.5
+            ],
+            "D_sigma_p_analytic": 0.08717669357238891,
+            "fraction_near_sigma": 0.01226,
+            "empirical_rate": 0.08802826696948143,
+            "rate_ratio": 1.0097683608106265
+          },
+          "sigma_close": {
+            "sigma": [
+              0.6,
+              0.4
+            ],
+            "D_sigma_p_analytic": 0.022582421084357485,
+            "fraction_near_sigma": 0.20444,
+            "empirical_rate": 0.03174961490164117,
+            "rate_ratio": 1.4059437995173008
+          }
+        },
+        {
+          "n_copies": 100,
+          "p_true": [
+            0.7,
+            0.3
+          ],
+          "mean_empirical_freq": [
+            0.7002241999999644,
+            0.29977580000003506
+          ],
+          "std_empirical_freq": [
+            0.04556384240118712,
+            0.045563842401187216
+          ],
+          "concentration_error": 0.00022419999996492468,
+          "concentration_ok": true,
+          "sigma_uniform": {
+            "sigma": [
+              0.5,
+              0.5
+            ],
+            "D_sigma_p_analytic": 0.08717669357238891,
+            "fraction_near_sigma": 0.00038,
+            "empirical_rate": 0.07875339305243843,
+            "rate_ratio": 0.9033766919256232
+          },
+          "sigma_close": {
+            "sigma": [
+              0.6,
+              0.4
+            ],
+            "D_sigma_p_analytic": 0.022582421084357485,
+            "fraction_near_sigma": 0.1127,
+            "empirical_rate": 0.021830258579364065,
+            "rate_ratio": 0.9666925657712392
+          }
+        }
+      ],
+      "verdict": {
+        "concentration_all_ok": true,
+        "rate_ratios_uniform": [
+          2.5978404866725255,
+          1.0097683608106265,
+          0.9033766919256232
+        ],
+        "rate_ratios_close": [
+          7.133597556004489,
+          1.4059437995173008,
+          0.9666925657712392
+        ],
+        "rate_converging_toward_1": true
+      }
+    }
+  },
+  "all_pass": true
+}

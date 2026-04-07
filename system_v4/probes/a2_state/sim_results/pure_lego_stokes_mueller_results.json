@@ -1,0 +1,459 @@
+{
+  "sim": "pure_lego_stokes_mueller",
+  "timestamp": "2026-04-07T09:10:36.962837+00:00",
+  "description": "Stokes-Mueller formalism for single-qubit quantum channels. Mueller matrix = real 4x4 representation of density-matrix + Pauli algebra.",
+  "overall_pass": true,
+  "channels": [
+    {
+      "channel": "Z-rotation (pi/4)",
+      "parameter_label": "theta",
+      "parameter_value": 0.7853981633974483,
+      "mueller_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7071067811865475,
+          -0.7071067811865476,
+          0.0
+        ],
+        [
+          0.0,
+          0.7071067811865476,
+          0.7071067811865475,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "physicality_pass": true,
+      "physicality_samples": 5000,
+      "physicality_failures": 0,
+      "equivalence_max_error": 2.220446049250313e-16,
+      "equivalence_pass": true,
+      "trace_preserving": true,
+      "unital": true,
+      "bloch_block_orthogonal": true,
+      "overall_pass": true
+    },
+    {
+      "channel": "Z-rotation (pi/2)",
+      "parameter_label": "theta",
+      "parameter_value": 1.5707963267948966,
+      "mueller_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          2.220446049250313e-16,
+          -1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          2.220446049250313e-16,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "physicality_pass": true,
+      "physicality_samples": 5000,
+      "physicality_failures": 0,
+      "equivalence_max_error": 2.220446049250313e-16,
+      "equivalence_pass": true,
+      "trace_preserving": true,
+      "unital": true,
+      "bloch_block_orthogonal": true,
+      "overall_pass": true
+    },
+    {
+      "channel": "X-rotation (pi/3)",
+      "parameter_label": "theta",
+      "parameter_value": 1.0471975511965976,
+      "mueller_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.5000000000000002,
+          -0.8660254037844386
+        ],
+        [
+          0.0,
+          0.0,
+          0.8660254037844386,
+          0.5000000000000002
+        ]
+      ],
+      "physicality_pass": true,
+      "physicality_samples": 5000,
+      "physicality_failures": 0,
+      "equivalence_max_error": 2.220446049250313e-16,
+      "equivalence_pass": true,
+      "trace_preserving": true,
+      "unital": true,
+      "bloch_block_orthogonal": true,
+      "overall_pass": true
+    },
+    {
+      "channel": "Z-dephasing (p=0.3)",
+      "parameter_label": "p",
+      "parameter_value": 0.3,
+      "mueller_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7000000000000001,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7000000000000001,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "physicality_pass": true,
+      "physicality_samples": 5000,
+      "physicality_failures": 0,
+      "equivalence_max_error": 2.220446049250313e-16,
+      "equivalence_pass": true,
+      "trace_preserving": true,
+      "unital": true,
+      "bloch_block_orthogonal": null,
+      "overall_pass": true
+    },
+    {
+      "channel": "Z-dephasing (p=1.0)",
+      "parameter_label": "p",
+      "parameter_value": 1.0,
+      "mueller_matrix": [
+        [
+          1.0000000000000002,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0000000000000002
+        ]
+      ],
+      "physicality_pass": true,
+      "physicality_samples": 5000,
+      "physicality_failures": 0,
+      "equivalence_max_error": 3.3306690738754696e-16,
+      "equivalence_pass": true,
+      "trace_preserving": true,
+      "unital": true,
+      "bloch_block_orthogonal": null,
+      "overall_pass": true
+    },
+    {
+      "channel": "X-dephasing (p=0.5)",
+      "parameter_label": "p",
+      "parameter_value": 0.5,
+      "mueller_matrix": [
+        [
+          0.9999999999999999,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.9999999999999999,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.4999999999999999,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.4999999999999999
+        ]
+      ],
+      "physicality_pass": true,
+      "physicality_samples": 5000,
+      "physicality_failures": 0,
+      "equivalence_max_error": 1.6653345369377348e-16,
+      "equivalence_pass": true,
+      "trace_preserving": true,
+      "unital": true,
+      "bloch_block_orthogonal": null,
+      "overall_pass": true
+    },
+    {
+      "channel": "Depolarizing (p=0.2)",
+      "parameter_label": "p",
+      "parameter_value": 0.2,
+      "mueller_matrix": [
+        [
+          1.0000000000000002,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.8,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.8,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.8
+        ]
+      ],
+      "physicality_pass": true,
+      "physicality_samples": 5000,
+      "physicality_failures": 0,
+      "equivalence_max_error": 4.440892098500626e-16,
+      "equivalence_pass": true,
+      "trace_preserving": true,
+      "unital": true,
+      "bloch_block_orthogonal": null,
+      "overall_pass": true
+    },
+    {
+      "channel": "Depolarizing (p=1.0)",
+      "parameter_label": "p",
+      "parameter_value": 1.0,
+      "mueller_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "physicality_pass": true,
+      "physicality_samples": 5000,
+      "physicality_failures": 0,
+      "equivalence_max_error": 5.551115123125783e-17,
+      "equivalence_pass": true,
+      "trace_preserving": true,
+      "unital": true,
+      "bloch_block_orthogonal": null,
+      "overall_pass": true
+    },
+    {
+      "channel": "Amplitude damping (g=0.1)",
+      "parameter_label": "gamma",
+      "parameter_value": 0.1,
+      "mueller_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          4.163336342344337e-17
+        ],
+        [
+          0.0,
+          0.9486832980505138,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.9486832980505138,
+          0.0
+        ],
+        [
+          0.10000000000000005,
+          0.0,
+          0.0,
+          0.8999999999999999
+        ]
+      ],
+      "physicality_pass": true,
+      "physicality_samples": 5000,
+      "physicality_failures": 0,
+      "equivalence_max_error": 2.220446049250313e-16,
+      "equivalence_pass": true,
+      "trace_preserving": true,
+      "unital": false,
+      "bloch_block_orthogonal": null,
+      "overall_pass": true
+    },
+    {
+      "channel": "Amplitude damping (g=0.5)",
+      "parameter_label": "gamma",
+      "parameter_value": 0.5,
+      "mueller_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          -1.1102230246251565e-16
+        ],
+        [
+          0.0,
+          0.7071067811865476,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7071067811865476,
+          0.0
+        ],
+        [
+          0.5,
+          0.0,
+          0.0,
+          0.49999999999999994
+        ]
+      ],
+      "physicality_pass": true,
+      "physicality_samples": 5000,
+      "physicality_failures": 0,
+      "equivalence_max_error": 2.220446049250313e-16,
+      "equivalence_pass": true,
+      "trace_preserving": true,
+      "unital": false,
+      "bloch_block_orthogonal": null,
+      "overall_pass": true
+    },
+    {
+      "channel": "Amplitude damping (g=1.0)",
+      "parameter_label": "gamma",
+      "parameter_value": 1.0,
+      "mueller_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "physicality_pass": true,
+      "physicality_samples": 5000,
+      "physicality_failures": 0,
+      "equivalence_max_error": 0.0,
+      "equivalence_pass": true,
+      "trace_preserving": true,
+      "unital": false,
+      "bloch_block_orthogonal": null,
+      "overall_pass": true
+    }
+  ],
+  "sufficiency_analysis": {
+    "single_qubit": {
+      "mueller_sufficient": true,
+      "reason": "Every single-qubit quantum channel (CPTP map on C^2) has a unique 4x4 real Mueller matrix. The Stokes-Mueller picture is isomorphic to the density-matrix+Pauli picture for d=2. No information is lost: the 4x4 real entries encode exactly the same 12 real parameters as the Choi matrix (trace-preserving fixes row 0 to [1,0,0,0], leaving 12 free)."
+    },
+    "multi_qubit": {
+      "mueller_sufficient": false,
+      "reason": "For n qubits the generalized Stokes vector has 4^n components and the Mueller matrix is 4^n x 4^n. While formally possible, this loses the tensor-product structure that makes multi-qubit physics tractable. Entangling channels (CNOT, etc.) cannot be written as M_A (x) M_B; the full 4^n x 4^n Mueller is needed. For n>=2 the Choi/Kraus/Stinespring representations are strictly more practical. Mueller formalism remains a single-qubit tool."
+    },
+    "key_insight": "Mueller matrices ARE the real representation of what density matrices and Pauli algebra do with complex numbers. Every complex phase in the channel cancels when projected onto the Hermitian Pauli basis, leaving a purely real 4x4 matrix. This is not an approximation -- it is exact for single-qubit channels. The Bloch sphere IS the Mueller picture."
+  }
+}

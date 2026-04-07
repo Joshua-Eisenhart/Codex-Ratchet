@@ -1,7 +1,15 @@
 # Enforcement and Process Rules
 
+## Document Status
+| Field | Value |
+|-------|-------|
+| **last_verified** | 2026-04-07 |
+| **current_enforced** | SIM_TEMPLATE.py structure, tool manifest requirement, two-lane policy |
+| **discovered** | L0-L7 constraint cascade, 28 irreducible families, 9 independent observables, simultaneous shell geometry |
+| **planned** | Manifest checker CI, canonical promotion gate, TLA+ model checking, PyTorch migration of all 28 families |
+
 ## Purpose
-These rules are binding. They are not suggestions. Every sim, every agent, every piece of work must satisfy them. Violations mean the work is incomplete.
+These rules describe the target standard for new work. They are not yet automatically enforced — no CI checker, no promotion gate, no automated manifest validator exists. Until that machinery is built, compliance depends on discipline and review.
 
 ## Scope
 This document governs active simulation and build work. It does not replace source-of-truth math; it constrains how we produce, validate, and classify work.
@@ -9,11 +17,11 @@ This document governs active simulation and build work. It does not replace sour
 ---
 
 ## CURRENT ENFORCED STATE (what exists now)
-- 84 numpy legos = classical baselines (verified, committed)
-- 11 negative battery concepts (14 battery files, 107+ failure modes)
-- L0-L7 constraint cascade mapped: 53-66-48-43-28 irreducible
-- 28 irreducible legos identified, 9 independent observables
-- Tools used: z3 in 28 files, sympy 15, clifford 19, toponetx 11, torch 8 of 238 total
+- numpy legos = classical baselines (verified, committed). Count: see `system_v4/probes/` manifest.
+- Negative battery concepts with multiple battery files and 100+ failure modes. Count: see battery index.
+- L0-L7 constraint cascade mapped. Counts: see PYTORCH_RATCHET_BUILD_PLAN.md Phase 2.
+- Irreducible families identified with independent observables. Counts: see migration registry.
+- Tool usage across sim files: z3, sympy, clifford, toponetx, torch all represented. Counts: see tool manifest audit.
 - PyTorch is NOT yet the primary substrate. numpy dominates.
 - SIM_TEMPLATE.py now exists (system_v4/probes/SIM_TEMPLATE.py)
 - Tool manifest is defined in the template but not yet present in legacy result JSONs
@@ -22,7 +30,7 @@ This document governs active simulation and build work. It does not replace sour
 - Axes: 6, 5, 3, 4 verified. Axes 1, 2 open. Axis 0 unsolved.
 
 ## TARGET BUILD REGIME (what we are building toward)
-All 13 rules below describe the target regime. They are the standard new work must meet. Legacy work is not retroactively invalid, but it is not promoted to canonical status without meeting these rules.
+All 13 rules below describe the target regime. They are the standard new work should meet. Legacy work is not retroactively invalid, but it is not promoted to canonical status without meeting these rules. No automated enforcement machinery exists yet — these are design constraints, not runtime checks.
 
 ---
 
@@ -49,6 +57,7 @@ Required tool-role contract:
 - **clifford Cl(3)/Cl(6)**: geometric algebra. Try for every geometric operation.
 - **TopoNetX**: cell-complex topology. Try for every topological structure.
 - **PyG/PyTorch**: differentiable computation + message passing. Try for all core computation.
+- **TLA+ (planned)**: temporal logic model checking. Not yet installed. Target: verify liveness/safety of constraint cascade ordering, ratchet irreversibility, and shell nesting invariants.
 
 **Why:** Each tool carries a different ontological commitment. z3 does constraint logic (non-classical). Clifford does geometric product (non-commutative). TopoNetX does topology (relational). PyG does graph computation (non-Cartesian). Using them forces non-classical thinking.
 
@@ -57,10 +66,10 @@ Standard mathematical terms only. Z-dephasing, not Ti. X-rotation, not Fi. The J
 
 **Why:** Jungian labels carry psychological ontology that contaminates the math. The math should stand alone. Labels are a mapping layer, not a computation layer.
 
-## Rule 4: Build from foundations
-Each layer builds on verified lower layers. Do not skip. Do not assume. Test everything the constraints allow first, then show what the next constraint kills.
+## Rule 4: Build from foundations (simultaneous shells, not sequential ladder)
+Each shell adds constraints to the same state space. All active shells are present simultaneously — higher shells do not replace lower ones, they restrict further. Do not skip a shell. Do not assume. Test everything the constraints allow at the current level first, then show what the next constraint shell kills.
 
-**Why:** The constraint manifold ordering is discovered by sims, not assumed. The user has repeatedly corrected: do not skip to exciting stuff; stay on the current layer until it is complete.
+**Why:** The constraint manifold is nested simultaneous shells (S0 ⊃ S1 ⊃ S2 ⊃ ...), not a sequential pipeline. The ordering is discovered by sims, not assumed. Stay on the current shell until it is complete.
 
 ## Rule 5: Two-lane quality policy
 **Lane 1 -- Coverage**: mass independent lego construction. Each lego is a standalone verified building block. Breadth matters for coverage. A lego must pass its own positive and negative tests, but does not need the full canonical workup.
@@ -122,17 +131,18 @@ Hold several divergent explanations simultaneously. Where they agree despite div
 
 ## Enforcement Mechanisms
 
-### Automated
+### Automated (planned — not yet implemented)
 - Every canonical sim must include a tool-use manifest: tried / used / omitted / why
 - Sims are classified by depth: classical_baseline, canonical, supporting, audit
 - classical_baseline remains valid and preserved, but is not promoted to canonical
 - A manifest checker should fail work that claims canonical status without tool depth
+- **Status:** No automated checker exists yet. This is a design requirement, not a deployed gate.
 
-### Process
-- Each canonical sim starts from SIM_TEMPLATE.py (system_v4/probes/SIM_TEMPLATE.py)
-- Template includes required imports, validation structure, negative-test section, and tool manifest
-- Agent prompts include these rules verbatim
-- Hermes audits Rules 4-13
+### Process (partially implemented)
+- Each canonical sim starts from SIM_TEMPLATE.py (system_v4/probes/SIM_TEMPLATE.py) — **exists**
+- Template includes required imports, validation structure, negative-test section, and tool manifest — **exists**
+- Agent prompts include these rules verbatim — **partially implemented**
+- Hermes audits Rules 4-13 — **not yet automated**
 
 ### Cultural
 - Speed is not the goal. Depth is.

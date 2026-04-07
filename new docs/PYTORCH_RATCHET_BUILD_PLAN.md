@@ -1,5 +1,13 @@
 # PyTorch Ratchet Build Plan
 
+## Document Status
+| Field | Value |
+|-------|-------|
+| **last_verified** | 2026-04-07 |
+| **current_enforced** | Phase 1 (classical baselines) complete, Phase 2 (constraint cascade) complete |
+| **discovered** | Computational graph = ratchet architecture (claim, not yet tested); ∇I_c as Axis 0 gradient field |
+| **planned** | Phase 3-7 migration; TLA+ model checking for cascade ordering and ratchet liveness; formal ∇I_c derivation |
+
 ## Architectural model
 The ratchet is a nested family of simultaneous constraint shells, not a ladder of replacements.
 
@@ -26,30 +34,74 @@ This is the non-classical retrocausal reading: not future-causes-past, but const
 
 ### Disconfirmation criteria
 This claim is falsifiable. It would be wrong if:
-1. Autograd gradient nabla I_c gives no additional information beyond the numpy scalar I_c
-2. The computational graph topology has no effect on the dynamics (any graph gives same result)
-3. Backprop constraint flow produces the same selection as forward-only evaluation
-4. PyTorch-native legos match numpy baselines exactly with zero divergence
+1. **Gradient triviality:** Autograd ∇_η I_c gives no additional information beyond the numpy scalar I_c — i.e., the gradient direction is always trivially aligned with the parameter axis and its magnitude is predictable from finite differences alone.
+2. **Graph topology independence:** The computational graph topology has no effect on the dynamics — i.e., any graph wiring (chain, star, tree) gives the same selection outcome for the same inputs.
+3. **Forward sufficiency:** Backprop constraint flow produces the same selection as forward-only evaluation — i.e., iterating forward passes with rejection sampling matches backward-pass constraint selection in both result and computational cost.
+4. **Substrate equivalence:** PyTorch-native legos match numpy baselines exactly with zero divergence across all 28 irreducible families — no family shows substrate-dependent behavior.
 
-If any of these hold, the substrate does not matter and numpy is sufficient. The Phase 3 migration will test all four conditions explicitly.
+**Falsification protocol (Phase 3):**
+For each of the 28 irreducible families:
+- Compute I_c via numpy (scalar). Compute ∇_η I_c via autograd (vector). Compare: does the gradient contain information not recoverable from finite-difference approximation of the scalar? Specifically: is autograd ∇I_c cheaper, more accurate, or directionally different from (I_c(η+ε) - I_c(η-ε))/2ε?
+- Permute graph topology (at minimum: chain vs star vs random). Measure: does the constraint cascade produce different surviving sets?
+- Run forward-only rejection sampling alongside backward-pass selection. Compare: same survivors? Same cost? Same numerical precision?
+- If ALL four conditions show null results across ALL 28 families, numpy is sufficient and the PyTorch claim is falsified. Partial nulls (some families show divergence, others don't) require analysis of which structural features predict substrate sensitivity.
 
-## Axis 0
+## Axis 0: formal math
+
 Axis 0 is not a scalar at one cut. It is a gradient field on the shell topology.
 
-Formally:
-- let η parameterize the shell family
-- let ρ(η) be a differentiable state on the nested shells
-- let I_c(ρ) be coherent information
-- then Axis 0 is ∇_η I_c
+### Definition
+Let η ∈ ℝⁿ parameterize the nested shell family (e.g., torus radii, Clifford angles). Let ρ(η) be a differentiable density operator on the composite system AB. Let I_c(A⟩B) = S(B) - S(AB) be the coherent information. Then:
 
+**Axis 0 := ∇_η I_c(ρ(η))**
+
+This is a vector field on the shell parameter space, not a scalar.
+
+### Connection to quantum Fisher information (QFI)
+The quantum Fisher information for parameter η is:
+
+F_Q(η) = 4 ∂²D_B(ρ(η), ρ(η + dη)) / ∂(dη)²
+
+where D_B is the Bures distance: D_B(ρ, σ) = 2(1 - √F(ρ, σ)), and F is the Uhlmann fidelity.
+
+The Cramér-Rao bound gives: Var(η̂) ≥ 1/F_Q(η).
+
+**Key relationship:** ∇I_c tells you the direction of steepest change in coherent information. F_Q tells you how distinguishable nearby states are along that direction. If ∇I_c is large where F_Q is also large, the gradient is metrologically meaningful — the shell parameter controls a physically distinguishable degree of freedom.
+
+### Connection to Bures metric
+The Bures metric on the state manifold is:
+
+ds²_B = (1/4) Tr[dρ · L]
+
+where L is the symmetric logarithmic derivative (SLD): dρ/dη = (Lρ + ρL)/2.
+
+The QFI is the Bures metric component: F_Q(η) = Tr[ρ L²].
+
+∇_η I_c lives in the tangent space of the shell parameter manifold. The Bures metric determines the natural inner product on that tangent space. This means ∇I_c has a well-defined magnitude (not just direction) when measured against Bures geometry.
+
+### Connection to Berry curvature
+If the shell family traces a closed loop in parameter space η(t), the Berry phase is:
+
+γ = ∮ A · dη,  where A_μ = i⟨ψ|∂_μψ⟩
+
+The Berry curvature is F_μν = ∂_μ A_ν - ∂_ν A_μ.
+
+**Key relationship:** Berry curvature measures the geometric (non-dynamical) content of the shell family. Where Berry curvature is nonzero, the shell family has topological content that cannot be removed by reparameterization. If ∇I_c aligns with regions of high Berry curvature, the coherent information gradient is geometrically protected — it survives smooth deformations.
+
+### Autograd implementation (planned, Phase 5)
 ```python
 eta = torch.tensor(eta_value, requires_grad=True)
 state = hopf_torus_state(eta)
 rho_AB = entangle(state)
 ic = coherent_information(rho_AB)
 ic.backward()
-axis_0 = eta.grad
+axis_0 = eta.grad  # ∇_η I_c
 ```
+
+### Open questions (discovered, not yet resolved)
+- Is ∇I_c continuous across shell boundaries, or does it have discontinuities at constraint transitions (L4, L6)?
+- Does the QFI diverge at the same points where the constraint cascade kills families?
+- Is there a Berry phase associated with the full L0-L7 loop, and if so, is it quantized?
 
 ## Why numpy is only the baseline
 numpy arrays are Cartesian grids. They represent states as coordinate vectors in a fixed basis.
@@ -65,7 +117,7 @@ PyTorch tensors with autograd are:
 - non-Cartesian
 
 ## Phase 1: classical baselines (done)
-84 numpy legos are the classical baseline set. They are useful because they show what works before the constraint layers are applied.
+The numpy legos are the classical baseline set (count: see `system_v4/probes/` directory). They are useful because they show what works before the constraint layers are applied.
 
 Their job is not to define the target architecture. Their job is to reduce presupposition.
 
@@ -94,11 +146,7 @@ Core pattern:
 ## Negative batteries
 The negative batteries are not optional. They are the boundary structure of the system.
 
-Current status:
-- 11 negative batteries
-- 107+ failure modes
-
-They cover density matrices, entropy boundaries, channels, entanglement, geometry, topology, compound failures, advanced legos, cascade stress tests, boundary sweeps, and mega boundary sweeps.
+Current status: see battery index files in `system_v4/probes/` for current counts and coverage. They cover density matrices, entropy boundaries, channels, entanglement, geometry, topology, compound failures, advanced legos, cascade stress tests, boundary sweeps, and mega boundary sweeps.
 
 ## What the current math says
 - The engine is separable without an entangling gate.
@@ -132,11 +180,11 @@ class DensityMatrix(torch.nn.Module):
         return rho
 ```
 
-## Phase 4: constraint graph as differentiable pipeline
-L0-L7 becomes a pipeline of differentiable constraint modules.
+## Phase 4: constraint graph as simultaneous differentiable shells
+L0-L7 become simultaneously active differentiable constraint modules — not a sequential pipeline where data flows through one stage at a time, but nested shells that all constrain the same state space at once.
 
 The important point is not that the graph exists.
-The important point is that the graph encodes the admissibility structure.
+The important point is that the graph encodes the admissibility structure: which states survive all shells simultaneously.
 
 ## Phase 5: Axis 0 via autograd
 Axis 0 is the gradient field of coherent information across shell parameters.
@@ -172,18 +220,28 @@ Where they diverge: that divergence is the quantum content that the classical su
 
 ## Tool integration requirements
 
-| Tool | Role | Must do | Must not be reduced to |
-|------|------|---------|------------------------|
-| PyTorch | core substrate | tensors, gradients, autograd | numpy wrapper |
-| PyG | graph dynamics | message passing as computation | graph inspection only |
-| z3 | structural proof | UNSAT impossibility checks | post-hoc SAT check |
-| sympy | symbolic derivation | derive formulas before numerics | verify-only layer |
-| clifford | geometric algebra | native geometric computation | roundtrip test |
-| TopoNetX | topology | shape the graph by cell-complex structure | Betti-number checker |
+| Tool | Role | Must do | Must not be reduced to | Status |
+|------|------|---------|------------------------|--------|
+| PyTorch | core substrate | tensors, gradients, autograd | numpy wrapper | installed |
+| PyG | graph dynamics | message passing as computation | graph inspection only | installed |
+| z3 | structural proof | UNSAT impossibility checks | post-hoc SAT check | installed |
+| sympy | symbolic derivation | derive formulas before numerics | verify-only layer | installed |
+| clifford | geometric algebra | native geometric computation | roundtrip test | installed |
+| TopoNetX | topology | shape the graph by cell-complex structure | Betti-number checker | installed |
+| TLA+ | temporal logic model checking | verify liveness (ratchet progresses), safety (shells never un-nest), ordering invariants (cascade kills commute) | post-hoc narrative | **planned — not installed** |
+
+### TLA+ integration plan (planned)
+TLA+ (see [TLAPM Proofs](https://proofs.tlapl.us/doc/web/content/Home.html)) is a formal specification language for verifying temporal properties of systems. Target use cases:
+- **Ratchet irreversibility:** Prove that once a family is killed at layer L_k, no subsequent layer can revive it.
+- **Shell nesting invariant:** Prove S0 ⊃ S1 ⊃ S2 ⊃ ... is maintained under all allowed operations.
+- **Cascade ordering:** Verify that the kill ordering (L4 kills absolute measures, L6 kills reversible) is a necessary consequence of the constraint definitions, not an accident of sim execution order.
+- **Liveness:** The ratchet eventually reaches a fixed point (the 28 irreducible families are stable under further constraint application).
+
+Not yet installed. Will require TLAPM (TLA+ Proof Manager) for machine-checked proofs.
 
 ## Migration Registry
 
-All 28 irreducible families from the minimal surviving set. Each must be migrated from numpy baseline to torch module, tested against baseline, and paired with a negative battery.
+All irreducible families from the minimal surviving set (currently 28 per L0-L7 cascade — this count is discovered, not prescribed; if the cascade is re-run with different constraints, the number may change). Each must be migrated from numpy baseline to torch module, tested against baseline, and paired with a negative battery.
 
 | # | Irreducible family | Numpy baseline | Torch target | Tools needed | Negative battery | Status |
 |---|---|---|---|---|---|---|

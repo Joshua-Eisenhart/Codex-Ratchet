@@ -1,0 +1,325 @@
+{
+  "name": "geomstats_frechet_mean -- Riemannian center of mass for quantum states",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "gradient check on density matrix parameterization"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed; using geomstats for manifold ops"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "SPDMatrices for density matrix manifold, Hypersphere for Bloch sphere, FrechetMean for Riemannian center of mass"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    }
+  },
+  "positive": {
+    "frechet_mean_sphere_pure_states": {
+      "passed": true,
+      "frechet_mean": [
+        0.2992874518883912,
+        0.9039790384554973,
+        -0.30536685998193774
+      ],
+      "euclidean_mean_projected": [
+        0.21299613469108722,
+        0.9692651842013893,
+        -0.12311640549375738
+      ],
+      "frechet_norm": 1.0,
+      "frechet_on_sphere": true,
+      "euclidean_mean_raw_norm": 0.32711702184475905,
+      "euclidean_mean_inside_ball": true,
+      "riemannian_distance_frechet_vs_projected_euclidean": 0.2123508731780123,
+      "note": "Euclidean mean has norm < 1 (inside ball), confirming curvature effect"
+    },
+    "frechet_mean_spd_mixed_states": {
+      "passed": true,
+      "frechet_mean": [
+        [
+          0.5249328570727403,
+          0.03001799434932887
+        ],
+        [
+          0.030017994349328864,
+          0.42521078718404254
+        ]
+      ],
+      "arithmetic_mean": [
+        [
+          0.5457809766568964,
+          0.02886830187621201
+        ],
+        [
+          0.02886830187621201,
+          0.45421904334310376
+        ]
+      ],
+      "riemannian_distance_frechet_vs_arithmetic": 0.07750555284524928,
+      "frechet_is_spd": true,
+      "frechet_is_symmetric": true,
+      "frechet_eigenvalues": [
+        0.4168721417987031,
+        0.5332715024580797
+      ],
+      "means_differ": true,
+      "note": "Fr\u00e9chet and arithmetic means differ due to manifold curvature"
+    },
+    "riemannian_vs_euclidean_distances": {
+      "passed": true,
+      "comparisons": [
+        {
+          "pair": [
+            0,
+            1
+          ],
+          "riemannian": 0.9380039804396104,
+          "euclidean": 0.4488037614752304,
+          "ratio": 2.0900091776333722
+        },
+        {
+          "pair": [
+            0,
+            2
+          ],
+          "riemannian": 0.3479036335875548,
+          "euclidean": 0.16709976122957412,
+          "ratio": 2.082011554221067
+        },
+        {
+          "pair": [
+            0,
+            3
+          ],
+          "riemannian": 1.3105985669109448,
+          "euclidean": 0.5878582733135348,
+          "ratio": 2.229446494855973
+        },
+        {
+          "pair": [
+            0,
+            4
+          ],
+          "riemannian": 1.04664670377917,
+          "euclidean": 0.4923154231919582,
+          "ratio": 2.12596773221763
+        },
+        {
+          "pair": [
+            1,
+            2
+          ],
+          "riemannian": 0.6387194872730202,
+          "euclidean": 0.30009893748804556,
+          "ratio": 2.128363041266894
+        },
+        {
+          "pair": [
+            1,
+            3
+          ],
+          "riemannian": 0.4172562076358498,
+          "euclidean": 0.1531558239174373,
+          "ratio": 2.7243900817038655
+        },
+        {
+          "pair": [
+            1,
+            4
+          ],
+          "riemannian": 0.11607885260345216,
+          "euclidean": 0.04442558778290302,
+          "ratio": 2.6128827641111045
+        },
+        {
+          "pair": [
+            2,
+            3
+          ],
+          "riemannian": 1.0007258524771794,
+          "euclidean": 0.42824099858547077,
+          "ratio": 2.3368286917476184
+        },
+        {
+          "pair": [
+            2,
+            4
+          ],
+          "riemannian": 0.7524529864004772,
+          "euclidean": 0.34452406269693847,
+          "ratio": 2.1840360888300987
+        },
+        {
+          "pair": [
+            3,
+            4
+          ],
+          "riemannian": 0.3298386168701622,
+          "euclidean": 0.12300307073186086,
+          "ratio": 2.681547825657053
+        }
+      ],
+      "all_riemannian_nonneg": true,
+      "triangle_inequality_holds": true,
+      "note": "Riemannian distances differ from Euclidean; ratio varies by curvature"
+    },
+    "frechet_mean_valid_density_matrix": {
+      "passed": true,
+      "trace_before_normalization": 0.9501436442567828,
+      "validity_check": "valid",
+      "normalized_matrix": [
+        [
+          0.5524773651286706,
+          0.031593111768704635
+        ],
+        [
+          0.03159311176870462,
+          0.44752263487132943
+        ]
+      ],
+      "note": "After trace normalization, Fr\u00e9chet mean is a valid density matrix"
+    }
+  },
+  "negative": {
+    "single_state_frechet_is_itself": {
+      "passed": true,
+      "distance_to_original": 0.0,
+      "frechet_mean": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "original": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "note": "Fr\u00e9chet mean of a single point must be that point"
+    },
+    "identical_states_frechet_is_same": {
+      "passed": true,
+      "distance_to_original": 9.485749680535092e-16,
+      "note": "Fr\u00e9chet mean of N identical points = that point"
+    },
+    "arithmetic_mean_not_pure_frechet_is_pure": {
+      "passed": "True",
+      "arithmetic_mean_purity": 0.5535027729902922,
+      "arithmetic_mean_is_pure": false,
+      "frechet_mean_purity": 1.0,
+      "frechet_mean_is_pure": true,
+      "note": "Euclidean average of pure states falls inside the Bloch ball (mixed); Fr\u00e9chet mean on sphere stays on sphere (pure)"
+    }
+  },
+  "boundary": {
+    "maximally_mixed_state_self_mean": {
+      "passed": true,
+      "distance_to_I_over_2": 3.1401849173675503e-16,
+      "frechet_mean": [
+        [
+          0.5000000099999999,
+          0.0
+        ],
+        [
+          0.0,
+          0.5000000099999999
+        ]
+      ],
+      "original": [
+        [
+          0.50000001,
+          0.0
+        ],
+        [
+          0.0,
+          0.50000001
+        ]
+      ],
+      "note": "Maximally mixed state I/2 is already the center; its Fr\u00e9chet mean is itself"
+    },
+    "antipodal_states_geodesic_midpoint": {
+      "passed": "True",
+      "frechet_mean": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "z_component": 1.0,
+      "on_sphere": true,
+      "distance_to_north": 0.0,
+      "distance_to_south": 3.141592653589793,
+      "sum_squared_distances": 9.869604401089358,
+      "expected_sum_squared": 9.869604401089358,
+      "note": "Antipodal Fr\u00e9chet mean is non-unique (cut locus); algorithm converges to initialization. Test verifies result is on sphere and distances sum correctly. This is a known property of Riemannian manifolds."
+    },
+    "frechet_closer_to_surface": {
+      "passed": true,
+      "frechet_norm": 1.0,
+      "euclidean_mean_norm": 0.1491397921023929,
+      "note": "Fr\u00e9chet mean lives on the sphere (norm=1), Euclidean mean falls inside (norm<1)"
+    }
+  },
+  "torch_gradient_check": {
+    "gradient_computable": true,
+    "theta_grad": 1.3877787807814457e-16,
+    "phi_grad": 8.326672684688674e-17,
+    "loss_value": 0.9999999999999999,
+    "note": "Torch autograd works on density matrix parameterization"
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 10,
+    "passed": 10,
+    "failed": 0,
+    "elapsed_seconds": 0.024,
+    "all_passed": true
+  }
+}

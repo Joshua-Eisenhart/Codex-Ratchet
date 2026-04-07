@@ -1,0 +1,375 @@
+{
+  "name": "xgi_isolate_investigation",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- no gradient computation"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- hypergraph, not pairwise graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "formal proof: dephasing = measurement + trace_out"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- z3 sufficient for SMT proof"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- z3 handles the algebra"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- no geometric algebra needed"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- no manifold geometry needed"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- no equivariant networks needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- xgi handles hypergraph natively"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "primary tool -- hypergraph construction, isolate detection, edge surgery"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- structural investigation only"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- no persistence needed"
+    }
+  },
+  "summary": {
+    "tests_passed": 19,
+    "tests_total": 19,
+    "all_pass": true,
+    "verdict": "Both isolates (unitary_rotation, z_measurement) are artifacts of missing hyperedges, NOT genuinely independent families. Two proposed edges resolve the isolation with formal z3 justification."
+  },
+  "proposed_edges": {
+    "single_qubit_unitaries": [
+      "unitary_rotation",
+      "Hadamard",
+      "T_gate",
+      "phase_flip",
+      "bit_flip",
+      "bit_phase_flip"
+    ],
+    "measurement_dephasing_link": [
+      "z_measurement",
+      "z_dephasing",
+      "eigenvalue_decomposition"
+    ]
+  },
+  "positive": {
+    "P1_original_isolates_identified": {
+      "isolates": [
+        "unitary_rotation",
+        "z_measurement"
+      ],
+      "expected": [
+        "unitary_rotation",
+        "z_measurement"
+      ],
+      "pass": true,
+      "detail": "Confirm the two degree-0 nodes before surgery"
+    },
+    "P2_isolates_resolved": {
+      "isolates_before": [
+        "unitary_rotation",
+        "z_measurement"
+      ],
+      "isolates_after": [],
+      "pass": true,
+      "detail": "Both proposed edges should eliminate all isolates"
+    },
+    "P3_unitary_rotation_connected": {
+      "degree_before": 0,
+      "degree_after": 1,
+      "pass": true
+    },
+    "P4_z_measurement_connected": {
+      "degree_before": 0,
+      "degree_after": 1,
+      "pass": true
+    },
+    "P5_components_decrease": {
+      "components_before": 8,
+      "components_after": 5,
+      "decrease": 3,
+      "pass": true,
+      "detail": "From 8 to 5 components (decrease of 3)"
+    },
+    "P6_incidence_rank_increases": {
+      "rank_before": 13,
+      "rank_after": 15,
+      "shape_before": [
+        28,
+        13
+      ],
+      "shape_after": [
+        28,
+        15
+      ],
+      "pass": true,
+      "detail": "Rank 13 -> 15: new edges add independent structure"
+    },
+    "P7_z3_dephasing_equals_measurement": {
+      "claim": "z_dephasing(rho) == sum_k P_k rho P_k for Z-basis projectors P_k",
+      "z3_result": "unsat",
+      "proven": true,
+      "interpretation": "UNSAT confirms: for ALL valid density matrices, z_dephasing and z_measurement (forgetting outcome) produce identical output. The measurement_dephasing_link hyperedge is formally justified.",
+      "pass": true
+    },
+    "P8_low_degree_survey": {
+      "low_degree_original": {
+        "density_matrix": 1,
+        "purification": 1,
+        "depolarizing": 1,
+        "unitary_rotation": 0,
+        "z_measurement": 0,
+        "SWAP": 1,
+        "iSWAP": 1,
+        "eigenvalue_decomposition": 1,
+        "husimi_q": 1,
+        "l1_coherence": 1,
+        "relative_entropy_coherence": 1,
+        "wigner_negativity": 1,
+        "hopf_connection": 1,
+        "chiral_overlap": 1,
+        "mutual_information": 1,
+        "quantum_discord": 1
+      },
+      "low_degree_augmented": {
+        "density_matrix": 1,
+        "purification": 1,
+        "depolarizing": 1,
+        "unitary_rotation": 1,
+        "z_measurement": 1,
+        "SWAP": 1,
+        "iSWAP": 1,
+        "husimi_q": 1,
+        "l1_coherence": 1,
+        "relative_entropy_coherence": 1,
+        "wigner_negativity": 1,
+        "hopf_connection": 1,
+        "chiral_overlap": 1,
+        "mutual_information": 1,
+        "quantum_discord": 1
+      },
+      "improvement": 1,
+      "pass": true,
+      "detail": "Survey of degree<=1 families: identifies potential further missing edges beyond the two isolates"
+    },
+    "P9_single_qubit_unitaries_bridges": {
+      "edge_members": [
+        "Hadamard",
+        "T_gate",
+        "bit_flip",
+        "bit_phase_flip",
+        "phase_flip",
+        "unitary_rotation"
+      ],
+      "already_in_main_component": [
+        "Hadamard",
+        "T_gate",
+        "bit_flip",
+        "bit_phase_flip",
+        "phase_flip"
+      ],
+      "bridges_to_main": true,
+      "pass": true,
+      "detail": "5 members already in main component, so edge bridges unitary_rotation into it"
+    }
+  },
+  "negative": {
+    "N1_random_edges_dont_fix_isolates": {
+      "trials": 20,
+      "times_random_fixed_both": 0,
+      "fraction": 0.0,
+      "pass": true,
+      "detail": "Random edges fixed both isolates in 0/20 trials -- proposed edges are targeted, not accidental"
+    },
+    "N2_non_isolate_edges_dont_help": {
+      "isolates_still_present": [
+        "unitary_rotation",
+        "z_measurement"
+      ],
+      "pass": true,
+      "detail": "Edges not containing isolates cannot resolve them"
+    },
+    "N3_each_edge_fixes_only_its_isolate": {
+      "single_qubit_unitaries_only_isolates": [
+        "z_measurement"
+      ],
+      "measurement_dephasing_only_isolates": [
+        "unitary_rotation"
+      ],
+      "squ_fixes_unitary_rotation": true,
+      "mdl_fixes_z_measurement": true,
+      "squ_leaves_z_measurement": true,
+      "mdl_leaves_unitary_rotation": true,
+      "pass": true,
+      "detail": "Each proposed edge targets exactly one isolate"
+    },
+    "N4_single_qubit_unitaries_not_redundant": {
+      "is_subset_of_existing": false,
+      "pass": true,
+      "detail": "single_qubit_unitaries is genuinely new, not a subset of any existing edge"
+    },
+    "N4_measurement_dephasing_link_not_redundant": {
+      "is_subset_of_existing": false,
+      "pass": true,
+      "detail": "measurement_dephasing_link is genuinely new, not a subset of any existing edge"
+    }
+  },
+  "boundary": {
+    "B1_degree_distribution_changes": {
+      "families_changed": [
+        "z_dephasing",
+        "bit_flip",
+        "phase_flip",
+        "bit_phase_flip",
+        "unitary_rotation",
+        "z_measurement",
+        "Hadamard",
+        "T_gate",
+        "eigenvalue_decomposition"
+      ],
+      "changes": {
+        "z_dephasing": {
+          "before": 2,
+          "after": 3,
+          "delta": 1
+        },
+        "bit_flip": {
+          "before": 2,
+          "after": 3,
+          "delta": 1
+        },
+        "phase_flip": {
+          "before": 3,
+          "after": 4,
+          "delta": 1
+        },
+        "bit_phase_flip": {
+          "before": 2,
+          "after": 3,
+          "delta": 1
+        },
+        "unitary_rotation": {
+          "before": 0,
+          "after": 1,
+          "delta": 1
+        },
+        "z_measurement": {
+          "before": 0,
+          "after": 1,
+          "delta": 1
+        },
+        "Hadamard": {
+          "before": 2,
+          "after": 3,
+          "delta": 1
+        },
+        "T_gate": {
+          "before": 2,
+          "after": 3,
+          "delta": 1
+        },
+        "eigenvalue_decomposition": {
+          "before": 1,
+          "after": 2,
+          "delta": 1
+        }
+      },
+      "num_changed": 9,
+      "pass": true,
+      "detail": "Only families in proposed edges should have degree changes"
+    },
+    "B2_mean_degree_shift": {
+      "mean_before": 1.4286,
+      "mean_after": 1.75,
+      "increase": 0.3214,
+      "pass": true,
+      "detail": "Mean degree must increase when adding edges"
+    },
+    "B3_dual_growth": {
+      "dual_nodes_before": 13,
+      "dual_nodes_after": 15,
+      "dual_edges_before": 28,
+      "dual_edges_after": 28,
+      "pass": true,
+      "detail": "Each new hyperedge becomes a new node in the dual"
+    },
+    "B4_new_edge_overlaps": {
+      "overlaps": {
+        "single_qubit_unitaries--channel_family": [
+          "bit_flip",
+          "bit_phase_flip",
+          "phase_flip"
+        ],
+        "single_qubit_unitaries--clifford_group": [
+          "Hadamard",
+          "phase_flip"
+        ],
+        "single_qubit_unitaries--universal_gate_set": [
+          "Hadamard",
+          "T_gate"
+        ],
+        "single_qubit_unitaries--pauli_channels": [
+          "bit_flip",
+          "bit_phase_flip",
+          "phase_flip"
+        ],
+        "single_qubit_unitaries--non_clifford_completion": [
+          "T_gate"
+        ],
+        "measurement_dephasing_link--channel_family": [
+          "z_dephasing"
+        ],
+        "measurement_dephasing_link--phase_space_reps": [
+          "eigenvalue_decomposition"
+        ],
+        "measurement_dephasing_link--dephasing_pair": [
+          "z_dephasing"
+        ]
+      },
+      "num_overlaps": 8,
+      "pass": true,
+      "detail": "New edges MUST overlap with existing edges to bridge isolates into the main component"
+    },
+    "B5_cnot_reachability": {
+      "reachable_from_cnot_before": 15,
+      "reachable_from_cnot_after": 20,
+      "total_families": 28,
+      "fraction_before": 0.5357,
+      "fraction_after": 0.7143,
+      "pass": true,
+      "detail": "Proposed edges should expand the CNOT-reachable component"
+    }
+  }
+}

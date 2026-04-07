@@ -1,0 +1,291 @@
+{
+  "name": "rustworkx_family_dag",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "prove no family depends on a family from a later cascade layer"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "DAG construction, acyclicity, topo sort, critical path, ancestors, descendants, transitive reduction"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    }
+  },
+  "positive": {
+    "acyclic": {
+      "passed": true,
+      "detail": "Family dependency DAG has no cycles"
+    },
+    "topological_sort": {
+      "passed": true,
+      "order": [
+        "quantum_discord",
+        "mutual_information",
+        "chiral_overlap",
+        "hopf_connection",
+        "wigner_negativity",
+        "husimi_q",
+        "eigenvalue_decomposition",
+        "relative_entropy_coherence",
+        "l1_coherence",
+        "cartan_kak",
+        "z_measurement",
+        "unitary_rotation",
+        "T_gate",
+        "Hadamard",
+        "iSWAP",
+        "SWAP",
+        "CZ",
+        "CNOT",
+        "bit_phase_flip",
+        "phase_flip",
+        "bit_flip",
+        "phase_damping",
+        "amplitude_damping",
+        "depolarizing",
+        "x_dephasing",
+        "z_dephasing",
+        "purification",
+        "density_matrix"
+      ],
+      "edge_checks_sample": [
+        {
+          "edge": "purification -> density_matrix",
+          "ok": true
+        },
+        {
+          "edge": "z_dephasing -> density_matrix",
+          "ok": true
+        },
+        {
+          "edge": "x_dephasing -> density_matrix",
+          "ok": true
+        },
+        {
+          "edge": "depolarizing -> density_matrix",
+          "ok": true
+        },
+        {
+          "edge": "amplitude_damping -> density_matrix",
+          "ok": true
+        }
+      ],
+      "total_edges_checked": 29,
+      "all_edges_respected": true
+    },
+    "density_matrix_is_root": {
+      "passed": true,
+      "out_degree": 0,
+      "detail": "density_matrix has no dependencies (out-degree 0 in requires-graph)"
+    },
+    "leaf_nodes": {
+      "passed": true,
+      "count": 22,
+      "leaves": [
+        "CZ",
+        "Hadamard",
+        "SWAP",
+        "T_gate",
+        "amplitude_damping",
+        "bit_flip",
+        "bit_phase_flip",
+        "cartan_kak",
+        "chiral_overlap",
+        "depolarizing",
+        "eigenvalue_decomposition",
+        "husimi_q",
+        "iSWAP",
+        "l1_coherence",
+        "phase_damping",
+        "phase_flip",
+        "quantum_discord",
+        "relative_entropy_coherence",
+        "wigner_negativity",
+        "x_dephasing",
+        "z_dephasing",
+        "z_measurement"
+      ],
+      "detail": "Families that no other family depends on"
+    },
+    "critical_path": {
+      "passed": true,
+      "length_edges": 3,
+      "path": [
+        "chiral_overlap",
+        "hopf_connection",
+        "purification",
+        "density_matrix"
+      ],
+      "detail": "Longest dependency chain in the family DAG"
+    },
+    "in_degree_distribution": {
+      "passed": true,
+      "most_depended": [
+        [
+          "density_matrix",
+          23
+        ],
+        [
+          "CNOT",
+          2
+        ],
+        [
+          "purification",
+          1
+        ],
+        [
+          "unitary_rotation",
+          1
+        ],
+        [
+          "hopf_connection",
+          1
+        ]
+      ],
+      "full_distribution": {
+        "density_matrix": 23,
+        "purification": 1,
+        "z_dephasing": 0,
+        "x_dephasing": 0,
+        "depolarizing": 0,
+        "amplitude_damping": 0,
+        "phase_damping": 0,
+        "bit_flip": 0,
+        "phase_flip": 0,
+        "bit_phase_flip": 0,
+        "CNOT": 2,
+        "CZ": 0,
+        "SWAP": 0,
+        "iSWAP": 0,
+        "Hadamard": 0,
+        "T_gate": 0,
+        "unitary_rotation": 1,
+        "z_measurement": 0,
+        "cartan_kak": 0,
+        "l1_coherence": 0,
+        "relative_entropy_coherence": 0,
+        "eigenvalue_decomposition": 0,
+        "husimi_q": 0,
+        "wigner_negativity": 0,
+        "hopf_connection": 1,
+        "chiral_overlap": 0,
+        "mutual_information": 1,
+        "quantum_discord": 0
+      },
+      "detail": "density_matrix should be the most depended-upon family"
+    },
+    "transitive_reduction": {
+      "passed": true,
+      "original_edges": 29,
+      "reduced_edges": 28,
+      "edges_removed": 1,
+      "detail": "Transitive reduction removes redundant dependency edges"
+    },
+    "z3_cross_layer_consistency": {
+      "passed": true,
+      "z3_result": "sat",
+      "python_violations": [],
+      "edges_checked": 29,
+      "detail": "z3 confirms all dependencies respect cascade layer ordering"
+    }
+  },
+  "negative": {
+    "cycle_breaks_acyclicity": {
+      "passed": true,
+      "detail": "Adding density_matrix -> quantum_discord creates a cycle (quantum_discord -> mutual_information -> density_matrix -> quantum_discord)"
+    },
+    "remove_dm_edges_disconnects": {
+      "passed": true,
+      "edges_removed": 23,
+      "dm_isolated": true,
+      "detail": "Removing all density_matrix dependency edges isolates it"
+    },
+    "z3_catches_invalid_layer": {
+      "passed": true,
+      "detail": "z3 detects quantum_discord at L0 violates dependency ordering",
+      "violations_found": 1
+    }
+  },
+  "boundary": {
+    "single_family_dag": {
+      "passed": true,
+      "node_count": 1,
+      "edge_count": 0,
+      "is_acyclic": true,
+      "detail": "Single-node DAG is trivially acyclic with no edges"
+    },
+    "linear_chain": {
+      "passed": true,
+      "topo_order": [
+        "quantum_discord",
+        "mutual_information",
+        "CNOT",
+        "density_matrix"
+      ],
+      "critical_path_length": 3,
+      "expected_length": 3,
+      "detail": "Linear chain has critical path equal to chain length minus 1"
+    },
+    "full_dag_counts": {
+      "passed": true,
+      "node_count": 28,
+      "expected_nodes": 28,
+      "edge_count": 29,
+      "expected_edges": 29,
+      "detail": "Full DAG has exactly 28 families and all declared edges"
+    }
+  },
+  "all_passed": true,
+  "classification": "canonical"
+}

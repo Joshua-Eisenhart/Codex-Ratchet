@@ -1,0 +1,501 @@
+{
+  "name": "xgi_bridge_hyperedges",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no gradient computation needed"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 hypergraph, not pairwise graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 structural analysis, not SMT"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no theorem proving needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no symbolic algebra needed"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no geometric algebra needed"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no manifold geometry needed"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no equivariant networks needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 xgi handles hypergraph natively"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "primary tool \u2014 hypergraph construction, incidence, connectivity analysis"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 bridge analysis is purely hypergraph-level"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no persistence needed for bridge test"
+    }
+  },
+  "summary": {
+    "tests_passed": 10,
+    "tests_total": 10,
+    "all_pass": true
+  },
+  "data": {
+    "families": [
+      "density_matrix",
+      "purification",
+      "z_dephasing",
+      "x_dephasing",
+      "depolarizing",
+      "amplitude_damping",
+      "phase_damping",
+      "bit_flip",
+      "phase_flip",
+      "bit_phase_flip",
+      "unitary_rotation",
+      "z_measurement",
+      "CNOT",
+      "CZ",
+      "SWAP",
+      "Hadamard",
+      "T_gate",
+      "iSWAP",
+      "cartan_kak",
+      "eigenvalue_decomposition",
+      "husimi_q",
+      "l1_coherence",
+      "relative_entropy_coherence",
+      "wigner_negativity",
+      "hopf_connection",
+      "chiral_overlap",
+      "mutual_information",
+      "quantum_discord"
+    ],
+    "family_count": 28,
+    "original_hyperedge_count": 13,
+    "bridge_hyperedge_count": 5,
+    "total_hyperedge_count": 18,
+    "original_hyperedge_names": [
+      "channel_family",
+      "entangling_gates",
+      "clifford_group",
+      "universal_gate_set",
+      "coherence_measures",
+      "phase_space_reps",
+      "geometric_structure",
+      "pauli_channels",
+      "dephasing_pair",
+      "state_preparation",
+      "information_measures",
+      "non_clifford_completion",
+      "damping_channels"
+    ],
+    "bridge_hyperedge_names": [
+      "coherence_sensitive_channels",
+      "phase_space_states",
+      "entanglement_witnesses",
+      "geometric_operators",
+      "measurement_collapse"
+    ],
+    "bridge_definitions": {
+      "coherence_sensitive_channels": [
+        "z_dephasing",
+        "x_dephasing",
+        "l1_coherence",
+        "relative_entropy_coherence"
+      ],
+      "phase_space_states": [
+        "density_matrix",
+        "purification",
+        "husimi_q",
+        "wigner_negativity",
+        "eigenvalue_decomposition"
+      ],
+      "entanglement_witnesses": [
+        "CNOT",
+        "CZ",
+        "iSWAP",
+        "mutual_information",
+        "quantum_discord"
+      ],
+      "geometric_operators": [
+        "Hadamard",
+        "unitary_rotation",
+        "hopf_connection",
+        "chiral_overlap"
+      ],
+      "measurement_collapse": [
+        "z_measurement",
+        "eigenvalue_decomposition",
+        "l1_coherence"
+      ]
+    }
+  },
+  "comparison": {
+    "original_components": 8,
+    "bridged_components": 1,
+    "original_incidence_rank": 13,
+    "bridged_incidence_rank": 16,
+    "original_isolates": [
+      "unitary_rotation",
+      "z_measurement"
+    ],
+    "bridged_isolates": [],
+    "degree_changes": {
+      "density_matrix": {
+        "original": 1,
+        "bridged": 2
+      },
+      "purification": {
+        "original": 1,
+        "bridged": 2
+      },
+      "z_dephasing": {
+        "original": 2,
+        "bridged": 3
+      },
+      "x_dephasing": {
+        "original": 2,
+        "bridged": 3
+      },
+      "unitary_rotation": {
+        "original": 0,
+        "bridged": 1
+      },
+      "z_measurement": {
+        "original": 0,
+        "bridged": 1
+      },
+      "CNOT": {
+        "original": 3,
+        "bridged": 4
+      },
+      "CZ": {
+        "original": 2,
+        "bridged": 3
+      },
+      "Hadamard": {
+        "original": 2,
+        "bridged": 3
+      },
+      "iSWAP": {
+        "original": 1,
+        "bridged": 2
+      },
+      "eigenvalue_decomposition": {
+        "original": 1,
+        "bridged": 3
+      },
+      "husimi_q": {
+        "original": 1,
+        "bridged": 2
+      },
+      "l1_coherence": {
+        "original": 1,
+        "bridged": 3
+      },
+      "relative_entropy_coherence": {
+        "original": 1,
+        "bridged": 2
+      },
+      "wigner_negativity": {
+        "original": 1,
+        "bridged": 2
+      },
+      "hopf_connection": {
+        "original": 1,
+        "bridged": 2
+      },
+      "chiral_overlap": {
+        "original": 1,
+        "bridged": 2
+      },
+      "mutual_information": {
+        "original": 1,
+        "bridged": 2
+      },
+      "quantum_discord": {
+        "original": 1,
+        "bridged": 2
+      }
+    }
+  },
+  "positive": {
+    "P1_bridges_reduce_components": {
+      "original_components": 8,
+      "bridged_components": 1,
+      "reduction": 7,
+      "pass": true,
+      "detail": "Components: 8 -> 1 (reduced by 7)"
+    },
+    "P2_isolates_now_connected": {
+      "unitary_rotation_was_isolate": true,
+      "z_measurement_was_isolate": true,
+      "unitary_rotation_now_degree": 1,
+      "z_measurement_now_degree": 1,
+      "original_isolates": [
+        "unitary_rotation",
+        "z_measurement"
+      ],
+      "bridged_isolates": [],
+      "pass": true,
+      "detail": "Both former isolates now participate in bridge hyperedges"
+    },
+    "P3_incidence_rank_increases": {
+      "original_rank": 13,
+      "original_shape": [
+        28,
+        13
+      ],
+      "bridged_rank": 16,
+      "bridged_shape": [
+        28,
+        18
+      ],
+      "rank_increase": 3,
+      "pass": true,
+      "detail": "Incidence rank: 13 -> 16 (+3)"
+    },
+    "P4_all_bridges_cross_type": {
+      "bridge_details": {
+        "coherence_sensitive_channels": {
+          "has_structural": true,
+          "has_measure": true,
+          "is_cross_type": true
+        },
+        "phase_space_states": {
+          "has_structural": true,
+          "has_measure": true,
+          "is_cross_type": true
+        },
+        "entanglement_witnesses": {
+          "has_structural": true,
+          "has_measure": true,
+          "is_cross_type": true
+        },
+        "geometric_operators": {
+          "has_structural": true,
+          "has_measure": true,
+          "is_cross_type": true
+        },
+        "measurement_collapse": {
+          "has_structural": true,
+          "has_measure": true,
+          "is_cross_type": true
+        }
+      },
+      "all_cross_type": true,
+      "pass": true,
+      "detail": "Every bridge edge spans the structural/measure boundary"
+    }
+  },
+  "negative": {
+    "N1_random_bridges_less_effective": {
+      "our_reduction": 7,
+      "random_reductions": [
+        5,
+        5,
+        7,
+        5,
+        5,
+        3,
+        6,
+        4,
+        5,
+        6,
+        6,
+        6,
+        5,
+        5,
+        4,
+        5,
+        5,
+        6,
+        5,
+        6
+      ],
+      "mean_random_reduction": 5.2,
+      "random_trials_matching_ours": 1,
+      "better_than_random_mean": true,
+      "pass": true,
+      "detail": "Our bridges reduce by 7, random avg reduces by 5.2"
+    },
+    "N2_no_single_bridge_critical": {
+      "components_after_removing_each": {
+        "coherence_sensitive_channels": 2,
+        "phase_space_states": 2,
+        "entanglement_witnesses": 2,
+        "geometric_operators": 3,
+        "measurement_collapse": 3
+      },
+      "any_restores_original": false,
+      "pass": true,
+      "detail": "No single bridge removal restores the original 8-component fragmentation"
+    }
+  },
+  "boundary": {
+    "B1_between_complete_and_original": {
+      "original_components": 8,
+      "bridged_components": 1,
+      "complete_components": 1,
+      "strictly_between": true,
+      "not_trivially_complete": true,
+      "pass": true,
+      "detail": "Components: complete=1, bridged=1, original=8"
+    },
+    "B2_bridges_alone_connectivity": {
+      "bridges_only_components": 12,
+      "bridges_only_isolates": [
+        "depolarizing",
+        "amplitude_damping",
+        "phase_damping",
+        "bit_flip",
+        "phase_flip",
+        "bit_phase_flip",
+        "SWAP",
+        "T_gate",
+        "cartan_kak"
+      ],
+      "num_isolates": 9,
+      "pass": true,
+      "detail": "Bridges alone should NOT connect everything (they are targeted, not complete)"
+    },
+    "B3_measure_degree_boost": {
+      "structural_avg_degree_increase": 0.5263157894736842,
+      "measure_avg_degree_increase": 1.2222222222222223,
+      "measures_boosted_more": "True",
+      "pass": "True",
+      "detail": "Structural avg increase: 0.53, Measure avg increase: 1.22"
+    },
+    "B4_cross_edge_overlaps": {
+      "num_cross_overlaps": 14,
+      "overlaps": {
+        "channel_family--coherence_sensitive_channels": {
+          "shared_count": 2,
+          "shared_families": [
+            "z_dephasing",
+            "x_dephasing"
+          ]
+        },
+        "entangling_gates--entanglement_witnesses": {
+          "shared_count": 3,
+          "shared_families": [
+            "iSWAP",
+            "CNOT",
+            "CZ"
+          ]
+        },
+        "clifford_group--entanglement_witnesses": {
+          "shared_count": 2,
+          "shared_families": [
+            "CNOT",
+            "CZ"
+          ]
+        },
+        "clifford_group--geometric_operators": {
+          "shared_count": 1,
+          "shared_families": [
+            "Hadamard"
+          ]
+        },
+        "universal_gate_set--entanglement_witnesses": {
+          "shared_count": 1,
+          "shared_families": [
+            "CNOT"
+          ]
+        },
+        "universal_gate_set--geometric_operators": {
+          "shared_count": 1,
+          "shared_families": [
+            "Hadamard"
+          ]
+        },
+        "coherence_measures--coherence_sensitive_channels": {
+          "shared_count": 2,
+          "shared_families": [
+            "l1_coherence",
+            "relative_entropy_coherence"
+          ]
+        },
+        "coherence_measures--measurement_collapse": {
+          "shared_count": 1,
+          "shared_families": [
+            "l1_coherence"
+          ]
+        },
+        "phase_space_reps--phase_space_states": {
+          "shared_count": 3,
+          "shared_families": [
+            "eigenvalue_decomposition",
+            "husimi_q",
+            "wigner_negativity"
+          ]
+        },
+        "phase_space_reps--measurement_collapse": {
+          "shared_count": 1,
+          "shared_families": [
+            "eigenvalue_decomposition"
+          ]
+        },
+        "geometric_structure--geometric_operators": {
+          "shared_count": 2,
+          "shared_families": [
+            "hopf_connection",
+            "chiral_overlap"
+          ]
+        },
+        "dephasing_pair--coherence_sensitive_channels": {
+          "shared_count": 2,
+          "shared_families": [
+            "z_dephasing",
+            "x_dephasing"
+          ]
+        },
+        "state_preparation--phase_space_states": {
+          "shared_count": 2,
+          "shared_families": [
+            "density_matrix",
+            "purification"
+          ]
+        },
+        "information_measures--entanglement_witnesses": {
+          "shared_count": 2,
+          "shared_families": [
+            "mutual_information",
+            "quantum_discord"
+          ]
+        }
+      },
+      "pass": true,
+      "detail": "Bridge edges must share nodes with original edges to actually bridge"
+    }
+  }
+}

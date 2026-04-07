@@ -4,7 +4,7 @@
 | Field | Value |
 |-------|-------|
 | **last_verified** | 2026-04-07 |
-| **current_enforced** | SIM_TEMPLATE.py structure, tool manifest requirement, two-lane policy |
+| **current_reviewed_policy** | SIM_TEMPLATE.py structure, tool manifest requirement, two-lane policy (no automated checker, no promotion gate — compliance is by discipline and review, not enforcement machinery) |
 | **discovered** | L0-L7 constraint cascade, 28 irreducible families, 9 independent observables, simultaneous shell geometry |
 | **planned** | Manifest checker CI, canonical promotion gate, Lean 4 / TLAPS proof layer, PyTorch migration of all 28 families |
 
@@ -16,12 +16,12 @@ This document governs active simulation and build work. It does not replace sour
 
 ---
 
-## CURRENT ENFORCED STATE (what exists now)
+## CURRENT STATE (what exists now)
 - numpy legos = classical baselines (verified, committed). Count: see `system_v4/probes/` manifest.
-- Negative battery concepts with multiple battery files and 100+ failure modes. Count: see battery index.
+- Negative battery concepts with multiple battery files and 100+ failure modes. Count: see [BATTERY_INDEX.md](BATTERY_INDEX.md).
 - L0-L7 constraint cascade mapped. Counts: see PYTORCH_RATCHET_BUILD_PLAN.md Phase 2.
-- Irreducible families identified with independent observables. Counts: see migration registry.
-- Tool usage across sim files: z3, sympy, clifford, toponetx, torch all represented. Counts: see tool manifest audit.
+- Irreducible families identified with independent observables. Counts: see [MIGRATION_REGISTRY.md](MIGRATION_REGISTRY.md).
+- Tool usage across sim files: z3, sympy, clifford, toponetx, torch all represented. Counts: see [TOOL_MANIFEST_AUDIT.md](TOOL_MANIFEST_AUDIT.md).
 - PyTorch is NOT yet the primary substrate. numpy dominates.
 - SIM_TEMPLATE.py now exists (system_v4/probes/SIM_TEMPLATE.py)
 - Tool manifest is defined in the template but not yet present in legacy result JSONs

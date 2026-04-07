@@ -1,0 +1,550 @@
+{
+  "name": "torch_density_matrix_pilot",
+  "phase": "Phase 3 pilot",
+  "description": "First torch.nn.Module: DensityMatrix parameterized by Bloch vector",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core module: DensityMatrix as nn.Module, autograd for gradients"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "PSD constraint verification: |r|<=1 implies non-negative eigenvalues"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic eigenvalue and purity formula verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_element_wise_substrate_match": {
+      "|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "random_1": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "random_2": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "random_3": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      }
+    },
+    "P2_entropy_gradient_existence": {
+      "|0><0|": {
+        "entropy": 2.7631020735330303e-11,
+        "grad_exists": true,
+        "grad_nonzero": true,
+        "grad_values": [
+          0.0,
+          0.0,
+          -0.5
+        ],
+        "pass": true
+      },
+      "|+><+|": {
+        "entropy": 2.7631020735330303e-11,
+        "grad_exists": true,
+        "grad_nonzero": true,
+        "grad_values": [
+          -0.4999999701976776,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "maximally_mixed": {
+        "entropy": 0.6931471824645996,
+        "grad_exists": true,
+        "grad_nonzero": false,
+        "grad_values": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "random_1": {
+        "entropy": 0.6658426523208618,
+        "grad_exists": true,
+        "grad_nonzero": true,
+        "grad_values": [
+          -0.14217236638069153,
+          0.03957480192184448,
+          -0.1853853017091751
+        ],
+        "pass": true
+      },
+      "random_2": {
+        "entropy": 0.42109110951423645,
+        "grad_exists": true,
+        "grad_nonzero": true,
+        "grad_values": [
+          -0.7174323797225952,
+          -0.1314440667629242,
+          -0.4760093688964844
+        ],
+        "pass": true
+      },
+      "random_3": {
+        "entropy": 0.6273937225341797,
+        "grad_exists": true,
+        "grad_nonzero": true,
+        "grad_values": [
+          0.20627689361572266,
+          -0.23838916420936584,
+          0.2036157250404358
+        ],
+        "pass": true
+      }
+    },
+    "P3_purity_substrate_match": {
+      "|0><0|": {
+        "numpy_purity": 1.0,
+        "torch_purity": 1.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "numpy_purity": 1.0,
+        "torch_purity": 1.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "numpy_purity": 0.5,
+        "torch_purity": 0.5,
+        "diff": 0.0,
+        "pass": true
+      },
+      "random_1": {
+        "numpy_purity": 0.5270550847053528,
+        "torch_purity": 0.5270550847053528,
+        "diff": 0.0,
+        "pass": true
+      },
+      "random_2": {
+        "numpy_purity": 0.7463048696517944,
+        "torch_purity": 0.7463048696517944,
+        "diff": 0.0,
+        "pass": true
+      },
+      "random_3": {
+        "numpy_purity": 0.5642991065979004,
+        "torch_purity": 0.5642991065979004,
+        "diff": 0.0,
+        "pass": true
+      }
+    },
+    "P4_test_states_used": {
+      "count": 6,
+      "names": [
+        "|0><0|",
+        "|+><+|",
+        "maximally_mixed",
+        "random_1",
+        "random_2",
+        "random_3"
+      ],
+      "pass": true
+    },
+    "P5_purity_gradient_radial": {
+      "|0><0|": {
+        "bloch": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "grad": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "cos_angle_with_radial": 1.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "bloch": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "grad": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "cos_angle_with_radial": 1.0,
+        "pass": true
+      },
+      "random_1": {
+        "bloch": [
+          0.13956998251409694,
+          -0.03885040516723444,
+          0.18199174996177409
+        ],
+        "grad": [
+          0.1395699828863144,
+          -0.03885040432214737,
+          0.1819917857646942
+        ],
+        "cos_angle_with_radial": 1.0000001192092896,
+        "pass": true
+      },
+      "random_2": {
+        "bloch": [
+          0.5781415937274001,
+          0.10592397562633275,
+          0.3835912439837476
+        ],
+        "grad": [
+          0.5781415700912476,
+          0.10592397302389145,
+          0.3835912048816681
+        ],
+        "cos_angle_with_radial": 1.0000001192092896,
+        "pass": true
+      },
+      "random_3": {
+        "bloch": [
+          -0.19710911321400754,
+          0.2277941720794972,
+          -0.19456620683583342
+        ],
+        "grad": [
+          -0.19710911810398102,
+          0.22779417037963867,
+          -0.19456622004508972
+        ],
+        "cos_angle_with_radial": 1.0,
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "N1_invalid_bloch_non_psd": {
+      "r=1.5_z": {
+        "bloch_norm": 1.5,
+        "eigenvalues": [
+          -0.25,
+          1.25
+        ],
+        "min_eigenvalue": -0.25,
+        "has_negative_eigenvalue": true,
+        "pass": true
+      },
+      "r=2.0_uniform": {
+        "bloch_norm": 2.0,
+        "eigenvalues": [
+          -0.4999999701976776,
+          1.5
+        ],
+        "min_eigenvalue": -0.4999999701976776,
+        "has_negative_eigenvalue": true,
+        "pass": true
+      },
+      "r=3.0_x": {
+        "bloch_norm": 3.0,
+        "eigenvalues": [
+          -1.0,
+          2.0
+        ],
+        "min_eigenvalue": -1.0,
+        "has_negative_eigenvalue": true,
+        "pass": true
+      }
+    },
+    "N2_hermiticity_and_trace": {
+      "state_0": {
+        "trace": 1.0,
+        "trace_is_1": true,
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "state_1": {
+        "trace": 1.0,
+        "trace_is_1": true,
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "state_2": {
+        "trace": 1.0,
+        "trace_is_1": true,
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "state_3": {
+        "trace": 1.0,
+        "trace_is_1": true,
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "state_4": {
+        "trace": 1.0,
+        "trace_is_1": true,
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "state_5": {
+        "trace": 1.0,
+        "trace_is_1": true,
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "state_6": {
+        "trace": 1.0,
+        "trace_is_1": true,
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "state_7": {
+        "trace": 1.0,
+        "trace_is_1": true,
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "state_8": {
+        "trace": 1.0,
+        "trace_is_1": true,
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "state_9": {
+        "trace": 1.0,
+        "trace_is_1": true,
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      }
+    }
+  },
+  "boundary": {
+    "B1_maximally_mixed": {
+      "purity": 0.5,
+      "purity_is_0.5": true,
+      "gradient": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gradient_is_zero": true,
+      "pass": true
+    },
+    "B2_pure_states": {
+      "|0>": {
+        "purity": 1.0,
+        "purity_is_1.0": true,
+        "gradient_direction_radial": true,
+        "cos_angle": 1.0,
+        "pass": true
+      },
+      "|1>": {
+        "purity": 1.0,
+        "purity_is_1.0": true,
+        "gradient_direction_radial": true,
+        "cos_angle": 1.0,
+        "pass": true
+      },
+      "|+>": {
+        "purity": 1.0,
+        "purity_is_1.0": true,
+        "gradient_direction_radial": true,
+        "cos_angle": 1.0,
+        "pass": true
+      },
+      "|+i>": {
+        "purity": 1.0,
+        "purity_is_1.0": true,
+        "gradient_direction_radial": true,
+        "cos_angle": 1.0,
+        "pass": true
+      }
+    },
+    "B3_gradient_increases_toward_boundary": {
+      "radii": [
+        0.1,
+        0.3,
+        0.5,
+        0.7,
+        0.9,
+        0.95,
+        0.99
+      ],
+      "gradient_magnitudes": [
+        0.10000002384185791,
+        0.29999998211860657,
+        0.5,
+        0.7000000476837158,
+        0.8999999761581421,
+        0.9500000476837158,
+        0.9900000095367432
+      ],
+      "monotonically_increasing": true,
+      "pass": true
+    }
+  },
+  "falsification": {
+    "F1_autograd_vs_finite_difference": {
+      "interior_1": {
+        "autograd": [
+          -0.5146008729934692,
+          0.47275274991989136,
+          0.1341349184513092
+        ],
+        "finite_diff": [
+          -0.514596700668335,
+          0.47275421023368835,
+          0.1341104507446289
+        ],
+        "cosine_similarity": 1.0,
+        "magnitude_ratio": 1.000009298324585,
+        "max_component_diff": 2.446770668029785e-05,
+        "pass": true
+      },
+      "interior_2": {
+        "autograd": [
+          -0.666652262210846,
+          0.14255692064762115,
+          -0.022800564765930176
+        ],
+        "finite_diff": [
+          -0.6666480898857117,
+          0.14254450798034668,
+          -0.02276897244155407
+        ],
+        "cosine_similarity": 1.0000001192092896,
+        "magnitude_ratio": 1.0000113248825073,
+        "max_component_diff": 3.159232437610626e-05,
+        "pass": true
+      },
+      "near_pure": {
+        "autograd": [
+          0.0,
+          0.0,
+          0.9500000476837158
+        ],
+        "finite_diff": [
+          0.0,
+          0.0,
+          0.9500383734703064
+        ],
+        "cosine_similarity": 1.0,
+        "magnitude_ratio": 0.9999596476554871,
+        "max_component_diff": 3.832578659057617e-05,
+        "pass": true
+      },
+      "near_mixed": {
+        "autograd": [
+          0.10000000149011612,
+          0.05000000074505806,
+          0.019999980926513672
+        ],
+        "finite_diff": [
+          0.09998678416013718,
+          0.050008293241262436,
+          0.019997356459498405
+        ],
+        "cosine_similarity": 1.0,
+        "magnitude_ratio": 1.0000745058059692,
+        "max_component_diff": 1.3217329978942871e-05,
+        "pass": true
+      }
+    },
+    "F2_substrate_equivalence_100_states": {
+      "n_states": 100,
+      "overall_max_abs_diff": 0.0,
+      "mean_max_abs_diff": 0.0,
+      "pass": true
+    }
+  },
+  "sympy_check": {
+    "eigenvalues": [
+      "(r + 1)/2",
+      "-(r - 1)/2"
+    ],
+    "purity_formula": "r**2/2 + 1/2",
+    "matches_expected": true,
+    "pass": true
+  },
+  "z3_check": {
+    "inside_ball_can_be_non_psd": "unsat",
+    "outside_ball_can_be_non_psd": "sat",
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 50,
+    "total_pass": 50,
+    "all_pass": true
+  }
+}

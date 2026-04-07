@@ -1,0 +1,575 @@
+{
+  "name": "xgi_dual_hypergraph",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- no gradient computation needed"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- hypergraph, not pairwise graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- structural analysis, not SMT"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- no theorem proving needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- no symbolic algebra needed"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- no geometric algebra needed"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- no manifold geometry needed"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- no equivariant networks needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant -- xgi handles hypergraph natively"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "primary tool -- dual hypergraph construction and analysis"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant for this sim"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant for this sim"
+    }
+  },
+  "summary": {
+    "tests_passed": 13,
+    "tests_total": 13,
+    "all_pass": true
+  },
+  "data": {
+    "role_names": [
+      "channel_family",
+      "entangling_gates",
+      "clifford_group",
+      "universal_gate_set",
+      "coherence_measures",
+      "phase_space_reps",
+      "geometric_structure",
+      "pauli_channels",
+      "dephasing_pair",
+      "state_preparation",
+      "information_measures",
+      "non_clifford_completion",
+      "damping_channels"
+    ],
+    "role_count": 13,
+    "dual_edge_labels": [
+      "CNOT",
+      "CZ",
+      "Hadamard",
+      "T_gate",
+      "amplitude_damping",
+      "bit_flip",
+      "bit_phase_flip",
+      "cartan_kak",
+      "phase_damping",
+      "phase_flip",
+      "x_dephasing",
+      "z_dephasing"
+    ],
+    "dual_edge_count": 12,
+    "family_to_roles": {
+      "z_dephasing": [
+        "channel_family",
+        "dephasing_pair"
+      ],
+      "x_dephasing": [
+        "channel_family",
+        "dephasing_pair"
+      ],
+      "depolarizing": [
+        "channel_family"
+      ],
+      "amplitude_damping": [
+        "channel_family",
+        "damping_channels"
+      ],
+      "phase_damping": [
+        "channel_family",
+        "damping_channels"
+      ],
+      "bit_flip": [
+        "channel_family",
+        "pauli_channels"
+      ],
+      "phase_flip": [
+        "channel_family",
+        "clifford_group",
+        "pauli_channels"
+      ],
+      "bit_phase_flip": [
+        "channel_family",
+        "pauli_channels"
+      ],
+      "CNOT": [
+        "clifford_group",
+        "entangling_gates",
+        "universal_gate_set"
+      ],
+      "CZ": [
+        "clifford_group",
+        "entangling_gates"
+      ],
+      "iSWAP": [
+        "entangling_gates"
+      ],
+      "cartan_kak": [
+        "entangling_gates",
+        "non_clifford_completion"
+      ],
+      "SWAP": [
+        "clifford_group"
+      ],
+      "Hadamard": [
+        "clifford_group",
+        "universal_gate_set"
+      ],
+      "T_gate": [
+        "non_clifford_completion",
+        "universal_gate_set"
+      ],
+      "l1_coherence": [
+        "coherence_measures"
+      ],
+      "relative_entropy_coherence": [
+        "coherence_measures"
+      ],
+      "husimi_q": [
+        "phase_space_reps"
+      ],
+      "wigner_negativity": [
+        "phase_space_reps"
+      ],
+      "eigenvalue_decomposition": [
+        "phase_space_reps"
+      ],
+      "hopf_connection": [
+        "geometric_structure"
+      ],
+      "chiral_overlap": [
+        "geometric_structure"
+      ],
+      "density_matrix": [
+        "state_preparation"
+      ],
+      "purification": [
+        "state_preparation"
+      ],
+      "mutual_information": [
+        "information_measures"
+      ],
+      "quantum_discord": [
+        "information_measures"
+      ]
+    }
+  },
+  "analysis": {
+    "dual_stats": {
+      "num_nodes": 13,
+      "num_edges": 12,
+      "edge_labels": [
+        "CNOT",
+        "CZ",
+        "Hadamard",
+        "T_gate",
+        "amplitude_damping",
+        "bit_flip",
+        "bit_phase_flip",
+        "cartan_kak",
+        "phase_damping",
+        "phase_flip",
+        "x_dephasing",
+        "z_dephasing"
+      ],
+      "edge_sizes": [
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        3,
+        2,
+        2
+      ],
+      "edge_size_distribution": {
+        "3": 2,
+        "2": 10
+      },
+      "node_degrees": {
+        "channel_family": 7,
+        "entangling_gates": 3,
+        "clifford_group": 4,
+        "universal_gate_set": 3,
+        "coherence_measures": 0,
+        "phase_space_reps": 0,
+        "geometric_structure": 0,
+        "pauli_channels": 3,
+        "dephasing_pair": 2,
+        "state_preparation": 0,
+        "information_measures": 0,
+        "non_clifford_completion": 2,
+        "damping_channels": 2
+      },
+      "degree_ranking": [
+        [
+          "channel_family",
+          7
+        ],
+        [
+          "clifford_group",
+          4
+        ],
+        [
+          "entangling_gates",
+          3
+        ],
+        [
+          "universal_gate_set",
+          3
+        ],
+        [
+          "pauli_channels",
+          3
+        ],
+        [
+          "dephasing_pair",
+          2
+        ],
+        [
+          "non_clifford_completion",
+          2
+        ],
+        [
+          "damping_channels",
+          2
+        ],
+        [
+          "coherence_measures",
+          0
+        ],
+        [
+          "phase_space_reps",
+          0
+        ],
+        [
+          "geometric_structure",
+          0
+        ],
+        [
+          "state_preparation",
+          0
+        ],
+        [
+          "information_measures",
+          0
+        ]
+      ],
+      "max_degree_role": "channel_family",
+      "max_degree_value": 7,
+      "mean_degree": 2.0,
+      "is_connected": false,
+      "num_connected_components": 6
+    },
+    "bridge_families": [
+      {
+        "family": "CNOT",
+        "roles_bridged": 3,
+        "roles": [
+          "entangling_gates",
+          "clifford_group",
+          "universal_gate_set"
+        ]
+      },
+      {
+        "family": "phase_flip",
+        "roles_bridged": 3,
+        "roles": [
+          "channel_family",
+          "clifford_group",
+          "pauli_channels"
+        ]
+      },
+      {
+        "family": "CZ",
+        "roles_bridged": 2,
+        "roles": [
+          "entangling_gates",
+          "clifford_group"
+        ]
+      },
+      {
+        "family": "Hadamard",
+        "roles_bridged": 2,
+        "roles": [
+          "clifford_group",
+          "universal_gate_set"
+        ]
+      },
+      {
+        "family": "T_gate",
+        "roles_bridged": 2,
+        "roles": [
+          "universal_gate_set",
+          "non_clifford_completion"
+        ]
+      },
+      {
+        "family": "amplitude_damping",
+        "roles_bridged": 2,
+        "roles": [
+          "channel_family",
+          "damping_channels"
+        ]
+      },
+      {
+        "family": "bit_flip",
+        "roles_bridged": 2,
+        "roles": [
+          "channel_family",
+          "pauli_channels"
+        ]
+      },
+      {
+        "family": "bit_phase_flip",
+        "roles_bridged": 2,
+        "roles": [
+          "channel_family",
+          "pauli_channels"
+        ]
+      },
+      {
+        "family": "cartan_kak",
+        "roles_bridged": 2,
+        "roles": [
+          "entangling_gates",
+          "non_clifford_completion"
+        ]
+      },
+      {
+        "family": "phase_damping",
+        "roles_bridged": 2,
+        "roles": [
+          "channel_family",
+          "damping_channels"
+        ]
+      },
+      {
+        "family": "x_dephasing",
+        "roles_bridged": 2,
+        "roles": [
+          "channel_family",
+          "dephasing_pair"
+        ]
+      },
+      {
+        "family": "z_dephasing",
+        "roles_bridged": 2,
+        "roles": [
+          "channel_family",
+          "dephasing_pair"
+        ]
+      }
+    ],
+    "dual_incidence": {
+      "incidence_shape": [
+        13,
+        12
+      ],
+      "incidence_rank": 7,
+      "max_possible_rank": 12
+    },
+    "comparison_with_original": {
+      "original_incidence_shape": [
+        28,
+        13
+      ],
+      "original_incidence_rank": 13,
+      "dual_incidence_shape": [
+        13,
+        12
+      ],
+      "dual_incidence_rank": 7,
+      "rank_difference": 6,
+      "original_components": 8,
+      "dual_components": 6,
+      "dual_fewer_components": true
+    }
+  },
+  "positive": {
+    "P1_channel_family_most_connected": {
+      "channel_family_degree": 7,
+      "max_degree_value": 7,
+      "max_degree_role": "channel_family",
+      "pass": true,
+      "detail": "channel_family degree=7, max=7 (channel_family)"
+    },
+    "P2_cnot_most_dual_edges": {
+      "cnot_roles_bridged": 3,
+      "max_roles_bridged": 3,
+      "top_bridge_family": "CNOT",
+      "cnot_is_top_or_tied": true,
+      "pass": true,
+      "detail": "CNOT bridges 3 roles, max bridge=3 (CNOT)"
+    },
+    "P3_dual_fewer_components": {
+      "original_components": 8,
+      "dual_components": 6,
+      "pass": true,
+      "detail": "original=8 components, dual=6 components"
+    },
+    "P4_degree_distribution_non_uniform": {
+      "unique_degrees": 5,
+      "degree_values": [
+        7,
+        3,
+        4,
+        3,
+        0,
+        0,
+        0,
+        3,
+        2,
+        0,
+        0,
+        2,
+        2
+      ],
+      "pass": true,
+      "detail": "Dual node degrees should vary (roles participate differently)"
+    },
+    "P5_dual_incidence_rank": {
+      "rank": 7,
+      "shape": [
+        13,
+        12
+      ],
+      "max_possible": 12,
+      "pass": true,
+      "detail": "rank=7 of max 12"
+    },
+    "P6_dual_node_count": {
+      "num_nodes": 13,
+      "expected": 13,
+      "pass": true
+    },
+    "P7_rank_comparison": {
+      "original_rank": 13,
+      "dual_rank": 7,
+      "pass": true,
+      "detail": "original rank=13, dual rank=7"
+    }
+  },
+  "negative": {
+    "N1_no_overlap_no_dual_edges": {
+      "disjoint_dual_edges": 0,
+      "disjoint_dual_components": 3,
+      "pass": true,
+      "detail": "Disjoint hyperedges produce isolated dual nodes (no dual edges)"
+    },
+    "N2_random_roles_differ": {
+      "real_degrees_sorted": [
+        7,
+        4,
+        3,
+        3,
+        3,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "random_degrees_sorted": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "distributions_differ": true,
+      "pass": true,
+      "detail": "Random role assignment must produce different dual topology"
+    }
+  },
+  "boundary": {
+    "B1_xgi_builtin_dual_node_count": {
+      "builtin_dual_nodes": 13,
+      "our_dual_nodes": 13,
+      "match": true,
+      "pass": true,
+      "detail": "XGI built-in dual should also have 13 nodes"
+    },
+    "B2_all_edges_size_ge_2": {
+      "min_edge_size": 2,
+      "max_edge_size": 3,
+      "all_ge_2": true,
+      "pass": true,
+      "detail": "Every dual edge connects at least 2 roles (by definition)"
+    },
+    "B3_edge_count_matches_multi_role_families": {
+      "dual_edges": 12,
+      "multi_role_families": 12,
+      "pass": true,
+      "detail": "One dual edge per family that spans multiple roles"
+    },
+    "B4_isolated_roles": {
+      "isolated_roles": [
+        "coherence_measures",
+        "phase_space_reps",
+        "geometric_structure",
+        "state_preparation",
+        "information_measures"
+      ],
+      "count": 5,
+      "pass": true,
+      "detail": "Roles with no shared families are isolated in dual"
+    }
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "01_partial_transpose": {
+    "single_system_positive": true,
+    "bell_state_partial_transpose_eigenvalues": [
+      -0.4999999999999999,
+      0.4999999999999999,
+      0.4999999999999999,
+      0.4999999999999999
+    ],
+    "min_eigenvalue": -0.4999999999999999,
+    "has_negative_eigenvalue": true,
+    "pass": true
+  },
+  "02_universal_not": {
+    "choi_eigenvalues": [
+      -1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "min_eigenvalue": -1.0,
+    "choi_has_negative_eigenvalue": true,
+    "trace_preserving": true,
+    "pass": true
+  },
+  "03_trace_increasing": {
+    "output_trace": 1.2100000000000002,
+    "exceeds_one": true,
+    "kraus_completeness_sum": 2.4200000000000004,
+    "completeness_deviation": 0.29698484809835024,
+    "pass": true
+  },
+  "04_non_hermitian_output": {
+    "output_matrix": [
+      [
+        "(0.5+0j)",
+        "(1+0j)"
+      ],
+      [
+        "0j",
+        "(0.5+0j)"
+      ]
+    ],
+    "output_is_hermitian": false,
+    "output_trace": 1.0,
+    "proper_kraus_is_hermitian": true,
+    "pass": true
+  },
+  "05_depolarizing_p_gt_1": {
+    "p1_5": {
+      "p": 1.5,
+      "output_eigenvalues": [
+        0.25,
+        0.75
+      ],
+      "output_stays_psd": true,
+      "choi_eigenvalues": [
+        -0.25,
+        0.75,
+        0.75,
+        0.75
+      ],
+      "choi_has_negative": true,
+      "interpretation": "Positive (PSD output for any single-system input) but NOT completely positive (Choi < 0). Entangled inputs would reveal negativity."
+    },
+    "p2_5": {
+      "p": 2.5,
+      "output_eigenvalues": [
+        -0.25,
+        1.25
+      ],
+      "output_has_negative": true,
+      "choi_eigenvalues": [
+        -1.75,
+        1.2499999999999998,
+        1.25,
+        1.25
+      ],
+      "choi_has_negative": true,
+      "interpretation": "Not even positive: single-system pure-state input produces negative eigenvalue in output."
+    },
+    "pass": true
+  },
+  "06_amplitude_damping_gamma_gt_1": {
+    "completeness_matrix": [
+      [
+        "(1+0j)",
+        "0j"
+      ],
+      [
+        "0j",
+        "(2+0j)"
+      ]
+    ],
+    "completeness_is_identity": false,
+    "output_matrix": [
+      [
+        "(1.4999999999999998+0j)",
+        "0j"
+      ],
+      [
+        "0j",
+        "(0.5000000000000001+0j)"
+      ]
+    ],
+    "output_is_hermitian": true,
+    "output_trace": 2.0,
+    "K0_is_real": false,
+    "sqrt_1_minus_gamma_imaginary": true,
+    "pass": true
+  },
+  "07_dephasing_composition": {
+    "error_log": [
+      {
+        "depth": 1,
+        "exact_offdiag": 0.49,
+        "numerical_offdiag": 0.4899999999999999,
+        "absolute_error": 1.1102230246251565e-16
+      },
+      {
+        "depth": 10,
+        "exact_offdiag": 0.40853640344377334,
+        "numerical_offdiag": 0.4085364034437735,
+        "absolute_error": 1.6653345369377348e-16
+      },
+      {
+        "depth": 100,
+        "exact_offdiag": 0.06630977794737647,
+        "numerical_offdiag": 0.06630977794737672,
+        "absolute_error": 2.498001805406602e-16
+      },
+      {
+        "depth": 500,
+        "exact_offdiag": 2.0511992572736107e-05,
+        "numerical_offdiag": 2.0511992572736487e-05,
+        "absolute_error": 3.7947076036992655e-19
+      },
+      {
+        "depth": 1000,
+        "exact_offdiag": 8.414836786079626e-10,
+        "numerical_offdiag": 8.414836786079929e-10,
+        "absolute_error": 3.029548993475464e-23
+      },
+      {
+        "depth": 2000,
+        "exact_offdiag": 1.4161895627271777e-18,
+        "numerical_offdiag": 1.4161895627272852e-18,
+        "absolute_error": 1.0746689089680776e-31
+      },
+      {
+        "depth": 5000,
+        "exact_offdiag": 6.75069468965502e-45,
+        "numerical_offdiag": 6.750694689656345e-45,
+        "absolute_error": 1.324257651128851e-57
+      },
+      {
+        "depth": 10000,
+        "exact_offdiag": 9.1143757585873e-89,
+        "numerical_offdiag": 9.114375758590841e-89,
+        "absolute_error": 3.541140135588884e-101
+      }
+    ],
+    "threshold_depth_1e-10": null,
+    "p": 0.01,
+    "decay_per_step": 0.98,
+    "pass": true
+  },
+  "08_zero_kraus": {
+    "output_matrix": [
+      [
+        "0j",
+        "0j"
+      ],
+      [
+        "0j",
+        "0j"
+      ]
+    ],
+    "output_trace": 0.0,
+    "output_is_zero": true,
+    "trace_preserved": false,
+    "pass": true
+  },
+  "09_z3_simplest_positive_not_cp": {
+    "single_kraus_negative_norm_possible": "unsat",
+    "proof_statement": "Single-Kraus E(rho) = K rho K^dag has Choi = vec(K)vec(K)^dag which is rank-1 PSD => always CP.  Therefore any positive-but-not-CP map requires Choi rank >= 2 with a negative eigenvalue.  Partial transpose is the minimal such map (linear, involutory, positive, Choi rank = 4 with eigenvalue -0.5).",
+    "transpose_choi_eigenvalues": [
+      -1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "transpose_choi_rank": 4,
+    "transpose_choi_has_negative": true,
+    "pass": true
+  },
+  "10_contractivity_violation": {
+    "trace_dist_before": 0.7071067811865475,
+    "trace_dist_after": 1.0,
+    "contractivity_violated": "True",
+    "ratio": 1.4142135623730951,
+    "universal_not_trace_dist_before": 0.7071067811865475,
+    "universal_not_trace_dist_after": 0.7071067811865475,
+    "universal_not_contractivity_violated": "False",
+    "amplification_trace_dist_before": 0.7071067811865475,
+    "amplification_trace_dist_after": 1.414213562373095,
+    "amplification_contractivity_violated": "True",
+    "amplification_ratio": 2.0,
+    "any_contractivity_violated": "True",
+    "pass": "True"
+  },
+  "summary": {
+    "all_pass": true,
+    "elapsed_seconds": 0.082,
+    "num_tests": 10,
+    "tests_passed": 10,
+    "description": "Negative channel battery: 10 tests probing CPTP violations. Each test constructs a non-physical or boundary-case quantum channel and verifies that the expected pathology appears."
+  }
+}

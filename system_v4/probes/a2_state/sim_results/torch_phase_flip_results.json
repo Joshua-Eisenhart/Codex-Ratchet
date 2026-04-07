@@ -1,0 +1,743 @@
+{
+  "name": "torch_phase_flip",
+  "phase": "Phase 3 sim",
+  "description": "Phase-flip channel as differentiable nn.Module -- PROVES equivalence to Z-dephasing",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core module: PhaseFlip as nn.Module, autograd for purity gradients, ZDephasing equivalence proof"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Parameter range constraint: p in [0,1] ensures valid Kraus operators"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic proof that PhaseFlip == ZDephasing and CPTP completeness"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_element_wise_substrate_match": {
+      "p=0.0_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.0_|1><1|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.0_|+><+|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.0_|-><-|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.0_maximally_mixed": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.1_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.1_|1><1|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.1_|+><+|": {
+        "max_abs_diff": 2.384185793236071e-08,
+        "pass": true
+      },
+      "p=0.1_|-><-|": {
+        "max_abs_diff": 2.384185793236071e-08,
+        "pass": true
+      },
+      "p=0.1_maximally_mixed": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.3_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.3_|1><1|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.3_|+><+|": {
+        "max_abs_diff": 1.192092893842478e-08,
+        "pass": true
+      },
+      "p=0.3_|-><-|": {
+        "max_abs_diff": 1.192092893842478e-08,
+        "pass": true
+      },
+      "p=0.3_maximally_mixed": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.5_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.5_|1><1|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.5_|+><+|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.5_|-><-|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.5_maximally_mixed": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.7_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.7_|1><1|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.7_|+><+|": {
+        "max_abs_diff": 1.1920928910669204e-08,
+        "pass": true
+      },
+      "p=0.7_|-><-|": {
+        "max_abs_diff": 1.1920928910669204e-08,
+        "pass": true
+      },
+      "p=0.7_maximally_mixed": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.9_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.9_|1><1|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=0.9_|+><+|": {
+        "max_abs_diff": 2.384185793236071e-08,
+        "pass": true
+      },
+      "p=0.9_|-><-|": {
+        "max_abs_diff": 2.384185793236071e-08,
+        "pass": true
+      },
+      "p=0.9_maximally_mixed": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=1.0_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=1.0_|1><1|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=1.0_|+><+|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=1.0_|-><-|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "p=1.0_maximally_mixed": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      }
+    },
+    "P2_phase_flip_equals_z_dephasing": {
+      "p=0.0_|0><0|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.0_|1><1|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.0_|+><+|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.0_|-><-|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.0_maximally_mixed": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.1_|0><0|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.1_|1><1|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.1_|+><+|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.1_|-><-|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.1_maximally_mixed": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.3_|0><0|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.3_|1><1|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.3_|+><+|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.3_|-><-|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.3_maximally_mixed": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.5_|0><0|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.5_|1><1|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.5_|+><+|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.5_|-><-|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.5_maximally_mixed": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.7_|0><0|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.7_|1><1|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.7_|+><+|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.7_|-><-|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.7_maximally_mixed": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.9_|0><0|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.9_|1><1|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.9_|+><+|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.9_|-><-|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=0.9_maximally_mixed": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=1.0_|0><0|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=1.0_|1><1|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=1.0_|+><+|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=1.0_|-><-|": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      },
+      "p=1.0_maximally_mixed": {
+        "max_abs_diff_pf_vs_zd": 0.0,
+        "pass": true
+      }
+    },
+    "P3_random_100_state_equivalence": {
+      "n_states": 100,
+      "overall_max_diff": 0.0,
+      "mean_max_diff": 0.0,
+      "all_zero": true,
+      "pass": true
+    },
+    "P4_gradient_equivalence": {
+      "|0><0|": {
+        "grad_phase_flip": 0.0,
+        "grad_z_dephasing": 0.0,
+        "abs_diff": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "grad_phase_flip": 0.0,
+        "grad_z_dephasing": 0.0,
+        "abs_diff": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "grad_phase_flip": -0.7999999523162842,
+        "grad_z_dephasing": -0.7999999523162842,
+        "abs_diff": 0.0,
+        "pass": true
+      },
+      "|-><-|": {
+        "grad_phase_flip": -0.7999999523162842,
+        "grad_z_dephasing": -0.7999999523162842,
+        "abs_diff": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "grad_phase_flip": 0.0,
+        "grad_z_dephasing": 0.0,
+        "abs_diff": 0.0,
+        "pass": true
+      }
+    },
+    "P5_kraus_completeness": {
+      "p=0.0": {
+        "identity_diff": 0.0,
+        "pass": true
+      },
+      "p=0.25": {
+        "identity_diff": 0.0,
+        "pass": true
+      },
+      "p=0.5": {
+        "identity_diff": 5.960464477539063e-08,
+        "pass": true
+      },
+      "p=0.75": {
+        "identity_diff": 0.0,
+        "pass": true
+      },
+      "p=1.0": {
+        "identity_diff": 0.0,
+        "pass": true
+      }
+    },
+    "P6_trace_preservation": {
+      "|0><0|": {
+        "trace_in": 1.0,
+        "trace_out": 1.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "trace_in": 1.0,
+        "trace_out": 1.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "trace_in": 1.0,
+        "trace_out": 1.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "|-><-|": {
+        "trace_in": 1.0,
+        "trace_out": 1.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "trace_in": 1.0,
+        "trace_out": 1.0,
+        "diff": 0.0,
+        "pass": true
+      }
+    },
+    "P7_z_basis_invariant": {
+      "p=0.1_|0><0|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "p=0.1_|1><1|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "p=0.5_|0><0|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "p=0.5_|1><1|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "p=0.9_|0><0|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "p=0.9_|1><1|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "N1_p_gt_1_violates_cptp": {
+      "p=1.5": {
+        "identity_diff": 1.0,
+        "cptp_violated": true,
+        "pass": true
+      },
+      "p=2.0": {
+        "identity_diff": 2.0,
+        "cptp_violated": true,
+        "pass": true
+      },
+      "p=5.0": {
+        "identity_diff": 8.0,
+        "cptp_violated": true,
+        "pass": true
+      }
+    },
+    "N2_p_lt_0_non_positive": {
+      "p=-0.1": {
+        "eigenvalues": [
+          -0.10000002384185791,
+          1.100000023841858
+        ],
+        "min_eigenvalue": -0.10000002384185791,
+        "has_negative_eigenvalue": true,
+        "pass": true
+      },
+      "p=-0.5": {
+        "eigenvalues": [
+          -0.5,
+          1.5
+        ],
+        "min_eigenvalue": -0.5,
+        "has_negative_eigenvalue": true,
+        "pass": true
+      },
+      "p=-1.0": {
+        "eigenvalues": [
+          -1.0,
+          2.0
+        ],
+        "min_eigenvalue": -1.0,
+        "has_negative_eigenvalue": true,
+        "pass": true
+      }
+    },
+    "N3_output_hermiticity": {
+      "|0><0|": {
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "|1><1|": {
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "|+><+|": {
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "|-><-|": {
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      }
+    }
+  },
+  "boundary": {
+    "B1_p0_identity": {
+      "|0><0|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "|-><-|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      }
+    },
+    "B2_p1_z_rotation": {
+      "|0><0|": {
+        "max_diff_from_Z_rho_Z": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "max_diff_from_Z_rho_Z": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "max_diff_from_Z_rho_Z": 0.0,
+        "pass": true
+      },
+      "|-><-|": {
+        "max_diff_from_Z_rho_Z": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "max_diff_from_Z_rho_Z": 0.0,
+        "pass": true
+      }
+    },
+    "B3_p05_full_dephasing": {
+      "plus_state_half_dephased": {
+        "off_diagonal": 0.0,
+        "purity": 0.5,
+        "off_diag_is_zero": true,
+        "purity_is_half": "True",
+        "pass": true
+      }
+    },
+    "B4_purity_monotone_decrease": {
+      "p_values": [
+        0.0,
+        0.05263157894736842,
+        0.10526315789473684,
+        0.15789473684210525,
+        0.21052631578947367,
+        0.2631578947368421,
+        0.3157894736842105,
+        0.3684210526315789,
+        0.42105263157894735,
+        0.47368421052631576,
+        0.5263157894736842,
+        0.5789473684210527,
+        0.631578947368421,
+        0.6842105263157894,
+        0.7368421052631579,
+        0.7894736842105263,
+        0.8421052631578947,
+        0.894736842105263,
+        0.9473684210526315,
+        1.0
+      ],
+      "purities": [
+        1.0,
+        0.9002770083102494,
+        0.8116343490304709,
+        0.7340720221606647,
+        0.6675900277008311,
+        0.6121883656509696,
+        0.5678670360110804,
+        0.5346260387811634,
+        0.5124653739612188,
+        0.5013850415512465,
+        0.5013850415512465,
+        0.5124653739612188,
+        0.5346260387811634,
+        0.5678670360110802,
+        0.6121883656509695,
+        0.6675900277008311,
+        0.7340720221606647,
+        0.8116343490304707,
+        0.9002770083102491,
+        1.0
+      ],
+      "monotone_decreasing_first_half": true,
+      "pass": true
+    }
+  },
+  "falsification": {
+    "F1_autograd_vs_finite_difference": {
+      "|+><+|_p=0.1": {
+        "autograd": -1.5999999046325684,
+        "finite_diff": -1.60000000000049,
+        "abs_diff": 9.53679215598413e-08,
+        "pass": "True"
+      },
+      "|+><+|_p=0.3": {
+        "autograd": -0.7999999523162842,
+        "finite_diff": -0.800000000000245,
+        "abs_diff": 4.768396077992065e-08,
+        "pass": "True"
+      },
+      "|+><+|_p=0.5": {
+        "autograd": 0.0,
+        "finite_diff": 0.0,
+        "abs_diff": 0.0,
+        "pass": "True"
+      },
+      "|+><+|_p=0.7": {
+        "autograd": 0.7999999523162842,
+        "finite_diff": 0.7999999999996898,
+        "abs_diff": 4.768340566840834e-08,
+        "pass": "True"
+      },
+      "|-><-|_p=0.1": {
+        "autograd": -1.5999999046325684,
+        "finite_diff": -1.60000000000049,
+        "abs_diff": 9.53679215598413e-08,
+        "pass": "True"
+      },
+      "|-><-|_p=0.3": {
+        "autograd": -0.7999999523162842,
+        "finite_diff": -0.800000000000245,
+        "abs_diff": 4.768396077992065e-08,
+        "pass": "True"
+      },
+      "|-><-|_p=0.5": {
+        "autograd": 0.0,
+        "finite_diff": 0.0,
+        "abs_diff": 0.0,
+        "pass": "True"
+      },
+      "|-><-|_p=0.7": {
+        "autograd": 0.7999999523162842,
+        "finite_diff": 0.7999999999996898,
+        "abs_diff": 4.768340566840834e-08,
+        "pass": "True"
+      }
+    },
+    "F2_kraus_operator_equivalence": {
+      "p=0.0": {
+        "max_kraus_diff": 0.0,
+        "pass": true
+      },
+      "p=0.25": {
+        "max_kraus_diff": 0.0,
+        "pass": true
+      },
+      "p=0.5": {
+        "max_kraus_diff": 0.0,
+        "pass": true
+      },
+      "p=0.75": {
+        "max_kraus_diff": 0.0,
+        "pass": true
+      },
+      "p=1.0": {
+        "max_kraus_diff": 0.0,
+        "pass": true
+      }
+    }
+  },
+  "sympy_check": {
+    "completeness_is_identity": true,
+    "phase_flip_equals_z_dephasing": true,
+    "off_diagonal_decay_formula": "(1 - 2*p)*(I*b_i + b_r)",
+    "off_diagonal_matches_1_minus_2p_times_b": true,
+    "pass": true
+  },
+  "z3_check": {
+    "inside_01_can_violate": "unsat",
+    "outside_01_can_violate": "sat",
+    "pass": true
+  },
+  "classification": "canonical",
+  "structural_fact": "PhaseFlip(rho, p) == ZDephasing(rho, p) for ALL rho and p -- they are the same channel",
+  "summary": {
+    "total_tests": 130,
+    "total_pass": 130,
+    "all_pass": true
+  }
+}

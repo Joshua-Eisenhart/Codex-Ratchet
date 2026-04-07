@@ -1,0 +1,677 @@
+{
+  "name": "torch_phase_damping",
+  "phase": "Phase 3 sim",
+  "description": "Phase damping channel as differentiable nn.Module with Kraus operators",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core module: PhaseDamping as nn.Module, autograd for purity gradients"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Parameter range constraint: lam in [0,1] ensures valid Kraus operators"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic CPTP completeness and off-diagonal decay verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_element_wise_substrate_match": {
+      "lam=0.0_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.0_|1><1|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.0_|+><+|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.0_|-><-|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.0_maximally_mixed": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.1_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.1_|1><1|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.1_|+><+|": {
+        "max_abs_diff": 1.808958793869664e-08,
+        "pass": true
+      },
+      "lam=0.1_|-><-|": {
+        "max_abs_diff": 1.808958793869664e-08,
+        "pass": true
+      },
+      "lam=0.1_maximally_mixed": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.3_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.3_|1><1|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.3_|+><+|": {
+        "max_abs_diff": 4.849458612454782e-10,
+        "pass": true
+      },
+      "lam=0.3_|-><-|": {
+        "max_abs_diff": 4.849458612454782e-10,
+        "pass": true
+      },
+      "lam=0.3_maximally_mixed": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.5_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.5_|1><1|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.5_|+><+|": {
+        "max_abs_diff": 6.050808576407718e-09,
+        "pass": true
+      },
+      "lam=0.5_|-><-|": {
+        "max_abs_diff": 6.050808576407718e-09,
+        "pass": true
+      },
+      "lam=0.5_maximally_mixed": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.7_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.7_|1><1|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.7_|+><+|": {
+        "max_abs_diff": 1.0271769934622199e-08,
+        "pass": true
+      },
+      "lam=0.7_|-><-|": {
+        "max_abs_diff": 1.0271769934622199e-08,
+        "pass": true
+      },
+      "lam=0.7_maximally_mixed": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.9_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.9_|1><1|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.9_|+><+|": {
+        "max_abs_diff": 1.3838352297401713e-08,
+        "pass": true
+      },
+      "lam=0.9_|-><-|": {
+        "max_abs_diff": 1.3838352297401713e-08,
+        "pass": true
+      },
+      "lam=0.9_maximally_mixed": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=1.0_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=1.0_|1><1|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=1.0_|+><+|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=1.0_|-><-|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "lam=1.0_maximally_mixed": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      }
+    },
+    "P2_purity_gradient_wrt_lam": {
+      "|0><0|": {
+        "output_purity": 1.0,
+        "grad_lam": -0.0,
+        "grad_exists": true,
+        "is_diagonal_state": "True",
+        "pass": true
+      },
+      "|1><1|": {
+        "output_purity": 1.0,
+        "grad_lam": -0.0,
+        "grad_exists": true,
+        "is_diagonal_state": "True",
+        "pass": true
+      },
+      "|+><+|": {
+        "output_purity": 0.8500000238418579,
+        "grad_lam": -0.5,
+        "grad_exists": true,
+        "is_diagonal_state": "False",
+        "pass": true
+      },
+      "|-><-|": {
+        "output_purity": 0.8500000238418579,
+        "grad_lam": -0.5,
+        "grad_exists": true,
+        "is_diagonal_state": "False",
+        "pass": true
+      },
+      "maximally_mixed": {
+        "output_purity": 0.5,
+        "grad_lam": -0.0,
+        "grad_exists": true,
+        "is_diagonal_state": "True",
+        "pass": true
+      }
+    },
+    "P3_kraus_completeness": {
+      "lam=0.0": {
+        "identity_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.25": {
+        "identity_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.5": {
+        "identity_diff": 5.960464477539063e-08,
+        "pass": true
+      },
+      "lam=0.75": {
+        "identity_diff": 0.0,
+        "pass": true
+      },
+      "lam=1.0": {
+        "identity_diff": 0.0,
+        "pass": true
+      }
+    },
+    "P4_trace_preservation": {
+      "|0><0|": {
+        "trace_in": 1.0,
+        "trace_out": 1.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "trace_in": 1.0,
+        "trace_out": 1.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "trace_in": 1.0,
+        "trace_out": 1.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "|-><-|": {
+        "trace_in": 1.0,
+        "trace_out": 1.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "trace_in": 1.0,
+        "trace_out": 1.0,
+        "diff": 0.0,
+        "pass": true
+      }
+    },
+    "P5_populations_unchanged": {
+      "lam=0.1_|0><0|": {
+        "population_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.1_|1><1|": {
+        "population_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.1_|+><+|": {
+        "population_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.1_|-><-|": {
+        "population_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.1_maximally_mixed": {
+        "population_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.5_|0><0|": {
+        "population_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.5_|1><1|": {
+        "population_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.5_|+><+|": {
+        "population_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.5_|-><-|": {
+        "population_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.5_maximally_mixed": {
+        "population_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.9_|0><0|": {
+        "population_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.9_|1><1|": {
+        "population_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.9_|+><+|": {
+        "population_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.9_|-><-|": {
+        "population_diff": 0.0,
+        "pass": true
+      },
+      "lam=0.9_maximally_mixed": {
+        "population_diff": 0.0,
+        "pass": true
+      }
+    },
+    "P6_off_diagonal_decay_rate": {
+      "lam=0.1": {
+        "actual_off_diag": 0.4743416490252569,
+        "expected_off_diag": 0.4743416490252569,
+        "diff": 0.0,
+        "pass": true
+      },
+      "lam=0.3": {
+        "actual_off_diag": 0.4183300132670378,
+        "expected_off_diag": 0.4183300132670378,
+        "diff": 0.0,
+        "pass": true
+      },
+      "lam=0.5": {
+        "actual_off_diag": 0.3535533905932738,
+        "expected_off_diag": 0.3535533905932738,
+        "diff": 0.0,
+        "pass": true
+      },
+      "lam=0.7": {
+        "actual_off_diag": 0.2738612787525831,
+        "expected_off_diag": 0.2738612787525831,
+        "diff": 0.0,
+        "pass": true
+      },
+      "lam=0.9": {
+        "actual_off_diag": 0.15811388300841894,
+        "expected_off_diag": 0.15811388300841894,
+        "diff": 0.0,
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "N1_lam_gt_1_violates_cptp": {
+      "lam=1.5": {
+        "identity_diff": 1.0,
+        "cptp_violated": true,
+        "pass": true
+      },
+      "lam=2.0": {
+        "identity_diff": 2.0,
+        "cptp_violated": true,
+        "pass": true
+      },
+      "lam=5.0": {
+        "identity_diff": 8.0,
+        "cptp_violated": true,
+        "pass": true
+      }
+    },
+    "N2_lam_lt_0_violates_cptp": {
+      "lam=-0.1": {
+        "identity_diff": 0.19999992847442627,
+        "cptp_violated": true,
+        "pass": true
+      },
+      "lam=-0.5": {
+        "identity_diff": 1.0,
+        "cptp_violated": true,
+        "pass": true
+      },
+      "lam=-1.0": {
+        "identity_diff": 2.0,
+        "cptp_violated": true,
+        "pass": true
+      }
+    },
+    "N3_output_hermiticity": {
+      "|0><0|": {
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "|1><1|": {
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "|+><+|": {
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "|-><-|": {
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      }
+    }
+  },
+  "boundary": {
+    "B1_lam0_identity": {
+      "|0><0|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "|-><-|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      }
+    },
+    "B2_lam1_full_dephasing": {
+      "|0><0|": {
+        "off_diag_magnitude": 0.0,
+        "diagonal_diff": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "off_diag_magnitude": 0.0,
+        "diagonal_diff": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "off_diag_magnitude": 0.0,
+        "diagonal_diff": 0.0,
+        "pass": true
+      },
+      "|-><-|": {
+        "off_diag_magnitude": 0.0,
+        "diagonal_diff": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "off_diag_magnitude": 0.0,
+        "diagonal_diff": 0.0,
+        "pass": true
+      }
+    },
+    "B3_lam05_half_damping": {
+      "plus_state_half_damped": {
+        "actual_off_diag": 0.3535533845424652,
+        "expected_off_diag": 0.3535533905932738,
+        "diff": 6.050808576407718e-09,
+        "pass": "True"
+      }
+    },
+    "B4_purity_monotone_decrease": {
+      "lam_values": [
+        0.0,
+        0.05263157894736842,
+        0.10526315789473684,
+        0.15789473684210525,
+        0.21052631578947367,
+        0.2631578947368421,
+        0.3157894736842105,
+        0.3684210526315789,
+        0.42105263157894735,
+        0.47368421052631576,
+        0.5263157894736842,
+        0.5789473684210527,
+        0.631578947368421,
+        0.6842105263157894,
+        0.7368421052631579,
+        0.7894736842105263,
+        0.8421052631578947,
+        0.894736842105263,
+        0.9473684210526315,
+        1.0
+      ],
+      "purities": [
+        1.0,
+        0.9736842105263158,
+        0.9473684210526316,
+        0.9210526315789473,
+        0.8947368421052633,
+        0.868421052631579,
+        0.8421052631578948,
+        0.8157894736842105,
+        0.7894736842105263,
+        0.7631578947368421,
+        0.7368421052631579,
+        0.7105263157894737,
+        0.6842105263157895,
+        0.6578947368421053,
+        0.631578947368421,
+        0.6052631578947368,
+        0.5789473684210527,
+        0.5526315789473685,
+        0.5263157894736843,
+        0.5
+      ],
+      "monotone_decreasing": true,
+      "pass": true
+    },
+    "B5_z_basis_invariant": {
+      "lam=0.1_|0><0|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "lam=0.1_|1><1|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "lam=0.5_|0><0|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "lam=0.5_|1><1|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "lam=0.9_|0><0|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "lam=0.9_|1><1|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "lam=1.0_|0><0|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "lam=1.0_|1><1|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      }
+    }
+  },
+  "falsification": {
+    "F1_autograd_vs_finite_difference": {
+      "|+><+|_lam=0.1": {
+        "autograd": -0.5,
+        "finite_diff": -0.49999999999994493,
+        "abs_diff": 5.5067062021407764e-14,
+        "pass": "True"
+      },
+      "|+><+|_lam=0.3": {
+        "autograd": -0.5,
+        "finite_diff": -0.49999999999994493,
+        "abs_diff": 5.5067062021407764e-14,
+        "pass": "True"
+      },
+      "|+><+|_lam=0.5": {
+        "autograd": -0.4999999701976776,
+        "finite_diff": -0.49999999999994493,
+        "abs_diff": 2.980226732063329e-08,
+        "pass": "True"
+      },
+      "|+><+|_lam=0.7": {
+        "autograd": -0.5,
+        "finite_diff": -0.49999999999994493,
+        "abs_diff": 5.5067062021407764e-14,
+        "pass": "True"
+      },
+      "|-><-|_lam=0.1": {
+        "autograd": -0.5,
+        "finite_diff": -0.49999999999994493,
+        "abs_diff": 5.5067062021407764e-14,
+        "pass": "True"
+      },
+      "|-><-|_lam=0.3": {
+        "autograd": -0.5,
+        "finite_diff": -0.49999999999994493,
+        "abs_diff": 5.5067062021407764e-14,
+        "pass": "True"
+      },
+      "|-><-|_lam=0.5": {
+        "autograd": -0.4999999701976776,
+        "finite_diff": -0.49999999999994493,
+        "abs_diff": 2.980226732063329e-08,
+        "pass": "True"
+      },
+      "|-><-|_lam=0.7": {
+        "autograd": -0.5,
+        "finite_diff": -0.49999999999994493,
+        "abs_diff": 5.5067062021407764e-14,
+        "pass": "True"
+      }
+    },
+    "F2_substrate_equivalence_50_states": {
+      "n_states": 50,
+      "overall_max_diff": 2.9018607738962032e-08,
+      "mean_max_diff": 1.66235813272252e-08,
+      "pass": true
+    }
+  },
+  "sympy_check": {
+    "completeness_is_identity": true,
+    "diagonal_00_preserved": true,
+    "diagonal_11_preserved": true,
+    "off_diagonal_formula": "sqrt(1 - lambda)*(I*b_i + b_r)",
+    "off_diagonal_matches_sqrt_1_minus_lam": true,
+    "pass": true
+  },
+  "z3_check": {
+    "inside_01_can_violate": "unsat",
+    "outside_01_can_violate": "sat",
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 112,
+    "total_pass": 112,
+    "all_pass": true
+  }
+}

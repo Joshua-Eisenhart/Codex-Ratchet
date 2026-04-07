@@ -1,0 +1,135 @@
+{
+  "1_no_cloning": {
+    "inner_product_pairs": [
+      {
+        "pair": "(|0>, |+>)",
+        "overlap": 0.7071067811865475,
+        "overlap_squared": 0.4999999999999999,
+        "gap": 0.20710678118654757,
+        "cloning_would_require_equality": true,
+        "equality_holds": false,
+        "contradiction": true
+      },
+      {
+        "pair": "(|0>, |psi(pi/8)>)",
+        "overlap": 0.9238795325112867,
+        "overlap_squared": 0.8535533905932737,
+        "gap": 0.07032614191801301,
+        "cloning_would_require_equality": true,
+        "equality_holds": false,
+        "contradiction": true
+      },
+      {
+        "pair": "(|+>, |psi(pi/3)>)",
+        "overlap": 0.9659258262890682,
+        "overlap_squared": 0.9330127018922192,
+        "gap": 0.032913124396849014,
+        "cloning_would_require_equality": true,
+        "equality_holds": false,
+        "contradiction": true
+      },
+      {
+        "random_sweep": true,
+        "n_pairs": 200,
+        "contradictions_found": 200,
+        "fraction_contradicted": 1.0
+      }
+    ],
+    "brute_force_unitary_search": {
+      "n_tested": 50,
+      "n_failed_to_clone_both": 50,
+      "none_succeeded": true
+    },
+    "all_pass": true
+  },
+  "2_no_broadcasting": {
+    "non_commuting_pair": {
+      "commutator_norm": 0.7071067811865474,
+      "states_commute": false,
+      "n_random_cptp_tested": 200,
+      "best_broadcast_error": 1.968056825784669,
+      "broadcast_impossible": "True"
+    },
+    "commuting_pair_control": {
+      "commutator_norm": 0.0,
+      "states_commute": true,
+      "broadcast_error": 0.0,
+      "broadcast_works": "True"
+    },
+    "extra_non_commuting_pairs_tested": 17,
+    "all_pass": true
+  },
+  "3_no_deleting": {
+    "inner_product_pairs": [
+      {
+        "pair": "(|0>, |+>)",
+        "overlap": 0.7071067811865475,
+        "overlap_squared": 0.4999999999999999,
+        "gap": 0.20710678118654757,
+        "contradiction": true
+      },
+      {
+        "pair": "(|0>, |psi(pi/6)>)",
+        "overlap": 0.8660254037844387,
+        "overlap_squared": 0.7500000000000001,
+        "gap": 0.1160254037844386,
+        "contradiction": true
+      },
+      {
+        "pair": "(|+>, |1>)",
+        "overlap": 0.7071067811865475,
+        "overlap_squared": 0.4999999999999999,
+        "gap": 0.20710678118654757,
+        "contradiction": true
+      }
+    ],
+    "brute_force_unitary_search": {
+      "n_tested": 50,
+      "n_failed_to_delete_both": 50,
+      "none_succeeded": true
+    },
+    "all_pass": true
+  },
+  "4_z3_structural": {
+    "4a_basic_overlap": {
+      "constraint": "x in (0,1) AND x == x^2",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "interpretation": "No non-trivial overlap satisfies cloning constraint"
+    },
+    "4b_complex_overlap": {
+      "constraint": "|z|^2 in (0,1) AND |z|^2 == |z|^4",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "interpretation": "Complex overlap version also unsatisfiable"
+    },
+    "4c_trivial_control": {
+      "constraint": "y in [0,1] AND y == y^2",
+      "z3_result": "sat",
+      "is_sat": true,
+      "witness": "0",
+      "interpretation": "Trivial overlaps (0 or 1) satisfy constraint -- cloning works for orthogonal or identical states"
+    },
+    "4d_no_deleting_z3": {
+      "constraint": "w in (0,1) AND w^2 == w",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "interpretation": "No-deleting shares the same algebraic obstruction"
+    },
+    "4e_multi_state": {
+      "n_states": 4,
+      "n_overlap_constraints": 6,
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "interpretation": "No set of 4 non-trivially overlapping states can be cloned"
+    },
+    "all_pass": true
+  },
+  "summary": {
+    "1_no_cloning": true,
+    "2_no_broadcasting": true,
+    "3_no_deleting": true,
+    "4_z3_structural": true
+  },
+  "ALL_PASS": true
+}

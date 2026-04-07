@@ -1,0 +1,46 @@
+{
+  "probe": "pure_lego_quantum_markov",
+  "description": "Quantum Markov chains, conditional independence, Petz recovery",
+  "timestamp": "2026-04-07T09:57:45.222329+00:00",
+  "tests": [
+    {
+      "test": "product_state_I(A:C|B)=0",
+      "I(A:C|B)": 0.0,
+      "passed": true
+    },
+    {
+      "test": "ghz_state_I(A:C|B)>0",
+      "I(A:C|B)": 0.9999999999999997,
+      "passed": true
+    },
+    {
+      "test": "classical_markov_I(A:C|B)=0",
+      "I(A:C|B)": 4.440892098500626e-16,
+      "passed": true
+    },
+    {
+      "test": "strong_subadditivity_I(A:C|B)>=0",
+      "n_trials": 50,
+      "min_I(A:C|B)": 0.36615550681131914,
+      "violations": [],
+      "passed": true
+    },
+    {
+      "test": "petz_recovery_product_state",
+      "trace_distance": 1.1102230246251565e-16,
+      "fidelity": 0.9999999999999998,
+      "passed": true
+    },
+    {
+      "test": "petz_recovery_classical_markov",
+      "trace_distance": 1.0408340855860843e-16,
+      "passed": true
+    },
+    {
+      "test": "petz_recovery_ghz_fails",
+      "trace_distance": 0.4999999999999999,
+      "passed": true
+    }
+  ],
+  "all_passed": true
+}

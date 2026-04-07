@@ -1,0 +1,400 @@
+{
+  "probe": "petz_recovery_map",
+  "timestamp": "2026-04-07T02:18:54",
+  "elapsed_s": 0.293,
+  "sigma_trace": 1.0,
+  "T1_unitary_exact_recovery": true,
+  "T1_details": [
+    {
+      "channel": "identity",
+      "fidelity": 1.0,
+      "exact_recovery": true
+    },
+    {
+      "channel": "unitary(Haar)",
+      "fidelity": 1.0,
+      "exact_recovery": true
+    }
+  ],
+  "T4_fidelity_table": [
+    {
+      "state": "|0>",
+      "identity": 1.0,
+      "unitary(Haar)": 1.0,
+      "depol(p=0.3)": 0.212831,
+      "amp-damp(\u03b3=0.4)": 0.195502,
+      "phase-damp(\u03bb=0.5)": 0.448483
+    },
+    {
+      "state": "|1>",
+      "identity": 1.0,
+      "unitary(Haar)": 1.0,
+      "depol(p=0.3)": 0.853561,
+      "amp-damp(\u03b3=0.4)": 0.867099,
+      "phase-damp(\u03bb=0.5)": 0.899492
+    },
+    {
+      "state": "|+>",
+      "identity": 1.0,
+      "unitary(Haar)": 1.0,
+      "depol(p=0.3)": 0.760329,
+      "amp-damp(\u03b3=0.4)": 0.778133,
+      "phase-damp(\u03bb=0.5)": 0.817738
+    },
+    {
+      "state": "|-i>",
+      "identity": 1.0,
+      "unitary(Haar)": 1.0,
+      "depol(p=0.3)": 0.265007,
+      "amp-damp(\u03b3=0.4)": 0.307281,
+      "phase-damp(\u03bb=0.5)": 0.278706
+    },
+    {
+      "state": "max-mixed",
+      "identity": 1.0,
+      "unitary(Haar)": 1.0,
+      "depol(p=0.3)": 0.659089,
+      "amp-damp(\u03b3=0.4)": 0.666003,
+      "phase-damp(\u03bb=0.5)": 0.739924
+    },
+    {
+      "state": "bloch(.3,.7,.5)",
+      "identity": 1.0,
+      "unitary(Haar)": 1.0,
+      "depol(p=0.3)": 0.338122,
+      "amp-damp(\u03b3=0.4)": 0.324391,
+      "phase-damp(\u03bb=0.5)": 0.585049
+    },
+    {
+      "state": "rand1",
+      "identity": 1.0,
+      "unitary(Haar)": 1.0,
+      "depol(p=0.3)": 0.823564,
+      "amp-damp(\u03b3=0.4)": 0.845298,
+      "phase-damp(\u03bb=0.5)": 0.854974
+    },
+    {
+      "state": "rand2",
+      "identity": 1.0,
+      "unitary(Haar)": 1.0,
+      "depol(p=0.3)": 0.759798,
+      "amp-damp(\u03b3=0.4)": 0.775746,
+      "phase-damp(\u03bb=0.5)": 0.810237
+    },
+    {
+      "state": "rand3",
+      "identity": 1.0,
+      "unitary(Haar)": 1.0,
+      "depol(p=0.3)": 0.8049,
+      "amp-damp(\u03b3=0.4)": 0.80735,
+      "phase-damp(\u03bb=0.5)": 0.871473
+    },
+    {
+      "state": "near-pure",
+      "identity": 1.0,
+      "unitary(Haar)": 1.0,
+      "depol(p=0.3)": 0.731939,
+      "amp-damp(\u03b3=0.4)": 0.738776,
+      "phase-damp(\u03bb=0.5)": 0.852116
+    }
+  ],
+  "T5_fixed_point": [
+    {
+      "channel": "depol(p=0.1)",
+      "sigma_is_fixed_point": true,
+      "recovery_fidelity": 0.98366335
+    },
+    {
+      "channel": "depol(p=0.3)",
+      "sigma_is_fixed_point": true,
+      "recovery_fidelity": 0.98509858
+    },
+    {
+      "channel": "depol(p=0.5)",
+      "sigma_is_fixed_point": true,
+      "recovery_fidelity": 0.68249291
+    }
+  ],
+  "T6_data_processing_inequality": {
+    "dpi_holds_all": true,
+    "equality_iff_exact_count": "25/25",
+    "details": [
+      {
+        "state": "|0>",
+        "channel": "identity",
+        "S_pre": 3.66344857,
+        "S_post": 3.66344857,
+        "gap": 0.0,
+        "dpi_holds": true,
+        "petz_fidelity": 1.0,
+        "exact_recovery": true,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|0>",
+        "channel": "unitary(Haar)",
+        "S_pre": 3.66344857,
+        "S_post": 3.66344857,
+        "gap": -0.0,
+        "dpi_holds": true,
+        "petz_fidelity": 1.0,
+        "exact_recovery": true,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|0>",
+        "channel": "depol(p=0.3)",
+        "S_pre": 3.66344857,
+        "S_post": 0.67361354,
+        "gap": 2.98983503,
+        "dpi_holds": true,
+        "petz_fidelity": 0.21283108,
+        "exact_recovery": false,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|0>",
+        "channel": "amp-damp(\u03b3=0.4)",
+        "S_pre": 3.66344857,
+        "S_post": 0.87307434,
+        "gap": 2.79037423,
+        "dpi_holds": true,
+        "petz_fidelity": 0.19550165,
+        "exact_recovery": false,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|0>",
+        "channel": "phase-damp(\u03bb=0.5)",
+        "S_pre": 3.66344857,
+        "S_post": 2.22757008,
+        "gap": 1.43587849,
+        "dpi_holds": true,
+        "petz_fidelity": 0.4484829,
+        "exact_recovery": false,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|1>",
+        "channel": "identity",
+        "S_pre": 0.71886411,
+        "S_post": 0.71886411,
+        "gap": 0.0,
+        "dpi_holds": true,
+        "petz_fidelity": 1.0,
+        "exact_recovery": true,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|1>",
+        "channel": "unitary(Haar)",
+        "S_pre": 0.71886411,
+        "S_post": 0.71886411,
+        "gap": 0.0,
+        "dpi_holds": true,
+        "petz_fidelity": 1.0,
+        "exact_recovery": true,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|1>",
+        "channel": "depol(p=0.3)",
+        "S_pre": 0.71886411,
+        "S_post": 0.13043415,
+        "gap": 0.58842996,
+        "dpi_holds": true,
+        "petz_fidelity": 0.85356123,
+        "exact_recovery": false,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|1>",
+        "channel": "amp-damp(\u03b3=0.4)",
+        "S_pre": 0.71886411,
+        "S_post": 0.20649598,
+        "gap": 0.51236813,
+        "dpi_holds": true,
+        "petz_fidelity": 0.86709886,
+        "exact_recovery": false,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|1>",
+        "channel": "phase-damp(\u03bb=0.5)",
+        "S_pre": 0.71886411,
+        "S_post": 0.33631481,
+        "gap": 0.38254929,
+        "dpi_holds": true,
+        "petz_fidelity": 0.89949239,
+        "exact_recovery": false,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|+>",
+        "channel": "identity",
+        "S_pre": 1.18772615,
+        "S_post": 1.18772615,
+        "gap": 0.0,
+        "dpi_holds": true,
+        "petz_fidelity": 1.0,
+        "exact_recovery": true,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|+>",
+        "channel": "unitary(Haar)",
+        "S_pre": 1.18772615,
+        "S_post": 1.18772615,
+        "gap": -0.0,
+        "dpi_holds": true,
+        "petz_fidelity": 1.0,
+        "exact_recovery": true,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|+>",
+        "channel": "depol(p=0.3)",
+        "S_pre": 1.18772615,
+        "S_post": 0.21692384,
+        "gap": 0.97080231,
+        "dpi_holds": true,
+        "petz_fidelity": 0.76032919,
+        "exact_recovery": false,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|+>",
+        "channel": "amp-damp(\u03b3=0.4)",
+        "S_pre": 1.18772615,
+        "S_post": 0.33429862,
+        "gap": 0.85342753,
+        "dpi_holds": true,
+        "petz_fidelity": 0.77813347,
+        "exact_recovery": false,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|+>",
+        "channel": "phase-damp(\u03bb=0.5)",
+        "S_pre": 1.18772615,
+        "S_post": 0.54320406,
+        "gap": 0.64452209,
+        "dpi_holds": true,
+        "petz_fidelity": 0.81773846,
+        "exact_recovery": false,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|-i>",
+        "channel": "identity",
+        "S_pre": 3.44454875,
+        "S_post": 3.44454875,
+        "gap": 0.0,
+        "dpi_holds": true,
+        "petz_fidelity": 1.0,
+        "exact_recovery": true,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|-i>",
+        "channel": "unitary(Haar)",
+        "S_pre": 3.44454875,
+        "S_post": 3.44454875,
+        "gap": -0.0,
+        "dpi_holds": true,
+        "petz_fidelity": 1.0,
+        "exact_recovery": true,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|-i>",
+        "channel": "depol(p=0.3)",
+        "S_pre": 3.44454875,
+        "S_post": 0.63323369,
+        "gap": 2.81131506,
+        "dpi_holds": true,
+        "petz_fidelity": 0.26500711,
+        "exact_recovery": false,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|-i>",
+        "channel": "amp-damp(\u03b3=0.4)",
+        "S_pre": 3.44454875,
+        "S_post": 1.01771792,
+        "gap": 2.42683083,
+        "dpi_holds": true,
+        "petz_fidelity": 0.30728148,
+        "exact_recovery": false,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "|-i>",
+        "channel": "phase-damp(\u03bb=0.5)",
+        "S_pre": 3.44454875,
+        "S_post": 1.26796297,
+        "gap": 2.17658579,
+        "dpi_holds": true,
+        "petz_fidelity": 0.27870615,
+        "exact_recovery": false,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "max-mixed",
+        "channel": "identity",
+        "S_pre": 1.49800916,
+        "S_post": 1.49800916,
+        "gap": 0.0,
+        "dpi_holds": true,
+        "petz_fidelity": 1.0,
+        "exact_recovery": true,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "max-mixed",
+        "channel": "unitary(Haar)",
+        "S_pre": 1.49800916,
+        "S_post": 1.49800916,
+        "gap": -0.0,
+        "dpi_holds": true,
+        "petz_fidelity": 1.0,
+        "exact_recovery": true,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "max-mixed",
+        "channel": "depol(p=0.3)",
+        "S_pre": 1.49800916,
+        "S_post": 0.20927909,
+        "gap": 1.28873007,
+        "dpi_holds": true,
+        "petz_fidelity": 0.65908895,
+        "exact_recovery": false,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "max-mixed",
+        "channel": "amp-damp(\u03b3=0.4)",
+        "S_pre": 1.49800916,
+        "S_post": 0.26542669,
+        "gap": 1.23258247,
+        "dpi_holds": true,
+        "petz_fidelity": 0.66600331,
+        "exact_recovery": false,
+        "equality_iff_exact": true
+      },
+      {
+        "state": "max-mixed",
+        "channel": "phase-damp(\u03bb=0.5)",
+        "S_pre": 1.49800916,
+        "S_post": 0.58879527,
+        "gap": 0.90921389,
+        "dpi_holds": true,
+        "petz_fidelity": 0.7399237,
+        "exact_recovery": false,
+        "equality_iff_exact": true
+      }
+    ]
+  },
+  "overall_pass": true
+}

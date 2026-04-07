@@ -1,0 +1,118 @@
+{
+  "probe_name": "pure_lego_quantum_chaos",
+  "timestamp": "2026-04-07T03:00:51",
+  "parameters": {
+    "n_qubits": 4,
+    "dimension": 16,
+    "seed": 42,
+    "r_wigner_dyson_gue": 0.5996,
+    "r_poisson": 0.3863,
+    "tolerance": 0.06
+  },
+  "probes": {
+    "gue": {
+      "probe": "GUE_random_matrix",
+      "dimension": 256,
+      "n_realizations": 100,
+      "n_ratios_collected": 20400,
+      "r_mean": 0.6006,
+      "r_expected": 0.5996,
+      "delta": 0.001,
+      "tolerance": 0.06,
+      "passed": true,
+      "eigenvalue_range": [
+        -31.4494,
+        31.6405
+      ]
+    },
+    "integrable": {
+      "probe": "integrable_noninteracting_sigma_z",
+      "dimension": 16,
+      "n_qubits": 4,
+      "n_realizations": 200,
+      "n_ratios_collected": 2794,
+      "r_mean": 0.3718,
+      "r_expected": 0.3863,
+      "delta": 0.0145,
+      "tolerance": 0.06,
+      "passed": true
+    },
+    "chaotic": {
+      "probe": "chaotic_random_heisenberg",
+      "dimension": 16,
+      "n_qubits": 4,
+      "n_realizations": 200,
+      "n_ratios_collected": 2800,
+      "r_mean": 0.5512,
+      "r_expected_infinite_d": 0.5996,
+      "r_gue_finite_d16": 0.5966,
+      "delta_vs_finite_gue": 0.0455,
+      "tolerance": 0.06,
+      "passed": true,
+      "eigenvalue_range": [
+        -3.8099,
+        4.7492
+      ]
+    },
+    "eth": {
+      "probe": "ETH_check_sigma_z_qubit_0",
+      "observable": "sigma_z site 0",
+      "dimension": 16,
+      "diagonal_eth": {
+        "rms_residual": 0.232208,
+        "diag_range": 1.085,
+        "relative_residual": 0.214,
+        "smooth": true
+      },
+      "offdiagonal_eth": {
+        "mean_offdiag_sq": 0.060763,
+        "expected_1_over_D": 0.0625,
+        "scale_ratio": 0.9722,
+        "scaling_ok": true,
+        "mid_spectrum_cv": 0.9435
+      },
+      "passed": true,
+      "diagnostic_diagonal_elements": [
+        -0.6273,
+        -0.1807,
+        0.1233,
+        0.2211,
+        0.2126,
+        0.0086,
+        0.1534,
+        0.2724,
+        0.0248,
+        -0.0662,
+        -0.0364,
+        0.0101,
+        0.4577,
+        0.3604,
+        -0.4987,
+        -0.435
+      ],
+      "diagnostic_energies": [
+        -3.8099,
+        -3.1126,
+        -2.3807,
+        -2.1671,
+        -1.8501,
+        -1.5392,
+        -1.1523,
+        -0.8539,
+        -0.4881,
+        0.1409,
+        0.8148,
+        1.298,
+        2.8581,
+        3.4904,
+        4.0026,
+        4.7492
+      ]
+    }
+  },
+  "summary": {
+    "all_passed": true,
+    "elapsed_seconds": 1.41,
+    "probe_count": 4
+  }
+}

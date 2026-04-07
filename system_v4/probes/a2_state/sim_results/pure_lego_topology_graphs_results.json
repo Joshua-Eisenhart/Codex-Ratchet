@@ -1,0 +1,644 @@
+{
+  "probe": "sim_pure_lego_topology_graphs",
+  "timestamp": "2026-04-07T07:21:00.491641+00:00",
+  "description": "Topology + graph lego: cell complexes, Betti, Hodge, discrete calculus, PyG message passing. No engine.",
+  "complexes": {
+    "circle_S1": {
+      "name": "circle_S1",
+      "counts": {
+        "V": 4,
+        "E": 4,
+        "F": 0,
+        "euler_chi": 0
+      },
+      "incidence": {
+        "B1_shape": [
+          4,
+          4
+        ],
+        "B2_shape": [
+          4,
+          0
+        ],
+        "B1_B2_zero": true,
+        "B1_B2_max_error": 0.0
+      },
+      "betti": {
+        "computed": [
+          1,
+          1,
+          0
+        ],
+        "expected": [
+          1,
+          1,
+          0
+        ],
+        "match": true,
+        "rank_info": {
+          "V": 4,
+          "E": 4,
+          "F": 0,
+          "rank_B1": 3,
+          "rank_B2": 0
+        }
+      },
+      "hodge": {
+        "L0_shape": [
+          4,
+          4
+        ],
+        "L1_shape": [
+          4,
+          4
+        ],
+        "L0_zero_evals": 1,
+        "L1_zero_evals": 1,
+        "b0_hodge_matches": true,
+        "b1_hodge_matches": true,
+        "L0_spectrum_sample": [
+          -0.0,
+          2.0,
+          2.0,
+          4.0
+        ],
+        "L1_spectrum_sample": [
+          -0.0,
+          2.0,
+          2.0,
+          4.0
+        ]
+      },
+      "discrete_calculus": {
+        "curl_grad_zero": true,
+        "curl_grad_max_error": 0.0,
+        "gradient_norm": 1.685368
+      },
+      "pyg_graph": {
+        "num_nodes": 4,
+        "num_edges_undirected": 4,
+        "nodes_match_V": true,
+        "edges_match_E": true
+      },
+      "message_passing": {
+        "seed_node": 0,
+        "rounds": 10,
+        "final_fraction_reached": 0.5,
+        "history": [
+          {
+            "round": 1,
+            "nodes_reached": 2,
+            "fraction_reached": 0.5,
+            "max_signal": 1.0,
+            "total_signal": 2.0
+          },
+          {
+            "round": 2,
+            "nodes_reached": 2,
+            "fraction_reached": 0.5,
+            "max_signal": 2.0,
+            "total_signal": 4.0
+          },
+          {
+            "round": 3,
+            "nodes_reached": 2,
+            "fraction_reached": 0.5,
+            "max_signal": 4.0,
+            "total_signal": 8.0
+          },
+          {
+            "round": 4,
+            "nodes_reached": 2,
+            "fraction_reached": 0.5,
+            "max_signal": 8.0,
+            "total_signal": 16.0
+          },
+          {
+            "round": 5,
+            "nodes_reached": 2,
+            "fraction_reached": 0.5,
+            "max_signal": 16.0,
+            "total_signal": 32.0
+          },
+          {
+            "round": 6,
+            "nodes_reached": 2,
+            "fraction_reached": 0.5,
+            "max_signal": 32.0,
+            "total_signal": 64.0
+          },
+          {
+            "round": 7,
+            "nodes_reached": 2,
+            "fraction_reached": 0.5,
+            "max_signal": 64.0,
+            "total_signal": 128.0
+          },
+          {
+            "round": 8,
+            "nodes_reached": 2,
+            "fraction_reached": 0.5,
+            "max_signal": 128.0,
+            "total_signal": 256.0
+          },
+          {
+            "round": 9,
+            "nodes_reached": 2,
+            "fraction_reached": 0.5,
+            "max_signal": 256.0,
+            "total_signal": 512.0
+          },
+          {
+            "round": 10,
+            "nodes_reached": 2,
+            "fraction_reached": 0.5,
+            "max_signal": 512.0,
+            "total_signal": 1024.0
+          }
+        ]
+      }
+    },
+    "sphere_S2": {
+      "name": "sphere_S2",
+      "counts": {
+        "V": 4,
+        "E": 6,
+        "F": 4,
+        "euler_chi": 2
+      },
+      "incidence": {
+        "B1_shape": [
+          4,
+          6
+        ],
+        "B2_shape": [
+          6,
+          4
+        ],
+        "B1_B2_zero": true,
+        "B1_B2_max_error": 0.0
+      },
+      "betti": {
+        "computed": [
+          1,
+          0,
+          1
+        ],
+        "expected": [
+          1,
+          0,
+          1
+        ],
+        "match": true,
+        "rank_info": {
+          "V": 4,
+          "E": 6,
+          "F": 4,
+          "rank_B1": 3,
+          "rank_B2": 3
+        }
+      },
+      "hodge": {
+        "L0_shape": [
+          4,
+          4
+        ],
+        "L1_shape": [
+          6,
+          6
+        ],
+        "L0_zero_evals": 1,
+        "L1_zero_evals": 0,
+        "b0_hodge_matches": true,
+        "b1_hodge_matches": true,
+        "L0_spectrum_sample": [
+          0.0,
+          4.0,
+          4.0,
+          4.0
+        ],
+        "L1_spectrum_sample": [
+          4.0,
+          4.0,
+          4.0,
+          4.0,
+          4.0,
+          4.0
+        ]
+      },
+      "discrete_calculus": {
+        "curl_grad_zero": true,
+        "curl_grad_max_error": 0.0,
+        "gradient_norm": 2.37132
+      },
+      "pyg_graph": {
+        "num_nodes": 4,
+        "num_edges_undirected": 6,
+        "nodes_match_V": true,
+        "edges_match_E": true
+      },
+      "message_passing": {
+        "seed_node": 0,
+        "rounds": 10,
+        "final_fraction_reached": 1.0,
+        "history": [
+          {
+            "round": 1,
+            "nodes_reached": 3,
+            "fraction_reached": 0.75,
+            "max_signal": 1.0,
+            "total_signal": 3.0
+          },
+          {
+            "round": 2,
+            "nodes_reached": 4,
+            "fraction_reached": 1.0,
+            "max_signal": 3.0,
+            "total_signal": 9.0
+          },
+          {
+            "round": 3,
+            "nodes_reached": 4,
+            "fraction_reached": 1.0,
+            "max_signal": 7.0,
+            "total_signal": 27.0
+          },
+          {
+            "round": 4,
+            "nodes_reached": 4,
+            "fraction_reached": 1.0,
+            "max_signal": 21.0,
+            "total_signal": 81.0
+          },
+          {
+            "round": 5,
+            "nodes_reached": 4,
+            "fraction_reached": 1.0,
+            "max_signal": 61.0,
+            "total_signal": 243.0
+          },
+          {
+            "round": 6,
+            "nodes_reached": 4,
+            "fraction_reached": 1.0,
+            "max_signal": 183.0,
+            "total_signal": 729.0
+          },
+          {
+            "round": 7,
+            "nodes_reached": 4,
+            "fraction_reached": 1.0,
+            "max_signal": 547.0,
+            "total_signal": 2187.0
+          },
+          {
+            "round": 8,
+            "nodes_reached": 4,
+            "fraction_reached": 1.0,
+            "max_signal": 1641.0,
+            "total_signal": 6561.0
+          },
+          {
+            "round": 9,
+            "nodes_reached": 4,
+            "fraction_reached": 1.0,
+            "max_signal": 4921.0,
+            "total_signal": 19683.0
+          },
+          {
+            "round": 10,
+            "nodes_reached": 4,
+            "fraction_reached": 1.0,
+            "max_signal": 14763.0,
+            "total_signal": 59049.0
+          }
+        ]
+      }
+    },
+    "torus_T2": {
+      "name": "torus_T2",
+      "counts": {
+        "V": 9,
+        "E": 27,
+        "F": 18,
+        "euler_chi": 0
+      },
+      "incidence": {
+        "B1_shape": [
+          9,
+          27
+        ],
+        "B2_shape": [
+          27,
+          18
+        ],
+        "B1_B2_zero": true,
+        "B1_B2_max_error": 0.0
+      },
+      "betti": {
+        "computed": [
+          1,
+          2,
+          1
+        ],
+        "expected": [
+          1,
+          2,
+          1
+        ],
+        "match": true,
+        "rank_info": {
+          "V": 9,
+          "E": 27,
+          "F": 18,
+          "rank_B1": 8,
+          "rank_B2": 17
+        }
+      },
+      "hodge": {
+        "L0_shape": [
+          9,
+          9
+        ],
+        "L1_shape": [
+          27,
+          27
+        ],
+        "L0_zero_evals": 1,
+        "L1_zero_evals": 2,
+        "b0_hodge_matches": true,
+        "b1_hodge_matches": true,
+        "L0_spectrum_sample": [
+          -0.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0
+        ],
+        "L1_spectrum_sample": [
+          0.0,
+          0.0,
+          1.26794919,
+          1.26794919,
+          1.26794919,
+          1.26794919
+        ]
+      },
+      "discrete_calculus": {
+        "curl_grad_zero": true,
+        "curl_grad_max_error": 2.220446049250313e-16,
+        "gradient_norm": 5.372969
+      },
+      "pyg_graph": {
+        "num_nodes": 9,
+        "num_edges_undirected": 27,
+        "nodes_match_V": true,
+        "edges_match_E": true
+      },
+      "message_passing": {
+        "seed_node": 0,
+        "rounds": 10,
+        "final_fraction_reached": 1.0,
+        "history": [
+          {
+            "round": 1,
+            "nodes_reached": 6,
+            "fraction_reached": 0.6667,
+            "max_signal": 1.0,
+            "total_signal": 6.0
+          },
+          {
+            "round": 2,
+            "nodes_reached": 9,
+            "fraction_reached": 1.0,
+            "max_signal": 6.0,
+            "total_signal": 36.0
+          },
+          {
+            "round": 3,
+            "nodes_reached": 9,
+            "fraction_reached": 1.0,
+            "max_signal": 27.0,
+            "total_signal": 216.0
+          },
+          {
+            "round": 4,
+            "nodes_reached": 9,
+            "fraction_reached": 1.0,
+            "max_signal": 162.0,
+            "total_signal": 1296.0
+          },
+          {
+            "round": 5,
+            "nodes_reached": 9,
+            "fraction_reached": 1.0,
+            "max_signal": 891.0,
+            "total_signal": 7776.0
+          },
+          {
+            "round": 6,
+            "nodes_reached": 9,
+            "fraction_reached": 1.0,
+            "max_signal": 5346.0,
+            "total_signal": 46656.0
+          },
+          {
+            "round": 7,
+            "nodes_reached": 9,
+            "fraction_reached": 1.0,
+            "max_signal": 31347.0,
+            "total_signal": 279936.0
+          },
+          {
+            "round": 8,
+            "nodes_reached": 9,
+            "fraction_reached": 1.0,
+            "max_signal": 188082.0,
+            "total_signal": 1679616.0
+          },
+          {
+            "round": 9,
+            "nodes_reached": 9,
+            "fraction_reached": 1.0,
+            "max_signal": 1121931.0,
+            "total_signal": 10077696.0
+          },
+          {
+            "round": 10,
+            "nodes_reached": 9,
+            "fraction_reached": 1.0,
+            "max_signal": 6731586.0,
+            "total_signal": 60466176.0
+          }
+        ]
+      }
+    },
+    "nested_tori": {
+      "name": "nested_tori",
+      "counts": {
+        "V": 18,
+        "E": 54,
+        "F": 36,
+        "euler_chi": 0
+      },
+      "incidence": {
+        "B1_shape": [
+          18,
+          54
+        ],
+        "B2_shape": [
+          54,
+          36
+        ],
+        "B1_B2_zero": true,
+        "B1_B2_max_error": 0.0
+      },
+      "betti": {
+        "computed": [
+          2,
+          4,
+          2
+        ],
+        "expected": [
+          2,
+          4,
+          2
+        ],
+        "match": true,
+        "rank_info": {
+          "V": 18,
+          "E": 54,
+          "F": 36,
+          "rank_B1": 16,
+          "rank_B2": 34
+        }
+      },
+      "hodge": {
+        "L0_shape": [
+          18,
+          18
+        ],
+        "L1_shape": [
+          54,
+          54
+        ],
+        "L0_zero_evals": 2,
+        "L1_zero_evals": 4,
+        "b0_hodge_matches": true,
+        "b1_hodge_matches": true,
+        "L0_spectrum_sample": [
+          -0.0,
+          -0.0,
+          6.0,
+          6.0,
+          6.0,
+          6.0
+        ],
+        "L1_spectrum_sample": [
+          -0.0,
+          -0.0,
+          -0.0,
+          0.0,
+          1.26794919,
+          1.26794919
+        ]
+      },
+      "discrete_calculus": {
+        "curl_grad_zero": true,
+        "curl_grad_max_error": 2.220446049250313e-16,
+        "gradient_norm": 8.371169
+      },
+      "pyg_graph": {
+        "num_nodes": 18,
+        "num_edges_undirected": 54,
+        "nodes_match_V": true,
+        "edges_match_E": true
+      },
+      "message_passing": {
+        "seed_node": 0,
+        "rounds": 10,
+        "final_fraction_reached": 0.5,
+        "history": [
+          {
+            "round": 1,
+            "nodes_reached": 6,
+            "fraction_reached": 0.3333,
+            "max_signal": 1.0,
+            "total_signal": 6.0
+          },
+          {
+            "round": 2,
+            "nodes_reached": 9,
+            "fraction_reached": 0.5,
+            "max_signal": 6.0,
+            "total_signal": 36.0
+          },
+          {
+            "round": 3,
+            "nodes_reached": 9,
+            "fraction_reached": 0.5,
+            "max_signal": 27.0,
+            "total_signal": 216.0
+          },
+          {
+            "round": 4,
+            "nodes_reached": 9,
+            "fraction_reached": 0.5,
+            "max_signal": 162.0,
+            "total_signal": 1296.0
+          },
+          {
+            "round": 5,
+            "nodes_reached": 9,
+            "fraction_reached": 0.5,
+            "max_signal": 891.0,
+            "total_signal": 7776.0
+          },
+          {
+            "round": 6,
+            "nodes_reached": 9,
+            "fraction_reached": 0.5,
+            "max_signal": 5346.0,
+            "total_signal": 46656.0
+          },
+          {
+            "round": 7,
+            "nodes_reached": 9,
+            "fraction_reached": 0.5,
+            "max_signal": 31347.0,
+            "total_signal": 279936.0
+          },
+          {
+            "round": 8,
+            "nodes_reached": 9,
+            "fraction_reached": 0.5,
+            "max_signal": 188082.0,
+            "total_signal": 1679616.0
+          },
+          {
+            "round": 9,
+            "nodes_reached": 9,
+            "fraction_reached": 0.5,
+            "max_signal": 1121931.0,
+            "total_signal": 10077696.0
+          },
+          {
+            "round": 10,
+            "nodes_reached": 9,
+            "fraction_reached": 0.5,
+            "max_signal": 6731586.0,
+            "total_signal": 60466176.0
+          }
+        ]
+      }
+    }
+  },
+  "verdicts": {
+    "circle_S1": "PASS",
+    "sphere_S2": "PASS",
+    "torus_T2": "PASS",
+    "nested_tori": "PASS"
+  },
+  "overall_verdict": "ALL PASS"
+}

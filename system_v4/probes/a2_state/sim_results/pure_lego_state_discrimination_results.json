@@ -1,0 +1,149 @@
+{
+  "probe": "sim_pure_lego_state_discrimination",
+  "timestamp": "2026-04-07T09:58:44.011009+00:00",
+  "verdict": "ALL PASS",
+  "total_tests": 20,
+  "pass_count": 20,
+  "helstrom_binary_tests": [
+    {
+      "pair_name": "orthogonal_|0>_|1>",
+      "trace_distance": 1.0,
+      "helstrom_p_succ_formula": 1.0,
+      "helstrom_p_succ_povm": 1.0,
+      "formula_povm_match": true,
+      "usd_p_conclusive": 1.0
+    },
+    {
+      "pair_name": "identical",
+      "trace_distance": 0.0,
+      "helstrom_p_succ_formula": 0.5,
+      "helstrom_p_succ_povm": 0.5,
+      "formula_povm_match": true,
+      "usd_p_conclusive": 0.0
+    },
+    {
+      "pair_name": "|0>_vs_|+>",
+      "trace_distance": 0.7071067812,
+      "helstrom_p_succ_formula": 0.8535533906,
+      "helstrom_p_succ_povm": 0.8535533906,
+      "formula_povm_match": true,
+      "usd_p_conclusive": 0.2928932188
+    },
+    {
+      "pair_name": "|+>_vs_|->",
+      "trace_distance": 1.0,
+      "helstrom_p_succ_formula": 1.0,
+      "helstrom_p_succ_povm": 1.0,
+      "formula_povm_match": true,
+      "usd_p_conclusive": 1.0
+    },
+    {
+      "pair_name": "|0>_vs_pi/8_rot",
+      "trace_distance": 0.3826834324,
+      "helstrom_p_succ_formula": 0.6913417162,
+      "helstrom_p_succ_povm": 0.6913417162,
+      "formula_povm_match": true,
+      "usd_p_conclusive": 0.0761204675
+    },
+    {
+      "pair_name": "random_pure_1",
+      "trace_distance": 0.7053132001,
+      "helstrom_p_succ_formula": 0.8526566001,
+      "helstrom_p_succ_povm": 0.8526566001,
+      "formula_povm_match": true,
+      "usd_p_conclusive": 0.2911041757
+    },
+    {
+      "pair_name": "random_pure_2",
+      "trace_distance": 0.9418051827,
+      "helstrom_p_succ_formula": 0.9709025914,
+      "helstrom_p_succ_povm": 0.9709025914,
+      "formula_povm_match": true,
+      "usd_p_conclusive": 0.6638408149
+    },
+    {
+      "pair_name": "mixed_vs_pure",
+      "trace_distance": 0.5,
+      "helstrom_p_succ_formula": 0.75,
+      "helstrom_p_succ_povm": 0.75,
+      "formula_povm_match": true
+    },
+    {
+      "pair_name": "random_mixed",
+      "trace_distance": 0.5255444158,
+      "helstrom_p_succ_formula": 0.7627722079,
+      "helstrom_p_succ_povm": 0.7627722079,
+      "formula_povm_match": true
+    },
+    {
+      "pair_name": "near_identical",
+      "trace_distance": 0.0015970615,
+      "helstrom_p_succ_formula": 0.5007985308,
+      "helstrom_p_succ_povm": 0.5007985308,
+      "formula_povm_match": true
+    }
+  ],
+  "boundary_checks": [
+    {
+      "check": "orthogonal_states_perfect_discrimination",
+      "expected": 1.0,
+      "actual": 1.0,
+      "PASS": true
+    },
+    {
+      "check": "identical_states_random_guess",
+      "expected": 0.5,
+      "actual": 0.5,
+      "PASS": true
+    },
+    {
+      "check": "identical_states_p=0.7",
+      "expected": 0.7,
+      "actual": 0.7,
+      "PASS": true
+    }
+  ],
+  "pgm_tests": [
+    {
+      "test": "3_orthogonal_pure_equal_prior",
+      "pgm_p_succ": 1.0,
+      "expected_perfect": true,
+      "PASS": true
+    },
+    {
+      "test": "3_trine_states_C2",
+      "pgm_p_succ": 0.6666666667,
+      "note": "trine states, known PGM optimal = 2/3",
+      "PASS": true
+    },
+    {
+      "test": "4_random_pure_C3",
+      "pgm_p_succ": 0.6610125601,
+      "PASS": true
+    }
+  ],
+  "min_error_tests": [
+    {
+      "test": "3_orthogonal_min_error",
+      "min_error_p_succ": 1.0,
+      "PASS": true
+    },
+    {
+      "test": "trine_states_min_error",
+      "min_error_p_succ": 0.6666666667,
+      "expected_approx": 0.6667,
+      "PASS": true
+    },
+    {
+      "test": "4_random_mixed_C3",
+      "min_error_p_succ": 0.5149426268,
+      "PASS": true
+    },
+    {
+      "test": "2_states_matches_helstrom",
+      "min_error_p_succ": 0.8535533906,
+      "helstrom_p_succ": 0.8535533906,
+      "PASS": true
+    }
+  ]
+}

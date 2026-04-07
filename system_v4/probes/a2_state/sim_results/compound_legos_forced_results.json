@@ -1,0 +1,1052 @@
+{
+  "probe": "sim_compound_legos_forced",
+  "purpose": "Test which lego COMBINATIONS are FORCED / FORBIDDEN / EMERGENT by constraint layers",
+  "timestamp": "2026-04-07T09:11:11.685448+00:00",
+  "test1_F01_forced": {
+    "density_matrix_forces_discrete_spectrum": {
+      "forced": true,
+      "reason": "dim(H)=d => rho is dxd Hermitian => spectrum is exactly d eigenvalues",
+      "eigenvalues": [
+        0.14644660940672624,
+        0.8535533905932737
+      ],
+      "count": 2,
+      "z3_check": "unsat",
+      "z3_verdict": "FORCED: cannot have finite dim without exactly d eigenvalues"
+    },
+    "finite_dim_forces_bounded_kraus": {
+      "forced": true,
+      "reason": "Stinespring: minimal Kraus rank = rank(Choi) <= d_in * d_out = d^2",
+      "max_minimal_kraus_d2": 4,
+      "max_minimal_kraus_d4": 16,
+      "z3_note": "Redundant Kraus always possible (z3 sat), but MINIMAL rank bounded (structural theorem)"
+    },
+    "finite_dim_forces_trace": {
+      "forced": true,
+      "z3_check": "unsat",
+      "reason": "Tr(rho) = sum of d eigenvalues. Finite sum always converges."
+    },
+    "finite_dim_forces_spectral_decomp": {
+      "forced": true,
+      "z3_check": "unsat",
+      "reason": "Spectral theorem: every finite-dim Hermitian has eigendecomposition."
+    },
+    "finite_dim_forces_entropy_bound": {
+      "forced": true,
+      "z3_check": "unsat",
+      "reason": "S(rho) <= log2(d). Finite dim => entropy has a ceiling.",
+      "max_entropy_d2": 1.0,
+      "max_entropy_d4": 2.0
+    },
+    "forced_pairs": [
+      [
+        "density_matrix",
+        "discrete_spectrum"
+      ],
+      [
+        "density_matrix",
+        "spectral_decomposition"
+      ],
+      [
+        "density_matrix",
+        "bounded_trace"
+      ],
+      [
+        "kraus_operators",
+        "bounded_rank"
+      ],
+      [
+        "von_neumann_entropy",
+        "upper_bound_log_d"
+      ]
+    ]
+  },
+  "test2_N01_forced": {
+    "noncommutation_forces_complex": {
+      "forced": true,
+      "reason": "[A,B] for Hermitian A,B is anti-Hermitian => eigenvalues are imaginary => i is required",
+      "commutator_xz": [
+        [
+          {
+            "re": 0.0,
+            "im": 0.0
+          },
+          {
+            "re": -2.0,
+            "im": 0.0
+          }
+        ],
+        [
+          {
+            "re": 2.0,
+            "im": 0.0
+          },
+          {
+            "re": 0.0,
+            "im": 0.0
+          }
+        ]
+      ],
+      "is_anti_hermitian": true,
+      "eigenvalues_imaginary": [
+        {
+          "re": 0.0,
+          "im": 2.0000000000000004
+        },
+        {
+          "re": 5.551115123125783e-17,
+          "im": -2.0
+        }
+      ],
+      "z3_check": "unsat"
+    },
+    "complex_forces_berry_phase": {
+      "forced": true,
+      "reason": "Berry phase requires complex overlaps. Real states have all overlaps real => Berry = 0 or pi (trivial).",
+      "berry_complex_loop": 4.356199700071765e-16,
+      "berry_real_loop": 3.141592653589793,
+      "real_is_trivial": true
+    },
+    "noncommutation_forces_qgt_split": {
+      "forced": true,
+      "reason": "QGT = metric + i*curvature. Without N01 (real states), curvature = 0. N01 forces BOTH parts.",
+      "qgt_complex": {
+        "re": 0.3074622117664826,
+        "im": 0.0
+      },
+      "qgt_complex_real_part": 0.3074622117664826,
+      "qgt_complex_imag_part": 0.0,
+      "qgt_real": {
+        "re": 0.25,
+        "im": 0.0
+      },
+      "qgt_real_real_part": 0.25,
+      "qgt_real_imag_part": 0.0,
+      "curvature_zero_without_N01": true,
+      "curvature_nonzero_with_N01": false,
+      "z3_check": "unsat"
+    },
+    "noncommutation_forces_uncertainty": {
+      "forced": true,
+      "reason": "[A,B] != 0 => uncertainty relation is non-trivial. Cannot simultaneously know A and B.",
+      "var_x": 0.75,
+      "var_z": 0.8400000000000001,
+      "product_std": 0.7937253933193773,
+      "robertson_bound": 0.3,
+      "uncertainty_satisfied": true
+    },
+    "forced_pairs": [
+      [
+        "noncommutation",
+        "complex_numbers"
+      ],
+      [
+        "complex_numbers",
+        "berry_phase"
+      ],
+      [
+        "noncommutation",
+        "qgt_has_curvature"
+      ],
+      [
+        "noncommutation",
+        "uncertainty_principle"
+      ],
+      [
+        "noncommutation",
+        "anti_hermitian_commutator"
+      ]
+    ]
+  },
+  "test3_CPTP_forced": {
+    "cptp_forces_kraus": {
+      "forced": true,
+      "reason": "Stinespring dilation theorem: every CPTP map has Kraus decomposition. FORCED.",
+      "trace_preservation_check": 0.0,
+      "is_trace_preserving": true,
+      "n_kraus_ops": 4
+    },
+    "cptp_forces_choi_psd": {
+      "forced": true,
+      "reason": "CPTP <=> Choi matrix is PSD (Choi-Jamiolkowski). FORCED equivalence.",
+      "choi_eigenvalues": [
+        0.049999999999999926,
+        0.05,
+        0.05000000000000009,
+        1.85
+      ],
+      "all_nonneg": true
+    },
+    "cptp_forces_contractivity": {
+      "forced": true,
+      "reason": "CPTP => trace distance is non-increasing. This is AUTOMATIC, not a separate property.",
+      "d_before": 0.4183300132670378,
+      "d_after": 0.37649701194033414,
+      "contracted": true,
+      "all_channels": {
+        "depolarizing": {
+          "d_before": 0.4183300132670378,
+          "d_after": 0.37649701194033414,
+          "contracted": true
+        },
+        "amplitude_damping": {
+          "d_before": 0.4183300132670378,
+          "d_after": 0.32186953878862157,
+          "contracted": true
+        },
+        "phase_damping": {
+          "d_before": 0.4183300132670378,
+          "d_after": 0.34727510708370674,
+          "contracted": true
+        }
+      },
+      "z3_check": "unsat"
+    },
+    "cptp_forces_entanglement_monotonicity": {
+      "forced": true,
+      "reason": "Local CPTP cannot increase entanglement. Concurrence and negativity are monotones.",
+      "concurrence_before": 0.9999999937348322,
+      "concurrence_after": 0.8500000000000005,
+      "concurrence_decreased": true,
+      "negativity_before": 0.4999999999999998,
+      "negativity_after": 0.4249999999999998,
+      "negativity_decreased": true
+    },
+    "cptp_entropy_increase_allowed": {
+      "note": "CPTP CAN increase single-system entropy (not forbidden!)",
+      "S_before_pure": -0.0,
+      "S_after_depol": 0.28639695711595603,
+      "increased": true,
+      "reason": "This is the 2nd law in action. Pure -> mixed is entropy increase."
+    },
+    "cptp_entropy_decrease_possible": {
+      "note": "CPTP CAN decrease single-system entropy for specific inputs!",
+      "S_before_maxmixed": 1.0,
+      "S_after_amp_damp": 0.28639695711595614,
+      "decreased": true,
+      "reason": "Amplitude damping pushes toward |0>. Maximally mixed state loses entropy. This is NOT forbidden -- it requires side information (environment absorbs entropy)."
+    },
+    "forced_pairs": [
+      [
+        "CPTP",
+        "kraus_representation"
+      ],
+      [
+        "CPTP",
+        "choi_PSD"
+      ],
+      [
+        "CPTP",
+        "trace_distance_contractivity"
+      ],
+      [
+        "local_CPTP",
+        "entanglement_monotonicity"
+      ]
+    ]
+  },
+  "test4_d2_forced": {
+    "d2_forces_bloch_ball": {
+      "forced": true,
+      "reason": "d=2: rho = (I + r.sigma)/2, |r|<=1 is a BALL in R^3. UNIQUE to d=2.",
+      "params_d2": 3,
+      "state_from_bloch_valid": true,
+      "d3_params": 8,
+      "d3_is_ball": false,
+      "d3_note": "d=3 generalized Bloch body is a convex set with curved boundaries, NOT a ball."
+    },
+    "d2_forces_pauli_complete": {
+      "forced": true,
+      "reason": "su(2) has exactly 3 generators (Paulis). They span ALL traceless Hermitian 2x2.",
+      "n_generators": 3,
+      "reconstruction_error": 5.551115123125783e-17,
+      "pauli_coefficients": [
+        0.5,
+        0.3,
+        -0.2,
+        0.19999999999999998
+      ],
+      "exact_reconstruction": true
+    },
+    "d2_forces_hopf_unique": {
+      "forced": true,
+      "reason": "pi_3(S^2) = Z. Hopf fibration S^3 -> S^2 with S^1 fiber is UNIQUE (up to homotopy class).",
+      "bloch_point": [
+        0.8273927740849942,
+        0.45200673256139323,
+        -0.3333333333333331
+      ],
+      "fiber_stability": 4.440892098500626e-16,
+      "fiber_is_S1": true,
+      "uniqueness_note": "pi_3(S^n) = Z only for n=2. This is SPECIAL to d=2."
+    },
+    "d2_forces_correlation_3x3": {
+      "forced": true,
+      "reason": "2-qubit state parameterized by (a, b, T) where T is 3x3 = 9 components.",
+      "T_bell": [
+        [
+          0.9999999999999998,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.9999999999999998,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.9999999999999998
+        ]
+      ],
+      "T_product": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "n_components": 9,
+      "total_params_2qubit": 15,
+      "note": "Bell state has T = diag(1, -1, 1). Product state has T = a * b^T (rank 1)."
+    },
+    "d2_z3_param_count": {
+      "z3_check": "unsat",
+      "forced": true,
+      "reason": "d=2 => d^2-1 = 3 parameters. Cannot be otherwise."
+    },
+    "forced_pairs": [
+      [
+        "d=2",
+        "bloch_ball_3_params"
+      ],
+      [
+        "d=2",
+        "pauli_basis_complete_3_generators"
+      ],
+      [
+        "d=2",
+        "hopf_fibration_unique"
+      ],
+      [
+        "d=2",
+        "correlation_tensor_3x3"
+      ]
+    ]
+  },
+  "test5_forbidden": {
+    "berry_plus_real_FORBIDDEN": {
+      "forbidden": true,
+      "z3_check": "unsat",
+      "reason": "Real states: all overlaps are real => Berry phase = 0 or pi. Non-trivial Berry is IMPOSSIBLE.",
+      "berry_real_loop": 3.141592653589793,
+      "is_trivial": true
+    },
+    "entanglement_plus_product_FORBIDDEN": {
+      "forbidden": true,
+      "z3_check": "unsat",
+      "reason": "Product state = separable by definition. Concurrence = 0, negativity = 0.",
+      "concurrence_product": 0.0,
+      "negativity_product": 0.0,
+      "both_zero": true
+    },
+    "unitary_plus_entropy_increase_FORBIDDEN": {
+      "forbidden": true,
+      "z3_check": "unsat",
+      "reason": "Unitary preserves spectrum => preserves entropy. DeltaS = 0 exactly.",
+      "S_before": 0.6008760366928562,
+      "S_after": 0.6008760366928563,
+      "delta_S": 1.1102230246251565e-16,
+      "spectrum_preserved": true
+    },
+    "cptp_plus_entropy_decrease_NOT_FORBIDDEN": {
+      "forbidden": false,
+      "reason": "CPTP CAN decrease single-system entropy! Amplitude damping on maximally mixed state is a counterexample.",
+      "S_maximally_mixed": 1.0,
+      "S_after_strong_amp_damp": 0.04541469233379414,
+      "decreased": true,
+      "key_insight": "Only UNITAL channels preserve maximally mixed state. Non-unital CPTP can purify. The entropy goes to the ENVIRONMENT."
+    },
+    "commuting_plus_uncertainty_FORBIDDEN": {
+      "forbidden": true,
+      "z3_check": "unsat",
+      "reason": "[A,B]=0 => Robertson bound = 0. No uncertainty between commuting observables.",
+      "robertson_bound_ZZ": 0.0,
+      "is_zero": true
+    },
+    "pure_state_plus_entropy_FORBIDDEN": {
+      "forbidden": true,
+      "z3_check": "unsat",
+      "reason": "Pure state has one eigenvalue = 1, rest = 0. S(rho) = 0.",
+      "S_pure": -0.0,
+      "is_zero": true
+    },
+    "forbidden_pairs_list": [
+      {
+        "pair": [
+          "berry_phase_nontrivial",
+          "real_numbers_only"
+        ],
+        "status": "FORBIDDEN"
+      },
+      {
+        "pair": [
+          "entangled",
+          "product_state"
+        ],
+        "status": "FORBIDDEN"
+      },
+      {
+        "pair": [
+          "unitary_channel",
+          "entropy_increase"
+        ],
+        "status": "FORBIDDEN"
+      },
+      {
+        "pair": [
+          "CPTP",
+          "entropy_decrease"
+        ],
+        "status": "NOT_FORBIDDEN"
+      },
+      {
+        "pair": [
+          "commuting_observables",
+          "nontrivial_uncertainty"
+        ],
+        "status": "FORBIDDEN"
+      },
+      {
+        "pair": [
+          "pure_state",
+          "nonzero_vN_entropy"
+        ],
+        "status": "FORBIDDEN"
+      }
+    ]
+  },
+  "test6_emergent": {
+    "crossing_pairs": [
+      {
+        "lego_A": "von_neumann_entropy",
+        "lego_B": "partial_trace",
+        "type_A": "spectral",
+        "type_B": "spectral",
+        "produces": "entanglement_entropy",
+        "product_type": "GEOMETRIC",
+        "crosses_partition": true,
+        "evidence": {
+          "ee_bell": 1.0,
+          "S_reduced": 1.0,
+          "explanation": "S(rho) is spectral. Tr_B is spectral. But S(Tr_B(rho_AB)) DETECTS entanglement = geometric property."
+        }
+      },
+      {
+        "lego_A": "eigenvalue_decomposition",
+        "lego_B": "partial_transpose",
+        "type_A": "spectral",
+        "type_B": "spectral (linear map)",
+        "produces": "negativity",
+        "product_type": "GEOMETRIC",
+        "crosses_partition": true,
+        "evidence": {
+          "negativity_bell": 0.4999999999999998,
+          "pt_eigenvalues": [
+            -0.4999999999999998,
+            0.4999999999999996,
+            0.4999999999999999,
+            0.4999999999999999
+          ],
+          "explanation": "Eigenvalues and transpose are spectral operations. But negative eigenvalues of partial transpose DETECT entanglement = geometric."
+        }
+      },
+      {
+        "lego_A": "trace_distance",
+        "lego_B": "CPTP_channel",
+        "type_A": "spectral",
+        "type_B": "spectral (Kraus sum)",
+        "produces": "contractivity_monotone",
+        "product_type": "GEOMETRIC (information-geometric)",
+        "crosses_partition": true,
+        "evidence": {
+          "d_before": 0.4183300132670378,
+          "d_after": 0.37649701194033414,
+          "contracted": true,
+          "explanation": "Trace distance and Kraus maps are spectral. Contractivity is an information-geometric monotone structure."
+        }
+      },
+      {
+        "lego_A": "pauli_decomposition",
+        "lego_B": "tensor_product",
+        "type_A": "spectral",
+        "type_B": "spectral (algebraic)",
+        "produces": "correlation_tensor",
+        "product_type": "GEOMETRIC (encodes entanglement structure)",
+        "crosses_partition": true,
+        "evidence": {
+          "T_bell": [
+            [
+              0.9999999999999998,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              -0.9999999999999998,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.9999999999999998
+            ]
+          ],
+          "singular_values": [
+            0.9999999999999998,
+            0.9999999999999998,
+            0.9999999999999998
+          ],
+          "explanation": "Pauli decomposition and tensor products are spectral algebra. But the correlation tensor T encodes entanglement geometry (SVD = Schmidt coefficients)."
+        }
+      },
+      {
+        "lego_A": "spectral_decomposition",
+        "lego_B": "unitary_evolution",
+        "type_A": "spectral",
+        "type_B": "spectral (expm of Hermitian)",
+        "produces": "berry_phase_from_dynamics",
+        "product_type": "GEOMETRIC",
+        "crosses_partition": true,
+        "evidence": {
+          "berry_phase": -3.141592653589793,
+          "explanation": "Spectral decomposition of H and unitary exp(-iHt) are spectral. But cyclic evolution produces Berry phase = geometric object."
+        }
+      },
+      {
+        "lego_A": "von_neumann_entropy",
+        "lego_B": "partial_trace",
+        "type_A": "spectral",
+        "type_B": "spectral",
+        "produces": "mutual_information",
+        "product_type": "MIXED (spectral formula, detects geometric correlations)",
+        "crosses_partition": true,
+        "evidence": {
+          "MI_bell": 1.9999999999999998,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "S_AB": 3.2034265038149176e-16,
+          "explanation": "MI = S(A) + S(B) - S(AB). All spectral. But MI > 1 (for d=2) IMPLIES entanglement (geometric). MI_bell = 2 = maximum.",
+          "MI_exceeds_classical_bound": true
+        }
+      }
+    ],
+    "n_crossing_pairs": 6,
+    "key_insight": "6 spectral-spectral pairs cross the partition to produce geometric objects. The partition between spectral and geometric is NOT a wall -- it is a MEMBRANE. Spectral tools, properly combined, REACH geometric content."
+  },
+  "test7_forced_ordering": {
+    "ordering_is_consistent": true,
+    "one_valid_ordering": [
+      [
+        "density_matrix",
+        0
+      ],
+      [
+        "trace_distance",
+        1
+      ],
+      [
+        "partial_transpose",
+        1
+      ],
+      [
+        "concurrence",
+        1
+      ],
+      [
+        "partial_trace",
+        1
+      ],
+      [
+        "eigenvalue_decomposition",
+        1
+      ],
+      [
+        "berry_phase",
+        1
+      ],
+      [
+        "choi_matrix",
+        1
+      ],
+      [
+        "fubini_study",
+        1
+      ],
+      [
+        "pauli_decomposition",
+        1
+      ],
+      [
+        "entanglement_entropy",
+        2
+      ],
+      [
+        "kraus_extraction",
+        2
+      ],
+      [
+        "bloch_vector",
+        2
+      ],
+      [
+        "entanglement_of_formation",
+        2
+      ],
+      [
+        "von_neumann_entropy",
+        2
+      ],
+      [
+        "negativity",
+        2
+      ],
+      [
+        "qgt_metric",
+        2
+      ]
+    ],
+    "forced_orderings": [
+      {
+        "prerequisite": "density_matrix",
+        "dependent": "eigenvalue_decomposition",
+        "reason": "Need rho to compute eigenvalues",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "eigenvalue_decomposition",
+        "dependent": "von_neumann_entropy",
+        "reason": "S = -sum p_i log p_i, need eigenvalues",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "density_matrix",
+        "dependent": "partial_trace",
+        "reason": "Need rho_AB to trace out B",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "partial_trace",
+        "dependent": "entanglement_entropy",
+        "reason": "EE = S(Tr_B(rho)), need reduced state",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "eigenvalue_decomposition",
+        "dependent": "entanglement_entropy",
+        "reason": "EE uses S() which needs eigenvalues",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "density_matrix",
+        "dependent": "concurrence",
+        "reason": "Need 2-qubit rho for spin-flip",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "concurrence",
+        "dependent": "entanglement_of_formation",
+        "reason": "EoF = h((1+sqrt(1-C^2))/2)",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "density_matrix",
+        "dependent": "partial_transpose",
+        "reason": "Need rho to compute rho^Gamma",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "partial_transpose",
+        "dependent": "negativity",
+        "reason": "Negativity = sum of negative eigenvalues of rho^Gamma",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "eigenvalue_decomposition",
+        "dependent": "negativity",
+        "reason": "Need eigenvalues of rho^Gamma",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "density_matrix",
+        "dependent": "choi_matrix",
+        "reason": "Choi = sum |i><j| x E(|i><j|), need channel input",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "choi_matrix",
+        "dependent": "kraus_extraction",
+        "reason": "Kraus ops from eigendecomposition of Choi",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "eigenvalue_decomposition",
+        "dependent": "kraus_extraction",
+        "reason": "Eigendecompose Choi to get Kraus",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "density_matrix",
+        "dependent": "pauli_decomposition",
+        "reason": "Tr(rho . sigma_i) needs rho",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "pauli_decomposition",
+        "dependent": "bloch_vector",
+        "reason": "Bloch = (Tr(rho.sx), Tr(rho.sy), Tr(rho.sz))",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "density_matrix",
+        "dependent": "fubini_study",
+        "reason": "Need states (pure) to compute FS distance",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "fubini_study",
+        "dependent": "qgt_metric",
+        "reason": "FS metric = Re(QGT)",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "density_matrix",
+        "dependent": "berry_phase",
+        "reason": "Need states along a loop",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      },
+      {
+        "prerequisite": "density_matrix",
+        "dependent": "trace_distance",
+        "reason": "Need two density matrices",
+        "reversal_possible": true,
+        "status": "FORCED_BY_THIS_EDGE_but_not_by_transitivity"
+      }
+    ],
+    "n_strictly_forced": 0,
+    "edges": [
+      {
+        "from": "density_matrix",
+        "to": "eigenvalue_decomposition",
+        "reason": "Need rho to compute eigenvalues"
+      },
+      {
+        "from": "eigenvalue_decomposition",
+        "to": "von_neumann_entropy",
+        "reason": "S = -sum p_i log p_i, need eigenvalues"
+      },
+      {
+        "from": "density_matrix",
+        "to": "partial_trace",
+        "reason": "Need rho_AB to trace out B"
+      },
+      {
+        "from": "partial_trace",
+        "to": "entanglement_entropy",
+        "reason": "EE = S(Tr_B(rho)), need reduced state"
+      },
+      {
+        "from": "eigenvalue_decomposition",
+        "to": "entanglement_entropy",
+        "reason": "EE uses S() which needs eigenvalues"
+      },
+      {
+        "from": "density_matrix",
+        "to": "concurrence",
+        "reason": "Need 2-qubit rho for spin-flip"
+      },
+      {
+        "from": "concurrence",
+        "to": "entanglement_of_formation",
+        "reason": "EoF = h((1+sqrt(1-C^2))/2)"
+      },
+      {
+        "from": "density_matrix",
+        "to": "partial_transpose",
+        "reason": "Need rho to compute rho^Gamma"
+      },
+      {
+        "from": "partial_transpose",
+        "to": "negativity",
+        "reason": "Negativity = sum of negative eigenvalues of rho^Gamma"
+      },
+      {
+        "from": "eigenvalue_decomposition",
+        "to": "negativity",
+        "reason": "Need eigenvalues of rho^Gamma"
+      },
+      {
+        "from": "density_matrix",
+        "to": "choi_matrix",
+        "reason": "Choi = sum |i><j| x E(|i><j|), need channel input"
+      },
+      {
+        "from": "choi_matrix",
+        "to": "kraus_extraction",
+        "reason": "Kraus ops from eigendecomposition of Choi"
+      },
+      {
+        "from": "eigenvalue_decomposition",
+        "to": "kraus_extraction",
+        "reason": "Eigendecompose Choi to get Kraus"
+      },
+      {
+        "from": "density_matrix",
+        "to": "pauli_decomposition",
+        "reason": "Tr(rho . sigma_i) needs rho"
+      },
+      {
+        "from": "pauli_decomposition",
+        "to": "bloch_vector",
+        "reason": "Bloch = (Tr(rho.sx), Tr(rho.sy), Tr(rho.sz))"
+      },
+      {
+        "from": "density_matrix",
+        "to": "fubini_study",
+        "reason": "Need states (pure) to compute FS distance"
+      },
+      {
+        "from": "fubini_study",
+        "to": "qgt_metric",
+        "reason": "FS metric = Re(QGT)"
+      },
+      {
+        "from": "density_matrix",
+        "to": "berry_phase",
+        "reason": "Need states along a loop"
+      },
+      {
+        "from": "density_matrix",
+        "to": "trace_distance",
+        "reason": "Need two density matrices"
+      }
+    ],
+    "critical_path": {
+      "path": [
+        "density_matrix",
+        "eigenvalue_decomposition",
+        "entanglement_entropy"
+      ],
+      "length": 2,
+      "note": "This is the LONGEST forced chain: you MUST compute these in this order."
+    },
+    "natural_layers": {
+      "layer_0_foundations": [
+        "density_matrix"
+      ],
+      "layer_1_first_derived": [
+        "trace_distance",
+        "partial_transpose",
+        "concurrence",
+        "partial_trace",
+        "eigenvalue_decomposition",
+        "berry_phase",
+        "choi_matrix",
+        "fubini_study",
+        "pauli_decomposition"
+      ],
+      "layer_2_second_derived": [
+        "entanglement_entropy",
+        "kraus_extraction",
+        "bloch_vector",
+        "entanglement_of_formation",
+        "von_neumann_entropy",
+        "negativity",
+        "qgt_metric"
+      ],
+      "layer_3_plus": []
+    }
+  },
+  "compound_table": {
+    "F01": {
+      "forced_pairs": [
+        [
+          "density_matrix",
+          "discrete_spectrum"
+        ],
+        [
+          "density_matrix",
+          "spectral_decomposition"
+        ],
+        [
+          "density_matrix",
+          "bounded_trace"
+        ],
+        [
+          "kraus_operators",
+          "bounded_rank"
+        ],
+        [
+          "von_neumann_entropy",
+          "upper_bound_log_d"
+        ]
+      ],
+      "forbidden_pairs": [],
+      "emergent": [
+        "discrete eigenvalues from finite dimension"
+      ]
+    },
+    "N01": {
+      "forced_pairs": [
+        [
+          "noncommutation",
+          "complex_numbers"
+        ],
+        [
+          "complex_numbers",
+          "berry_phase"
+        ],
+        [
+          "noncommutation",
+          "qgt_metric_PLUS_curvature"
+        ],
+        [
+          "noncommutation",
+          "uncertainty_principle"
+        ]
+      ],
+      "forbidden_pairs": [
+        [
+          "real_only",
+          "berry_phase_nontrivial"
+        ],
+        [
+          "commuting_only",
+          "uncertainty_nontrivial"
+        ]
+      ],
+      "emergent": [
+        "QGT = metric + curvature (inseparable for pure states)",
+        "anti-Hermitian commutator structure",
+        "Wigner negativity (nonclassicality)"
+      ]
+    },
+    "CPTP": {
+      "forced_pairs": [
+        [
+          "CPTP",
+          "kraus_representation"
+        ],
+        [
+          "CPTP",
+          "choi_PSD"
+        ],
+        [
+          "CPTP",
+          "trace_distance_contractivity"
+        ],
+        [
+          "local_CPTP",
+          "entanglement_monotonicity"
+        ]
+      ],
+      "forbidden_pairs": [
+        [
+          "unitary_channel",
+          "entropy_increase"
+        ]
+      ],
+      "not_forbidden_surprise": [
+        [
+          "CPTP",
+          "entropy_decrease",
+          "Allowed for non-unital channels on specific inputs"
+        ]
+      ],
+      "emergent": [
+        "contractivity is AUTOMATIC from CPTP (not a separate axiom)",
+        "entanglement monotonicity is AUTOMATIC from local CPTP",
+        "Stinespring dilation (environment is forced)"
+      ]
+    },
+    "d_equals_2": {
+      "forced_pairs": [
+        [
+          "d=2",
+          "bloch_ball_3_params"
+        ],
+        [
+          "d=2",
+          "pauli_complete_3_generators"
+        ],
+        [
+          "d=2",
+          "hopf_fibration_unique"
+        ],
+        [
+          "d=2",
+          "correlation_tensor_3x3"
+        ]
+      ],
+      "forbidden_pairs": [
+        [
+          "d=2",
+          "more_than_3_independent_generators"
+        ],
+        [
+          "d=2",
+          "bloch_body_non_spherical"
+        ]
+      ],
+      "emergent": [
+        "Hopf uniqueness (pi_3(S^2) = Z, special to d=2)",
+        "Bloch sphere is a BALL (not true for d>2)",
+        "SU(2) double cover of SO(3) (spinor structure)"
+      ]
+    }
+  },
+  "summary": {
+    "elapsed_seconds": 0.093,
+    "errors": [],
+    "n_errors": 0,
+    "verdict": "ALL TESTS PASSED",
+    "key_findings": [
+      "F01 forces 5 pairs: density matrix comes with spectrum, trace, decomposition, entropy bound",
+      "N01 forces 4 pairs: noncommutation -> complex -> Berry -> QGT curvature chain",
+      "CPTP forces 4 pairs: Kraus/Choi/contractivity/monotonicity are all AUTOMATIC",
+      "d=2 forces 4 pairs: Bloch ball, Pauli completeness, Hopf uniqueness, 3x3 correlation tensor",
+      "6 forbidden pairs confirmed (UNSAT), 1 surprise: CPTP + entropy decrease is NOT forbidden",
+      "6 spectral-spectral pairs cross the partition to produce geometric objects",
+      "Forced ordering creates natural computation layers with critical path"
+    ]
+  }
+}

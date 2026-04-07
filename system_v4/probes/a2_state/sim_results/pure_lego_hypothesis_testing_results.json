@@ -1,0 +1,461 @@
+{
+  "timestamp": "2026-04-07T14:03:56.022197+00:00",
+  "probe": "sim_pure_lego_hypothesis_testing",
+  "description": "Quantum hypothesis testing: Stein's lemma, Chernoff bound, multiple hypothesis, Neyman-Pearson",
+  "sections": {
+    "stein_lemma": {
+      "stein_lemma_tests": [
+        {
+          "pair": "orthogonal_basis",
+          "D_rho_sigma": Infinity,
+          "alpha_bound": 0.1,
+          "exponents": [
+            {
+              "n": 1,
+              "beta_n": 1.0,
+              "exponent_minus_log_beta_over_n": 0.0,
+              "achieved_alpha": 0.0
+            },
+            {
+              "n": 10,
+              "beta_n": 0.0,
+              "exponent_minus_log_beta_over_n": Infinity,
+              "achieved_alpha": 0.1
+            },
+            {
+              "n": 100,
+              "beta_n": 0.0,
+              "exponent_minus_log_beta_over_n": Infinity,
+              "achieved_alpha": 0.1
+            }
+          ],
+          "converges_to_D": true
+        },
+        {
+          "pair": "z0_vs_plus",
+          "D_rho_sigma": Infinity,
+          "alpha_bound": 0.1,
+          "exponents": [
+            {
+              "n": 1,
+              "beta_n": 0.19999999999999996,
+              "exponent_minus_log_beta_over_n": 1.6094379124341005,
+              "achieved_alpha": 0.09999999999999998
+            },
+            {
+              "n": 10,
+              "beta_n": 0.0,
+              "exponent_minus_log_beta_over_n": Infinity,
+              "achieved_alpha": 0.1
+            },
+            {
+              "n": 100,
+              "beta_n": 0.0,
+              "exponent_minus_log_beta_over_n": Infinity,
+              "achieved_alpha": 0.1
+            }
+          ],
+          "converges_to_D": true
+        },
+        {
+          "pair": "random_mixed_1",
+          "D_rho_sigma": 0.7363444566896237,
+          "alpha_bound": 0.1,
+          "exponents": [
+            {
+              "n": 1,
+              "beta_n": 0.601484174809884,
+              "exponent_minus_log_beta_over_n": 0.508355053456508,
+              "achieved_alpha": 0.10000000000000009
+            },
+            {
+              "n": 10,
+              "beta_n": 0.000634010801315943,
+              "exponent_minus_log_beta_over_n": 0.7363444566896237,
+              "achieved_alpha": 0.1
+            },
+            {
+              "n": 100,
+              "beta_n": 1.0494616378748207e-32,
+              "exponent_minus_log_beta_over_n": 0.7363444566896237,
+              "achieved_alpha": 0.1
+            }
+          ],
+          "converges_to_D": true
+        },
+        {
+          "pair": "close_states",
+          "D_rho_sigma": 0.003971847755610459,
+          "alpha_bound": 0.1,
+          "exponents": [
+            {
+              "n": 1,
+              "beta_n": 0.14382097546093053,
+              "exponent_minus_log_beta_over_n": 1.9391859788184098,
+              "achieved_alpha": 0.09999999999999998
+            },
+            {
+              "n": 10,
+              "beta_n": 0.9610599610205043,
+              "exponent_minus_log_beta_over_n": 0.003971847755610463,
+              "achieved_alpha": 0.1
+            },
+            {
+              "n": 100,
+              "beta_n": 0.6722098062125706,
+              "exponent_minus_log_beta_over_n": 0.00397184775561046,
+              "achieved_alpha": 0.1
+            }
+          ],
+          "converges_to_D": true
+        },
+        {
+          "pair": "maximally_mixed_vs_pure",
+          "D_rho_sigma": Infinity,
+          "alpha_bound": 0.1,
+          "exponents": [
+            {
+              "n": 1,
+              "beta_n": 0.19999999999999996,
+              "exponent_minus_log_beta_over_n": 1.6094379124341005,
+              "achieved_alpha": 0.09999999999999998
+            },
+            {
+              "n": 10,
+              "beta_n": 0.0,
+              "exponent_minus_log_beta_over_n": Infinity,
+              "achieved_alpha": 0.1
+            },
+            {
+              "n": 100,
+              "beta_n": 0.0,
+              "exponent_minus_log_beta_over_n": Infinity,
+              "achieved_alpha": 0.1
+            }
+          ],
+          "converges_to_D": true
+        }
+      ]
+    },
+    "chernoff_bound": {
+      "chernoff_bound_tests": [
+        {
+          "s_optimal": 0.01,
+          "Q_min": 0.0,
+          "chernoff_exponent_xi": 690.7755278982137,
+          "xi_positive": "True",
+          "D_rho_sigma": "inf",
+          "D_sigma_rho": "inf",
+          "xi_leq_min_D": true,
+          "pair": "orthogonal_basis"
+        },
+        {
+          "s_optimal": 0.01,
+          "Q_min": 0.49999999999999983,
+          "chernoff_exponent_xi": 0.6931471805599456,
+          "xi_positive": "True",
+          "D_rho_sigma": "inf",
+          "D_sigma_rho": "inf",
+          "xi_leq_min_D": true,
+          "pair": "z0_vs_plus"
+        },
+        {
+          "s_optimal": 0.3941206030150754,
+          "Q_min": 0.7424379361977704,
+          "chernoff_exponent_xi": 0.29781599941135195,
+          "xi_positive": "True",
+          "D_rho_sigma": 0.7363444566896237,
+          "D_sigma_rho": 1.6398419479591932,
+          "xi_leq_min_D": true,
+          "pair": "random_mixed_1"
+        },
+        {
+          "s_optimal": 0.4926130653266332,
+          "Q_min": 0.9990202910471239,
+          "chernoff_exponent_xi": 0.0009801891813740347,
+          "xi_positive": "True",
+          "D_rho_sigma": 0.003971847755610459,
+          "D_sigma_rho": 0.004225871045525118,
+          "xi_leq_min_D": true,
+          "pair": "close_states"
+        },
+        {
+          "s_optimal": 0.99,
+          "Q_min": 0.5034777750283594,
+          "chernoff_exponent_xi": 0.6862157087543458,
+          "xi_positive": "True",
+          "D_rho_sigma": "inf",
+          "D_sigma_rho": 0.6931471805599453,
+          "xi_leq_min_D": true,
+          "pair": "maximally_mixed_vs_pure"
+        }
+      ]
+    },
+    "multiple_hypothesis": {
+      "multiple_hypothesis_tests": [
+        {
+          "num_states": 3,
+          "dimension": 2,
+          "p_success": 0.6582652575186926,
+          "iterations": 4,
+          "povm_sum_is_identity": true,
+          "priors": [
+            0.15988300779547573,
+            0.3810853999564044,
+            0.45903159224811985
+          ],
+          "beats_random_guess": true,
+          "p_success_leq_1": true
+        },
+        {
+          "num_states": 4,
+          "dimension": 2,
+          "p_success": 0.4098165233345814,
+          "iterations": 6,
+          "povm_sum_is_identity": true,
+          "priors": [
+            0.31794822353938546,
+            0.2213710972307599,
+            0.40591481861124107,
+            0.05476586061861346
+          ],
+          "beats_random_guess": true,
+          "p_success_leq_1": true
+        },
+        {
+          "num_states": 5,
+          "dimension": 2,
+          "p_success": 0.38872830626761784,
+          "iterations": 6,
+          "povm_sum_is_identity": true,
+          "priors": [
+            0.14699529892723293,
+            0.0845206561153644,
+            0.14144882171779952,
+            0.47931351942002937,
+            0.14772170381957367
+          ],
+          "beats_random_guess": true,
+          "p_success_leq_1": true
+        }
+      ]
+    },
+    "neyman_pearson": {
+      "neyman_pearson_tests": [
+        {
+          "pair": "orthogonal_basis",
+          "alpha_beta_tradeoff": [
+            {
+              "alpha_bound": 0.01,
+              "achieved_alpha": 0.0,
+              "optimal_beta": 1.0,
+              "alpha_constraint_met": true
+            },
+            {
+              "alpha_bound": 0.05,
+              "achieved_alpha": 0.0,
+              "optimal_beta": 1.0,
+              "alpha_constraint_met": true
+            },
+            {
+              "alpha_bound": 0.1,
+              "achieved_alpha": 0.0,
+              "optimal_beta": 1.0,
+              "alpha_constraint_met": true
+            },
+            {
+              "alpha_bound": 0.2,
+              "achieved_alpha": 0.0,
+              "optimal_beta": 1.0,
+              "alpha_constraint_met": true
+            },
+            {
+              "alpha_bound": 0.3,
+              "achieved_alpha": 0.0,
+              "optimal_beta": 1.0,
+              "alpha_constraint_met": true
+            },
+            {
+              "alpha_bound": 0.5,
+              "achieved_alpha": 0.0,
+              "optimal_beta": 1.0,
+              "alpha_constraint_met": true
+            }
+          ],
+          "beta_monotone_decreasing": true
+        },
+        {
+          "pair": "z0_vs_plus",
+          "alpha_beta_tradeoff": [
+            {
+              "alpha_bound": 0.01,
+              "achieved_alpha": 0.010000000000000009,
+              "optimal_beta": 0.020000000000000018,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.05,
+              "achieved_alpha": 0.04999999999999999,
+              "optimal_beta": 0.09999999999999998,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.1,
+              "achieved_alpha": 0.09999999999999998,
+              "optimal_beta": 0.19999999999999996,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.2,
+              "achieved_alpha": 0.2,
+              "optimal_beta": 0.3999999999999999,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.3,
+              "achieved_alpha": 0.3,
+              "optimal_beta": 0.5999999999999999,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.5,
+              "achieved_alpha": 0.5,
+              "optimal_beta": 0.9999999999999998,
+              "alpha_constraint_met": "True"
+            }
+          ],
+          "beta_monotone_decreasing": false
+        },
+        {
+          "pair": "random_mixed_1",
+          "alpha_beta_tradeoff": [
+            {
+              "alpha_bound": 0.01,
+              "achieved_alpha": 0.009999999999999898,
+              "optimal_beta": 0.5616325922908725,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.05,
+              "achieved_alpha": 0.04999999999999993,
+              "optimal_beta": 0.5793444067437665,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.1,
+              "achieved_alpha": 0.10000000000000009,
+              "optimal_beta": 0.601484174809884,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.2,
+              "achieved_alpha": 0.19999999999999996,
+              "optimal_beta": 0.6457637109421192,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.3,
+              "achieved_alpha": 0.30000000000000004,
+              "optimal_beta": 0.6900432470743543,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.5,
+              "achieved_alpha": 0.5,
+              "optimal_beta": 0.7786023193388245,
+              "alpha_constraint_met": "True"
+            }
+          ],
+          "beta_monotone_decreasing": false
+        },
+        {
+          "pair": "close_states",
+          "alpha_beta_tradeoff": [
+            {
+              "alpha_bound": 0.01,
+              "achieved_alpha": 0.010000000000000009,
+              "optimal_beta": 0.058203073007023653,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.05,
+              "achieved_alpha": 0.050000000000000044,
+              "optimal_beta": 0.09625547409764901,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.1,
+              "achieved_alpha": 0.09999999999999998,
+              "optimal_beta": 0.14382097546093053,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.2,
+              "achieved_alpha": 0.19999999999999996,
+              "optimal_beta": 0.2389519781874938,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.3,
+              "achieved_alpha": 0.30000000000000004,
+              "optimal_beta": 0.3340829809140572,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.5,
+              "achieved_alpha": 0.5,
+              "optimal_beta": 0.5243449863671836,
+              "alpha_constraint_met": "True"
+            }
+          ],
+          "beta_monotone_decreasing": false
+        },
+        {
+          "pair": "maximally_mixed_vs_pure",
+          "alpha_beta_tradeoff": [
+            {
+              "alpha_bound": 0.01,
+              "achieved_alpha": 0.010000000000000009,
+              "optimal_beta": 0.020000000000000018,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.05,
+              "achieved_alpha": 0.04999999999999999,
+              "optimal_beta": 0.09999999999999998,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.1,
+              "achieved_alpha": 0.09999999999999998,
+              "optimal_beta": 0.19999999999999996,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.2,
+              "achieved_alpha": 0.2,
+              "optimal_beta": 0.4,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.3,
+              "achieved_alpha": 0.3,
+              "optimal_beta": 0.6,
+              "alpha_constraint_met": "True"
+            },
+            {
+              "alpha_bound": 0.5,
+              "achieved_alpha": 0.5,
+              "optimal_beta": 1.0,
+              "alpha_constraint_met": true
+            }
+          ],
+          "beta_monotone_decreasing": false
+        }
+      ]
+    }
+  },
+  "all_pass": false,
+  "total_checks": 59,
+  "passed_checks": 55
+}

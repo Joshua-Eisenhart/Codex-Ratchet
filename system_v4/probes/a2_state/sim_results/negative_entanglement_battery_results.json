@@ -1,0 +1,364 @@
+{
+  "battery": "negative_entanglement_measures",
+  "timestamp": "2026-04-07T10:12:26.163922+00:00",
+  "all_pass": true,
+  "n_tests": 10,
+  "n_pass": 10,
+  "key_findings": [
+    "Concurrence is reliable for 2-qubit separable detection",
+    "Negativity is blind to PPT (bound) entanglement in 3x3",
+    "Discord has a numerical floor from optimization grid",
+    "EoF transition at p=1/3 is sharp to machine precision",
+    "CHSH cannot be violated by separable states",
+    "Entangled states exist that respect CHSH (Werner 1/3 < p < 1/sqrt2)",
+    "Wootters concurrence is dimension-specific (2-qubit only)",
+    "Negativity is properly invariant under local unitaries",
+    "Near maximally mixed: discord detects before concurrence/negativity"
+  ],
+  "results": {
+    "test_1": {
+      "test": "concurrence_separable_states",
+      "n_trials": 100,
+      "false_positives_at_1e-10": 64,
+      "false_positives_at_1e-8": 0,
+      "max_concurrence": 4.893607511985222e-09,
+      "mean_concurrence": 6.655616617868185e-10,
+      "numerical_noise_floor": 4.893607511985222e-09,
+      "pass": true,
+      "verdict": "Concurrence zero for all product states (numerical floor: 4.89e-09, 64 exceed 1e-10 but all below 1e-8)"
+    },
+    "test_2": {
+      "test": "negativity_bound_entangled_3x3_tiles",
+      "construction": "Tiles UPB (Bennett et al. PRL 82, 5385, 1999)",
+      "noise_sweep_results": [
+        {
+          "noise_level": 0.0,
+          "valid_density_matrix": true,
+          "negativity": 2.220446049250313e-16,
+          "is_ppt": true,
+          "min_pt_eigenvalue": -1.487678558757139e-16,
+          "realignment_norm": 1.087412464837521,
+          "realignment_detects_entanglement": true,
+          "trace_distance_to_product": 0.505530965331638,
+          "negativity_blind": true
+        },
+        {
+          "noise_level": 0.01,
+          "valid_density_matrix": true,
+          "negativity": 0.0,
+          "is_ppt": true,
+          "min_pt_eigenvalue": 0.0011111111111109886,
+          "realignment_norm": 1.079455225092401,
+          "realignment_detects_entanglement": true,
+          "trace_distance_to_product": 0.5003425970838039,
+          "negativity_blind": true
+        },
+        {
+          "noise_level": 0.05,
+          "valid_density_matrix": true,
+          "negativity": 0.0,
+          "is_ppt": true,
+          "min_pt_eigenvalue": 0.005555555555555427,
+          "realignment_norm": 1.0476913347101395,
+          "realignment_detects_entanglement": true,
+          "trace_distance_to_product": 0.4796179861419708,
+          "negativity_blind": true
+        },
+        {
+          "noise_level": 0.1,
+          "valid_density_matrix": true,
+          "negativity": 1.1102230246251565e-16,
+          "is_ppt": true,
+          "min_pt_eigenvalue": 0.011111111111111004,
+          "realignment_norm": 1.0081371072208656,
+          "realignment_detects_entanglement": true,
+          "trace_distance_to_product": 0.4537767002702649,
+          "negativity_blind": true
+        },
+        {
+          "noise_level": 0.2,
+          "valid_density_matrix": true,
+          "negativity": 1.1102230246251565e-16,
+          "is_ppt": true,
+          "min_pt_eigenvalue": 0.022222222222222136,
+          "realignment_norm": 0.9295583047987108,
+          "realignment_detects_entanglement": false,
+          "trace_distance_to_product": 0.4023061189282838,
+          "negativity_blind": false
+        },
+        {
+          "noise_level": 0.5,
+          "valid_density_matrix": true,
+          "negativity": 1.1102230246251565e-16,
+          "is_ppt": true,
+          "min_pt_eigenvalue": 0.05555555555555548,
+          "realignment_norm": 0.6986076509741415,
+          "realignment_detects_entanglement": false,
+          "trace_distance_to_product": 0.2495341808722051,
+          "negativity_blind": false
+        },
+        {
+          "noise_level": 0.9,
+          "valid_density_matrix": true,
+          "negativity": 0.0,
+          "is_ppt": true,
+          "min_pt_eigenvalue": 0.09999999999999998,
+          "realignment_norm": 0.40415774832565615,
+          "realignment_detects_entanglement": false,
+          "trace_distance_to_product": 0.04942823806972689,
+          "negativity_blind": false
+        }
+      ],
+      "all_valid_density_matrices": true,
+      "pure_state_ppt": true,
+      "pure_state_negativity_zero": true,
+      "pure_state_realignment_entangled": true,
+      "pass": true,
+      "verdict": "Negativity correctly blind to PPT (bound) entanglement. Realignment criterion detects what negativity misses."
+    },
+    "test_3": {
+      "test": "discord_classical_states",
+      "n_trials": 20,
+      "max_discord": 2.220446049250313e-16,
+      "mean_discord": -1.8231943732516242e-16,
+      "min_discord": -4.718447854656915e-16,
+      "std_discord": 1.63717738975489e-16,
+      "all_below_1e-6": true,
+      "all_below_1e-10": true,
+      "numerical_floor": 2.220446049250313e-16,
+      "pass": true,
+      "verdict": "Discord numerical floor: 2.22e-16. Optimization grid discretization causes residual."
+    },
+    "test_4": {
+      "test": "eof_werner_boundary",
+      "theoretical_boundary_p": 0.3333333333333333,
+      "first_nonzero_p": 0.3335,
+      "last_zero_p": 0.333,
+      "transition_width": 0.00016666666666670382,
+      "boundary_zoom": [
+        {
+          "p": 0.3323333333333333,
+          "offset": -0.001,
+          "concurrence": 0.0,
+          "eof": 0.0
+        },
+        {
+          "p": 0.3343333333333333,
+          "offset": 0.001,
+          "concurrence": 0.0015000000000000568,
+          "eof": 1.2489946806634771e-05
+        },
+        {
+          "p": 0.3333233333333333,
+          "offset": -1e-05,
+          "concurrence": 0.0,
+          "eof": 0.0
+        },
+        {
+          "p": 0.3333433333333333,
+          "offset": 1e-05,
+          "concurrence": 1.4999999999876223e-05,
+          "eof": 1.9964280265614015e-09
+        },
+        {
+          "p": 0.3333332333333333,
+          "offset": -1e-07,
+          "concurrence": 0.0,
+          "eof": 0.0
+        },
+        {
+          "p": 0.3333334333333333,
+          "offset": 1e-07,
+          "concurrence": 1.4999999989329105e-07,
+          "eof": 2.7614396931827555e-13
+        },
+        {
+          "p": 0.3333333323333333,
+          "offset": -1e-09,
+          "concurrence": 0.0,
+          "eof": 0.0
+        },
+        {
+          "p": 0.33333333433333334,
+          "offset": 1e-09,
+          "concurrence": 1.5000000685994053e-09,
+          "eof": 0.0
+        },
+        {
+          "p": 0.3333333333233333,
+          "offset": -1e-11,
+          "concurrence": 0.0,
+          "eof": 0.0
+        },
+        {
+          "p": 0.3333333333433333,
+          "offset": 1e-11,
+          "concurrence": 1.499983470765187e-11,
+          "eof": 0.0
+        }
+      ],
+      "n_scan_points": 201,
+      "pass": true,
+      "verdict": "Werner boundary transition characterized"
+    },
+    "test_5": {
+      "test": "chsh_separable_states",
+      "n_trials": 1000,
+      "violations": 0,
+      "max_chsh": 2.000000000000001,
+      "mean_chsh": 1.465895166655989,
+      "std_chsh": 0.3929084638187994,
+      "max_margin_below_2": -8.881784197001252e-16,
+      "pass": true,
+      "verdict": "CHSH correctly bounded for all separable states"
+    },
+    "test_6": {
+      "test": "steering_separable_states",
+      "n_trials": 200,
+      "violations": 0,
+      "max_steering_value": 0.5753957519327737,
+      "mean_steering": 0.3233905717806947,
+      "bound": 1.0,
+      "pass": true,
+      "verdict": "Steering correctly bounded for all separable states"
+    },
+    "test_7": {
+      "test": "entanglement_without_bell_violation",
+      "p_range": [
+        0.34,
+        0.7
+      ],
+      "p_entanglement_threshold": 0.3333333333333333,
+      "p_bell_threshold": 0.7071067811865475,
+      "n_entangled_no_bell": 50,
+      "n_total": 50,
+      "example_states": [
+        {
+          "p": 0.34,
+          "concurrence": 0.009999999999999898,
+          "chsh": 0.9616652224137046,
+          "negativity": 0.004999999999999893,
+          "entangled": true,
+          "bell_violation": false,
+          "entangled_no_bell": true
+        },
+        {
+          "p": 0.3473469387755102,
+          "concurrence": 0.021020408163265336,
+          "chsh": 0.9824455033302071,
+          "negativity": 0.010510204081632613,
+          "entangled": true,
+          "bell_violation": false,
+          "entangled_no_bell": true
+        },
+        {
+          "p": 0.35469387755102044,
+          "concurrence": 0.03204081632653066,
+          "chsh": 1.0032257842467098,
+          "negativity": 0.01602040816326533,
+          "entangled": true,
+          "bell_violation": false,
+          "entangled_no_bell": true
+        },
+        {
+          "p": 0.3620408163265306,
+          "concurrence": 0.04306122448979596,
+          "chsh": 1.0240060651632124,
+          "negativity": 0.02153061224489794,
+          "entangled": true,
+          "bell_violation": false,
+          "entangled_no_bell": true
+        },
+        {
+          "p": 0.36938775510204086,
+          "concurrence": 0.05408163265306121,
+          "chsh": 1.044786346079715,
+          "negativity": 0.02704081632653066,
+          "entangled": true,
+          "bell_violation": false,
+          "entangled_no_bell": true
+        }
+      ],
+      "pass": true,
+      "verdict": "Found 50 states that are entangled but respect CHSH. Entanglement is strictly weaker than Bell nonlocality."
+    },
+    "test_8": {
+      "test": "concurrence_on_3x3",
+      "n_trials": 20,
+      "n_errors": 20,
+      "n_meaningless_results": 0,
+      "error_examples": [
+        "error: ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 4 is different from 9)",
+        "error: ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 4 is different from 9)",
+        "error: ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 4 is different from 9)"
+      ],
+      "pass": true,
+      "verdict": "Wootters concurrence correctly fails on 3x3: dimension mismatch"
+    },
+    "test_9": {
+      "test": "negativity_local_unitary_invariance",
+      "n_trials": 50,
+      "max_deviation": 6.661338147750939e-16,
+      "mean_deviation": 1.6431300764452317e-16,
+      "all_below_1e-10": true,
+      "all_below_1e-12": true,
+      "pass": true,
+      "verdict": "Negativity invariant under local unitaries (max deviation: 6.66e-16)"
+    },
+    "test_10": {
+      "test": "detection_near_maximally_mixed",
+      "n_epsilon_values": 200,
+      "epsilon_range": [
+        1e-12,
+        1.0
+      ],
+      "detection_thresholds": {
+        "concurrence": 0.3783462617131933,
+        "negativity": 0.3783462617131933,
+        "chsh_violation": 0.7575250258771921,
+        "discord": 1.722585965398784e-05
+      },
+      "theoretical_thresholds": {
+        "concurrence_threshold": 0.3333333333333333,
+        "chsh_threshold": 0.7071067811865475
+      },
+      "sensitivity_ranking": [
+        {
+          "measure": "discord",
+          "threshold_eps": 1.722585965398784e-05
+        },
+        {
+          "measure": "concurrence",
+          "threshold_eps": 0.3783462617131933
+        },
+        {
+          "measure": "negativity",
+          "threshold_eps": 0.3783462617131933
+        },
+        {
+          "measure": "chsh_violation",
+          "threshold_eps": 0.7575250258771921
+        }
+      ],
+      "sample_results": [
+        {
+          "epsilon": 1e-12,
+          "concurrence": 0.0,
+          "negativity": 0.0,
+          "chsh": 2.828474344926659e-12,
+          "bell_violation": false,
+          "discord": -7.216449660063518e-16
+        },
+        {
+          "epsilon": 1.0,
+          "concurrence": 0.9999999999999994,
+          "negativity": 0.4999999999999998,
+          "chsh": 2.8284271247461894,
+          "bell_violation": true
+        }
+      ],
+      "pass": true,
+      "verdict": "Detection sensitivity hierarchy characterized"
+    }
+  }
+}

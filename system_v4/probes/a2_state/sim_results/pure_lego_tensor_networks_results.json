@@ -1,0 +1,202 @@
+{
+  "1_mps_basics": {
+    "state_vector_length": 16,
+    "norm": 0.9999999999999999,
+    "norm_is_one": true,
+    "amplitudes_sample": [
+      {
+        "index": 0,
+        "re": -0.022087290768995106,
+        "im": 0.02899068384557403
+      },
+      {
+        "index": 1,
+        "re": 0.048552708863187535,
+        "im": 0.03032689777346538
+      },
+      {
+        "index": 2,
+        "re": 0.02425712653097918,
+        "im": -0.0806366745921635
+      },
+      {
+        "index": 3,
+        "re": -0.04772285294621571,
+        "im": -0.042233497262175776
+      }
+    ],
+    "probability_sum": 0.9999999999999998,
+    "probability_sum_ok": true,
+    "bond_dimensions": [
+      {
+        "site": 0,
+        "shape": [
+          1,
+          2,
+          2
+        ]
+      },
+      {
+        "site": 1,
+        "shape": [
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "site": 2,
+        "shape": [
+          2,
+          2,
+          2
+        ]
+      },
+      {
+        "site": 3,
+        "shape": [
+          2,
+          2,
+          1
+        ]
+      }
+    ],
+    "pass": true,
+    "time_s": 0.0001205839216709137
+  },
+  "2_product_and_ghz": {
+    "product_state": {
+      "state": "|+>^4",
+      "chi": 1,
+      "norm": 0.9999999999999997,
+      "matches_expected": true,
+      "max_error": 8.326672684688674e-17
+    },
+    "ghz_state": {
+      "state": "GHZ_4",
+      "chi": 2,
+      "norm": 0.9999999999999999,
+      "norm_is_one": true,
+      "matches_expected": true,
+      "max_error": 0.0,
+      "amplitudes_0000": {
+        "re": 0.7071067811865475,
+        "im": 0.0
+      },
+      "amplitudes_1111": {
+        "re": 0.7071067811865475,
+        "im": 0.0
+      }
+    },
+    "pass": true,
+    "time_s": 0.00010962504893541336
+  },
+  "3_entanglement_entropy": {
+    "tests": [
+      {
+        "state": "GHZ",
+        "bipartition": "1|3",
+        "S_direct": 1.0,
+        "S_mps": 1.0,
+        "match": true
+      },
+      {
+        "state": "GHZ",
+        "bipartition": "2|2",
+        "S_direct": 1.0,
+        "S_mps": 1.0,
+        "match": true
+      },
+      {
+        "state": "GHZ",
+        "bipartition": "3|1",
+        "S_direct": 1.0,
+        "S_mps": 1.0,
+        "match": true
+      },
+      {
+        "state": "product_plus",
+        "bipartition": "1|3",
+        "S_direct": 9.61027951144475e-16,
+        "S_mps": 9.61027951144475e-16,
+        "match": true
+      },
+      {
+        "state": "product_plus",
+        "bipartition": "2|2",
+        "S_direct": 9.61027951144475e-16,
+        "S_mps": 9.61027951144475e-16,
+        "match": true
+      },
+      {
+        "state": "product_plus",
+        "bipartition": "3|1",
+        "S_direct": -0.0,
+        "S_mps": -0.0,
+        "match": true
+      },
+      {
+        "state": "random_chi2",
+        "bipartition": "1|3",
+        "S_direct": 0.41340555814387125,
+        "S_mps": 0.41340555814387125,
+        "match": true
+      },
+      {
+        "state": "random_chi2",
+        "bipartition": "2|2",
+        "S_direct": 0.4284790207475456,
+        "S_mps": 0.4284790207475456,
+        "match": true
+      },
+      {
+        "state": "random_chi2",
+        "bipartition": "3|1",
+        "S_direct": 0.29566233191643,
+        "S_mps": 0.29566233191643,
+        "match": true
+      }
+    ],
+    "pass": true,
+    "time_s": 0.00038766604848206043
+  },
+  "4_dmrg_ising": {
+    "exact_ground_energy": -3.0,
+    "initial_energy": 0.5005461630628555,
+    "optimized_energy": -3.0,
+    "energy_error": 0.0,
+    "ground_state_degeneracy": 2,
+    "overlap_with_gs_subspace": 1.0,
+    "expected_ground_energy": -3,
+    "energy_converged": true,
+    "high_overlap": true,
+    "pass": true,
+    "time_s": 0.008877790998667479
+  },
+  "5_mera": {
+    "isometry_valid": true,
+    "level1_state": {
+      "amplitudes": [
+        0.7071067811865475,
+        0.0,
+        0.0,
+        0.7071067811865475
+      ],
+      "is_bell": true
+    },
+    "mera_output_norm": 0.9999999999999999,
+    "matches_ghz": true,
+    "mera_amplitudes_0000": {
+      "re": 0.7071067811865475,
+      "im": 0.0
+    },
+    "mera_amplitudes_1111": {
+      "re": 0.7071067811865475,
+      "im": 0.0
+    },
+    "disentangler_roundtrip": true,
+    "pass": true,
+    "time_s": 0.0002484170254319906
+  },
+  "all_pass": true
+}

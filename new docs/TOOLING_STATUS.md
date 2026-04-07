@@ -28,7 +28,9 @@ Supersedes: all prior tooling status docs
 | GUDHI | 3.12.0 | Persistent homology, TDA, simplicial/cubical/Rips | **was installed, now canonical** — not yet used in sims |
 | geomstats | 2.8.0 | Manifold geometry, Riemannian statistics | **NEW** — installed, not yet used in sims |
 | e3nn | 0.6.0 | E(3)-equivariant neural networks | **NEW** — installed, not yet used in sims |
-| networkx | (system) | Graph construction, owner graph | v4_graph_builder, probes |
+| rustworkx | 0.17.1 | Fast graph kernels, DAGs, routing, dependency graphs | **NEW** — installed, not yet used in sims |
+| XGI | 0.10.1 | Hypergraphs, simplicial complexes, higher-order interactions | **NEW** — installed, not yet used in sims |
+| networkx | (system) | Graph construction, owner graph | v4_graph_builder, probes — to be superseded by rustworkx for perf-critical paths |
 | pydantic | (system) | Typed schemas | schema validation |
 | pytest | (system) | Test gates | test suites |
 | hypothesis | (system) | Property-based testing | test suites |
@@ -44,10 +46,12 @@ Supersedes: all prior tooling status docs
 
 | Tool | Reason |
 |---|---|
+| DGL | Redundant with PyG unless PyG becomes a blocker |
 | quimb | Tensor networks — not needed until Phase 6+ |
 | qutip | Quantum toolbox — overlaps with hand-built legos; add if needed |
 | ripser | Superseded by GUDHI for persistent homology |
 | pySMT | z3 + cvc5 direct is cleaner than pySMT abstraction layer |
+| HyperNetX | XGI covers the hypergraph need; add only if richer hypergraph analytics needed |
 
 ---
 
@@ -63,17 +67,22 @@ PROOF LAYER
 GEOMETRY LAYER
 ├── clifford    — Cl(3)/Cl(6) geometric algebra
 ├── geomstats   — Riemannian manifolds, geodesics, curvature, Fréchet mean
-├── GUDHI       — persistent homology, simplicial/cubical/Rips/alpha complexes
 └── e3nn        — O(3)/E(3)-equivariant computation on PyTorch
+
+GRAPH LAYER
+├── rustworkx   — fast graph kernels, DAGs, routing, dependency, causal-order
+├── PyG         — differentiable graph computation, message passing
+└── XGI         — hypergraphs, simplicial complexes, higher-order interactions
 
 TOPOLOGY LAYER
 ├── TopoNetX    — cell complexes, higher-order structure
-└── GUDHI       — (also here) filtrations, persistence diagrams
+├── GUDHI       — persistent homology, simplicial/cubical/Rips/alpha filtrations
+└── XGI         — (also here) simplicial complex construction
 
 COMPUTATION LAYER
 ├── torch       — core differentiable substrate, autograd
-├── PyG         — graph neural networks, message passing
-└── numpy       — baseline comparison only
+├── numpy       — baseline comparison only
+└── rustworkx   — (also here) performance-critical graph algorithms
 
 SYMBOLIC LAYER
 └── sympy       — algebra, derivation, symbolic verification
@@ -92,6 +101,8 @@ Every canonical sim must document which tools from each layer were tried.
 | cvc5 | Cross-check z3 UNSAT claims; SyGuS synthesis for minimal generators | redundant z3 clone |
 | sympy | Derive formulas symbolically before numerics | verify-only layer |
 | clifford | Native geometric product computation in Cl(3)/Cl(6) | roundtrip unit test |
+| rustworkx | Fast graph algorithms, DAG ordering, dependency/routing/causal workloads | NetworkX drop-in replacement without using its speed |
+| XGI | Hypergraph and simplicial complex construction for multi-way interactions | pairwise graph with extra labels |
 | TopoNetX | Cell-complex topology, higher-order structure | Betti-number-only checker |
 | GUDHI | Persistent homology, filtrations, topological data analysis at scale | unused import |
 | geomstats | Riemannian metrics, geodesics, Fréchet means on shell manifolds | numpy wrapper for manifold labels |

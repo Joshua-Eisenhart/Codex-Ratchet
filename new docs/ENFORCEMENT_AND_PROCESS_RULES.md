@@ -49,9 +49,9 @@ All new core computation uses PyTorch tensors. numpy is for loading data, conver
 **Why:** numpy arrays are Cartesian grids — they import coordinate-first ontology. PyTorch computational graphs are relational (edges, not coordinates). Quantum math is relational. The substrate must match the ontology.
 
 ## Rule 2: Try all tools; use what is relevant
-Every canonical sim must attempt to use each tool: z3, sympy, clifford, TopoNetX, PyG/PyTorch. Document which tools were tried and why each was used or not relevant. The default is all tools. Exceptions must be justified explicitly in the sim output.
+Every canonical sim must attempt to use each relevant tool from the full stack. Document which tools were tried and why each was used or not relevant. The default is all tools. Exceptions must be justified explicitly in the sim output. See TOOLING_STATUS.md for versions and install status.
 
-Required tool-role contract (see TOOLING_STATUS.md for versions and install status):
+Required tool-role contract:
 
 **Proof layer:**
 - **z3**: constraint proofs (UNSAT = impossible = quantum). Try for every structural claim.
@@ -64,6 +64,10 @@ Required tool-role contract (see TOOLING_STATUS.md for versions and install stat
 - **clifford Cl(3)/Cl(6)**: geometric algebra. Try for every geometric operation.
 - **geomstats**: Riemannian manifold computation. Try for every shell metric, geodesic, or curvature calculation.
 - **e3nn**: E(3)-equivariant layers. Try when symmetry-native PyTorch computation is relevant (O(3)/SU(2) operations).
+
+**Graph layer:**
+- **rustworkx**: fast graph algorithms, DAGs, dependency/routing/causal-order workloads. Try when graph performance matters or when working with directed acyclic structure.
+- **XGI**: hypergraphs and simplicial complexes. Try when multi-way interactions (not just pairwise) are structurally relevant — shell/face/operator constraints, multipartite state relations.
 
 **Topology layer:**
 - **TopoNetX**: cell-complex topology. Try for every higher-order topological structure.

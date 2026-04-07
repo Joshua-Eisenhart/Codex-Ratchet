@@ -230,6 +230,8 @@ Where they diverge: that divergence is the quantum content that the classical su
 | clifford 1.5 | geometric algebra | native Cl(3)/Cl(6) computation | roundtrip test | installed |
 | geomstats 2.8 | Riemannian manifolds | shell metrics, geodesics, curvature, Fréchet means | numpy wrapper with manifold labels | **NEW — installed** |
 | e3nn 0.6 | E(3)-equivariant NN | symmetry-native PyTorch (O(3)/SU(2)) | decorative equivariance claim | **NEW — installed** |
+| rustworkx 0.17 | fast graph kernels | DAG ordering, dependency/routing/causal workloads | NetworkX clone without using its speed | **NEW — installed** |
+| XGI 0.10 | hypergraphs + simplicial | multi-way operator/state/shell interactions | pairwise graph with extra labels | **NEW — installed** |
 | TopoNetX 0.4 | cell-complex topology | higher-order topological structure | Betti-number checker | installed |
 | GUDHI 3.12 | persistent homology / TDA | filtrations, persistence diagrams, simplicial/Rips | unused import | **was installed, now canonical** |
 | Lean 4 | interactive theorem prover | math formalization above SMT | — | **planned — not installed** |

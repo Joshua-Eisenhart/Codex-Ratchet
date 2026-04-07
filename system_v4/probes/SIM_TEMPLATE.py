@@ -32,6 +32,9 @@ TOOL_MANIFEST = {
     "clifford": {"tried": False, "used": False, "reason": ""},
     "geomstats": {"tried": False, "used": False, "reason": ""},
     "e3nn": {"tried": False, "used": False, "reason": ""},
+    # --- Graph layer ---
+    "rustworkx": {"tried": False, "used": False, "reason": ""},
+    "xgi": {"tried": False, "used": False, "reason": ""},
     # --- Topology layer ---
     "toponetx": {"tried": False, "used": False, "reason": ""},
     "gudhi": {"tried": False, "used": False, "reason": ""},
@@ -85,6 +88,18 @@ try:
     TOOL_MANIFEST["e3nn"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["e3nn"]["reason"] = "not installed"
+
+try:
+    import rustworkx  # noqa: F401
+    TOOL_MANIFEST["rustworkx"]["tried"] = True
+except ImportError:
+    TOOL_MANIFEST["rustworkx"]["reason"] = "not installed"
+
+try:
+    import xgi  # noqa: F401
+    TOOL_MANIFEST["xgi"]["tried"] = True
+except ImportError:
+    TOOL_MANIFEST["xgi"]["reason"] = "not installed"
 
 try:
     from toponetx.classes import CellComplex  # noqa: F401

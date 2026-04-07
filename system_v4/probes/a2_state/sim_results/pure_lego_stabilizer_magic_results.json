@@ -1,0 +1,106 @@
+{
+  "section_1_clifford_group": {
+    "num_elements": 24,
+    "expected": 24,
+    "all_unitary": true,
+    "group_closure": true,
+    "closure_failures": 0,
+    "pauli_conjugation_preserving": true,
+    "pauli_conj_failures": 0,
+    "pass": true
+  },
+  "section_2_stabilizer_states_1q": {
+    "num_states": 6,
+    "expected": 6,
+    "eigenstate_checks": {
+      "|0>": {
+        "pauli": "Z",
+        "expected_eigenvalue": 1,
+        "actual_eigenvalue": 1.0,
+        "pass": true
+      },
+      "|1>": {
+        "pauli": "Z",
+        "expected_eigenvalue": -1,
+        "actual_eigenvalue": -1.0,
+        "pass": true
+      },
+      "|+>": {
+        "pauli": "X",
+        "expected_eigenvalue": 1,
+        "actual_eigenvalue": 1.0,
+        "pass": true
+      },
+      "|->": {
+        "pauli": "X",
+        "expected_eigenvalue": -1,
+        "actual_eigenvalue": -1.0,
+        "pass": true
+      },
+      "|+i>": {
+        "pauli": "Y",
+        "expected_eigenvalue": 1,
+        "actual_eigenvalue": 1.0,
+        "pass": true
+      },
+      "|-i>": {
+        "pauli": "Y",
+        "expected_eigenvalue": -1,
+        "actual_eigenvalue": -1.0,
+        "pass": true
+      }
+    },
+    "all_distinct": true,
+    "all_eigenstate_ok": true,
+    "pass": true
+  },
+  "section_3_stabilizer_states_2q": {
+    "num_states": 60,
+    "expected": 60,
+    "all_normalized": true,
+    "all_have_stabilizer": true,
+    "pass": true
+  },
+  "section_4_magic_states": {
+    "T_state_components": [
+      0.9238795325112867,
+      0.3826834323650898
+    ],
+    "T_is_stabilizer": false,
+    "T_alt_is_stabilizer": false,
+    "T_gate_is_clifford": false,
+    "bloch_vector": [
+      0.7071067811865476,
+      0.0,
+      0.7071067811865475
+    ],
+    "bloch_radius": 1.0,
+    "on_pauli_axis": "False",
+    "pass": true
+  },
+  "section_5_stabilizer_rank": {
+    "decomposition_check": true,
+    "rank_not_1": true,
+    "rank_2_found": true,
+    "pair": [
+      "|0>",
+      "|1>"
+    ],
+    "coefficients": [
+      "(0.9238795325112867+0j)",
+      "(0.3826834323650898+0j)"
+    ],
+    "stabilizer_rank": 2,
+    "pass": true
+  },
+  "section_6_gottesman_knill": {
+    "total_tests": 144,
+    "passed": 144,
+    "failed": 0,
+    "gottesman_knill_verified": true,
+    "t_gate_non_stabilizer_outputs": 4,
+    "t_gate_breaks_stabilizer": true,
+    "pass": true
+  },
+  "overall_pass": true
+}

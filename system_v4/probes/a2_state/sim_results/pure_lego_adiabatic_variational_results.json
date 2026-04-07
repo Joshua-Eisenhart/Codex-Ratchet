@@ -1,0 +1,88 @@
+{
+  "probe_file": "sim_pure_lego_adiabatic_variational.py",
+  "description": "Adiabatic quantum computation and variational quantum methods",
+  "timestamp": "2026-04-07T12:14:20",
+  "probes": {
+    "adiabatic_evolution": {
+      "passed": true,
+      "slow_fidelity": 0.980106,
+      "fast_fidelity": 0.323661,
+      "slow_reached_ground": true,
+      "fast_missed_ground": true,
+      "exact_ground_energy": -1.1,
+      "threshold": 0.95
+    },
+    "spectral_gap": {
+      "passed": true,
+      "min_gap": 0.175234,
+      "min_gap_at_s": 0.8492,
+      "adiabatic_time_scale": 32.5659,
+      "gap_always_positive": true,
+      "gap_samples": [
+        2.0,
+        1.70136,
+        1.409899,
+        1.128619,
+        0.862199,
+        0.618108,
+        0.408514,
+        0.253674,
+        0.180889,
+        0.181018
+      ],
+      "s_samples": [
+        0.0,
+        0.1005,
+        0.201,
+        0.3015,
+        0.402,
+        0.5025,
+        0.603,
+        0.7035,
+        0.804,
+        0.9045
+      ]
+    },
+    "vqe": {
+      "passed": true,
+      "exact_ground_energy": -1.414214,
+      "vqe_energy": -1.414041,
+      "energy_error": 0.00017258,
+      "fidelity_to_ground": 0.999583,
+      "converged": true,
+      "iterations": 190,
+      "energy_history_sample": [
+        -0.189082,
+        -1.036089,
+        -1.19354,
+        -1.283289,
+        -1.351182,
+        -1.388291,
+        -1.404421,
+        -1.410647,
+        -1.412932,
+        -1.413755
+      ]
+    },
+    "qaoa_maxcut": {
+      "passed": true,
+      "best_expectation": 0.999486,
+      "exact_max_cut": 1.0,
+      "approx_ratio": 0.999486,
+      "best_gamma": 4.7444,
+      "best_beta": 2.7569,
+      "optimal_state_probs": {
+        "|00>": 0.000257,
+        "|01>": 0.499743,
+        "|10>": 0.499743,
+        "|11>": 0.000257
+      },
+      "note": "cut states |01> and |10> should dominate at optimum"
+    }
+  },
+  "summary": {
+    "all_passed": true,
+    "elapsed_seconds": 0.122,
+    "probe_count": 4
+  }
+}

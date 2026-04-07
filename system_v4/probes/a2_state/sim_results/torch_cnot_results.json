@@ -1,0 +1,392 @@
+{
+  "name": "torch_cnot",
+  "phase": "Phase 3 sim",
+  "description": "CNOT entangling gate as differentiable nn.Module with entanglement entropy gradients",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core module: CNOT as nn.Module, autograd for entanglement entropy gradients"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Probability constraint verification for reduced state eigenvalues"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic unitarity, self-inverse, and Bell state creation verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_00_unchanged": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "P2_01_unchanged": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "P3_10_to_11": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "P4_11_to_10": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "P5_plus0_to_bell": {
+      "max_diff_from_bell": 0.0,
+      "entanglement_entropy": 0.6931471805599454,
+      "is_maximally_entangled": "True",
+      "pass": "True"
+    },
+    "P6_substrate_match": {
+      "|00>": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "|01>": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "|10>": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "|11>": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "|+0>": {
+        "max_abs_diff": 1.1102230246251565e-16,
+        "pass": true
+      }
+    },
+    "P7_trace_preservation": {
+      "|00>": {
+        "trace": 1.0,
+        "diff_from_1": 0.0,
+        "pass": true
+      },
+      "|01>": {
+        "trace": 1.0,
+        "diff_from_1": 0.0,
+        "pass": true
+      },
+      "|10>": {
+        "trace": 1.0,
+        "diff_from_1": 0.0,
+        "pass": true
+      },
+      "|11>": {
+        "trace": 1.0,
+        "diff_from_1": 0.0,
+        "pass": true
+      },
+      "|+0>": {
+        "trace": 0.9999999999999998,
+        "diff_from_1": 2.220446049250313e-16,
+        "pass": true
+      }
+    },
+    "P8_unitarity": {
+      "is_unitary": true,
+      "pass": true
+    },
+    "P9_self_inverse": {
+      "max_diff_after_double_apply": 0.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_non_unitary_cnot_detected": {
+      "is_unitary": false,
+      "pass": true
+    },
+    "N2_non_unitary_trace_violation": {
+      "trace_out": 1.1249999999999998,
+      "trace_preserved": false,
+      "pass": true
+    },
+    "N3_product_stays_product_|00>": {
+      "entanglement_entropy": -0.0,
+      "is_product": true,
+      "pass": true
+    },
+    "N3_product_stays_product_|10>": {
+      "entanglement_entropy": -0.0,
+      "is_product": true,
+      "pass": true
+    },
+    "N3_product_stays_product_|01>": {
+      "entanglement_entropy": -0.0,
+      "is_product": true,
+      "pass": true
+    },
+    "N3_product_stays_product_|11>": {
+      "entanglement_entropy": -0.0,
+      "is_product": true,
+      "pass": true
+    },
+    "N4_output_hermiticity": {
+      "|00>": {
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "|+0>": {
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      }
+    }
+  },
+  "boundary": {
+    "B1_entanglement_sweep": {
+      "thetas": [
+        0.01,
+        0.06347573540672057,
+        0.11695147081344114,
+        0.17042720622016172,
+        0.2239029416268823,
+        0.27737867703360286,
+        0.33085441244032343,
+        0.384330147847044,
+        0.43780588325376457,
+        0.49128161866048514,
+        0.5447573540672057,
+        0.5982330894739263,
+        0.6517088248806469,
+        0.7051845602873674,
+        0.758660295694088,
+        0.8121360311008086,
+        0.8656117665075291,
+        0.9190875019142497,
+        0.9725632373209703,
+        1.0260389727276908,
+        1.0795147081344114,
+        1.132990443541132,
+        1.1864661789478526,
+        1.2399419143545731,
+        1.2934176497612937,
+        1.3468933851680143,
+        1.4003691205747348,
+        1.4538448559814554,
+        1.507320591388176,
+        1.5607963267948965
+      ],
+      "entropies": [
+        0.0010209983365835119,
+        0.026208859658022964,
+        0.07202158856576552,
+        0.13042370441342485,
+        0.19644999197066262,
+        0.2663489429792568,
+        0.33706283915059515,
+        0.4060125675941133,
+        0.4709935566864877,
+        0.5301215463091276,
+        0.5818034894818622,
+        0.6247220136697808,
+        0.6578274304368116,
+        0.6803339354395064,
+        0.6917180348898758,
+        0.6917180348898759,
+        0.6803339354395064,
+        0.6578274304368116,
+        0.6247220136697808,
+        0.5818034894818622,
+        0.5301215463091277,
+        0.4709935566864877,
+        0.4060125675941133,
+        0.33706283915059526,
+        0.2663489429792569,
+        0.19644999197066268,
+        0.1304237044134249,
+        0.07202158856576558,
+        0.026208859658023012,
+        0.0010209983365835236
+      ],
+      "theta_at_max_entropy": 0.8121360311008086,
+      "max_entropy": 0.6917180348898759,
+      "max_near_pi_over_4": true,
+      "max_near_log2": "True",
+      "pass": true
+    },
+    "B2_theta0_no_entanglement": {
+      "entanglement_entropy": -0.0,
+      "pass": true
+    },
+    "B3_theta_pi2_no_entanglement": {
+      "entanglement_entropy": -0.0,
+      "pass": true
+    },
+    "B4_maximally_mixed_invariant": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "B5_purity_preserved": {
+      "state_0": {
+        "purity_in": 1.0,
+        "purity_out": 1.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "state_1": {
+        "purity_in": 0.9999999999999991,
+        "purity_out": 0.9999999999999991,
+        "diff": 0.0,
+        "pass": true
+      },
+      "state_2": {
+        "purity_in": 0.9999999999999993,
+        "purity_out": 0.9999999999999994,
+        "diff": 1.1102230246251565e-16,
+        "pass": true
+      },
+      "state_3": {
+        "purity_in": 1.0,
+        "purity_out": 1.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "state_4": {
+        "purity_in": 0.9999999999999996,
+        "purity_out": 0.9999999999999996,
+        "diff": 0.0,
+        "pass": true
+      }
+    }
+  },
+  "falsification": {
+    "F1_entanglement_gradient_wrt_theta": {
+      "theta=0.1000": {
+        "theta": 0.1,
+        "entanglement_entropy": 0.05584847554564476,
+        "grad_theta": 0.9135785698890686,
+        "grad_exists": true,
+        "pass": true
+      },
+      "theta=0.3000": {
+        "theta": 0.3,
+        "entanglement_entropy": 0.2963216006755829,
+        "grad_theta": 1.3250198364257812,
+        "grad_exists": true,
+        "pass": true
+      },
+      "theta=0.3927": {
+        "theta": 0.39269908169872414,
+        "entanglement_entropy": 0.41649556159973145,
+        "grad_theta": 1.2464503049850464,
+        "grad_exists": true,
+        "pass": true
+      },
+      "theta=0.7854": {
+        "theta": 0.7853981633974483,
+        "entanglement_entropy": 0.6931471824645996,
+        "grad_theta": 0.0,
+        "grad_exists": true,
+        "pass": true
+      },
+      "theta=1.1781": {
+        "theta": 1.1780972450961724,
+        "entanglement_entropy": 0.4164954423904419,
+        "grad_theta": -1.246450662612915,
+        "grad_exists": true,
+        "pass": true
+      },
+      "theta=0.7000": {
+        "theta": 0.7,
+        "entanglement_entropy": 0.678632378578186,
+        "grad_theta": 0.3382711112499237,
+        "grad_exists": true,
+        "pass": true
+      }
+    },
+    "F2_gradient_zero_at_max_entropy": {
+      "theta": 0.7853981633974483,
+      "entropy": 0.6931471824645996,
+      "grad": 0.0,
+      "grad_near_zero": true,
+      "entropy_near_log2": "True",
+      "pass": "True"
+    },
+    "F3_autograd_vs_finite_diff": {
+      "autograd": 1.3250198364257812,
+      "finite_diff": 1.3250198211026132,
+      "abs_diff": 1.5323168067737925e-08,
+      "pass": true
+    },
+    "F4_random_product_states_match": {
+      "n_states": 20,
+      "overall_max_diff": 2.737420223830611e-08,
+      "mean_max_diff": 1.5128445320176936e-08,
+      "pass": true
+    }
+  },
+  "sympy_check": {
+    "is_unitary": true,
+    "is_self_inverse": true,
+    "creates_bell_from_plus0": true,
+    "pass": true
+  },
+  "z3_check": {
+    "normalization_forced": "unsat",
+    "negative_probability_impossible": "unsat",
+    "overunit_impossible": "unsat",
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 45,
+    "total_pass": 45,
+    "all_pass": true
+  }
+}

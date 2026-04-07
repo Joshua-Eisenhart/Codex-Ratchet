@@ -15,34 +15,34 @@
 
 | # | Family | Baseline sim file | Baseline sim exists? | Torch module | Tools needed | Negative battery | Negative battery exists? | Promotion status | Notes |
 |---|--------|-------------------|----------------------|--------------|--------------|------------------|--------------------------|------------------|-------|
-| 1 | density_matrix | sim_pure_lego_density_matrices.py | YES | torch DensityMatrix | sympy, z3 | sim_negative_density_matrices.py | YES | NOT_STARTED | — |
-| 2 | purification | sim_pure_lego_density_matrices.py | YES | torch Purification | sympy, z3 | sim_negative_density_matrices.py | YES | NOT_STARTED | Shares baseline with density_matrix |
-| 3 | z_dephasing | sim_pure_lego_channels.py | **NO** | torch ZDephasing | z3, clifford | sim_negative_channels.py | YES | NOT_STARTED | Build plan references nonexistent file. Nearest actual: `sim_pure_lego_channels_choi_lindblad.py` |
-| 4 | x_dephasing | sim_pure_lego_channels.py | **NO** | torch XDephasing | z3, clifford | sim_negative_channels.py | YES | NOT_STARTED | Same missing baseline as #3 |
-| 5 | depolarizing | sim_pure_lego_channels.py | **NO** | torch Depolarizing | z3 | sim_negative_channels.py | YES | NOT_STARTED | Same missing baseline as #3 |
-| 6 | amplitude_damping | sim_pure_lego_channels.py | **NO** | torch AmplitudeDamping | z3, sympy | sim_negative_channels.py | YES | NOT_STARTED | Same missing baseline as #3 |
-| 7 | phase_damping | sim_pure_lego_channels.py | **NO** | torch PhaseDamping | z3 | sim_negative_channels.py | YES | NOT_STARTED | Same missing baseline as #3 |
-| 8 | bit_flip | sim_pure_lego_channels.py | **NO** | torch BitFlip | z3 | sim_negative_channels.py | YES | NOT_STARTED | Same missing baseline as #3 |
-| 9 | phase_flip | sim_pure_lego_channels.py | **NO** | torch PhaseFlip | z3 | sim_negative_channels.py | YES | NOT_STARTED | Same missing baseline as #3 |
-| 10 | bit_phase_flip | sim_pure_lego_channels.py | **NO** | torch BitPhaseFlip | z3 | sim_negative_channels.py | YES | NOT_STARTED | Same missing baseline as #3 |
-| 11 | unitary_rotation | sim_pure_lego_channels.py | **NO** | torch UnitaryRotation | clifford, sympy | sim_negative_channels.py | YES | NOT_STARTED | Same missing baseline as #3 |
-| 12 | z_measurement | sim_pure_lego_channels.py | **NO** | torch ZMeasurement | z3 | sim_negative_channels.py | YES | NOT_STARTED | Same missing baseline as #3 |
-| 13 | CNOT | sim_pure_lego_entanglement.py | **NO** | torch CNOT | z3, sympy | sim_negative_entanglement.py | YES | NOT_STARTED | Build plan references nonexistent file. Nearest actual: `sim_pure_lego_gates_decompositions.py`, `sim_pure_lego_ent_swapping_distillation.py` |
-| 14 | CZ | sim_pure_lego_entanglement.py | **NO** | torch CZ | z3 | sim_negative_entanglement.py | YES | NOT_STARTED | Same missing baseline as #13 |
-| 15 | SWAP | sim_pure_lego_entanglement.py | **NO** | torch SWAP | z3 | sim_negative_entanglement.py | YES | NOT_STARTED | Same missing baseline as #13 |
-| 16 | Hadamard | sim_pure_lego_channels.py | **NO** | torch Hadamard | z3, clifford | sim_negative_channels.py | YES | NOT_STARTED | Same missing baseline as #3 |
-| 17 | T_gate | sim_pure_lego_channels.py | **NO** | torch TGate | z3 | sim_negative_channels.py | YES | NOT_STARTED | Same missing baseline as #3 |
-| 18 | iSWAP | sim_pure_lego_entanglement.py | **NO** | torch iSWAP | z3 | sim_negative_entanglement.py | YES | NOT_STARTED | Same missing baseline as #13 |
-| 19 | cartan_kak | sim_pure_lego_entanglement.py | **NO** | torch CartanKAK | sympy, clifford | sim_negative_entanglement.py | YES | NOT_STARTED | Same missing baseline as #13. No dedicated cartan baseline file exists. |
-| 20 | eigenvalue_decomposition | sim_pure_lego_density_matrices.py | YES | torch EigenDecomp | sympy | sim_negative_density_matrices.py | YES | NOT_STARTED | — |
-| 21 | husimi_q | sim_pure_lego_density_matrices.py | YES | torch HusimiQ | sympy | sim_negative_density_matrices.py | YES | NOT_STARTED | No dedicated husimi baseline; covered inside density_matrices |
-| 22 | l1_coherence | sim_pure_lego_coherence.py | **NO** | torch L1Coherence | z3, sympy | sim_negative_entropy_boundaries.py | YES | NOT_STARTED | Build plan references nonexistent file. Nearest actual: `sim_pure_lego_majorization_steering_coherence.py` |
-| 23 | relative_entropy_coherence | sim_pure_lego_coherence.py | **NO** | torch RECoherence | z3, sympy | sim_negative_entropy_boundaries.py | YES | NOT_STARTED | Same missing baseline as #22 |
-| 24 | wigner_negativity | sim_pure_lego_density_matrices.py | YES | torch WignerNegativity | sympy | sim_negative_density_matrices.py | YES | NOT_STARTED | Dedicated file also exists: `sim_pure_lego_wigner_quasiprobability.py` |
-| 25 | hopf_connection | sim_pure_lego_geometry.py | **NO** | torch HopfConnection | clifford, toponetx | sim_negative_geometry.py | YES | NOT_STARTED | Build plan references nonexistent file. Nearest actual: `sim_pure_lego_symplectic_kahler_weyl.py` (Weyl/geometry content). No dedicated Hopf baseline exists. |
-| 26 | chiral_overlap | sim_pure_lego_geometry.py | **NO** | torch ChiralOverlap | clifford | sim_negative_geometry.py | YES | NOT_STARTED | Same missing baseline as #25. No dedicated chiral baseline exists. |
-| 27 | mutual_information | sim_pure_lego_entropy.py | **NO** | torch MutualInformation | z3, sympy | sim_negative_entropy_boundaries.py | YES | NOT_STARTED | Build plan references nonexistent file. Nearest actual: `sim_pure_lego_quantum_shannon.py`, `sim_pure_lego_f_divergences.py` |
-| 28 | quantum_discord | sim_pure_lego_entropy.py | **NO** | torch QuantumDiscord | z3, sympy | sim_negative_entropy_boundaries.py | YES | NOT_STARTED | Same missing baseline as #27. Also: `sim_pure_lego_all_axes_discord.py` exists (discord-specific). |
+| 1 | density_matrix | sim_pure_lego_density_matrices.py | YES | torch DensityMatrix | sympy, z3 | sim_negative_density_matrices.py | YES | NOT_STARTED | `build_states()`, `is_valid_dm()`, `pauli_decompose()`, `pauli_reconstruct()` |
+| 2 | purification | sim_pure_lego_density_matrices.py | **PARTIAL** | torch Purification | sympy, z3 | sim_negative_density_matrices.py | YES | NOT_STARTED | No standalone purification function. Purification is used implicitly in `sim_pure_lego_quantum_shannon.py` (coherent info via purification) and `sim_pure_lego_ent_swapping_distillation.py` (distillation). No dedicated `purify(rho)` exists. |
+| 3 | z_dephasing | sim_pure_lego_channels_choi_lindblad.py | YES | torch ZDephasing | z3, clifford | sim_negative_channels.py | YES | NOT_STARTED | `z_dephasing(rho, s=0.3)` at line 165 |
+| 4 | x_dephasing | sim_pure_lego_channels_choi_lindblad.py | YES | torch XDephasing | z3, clifford | sim_negative_channels.py | YES | NOT_STARTED | `x_dephasing(rho, s=0.3)` at line 171 |
+| 5 | depolarizing | sim_pure_lego_channels_choi_lindblad.py | YES | torch Depolarizing | z3 | sim_negative_channels.py | YES | NOT_STARTED | `depolarizing(rho, p=0.3)` at line 147 |
+| 6 | amplitude_damping | sim_pure_lego_channels_choi_lindblad.py | YES | torch AmplitudeDamping | z3, sympy | sim_negative_channels.py | YES | NOT_STARTED | `amplitude_damping(rho, g=0.3)` at line 153 |
+| 7 | phase_damping | sim_pure_lego_channels_choi_lindblad.py | YES | torch PhaseDamping | z3 | sim_negative_channels.py | YES | NOT_STARTED | `phase_damping(rho, l=0.3)` at line 159 |
+| 8 | bit_flip | sim_pure_lego_channels_choi_lindblad.py | YES | torch BitFlip | z3 | sim_negative_channels.py | YES | NOT_STARTED | `bit_flip(rho, p=0.3)` at line 135 |
+| 9 | phase_flip | sim_pure_lego_channels_choi_lindblad.py | YES | torch PhaseFlip | z3 | sim_negative_channels.py | YES | NOT_STARTED | `phase_flip(rho, p=0.3)` at line 139 |
+| 10 | bit_phase_flip | sim_pure_lego_channels_choi_lindblad.py | YES | torch BitPhaseFlip | z3 | sim_negative_channels.py | YES | NOT_STARTED | `bit_phase_flip(rho, p=0.3)` at line 143 |
+| 11 | unitary_rotation | sim_pure_lego_channels_choi_lindblad.py | **PARTIAL** | torch UnitaryRotation | clifford, sympy | sim_negative_channels.py | YES | NOT_STARTED | No standalone `unitary_rotation()` in channels file. Choi/Kraus/Lindblad infrastructure exists. Incidental usage in `sim_pure_lego_mega_protocols.py` line 402. Needs dedicated baseline. |
+| 12 | z_measurement | **NONE** | **NO** | torch ZMeasurement | z3 | sim_negative_channels.py | YES | NOT_STARTED | No dedicated z_measurement function in any sim_pure_lego file. Measurement functions exist in other files (`cloning_qkd_illumination`, `tomography_shadow`, `qec`, `state_discrimination`) but none are z-measurement-specific legos. **Needs new baseline.** |
+| 13 | CNOT | sim_pure_lego_gates_decompositions.py | YES | torch CNOT | z3, sympy | sim_negative_entanglement.py | YES | NOT_STARTED | `cnot()` at line 99 |
+| 14 | CZ | sim_pure_lego_gates_decompositions.py | YES | torch CZ | z3 | sim_negative_entanglement.py | YES | NOT_STARTED | `cz()` at line 116 |
+| 15 | SWAP | sim_pure_lego_gates_decompositions.py | YES | torch SWAP | z3 | sim_negative_entanglement.py | YES | NOT_STARTED | `swap_gate()` at line 578 |
+| 16 | Hadamard | sim_pure_lego_stabilizer_magic.py | YES | torch Hadamard | z3, clifford | sim_negative_channels.py | YES | NOT_STARTED | `H_gate` constant at line 37; used throughout Clifford group generation |
+| 17 | T_gate | sim_pure_lego_stabilizer_magic.py | YES | torch TGate | z3 | sim_negative_channels.py | YES | NOT_STARTED | `T_gate` constant at line 368; non-Clifford verification at line 390-392 |
+| 18 | iSWAP | sim_pure_lego_gates_decompositions.py | YES | torch iSWAP | z3 | sim_negative_entanglement.py | YES | NOT_STARTED | `iswap()` at line 570 |
+| 19 | cartan_kak | sim_pure_lego_gates_decompositions.py | YES | torch CartanKAK | sympy, clifford | sim_negative_entanglement.py | YES | NOT_STARTED | `cartan_decompose(U)` at line 497. Also Weyl coordinates in `sim_pure_lego_symplectic_kahler_weyl.py` line 418. |
+| 20 | eigenvalue_decomposition | sim_pure_lego_density_matrices.py | YES | torch EigenDecomp | sympy | sim_negative_density_matrices.py | YES | NOT_STARTED | Spectral decomposition section (line 204 results key). `np.linalg.eigh` used throughout. |
+| 21 | husimi_q | sim_pure_lego_wigner_quasiprobability.py | YES | torch HusimiQ | sympy | sim_negative_density_matrices.py | YES | NOT_STARTED | `husimi_q_grid(rho)` at line 208, `husimi_stats(rho)` at line 223 |
+| 22 | l1_coherence | sim_pure_lego_majorization_steering_coherence.py | YES | torch L1Coherence | z3, sympy | sim_negative_entropy_boundaries.py | YES | NOT_STARTED | `l1_coherence(rho)` at line 574 |
+| 23 | relative_entropy_coherence | sim_pure_lego_majorization_steering_coherence.py | YES | torch RECoherence | z3, sympy | sim_negative_entropy_boundaries.py | YES | NOT_STARTED | `relative_entropy_coherence(rho)` at line 578 |
+| 24 | wigner_negativity | sim_pure_lego_wigner_quasiprobability.py | YES | torch WignerNegativity | sympy | sim_negative_density_matrices.py | YES | NOT_STARTED | `wigner_negativity(W)` at line 145, `discrete_wigner_d2()` at line 106 |
+| 25 | hopf_connection | sim_pure_lego_quaternion_octonion.py | YES | torch HopfConnection | clifford, toponetx | sim_negative_geometry.py | YES | NOT_STARTED | `test_hopf_fibrations()` at line 583; `hopf_C`, `hopf_H`, `hopf_O` at lines 606/642/680. Also: `sim_pure_lego_topology_graphs.py` has torus cell complex. |
+| 26 | chiral_overlap | **NONE** | **NO** | torch ChiralOverlap | clifford | sim_negative_geometry.py | YES | NOT_STARTED | No chiral_overlap function exists in any sim_pure_lego file. No Weyl spinor chirality/handedness implementation found. **Needs new baseline.** |
+| 27 | mutual_information | sim_pure_lego_all_axes_discord.py | YES | torch MutualInformation | z3, sympy | sim_negative_entropy_boundaries.py | YES | NOT_STARTED | `mutual_information(rho_AB)` at line 414 |
+| 28 | quantum_discord | sim_pure_lego_all_axes_discord.py | YES | torch QuantumDiscord | z3, sympy | sim_negative_entropy_boundaries.py | YES | NOT_STARTED | `quantum_discord(rho_AB, n_theta, n_phi)` at line 420 |
 
 ---
 
@@ -76,19 +76,29 @@
 
 | Status | Count | Families |
 |--------|-------|----------|
-| Baseline file EXISTS | 7 | #1 density_matrix, #2 purification, #20 eigenvalue_decomposition, #21 husimi_q, #24 wigner_negativity (all via `sim_pure_lego_density_matrices.py`) |
-| Baseline file MISSING | 21 | #3-12 (channels), #13-15,18-19 (entanglement/gates), #16-17 (gates via channels), #22-23 (coherence), #25-26 (geometry), #27-28 (entropy) |
+| Baseline file EXISTS (full impl) | 24 | #1 density_matrix, #3-10 channels, #13-15 CNOT/CZ/SWAP, #16-17 Hadamard/T_gate, #18 iSWAP, #19 cartan_kak, #20 eigenvalue_decomposition, #21 husimi_q, #22-23 coherence, #24 wigner_negativity, #25 hopf_connection, #27-28 mutual_info/discord |
+| Baseline file PARTIAL (impl exists but not standalone) | 2 | #2 purification, #11 unitary_rotation |
+| Baseline file MISSING (no impl found) | 2 | #12 z_measurement, #26 chiral_overlap |
 
-**The build plan references 6 baseline filenames that do not exist in the repo:**
+### Corrected file mapping (was 5 ghost filenames, now resolved)
 
-| Referenced filename | Exists? | Nearest actual file(s) |
-|---------------------|---------|------------------------|
-| `sim_pure_lego_channels.py` | NO | `sim_pure_lego_channels_choi_lindblad.py`, `sim_pure_lego_channel_capacity.py` |
-| `sim_pure_lego_entanglement.py` | NO | `sim_pure_lego_ent_swapping_distillation.py`, `sim_pure_lego_gates_decompositions.py` |
-| `sim_pure_lego_coherence.py` | NO | `sim_pure_lego_majorization_steering_coherence.py` |
-| `sim_pure_lego_geometry.py` | NO | `sim_pure_lego_symplectic_kahler_weyl.py` |
-| `sim_pure_lego_entropy.py` | NO | `sim_pure_lego_quantum_shannon.py`, `sim_pure_lego_f_divergences.py`, `sim_pure_lego_all_axes_discord.py` |
-| `sim_pure_lego_density_matrices.py` | YES | — |
+| Old ghost filename | Actual file(s) | Families served |
+|--------------------|----------------|-----------------|
+| `sim_pure_lego_channels.py` | `sim_pure_lego_channels_choi_lindblad.py` | #3-11 (channels) |
+| `sim_pure_lego_entanglement.py` | `sim_pure_lego_gates_decompositions.py` | #13-15, #18-19 (gates) |
+| `sim_pure_lego_coherence.py` | `sim_pure_lego_majorization_steering_coherence.py` | #22-23 (coherence) |
+| `sim_pure_lego_geometry.py` | `sim_pure_lego_quaternion_octonion.py` (Hopf), **NONE** (chiral) | #25 hopf, #26 chiral |
+| `sim_pure_lego_entropy.py` | `sim_pure_lego_all_axes_discord.py` | #27-28 (entropy/discord) |
+
+### Additional files discovered with relevant content
+
+| File | Relevant families |
+|------|-------------------|
+| `sim_pure_lego_stabilizer_magic.py` | #16 Hadamard (H_gate), #17 T_gate |
+| `sim_pure_lego_wigner_quasiprobability.py` | #21 husimi_q, #24 wigner_negativity |
+| `sim_pure_lego_symplectic_kahler_weyl.py` | #19 cartan_kak (Weyl coordinates), #25 hopf (symplectic/Kahler geometry) |
+| `sim_pure_lego_quantum_shannon.py` | #2 purification (implicit via coherent info) |
+| `sim_pure_lego_mega_protocols.py` | #11 unitary_rotation (incidental, line 402) |
 
 ### Negative battery status
 
@@ -104,6 +114,7 @@
 
 ### Critical gaps requiring action
 
-1. **21 of 28 families have no matching baseline file** at the path listed in PYTORCH_RATCHET_BUILD_PLAN.md. Either the build plan filenames need correction to point to actual files, or new dedicated baseline sims need to be written for those families.
-2. **Zero torch modules exist.** Phase 3 has not begun.
-3. **No family has progressed beyond NOT_STARTED.** The entire migration is pre-Phase-3.
+1. **2 of 28 families have NO baseline implementation:** #12 z_measurement, #26 chiral_overlap. These need new baseline sims written.
+2. **2 of 28 families have PARTIAL baselines:** #2 purification (no standalone `purify(rho)` function), #11 unitary_rotation (no standalone rotation-as-channel function). These may need dedicated baseline functions extracted or written.
+3. **Zero torch modules exist.** Phase 3 has not begun.
+4. **No family has progressed beyond NOT_STARTED.** The entire migration is pre-Phase-3.

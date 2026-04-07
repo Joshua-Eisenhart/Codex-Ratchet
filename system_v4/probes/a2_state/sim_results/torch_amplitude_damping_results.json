@@ -1,0 +1,616 @@
+{
+  "name": "torch_amplitude_damping",
+  "phase": "Phase 3 sim",
+  "description": "Amplitude damping channel as differentiable nn.Module with Kraus operators",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core module: AmplitudeDamping as nn.Module, autograd for entropy gradients"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Parameter range constraint: gamma in [0,1] ensures valid Kraus operators"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Kraus completeness and channel action on |1> verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_element_wise_substrate_match": {
+      "gamma=0.0_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "gamma=0.0_|1><1|": {
+        "max_abs_diff": 1.0000000031710769e-30,
+        "pass": true
+      },
+      "gamma=0.0_|+><+|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "gamma=0.0_maximally_mixed": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "gamma=0.1_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "gamma=0.1_|1><1|": {
+        "max_abs_diff": 8.344650259672903e-08,
+        "pass": true
+      },
+      "gamma=0.1_|+><+|": {
+        "max_abs_diff": 4.1723251298364517e-08,
+        "pass": true
+      },
+      "gamma=0.1_maximally_mixed": {
+        "max_abs_diff": 4.1723251298364517e-08,
+        "pass": true
+      },
+      "gamma=0.3_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "gamma=0.3_|1><1|": {
+        "max_abs_diff": 1.1920929021691506e-08,
+        "pass": true
+      },
+      "gamma=0.3_|+><+|": {
+        "max_abs_diff": 2.3841857821338408e-08,
+        "pass": true
+      },
+      "gamma=0.3_maximally_mixed": {
+        "max_abs_diff": 2.3841857821338408e-08,
+        "pass": true
+      },
+      "gamma=0.5_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "gamma=0.5_|1><1|": {
+        "max_abs_diff": 2.9802322498717615e-08,
+        "pass": true
+      },
+      "gamma=0.5_|+><+|": {
+        "max_abs_diff": 1.4901161249358807e-08,
+        "pass": true
+      },
+      "gamma=0.5_maximally_mixed": {
+        "max_abs_diff": 1.4901161249358807e-08,
+        "pass": true
+      },
+      "gamma=0.7_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "gamma=0.7_|1><1|": {
+        "max_abs_diff": 1.1920929021691506e-08,
+        "pass": true
+      },
+      "gamma=0.7_|+><+|": {
+        "max_abs_diff": 2.3841857821338408e-08,
+        "pass": true
+      },
+      "gamma=0.7_maximally_mixed": {
+        "max_abs_diff": 2.3841857821338408e-08,
+        "pass": true
+      },
+      "gamma=0.9_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "gamma=0.9_|1><1|": {
+        "max_abs_diff": 8.344650259672903e-08,
+        "pass": true
+      },
+      "gamma=0.9_|+><+|": {
+        "max_abs_diff": 7.152557368605983e-08,
+        "pass": true
+      },
+      "gamma=0.9_maximally_mixed": {
+        "max_abs_diff": 7.152557368605983e-08,
+        "pass": true
+      },
+      "gamma=1.0_|0><0|": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "gamma=1.0_|1><1|": {
+        "max_abs_diff": 1.0000000031710769e-30,
+        "pass": true
+      },
+      "gamma=1.0_|+><+|": {
+        "max_abs_diff": 5.000000018137469e-16,
+        "pass": true
+      },
+      "gamma=1.0_maximally_mixed": {
+        "max_abs_diff": 5.000000015855384e-31,
+        "pass": true
+      }
+    },
+    "P2_entropy_gradient_wrt_gamma": {
+      "|0><0|": {
+        "output_entropy": 2.7631020735330303e-11,
+        "grad_gamma": 0.0,
+        "grad_exists": true,
+        "pass": true
+      },
+      "|1><1|": {
+        "output_entropy": 0.6108643412590027,
+        "grad_gamma": 0.8472979068756104,
+        "grad_exists": true,
+        "pass": true
+      },
+      "|+><+|": {
+        "output_entropy": 0.2146574854850769,
+        "grad_gamma": 0.3186870813369751,
+        "grad_exists": true,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "output_entropy": 0.6474466323852539,
+        "grad_gamma": -0.30951958894729614,
+        "grad_exists": true,
+        "pass": true
+      }
+    },
+    "P3_kraus_completeness": {
+      "gamma=0.0": {
+        "identity_diff": 0.0,
+        "pass": true
+      },
+      "gamma=0.25": {
+        "identity_diff": 1.1102230246251565e-16,
+        "pass": true
+      },
+      "gamma=0.5": {
+        "identity_diff": 2.220446049250313e-16,
+        "pass": true
+      },
+      "gamma=0.75": {
+        "identity_diff": 1.1102230246251565e-16,
+        "pass": true
+      },
+      "gamma=1.0": {
+        "identity_diff": 0.0,
+        "pass": true
+      }
+    },
+    "P4_trace_preservation": {
+      "|0><0|": {
+        "trace_out": 1.0,
+        "diff_from_1": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "trace_out": 1.0,
+        "diff_from_1": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "trace_out": 1.0,
+        "diff_from_1": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "trace_out": 1.0,
+        "diff_from_1": 0.0,
+        "pass": true
+      }
+    },
+    "P5_ground_state_fixed_point": {
+      "gamma=0.1": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "gamma=0.5": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "gamma=0.9": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "gamma=1.0": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      }
+    },
+    "P6_excited_state_decays": {
+      "gamma=0.1": {
+        "pop_ground": 0.1,
+        "pop_excited": 0.8999999999999999,
+        "ground_increased": true,
+        "pop_ground_equals_gamma": true,
+        "pass": true
+      },
+      "gamma=0.5": {
+        "pop_ground": 0.5000000000000001,
+        "pop_excited": 0.5000000000000001,
+        "ground_increased": true,
+        "pop_ground_equals_gamma": true,
+        "pass": true
+      },
+      "gamma=0.9": {
+        "pop_ground": 0.8999999999999999,
+        "pop_excited": 0.09999999999999996,
+        "ground_increased": true,
+        "pop_ground_equals_gamma": true,
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "N1_gamma_gt_1_violates_cptp": {
+      "gamma=1.5": {
+        "completeness_diff": 1.0,
+        "output_eigenvalues": [
+          0.5000000000000001,
+          1.4999999999999998
+        ],
+        "min_eigenvalue": 0.5000000000000001,
+        "cptp_violated": true,
+        "pass": true
+      },
+      "gamma=2.0": {
+        "completeness_diff": 2.0000000000000004,
+        "output_eigenvalues": [
+          1.0,
+          2.0000000000000004
+        ],
+        "min_eigenvalue": 1.0,
+        "cptp_violated": true,
+        "pass": true
+      },
+      "gamma=5.0": {
+        "completeness_diff": 8.0,
+        "output_eigenvalues": [
+          4.0,
+          5.000000000000001
+        ],
+        "min_eigenvalue": 4.0,
+        "cptp_violated": true,
+        "pass": true
+      }
+    },
+    "N2_gamma_lt_0_completeness_violation": {
+      "gamma=-0.1": {
+        "completeness_diff": 0.20000000000000018,
+        "completeness_violated": true,
+        "pass": true
+      },
+      "gamma=-0.5": {
+        "completeness_diff": 1.0,
+        "completeness_violated": true,
+        "pass": true
+      }
+    },
+    "N3_output_hermiticity": {
+      "|0><0|": {
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "|1><1|": {
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "|+><+|": {
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "hermitian_diff": 0.0,
+        "is_hermitian": true,
+        "pass": true
+      }
+    }
+  },
+  "boundary": {
+    "B1_gamma0_identity": {
+      "|0><0|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "max_diff_from_input": 1.0000000031710769e-30,
+        "pass": true
+      },
+      "|+><+|": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "max_diff_from_input": 0.0,
+        "pass": true
+      }
+    },
+    "B2_gamma1_full_decay_to_ground": {
+      "|0><0|": {
+        "output": [
+          [
+            "(1+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "0j"
+          ]
+        ],
+        "diff_from_ground_state": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "output": [
+          [
+            "(1+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "0j"
+          ]
+        ],
+        "diff_from_ground_state": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "output": [
+          [
+            "(1+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "0j"
+          ]
+        ],
+        "diff_from_ground_state": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "output": [
+          [
+            "(1+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "0j"
+          ]
+        ],
+        "diff_from_ground_state": 0.0,
+        "pass": true
+      }
+    },
+    "B3_entropy_bell_curve": {
+      "gamma_values": [
+        0.01,
+        0.06157894736842105,
+        0.1131578947368421,
+        0.16473684210526315,
+        0.2163157894736842,
+        0.26789473684210524,
+        0.3194736842105263,
+        0.37105263157894736,
+        0.4226315789473684,
+        0.47421052631578947,
+        0.5257894736842105,
+        0.5773684210526315,
+        0.6289473684210526,
+        0.6805263157894736,
+        0.7321052631578947,
+        0.7836842105263158,
+        0.8352631578947368,
+        0.8868421052631579,
+        0.9384210526315789,
+        0.99
+      ],
+      "entropies": [
+        0.05600153435484735,
+        0.2312901293538388,
+        0.3530671671847233,
+        0.4474418271995429,
+        0.5222052705100889,
+        0.5811536360020448,
+        0.6264720988781491,
+        0.6595135331021347,
+        0.6811271976697018,
+        0.6918163962203121,
+        0.6918163962203121,
+        0.6811271976697018,
+        0.6595135331021347,
+        0.6264720988781491,
+        0.5811536360020451,
+        0.5222052705100889,
+        0.4474418271995429,
+        0.35306716718472336,
+        0.2312901293538388,
+        0.056001534354847386
+      ],
+      "gamma_at_max_entropy": 0.47421052631578947,
+      "max_entropy": 0.6918163962203121,
+      "entropy_at_endpoints_low": true,
+      "peak_near_half": true,
+      "pass": true
+    },
+    "B4_purity_valley": {
+      "gamma_values": [
+        0.01,
+        0.06157894736842105,
+        0.1131578947368421,
+        0.16473684210526315,
+        0.2163157894736842,
+        0.26789473684210524,
+        0.3194736842105263,
+        0.37105263157894736,
+        0.4226315789473684,
+        0.47421052631578947,
+        0.5257894736842105,
+        0.5773684210526315,
+        0.6289473684210526,
+        0.6805263157894736,
+        0.7321052631578947,
+        0.7836842105263158,
+        0.8352631578947368,
+        0.8868421052631579,
+        0.9384210526315789,
+        0.99
+      ],
+      "purities": [
+        0.9802,
+        0.8844260387811633,
+        0.7992936288088642,
+        0.7248027700831023,
+        0.6609534626038779,
+        0.6077457063711913,
+        0.5651795013850415,
+        0.5332548476454295,
+        0.5119717451523544,
+        0.5013301939058172,
+        0.5013301939058171,
+        0.5119717451523544,
+        0.5332548476454293,
+        0.5651795013850415,
+        0.607745706371191,
+        0.6609534626038779,
+        0.7248027700831023,
+        0.7992936288088643,
+        0.8844260387811633,
+        0.9802
+      ],
+      "gamma_at_min_purity": 0.5257894736842105,
+      "min_purity": 0.5013301939058171,
+      "purity_at_endpoints_high": true,
+      "pass": true
+    }
+  },
+  "falsification": {
+    "F1_autograd_vs_finite_difference_entropy": {
+      "|1><1|_gamma=0.1": {
+        "autograd": 2.1972246170043945,
+        "finite_diff": 2.1972247419449475,
+        "abs_diff": 1.249405530145964e-07,
+        "pass": true
+      },
+      "|1><1|_gamma=0.3": {
+        "autograd": 0.8472979068756104,
+        "finite_diff": 0.8472978755047489,
+        "abs_diff": 3.137086146409729e-08,
+        "pass": true
+      },
+      "|1><1|_gamma=0.5": {
+        "autograd": 0.0,
+        "finite_diff": 0.0,
+        "abs_diff": 0.0,
+        "pass": true
+      },
+      "|1><1|_gamma=0.7": {
+        "autograd": -0.8472979068756104,
+        "finite_diff": -0.8472978755047489,
+        "abs_diff": 3.137086146409729e-08,
+        "pass": true
+      },
+      "|+><+|_gamma=0.1": {
+        "autograd": 0.7857188582420349,
+        "finite_diff": 0.7857189843042678,
+        "abs_diff": 1.2606223287470186e-07,
+        "pass": true
+      },
+      "|+><+|_gamma=0.3": {
+        "autograd": 0.3186870813369751,
+        "finite_diff": 0.3186869746234222,
+        "abs_diff": 1.067135528831642e-07,
+        "pass": true
+      },
+      "|+><+|_gamma=0.5": {
+        "autograd": 0.0,
+        "finite_diff": 2.7755575615628914e-13,
+        "abs_diff": 2.7755575615628914e-13,
+        "pass": true
+      },
+      "|+><+|_gamma=0.7": {
+        "autograd": -0.31868693232536316,
+        "finite_diff": -0.3186869746228671,
+        "abs_diff": 4.229750394380005e-08,
+        "pass": true
+      }
+    },
+    "F2_substrate_equivalence_50_states": {
+      "n_states": 50,
+      "overall_max_diff": 9.521472754681071e-08,
+      "mean_max_diff": 3.235187860128985e-08,
+      "pass": true
+    }
+  },
+  "sympy_check": {
+    "completeness_is_identity": true,
+    "action_on_ket1": "Matrix([[gamma, 0], [0, 1 - gamma]])",
+    "matches_expected_gamma_1mgamma": true,
+    "pass": true
+  },
+  "z3_check": {
+    "inside_01_can_violate": "unsat",
+    "outside_01_can_violate": "sat",
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 78,
+    "total_pass": 78,
+    "all_pass": true
+  }
+}

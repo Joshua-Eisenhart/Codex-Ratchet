@@ -1,0 +1,83 @@
+{
+  "probe": "pure_lego_channel_capacity",
+  "timestamp": "2026-04-07T02:26:52",
+  "channels": [
+    {
+      "channel": "Depolarizing p=0.05",
+      "cptp_valid": true,
+      "holevo_chi_bits": 0.7891577,
+      "max_coherent_info_bits": 0.63435492,
+      "quantum_capacity_positive": true,
+      "numerical_classification": "consistent with degradable (all I_c >= 0)",
+      "analytic_classification": "neither (not degradable)",
+      "ic_range": [
+        -0.0,
+        0.63435492
+      ],
+      "analytic_notes": "Low noise; Q > 0 but NOT degradable, single-letter formula unknown.",
+      "elapsed_s": 0.782
+    },
+    {
+      "channel": "Depolarizing p=0.20",
+      "cptp_valid": true,
+      "holevo_chi_bits": 0.43349049,
+      "max_coherent_info_bits": 0.0,
+      "quantum_capacity_positive": false,
+      "numerical_classification": "consistent with anti-degradable (all I_c <= 0)",
+      "analytic_classification": "neither (not degradable)",
+      "ic_range": [
+        -0.04775105,
+        -0.0
+      ],
+      "analytic_notes": "Medium noise; near Q=0 threshold. p_threshold ~ 0.2527 for Q=0.",
+      "elapsed_s": 0.727
+    },
+    {
+      "channel": "Amplitude Damping gamma=0.3",
+      "cptp_valid": true,
+      "holevo_chi_bits": 1.0,
+      "max_coherent_info_bits": 0.32795476,
+      "quantum_capacity_positive": true,
+      "numerical_classification": "consistent with degradable (all I_c >= 0)",
+      "analytic_classification": "degradable",
+      "ic_range": [
+        0.0,
+        0.32422775
+      ],
+      "analytic_notes": "gamma < 1/2 => degradable. Q = max I_c (single-letter, exact).",
+      "elapsed_s": 0.555
+    },
+    {
+      "channel": "Amplitude Damping gamma=0.7",
+      "cptp_valid": true,
+      "holevo_chi_bits": 0.8812909,
+      "max_coherent_info_bits": 0.0,
+      "quantum_capacity_positive": false,
+      "numerical_classification": "consistent with anti-degradable (all I_c <= 0)",
+      "analytic_classification": "anti-degradable",
+      "ic_range": [
+        -0.32422775,
+        0.0
+      ],
+      "analytic_notes": "gamma > 1/2 => anti-degradable. Q = 0.",
+      "elapsed_s": 0.56
+    },
+    {
+      "channel": "Dephasing p=0.1",
+      "cptp_valid": true,
+      "holevo_chi_bits": 1.0,
+      "max_coherent_info_bits": 0.53100441,
+      "quantum_capacity_positive": true,
+      "numerical_classification": "consistent with degradable (all I_c >= 0)",
+      "analytic_classification": "degradable",
+      "ic_range": [
+        0.0,
+        0.53100441
+      ],
+      "analytic_notes": "Dephasing is always degradable (complementary = dephasing with swapped param). Q = 1 - H(p).",
+      "elapsed_s": 0.57
+    }
+  ],
+  "all_validations_pass": true,
+  "total_elapsed_s": 3.194
+}

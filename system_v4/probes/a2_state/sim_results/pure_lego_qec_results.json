@@ -1,0 +1,393 @@
+{
+  "test_1_encode_error_correct": {
+    "encoded_state": [
+      {
+        "re": 1.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      }
+    ],
+    "error_applied": "X1 (X x I x I)",
+    "errored_state": [
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 1.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      }
+    ],
+    "syndrome": [
+      1,
+      0
+    ],
+    "corrected_state": [
+      {
+        "re": 1.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      },
+      {
+        "re": 0.0,
+        "im": 0.0
+      }
+    ],
+    "fidelity": 1.0,
+    "pass": true,
+    "all_single_errors": [
+      {
+        "logical": "0L",
+        "error": "I",
+        "syndrome": [
+          0,
+          0
+        ],
+        "fidelity": 1.0,
+        "pass": true
+      },
+      {
+        "logical": "0L",
+        "error": "X1",
+        "syndrome": [
+          1,
+          0
+        ],
+        "fidelity": 1.0,
+        "pass": true
+      },
+      {
+        "logical": "0L",
+        "error": "X2",
+        "syndrome": [
+          1,
+          1
+        ],
+        "fidelity": 1.0,
+        "pass": true
+      },
+      {
+        "logical": "0L",
+        "error": "X3",
+        "syndrome": [
+          0,
+          1
+        ],
+        "fidelity": 1.0,
+        "pass": true
+      },
+      {
+        "logical": "1L",
+        "error": "I",
+        "syndrome": [
+          0,
+          0
+        ],
+        "fidelity": 1.0,
+        "pass": true
+      },
+      {
+        "logical": "1L",
+        "error": "X1",
+        "syndrome": [
+          1,
+          0
+        ],
+        "fidelity": 1.0,
+        "pass": true
+      },
+      {
+        "logical": "1L",
+        "error": "X2",
+        "syndrome": [
+          1,
+          1
+        ],
+        "fidelity": 1.0,
+        "pass": true
+      },
+      {
+        "logical": "1L",
+        "error": "X3",
+        "syndrome": [
+          0,
+          1
+        ],
+        "fidelity": 1.0,
+        "pass": true
+      }
+    ],
+    "all_single_pass": true
+  },
+  "test_2_knill_laflamme": {
+    "alpha_matrix": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "alpha_is_identity": true,
+    "details": [
+      {
+        "E_a": "I",
+        "E_b": "I",
+        "alpha_ab": 1.0,
+        "residual_norm": 0.0,
+        "pass": true
+      },
+      {
+        "E_a": "I",
+        "E_b": "X1",
+        "alpha_ab": 0.0,
+        "residual_norm": 0.0,
+        "pass": true
+      },
+      {
+        "E_a": "I",
+        "E_b": "X2",
+        "alpha_ab": 0.0,
+        "residual_norm": 0.0,
+        "pass": true
+      },
+      {
+        "E_a": "I",
+        "E_b": "X3",
+        "alpha_ab": 0.0,
+        "residual_norm": 0.0,
+        "pass": true
+      },
+      {
+        "E_a": "X1",
+        "E_b": "I",
+        "alpha_ab": 0.0,
+        "residual_norm": 0.0,
+        "pass": true
+      },
+      {
+        "E_a": "X1",
+        "E_b": "X1",
+        "alpha_ab": 1.0,
+        "residual_norm": 0.0,
+        "pass": true
+      },
+      {
+        "E_a": "X1",
+        "E_b": "X2",
+        "alpha_ab": 0.0,
+        "residual_norm": 0.0,
+        "pass": true
+      },
+      {
+        "E_a": "X1",
+        "E_b": "X3",
+        "alpha_ab": 0.0,
+        "residual_norm": 0.0,
+        "pass": true
+      },
+      {
+        "E_a": "X2",
+        "E_b": "I",
+        "alpha_ab": 0.0,
+        "residual_norm": 0.0,
+        "pass": true
+      },
+      {
+        "E_a": "X2",
+        "E_b": "X1",
+        "alpha_ab": 0.0,
+        "residual_norm": 0.0,
+        "pass": true
+      },
+      {
+        "E_a": "X2",
+        "E_b": "X2",
+        "alpha_ab": 1.0,
+        "residual_norm": 0.0,
+        "pass": true
+      },
+      {
+        "E_a": "X2",
+        "E_b": "X3",
+        "alpha_ab": 0.0,
+        "residual_norm": 0.0,
+        "pass": true
+      },
+      {
+        "E_a": "X3",
+        "E_b": "I",
+        "alpha_ab": 0.0,
+        "residual_norm": 0.0,
+        "pass": true
+      },
+      {
+        "E_a": "X3",
+        "E_b": "X1",
+        "alpha_ab": 0.0,
+        "residual_norm": 0.0,
+        "pass": true
+      },
+      {
+        "E_a": "X3",
+        "E_b": "X2",
+        "alpha_ab": 0.0,
+        "residual_norm": 0.0,
+        "pass": true
+      },
+      {
+        "E_a": "X3",
+        "E_b": "X3",
+        "alpha_ab": 1.0,
+        "residual_norm": 0.0,
+        "pass": true
+      }
+    ],
+    "pass": true
+  },
+  "test_3_two_qubit_error_uncorrectable": {
+    "details": [
+      {
+        "logical": "0L",
+        "error": "X1X2",
+        "syndrome": [
+          0,
+          1
+        ],
+        "fidelity_after_correction": 0.0,
+        "uncorrectable": true
+      },
+      {
+        "logical": "1L",
+        "error": "X1X2",
+        "syndrome": [
+          0,
+          1
+        ],
+        "fidelity_after_correction": 0.0,
+        "uncorrectable": true
+      }
+    ],
+    "two_qubit_uncorrectable": true,
+    "knill_laflamme_extended_holds": false,
+    "knill_laflamme_fail_pairs": [
+      {
+        "E_a": "X3",
+        "E_b": "X12",
+        "residual_norm": 1.4142135623730951
+      },
+      {
+        "E_a": "X12",
+        "E_b": "X3",
+        "residual_norm": 1.4142135623730951
+      }
+    ],
+    "pass": true
+  },
+  "summary": {
+    "test_1_pass": true,
+    "test_1_all_single_pass": true,
+    "test_2_knill_laflamme_pass": true,
+    "test_3_two_qubit_uncorrectable_pass": true,
+    "all_pass": true,
+    "code_parameters": {
+      "n": 3,
+      "k": 1,
+      "d": 3,
+      "t": 1
+    },
+    "hilbert_space_dim": 8
+  }
+}

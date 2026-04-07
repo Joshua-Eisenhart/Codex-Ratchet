@@ -1,0 +1,75 @@
+{
+  "s1_pauli_P1": {
+    "size": 16,
+    "closure": true,
+    "squares_to_pm_I": true,
+    "center_size": 4,
+    "center_correct": true,
+    "all_pass": true
+  },
+  "s2_pauli_P2": {
+    "size": 64,
+    "size_formula_4n1": true,
+    "closure_spot_check": true,
+    "n_closure_checks": 500,
+    "all_pass": true
+  },
+  "s3_clifford_hierarchy": {
+    "H_is_clifford": true,
+    "S_is_clifford": true,
+    "T_is_clifford": false,
+    "T_is_level3": true,
+    "T_not_level2_but_level3": true,
+    "all_pass": true
+  },
+  "s4_jordan_J2C": {
+    "commutative": true,
+    "power_associative": true,
+    "jordan_identity": true,
+    "hermitian_closure": true,
+    "n_trials": 200,
+    "all_pass": true
+  },
+  "s5_lie_jordan_split": {
+    "AB_eq_lie_plus_jordan": true,
+    "lie_antisymmetric": true,
+    "jacobi_identity": true,
+    "n_trials": 200,
+    "all_pass": true
+  },
+  "s6_enveloping_Usu2": {
+    "commutation_relations": true,
+    "casimir_commutes": true,
+    "casimir_eigenvalue": 0.75,
+    "casimir_val_3_4": "True",
+    "pbw_span_closure": true,
+    "all_pass": true
+  },
+  "s7_tensor_su2_su2": {
+    "n_generators": 6,
+    "left_right_commute": true,
+    "left_su2_closes": true,
+    "right_su2_closes": true,
+    "dim_matches_so4": true,
+    "generators_independent": "True",
+    "rank": 6,
+    "all_pass": "True"
+  },
+  "s8_schur_weyl": {
+    "P_sym_projector": true,
+    "P_anti_projector": true,
+    "projectors_orthogonal": true,
+    "projectors_complete": true,
+    "dim_symmetric": 3,
+    "dim_antisymmetric": 1,
+    "commutes_with_UxU": true,
+    "n_UU_trials": 100,
+    "commutes_with_SWAP_sym": true,
+    "commutes_with_SWAP_anti": true,
+    "swap_eigenval_sym": 1.0,
+    "swap_eigenval_anti": -1.0,
+    "swap_eigenvalues_correct": "True",
+    "all_pass": "True"
+  },
+  "all_pass": true
+}

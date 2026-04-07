@@ -1,0 +1,273 @@
+{
+  "section_1_2_3_process_tomography": {
+    "identity": {
+      "channel": "identity",
+      "CP_check": true,
+      "chi_eigenvalues": [
+        0.0,
+        0.0,
+        0.0,
+        1.9999999999999996
+      ],
+      "min_eigenvalue": 0.0,
+      "TP_check": true,
+      "trace_chi": 1.9999999999999996,
+      "trace_error": 4.440892098500626e-16,
+      "hermitian": true,
+      "max_reconstruction_error": 4.440892098500626e-16,
+      "reconstruction_pass": true,
+      "self_fidelity": 1.0,
+      "all_pass": true,
+      "pauli_transfer_real_for_diagonal": true,
+      "choi_hermitian": true,
+      "choi_psd": true,
+      "choi_trace": 2.0
+    },
+    "depolarizing_p0.3": {
+      "channel": "depolarizing_p0.3",
+      "CP_check": true,
+      "chi_eigenvalues": [
+        0.19999999999999984,
+        0.19999999999999993,
+        0.19999999999999993,
+        1.3999999999999995
+      ],
+      "min_eigenvalue": 0.19999999999999984,
+      "TP_check": true,
+      "trace_chi": 1.9999999999999991,
+      "trace_error": 8.881784197001252e-16,
+      "hermitian": true,
+      "max_reconstruction_error": 4.440892098500626e-16,
+      "reconstruction_pass": true,
+      "self_fidelity": 1.0,
+      "all_pass": true,
+      "pauli_transfer_real_for_diagonal": null,
+      "choi_hermitian": true,
+      "choi_psd": true,
+      "choi_trace": 1.9999999999999998
+    },
+    "amplitude_damping_g0.4": {
+      "channel": "amplitude_damping_g0.4",
+      "CP_check": true,
+      "chi_eigenvalues": [
+        0.0,
+        9.138552314081943e-17,
+        0.3999999999999999,
+        1.5999999999999996
+      ],
+      "min_eigenvalue": 0.0,
+      "TP_check": true,
+      "trace_chi": 1.9999999999999996,
+      "trace_error": 4.440892098500626e-16,
+      "hermitian": true,
+      "max_reconstruction_error": 5.551115123125783e-16,
+      "reconstruction_pass": true,
+      "self_fidelity": 1.0000000026447373,
+      "all_pass": true,
+      "pauli_transfer_real_for_diagonal": null,
+      "choi_hermitian": true,
+      "choi_psd": true,
+      "choi_trace": 2.0
+    },
+    "z_dephasing_p0.5": {
+      "channel": "z_dephasing_p0.5",
+      "CP_check": true,
+      "chi_eigenvalues": [
+        0.0,
+        0.0,
+        0.9999999999999998,
+        0.9999999999999998
+      ],
+      "min_eigenvalue": 0.0,
+      "TP_check": true,
+      "trace_chi": 1.9999999999999996,
+      "trace_error": 4.440892098500626e-16,
+      "hermitian": true,
+      "max_reconstruction_error": 4.440892098500626e-16,
+      "reconstruction_pass": true,
+      "self_fidelity": 1.0,
+      "all_pass": true,
+      "pauli_transfer_real_for_diagonal": true,
+      "choi_hermitian": true,
+      "choi_psd": true,
+      "choi_trace": 2.0
+    },
+    "random_unitary": {
+      "channel": "random_unitary",
+      "CP_check": true,
+      "chi_eigenvalues": [
+        -2.1475853867649838e-17,
+        -5.406219165563023e-18,
+        1.7037863033919364e-16,
+        1.9999999999999996
+      ],
+      "min_eigenvalue": -2.1475853867649838e-17,
+      "TP_check": true,
+      "trace_chi": 1.9999999999999996,
+      "trace_error": 4.440892098500626e-16,
+      "hermitian": true,
+      "max_reconstruction_error": 4.440892098500626e-16,
+      "reconstruction_pass": true,
+      "self_fidelity": 1.0000000067579915,
+      "all_pass": true,
+      "pauli_transfer_real_for_diagonal": null,
+      "choi_hermitian": true,
+      "choi_psd": true,
+      "choi_trace": 2.0
+    }
+  },
+  "section_4_diamond_norm": {
+    "identity_vs_identity": {
+      "channel_1": "identity",
+      "channel_2": "identity",
+      "diamond_norm": 0.0,
+      "choi_trace_norm": 0.0,
+      "choi_lower_bound": 0.0,
+      "diamond_geq_choi_bound": true,
+      "same_channel_zero_check": true
+    },
+    "identity_vs_depolarizing_p0.3": {
+      "channel_1": "identity",
+      "channel_2": "depolarizing_p0.3",
+      "diamond_norm": 0.6000000000000005,
+      "choi_trace_norm": 1.2,
+      "choi_lower_bound": 0.6,
+      "diamond_geq_choi_bound": true,
+      "different_channels_positive": true
+    },
+    "identity_vs_amplitude_damping_g0.4": {
+      "channel_1": "identity",
+      "channel_2": "amplitude_damping_g0.4",
+      "diamond_norm": 0.8000000000000006,
+      "choi_trace_norm": 1.0026828735480484,
+      "choi_lower_bound": 0.5013414367740242,
+      "diamond_geq_choi_bound": true,
+      "different_channels_positive": true
+    },
+    "identity_vs_z_dephasing_p0.5": {
+      "channel_1": "identity",
+      "channel_2": "z_dephasing_p0.5",
+      "diamond_norm": 1.0000000000000007,
+      "choi_trace_norm": 2.0,
+      "choi_lower_bound": 1.0,
+      "diamond_geq_choi_bound": true,
+      "different_channels_positive": true
+    },
+    "identity_vs_random_unitary": {
+      "channel_1": "identity",
+      "channel_2": "random_unitary",
+      "diamond_norm": 1.9454288575947047,
+      "choi_trace_norm": 3.8908577151894073,
+      "choi_lower_bound": 1.9454288575947036,
+      "diamond_geq_choi_bound": true,
+      "different_channels_positive": true
+    },
+    "depolarizing_p0.3_vs_z_dephasing_p0.5": {
+      "channel_1": "depolarizing_p0.3",
+      "channel_2": "z_dephasing_p0.5",
+      "diamond_norm": 0.8000000000000007,
+      "choi_trace_norm": 1.5999999999999999,
+      "choi_lower_bound": 0.7999999999999999,
+      "diamond_geq_choi_bound": true,
+      "different_channels_positive": true
+    },
+    "amplitude_damping_g0.4_vs_z_dephasing_p0.5": {
+      "channel_1": "amplitude_damping_g0.4",
+      "channel_2": "z_dephasing_p0.5",
+      "diamond_norm": 1.0442107170444472,
+      "choi_trace_norm": 2.0,
+      "choi_lower_bound": 1.0,
+      "diamond_geq_choi_bound": true,
+      "different_channels_positive": true
+    }
+  },
+  "section_5_diamond_properties": {
+    "identity_iff_zero": {
+      "identity": {
+        "diamond_from_identity": 0.0,
+        "is_identity_channel": true,
+        "check_pass": true
+      },
+      "depolarizing_p0.3": {
+        "diamond_from_identity": 0.6000000000000005,
+        "is_identity_channel": false,
+        "check_pass": true
+      },
+      "amplitude_damping_g0.4": {
+        "diamond_from_identity": 0.8000000000000005,
+        "is_identity_channel": false,
+        "check_pass": true
+      },
+      "z_dephasing_p0.5": {
+        "diamond_from_identity": 1.0000000000000007,
+        "is_identity_channel": false,
+        "check_pass": true
+      },
+      "random_unitary": {
+        "diamond_from_identity": 1.9454288575947047,
+        "is_identity_channel": false,
+        "check_pass": true
+      }
+    },
+    "triangle_inequality": {
+      "d_ab": 0.6000000000000005,
+      "d_bc": 0.4654882236752134,
+      "d_ac": 0.8000000000000005,
+      "d_ab_plus_d_bc": 1.065488223675214,
+      "triangle_holds": true
+    },
+    "choi_bound_check": {
+      "identity_vs_depolarizing_p0.3": {
+        "diamond": 0.6000000000000005,
+        "choi_bound": 0.6,
+        "holds": true
+      },
+      "identity_vs_amplitude_damping_g0.4": {
+        "diamond": 0.8000000000000006,
+        "choi_bound": 0.5013414367740242,
+        "holds": true
+      },
+      "identity_vs_z_dephasing_p0.5": {
+        "diamond": 1.0000000000000007,
+        "choi_bound": 1.0,
+        "holds": true
+      },
+      "identity_vs_random_unitary": {
+        "diamond": 1.9454288575947047,
+        "choi_bound": 1.9454288575947036,
+        "holds": true
+      },
+      "depolarizing_p0.3_vs_z_dephasing_p0.5": {
+        "diamond": 0.8000000000000007,
+        "choi_bound": 0.7999999999999999,
+        "holds": true
+      },
+      "amplitude_damping_g0.4_vs_z_dephasing_p0.5": {
+        "diamond": 1.0442107170444472,
+        "choi_bound": 1.0,
+        "holds": true
+      }
+    },
+    "all_bounds_hold": true,
+    "symmetry": {
+      "forward": 0.8000000000000005,
+      "reverse": 0.8000000000000005,
+      "difference": 0.0,
+      "symmetric": true
+    },
+    "unitary_bound": {
+      "diamond_from_identity": 1.9454288575947047,
+      "within_bound": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "elapsed_seconds": 17.151,
+    "num_channels": 5,
+    "sections": [
+      "1_2_3: process_tomography (chi-matrix, CP/TP, reconstruction fidelity)",
+      "4: diamond_norm (7 channel pairs)",
+      "5: diamond_properties (identity-iff-zero, triangle, bounds, symmetry)"
+    ]
+  }
+}

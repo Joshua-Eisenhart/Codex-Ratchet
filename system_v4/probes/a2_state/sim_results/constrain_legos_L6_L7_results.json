@@ -1,0 +1,1368 @@
+{
+  "probe": "sim_constrain_legos_L6_L7",
+  "purpose": "L6: irreversibility (ratchet). L7: dual-type structure (chirality sensitivity).",
+  "timestamp": "2026-04-07T14:11:49.902342+00:00",
+  "L6_irreversibility": {
+    "killed": [
+      "schmidt",
+      "hopf_invariant",
+      "chirality_operator_C",
+      "berry_holonomy_operator",
+      "chirality_bipartition_marker"
+    ],
+    "survived": [
+      "density_matrix",
+      "bloch_vector",
+      "stokes_parameters",
+      "eigenvalue_decomposition",
+      "wigner_function",
+      "husimi_q",
+      "coherence_vector",
+      "purification",
+      "characteristic_function",
+      "relative_entropy",
+      "mutual_information",
+      "fubini_study",
+      "bures_distance",
+      "hs_distance",
+      "trace_distance",
+      "z_dephasing",
+      "x_dephasing",
+      "depolarizing",
+      "amplitude_damping",
+      "phase_damping",
+      "bit_flip",
+      "phase_flip",
+      "bit_phase_flip",
+      "unitary_rotation",
+      "z_measurement",
+      "mutual_information_corr",
+      "quantum_discord",
+      "CNOT",
+      "CZ",
+      "SWAP",
+      "Hadamard",
+      "T_gate",
+      "iSWAP",
+      "svd",
+      "spectral",
+      "pauli_decomposition",
+      "cartan_kak",
+      "l1_coherence",
+      "relative_entropy_coherence",
+      "wigner_negativity",
+      "hopf_connection",
+      "chiral_overlap",
+      "chiral_current"
+    ],
+    "killed_count": 5,
+    "survived_count": 43,
+    "relative_entropy_monotonic_decrease": true,
+    "fixed_point_bloch": [
+      -5.153902520646038e-18,
+      2.7755575615628914e-17,
+      0.0
+    ],
+    "fixed_point_purity": 0.5000000000000109,
+    "per_lego": {
+      "density_matrix": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "bloch_vector": {
+        "value_type": "scalar_1q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 0.9999999999999999,
+        "final_value": 0.02306272069907973,
+        "value_range": [
+          0.02306272069907973,
+          0.9999999999999999
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "stokes_parameters": {
+        "value_type": "scalar_1q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 1.4142135623730951,
+        "final_value": 1.0002659091891748,
+        "value_range": [
+          1.0002659091891748,
+          1.4142135623730951
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "eigenvalue_decomposition": {
+        "value_type": "eigenval_1q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 1.0,
+        "final_value": 0.7072948073773929,
+        "value_range": [
+          0.7072948073773929,
+          1.0
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "wigner_function": {
+        "value_type": "vector_1q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 1.4142135623730951,
+        "final_value": 1.0002659091891748,
+        "value_range": [
+          1.0002659091891748,
+          1.4142135623730951
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "husimi_q": {
+        "value_type": "vector_1q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 1.2593177067726296,
+        "final_value": 1.0038596750154443,
+        "value_range": [
+          1.0038596750154443,
+          1.2593177067726296
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "coherence_vector": {
+        "value_type": "scalar_1q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 0.9999999999999999,
+        "final_value": 0.02306272069907973,
+        "value_range": [
+          0.02306272069907973,
+          0.9999999999999999
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "purification": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "characteristic_function": {
+        "value_type": "vector_1q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 1.4142135623730951,
+        "final_value": 1.0002659091891748,
+        "value_range": [
+          1.0002659091891748,
+          1.4142135623730951
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "relative_entropy": {
+        "value_type": "scalar_1q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 0.6931471805599423,
+        "final_value": 0.0002659681235404514,
+        "value_range": [
+          0.0002659681235404514,
+          0.6931471805599423
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "mutual_information": {
+        "value_type": "scalar_2q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 2.0,
+        "final_value": 2.4856372737858123e-07,
+        "value_range": [
+          2.4856372737858123e-07,
+          2.0
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "fubini_study": {
+        "value_type": "distance_1q",
+        "trajectory_class": "MONOTONIC_INC",
+        "initial_value": 0.0,
+        "final_value": 0.7742249561233057,
+        "value_range": [
+          0.0,
+          0.7742249561233057
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "bures_distance": {
+        "value_type": "distance_1q",
+        "trajectory_class": "MONOTONIC_INC",
+        "initial_value": 0.0,
+        "final_value": 0.7550322773399699,
+        "value_range": [
+          0.0,
+          0.7550322773399699
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "hs_distance": {
+        "value_type": "distance_1q",
+        "trajectory_class": "MONOTONIC_INC",
+        "initial_value": 0.0,
+        "final_value": 0.6913185958993197,
+        "value_range": [
+          0.0,
+          0.6913185958993197
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "trace_distance": {
+        "value_type": "distance_1q",
+        "trajectory_class": "MONOTONIC_INC",
+        "initial_value": 0.0,
+        "final_value": 0.48883606712077154,
+        "value_range": [
+          0.0,
+          0.48883606712077154
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "z_dephasing": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "x_dephasing": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "depolarizing": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "amplitude_damping": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "phase_damping": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "bit_flip": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "phase_flip": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "bit_phase_flip": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "unitary_rotation": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "z_measurement": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "mutual_information_corr": {
+        "value_type": "scalar_2q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 2.0,
+        "final_value": 2.4856372737858123e-07,
+        "value_range": [
+          2.4856372737858123e-07,
+          2.0
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "quantum_discord": {
+        "value_type": "scalar_2q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 1.0,
+        "final_value": 1.2772549096151664e-07,
+        "value_range": [
+          1.2772549096151664e-07,
+          1.0
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "CNOT": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "CZ": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "SWAP": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "Hadamard": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "T_gate": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "iSWAP": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "schmidt": {
+        "value_type": "vector_2q",
+        "trajectory_class": "REVERSIBLE",
+        "initial_value": 0.7071067811865477,
+        "final_value": 0.7071067811865489,
+        "value_range": [
+          0.7071067811865476,
+          0.7071067811865489
+        ],
+        "L6_verdict": "KILLED"
+      },
+      "svd": {
+        "value_type": "eigenval_1q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 1.0,
+        "final_value": 0.7072948073773927,
+        "value_range": [
+          0.7072948073773927,
+          1.0
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "spectral": {
+        "value_type": "eigenval_1q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 1.0,
+        "final_value": 0.7072948073773929,
+        "value_range": [
+          0.7072948073773929,
+          1.0
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "pauli_decomposition": {
+        "value_type": "vector_1q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 0.7071067811865476,
+        "final_value": 0.5001329545945874,
+        "value_range": [
+          0.5001329545945874,
+          0.7071067811865476
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "cartan_kak": {
+        "value_type": "STRUCTURAL",
+        "trajectory_class": "STRUCTURAL",
+        "L6_verdict": "STRUCTURAL_PASS"
+      },
+      "l1_coherence": {
+        "value_type": "scalar_1q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 0.9233256830544112,
+        "final_value": 0.018800221394322802,
+        "value_range": [
+          0.018800221394322802,
+          0.9233256830544112
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "relative_entropy_coherence": {
+        "value_type": "scalar_1q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 0.8908408931960408,
+        "final_value": 0.00025498926360389973,
+        "value_range": [
+          0.00025498926360389973,
+          0.8908408931960408
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "wigner_negativity": {
+        "value_type": "scalar_1q",
+        "trajectory_class": "MONOTONIC_INC",
+        "initial_value": -0.2724018663834544,
+        "final_value": 0.0,
+        "value_range": [
+          -0.2724018663834544,
+          0.0
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "hopf_invariant": {
+        "value_type": "scalar_1q",
+        "trajectory_class": "REVERSIBLE",
+        "initial_value": 1.0000000000000002,
+        "final_value": 1.0,
+        "value_range": [
+          1.0,
+          1.0000000000000004
+        ],
+        "L6_verdict": "KILLED"
+      },
+      "hopf_connection": {
+        "value_type": "scalar_1q",
+        "trajectory_class": "OSCILLATING",
+        "initial_value": 0.002813792925410465,
+        "final_value": 0.0014657737486274104,
+        "value_range": [
+          -0.0003627253988847984,
+          0.002978351288122674
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "chirality_operator_C": {
+        "value_type": "scalar_1q",
+        "trajectory_class": "REVERSIBLE",
+        "initial_value": -1.0,
+        "final_value": -1.0000000000000013,
+        "value_range": [
+          -1.0000000000000013,
+          -1.0
+        ],
+        "L6_verdict": "KILLED"
+      },
+      "chiral_overlap": {
+        "value_type": "vector_1q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 0.7574528642140397,
+        "final_value": 0.7071698667086893,
+        "value_range": [
+          0.7071698667086893,
+          0.7574528642140397
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "chiral_current": {
+        "value_type": "vector_1q",
+        "trajectory_class": "MONOTONIC_DEC",
+        "initial_value": 0.9999999999999999,
+        "final_value": 0.02306272069907973,
+        "value_range": [
+          0.02306272069907973,
+          0.9999999999999999
+        ],
+        "L6_verdict": "SURVIVES"
+      },
+      "berry_holonomy_operator": {
+        "value_type": "scalar_1q",
+        "trajectory_class": "REVERSIBLE",
+        "initial_value": 3.141592653589793,
+        "final_value": 3.141592653589793,
+        "value_range": [
+          3.141592653589793,
+          3.141592653589793
+        ],
+        "L6_verdict": "KILLED"
+      },
+      "chirality_bipartition_marker": {
+        "value_type": "scalar_2q",
+        "trajectory_class": "REVERSIBLE",
+        "initial_value": 0.0,
+        "final_value": 0.0,
+        "value_range": [
+          0.0,
+          0.0
+        ],
+        "L6_verdict": "KILLED"
+      }
+    },
+    "relative_entropy_trajectory": [
+      0.693147180559931,
+      0.2645063296874201,
+      0.11280129021883228,
+      0.04816118382155987,
+      0.02139317466276168,
+      0.010033193254267415,
+      0.004852794709518986,
+      0.0023671645770841493,
+      0.0011537045403763428,
+      0.0005577949022404077,
+      0.00026596812352957123
+    ]
+  },
+  "L6_z3_fixed_point_uniqueness": {
+    "test": "z3 proof: dissipative CPTP composition has unique fixed point",
+    "axioms": [
+      "strictly_contractive => unique_fixed_point",
+      "dephasing(p>0) IS strictly_contractive",
+      "contractive . contractive = contractive",
+      "cycle contains dephasing"
+    ],
+    "negation_of_conclusion": "unsat",
+    "is_unsat": true,
+    "positive_check": "sat",
+    "PASSED": true,
+    "conclusion": "The 4-op cycle with dephasing has a UNIQUE fixed point. Irreversibility is STRUCTURAL, not parameter-dependent."
+  },
+  "L7_dual_type": {
+    "type_sensitive": [
+      "bloch_vector",
+      "stokes_parameters",
+      "eigenvalue_decomposition",
+      "wigner_function",
+      "husimi_q",
+      "coherence_vector",
+      "characteristic_function",
+      "relative_entropy",
+      "fubini_study",
+      "bures_distance",
+      "hs_distance",
+      "trace_distance",
+      "svd",
+      "spectral",
+      "pauli_decomposition",
+      "l1_coherence",
+      "relative_entropy_coherence",
+      "wigner_negativity",
+      "hopf_connection",
+      "chiral_overlap",
+      "chiral_current"
+    ],
+    "type_blind": [
+      "density_matrix",
+      "purification",
+      "mutual_information",
+      "z_dephasing",
+      "x_dephasing",
+      "depolarizing",
+      "amplitude_damping",
+      "phase_damping",
+      "bit_flip",
+      "phase_flip",
+      "bit_phase_flip",
+      "unitary_rotation",
+      "z_measurement",
+      "mutual_information_corr",
+      "quantum_discord",
+      "CNOT",
+      "CZ",
+      "SWAP",
+      "Hadamard",
+      "T_gate",
+      "iSWAP",
+      "schmidt",
+      "cartan_kak",
+      "hopf_invariant",
+      "chirality_operator_C",
+      "berry_holonomy_operator",
+      "chirality_bipartition_marker"
+    ],
+    "type_sensitive_count": 21,
+    "type_blind_count": 27,
+    "state_diff_1q_HS": 0.006503403765458261,
+    "state_diff_2q_HS": 0.00014175864674259431,
+    "per_lego": {
+      "density_matrix": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "bloch_vector": {
+        "value_type": "scalar_1q",
+        "T1_final": 0.020137080978696074,
+        "T2_final": 0.024475475082157912,
+        "final_diff": 0.004338394103461839,
+        "max_diff": 0.0874500278717022,
+        "mean_diff": 0.02409646043610503,
+        "trajectory_diff": 0.02409646043610503,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "stokes_parameters": {
+        "value_type": "scalar_1q",
+        "T1_final": 1.0002027304653522,
+        "T2_final": 1.0002994795962357,
+        "final_diff": 9.67491308834223e-05,
+        "max_diff": 0.04794256187836665,
+        "mean_diff": 0.008850697725791834,
+        "trajectory_diff": 0.008850697725791834,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "eigenvalue_decomposition": {
+        "value_type": "eigenval_1q",
+        "T1_final": 0.7072501332733512,
+        "T2_final": 0.7073185452398728,
+        "final_diff": 6.841196652163095e-05,
+        "max_diff": 0.03390051061164878,
+        "mean_diff": 0.0062583883801398225,
+        "trajectory_diff": 0.0062583883801398225,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "wigner_function": {
+        "value_type": "vector_1q",
+        "T1_final": 1.0002027304653522,
+        "T2_final": 1.0002994795962354,
+        "final_diff": 9.674913088320025e-05,
+        "max_diff": 0.047942561878366874,
+        "mean_diff": 0.008850697725791855,
+        "trajectory_diff": 0.008850697725791855,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "husimi_q": {
+        "value_type": "vector_1q",
+        "T1_final": 0.9974693934393468,
+        "T2_final": 0.9951488461929271,
+        "final_diff": 0.002320547246419724,
+        "max_diff": 0.07588190140229456,
+        "mean_diff": 0.022813074511388517,
+        "trajectory_diff": 0.022813074511388517,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "coherence_vector": {
+        "value_type": "scalar_1q",
+        "T1_final": 0.020137080978696074,
+        "T2_final": 0.024475475082157912,
+        "final_diff": 0.004338394103461839,
+        "max_diff": 0.0874500278717022,
+        "mean_diff": 0.02409646043610503,
+        "trajectory_diff": 0.02409646043610503,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "purification": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "characteristic_function": {
+        "value_type": "vector_1q",
+        "T1_final": 1.0002027304653522,
+        "T2_final": 1.0002994795962357,
+        "final_diff": 9.67491308834223e-05,
+        "max_diff": 0.04794256187836665,
+        "mean_diff": 0.008850697725791834,
+        "trajectory_diff": 0.008850697725791834,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "relative_entropy": {
+        "value_type": "scalar_1q",
+        "T1_final": 0.00020276472005412074,
+        "T2_final": 0.00029955435238141273,
+        "final_diff": 9.678963232729199e-05,
+        "max_diff": 0.06882104961600388,
+        "mean_diff": 0.011338929685057963,
+        "trajectory_diff": 0.011338929685057963,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "mutual_information": {
+        "value_type": "scalar_2q",
+        "T1_final": 2.4856372737858123e-07,
+        "T2_final": 2.485637262683582e-07,
+        "final_diff": 1.1102230246251565e-15,
+        "max_diff": 1.5543122344752192e-15,
+        "mean_diff": 8.478066733501196e-16,
+        "trajectory_diff": 8.478066733501196e-16,
+        "L7_verdict": "TYPE_BLIND"
+      },
+      "fubini_study": {
+        "value_type": "distance_1q",
+        "T1_final": 0.77704856111399,
+        "T2_final": 0.7735267099033123,
+        "final_diff": 0.0035218512106777178,
+        "max_diff": 0.10515314588321678,
+        "mean_diff": 0.0364562903809413,
+        "trajectory_diff": 0.0364562903809413,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "bures_distance": {
+        "value_type": "distance_1q",
+        "T1_final": 0.7576461907174815,
+        "T2_final": 0.7543856532409572,
+        "final_diff": 0.003260537476524328,
+        "max_diff": 0.10047086749344802,
+        "mean_diff": 0.03469323555202459,
+        "trajectory_diff": 0.03469323555202459,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "hs_distance": {
+        "value_type": "distance_1q",
+        "T1_final": 0.6953447530964642,
+        "T2_final": 0.6903324199847953,
+        "final_diff": 0.005012333111668821,
+        "max_diff": 0.17084021880542882,
+        "mean_diff": 0.057178654074270856,
+        "trajectory_diff": 0.057178654074270856,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "trace_distance": {
+        "value_type": "distance_1q",
+        "T1_final": 0.49168299017699546,
+        "T2_final": 0.4881387354441685,
+        "final_diff": 0.0035442547328269347,
+        "max_diff": 0.12080227721671227,
+        "mean_diff": 0.04043141403503676,
+        "trajectory_diff": 0.04043141403503676,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "z_dephasing": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "x_dephasing": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "depolarizing": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "amplitude_damping": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "phase_damping": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "bit_flip": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "phase_flip": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "bit_phase_flip": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "unitary_rotation": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "z_measurement": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "mutual_information_corr": {
+        "value_type": "scalar_2q",
+        "T1_final": 2.4856372737858123e-07,
+        "T2_final": 2.485637262683582e-07,
+        "final_diff": 1.1102230246251565e-15,
+        "max_diff": 1.5543122344752192e-15,
+        "mean_diff": 8.478066733501196e-16,
+        "trajectory_diff": 8.478066733501196e-16,
+        "L7_verdict": "TYPE_BLIND"
+      },
+      "quantum_discord": {
+        "value_type": "scalar_2q",
+        "T1_final": 1.2772549096151664e-07,
+        "T2_final": 1.2772549040640513e-07,
+        "final_diff": 5.551115123125783e-16,
+        "max_diff": 1.2212453270876722e-15,
+        "mean_diff": 4.289498049688105e-16,
+        "trajectory_diff": 4.289498049688105e-16,
+        "L7_verdict": "TYPE_BLIND"
+      },
+      "CNOT": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "CZ": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "SWAP": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "Hadamard": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "T_gate": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "iSWAP": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "schmidt": {
+        "value_type": "vector_2q",
+        "T1_final": 0.7071067811865489,
+        "T2_final": 0.7071067811865495,
+        "final_diff": 5.551115123125783e-16,
+        "max_diff": 6.661338147750939e-16,
+        "mean_diff": 3.7343865373755267e-16,
+        "trajectory_diff": 3.7343865373755267e-16,
+        "L7_verdict": "TYPE_BLIND"
+      },
+      "svd": {
+        "value_type": "eigenval_1q",
+        "T1_final": 0.7072501332733512,
+        "T2_final": 0.7073185452398726,
+        "final_diff": 6.84119665214089e-05,
+        "max_diff": 0.03390051061164856,
+        "mean_diff": 0.006258388380139792,
+        "trajectory_diff": 0.006258388380139792,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "spectral": {
+        "value_type": "eigenval_1q",
+        "T1_final": 0.7072501332733512,
+        "T2_final": 0.7073185452398728,
+        "final_diff": 6.841196652163095e-05,
+        "max_diff": 0.03390051061164878,
+        "mean_diff": 0.0062583883801398225,
+        "trajectory_diff": 0.0062583883801398225,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "pauli_decomposition": {
+        "value_type": "vector_1q",
+        "T1_final": 0.5001013652326761,
+        "T2_final": 0.5001497397981178,
+        "final_diff": 4.837456544171115e-05,
+        "max_diff": 0.023971280939183326,
+        "mean_diff": 0.004425348862895917,
+        "trajectory_diff": 0.004425348862895917,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "cartan_kak": {
+        "value_type": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "reason": "Operator/structural lego, same definition regardless of cycle ordering."
+      },
+      "l1_coherence": {
+        "value_type": "scalar_1q",
+        "T1_final": 0.013640912717453935,
+        "T2_final": 0.01552064912760276,
+        "final_diff": 0.0018797364101488245,
+        "max_diff": 0.2022451420014162,
+        "mean_diff": 0.03481232842177683,
+        "trajectory_diff": 0.03481232842177683,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "relative_entropy_coherence": {
+        "value_type": "scalar_1q",
+        "T1_final": 0.0001342383618527787,
+        "T2_final": 0.00017379353024427058,
+        "final_diff": 3.955516839149187e-05,
+        "max_diff": 0.11274846878540867,
+        "mean_diff": 0.014360779232680027,
+        "trajectory_diff": 0.014360779232680027,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "wigner_negativity": {
+        "value_type": "scalar_1q",
+        "T1_final": 0.0,
+        "T2_final": 0.0,
+        "final_diff": 0.0,
+        "max_diff": 0.07179119601706263,
+        "mean_diff": 0.0065264723651875115,
+        "trajectory_diff": 0.0065264723651875115,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "hopf_invariant": {
+        "value_type": "scalar_1q",
+        "T1_final": 1.0,
+        "T2_final": 1.0000000000000002,
+        "final_diff": 2.220446049250313e-16,
+        "max_diff": 6.661338147750939e-16,
+        "mean_diff": 3.2297397080004555e-16,
+        "trajectory_diff": 3.2297397080004555e-16,
+        "L7_verdict": "TYPE_BLIND"
+      },
+      "hopf_connection": {
+        "value_type": "scalar_1q",
+        "T1_final": -0.0014429844366875394,
+        "T2_final": 0.0021325239718329725,
+        "final_diff": 0.003575508408520512,
+        "max_diff": 0.006268049480342355,
+        "mean_diff": 0.003483013580238285,
+        "trajectory_diff": 0.003483013580238285,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "chirality_operator_C": {
+        "value_type": "scalar_1q",
+        "T1_final": -1.0000000000000018,
+        "T2_final": -1.0000000000000013,
+        "final_diff": 4.440892098500626e-16,
+        "max_diff": 4.440892098500626e-16,
+        "mean_diff": 1.8167285857502563e-16,
+        "trajectory_diff": 1.8167285857502563e-16,
+        "L7_verdict": "TYPE_BLIND"
+      },
+      "chiral_overlap": {
+        "value_type": "vector_1q",
+        "T1_final": 0.7071843562786795,
+        "T2_final": 0.7072333979427009,
+        "final_diff": 4.904166402142085e-05,
+        "max_diff": 0.011586371936796014,
+        "mean_diff": 0.003491624364763872,
+        "trajectory_diff": 0.003491624364763872,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "chiral_current": {
+        "value_type": "vector_1q",
+        "T1_final": 0.020137080978696074,
+        "T2_final": 0.024475475082157912,
+        "final_diff": 0.004338394103461839,
+        "max_diff": 0.0874500278717022,
+        "mean_diff": 0.02409646043610503,
+        "trajectory_diff": 0.02409646043610503,
+        "L7_verdict": "TYPE_SENSITIVE"
+      },
+      "berry_holonomy_operator": {
+        "value_type": "scalar_1q",
+        "T1_final": 0.0,
+        "T2_final": 0.0,
+        "final_diff": 0.0,
+        "max_diff": 0.0,
+        "mean_diff": 0.0,
+        "trajectory_diff": 0.0,
+        "L7_verdict": "TYPE_BLIND"
+      },
+      "chirality_bipartition_marker": {
+        "value_type": "scalar_2q",
+        "T1_final": 0.0,
+        "T2_final": 0.0,
+        "final_diff": 0.0,
+        "max_diff": 0.0,
+        "mean_diff": 0.0,
+        "trajectory_diff": 0.0,
+        "L7_verdict": "TYPE_BLIND"
+      }
+    }
+  },
+  "combined_classification": {
+    "combined": {
+      "density_matrix": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "B_GENERIC"
+      },
+      "bloch_vector": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "stokes_parameters": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "eigenvalue_decomposition": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "B_GENERIC"
+      },
+      "wigner_function": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "D_ENHANCED"
+      },
+      "husimi_q": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "D_ENHANCED"
+      },
+      "coherence_vector": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "purification": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "B_GENERIC"
+      },
+      "characteristic_function": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "D_ENHANCED"
+      },
+      "relative_entropy": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "B_GENERIC"
+      },
+      "mutual_information": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_BLIND",
+        "final_classification": "SURVIVES_L6_REDUCED_L7",
+        "L5_category": "B_GENERIC"
+      },
+      "fubini_study": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_INC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "B_GENERIC"
+      },
+      "bures_distance": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_INC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "D_ENHANCED"
+      },
+      "hs_distance": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_INC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "B_GENERIC"
+      },
+      "trace_distance": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_INC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "B_GENERIC"
+      },
+      "z_dephasing": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "x_dephasing": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "depolarizing": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "amplitude_damping": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "B_GENERIC"
+      },
+      "phase_damping": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "B_GENERIC"
+      },
+      "bit_flip": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "phase_flip": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "bit_phase_flip": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "unitary_rotation": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "z_measurement": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "mutual_information_corr": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_BLIND",
+        "final_classification": "SURVIVES_L6_REDUCED_L7",
+        "L5_category": "B_GENERIC"
+      },
+      "quantum_discord": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_BLIND",
+        "final_classification": "SURVIVES_L6_REDUCED_L7",
+        "L5_category": "D_ENHANCED"
+      },
+      "CNOT": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "CZ": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "SWAP": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "D_ENHANCED"
+      },
+      "Hadamard": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "T_gate": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "iSWAP": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "schmidt": {
+        "L6_verdict": "KILLED",
+        "L6_trajectory_class": "REVERSIBLE",
+        "L7_verdict": "TYPE_BLIND",
+        "final_classification": "KILLED_AT_L6",
+        "L5_category": "B_GENERIC"
+      },
+      "svd": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "B_GENERIC"
+      },
+      "spectral": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "B_GENERIC"
+      },
+      "pauli_decomposition": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "cartan_kak": {
+        "L6_verdict": "STRUCTURAL_PASS",
+        "L6_trajectory_class": "STRUCTURAL",
+        "L7_verdict": "STRUCTURAL_INVARIANT",
+        "final_classification": "STRUCTURAL",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "l1_coherence": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "relative_entropy_coherence": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "wigner_negativity": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_INC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "D_ENHANCED"
+      },
+      "hopf_invariant": {
+        "L6_verdict": "KILLED",
+        "L6_trajectory_class": "REVERSIBLE",
+        "L7_verdict": "TYPE_BLIND",
+        "final_classification": "KILLED_AT_L6",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "hopf_connection": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "OSCILLATING",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "chirality_operator_C": {
+        "L6_verdict": "KILLED",
+        "L6_trajectory_class": "REVERSIBLE",
+        "L7_verdict": "TYPE_BLIND",
+        "final_classification": "KILLED_AT_L6",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "chiral_overlap": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "chiral_current": {
+        "L6_verdict": "SURVIVES",
+        "L6_trajectory_class": "MONOTONIC_DEC",
+        "L7_verdict": "TYPE_SENSITIVE",
+        "final_classification": "SURVIVES_L6_AND_L7",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "berry_holonomy_operator": {
+        "L6_verdict": "KILLED",
+        "L6_trajectory_class": "REVERSIBLE",
+        "L7_verdict": "TYPE_BLIND",
+        "final_classification": "KILLED_AT_L6",
+        "L5_category": "A_REQUIRES_SU2"
+      },
+      "chirality_bipartition_marker": {
+        "L6_verdict": "KILLED",
+        "L6_trajectory_class": "REVERSIBLE",
+        "L7_verdict": "TYPE_BLIND",
+        "final_classification": "KILLED_AT_L6",
+        "L5_category": "A_REQUIRES_SU2"
+      }
+    },
+    "survives_L6_and_L7": [
+      "bloch_vector",
+      "stokes_parameters",
+      "eigenvalue_decomposition",
+      "wigner_function",
+      "husimi_q",
+      "coherence_vector",
+      "characteristic_function",
+      "relative_entropy",
+      "fubini_study",
+      "bures_distance",
+      "hs_distance",
+      "trace_distance",
+      "svd",
+      "spectral",
+      "pauli_decomposition",
+      "l1_coherence",
+      "relative_entropy_coherence",
+      "wigner_negativity",
+      "hopf_connection",
+      "chiral_overlap",
+      "chiral_current"
+    ],
+    "survives_L6_reduced_L7": [
+      "mutual_information",
+      "mutual_information_corr",
+      "quantum_discord"
+    ],
+    "killed_at_L6": [
+      "schmidt",
+      "hopf_invariant",
+      "chirality_operator_C",
+      "berry_holonomy_operator",
+      "chirality_bipartition_marker"
+    ],
+    "structural": [
+      "density_matrix",
+      "purification",
+      "z_dephasing",
+      "x_dephasing",
+      "depolarizing",
+      "amplitude_damping",
+      "phase_damping",
+      "bit_flip",
+      "phase_flip",
+      "bit_phase_flip",
+      "unitary_rotation",
+      "z_measurement",
+      "CNOT",
+      "CZ",
+      "SWAP",
+      "Hadamard",
+      "T_gate",
+      "iSWAP",
+      "cartan_kak"
+    ],
+    "counts": {
+      "survives_both": 21,
+      "survives_L6_only": 3,
+      "killed_L6": 5,
+      "structural": 19,
+      "total": 48
+    }
+  },
+  "summary": {
+    "runtime_seconds": 0.19,
+    "errors": [],
+    "L6_kills": 5,
+    "L6_survived": 43,
+    "L7_type_sensitive": 21,
+    "L7_type_blind": 27,
+    "headline": "L6+L7 complete. L6 killed 5 reversible legos. L7 identified 21 type-sensitive legos. Deepest dynamical constraints applied."
+  }
+}

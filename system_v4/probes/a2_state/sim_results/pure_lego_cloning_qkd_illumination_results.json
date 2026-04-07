@@ -1,0 +1,82 @@
+{
+  "1_approximate_cloning": {
+    "n_samples": 100,
+    "mean_fidelity": 0.8333333333333331,
+    "std_fidelity": 3.5178481278552405e-16,
+    "max_deviation_from_theory": 6.661338147750939e-16,
+    "theory_fidelity": 0.8333333333333334,
+    "pass_mean": "True",
+    "pass_universal": "True",
+    "all_pass": "True"
+  },
+  "2_bb84_qkd": {
+    "n_bits": 100000,
+    "no_eve_error_rate": 0.0,
+    "eve_error_rate": 0.2496246321394967,
+    "theory_eve_error": 0.25,
+    "sifting_fraction": 0.49951,
+    "secret_key_rate_no_eve": 1.0,
+    "secret_key_rate_eve": -0.6213652764453013,
+    "binary_entropy_0.25": 0.8112781244591328,
+    "pass_no_eve_zero_error": "True",
+    "pass_eve_error_25pct": "True",
+    "pass_sifting_50pct": true,
+    "pass_key_rate_clean": true,
+    "pass_key_rate_eve_negative": "True",
+    "all_pass": "True"
+  },
+  "3_quantum_illumination": {
+    "error_exponents": [
+      {
+        "N_S": 0.001,
+        "kappa": 0.01,
+        "N_B": 100.0,
+        "beta_classical": 1.0000000000000001e-07,
+        "beta_quantum": 4.0000000000000003e-07,
+        "ratio": 4.0
+      },
+      {
+        "N_S": 0.01,
+        "kappa": 0.01,
+        "N_B": 100.0,
+        "beta_classical": 1e-06,
+        "beta_quantum": 4e-06,
+        "ratio": 4.0
+      },
+      {
+        "N_S": 0.05,
+        "kappa": 0.01,
+        "N_B": 100.0,
+        "beta_classical": 5e-06,
+        "beta_quantum": 2e-05,
+        "ratio": 4.0
+      }
+    ],
+    "toy_model": {
+      "N_S": 0.01,
+      "concurrence": 0.198997487421324,
+      "purity_signal": 0.9802,
+      "purity_joint": 1.0,
+      "purity_coherent": 1.0,
+      "trace_distance_quantum": 0.00514433356443548,
+      "trace_distance_classical": 0.005000000000000016,
+      "qi_advantage_ratio": 1.0288667128870927,
+      "copies_classical": 138155105.5796427,
+      "copies_quantum": 34538776.39491068,
+      "copies_ratio": 4.0
+    },
+    "pass_advantage": "True",
+    "pass_entangled": "True",
+    "pass_purity_signal": "True",
+    "pass_purity_joint": "True",
+    "pass_ratio_theory": true,
+    "pass_copies_ratio": "True",
+    "all_pass": "True"
+  },
+  "summary": {
+    "1_approximate_cloning": "True",
+    "2_bb84_qkd": "True",
+    "3_quantum_illumination": "True"
+  },
+  "ALL_PASS": true
+}

@@ -65,7 +65,7 @@ from hopf_manifold import (
     torus_radii,
 )
 from geometric_operators import (
-    apply_Ti, apply_Fe, apply_Te, apply_Fi,
+    apply_Ti, apply_Fe, apply_Te, apply_Fi, apply_Entangle_4x4,
     OPERATOR_MAP_4X4, partial_trace_A, partial_trace_B, trace_distance_4x4,
     negentropy, delta_phi, trace_distance_2x2,
     _ensure_valid_density, I2, SIGMA_X, SIGMA_Y, SIGMA_Z,
@@ -316,14 +316,18 @@ class GeometricEngine:
     32 microsteps per engine type; 64 total across both types.
     """
 
-    def __init__(self, engine_type: int = 1):
+    def __init__(self, engine_type: int = 1, entangle_strength: float = 0.3):
         """
         Args:
             engine_type: 1 = Left Weyl (outer=cooling, inner=heating)
                          2 = Right Weyl (outer=heating, inner=cooling) [role inverted]
+            entangle_strength: Ising ZZ coupling at end of cycle.
+                               0.3 = sim-locked default (I_c ~ +0.457).
+                               0   = disabled (no entangling gate).
         """
         assert engine_type in (1, 2), "engine_type must be 1 or 2"
         self.engine_type = engine_type
+        self.entangle_strength = entangle_strength
         self.stages = STAGES  # 8 terrains
         self.loop_grammar = LOOP_GRAMMAR[engine_type]
         self.ownership = EngineOwnership(engine_type=engine_type)
@@ -644,6 +648,16 @@ class GeometricEngine:
         for position, terrain_idx in enumerate(stage_order):
             ctrl = controls.get(position, StageControls())
             state = self.step(state, stage_idx=terrain_idx, controls=ctrl)
+
+        # ── 5th OPERATOR: Non-local Ising ZZ entangling gate ──
+        # Applied AFTER all 8 macro-stages complete.
+        # This is the only genuinely non-local channel in the engine.
+        # Sim-locked: strength=0.3 → I_c = +0.457
+        if self.entangle_strength > 0:
+            state.rho_AB = apply_Entangle_4x4(
+                state.rho_AB, strength=self.entangle_strength
+            )
+
         return state
 
     def read_axes(self, state: EngineState) -> Dict[str, float]:
@@ -907,12 +921,14 @@ def full_64_stage_run(rng: np.random.Generator = None) -> Dict:
 
 
 if __name__ == "__main__":
+    from bipartite_spinor_algebra import concurrence_4x4 as concurrence
+
     print("=" * 72)
-    print("FULL 64-STAGE GEOMETRIC ENGINE")
+    print("FULL 64-STAGE GEOMETRIC ENGINE  +  ENTANGLING GATE COMPARISON")
     print("=" * 72)
 
+    # ── Standard run (backward compat) ──
     results = full_64_stage_run()
-
     for tp, data in results.items():
         print(f"\n  {tp.upper()}: {data['stages_run']} stages")
         print(f"    Total ΔΦ_L: {data['total_dphi_L']:+.6f}")
@@ -920,5 +936,39 @@ if __name__ == "__main__":
         print(f"    Axis deltas:")
         for ax, delta in data["axis_deltas"].items():
             print(f"      {ax}: {delta:+.4f}")
-
     print(f"\n  TOTAL STAGES: {sum(d['stages_run'] for d in results.values())}")
+
+    # ── Entangling gate ON vs OFF comparison ──
+    print("\n" + "=" * 72)
+    print("ENTANGLING GATE COMPARISON  (5 cycles, Type-1)")
+    print("=" * 72)
+
+    N_CYCLES = 5
+    rng_on  = np.random.default_rng(42)
+    rng_off = np.random.default_rng(42)
+
+    engine_on  = GeometricEngine(engine_type=1, entangle_strength=0.3)
+    engine_off = GeometricEngine(engine_type=1, entangle_strength=0.0)
+
+    state_on  = engine_on.init_state(rng=rng_on)
+    state_off = engine_off.init_state(rng=rng_off)
+
+    for cyc in range(1, N_CYCLES + 1):
+        state_on  = engine_on.run_cycle(state_on)
+        state_off = engine_off.run_cycle(state_off)
+
+        C_on  = concurrence(state_on.rho_AB)
+        C_off = concurrence(state_off.rho_AB)
+        k_on  = engine_on.evaluate_axis0_kernel(state_on.rho_AB)
+        k_off = engine_off.evaluate_axis0_kernel(state_off.rho_AB)
+
+        print(f"  Cycle {cyc}  |  ON: C={C_on:.4f}  I_c={k_on['I_c_A_to_B']:+.4f}"
+              f"  |  OFF: C={C_off:.4f}  I_c={k_off['I_c_A_to_B']:+.4f}")
+
+    print("\n  ── FINAL ──")
+    C_on_final  = concurrence(state_on.rho_AB)
+    C_off_final = concurrence(state_off.rho_AB)
+    k_on_final  = engine_on.evaluate_axis0_kernel(state_on.rho_AB)
+    k_off_final = engine_off.evaluate_axis0_kernel(state_off.rho_AB)
+    print(f"  Entangling gate: ON  -> C={C_on_final:.4f}, I_c={k_on_final['I_c_A_to_B']:+.4f}")
+    print(f"  Entangling gate: OFF -> C={C_off_final:.4f}, I_c={k_off_final['I_c_A_to_B']:+.4f}")

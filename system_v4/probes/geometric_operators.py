@@ -283,11 +283,30 @@ def apply_Fi_4x4(rho_AB: np.ndarray, polarity_up: bool = True, strength: float =
     K_rev = kraus_Fi(polarity_up=not polarity_up, strength=strength, theta=theta)
     return ensure_valid_density(apply_local_channel_both(rho_AB, K, K_rev))
 
+def apply_Entangle_4x4(rho_AB: np.ndarray, strength: float = 0.3) -> np.ndarray:
+    """Ent — Non-local Ising ZZ coupling (5th operator). From Cartan p-subalgebra.
+
+    U = exp(-i * strength * sigma_z x sigma_z).  Entangling gate.
+    This is the ONLY genuinely non-local operator: all four others act as
+    local channels on each subsystem independently.  The Ising ZZ gate
+    creates correlations that survive partial trace -- it is what makes
+    the engine produce I_c > 0.
+
+    Sim-locked:  I_c = +0.457 at strength=0.3, end-of-cycle placement.
+    """
+    from scipy.linalg import expm
+    H = np.kron(SIGMA_Z, SIGMA_Z)
+    U = expm(-1j * strength * H)
+    rho_out = U @ rho_AB @ U.conj().T
+    return ensure_valid_density(rho_out)
+
+
 OPERATOR_MAP_4X4 = {
     "Ti": apply_Ti_4x4,
     "Fe": apply_Fe_4x4,
     "Te": apply_Te_4x4,
     "Fi": apply_Fi_4x4,
+    "Ent": apply_Entangle_4x4,
 }
 
 

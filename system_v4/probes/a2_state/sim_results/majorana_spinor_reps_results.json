@@ -1,0 +1,487 @@
+{
+  "probe": "sim_pure_lego_majorana_spinor_reps",
+  "timestamp": "2026-04-07T09:13:27.367106+00:00",
+  "sections": {
+    "spin_j_representations": {
+      "j=0": {
+        "[Jx,Jy]=iJz": true,
+        "[Jy,Jz]=iJx": true,
+        "[Jz,Jx]=iJy": true,
+        "J2=j(j+1)I": true,
+        "dimension": 1,
+        "dimension_correct": true
+      },
+      "j=0.5": {
+        "[Jx,Jy]=iJz": true,
+        "[Jy,Jz]=iJx": true,
+        "[Jz,Jx]=iJy": true,
+        "J2=j(j+1)I": true,
+        "dimension": 2,
+        "dimension_correct": true
+      },
+      "j=1": {
+        "[Jx,Jy]=iJz": true,
+        "[Jy,Jz]=iJx": true,
+        "[Jz,Jx]=iJy": true,
+        "J2=j(j+1)I": true,
+        "dimension": 3,
+        "dimension_correct": true
+      },
+      "j=1.5": {
+        "[Jx,Jy]=iJz": true,
+        "[Jy,Jz]=iJx": true,
+        "[Jz,Jx]=iJy": true,
+        "J2=j(j+1)I": true,
+        "dimension": 4,
+        "dimension_correct": true
+      },
+      "j=2": {
+        "[Jx,Jy]=iJz": true,
+        "[Jy,Jz]=iJx": true,
+        "[Jz,Jx]=iJy": true,
+        "J2=j(j+1)I": true,
+        "dimension": 5,
+        "dimension_correct": true
+      }
+    },
+    "majorana_spin_half": {
+      "|0> (north pole)": {
+        "bloch_vector": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "majorana_star_cartesian": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "match": true,
+        "deviation": 0.0
+      },
+      "|1> (south pole)": {
+        "bloch_vector": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "majorana_star_cartesian": [
+          1.2246467991473532e-16,
+          0.0,
+          -1.0
+        ],
+        "match": true,
+        "deviation": 1.2246467991473532e-16
+      },
+      "|+> (equator x)": {
+        "bloch_vector": [
+          1.0000000000000002,
+          0.0,
+          0.0
+        ],
+        "majorana_star_cartesian": [
+          1.0,
+          0.0,
+          6.123233995736766e-17
+        ],
+        "match": true,
+        "deviation": 2.303328157969851e-16
+      },
+      "|+i> (equator y)": {
+        "bloch_vector": [
+          0.0,
+          1.0000000000000002,
+          0.0
+        ],
+        "majorana_star_cartesian": [
+          6.123233995736766e-17,
+          1.0,
+          6.123233995736766e-17
+        ],
+        "match": true,
+        "deviation": 2.3833297188937687e-16
+      },
+      "general": {
+        "bloch_vector": [
+          0.43186238438518243,
+          0.3637526683267191,
+          0.8253356149096782
+        ],
+        "majorana_star_cartesian": [
+          0.43186238438518243,
+          0.3637526683267191,
+          0.8253356149096783
+        ],
+        "match": true,
+        "deviation": 1.1102230246251565e-16
+      }
+    },
+    "majorana_spin1": {
+      "|1,1> (both north)": {
+        "stars_theta_phi": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "stars_cartesian": [
+          [
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "n_stars": 2,
+        "n_stars_correct": true
+      },
+      "|1,0> (antipodal)": {
+        "stars_theta_phi": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            3.141592653589793,
+            0.0
+          ]
+        ],
+        "stars_cartesian": [
+          [
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            1.2246467991473532e-16,
+            0.0,
+            -1.0
+          ]
+        ],
+        "n_stars": 2,
+        "n_stars_correct": true
+      },
+      "|1,-1> (both south)": {
+        "stars_theta_phi": [
+          [
+            3.141592653589793,
+            0.0
+          ],
+          [
+            3.141592653589793,
+            0.0
+          ]
+        ],
+        "stars_cartesian": [
+          [
+            1.2246467991473532e-16,
+            0.0,
+            -1.0
+          ],
+          [
+            1.2246467991473532e-16,
+            0.0,
+            -1.0
+          ]
+        ],
+        "n_stars": 2,
+        "n_stars_correct": true
+      },
+      "superposition": {
+        "stars_theta_phi": [
+          [
+            1.5707963267948961,
+            0.7853981633974486
+          ],
+          [
+            1.5707963267948966,
+            -0.7853981633974484
+          ]
+        ],
+        "stars_cartesian": [
+          [
+            0.7071067811865472,
+            0.7071067811865477,
+            5.053215498074303e-16
+          ],
+          [
+            0.7071067811865475,
+            -0.7071067811865476,
+            6.123233995736766e-17
+          ]
+        ],
+        "n_stars": 2,
+        "n_stars_correct": true
+      }
+    },
+    "majorana_higher_spins": {
+      "j=1.5": {
+        "dimension": 4,
+        "n_stars_expected": 3,
+        "highest_weight_n_stars": 3,
+        "highest_weight_correct": true,
+        "random_state_n_stars": 3,
+        "random_state_correct": true,
+        "highest_weight_stars": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "random_stars": [
+          [
+            2.269491474767395,
+            -0.5715785277951858
+          ],
+          [
+            1.6782829468697575,
+            -2.4755206593907544
+          ],
+          [
+            1.5167933653134544,
+            0.27714414887771005
+          ]
+        ]
+      },
+      "j=2": {
+        "dimension": 5,
+        "n_stars_expected": 4,
+        "highest_weight_n_stars": 4,
+        "highest_weight_correct": true,
+        "random_state_n_stars": 4,
+        "random_state_correct": true,
+        "highest_weight_stars": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "random_stars": [
+          [
+            2.1281071586111397,
+            1.8004471095236811
+          ],
+          [
+            1.5141537104849074,
+            -1.4068753702679497
+          ],
+          [
+            1.3498915692119169,
+            1.0869393111803067
+          ],
+          [
+            1.1113211312888907,
+            -3.1352310057995667
+          ]
+        ]
+      }
+    },
+    "majorana_2qubit_symmetric": {
+      "|00>": {
+        "in_symmetric_subspace": true,
+        "spin1_state": [
+          "(1+0j)",
+          "0j",
+          "0j"
+        ],
+        "n_stars": 2,
+        "n_stars_correct": true,
+        "stars": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ]
+      },
+      "(|01>+|10>)/sqrt2": {
+        "in_symmetric_subspace": true,
+        "spin1_state": [
+          "0j",
+          "(1+0j)",
+          "0j"
+        ],
+        "n_stars": 2,
+        "n_stars_correct": true,
+        "stars": [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            3.141592653589793,
+            0.0
+          ]
+        ]
+      },
+      "|11>": {
+        "in_symmetric_subspace": true,
+        "spin1_state": [
+          "0j",
+          "0j",
+          "(1+0j)"
+        ],
+        "n_stars": 2,
+        "n_stars_correct": true,
+        "stars": [
+          [
+            3.141592653589793,
+            0.0
+          ],
+          [
+            3.141592653589793,
+            0.0
+          ]
+        ]
+      },
+      "|00>+|11>": {
+        "in_symmetric_subspace": true,
+        "spin1_state": [
+          "(0.7071067811865476+0j)",
+          "0j",
+          "(0.7071067811865476+0j)"
+        ],
+        "n_stars": 2,
+        "n_stars_correct": true,
+        "stars": [
+          [
+            1.5707963267948963,
+            1.5707963267948966
+          ],
+          [
+            1.5707963267948966,
+            -1.5707963267948966
+          ]
+        ]
+      }
+    },
+    "clebsch_gordan": {
+      "CG_unitarity_error": 2.220446049250313e-16,
+      "CG_is_unitary": true
+    },
+    "bell_singlet": {
+      "Phi+": {
+        "overlap_with_singlet": 0.0,
+        "is_singlet": false
+      },
+      "Phi-": {
+        "overlap_with_singlet": 0.0,
+        "is_singlet": false
+      },
+      "Psi+": {
+        "overlap_with_singlet": 0.0,
+        "is_singlet": false
+      },
+      "Psi-": {
+        "overlap_with_singlet": 0.9999999999999996,
+        "is_singlet": true
+      }
+    },
+    "triplet_bell_projection": {
+      "Phi+": {
+        "total_triplet_projection_weight": 0.9999999999999998,
+        "in_symmetric_subspace": true,
+        "is_antisymmetric": false,
+        "triplet_overlaps": {
+          "|1,1>": 0.4999999999999999,
+          "|1,0>": 0.0,
+          "|1,-1>": 0.4999999999999999
+        }
+      },
+      "Phi-": {
+        "total_triplet_projection_weight": 0.9999999999999998,
+        "in_symmetric_subspace": true,
+        "is_antisymmetric": false,
+        "triplet_overlaps": {
+          "|1,1>": 0.4999999999999999,
+          "|1,0>": 0.0,
+          "|1,-1>": 0.4999999999999999
+        }
+      },
+      "Psi+": {
+        "total_triplet_projection_weight": 0.9999999999999996,
+        "in_symmetric_subspace": true,
+        "is_antisymmetric": false,
+        "triplet_overlaps": {
+          "|1,1>": 0.0,
+          "|1,0>": 0.9999999999999996,
+          "|1,-1>": 0.0
+        }
+      },
+      "Psi-": {
+        "total_triplet_projection_weight": 1.0573994819069698e-33,
+        "in_symmetric_subspace": false,
+        "is_antisymmetric": true,
+        "triplet_overlaps": {
+          "|1,1>": 0.0,
+          "|1,0>": 0.0,
+          "|1,-1>": 0.0
+        }
+      }
+    },
+    "total_spin_quantum_numbers": {
+      "J2_eigenvalues": [
+        0.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "J2_eigenvalues_match": true,
+      "Jz_eigenvalues": [
+        -1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "Jz_eigenvalues_match": true,
+      "Psi-_J2_eigenvalue": 0.0,
+      "Psi-_is_j0": true,
+      "Psi+_J2_eigenvalue": 1.9999999999999996,
+      "Psi+_is_j1": true
+    }
+  },
+  "verdicts": {
+    "spin_reps_all_pass": true,
+    "spin_half_majorana_all_match": true,
+    "spin1_majorana_correct": true,
+    "higher_spin_majorana_correct": true,
+    "2qubit_symmetric_majorana_correct": true,
+    "psi_minus_is_singlet": true,
+    "other_bells_not_singlet": true,
+    "triplet_bells_in_symmetric": true,
+    "psi_minus_antisymmetric": true,
+    "quantum_numbers_correct": true
+  },
+  "overall_pass": true
+}

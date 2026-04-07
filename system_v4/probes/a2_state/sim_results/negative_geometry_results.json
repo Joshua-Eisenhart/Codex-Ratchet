@@ -1,0 +1,214 @@
+{
+  "battery": "negative_geometry",
+  "total_tests": 10,
+  "passed": 10,
+  "failed": 0,
+  "results": [
+    {
+      "test": "FS_identical_states",
+      "distance_same": 1.4901161193847656e-08,
+      "distance_phase_rotated": 1.4901161193847656e-08,
+      "noise_floor": 1.4901161193847656e-08,
+      "expected": 0.0,
+      "below_1e7": true,
+      "pass": true,
+      "note": "Noise floor from arccos near boundary; exact 0 not guaranteed by float64"
+    },
+    {
+      "test": "FS_mixed_state_domain_violation",
+      "fs_to_max_mixed_dominant_eigvec": 0.7451442056684554,
+      "fs_to_partial_mixed_dominant_eigvec": 0.08127128722695086,
+      "max_mixed_eigenvalue_spread": 0.0,
+      "max_mixed_eigvec_arbitrary": true,
+      "pass": true,
+      "note": "FS on mixed states is undefined; dominant eigenvector is arbitrary when degenerate"
+    },
+    {
+      "rank0_bures": 1.4142135623730951,
+      "rank0_error": null,
+      "near_singular_bures": 0.7937585702330139,
+      "near_singular_error": null,
+      "negative_eigval_bures": 0.8220692296610316,
+      "negative_eigval_error": null,
+      "negative_eigval_is_real": true,
+      "test": "Bures_singular_states",
+      "pass": true,
+      "note": "sqrtm on zero/near-singular/unphysical matrices"
+    },
+    {
+      "test": "Berry_phase_open_path_gauge_dependence",
+      "gamma_gauge1": -0.2852982452490147,
+      "gamma_gauge2": -2.5434212872100006,
+      "gamma_gauge3": 2.9978870619305718,
+      "spread": 5.541308349140572,
+      "gauge_invariant": false,
+      "pass": true,
+      "note": "SHOULD fail gauge invariance -- open path Berry phase is gauge-dependent"
+    },
+    {
+      "test": "QFI_maximally_mixed",
+      "generators": {
+        "sigma_z_x_I": {
+          "qfi_sld_naive": 16.0,
+          "qfi_sld_nonzero_TRAP": true,
+          "qfi_finite_diff": 0.0008881784197001252,
+          "qfi_fd_ratio_to_sld": 5.551115123125783e-05,
+          "qfi_fd_negligible": true
+        },
+        "random_hermitian": {
+          "qfi_sld_naive": 82.31037606896628,
+          "qfi_sld_nonzero_TRAP": true,
+          "qfi_finite_diff": 0.0017763568394002505,
+          "qfi_fd_ratio_to_sld": 2.15812018391445e-05,
+          "qfi_fd_negligible": true
+        }
+      },
+      "sld_trap_triggered": true,
+      "fd_negligible_vs_sld": true,
+      "pass": true,
+      "note": "SLD formula gives nonzero (trap); finite-diff shows true QFI is negligible (sqrtm noise floor)"
+    },
+    {
+      "test": "trace_distance_machine_epsilon",
+      "probes": [
+        {
+          "epsilon": 1e-16,
+          "trace_distance": 1.1102230246251565e-16,
+          "distinguishable": true,
+          "ratio_td_over_eps": 1.1102230246251565
+        },
+        {
+          "epsilon": 1e-15,
+          "trace_distance": 9.992007221626409e-16,
+          "distinguishable": true,
+          "ratio_td_over_eps": 0.9992007221626408
+        },
+        {
+          "epsilon": 1e-14,
+          "trace_distance": 9.992007221626409e-15,
+          "distinguishable": true,
+          "ratio_td_over_eps": 0.9992007221626409
+        },
+        {
+          "epsilon": 1e-12,
+          "trace_distance": 9.999778782798785e-13,
+          "distinguishable": true,
+          "ratio_td_over_eps": 0.9999778782798785
+        },
+        {
+          "epsilon": 1e-10,
+          "trace_distance": 1.000000082740371e-10,
+          "distinguishable": true,
+          "ratio_td_over_eps": 1.000000082740371
+        },
+        {
+          "epsilon": 1e-08,
+          "trace_distance": 9.999999994736442e-09,
+          "distinguishable": true,
+          "ratio_td_over_eps": 0.9999999994736442
+        }
+      ],
+      "indistinguishability_threshold": 1e-16,
+      "pass": true,
+      "note": "Probing the floor where numerical noise drowns the signal"
+    },
+    {
+      "test": "fidelity_exceeds_one",
+      "num_violations": 150,
+      "violations_sample": [
+        {
+          "trial": 0,
+          "fidelity": 1.0000000063920043,
+          "excess": 6.392004259225814e-09
+        },
+        {
+          "trial": 1,
+          "fidelity": 1.000000022923045,
+          "excess": 2.29230450177198e-08
+        },
+        {
+          "trial": 2,
+          "fidelity": 1.000000018898274,
+          "excess": 1.8898274056766695e-08
+        },
+        {
+          "trial": 3,
+          "fidelity": 1.0000000091141614,
+          "excess": 9.114161425571865e-09
+        },
+        {
+          "trial": 4,
+          "fidelity": 1.0000000076612503,
+          "excess": 7.66125030082776e-09
+        },
+        {
+          "trial": 5,
+          "fidelity": 1.0000000181912,
+          "excess": 1.8191200101824734e-08
+        },
+        {
+          "trial": 6,
+          "fidelity": 1.000000014898804,
+          "excess": 1.4898803968321772e-08
+        },
+        {
+          "trial": 7,
+          "fidelity": 1.0000000107294915,
+          "excess": 1.0729491517480483e-08
+        },
+        {
+          "trial": 8,
+          "fidelity": 1.000000003846678,
+          "excess": 3.84667808717154e-09
+        },
+        {
+          "trial": 9,
+          "fidelity": 1.0000000411477115,
+          "excess": 4.114771146035423e-08
+        }
+      ],
+      "pass": true,
+      "note": "Cataloguing conditions where sqrtm pushes fidelity past 1.0"
+    },
+    {
+      "test": "Cl3_rotor_spinor_periodicity",
+      "R_0_scalar": 1.0,
+      "R_0_bivec_norm": 0.0,
+      "R_2pi_scalar": -1.0,
+      "R_2pi_bivec_norm": 1.2246467991473532e-16,
+      "R_4pi_scalar": 1.0,
+      "R_4pi_bivec_norm": 2.4492935982947064e-16,
+      "R0_is_identity": true,
+      "R2pi_is_minus_one": true,
+      "R4pi_is_plus_one": true,
+      "spinor_sign_flip_confirmed": true,
+      "pass": true,
+      "note": "Spinor double-cover: 2pi gives -1, 4pi gives +1"
+    },
+    {
+      "test": "Berry_phase_contractible_loop",
+      "equator_berry_phase": -3.1415926535897927,
+      "equator_expected": -3.141592653589793,
+      "equator_error": 4.440892098500626e-16,
+      "tiny_loop_berry_phase": -1.5705352201170749e-06,
+      "tiny_loop_solid_angle": 3.1415923917412074e-06,
+      "tiny_loop_expected_berry": -1.5707961958706037e-06,
+      "tiny_loop_error": 2.6097575352878843e-10,
+      "point_loop_berry_phase": -0.0,
+      "point_loop_expected": 0.0,
+      "pass": true,
+      "note": "Contractible loop -> 0 solid angle -> 0 Berry phase"
+    },
+    {
+      "test": "QGT_maximally_mixed_metric_vs_curvature",
+      "metric_g11": -0.0,
+      "metric_g22": -0.0,
+      "metric_g12": -0.0,
+      "berry_curvature_F12": -0.0,
+      "metric_exists": false,
+      "curvature_is_zero": true,
+      "pass": true,
+      "note": "Maximally mixed: metric may exist but Berry curvature must vanish (Tr(rho [H1,H2])=0 when rho ~ I)"
+    }
+  ]
+}

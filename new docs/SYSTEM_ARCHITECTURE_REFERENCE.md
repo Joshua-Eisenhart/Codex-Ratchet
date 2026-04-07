@@ -159,6 +159,7 @@ describes the TARGET stack, not the current live state.
 ### Layer 1: ARCHITECTURE (settled, could evolve)
 
 Thread architecture:
+[HISTORICAL — see BOOT_PROMPT_TEMPLATES.md and 15_stack_authority_and_capability_index.md for current execution model]
 - A2: high-entropy mining, intent preservation, governance. The user.
 - A1: strategy + proposal generation. Creates sims AND negative sims.
 - A0: deterministic compiler. No interpretation.

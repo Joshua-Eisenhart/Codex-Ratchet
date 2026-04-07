@@ -179,6 +179,14 @@ Rules:
 - Must not paraphrase boot text
 - Expansion before compression, asymmetry before symmetry
 
+### SIM Runner Layer
+
+SIM executes probes against the constraint manifold. It is not a terminal --
+it is a runner that produces evidence tokens. SIM boots receive lego contracts
+and return JSON results. SIM audits verify sim results against the constraint
+surface. SIM never interprets -- it runs, emits artifacts, and reports.
+All SIM output is subject to B-admission before it counts as evidence.
+
 ### Contamination Rule
 
 A1 output (recon) does NOT become B evidence (canon) without going through

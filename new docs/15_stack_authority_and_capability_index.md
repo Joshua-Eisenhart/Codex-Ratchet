@@ -3,7 +3,14 @@
 Date: 2026-04-06
 Status: Canonical governance index for the `new docs/` stack
 
+## Authority Precedence
+
+1. This governance index > process doc for routing and capabilities
+2. Process doc (CONSTRAINT_SURFACE_AND_PROCESS.md) > thesis/session notes for work execution
+3. Narrower docs outrank broader docs within the same tier
+
 ## Purpose
+
 This doc answers two questions that the stack currently leaves too implicit:
 1. Which docs are authoritative for which layer?
 2. Which boots are allowed to do what?

@@ -73,10 +73,10 @@ Authority:
 
 ## Subdirectories
 
-- `new content/` — preprocessed research notes feeding the numbered docs (20 files)
-- `references/` — 14 completed external tradition reference docs
-- `archive_hermes_overlaps/` — 7 superseded Hermes-produced duplicates
-- `archive_old/` — 30 superseded docs (factual content preserved, framing superseded)
+- `new content/` — preprocessed research notes feeding the numbered docs (see directory listing)
+- `references/` — completed external tradition reference docs (see directory listing)
+- `archive_hermes_overlaps/` — superseded Hermes-produced duplicates (multiple files, growing)
+- `archive_old/` — superseded docs, factual content preserved, framing superseded (multiple files, growing)
 
 ---
 

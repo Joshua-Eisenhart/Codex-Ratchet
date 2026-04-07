@@ -1,0 +1,241 @@
+{
+  "name": "rustworkx_cascade_dag",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "prove kill-set disjointness between L4 and L6"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "DAG construction, acyclicity, topo sort, critical path, ancestors"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to DAG analysis"
+    }
+  },
+  "positive": {
+    "acyclic": {
+      "passed": true,
+      "detail": "DAG has no cycles"
+    },
+    "topological_sort": {
+      "passed": true,
+      "order": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L6",
+        "L7",
+        "L5"
+      ],
+      "edge_checks": [
+        {
+          "edge": "L0->L1",
+          "ok": true
+        },
+        {
+          "edge": "L1->L2",
+          "ok": true
+        },
+        {
+          "edge": "L2->L3",
+          "ok": true
+        },
+        {
+          "edge": "L0->L4",
+          "ok": true
+        },
+        {
+          "edge": "L3->L4",
+          "ok": true
+        },
+        {
+          "edge": "L4->L5",
+          "ok": true
+        },
+        {
+          "edge": "L4->L6",
+          "ok": true
+        },
+        {
+          "edge": "L6->L7",
+          "ok": true
+        }
+      ]
+    },
+    "l4_ancestors": {
+      "passed": true,
+      "ancestors": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ],
+      "expected": [
+        "L0",
+        "L1",
+        "L2",
+        "L3"
+      ]
+    },
+    "l6_ancestors": {
+      "passed": true,
+      "ancestors": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4"
+      ],
+      "expected": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4"
+      ]
+    },
+    "critical_path": {
+      "passed": true,
+      "length_edges": 6,
+      "path": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L6",
+        "L7"
+      ],
+      "expected_path": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L6",
+        "L7"
+      ]
+    },
+    "l4_diamond_dependency": {
+      "passed": true,
+      "in_degree": 2,
+      "detail": "L4 receives edges from both L0 (direct) and L3 (via chain)"
+    },
+    "l5_l6_parallel": {
+      "passed": true,
+      "detail": "L5 and L6 share no ancestor/descendant relation"
+    },
+    "total_kill_count": {
+      "passed": true,
+      "l4_kills": 18,
+      "l6_kills": 5,
+      "total": 23
+    },
+    "z3_kill_disjointness": {
+      "passed": true,
+      "z3_result": "unsat",
+      "python_intersection": [],
+      "detail": "z3 confirms no family is killed by both L4 and L6"
+    }
+  },
+  "negative": {
+    "back_edge_breaks_acyclicity": {
+      "passed": true,
+      "detail": "Adding L7->L0 correctly creates a cycle"
+    },
+    "remove_l0_l4_breaks_diamond": {
+      "passed": true,
+      "in_degree_after": 1,
+      "detail": "Removing L0->L4 reduces L4 in-degree from 2 to 1"
+    },
+    "reversed_kill_order_different_topo": {
+      "passed": true,
+      "reversed_order": [
+        "L0",
+        "L1",
+        "L2",
+        "L3",
+        "L6",
+        "L4",
+        "L7",
+        "L5"
+      ],
+      "detail": "With reversed kill dependencies, L6 precedes L4 in topo sort"
+    }
+  },
+  "boundary": {
+    "single_node_acyclic": {
+      "passed": true,
+      "node_count": 1,
+      "edge_count": 0
+    },
+    "linear_vs_cascade": {
+      "passed": true,
+      "linear_edges": 7,
+      "cascade_edges": 8,
+      "linear_l4_in_degree": 1,
+      "cascade_l4_in_degree": 2
+    },
+    "merged_l4_l6": {
+      "passed": true,
+      "node_count": 7,
+      "longest_path_edges": 5,
+      "original_longest": 6,
+      "detail": "Merging L4+L6 reduces nodes by 1 and shortens critical path"
+    }
+  },
+  "all_passed": true,
+  "classification": "canonical"
+}

@@ -1,0 +1,164 @@
+{
+  "name": "cvc5_cross_check",
+  "description": "Cross-check z3 UNSAT proofs with cvc5 independent solver",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check source solver"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "cross-check target solver"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant"
+    }
+  },
+  "positive": {
+    "no_cloning": {
+      "z3_result": "unsat",
+      "z3_time_s": 0.016569,
+      "cvc5_result": "unsat",
+      "cvc5_time_s": 0.017839,
+      "solvers_agree": true,
+      "both_unsat": true,
+      "pass": true
+    },
+    "bloch_contraction": {
+      "z3_result": "unsat",
+      "z3_time_s": 0.004531,
+      "cvc5_result": "unsat",
+      "cvc5_time_s": 0.000758,
+      "solvers_agree": true,
+      "both_unsat": true,
+      "pass": true
+    },
+    "entanglement_death": {
+      "z3_result": "unsat",
+      "z3_time_s": 0.000497,
+      "cvc5_result": "unsat",
+      "cvc5_time_s": 0.000543,
+      "solvers_agree": true,
+      "both_unsat": true,
+      "pass": true
+    },
+    "noncommutation": {
+      "z3_result": "unsat",
+      "z3_time_s": 0.000782,
+      "cvc5_result": "unsat",
+      "cvc5_time_s": 0.004211,
+      "solvers_agree": true,
+      "both_unsat": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "no_cloning_closed_interval": {
+      "expected": "sat",
+      "z3_result": "sat",
+      "z3_time_s": 0.001514,
+      "cvc5_result": "sat",
+      "cvc5_time_s": 0.000676,
+      "solvers_agree": true,
+      "pass": true
+    },
+    "bloch_low_threshold": {
+      "expected": "sat",
+      "z3_result": "sat",
+      "z3_time_s": 0.000852,
+      "cvc5_result": "sat",
+      "cvc5_time_s": 0.000573,
+      "solvers_agree": true,
+      "pass": true
+    },
+    "entanglement_low_threshold": {
+      "expected": "sat",
+      "z3_result": "sat",
+      "z3_time_s": 0.000494,
+      "cvc5_result": "sat",
+      "cvc5_time_s": 0.000522,
+      "solvers_agree": true,
+      "pass": true
+    },
+    "noncommutation_degenerate_eigs": {
+      "expected": "sat",
+      "z3_result": "sat",
+      "z3_time_s": 0.000496,
+      "cvc5_result": "sat",
+      "cvc5_time_s": 0.000637,
+      "solvers_agree": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "no_cloning_at_zero": {
+      "expected": "sat",
+      "z3_result": "sat",
+      "cvc5_result": "sat",
+      "pass": true
+    },
+    "no_cloning_at_one": {
+      "expected": "sat",
+      "z3_result": "sat",
+      "cvc5_result": "sat",
+      "pass": true
+    },
+    "bloch_exact_threshold": {
+      "expected": "unsat",
+      "z3_result": "unsat",
+      "cvc5_result": "unsat",
+      "pass": true
+    }
+  },
+  "all_pass": true,
+  "classification": "canonical"
+}

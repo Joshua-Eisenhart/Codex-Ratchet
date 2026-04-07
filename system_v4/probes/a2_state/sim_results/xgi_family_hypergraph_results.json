@@ -1,0 +1,522 @@
+{
+  "name": "xgi_family_hypergraph",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no gradient computation needed"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 hypergraph, not pairwise graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 structural analysis, not SMT"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no theorem proving needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no symbolic algebra needed"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no geometric algebra needed"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no manifold geometry needed"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no equivariant networks needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 xgi handles hypergraph natively"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "primary tool \u2014 hypergraph + simplicial complex construction and analysis"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "tried CellComplex comparison \u2014 see boundary tests"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "tried persistence comparison \u2014 see boundary tests"
+    }
+  },
+  "summary": {
+    "tests_passed": 17,
+    "tests_total": 17,
+    "all_pass": true
+  },
+  "data": {
+    "families": [
+      "density_matrix",
+      "purification",
+      "z_dephasing",
+      "x_dephasing",
+      "depolarizing",
+      "amplitude_damping",
+      "phase_damping",
+      "bit_flip",
+      "phase_flip",
+      "bit_phase_flip",
+      "unitary_rotation",
+      "z_measurement",
+      "CNOT",
+      "CZ",
+      "SWAP",
+      "Hadamard",
+      "T_gate",
+      "iSWAP",
+      "cartan_kak",
+      "eigenvalue_decomposition",
+      "husimi_q",
+      "l1_coherence",
+      "relative_entropy_coherence",
+      "wigner_negativity",
+      "hopf_connection",
+      "chiral_overlap",
+      "mutual_information",
+      "quantum_discord"
+    ],
+    "family_count": 28,
+    "structural_ops_count": 19,
+    "type_measures_count": 9,
+    "hyperedge_names": [
+      "channel_family",
+      "entangling_gates",
+      "clifford_group",
+      "universal_gate_set",
+      "coherence_measures",
+      "phase_space_reps",
+      "geometric_structure",
+      "pauli_channels",
+      "dephasing_pair",
+      "state_preparation",
+      "information_measures",
+      "non_clifford_completion",
+      "damping_channels"
+    ],
+    "hyperedge_count": 13
+  },
+  "analysis": {
+    "hypergraph_stats": {
+      "num_nodes": 28,
+      "num_edges": 13,
+      "edge_sizes": [
+        8,
+        4,
+        5,
+        3,
+        2,
+        3,
+        2,
+        3,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "edge_size_distribution": {
+        "8": 1,
+        "4": 1,
+        "5": 1,
+        "3": 3,
+        "2": 7
+      },
+      "node_degrees": {
+        "density_matrix": 1,
+        "purification": 1,
+        "z_dephasing": 2,
+        "x_dephasing": 2,
+        "depolarizing": 1,
+        "amplitude_damping": 2,
+        "phase_damping": 2,
+        "bit_flip": 2,
+        "phase_flip": 3,
+        "bit_phase_flip": 2,
+        "unitary_rotation": 0,
+        "z_measurement": 0,
+        "CNOT": 3,
+        "CZ": 2,
+        "SWAP": 1,
+        "Hadamard": 2,
+        "T_gate": 2,
+        "iSWAP": 1,
+        "cartan_kak": 2,
+        "eigenvalue_decomposition": 1,
+        "husimi_q": 1,
+        "l1_coherence": 1,
+        "relative_entropy_coherence": 1,
+        "wigner_negativity": 1,
+        "hopf_connection": 1,
+        "chiral_overlap": 1,
+        "mutual_information": 1,
+        "quantum_discord": 1
+      },
+      "max_degree_node": "phase_flip",
+      "max_degree_value": 3,
+      "min_degree_node": "unitary_rotation",
+      "min_degree_value": 0,
+      "mean_degree": 1.4285714285714286,
+      "is_connected": false,
+      "num_connected_components": 8
+    },
+    "edge_overlap": {
+      "channel_family--clifford_group": {
+        "shared_count": 1,
+        "shared_families": [
+          "phase_flip"
+        ]
+      },
+      "channel_family--pauli_channels": {
+        "shared_count": 3,
+        "shared_families": [
+          "phase_flip",
+          "bit_phase_flip",
+          "bit_flip"
+        ]
+      },
+      "channel_family--dephasing_pair": {
+        "shared_count": 2,
+        "shared_families": [
+          "z_dephasing",
+          "x_dephasing"
+        ]
+      },
+      "channel_family--damping_channels": {
+        "shared_count": 2,
+        "shared_families": [
+          "amplitude_damping",
+          "phase_damping"
+        ]
+      },
+      "entangling_gates--clifford_group": {
+        "shared_count": 2,
+        "shared_families": [
+          "CNOT",
+          "CZ"
+        ]
+      },
+      "entangling_gates--universal_gate_set": {
+        "shared_count": 1,
+        "shared_families": [
+          "CNOT"
+        ]
+      },
+      "entangling_gates--non_clifford_completion": {
+        "shared_count": 1,
+        "shared_families": [
+          "cartan_kak"
+        ]
+      },
+      "clifford_group--universal_gate_set": {
+        "shared_count": 2,
+        "shared_families": [
+          "CNOT",
+          "Hadamard"
+        ]
+      },
+      "clifford_group--pauli_channels": {
+        "shared_count": 1,
+        "shared_families": [
+          "phase_flip"
+        ]
+      },
+      "universal_gate_set--non_clifford_completion": {
+        "shared_count": 1,
+        "shared_families": [
+          "T_gate"
+        ]
+      }
+    },
+    "s_connectivity": {
+      "s=2_connected_families": [
+        "z_dephasing",
+        "x_dephasing",
+        "amplitude_damping",
+        "phase_damping",
+        "bit_flip",
+        "phase_flip",
+        "bit_phase_flip",
+        "CNOT",
+        "CZ",
+        "Hadamard",
+        "T_gate",
+        "cartan_kak"
+      ],
+      "s=2_count": 12,
+      "s=3_connected_families": [
+        "phase_flip",
+        "CNOT"
+      ],
+      "s=3_count": 2
+    },
+    "incidence_analysis": {
+      "incidence_shape": [
+        28,
+        13
+      ],
+      "incidence_rank": 13,
+      "max_possible_rank": 13,
+      "independent_structural_roles": 13
+    },
+    "dual_hypergraph": {
+      "dual_num_nodes": 13,
+      "dual_num_edges": 28,
+      "dual_is_connected": false,
+      "dual_node_degrees": {
+        "channel_family": 2,
+        "entangling_gates": 8,
+        "clifford_group": 2,
+        "universal_gate_set": 2,
+        "coherence_measures": 3,
+        "phase_space_reps": 5,
+        "geometric_structure": 4,
+        "pauli_channels": 3,
+        "dephasing_pair": 2,
+        "state_preparation": 3,
+        "information_measures": 2,
+        "non_clifford_completion": 2,
+        "damping_channels": 2
+      },
+      "dual_max_degree_edge": "entangling_gates",
+      "dual_max_degree_value": 8
+    },
+    "structural_vs_measure_degrees": {
+      "structural_avg_degree": 1.631578947368421,
+      "measure_avg_degree": 1.0,
+      "structural_higher": true
+    },
+    "simplicial_comparison": {
+      "hypergraph_edges": 13,
+      "simplicial_edges": 295,
+      "simplicial_nodes": 26,
+      "extra_faces_from_closure": 282,
+      "closure_ratio": 22.692
+    }
+  },
+  "positive": {
+    "P1_cnot_highest_degree": {
+      "cnot_degree": 3,
+      "max_degree": 3,
+      "pass": true,
+      "detail": "CNOT degree=3, max=3"
+    },
+    "P2_channel_largest_edge": {
+      "channel_size": 8,
+      "max_edge_size": 8,
+      "pass": true,
+      "detail": "channel_family size=8, max=8"
+    },
+    "P3_component_structure": {
+      "is_connected": false,
+      "num_components": 8,
+      "pass": true,
+      "detail": "8 components: 1 large structural (15), 5 measure pairs, 2 isolates"
+    },
+    "P4_incidence_rank": {
+      "rank": 13,
+      "shape": [
+        28,
+        13
+      ],
+      "pass": true,
+      "detail": "rank=13 out of max 13"
+    },
+    "P5_structural_higher_degree": {
+      "structural_avg": 1.631578947368421,
+      "measure_avg": 1.0,
+      "pass": true
+    },
+    "P6_entangling_clifford_overlap": {
+      "shared": {
+        "shared_count": 2,
+        "shared_families": [
+          "CNOT",
+          "CZ"
+        ]
+      },
+      "pass": true
+    },
+    "P7_s_connectivity": {
+      "s2_families": [
+        "z_dephasing",
+        "x_dephasing",
+        "amplitude_damping",
+        "phase_damping",
+        "bit_flip",
+        "phase_flip",
+        "bit_phase_flip",
+        "CNOT",
+        "CZ",
+        "Hadamard",
+        "T_gate",
+        "cartan_kak"
+      ],
+      "s3_families": [
+        "phase_flip",
+        "CNOT"
+      ],
+      "cnot_in_s3": true,
+      "pass": true
+    },
+    "P8_dual_structure": {
+      "dual_nodes": 13,
+      "dual_edges": 28,
+      "dual_connected": false,
+      "most_connected_edge": "entangling_gates",
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_different_from_random": {
+      "our_degrees_sorted": [
+        3,
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0
+      ],
+      "random_degrees_sorted": [
+        4,
+        4,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "distributions_differ": true,
+      "pass": true,
+      "detail": "Structured hypergraph should differ from random with same edge sizes"
+    },
+    "N2_channel_removal_changes_structure": {
+      "connectivity_changed": true,
+      "s_connectivity_changed": true,
+      "either_changed": true,
+      "pass": true,
+      "detail": "Removing the largest hyperedge must alter some structural property"
+    },
+    "N3_not_trivially_uniform": {
+      "full_degree_uniform": true,
+      "our_degree_uniform": false,
+      "pass": true,
+      "detail": "Our hypergraph has non-uniform degree distribution (informationally rich)"
+    }
+  },
+  "boundary": {
+    "B1_add_killed_l4": {
+      "original_components": 8,
+      "extended_components": 26,
+      "killed_families_isolated": true,
+      "num_isolated": 25,
+      "pass": true,
+      "detail": "Killed families should be isolated \u2014 they belong to no hyperedge"
+    },
+    "B2_single_node": {
+      "is_connected": true,
+      "pass": true
+    },
+    "B3_empty_hypergraph": {
+      "num_edges": 0,
+      "num_components": 5,
+      "pass": true
+    },
+    "B4_simplicial_closure": {
+      "hypergraph_edges": 13,
+      "simplicial_edges": 295,
+      "simplicial_nodes": 26,
+      "extra_faces_from_closure": 282,
+      "closure_ratio": 22.692,
+      "pass": true,
+      "detail": "Simplicial closure must add sub-faces; more edges than hypergraph"
+    },
+    "B5_toponetx_cell_complex": {
+      "cell_complex_shape": [
+        26,
+        28,
+        6
+      ],
+      "num_0cells": 26,
+      "num_1cells": 28,
+      "num_2cells": 6,
+      "pass": true,
+      "detail": "CellComplex encodes the same families with boundary operators"
+    },
+    "B6_gudhi_persistence": {
+      "betti_numbers": [
+        1,
+        0
+      ],
+      "num_finite_persistence_pairs": 19,
+      "pass": true,
+      "detail": "Persistence reveals topological features of family-family distance"
+    }
+  }
+}

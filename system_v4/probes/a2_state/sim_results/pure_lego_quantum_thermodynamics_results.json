@@ -1,0 +1,724 @@
+{
+  "probe": "pure_lego_quantum_thermodynamics",
+  "tests": [
+    {
+      "test": "thermal_state_limits",
+      "pass": true,
+      "details": [
+        {
+          "beta": 0.01,
+          "Z_numeric": 2.000100000833336,
+          "Z_analytic": 2.0001000008333363,
+          "Z_rel_error": 2.2203350315735916e-16,
+          "rho_max_error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "beta": 0.1,
+          "Z_numeric": 2.010008336111607,
+          "Z_analytic": 2.010008336111607,
+          "Z_rel_error": 0.0,
+          "rho_max_error": 0.0,
+          "pass": true
+        },
+        {
+          "beta": 0.5,
+          "Z_numeric": 2.2552519304127614,
+          "Z_analytic": 2.2552519304127614,
+          "Z_rel_error": 0.0,
+          "rho_max_error": 0.0,
+          "pass": true
+        },
+        {
+          "beta": 1.0,
+          "Z_numeric": 3.0861612696304874,
+          "Z_analytic": 3.0861612696304874,
+          "Z_rel_error": 0.0,
+          "rho_max_error": 0.0,
+          "pass": true
+        },
+        {
+          "beta": 2.0,
+          "Z_numeric": 7.524391382167263,
+          "Z_analytic": 7.524391382167263,
+          "Z_rel_error": 0.0,
+          "rho_max_error": 0.0,
+          "pass": true
+        },
+        {
+          "beta": 5.0,
+          "Z_numeric": 148.4198970495757,
+          "Z_analytic": 148.4198970495757,
+          "Z_rel_error": 0.0,
+          "rho_max_error": 0.0,
+          "pass": true
+        },
+        {
+          "beta": 10.0,
+          "Z_numeric": 22026.46584020665,
+          "Z_analytic": 22026.465840206645,
+          "Z_rel_error": 1.6516398197894387e-16,
+          "rho_max_error": 2.220446049250313e-16,
+          "pass": true
+        },
+        {
+          "limit": "beta->0 (maximally mixed)",
+          "max_error_from_I/2": 5.000000000143778e-07,
+          "pass": true
+        },
+        {
+          "limit": "beta->inf (ground state |1>)",
+          "max_error_from_|1><1|": 3.720075976020836e-44,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "test": "free_energy_identity",
+      "pass": true,
+      "details": [
+        {
+          "T": 0.1,
+          "F_state": -1.0000000002061153,
+          "F_exact": -1.0000000002061153,
+          "abs_error": 0.0,
+          "pass": true
+        },
+        {
+          "T": 0.5,
+          "F_state": -1.009074963958905,
+          "F_exact": -1.009074963958905,
+          "abs_error": 0.0,
+          "pass": true
+        },
+        {
+          "T": 1.0,
+          "F_state": -1.1269280110429725,
+          "F_exact": -1.1269280110429725,
+          "abs_error": 0.0,
+          "pass": true
+        },
+        {
+          "T": 2.0,
+          "F_state": -1.6265233750364454,
+          "F_exact": -1.6265233750364456,
+          "abs_error": 2.220446049250313e-16,
+          "pass": true
+        },
+        {
+          "T": 5.0,
+          "F_state": -3.565076261999763,
+          "F_exact": -3.5650762619997636,
+          "abs_error": 4.440892098500626e-16,
+          "pass": true
+        },
+        {
+          "T": 10.0,
+          "F_state": -6.981388693815918,
+          "F_exact": -6.9813886938159175,
+          "abs_error": 8.881784197001252e-16,
+          "pass": true
+        },
+        {
+          "T": 100.0,
+          "F_state": -69.31971797266341,
+          "F_exact": -69.31971797266341,
+          "abs_error": 0.0,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "test": "landauer_principle",
+      "pass": true,
+      "details": [
+        {
+          "T": 0.1,
+          "S_before_ln2": 1.0,
+          "S_after": -0.0,
+          "delta_S": -0.6931471805599453,
+          "W_min": 0.06931471805599453,
+          "W_landauer_kTln2": 0.06931471805599453,
+          "entropy_error": 0.0,
+          "work_error": 0.0,
+          "pass": true
+        },
+        {
+          "T": 0.5,
+          "S_before_ln2": 1.0,
+          "S_after": -0.0,
+          "delta_S": -0.6931471805599453,
+          "W_min": 0.34657359027997264,
+          "W_landauer_kTln2": 0.34657359027997264,
+          "entropy_error": 0.0,
+          "work_error": 0.0,
+          "pass": true
+        },
+        {
+          "T": 1.0,
+          "S_before_ln2": 1.0,
+          "S_after": -0.0,
+          "delta_S": -0.6931471805599453,
+          "W_min": 0.6931471805599453,
+          "W_landauer_kTln2": 0.6931471805599453,
+          "entropy_error": 0.0,
+          "work_error": 0.0,
+          "pass": true
+        },
+        {
+          "T": 2.0,
+          "S_before_ln2": 1.0,
+          "S_after": -0.0,
+          "delta_S": -0.6931471805599453,
+          "W_min": 1.3862943611198906,
+          "W_landauer_kTln2": 1.3862943611198906,
+          "entropy_error": 0.0,
+          "work_error": 0.0,
+          "pass": true
+        },
+        {
+          "T": 5.0,
+          "S_before_ln2": 1.0,
+          "S_after": -0.0,
+          "delta_S": -0.6931471805599453,
+          "W_min": 3.4657359027997265,
+          "W_landauer_kTln2": 3.4657359027997265,
+          "entropy_error": 0.0,
+          "work_error": 0.0,
+          "pass": true
+        },
+        {
+          "T": 10.0,
+          "S_before_ln2": 1.0,
+          "S_after": -0.0,
+          "delta_S": -0.6931471805599453,
+          "W_min": 6.931471805599453,
+          "W_landauer_kTln2": 6.931471805599453,
+          "entropy_error": 0.0,
+          "work_error": 0.0,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "test": "extractable_work",
+      "pass": true,
+      "details": [
+        {
+          "T": 0.5,
+          "state": "pure_ground",
+          "F_rho": 1.0,
+          "F_thermal": -1.009074963958905,
+          "W_extractable": 2.0090749639589047,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 0.5,
+          "state": "pure_excited",
+          "F_rho": -1.0,
+          "F_thermal": -1.009074963958905,
+          "W_extractable": 0.009074963958904947,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 0.5,
+          "state": "maximally_mixed",
+          "F_rho": -0.34657359027997264,
+          "F_thermal": -1.009074963958905,
+          "W_extractable": 0.6625013736789322,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 0.5,
+          "state": "biased_0.9",
+          "F_rho": 0.6374585133042759,
+          "F_thermal": -1.009074963958905,
+          "W_extractable": 1.6465334772631808,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 0.5,
+          "state": "biased_0.7",
+          "F_rho": 0.09456784897255321,
+          "F_thermal": -1.009074963958905,
+          "W_extractable": 1.1036428129314582,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 0.5,
+          "state": "random_0",
+          "F_rho": 0.3833736612126836,
+          "F_thermal": -1.009074963958905,
+          "W_extractable": 1.3924486251715886,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 0.5,
+          "state": "random_1",
+          "F_rho": -0.2654869363365274,
+          "F_thermal": -1.009074963958905,
+          "W_extractable": 0.7435880276223775,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 0.5,
+          "state": "random_2",
+          "F_rho": -0.5251998235363817,
+          "F_thermal": -1.009074963958905,
+          "W_extractable": 0.4838751404225232,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 0.5,
+          "state": "random_3",
+          "F_rho": -0.9447699142838444,
+          "F_thermal": -1.009074963958905,
+          "W_extractable": 0.06430504967506057,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 0.5,
+          "state": "random_4",
+          "F_rho": -0.4115119836483154,
+          "F_thermal": -1.009074963958905,
+          "W_extractable": 0.5975629803105895,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 1.0,
+          "state": "pure_ground",
+          "F_rho": 1.0,
+          "F_thermal": -1.1269280110429725,
+          "W_extractable": 2.1269280110429722,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 1.0,
+          "state": "pure_excited",
+          "F_rho": -1.0,
+          "F_thermal": -1.1269280110429725,
+          "W_extractable": 0.12692801104297247,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 1.0,
+          "state": "maximally_mixed",
+          "F_rho": -0.6931471805599453,
+          "F_thermal": -1.1269280110429725,
+          "W_extractable": 0.4337808304830272,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 1.0,
+          "state": "biased_0.9",
+          "F_rho": 0.47491702660855184,
+          "F_thermal": -1.1269280110429725,
+          "W_extractable": 1.6018450376515243,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 1.0,
+          "state": "biased_0.7",
+          "F_rho": -0.21086430205489354,
+          "F_thermal": -1.1269280110429725,
+          "W_extractable": 0.916063708988079,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 1.0,
+          "state": "random_0",
+          "F_rho": -0.8366283940913605,
+          "F_thermal": -1.1269280110429725,
+          "W_extractable": 0.290299616951612,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 1.0,
+          "state": "random_1",
+          "F_rho": 0.014508835000210107,
+          "F_thermal": -1.1269280110429725,
+          "W_extractable": 1.1414368460431825,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 1.0,
+          "state": "random_2",
+          "F_rho": -0.09631807487621724,
+          "F_thermal": -1.1269280110429725,
+          "W_extractable": 1.0306099361667553,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 1.0,
+          "state": "random_3",
+          "F_rho": -0.7351924182230576,
+          "F_thermal": -1.1269280110429725,
+          "W_extractable": 0.3917355928199149,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 1.0,
+          "state": "random_4",
+          "F_rho": -0.5409746746929752,
+          "F_thermal": -1.1269280110429725,
+          "W_extractable": 0.5859533363499972,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 2.0,
+          "state": "pure_ground",
+          "F_rho": 1.0,
+          "F_thermal": -1.6265233750364454,
+          "W_extractable": 2.626523375036445,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 2.0,
+          "state": "pure_excited",
+          "F_rho": -1.0,
+          "F_thermal": -1.6265233750364454,
+          "W_extractable": 0.6265233750364454,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 2.0,
+          "state": "maximally_mixed",
+          "F_rho": -1.3862943611198906,
+          "F_thermal": -1.6265233750364454,
+          "W_extractable": 0.24022901391655482,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 2.0,
+          "state": "biased_0.9",
+          "F_rho": 0.14983405321710364,
+          "F_thermal": -1.6265233750364454,
+          "W_extractable": 1.776357428253549,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 2.0,
+          "state": "biased_0.7",
+          "F_rho": -0.8217286041097871,
+          "F_thermal": -1.6265233750364454,
+          "W_extractable": 0.8047947709266583,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 2.0,
+          "state": "random_0",
+          "F_rho": -0.01318232442671452,
+          "F_thermal": -1.6265233750364454,
+          "W_extractable": 1.6133410506097308,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 2.0,
+          "state": "random_1",
+          "F_rho": -1.2598859058471188,
+          "F_thermal": -1.6265233750364454,
+          "W_extractable": 0.3666374691893266,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 2.0,
+          "state": "random_2",
+          "F_rho": -0.433346594347023,
+          "F_thermal": -1.6265233750364454,
+          "W_extractable": 1.1931767806894225,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 2.0,
+          "state": "random_3",
+          "F_rho": -0.35998421822833804,
+          "F_thermal": -1.6265233750364454,
+          "W_extractable": 1.2665391568081072,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 2.0,
+          "state": "random_4",
+          "F_rho": -1.2886441390776489,
+          "F_thermal": -1.6265233750364454,
+          "W_extractable": 0.33787923595879654,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 5.0,
+          "state": "pure_ground",
+          "F_rho": 1.0,
+          "F_thermal": -3.565076261999763,
+          "W_extractable": 4.565076261999764,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 5.0,
+          "state": "pure_excited",
+          "F_rho": -1.0,
+          "F_thermal": -3.565076261999763,
+          "W_extractable": 2.565076261999763,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 5.0,
+          "state": "maximally_mixed",
+          "F_rho": -3.4657359027997265,
+          "F_thermal": -3.565076261999763,
+          "W_extractable": 0.09934035920003659,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 5.0,
+          "state": "biased_0.9",
+          "F_rho": -0.825414866957241,
+          "F_thermal": -3.565076261999763,
+          "W_extractable": 2.739661395042522,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 5.0,
+          "state": "biased_0.7",
+          "F_rho": -2.6543215102744675,
+          "F_thermal": -3.565076261999763,
+          "W_extractable": 0.9107547517252956,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 5.0,
+          "state": "random_0",
+          "F_rho": -3.20610951124532,
+          "F_thermal": -3.565076261999763,
+          "W_extractable": 0.3589667507544432,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 5.0,
+          "state": "random_1",
+          "F_rho": -3.1482275869606995,
+          "F_thermal": -3.565076261999763,
+          "W_extractable": 0.41684867503906364,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 5.0,
+          "state": "random_2",
+          "F_rho": -2.306478545471835,
+          "F_thermal": -3.565076261999763,
+          "W_extractable": 1.258597716527928,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 5.0,
+          "state": "random_3",
+          "F_rho": -3.2278745383405045,
+          "F_thermal": -3.565076261999763,
+          "W_extractable": 0.3372017236592586,
+          "W_nonneg": true,
+          "pass": true
+        },
+        {
+          "T": 5.0,
+          "state": "random_4",
+          "F_rho": -2.996980769733173,
+          "F_thermal": -3.565076261999763,
+          "W_extractable": 0.5680954922665902,
+          "W_nonneg": true,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "test": "carnot_efficiency",
+      "pass": true,
+      "details": [
+        {
+          "T_hot": 1.0,
+          "T_cold": 0.5,
+          "S_hot": 0.3653338550872076,
+          "S_cold": 0.09009476776617596,
+          "Q_hot": 0.27523908732103164,
+          "Q_cold": 0.13761954366051582,
+          "W_carnot": 0.13761954366051582,
+          "eta_computed": 0.5,
+          "eta_carnot_exact": 0.5,
+          "eta_error": 0.0,
+          "eta_in_bounds": true,
+          "pass": true
+        },
+        {
+          "T_hot": 2.0,
+          "T_cold": 0.5,
+          "S_hot": 0.5822031088882178,
+          "S_cold": 0.09009476776617596,
+          "Q_hot": 0.9842166822440837,
+          "Q_cold": 0.2460541705610209,
+          "W_carnot": 0.7381625116830628,
+          "eta_computed": 0.7500000000000001,
+          "eta_carnot_exact": 0.75,
+          "eta_error": 1.1102230246251565e-16,
+          "eta_in_bounds": true,
+          "pass": true
+        },
+        {
+          "T_hot": 5.0,
+          "T_cold": 1.0,
+          "S_hot": 0.6735401883549719,
+          "S_cold": 0.3653338550872076,
+          "Q_hot": 1.5410316663388213,
+          "Q_cold": 0.30820633326776425,
+          "W_carnot": 1.232825333071057,
+          "eta_computed": 0.8,
+          "eta_carnot_exact": 0.8,
+          "eta_error": 0.0,
+          "eta_in_bounds": true,
+          "pass": true
+        },
+        {
+          "T_hot": 10.0,
+          "T_cold": 1.0,
+          "S_hot": 0.6881720699190963,
+          "S_cold": 0.3653338550872076,
+          "Q_hot": 3.228382148318887,
+          "Q_cold": 0.3228382148318887,
+          "W_carnot": 2.905543933486998,
+          "eta_computed": 0.9,
+          "eta_carnot_exact": 0.9,
+          "eta_error": 0.0,
+          "eta_in_bounds": true,
+          "pass": true
+        },
+        {
+          "T_hot": 10.0,
+          "T_cold": 0.1,
+          "S_hot": 0.6881720699190963,
+          "S_cold": 4.328422605809599e-08,
+          "Q_hot": 6.881720266348702,
+          "Q_cold": 0.06881720266348702,
+          "W_carnot": 6.812903063685215,
+          "eta_computed": 0.99,
+          "eta_carnot_exact": 0.99,
+          "eta_error": 0.0,
+          "eta_in_bounds": true,
+          "pass": true
+        },
+        {
+          "T_hot": 100.0,
+          "T_cold": 1.0,
+          "S_hot": 0.6930971830598341,
+          "S_cold": 0.3653338550872076,
+          "Q_hot": 32.776332797262654,
+          "Q_cold": 0.32776332797262653,
+          "W_carnot": 32.44856946929003,
+          "eta_computed": 0.99,
+          "eta_carnot_exact": 0.99,
+          "eta_error": 0.0,
+          "eta_in_bounds": true,
+          "pass": true
+        },
+        {
+          "T_hot": 5.0,
+          "T_cold": 1.0,
+          "mix_frac": 0.1,
+          "eta_partial": 0.8,
+          "eta_carnot": 0.8,
+          "eta_leq_carnot": true,
+          "pass": true
+        },
+        {
+          "T_hot": 5.0,
+          "T_cold": 1.0,
+          "mix_frac": 0.3,
+          "eta_partial": 0.8,
+          "eta_carnot": 0.8,
+          "eta_leq_carnot": true,
+          "pass": true
+        },
+        {
+          "T_hot": 5.0,
+          "T_cold": 1.0,
+          "mix_frac": 0.5,
+          "eta_partial": 0.8,
+          "eta_carnot": 0.8,
+          "eta_leq_carnot": true,
+          "pass": true
+        },
+        {
+          "T_hot": 5.0,
+          "T_cold": 1.0,
+          "mix_frac": 0.7,
+          "eta_partial": 0.8,
+          "eta_carnot": 0.8,
+          "eta_leq_carnot": true,
+          "pass": true
+        }
+      ]
+    },
+    {
+      "test": "entropy_properties",
+      "pass": true,
+      "details": [
+        {
+          "property": "S(pure)=0",
+          "S": -0.0,
+          "pass": true
+        },
+        {
+          "property": "S(max_mixed)=ln(d)",
+          "S": 0.6931471805599453,
+          "ln_d": 0.6931471805599453,
+          "pass": true
+        },
+        {
+          "property": "0<=S<=ln(d) for 100 random states",
+          "violations": 0,
+          "pass": true
+        },
+        {
+          "property": "concavity (50 random pairs)",
+          "violations": 0,
+          "pass": true
+        }
+      ]
+    }
+  ],
+  "all_pass": true
+}

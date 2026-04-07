@@ -1,0 +1,1283 @@
+{
+  "probe": "sim_constrain_legos_L0",
+  "purpose": "Run all legos through F01+N01 root constraints",
+  "timestamp": "2026-04-07T08:32:08.212092+00:00",
+  "categories": {
+    "state_representations": {
+      "density_matrix": {
+        "d2_complex": {
+          "works": true,
+          "trace": 1.0
+        },
+        "d2_real": {
+          "works": true,
+          "trace": 1.0
+        },
+        "d4_complex": {
+          "works": true,
+          "trace": 0.9999999999999998
+        },
+        "commutator_is_complex": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_enhances": true
+      },
+      "bloch_vector": {
+        "bloch_vector": [
+          0.5,
+          0.3,
+          0.39999999999999997
+        ],
+        "norm": 0.7071067811865475,
+        "real_only_bloch": [
+          0.5,
+          0.0,
+          0.39999999999999997
+        ],
+        "real_sy_component": 0.0,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Without N01 (real only), sy=0 always. Bloch sphere collapses to Bloch DISK in xz-plane.",
+        "without_N01_dimension": 2,
+        "with_N01_dimension": 3
+      },
+      "stokes_parameters": {
+        "complex_state": [
+          1.0,
+          0.5,
+          0.3,
+          0.39999999999999997
+        ],
+        "real_state": [
+          1.0,
+          0.5,
+          0.0,
+          0.39999999999999997
+        ],
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "S2 parameter requires complex, killed without N01"
+      },
+      "eigenvalue_decomposition": {
+        "complex_eigenvalues": [
+          0.14644660940672624,
+          0.8535533905932737
+        ],
+        "real_eigenvalues": [
+          0.17984378812835752,
+          0.8201562118716424
+        ],
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Eigenvalues identical structure. N01 affects EIGENVECTORS (complex phases), not eigenvalues."
+      },
+      "wigner_function": {
+        "wigner_complex": [
+          1.0999999999999999,
+          0.39999999999999997,
+          0.29999999999999993,
+          0.2
+        ],
+        "wigner_real": [
+          0.95,
+          0.55,
+          0.44999999999999996,
+          0.04999999999999999
+        ],
+        "wigner_pure": [
+          1.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "has_negative_values": false,
+        "needs_F01": true,
+        "needs_N01": true,
+        "N01_effect": "Without N01, Wigner is always non-negative (classical probability). N01 enables negativity = quantum advantage."
+      },
+      "husimi_q": {
+        "all_nonnegative": true,
+        "min_value": 0.1500058116092204,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Husimi is always non-negative. Works identically with or without N01. It smooths over noncommutativity."
+      },
+      "coherence_vector": {
+        "d4_vector_dim": 15,
+        "d4_norm": 1.2247448713915887,
+        "symmetric_components": 6,
+        "antisymmetric_components_need_complex": 6,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Without N01, 6 antisymmetric components vanish. Vector truncated from 15d to 9d."
+      },
+      "purification": {
+        "purification_roundtrip": 1.5700924586837752e-16,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Works identically. But purification of noncommuting-observable states creates genuine entanglement."
+      },
+      "characteristic_function": {
+        "chi_values": [
+          [
+            {
+              "re": 1.0,
+              "im": 0.0
+            },
+            {
+              "re": 0.39999999999999997,
+              "im": 0.0
+            }
+          ],
+          [
+            {
+              "re": 0.5,
+              "im": 0.0
+            },
+            {
+              "re": 0.0,
+              "im": -0.3
+            }
+          ]
+        ],
+        "has_imaginary": true,
+        "needs_F01": true,
+        "needs_N01": true,
+        "N01_effect": "Without N01 (commuting X,Z), characteristic function is purely real. Complex phase = noncommutation signature."
+      }
+    },
+    "entropy_types": {
+      "von_neumann": {
+        "commuting_value": 0.8812908992306927,
+        "noncommuting_value": 0.8812908992306926,
+        "difference": 1.1102230246251565e-16,
+        "can_distinguish_N01": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_blind": true
+      },
+      "renyi_2": {
+        "commuting_value": 0.7858751946471533,
+        "noncommuting_value": 0.7858751946471527,
+        "difference": 5.551115123125783e-16,
+        "can_distinguish_N01": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_blind": true
+      },
+      "tsallis_2": {
+        "commuting_value": 0.42000000000000026,
+        "noncommuting_value": 0.42000000000000004,
+        "difference": 2.220446049250313e-16,
+        "can_distinguish_N01": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_blind": true
+      },
+      "min_entropy": {
+        "commuting_value": 0.5145731728297586,
+        "noncommuting_value": 0.5145731728297581,
+        "difference": 4.440892098500626e-16,
+        "can_distinguish_N01": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_blind": true
+      },
+      "max_entropy": {
+        "commuting_value": 1.0,
+        "noncommuting_value": 1.0,
+        "difference": 0.0,
+        "can_distinguish_N01": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_blind": true
+      },
+      "linear_entropy": {
+        "commuting_value": 0.8400000000000005,
+        "noncommuting_value": 0.8400000000000001,
+        "difference": 4.440892098500626e-16,
+        "can_distinguish_N01": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_blind": true
+      },
+      "participation_ratio": {
+        "commuting_value": 1.7241379310344835,
+        "noncommuting_value": 1.7241379310344829,
+        "difference": 6.661338147750939e-16,
+        "can_distinguish_N01": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_blind": true
+      },
+      "spectral_entropies_N01_blind": true,
+      "conditional_entropy": {
+        "bell_value": -0.9999999999999997,
+        "product_value": 0.0,
+        "difference": 0.9999999999999997,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Requires entangled states to be nontrivial"
+      },
+      "mutual_information": {
+        "bell_value": 1.9999999999999998,
+        "product_value": 0.0,
+        "difference": 1.9999999999999998,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "MI works classically too"
+      },
+      "coherent_information": {
+        "bell_value": 0.9999999999999997,
+        "product_value": -0.0,
+        "difference": 0.9999999999999997,
+        "needs_F01": true,
+        "needs_N01": true,
+        "N01_effect": "Requires entangled states to be nontrivial"
+      },
+      "entanglement_entropy": {
+        "bell_value": 1.0,
+        "product_value": -0.0,
+        "difference": 1.0,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Requires entangled states to be nontrivial"
+      },
+      "relative_entropy": {
+        "commuting_value": -1.1657341758564142e-16,
+        "noncommuting_value": 0.007568659440250936,
+        "needs_matrix_log": true,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Matrix log of noncommuting states requires diagonalization. Computationally harder but defined."
+      },
+      "sympy_analysis": {
+        "density_matrix_symbolic": "Matrix([[a, c], [conjugate(c), b]])",
+        "is_diagonal_iff_c_zero": true,
+        "c_zero_means": "All operators commute (real diagonal = classical)",
+        "log_requires_diagonalization_when_c_nonzero": true,
+        "conclusion": "Entropy FORMULAS are N01-blind (spectral). COMPUTATION of matrix log is N01-sensitive."
+      }
+    },
+    "geometry": {
+      "fubini_study": {
+        "d_0_plus": 0.7853981633974484,
+        "d_0_complex": 0.7853981633974484,
+        "d_plus_complex": 0.7853981633974484,
+        "d_real_0_plus": 0.7853981633974484,
+        "needs_F01": true,
+        "needs_N01": true,
+        "without_N01": "Reduces to real projective space RP^1 instead of CP^1. Geometry halved.",
+        "complex_projective": true
+      },
+      "bures_distance": {
+        "complex_distance": 0.7653668647301797,
+        "real_distance": 0.5715592243432424,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Bures works without N01. Real symmetric matrices have real sqrtm. Full geometry preserved for classical states."
+      },
+      "berry_phase": {
+        "berry_phase_equator": 3.1415926535897927,
+        "expected": -1.5707963267948966,
+        "real_loop_product": 0.8207619985462827,
+        "real_has_phase": false,
+        "needs_F01": true,
+        "needs_N01": true,
+        "without_N01": "KILLED. Berry phase requires complex U(1) holonomy. Real-only = no phase accumulation."
+      },
+      "qgt": {
+        "qgt_real_part_metric": [
+          [
+            0.24999999998308883,
+            -4.874212145011825e-12
+          ],
+          [
+            -4.874212145011825e-12,
+            0.12499999998265166
+          ]
+        ],
+        "qgt_imag_part_curvature": [
+          [
+            0.0,
+            0.17677669527839074
+          ],
+          [
+            -0.17677669527839074,
+            0.0
+          ]
+        ],
+        "curvature_magnitude": 0.17677669527839074,
+        "curvature_nonzero": true,
+        "real_qgt_scalar": 0.24999999999806544,
+        "real_curvature": 0.0,
+        "needs_F01": true,
+        "needs_N01": true,
+        "without_N01": "QGT reduces to metric-only (real part). Berry curvature = 0. Half the structure lost."
+      },
+      "hs_distance": {
+        "complex_distance": 0.5916079783099616,
+        "real_distance": 0.552268050859363,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "HS distance works identically. Flat metric, no curvature to lose."
+      },
+      "trace_distance": {
+        "complex_distance": 0.4183300132670378,
+        "real_distance": 0.39051248379533277,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Trace distance = eigenvalue-based. N01-blind like spectral entropies."
+      }
+    },
+    "channels": {
+      "z_dephasing": {
+        "output_trace": 1.0,
+        "output_hermitian": true,
+        "preserves_diagonal": true,
+        "produces_coherence_from_classical": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Diagonal-preserving. Works without N01."
+      },
+      "x_dephasing": {
+        "output_trace": 1.0,
+        "output_hermitian": true,
+        "preserves_diagonal": true,
+        "produces_coherence_from_classical": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Diagonal-preserving. Works without N01."
+      },
+      "depolarizing": {
+        "output_trace": 0.9999999999999999,
+        "output_hermitian": true,
+        "preserves_diagonal": true,
+        "produces_coherence_from_classical": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Diagonal-preserving. Works without N01."
+      },
+      "amplitude_damping": {
+        "output_trace": 0.9999999999999999,
+        "output_hermitian": true,
+        "preserves_diagonal": true,
+        "produces_coherence_from_classical": false,
+        "needs_F01": true,
+        "needs_N01": true,
+        "N01_effect": "Diagonal-preserving. Works without N01."
+      },
+      "phase_damping": {
+        "output_trace": 1.0,
+        "output_hermitian": true,
+        "preserves_diagonal": true,
+        "produces_coherence_from_classical": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Diagonal-preserving. Works without N01."
+      },
+      "bit_flip": {
+        "output_trace": 1.0,
+        "output_hermitian": true,
+        "preserves_diagonal": true,
+        "produces_coherence_from_classical": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Diagonal-preserving. Works without N01."
+      },
+      "phase_flip": {
+        "output_trace": 1.0,
+        "output_hermitian": true,
+        "preserves_diagonal": true,
+        "produces_coherence_from_classical": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Diagonal-preserving. Works without N01."
+      },
+      "bit_phase_flip": {
+        "output_trace": 1.0,
+        "output_hermitian": true,
+        "preserves_diagonal": true,
+        "produces_coherence_from_classical": false,
+        "needs_F01": true,
+        "needs_N01": true,
+        "N01_effect": "Diagonal-preserving. Works without N01."
+      },
+      "unitary_rotation": {
+        "output_trace": 1.0,
+        "output_hermitian": true,
+        "preserves_diagonal": false,
+        "produces_coherence_from_classical": true,
+        "needs_F01": true,
+        "needs_N01": true,
+        "N01_effect": "Generates coherence (off-diagonal) from classical input \u2014 N01-dependent"
+      },
+      "z_measurement": {
+        "output_trace": 1.0,
+        "output_hermitian": true,
+        "preserves_diagonal": true,
+        "produces_coherence_from_classical": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Diagonal-preserving. Works without N01."
+      },
+      "n01_generating_channels": [
+        "unitary_rotation"
+      ],
+      "n01_preserving_channels": [
+        "z_dephasing",
+        "x_dephasing",
+        "depolarizing",
+        "amplitude_damping",
+        "phase_damping",
+        "bit_flip",
+        "phase_flip",
+        "bit_phase_flip",
+        "z_measurement"
+      ]
+    },
+    "correlations": {
+      "concurrence": {
+        "bell_state": 0.9999999937348322,
+        "product_state": 0.0,
+        "uses_sigma_y": true,
+        "sigma_y_is_imaginary": true,
+        "needs_F01": true,
+        "needs_N01": true,
+        "N01_effect": "Concurrence uses sigma_y (pure imaginary). Without complex numbers, sigma_y doesn't exist. Concurrence = UNDEFINED without N01."
+      },
+      "negativity": {
+        "bell_state": 0.4999999999999999,
+        "product_state": 0.0,
+        "needs_F01": true,
+        "needs_N01": true,
+        "N01_effect": "Without N01, all states separable. Negativity always 0. Measure becomes trivial."
+      },
+      "mutual_information": {
+        "bell_state": 1.9999999999999998,
+        "product_state": 0.0,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "MI measures total correlations (classical + quantum). Works without N01 but only captures classical correlations."
+      },
+      "quantum_discord": {
+        "bell_state": 0.9999999999999989,
+        "product_state": -3.203426503814919e-16,
+        "needs_F01": true,
+        "needs_N01": true,
+        "N01_effect": "Discord measures quantum-beyond-classical correlations. Without N01, discord = 0 always. It IS the N01 detector."
+      },
+      "entanglement_of_formation": {
+        "bell_state": 0.9999999909612733,
+        "product_state": 0.0,
+        "needs_F01": true,
+        "needs_N01": true,
+        "N01_effect": "Built on concurrence -> inherits N01 dependency. Without N01: EoF = 0 always."
+      }
+    },
+    "gates": {
+      "CNOT": {
+        "is_real_matrix": true,
+        "creates_entanglement_from_00": false,
+        "creates_entanglement_from_plus0": true,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Gate is real. Works without N01. Entangling=True."
+      },
+      "CZ": {
+        "is_real_matrix": true,
+        "creates_entanglement_from_00": false,
+        "creates_entanglement_from_plus0": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Gate is real. Works without N01. Entangling=False."
+      },
+      "SWAP": {
+        "is_real_matrix": true,
+        "creates_entanglement_from_00": false,
+        "creates_entanglement_from_plus0": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Gate is real. Works without N01. Entangling=False."
+      },
+      "Hadamard": {
+        "is_real_matrix": true,
+        "creates_entanglement_from_00": false,
+        "creates_entanglement_from_plus0": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Gate is real. Works without N01. Entangling=False."
+      },
+      "T_gate": {
+        "is_real_matrix": false,
+        "creates_entanglement_from_00": false,
+        "creates_entanglement_from_plus0": false,
+        "needs_F01": true,
+        "needs_N01": true,
+        "N01_effect": "Gate has complex entries. Cannot exist in real-only (N01-free) Hilbert space."
+      },
+      "iSWAP": {
+        "is_real_matrix": false,
+        "creates_entanglement_from_00": false,
+        "creates_entanglement_from_plus0": false,
+        "needs_F01": true,
+        "needs_N01": true,
+        "N01_effect": "Gate has complex entries. Cannot exist in real-only (N01-free) Hilbert space."
+      },
+      "z3_gate_analysis": {
+        "query": "Can CNOT entangle without N01?",
+        "result": "sat",
+        "model": "[cnot_is_real = True,\n n01_present = True,\n cnot_entangles = True,\n cz_is_real = True]",
+        "interpretation": "CNOT is real-valued but ENTANGLING. The matrix itself doesn't need complex, but DETECTING entanglement requires noncommuting measurements (N01). CZ same story."
+      }
+    },
+    "decompositions": {
+      "schmidt": {
+        "schmidt_values": [
+          0.7071067811865475,
+          0.7071067811865475
+        ],
+        "schmidt_rank": 2,
+        "real_schmidt_values": [
+          0.7071067811865475,
+          0.7071067811865475
+        ],
+        "real_schmidt_rank": 2,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Schmidt decomposition works identically for real states. Values unchanged. Basis vectors may lose complex phase."
+      },
+      "svd": {
+        "singular_values": [
+          3.4963512236204144,
+          2.915769018149131,
+          1.9465333665779654,
+          0.4390949351899236
+        ],
+        "real_singular_values": [
+          3.5272646039522657,
+          2.5154686818012237,
+          1.2635009938937112,
+          0.4828804518384382
+        ],
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "SVD is universal. No dependency on complex structure."
+      },
+      "spectral": {
+        "eigenvalues": [
+          0.14644660940672624,
+          0.8535533905932737
+        ],
+        "eigenvectors_complex": true,
+        "real_eigenvalues": [
+          0.17984378812835752,
+          0.8201562118716424
+        ],
+        "real_eigenvectors_complex": false,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Eigenvalues identical. Eigenvectors lose complex phases without N01."
+      },
+      "pauli_decomposition": {
+        "coefficients": {
+          "I": 1.0,
+          "X": 0.5,
+          "Y": 0.3,
+          "Z": 0.39999999999999997
+        },
+        "Y_coefficient": 0.3,
+        "Y_nonzero": true,
+        "real_coefficients": {
+          "I": 1.0,
+          "X": 0.5,
+          "Y": 0.0,
+          "Z": 0.39999999999999997
+        },
+        "real_Y_coefficient": 0.0,
+        "needs_F01": true,
+        "needs_N01": false,
+        "N01_effect": "Y (imaginary) component killed without N01. Decomposition reduces from 4 to 3 terms."
+      },
+      "cartan_kak": {
+        "cnot_is_real_orthogonal": true,
+        "iswap_is_real_orthogonal": false,
+        "needs_F01": true,
+        "needs_N01": true,
+        "without_N01": "Reduces from SU(4) KAK to SO(4) decomposition. Loses complex phases in Cartan coordinates."
+      }
+    }
+  },
+  "survival_table": [
+    {
+      "lego": "density_matrix",
+      "category": "state_rep",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Works but restricted to real symmetric"
+    },
+    {
+      "lego": "bloch_vector",
+      "category": "state_rep",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Collapses to 2D disk (xz-plane), loses y-axis"
+    },
+    {
+      "lego": "stokes_parameters",
+      "category": "state_rep",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "S2 parameter killed"
+    },
+    {
+      "lego": "eigenvalue_decomposition",
+      "category": "state_rep",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Eigenvalues unchanged, eigenvectors lose phases"
+    },
+    {
+      "lego": "wigner_function",
+      "category": "state_rep",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "KILLED: no negativity without N01 = classical probability"
+    },
+    {
+      "lego": "husimi_q",
+      "category": "state_rep",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Unchanged (always non-negative)"
+    },
+    {
+      "lego": "coherence_vector",
+      "category": "state_rep",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Antisymmetric components killed, dimension halved"
+    },
+    {
+      "lego": "purification",
+      "category": "state_rep",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Works but purified states lack entanglement structure"
+    },
+    {
+      "lego": "characteristic_function",
+      "category": "state_rep",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "REDUCED: imaginary part killed"
+    },
+    {
+      "lego": "von_neumann",
+      "category": "entropy",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "N01-BLIND: sees only eigenvalues"
+    },
+    {
+      "lego": "renyi",
+      "category": "entropy",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "N01-BLIND: sees only eigenvalues"
+    },
+    {
+      "lego": "tsallis",
+      "category": "entropy",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "N01-BLIND: sees only eigenvalues"
+    },
+    {
+      "lego": "min_entropy",
+      "category": "entropy",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "N01-BLIND: sees only eigenvalues"
+    },
+    {
+      "lego": "max_entropy",
+      "category": "entropy",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "N01-BLIND: sees only eigenvalues"
+    },
+    {
+      "lego": "linear_entropy",
+      "category": "entropy",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "N01-BLIND: sees only eigenvalues"
+    },
+    {
+      "lego": "participation_ratio",
+      "category": "entropy",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "N01-BLIND: sees only eigenvalues"
+    },
+    {
+      "lego": "relative_entropy",
+      "category": "entropy",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Works but matrix log computation harder"
+    },
+    {
+      "lego": "conditional_entropy",
+      "category": "entropy",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Works classically"
+    },
+    {
+      "lego": "mutual_information",
+      "category": "entropy",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Works classically, captures only classical correlations"
+    },
+    {
+      "lego": "coherent_information",
+      "category": "entropy",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "Negative values require entanglement = N01"
+    },
+    {
+      "lego": "entanglement_entropy",
+      "category": "entropy",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "Zero without N01 (no entanglement)"
+    },
+    {
+      "lego": "fubini_study",
+      "category": "geometry",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "REDUCED: CP^1 -> RP^1, geometry halved"
+    },
+    {
+      "lego": "bures_distance",
+      "category": "geometry",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Works for real symmetric PSD"
+    },
+    {
+      "lego": "berry_phase",
+      "category": "geometry",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "KILLED: no complex phase accumulation"
+    },
+    {
+      "lego": "qgt_curvature",
+      "category": "geometry",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "REDUCED: curvature (Im part) = 0, metric only survives"
+    },
+    {
+      "lego": "hs_distance",
+      "category": "geometry",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Unchanged (flat metric)"
+    },
+    {
+      "lego": "trace_distance",
+      "category": "geometry",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Unchanged (eigenvalue-based)"
+    },
+    {
+      "lego": "z_dephasing",
+      "category": "channel",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Diagonal-preserving, works classically"
+    },
+    {
+      "lego": "x_dephasing",
+      "category": "channel",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "Generates coherence from classical"
+    },
+    {
+      "lego": "depolarizing",
+      "category": "channel",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Diagonal-preserving, works classically"
+    },
+    {
+      "lego": "amplitude_damping",
+      "category": "channel",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "Kraus ops mix basis states, needs N01 witness"
+    },
+    {
+      "lego": "phase_damping",
+      "category": "channel",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Diagonal-preserving"
+    },
+    {
+      "lego": "bit_flip",
+      "category": "channel",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "Generates off-diagonal from diagonal"
+    },
+    {
+      "lego": "phase_flip",
+      "category": "channel",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Diagonal-preserving"
+    },
+    {
+      "lego": "bit_phase_flip",
+      "category": "channel",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "Uses sigma_y (imaginary)"
+    },
+    {
+      "lego": "unitary_rotation",
+      "category": "channel",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "Complex rotation, needs N01"
+    },
+    {
+      "lego": "z_measurement",
+      "category": "channel",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Projects to diagonal, destroys coherence"
+    },
+    {
+      "lego": "concurrence",
+      "category": "correlation",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "UNDEFINED: sigma_y is imaginary"
+    },
+    {
+      "lego": "negativity",
+      "category": "correlation",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "TRIVIAL: always 0 without entanglement"
+    },
+    {
+      "lego": "mutual_information",
+      "category": "correlation",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Works classically"
+    },
+    {
+      "lego": "quantum_discord",
+      "category": "correlation",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "TRIVIAL: always 0 without N01"
+    },
+    {
+      "lego": "entanglement_of_formation",
+      "category": "correlation",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "UNDEFINED: built on concurrence"
+    },
+    {
+      "lego": "CNOT",
+      "category": "gate",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Real matrix, works. But entanglement detection needs N01"
+    },
+    {
+      "lego": "CZ",
+      "category": "gate",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Real diagonal matrix, works without N01"
+    },
+    {
+      "lego": "SWAP",
+      "category": "gate",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Real permutation matrix"
+    },
+    {
+      "lego": "Hadamard",
+      "category": "gate",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Real matrix (1/sqrt(2)[[1,1],[1,-1]])"
+    },
+    {
+      "lego": "T_gate",
+      "category": "gate",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "KILLED: exp(i*pi/4) is complex"
+    },
+    {
+      "lego": "iSWAP",
+      "category": "gate",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "KILLED: has imaginary entries"
+    },
+    {
+      "lego": "schmidt",
+      "category": "decomposition",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Works on real matrices"
+    },
+    {
+      "lego": "svd",
+      "category": "decomposition",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Universal, no complex needed"
+    },
+    {
+      "lego": "spectral",
+      "category": "decomposition",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Eigenvalues real, eigenvectors lose phases"
+    },
+    {
+      "lego": "pauli_decomposition",
+      "category": "decomposition",
+      "needs_F01": true,
+      "needs_N01": false,
+      "needs_both": false,
+      "survives_L0": true,
+      "status": "FULL (F01 only)",
+      "without_N01_effect": "Y-component killed, 4 terms -> 3 terms"
+    },
+    {
+      "lego": "cartan_kak",
+      "category": "decomposition",
+      "needs_F01": true,
+      "needs_N01": true,
+      "needs_both": true,
+      "survives_L0": true,
+      "status": "FULL (requires both)",
+      "without_N01_effect": "REDUCED: SU(4) -> SO(4)"
+    }
+  ],
+  "summary": {
+    "total_legos": 53,
+    "needs_F01": 53,
+    "needs_N01": 19,
+    "needs_both": 19,
+    "F01_only": 34,
+    "survives_L0": 53,
+    "runtime_seconds": 0.49,
+    "key_finding": "ALL 53 legos need F01. 19 need N01. 34 work with F01 alone. N01 splits legos into SPECTRAL (eigenvalue-based, N01-blind) vs GEOMETRIC (phase-based, N01-dependent). This is the fundamental partition of the constraint manifold.",
+    "partition": {
+      "spectral_N01_blind": [
+        "density_matrix",
+        "bloch_vector",
+        "stokes_parameters",
+        "eigenvalue_decomposition",
+        "husimi_q",
+        "coherence_vector",
+        "purification",
+        "von_neumann",
+        "renyi",
+        "tsallis",
+        "min_entropy",
+        "max_entropy",
+        "linear_entropy",
+        "participation_ratio",
+        "relative_entropy",
+        "conditional_entropy",
+        "mutual_information",
+        "bures_distance",
+        "hs_distance",
+        "trace_distance",
+        "z_dephasing",
+        "depolarizing",
+        "phase_damping",
+        "phase_flip",
+        "z_measurement",
+        "mutual_information",
+        "CNOT",
+        "CZ",
+        "SWAP",
+        "Hadamard",
+        "schmidt",
+        "svd",
+        "spectral",
+        "pauli_decomposition"
+      ],
+      "geometric_N01_dependent": [
+        "wigner_function",
+        "characteristic_function",
+        "coherent_information",
+        "entanglement_entropy",
+        "fubini_study",
+        "berry_phase",
+        "qgt_curvature",
+        "x_dephasing",
+        "amplitude_damping",
+        "bit_flip",
+        "bit_phase_flip",
+        "unitary_rotation",
+        "concurrence",
+        "negativity",
+        "quantum_discord",
+        "entanglement_of_formation",
+        "T_gate",
+        "iSWAP",
+        "cartan_kak"
+      ]
+    }
+  },
+  "z3_proofs": {
+    "berry_phase_without_complex": {
+      "query": "Berry phase AND NOT complex",
+      "result": "unsat",
+      "expected": "unsat",
+      "passed": true
+    },
+    "concurrence_without_complex": {
+      "query": "Concurrence AND NOT complex",
+      "result": "unsat",
+      "expected": "unsat",
+      "passed": true
+    },
+    "MI_without_N01": {
+      "query": "MI AND NOT N01",
+      "result": "sat",
+      "expected": "sat",
+      "passed": true
+    },
+    "real_restriction_kills_commutator": {
+      "query": "Real-only AND commutator exists",
+      "result": "unsat",
+      "expected": "unsat",
+      "passed": true,
+      "interpretation": "N01 ([A,B]!=0) FORCES complex numbers. Real-only matrices cannot have imaginary commutators."
+    },
+    "z_dephasing_n01": {
+      "query": "Z-dephasing needs N01?",
+      "result": "does not need N01",
+      "n01_needed": "False"
+    },
+    "bit_flip_n01": {
+      "query": "Bit-flip needs N01?",
+      "result": "needs N01",
+      "n01_needed": "True"
+    }
+  },
+  "sympy_analysis": {
+    "commutator_sx_sz": {
+      "value": "Matrix([[0, -2], [2, 0]])",
+      "equals_minus_2i_sy": true,
+      "is_imaginary": true,
+      "interpretation": "[sx, sz] = -2i*sy. Noncommutation PRODUCES imaginary unit. N01 -> complex numbers are FORCED."
+    },
+    "commutator_check": {
+      "matches": true
+    },
+    "real_algebra": {
+      "anticommutator_sx_sz": "Matrix([[0, 0], [0, 0]])",
+      "anticommutator_is_zero": true,
+      "surviving_generators": [
+        "I",
+        "sx",
+        "sz"
+      ],
+      "killed_generator": "sy (imaginary)",
+      "real_algebra": "Cl(1,1) -- real Clifford algebra, 2 generators",
+      "full_algebra": "Cl(3,0) via su(2) -- 3 generators, needs complex"
+    },
+    "vn_entropy_formula": {
+      "formula": "-a*log(a) - b*log(b)",
+      "requires_complex": false,
+      "note": "VN entropy is always real-valued even for complex states. It only sees eigenvalues."
+    },
+    "berry_phase_formula": {
+      "formula": "gamma = Im(oint <psi|d/dt psi> dt)",
+      "requires_complex": true,
+      "killed_without_N01": true,
+      "note": "Im() of real quantity = 0 always. Berry phase REQUIRES complex inner product."
+    }
+  }
+}

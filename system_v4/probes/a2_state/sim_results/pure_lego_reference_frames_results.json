@@ -1,0 +1,181 @@
+{
+  "sim": "pure_lego_reference_frames",
+  "description": "Quantum reference frames and asymmetry resource theory: G-twirling, asymmetry monotone, frameness, WAY theorem",
+  "g_twirling": {
+    "u1_twirl": {
+      "input_state": "|+>",
+      "numerical_matches_exact": true,
+      "off_diagonal_killed": true,
+      "diagonal_preserved": true,
+      "twirled_diag": [
+        0.49999999999999994,
+        0.49999999999999994
+      ],
+      "twirled_offdiag_01_abs": 1.6942106990457455e-17,
+      "PASS": true
+    },
+    "u1_twirl_ket0": {
+      "input_state": "|0>",
+      "state_unchanged_under_u1": true,
+      "PASS": true
+    },
+    "su2_twirl": {
+      "input_state": "|+>",
+      "projects_to_maximally_mixed": true,
+      "twirled_matrix_real": [
+        [
+          0.5009490946240847,
+          -0.0007862507235033936
+        ],
+        [
+          -0.0007862507235033925,
+          0.4990509053759152
+        ]
+      ],
+      "max_deviation_from_I_over_2": 0.005243633539039068,
+      "PASS": true
+    },
+    "su2_twirl_ket0": {
+      "input_state": "|0>",
+      "projects_to_maximally_mixed": true,
+      "PASS": true
+    }
+  },
+  "asymmetry_monotone": {
+    "u1_asymmetry": {
+      "A_ket_plus": 0.6931471805599452,
+      "A_ket_0": 0.0,
+      "A_maximally_mixed": 0.0,
+      "plus_breaks_u1": true,
+      "ket0_is_u1_symmetric": true,
+      "mixed_is_u1_symmetric": true,
+      "PASS": true
+    },
+    "su2_asymmetry": {
+      "A_ket_plus": 0.6931471805599451,
+      "A_ket_0": 0.6931471805599453,
+      "A_maximally_mixed": 0.0,
+      "plus_breaks_su2": true,
+      "ket0_breaks_su2": true,
+      "mixed_is_su2_symmetric": true,
+      "PASS": true
+    },
+    "monotonicity": {
+      "A_before_twirl": 0.28209593891588164,
+      "A_after_twirl": 0.0,
+      "monotone_holds": true,
+      "twirl_kills_asymmetry": true,
+      "PASS": true
+    }
+  },
+  "frameness": {
+    "frame_quality_vs_asymmetry": {
+      "theta_test_rad": 0.7853981633974483,
+      "ket_plus": {
+        "trace_distance": 0.38268343236508967,
+        "asymmetry": 0.6931471805599452
+      },
+      "ket_0": {
+        "trace_distance": 0.0,
+        "asymmetry": 0.0
+      },
+      "maximally_mixed": {
+        "trace_distance": 0.0,
+        "asymmetry": 0.0
+      },
+      "partial_coherent": {
+        "trace_distance": 0.19134171618254484,
+        "asymmetry": 0.13081203594113688
+      },
+      "ranking_matches": true,
+      "mixed_is_useless_frame": true,
+      "ket0_is_useless_frame": true,
+      "PASS": true
+    },
+    "multi_copy_frame": {
+      "theta_test_rad": 0.7853981633974483,
+      "trace_distances_1_2_3_copies": [
+        0.38268343236508967,
+        0.5210053832799869,
+        0.6149315272702199
+      ],
+      "improves_with_copies": true,
+      "PASS": true
+    }
+  },
+  "way_theorem": {
+    "way_theorem": {
+      "observable": "sigma_x",
+      "conserved_quantity": "J_z_total",
+      "interaction": "Jaynes-Cummings (sigma_+ J_- + sigma_- J_+)",
+      "apparatus_results": [
+        {
+          "apparatus_spin_j": 0.5,
+          "apparatus_dim": 2,
+          "pointer_gap_Jz": 0.0,
+          "pointer_gap_Jx": 0.0,
+          "sx_after": 0.0,
+          "disturbance": 1.0,
+          "conservation_verified": true
+        },
+        {
+          "apparatus_spin_j": 1.0,
+          "apparatus_dim": 3,
+          "pointer_gap_Jz": 0.0,
+          "pointer_gap_Jx": 0.0,
+          "sx_after": 0.25,
+          "disturbance": 0.75,
+          "conservation_verified": true
+        },
+        {
+          "apparatus_spin_j": 2.0,
+          "apparatus_dim": 5,
+          "pointer_gap_Jz": 0.0,
+          "pointer_gap_Jx": 0.0,
+          "sx_after": 0.55224581,
+          "disturbance": 0.44775419,
+          "conservation_verified": true
+        },
+        {
+          "apparatus_spin_j": 5.0,
+          "apparatus_dim": 11,
+          "pointer_gap_Jz": 0.0,
+          "pointer_gap_Jx": 0.0,
+          "sx_after": 0.93244882,
+          "disturbance": 0.06755118,
+          "conservation_verified": true
+        },
+        {
+          "apparatus_spin_j": 10.0,
+          "apparatus_dim": 21,
+          "pointer_gap_Jz": 0.0,
+          "pointer_gap_Jx": 0.0,
+          "sx_after": 0.97774767,
+          "disturbance": 0.02225233,
+          "conservation_verified": true
+        }
+      ],
+      "pointer_blocked_by_conservation": true,
+      "disturbance_decreases_with_size": true,
+      "small_apparatus_disturbs": true,
+      "large_less_disturbing": true,
+      "PASS": true
+    },
+    "way_control_no_conservation": {
+      "interaction": "CNOT in sigma_x eigenbasis (non-conserving)",
+      "conservation_violated": true,
+      "pointer_gap": 2.0,
+      "pointer_distinguishes": true,
+      "contrast_with_conserving": "Conservation law blocks measurement (gap~0); without conservation, perfect measurement possible (gap=2)",
+      "PASS": true
+    },
+    "way_precondition": {
+      "commutator_sigma_x_sigma_z_norm": 2.8284271247461903,
+      "observable_does_not_commute_with_conserved": true,
+      "PASS": true
+    }
+  },
+  "overall_pass": true,
+  "total_tests": 12,
+  "tests_passed": 12
+}

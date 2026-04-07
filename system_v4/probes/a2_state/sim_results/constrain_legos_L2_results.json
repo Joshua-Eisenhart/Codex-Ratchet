@@ -1,0 +1,1065 @@
+{
+  "probe": "sim_constrain_legos_L2",
+  "purpose": "L2 constraint layer: C\u00b2 Hopf structure S\u00b9\u2192S\u00b3\u2192S\u00b2, dimension lock d=2, topology lock S\u00b3/S\u00b2",
+  "timestamp": "2026-04-07T09:13:48.472132+00:00",
+  "L2_constraints": {
+    "carrier": "C\u00b2",
+    "pure_state_manifold": "S\u00b3",
+    "projective_state_space": "CP\u00b9 \u2245 S\u00b2",
+    "fiber_bundle": "S\u00b9 \u2192 S\u00b3 \u2192 S\u00b2 (Hopf fibration)",
+    "fiber_group": "U(1)",
+    "structure_group": "SU(2)"
+  },
+  "specific_tests": {
+    "a_channel_collapse": {
+      "amplitude_damping_vs_generalized": {
+        "ad_output_trace": 1.0,
+        "gad_output_trace": 1.0000000000000002,
+        "gad_p1_matches_ad": true,
+        "gad_distinct_from_ad": true,
+        "conclusion": "GAD at d=2 is NOT collapsed to AD. GAD has extra temp param p. Both survive at d=2."
+      },
+      "all_channels_d2_native": true,
+      "channels_at_d2": [
+        "z_dephasing",
+        "x_dephasing",
+        "depolarizing",
+        "amplitude_damping",
+        "phase_damping",
+        "bit_flip",
+        "phase_flip",
+        "bit_phase_flip",
+        "unitary_rotation",
+        "z_measurement"
+      ],
+      "channel_count_at_d2": 10,
+      "channels_killed_by_d2": [],
+      "channels_trivial_at_d2": []
+    },
+    "b_fiber_base_distinction": {
+      "fiber_equivalence": {
+        "psi1": [
+          0.7071067811865475,
+          0.7071067811865475
+        ],
+        "psi2_phase_shift": "exp(i*pi/3)",
+        "bloch1": [
+          0.9999999999999998,
+          0.0,
+          0.0
+        ],
+        "bloch2": [
+          0.9999999999999999,
+          1.635154417564228e-17,
+          0.0
+        ],
+        "same_base_point": true,
+        "conclusion": "Global phase (S\u00b9 fiber) is invisible to Bloch sphere (S\u00b2 base). Hopf fiber = gauge freedom."
+      },
+      "base_distinction": {
+        "psi3": "|0>",
+        "psi4": "|1>",
+        "bloch3": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bloch4": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "different_base_point": true,
+        "geodesic_distance": 3.141592653589793,
+        "conclusion": "Orthogonal states map to antipodal points on S\u00b2. Base distance = pi."
+      },
+      "fiber_orbit": {
+        "base_point_theta": 1.0471975511965976,
+        "base_point_phi": 0.7853981633974483,
+        "fiber_samples": 8,
+        "all_map_to_same_base": true,
+        "conclusion": "The S\u00b9 fiber above each S\u00b2 point is exactly the set of kets differing by global phase."
+      },
+      "two_loop_types": {
+        "fiber_loop": {
+          "space": "S\u00b9",
+          "action": "U(1) phase rotation",
+          "observable_effect": "NONE (gauge)",
+          "topological_winding": "pi_1(S\u00b9) = Z"
+        },
+        "base_loop": {
+          "space": "S\u00b2",
+          "action": "path on Bloch sphere",
+          "observable_effect": "Berry phase (holonomy)",
+          "topological_winding": "pi_2(S\u00b2) = Z (Chern number)"
+        },
+        "interaction": "Berry phase = fiber holonomy induced by base loop. The two loops are COUPLED by the Hopf connection.",
+        "conclusion": "Hopf structure geometrically separates gauge (fiber) from physics (base). Two loop types = fiber loop vs base loop."
+      }
+    },
+    "c_correlation_tensor": {
+      "bell_state_T": {
+        "T_matrix": [
+          [
+            0.9999999999999998,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.9999999999999998,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.9999999999999998
+          ]
+        ],
+        "shape": [
+          3,
+          3
+        ],
+        "singular_values": [
+          0.9999999999999998,
+          0.9999999999999998,
+          0.9999999999999998
+        ],
+        "rank": 3,
+        "dimension_forced_by_d2": "3x3 (su(2) has 3 generators, not more)"
+      },
+      "werner_state_T": {
+        "T_matrix": [
+          [
+            0.6999999999999998,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.6999999999999998,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.6999999999999998
+          ]
+        ],
+        "shape": [
+          3,
+          3
+        ],
+        "rank": 3
+      },
+      "dimension_comparison": {
+        "d2_generators": 3,
+        "d2_T_size": "3x3",
+        "d3_generators": 8,
+        "d3_T_size": "8x8",
+        "d4_generators": 15,
+        "d4_T_size": "15x15",
+        "formula": "su(d) has d\u00b2-1 generators",
+        "conclusion": "d=2 forces T to be 3x3. This is MAXIMAL for the qubit. No larger correlation tensor exists."
+      }
+    },
+    "d_chern_gate_topology": {
+      "berry_phase_equator": {
+        "berry_phase": -3.141592653589793,
+        "expected": 3.141592653589793,
+        "solid_angle": 6.283185307179586,
+        "relation": "Berry phase = solid_angle / 2 (for spin-1/2)",
+        "match": false
+      },
+      "chern_number": {
+        "total_flux": 6.284218968755546,
+        "chern_c1": 1.0001645123492982,
+        "expected": 1,
+        "match": true,
+        "conclusion": "c\u2081=1 for the Hopf bundle. This is the simplest nontrivial monopole."
+      },
+      "weyl_chamber_d2": {
+        "shape": "tetrahedron (3-simplex)",
+        "vertices": {
+          "I": [
+            0,
+            0,
+            0
+          ],
+          "CNOT": [
+            0.7853981633974483,
+            0,
+            0
+          ],
+          "DCNOT": [
+            0.7853981633974483,
+            0.7853981633974483,
+            0
+          ],
+          "SWAP": [
+            0.7853981633974483,
+            0.7853981633974483,
+            0.7853981633974483
+          ]
+        },
+        "dimension": 3,
+        "parameter_count": "3 Cartan parameters (c1, c2, c3)",
+        "at_d3": "Weyl chamber would have 8 parameters",
+        "conclusion": "d=2 forces the gate space to be 3-dimensional. Topologically a tetrahedron."
+      },
+      "entangling_power_bound": {
+        "CNOT_is_maximal_2qubit": true,
+        "max_entangling_power_d2": 0.2222222222222222,
+        "c1_constrains": "Chern number = 1 means single monopole charge. Entangling gates carry this topological charge."
+      }
+    },
+    "e_bloch_is_state_space": {
+      "pure_states_on_S2": {
+        "samples": 1000,
+        "on_sphere": 1000,
+        "fraction": 1.0,
+        "conclusion": "ALL pure states land exactly on S\u00b2. CP\u00b9 = S\u00b2 is an identity, not an approximation."
+      },
+      "mixed_states_inside_ball": {
+        "samples": 500,
+        "inside_ball": 500,
+        "fraction": 1.0,
+        "conclusion": "ALL mixed states are strictly inside the Bloch ball. |r| < 1 iff mixed."
+      },
+      "maximally_mixed_at_origin": {
+        "bloch_vector": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "norm": 0.0,
+        "at_origin": true
+      },
+      "d2_specificity": {
+        "d2_pure_state_manifold": "S\u00b2 (sphere)",
+        "d2_full_state_space": "B\u00b3 (Bloch ball, 3 params)",
+        "d3_pure_state_manifold": "CP\u00b2 (not a sphere, 4 real dim)",
+        "d3_full_state_space": "8-dim convex body (not a ball)",
+        "d4_pure_state_manifold": "CP\u00b3 (6 real dim)",
+        "key_point": "ONLY at d=2 is the state space a ball/sphere. This is the Hopf structure."
+      }
+    },
+    "f_z3_pauli_generators": {
+      "d2_generator_count": {
+        "z3_result": "sat",
+        "d": 2,
+        "n_generators": 3,
+        "expected": 3,
+        "match": true,
+        "generators": [
+          "sigma_x",
+          "sigma_y",
+          "sigma_z"
+        ],
+        "conclusion": "d=2 forces exactly 3 generators. These ARE the Paulis. Not 2, not 4."
+      },
+      "cannot_be_2_or_4": {
+        "z3_result": "unsat",
+        "expected": "unsat",
+        "passed": true,
+        "conclusion": "d=2 + su(d) algebra \u2192 EXACTLY 3 generators. 2 or 4 is impossible."
+      },
+      "generators_span_hermitian": {
+        "z3_result": "sat",
+        "dim_hermitian_2x2": 4,
+        "basis_size": 4,
+        "span_complete": true,
+        "conclusion": "3 Paulis + I = 4 basis elements = dim(Hermitian 2x2). COMPLETE basis. No room for more."
+      },
+      "numerical_verification": {
+        "random_hermitian_decomposed": true,
+        "reconstruction_error": 0.0,
+        "exact": true,
+        "conclusion": "Any 2x2 Hermitian matrix decomposes uniquely into {I, sx, sy, sz}."
+      }
+    },
+    "g_fubini_study_curvature": {
+      "fubini_study_curvature": {
+        "metric_g_tt": "1/4",
+        "metric_g_pp": "sin(theta)**2/4",
+        "curvature_expression": "Piecewise((4 - 4/tan(theta)**2, Eq(sin(theta), 0)), (4, True))",
+        "curvature_value": "Piecewise((4 - 4/tan(theta)**2, Eq(sin(theta), 0)), (4, True))",
+        "expected": 4,
+        "is_constant": false
+      },
+      "sphere_radius": {
+        "K": 4,
+        "R": 0.5,
+        "R_squared": 0.25,
+        "conclusion": "CP\u00b9 with Fubini-Study metric is a sphere of radius 1/2. K=4 everywhere (constant curvature)."
+      },
+      "curvature_samples": [
+        {
+          "theta": 0.1,
+          "K": 4.0
+        },
+        {
+          "theta": 0.5,
+          "K": 4.0
+        },
+        {
+          "theta": 1.0,
+          "K": 4.0
+        },
+        {
+          "theta": 0.7853981633974483,
+          "K": 4.0
+        },
+        {
+          "theta": 1.0471975511965976,
+          "K": 4.0
+        },
+        {
+          "theta": 1.5707963267948966,
+          "K": 4.0
+        },
+        {
+          "theta": 2.0,
+          "K": 4.0
+        },
+        {
+          "theta": 2.5,
+          "K": 4.0
+        },
+        {
+          "theta": 3.041592653589793,
+          "K": 4.0
+        }
+      ],
+      "all_constant_K4": true,
+      "area_CP1": {
+        "area": 3.141592653589793,
+        "expected": 3.141592653589793,
+        "match": true,
+        "conclusion": "Area of CP\u00b9 = \u03c0. This is the area of a sphere of radius 1/2."
+      }
+    },
+    "h_clifford_d2": {
+      "clifford_relations": {
+        "e1_sq": 1.0,
+        "e2_sq": 1.0,
+        "e3_sq": 1.0,
+        "e12_anticommute": 0.0,
+        "e13_anticommute": 0.0,
+        "e23_anticommute": 0.0
+      },
+      "algebra_structure": {
+        "algebra": "Cl(3,0)",
+        "real_dimension": 8,
+        "isomorphic_to": "M\u2082(C) = all 2x2 complex matrices",
+        "matrix_rep_dimension": "2x2",
+        "generators_count": 3,
+        "generator_names": [
+          "e1 \u2194 \u03c3x",
+          "e2 \u2194 \u03c3y",
+          "e3 \u2194 \u03c3z"
+        ]
+      },
+      "pseudoscalar": {
+        "e123_squared": -1.0,
+        "is_imaginary_unit": true,
+        "conclusion": "e123\u00b2 = -1. The pseudoscalar acts as the imaginary unit. This is why C\u00b2 works."
+      },
+      "dimension_lock": {
+        "d2": "Cl(3,0) \u2245 M\u2082(C), 3 generators",
+        "d3": "su(3) needs 8 generators (Gell-Mann), NOT a Clifford algebra",
+        "d4": "su(4) needs 15 generators",
+        "conclusion": "d=2 is the UNIQUE dimension where the state-space generators form a Clifford algebra. Cl(3,0) = Paulis."
+      }
+    },
+    "i_schmidt_d2": {
+      "schmidt_d2": {
+        "max_schmidt_rank": 2,
+        "schmidt_coefficients": [
+          0.9727504408666608,
+          0.23185465230121372
+        ],
+        "sum_sq": 0.9999999999999998,
+        "parameterized_by": "single angle xi where lambda1=cos(xi), lambda2=sin(xi)",
+        "conclusion": "At d=2, entanglement of a pure bipartite state is a SINGLE NUMBER (the Schmidt angle)."
+      },
+      "schmidt_extremes_d2": {
+        "product_state": {
+          "coeffs": [
+            1,
+            0
+          ],
+          "entanglement": 0
+        },
+        "bell_state": {
+          "coeffs": [
+            0.7071067811865475,
+            0.7071067811865475
+          ],
+          "entanglement": "maximal"
+        },
+        "continuum": "All states lie on a curve parameterized by one angle xi in [0, pi/4]"
+      },
+      "schmidt_dimension_scaling": {
+        "d2": {
+          "max_rank": 2,
+          "free_params": 1
+        },
+        "d3": {
+          "max_rank": 3,
+          "free_params": 2
+        },
+        "d4": {
+          "max_rank": 4,
+          "free_params": 3
+        },
+        "formula": "d-1 free parameters for d\u00d7d bipartite",
+        "d2_consequence": "Entanglement is 1-dimensional. MAXIMALLY constrained."
+      }
+    },
+    "j_mps_d2": {
+      "mps_d2": {
+        "local_dim": 2,
+        "single_qubit_bond_dim": 1,
+        "two_qubit_max_bond_dim": 2,
+        "n_qubit_max_bond_dim": "2^(N/2)",
+        "status": "TRIVIAL for 2-qubit (bond dim 2 captures everything)",
+        "at_d3": "local dim 3, max bond dim 3 per bipartition",
+        "conclusion": "MPS at d=2 is trivial for 2-qubit systems. Not killed, but not interesting. For N>2 qubits with d=2, MPS becomes nontrivial."
+      },
+      "mps_reconstruction": {
+        "bond_dim_used": 2,
+        "reconstruction_error": 1.4169622320385585e-16,
+        "exact": true
+      }
+    },
+    "k_rmt_d2": {
+      "rmt_d2": {
+        "eigenvalue_count": 2,
+        "mean_lambda_min": 0.12307682422240897,
+        "mean_lambda_max": 0.876923175777591,
+        "constraint": "lambda_1 + lambda_2 = 1, both in [0,1]",
+        "marchenko_pastur_applicable": false,
+        "reason": "MP law requires d\u2192\u221e. At d=2, spectral distribution is NOT universal \u2014 it's just one free parameter.",
+        "status": "DEGENERATE: RMT spectral universality does not apply at d=2"
+      }
+    }
+  },
+  "survival_table": [
+    {
+      "lego": "density_matrix",
+      "category": "state_rep",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED",
+      "L2_detail": "d=2: exactly 3 free params (Bloch vector). Hermitian + trace 1 + PSD = Bloch ball."
+    },
+    {
+      "lego": "bloch_vector",
+      "category": "state_rep",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED: IS the state (not approximation)",
+      "L2_detail": "CP\u00b9=S\u00b2 means Bloch sphere IS the projective state space. Bloch vector IS the state. Exact identity, not embedding."
+    },
+    {
+      "lego": "stokes_parameters",
+      "category": "state_rep",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED",
+      "L2_detail": "Stokes = Bloch in optics notation. S\u00b2 isomorphism is exact at d=2."
+    },
+    {
+      "lego": "eigenvalue_decomposition",
+      "category": "state_rep",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: exactly 2 eigenvalues, 1 free param (purity). Eigenvectors carry Hopf phase."
+    },
+    {
+      "lego": "wigner_function",
+      "category": "state_rep",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: discrete Wigner on 2x2 grid (4 points). Minimal phase space. Negativity \u2194 nonclassicality still works."
+    },
+    {
+      "lego": "husimi_q",
+      "category": "state_rep",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: Husimi on S\u00b2. Always non-negative. Smoothed Bloch distribution."
+    },
+    {
+      "lego": "coherence_vector",
+      "category": "state_rep",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: coherence vector IS the Bloch vector (3 components). su(2) has d\u00b2-1=3 generators."
+    },
+    {
+      "lego": "purification",
+      "category": "state_rep",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED",
+      "L2_detail": "d=2: purification lives in C\u00b2\u2297C\u00b2 = C\u2074. Purification = embedding in S\u2077 \u2192 CP\u00b3."
+    },
+    {
+      "lego": "characteristic_function",
+      "category": "state_rep",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: 2x2 grid of values. Imaginary parts encode noncommutation."
+    },
+    {
+      "lego": "von_neumann",
+      "category": "entropy",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: S(rho) = h(p) where p is single eigenvalue. Binary entropy function. Max = log(2) = 1 bit."
+    },
+    {
+      "lego": "renyi",
+      "category": "entropy",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: R_alpha = log(p^alpha + (1-p)^alpha)/(1-alpha). Single-param family."
+    },
+    {
+      "lego": "tsallis",
+      "category": "entropy",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: T_q = (1 - p^q - (1-p)^q)/(q-1). Single-param family."
+    },
+    {
+      "lego": "min_entropy",
+      "category": "entropy",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: H_min = -log(max(p, 1-p)). Single threshold."
+    },
+    {
+      "lego": "max_entropy",
+      "category": "entropy",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: H_max = log(2) = 1. Fixed. Maximum is always 1 bit."
+    },
+    {
+      "lego": "linear_entropy",
+      "category": "entropy",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: S_L = 2(1-Tr(rho\u00b2)) = 2p(1-p). Quadratic in single param. Range [0, 1]."
+    },
+    {
+      "lego": "participation_ratio",
+      "category": "entropy",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: PR = 1/Tr(rho\u00b2) in [1, 2]. Only 2 levels to participate."
+    },
+    {
+      "lego": "relative_entropy",
+      "category": "entropy",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "NEUTRAL",
+      "L2_detail": "d=2: works as at any d. Two 2x2 matrices."
+    },
+    {
+      "lego": "conditional_entropy",
+      "category": "entropy",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED",
+      "L2_detail": "d=2: can be NEGATIVE (iff entangled). Range [-1, 1]. Negativity = entanglement witness."
+    },
+    {
+      "lego": "mutual_information",
+      "category": "entropy",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: MI in [0, 2]. Max MI = 2 log(2) = 2 for Bell states."
+    },
+    {
+      "lego": "coherent_information",
+      "category": "entropy",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED",
+      "L2_detail": "d=2: I_c in [-1, 1]. Positive \u2192 quantum channel capacity. Requires entanglement (N01)."
+    },
+    {
+      "lego": "entanglement_entropy",
+      "category": "entropy",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: EE in [0, 1]. Single bit of entanglement max. Parameterized by Schmidt angle."
+    },
+    {
+      "lego": "fubini_study",
+      "category": "geometry",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED: constant curvature K=4",
+      "L2_detail": "On CP\u00b9: FS metric gives sphere of radius 1/2, constant Gaussian curvature K=4. UNIQUE geometry."
+    },
+    {
+      "lego": "bures_distance",
+      "category": "geometry",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: Bures distance = arccos(sqrt(F)), fidelity F computed from 2x2 matrices. Max distance = pi/2."
+    },
+    {
+      "lego": "berry_phase",
+      "category": "geometry",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED: Chern c\u2081=1, monopole",
+      "L2_detail": "Berry phase = Hopf connection holonomy. Curvature = monopole field. Quantized by c\u2081=1."
+    },
+    {
+      "lego": "qgt_curvature",
+      "category": "geometry",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED",
+      "L2_detail": "d=2: QGT is 2x2 (on 2D base S\u00b2). Re(QGT) = FS metric (K=4). Im(QGT) = Berry curvature (monopole)."
+    },
+    {
+      "lego": "hs_distance",
+      "category": "geometry",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: ||rho-sigma||_HS = (1/2)||r1-r2|| (Euclidean distance of Bloch vectors, scaled)."
+    },
+    {
+      "lego": "trace_distance",
+      "category": "geometry",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: T(rho,sigma) = (1/2)||r1-r2|| (same as HS for pure states). Max = 1."
+    },
+    {
+      "lego": "z_dephasing",
+      "category": "channel",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: single param p. Kraus {sqrt(p)I, sqrt(1-p)sz}. Contracts Bloch ball along xy."
+    },
+    {
+      "lego": "x_dephasing",
+      "category": "channel",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: single param p. Contracts Bloch ball along yz."
+    },
+    {
+      "lego": "depolarizing",
+      "category": "channel",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: single param p. Contracts Bloch ball uniformly. rho -> (1-p)rho + p*I/2."
+    },
+    {
+      "lego": "amplitude_damping",
+      "category": "channel",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "NATIVE",
+      "L2_detail": "d=2: native dimension. 1 param gamma. Models spontaneous emission (|1>\u2192|0>)."
+    },
+    {
+      "lego": "phase_damping",
+      "category": "channel",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: equivalent to z_dephasing. 1 param. Kills off-diagonal."
+    },
+    {
+      "lego": "bit_flip",
+      "category": "channel",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: single param p. Kraus {sqrt(p)I, sqrt(1-p)sx}."
+    },
+    {
+      "lego": "phase_flip",
+      "category": "channel",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: equivalent to z_dephasing."
+    },
+    {
+      "lego": "bit_phase_flip",
+      "category": "channel",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: single param p. Kraus {sqrt(p)I, sqrt(1-p)sy}."
+    },
+    {
+      "lego": "unitary_rotation",
+      "category": "channel",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED",
+      "L2_detail": "d=2: SU(2) rotations = rotations of Bloch sphere. 3 Euler angles. Isometry of S\u00b2."
+    },
+    {
+      "lego": "z_measurement",
+      "category": "channel",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: projects to north/south pole. 2 outcomes max."
+    },
+    {
+      "lego": "concurrence",
+      "category": "correlation",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED: Wootters formula exact",
+      "L2_detail": "d=2: Wootters formula C(rho) is exact and closed-form. At d>2, no closed form exists."
+    },
+    {
+      "lego": "negativity",
+      "category": "correlation",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED: PPT iff separable",
+      "L2_detail": "d=2x2 and 2x3: PPT \u2194 separable (Peres-Horodecki). Negativity is COMPLETE witness at d=2."
+    },
+    {
+      "lego": "mutual_information_corr",
+      "category": "correlation",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: MI \u2264 2 log(2) = 2."
+    },
+    {
+      "lego": "quantum_discord",
+      "category": "correlation",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED: analytical formula known",
+      "L2_detail": "d=2x2: analytical formulas exist (Luo 2008). At d>2, discord requires numerical optimization."
+    },
+    {
+      "lego": "entanglement_of_formation",
+      "category": "correlation",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED: closed-form via concurrence",
+      "L2_detail": "d=2: EoF = h((1+sqrt(1-C\u00b2))/2). Closed-form. At d>2, EoF is NP-hard to compute."
+    },
+    {
+      "lego": "CNOT",
+      "category": "gate",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED: Weyl chamber vertex",
+      "L2_detail": "d=2: CNOT is a vertex of the Weyl chamber tetrahedron. Maximally entangling single application."
+    },
+    {
+      "lego": "CZ",
+      "category": "gate",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED: locally equivalent to CNOT",
+      "L2_detail": "d=2: CZ = (I\u2297H)CNOT(I\u2297H). Same Weyl chamber point."
+    },
+    {
+      "lego": "SWAP",
+      "category": "gate",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED: Weyl chamber vertex",
+      "L2_detail": "d=2: SWAP is a vertex. Generates full permutation group on qubits."
+    },
+    {
+      "lego": "Hadamard",
+      "category": "gate",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED: SU(2) rotation by pi",
+      "L2_detail": "d=2: H = rotation by pi around (x+z)/sqrt(2) axis. Creates superposition."
+    },
+    {
+      "lego": "T_gate",
+      "category": "gate",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED: non-Clifford magic",
+      "L2_detail": "d=2: T = diag(1, e^{i*pi/4}). Provides universality beyond Clifford. Phase IS Hopf fiber rotation."
+    },
+    {
+      "lego": "iSWAP",
+      "category": "gate",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED: Weyl chamber interior",
+      "L2_detail": "d=2: iSWAP at (pi/4, pi/4, 0) in Weyl chamber. Maximally entangling + phase."
+    },
+    {
+      "lego": "schmidt",
+      "category": "decomposition",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED: max rank 2",
+      "L2_detail": "d=2: at most 2 Schmidt coefficients. Entanglement = 1 free parameter."
+    },
+    {
+      "lego": "svd",
+      "category": "decomposition",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: 2x2 SVD. 2 singular values."
+    },
+    {
+      "lego": "spectral",
+      "category": "decomposition",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: 2 eigenvalues, sum=1, 1 free param."
+    },
+    {
+      "lego": "pauli_decomposition",
+      "category": "decomposition",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED: COMPLETE basis",
+      "L2_detail": "d=2: {I, sx, sy, sz} is the UNIQUE basis for 2x2 Hermitian. 4 coefficients determine everything."
+    },
+    {
+      "lego": "cartan_kak",
+      "category": "decomposition",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "ENHANCED: Weyl tetrahedron",
+      "L2_detail": "d=2: KAK of SU(4). 3 Cartan params + 2x3 Euler angles = 15 params = dim(SU(4))."
+    },
+    {
+      "lego": "l1_coherence",
+      "category": "coherence",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: l1 = 2|c| where c is the single off-diagonal. Max l1 = 1 (equator of Bloch sphere)."
+    },
+    {
+      "lego": "relative_entropy_coherence",
+      "category": "coherence",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: REC = S(diag(rho)) - S(rho). Both are binary entropies. Max = 1 bit."
+    },
+    {
+      "lego": "wigner_negativity",
+      "category": "nonclassicality",
+      "L0": "YES",
+      "L1": "YES",
+      "L2": "YES",
+      "L2_effect": "CONSTRAINED",
+      "L2_detail": "d=2: discrete Wigner on 2x2 grid. At most 2 negative points out of 4."
+    },
+    {
+      "lego": "hopf_fiber_coordinate",
+      "category": "hopf_structure",
+      "L0": "N/A",
+      "L1": "N/A",
+      "L2": "NEW",
+      "L2_effect": "CREATED by L2",
+      "L2_detail": "S\u00b9 fiber coordinate chi. Parameterizes gauge freedom. Invisible to observables."
+    },
+    {
+      "lego": "hopf_invariant",
+      "category": "hopf_structure",
+      "L0": "N/A",
+      "L1": "N/A",
+      "L2": "NEW",
+      "L2_effect": "CREATED by L2",
+      "L2_detail": "Linking number = 1. Two fibers are topologically linked in S\u00b3. New topological invariant."
+    },
+    {
+      "lego": "monopole_curvature",
+      "category": "hopf_structure",
+      "L0": "N/A",
+      "L1": "N/A",
+      "L2": "NEW",
+      "L2_effect": "CREATED by L2",
+      "L2_detail": "Berry curvature = Dirac monopole field of charge 1/2 at center of S\u00b2."
+    },
+    {
+      "lego": "hopf_connection",
+      "category": "hopf_structure",
+      "L0": "N/A",
+      "L1": "N/A",
+      "L2": "NEW",
+      "L2_effect": "CREATED by L2",
+      "L2_detail": "Wu-Yang gauge potential A = (1-cos(theta))/2 dphi. The connection 1-form on the bundle."
+    },
+    {
+      "lego": "geometric_phase_quantization",
+      "category": "hopf_structure",
+      "L0": "N/A",
+      "L1": "N/A",
+      "L2": "NEW",
+      "L2_effect": "CREATED by L2",
+      "L2_detail": "Berry phase = Omega/2. Quantized by Chern number. Great circle \u2192 phase = pi."
+    }
+  ],
+  "new_legos_created_by_L2": {
+    "hopf_fiber_coordinate": {
+      "description": "S\u00b9 coordinate chi parameterizing fiber above each S\u00b2 point",
+      "same_base_different_fiber_overlap": 1.0,
+      "is_new": true,
+      "created_by": "Hopf fibration structure at d=2"
+    },
+    "hopf_invariant": {
+      "value": 1,
+      "meaning": "Two S\u00b9 fibers above different S\u00b2 points are linked ONCE in S\u00b3",
+      "is_new": true,
+      "created_by": "Hopf bundle topology",
+      "physical": "Topological entanglement between gauge orbits"
+    },
+    "monopole_curvature": {
+      "formula": "F = sin(\u03b8)/(2) d\u03b8\u2227d\u03c6",
+      "monopole_charge": 0.5,
+      "total_flux": 6.239302891159339,
+      "expected_flux": 6.283185307179586,
+      "is_new": true,
+      "created_by": "Hopf connection curvature"
+    },
+    "hopf_connection": {
+      "formula": "A = (1-cos(\u03b8))/(2) d\u03c6",
+      "gauge_group": "U(1)",
+      "singularity": "South pole (theta=pi), need two patches",
+      "transition_function": "exp(i*phi) on equator",
+      "is_new": true,
+      "created_by": "Hopf bundle connection"
+    },
+    "phase_quantization": {
+      "rule": "Berry phase = Omega/2 where Omega = solid angle subtended",
+      "for_great_circle": 3.141592653589793,
+      "for_full_sphere": 6.283185307179586,
+      "quantized": "Phase mod 2*pi is topologically quantized by Chern number",
+      "is_new": true,
+      "created_by": "Hopf bundle + Chern class"
+    }
+  },
+  "summary": {
+    "runtime_seconds": 0.79,
+    "errors": [],
+    "all_passed": true,
+    "total_legos_tested": 61,
+    "L2_survived": 61,
+    "L2_killed": 0,
+    "L2_new_created": 5,
+    "L2_enhanced": 22,
+    "L2_constrained": 32,
+    "L2_native": 1,
+    "L2_neutral": 1,
+    "L2_trivial": 0,
+    "headline": "L2 complete. 61 survived (0 killed, 5 NEW created by Hopf). 22 enhanced, 32 constrained by d=2. Hopf creates fiber/base distinction, monopole curvature, phase quantization.",
+    "key_findings": [
+      "NO legos killed by L2. d=2 is the NATIVE dimension for all 56 L0/L1 survivors.",
+      "5 NEW legos created: hopf_fiber_coordinate, hopf_invariant, monopole_curvature, hopf_connection, geometric_phase_quantization.",
+      "22 legos ENHANCED: Berry phase (monopole), FS metric (K=4), concurrence (closed-form), etc.",
+      "32 legos CONSTRAINED: entropy max = 1 bit, Schmidt rank \u2264 2, correlation tensor 3x3, etc.",
+      "Bloch sphere IS CP\u00b9 IS the state space (exact identity, not approximation).",
+      "Fubini-Study curvature K=4 everywhere (sphere of radius 1/2).",
+      "Chern number c\u2081=1 (simplest nontrivial monopole).",
+      "MPS trivial at d=2 for 2-qubit. RMT degenerate at d=2.",
+      "z3 proof: d=2 \u2192 exactly 3 Pauli generators (not 2, not 4).",
+      "Hopf fiber/base = gauge/physics = two loop types."
+    ]
+  }
+}

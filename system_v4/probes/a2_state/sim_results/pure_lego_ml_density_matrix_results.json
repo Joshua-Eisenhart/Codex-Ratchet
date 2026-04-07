@@ -1,0 +1,536 @@
+{
+  "1_kernel_density": {
+    "validity": {
+      "linear": {
+        "label": "linear",
+        "trace": 1.0,
+        "trace_ok": true,
+        "hermitian": true,
+        "psd": true,
+        "purity": 0.34352718058252446,
+        "eigenvalues": [
+          2.051529325465674e-18,
+          6.973612268575513e-18,
+          4.687495017077399e-17,
+          4.8961014303981664e-17,
+          0.04665938890078593,
+          0.19391343400043,
+          0.2920128375093447,
+          0.46741433958943907
+        ]
+      },
+      "rbf": {
+        "label": "rbf",
+        "trace": 1.0,
+        "trace_ok": true,
+        "hermitian": true,
+        "psd": true,
+        "purity": 0.15010792936018902,
+        "eigenvalues": [
+          0.0449766729028089,
+          0.07170692356984885,
+          0.09112326360241864,
+          0.12236739111983067,
+          0.12607465104007806,
+          0.13125249462953475,
+          0.17917224474663762,
+          0.23332635838884247
+        ]
+      },
+      "polynomial": {
+        "label": "polynomial",
+        "trace": 0.9999999999999999,
+        "trace_ok": true,
+        "hermitian": true,
+        "psd": true,
+        "purity": 0.22315472147216184,
+        "eigenvalues": [
+          0.004429173820042813,
+          0.010901504565269959,
+          0.0378648553915293,
+          0.10009696328807176,
+          0.132317629620799,
+          0.1475364514770584,
+          0.20718121528400246,
+          0.35967220655322607
+        ]
+      },
+      "cosine": {
+        "label": "cosine",
+        "trace": 1.0,
+        "trace_ok": true,
+        "hermitian": true,
+        "psd": true,
+        "purity": 0.3586372706565204,
+        "eigenvalues": [
+          2.463529156136303e-17,
+          3.620879697981396e-17,
+          4.583317277191058e-17,
+          7.037534968353098e-17,
+          0.04606188913962707,
+          0.16332291684104308,
+          0.3022887673222523,
+          0.48832642669707754
+        ]
+      }
+    },
+    "all_valid": true,
+    "entropies": {
+      "linear": 1.6966561434113183,
+      "rbf": 2.8551731826164675,
+      "polynomial": 2.411451794484071,
+      "cosine": 1.6582070309709742
+    },
+    "max_entropy_kernel": "rbf",
+    "fidelity_matrix": {
+      "linear_vs_rbf": 0.5175850144857603,
+      "linear_vs_polynomial": 0.5987214378850516,
+      "linear_vs_cosine": 0.9368348478535731,
+      "rbf_vs_polynomial": 0.8405624117124672,
+      "rbf_vs_cosine": 0.5345027383241961,
+      "polynomial_vs_cosine": 0.5061822399600329
+    },
+    "most_similar_pair": "linear_vs_cosine",
+    "pca_top_eigenvalue_fraction": {
+      "linear": 0.4674143395894392,
+      "rbf": 0.23332635838884247,
+      "polynomial": 0.3596722065532261,
+      "cosine": 0.48832642669707743
+    },
+    "eigenspectra": {
+      "linear": [
+        0.46741433958943907,
+        0.2920128375093447,
+        0.19391343400043,
+        0.04665938890078593,
+        4.8961014303981664e-17,
+        4.687495017077399e-17,
+        6.973612268575513e-18,
+        2.051529325465674e-18
+      ],
+      "rbf": [
+        0.23332635838884247,
+        0.17917224474663762,
+        0.13125249462953475,
+        0.12607465104007806,
+        0.12236739111983067,
+        0.09112326360241864,
+        0.07170692356984885,
+        0.0449766729028089
+      ],
+      "polynomial": [
+        0.35967220655322607,
+        0.20718121528400246,
+        0.1475364514770584,
+        0.132317629620799,
+        0.10009696328807176,
+        0.0378648553915293,
+        0.010901504565269959,
+        0.004429173820042813
+      ],
+      "cosine": [
+        0.48832642669707754,
+        0.3022887673222523,
+        0.16332291684104308,
+        0.04606188913962707,
+        7.037534968353098e-17,
+        4.583317277191058e-17,
+        3.620879697981396e-17,
+        2.463529156136303e-17
+      ]
+    },
+    "entropy_ordering": [
+      "cosine",
+      "linear",
+      "polynomial",
+      "rbf"
+    ],
+    "all_entropy_computed": true,
+    "elapsed_s": 0.0035829544067382812
+  },
+  "2_information_bottleneck": {
+    "original_mi_bits": 0.15356065532886923,
+    "ib_curve": [
+      {
+        "beta": 0.0,
+        "I_XT": 0.0,
+        "I_TY": 0.0
+      },
+      {
+        "beta": 0.5,
+        "I_XT": 8.77493431615442e-17,
+        "I_TY": 1.3480858274114203e-16
+      },
+      {
+        "beta": 1.0,
+        "I_XT": -1.0712097007704671e-16,
+        "I_TY": -1.6263298315009542e-17
+      },
+      {
+        "beta": 2.0,
+        "I_XT": 4.497225280240762e-18,
+        "I_TY": 1.3318797350929615e-16
+      },
+      {
+        "beta": 3.0,
+        "I_XT": 3.434414909965673e-17,
+        "I_TY": 8.522263108631607e-17
+      },
+      {
+        "beta": 5.0,
+        "I_XT": 0.001827249855807025,
+        "I_TY": 0.0003650396393107637
+      },
+      {
+        "beta": 7.0,
+        "I_XT": 0.378510670399471,
+        "I_TY": 0.06534675753005317
+      },
+      {
+        "beta": 10.0,
+        "I_XT": 0.6114034863758926,
+        "I_TY": 0.09372510983327371
+      }
+    ],
+    "ib_monotone_ok": true,
+    "monotone_violations": 0,
+    "quantum_mi_bits": 0.15356065532898455,
+    "classical_vs_quantum_mi_match": "True",
+    "mi_difference": 1.1532441668293814e-13,
+    "elapsed_s": 0.13554096221923828
+  },
+  "3_attention_density": {
+    "row_stochastic": true,
+    "all_nonneg": true,
+    "raw_A_is_symmetric": false,
+    "raw_A_trace": 0.8850160752511549,
+    "raw_A_is_density_matrix": false,
+    "gram_density_valid": {
+      "label": "attention_gram",
+      "trace": 1.0000000000000002,
+      "trace_ok": true,
+      "hermitian": true,
+      "psd": true,
+      "purity": 0.5815187162174379,
+      "eigenvalues": [
+        0.0003515207733005314,
+        0.010457256065952051,
+        0.02878749089144441,
+        0.03542480970657622,
+        0.18723267382741968,
+        0.7377462487353073
+      ]
+    },
+    "gram_entropy": 1.1671821114009413,
+    "is_unitary_channel": false,
+    "trace_preserved_as_channel": true,
+    "better_model": "CHANNEL",
+    "elapsed_s": 0.00022411346435546875
+  },
+  "4_diffusion_open_system": {
+    "quantum_entropy_monotone": true,
+    "quantum_purity_decreasing": true,
+    "classical_entropy_monotone": true,
+    "quantum_converges_to_max": "True",
+    "classical_converges_to_max": "True",
+    "fidelity_to_max_mixed": 0.9989138015040531,
+    "near_max_mixed": true,
+    "trajectories_similar_shape": "True",
+    "quantum_trajectory": [
+      {
+        "step": 0,
+        "entropy": 3.2034265038149176e-16,
+        "purity": 0.9999999999999994
+      },
+      {
+        "step": 1,
+        "entropy": 0.685719244995827,
+        "purity": 0.7918749999999996
+      },
+      {
+        "step": 2,
+        "entropy": 1.067753746852231,
+        "purity": 0.6415046874999997
+      },
+      {
+        "step": 3,
+        "entropy": 1.326651078347108,
+        "purity": 0.5328621367187496
+      },
+      {
+        "step": 4,
+        "entropy": 1.5096287199358795,
+        "purity": 0.45436789377929654
+      },
+      {
+        "step": 5,
+        "entropy": 1.6414166048785983,
+        "purity": 0.3976558032555416
+      },
+      {
+        "step": 6,
+        "entropy": 1.7372777581926373,
+        "purity": 0.35668131785212875
+      },
+      {
+        "step": 7,
+        "entropy": 1.8073807591297797,
+        "purity": 0.327077252148163
+      },
+      {
+        "step": 8,
+        "entropy": 1.8587898427054959,
+        "purity": 0.3056883146770477
+      },
+      {
+        "step": 9,
+        "entropy": 1.8965357284366207,
+        "purity": 0.29023480735416696
+      },
+      {
+        "step": 10,
+        "entropy": 1.9242557641738764,
+        "purity": 0.27906964831338554
+      },
+      {
+        "step": 11,
+        "entropy": 1.9446044721180216,
+        "purity": 0.271002820906421
+      },
+      {
+        "step": 12,
+        "entropy": 1.9595298925929754,
+        "purity": 0.26517453810488917
+      },
+      {
+        "step": 13,
+        "entropy": 1.9704659646843394,
+        "purity": 0.2609636037807824
+      },
+      {
+        "step": 14,
+        "entropy": 1.9784696248059355,
+        "purity": 0.25792120373161526
+      },
+      {
+        "step": 15,
+        "entropy": 1.9843200846367477,
+        "purity": 0.25572306969609204
+      },
+      {
+        "step": 16,
+        "entropy": 1.9885914878185345,
+        "purity": 0.2541349178554264
+      },
+      {
+        "step": 17,
+        "entropy": 1.991706438188841,
+        "purity": 0.25298747815054556
+      },
+      {
+        "step": 18,
+        "entropy": 1.9939755840593625,
+        "purity": 0.25215845296376915
+      },
+      {
+        "step": 19,
+        "entropy": 1.9956269404658387,
+        "purity": 0.2515594822663232
+      },
+      {
+        "step": 20,
+        "entropy": 1.9968276150923798,
+        "purity": 0.25112672593741847
+      }
+    ],
+    "classical_trajectory": [
+      {
+        "step": 0,
+        "entropy": 1.2289724589357758
+      },
+      {
+        "step": 1,
+        "entropy": 1.459858556849114
+      },
+      {
+        "step": 2,
+        "entropy": 1.6130441794989747
+      },
+      {
+        "step": 3,
+        "entropy": 1.7202509335095746
+      },
+      {
+        "step": 4,
+        "entropy": 1.7968415810585372
+      },
+      {
+        "step": 5,
+        "entropy": 1.8521269176408526
+      },
+      {
+        "step": 6,
+        "entropy": 1.8922567119691307
+      },
+      {
+        "step": 7,
+        "entropy": 1.9214733781272577
+      },
+      {
+        "step": 8,
+        "entropy": 1.9427764599888633
+      },
+      {
+        "step": 9,
+        "entropy": 1.9583180962365216
+      },
+      {
+        "step": 10,
+        "entropy": 1.9696562063292375
+      },
+      {
+        "step": 11,
+        "entropy": 1.9779245513861807
+      },
+      {
+        "step": 12,
+        "entropy": 1.9839506882066482
+      },
+      {
+        "step": 13,
+        "entropy": 1.9883395640511388
+      },
+      {
+        "step": 14,
+        "entropy": 1.9915336146329508
+      },
+      {
+        "step": 15,
+        "entropy": 1.9938563720595694
+      },
+      {
+        "step": 16,
+        "entropy": 1.9955442894646693
+      },
+      {
+        "step": 17,
+        "entropy": 1.9967700425483204
+      },
+      {
+        "step": 18,
+        "entropy": 1.9976596176408734
+      },
+      {
+        "step": 19,
+        "entropy": 1.9983048486247639
+      },
+      {
+        "step": 20,
+        "entropy": 1.998772611974336
+      }
+    ],
+    "max_entropy_bits": 2.0,
+    "elapsed_s": 0.0005509853363037109
+  },
+  "5_loss_hamiltonian": {
+    "eigenvalues": [
+      -2.0244958052869864,
+      -0.28283663074142523,
+      1.0027030260369023,
+      1.6284698504649846
+    ],
+    "ground_energy": -2.0244958052869864,
+    "spectral_gap": 1.7416591745455612,
+    "gap_positive": true,
+    "thermal_states": {
+      "T=0.1": {
+        "valid": true,
+        "entropy": 7.25197047605403e-07,
+        "purity": 0.9999999454114673
+      },
+      "T=0.5": {
+        "valid": true,
+        "entropy": 0.22380623262419175,
+        "purity": 0.9367038628477531
+      },
+      "T=1.0": {
+        "valid": true,
+        "entropy": 0.952439753947665,
+        "purity": 0.6620127984241262
+      },
+      "T=5.0": {
+        "valid": true,
+        "entropy": 1.9405838555583252,
+        "purity": 0.2714666438563202
+      },
+      "T=100.0": {
+        "valid": true,
+        "entropy": 1.9998585832328817,
+        "purity": 0.25004911390698037
+      }
+    },
+    "low_T_high_purity": true,
+    "high_T_low_purity": true,
+    "temperature_ordering_ok": true,
+    "anneal_converged_to_ground": true,
+    "anneal_final_energy": -2.024495757749583,
+    "elapsed_s": 0.0016868114471435547
+  },
+  "6_representation_partial_trace": {
+    "product_repr_valid": {
+      "label": "product_repr",
+      "trace": 1.0000000000000007,
+      "trace_ok": true,
+      "hermitian": true,
+      "psd": true,
+      "purity": 1.000000000000001,
+      "eigenvalues": [
+        6.58584298207643e-17,
+        1.0000000000000004
+      ]
+    },
+    "entangled_repr_valid": {
+      "label": "entangled_repr",
+      "trace": 0.9999999999999998,
+      "trace_ok": true,
+      "hermitian": true,
+      "psd": true,
+      "purity": 0.4999999999999998,
+      "eigenvalues": [
+        0.4999999999999999,
+        0.4999999999999999
+      ]
+    },
+    "mi_product": -3.2034265038149186e-16,
+    "mi_entangled": 1.9999999999999998,
+    "product_low_mi": true,
+    "entangled_high_mi": true,
+    "product_is_disentangled": true,
+    "entangled_is_NOT_disentangled": true,
+    "concurrence_product": 1.844024312815326e-09,
+    "concurrence_entangled": 0.9999999937348322,
+    "product_C_zero": true,
+    "entangled_C_high": true,
+    "elapsed_s": 0.003712892532348633
+  },
+  "summary": {
+    "1_kernels_all_valid": true,
+    "1_entropy_computed": true,
+    "2_ib_monotone": true,
+    "2_classical_quantum_mi_match": "True",
+    "3_attention_row_stochastic": true,
+    "3_gram_density_valid": true,
+    "4_quantum_entropy_monotone": true,
+    "4_purity_decreasing": true,
+    "4_classical_entropy_monotone": true,
+    "4_both_converge": "True",
+    "5_gap_positive": true,
+    "5_temperature_ordering": true,
+    "5_anneal_converged": true,
+    "6_product_low_mi": true,
+    "6_entangled_high_mi": true,
+    "6_product_disentangled": true,
+    "6_entangled_C_high": true
+  },
+  "ALL_PASS": true
+}

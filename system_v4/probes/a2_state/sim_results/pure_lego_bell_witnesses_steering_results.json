@@ -1,0 +1,344 @@
+{
+  "1_bell_chsh": {
+    "tests": {
+      "t1_chsh_operator": {
+        "eigenvalues": [
+          -2.82842712474619,
+          0.0,
+          0.0,
+          2.82842712474619
+        ],
+        "max_eigenvalue": 2.82842712474619,
+        "tsirelson_bound": 2.8284271247461903,
+        "max_matches_tsirelson": true,
+        "pass": true
+      },
+      "t2_product_classical_bound": {
+        "num_product_states": 20,
+        "max_chsh_product": 1.3661919308948611,
+        "classical_bound": 2.0,
+        "all_within_bound": true,
+        "pass": true
+      },
+      "t3_tsirelson_bell_phi_plus": {
+        "chsh_value": 2.8284271247461894,
+        "expected": 2.8284271247461903,
+        "match": true,
+        "pass": true
+      },
+      "t4_optimal_settings": {
+        "optimal_chsh": 2.8284271247461894,
+        "best_random_search": 2.6053173290882645,
+        "optimal_is_best_or_close": true,
+        "pass": true
+      },
+      "t5_werner_chsh_threshold": {
+        "theory_threshold": 0.7071067811865475,
+        "numerical_threshold": 0.7085427135678392,
+        "match": true,
+        "pass": true
+      },
+      "t6_z3_product_bound": {
+        "claim": "No local-deterministic assignment yields |CHSH| > 2",
+        "z3_result": "unsat",
+        "unsat_means_proven": true,
+        "pass": true
+      },
+      "t7_all_bell_states_tsirelson": {
+        "bell_chsh_max": {
+          "Phi+": 2.8284271247461894,
+          "Phi-": 2.8284271247461894,
+          "Psi+": 2.8284271247461894,
+          "Psi-": 2.8284271247461894
+        },
+        "tsirelson": 2.8284271247461903,
+        "formula": "max_CHSH = 2*sqrt(s1^2 + s2^2) from Horodecki criterion",
+        "all_at_tsirelson": true,
+        "pass": true
+      },
+      "t8_separable_mixed_no_violation": {
+        "num_separable": 30,
+        "max_chsh": 1.324617152518424,
+        "within_bound": true,
+        "pass": true
+      }
+    },
+    "all_pass": true
+  },
+  "2_entanglement_witnesses": {
+    "tests": {
+      "t1_witness_structure": {
+        "hermitian": true,
+        "trace": 1.0000000000000002,
+        "eigenvalues": [
+          -0.4999999999999998,
+          0.5,
+          0.5,
+          0.5
+        ],
+        "has_negative_eigenvalue": true,
+        "pass": true
+      },
+      "t2_witness_nonneg_separable": {
+        "num_product_states": 50,
+        "min_value": 0.002596124910548884,
+        "max_value": 0.4982206974567419,
+        "all_nonneg": true,
+        "pass": true
+      },
+      "t3_witness_detects_bell": {
+        "Tr_W_phi_plus": -0.49999999999999967,
+        "negative": true,
+        "expected": -0.5,
+        "pass": true
+      },
+      "t4_werner_witness_threshold": {
+        "theory_threshold": 0.3333333333333333,
+        "numerical_threshold": 0.33444816053511706,
+        "match": true,
+        "pass": true
+      },
+      "t5_ppt_witness": {
+        "negative_eigenvalue": -0.12499999999999996,
+        "Tr_W_entangled": 0.12499999999999997,
+        "detects_entangled": false,
+        "min_separable": 0.006571794225281253,
+        "all_sep_nonneg": true,
+        "pass": true
+      },
+      "t6_witness_vs_concurrence": {
+        "witness_threshold": 0.33444816053511706,
+        "concurrence_threshold": 0.33444816053511706,
+        "both_at_one_third": true,
+        "pass": true
+      },
+      "t7_witness_all_bell_states": {
+        "results": {
+          "Phi+": {
+            "Tr_W_rho": -0.49999999999999967,
+            "detected": true
+          },
+          "Phi-": {
+            "Tr_W_rho": -0.49999999999999967,
+            "detected": true
+          },
+          "Psi+": {
+            "Tr_W_rho": -0.49999999999999967,
+            "detected": true
+          },
+          "Psi-": {
+            "Tr_W_rho": -0.49999999999999967,
+            "detected": true
+          }
+        },
+        "all_detected": true,
+        "pass": true
+      },
+      "t8_z3_witness_existence": {
+        "claim": "If rho has negative partial-transpose eigenvalue, a witness exists",
+        "encoding": "UNSAT means: cannot have neg eigenvalue AND all expectations nonneg",
+        "z3_result": "unsat",
+        "proven": true,
+        "pass": true
+      }
+    },
+    "all_pass": true
+  },
+  "3_quantum_steering": {
+    "tests": {
+      "t1_bell_assemblage": {
+        "correlation_matrix": [
+          [
+            0.9999999999999998,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.9999999999999998,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.9999999999999998
+          ]
+        ],
+        "diagonal": [
+          0.9999999999999998,
+          -0.9999999999999998,
+          0.9999999999999998
+        ],
+        "note": "Phi+ has T = diag(1, -1, 1) showing perfect correlations",
+        "pass": true
+      },
+      "t2_bell_steering_violation": {
+        "F_3": 0.9999999999999997,
+        "bound_1_over_sqrt3": 0.5773502691896258,
+        "singular_values": [
+          0.9999999999999998,
+          0.9999999999999998,
+          0.9999999999999998
+        ],
+        "violates": true,
+        "pass": true
+      },
+      "t3_separable_no_steering": {
+        "num_separable": 30,
+        "max_F_over_bound": 0.5545308568367822,
+        "all_within_bound": true,
+        "pass": true
+      },
+      "t4_asymmetric_steering": {
+        "T_matrix_one_sided_noise": [
+          [
+            0.33333333333333337,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.33333333333333337,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.33333333333333337
+          ]
+        ],
+        "F_A_to_B": 0.3333333333333333,
+        "F_B_to_A": 0.3333333333333333,
+        "bound": 0.5773502691896258,
+        "note": "One-sided noise makes A->B and B->A different",
+        "pass": true
+      },
+      "t5_werner_steering_thresholds": {
+        "n2_threshold": 0.7090301003344481,
+        "n2_theory": 0.7071067811865475,
+        "n3_threshold": 0.5785953177257525,
+        "n3_theory": 0.5773502691896258,
+        "n2_matches": true,
+        "n3_matches": true,
+        "hierarchy_note": "entanglement(1/3) < steering_n3(1/sqrt3) < Bell(1/sqrt2)",
+        "pass": true
+      },
+      "t6_one_way_steerable": {
+        "T_matrix": [
+          [
+            0.4999999999999999,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.4999999999999999,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.4999999999999999
+          ]
+        ],
+        "singular_values": [
+          0.4999999999999999,
+          0.4999999999999999,
+          0.4999999999999999
+        ],
+        "F_A_to_B": 0.49999999999999983,
+        "F_B_to_A": 0.49999999999999983,
+        "bound": 0.5773502691896258,
+        "local_bloch_A": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "local_bloch_B": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "asymmetric_locals": true,
+        "pass": true
+      },
+      "t7_hierarchy_map": {
+        "entanglement_threshold_PPT": 0.33444816053511706,
+        "steering_threshold_n3": 0.5785953177257525,
+        "note": "Hierarchy: ent(1/3) < steer_n3(1/sqrt3) < Bell(1/sqrt2)",
+        "hierarchy_correct": true,
+        "pass": true
+      },
+      "t8_entangled_but_unsteerable": {
+        "p": 0.5,
+        "negativity": 0.12499999999999996,
+        "is_entangled": true,
+        "F_3": 0.49999999999999983,
+        "bound": 0.5773502691896258,
+        "is_steerable": false,
+        "entangled_but_not_steerable": true,
+        "pass": true
+      }
+    },
+    "all_pass": true
+  },
+  "4_hierarchy": {
+    "tests": {
+      "t1_all_thresholds": {
+        "entanglement_PPT": {
+          "threshold_p": 0.33466933867735466,
+          "theory": 0.3333333333333333
+        },
+        "steering_n3_CJWR": {
+          "threshold_p": 0.5791583166332664,
+          "theory": 0.5773502691896258
+        },
+        "bell_CHSH": {
+          "threshold_p": 0.7074148296593186,
+          "theory": 0.7071067811865475
+        }
+      },
+      "t2_strict_hierarchy": {
+        "entanglement_lt_steering": true,
+        "steering_lt_bell": true,
+        "strict_hierarchy": true,
+        "pass": true
+      },
+      "t3_theory_match": {
+        "ent_match": true,
+        "steer_match": true,
+        "bell_match": true,
+        "all_match": true,
+        "pass": true
+      },
+      "t4_gap_states": {
+        "gap1_entangled_not_steerable": {
+          "p": 0.5,
+          "entangled": true,
+          "steerable_n3": false,
+          "bell_violation": false,
+          "correct": true
+        },
+        "gap2_steerable_not_bell": {
+          "p": 0.65,
+          "entangled": true,
+          "steerable_n3": true,
+          "bell_violation": false,
+          "correct": true
+        },
+        "pass": true
+      }
+    },
+    "all_pass": true
+  },
+  "meta": {
+    "total_time_s": 0.31,
+    "all_sections_pass": true,
+    "sections": {
+      "1_bell_chsh": true,
+      "2_entanglement_witnesses": true,
+      "3_quantum_steering": true,
+      "4_hierarchy": true
+    }
+  }
+}

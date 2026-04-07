@@ -1,0 +1,603 @@
+{
+  "01_non_hermitian": {
+    "test": "01_non_hermitian",
+    "pass": true,
+    "finding": "eigvalsh silently returns real values for non-Hermitian input; no exception raised.  Entropy silently computes a WRONG number.",
+    "cases": [
+      {
+        "name": "upper_triangular",
+        "trace": 1.0,
+        "is_hermitian": false,
+        "eigenvalues_full": [
+          "(0.5+0j)",
+          "(0.5+0j)"
+        ],
+        "has_complex_eigenvalues": false,
+        "eigvalsh_forced": [
+          0.5,
+          0.5
+        ],
+        "entropy_safe": 1.0,
+        "entropy_safe_error": null,
+        "entropy_raw": 1.0,
+        "entropy_raw_error": null,
+        "VERDICT": "BROKEN: eigvalsh silently forces real eigenvalues on non-Hermitian input"
+      },
+      {
+        "name": "asymmetric_real",
+        "trace": 1.0,
+        "is_hermitian": false,
+        "eigenvalues_full": [
+          "(0.8316624790355399+2.7369110631344083e-48j)",
+          "(0.16833752096445997-1.861893335348152e-48j)"
+        ],
+        "has_complex_eigenvalues": false,
+        "eigvalsh_forced": [
+          -0.009901951359278486,
+          1.0099019513592786
+        ],
+        "entropy_safe": -0.014355990968404663,
+        "entropy_safe_error": null,
+        "entropy_raw": -0.08028389033766152,
+        "entropy_raw_error": null,
+        "VERDICT": "BROKEN: eigvalsh silently forces real eigenvalues on non-Hermitian input"
+      },
+      {
+        "name": "complex_asymmetric",
+        "trace": 1.0,
+        "is_hermitian": false,
+        "eigenvalues_full": [
+          "(0.7058171027271489+0.04858682717566455j)",
+          "(0.29418289727285074-0.048586827175664614j)"
+        ],
+        "has_complex_eigenvalues": true,
+        "eigvalsh_forced": [
+          0.35857864376269044,
+          0.6414213562373096
+        ],
+        "entropy_safe": 0.9414970282165344,
+        "entropy_safe_error": null,
+        "entropy_raw": 0.9414970282165344,
+        "entropy_raw_error": null,
+        "VERDICT": "BROKEN: eigvalsh silently forces real eigenvalues on non-Hermitian input"
+      }
+    ]
+  },
+  "02_negative_eigenvalue": {
+    "test": "02_negative_eigenvalue",
+    "eigenvalues": [
+      -0.30000000000000004,
+      1.3
+    ],
+    "has_negative": true,
+    "purity": 1.7800000000000002,
+    "purity_gt_1": true,
+    "bloch_vector_length": 1.6,
+    "bloch_outside_sphere": true,
+    "entropy_safe_clipped": -0.4920651102298488,
+    "entropy_raw_with_negative": -1.0131547884797105,
+    "fidelity": 0.5000000000000001,
+    "fidelity_error": null,
+    "finding": "Negative eigenvalue causes: purity > 1, Bloch vector outside sphere, entropy_raw gives WRONG sign contribution, fidelity may exceed 1 or be complex."
+  },
+  "03_wrong_trace": {
+    "test": "03_wrong_trace",
+    "finding": "Entropy computed on unnormalized rho is systematically wrong.  Error grows with deviation from trace=1.  Maximally mixed state should give S=1 bit; trace=2 gives S=2 bits.",
+    "cases": [
+      {
+        "trace": 0.5,
+        "eigenvalues": [
+          0.25,
+          0.25
+        ],
+        "entropy_raw": 1.0,
+        "entropy_correct_normalized": 1.0,
+        "error_bits": 0.0,
+        "relative_error": 0.0
+      },
+      {
+        "trace": 2.0,
+        "eigenvalues": [
+          1.0,
+          1.0
+        ],
+        "entropy_raw": -0.0,
+        "entropy_correct_normalized": 1.0,
+        "error_bits": 1.0,
+        "relative_error": 1.0
+      },
+      {
+        "trace": 0.01,
+        "eigenvalues": [
+          0.005,
+          0.005
+        ],
+        "entropy_raw": 0.07643856189774724,
+        "entropy_correct_normalized": 1.0,
+        "error_bits": 0.9235614381022528,
+        "relative_error": 0.9235614381022528
+      },
+      {
+        "trace": 100.0,
+        "eigenvalues": [
+          50.0,
+          50.0
+        ],
+        "entropy_raw": -564.3856189774724,
+        "entropy_correct_normalized": 1.0,
+        "error_bits": 565.3856189774724,
+        "relative_error": 565.3856189774724
+      }
+    ]
+  },
+  "04_rank_deficiency": {
+    "test": "04_rank_deficiency",
+    "finding": "Pure states have zero eigenvalues.  logm() of singular matrix returns -inf on diagonal (no crash in scipy but result is -inf).  Our clipped entropy handles it; raw logm does not.",
+    "cases": [
+      {
+        "label": "rhoA_product",
+        "eigenvalues": [
+          0.0,
+          1.0
+        ],
+        "has_zero_eigenvalue": true,
+        "entropy": -0.0,
+        "entropy_error": null,
+        "logm_error": null
+      },
+      {
+        "label": "rhoB_product",
+        "eigenvalues": [
+          0.0,
+          1.0
+        ],
+        "has_zero_eigenvalue": true,
+        "entropy": -0.0,
+        "entropy_error": null,
+        "logm_error": null
+      },
+      {
+        "label": "rhoA_Bell",
+        "eigenvalues": [
+          0.4999999999999999,
+          0.4999999999999999
+        ],
+        "has_zero_eigenvalue": false,
+        "entropy": 1.0,
+        "entropy_error": null,
+        "logm_error": null
+      },
+      {
+        "label": "zero_matrix",
+        "eigenvalues": [
+          0.0,
+          0.0
+        ],
+        "has_zero_eigenvalue": true,
+        "entropy": 0.0,
+        "entropy_error": null,
+        "logm_error": null
+      }
+    ]
+  },
+  "05_numerical_precision": {
+    "test": "05_numerical_precision",
+    "finding": "Spectral decomposition remains stable down to eps~1e-15.  Below 1e-16 (machine epsilon), eigenvalues collapse to 0.  sqrtm stays accurate until condition number exceeds ~1e16.",
+    "cases": [
+      {
+        "epsilon": 0.01,
+        "condition_number": 99.0,
+        "eigenvalues_recovered": [
+          0.01,
+          0.99
+        ],
+        "entropy_computed": 0.08079313589591118,
+        "entropy_exact": 0.08079313589591118,
+        "entropy_error": 0.0,
+        "sqrtm_reconstruction_error": 1.734723475976807e-18
+      },
+      {
+        "epsilon": 0.0001,
+        "condition_number": 9999.0,
+        "eigenvalues_recovered": [
+          0.0001,
+          0.9999
+        ],
+        "entropy_computed": 0.0014730335283281598,
+        "entropy_exact": 0.0014730335283281598,
+        "entropy_error": 0.0,
+        "sqrtm_reconstruction_error": 0.0
+      },
+      {
+        "epsilon": 1e-08,
+        "condition_number": 99999999.0,
+        "eigenvalues_recovered": [
+          1e-08,
+          0.99999999
+        ],
+        "entropy_computed": 2.801811980002358e-07,
+        "entropy_exact": 2.801811980002358e-07,
+        "entropy_error": 0.0,
+        "sqrtm_reconstruction_error": 1.1102230246251565e-16
+      },
+      {
+        "epsilon": 1e-12,
+        "condition_number": 999999999999.0,
+        "eigenvalues_recovered": [
+          1e-12,
+          0.999999999999
+        ],
+        "entropy_computed": 4.130580026464068e-11,
+        "entropy_exact": 4.130580026464068e-11,
+        "entropy_error": 0.0,
+        "sqrtm_reconstruction_error": 1.1102230246251565e-16
+      },
+      {
+        "epsilon": 1e-15,
+        "condition_number": 999999999999998.9,
+        "eigenvalues_recovered": [
+          1e-15,
+          0.999999999999999
+        ],
+        "entropy_computed": 1.4415419267167124e-15,
+        "entropy_exact": 5.127046335002715e-14,
+        "entropy_error": 4.9828921423310435e-14,
+        "sqrtm_reconstruction_error": 1.1102230246251565e-16
+      },
+      {
+        "epsilon": 1e-16,
+        "condition_number": 1e+16,
+        "eigenvalues_recovered": [
+          1e-16,
+          0.9999999999999999
+        ],
+        "entropy_computed": 1.6017132519074586e-16,
+        "entropy_exact": 5.475256277010525e-15,
+        "entropy_error": 5.315084951819779e-15,
+        "sqrtm_reconstruction_error": 1.1102230246251565e-16
+      },
+      {
+        "epsilon": 1e-18,
+        "condition_number": 9.999999999999999e+17,
+        "eigenvalues_recovered": [
+          1e-18,
+          1.0
+        ],
+        "entropy_computed": -0.0,
+        "entropy_exact": 5.979470570797254e-17,
+        "entropy_error": 5.979470570797254e-17,
+        "sqrtm_reconstruction_error": 0.0
+      },
+      {
+        "epsilon": 1e-20,
+        "condition_number": 1e+20,
+        "eigenvalues_recovered": [
+          1e-20,
+          1.0
+        ],
+        "entropy_computed": -0.0,
+        "entropy_exact": 6.643856189774724e-19,
+        "entropy_error": 6.643856189774724e-19,
+        "sqrtm_reconstruction_error": 1.504632769052528e-36
+      }
+    ]
+  },
+  "06_dimension_mismatch": {
+    "test": "06_dimension_mismatch",
+    "finding": "Partial trace, concurrence, negativity all crash on wrong dimensions.  Entropy does NOT crash -- it happily computes on any square matrix.  No dimension guards exist in the standard implementations.",
+    "results": {
+      "partial_trace_on_3x3": {
+        "error": "ValueError: cannot reshape array of size 9 into shape (2,2,2,2)",
+        "verdict": "CRASHES"
+      },
+      "concurrence_on_3x3": {
+        "error": "ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 3 is different from 4)",
+        "verdict": "CRASHES"
+      },
+      "negativity_on_3x3": {
+        "error": "ValueError: cannot reshape array of size 9 into shape (2,2,2,2)",
+        "verdict": "CRASHES"
+      },
+      "entropy_on_3x3": {
+        "value": 1.448209935368905,
+        "error": null,
+        "verdict": "COMPUTES (no dimension guard)"
+      },
+      "sy_kron_sy_times_3x3": {
+        "error": "ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 3 is different from 4)",
+        "verdict": "CRASHES"
+      }
+    }
+  },
+  "07_near_singular": {
+    "test": "07_near_singular",
+    "finding": "Von Neumann entropy approaches 0 smoothly for near-pure states.  Renyi-inf tracks it.  Relative entropy to maximally mixed diverges as state approaches pure (D(|0><0| || I/2) = 1 bit, finite).  The real danger is logm() of a matrix with near-zero eigenvalue: produces -inf entries, but trace formula still works via eigendecomposition.",
+    "cases": [
+      {
+        "eigenvalue_ratio": 1e-05,
+        "eigenvalues": [
+          0.9999900000999989,
+          9.99990000099999e-06
+        ],
+        "von_neumann_bits": 0.00018052162207163008,
+        "renyi_2_bits": 2.8853612279867367e-05,
+        "renyi_inf_bits": 1.4426878274699924e-05,
+        "relative_entropy_to_maxmix": 0.9998194783779284,
+        "relative_entropy_error": null,
+        "purity": 0.9999800003999939
+      },
+      {
+        "eigenvalue_ratio": 1e-10,
+        "eigenvalues": [
+          0.9999999999,
+          9.999999999e-11
+        ],
+        "von_neumann_bits": 3.4661976105881914e-09,
+        "renyi_2_bits": 2.8853903208047116e-10,
+        "renyi_inf_bits": 1.442695160330221e-10,
+        "relative_entropy_to_maxmix": 0.9999999965338023,
+        "relative_entropy_error": null,
+        "purity": 0.9999999998
+      },
+      {
+        "eigenvalue_ratio": 1e-15,
+        "eigenvalues": [
+          0.9999999999999989,
+          9.999999999999989e-16
+        ],
+        "von_neumann_bits": 1.601713251907458e-15,
+        "renyi_2_bits": 3.2034265038149214e-15,
+        "renyi_inf_bits": 1.6017132519074597e-15,
+        "relative_entropy_to_maxmix": 0.9999999999999484,
+        "relative_entropy_error": null,
+        "purity": 0.9999999999999978
+      },
+      {
+        "eigenvalue_ratio": 1e-20,
+        "eigenvalues": [
+          1.0,
+          1e-20
+        ],
+        "von_neumann_bits": -0.0,
+        "renyi_2_bits": -0.0,
+        "renyi_inf_bits": -0.0,
+        "relative_entropy_to_maxmix": 1.0,
+        "relative_entropy_error": null,
+        "purity": 1.0
+      }
+    ]
+  },
+  "08_non_cp_map": {
+    "test": "08_non_cp_map",
+    "finding": "Partial transpose of entangled states produces negative eigenvalues (Peres-Horodecki criterion).  For Werner states, entanglement detected when p > 1/3.  The output is Hermitian and trace-1 but NOT PSD -- it is not a physical state.  Entropy of the PT output is meaningless.",
+    "cases": [
+      {
+        "werner_p": 1.0,
+        "eigenvalues_original": [
+          0.0,
+          0.0,
+          0.0,
+          0.9999999999999998
+        ],
+        "eigenvalues_after_PT": [
+          -0.4999999999999999,
+          0.4999999999999999,
+          0.4999999999999999,
+          0.4999999999999999
+        ],
+        "min_eigenvalue_after_PT": -0.4999999999999999,
+        "is_PSD_after_PT": false,
+        "trace_preserved": true,
+        "entropy_of_PT_output": 1.0,
+        "ENTANGLED_DETECTED": true
+      },
+      {
+        "werner_p": 0.5,
+        "eigenvalues_original": [
+          0.125,
+          0.125,
+          0.125,
+          0.6249999999999999
+        ],
+        "eigenvalues_after_PT": [
+          -0.12499999999999996,
+          0.37499999999999994,
+          0.37499999999999994,
+          0.37499999999999994
+        ],
+        "min_eigenvalue_after_PT": -0.12499999999999996,
+        "is_PSD_after_PT": false,
+        "trace_preserved": true,
+        "entropy_of_PT_output": 1.2169171866886992,
+        "ENTANGLED_DETECTED": true
+      },
+      {
+        "werner_p": 0.3333333333333333,
+        "eigenvalues_original": [
+          0.16666666666666669,
+          0.16666666666666669,
+          0.16666666666666669,
+          0.49999999999999994
+        ],
+        "eigenvalues_after_PT": [
+          6.013708050052932e-17,
+          0.3333333333333333,
+          0.3333333333333333,
+          0.3333333333333333
+        ],
+        "min_eigenvalue_after_PT": 6.013708050052932e-17,
+        "is_PSD_after_PT": true,
+        "trace_preserved": true,
+        "entropy_of_PT_output": 1.584962500721156,
+        "ENTANGLED_DETECTED": false
+      },
+      {
+        "werner_p": 0.1,
+        "eigenvalues_original": [
+          0.22499999999999992,
+          0.225,
+          0.22500000000000003,
+          0.32499999999999996
+        ],
+        "eigenvalues_after_PT": [
+          0.175,
+          0.275,
+          0.275,
+          0.275
+        ],
+        "min_eigenvalue_after_PT": 0.175,
+        "is_PSD_after_PT": true,
+        "trace_preserved": true,
+        "entropy_of_PT_output": 1.9766098981515112,
+        "ENTANGLED_DETECTED": false
+      },
+      {
+        "werner_p": 0.0,
+        "eigenvalues_original": [
+          0.25,
+          0.25,
+          0.25,
+          0.25
+        ],
+        "eigenvalues_after_PT": [
+          0.25,
+          0.25,
+          0.25,
+          0.25
+        ],
+        "min_eigenvalue_after_PT": 0.25,
+        "is_PSD_after_PT": true,
+        "trace_preserved": true,
+        "entropy_of_PT_output": 2.0,
+        "ENTANGLED_DETECTED": false
+      }
+    ]
+  },
+  "09_z3_proof": {
+    "test": "09_z3_proof",
+    "statement": "No 2x2 real symmetric matrix with Tr=1 and det>=0 (PSD) can have a negative eigenvalue.",
+    "discriminant_approach": "unsat",
+    "eigenvalue_approach": "unsat",
+    "proven": true,
+    "finding": "z3 confirms UNSAT for both formulations.  The density matrix axioms (Hermitian + PSD + Tr=1) algebraically exclude negative eigenvalues.  This is a CONSTRUCTIVE proof: the constraints force det >= 0 and trace = 1, which together bound the smaller eigenvalue to [0, 1/2]."
+  },
+  "10_concurrence_non_psd": {
+    "test": "10_concurrence_non_psd",
+    "finding": "Concurrence computes WITHOUT error on non-PSD input.  sqrtm of a non-PSD matrix returns complex values silently.  The Wootters formula gives a NUMBER that looks plausible but is physically meaningless.  No guard rail whatsoever.",
+    "cases": [
+      {
+        "name": "valid_bell",
+        "is_hermitian": true,
+        "is_PSD": true,
+        "eigenvalues": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "concurrence": 0.9999999937348345,
+        "concurrence_error": null,
+        "negativity": 0.5,
+        "negativity_error": null,
+        "VERDICT": "VALID"
+      },
+      {
+        "name": "small_negative_push",
+        "is_hermitian": true,
+        "is_PSD": false,
+        "eigenvalues": [
+          -0.010204081632653073,
+          -0.010204081632653064,
+          0.0,
+          1.0204081632653061
+        ],
+        "concurrence": 0.9999999999999993,
+        "concurrence_error": null,
+        "negativity": 0.5204081632653061,
+        "negativity_error": null,
+        "VERDICT": "GARBAGE_OUT"
+      },
+      {
+        "name": "large_negative_push",
+        "is_hermitian": true,
+        "is_PSD": false,
+        "eigenvalues": [
+          -0.5,
+          -0.5,
+          0.0,
+          0.9999999999999998
+        ],
+        "concurrence": 0.0,
+        "concurrence_error": null,
+        "negativity": 0.9999999999999999,
+        "negativity_error": null,
+        "VERDICT": "GARBAGE_OUT"
+      },
+      {
+        "name": "off_diagonal_asymmetry",
+        "is_hermitian": false,
+        "is_PSD": true,
+        "eigenvalues": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        "concurrence": 0.9999999937348345,
+        "concurrence_error": null,
+        "negativity": 0.5049998762467829,
+        "negativity_error": null,
+        "VERDICT": "GARBAGE_OUT"
+      }
+    ]
+  },
+  "11_mixed_pathologies": {
+    "test": "11_mixed_pathologies",
+    "finding": "Both failures compound.  eigvalsh still returns real values.  Entropy computes a number.  Trace != 1 shifts it.  Non-Hermitian makes eigenvalues unreliable.  NOTHING raises an exception.",
+    "checks": {
+      "trace": 1.2,
+      "trace_is_1": false,
+      "is_hermitian": false,
+      "eigenvalues_full": [
+        "(0.22583426132260603+0j)",
+        "(0.9741657386773942+0j)"
+      ],
+      "eigenvalues_forced_real": [
+        0.28377223398316204,
+        0.916227766016838
+      ],
+      "has_complex_eigenvalues": false,
+      "entropy": 0.6313173162910047,
+      "entropy_error": null,
+      "purity": 1.0
+    }
+  },
+  "12_anti_unitary": {
+    "test": "12_anti_unitary",
+    "finding": "Complex conjugation maps valid states to valid states but is anti-linear (T(alpha*rho) = alpha* * T(rho)).  This violates the linearity axiom of quantum channels.  It cannot be written as sum_k A_k rho A_k^dag.  On 2-qubit states, applying T to one subsystem is related to partial transpose (the non-CP map from test 8).",
+    "cases": [
+      {
+        "name": "real_state_X+",
+        "valid_before": "True",
+        "valid_after": "True",
+        "output_equals_input": true,
+        "is_linear_map": false,
+        "finding": "Map preserves validity but is ANTI-LINEAR, not linear.  Cannot be represented as a Kraus channel."
+      },
+      {
+        "name": "complex_state_Y+",
+        "valid_before": "True",
+        "valid_after": "True",
+        "output_equals_input": false,
+        "is_linear_map": false,
+        "finding": "Map preserves validity but is ANTI-LINEAR, not linear.  Cannot be represented as a Kraus channel."
+      }
+    ]
+  },
+  "_meta": {
+    "total_tests": 12,
+    "elapsed_s": 0.135,
+    "numpy_version": "2.2.6",
+    "tools": "numpy + scipy + z3"
+  }
+}

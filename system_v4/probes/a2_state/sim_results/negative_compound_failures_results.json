@@ -1,0 +1,370 @@
+{
+  "01_iterated_channel_entropy": {
+    "pass": true,
+    "final_S_numerical": 1.0000000000000009,
+    "final_S_exact": 1.0,
+    "final_error": 8.881784197001252e-16,
+    "first_diverge_thresholds": {
+      "1e-10": null,
+      "1e-06": null,
+      "0.001": null
+    },
+    "sample_log": [
+      {
+        "depth": 1,
+        "S_num": 0.2863969571159564,
+        "S_exact": 0.2863969571159561,
+        "error": 3.3306690738754696e-16
+      },
+      {
+        "depth": 2,
+        "S_num": 0.4529425481872835,
+        "S_exact": 0.4529425481872832,
+        "error": 3.3306690738754696e-16
+      },
+      {
+        "depth": 3,
+        "S_num": 0.5723312877348855,
+        "S_exact": 0.5723312877348847,
+        "error": 7.771561172376096e-16
+      },
+      {
+        "depth": 4,
+        "S_num": 0.6621461722700895,
+        "S_exact": 0.6621461722700889,
+        "error": 6.661338147750939e-16
+      },
+      {
+        "depth": 5,
+        "S_num": 0.7313367575373649,
+        "S_exact": 0.7313367575373644,
+        "error": 5.551115123125783e-16
+      },
+      {
+        "depth": 6,
+        "S_num": 0.7853971588492059,
+        "S_exact": 0.7853971588492051,
+        "error": 7.771561172376096e-16
+      },
+      {
+        "depth": 7,
+        "S_num": 0.8280286562950526,
+        "S_exact": 0.8280286562950518,
+        "error": 7.771561172376096e-16
+      },
+      {
+        "depth": 8,
+        "S_num": 0.8618643472594892,
+        "S_exact": 0.8618643472594885,
+        "error": 7.771561172376096e-16
+      },
+      {
+        "depth": 9,
+        "S_num": 0.8888440922834773,
+        "S_exact": 0.8888440922834765,
+        "error": 7.771561172376096e-16
+      },
+      {
+        "depth": 10,
+        "S_num": 0.9104314452644222,
+        "S_exact": 0.9104314452644213,
+        "error": 8.881784197001252e-16
+      },
+      {
+        "depth": 11,
+        "S_num": 0.9277493806094845,
+        "S_exact": 0.9277493806094836,
+        "error": 8.881784197001252e-16
+      },
+      {
+        "depth": 12,
+        "S_num": 0.9416702181559387,
+        "S_exact": 0.9416702181559377,
+        "error": 9.992007221626409e-16
+      },
+      {
+        "depth": 13,
+        "S_num": 0.9528778227868883,
+        "S_exact": 0.9528778227868874,
+        "error": 8.881784197001252e-16
+      },
+      {
+        "depth": 14,
+        "S_num": 0.9619120687976814,
+        "S_exact": 0.9619120687976805,
+        "error": 8.881784197001252e-16
+      },
+      {
+        "depth": 15,
+        "S_num": 0.9692014494596869,
+        "S_exact": 0.9692014494596859,
+        "error": 9.992007221626409e-16
+      }
+    ],
+    "insight": "Numerical error accumulates through iterated Kraus application vs recomputing exact state.  The compound failure is that each Kraus step adds O(eps_mach) error which compounds multiplicatively."
+  },
+  "02_concurrence_sic_reconstruction": {
+    "pass": true,
+    "C_original": 0.0,
+    "C_reconstructed": 0.0,
+    "phantom_entanglement": false,
+    "reconstruction_valid_state": "False",
+    "min_eigenvalue_reconstructed": -0.4444444444444441,
+    "trace_reconstructed": 1.0,
+    "fidelity_with_original": 1.2222222222222185,
+    "insight": "SIC-POVM linear inversion can produce negative eigenvalues.  The concurrence formula on non-physical states can report phantom entanglement."
+  },
+  "03_berry_phase_compression": {
+    "pass": true,
+    "berry_phase_pure": -1.5706994262030538,
+    "berry_phase_exact": -1.5707963267948961,
+    "berry_phase_gauge_fixed": -1.5706994262030525,
+    "berry_phase_raw_no_gauge": -1.570699426203053,
+    "error_pure_vs_exact": 9.690059184230826e-05,
+    "error_gauge_fixed_vs_exact": 9.690059184364053e-05,
+    "error_raw_vs_exact": 9.690059184319644e-05,
+    "compression_destroyed_phase_raw": "False",
+    "gauge_fix_recovered_phase": "True",
+    "insight": "Eigenvector extraction from a mixed state introduces arbitrary per-point phase (gauge freedom).  Without gauge-fixing, Berry phase is destroyed.  WITH gauge-fix it recovers.  This is a compound failure: compression + geometric phase.  Also: using Tr(rho rho') instead of <psi|psi'> kills the phase entirely (|overlap|^2 is real)."
+  },
+  "04_qfi_dephasing_depth": {
+    "pass": true,
+    "qfi_depth_0": 0.9999999999999993,
+    "qfi_depth_50": 2.656139888758715e-05,
+    "qfi_exact_depth_50": 2.6561398887587544e-05,
+    "noise_floor_detected": false,
+    "sample_trajectory": [
+      {
+        "depth": 0,
+        "QFI": 0.9999999999999993
+      },
+      {
+        "depth": 10,
+        "QFI": 0.12157665459056906
+      },
+      {
+        "depth": 20,
+        "QFI": 0.014780882941434545
+      },
+      {
+        "depth": 30,
+        "QFI": 0.0017970102999144266
+      },
+      {
+        "depth": 40,
+        "QFI": 0.00021847450052838759
+      },
+      {
+        "depth": 50,
+        "QFI": 2.656139888758715e-05
+      }
+    ],
+    "insight": "QFI should decay exponentially.  If numerical noise floor exceeds the true QFI, the lego reports fake metrological sensitivity.  This is a compound failure: channel composition + QFI computation."
+  },
+  "05_teleportation_werner_eigenstate": {
+    "pass": true,
+    "p": 0.9,
+    "f_avg_theory_horodecki": 0.9333333333333332,
+    "f_individual_theory": 0.95,
+    "fidelities": {
+      "|0>": 0.95,
+      "|1>": 0.95,
+      "|+>": 0.9499999999999996,
+      "|i>": 0.9499999999999995,
+      "near_|0>": 0.9500000000000001
+    },
+    "max_deviation_from_individual_theory": 4.440892098500626e-16,
+    "deviations": {
+      "|0>": 0.0,
+      "|1>": 0.0,
+      "|+>": 3.3306690738754696e-16,
+      "|i>": 4.440892098500626e-16,
+      "near_|0>": 1.1102230246251565e-16
+    },
+    "insight": "For Werner-state teleportation in d=2, individual fidelity is (1+p)/2 for ALL pure inputs -- it is state-independent.  The Horodecki (2p+1)/3 relates singlet fraction to avg fidelity differently.  Compound failure: confusing the two formulas."
+  },
+  "06_discord_after_distillation": {
+    "pass": true,
+    "p_before": 0.7,
+    "p_after": 0.7352941176470588,
+    "discord_before": 0.48403091304112555,
+    "discord_after": 0.5302171808012381,
+    "discord_increased": "True",
+    "insight": "Distillation increases singlet fraction p, which should increase discord.  Compound failure: coarse optimization grid may miss the true minimum of conditional entropy, giving incorrect discord."
+  },
+  "07_steering_ellipsoid_non_cp": {
+    "pass": true,
+    "original_ellipsoid": {
+      "center": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "semiaxes": [
+        1.0514622242382672,
+        1.0514622242382672,
+        1.0
+      ],
+      "max_radius": 1.0514622242382672,
+      "escapes_bloch_ball": "True"
+    },
+    "pt_ellipsoid": {
+      "center": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "semiaxes": [
+        1.0514622242382672,
+        1.0514622242382672,
+        1.0
+      ],
+      "max_radius": 1.0514622242382672,
+      "escapes_bloch_ball": "True"
+    },
+    "pt_escapes_bloch_ball": "True",
+    "pt_min_eigenvalue": -0.4755282581475768,
+    "pt_is_entangled_witness": true,
+    "insight": "Partial transpose is positive but not CP.  The steered ellipsoid after PT can escape the Bloch ball because the map violates complete positivity.  Individual legos (steering, PT) work fine alone; the composition reveals the non-physicality."
+  },
+  "08_relative_entropy_near_identical": {
+    "pass": true,
+    "results": [
+      {
+        "epsilon": 0.0001,
+        "D_eigendecomp": 2.9242491844373676e-06,
+        "D_matrix_log": 2.026935077456435e-06,
+        "diverged": false
+      },
+      {
+        "epsilon": 1e-06,
+        "D_eigendecomp": 2.9146308057683917e-10,
+        "D_matrix_log": 2.0202680908624752e-10,
+        "diverged": false
+      },
+      {
+        "epsilon": 1e-08,
+        "D_eigendecomp": 2.932748298427604e-14,
+        "D_matrix_log": 2.032624375235293e-14,
+        "diverged": false
+      },
+      {
+        "epsilon": 1e-10,
+        "D_eigendecomp": -2.3262441835732044e-17,
+        "D_matrix_log": -1.5274991065735147e-17,
+        "diverged": false
+      },
+      {
+        "epsilon": 1e-12,
+        "D_eigendecomp": 6.366464302220648e-17,
+        "D_matrix_log": 5.400214382846119e-17,
+        "diverged": false
+      },
+      {
+        "epsilon": 1e-14,
+        "D_eigendecomp": 2.5604518534571195e-17,
+        "D_matrix_log": 9.50628466855014e-18,
+        "diverged": false
+      }
+    ],
+    "smallest_eps_without_divergence": 0.0001,
+    "insight": "Relative entropy is well-defined only when supp(rho) <= supp(sigma).  At machine precision, perturbations can push rho's support outside sigma's, causing log(0) divergence.  Two legos that individually handle logs fine can blow up when composed."
+  },
+  "09_eigenvalue_interlacing_non_tp": {
+    "pass": true,
+    "uniform_amplification": {
+      "interlacing_holds": true,
+      "evals_full": [
+        1.3000000000000003,
+        1.1045934233477295e-16,
+        2.961496857816144e-17,
+        -1.016031963550372e-16
+      ],
+      "evals_sub": [
+        0.44200000000000006,
+        -6.1323495301354224e-18
+      ],
+      "violations": [],
+      "trace_amplified": 1.3000000000000003
+    },
+    "aggressive_non_tp": {
+      "interlacing_holds": true,
+      "evals_full": [
+        1.4059,
+        8.609311339681866e-17,
+        -4.465042375522227e-18,
+        -1.870026199071401e-17
+      ],
+      "evals_sub": [
+        1.0009,
+        -2.406463035192605e-21
+      ],
+      "violations": [],
+      "trace": 1.4059
+    },
+    "insight": "Cauchy interlacing applies to principal submatrices of Hermitian matrices -- always.  Non-TP maps preserve Hermiticity so interlacing SHOULD still hold for the submatrix.  The compound question: does taking a non-physical (trace != 1) density matrix and then extracting a submatrix create any subtle numerical violations?"
+  },
+  "10_mps_bond_dimension_cnot": {
+    "pass": true,
+    "product_state": {
+      "schmidt_before": [
+        1.0
+      ],
+      "schmidt_after": [
+        0.7071067811865475,
+        0.7071067811865475
+      ],
+      "bond_dim_before": 1,
+      "bond_dim_after": 2
+    },
+    "entangled_state": {
+      "schmidt_before": [
+        0.8660254037844387,
+        0.49999999999999994
+      ],
+      "schmidt_after": [
+        1.0
+      ],
+      "bond_dim_before": 2,
+      "bond_dim_after": 1
+    },
+    "ghz4_across_cut": {
+      "schmidt_before": [
+        0.7071067811865475,
+        0.7071067811865475
+      ],
+      "bond_dim_before": 2,
+      "schmidt_after": [
+        0.7071067811865475,
+        0.7071067811865475
+      ],
+      "bond_dim_after": 2,
+      "truncation_fidelities": {
+        "chi=1": {
+          "fidelity": 0.4999999999999999,
+          "truncation_error": 0.5000000000000001
+        },
+        "chi=2": {
+          "fidelity": 1.0,
+          "truncation_error": 0.0
+        },
+        "chi=3": {
+          "fidelity": 1.0,
+          "truncation_error": 0.0
+        },
+        "chi=4": {
+          "fidelity": 1.0,
+          "truncation_error": 0.0
+        }
+      }
+    },
+    "insight": "CNOT across an MPS bond cut can increase Schmidt rank. When bond dimension is truncated, fidelity loss depends on the discarded singular values.  The compound failure: gate application + truncation + subsequent measurements all accumulate error silently."
+  },
+  "summary": {
+    "all_pass": true,
+    "elapsed_seconds": 0.279,
+    "num_tests": 10,
+    "tests_passed": 10,
+    "description": "Compound negative battery: 10 tests where individually correct legos produce failures when COMPOSED.  Numerical error accumulation, reconstruction noise, compression artifacts, formula misapplication, and truncation losses."
+  }
+}

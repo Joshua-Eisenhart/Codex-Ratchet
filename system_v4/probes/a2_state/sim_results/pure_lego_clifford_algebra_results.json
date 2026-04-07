@@ -1,0 +1,216 @@
+{
+  "1_cl3_fundamentals": {
+    "squares": {
+      "e1^2": 1.0,
+      "e2^2": 1.0,
+      "e3^2": 1.0
+    },
+    "anticommutators_off_diag": {
+      "{e1,e2}": 0.0,
+      "{e1,e3}": 0.0,
+      "{e2,e3}": 0.0
+    },
+    "n_basis_elements": 8,
+    "I_squared": -1.0,
+    "all_pass": true
+  },
+  "2_rotors_su2": {
+    "R_Rtilde_scalar": 1.0,
+    "R_Rtilde_is_1": "True",
+    "R_2pi_scalar": -1.0,
+    "R_2pi_is_minus1": true,
+    "R_4pi_scalar": 1.0,
+    "R_4pi_is_plus1": true,
+    "rotor_composition_matches": true,
+    "all_pass": true
+  },
+  "3_cl3_pauli": {
+    "anticommutator_pauli_match": {
+      "{s1,s1}": true,
+      "{s1,s2}": true,
+      "{s1,s3}": true,
+      "{s2,s2}": true,
+      "{s2,s3}": true,
+      "{s3,s3}": true
+    },
+    "anticommutator_cl3_match": {
+      "{e1,e1}": true,
+      "{e1,e2}": true,
+      "{e1,e3}": true,
+      "{e2,e2}": true,
+      "{e2,e3}": true,
+      "{e3,e3}": true
+    },
+    "commutator_correspondence": {
+      "[e1,e2]": {
+        "pauli_ok": true,
+        "cl3_ok": true
+      },
+      "[e2,e3]": {
+        "pauli_ok": true,
+        "cl3_ok": true
+      },
+      "[e1,e3]": {
+        "pauli_ok": true,
+        "cl3_ok": true
+      }
+    },
+    "all_pass": true
+  },
+  "4_bloch_cl3": {
+    "pure_state_idempotent_err": 0.0,
+    "pure_state_idempotent": true,
+    "roundtrip_error": 0.0,
+    "roundtrip_pass": true,
+    "bloch_r_norm": 0.7071067811865476,
+    "entropy_bits": 0.6008760367,
+    "entropy_from_eigenvalues": [
+      0.8535533906,
+      0.1464466094
+    ],
+    "pure_state_entropy": 0.0,
+    "pure_state_entropy_is_zero": "True",
+    "all_pass": "True"
+  },
+  "5_cl6_2qubit": {
+    "n_basis_elements": 64,
+    "n_basis_is_64": true,
+    "cross_bivectors_count": 9,
+    "cross_bivectors": {
+      "e1*e4": {
+        "e14": 1.0
+      },
+      "e1*e5": {
+        "e15": 1.0
+      },
+      "e1*e6": {
+        "e16": 1.0
+      },
+      "e2*e4": {
+        "e24": 1.0
+      },
+      "e2*e5": {
+        "e25": 1.0
+      },
+      "e2*e6": {
+        "e26": 1.0
+      },
+      "e3*e4": {
+        "e34": 1.0
+      },
+      "e3*e5": {
+        "e35": 1.0
+      },
+      "e3*e6": {
+        "e36": 1.0
+      }
+    },
+    "cross_bivectors_all_grade2": true,
+    "all_pass": true
+  },
+  "6_product_state_cl6": {
+    "grade_structure": {
+      "0": [
+        ""
+      ],
+      "1": [
+        "e3",
+        "e4"
+      ],
+      "2": [
+        "e34"
+      ]
+    },
+    "expansion_match_error": 0.0,
+    "expansion_match": true,
+    "has_only_product_cross_terms": true,
+    "all_pass": true
+  },
+  "7_entangled_state": {
+    "T_matrix": [
+      [
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "singular_values": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "max_entangled_sv_all_1": true,
+    "local_bloch_a": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "local_bloch_b": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "local_bloch_zero": true,
+    "product_state_T": [
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "product_state_sv": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "product_T_rank1": true,
+    "all_pass": true
+  },
+  "8_rotor_composition": {
+    "local_rotor_commutes_across_subsystem": true,
+    "product_after_local_svs": [
+      1.0,
+      0.0,
+      0.0
+    ],
+    "local_rotation_preserves_product_rank": true,
+    "bell_after_local_svs": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "local_rotors_preserve_entanglement": true,
+    "sv_max_drift_over_sweep": 2.220446049250313e-16,
+    "svs_invariant_under_local_rotation": true,
+    "cross_rotor_transforms_eA1": true,
+    "cross_rotor_transforms_eB1": true,
+    "e1_after_cross_rotor": {
+      "e1": 0.707106781187,
+      "e4": -0.707106781187
+    },
+    "local_rotors_commute": true,
+    "cross_local_rotors_commute": false,
+    "all_pass": true
+  },
+  "all_pass": true
+}

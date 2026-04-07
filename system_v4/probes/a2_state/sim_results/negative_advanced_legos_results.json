@@ -1,0 +1,382 @@
+{
+  "battery": "negative_advanced_legos",
+  "timestamp": "2026-04-07T19:01:32.519576+00:00",
+  "elapsed_s": 0.18,
+  "n_tests": 10,
+  "n_passed": 10,
+  "n_failed": 0,
+  "all_passed": true,
+  "tests": {
+    "01_teleportation_separable": {
+      "test": "teleportation_separable_state",
+      "description": "Teleportation without entanglement: fidelity <= 2/3",
+      "avg_fidelity": 0.501217,
+      "max_fidelity": 0.908395,
+      "classical_bound": 0.6666666666666666,
+      "n_trials": 500,
+      "passed": true,
+      "verdict": "avg fid 0.5012 vs bound 0.6667"
+    },
+    "02_walk_disconnected": {
+      "test": "walk_disconnected_graph",
+      "description": "CTQW on disconnected graph: zero probability on unreachable component",
+      "max_leakage_to_B": 0.0,
+      "times_tested": [
+        0.5,
+        1.0,
+        2.0,
+        5.0,
+        10.0,
+        50.0
+      ],
+      "details": [
+        {
+          "t": 0.5,
+          "prob_component_A": 1.0,
+          "prob_component_B": 0.0
+        },
+        {
+          "t": 1.0,
+          "prob_component_A": 1.0,
+          "prob_component_B": 0.0
+        },
+        {
+          "t": 2.0,
+          "prob_component_A": 1.0,
+          "prob_component_B": 0.0
+        },
+        {
+          "t": 5.0,
+          "prob_component_A": 1.0,
+          "prob_component_B": 0.0
+        },
+        {
+          "t": 10.0,
+          "prob_component_A": 1.0,
+          "prob_component_B": 0.0
+        },
+        {
+          "t": 50.0,
+          "prob_component_A": 1.0,
+          "prob_component_B": 0.0
+        }
+      ],
+      "passed": true,
+      "verdict": "max leakage = 0.00e+00 (must be ~0)"
+    },
+    "03_integrable_vs_gue": {
+      "test": "integrable_vs_gue_classifier",
+      "description": "Integrable system should give Poisson spacing, not Wigner-Dyson",
+      "r_avg": 0.4411,
+      "r_poisson_ref": 0.3863,
+      "r_wigner_dyson_ref": 0.5307,
+      "dist_to_poisson": 0.0548,
+      "dist_to_wigner_dyson": 0.0896,
+      "misclassified_as_chaotic": false,
+      "passed": true,
+      "verdict": "r_avg=0.4411, closer to Poisson (0.0548) than WD (0.0896)"
+    },
+    "04_schumacher_below": {
+      "test": "schumacher_below_entropy",
+      "description": "Compression below S(rho) crashes fidelity",
+      "entropy_S_rho": 0.468996,
+      "n_copies": 8,
+      "rate_sweep": [
+        {
+          "rate_fraction_of_entropy": 0.2,
+          "rate_R": 0.0938,
+          "entropy_S": 0.469,
+          "dim_compressed": 2,
+          "dim_full": 256,
+          "fidelity": 0.478297
+        },
+        {
+          "rate_fraction_of_entropy": 0.4,
+          "rate_R": 0.1876,
+          "entropy_S": 0.469,
+          "dim_compressed": 3,
+          "dim_full": 256,
+          "fidelity": 0.526127
+        },
+        {
+          "rate_fraction_of_entropy": 0.6,
+          "rate_R": 0.2814,
+          "entropy_S": 0.469,
+          "dim_compressed": 5,
+          "dim_full": 256,
+          "fidelity": 0.621786
+        },
+        {
+          "rate_fraction_of_entropy": 0.8,
+          "rate_R": 0.3752,
+          "entropy_S": 0.469,
+          "dim_compressed": 8,
+          "dim_full": 256,
+          "fidelity": 0.765275
+        },
+        {
+          "rate_fraction_of_entropy": 1.0,
+          "rate_R": 0.469,
+          "entropy_S": 0.469,
+          "dim_compressed": 13,
+          "dim_full": 256,
+          "fidelity": 0.834362
+        },
+        {
+          "rate_fraction_of_entropy": 1.5,
+          "rate_R": 0.7035,
+          "entropy_S": 0.469,
+          "dim_compressed": 49,
+          "dim_full": 256,
+          "fidelity": 0.968994
+        },
+        {
+          "rate_fraction_of_entropy": 2.0,
+          "rate_R": 0.938,
+          "entropy_S": 0.469,
+          "dim_compressed": 182,
+          "dim_full": 256,
+          "fidelity": 0.999707
+        }
+      ],
+      "fidelity_crashed_below": true,
+      "fidelity_preserved_above": true,
+      "passed": true,
+      "monotonic": true,
+      "verdict": "S=0.4690; below fids=[0.478297, 0.526127, 0.621786, 0.765275], well-above=[0.968994, 0.999707], mono=True"
+    },
+    "05_mps_chi1": {
+      "test": "mps_chi1_entangled_state",
+      "description": "MPS chi=1 cannot represent entangled states; fidelity < 1",
+      "sweep": [
+        {
+          "theta": 0.0,
+          "concurrence": 0.0,
+          "entanglement_entropy": -0.0,
+          "chi1_fidelity": 1.0,
+          "fidelity_loss": 0.0
+        },
+        {
+          "theta": 0.0413,
+          "concurrence": 0.082579,
+          "entanglement_entropy": 0.018162,
+          "chi1_fidelity": 0.996587,
+          "fidelity_loss": 0.003413
+        },
+        {
+          "theta": 0.0827,
+          "concurrence": 0.164595,
+          "entanglement_entropy": 0.058878,
+          "chi1_fidelity": 0.986408,
+          "fidelity_loss": 0.013592
+        },
+        {
+          "theta": 0.124,
+          "concurrence": 0.245485,
+          "entanglement_entropy": 0.114167,
+          "chi1_fidelity": 0.969634,
+          "fidelity_loss": 0.030366
+        },
+        {
+          "theta": 0.1653,
+          "concurrence": 0.324699,
+          "entanglement_entropy": 0.179589,
+          "chi1_fidelity": 0.946551,
+          "fidelity_loss": 0.053449
+        },
+        {
+          "theta": 0.2067,
+          "concurrence": 0.401695,
+          "entanglement_entropy": 0.251899,
+          "chi1_fidelity": 0.917547,
+          "fidelity_loss": 0.082453
+        },
+        {
+          "theta": 0.248,
+          "concurrence": 0.475947,
+          "entanglement_entropy": 0.328489,
+          "chi1_fidelity": 0.883105,
+          "fidelity_loss": 0.116895
+        },
+        {
+          "theta": 0.2894,
+          "concurrence": 0.546948,
+          "entanglement_entropy": 0.407152,
+          "chi1_fidelity": 0.843795,
+          "fidelity_loss": 0.156205
+        },
+        {
+          "theta": 0.3307,
+          "concurrence": 0.614213,
+          "entanglement_entropy": 0.485975,
+          "chi1_fidelity": 0.800256,
+          "fidelity_loss": 0.199744
+        },
+        {
+          "theta": 0.372,
+          "concurrence": 0.677282,
+          "entanglement_entropy": 0.563273,
+          "chi1_fidelity": 0.753184,
+          "fidelity_loss": 0.246816
+        },
+        {
+          "theta": 0.4134,
+          "concurrence": 0.735724,
+          "entanglement_entropy": 0.637551,
+          "chi1_fidelity": 0.703318,
+          "fidelity_loss": 0.296682
+        },
+        {
+          "theta": 0.4547,
+          "concurrence": 0.789141,
+          "entanglement_entropy": 0.707486,
+          "chi1_fidelity": 0.651421,
+          "fidelity_loss": 0.348579
+        },
+        {
+          "theta": 0.496,
+          "concurrence": 0.837166,
+          "entanglement_entropy": 0.771906,
+          "chi1_fidelity": 0.598262,
+          "fidelity_loss": 0.401738
+        },
+        {
+          "theta": 0.5374,
+          "concurrence": 0.879474,
+          "entanglement_entropy": 0.829789,
+          "chi1_fidelity": 0.544605,
+          "fidelity_loss": 0.455395
+        },
+        {
+          "theta": 0.5787,
+          "concurrence": 0.915773,
+          "entanglement_entropy": 0.880252,
+          "chi1_fidelity": 0.491188,
+          "fidelity_loss": 0.508812
+        },
+        {
+          "theta": 0.6201,
+          "concurrence": 0.945817,
+          "entanglement_entropy": 0.922552,
+          "chi1_fidelity": 0.438707,
+          "fidelity_loss": 0.561293
+        },
+        {
+          "theta": 0.6614,
+          "concurrence": 0.9694,
+          "entanglement_entropy": 0.956082,
+          "chi1_fidelity": 0.387809,
+          "fidelity_loss": 0.612191
+        },
+        {
+          "theta": 0.7027,
+          "concurrence": 0.986361,
+          "entanglement_entropy": 0.980368,
+          "chi1_fidelity": 0.33907,
+          "fidelity_loss": 0.66093
+        },
+        {
+          "theta": 0.7441,
+          "concurrence": 0.996584,
+          "entanglement_entropy": 0.995075,
+          "chi1_fidelity": 0.292995,
+          "fidelity_loss": 0.707005
+        },
+        {
+          "theta": 0.7854,
+          "concurrence": 1.0,
+          "entanglement_entropy": 1.0,
+          "chi1_fidelity": 0.25,
+          "fidelity_loss": 0.75
+        }
+      ],
+      "bell_state_fidelity": 0.25,
+      "product_state_fidelity": 1.0,
+      "passed": true,
+      "verdict": "product fid=1.0000, Bell fid=0.2500"
+    },
+    "06_stabilizer_rank": {
+      "test": "stabilizer_rank_random_states",
+      "description": "Haar-random states need rank > 1 stabilizer decomposition",
+      "n_trials": 100,
+      "n_exact_stabilizer": 0,
+      "n_non_stabilizer": 100,
+      "fraction_non_stabilizer": 1.0,
+      "avg_max_overlap_with_stab": 0.923758,
+      "passed": true,
+      "verdict": "100.0% of random states need rank >= 2"
+    },
+    "07_distillation_separable": {
+      "test": "distillation_from_separable",
+      "description": "Cannot distill entanglement from separable states",
+      "n_pairs": 5,
+      "n_trials": 20,
+      "details": [
+        {
+          "trial": 0,
+          "avg_input_concurrence": 0.0,
+          "output_concurrence": 0.0
+        },
+        {
+          "trial": 1,
+          "avg_input_concurrence": 0.0,
+          "output_concurrence": 0.0
+        },
+        {
+          "trial": 2,
+          "avg_input_concurrence": 0.0,
+          "output_concurrence": 0.0
+        },
+        {
+          "trial": 3,
+          "avg_input_concurrence": 0.0,
+          "output_concurrence": 0.0
+        },
+        {
+          "trial": 4,
+          "avg_input_concurrence": 0.0,
+          "output_concurrence": 0.0
+        }
+      ],
+      "all_input_separable": true,
+      "all_output_separable": true,
+      "passed": true,
+      "verdict": "Separable in -> separable out (LOCC cannot create entanglement)"
+    },
+    "08_bb84_double_error": {
+      "test": "bb84_eavesdropper_plus_mismatch",
+      "description": "BB84 with Eve: QBER > 25% on matched, > 30% on all rounds",
+      "n_rounds": 10000,
+      "matched_basis_rounds": 5045,
+      "qber_matched_basis": 0.2573,
+      "qber_all_rounds": 0.3774,
+      "expected_qber_matched": 0.25,
+      "expected_qber_all": 0.375,
+      "passed": true,
+      "verdict": "QBER matched=0.2573 (exp 0.25), all=0.3774 (exp 0.375)"
+    },
+    "09_cnot_cloning": {
+      "test": "cnot_cloning_attempt",
+      "description": "CNOT cloning: clone fidelity < 1 for non-eigenstates",
+      "n_trials": 200,
+      "avg_clone_fidelity": 0.655243,
+      "avg_original_fidelity": 0.655243,
+      "min_clone_fidelity": 0.500099,
+      "buzek_hillery_optimal": 0.8333333333333334,
+      "n_imperfect_clones": 200,
+      "fraction_imperfect": 1.0,
+      "passed": true,
+      "verdict": "avg clone fid=0.6552, BH optimal=0.8333, 200/200 imperfect"
+    },
+    "10_f_divergence_linear": {
+      "test": "f_divergence_linear_degenerate",
+      "description": "f(t)=t gives trivially zero divergence for all state pairs",
+      "n_pairs": 50,
+      "avg_divergence": -0.0,
+      "max_abs_divergence": 0.0,
+      "all_within_tolerance": true,
+      "passed": true,
+      "verdict": "max |D_f| = 2.89e-15 (must be ~0 for degenerate f(t)=t)"
+    }
+  }
+}

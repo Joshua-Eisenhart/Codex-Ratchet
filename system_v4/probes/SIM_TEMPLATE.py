@@ -20,12 +20,21 @@ import numpy as np
 # =====================================================================
 
 TOOL_MANIFEST = {
+    # --- Computation layer ---
     "pytorch": {"tried": False, "used": False, "reason": ""},
-    "z3": {"tried": False, "used": False, "reason": ""},
-    "sympy": {"tried": False, "used": False, "reason": ""},
-    "clifford": {"tried": False, "used": False, "reason": ""},
-    "toponetx": {"tried": False, "used": False, "reason": ""},
     "pyg": {"tried": False, "used": False, "reason": ""},
+    # --- Proof layer ---
+    "z3": {"tried": False, "used": False, "reason": ""},
+    "cvc5": {"tried": False, "used": False, "reason": ""},
+    # --- Symbolic layer ---
+    "sympy": {"tried": False, "used": False, "reason": ""},
+    # --- Geometry layer ---
+    "clifford": {"tried": False, "used": False, "reason": ""},
+    "geomstats": {"tried": False, "used": False, "reason": ""},
+    "e3nn": {"tried": False, "used": False, "reason": ""},
+    # --- Topology layer ---
+    "toponetx": {"tried": False, "used": False, "reason": ""},
+    "gudhi": {"tried": False, "used": False, "reason": ""},
 }
 
 # Try importing each tool
@@ -36,10 +45,22 @@ except ImportError:
     TOOL_MANIFEST["pytorch"]["reason"] = "not installed"
 
 try:
+    import torch_geometric  # noqa: F401
+    TOOL_MANIFEST["pyg"]["tried"] = True
+except ImportError:
+    TOOL_MANIFEST["pyg"]["reason"] = "not installed"
+
+try:
     from z3 import *  # noqa: F401,F403
     TOOL_MANIFEST["z3"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["z3"]["reason"] = "not installed"
+
+try:
+    import cvc5  # noqa: F401
+    TOOL_MANIFEST["cvc5"]["tried"] = True
+except ImportError:
+    TOOL_MANIFEST["cvc5"]["reason"] = "not installed"
 
 try:
     import sympy as sp  # noqa: F401
@@ -54,16 +75,28 @@ except ImportError:
     TOOL_MANIFEST["clifford"]["reason"] = "not installed"
 
 try:
+    import geomstats  # noqa: F401
+    TOOL_MANIFEST["geomstats"]["tried"] = True
+except ImportError:
+    TOOL_MANIFEST["geomstats"]["reason"] = "not installed"
+
+try:
+    import e3nn  # noqa: F401
+    TOOL_MANIFEST["e3nn"]["tried"] = True
+except ImportError:
+    TOOL_MANIFEST["e3nn"]["reason"] = "not installed"
+
+try:
     from toponetx.classes import CellComplex  # noqa: F401
     TOOL_MANIFEST["toponetx"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["toponetx"]["reason"] = "not installed"
 
 try:
-    import torch_geometric  # noqa: F401
-    TOOL_MANIFEST["pyg"]["tried"] = True
+    import gudhi  # noqa: F401
+    TOOL_MANIFEST["gudhi"]["tried"] = True
 except ImportError:
-    TOOL_MANIFEST["pyg"]["reason"] = "not installed"
+    TOOL_MANIFEST["gudhi"]["reason"] = "not installed"
 
 
 # =====================================================================

@@ -222,13 +222,18 @@ Where they diverge: that divergence is the quantum content that the classical su
 
 | Tool | Role | Must do | Must not be reduced to | Status |
 |------|------|---------|------------------------|--------|
-| PyTorch | core substrate | tensors, gradients, autograd | numpy wrapper | installed |
-| PyG | graph dynamics | message passing as computation | graph inspection only | installed |
-| z3 | structural proof | UNSAT impossibility checks | post-hoc SAT check | installed |
-| sympy | symbolic derivation | derive formulas before numerics | verify-only layer | installed |
-| clifford | geometric algebra | native geometric computation | roundtrip test | installed |
-| TopoNetX | topology | shape the graph by cell-complex structure | Betti-number checker | installed |
-| TLA+ | temporal logic model checking | verify liveness (ratchet progresses), safety (shells never un-nest), ordering invariants (cascade kills commute) | post-hoc narrative | **planned — not installed** |
+| PyTorch 2.8 | core substrate | tensors, gradients, autograd | numpy wrapper | installed |
+| PyG 2.7 | graph dynamics | message passing as computation | graph inspection only | installed |
+| z3 4.16 | structural proof | UNSAT impossibility checks | post-hoc SAT check | installed |
+| cvc5 1.3 | SMT cross-check + synthesis | cross-check z3 UNSAT; SyGuS for minimal generators | redundant z3 clone | **NEW — installed** |
+| sympy 1.14 | symbolic derivation | derive formulas before numerics | verify-only layer | installed |
+| clifford 1.5 | geometric algebra | native Cl(3)/Cl(6) computation | roundtrip test | installed |
+| geomstats 2.8 | Riemannian manifolds | shell metrics, geodesics, curvature, Fréchet means | numpy wrapper with manifold labels | **NEW — installed** |
+| e3nn 0.6 | E(3)-equivariant NN | symmetry-native PyTorch (O(3)/SU(2)) | decorative equivariance claim | **NEW — installed** |
+| TopoNetX 0.4 | cell-complex topology | higher-order topological structure | Betti-number checker | installed |
+| GUDHI 3.12 | persistent homology / TDA | filtrations, persistence diagrams, simplicial/Rips | unused import | **was installed, now canonical** |
+| Lean 4 | interactive theorem prover | math formalization above SMT | — | **planned — not installed** |
+| TLAPS | temporal logic model checking | ratchet safety/liveness, shell nesting invariants | post-hoc narrative | **planned — not installed** |
 
 ### TLA+ integration plan (planned)
 TLA+ (see [TLAPM Proofs](https://proofs.tlapl.us/doc/web/content/Home.html)) is a formal specification language for verifying temporal properties of systems. Target use cases:

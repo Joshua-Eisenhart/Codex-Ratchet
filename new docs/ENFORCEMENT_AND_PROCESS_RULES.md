@@ -6,7 +6,7 @@
 | **last_verified** | 2026-04-07 |
 | **current_enforced** | SIM_TEMPLATE.py structure, tool manifest requirement, two-lane policy |
 | **discovered** | L0-L7 constraint cascade, 28 irreducible families, 9 independent observables, simultaneous shell geometry |
-| **planned** | Manifest checker CI, canonical promotion gate, TLA+ model checking, PyTorch migration of all 28 families |
+| **planned** | Manifest checker CI, canonical promotion gate, Lean 4 / TLAPS proof layer, PyTorch migration of all 28 families |
 
 ## Purpose
 These rules describe the target standard for new work. They are not yet automatically enforced — no CI checker, no promotion gate, no automated manifest validator exists. Until that machinery is built, compliance depends on discipline and review.
@@ -51,15 +51,32 @@ All new core computation uses PyTorch tensors. numpy is for loading data, conver
 ## Rule 2: Try all tools; use what is relevant
 Every canonical sim must attempt to use each tool: z3, sympy, clifford, TopoNetX, PyG/PyTorch. Document which tools were tried and why each was used or not relevant. The default is all tools. Exceptions must be justified explicitly in the sim output.
 
-Required tool-role contract:
-- **z3**: constraint proofs (UNSAT = impossible = quantum). Try for every structural claim.
-- **sympy**: symbolic algebra. Try for every formula derivation.
-- **clifford Cl(3)/Cl(6)**: geometric algebra. Try for every geometric operation.
-- **TopoNetX**: cell-complex topology. Try for every topological structure.
-- **PyG/PyTorch**: differentiable computation + message passing. Try for all core computation.
-- **TLA+ (planned)**: temporal logic model checking. Not yet installed. Target: verify liveness/safety of constraint cascade ordering, ratchet irreversibility, and shell nesting invariants.
+Required tool-role contract (see TOOLING_STATUS.md for versions and install status):
 
-**Why:** Each tool carries a different ontological commitment. z3 does constraint logic (non-classical). Clifford does geometric product (non-commutative). TopoNetX does topology (relational). PyG does graph computation (non-Cartesian). Using them forces non-classical thinking.
+**Proof layer:**
+- **z3**: constraint proofs (UNSAT = impossible = quantum). Try for every structural claim.
+- **cvc5**: cross-check z3 UNSAT claims; SyGuS synthesis for minimal generators and admissible-operator search.
+
+**Symbolic layer:**
+- **sympy**: symbolic algebra. Try for every formula derivation.
+
+**Geometry layer:**
+- **clifford Cl(3)/Cl(6)**: geometric algebra. Try for every geometric operation.
+- **geomstats**: Riemannian manifold computation. Try for every shell metric, geodesic, or curvature calculation.
+- **e3nn**: E(3)-equivariant layers. Try when symmetry-native PyTorch computation is relevant (O(3)/SU(2) operations).
+
+**Topology layer:**
+- **TopoNetX**: cell-complex topology. Try for every higher-order topological structure.
+- **GUDHI**: persistent homology, filtrations, TDA. Try for every topological invariant computation at scale.
+
+**Computation layer:**
+- **PyG/PyTorch**: differentiable computation + message passing. Try for all core computation.
+
+**Planned (not yet installed):**
+- **Lean 4**: interactive theorem prover for math-side formalization above SMT level.
+- **TLAPS**: temporal logic model checking for ratchet safety/liveness properties.
+
+**Why:** Each tool carries a different ontological commitment. z3/cvc5 do constraint logic (non-classical). Clifford does geometric product (non-commutative). TopoNetX/GUDHI do topology (relational). geomstats does Riemannian geometry (intrinsic, not coordinate-first). e3nn does equivariant computation (symmetry-native). PyG does graph computation (non-Cartesian). Using them forces non-classical thinking.
 
 ## Rule 3: No engine jargon in sims
 Standard mathematical terms only. Z-dephasing, not Ti. X-rotation, not Fi. The Jungian labels are a Rosetta mapping applied after the math is verified.

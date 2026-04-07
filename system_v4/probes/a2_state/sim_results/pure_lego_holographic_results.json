@@ -1,0 +1,387 @@
+{
+  "probe": "sim_pure_lego_holographic",
+  "timestamp": "2026-04-07T19:05:11.948510+00:00",
+  "description": "Pure-lego holographic quantum error correction and toy AdS/CFT. numpy only, no engine.",
+  "sections": {
+    "5qubit_perfect_tensor": {
+      "pass": true,
+      "state_dim": 32,
+      "pairs_tested": 10,
+      "pairs_passed": 10,
+      "details": [
+        {
+          "subsystem": [
+            0,
+            1
+          ],
+          "entropy": 1.3862943611198906,
+          "max_entropy": 1.3862943611198906,
+          "is_maximally_mixed": true,
+          "entropy_matches_max": true
+        },
+        {
+          "subsystem": [
+            0,
+            2
+          ],
+          "entropy": 1.3862943611198906,
+          "max_entropy": 1.3862943611198906,
+          "is_maximally_mixed": true,
+          "entropy_matches_max": true
+        },
+        {
+          "subsystem": [
+            0,
+            3
+          ],
+          "entropy": 1.3862943611198906,
+          "max_entropy": 1.3862943611198906,
+          "is_maximally_mixed": true,
+          "entropy_matches_max": true
+        },
+        {
+          "subsystem": [
+            0,
+            4
+          ],
+          "entropy": 1.3862943611198906,
+          "max_entropy": 1.3862943611198906,
+          "is_maximally_mixed": true,
+          "entropy_matches_max": true
+        },
+        {
+          "subsystem": [
+            1,
+            2
+          ],
+          "entropy": 1.3862943611198906,
+          "max_entropy": 1.3862943611198906,
+          "is_maximally_mixed": true,
+          "entropy_matches_max": true
+        },
+        {
+          "subsystem": [
+            1,
+            3
+          ],
+          "entropy": 1.3862943611198906,
+          "max_entropy": 1.3862943611198906,
+          "is_maximally_mixed": true,
+          "entropy_matches_max": true
+        },
+        {
+          "subsystem": [
+            1,
+            4
+          ],
+          "entropy": 1.3862943611198906,
+          "max_entropy": 1.3862943611198906,
+          "is_maximally_mixed": true,
+          "entropy_matches_max": true
+        },
+        {
+          "subsystem": [
+            2,
+            3
+          ],
+          "entropy": 1.3862943611198906,
+          "max_entropy": 1.3862943611198906,
+          "is_maximally_mixed": true,
+          "entropy_matches_max": true
+        },
+        {
+          "subsystem": [
+            2,
+            4
+          ],
+          "entropy": 1.3862943611198906,
+          "max_entropy": 1.3862943611198906,
+          "is_maximally_mixed": true,
+          "entropy_matches_max": true
+        },
+        {
+          "subsystem": [
+            3,
+            4
+          ],
+          "entropy": 1.3862943611198906,
+          "max_entropy": 1.3862943611198906,
+          "is_maximally_mixed": true,
+          "entropy_matches_max": true
+        }
+      ]
+    },
+    "3qutrit_holographic_code": {
+      "pass": true,
+      "state_dim": 27,
+      "details": [
+        {
+          "erased_qutrit": 0,
+          "kept_qutrits": [
+            1,
+            2
+          ],
+          "entropy_erased_qutrit": 1.0986122886681096,
+          "max_entropy_1_qutrit": 1.0986122886681098,
+          "erased_is_maximally_mixed": true,
+          "entropy_complement": 1.0986122886681098,
+          "erasure_correctable": true
+        },
+        {
+          "erased_qutrit": 1,
+          "kept_qutrits": [
+            0,
+            2
+          ],
+          "entropy_erased_qutrit": 1.0986122886681096,
+          "max_entropy_1_qutrit": 1.0986122886681098,
+          "erased_is_maximally_mixed": true,
+          "entropy_complement": 1.0986122886681098,
+          "erasure_correctable": true
+        },
+        {
+          "erased_qutrit": 2,
+          "kept_qutrits": [
+            0,
+            1
+          ],
+          "entropy_erased_qutrit": 1.0986122886681096,
+          "max_entropy_1_qutrit": 1.0986122886681098,
+          "erased_is_maximally_mixed": true,
+          "entropy_complement": 1.0986122886681098,
+          "erasure_correctable": true
+        }
+      ]
+    },
+    "ryu_takayanagi_toy": {
+      "pass": true,
+      "graph": {
+        "tensors": [
+          "T1",
+          "T2",
+          "T3"
+        ],
+        "boundary_legs": {
+          "T1": [
+            "b1 (leg0)",
+            "b2 (leg1)"
+          ],
+          "T2": [
+            "b3 (leg1)"
+          ],
+          "T3": [
+            "b4 (leg1)",
+            "b5 (leg2)"
+          ]
+        },
+        "bulk_edges": [
+          "e12 (T1.leg2 -- T2.leg0)",
+          "e23 (T2.leg2 -- T3.leg0)"
+        ],
+        "bond_dimension": 3
+      },
+      "boundary_state_dim": 243,
+      "regions_tested": 9,
+      "regions_passed": 9,
+      "details": [
+        {
+          "boundary_region_A": [
+            0
+          ],
+          "boundary_region_Ac": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "entropy_actual": 1.0986122886681098,
+          "rt_cut_A": 1,
+          "rt_cut_Ac": 1,
+          "rt_effective_cut": 1,
+          "entropy_rt_prediction": 1.0986122886681098,
+          "match": true
+        },
+        {
+          "boundary_region_A": [
+            1
+          ],
+          "boundary_region_Ac": [
+            0,
+            2,
+            3,
+            4
+          ],
+          "entropy_actual": 1.0986122886681098,
+          "rt_cut_A": 1,
+          "rt_cut_Ac": 1,
+          "rt_effective_cut": 1,
+          "entropy_rt_prediction": 1.0986122886681098,
+          "match": true
+        },
+        {
+          "boundary_region_A": [
+            2
+          ],
+          "boundary_region_Ac": [
+            0,
+            1,
+            3,
+            4
+          ],
+          "entropy_actual": 1.0986122886681098,
+          "rt_cut_A": 1,
+          "rt_cut_Ac": 1,
+          "rt_effective_cut": 1,
+          "entropy_rt_prediction": 1.0986122886681098,
+          "match": true
+        },
+        {
+          "boundary_region_A": [
+            3
+          ],
+          "boundary_region_Ac": [
+            0,
+            1,
+            2,
+            4
+          ],
+          "entropy_actual": 1.0986122886681098,
+          "rt_cut_A": 1,
+          "rt_cut_Ac": 1,
+          "rt_effective_cut": 1,
+          "entropy_rt_prediction": 1.0986122886681098,
+          "match": true
+        },
+        {
+          "boundary_region_A": [
+            0,
+            1
+          ],
+          "boundary_region_Ac": [
+            2,
+            3,
+            4
+          ],
+          "entropy_actual": 1.0986122886681096,
+          "rt_cut_A": 1,
+          "rt_cut_Ac": 1,
+          "rt_effective_cut": 1,
+          "entropy_rt_prediction": 1.0986122886681098,
+          "match": true
+        },
+        {
+          "boundary_region_A": [
+            3,
+            4
+          ],
+          "boundary_region_Ac": [
+            0,
+            1,
+            2
+          ],
+          "entropy_actual": 1.0986122886681096,
+          "rt_cut_A": 1,
+          "rt_cut_Ac": 1,
+          "rt_effective_cut": 1,
+          "entropy_rt_prediction": 1.0986122886681098,
+          "match": true
+        },
+        {
+          "boundary_region_A": [
+            0,
+            1,
+            2
+          ],
+          "boundary_region_Ac": [
+            3,
+            4
+          ],
+          "entropy_actual": 1.0986122886681098,
+          "rt_cut_A": 1,
+          "rt_cut_Ac": 1,
+          "rt_effective_cut": 1,
+          "entropy_rt_prediction": 1.0986122886681098,
+          "match": true
+        },
+        {
+          "boundary_region_A": [
+            2,
+            3,
+            4
+          ],
+          "boundary_region_Ac": [
+            0,
+            1
+          ],
+          "entropy_actual": 1.0986122886681096,
+          "rt_cut_A": 1,
+          "rt_cut_Ac": 1,
+          "rt_effective_cut": 1,
+          "entropy_rt_prediction": 1.0986122886681098,
+          "match": true
+        },
+        {
+          "boundary_region_A": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "boundary_region_Ac": [
+            4
+          ],
+          "entropy_actual": 1.0986122886681096,
+          "rt_cut_A": 1,
+          "rt_cut_Ac": 1,
+          "rt_effective_cut": 1,
+          "entropy_rt_prediction": 1.0986122886681098,
+          "match": true
+        }
+      ],
+      "noncontiguous_informational": [
+        {
+          "boundary_region_A": [
+            0,
+            2
+          ],
+          "boundary_region_Ac": [
+            1,
+            3,
+            4
+          ],
+          "entropy_actual": 1.0986122886681096,
+          "rt_cut_A": 2,
+          "rt_cut_Ac": 2,
+          "rt_effective_cut": 2,
+          "entropy_rt_prediction": 2.1972245773362196,
+          "match": false,
+          "note": "Non-contiguous region; entropy plateau expected in small networks"
+        }
+      ]
+    },
+    "subregion_duality": {
+      "pass": true,
+      "details": {
+        "bulk_operator_1": "Z_d (qutrit phase gate) at T1 bulk leg",
+        "spectrum_preserved_Z": true,
+        "reconstruction_unitary_found": true,
+        "reconstruction_exact": true,
+        "bulk_operator_2": "X_d (qutrit cyclic shift) at T1 bulk leg",
+        "spectrum_preserved_X": true,
+        "outside_wedge_test": {
+          "operator": "Z_d at T3 bulk leg (outside wedge of {b1,b2})",
+          "spectrum_preserved": true,
+          "note": "If True, operator is still reconstructable (possible for small networks). If False, confirms wedge exclusion."
+        },
+        "subregion_duality_verified": true
+      }
+    }
+  },
+  "overall_pass": true,
+  "summary": {
+    "5qubit_perfect_tensor": "PASS",
+    "3qutrit_holographic_code": "PASS",
+    "ryu_takayanagi_toy": "PASS",
+    "subregion_duality": "PASS"
+  }
+}

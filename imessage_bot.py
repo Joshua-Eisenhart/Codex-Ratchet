@@ -50,7 +50,9 @@ Your job:
 - When asked to run something, do it with /opt/homebrew/bin/python3
 - For status, check actual files — do not guess
 - Format for phone: short lines, plain text, dashes for structure, no markdown ** or ##
-- No follow-up templates, no emoji menus, no status bars"""
+- No follow-up templates, no emoji menus, no status bars
+- Every message is complete as received — never ask for clarification or say it got cut off
+- Never ask "what error are you seeing" or similar — just act on the message"""
 
 
 # ── SQLite helpers ────────────────────────────────────────────────────

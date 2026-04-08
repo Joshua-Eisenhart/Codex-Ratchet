@@ -1,0 +1,460 @@
+{
+  "name": "torch_axis0_3qubit",
+  "family": "AXIS_0",
+  "description": "Axis 0 = nabla_eta I_c on the 3-qubit shell parameter space. 7-dimensional gradient field over eta = (theta_AB, theta_BC, phi_AB, phi_BC, r_A, r_B, r_C). Two cuts: I_c(A>BC) and I_c(AB>C). Key result: the XX_23 relay (CNOT_BC) is load-bearing -- theta_BC gradient is nonzero for I_c(A>BC) only when the relay is active.",
+  "formal_definition": {
+    "system": "3 qubits A, B, C -- dimension 8x8",
+    "eta": "7 shell parameters: (theta_AB, theta_BC, phi_AB, phi_BC, r_A, r_B, r_C)",
+    "gates": "CNOT_AB (qubits 1,2) + CNOT_BC (qubits 2,3) -- the XX_23 relay",
+    "noise": "Z-dephasing on qubit A with strength p",
+    "I_c_A_BC": "S(BC) - S(ABC)  (coherent info: A given BC)",
+    "I_c_AB_C": "S(C) - S(ABC)  (coherent info: AB given C)",
+    "axis_0": "nabla_eta I_c  (7-dim gradient field via autograd)"
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core: autograd nabla_eta I_c on 3-qubit system (8x8), differentiable density matrix, partial traces, von Neumann entropy, CNOT gates, Z-dephasing channel, two-cut coherent information"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic entropy formulas for maximally mixed 3-qubit state"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+    }
+  },
+  "positive": {
+    "P1_gradient_exists_7d_nonzero": {
+      "generic_1": {
+        "eta": [
+          1.0471975511965976,
+          0.7853981633974483,
+          0.6283185307179586,
+          0.5235987755982988,
+          0.8,
+          0.7,
+          0.6
+        ],
+        "I_c_A_BC": -0.2876726114099273,
+        "I_c_AB_C": -0.6737766102694025,
+        "grad_A_BC_norm": 0.8439346408188502,
+        "grad_AB_C_norm": 1.2885066629207798,
+        "grad_dim": 7,
+        "grad_7d": true,
+        "grad_A_BC_nonzero": true,
+        "grad_AB_C_nonzero": true,
+        "pass": true
+      },
+      "generic_2": {
+        "eta": [
+          1.2,
+          0.8,
+          2.3,
+          1.1,
+          0.9,
+          0.85,
+          0.75
+        ],
+        "I_c_A_BC": -0.028239357077154303,
+        "I_c_AB_C": -0.3410674585448876,
+        "grad_A_BC_norm": 1.3051744829755867,
+        "grad_AB_C_norm": 1.7367689353548792,
+        "grad_dim": 7,
+        "grad_7d": true,
+        "grad_A_BC_nonzero": true,
+        "grad_AB_C_nonzero": true,
+        "pass": true
+      },
+      "generic_3": {
+        "eta": [
+          0.7,
+          1.5,
+          0.3,
+          2.0,
+          0.6,
+          0.5,
+          0.8
+        ],
+        "I_c_A_BC": -0.44423797447959157,
+        "I_c_AB_C": -0.7254295069103964,
+        "grad_A_BC_norm": 0.6280123712342884,
+        "grad_AB_C_norm": 1.357593693804053,
+        "grad_dim": 7,
+        "grad_7d": true,
+        "grad_A_BC_nonzero": true,
+        "grad_AB_C_nonzero": true,
+        "pass": true
+      },
+      "generic_4": {
+        "eta": [
+          2.0,
+          1.0,
+          1.5,
+          0.5,
+          0.7,
+          0.9,
+          0.65
+        ],
+        "I_c_A_BC": -0.2748284541569219,
+        "I_c_AB_C": -0.48286266924158605,
+        "grad_A_BC_norm": 1.0576484690673376,
+        "grad_AB_C_norm": 1.7402130042657609,
+        "grad_dim": 7,
+        "grad_7d": true,
+        "grad_A_BC_nonzero": true,
+        "grad_AB_C_nonzero": true,
+        "pass": true
+      }
+    },
+    "P2_two_cuts_differ": {
+      "generic_1": {
+        "I_c_A_BC": -0.2876726114099273,
+        "I_c_AB_C": -0.6737766102694025,
+        "difference": 0.3861039988594752,
+        "different": true,
+        "pass": true
+      },
+      "generic_2": {
+        "I_c_A_BC": -0.028239357077154303,
+        "I_c_AB_C": -0.3410674585448876,
+        "difference": 0.3128281014677333,
+        "different": true,
+        "pass": true
+      },
+      "generic_3": {
+        "I_c_A_BC": -0.44423797447959157,
+        "I_c_AB_C": -0.7254295069103964,
+        "difference": 0.28119153243080486,
+        "different": true,
+        "pass": true
+      },
+      "generic_4": {
+        "I_c_A_BC": -0.2748284541569219,
+        "I_c_AB_C": -0.48286266924158605,
+        "difference": 0.20803421508466413,
+        "different": true,
+        "pass": true
+      }
+    },
+    "P3_gradient_directions_differ": {
+      "generic_1": {
+        "cosine_similarity": 0.8079760875826427,
+        "directions_different": true,
+        "pass": true
+      },
+      "generic_2": {
+        "cosine_similarity": 0.8280846883102623,
+        "directions_different": true,
+        "pass": true
+      },
+      "generic_3": {
+        "cosine_similarity": 0.5784366752622262,
+        "directions_different": true,
+        "pass": true
+      },
+      "generic_4": {
+        "cosine_similarity": 0.8076674893999717,
+        "directions_different": true,
+        "pass": true
+      }
+    },
+    "P4_relay_is_load_bearing": {
+      "generic_1": {
+        "theta_BC_grad_for_Ic_A_BC": -0.1683375965697604,
+        "nonzero": true,
+        "pass": true
+      },
+      "generic_2": {
+        "theta_BC_grad_for_Ic_A_BC": -0.06991982732166058,
+        "nonzero": true,
+        "pass": true
+      },
+      "generic_3": {
+        "theta_BC_grad_for_Ic_A_BC": -0.0024850458729342856,
+        "nonzero": true,
+        "pass": true
+      },
+      "generic_4": {
+        "theta_BC_grad_for_Ic_A_BC": -0.31839088932398196,
+        "nonzero": true,
+        "pass": true
+      }
+    },
+    "P5_autograd_vs_finite_difference": {
+      "point_1": {
+        "autograd": [
+          -0.029415265582192297,
+          -0.1683375965697604,
+          7.741684910699793e-17,
+          0.0971897566942858,
+          0.647214580263979,
+          0.5046685169428684,
+          1.6653345369377348e-16
+        ],
+        "finite_diff": [
+          -0.029415265778709454,
+          -0.16833759652890024,
+          1.1102230246251565e-10,
+          0.09718975690908849,
+          0.6472145801517115,
+          0.5046685167542364,
+          2.220446049250313e-10
+        ],
+        "cosine_similarity": 1.0000000000000002,
+        "magnitude_ratio": 1.0000000002079101,
+        "max_component_diff": 2.2204443839157761e-10,
+        "pass": true
+      },
+      "point_2": {
+        "autograd": [
+          0.04630153348771168,
+          -0.07048951905140806,
+          -1.6898856468648947e-17,
+          0.05997359074070701,
+          0.4763759998008572,
+          0.9307299973362224,
+          -1.1102230246251565e-16
+        ],
+        "finite_diff": [
+          0.0463015333851402,
+          -0.07048951911059476,
+          -2.220446049250313e-10,
+          0.05997359076026498,
+          0.47637599975836054,
+          0.9307299974059546,
+          0.0
+        ],
+        "cosine_similarity": 1.0,
+        "magnitude_ratio": 0.9999999999590061,
+        "max_component_diff": 2.2204458802617484e-10,
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "N1_relay_visibility_by_cut": {
+      "state_1": {
+        "I_c_A_BC_relay": -0.2876726114099273,
+        "I_c_A_BC_no_relay": -0.2876726114099273,
+        "A_BC_cut_diff": 0.0,
+        "A_BC_relay_invisible": true,
+        "I_c_AB_C_relay": -0.6737766102694025,
+        "I_c_AB_C_no_relay": -0.8594486771851888,
+        "AB_C_cut_diff": 0.1856720669157863,
+        "AB_C_relay_visible": true,
+        "r_C_grad_AB_C_no_relay": 1.1102230246251565e-16,
+        "r_C_grad_AB_C_relay": 0.6695155961374474,
+        "r_C_grad_changed": true,
+        "pass": true
+      },
+      "state_2": {
+        "I_c_A_BC_relay": -0.028239357077154303,
+        "I_c_A_BC_no_relay": -0.02823935707715497,
+        "A_BC_cut_diff": 6.661338147750939e-16,
+        "A_BC_relay_invisible": true,
+        "I_c_AB_C_relay": -0.3410674585448876,
+        "I_c_AB_C_no_relay": -0.6469171211615108,
+        "AB_C_cut_diff": 0.30584966261662316,
+        "AB_C_relay_visible": true,
+        "r_C_grad_AB_C_no_relay": -5.551115123125783e-16,
+        "r_C_grad_AB_C_relay": 0.9447826331326783,
+        "r_C_grad_changed": true,
+        "pass": true
+      },
+      "state_3": {
+        "I_c_A_BC_relay": -0.2748284541569219,
+        "I_c_A_BC_no_relay": -0.2748284541569217,
+        "A_BC_cut_diff": 2.220446049250313e-16,
+        "A_BC_relay_invisible": true,
+        "I_c_AB_C_relay": -0.48286266924158605,
+        "I_c_AB_C_no_relay": -0.7080385835245062,
+        "AB_C_cut_diff": 0.22517591428292016,
+        "AB_C_relay_visible": true,
+        "r_C_grad_AB_C_no_relay": 3.3306690738754696e-16,
+        "r_C_grad_AB_C_relay": 0.7622191476053153,
+        "r_C_grad_changed": true,
+        "pass": true
+      }
+    },
+    "N2_maximally_mixed_Ic": {
+      "I_c_A_BC": -0.693147180559945,
+      "expected": -0.6931471805599453,
+      "diff": 3.3306690738754696e-16,
+      "pass": "True"
+    },
+    "N3_product_state_no_gates": {
+      "I_c_A_BC": -6.9315753874429474e-09,
+      "I_c_AB_C": -2.011384154325561e-07,
+      "I_c_A_BC_leq_0": true,
+      "I_c_AB_C_leq_0": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_all_maximally_mixed": {
+      "I_c_A_BC": -0.693147180559945,
+      "I_c_AB_C": -1.3862943611198904,
+      "expected_A_BC": -0.6931471805599453,
+      "expected_AB_C": -1.3862943611198906,
+      "diff_A_BC": 3.3306690738754696e-16,
+      "pass": "True"
+    },
+    "B2_ghz_like_state": {
+      "I_c_A_BC": -1.0056924181651054e-07,
+      "I_c_AB_C": 0.6931468788523896,
+      "I_c_A_BC_positive": false,
+      "grad_A_BC": [
+        -6.280369838920531e-16,
+        -2.574329611879802e-15,
+        0.0,
+        0.0,
+        9.55691377030194,
+        -8.952232155579054e-08,
+        -9.596032844727542e-08
+      ],
+      "grad_AB_C": [
+        5.551115123125783e-17,
+        -8.881784197001252e-16,
+        0.0,
+        0.0,
+        9.55691377030194,
+        9.556913772152313,
+        9.556913769602081
+      ],
+      "pass": true
+    },
+    "B3_dephasing_sweep": {
+      "p_values": [
+        0.0,
+        0.05,
+        0.1,
+        0.2,
+        0.3,
+        0.5,
+        0.7,
+        0.9,
+        1.0
+      ],
+      "I_c_values": [
+        -1.0056924181651054e-07,
+        -0.19851525659588143,
+        -0.32508298218038306,
+        -0.5004024276971044,
+        -0.6108643037495282,
+        -0.6931471805599805,
+        -0.6108643037495248,
+        -0.32508298218038456,
+        -1.0056924181651054e-07
+      ],
+      "I_c_at_p0": -1.0056924181651054e-07,
+      "I_c_at_p1": -1.0056924181651054e-07,
+      "dephasing_degrades": true,
+      "I_c_range": 0.6931470799907387,
+      "pass": true
+    },
+    "B4_r_C_sweep": {
+      "r_C_values": [
+        0.01,
+        0.07999999999999999,
+        0.15,
+        0.21999999999999997,
+        0.29,
+        0.36,
+        0.42999999999999994,
+        0.49999999999999994,
+        0.57,
+        0.6399999999999999,
+        0.71,
+        0.7799999999999999,
+        0.8499999999999999,
+        0.9199999999999999,
+        0.99
+      ],
+      "I_c_A_BC_values": [
+        -0.1252594407834069,
+        -0.12525944078340756,
+        -0.12525944078340756,
+        -0.12525944078340778,
+        -0.12525944078340734,
+        -0.12525944078340756,
+        -0.1252594407834069,
+        -0.12525944078340712,
+        -0.12525944078340734,
+        -0.1252594407834069,
+        -0.1252594407834069,
+        -0.125259440783407,
+        -0.125259440783407,
+        -0.125259440783407,
+        -0.12525944078340723
+      ],
+      "range": 8.881784197001252e-16,
+      "r_C_affects_Ic": false,
+      "pass": true
+    }
+  },
+  "sympy_check": {
+    "I_c_A_BC_maximally_mixed": "-log(2)",
+    "I_c_AB_C_maximally_mixed": "-log(4)",
+    "I_c_A_BC_mm_equals_neg_log2": true,
+    "I_c_AB_C_mm_equals_neg_2log2": true,
+    "note": "3-qubit symbolic eigenvalues too complex for closed form; numerical cross-check in P5 validates autograd.",
+    "pass": true
+  },
+  "classification": "canonical",
+  "elapsed_seconds": 0.16,
+  "summary": {
+    "total_tests": 28,
+    "total_pass": 28,
+    "all_pass": true
+  }
+}

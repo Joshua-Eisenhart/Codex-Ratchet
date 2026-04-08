@@ -1,0 +1,914 @@
+{
+  "name": "layered_foundation",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core computation: all layers are torch.nn.Modules with autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "layered foundation \u2014 tests cascade ordering, not individual tool integration"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "layered foundation \u2014 tests cascade ordering, not individual tool integration"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "layered foundation \u2014 tests cascade ordering, not individual tool integration"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "layered foundation \u2014 tests cascade ordering, not individual tool integration"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "layered foundation \u2014 tests cascade ordering, not individual tool integration"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "layered foundation \u2014 tests cascade ordering, not individual tool integration"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "layered foundation \u2014 tests cascade ordering, not individual tool integration"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "layered foundation \u2014 tests cascade ordering, not individual tool integration"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "layered foundation \u2014 tests cascade ordering, not individual tool integration"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "layered foundation \u2014 tests cascade ordering, not individual tool integration"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "layered foundation \u2014 tests cascade ordering, not individual tool integration"
+    }
+  },
+  "classification": "audit",
+  "cascade": {
+    "layer_0": {
+      "layer": 0,
+      "name": "state_foundation",
+      "tests": {
+        "ket0": {
+          "hermitian_max_diff": 0.0,
+          "hermitian_pass": true,
+          "trace": 1.0,
+          "trace_pass": true,
+          "min_eigenvalue": 0.0,
+          "psd_pass": true,
+          "all_pass": true,
+          "purity": 1.0,
+          "purity_is_1": true
+        },
+        "ket1": {
+          "hermitian_max_diff": 0.0,
+          "hermitian_pass": true,
+          "trace": 1.0,
+          "trace_pass": true,
+          "min_eigenvalue": 0.0,
+          "psd_pass": true,
+          "all_pass": true,
+          "purity": 1.0,
+          "purity_is_1": true
+        },
+        "ket_plus": {
+          "hermitian_max_diff": 0.0,
+          "hermitian_pass": true,
+          "trace": 1.0,
+          "trace_pass": true,
+          "min_eigenvalue": 0.0,
+          "psd_pass": true,
+          "all_pass": true,
+          "purity": 1.0,
+          "purity_is_1": true
+        },
+        "ket_i": {
+          "hermitian_max_diff": 0.0,
+          "hermitian_pass": true,
+          "trace": 1.0,
+          "trace_pass": true,
+          "min_eigenvalue": 0.0,
+          "psd_pass": true,
+          "all_pass": true,
+          "purity": 1.0,
+          "purity_is_1": true
+        },
+        "maximally_mixed": {
+          "hermitian_max_diff": 0.0,
+          "hermitian_pass": true,
+          "trace": 1.0,
+          "trace_pass": true,
+          "min_eigenvalue": 0.5,
+          "psd_pass": true,
+          "all_pass": true,
+          "purity": 0.5,
+          "purity_less_than_1": true
+        },
+        "partially_mixed": {
+          "hermitian_max_diff": 0.0,
+          "hermitian_pass": true,
+          "trace": 1.0,
+          "trace_pass": true,
+          "min_eigenvalue": 0.3129171133041382,
+          "psd_pass": true,
+          "all_pass": true,
+          "purity": 0.5699999928474426,
+          "purity_less_than_1": true
+        },
+        "bell_phi_plus": {
+          "hermitian_max_diff": 0.0,
+          "hermitian_pass": true,
+          "trace": 0.9999999403953552,
+          "trace_pass": true,
+          "min_eigenvalue": 0.0,
+          "psd_pass": true,
+          "all_pass": true,
+          "reduced_state_maximally_mixed": true
+        }
+      },
+      "all_pass": true
+    },
+    "layer_1": {
+      "layer": 1,
+      "name": "channels_on_states",
+      "tests": {
+        "z_dephasing_0.3": {
+          "ket0": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.0,
+            "psd_pass": true,
+            "all_pass": true,
+            "z_basis_invariant": true
+          },
+          "ket1": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.0,
+            "psd_pass": true,
+            "all_pass": true,
+            "z_basis_invariant": true
+          },
+          "ket_plus": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.30000001192092896,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "ket_i": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.30000001192092896,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "maximally_mixed": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.5,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "partially_mixed": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.4122503399848938,
+            "psd_pass": true,
+            "all_pass": true
+          }
+        },
+        "z_dephasing_0.7": {
+          "ket0": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.0,
+            "psd_pass": true,
+            "all_pass": true,
+            "z_basis_invariant": true
+          },
+          "ket1": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.0,
+            "psd_pass": true,
+            "all_pass": true,
+            "z_basis_invariant": true
+          },
+          "ket_plus": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.30000001192092896,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "ket_i": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.30000001192092896,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "maximally_mixed": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.5,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "partially_mixed": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.4122503399848938,
+            "psd_pass": true,
+            "all_pass": true
+          }
+        },
+        "amplitude_damping_0.3": {
+          "ket0": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.0,
+            "psd_pass": true,
+            "all_pass": true,
+            "ground_state_invariant": true
+          },
+          "ket1": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.30000001192092896,
+            "psd_pass": true,
+            "all_pass": true,
+            "excited_decays_to_ground": true
+          },
+          "ket_plus": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.05559026822447777,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "ket_i": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.05559026822447777,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "maximally_mixed": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.3499999940395355,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "partially_mixed": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.26130563020706177,
+            "psd_pass": true,
+            "all_pass": true
+          }
+        },
+        "amplitude_damping_0.8": {
+          "ket0": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.0,
+            "psd_pass": true,
+            "all_pass": true,
+            "ground_state_invariant": true
+          },
+          "ket1": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 0.9999999403953552,
+            "trace_pass": true,
+            "min_eigenvalue": 0.19999998807907104,
+            "psd_pass": true,
+            "all_pass": true,
+            "excited_decays_to_ground": true
+          },
+          "ket_plus": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.04174242541193962,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "ket_i": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.04174242541193962,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "maximally_mixed": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.09999999403953552,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "partially_mixed": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 0.9999999403953552,
+            "trace_pass": true,
+            "min_eigenvalue": 0.08214835077524185,
+            "psd_pass": true,
+            "all_pass": true
+          }
+        },
+        "depolarizing_0.3": {
+          "ket0": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.15000000596046448,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "ket1": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.15000000596046448,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "ket_plus": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.15000000596046448,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "ket_i": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.15000000596046448,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "maximally_mixed": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.5,
+            "psd_pass": true,
+            "all_pass": true,
+            "mixed_invariant": true
+          },
+          "partially_mixed": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.36904197931289673,
+            "psd_pass": true,
+            "all_pass": true
+          }
+        },
+        "depolarizing_0.7": {
+          "ket0": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.3499999940395355,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "ket1": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.3499999940395355,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "ket_plus": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.3499999940395355,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "ket_i": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.3499999940395355,
+            "psd_pass": true,
+            "all_pass": true
+          },
+          "maximally_mixed": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.5,
+            "psd_pass": true,
+            "all_pass": true,
+            "mixed_invariant": true
+          },
+          "partially_mixed": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.44387513399124146,
+            "psd_pass": true,
+            "all_pass": true
+          }
+        }
+      },
+      "all_pass": true
+    },
+    "layer_2": {
+      "layer": 2,
+      "name": "gates_on_channel_outputs",
+      "tests": {
+        "hadamard": {
+          "ket0": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 0.9999999403953552,
+            "trace_pass": true,
+            "min_eigenvalue": 0.0,
+            "psd_pass": true,
+            "all_pass": true,
+            "purity_in": 1.0,
+            "purity_out": 0.9999998807907104,
+            "purity_preserved": true,
+            "H_squared_is_identity": true
+          },
+          "ket1": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 0.9999999403953552,
+            "trace_pass": true,
+            "min_eigenvalue": 0.0,
+            "psd_pass": true,
+            "all_pass": true,
+            "purity_in": 1.0,
+            "purity_out": 0.9999998807907104,
+            "purity_preserved": true,
+            "H_squared_is_identity": true
+          },
+          "ket_plus": {
+            "hermitian_max_diff": 3.354148958578662e-09,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.30000001192092896,
+            "psd_pass": true,
+            "all_pass": true,
+            "purity_in": 0.5799999833106995,
+            "purity_out": 0.5799999833106995,
+            "purity_preserved": true,
+            "H_squared_is_identity": true
+          },
+          "ket_i": {
+            "hermitian_max_diff": 3.354148958578662e-09,
+            "hermitian_pass": true,
+            "trace": 0.9999999403953552,
+            "trace_pass": true,
+            "min_eigenvalue": 0.29999998211860657,
+            "psd_pass": true,
+            "all_pass": true,
+            "purity_in": 0.5799999833106995,
+            "purity_out": 0.5799999237060547,
+            "purity_preserved": true,
+            "H_squared_is_identity": true
+          },
+          "maximally_mixed": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 0.9999999403953552,
+            "trace_pass": true,
+            "min_eigenvalue": 0.4999999701976776,
+            "psd_pass": true,
+            "all_pass": true,
+            "purity_in": 0.5,
+            "purity_out": 0.4999999403953552,
+            "purity_preserved": true,
+            "H_squared_is_identity": true
+          },
+          "partially_mixed": {
+            "hermitian_max_diff": 3.725290298461914e-09,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.4122503101825714,
+            "psd_pass": true,
+            "all_pass": true,
+            "purity_in": 0.5153999924659729,
+            "purity_out": 0.5153999328613281,
+            "purity_preserved": true,
+            "H_squared_is_identity": true
+          }
+        },
+        "cnot": {
+          "ket0_x_ket1": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.0,
+            "psd_pass": true,
+            "all_pass": true,
+            "purity_in": 0.5799999833106995,
+            "purity_out": 0.5799999833106995,
+            "purity_preserved": true,
+            "MI_before_CNOT": 0.0,
+            "MI_after_CNOT": 0.0,
+            "MI_computed": true
+          },
+          "ket0_x_ket_plus": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.0,
+            "psd_pass": true,
+            "all_pass": true,
+            "purity_in": 0.8949999809265137,
+            "purity_out": 0.8949999809265137,
+            "purity_preserved": true,
+            "MI_before_CNOT": 0.0,
+            "MI_after_CNOT": 0.0,
+            "MI_computed": true
+          },
+          "ket0_x_ket_i": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.0,
+            "psd_pass": true,
+            "all_pass": true,
+            "purity_in": 0.8949999809265137,
+            "purity_out": 0.8949999809265137,
+            "purity_preserved": true,
+            "MI_before_CNOT": 0.0,
+            "MI_after_CNOT": 0.0,
+            "MI_computed": true
+          },
+          "ket1_x_ket_plus": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.01667708344757557,
+            "psd_pass": true,
+            "all_pass": true,
+            "purity_in": 0.5190999507904053,
+            "purity_out": 0.5190999507904053,
+            "purity_preserved": true,
+            "MI_before_CNOT": 1.1920928955078125e-07,
+            "MI_after_CNOT": 0.05768841505050659,
+            "MI_computed": true
+          },
+          "ket1_x_ket_i": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.01667708344757557,
+            "psd_pass": true,
+            "all_pass": true,
+            "purity_in": 0.5190999507904053,
+            "purity_out": 0.5190999507904053,
+            "purity_preserved": true,
+            "MI_before_CNOT": 1.1920928955078125e-07,
+            "MI_after_CNOT": 0.41388607025146484,
+            "MI_computed": true
+          },
+          "ket_plus_x_ket_i": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 0.0030902670696377754,
+            "psd_pass": true,
+            "all_pass": true,
+            "purity_in": 0.8010249137878418,
+            "purity_out": 0.8010249137878418,
+            "purity_preserved": true,
+            "MI_before_CNOT": -5.960464477539063e-08,
+            "MI_after_CNOT": 0.8752951622009277,
+            "MI_computed": true
+          }
+        }
+      },
+      "all_pass": true
+    },
+    "layer_3": {
+      "layer": 3,
+      "name": "measures_on_gate_outputs",
+      "tests": {
+        "l1_coherence_hadamard": {
+          "ket0": {
+            "l1_coherence": 0.9999999403953552
+          },
+          "ket1": {
+            "l1_coherence": 0.9999999403953552
+          },
+          "ket_plus": {
+            "l1_coherence": 1.7114270889351246e-08
+          },
+          "ket_i": {
+            "l1_coherence": 0.3999999761581421
+          },
+          "maximally_mixed": {
+            "l1_coherence": 1.2688051498344066e-08
+          },
+          "partially_mixed": {
+            "l1_coherence": 0.12806253135204315
+          }
+        },
+        "mutual_information_cnot": {
+          "ket0_x_ket1": {
+            "mutual_information": 0.0,
+            "MI_nonzero": false
+          },
+          "ket0_x_ket_plus": {
+            "mutual_information": 0.0,
+            "MI_nonzero": false
+          },
+          "ket0_x_ket_i": {
+            "mutual_information": 0.0,
+            "MI_nonzero": false
+          },
+          "ket1_x_ket_plus": {
+            "mutual_information": 0.05768841505050659,
+            "MI_nonzero": true
+          },
+          "ket1_x_ket_i": {
+            "mutual_information": 0.41388607025146484,
+            "MI_nonzero": true
+          },
+          "ket_plus_x_ket_i": {
+            "mutual_information": 0.8752951622009277,
+            "MI_nonzero": true
+          }
+        },
+        "quantum_discord_cnot": {
+          "ket0_x_ket1": {
+            "discord": -1.7881393432617188e-07,
+            "mutual_info": 0.0,
+            "classical_corr": 1.7881393432617188e-07,
+            "discord_nonnegative": true
+          },
+          "ket0_x_ket_plus": {
+            "discord": -1.1920928955078125e-07,
+            "mutual_info": 0.0,
+            "classical_corr": 1.1920928955078125e-07,
+            "discord_nonnegative": true
+          }
+        },
+        "coherence_reduction_check": {
+          "fresh_plus_coherence": 1.0,
+          "pipeline_coherence": 1.7114270889351246e-08,
+          "fresh_is_maximal": true,
+          "pipeline_different": true,
+          "pass": true
+        }
+      },
+      "all_pass": true
+    },
+    "layer_4": {
+      "layer": 4,
+      "name": "geometric_on_pipeline_states",
+      "tests": {
+        "hopf_connection": {
+          "equator": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 0.9999999403953552,
+            "trace_pass": true,
+            "min_eigenvalue": 0.0,
+            "psd_pass": true,
+            "all_pass": true,
+            "A_phi": 0.4999999701976776,
+            "bloch_norm": 0.9999999403953552,
+            "bloch_on_sphere": true
+          },
+          "pole": {
+            "hermitian_max_diff": 0.0,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": 6.219036396970523e-11,
+            "psd_pass": true,
+            "all_pass": true,
+            "A_phi": 0.0024979172740131617,
+            "bloch_norm": 1.0,
+            "bloch_on_sphere": true
+          },
+          "mid": {
+            "hermitian_max_diff": 4.212574289397253e-09,
+            "hermitian_pass": true,
+            "trace": 1.0,
+            "trace_pass": true,
+            "min_eigenvalue": -5.839696282095019e-09,
+            "psd_pass": true,
+            "all_pass": true,
+            "A_phi": 0.14644663035869598,
+            "bloch_norm": 0.9999999403953552,
+            "bloch_on_sphere": true
+          }
+        },
+        "chiral_overlap": {
+          "equator": {
+            "orthogonality_overlap": 0.0,
+            "fixed_ref_overlap": 0.2499999701976776,
+            "L_R_orthogonal": true,
+            "expected_fixed_ref": 0.2499999999999995,
+            "fixed_ref_match": "True",
+            "all_pass": true
+          },
+          "pole": {
+            "orthogonality_overlap": 0.0,
+            "fixed_ref_overlap": 0.0024916776455938816,
+            "L_R_orthogonal": true,
+            "expected_fixed_ref": 0.00249167784385489,
+            "fixed_ref_match": "True",
+            "all_pass": true
+          },
+          "mid": {
+            "orthogonality_overlap": 9.007272128136977e-16,
+            "fixed_ref_overlap": 0.1250000149011612,
+            "L_R_orthogonal": true,
+            "expected_fixed_ref": 0.12500000546392376,
+            "fixed_ref_match": "True",
+            "all_pass": true
+          }
+        },
+        "fresh_vs_pipeline_geometric": {
+          "A_phi_fresh_equator": 0.4999999701976776,
+          "note": "Pipeline states are mixed (post-channel), fresh states are pure Hopf fibers. Geometric observables computed on mixed states require eigendecomposition, not just angle parameters. This DIFFERENCE is the point."
+        }
+      },
+      "all_pass": true
+    },
+    "layer_5": {
+      "layer": 5,
+      "name": "full_pipeline_constraint_check",
+      "tests": {
+        "L0_rho_a": {
+          "hermitian_max_diff": 0.0,
+          "hermitian_pass": true,
+          "trace": 1.0,
+          "trace_pass": true,
+          "min_eigenvalue": 0.06988372653722763,
+          "psd_pass": true,
+          "all_pass": true
+        },
+        "L0_rho_b": {
+          "hermitian_max_diff": 0.0,
+          "hermitian_pass": true,
+          "trace": 1.0,
+          "trace_pass": true,
+          "min_eigenvalue": 0.13257655501365662,
+          "psd_pass": true,
+          "all_pass": true
+        },
+        "L1_rho_a_deph": {
+          "hermitian_max_diff": 0.0,
+          "hermitian_pass": true,
+          "trace": 1.0,
+          "trace_pass": true,
+          "min_eigenvalue": 0.23884868621826172,
+          "psd_pass": true,
+          "all_pass": true
+        },
+        "L1_rho_b_deph": {
+          "hermitian_max_diff": 0.0,
+          "hermitian_pass": true,
+          "trace": 1.0,
+          "trace_pass": true,
+          "min_eigenvalue": 0.2654792368412018,
+          "psd_pass": true,
+          "all_pass": true
+        },
+        "L2_cnot": {
+          "hermitian_max_diff": 0.0,
+          "hermitian_pass": true,
+          "trace": 1.0000001192092896,
+          "trace_pass": true,
+          "min_eigenvalue": 0.06340936571359634,
+          "psd_pass": true,
+          "all_pass": true
+        },
+        "L3_MI": {
+          "mutual_information": 0.2494668960571289,
+          "MI_nonnegative": true,
+          "all_pass": true
+        },
+        "L4_hopf": {
+          "A_phi": 0.44999995827674866,
+          "all_pass": true
+        },
+        "autograd_L5_to_L0": {
+          "gradient_exists": true,
+          "gradient_nonzero": true,
+          "gradient_values": [
+            0.179702028632164,
+            0.21298320591449738,
+            0.11373531818389893
+          ],
+          "all_pass": true
+        },
+        "pipeline_vs_isolation": {
+          "MI_full_pipeline": 0.2494668960571289,
+          "MI_no_channel_no_gate": -2.980232238769531e-07,
+          "results_differ": true,
+          "all_pass": true
+        }
+      },
+      "all_pass": true
+    }
+  },
+  "halted_at_layer": null,
+  "all_layers_pass": true,
+  "elapsed_seconds": 0.07,
+  "positive": {},
+  "negative": {}
+}

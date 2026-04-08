@@ -1,0 +1,422 @@
+{
+  "name": "tools_load_bearing -- anti-theater sim",
+  "timestamp": "2026-04-08T03:03:19.488969+00:00",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch tensors for density matrices and channel ops"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- graph structure via rustworkx/xgi"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- empirical load-bearing test, not SMT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Frechet mean on SPD(2) manifold -- test 4"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "equivariant channel selector via Wigner-D -- test 5"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "DAG topological sort determines channel order -- test 1"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "hypergraph constrains allowed channel combos -- test 2"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "persistence diagrams as early warning signal -- test 3"
+    }
+  },
+  "classification": "canonical",
+  "positive": {
+    "P1_rustworkx_dag_order": {
+      "test": "rustworkx DAG topological order vs naive ordering",
+      "topo_order": [
+        "depolarizing",
+        "bit_flip",
+        "z_dephasing",
+        "phase_flip",
+        "amplitude_damping",
+        "phase_damping"
+      ],
+      "reversed_order": [
+        "phase_damping",
+        "amplitude_damping",
+        "phase_flip",
+        "z_dephasing",
+        "bit_flip",
+        "depolarizing"
+      ],
+      "alpha_order": [
+        "amplitude_damping",
+        "bit_flip",
+        "depolarizing",
+        "phase_damping",
+        "phase_flip",
+        "z_dephasing"
+      ],
+      "frobenius_diff_vs_reversed": 0.04295673695708282,
+      "frobenius_diff_vs_alpha": 0.042956736957082776,
+      "purity_dag_order": 0.5739168503125001,
+      "purity_reversed": 0.5666496315625,
+      "purity_alphabetical": 0.5666496315624999,
+      "entropy_dag_order": 0.8905641049269626,
+      "entropy_reversed": 0.901585893444617,
+      "entropy_alphabetical": 0.901585893444617,
+      "dag_is_acyclic": true,
+      "num_nodes": 6,
+      "load_bearing": "True",
+      "pass": "True",
+      "explanation": "Channel application is non-commutative. The DAG encodes which channels must precede which. Different orderings produce measurably different final states. The graph carries information."
+    },
+    "P2_xgi_hypergraph_constraint": {
+      "test": "XGI hypergraph constrains allowed channel combinations",
+      "num_hyperedges": 3,
+      "num_nodes": 6,
+      "edge_sizes": [
+        3,
+        3,
+        3
+      ],
+      "node_degrees": {
+        "depolarizing": 2,
+        "z_dephasing": 2,
+        "amplitude_damping": 1,
+        "phase_damping": 1,
+        "bit_flip": 1,
+        "phase_flip": 2
+      },
+      "allowed_combo_stats": {
+        "allowed_0": {
+          "channels": [
+            "depolarizing",
+            "z_dephasing",
+            "phase_flip"
+          ],
+          "mean_purity": 0.669526102292923,
+          "std_purity": 0.09650078282769307
+        },
+        "allowed_1": {
+          "channels": [
+            "amplitude_damping",
+            "phase_damping",
+            "depolarizing"
+          ],
+          "mean_purity": 0.7362460555406691,
+          "std_purity": 0.0668818729880542
+        },
+        "allowed_2": {
+          "channels": [
+            "bit_flip",
+            "phase_flip",
+            "z_dephasing"
+          ],
+          "mean_purity": 0.6062142246315855,
+          "std_purity": 0.04948434266250163
+        }
+      },
+      "forbidden_combo": {
+        "channels": [
+          "amplitude_damping",
+          "bit_flip",
+          "phase_flip"
+        ],
+        "mean_purity": 0.6227823430038211,
+        "std_purity": 0.04752277734739548
+      },
+      "forbidden_is_not_in_hypergraph": true,
+      "avg_degree_allowed_combos": 1.6666666666666667,
+      "avg_degree_forbidden_combo": 1.3333333333333333,
+      "degree_signal": "True",
+      "purity_diff_allowed_vs_forbidden": 0.04787978448457142,
+      "load_bearing": "True",
+      "pass": "True",
+      "explanation": "The hypergraph encodes which multi-channel combinations are structurally allowed. Forbidden combos (not sharing a hyperedge) have lower average node degree -- the hypergraph topology carries constraint information that a flat list of channels cannot express."
+    },
+    "P3_gudhi_persistence_warning": {
+      "test": "GUDHI persistence as early warning signal for state cloud collapse",
+      "persistence_features": [
+        {
+          "step": 0,
+          "channel": "init",
+          "n_h0_features": 29,
+          "n_h1_features": 7,
+          "mean_h0_lifetime": 0.3955077875773239,
+          "mean_h1_lifetime": 0.14374700980513494,
+          "max_h0_lifetime": 0.6628508975980704,
+          "spread": 1.9999964566189985,
+          "betti_0": 1,
+          "betti_1": 0
+        },
+        {
+          "step": 1,
+          "channel": "depolarizing",
+          "n_h0_features": 29,
+          "n_h1_features": 7,
+          "mean_h0_lifetime": 0.3559570088195916,
+          "mean_h1_lifetime": 0.12937230882462145,
+          "max_h0_lifetime": 0.5965658078382633,
+          "spread": 1.799996810957099,
+          "betti_0": 1,
+          "betti_1": 0
+        },
+        {
+          "step": 2,
+          "channel": "z_dephasing",
+          "n_h0_features": 29,
+          "n_h1_features": 7,
+          "mean_h0_lifetime": 0.25765010799395605,
+          "mean_h1_lifetime": 0.09534539587759068,
+          "max_h0_lifetime": 0.4543050381181005,
+          "spread": 1.7369647782088544,
+          "betti_0": 1,
+          "betti_1": 0
+        },
+        {
+          "step": 3,
+          "channel": "amplitude_damping",
+          "n_h0_features": 29,
+          "n_h1_features": 7,
+          "mean_h0_lifetime": 0.20047950012206084,
+          "mean_h1_lifetime": 0.06710475652479637,
+          "max_h0_lifetime": 0.32826755352137293,
+          "spread": 1.2242317955366842,
+          "betti_0": 1,
+          "betti_1": 0
+        },
+        {
+          "step": 4,
+          "channel": "depolarizing",
+          "n_h0_features": 29,
+          "n_h1_features": 7,
+          "mean_h0_lifetime": 0.12028770007323651,
+          "mean_h1_lifetime": 0.04026285391487784,
+          "max_h0_lifetime": 0.19696053211282397,
+          "spread": 0.7345390773220106,
+          "betti_0": 1,
+          "betti_1": 0
+        },
+        {
+          "step": 5,
+          "channel": "phase_damping",
+          "n_h0_features": 29,
+          "n_h1_features": 7,
+          "mean_h0_lifetime": 0.09892699522791759,
+          "mean_h1_lifetime": 0.03746380145278868,
+          "max_h0_lifetime": 0.18313474985318687,
+          "spread": 0.7261633941257976,
+          "betti_0": 1,
+          "betti_1": 0
+        },
+        {
+          "step": 6,
+          "channel": "depolarizing",
+          "n_h0_features": 29,
+          "n_h1_features": 7,
+          "mean_h0_lifetime": 0.03957079809116703,
+          "mean_h1_lifetime": 0.014985520581115472,
+          "max_h0_lifetime": 0.07325389994127472,
+          "spread": 0.29046535765031906,
+          "betti_0": 1,
+          "betti_1": 0
+        }
+      ],
+      "naive_purities": [
+        1.0,
+        0.9050000000000005,
+        0.7296416942831098,
+        0.7014488612087001,
+        0.5725215900351321,
+        0.5600930701174475,
+        0.5096148912187916
+      ],
+      "spread_deltas": [
+        -0.19999964566189954,
+        -0.06303203274824454,
+        -0.5127329826721703,
+        -0.48969271821467353,
+        -0.008375683196213068,
+        -0.4356980364754785
+      ],
+      "purity_deltas": [
+        -0.09499999999999953,
+        -0.1753583057168907,
+        -0.028192833074409673,
+        -0.12892727117356795,
+        -0.012428519917684677,
+        -0.05047817889865591
+      ],
+      "h1_feature_counts": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "h1_deltas": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "spread_purity_correlation": -0.14195088207127146,
+      "persistence_adds_info_beyond_purity": true,
+      "h1_features_detected": true,
+      "load_bearing": true,
+      "pass": true,
+      "explanation": "Persistence diagrams track the topological shape of the state cloud (connected components, loops) as channels deform it. The spread-purity correlation is < 1.0, meaning persistence carries information that purity alone cannot see. H1 features detect loops in the point cloud that have no purity analog."
+    },
+    "P4_geomstats_frechet_mean": {
+      "test": "geomstats Frechet mean vs arithmetic mean on SPD(2)",
+      "n_states": 15,
+      "frobenius_diff_means": 0.11872452181760688,
+      "means_differ": "True",
+      "arith_mean_eigenvalues": [
+        0.39842442232534836,
+        0.6015775776746515
+      ],
+      "frechet_mean_eigenvalues": [
+        0.3302206045647433,
+        0.5044641106378542
+      ],
+      "arith_eigval_ratio": 0.6622993228328508,
+      "frechet_eigval_ratio": 0.6545968238398683,
+      "cv_riemannian_distances": 0.5857570428184984,
+      "cv_euclidean_distances": 0.4657465131037511,
+      "mean_riemannian_dist": 0.8203491983831165,
+      "mean_euclidean_dist": 0.3187337400632134,
+      "post_channel_arith_shift": 0.04309529213008093,
+      "post_channel_frechet_shift": 0.07457607995891626,
+      "shift_differs_after_channel": "True",
+      "load_bearing": "True",
+      "pass": "True",
+      "explanation": "The Frechet mean on SPD(2) differs from the arithmetic mean because the manifold is curved. After a quantum channel is applied, the two means shift by different amounts -- the curvature of the SPD manifold encodes constraint information that Euclidean averaging cannot capture."
+    },
+    "P5_e3nn_equivariant_selector": {
+      "test": "e3nn equivariant channel selector -- equivariance as constraint",
+      "depol_equivariance_error": 2.3908384605419997e-07,
+      "zdeph_equivariance_error": 3.026632308959961,
+      "sh_covariance_error": 3.9262840800802223e-07,
+      "depol_is_equivariant": true,
+      "zdeph_is_not_equivariant": true,
+      "purity_diff_depol_under_rotation": 2.220446049250313e-16,
+      "purity_diff_zdeph_under_rotation": 0.11612032822548035,
+      "depol_purity_rotation_invariant": "True",
+      "zdeph_purity_rotation_dependent": "True",
+      "load_bearing": true,
+      "pass": true,
+      "explanation": "e3nn provides Wigner D-matrices and spherical harmonics that let us TEST whether a channel preserves SO(3) symmetry. Depolarizing commutes with rotation (equivariance error ~0), z-dephasing does not (error >> 0). This equivariance check is a genuine computational constraint: equivariant channels produce rotation-invariant purity, non-equivariant ones do not. The tool is load-bearing because it provides the machinery to COMPUTE and VERIFY this distinction."
+    }
+  },
+  "negative": {
+    "N1_commutative_channels_order_irrelevant": {
+      "test": "identical channels commute -- DAG order irrelevant",
+      "frobenius_diff": 0.0,
+      "pass": "True"
+    },
+    "N2_trivial_hypergraph_no_constraint": {
+      "test": "single hyperedge containing all nodes provides no constraint",
+      "num_edges": 1,
+      "all_combos_allowed": true,
+      "pass": true
+    },
+    "N3_maximally_mixed_trivial_persistence": {
+      "test": "maximally mixed states (origin) have no H1 features",
+      "n_h1_features": 0,
+      "pass": true
+    },
+    "N4_near_identity_frechet_approx_arithmetic": {
+      "test": "near-identity SPD matrices: Frechet ~ arithmetic mean",
+      "frobenius_diff": 0.0002836602814937982,
+      "pass": "True"
+    },
+    "N5_identity_rotation_no_equivariance_signal": {
+      "test": "identity rotation: equivariant and non-equivariant channels equivalent",
+      "rotation_is_identity": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_single_node_dag": {
+      "test": "single-node DAG has exactly one topological order",
+      "n_nodes": 1,
+      "topo_order_length": 1,
+      "pass": true
+    },
+    "B2_empty_hypergraph": {
+      "test": "empty hypergraph (no edges) provides zero constraint",
+      "num_edges": 0,
+      "pass": true
+    },
+    "B3_pure_states_octahedron_persistence": {
+      "test": "6 pure states at octahedron vertices: rich persistence",
+      "n_h0_features": 6,
+      "pass": true
+    },
+    "B4_identical_matrices_frechet_is_same": {
+      "test": "Frechet mean of identical matrices is that matrix",
+      "frobenius_diff": 8.326672684688674e-17,
+      "pass": "True"
+    },
+    "B5_zero_rotation_wigner_identity": {
+      "test": "Wigner D(0,0,0) is identity matrix",
+      "frobenius_diff": 0.0,
+      "pass": true
+    }
+  },
+  "summary": {
+    "total_tests": 15,
+    "passed": 15,
+    "failed": 0,
+    "all_pass": true,
+    "load_bearing_verdicts": {
+      "P1_rustworkx_dag_order": "True",
+      "P2_xgi_hypergraph_constraint": "True",
+      "P3_gudhi_persistence_warning": true,
+      "P4_geomstats_frechet_mean": "True",
+      "P5_e3nn_equivariant_selector": true
+    },
+    "all_tools_load_bearing": true,
+    "elapsed_seconds": 0.24
+  }
+}

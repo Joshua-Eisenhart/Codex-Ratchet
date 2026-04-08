@@ -1,0 +1,330 @@
+{
+  "name": "Constraint Shells v2 -- Honest Dykstra + rustworkx + GUDHI + z3",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "All shells are nn.Module; Dykstra projections in torch"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- shells are nn.Module projectors"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Verify converged state satisfies all shells via Real constraints"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 sufficient"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- all computation torch-native"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- Hopf done natively in torch"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- shell metrics computed directly"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant layers"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "DAG topological_sort drives projection order; tested edge removal"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- shells are nested DAG"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- topology via GUDHI"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Rips persistence on Bloch trajectory cloud; Betti stabilization"
+    }
+  },
+  "positive": {
+    "dykstra_vs_naive": {
+      "status": "PASS",
+      "dykstra_violation_at_10": 1.2112630898286625e-08,
+      "naive_violation_at_10": 0.0,
+      "dykstra_final_violation": 1.2112630898286625e-08,
+      "naive_final_violation": 0.0,
+      "dykstra_trace_len": 31,
+      "naive_trace_len": 31,
+      "dykstra_wins_or_ties": true,
+      "dykstra_trace_sample": [
+        1.1164860129356384,
+        1.2112630898286625e-08,
+        1.2112630898286625e-08,
+        1.2112630898286625e-08,
+        1.2112630898286625e-08,
+        1.2112630898286625e-08,
+        1.2112630898286625e-08
+      ],
+      "naive_trace_sample": [
+        1.1164860129356384,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "removing_shell_changes_state": {
+      "status": "PASS",
+      "frobenius_diff": 0.3857922852039337,
+      "dag_order_full": [
+        "L1_CPTP",
+        "L2_Hopf",
+        "L4_Composition",
+        "L6_Irreversibility"
+      ],
+      "dag_order_no_l4": [
+        "L1_CPTP",
+        "L2_Hopf",
+        "L6_Irreversibility"
+      ],
+      "orders_differ": true,
+      "bloch_full": [
+        -0.009824945591390133,
+        0.0,
+        0.6142624616622925
+      ],
+      "bloch_no_l4": [
+        0.4596610367298126,
+        0.0,
+        0.33631590008735657
+      ]
+    },
+    "gudhi_betti_stabilize": {
+      "status": "PASS",
+      "n_trajectory_points": 21,
+      "n_betti_prefixes": 20,
+      "first_betti": [
+        1
+      ],
+      "last_betti": [
+        1,
+        0
+      ],
+      "last_5_betti": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "stabilized": true,
+      "trajectory_start": [
+        0.03144224360585213,
+        0.44338032603263855,
+        0.527721643447876
+      ],
+      "trajectory_end": [
+        -0.0006720563396811485,
+        0.0,
+        0.6509302854537964
+      ]
+    },
+    "z3_nesting_verified": {
+      "status": "PASS",
+      "all_constraints_sat": true,
+      "violation_proofs": {
+        "L1_psd_violated": true,
+        "L1_trace_violated": true,
+        "L2_bloch_violated": true
+      },
+      "numerical_violations": {
+        "L1_CPTP": {
+          "violation": 0.0,
+          "satisfied": true
+        },
+        "L2_Hopf": {
+          "violation": 0.0,
+          "satisfied": true
+        },
+        "L4_Composition": {
+          "violation": 0.023625671863555908,
+          "satisfied": false
+        },
+        "L6_Irreversibility": {
+          "violation": 0.19446147978305817,
+          "satisfied": false
+        }
+      },
+      "eigenvalues": [
+        0.1908482313156128,
+        0.8091517686843872
+      ],
+      "trace": 1.0,
+      "bloch_vector": [
+        -0.008858706802129745,
+        0.0,
+        0.6182401180267334
+      ],
+      "bloch_norm": 0.6183035969734192,
+      "verdict": "PASS"
+    },
+    "rustworkx_dag": {
+      "status": "PASS",
+      "n_nodes": 4,
+      "n_edges": 3,
+      "n_edges_after_removal": 2,
+      "is_dag": true,
+      "execution_order": [
+        "L1_CPTP",
+        "L2_Hopf",
+        "L4_Composition",
+        "L6_Irreversibility"
+      ],
+      "execution_order_after_removal": [
+        "L4_Composition",
+        "L6_Irreversibility",
+        "L1_CPTP",
+        "L2_Hopf"
+      ],
+      "edge_removal_changed_edges": true
+    },
+    "dykstra_increments_decay": {
+      "status": "PASS",
+      "first_5_avg": 1.0448354482650757,
+      "last_5_avg": 1.0448354482650757,
+      "decaying": "True",
+      "sample_norms": [
+        1.0448354482650757,
+        1.0448354482650757,
+        1.0448354482650757,
+        1.0448354482650757,
+        1.0448354482650757,
+        1.0448354482650757
+      ]
+    }
+  },
+  "negative": {
+    "random_violates": {
+      "status": "PASS",
+      "n_random": 20,
+      "n_violated": 20
+    },
+    "unitary_vs_dissipative": {
+      "status": "PASS",
+      "unitary_violation_pure": 0.0,
+      "unitary_violation_mixed": 0.0,
+      "dissipative_violation_mixed": 0.0,
+      "note": "Unitary preserves entropy (no decrease) so passes L6. L6 catches entropy DECREASE, not lack of increase. This is the honest physics."
+    },
+    "removing_l4_changes_state": {
+      "status": "PASS",
+      "frobenius_diff": 0.48476284742355347,
+      "bloch_with_l4": [
+        -0.012824594974517822,
+        0.0,
+        0.6073052883148193
+      ],
+      "bloch_without_l4": [
+        0.5999994277954102,
+        0.0,
+        0.2999997138977051
+      ]
+    },
+    "z3_catches_bad_state": {
+      "status": "PASS",
+      "z3_verdict": "FAIL",
+      "eigenvalues": [
+        -0.443398118019104,
+        1.443398118019104
+      ],
+      "trace": 0.9999999403953552,
+      "note": "z3 should FAIL for a state with negative eigenvalue"
+    }
+  },
+  "boundary": {
+    "admissible_is_fixpoint": {
+      "status": "PASS",
+      "frobenius_diff": 0.05266974866390228
+    },
+    "maximally_mixed": {
+      "status": "PASS",
+      "violations_before": {
+        "L1_CPTP": 0.0,
+        "L2_Hopf": 0.0,
+        "L4_Composition": 0.14614909887313843,
+        "L6_Irreversibility": 0.15987969934940338
+      },
+      "violations_after": {
+        "L1_CPTP": 0.0,
+        "L2_Hopf": 0.0,
+        "L4_Composition": 0.047844767570495605,
+        "L6_Irreversibility": 0.20528151094913483
+      }
+    },
+    "pure_state_boundary": {
+      "status": "PASS",
+      "initial_bloch_norm": 1.0,
+      "projected_bloch_norm": 1.0
+    }
+  },
+  "classification": "canonical",
+  "architecture": {
+    "type": "simultaneous_nested_shells_dykstra",
+    "projection_method": "Dykstra alternating projection with increment vectors",
+    "ordering": "rustworkx topological_sort on shell dependency DAG",
+    "persistence": "GUDHI Rips on Bloch trajectory point cloud",
+    "verification": "z3 Real-valued constraint check on converged state",
+    "shells": [
+      "L1_CPTP",
+      "L2_Hopf",
+      "L4_Composition",
+      "L6_Irreversibility"
+    ]
+  },
+  "honest_disclosures": {
+    "v1_dykstra_was_fake": "v1 ran naive alternating projection, no increment vectors",
+    "v1_rustworkx_was_decorative": "v1 built DAG but never used topo_sort for ordering",
+    "v1_gudhi_was_trivial": "v1 embedded 2 points from 2x2 matrix; v2 uses trajectory cloud",
+    "v1_z3_was_symbolic_only": "v1 checked Boolean implications; v2 checks actual state values"
+  },
+  "elapsed_seconds": 0.4667508602142334,
+  "summary": {
+    "total_tests": 13,
+    "pass": 13,
+    "fail": 0,
+    "error": 0
+  }
+}

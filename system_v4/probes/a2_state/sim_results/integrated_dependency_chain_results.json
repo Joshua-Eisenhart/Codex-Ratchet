@@ -1,0 +1,264 @@
+{
+  "name": "integrated_dependency_chain",
+  "description": "FIRST real import-based dependency chain across 6 torch modules. No re-declarations. Gradients flow end-to-end from MI back to Bloch params.",
+  "dependency_chain": [
+    "DensityMatrix (sim_torch_density_matrix_pilot)",
+    "ZDephasing (sim_torch_z_dephasing)",
+    "DensityMatrix (sim_torch_density_matrix_pilot) [2nd qubit]",
+    "CNOT (sim_torch_cnot)",
+    "MutualInformation (sim_torch_mutual_info)",
+    "HopfConnection (sim_torch_hopf_connection)"
+  ],
+  "import_source": "ratchet_modules.py -> original sim files",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Full dependency chain: DensityMatrix -> ZDephasing -> CNOT -> MutualInformation -> HopfConnection, all via real imports with autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "integration chain \u2014 tests module imports and gradient flow, not individual tool usage"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "integration chain \u2014 tests module imports and gradient flow, not individual tool usage"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "integration chain \u2014 tests module imports and gradient flow, not individual tool usage"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "integration chain \u2014 tests module imports and gradient flow, not individual tool usage"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "integration chain \u2014 tests module imports and gradient flow, not individual tool usage"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "integration chain \u2014 tests module imports and gradient flow, not individual tool usage"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "integration chain \u2014 tests module imports and gradient flow, not individual tool usage"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "integration chain \u2014 tests module imports and gradient flow, not individual tool usage"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "integration chain \u2014 tests module imports and gradient flow, not individual tool usage"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "integration chain \u2014 tests module imports and gradient flow, not individual tool usage"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "integration chain \u2014 tests module imports and gradient flow, not individual tool usage"
+    }
+  },
+  "positive": {
+    "P1_full_chain_executes": {
+      "rho_a_shape": {
+        "expected": [
+          2,
+          2
+        ],
+        "actual": [
+          2,
+          2
+        ],
+        "pass": true
+      },
+      "rho_dephased_shape": {
+        "expected": [
+          2,
+          2
+        ],
+        "actual": [
+          2,
+          2
+        ],
+        "pass": true
+      },
+      "rho_b_shape": {
+        "expected": [
+          2,
+          2
+        ],
+        "actual": [
+          2,
+          2
+        ],
+        "pass": true
+      },
+      "rho_ab_shape": {
+        "expected": [
+          4,
+          4
+        ],
+        "actual": [
+          4,
+          4
+        ],
+        "pass": true
+      },
+      "rho_entangled_shape": {
+        "expected": [
+          4,
+          4
+        ],
+        "actual": [
+          4,
+          4
+        ],
+        "pass": true
+      },
+      "rho_a_reduced_shape": {
+        "expected": [
+          2,
+          2
+        ],
+        "actual": [
+          2,
+          2
+        ],
+        "pass": true
+      },
+      "mi_is_scalar": {
+        "pass": true
+      },
+      "mi_value": 0.36901265382766724,
+      "A_phi_value": -0.0,
+      "overall_pass": true
+    },
+    "P2_end_to_end_gradient": {
+      "grad_bloch_a_exists": true,
+      "grad_bloch_a_nonzero": true,
+      "grad_bloch_a_values": [
+        0.10119136422872543,
+        0.0,
+        -0.18911588191986084
+      ],
+      "grad_bloch_b_exists": true,
+      "grad_bloch_b_nonzero": true,
+      "grad_bloch_b_values": [
+        0.0,
+        0.0,
+        1.0251801013946533
+      ],
+      "grad_dephasing_p_exists": true,
+      "grad_dephasing_p_value": -0.3035740852355957,
+      "pass": true
+    },
+    "P3_chain_matches_manual": {
+      "mi_chain": 0.21694111824035645,
+      "mi_manual": 0.21694111824035645,
+      "diff": 0.0,
+      "pass": true
+    },
+    "P4_dephasing_changes_result": {
+      "mi_with_dephasing": 0.6931471824645996,
+      "mi_without_dephasing": 0.9635853171348572,
+      "different": true,
+      "pass": true
+    },
+    "P5_different_inputs_different_outputs": {
+      "mi_values": [
+        0.7754300236701965,
+        -2.7631019000606827e-11,
+        0.1446361541748047
+      ],
+      "all_distinct": true,
+      "pass": true
+    },
+    "P6_import_identity": {
+      "DensityMatrix_is_same": true,
+      "ZDephasing_is_same": true,
+      "CNOT_is_same": true,
+      "MutualInformation_is_same": true,
+      "HopfConnection_is_same": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_wrong_dtype_detection": {
+      "detail": "Channel accepted real input (no runtime error) but result lacks imaginary part",
+      "pass": true
+    },
+    "N2_dimension_mismatch_cnot": {
+      "error_caught": true,
+      "pass": true
+    },
+    "N3_mi_on_single_qubit": {
+      "error_caught": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_single_module_chain": {
+      "trace": 1.0,
+      "purity": 1.0,
+      "trace_is_1": true,
+      "purity_is_1": true,
+      "pass": true
+    },
+    "B2_maximally_mixed_chain": {
+      "mi_value": 0.0,
+      "mi_near_zero": true,
+      "pass": true
+    },
+    "B3_bell_like_chain": {
+      "mi_value": 1.3862943649291992,
+      "mi_positive": true,
+      "pass": true
+    },
+    "B4_dephasing_p0_is_identity": {
+      "mi_with_p0": 0.44427263736724854,
+      "mi_without_dephasing": 0.44427263736724854,
+      "diff": 0.0,
+      "pass": true
+    },
+    "B5_z_basis_dephasing_invariant": {
+      "mi_p0": -2.7631019000606827e-11,
+      "mi_p1": -2.7631019000606827e-11,
+      "diff": 0.0,
+      "pass": true
+    },
+    "B6_gradient_differs_by_chain_length": {
+      "grad_short_chain": [
+        0.7264835834503174,
+        0.0,
+        -0.1420970857143402
+      ],
+      "grad_long_chain": [
+        0.0,
+        0.0,
+        -0.19581928849220276
+      ],
+      "gradients_differ": true,
+      "pass": true
+    }
+  },
+  "classification": "audit",
+  "summary": {
+    "total_tests": 21,
+    "total_pass": 21,
+    "all_pass": true
+  }
+}

@@ -1,0 +1,213 @@
+{
+  "name": "Clifford Group Hierarchy",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "matrix computation for gate conjugation and twirl averaging"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "formal verification of Pauli group closure"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "exact symbolic gate arithmetic for hierarchy verification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "GA clifford not needed; this is quantum Clifford group"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    }
+  },
+  "positive": {
+    "pauli_group_size": {
+      "expected": 16,
+      "actual": 16,
+      "pass": true
+    },
+    "H_X_Hd_eq_Z": {
+      "expected": "Z",
+      "actual": "Z",
+      "pass": true
+    },
+    "H_in_C2": {
+      "pass": true,
+      "details": {
+        "I": true,
+        "X": true,
+        "Y": true,
+        "Z": true
+      }
+    },
+    "S_in_C2": {
+      "pass": true,
+      "details": {
+        "I": true,
+        "X": true,
+        "Y": true,
+        "Z": true
+      }
+    },
+    "T_not_in_C2": {
+      "pass": true,
+      "details": {
+        "I": true,
+        "X": false,
+        "Y": false,
+        "Z": true
+      }
+    },
+    "T_in_C3": {
+      "pass": true,
+      "details": {
+        "I": {
+          "pauli": true,
+          "C2": true
+        },
+        "X": {
+          "pauli": false,
+          "C2": true
+        },
+        "Y": {
+          "pauli": false,
+          "C2": true
+        },
+        "Z": {
+          "pauli": true,
+          "C2": true
+        }
+      }
+    },
+    "twirl_dephasing_is_depolarizing": {
+      "pass": true,
+      "choi_eigenvalues": [
+        0.19999999999999976,
+        0.19999999999999984,
+        0.19999999999999987,
+        1.3999999999999992
+      ]
+    },
+    "magic_state_not_stabilizer": {
+      "pass": true,
+      "max_stabilizer_overlap": 0.8535533759853294
+    },
+    "sympy_exact": {
+      "H_X_Hd_is_pauli": true,
+      "S_X_Sd_is_pauli": true,
+      "T_X_Td_is_pauli": false,
+      "T_X_Td_is_C2": true,
+      "pass": true
+    },
+    "z3_pauli_closure": {
+      "status": "PASS",
+      "group_size": 16,
+      "closure": true,
+      "identity_element": 0,
+      "identity_axiom": true,
+      "inverse_axiom": true,
+      "associativity": true,
+      "associativity_failures": 0,
+      "z3_closure_check": "PASS (unsat)"
+    }
+  },
+  "negative": {
+    "T_not_Clifford": {
+      "test": "T gate must NOT be in C_2",
+      "pass": true
+    },
+    "random_not_Clifford": {
+      "test": "random unitary must NOT be in C_2",
+      "pass": true
+    },
+    "random_not_C3": {
+      "test": "random unitary must NOT be in C_3",
+      "pass": true
+    },
+    "non_unitary_detected": {
+      "test": "non-unitary matrix must fail unitarity check",
+      "pass": true
+    },
+    "magic_not_stabilizer": {
+      "test": "|T> must not be stabilizer (max overlap < 1)",
+      "max_overlap": 0.8535533759853294,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_paulis_unitary": {
+      "pass": true
+    },
+    "clifford_group_size": {
+      "expected": 24,
+      "actual": 24,
+      "pass": true
+    },
+    "S_order_4": {
+      "pass": true
+    },
+    "T_order_8": {
+      "pass": true
+    },
+    "H_order_2": {
+      "pass": true
+    },
+    "S_squared_is_Z": {
+      "pass": true
+    },
+    "T_perturbed_tiny_still_C3": {
+      "epsilon": 1e-15,
+      "pass": true
+    },
+    "T_perturbed_large_not_C2_or_C3": {
+      "epsilon": 0.1,
+      "not_C2": true,
+      "not_C3": true,
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "summary": "22/22 tests passed"
+}

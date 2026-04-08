@@ -1,0 +1,212 @@
+{
+  "name": "Phase 5/6: Full Ratchet as GNN",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core substrate: tensors, autograd, optimization"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "HeteroData graph + message passing IS the ratchet dynamics"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Verify shell constraint feasibility via SMT"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "DAG for message passing order verification"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    }
+  },
+  "classification": "canonical",
+  "z3_verification": {
+    "constrained_satisfiable": true,
+    "unconstrained_allows_unphysical": true,
+    "constrained_blocks_unphysical": true,
+    "z3_passed": true
+  },
+  "rustworkx_verification": {
+    "topological_order": [
+      "shell",
+      "operator",
+      "terrain"
+    ],
+    "shell_before_operator": true,
+    "operator_before_terrain": true,
+    "order_valid": true
+  },
+  "positive": {
+    "valid_density_matrices": {
+      "passed": true,
+      "checks": [
+        {
+          "trace": 1.0,
+          "trace_ok": true,
+          "hermitian_error": 0.0,
+          "hermitian_ok": true,
+          "min_eigenvalue": 0.16889378428459167,
+          "psd_ok": true,
+          "valid": true
+        },
+        {
+          "trace": 1.0,
+          "trace_ok": true,
+          "hermitian_error": 0.0,
+          "hermitian_ok": true,
+          "min_eigenvalue": 3.266920600708545e-08,
+          "psd_ok": true,
+          "valid": true
+        },
+        {
+          "trace": 1.0,
+          "trace_ok": true,
+          "hermitian_error": 0.0,
+          "hermitian_ok": true,
+          "min_eigenvalue": 0.1459086835384369,
+          "psd_ok": true,
+          "valid": true
+        },
+        {
+          "trace": 1.0,
+          "trace_ok": true,
+          "hermitian_error": 0.0,
+          "hermitian_ok": true,
+          "min_eigenvalue": -2.047048752729097e-09,
+          "psd_ok": true,
+          "valid": true
+        }
+      ]
+    },
+    "ic_differentiable": {
+      "passed": true,
+      "has_grad": true,
+      "grad_nonzero": true,
+      "grad_norm": 0.1719401776790619,
+      "ic_mean": -0.23369693756103516
+    },
+    "optimization_increases_ic": {
+      "passed": "True",
+      "ic_start_avg": -0.1278376292437315,
+      "ic_end_avg": 0.24620572924613954,
+      "ic_delta": 0.374043358489871,
+      "ic_history_sample": [
+        -0.2557227909564972,
+        0.07542464882135391,
+        0.1740039438009262,
+        0.2517877519130707
+      ],
+      "n_steps": 50
+    },
+    "shell_constrains_params": {
+      "passed": true,
+      "raw_param_value": 5.0,
+      "max_gated_param": 0.52809739112854,
+      "reduction_ratio": 0.10561947822570801
+    }
+  },
+  "negative": {
+    "no_shell_allows_unphysical": {
+      "passed": true,
+      "max_operator_param": 5.065632343292236,
+      "exceeds_physical_range": true
+    },
+    "disconnected_no_flow": {
+      "passed": true,
+      "terrain_change": 0.0
+    }
+  },
+  "boundary": {
+    "single_node_trivial": {
+      "passed": true,
+      "validity": {
+        "trace": 1.0,
+        "trace_ok": true,
+        "hermitian_error": 0.0,
+        "hermitian_ok": true,
+        "min_eigenvalue": 0.13204185664653778,
+        "psd_ok": true,
+        "valid": true
+      },
+      "terrain_out": [
+        -0.05383098125457764,
+        0.4228595793247223,
+        0.5998873710632324
+      ]
+    },
+    "fully_connected_max_flow": {
+      "passed": true,
+      "n_terrain": 8,
+      "n_operator": 6,
+      "n_shell": 4,
+      "terrain_norms": [
+        0.9999999403953552,
+        1.0,
+        1.0,
+        0.8314718008041382,
+        1.0,
+        1.0,
+        1.0,
+        0.9999999403953552
+      ]
+    },
+    "bloch_ball_containment": {
+      "passed": true,
+      "norms": [
+        0.7825717926025391,
+        1.0
+      ]
+    }
+  },
+  "summary": {
+    "positive": "4/4",
+    "negative": "2/2",
+    "boundary": "3/3",
+    "z3_passed": true,
+    "rustworkx_passed": true,
+    "all_passed": true
+  }
+}

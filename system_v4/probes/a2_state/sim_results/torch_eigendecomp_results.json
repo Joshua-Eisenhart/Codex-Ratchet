@@ -1,0 +1,363 @@
+{
+  "name": "torch_eigendecomp",
+  "description": "EigenDecomp module: eigenvalues/eigenvectors via torch.linalg.eigh with autograd",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "EigenDecomp module via torch.linalg.eigh, autograd gradients"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic eigenvalue verification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_eigenvalue_substrate_match": {
+      "|0><0|": {
+        "numpy_evals": [
+          0.0,
+          1.0
+        ],
+        "torch_evals": [
+          0.0,
+          1.0
+        ],
+        "max_diff": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "numpy_evals": [
+          0.0,
+          1.0
+        ],
+        "torch_evals": [
+          0.0,
+          1.0
+        ],
+        "max_diff": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "numpy_evals": [
+          0.5,
+          0.5
+        ],
+        "torch_evals": [
+          0.5,
+          0.5
+        ],
+        "max_diff": 0.0,
+        "pass": true
+      },
+      "random_0": {
+        "numpy_evals": [
+          0.38369207781196435,
+          0.6163079221880354
+        ],
+        "torch_evals": [
+          0.3836919963359833,
+          0.6163079142570496
+        ],
+        "max_diff": 8.147598107299814e-08,
+        "pass": true
+      },
+      "random_1": {
+        "numpy_evals": [
+          0.14906915443668067,
+          0.8509308455633193
+        ],
+        "torch_evals": [
+          0.1490691751241684,
+          0.8509308099746704
+        ],
+        "max_diff": 3.558864891672897e-08,
+        "pass": true
+      },
+      "random_2": {
+        "numpy_evals": [
+          0.32069704674219646,
+          0.6793029532578035
+        ],
+        "torch_evals": [
+          0.3206970691680908,
+          0.6793029308319092
+        ],
+        "max_diff": 2.2425894363742316e-08,
+        "pass": true
+      }
+    },
+    "P2_eigenvector_reconstruction": {
+      "|0><0|": {
+        "reconstruction_max_diff": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "reconstruction_max_diff": 2.9802322387695312e-08,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "reconstruction_max_diff": 0.0,
+        "pass": true
+      },
+      "random_0": {
+        "reconstruction_max_diff": 1.7881393432617188e-07,
+        "pass": true
+      },
+      "random_1": {
+        "reconstruction_max_diff": 5.972094641037984e-08,
+        "pass": true
+      },
+      "random_2": {
+        "reconstruction_max_diff": 4.214684778958144e-08,
+        "pass": true
+      }
+    },
+    "P3_largest_eval_gradient": {
+      "|0><0|": {
+        "largest_eval": 1.0,
+        "grad": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "grad_nonzero": true,
+        "pass": true
+      },
+      "|+><+|": {
+        "largest_eval": 1.0,
+        "grad": [
+          0.4999999701976776,
+          0.0,
+          0.0
+        ],
+        "grad_nonzero": true,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "grad_exists": false,
+        "pass": true
+      },
+      "random_0": {
+        "largest_eval": 0.6163079142570496,
+        "grad": [
+          0.3000008165836334,
+          -0.08350759744644165,
+          0.39118531346321106
+        ],
+        "grad_nonzero": true,
+        "pass": true
+      },
+      "random_1": {
+        "largest_eval": 0.8509308099746704,
+        "grad": [
+          0.41186287999153137,
+          0.07545928657054901,
+          0.2732669711112976
+        ],
+        "grad_nonzero": true,
+        "pass": true
+      },
+      "random_2": {
+        "largest_eval": 0.6793029308319092,
+        "grad": [
+          -0.27482691407203674,
+          0.3176107406616211,
+          -0.271281361579895
+        ],
+        "grad_nonzero": true,
+        "pass": true
+      }
+    },
+    "P4_autograd_vs_fd": {
+      "|0><0|": {
+        "autograd": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "finite_diff": [
+          0.0,
+          0.0,
+          0.49999999999994493
+        ],
+        "cosine_sim": 1.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "autograd": [
+          0.4999999701976776,
+          0.0,
+          0.0
+        ],
+        "finite_diff": [
+          0.49999999999994493,
+          0.0,
+          0.0
+        ],
+        "cosine_sim": 1.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "note": "degenerate eigenvalues, autograd undefined",
+        "pass": true
+      },
+      "random_0": {
+        "autograd": [
+          0.3000008165836334,
+          -0.08350759744644165,
+          0.39118531346321106
+        ],
+        "finite_diff": [
+          0.29999924875162565,
+          -0.08350690017688844,
+          0.3911837951720565
+        ],
+        "cosine_sim": 1.0000000357117405,
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "N1_invalid_bloch_negative_eval": {
+      "r=1.5_z": {
+        "eigenvalues": [
+          -0.25,
+          1.25
+        ],
+        "has_negative": true,
+        "pass": true
+      },
+      "r=2.0_uniform": {
+        "eigenvalues": [
+          -0.4999999403953552,
+          1.5
+        ],
+        "has_negative": true,
+        "pass": true
+      }
+    },
+    "N2_eigenvalue_sum_is_1": {
+      "state_0": {
+        "eval_sum": 1.0000001192092896,
+        "pass": true
+      },
+      "state_1": {
+        "eval_sum": 0.9999999403953552,
+        "pass": true
+      },
+      "state_2": {
+        "eval_sum": 1.0,
+        "pass": true
+      },
+      "state_3": {
+        "eval_sum": 1.0,
+        "pass": true
+      },
+      "state_4": {
+        "eval_sum": 1.0,
+        "pass": true
+      }
+    }
+  },
+  "boundary": {
+    "B1_maximally_mixed_degenerate": {
+      "eigenvalues": [
+        0.5,
+        0.5
+      ],
+      "both_half": true,
+      "pass": true
+    },
+    "B2_pure_state_eigenvalues": {
+      "|0>": {
+        "eigenvalues": [
+          0.0,
+          1.0
+        ],
+        "is_0_and_1": true,
+        "pass": true
+      },
+      "|1>": {
+        "eigenvalues": [
+          0.0,
+          1.0
+        ],
+        "is_0_and_1": true,
+        "pass": true
+      },
+      "|+>": {
+        "eigenvalues": [
+          0.0,
+          1.0
+        ],
+        "is_0_and_1": true,
+        "pass": true
+      }
+    }
+  },
+  "sympy_check": {
+    "eigenvalues": [
+      "(r + 1)/2",
+      "-(r - 1)/2"
+    ],
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 34,
+    "total_pass": 34,
+    "all_pass": true
+  }
+}

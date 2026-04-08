@@ -1,0 +1,433 @@
+{
+  "name": "torch_chiral_overlap",
+  "family": "GEOMETRIC",
+  "description": "Chiral overlap |<L|R>|^2 for Weyl spinor pair, torch.nn.Module",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core module: ChiralOverlap as nn.Module, autograd for gradients"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) projector cross-validation"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "tried import, not used for chiral overlap"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_LR_orthogonality": {
+      "t=0.000_p=0.000": {
+        "torch_overlap": 0.0,
+        "numpy_overlap": 0.0,
+        "both_zero": true,
+        "diff": 0.0,
+        "pass": true
+      },
+      "t=0.785_p=0.000": {
+        "torch_overlap": 0.0,
+        "numpy_overlap": 4.6807310756201345e-34,
+        "both_zero": true,
+        "diff": 4.6807310756201345e-34,
+        "pass": true
+      },
+      "t=1.571_p=0.000": {
+        "torch_overlap": 0.0,
+        "numpy_overlap": 1.0295220005548027e-34,
+        "both_zero": true,
+        "diff": 1.0295220005548027e-34,
+        "pass": true
+      },
+      "t=1.571_p=0.785": {
+        "torch_overlap": 8.881784197001252e-16,
+        "numpy_overlap": 0.0,
+        "both_zero": true,
+        "diff": 8.881784197001252e-16,
+        "pass": true
+      },
+      "t=3.142_p=0.000": {
+        "torch_overlap": 0.0,
+        "numpy_overlap": 0.0,
+        "both_zero": true,
+        "diff": 0.0,
+        "pass": true
+      },
+      "t=1.047_p=0.524": {
+        "torch_overlap": 4.5300797709372777e-17,
+        "numpy_overlap": 1.925929944387236e-34,
+        "both_zero": true,
+        "diff": 4.5300797709372777e-17,
+        "pass": true
+      },
+      "t=2.100_p=0.700": {
+        "torch_overlap": 4.361970200686901e-17,
+        "numpy_overlap": 1.540743955509789e-33,
+        "both_zero": true,
+        "diff": 4.361970200686901e-17,
+        "pass": true
+      },
+      "t=0.100_p=3.000": {
+        "torch_overlap": 1.400425214294524e-17,
+        "numpy_overlap": 2.3039689276116835e-36,
+        "both_zero": true,
+        "diff": 1.400425214294524e-17,
+        "pass": true
+      }
+    },
+    "P2_fixed_ref_sin2_over_4": {
+      "t=0.000_p=0.000": {
+        "torch": 0.0,
+        "analytic": 0.0,
+        "numpy": 0.0,
+        "diff_analytic": 0.0,
+        "diff_numpy": 0.0,
+        "pass": true
+      },
+      "t=0.785_p=0.000": {
+        "torch": 0.1250000149011612,
+        "analytic": 0.12499999999999997,
+        "numpy": 0.125,
+        "diff_analytic": 1.4901161221603232e-08,
+        "diff_numpy": 1.4901161193847656e-08,
+        "pass": true
+      },
+      "t=1.571_p=0.000": {
+        "torch": 0.2499999701976776,
+        "analytic": 0.25,
+        "numpy": 0.25,
+        "diff_analytic": 2.9802322387695312e-08,
+        "diff_numpy": 2.9802322387695312e-08,
+        "pass": true
+      },
+      "t=1.571_p=0.785": {
+        "torch": 0.2499999701976776,
+        "analytic": 0.25,
+        "numpy": 0.25,
+        "diff_analytic": 2.9802322387695312e-08,
+        "diff_numpy": 2.9802322387695312e-08,
+        "pass": true
+      },
+      "t=3.142_p=0.000": {
+        "torch": 1.910685465164705e-15,
+        "analytic": 3.749399456654644e-33,
+        "numpy": 3.749399456654644e-33,
+        "diff_analytic": 1.910685465164705e-15,
+        "diff_numpy": 1.910685465164705e-15,
+        "pass": true
+      },
+      "t=1.047_p=0.524": {
+        "torch": 0.1875,
+        "analytic": 0.18749999999999997,
+        "numpy": 0.18749999999999997,
+        "diff_analytic": 2.7755575615628914e-17,
+        "diff_numpy": 2.7755575615628914e-17,
+        "pass": true
+      },
+      "t=2.100_p=0.700": {
+        "torch": 0.18628261983394623,
+        "analytic": 0.18628260266758742,
+        "numpy": 0.18628260266758748,
+        "diff_analytic": 1.716635880666395e-08,
+        "diff_numpy": 1.71663587511528e-08,
+        "pass": true
+      },
+      "t=0.100_p=3.000": {
+        "torch": 0.0024916776455938816,
+        "analytic": 0.0024916777698447963,
+        "numpy": 0.0024916777698447963,
+        "diff_analytic": 1.242509146785753e-10,
+        "diff_numpy": 1.242509146785753e-10,
+        "pass": true
+      }
+    },
+    "P3_completeness": {
+      "t=0.000_p=0.000": {
+        "max_diff_from_I": 0.0,
+        "pass": true
+      },
+      "t=0.785_p=0.000": {
+        "max_diff_from_I": 0.0,
+        "pass": true
+      },
+      "t=1.571_p=0.000": {
+        "max_diff_from_I": 5.960464477539063e-08,
+        "pass": true
+      },
+      "t=1.571_p=0.785": {
+        "max_diff_from_I": 1.1920928955078125e-07,
+        "pass": true
+      },
+      "t=3.142_p=0.000": {
+        "max_diff_from_I": 0.0,
+        "pass": true
+      },
+      "t=1.047_p=0.524": {
+        "max_diff_from_I": 7.450580596923828e-09,
+        "pass": true
+      },
+      "t=2.100_p=0.700": {
+        "max_diff_from_I": 5.965121185764311e-08,
+        "pass": true
+      },
+      "t=0.100_p=3.000": {
+        "max_diff_from_I": 1.1921956315021738e-07,
+        "pass": true
+      }
+    },
+    "P4_gradient_theta": {
+      "theta=0.5236": {
+        "grad_autograd": 0.21650633215904236,
+        "grad_analytic": 0.21650635094610965,
+        "diff": 1.8787067290748638e-08,
+        "pass": "True"
+      },
+      "theta=0.7854": {
+        "grad_autograd": 0.25,
+        "grad_analytic": 0.25,
+        "diff": 0.0,
+        "pass": "True"
+      },
+      "theta=1.0472": {
+        "grad_autograd": 0.21650633215904236,
+        "grad_analytic": 0.21650635094610968,
+        "diff": 1.8787067318504214e-08,
+        "pass": "True"
+      },
+      "theta=1.5708": {
+        "grad_autograd": 0.0,
+        "grad_analytic": 3.061616997868383e-17,
+        "diff": 3.061616997868383e-17,
+        "pass": "True"
+      },
+      "theta=2.0000": {
+        "grad_autograd": -0.18920059502124786,
+        "grad_analytic": -0.18920062382698208,
+        "diff": 2.8805734214598644e-08,
+        "pass": "True"
+      }
+    },
+    "P5_LR_symmetry": {
+      "t=0.000": {
+        "overlap_theta": 0.0,
+        "overlap_pi_minus_theta": 1.910685465164705e-15,
+        "diff": 1.910685465164705e-15,
+        "pass": true
+      },
+      "t=0.785": {
+        "overlap_theta": 0.1250000149011612,
+        "overlap_pi_minus_theta": 0.125,
+        "diff": 1.4901161193847656e-08,
+        "pass": true
+      },
+      "t=1.571": {
+        "overlap_theta": 0.2499999701976776,
+        "overlap_pi_minus_theta": 0.2499999701976776,
+        "diff": 0.0,
+        "pass": true
+      },
+      "t=3.142": {
+        "overlap_theta": 1.910685465164705e-15,
+        "overlap_pi_minus_theta": 0.0,
+        "diff": 1.910685465164705e-15,
+        "pass": true
+      },
+      "t=1.047": {
+        "overlap_theta": 0.1875,
+        "overlap_pi_minus_theta": 0.1874999701976776,
+        "diff": 2.9802322387695312e-08,
+        "pass": true
+      },
+      "t=2.100": {
+        "overlap_theta": 0.18628261983394623,
+        "overlap_pi_minus_theta": 0.18628257513046265,
+        "diff": 4.470348358154297e-08,
+        "pass": true
+      },
+      "t=0.100": {
+        "overlap_theta": 0.0024916776455938816,
+        "overlap_pi_minus_theta": 0.002491680672392249,
+        "diff": 3.026798367500305e-09,
+        "pass": true
+      }
+    },
+    "P6_clifford_projectors": {
+      "P_plus_idempotent": true,
+      "P_minus_idempotent": true,
+      "orthogonal": true,
+      "complete": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_non_normalized_spinors": {
+      "scale=0.5": {
+        "overlap_still_zero": true,
+        "completeness_broken": true,
+        "pass": true
+      },
+      "scale=2.0": {
+        "overlap_still_zero": true,
+        "completeness_broken": true,
+        "pass": true
+      },
+      "scale=0.0": {
+        "overlap_still_zero": true,
+        "completeness_broken": true,
+        "pass": true
+      }
+    },
+    "N2_same_handedness_overlap": {
+      "t=0.785": {
+        "same_hand_overlap": 0.997502082639013,
+        "is_nonzero": true,
+        "pass": true
+      },
+      "t=1.047": {
+        "same_hand_overlap": 0.997502082639013,
+        "is_nonzero": true,
+        "pass": true
+      }
+    },
+    "N3_orth_overlap_gradient_zero": {
+      "theta=0.7854": {
+        "grad_of_zero_overlap": 0.0,
+        "is_zero": true,
+        "pass": true
+      },
+      "theta=1.5708": {
+        "grad_of_zero_overlap": 0.0,
+        "is_zero": true,
+        "pass": true
+      },
+      "theta=1.0472": {
+        "grad_of_zero_overlap": 0.0,
+        "is_zero": true,
+        "pass": true
+      }
+    }
+  },
+  "boundary": {
+    "B1_north_pole": {
+      "fixed_ref_overlap": 0.0,
+      "is_zero": true,
+      "pass": true
+    },
+    "B2_south_pole": {
+      "fixed_ref_overlap": 1.910685465164705e-15,
+      "is_zero": true,
+      "pass": true
+    },
+    "B3_equator_max": {
+      "fixed_ref_overlap": 0.2499999701976776,
+      "expected": 0.25,
+      "diff": 2.9802322387695312e-08,
+      "pass": true
+    },
+    "B4_full_sweep": {
+      "n_points": 50,
+      "max_diff_from_analytic": 3.960643693567967e-08,
+      "pass": "True"
+    },
+    "B5_gradient_at_extrema": {
+      "north_pole": {
+        "gradient": 0.0,
+        "expected": 0.0,
+        "is_zero": true,
+        "pass": "True"
+      },
+      "south_pole": {
+        "gradient": 4.371138828673793e-08,
+        "expected": -6.123233995736766e-17,
+        "is_zero": true,
+        "pass": "True"
+      },
+      "equator": {
+        "gradient": 0.0,
+        "expected": 3.061616997868383e-17,
+        "is_zero": true,
+        "pass": "True"
+      }
+    },
+    "B6_autograd_vs_fd": {
+      "theta=0.5236": {
+        "autograd": 0.21650633215904236,
+        "finite_diff": 0.21650634950267506,
+        "diff": 1.7343632696675826e-08,
+        "pass": true
+      },
+      "theta=1.0472": {
+        "autograd": 0.21650633215904236,
+        "finite_diff": 0.21650634950270975,
+        "diff": 1.7343667391145345e-08,
+        "pass": true
+      },
+      "theta=1.0000": {
+        "autograd": 0.22732433676719666,
+        "finite_diff": 0.22732435519062788,
+        "diff": 1.8423431225045306e-08,
+        "pass": true
+      },
+      "theta=2.5000": {
+        "autograd": -0.2397310882806778,
+        "finite_diff": -0.23973106706799696,
+        "diff": 2.1212680834103992e-08,
+        "pass": true
+      }
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 56,
+    "total_pass": 56,
+    "all_pass": true
+  }
+}

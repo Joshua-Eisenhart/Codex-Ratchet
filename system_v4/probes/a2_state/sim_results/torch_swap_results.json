@@ -1,0 +1,267 @@
+{
+  "name": "torch_swap",
+  "phase": "Phase 3 sim",
+  "description": "SWAP gate as differentiable nn.Module -- no entanglement creation",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core module: SWAP as nn.Module, autograd gradient flow"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Normalization preservation under permutation"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic unitarity, self-inverse, hermiticity, swap verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_00_invariant": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "P2_01_to_10": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "P3_10_to_01": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "P4_11_invariant": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "P5_plus0_to_0plus": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "P6_self_inverse": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "P7_substrate_match": {
+      "|00>": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "|01>": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "|10>": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "|11>": {
+        "max_abs_diff": 0.0,
+        "pass": true
+      },
+      "|+0>": {
+        "max_abs_diff": 1.1102230246251565e-16,
+        "pass": true
+      }
+    },
+    "P8_trace_preservation": {
+      "|00>": {
+        "trace": 1.0,
+        "pass": true
+      },
+      "|01>": {
+        "trace": 1.0,
+        "pass": true
+      },
+      "|10>": {
+        "trace": 1.0,
+        "pass": true
+      },
+      "|11>": {
+        "trace": 1.0,
+        "pass": true
+      },
+      "|+0>": {
+        "trace": 0.9999999999999998,
+        "pass": true
+      }
+    },
+    "P9_unitarity": {
+      "is_unitary": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_non_unitary_detected": {
+      "is_unitary": false,
+      "pass": true
+    },
+    "N2_trace_violation": {
+      "trace": 0.6249999999999999,
+      "pass": true
+    },
+    "N3_hermiticity_|01>": {
+      "diff": 0.0,
+      "pass": true
+    },
+    "N3_hermiticity_|+0>": {
+      "diff": 0.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_mixed_invariant": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "B2_purity_preserved": {
+      "state_0": {
+        "purity_in": 1.0,
+        "purity_out": 1.0,
+        "pass": true
+      },
+      "state_1": {
+        "purity_in": 1.0000000000000002,
+        "purity_out": 1.0000000000000004,
+        "pass": true
+      },
+      "state_2": {
+        "purity_in": 1.0000000000000002,
+        "purity_out": 1.0,
+        "pass": true
+      },
+      "state_3": {
+        "purity_in": 0.999999999999999,
+        "purity_out": 0.999999999999999,
+        "pass": true
+      },
+      "state_4": {
+        "purity_in": 0.9999999999999997,
+        "purity_out": 0.9999999999999996,
+        "pass": true
+      }
+    },
+    "B3_swap_is_hermitian": {
+      "diff": 0.0,
+      "pass": true
+    }
+  },
+  "falsification": {
+    "F1_no_entanglement_creation": {
+      "state_0": {
+        "entropy": 2.220446049250313e-16,
+        "pass": true
+      },
+      "state_1": {
+        "entropy": 2.220446049250313e-16,
+        "pass": true
+      },
+      "state_2": {
+        "entropy": 2.220446049250313e-16,
+        "pass": true
+      },
+      "state_3": {
+        "entropy": -2.220446049250313e-16,
+        "pass": true
+      },
+      "state_4": {
+        "entropy": -0.0,
+        "pass": true
+      },
+      "state_5": {
+        "entropy": -4.440892098500627e-16,
+        "pass": true
+      },
+      "state_6": {
+        "entropy": -4.440892098500627e-16,
+        "pass": true
+      },
+      "state_7": {
+        "entropy": -0.0,
+        "pass": true
+      },
+      "state_8": {
+        "entropy": -2.220446049250313e-16,
+        "pass": true
+      },
+      "state_9": {
+        "entropy": -4.440892098500627e-16,
+        "pass": true
+      }
+    },
+    "F2_gradient_flow": {
+      "trace": 1.0000001192092896,
+      "grad_exists": true,
+      "pass": true
+    },
+    "F3_random_match": {
+      "n": 20,
+      "max_diff": 2.9427665637626887e-08,
+      "pass": true
+    }
+  },
+  "sympy_check": {
+    "is_unitary": true,
+    "is_self_inverse": true,
+    "is_hermitian": true,
+    "swaps_01_to_10": true,
+    "pass": true
+  },
+  "z3_check": {
+    "normalization_preserved": "unsat",
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 42,
+    "total_pass": 42,
+    "all_pass": true
+  }
+}

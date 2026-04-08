@@ -1,0 +1,1788 @@
+{
+  "name": "torch_channel_taxonomy",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "All channels and gates implemented as torch.nn.Module; Bloch extraction, entropy, trace distance all torch-native"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "positive_pass": 6,
+    "positive_fail": 0,
+    "negative_pass": 4,
+    "negative_fail": 0,
+    "boundary_pass": 22,
+    "boundary_fail": 0,
+    "total_pass": 32,
+    "total_fail": 0
+  },
+  "positive": {
+    "P1_channel_taxonomy": {
+      "z_dephasing": {
+        "fixed_points": {
+          "named_fixed_points": [
+            {
+              "state": "|0>",
+              "trace_distance": 0.0
+            },
+            {
+              "state": "|1>",
+              "trace_distance": 0.0
+            },
+            {
+              "state": "I/2",
+              "trace_distance": 0.0
+            }
+          ],
+          "random_fixed_count": 0,
+          "random_total": 1000,
+          "fixed_fraction": 0.0
+        },
+        "invariant_subspaces": {
+          "x": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.3999999761581421,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "bloch_output_neg": {
+              "x": -0.3999999761581421,
+              "y": 0.0,
+              "z": 0.0
+            }
+          },
+          "y": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.0,
+              "y": 0.3999999761581421,
+              "z": 0.0
+            },
+            "bloch_output_neg": {
+              "x": 0.0,
+              "y": -0.3999999761581421,
+              "z": 0.0
+            }
+          },
+          "z": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 1.0
+            },
+            "bloch_output_neg": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": -1.0
+            }
+          },
+          "summary": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "contraction_rates": {
+          "x": {
+            "output_component": 0.3999999761581421,
+            "contraction_factor": 0.3999999761581421,
+            "shrinkage": 0.6000000238418579
+          },
+          "y": {
+            "output_component": 0.3999999761581421,
+            "contraction_factor": 0.3999999761581421,
+            "shrinkage": 0.6000000238418579
+          },
+          "z": {
+            "output_component": 1.0,
+            "contraction_factor": 1.0,
+            "shrinkage": 0.0
+          }
+        },
+        "entropy_change": {
+          "classification": "entropy_increasing",
+          "n_increase": 54,
+          "n_decrease": 0,
+          "n_unchanged": 3,
+          "sample_deltas": [
+            {
+              "state": "|0>",
+              "S_in": -0.0,
+              "S_out": -0.0,
+              "delta_S": 0.0
+            },
+            {
+              "state": "|1>",
+              "S_in": -0.0,
+              "S_out": -0.0,
+              "delta_S": 0.0
+            },
+            {
+              "state": "|+>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|->",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|+i>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|-i>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "I/2",
+              "S_in": 0.6931471824645996,
+              "S_out": 0.6931471824645996,
+              "delta_S": 0.0
+            },
+            {
+              "state": "random_0",
+              "S_in": 0.354669451713562,
+              "S_out": 0.6373437643051147,
+              "delta_S": 0.28267431259155273
+            }
+          ]
+        }
+      },
+      "x_dephasing": {
+        "fixed_points": {
+          "named_fixed_points": [
+            {
+              "state": "|+>",
+              "trace_distance": 0.0
+            },
+            {
+              "state": "|->",
+              "trace_distance": 0.0
+            },
+            {
+              "state": "I/2",
+              "trace_distance": 0.0
+            }
+          ],
+          "random_fixed_count": 0,
+          "random_total": 1000,
+          "fixed_fraction": 0.0
+        },
+        "invariant_subspaces": {
+          "x": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 1.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "bloch_output_neg": {
+              "x": -1.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          },
+          "y": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.0,
+              "y": 0.3999999761581421,
+              "z": 0.0
+            },
+            "bloch_output_neg": {
+              "x": 0.0,
+              "y": -0.3999999761581421,
+              "z": 0.0
+            }
+          },
+          "z": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.3999999761581421
+            },
+            "bloch_output_neg": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": -0.3999999761581421
+            }
+          },
+          "summary": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "contraction_rates": {
+          "x": {
+            "output_component": 1.0,
+            "contraction_factor": 1.0,
+            "shrinkage": 0.0
+          },
+          "y": {
+            "output_component": 0.3999999761581421,
+            "contraction_factor": 0.3999999761581421,
+            "shrinkage": 0.6000000238418579
+          },
+          "z": {
+            "output_component": 0.3999999761581421,
+            "contraction_factor": 0.3999999761581421,
+            "shrinkage": 0.6000000238418579
+          }
+        },
+        "entropy_change": {
+          "classification": "entropy_increasing",
+          "n_increase": 54,
+          "n_decrease": 0,
+          "n_unchanged": 3,
+          "sample_deltas": [
+            {
+              "state": "|0>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|1>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|+>",
+              "S_in": -0.0,
+              "S_out": -0.0,
+              "delta_S": 0.0
+            },
+            {
+              "state": "|->",
+              "S_in": -0.0,
+              "S_out": -0.0,
+              "delta_S": 0.0
+            },
+            {
+              "state": "|+i>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|-i>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "I/2",
+              "S_in": 0.6931471824645996,
+              "S_out": 0.6931471824645996,
+              "delta_S": 0.0
+            },
+            {
+              "state": "random_0",
+              "S_in": 0.354669451713562,
+              "S_out": 0.3673735558986664,
+              "delta_S": 0.01270410418510437
+            }
+          ]
+        }
+      },
+      "depolarizing": {
+        "fixed_points": {
+          "named_fixed_points": [
+            {
+              "state": "I/2",
+              "trace_distance": 0.0
+            }
+          ],
+          "random_fixed_count": 0,
+          "random_total": 1000,
+          "fixed_fraction": 0.0
+        },
+        "invariant_subspaces": {
+          "x": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.5999999642372131,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "bloch_output_neg": {
+              "x": -0.5999999642372131,
+              "y": 0.0,
+              "z": 0.0
+            }
+          },
+          "y": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.0,
+              "y": 0.5999999642372131,
+              "z": 0.0
+            },
+            "bloch_output_neg": {
+              "x": 0.0,
+              "y": -0.5999999642372131,
+              "z": 0.0
+            }
+          },
+          "z": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.6000000238418579
+            },
+            "bloch_output_neg": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": -0.6000000238418579
+            }
+          },
+          "summary": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "contraction_rates": {
+          "x": {
+            "output_component": 0.5999999642372131,
+            "contraction_factor": 0.5999999642372131,
+            "shrinkage": 0.40000003576278687
+          },
+          "y": {
+            "output_component": 0.5999999642372131,
+            "contraction_factor": 0.5999999642372131,
+            "shrinkage": 0.40000003576278687
+          },
+          "z": {
+            "output_component": 0.6000000238418579,
+            "contraction_factor": 0.6000000238418579,
+            "shrinkage": 0.3999999761581421
+          }
+        },
+        "entropy_change": {
+          "classification": "entropy_increasing",
+          "n_increase": 56,
+          "n_decrease": 0,
+          "n_unchanged": 1,
+          "sample_deltas": [
+            {
+              "state": "|0>",
+              "S_in": -0.0,
+              "S_out": 0.5004023909568787,
+              "delta_S": 0.5004023909568787
+            },
+            {
+              "state": "|1>",
+              "S_in": -0.0,
+              "S_out": 0.5004023909568787,
+              "delta_S": 0.5004023909568787
+            },
+            {
+              "state": "|+>",
+              "S_in": -0.0,
+              "S_out": 0.5004024505615234,
+              "delta_S": 0.5004024505615234
+            },
+            {
+              "state": "|->",
+              "S_in": -0.0,
+              "S_out": 0.5004024505615234,
+              "delta_S": 0.5004024505615234
+            },
+            {
+              "state": "|+i>",
+              "S_in": -0.0,
+              "S_out": 0.5004024505615234,
+              "delta_S": 0.5004024505615234
+            },
+            {
+              "state": "|-i>",
+              "S_in": -0.0,
+              "S_out": 0.5004024505615234,
+              "delta_S": 0.5004024505615234
+            },
+            {
+              "state": "I/2",
+              "S_in": 0.6931471824645996,
+              "S_out": 0.6931471824645996,
+              "delta_S": 0.0
+            },
+            {
+              "state": "random_0",
+              "S_in": 0.354669451713562,
+              "S_out": 0.5816234350204468,
+              "delta_S": 0.22695398330688477
+            }
+          ]
+        }
+      },
+      "amplitude_damping": {
+        "fixed_points": {
+          "named_fixed_points": [
+            {
+              "state": "|0>",
+              "trace_distance": 0.0
+            }
+          ],
+          "random_fixed_count": 0,
+          "random_total": 1000,
+          "fixed_fraction": 0.0
+        },
+        "invariant_subspaces": {
+          "x": {
+            "axis_survives": true,
+            "cross_contamination": true,
+            "preserved": false,
+            "bloch_output_pos": {
+              "x": 0.8366600275039673,
+              "y": 0.0,
+              "z": 0.29999998211860657
+            },
+            "bloch_output_neg": {
+              "x": -0.8366600275039673,
+              "y": 0.0,
+              "z": 0.29999998211860657
+            }
+          },
+          "y": {
+            "axis_survives": true,
+            "cross_contamination": true,
+            "preserved": false,
+            "bloch_output_pos": {
+              "x": 0.0,
+              "y": 0.8366600275039673,
+              "z": 0.29999998211860657
+            },
+            "bloch_output_neg": {
+              "x": 0.0,
+              "y": -0.8366600275039673,
+              "z": 0.29999998211860657
+            }
+          },
+          "z": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 1.0
+            },
+            "bloch_output_neg": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": -0.3999999761581421
+            }
+          },
+          "summary": [
+            "z"
+          ]
+        },
+        "contraction_rates": {
+          "x": {
+            "output_component": 0.8366600275039673,
+            "contraction_factor": 0.8366600275039673,
+            "shrinkage": 0.16333997249603271
+          },
+          "y": {
+            "output_component": 0.8366600275039673,
+            "contraction_factor": 0.8366600275039673,
+            "shrinkage": 0.16333997249603271
+          },
+          "z": {
+            "output_component": 1.0,
+            "contraction_factor": 1.0,
+            "shrinkage": 0.0
+          }
+        },
+        "entropy_change": {
+          "classification": "mixed",
+          "n_increase": 36,
+          "n_decrease": 20,
+          "n_unchanged": 1,
+          "sample_deltas": [
+            {
+              "state": "|0>",
+              "S_in": -0.0,
+              "S_out": -0.0,
+              "delta_S": 0.0
+            },
+            {
+              "state": "|1>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|+>",
+              "S_in": -0.0,
+              "S_out": 0.2146574854850769,
+              "delta_S": 0.2146574854850769
+            },
+            {
+              "state": "|->",
+              "S_in": -0.0,
+              "S_out": 0.2146574854850769,
+              "delta_S": 0.2146574854850769
+            },
+            {
+              "state": "|+i>",
+              "S_in": -0.0,
+              "S_out": 0.2146574854850769,
+              "delta_S": 0.2146574854850769
+            },
+            {
+              "state": "|-i>",
+              "S_in": -0.0,
+              "S_out": 0.2146574854850769,
+              "delta_S": 0.2146574854850769
+            },
+            {
+              "state": "I/2",
+              "S_in": 0.6931471824645996,
+              "S_out": 0.6474466323852539,
+              "delta_S": -0.0457005500793457
+            },
+            {
+              "state": "random_0",
+              "S_in": 0.354669451713562,
+              "S_out": 0.37951770424842834,
+              "delta_S": 0.024848252534866333
+            }
+          ]
+        }
+      },
+      "phase_damping": {
+        "fixed_points": {
+          "named_fixed_points": [
+            {
+              "state": "|0>",
+              "trace_distance": 0.0
+            },
+            {
+              "state": "|1>",
+              "trace_distance": 0.0
+            },
+            {
+              "state": "I/2",
+              "trace_distance": 0.0
+            }
+          ],
+          "random_fixed_count": 0,
+          "random_total": 1000,
+          "fixed_fraction": 0.0
+        },
+        "invariant_subspaces": {
+          "x": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.8366600275039673,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "bloch_output_neg": {
+              "x": -0.8366600275039673,
+              "y": 0.0,
+              "z": 0.0
+            }
+          },
+          "y": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.0,
+              "y": 0.8366600275039673,
+              "z": 0.0
+            },
+            "bloch_output_neg": {
+              "x": 0.0,
+              "y": -0.8366600275039673,
+              "z": 0.0
+            }
+          },
+          "z": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 1.0
+            },
+            "bloch_output_neg": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": -1.0
+            }
+          },
+          "summary": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "contraction_rates": {
+          "x": {
+            "output_component": 0.8366600275039673,
+            "contraction_factor": 0.8366600275039673,
+            "shrinkage": 0.16333997249603271
+          },
+          "y": {
+            "output_component": 0.8366600275039673,
+            "contraction_factor": 0.8366600275039673,
+            "shrinkage": 0.16333997249603271
+          },
+          "z": {
+            "output_component": 1.0,
+            "contraction_factor": 1.0,
+            "shrinkage": 0.0
+          }
+        },
+        "entropy_change": {
+          "classification": "entropy_increasing",
+          "n_increase": 54,
+          "n_decrease": 0,
+          "n_unchanged": 3,
+          "sample_deltas": [
+            {
+              "state": "|0>",
+              "S_in": -0.0,
+              "S_out": -0.0,
+              "delta_S": 0.0
+            },
+            {
+              "state": "|1>",
+              "S_in": -0.0,
+              "S_out": -0.0,
+              "delta_S": 0.0
+            },
+            {
+              "state": "|+>",
+              "S_in": -0.0,
+              "S_out": 0.2828291952610016,
+              "delta_S": 0.2828291952610016
+            },
+            {
+              "state": "|->",
+              "S_in": -0.0,
+              "S_out": 0.2828291952610016,
+              "delta_S": 0.2828291952610016
+            },
+            {
+              "state": "|+i>",
+              "S_in": -0.0,
+              "S_out": 0.2828291952610016,
+              "delta_S": 0.2828291952610016
+            },
+            {
+              "state": "|-i>",
+              "S_in": -0.0,
+              "S_out": 0.2828291952610016,
+              "delta_S": 0.2828291952610016
+            },
+            {
+              "state": "I/2",
+              "S_in": 0.6931471824645996,
+              "S_out": 0.6931471824645996,
+              "delta_S": 0.0
+            },
+            {
+              "state": "random_0",
+              "S_in": 0.354669451713562,
+              "S_out": 0.4638046622276306,
+              "delta_S": 0.1091352105140686
+            }
+          ]
+        }
+      },
+      "bit_flip": {
+        "fixed_points": {
+          "named_fixed_points": [
+            {
+              "state": "|+>",
+              "trace_distance": 0.0
+            },
+            {
+              "state": "|->",
+              "trace_distance": 0.0
+            },
+            {
+              "state": "I/2",
+              "trace_distance": 0.0
+            }
+          ],
+          "random_fixed_count": 0,
+          "random_total": 1000,
+          "fixed_fraction": 0.0
+        },
+        "invariant_subspaces": {
+          "x": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 1.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "bloch_output_neg": {
+              "x": -1.0,
+              "y": 0.0,
+              "z": 0.0
+            }
+          },
+          "y": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.0,
+              "y": 0.3999999761581421,
+              "z": 0.0
+            },
+            "bloch_output_neg": {
+              "x": 0.0,
+              "y": -0.3999999761581421,
+              "z": 0.0
+            }
+          },
+          "z": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.3999999761581421
+            },
+            "bloch_output_neg": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": -0.3999999761581421
+            }
+          },
+          "summary": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "contraction_rates": {
+          "x": {
+            "output_component": 1.0,
+            "contraction_factor": 1.0,
+            "shrinkage": 0.0
+          },
+          "y": {
+            "output_component": 0.3999999761581421,
+            "contraction_factor": 0.3999999761581421,
+            "shrinkage": 0.6000000238418579
+          },
+          "z": {
+            "output_component": 0.3999999761581421,
+            "contraction_factor": 0.3999999761581421,
+            "shrinkage": 0.6000000238418579
+          }
+        },
+        "entropy_change": {
+          "classification": "entropy_increasing",
+          "n_increase": 54,
+          "n_decrease": 0,
+          "n_unchanged": 3,
+          "sample_deltas": [
+            {
+              "state": "|0>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|1>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|+>",
+              "S_in": -0.0,
+              "S_out": -0.0,
+              "delta_S": 0.0
+            },
+            {
+              "state": "|->",
+              "S_in": -0.0,
+              "S_out": -0.0,
+              "delta_S": 0.0
+            },
+            {
+              "state": "|+i>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|-i>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "I/2",
+              "S_in": 0.6931471824645996,
+              "S_out": 0.6931471824645996,
+              "delta_S": 0.0
+            },
+            {
+              "state": "random_0",
+              "S_in": 0.354669451713562,
+              "S_out": 0.3673735558986664,
+              "delta_S": 0.01270410418510437
+            }
+          ]
+        }
+      },
+      "phase_flip": {
+        "fixed_points": {
+          "named_fixed_points": [
+            {
+              "state": "|0>",
+              "trace_distance": 0.0
+            },
+            {
+              "state": "|1>",
+              "trace_distance": 0.0
+            },
+            {
+              "state": "I/2",
+              "trace_distance": 0.0
+            }
+          ],
+          "random_fixed_count": 0,
+          "random_total": 1000,
+          "fixed_fraction": 0.0
+        },
+        "invariant_subspaces": {
+          "x": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.3999999761581421,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "bloch_output_neg": {
+              "x": -0.3999999761581421,
+              "y": 0.0,
+              "z": 0.0
+            }
+          },
+          "y": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.0,
+              "y": 0.3999999761581421,
+              "z": 0.0
+            },
+            "bloch_output_neg": {
+              "x": 0.0,
+              "y": -0.3999999761581421,
+              "z": 0.0
+            }
+          },
+          "z": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 1.0
+            },
+            "bloch_output_neg": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": -1.0
+            }
+          },
+          "summary": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "contraction_rates": {
+          "x": {
+            "output_component": 0.3999999761581421,
+            "contraction_factor": 0.3999999761581421,
+            "shrinkage": 0.6000000238418579
+          },
+          "y": {
+            "output_component": 0.3999999761581421,
+            "contraction_factor": 0.3999999761581421,
+            "shrinkage": 0.6000000238418579
+          },
+          "z": {
+            "output_component": 1.0,
+            "contraction_factor": 1.0,
+            "shrinkage": 0.0
+          }
+        },
+        "entropy_change": {
+          "classification": "entropy_increasing",
+          "n_increase": 54,
+          "n_decrease": 0,
+          "n_unchanged": 3,
+          "sample_deltas": [
+            {
+              "state": "|0>",
+              "S_in": -0.0,
+              "S_out": -0.0,
+              "delta_S": 0.0
+            },
+            {
+              "state": "|1>",
+              "S_in": -0.0,
+              "S_out": -0.0,
+              "delta_S": 0.0
+            },
+            {
+              "state": "|+>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|->",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|+i>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|-i>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "I/2",
+              "S_in": 0.6931471824645996,
+              "S_out": 0.6931471824645996,
+              "delta_S": 0.0
+            },
+            {
+              "state": "random_0",
+              "S_in": 0.354669451713562,
+              "S_out": 0.6373437643051147,
+              "delta_S": 0.28267431259155273
+            }
+          ]
+        }
+      },
+      "bit_phase_flip": {
+        "fixed_points": {
+          "named_fixed_points": [
+            {
+              "state": "|+i>",
+              "trace_distance": 0.0
+            },
+            {
+              "state": "|-i>",
+              "trace_distance": 0.0
+            },
+            {
+              "state": "I/2",
+              "trace_distance": 0.0
+            }
+          ],
+          "random_fixed_count": 0,
+          "random_total": 1000,
+          "fixed_fraction": 0.0
+        },
+        "invariant_subspaces": {
+          "x": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.3999999761581421,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "bloch_output_neg": {
+              "x": -0.3999999761581421,
+              "y": 0.0,
+              "z": 0.0
+            }
+          },
+          "y": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.0,
+              "y": 1.0,
+              "z": 0.0
+            },
+            "bloch_output_neg": {
+              "x": 0.0,
+              "y": -1.0,
+              "z": 0.0
+            }
+          },
+          "z": {
+            "axis_survives": true,
+            "cross_contamination": false,
+            "preserved": true,
+            "bloch_output_pos": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.3999999761581421
+            },
+            "bloch_output_neg": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": -0.3999999761581421
+            }
+          },
+          "summary": [
+            "x",
+            "y",
+            "z"
+          ]
+        },
+        "contraction_rates": {
+          "x": {
+            "output_component": 0.3999999761581421,
+            "contraction_factor": 0.3999999761581421,
+            "shrinkage": 0.6000000238418579
+          },
+          "y": {
+            "output_component": 1.0,
+            "contraction_factor": 1.0,
+            "shrinkage": 0.0
+          },
+          "z": {
+            "output_component": 0.3999999761581421,
+            "contraction_factor": 0.3999999761581421,
+            "shrinkage": 0.6000000238418579
+          }
+        },
+        "entropy_change": {
+          "classification": "entropy_increasing",
+          "n_increase": 54,
+          "n_decrease": 0,
+          "n_unchanged": 3,
+          "sample_deltas": [
+            {
+              "state": "|0>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|1>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|+>",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|->",
+              "S_in": -0.0,
+              "S_out": 0.6108643412590027,
+              "delta_S": 0.6108643412590027
+            },
+            {
+              "state": "|+i>",
+              "S_in": -0.0,
+              "S_out": -0.0,
+              "delta_S": 0.0
+            },
+            {
+              "state": "|-i>",
+              "S_in": -0.0,
+              "S_out": -0.0,
+              "delta_S": 0.0
+            },
+            {
+              "state": "I/2",
+              "S_in": 0.6931471824645996,
+              "S_out": 0.6931471824645996,
+              "delta_S": 0.0
+            },
+            {
+              "state": "random_0",
+              "S_in": 0.354669451713562,
+              "S_out": 0.6420077085494995,
+              "delta_S": 0.2873382568359375
+            }
+          ]
+        }
+      }
+    },
+    "P2_commutativity": {
+      "channel_order": [
+        "z_dephasing",
+        "x_dephasing",
+        "depolarizing",
+        "amplitude_damping",
+        "phase_damping",
+        "bit_flip",
+        "phase_flip",
+        "bit_phase_flip"
+      ],
+      "pairwise": {
+        "z_dephasing_vs_z_dephasing": {
+          "commutes": true,
+          "max_trace_distance": 0.0
+        },
+        "z_dephasing_vs_x_dephasing": {
+          "commutes": true,
+          "max_trace_distance": 1.4901161193847656e-08
+        },
+        "z_dephasing_vs_depolarizing": {
+          "commutes": true,
+          "max_trace_distance": 1.5359765015432458e-08
+        },
+        "z_dephasing_vs_amplitude_damping": {
+          "commutes": true,
+          "max_trace_distance": 4.214685134229512e-08
+        },
+        "z_dephasing_vs_phase_damping": {
+          "commutes": true,
+          "max_trace_distance": 2.9802322387695312e-08
+        },
+        "z_dephasing_vs_bit_flip": {
+          "commutes": true,
+          "max_trace_distance": 1.4901161193847656e-08
+        },
+        "z_dephasing_vs_phase_flip": {
+          "commutes": true,
+          "max_trace_distance": 0.0
+        },
+        "z_dephasing_vs_bit_phase_flip": {
+          "commutes": true,
+          "max_trace_distance": 1.4901161193847656e-08
+        },
+        "x_dephasing_vs_z_dephasing": {
+          "commutes": true,
+          "max_trace_distance": 1.4901161193847656e-08
+        },
+        "x_dephasing_vs_x_dephasing": {
+          "commutes": true,
+          "max_trace_distance": 0.0
+        },
+        "x_dephasing_vs_depolarizing": {
+          "commutes": true,
+          "max_trace_distance": 4.5320113883917656e-08
+        },
+        "x_dephasing_vs_amplitude_damping": {
+          "commutes": false,
+          "max_trace_distance": 0.09000004827976227
+        },
+        "x_dephasing_vs_phase_damping": {
+          "commutes": true,
+          "max_trace_distance": 3.003425064207477e-08
+        },
+        "x_dephasing_vs_bit_flip": {
+          "commutes": true,
+          "max_trace_distance": 0.0
+        },
+        "x_dephasing_vs_phase_flip": {
+          "commutes": true,
+          "max_trace_distance": 1.4901161193847656e-08
+        },
+        "x_dephasing_vs_bit_phase_flip": {
+          "commutes": true,
+          "max_trace_distance": 1.5017125321037383e-08
+        },
+        "depolarizing_vs_z_dephasing": {
+          "commutes": true,
+          "max_trace_distance": 1.5359765015432458e-08
+        },
+        "depolarizing_vs_x_dephasing": {
+          "commutes": true,
+          "max_trace_distance": 4.5320113883917656e-08
+        },
+        "depolarizing_vs_depolarizing": {
+          "commutes": true,
+          "max_trace_distance": 0.0
+        },
+        "depolarizing_vs_amplitude_damping": {
+          "commutes": false,
+          "max_trace_distance": 0.06000004708766937
+        },
+        "depolarizing_vs_phase_damping": {
+          "commutes": true,
+          "max_trace_distance": 3.332000630962284e-08
+        },
+        "depolarizing_vs_bit_flip": {
+          "commutes": true,
+          "max_trace_distance": 4.5320113883917656e-08
+        },
+        "depolarizing_vs_phase_flip": {
+          "commutes": true,
+          "max_trace_distance": 1.5359765015432458e-08
+        },
+        "depolarizing_vs_bit_phase_flip": {
+          "commutes": true,
+          "max_trace_distance": 4.470348358154297e-08
+        },
+        "amplitude_damping_vs_z_dephasing": {
+          "commutes": true,
+          "max_trace_distance": 4.214685134229512e-08
+        },
+        "amplitude_damping_vs_x_dephasing": {
+          "commutes": false,
+          "max_trace_distance": 0.09000004827976227
+        },
+        "amplitude_damping_vs_depolarizing": {
+          "commutes": false,
+          "max_trace_distance": 0.06000004708766937
+        },
+        "amplitude_damping_vs_amplitude_damping": {
+          "commutes": true,
+          "max_trace_distance": 0.0
+        },
+        "amplitude_damping_vs_phase_damping": {
+          "commutes": true,
+          "max_trace_distance": 1.4901161193847656e-08
+        },
+        "amplitude_damping_vs_bit_flip": {
+          "commutes": false,
+          "max_trace_distance": 0.09000004827976227
+        },
+        "amplitude_damping_vs_phase_flip": {
+          "commutes": true,
+          "max_trace_distance": 4.214685134229512e-08
+        },
+        "amplitude_damping_vs_bit_phase_flip": {
+          "commutes": false,
+          "max_trace_distance": 0.09000003337860107
+        },
+        "phase_damping_vs_z_dephasing": {
+          "commutes": true,
+          "max_trace_distance": 2.9802322387695312e-08
+        },
+        "phase_damping_vs_x_dephasing": {
+          "commutes": true,
+          "max_trace_distance": 3.003425064207477e-08
+        },
+        "phase_damping_vs_depolarizing": {
+          "commutes": true,
+          "max_trace_distance": 3.332000630962284e-08
+        },
+        "phase_damping_vs_amplitude_damping": {
+          "commutes": true,
+          "max_trace_distance": 1.4901161193847656e-08
+        },
+        "phase_damping_vs_phase_damping": {
+          "commutes": true,
+          "max_trace_distance": 0.0
+        },
+        "phase_damping_vs_bit_flip": {
+          "commutes": true,
+          "max_trace_distance": 3.003425064207477e-08
+        },
+        "phase_damping_vs_phase_flip": {
+          "commutes": true,
+          "max_trace_distance": 2.9802322387695312e-08
+        },
+        "phase_damping_vs_bit_phase_flip": {
+          "commutes": true,
+          "max_trace_distance": 3.414284321934247e-08
+        },
+        "bit_flip_vs_z_dephasing": {
+          "commutes": true,
+          "max_trace_distance": 1.4901161193847656e-08
+        },
+        "bit_flip_vs_x_dephasing": {
+          "commutes": true,
+          "max_trace_distance": 0.0
+        },
+        "bit_flip_vs_depolarizing": {
+          "commutes": true,
+          "max_trace_distance": 4.5320113883917656e-08
+        },
+        "bit_flip_vs_amplitude_damping": {
+          "commutes": false,
+          "max_trace_distance": 0.09000004827976227
+        },
+        "bit_flip_vs_phase_damping": {
+          "commutes": true,
+          "max_trace_distance": 3.003425064207477e-08
+        },
+        "bit_flip_vs_bit_flip": {
+          "commutes": true,
+          "max_trace_distance": 0.0
+        },
+        "bit_flip_vs_phase_flip": {
+          "commutes": true,
+          "max_trace_distance": 1.4901161193847656e-08
+        },
+        "bit_flip_vs_bit_phase_flip": {
+          "commutes": true,
+          "max_trace_distance": 1.5017125321037383e-08
+        },
+        "phase_flip_vs_z_dephasing": {
+          "commutes": true,
+          "max_trace_distance": 0.0
+        },
+        "phase_flip_vs_x_dephasing": {
+          "commutes": true,
+          "max_trace_distance": 1.4901161193847656e-08
+        },
+        "phase_flip_vs_depolarizing": {
+          "commutes": true,
+          "max_trace_distance": 1.5359765015432458e-08
+        },
+        "phase_flip_vs_amplitude_damping": {
+          "commutes": true,
+          "max_trace_distance": 4.214685134229512e-08
+        },
+        "phase_flip_vs_phase_damping": {
+          "commutes": true,
+          "max_trace_distance": 2.9802322387695312e-08
+        },
+        "phase_flip_vs_bit_flip": {
+          "commutes": true,
+          "max_trace_distance": 1.4901161193847656e-08
+        },
+        "phase_flip_vs_phase_flip": {
+          "commutes": true,
+          "max_trace_distance": 0.0
+        },
+        "phase_flip_vs_bit_phase_flip": {
+          "commutes": true,
+          "max_trace_distance": 1.4901161193847656e-08
+        },
+        "bit_phase_flip_vs_z_dephasing": {
+          "commutes": true,
+          "max_trace_distance": 1.4901161193847656e-08
+        },
+        "bit_phase_flip_vs_x_dephasing": {
+          "commutes": true,
+          "max_trace_distance": 1.5017125321037383e-08
+        },
+        "bit_phase_flip_vs_depolarizing": {
+          "commutes": true,
+          "max_trace_distance": 4.470348358154297e-08
+        },
+        "bit_phase_flip_vs_amplitude_damping": {
+          "commutes": false,
+          "max_trace_distance": 0.09000003337860107
+        },
+        "bit_phase_flip_vs_phase_damping": {
+          "commutes": true,
+          "max_trace_distance": 3.414284321934247e-08
+        },
+        "bit_phase_flip_vs_bit_flip": {
+          "commutes": true,
+          "max_trace_distance": 1.5017125321037383e-08
+        },
+        "bit_phase_flip_vs_phase_flip": {
+          "commutes": true,
+          "max_trace_distance": 1.4901161193847656e-08
+        },
+        "bit_phase_flip_vs_bit_phase_flip": {
+          "commutes": true,
+          "max_trace_distance": 0.0
+        }
+      },
+      "compact_bool_matrix": [
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true
+        ]
+      ]
+    },
+    "P3_equivalence_classes": [
+      {
+        "channel_a": "z_dephasing",
+        "channel_b": "phase_flip",
+        "max_trace_distance": 0.0
+      },
+      {
+        "channel_a": "x_dephasing",
+        "channel_b": "bit_flip",
+        "max_trace_distance": 0.0
+      }
+    ],
+    "P4_gate_entangling_power": {
+      "CNOT": {
+        "n_qubits": 2,
+        "entangling_power_raw": 0.23266203403472902,
+        "entangling_power_normalized": 1.0469791531562807,
+        "max_theoretical": 0.2222222222222222,
+        "is_entangling": true,
+        "n_samples": 500
+      },
+      "CZ": {
+        "n_qubits": 2,
+        "entangling_power_raw": 0.22867810654640197,
+        "entangling_power_normalized": 1.029051479458809,
+        "max_theoretical": 0.2222222222222222,
+        "is_entangling": true,
+        "n_samples": 500
+      },
+      "SWAP": {
+        "n_qubits": 2,
+        "entangling_power_raw": 1.2278556823730468e-08,
+        "entangling_power_normalized": 5.525350570678711e-08,
+        "max_theoretical": 0.2222222222222222,
+        "is_entangling": false,
+        "n_samples": 500
+      },
+      "iSWAP": {
+        "n_qubits": 2,
+        "entangling_power_raw": 0.22867810797691346,
+        "entangling_power_normalized": 1.0290514858961106,
+        "max_theoretical": 0.2222222222222222,
+        "is_entangling": true,
+        "n_samples": 500
+      },
+      "Hadamard": {
+        "n_qubits": 1,
+        "entangling_power": 0.0,
+        "is_entangling": false,
+        "note": "single-qubit gate, entangling power = 0 by definition"
+      },
+      "T_gate": {
+        "n_qubits": 1,
+        "entangling_power": 0.0,
+        "is_entangling": false,
+        "note": "single-qubit gate, entangling power = 0 by definition"
+      }
+    },
+    "P5_known_fact_validation": {
+      "phase_flip_equiv_z_dephasing": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      "bit_flip_equiv_x_dephasing": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      "depolarizing_fixes_maximally_mixed": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      "amplitude_damping_fixes_ket0": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      "z_dephasing_preserves_z": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      },
+      "cnot_is_entangling": {
+        "expected": true,
+        "actual": true,
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "N1_depolarizing_no_preserved_axis": {
+      "description": "Depolarizing should not preserve any single Bloch axis exclusively",
+      "preserved_axes": [
+        "x",
+        "y",
+        "z"
+      ],
+      "pass": true
+    },
+    "N2_amplitude_damping_not_unital": {
+      "description": "I/2 should NOT be fixed under amplitude damping",
+      "trace_distance_from_mixed": 0.14999999105930328,
+      "pass": true
+    },
+    "N3_identity_channel_all_fixed": {
+      "description": "At p=0 every state should be a fixed point",
+      "all_fixed": true,
+      "pass": true
+    },
+    "N4_single_qubit_no_entanglement": {
+      "hadamard_ep": 0.0,
+      "t_gate_ep": 0.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_z_dephasing_p0_identity": {
+      "trace_distance_from_identity": 0.0,
+      "pass": true
+    },
+    "B1_z_dephasing_p1_trace_preserved": {
+      "trace_at_p1": 1.0000001192092896,
+      "pass": true
+    },
+    "B1_x_dephasing_p0_identity": {
+      "trace_distance_from_identity": 0.0,
+      "pass": true
+    },
+    "B1_x_dephasing_p1_trace_preserved": {
+      "trace_at_p1": 1.0000001192092896,
+      "pass": true
+    },
+    "B1_depolarizing_p0_identity": {
+      "trace_distance_from_identity": 0.0,
+      "pass": true
+    },
+    "B1_depolarizing_p1_trace_preserved": {
+      "trace_at_p1": 1.0000001192092896,
+      "pass": true
+    },
+    "B1_amplitude_damping_p0_identity": {
+      "trace_distance_from_identity": 0.0,
+      "pass": true
+    },
+    "B1_amplitude_damping_p1_trace_preserved": {
+      "trace_at_p1": 1.0000001192092896,
+      "pass": true
+    },
+    "B1_phase_damping_p0_identity": {
+      "trace_distance_from_identity": 0.0,
+      "pass": true
+    },
+    "B1_phase_damping_p1_trace_preserved": {
+      "trace_at_p1": 1.0000001192092896,
+      "pass": true
+    },
+    "B1_bit_flip_p0_identity": {
+      "trace_distance_from_identity": 0.0,
+      "pass": true
+    },
+    "B1_bit_flip_p1_trace_preserved": {
+      "trace_at_p1": 1.0000001192092896,
+      "pass": true
+    },
+    "B1_phase_flip_p0_identity": {
+      "trace_distance_from_identity": 0.0,
+      "pass": true
+    },
+    "B1_phase_flip_p1_trace_preserved": {
+      "trace_at_p1": 1.0000001192092896,
+      "pass": true
+    },
+    "B1_bit_phase_flip_p0_identity": {
+      "trace_distance_from_identity": 0.0,
+      "pass": true
+    },
+    "B1_bit_phase_flip_p1_trace_preserved": {
+      "trace_at_p1": 1.0000001192092896,
+      "pass": true
+    },
+    "B2_depolarizing_p075_|0>": {
+      "trace_distance_to_mixed": 0.0,
+      "pass": true
+    },
+    "B2_depolarizing_p075_|1>": {
+      "trace_distance_to_mixed": 0.0,
+      "pass": true
+    },
+    "B2_depolarizing_p075_|+>": {
+      "trace_distance_to_mixed": 0.0,
+      "pass": true
+    },
+    "B2_depolarizing_p075_|->": {
+      "trace_distance_to_mixed": 0.0,
+      "pass": true
+    },
+    "B2_depolarizing_p075_|+i>": {
+      "trace_distance_to_mixed": 0.0,
+      "pass": true
+    },
+    "B2_depolarizing_p075_|-i>": {
+      "trace_distance_to_mixed": 0.0,
+      "pass": true
+    }
+  }
+}

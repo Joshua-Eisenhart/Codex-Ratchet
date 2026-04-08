@@ -1,0 +1,479 @@
+{
+  "name": "torch_hopf_connection",
+  "family": "GEOMETRIC",
+  "description": "Hopf fibration S3->S2 with Berry connection via autograd",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core module: HopfConnection as nn.Module, autograd for connection form"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "tried import, not used for Hopf connection"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "tried import, not used for Hopf connection"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_s3_on_unit_sphere": {
+      "t=0.000_p=0.000": {
+        "s3_norm": 1.0,
+        "on_sphere": true,
+        "numpy_diff": 0.0,
+        "pass": true
+      },
+      "t=0.785_p=0.000": {
+        "s3_norm": 1.0,
+        "on_sphere": true,
+        "numpy_diff": 2.8307490351764386e-08,
+        "pass": true
+      },
+      "t=1.571_p=0.000": {
+        "s3_norm": 0.9999999403953552,
+        "on_sphere": true,
+        "numpy_diff": 1.2101617152815436e-08,
+        "pass": true
+      },
+      "t=1.571_p=0.785": {
+        "s3_norm": 0.9999999403953552,
+        "on_sphere": true,
+        "numpy_diff": 2.9802322387695312e-08,
+        "pass": true
+      },
+      "t=3.142_p=0.000": {
+        "s3_norm": 1.0,
+        "on_sphere": true,
+        "numpy_diff": 4.371138834797027e-08,
+        "pass": true
+      },
+      "t=1.047_p=0.524": {
+        "s3_norm": 1.0,
+        "on_sphere": true,
+        "numpy_diff": 1.554362449862623e-08,
+        "pass": true
+      },
+      "t=2.100_p=0.700": {
+        "s3_norm": 0.9999999403953552,
+        "on_sphere": true,
+        "numpy_diff": 4.424828292659555e-08,
+        "pass": true
+      },
+      "t=0.100_p=3.000": {
+        "s3_norm": 1.0,
+        "on_sphere": true,
+        "numpy_diff": 9.018028102047992e-09,
+        "pass": true
+      }
+    },
+    "P2_hopf_map_bloch_vector": {
+      "t=0.000_p=0.000": {
+        "bloch_computed": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bloch_expected": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "max_diff": 0.0,
+        "pass": true
+      },
+      "t=0.785_p=0.000": {
+        "bloch_computed": [
+          0.7071068286895752,
+          0.0,
+          0.7071067094802856
+        ],
+        "bloch_expected": [
+          0.7071067811865475,
+          0.0,
+          0.7071067811865476
+        ],
+        "max_diff": 7.170626192820606e-08,
+        "pass": true
+      },
+      "t=1.571_p=0.000": {
+        "bloch_computed": [
+          0.9999999403953552,
+          0.0,
+          0.0
+        ],
+        "bloch_expected": [
+          1.0,
+          0.0,
+          6.123233995736766e-17
+        ],
+        "max_diff": 5.960464477539063e-08,
+        "pass": true
+      },
+      "t=1.571_p=0.785": {
+        "bloch_computed": [
+          0.7071067094802856,
+          0.7071067094802856,
+          5.960464477539063e-08
+        ],
+        "bloch_expected": [
+          0.7071067811865476,
+          0.7071067811865475,
+          6.123233995736766e-17
+        ],
+        "max_diff": 7.170626192820606e-08,
+        "pass": true
+      },
+      "t=3.142_p=0.000": {
+        "bloch_computed": [
+          -8.742277657347586e-08,
+          -0.0,
+          -1.0
+        ],
+        "bloch_expected": [
+          1.2246467991473532e-16,
+          0.0,
+          -1.0
+        ],
+        "max_diff": 8.742277669594054e-08,
+        "pass": true
+      },
+      "t=1.047_p=0.524": {
+        "bloch_computed": [
+          0.75,
+          0.4330126941204071,
+          0.5
+        ],
+        "bloch_expected": [
+          0.75,
+          0.43301270189221924,
+          0.5000000000000001
+        ],
+        "max_diff": 7.771812138290812e-09,
+        "pass": true
+      },
+      "t=2.100_p=0.700": {
+        "bloch_computed": [
+          0.6602189540863037,
+          0.5560947060585022,
+          -0.5048459768295288
+        ],
+        "bloch_expected": [
+          0.6602189400721825,
+          0.5560947417844495,
+          -0.5048461045998576
+        ],
+        "max_diff": 1.2777032876165606e-07,
+        "pass": true
+      },
+      "t=0.100_p=3.000": {
+        "bloch_computed": [
+          -0.0988343358039856,
+          0.014088491909205914,
+          0.9950041770935059
+        ],
+        "bloch_expected": [
+          -0.09883433339034588,
+          0.014088492561844471,
+          0.9950041652780258
+        ],
+        "max_diff": 1.1815480038812609e-08,
+        "pass": true
+      }
+    },
+    "P3_connection_form_analytic": {
+      "t=0.000_p=0.000": {
+        "A_phi_autograd": -0.0,
+        "A_phi_analytic": -0.0,
+        "A_phi_diff": 0.0,
+        "A_theta": -0.0,
+        "A_theta_is_zero": true,
+        "pass": true
+      },
+      "t=0.785_p=0.000": {
+        "A_phi_autograd": -0.14644663035869598,
+        "A_phi_analytic": -0.14644660940672624,
+        "A_phi_diff": 2.09519697424998e-08,
+        "A_theta": -0.0,
+        "A_theta_is_zero": true,
+        "pass": true
+      },
+      "t=1.571_p=0.000": {
+        "A_phi_autograd": -0.4999999701976776,
+        "A_phi_analytic": -0.4999999999999999,
+        "A_phi_diff": 2.980232227667301e-08,
+        "A_theta": -0.0,
+        "A_theta_is_zero": true,
+        "pass": true
+      },
+      "t=1.571_p=0.785": {
+        "A_phi_autograd": -0.4999999403953552,
+        "A_phi_analytic": -0.4999999999999999,
+        "A_phi_diff": 5.960464466436832e-08,
+        "A_theta": -0.0,
+        "A_theta_is_zero": true,
+        "pass": true
+      },
+      "t=3.142_p=0.000": {
+        "A_phi_autograd": -1.0,
+        "A_phi_analytic": -1.0,
+        "A_phi_diff": 0.0,
+        "A_theta": -0.0,
+        "A_theta_is_zero": true,
+        "pass": true
+      },
+      "t=1.047_p=0.524": {
+        "A_phi_autograd": -0.25,
+        "A_phi_analytic": -0.24999999999999994,
+        "A_phi_diff": 5.551115123125783e-17,
+        "A_theta": -0.0,
+        "A_theta_is_zero": true,
+        "pass": true
+      },
+      "t=2.100_p=0.700": {
+        "A_phi_autograd": -0.7524229288101196,
+        "A_phi_analytic": -0.7524230522999289,
+        "A_phi_diff": 1.2348980926724096e-07,
+        "A_theta": -0.0,
+        "A_theta_is_zero": true,
+        "pass": true
+      },
+      "t=0.100_p=3.000": {
+        "A_phi_autograd": -0.0024979175068438053,
+        "A_phi_analytic": -0.002497917360987117,
+        "A_phi_diff": 1.4585668827241105e-10,
+        "A_theta": 2.3283064365386963e-10,
+        "A_theta_is_zero": true,
+        "pass": true
+      }
+    },
+    "P4_berry_phase_latitude": {
+      "theta=0.5236": {
+        "numerical": -0.4208936003622817,
+        "analytic": -0.42089360723846625,
+        "diff": 6.876184566184662e-09,
+        "pass": "True"
+      },
+      "theta=0.7854": {
+        "numerical": -0.9201512994901504,
+        "analytic": -0.92015118451061,
+        "diff": 1.1497954044425995e-07,
+        "pass": "True"
+      },
+      "theta=1.0472": {
+        "numerical": -1.5707963190238423,
+        "analytic": -1.5707963267948961,
+        "diff": 7.771053800453842e-09,
+        "pass": "True"
+      },
+      "theta=1.5708": {
+        "numerical": -3.141592536837241,
+        "analytic": -3.1415926535897927,
+        "diff": 1.167525516265755e-07,
+        "pass": "True"
+      },
+      "theta=2.0944": {
+        "numerical": -4.712388815039835,
+        "analytic": -4.712388980384689,
+        "diff": 1.653448533645019e-07,
+        "pass": "True"
+      }
+    },
+    "P5_connection_gradient": {
+      "theta=0.7854": {
+        "grad_autograd": -0.3535534143447876,
+        "grad_analytic": -0.35355339059327373,
+        "diff": 2.3751513866798746e-08,
+        "pass": "True"
+      },
+      "theta=1.5708": {
+        "grad_autograd": -0.4999999701976776,
+        "grad_analytic": -0.5,
+        "diff": 2.9802322387695312e-08,
+        "pass": "True"
+      },
+      "theta=1.0472": {
+        "grad_autograd": -0.4330126941204071,
+        "grad_analytic": -0.4330127018922193,
+        "diff": 7.771812193801964e-09,
+        "pass": "True"
+      }
+    }
+  },
+  "negative": {
+    "N1_theta_outside_range": {
+      "theta=-0.500": {
+        "state_norm": 1.0,
+        "bloch_norm": 1.0,
+        "still_valid": true,
+        "pass": true
+      },
+      "theta=6.283": {
+        "state_norm": 1.0,
+        "bloch_norm": 1.0,
+        "still_valid": true,
+        "pass": true
+      },
+      "theta=4.000": {
+        "state_norm": 0.9999999403953552,
+        "bloch_norm": 0.9999999403953552,
+        "still_valid": true,
+        "pass": true
+      }
+    },
+    "N2_connection_at_north_pole": {
+      "A_phi": -0.0,
+      "is_zero": true,
+      "pass": true
+    },
+    "N3_connection_nonzero_interior": {
+      "theta=0.7854": {
+        "A_phi": -0.14644663035869598,
+        "is_nonzero": true,
+        "pass": true
+      },
+      "theta=1.5708": {
+        "A_phi": -0.4999999701976776,
+        "is_nonzero": true,
+        "pass": true
+      },
+      "theta=2.3562": {
+        "A_phi": -0.8535534739494324,
+        "is_nonzero": true,
+        "pass": true
+      }
+    }
+  },
+  "boundary": {
+    "B1_north_pole": {
+      "psi": [
+        "(1+0j)",
+        "0j"
+      ],
+      "diff_from_ket0": 0.0,
+      "pass": true
+    },
+    "B2_south_pole": {
+      "psi_abs": [
+        4.371138828673793e-08,
+        1.0
+      ],
+      "diff_from_ket1": 4.371138828673793e-08,
+      "pass": true
+    },
+    "B3_equator_connection": {
+      "A_phi": -0.4999999701976776,
+      "expected": -0.5,
+      "diff": 2.9802322387695312e-08,
+      "pass": true
+    },
+    "B4_full_solid_angle_berry_phase": {
+      "numerical": -6.283185276095369,
+      "analytic": -6.283185307179586,
+      "diff": 3.108421697817221e-08,
+      "pass": true
+    },
+    "B5_connection_monotonic": {
+      "thetas": [
+        0.01,
+        0.17429435018893652,
+        0.33858870037787303,
+        0.5028830505668095,
+        0.667177400755746,
+        0.8314717509446825,
+        0.9957661011336191,
+        1.1600604513225556,
+        1.324354801511492,
+        1.4886491517004286,
+        1.652943501889365,
+        1.8172378520783017,
+        1.9815322022672381,
+        2.1458265524561746,
+        2.310120902645111,
+        2.4744152528340475,
+        2.638709603022984,
+        2.8030039532119204,
+        2.967298303400857,
+        3.1315926535897933
+      ],
+      "A_phi_values": [
+        -2.499979018466547e-05,
+        -0.007575423456728458,
+        -0.02838781289756298,
+        -0.061901651322841644,
+        -0.10721433162689209,
+        -0.16310550272464752,
+        -0.22806991636753082,
+        -0.3003579378128052,
+        -0.378022700548172,
+        -0.4589725732803345,
+        -0.5410273671150208,
+        -0.6219772696495056,
+        -0.6996420621871948,
+        -0.7719300985336304,
+        -0.8368944525718689,
+        -0.8927857279777527,
+        -0.9380983710289001,
+        -0.9716121554374695,
+        -0.9924246072769165,
+        -0.9999749660491943
+      ],
+      "monotonically_decreasing": true,
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 44,
+    "total_pass": 44,
+    "all_pass": true
+  }
+}

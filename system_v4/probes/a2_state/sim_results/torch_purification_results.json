@@ -1,0 +1,311 @@
+{
+  "name": "torch_purification",
+  "family": "GEOMETRIC",
+  "description": "Purification of mixed state via spectral decomposition, torch.nn.Module",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core module: Purification as nn.Module, autograd for fidelity gradient"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "tried import, not used for purification"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "tried import, not used for purification"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_partial_trace_recovery": {
+      "|0><0|": {
+        "max_diff_rho_vs_TrB": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "max_diff_rho_vs_TrB": 2.9802322387695312e-08,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "max_diff_rho_vs_TrB": 2.9802322387695312e-08,
+        "pass": true
+      },
+      "random_interior_1": {
+        "max_diff_rho_vs_TrB": 2.086162567138672e-07,
+        "pass": true
+      },
+      "random_interior_2": {
+        "max_diff_rho_vs_TrB": 5.972094641037984e-08,
+        "pass": true
+      },
+      "random_interior_3": {
+        "max_diff_rho_vs_TrB": 2.9802322387695312e-08,
+        "pass": true
+      }
+    },
+    "P2_purification_is_normalized": {
+      "|0><0|": {
+        "norm_squared": 1.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "norm_squared": 0.9999999403953552,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "norm_squared": 0.9999999403953552,
+        "pass": true
+      },
+      "random_interior_1": {
+        "norm_squared": 0.9999998211860657,
+        "pass": true
+      },
+      "random_interior_2": {
+        "norm_squared": 0.9999999403953552,
+        "pass": true
+      },
+      "random_interior_3": {
+        "norm_squared": 1.0,
+        "pass": true
+      }
+    },
+    "P3_numpy_cross_validation": {
+      "|0><0|": {
+        "numpy_vs_torch_max_diff": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "numpy_vs_torch_max_diff": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "numpy_vs_torch_max_diff": 0.0,
+        "pass": true
+      },
+      "random_interior_1": {
+        "numpy_vs_torch_max_diff": 2.384185791015625e-07,
+        "pass": true
+      },
+      "random_interior_2": {
+        "numpy_vs_torch_max_diff": 6.006850128414953e-08,
+        "pass": true
+      },
+      "random_interior_3": {
+        "numpy_vs_torch_max_diff": 1.4901161193847656e-08,
+        "pass": true
+      }
+    },
+    "P4_gradient_exists": {
+      "|0><0|": {
+        "fidelity_error": 0.0,
+        "fidelity_error_near_zero": true,
+        "grad_exists": true,
+        "grad_values": [
+          NaN,
+          NaN,
+          NaN
+        ],
+        "pass": true
+      },
+      "|+><+|": {
+        "fidelity_error": 3.552713678800501e-15,
+        "fidelity_error_near_zero": true,
+        "grad_exists": true,
+        "grad_values": [
+          NaN,
+          NaN,
+          NaN
+        ],
+        "pass": true
+      },
+      "maximally_mixed": {
+        "fidelity_error": 1.7763568394002505e-15,
+        "fidelity_error_near_zero": true,
+        "grad_exists": true,
+        "grad_values": [
+          NaN,
+          NaN,
+          NaN
+        ],
+        "pass": true
+      },
+      "random_interior_1": {
+        "fidelity_error": 4.3527681459210044e-14,
+        "fidelity_error_near_zero": true,
+        "grad_exists": true,
+        "grad_values": [
+          -4.707345624410664e-14,
+          1.609823385706477e-14,
+          -3.8066771956835055e-14
+        ],
+        "pass": true
+      },
+      "random_interior_2": {
+        "fidelity_error": 1.0685896612017132e-14,
+        "fidelity_error_near_zero": true,
+        "grad_exists": true,
+        "grad_values": [
+          7.105427357601002e-15,
+          2.6645352591003757e-15,
+          3.017031069418863e-14
+        ],
+        "pass": true
+      },
+      "random_interior_3": {
+        "fidelity_error": 2.3314683517128287e-15,
+        "fidelity_error_near_zero": true,
+        "grad_exists": true,
+        "grad_values": [
+          7.105427357601002e-15,
+          -3.552713678800501e-15,
+          -4.440892098500626e-15
+        ],
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "N1_non_psd_input": {
+      "r=1.5_z": {
+        "input_has_neg_eigenvalue": true,
+        "recovery_diff": 0.25,
+        "recovery_fails": true,
+        "pass": true
+      },
+      "r=2.0_uniform": {
+        "input_has_neg_eigenvalue": true,
+        "recovery_diff": 0.3943374752998352,
+        "recovery_fails": true,
+        "pass": true
+      }
+    },
+    "N2_degenerate_eigenvalues": {
+      "maximally_mixed_norm": {
+        "norm_squared": 0.9999999403953552,
+        "pass": true
+      }
+    }
+  },
+  "boundary": {
+    "B1_pure_input_product_state": {
+      "|0>": {
+        "schmidt_rank": 1,
+        "is_product_state": true,
+        "recovery_diff": 0.0,
+        "pass": true
+      },
+      "|1>": {
+        "schmidt_rank": 1,
+        "is_product_state": true,
+        "recovery_diff": 0.0,
+        "pass": true
+      },
+      "|+>": {
+        "schmidt_rank": 1,
+        "is_product_state": true,
+        "recovery_diff": 2.9802322387695312e-08,
+        "pass": true
+      }
+    },
+    "B2_maximally_mixed_bell_state": {
+      "singular_values": [
+        0.7071067690849304,
+        0.7071067690849304
+      ],
+      "expected_sv": 0.7071067811865475,
+      "sv_diff": 1.2101617041793133e-08,
+      "recovery_diff": 2.9802322387695312e-08,
+      "pass": true
+    },
+    "B3_near_pure_boundary": {
+      "r=0.9": {
+        "recovery_diff": 5.960464477539063e-08,
+        "pass": true
+      },
+      "r=0.95": {
+        "recovery_diff": 5.960464477539063e-08,
+        "pass": true
+      },
+      "r=0.99": {
+        "recovery_diff": 5.960464477539063e-08,
+        "pass": true
+      },
+      "r=0.999": {
+        "recovery_diff": 5.960464477539063e-08,
+        "pass": true
+      },
+      "r=0.9999": {
+        "recovery_diff": 5.960464477539063e-08,
+        "pass": true
+      }
+    },
+    "B4_autograd_vs_fd": {
+      "autograd": [
+        -7.105427357601002e-15,
+        -3.552713678800501e-15,
+        -1.7763568394002505e-15
+      ],
+      "finite_diff": [
+        2.6645352591003757e-12,
+        -1.7763568394002505e-12,
+        3.1086244689504383e-12
+      ],
+      "both_near_zero": true,
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 37,
+    "total_pass": 37,
+    "all_pass": true
+  }
+}

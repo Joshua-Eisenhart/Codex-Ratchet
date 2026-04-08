@@ -1,0 +1,386 @@
+{
+  "name": "torch_z_measurement",
+  "description": "ZMeasurement: Z-basis projective measurement with differentiable probabilities",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "ZMeasurement module: projective Z-measurement with differentiable probs"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic probability formulas and gradient check"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_probability_match": {
+      "|0><0|": {
+        "numpy": [
+          1.0,
+          0.0
+        ],
+        "torch": [
+          1.0,
+          0.0
+        ],
+        "max_diff": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "numpy": [
+          0.0,
+          1.0
+        ],
+        "torch": [
+          0.0,
+          1.0
+        ],
+        "max_diff": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "numpy": [
+          0.5,
+          0.5
+        ],
+        "torch": [
+          0.5,
+          0.5
+        ],
+        "max_diff": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "numpy": [
+          0.5,
+          0.5
+        ],
+        "torch": [
+          0.5,
+          0.5
+        ],
+        "max_diff": 0.0,
+        "pass": true
+      },
+      "random_0": {
+        "numpy": [
+          0.590995874980887,
+          0.409004125019113
+        ],
+        "torch": [
+          0.5909959077835083,
+          0.4090041220188141
+        ],
+        "max_diff": 3.280262128591005e-08,
+        "pass": true
+      },
+      "random_1": {
+        "numpy": [
+          0.6917956219918738,
+          0.30820437800812617
+        ],
+        "torch": [
+          0.6917955875396729,
+          0.30820438265800476
+        ],
+        "max_diff": 3.4452200980972236e-08,
+        "pass": true
+      },
+      "random_2": {
+        "numpy": [
+          0.4027168965820833,
+          0.5972831034179167
+        ],
+        "torch": [
+          0.40271690487861633,
+          0.597283124923706
+        ],
+        "max_diff": 2.1505789371545347e-08,
+        "pass": true
+      }
+    },
+    "P2_prob_sum_to_1": {
+      "|0><0|": {
+        "sum": 1.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "sum": 1.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "sum": 1.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "sum": 1.0,
+        "pass": true
+      },
+      "random_0": {
+        "sum": 1.0,
+        "pass": true
+      },
+      "random_1": {
+        "sum": 1.0,
+        "pass": true
+      },
+      "random_2": {
+        "sum": 1.0,
+        "pass": true
+      }
+    },
+    "P3_post_states_valid": {
+      "|0><0|": {
+        "all_valid": true,
+        "pass": true
+      },
+      "|1><1|": {
+        "all_valid": true,
+        "pass": true
+      },
+      "|+><+|": {
+        "all_valid": true,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "all_valid": true,
+        "pass": true
+      }
+    },
+    "P4_analytical_p0": {
+      "|0><0|": {
+        "p0": 1.0,
+        "expected": 1.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "p0": 0.0,
+        "expected": 0.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "p0": 0.5,
+        "expected": 0.5,
+        "diff": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "p0": 0.5,
+        "expected": 0.5,
+        "diff": 0.0,
+        "pass": true
+      },
+      "random_0": {
+        "p0": 0.5909959077835083,
+        "expected": 0.590995874980887,
+        "diff": 3.280262128591005e-08,
+        "pass": true
+      },
+      "random_1": {
+        "p0": 0.6917955875396729,
+        "expected": 0.6917956219918738,
+        "diff": 3.4452200980972236e-08,
+        "pass": true
+      },
+      "random_2": {
+        "p0": 0.40271690487861633,
+        "expected": 0.4027168965820833,
+        "diff": 8.296533016149965e-09,
+        "pass": true
+      }
+    },
+    "P5_gradient_analytical": {
+      "|0><0|": {
+        "grad": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "expected": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "diff": 0.0,
+        "pass": true
+      },
+      "|1><1|": {
+        "grad": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "expected": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "diff": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "grad": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "expected": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "diff": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "grad": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "expected": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "diff": 0.0,
+        "pass": true
+      }
+    },
+    "P6_autograd_vs_fd": {
+      "random_0": {
+        "autograd": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "fd": [
+          0.0,
+          0.0,
+          0.5000000000000004
+        ],
+        "max_diff": 4.440892098500626e-16,
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "N1_invalid_prob_exceeds_1": {
+      "p0": 1.25,
+      "exceeds_1": true,
+      "pass": true
+    },
+    "N2_post_state_0_is_0": {
+      "max_diff": 0.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_pure_0": {
+      "p0": 1.0,
+      "p1": 0.0,
+      "pass": true
+    },
+    "B2_pure_1": {
+      "p0": 0.0,
+      "p1": 1.0,
+      "pass": true
+    },
+    "B3_mixed_equal": {
+      "p0": 0.5,
+      "p1": 0.5,
+      "pass": true
+    },
+    "B4_linear_in_rz": {
+      "rz_vals": [
+        -1.0,
+        -0.5,
+        0.0,
+        0.5,
+        1.0
+      ],
+      "p0_vals": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "expected": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "max_diff": 0.0,
+      "pass": true
+    }
+  },
+  "sympy_check": {
+    "p0_formula": "r_z/2 + 1/2",
+    "p1_formula": "1/2 - r_z/2",
+    "dp0_drz": "1/2",
+    "dp0_drx": "0",
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 37,
+    "total_pass": 37,
+    "all_pass": true
+  }
+}

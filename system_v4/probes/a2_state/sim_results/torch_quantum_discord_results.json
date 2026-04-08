@@ -1,0 +1,179 @@
+{
+  "name": "torch_quantum_discord",
+  "description": "QuantumDiscord: Q(A:B) = I(A:B) - C(A:B), optimize over measurements on A",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "QuantumDiscord module: measurement optimization with autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic discord for Bell states"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_bell_discord": {
+      "phi_plus": {
+        "discord_torch": 0.6931470632553101,
+        "discord_numpy": 0.6931471805599447,
+        "expected": 0.6931471805599453,
+        "diff_torch": 1.1730463522763301e-07,
+        "diff_numpy": 5.551115123125783e-16,
+        "pass": "True"
+      },
+      "psi_plus": {
+        "discord_torch": 0.6931470036506653,
+        "discord_numpy": 0.6931471805599447,
+        "expected": 0.6931471805599453,
+        "diff_torch": 1.7690928000302364e-07,
+        "diff_numpy": 5.551115123125783e-16,
+        "pass": "True"
+      },
+      "psi_minus": {
+        "discord_torch": 0.6931470036506653,
+        "discord_numpy": 0.6931471805599447,
+        "expected": 0.6931471805599453,
+        "diff_torch": 1.7690928000302364e-07,
+        "diff_numpy": 5.551115123125783e-16,
+        "pass": "True"
+      }
+    },
+    "P2_product_zero_discord": {
+      "00": {
+        "discord": -1.1923395959456684e-07,
+        "near_zero": true,
+        "pass": true
+      },
+      "+0": {
+        "discord": -1.192369012414929e-07,
+        "near_zero": true,
+        "pass": true
+      }
+    },
+    "P3_werner_substrate_match": {
+      "p=0.3": {
+        "torch": 0.07192552089691162,
+        "numpy": 0.07192570883873983,
+        "diff": 1.8794182821135763e-07,
+        "pass": "True"
+      },
+      "p=0.6": {
+        "torch": 0.2531014680862427,
+        "numpy": 0.2531016154428063,
+        "diff": 1.4735656361786198e-07,
+        "pass": "True"
+      },
+      "p=0.9": {
+        "torch": 0.5428818464279175,
+        "numpy": 0.5428820389877889,
+        "diff": 1.9255987138144803e-07,
+        "pass": "True"
+      }
+    },
+    "P4_non_negative": {
+      "min_discord": 0.07995794084869329,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_classical_zero_discord": {
+      "discord": 0.0002899133482042737,
+      "MI": 0.6931471805599453,
+      "CC": 0.692857267211741,
+      "near_zero": "True",
+      "pass": "True"
+    },
+    "N2_discord_leq_MI": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_werner_approaches_log2": {
+      "p_values": [
+        0.5,
+        0.7,
+        0.9,
+        0.95,
+        0.99
+      ],
+      "discords": [
+        0.1819394787702302,
+        0.33550466267831236,
+        0.5428820389877889,
+        0.6089401135577646,
+        0.6722184579811651
+      ],
+      "last_near_log2": "True",
+      "pass": "True"
+    },
+    "B2_maximally_mixed_zero": {
+      "discord": -1.1102230246251565e-16,
+      "near_zero": "True",
+      "pass": "True"
+    }
+  },
+  "sympy_check": {
+    "MI_bell": "1.3862943611198906",
+    "CC_bell": "0.6931471805599453",
+    "discord_bell": "0.6931471805599453",
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 14,
+    "total_pass": 14,
+    "all_pass": true
+  }
+}

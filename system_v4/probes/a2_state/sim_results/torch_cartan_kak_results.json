@@ -1,0 +1,303 @@
+{
+  "name": "torch_cartan_kak",
+  "family": "STRUCTURAL",
+  "description": "Cartan KAK decomposition of 2-qubit unitaries, torch.nn.Module",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core module: CartanKAK as nn.Module, matrix_exp, autograd optimization"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "tried import, not used for KAK decomposition"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "tried import, not used for KAK decomposition"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_identity_gate": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "P2_unitarity": {
+      "random_0": {
+        "unitarity_error": 2.220446049250313e-15,
+        "pass": true
+      },
+      "random_1": {
+        "unitarity_error": 8.881784197001252e-16,
+        "pass": true
+      },
+      "random_2": {
+        "unitarity_error": 4.440892098500626e-16,
+        "pass": true
+      },
+      "random_3": {
+        "unitarity_error": 8.881784197001252e-16,
+        "pass": true
+      },
+      "random_4": {
+        "unitarity_error": 1.3322676295501878e-15,
+        "pass": true
+      },
+      "random_5": {
+        "unitarity_error": 3.787898901196402e-16,
+        "pass": true
+      },
+      "random_6": {
+        "unitarity_error": 2.220446049250313e-16,
+        "pass": true
+      },
+      "random_7": {
+        "unitarity_error": 1.7763568394002505e-15,
+        "pass": true
+      },
+      "random_8": {
+        "unitarity_error": 1.5543122344752192e-15,
+        "pass": true
+      },
+      "random_9": {
+        "unitarity_error": 1.3322676295501878e-15,
+        "pass": true
+      }
+    },
+    "P3_numpy_cross_validation": {
+      "random_0": {
+        "max_diff": 5.389157964038493e-16,
+        "pass": true
+      },
+      "random_1": {
+        "max_diff": 4.335559509131367e-16,
+        "pass": true
+      },
+      "random_2": {
+        "max_diff": 4.965068306494546e-16,
+        "pass": true
+      },
+      "random_3": {
+        "max_diff": 6.764976740795321e-16,
+        "pass": true
+      },
+      "random_4": {
+        "max_diff": 4.965068306494546e-16,
+        "pass": true
+      }
+    },
+    "P4_known_gate_reconstruction": {
+      "CNOT": {
+        "overlap": 1.0,
+        "best_loss": -6.661338147750939e-16,
+        "pass": true
+      },
+      "CZ": {
+        "overlap": 1.0000000000000002,
+        "best_loss": -8.881784197001252e-16,
+        "pass": true
+      },
+      "SWAP": {
+        "overlap": 0.9999999999785018,
+        "best_loss": -1.1102230246251565e-15,
+        "pass": true
+      },
+      "iSWAP": {
+        "overlap": 0.9999999999999997,
+        "best_loss": -1.1102230246251565e-15,
+        "pass": true
+      }
+    },
+    "P5_gradients_exist": {
+      "k1_params": {
+        "grad_exists": true,
+        "grad_nonzero": true,
+        "pass": true
+      },
+      "k2_params": {
+        "grad_exists": true,
+        "grad_nonzero": true,
+        "pass": true
+      },
+      "k3_params": {
+        "grad_exists": true,
+        "grad_nonzero": true,
+        "pass": true
+      },
+      "k4_params": {
+        "grad_exists": true,
+        "grad_nonzero": true,
+        "pass": true
+      },
+      "interaction": {
+        "grad_exists": true,
+        "grad_nonzero": true,
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "N1_entangling_power": {
+      "identity": {
+        "interaction": [
+          0,
+          0,
+          0
+        ],
+        "reduced_purity": 1.0,
+        "is_product": true,
+        "pass": true
+      },
+      "weak": {
+        "interaction": [
+          0.1,
+          0,
+          0
+        ],
+        "reduced_purity": 0.9802652485007215,
+        "is_product": false,
+        "pass": true
+      },
+      "cnot_like": {
+        "interaction": [
+          0.7853981633974483,
+          0,
+          0
+        ],
+        "reduced_purity": 0.5000000000000004,
+        "is_product": false,
+        "pass": true
+      },
+      "swap_like": {
+        "interaction": [
+          0.7853981633974483,
+          0.7853981633974483,
+          0.7853981633974483
+        ],
+        "reduced_purity": 0.9999999999999996,
+        "is_product": true,
+        "pass": true
+      }
+    },
+    "N2_local_swap_non_commutative": {
+      "diff": 1.0732819504881372,
+      "are_different": true,
+      "pass": true
+    },
+    "N3_zero_interaction_is_product": {
+      "svd_values": [
+        2.0,
+        2.719585059231044e-16,
+        1.1342998562789246e-16,
+        6.316931447319153e-17
+      ],
+      "svd_ratio_1_to_0": 1.359792529615522e-16,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_all_zero_is_identity": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "B2_weyl_boundary_pi4": {
+      "unitarity_error": 4.440892098500626e-16,
+      "pass": true
+    },
+    "B3_swap_point": {
+      "unitarity_error": 1.3322676295501878e-15,
+      "pass": true
+    },
+    "B4_large_interaction_unitary": {
+      "scale=1.0": {
+        "unitarity_error": 1.6653345369377348e-15,
+        "pass": true
+      },
+      "scale=5.0": {
+        "unitarity_error": 3.774758283725532e-15,
+        "pass": true
+      },
+      "scale=10.0": {
+        "unitarity_error": 7.771561172376096e-15,
+        "pass": true
+      },
+      "scale=100.0": {
+        "unitarity_error": 1.3633538742396922e-13,
+        "pass": true
+      }
+    },
+    "B5_gradient_flow_optimization": {
+      "initial_loss": 0.7644425791113987,
+      "final_loss": 7.372117524188599e-06,
+      "loss_decreased": true,
+      "pass": true
+    },
+    "B6_autograd_vs_fd_interaction": {
+      "autograd": [
+        2.3054602929974926,
+        1.5107829698172486,
+        0.7477869237628919
+      ],
+      "finite_diff": [
+        2.3054602929561963,
+        1.5107829697880157,
+        0.7477869237437761
+      ],
+      "cosine_similarity": 0.9999999999999998,
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 40,
+    "total_pass": 40,
+    "all_pass": true
+  }
+}

@@ -1,0 +1,356 @@
+{
+  "name": "torch_unitary_rotation",
+  "phase": "Phase 3 sim",
+  "description": "General U(theta,n) rotation as differentiable nn.Module with learnable params",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core module: UnitaryRotation with learnable theta and n, full autograd"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Trig identity and axis normalization constraint verification"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic unitarity, Z/X gate at theta=pi verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_pi_Z_on_0": {
+      "max_diff": 2.000177801164682e-12,
+      "pass": true
+    },
+    "P1b_pi_Z_on_1": {
+      "max_diff": 2.000177801164682e-12,
+      "pass": true
+    },
+    "P1c_pi_Z_on_plus": {
+      "max_diff": 1.000088902456874e-12,
+      "pass": true
+    },
+    "P2_pi_X_on_0": {
+      "max_diff": 2.000177801164682e-12,
+      "pass": true
+    },
+    "P2b_pi_X_on_1": {
+      "max_diff": 2.000177801164682e-12,
+      "pass": true
+    },
+    "P3_theta0_identity": {
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "P4_theta_2pi_identity_dm": {
+      "max_diff": 1.2246467991461283e-16,
+      "pass": true
+    },
+    "P5_substrate_match": {
+      "pi_Z": {
+        "max_abs_diff": 4.3711388359413515e-08,
+        "pass": true
+      },
+      "pi_X": {
+        "max_abs_diff": 1.0001999228848035e-12,
+        "pass": true
+      },
+      "pi_Y": {
+        "max_abs_diff": 5.960364468649004e-08,
+        "pass": true
+      },
+      "pi2_Z": {
+        "max_abs_diff": 2.9801822236419704e-08,
+        "pass": true
+      },
+      "pi4_arb": {
+        "max_abs_diff": 6.455736854792319e-08,
+        "pass": true
+      }
+    },
+    "P6_trace_preservation": {
+      "pi_Z": {
+        "trace": 0.9999999999979998,
+        "pass": true
+      },
+      "pi_X": {
+        "trace": 0.9999999999979998,
+        "pass": true
+      },
+      "pi_Y": {
+        "trace": 0.9999999999979998,
+        "pass": true
+      },
+      "pi2_Z": {
+        "trace": 0.9999999999989999,
+        "pass": true
+      },
+      "pi4_arb": {
+        "trace": 0.9999999999998309,
+        "pass": true
+      }
+    },
+    "P7_unitarity": {
+      "pi_Z": {
+        "is_unitary": true,
+        "pass": true
+      },
+      "pi_X": {
+        "is_unitary": true,
+        "pass": true
+      },
+      "pi_Y": {
+        "is_unitary": true,
+        "pass": true
+      },
+      "pi2_Z": {
+        "is_unitary": true,
+        "pass": true
+      },
+      "pi4_arb": {
+        "is_unitary": true,
+        "pass": true
+      }
+    },
+    "P8_pi_Y_on_0": {
+      "max_diff": 2.000177801164682e-12,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_non_unitary_detected": {
+      "is_unitary": false,
+      "pass": true
+    },
+    "N2_trace_violation": {
+      "trace": 0.7300000000000001,
+      "pass": true
+    },
+    "N3_hermiticity_pi_Z": {
+      "diff": 0.0,
+      "pass": true
+    },
+    "N3_hermiticity_arb": {
+      "diff": 2.9802322387695312e-08,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_mixed_invariant_pi_Z": {
+      "max_diff": 1.000088900582341e-12,
+      "pass": true
+    },
+    "B1_mixed_invariant_arb": {
+      "max_diff": 5.821454429622008e-13,
+      "pass": true
+    },
+    "B2_purity_preserved": {
+      "state_0": {
+        "purity_in": 0.9999999999999997,
+        "purity_out": 0.9999999999990161,
+        "pass": true
+      },
+      "state_1": {
+        "purity_in": 1.0,
+        "purity_out": 0.9999999999975049,
+        "pass": true
+      },
+      "state_2": {
+        "purity_in": 1.0000000000000002,
+        "purity_out": 0.999999999996695,
+        "pass": true
+      },
+      "state_3": {
+        "purity_in": 1.0000000000000002,
+        "purity_out": 0.9999999999990806,
+        "pass": true
+      },
+      "state_4": {
+        "purity_in": 0.9999999999999991,
+        "purity_out": 0.9999999999975151,
+        "pass": true
+      }
+    },
+    "B3_bloch_radius_preserved": {
+      "state_0": {
+        "r_in": 1.0000000000000002,
+        "r_out": 0.9999999999998337,
+        "pass": "True"
+      },
+      "state_1": {
+        "r_in": 1.0,
+        "r_out": 0.9999999999998037,
+        "pass": "True"
+      },
+      "state_2": {
+        "r_in": 1.0,
+        "r_out": 0.9999999999999918,
+        "pass": "True"
+      },
+      "state_3": {
+        "r_in": 0.9999999999999998,
+        "r_out": 0.9999999999991843,
+        "pass": "True"
+      },
+      "state_4": {
+        "r_in": 0.9999999999999999,
+        "r_out": 0.9999999999991673,
+        "pass": "True"
+      }
+    },
+    "B4_theta_4pi_identity": {
+      "max_diff": 1.9793281285362705e-16,
+      "pass": true
+    },
+    "B5_composition": {
+      "max_diff": 4.1502997138553176e-13,
+      "pass": true
+    }
+  },
+  "falsification": {
+    "F1_theta_gradient": {
+      "theta=0.1000": {
+        "theta": 0.1,
+        "exp_Z": 0.9950041770935059,
+        "exp_Z_theory": 0.9950041652780258,
+        "grad_theta": -0.0998334139585495,
+        "expected_grad": -0.09983341664682815,
+        "grad_close": "True",
+        "pass": true
+      },
+      "theta=0.5000": {
+        "theta": 0.5,
+        "exp_Z": 0.8775825500488281,
+        "exp_Z_theory": 0.8775825618903728,
+        "grad_theta": -0.4794255495071411,
+        "expected_grad": -0.479425538604203,
+        "grad_close": "True",
+        "pass": true
+      },
+      "theta=0.7854": {
+        "theta": 0.7853981633974483,
+        "exp_Z": 0.7071067094802856,
+        "exp_Z_theory": 0.7071067811865476,
+        "grad_theta": -0.7071068286895752,
+        "expected_grad": -0.7071067811865475,
+        "grad_close": "True",
+        "pass": true
+      },
+      "theta=1.5708": {
+        "theta": 1.5707963267948966,
+        "exp_Z": 0.0,
+        "exp_Z_theory": 6.123233995736766e-17,
+        "grad_theta": -0.9999999403953552,
+        "expected_grad": -1.0,
+        "grad_close": "True",
+        "pass": true
+      },
+      "theta=1.0000": {
+        "theta": 1.0,
+        "exp_Z": 0.5403022766113281,
+        "exp_Z_theory": 0.5403023058681398,
+        "grad_theta": -0.8414710164070129,
+        "expected_grad": -0.8414709848078965,
+        "grad_close": "True",
+        "pass": true
+      },
+      "theta=3.1416": {
+        "theta": 3.141592653589793,
+        "exp_Z": -1.0,
+        "exp_Z_theory": -1.0,
+        "grad_theta": 8.742277657347586e-08,
+        "expected_grad": -1.2246467991473532e-16,
+        "grad_close": "True",
+        "pass": true
+      }
+    },
+    "F2_axis_gradient": {
+      "grad_nx": 0.0,
+      "grad_ny": 0.0,
+      "grad_nz": 0.0,
+      "grad_exists": true,
+      "pass": true
+    },
+    "F3_autograd_vs_fd_theta": {
+      "autograd": -0.6442176699638367,
+      "finite_diff": -0.6442176861637394,
+      "abs_diff": 1.6199902752589423e-08,
+      "pass": true
+    },
+    "F4_autograd_vs_fd_axis": {
+      "autograd": -0.30612242221832275,
+      "finite_diff": -0.306122449228452,
+      "abs_diff": 2.7010129244331438e-08,
+      "pass": true
+    },
+    "F5_random_match": {
+      "n": 20,
+      "max_diff": 1.2934834378279492e-07,
+      "pass": true
+    }
+  },
+  "sympy_check": {
+    "Uz_is_unitary": true,
+    "Uz_pi_is_Z_gate": true,
+    "Ux_pi_is_X_gate": true,
+    "pass": true
+  },
+  "z3_check": {
+    "trig_identity_forced": "unsat",
+    "axis_normalization_forced": "unsat",
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 53,
+    "total_pass": 53,
+    "all_pass": true
+  }
+}

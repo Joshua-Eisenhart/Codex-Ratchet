@@ -1,0 +1,279 @@
+{
+  "name": "torch_l1_coherence",
+  "description": "L1Coherence: C_l1(rho) = sum |rho_ij| for i!=j, zero for incoherent states",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "L1Coherence module with autograd gradients"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic C_l1 formula verification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "P1_substrate_match": {
+      "|0><0|": {
+        "numpy": 0.0,
+        "torch": 0.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "|+><+|": {
+        "numpy": 1.0,
+        "torch": 1.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "numpy": 0.0,
+        "torch": 0.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "|+i>": {
+        "numpy": 1.0,
+        "torch": 1.0,
+        "diff": 0.0,
+        "pass": true
+      },
+      "random_0": {
+        "numpy": 0.1448762713512589,
+        "torch": 0.14487627148628235,
+        "diff": 1.3502343687576968e-10,
+        "pass": true
+      },
+      "random_1": {
+        "numpy": 0.587764911346489,
+        "torch": 0.5877648591995239,
+        "diff": 5.2146965079380436e-08,
+        "pass": true
+      },
+      "random_2": {
+        "numpy": 0.3012344391755299,
+        "torch": 0.3012344539165497,
+        "diff": 1.4741019793707011e-08,
+        "pass": true
+      }
+    },
+    "P2_zero_for_diagonal": {
+      "|0>": {
+        "coherence": 0.0,
+        "is_zero": true,
+        "pass": true
+      },
+      "|1>": {
+        "coherence": 0.0,
+        "is_zero": true,
+        "pass": true
+      },
+      "mixed_z": {
+        "coherence": 0.0,
+        "is_zero": true,
+        "pass": true
+      },
+      "maximally_mixed": {
+        "coherence": 0.0,
+        "is_zero": true,
+        "pass": true
+      }
+    },
+    "P3_max_for_plus": {
+      "coherence": 1.0,
+      "expected": 1.0,
+      "pass": true
+    },
+    "P4_gradient_exists": {
+      "|0><0|": {
+        "grad_exists": true,
+        "grad": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "|+><+|": {
+        "grad_exists": true,
+        "grad": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "maximally_mixed": {
+        "grad_exists": true,
+        "grad": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pass": true
+      },
+      "|+i>": {
+        "grad_exists": true,
+        "grad": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "pass": true
+      }
+    },
+    "P5_autograd_vs_fd": {
+      "random_0": {
+        "autograd": [
+          0.9633736610412598,
+          -0.26816263794898987,
+          0.0
+        ],
+        "fd": [
+          0.9633720008866697,
+          -0.2681567236297727,
+          0.0
+        ],
+        "cosine_sim": 1.000000005576106,
+        "pass": true
+      },
+      "|+i>": {
+        "autograd": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "fd": [
+          0.0,
+          0.9999999999999454,
+          0.0
+        ],
+        "cosine_sim": 1.0,
+        "pass": true
+      }
+    }
+  },
+  "negative": {
+    "N1_z_only_zero_coherence": {
+      "rz=-1.0": {
+        "coherence": 0.0,
+        "pass": true
+      },
+      "rz=-0.5": {
+        "coherence": 0.0,
+        "pass": true
+      },
+      "rz=0.0": {
+        "coherence": 0.0,
+        "pass": true
+      },
+      "rz=0.5": {
+        "coherence": 0.0,
+        "pass": true
+      },
+      "rz=1.0": {
+        "coherence": 0.0,
+        "pass": true
+      }
+    },
+    "N2_invalid_bloch_exceeds_max": {
+      "coherence": 2.0,
+      "exceeds_1": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_analytical_formula": {
+      "rx=0.5": {
+        "expected": 0.5,
+        "actual": 0.5,
+        "diff": 0.0,
+        "pass": "True"
+      },
+      "ry=0.7": {
+        "expected": 0.7,
+        "actual": 0.699999988079071,
+        "diff": 1.1920928910669204e-08,
+        "pass": "True"
+      },
+      "rx=0.3,ry=0.4": {
+        "expected": 0.5,
+        "actual": 0.5,
+        "diff": 0.0,
+        "pass": "True"
+      },
+      "full_bloch": {
+        "expected": 0.5,
+        "actual": 0.5,
+        "diff": 0.0,
+        "pass": "True"
+      }
+    },
+    "B2_near_zero": {
+      "coherence": 1.4142135462691385e-08,
+      "near_zero": true,
+      "pass": true
+    }
+  },
+  "sympy_check": {
+    "C_l1_formula": "sqrt(r_x**2 + r_y**2)",
+    "pass": true
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 30,
+    "total_pass": 30,
+    "all_pass": true
+  }
+}

@@ -1,0 +1,512 @@
+{
+  "name": "lego_zeno_speed_limits",
+  "timestamp": "2026-04-08T07:02:16.538604+00:00",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core computation engine: matrix exponentiation, autograd for gradient-based speed limit analysis"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph structure"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- numerical sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- torch handles all algebra"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- qubit-level only"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "summary": {
+    "total_tests": 18,
+    "passed": 18,
+    "failed": 0,
+    "all_pass": true
+  },
+  "positive_zeno": {
+    "zeno_limit_N100_survival": {
+      "value": 0.9756269141438493,
+      "expected": "> 0.95 (Zeno freezing)",
+      "pass": true
+    },
+    "anti_zeno_N1_survival": {
+      "value": 4.2498675034211675e-33,
+      "expected": "< 0.5 (evolution allowed)",
+      "pass": true
+    },
+    "monotonicity_with_N": {
+      "pass": true,
+      "violations": 0
+    },
+    "numerical_vs_analytical_agreement": {
+      "max_error": 5.573319583618286e-14,
+      "pass": true
+    },
+    "autograd_dsurv_dT": {
+      "gradient": -0.24725270481960418,
+      "expected": "< 0 (more time = more decay)",
+      "pass": true
+    },
+    "sweep_samples": {
+      "N=1": {
+        "numerical": 4.2498675034211675e-33,
+        "analytical": 3.749399456654644e-33
+      },
+      "N=5": {
+        "numerical": 0.6054290497131055,
+        "analytical": 0.6054290497131063
+      },
+      "N=10": {
+        "numerical": 0.7805460697811387,
+        "analytical": 0.7805460697811408
+      },
+      "N=20": {
+        "numerical": 0.8838242053965811,
+        "analytical": 0.8838242053965842
+      },
+      "N=50": {
+        "numerical": 0.9518420787977565,
+        "analytical": 0.9518420787977816
+      },
+      "N=100": {
+        "numerical": 0.9756269141438493,
+        "analytical": 0.9756269141438981
+      }
+    }
+  },
+  "negative_zeno": {
+    "free_evolution_no_zeno": {
+      "value": 4.249867503421168e-33,
+      "expected": "~0 (full transition |0> -> |1>)",
+      "pass": true
+    },
+    "eigenstate_trivial_survival": {
+      "value": 0.9999999999999788,
+      "expected": "~1.0 (trivially -- eigenstate, not Zeno)",
+      "pass": true,
+      "note": "This is NOT Zeno -- eigenstate is stationary"
+    },
+    "identity_H_trivial_survival": {
+      "value": 1.0,
+      "expected": "1.0 (no dynamics, not Zeno)",
+      "pass": true
+    }
+  },
+  "positive_speed_limits": {
+    "speed_limit_grid": {
+      "sigma_x|theta_0.0000": {
+        "E_mean": 0.0,
+        "delta_E": 1.0,
+        "E_above_ground": 1.0,
+        "tau_MT": 1.5707963267948966,
+        "tau_ML": 1.5707963267948966,
+        "tau_unified": 1.5707963267948966,
+        "t_first_ortho": 1.5707963267948966,
+        "min_fidelity_reached": 4.249867503421168e-33,
+        "bound_satisfied": true
+      },
+      "sigma_x|theta_0.5236": {
+        "E_mean": 0.49999999999999994,
+        "delta_E": 0.8660254037844386,
+        "E_above_ground": 1.5,
+        "tau_MT": 1.8137993642342178,
+        "tau_ML": 1.0471975511965976,
+        "tau_unified": 1.8137993642342178,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 0.25000025868005055,
+        "bound_satisfied": true
+      },
+      "sigma_x|theta_0.7854": {
+        "E_mean": 0.7071067811865476,
+        "delta_E": 0.7071067811865475,
+        "E_above_ground": 1.7071067811865475,
+        "tau_MT": 2.221441469079183,
+        "tau_ML": 0.9201511845106101,
+        "tau_unified": 2.221441469079183,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 0.500000021441091,
+        "bound_satisfied": true
+      },
+      "sigma_x|theta_1.0472": {
+        "E_mean": 0.8660254037844386,
+        "delta_E": 0.5000000000000001,
+        "E_above_ground": 1.8660254037844386,
+        "tau_MT": 3.1415926535897922,
+        "tau_ML": 0.8417872144769329,
+        "tau_unified": 3.1415926535897922,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 0.7499999999999996,
+        "bound_satisfied": true
+      },
+      "sigma_x|theta_1.5708": {
+        "E_mean": 1.0,
+        "delta_E": 0.0,
+        "E_above_ground": 2.0,
+        "tau_MT": Infinity,
+        "tau_ML": 0.7853981633974483,
+        "tau_unified": Infinity,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 0.9999999999999991,
+        "bound_satisfied": true
+      },
+      "sigma_z|theta_0.0000": {
+        "E_mean": 1.0,
+        "delta_E": 0.0,
+        "E_above_ground": 2.0,
+        "tau_MT": Infinity,
+        "tau_ML": 0.7853981633974483,
+        "tau_unified": Infinity,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 0.9999999999999998,
+        "bound_satisfied": true
+      },
+      "sigma_z|theta_0.5236": {
+        "E_mean": 0.8660254037844387,
+        "delta_E": 0.4999999999999999,
+        "E_above_ground": 1.8660254037844388,
+        "tau_MT": 3.141592653589794,
+        "tau_ML": 0.8417872144769328,
+        "tau_unified": 3.141592653589794,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 0.7500000000000001,
+        "bound_satisfied": true
+      },
+      "sigma_z|theta_0.7854": {
+        "E_mean": 0.7071067811865475,
+        "delta_E": 0.7071067811865476,
+        "E_above_ground": 1.7071067811865475,
+        "tau_MT": 2.221441469079183,
+        "tau_ML": 0.9201511845106101,
+        "tau_unified": 2.221441469079183,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 0.5000000214410913,
+        "bound_satisfied": true
+      },
+      "sigma_z|theta_1.0472": {
+        "E_mean": 0.5000000000000001,
+        "delta_E": 0.8660254037844386,
+        "E_above_ground": 1.5,
+        "tau_MT": 1.8137993642342178,
+        "tau_ML": 1.0471975511965976,
+        "tau_unified": 1.8137993642342178,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 0.25000025868005077,
+        "bound_satisfied": true
+      },
+      "sigma_z|theta_1.5708": {
+        "E_mean": 1.9967346175427393e-16,
+        "delta_E": 1.0,
+        "E_above_ground": 1.0000000000000002,
+        "tau_MT": 1.5707963267948966,
+        "tau_ML": 1.5707963267948961,
+        "tau_unified": 1.5707963267948966,
+        "t_first_ortho": 1.5707963267948966,
+        "min_fidelity_reached": 4.3618890785590135e-32,
+        "bound_satisfied": true
+      },
+      "sigma_x_plus_z|theta_0.0000": {
+        "E_mean": 0.7071067811865475,
+        "delta_E": 0.7071067811865475,
+        "E_above_ground": 1.7071067811865475,
+        "tau_MT": 2.221441469079183,
+        "tau_ML": 0.9201511845106101,
+        "tau_unified": 2.221441469079183,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 0.5000000214410916,
+        "bound_satisfied": true
+      },
+      "sigma_x_plus_z|theta_0.5236": {
+        "E_mean": 0.9659258262890682,
+        "delta_E": 0.2588190451025208,
+        "E_above_ground": 1.9659258262890682,
+        "tau_MT": 6.069090959564774,
+        "tau_ML": 0.7990109829117876,
+        "tau_unified": 6.069090959564774,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 0.9330127341407866,
+        "bound_satisfied": true
+      },
+      "sigma_x_plus_z|theta_0.7854": {
+        "E_mean": 0.9999999999999999,
+        "delta_E": NaN,
+        "E_above_ground": 2.0,
+        "tau_MT": Infinity,
+        "tau_ML": 0.7853981633974483,
+        "tau_unified": Infinity,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 0.9999999999999991,
+        "bound_satisfied": true
+      },
+      "sigma_x_plus_z|theta_1.0472": {
+        "E_mean": 0.9659258262890683,
+        "delta_E": 0.2588190451025202,
+        "E_above_ground": 1.9659258262890682,
+        "tau_MT": 6.069090959564789,
+        "tau_ML": 0.7990109829117876,
+        "tau_unified": 6.069090959564789,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 0.9330127341407863,
+        "bound_satisfied": true
+      },
+      "sigma_x_plus_z|theta_1.5708": {
+        "E_mean": 0.7071067811865476,
+        "delta_E": 0.7071067811865472,
+        "E_above_ground": 1.7071067811865475,
+        "tau_MT": 2.221441469079184,
+        "tau_ML": 0.9201511845106101,
+        "tau_unified": 2.221441469079184,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 0.5000000214410913,
+        "bound_satisfied": true
+      },
+      "diag_0_3|theta_0.0000": {
+        "E_mean": 0.0,
+        "delta_E": 0.0,
+        "E_above_ground": 0.0,
+        "tau_MT": Infinity,
+        "tau_ML": Infinity,
+        "tau_unified": Infinity,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 1.0,
+        "bound_satisfied": true
+      },
+      "diag_0_3|theta_0.5236": {
+        "E_mean": 0.200961894323342,
+        "delta_E": 0.7499999999999999,
+        "E_above_ground": 0.200961894323342,
+        "tau_MT": 2.0943951023931957,
+        "tau_ML": 7.816388933254828,
+        "tau_unified": 7.816388933254828,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 0.7500000123322714,
+        "bound_satisfied": true
+      },
+      "diag_0_3|theta_0.7854": {
+        "E_mean": 0.4393398282201787,
+        "delta_E": 1.0606601717798212,
+        "E_above_ground": 0.4393398282201787,
+        "tau_MT": 1.4809609793861223,
+        "tau_ML": 3.5753560817793177,
+        "tau_unified": 3.5753560817793177,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 0.5000000218392037,
+        "bound_satisfied": true
+      },
+      "diag_0_3|theta_1.0472": {
+        "E_mean": 0.7499999999999998,
+        "delta_E": 1.2990381056766578,
+        "E_above_ground": 0.7499999999999998,
+        "tau_MT": 1.2091995761561454,
+        "tau_ML": 2.094395102393196,
+        "tau_unified": 2.094395102393196,
+        "t_first_ortho": null,
+        "min_fidelity_reached": 0.2500000000000001,
+        "bound_satisfied": true
+      },
+      "diag_0_3|theta_1.5708": {
+        "E_mean": 1.4999999999999998,
+        "delta_E": 1.4999999999999998,
+        "E_above_ground": 1.4999999999999998,
+        "tau_MT": 1.0471975511965979,
+        "tau_ML": 1.0471975511965979,
+        "tau_unified": 1.0471975511965979,
+        "t_first_ortho": 1.0471975511965979,
+        "min_fidelity_reached": 6.573007589296554e-32,
+        "bound_satisfied": true
+      },
+      "strong_sigma_y|theta_0.0000": {
+        "E_mean": 0.0,
+        "delta_E": 5.0,
+        "E_above_ground": 5.0,
+        "tau_MT": 0.3141592653589793,
+        "tau_ML": 0.3141592653589793,
+        "tau_unified": 0.3141592653589793,
+        "t_first_ortho": 0.31415926535897926,
+        "min_fidelity_reached": 8.07462955486722e-32,
+        "bound_satisfied": true
+      },
+      "strong_sigma_y|theta_0.5236": {
+        "E_mean": 0.0,
+        "delta_E": 5.0,
+        "E_above_ground": 5.0,
+        "tau_MT": 0.3141592653589793,
+        "tau_ML": 0.3141592653589793,
+        "tau_unified": 0.3141592653589793,
+        "t_first_ortho": 0.31415926535897926,
+        "min_fidelity_reached": 8.392303375292627e-32,
+        "bound_satisfied": true
+      },
+      "strong_sigma_y|theta_0.7854": {
+        "E_mean": 0.0,
+        "delta_E": 5.0,
+        "E_above_ground": 5.0,
+        "tau_MT": 0.3141592653589793,
+        "tau_ML": 0.3141592653589793,
+        "tau_unified": 0.3141592653589793,
+        "t_first_ortho": 0.31415926535897926,
+        "min_fidelity_reached": 1.0577259587142446e-31,
+        "bound_satisfied": true
+      },
+      "strong_sigma_y|theta_1.0472": {
+        "E_mean": 0.0,
+        "delta_E": 5.0,
+        "E_above_ground": 5.0,
+        "tau_MT": 0.3141592653589793,
+        "tau_ML": 0.3141592653589793,
+        "tau_unified": 0.3141592653589793,
+        "t_first_ortho": 0.31415926535897926,
+        "min_fidelity_reached": 5.316231363154467e-32,
+        "bound_satisfied": true
+      },
+      "strong_sigma_y|theta_1.5708": {
+        "E_mean": 0.0,
+        "delta_E": 5.0,
+        "E_above_ground": 5.0,
+        "tau_MT": 0.3141592653589793,
+        "tau_ML": 0.3141592653589793,
+        "tau_unified": 0.3141592653589793,
+        "t_first_ortho": 0.31415926535897926,
+        "min_fidelity_reached": 8.483419127816935e-32,
+        "bound_satisfied": true
+      }
+    },
+    "all_bounds_satisfied": true,
+    "sigma_x_ket0_ortho_time": {
+      "t_first_ortho": 1.5707963267948966,
+      "expected": "~pi/2 = 1.5708",
+      "pass": true
+    },
+    "asymmetric_H_different_bounds": {
+      "tau_MT": 2.0943951023931957,
+      "tau_ML": 7.816388933254828,
+      "pass": true,
+      "note": "Asymmetric spectrum + tilted state separates MT from ML"
+    }
+  },
+  "negative_speed_limits": {
+    "eigenstate_never_ortho": {
+      "t_first_ortho": null,
+      "pass": true,
+      "note": "Eigenstate is stationary -- infinite speed limit"
+    },
+    "zero_H_no_evolution": {
+      "tau_MT": Infinity,
+      "tau_ML": Infinity,
+      "pass": true
+    },
+    "violation_detection_works": {
+      "pass": true,
+      "note": "Meta-test: violation detection logic is correct"
+    }
+  },
+  "boundary": {
+    "zeno_N500": {
+      "survival": 0.9950773458538944,
+      "expected": "> 0.99",
+      "pass": true
+    },
+    "tiny_T_single_measurement": {
+      "survival": 0.9999990000003329,
+      "expected": "~1.0 (no time to evolve)",
+      "pass": true
+    },
+    "MT_bound_saturation": {
+      "tau_MT": 1.5707963267948966,
+      "t_first_ortho": 1.5707963267948966,
+      "ratio": 1.0,
+      "pass": true,
+      "note": "sigma_x saturates the MT bound (ratio should be ~1.0)"
+    },
+    "strong_H_fast_evolution": {
+      "tau_MT": 0.015707963267948967,
+      "t_first_ortho": 0.015707963267948967,
+      "bound_satisfied": true,
+      "pass": true
+    },
+    "autograd_tau_MT_vs_E": {
+      "gradient": -0.39269908169872414,
+      "expected": "< 0 (stronger H -> shorter speed limit)",
+      "pass": true
+    }
+  },
+  "ratchet_relevance": {
+    "zeno_onset_N": {
+      "N_crossover": 4,
+      "survival_at_crossover": 0.5307900429449552,
+      "note": "If constraint shells measure more than N_crossover times per cycle, the system is in Zeno regime"
+    },
+    "zeno_transition_sharpness": {
+      "dP_dN_approx": 0.09177702485655306,
+      "note": "Rate of Zeno freezing near crossover"
+    },
+    "speed_limit_coupling_0.1": {
+      "tau_unified": 15.707963267948966,
+      "note": "Minimum time to transition at coupling=0.1"
+    },
+    "speed_limit_coupling_0.5": {
+      "tau_unified": 3.141592653589793,
+      "note": "Minimum time to transition at coupling=0.5"
+    },
+    "speed_limit_coupling_1.0": {
+      "tau_unified": 1.5707963267948966,
+      "note": "Minimum time to transition at coupling=1.0"
+    },
+    "speed_limit_coupling_2.0": {
+      "tau_unified": 0.7853981633974483,
+      "note": "Minimum time to transition at coupling=2.0"
+    },
+    "speed_limit_coupling_5.0": {
+      "tau_unified": 0.3141592653589793,
+      "note": "Minimum time to transition at coupling=5.0"
+    }
+  },
+  "positive": {},
+  "negative": {}
+}

@@ -1,0 +1,849 @@
+{
+  "name": "engine_4_operators",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Torch-native density matrix ops, canonical computation layer"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Not needed for single-qubit operator sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Formal Kraus completeness proof via SMT"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for completeness proofs"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Kraus completeness + Lindblad continuous-limit derivation"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "GA cross-check of Fi/Fe rotation operators in Cl(3,0)"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Not needed for operator verification"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Not needed for operator verification"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Operator composition DAG with commutativity annotations"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Not needed; pairwise composition, not hypergraph"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Not needed for operator-level sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Not needed for operator-level sim"
+    }
+  },
+  "kraus_completeness_sympy": {
+    "Ti": {
+      "sum_KdagK": "Matrix([[1, 0], [0, 1]])",
+      "equals_I": true
+    },
+    "Te": {
+      "sum_KdagK": "Matrix([[1, 0], [0, 1]])",
+      "equals_I": true
+    },
+    "Fi": {
+      "sum_KdagK": "Matrix([[1, 0], [0, 1]])",
+      "equals_I": true
+    },
+    "Fe": {
+      "sum_KdagK": "Matrix([[1, 0], [0, 1]])",
+      "equals_I": true
+    }
+  },
+  "kraus_completeness_z3": {
+    "Ti": {
+      "diagonal_always_1": true
+    },
+    "Te": {
+      "diagonal_always_1": true,
+      "offdiag_always_0": true
+    },
+    "Fi": {
+      "unitary_by_construction": true
+    },
+    "Fe": {
+      "unitary_by_construction": true
+    }
+  },
+  "kraus_lindblad_correspondence": {
+    "Ti": {
+      "first_order_match": true,
+      "delta_rho_01": "-b*dt*kappa1",
+      "lindblad_01": "-b*dt*kappa1"
+    },
+    "Te": {
+      "first_order_match": true,
+      "delta_rho_00": "dt*kappa2*(-a + d)/2",
+      "lindblad_00": "dt*kappa2*(-a + d)/2"
+    },
+    "Fi": {
+      "first_order_match": true
+    },
+    "Fe": {
+      "first_order_match": true
+    }
+  },
+  "bloch_action_numpy": {
+    "Ti": {
+      "|0>": {
+        "bloch_in": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bloch_out": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|1>": {
+        "bloch_in": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bloch_out": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|+>": {
+        "bloch_in": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bloch_out": [
+          0.5,
+          0.0,
+          0.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|->": {
+        "bloch_in": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bloch_out": [
+          -0.5,
+          0.0,
+          0.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|+i>": {
+        "bloch_in": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "bloch_out": [
+          0.0,
+          0.5,
+          0.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|-i>": {
+        "bloch_in": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "bloch_out": [
+          0.0,
+          -0.5,
+          0.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      }
+    },
+    "Te": {
+      "|0>": {
+        "bloch_in": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bloch_out": [
+          0.0,
+          0.0,
+          0.5
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|1>": {
+        "bloch_in": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bloch_out": [
+          0.0,
+          0.0,
+          -0.5
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|+>": {
+        "bloch_in": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bloch_out": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|->": {
+        "bloch_in": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bloch_out": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|+i>": {
+        "bloch_in": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "bloch_out": [
+          0.0,
+          0.5,
+          0.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|-i>": {
+        "bloch_in": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "bloch_out": [
+          0.0,
+          -0.5,
+          0.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      }
+    },
+    "Fi": {
+      "|0>": {
+        "bloch_in": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bloch_out": [
+          0.0,
+          -0.7071067812,
+          0.7071067812
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|1>": {
+        "bloch_in": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bloch_out": [
+          0.0,
+          0.7071067812,
+          -0.7071067812
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|+>": {
+        "bloch_in": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bloch_out": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|->": {
+        "bloch_in": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bloch_out": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|+i>": {
+        "bloch_in": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "bloch_out": [
+          0.0,
+          0.7071067812,
+          0.7071067812
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|-i>": {
+        "bloch_in": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "bloch_out": [
+          0.0,
+          -0.7071067812,
+          -0.7071067812
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      }
+    },
+    "Fe": {
+      "|0>": {
+        "bloch_in": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bloch_out": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|1>": {
+        "bloch_in": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "bloch_out": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|+>": {
+        "bloch_in": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "bloch_out": [
+          0.7071067812,
+          0.7071067812,
+          0.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|->": {
+        "bloch_in": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "bloch_out": [
+          -0.7071067812,
+          -0.7071067812,
+          0.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|+i>": {
+        "bloch_in": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "bloch_out": [
+          -0.7071067812,
+          0.7071067812,
+          0.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      },
+      "|-i>": {
+        "bloch_in": [
+          0.0,
+          -1.0,
+          0.0
+        ],
+        "bloch_out": [
+          0.7071067812,
+          -0.7071067812,
+          0.0
+        ],
+        "trace_preserved": 1.0,
+        "positivity": true
+      }
+    }
+  },
+  "bloch_action_torch": {
+    "Ti": {
+      "|0>": {
+        "bloch_out_torch": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "|1>": {
+        "bloch_out_torch": [
+          0.0,
+          0.0,
+          -1.0
+        ]
+      },
+      "|+>": {
+        "bloch_out_torch": [
+          0.5,
+          0.0,
+          0.0
+        ]
+      },
+      "|->": {
+        "bloch_out_torch": [
+          -0.5,
+          0.0,
+          0.0
+        ]
+      },
+      "|+i>": {
+        "bloch_out_torch": [
+          0.0,
+          0.5,
+          0.0
+        ]
+      },
+      "|-i>": {
+        "bloch_out_torch": [
+          0.0,
+          -0.5,
+          0.0
+        ]
+      }
+    },
+    "Te": {
+      "|0>": {
+        "bloch_out_torch": [
+          0.0,
+          0.0,
+          0.5
+        ]
+      },
+      "|1>": {
+        "bloch_out_torch": [
+          0.0,
+          0.0,
+          -0.5
+        ]
+      },
+      "|+>": {
+        "bloch_out_torch": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "|->": {
+        "bloch_out_torch": [
+          -1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "|+i>": {
+        "bloch_out_torch": [
+          0.0,
+          0.5,
+          0.0
+        ]
+      },
+      "|-i>": {
+        "bloch_out_torch": [
+          0.0,
+          -0.5,
+          0.0
+        ]
+      }
+    },
+    "Fi": {
+      "|0>": {
+        "bloch_out_torch": [
+          0.0,
+          -0.7071067812,
+          0.7071067812
+        ]
+      },
+      "|1>": {
+        "bloch_out_torch": [
+          0.0,
+          0.7071067812,
+          -0.7071067812
+        ]
+      },
+      "|+>": {
+        "bloch_out_torch": [
+          1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "|->": {
+        "bloch_out_torch": [
+          -1.0,
+          0.0,
+          0.0
+        ]
+      },
+      "|+i>": {
+        "bloch_out_torch": [
+          0.0,
+          0.7071067812,
+          0.7071067812
+        ]
+      },
+      "|-i>": {
+        "bloch_out_torch": [
+          0.0,
+          -0.7071067812,
+          -0.7071067812
+        ]
+      }
+    },
+    "Fe": {
+      "|0>": {
+        "bloch_out_torch": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "|1>": {
+        "bloch_out_torch": [
+          0.0,
+          0.0,
+          -1.0
+        ]
+      },
+      "|+>": {
+        "bloch_out_torch": [
+          0.7071067812,
+          0.7071067812,
+          0.0
+        ]
+      },
+      "|->": {
+        "bloch_out_torch": [
+          -0.7071067812,
+          -0.7071067812,
+          0.0
+        ]
+      },
+      "|+i>": {
+        "bloch_out_torch": [
+          -0.7071067812,
+          0.7071067812,
+          0.0
+        ]
+      },
+      "|-i>": {
+        "bloch_out_torch": [
+          0.7071067812,
+          -0.7071067812,
+          0.0
+        ]
+      }
+    }
+  },
+  "chirality": {
+    "Ti_preserves_|0>": true,
+    "Ti_preserves_|1>": true,
+    "Ti_decoheres_X": "True",
+    "Fe_preserves_z_|0>": "True",
+    "Fe_preserves_z_|1>": "True",
+    "Fe_rotates_XY": "True",
+    "Fi_mixes_Z_basis": "True",
+    "Te_preserves_|+>": true,
+    "Te_preserves_|->": true,
+    "Te_decoheres_Z": "True"
+  },
+  "composition": {
+    "Ti_Te": {
+      "commutes": true,
+      "max_diff": 0.0,
+      "bloch_AB": [
+        0.0,
+        0.49,
+        0.0
+      ],
+      "bloch_BA": [
+        0.0,
+        0.49,
+        0.0
+      ]
+    },
+    "Ti_Fi": {
+      "commutes": false,
+      "max_diff": 0.08816778784387103,
+      "bloch_AB": [
+        0.0,
+        0.5663119,
+        0.41144968
+      ],
+      "bloch_BA": [
+        0.0,
+        0.5663119,
+        0.58778525
+      ]
+    },
+    "Ti_Fe": {
+      "commutes": true,
+      "max_diff": 5.551115123125783e-17,
+      "bloch_AB": [
+        -0.41144968,
+        0.5663119,
+        0.0
+      ],
+      "bloch_BA": [
+        -0.41144968,
+        0.5663119,
+        0.0
+      ]
+    },
+    "Te_Fi": {
+      "commutes": true,
+      "max_diff": 5.551115123125783e-17,
+      "bloch_AB": [
+        0.0,
+        0.5663119,
+        0.41144968
+      ],
+      "bloch_BA": [
+        0.0,
+        0.5663119,
+        0.41144968
+      ]
+    },
+    "Te_Fe": {
+      "commutes": false,
+      "max_diff": 0.08816778784387092,
+      "bloch_AB": [
+        -0.41144968,
+        0.5663119,
+        0.0
+      ],
+      "bloch_BA": [
+        -0.58778525,
+        0.5663119,
+        0.0
+      ]
+    },
+    "Fi_Fe": {
+      "commutes": false,
+      "max_diff": 0.05612849707244816,
+      "bloch_AB": [
+        -0.47552826,
+        0.6545085,
+        0.58778525
+      ],
+      "bloch_BA": [
+        -0.58778525,
+        0.6545085,
+        0.47552826
+      ]
+    }
+  },
+  "composition_dag": {
+    "num_nodes": 4,
+    "num_edges": 9,
+    "node_names": [
+      "Ti",
+      "Te",
+      "Fi",
+      "Fe"
+    ],
+    "edges": [
+      {
+        "pair": "Ti_Te",
+        "commutes": true,
+        "max_diff": 0.0
+      },
+      {
+        "pair": "Ti_Fi",
+        "commutes": false,
+        "max_diff": 0.08816778784387103
+      },
+      {
+        "pair": "Ti_Fe",
+        "commutes": true,
+        "max_diff": 5.551115123125783e-17
+      },
+      {
+        "pair": "Te_Fi",
+        "commutes": true,
+        "max_diff": 5.551115123125783e-17
+      },
+      {
+        "pair": "Te_Fe",
+        "commutes": false,
+        "max_diff": 0.08816778784387092
+      },
+      {
+        "pair": "Fi_Fe",
+        "commutes": false,
+        "max_diff": 0.05612849707244816
+      }
+    ],
+    "is_dag": false
+  },
+  "clifford_crosscheck": {
+    "Fe_z_rotation": {
+      "e3_preserved": true,
+      "SO3_matrix_match": true,
+      "ga_matrix": [
+        [
+          0.7071067811865475,
+          -0.7071067811865476,
+          0.0
+        ],
+        [
+          0.7071067811865476,
+          0.7071067811865475,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    "Fi_x_rotation": {
+      "e1_preserved": true,
+      "SO3_matrix_match": true,
+      "ga_matrix": [
+        [
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7071067811865475,
+          -0.7071067811865476
+        ],
+        [
+          0.0,
+          0.7071067811865476,
+          0.7071067811865475
+        ]
+      ]
+    }
+  },
+  "negative": {
+    "Ti_q_gt_1_breaks_completeness": true,
+    "Ti_negative_q_produces_nan": true,
+    "Te_q0_is_identity": true,
+    "Fi_theta0_is_identity": true,
+    "Fe_phi0_is_identity": true,
+    "Ti_full_dephasing_kills_x_coherence": "True",
+    "Te_full_dephasing_kills_z_coherence": "True"
+  },
+  "boundary": {
+    "Ti_q0.0_completeness": true,
+    "Ti_q1.0_completeness": true,
+    "Te_q0.0_completeness": true,
+    "Te_q1.0_completeness": true,
+    "Fi_2pi_identity": true,
+    "Fe_2pi_identity": true,
+    "Fi_4pi_exact_identity": true,
+    "Fe_4pi_exact_identity": true,
+    "Ti_tiny_q_near_identity": 5.000444502911705e-13,
+    "Te_tiny_q_near_identity": 5.000444502911705e-13,
+    "Ti_composed_trace": 1.000000000000222,
+    "Ti_composed_positive": true
+  }
+}

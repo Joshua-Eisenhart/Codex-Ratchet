@@ -1,0 +1,635 @@
+{
+  "name": "engine_8_terrains",
+  "timestamp": "2026-04-08T07:02:27.659018+00:00",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Autograd-enabled Lindblad evolution, density matrix ops"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "CPTP verification of evolved density matrices"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; z3 sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification of Lindblad trace-preservation"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) cross-check of Bloch vector extraction"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Terrain DAG ordering and topological sort verification"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Persistence homology of Bloch trajectories across terrains"
+    }
+  },
+  "positive": {
+    "T1_valid_density_matrices": {
+      "pass": true,
+      "details": {
+        "Se/Funnel(L)": "PASS",
+        "Se/Cannon(R)": "PASS",
+        "Ne/Vortex(L)": "PASS",
+        "Ne/Spiral(R)": "PASS",
+        "Ni/Pit(L)": "PASS",
+        "Ni/Source(R)": "PASS",
+        "Si/Hill(L)": "PASS",
+        "Si/Citadel(R)": "PASS"
+      }
+    },
+    "T2_Se_drives_to_mixed": {
+      "pass": true,
+      "details": {
+        "Se_L_|0>": {
+          "dist_to_I_over_2": 6.625790175645531e-14,
+          "converged": true
+        },
+        "Se_L_|1>": {
+          "dist_to_I_over_2": 6.625790175645531e-14,
+          "converged": true
+        },
+        "Se_L_|+>": {
+          "dist_to_I_over_2": 6.616760241656328e-14,
+          "converged": true
+        },
+        "Se_L_|+y>": {
+          "dist_to_I_over_2": 6.616760241656328e-14,
+          "converged": true
+        },
+        "Se_L_I/2": {
+          "dist_to_I_over_2": 0.0,
+          "converged": true
+        },
+        "Se_R_|0>": {
+          "dist_to_I_over_2": 6.625790175645531e-14,
+          "converged": true
+        },
+        "Se_R_|1>": {
+          "dist_to_I_over_2": 6.625790175645531e-14,
+          "converged": true
+        },
+        "Se_R_|+>": {
+          "dist_to_I_over_2": 6.616760241656328e-14,
+          "converged": true
+        },
+        "Se_R_|+y>": {
+          "dist_to_I_over_2": 6.616760241656328e-14,
+          "converged": true
+        },
+        "Se_R_I/2": {
+          "dist_to_I_over_2": 0.0,
+          "converged": true
+        }
+      }
+    },
+    "T3_Ne_preserves_purity": {
+      "pass": true,
+      "details": {
+        "Ne_L_|0>": {
+          "purity_initial": 1.0,
+          "purity_final": 1.0,
+          "preserved": true
+        },
+        "Ne_L_|1>": {
+          "purity_initial": 1.0,
+          "purity_final": 1.0,
+          "preserved": true
+        },
+        "Ne_L_|+>": {
+          "purity_initial": 1.0,
+          "purity_final": 0.9999999891526967,
+          "preserved": true
+        },
+        "Ne_L_|+y>": {
+          "purity_initial": 1.0,
+          "purity_final": 0.9999999891526967,
+          "preserved": true
+        },
+        "Ne_L_I/2": {
+          "purity_initial": 0.5,
+          "purity_final": 0.5,
+          "preserved": true
+        },
+        "Ne_R_|0>": {
+          "purity_initial": 1.0,
+          "purity_final": 1.0,
+          "preserved": true
+        },
+        "Ne_R_|1>": {
+          "purity_initial": 1.0,
+          "purity_final": 1.0,
+          "preserved": true
+        },
+        "Ne_R_|+>": {
+          "purity_initial": 1.0,
+          "purity_final": 0.9999999891526967,
+          "preserved": true
+        },
+        "Ne_R_|+y>": {
+          "purity_initial": 1.0,
+          "purity_final": 0.9999999891526967,
+          "preserved": true
+        },
+        "Ne_R_I/2": {
+          "purity_initial": 0.5,
+          "purity_final": 0.5,
+          "preserved": true
+        }
+      }
+    },
+    "T4_Ni_attractor": {
+      "pass": true,
+      "details": {
+        "Ni_L_|0>": {
+          "dist_to_target": 0.0,
+          "converged": true
+        },
+        "Ni_L_|1>": {
+          "dist_to_target": 5.270283677192788e-06,
+          "converged": true
+        },
+        "Ni_L_|+>": {
+          "dist_to_target": 0.0013650416888578666,
+          "converged": true
+        },
+        "Ni_L_|+y>": {
+          "dist_to_target": 0.0013650416888578666,
+          "converged": true
+        },
+        "Ni_L_I/2": {
+          "dist_to_target": 2.6351418385571413e-06,
+          "converged": true
+        },
+        "Ni_R_|0>": {
+          "dist_to_target": 5.270283677192788e-06,
+          "converged": true
+        },
+        "Ni_R_|1>": {
+          "dist_to_target": 0.0,
+          "converged": true
+        },
+        "Ni_R_|+>": {
+          "dist_to_target": 0.0013650416888578668,
+          "converged": true
+        },
+        "Ni_R_|+y>": {
+          "dist_to_target": 0.0013650416888578668,
+          "converged": true
+        },
+        "Ni_R_I/2": {
+          "dist_to_target": 2.6351418385571413e-06,
+          "converged": true
+        }
+      }
+    },
+    "T5_Si_preserves_subspaces": {
+      "pass": true,
+      "details": {
+        "Si_L_|0>_pop_preserved": true,
+        "Si_L_|1>_pop_preserved": true,
+        "Si_L_|+>_offdiag_decayed": true,
+        "Si_L_|+y>_offdiag_decayed": true,
+        "Si_R_|0>_pop_preserved": true,
+        "Si_R_|1>_pop_preserved": true,
+        "Si_R_|+>_offdiag_decayed": true,
+        "Si_R_|+y>_offdiag_decayed": true
+      }
+    },
+    "T6_chirality_distinct": {
+      "pass": true,
+      "details": {
+        "Se_mid_dist": 0.04213807658742312,
+        "Se_mid_distinct": true,
+        "Se_end_dist": 0.003361485717291107,
+        "Se_end_distinct": true,
+        "Ne_mid_dist": 0.8463675656967149,
+        "Ne_mid_distinct": true,
+        "Ne_end_dist": 1.356123804182267,
+        "Ne_end_distinct": true,
+        "Ni_mid_dist": 1.1060674104335517,
+        "Ni_mid_distinct": true,
+        "Ni_end_dist": 1.355026264268843,
+        "Ni_end_distinct": true,
+        "Si_mid_dist": 0.3113612089341004,
+        "Si_mid_distinct": true,
+        "Si_end_dist": 0.18353144853708137,
+        "Si_end_distinct": true
+      }
+    },
+    "T7_entropy_production": {
+      "pass": true,
+      "details": {
+        "Se/Funnel(L)": {
+          "mean_rate": 0.39954083065970847,
+          "max_rate": 3.8583288719919926,
+          "final_entropy": 0.998852076649321
+        },
+        "Se/Cannon(R)": {
+          "mean_rate": 0.39954083065970847,
+          "max_rate": 3.8583288719919926,
+          "final_entropy": 0.998852076649321
+        },
+        "Ne/Vortex(L)": {
+          "mean_rate": 0.18687220457396492,
+          "max_rate": 0.955638618264264,
+          "final_entropy": 0.4671805114349622
+        },
+        "Ne/Spiral(R)": {
+          "mean_rate": 0.18687220457396492,
+          "max_rate": 0.955638618264264,
+          "final_entropy": 0.4671805114349622
+        },
+        "Ni/Pit(L)": {
+          "mean_rate": 0.16614126512346997,
+          "max_rate": 1.1565774651656822,
+          "final_entropy": 0.41535316280872475
+        },
+        "Ni/Source(R)": {
+          "mean_rate": 0.16614126512346997,
+          "max_rate": 1.1565774651656822,
+          "final_entropy": 0.41535316280872475
+        },
+        "Si/Hill(L)": {
+          "mean_rate": 0.37456073105372445,
+          "max_rate": 1.6835234740059908,
+          "final_entropy": 0.936401827634361
+        },
+        "Si/Citadel(R)": {
+          "mean_rate": 0.37456073105372445,
+          "max_rate": 1.6835234740059908,
+          "final_entropy": 0.936401827634361
+        }
+      }
+    },
+    "T8_steady_states": {
+      "pass": true,
+      "details": {
+        "Se/Funnel(L)": {
+          "steady_bloch": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "steady_purity": 0.5,
+          "steady_entropy": 1.0,
+          "valid": true
+        },
+        "Se/Cannon(R)": {
+          "steady_bloch": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "steady_purity": 0.5,
+          "steady_entropy": 1.0,
+          "valid": true
+        },
+        "Ne/Vortex(L)": {
+          "steady_bloch": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "steady_purity": 0.5,
+          "steady_entropy": 1.0,
+          "valid": true
+        },
+        "Ne/Spiral(R)": {
+          "steady_bloch": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "steady_purity": 0.5,
+          "steady_entropy": 1.0,
+          "valid": true
+        },
+        "Ni/Pit(L)": {
+          "steady_bloch": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "steady_purity": 1.0,
+          "steady_entropy": 4.9828921423310435e-14,
+          "valid": true
+        },
+        "Ni/Source(R)": {
+          "steady_bloch": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "steady_purity": 1.0,
+          "steady_entropy": 4.9828921423310435e-14,
+          "valid": true
+        },
+        "Si/Hill(L)": {
+          "steady_bloch": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "steady_purity": 0.5,
+          "steady_entropy": 1.0,
+          "valid": true
+        },
+        "Si/Citadel(R)": {
+          "steady_bloch": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "steady_purity": 0.5,
+          "steady_entropy": 1.0,
+          "valid": true
+        }
+      }
+    },
+    "T9_sympy_symbolic": {
+      "pass": true,
+      "details": {
+        "Se_trace_preserving": true,
+        "Ne_trace_preserving": true,
+        "Ni_trace_preserving": true,
+        "Si_trace_preserving": true,
+        "Se_steady_I_over_2": true,
+        "Ni_L_steady_ket0": true,
+        "Ni_R_steady_ket1": true
+      }
+    },
+    "T10_z3_cptp": {
+      "pass": true,
+      "details": {
+        "Se/Funnel(L)": true,
+        "Se/Cannon(R)": true,
+        "Ne/Vortex(L)": true,
+        "Ne/Spiral(R)": true,
+        "Ni/Pit(L)": true,
+        "Ni/Source(R)": true,
+        "Si/Hill(L)": true,
+        "Si/Citadel(R)": true
+      }
+    },
+    "T11_clifford_crosscheck": {
+      "pass": true,
+      "details": {
+        "Se/Funnel(L)": {
+          "pauli_bloch": [
+            0.16273580293874504,
+            0.25344610023391384,
+            0.0
+          ],
+          "cl3_bloch": [
+            0.16273580293874504,
+            0.25344610023391384,
+            0.0
+          ],
+          "error": 0.0,
+          "match": "True"
+        },
+        "Se/Cannon(R)": {
+          "pauli_bloch": [
+            0.16273580293874504,
+            -0.25344610023391384,
+            0.0
+          ],
+          "cl3_bloch": [
+            0.16273580293874504,
+            -0.25344610023391384,
+            0.0
+          ],
+          "error": 0.0,
+          "match": "True"
+        },
+        "Ne/Vortex(L)": {
+          "pauli_bloch": [
+            0.5403023484834638,
+            0.8414709548667337,
+            0.0
+          ],
+          "cl3_bloch": [
+            0.5403023484834638,
+            0.8414709548667337,
+            0.0
+          ],
+          "error": 0.0,
+          "match": "True"
+        },
+        "Ne/Spiral(R)": {
+          "pauli_bloch": [
+            0.5403023484834638,
+            -0.8414709548667337,
+            0.0
+          ],
+          "cl3_bloch": [
+            0.5403023484834638,
+            -0.8414709548667337,
+            0.0
+          ],
+          "error": 0.0,
+          "match": "True"
+        }
+      }
+    },
+    "T12_terrain_dag": {
+      "pass": true,
+      "details": {
+        "is_dag": true,
+        "topological_order": [
+          "Se/Funnel(L)",
+          "Se/Cannon(R)",
+          "Ne/Vortex(L)",
+          "Ne/Spiral(R)",
+          "Ni/Pit(L)",
+          "Ni/Source(R)",
+          "Si/Hill(L)",
+          "Si/Citadel(R)"
+        ],
+        "num_nodes": 8,
+        "num_edges": 10
+      }
+    },
+    "T13_gudhi_persistence": {
+      "pass": true,
+      "details": {
+        "Se/Funnel(L)": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "total_persistence_by_dim": {
+            "0": 4.601650159588095
+          },
+          "num_features": 405
+        },
+        "Se/Cannon(R)": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "total_persistence_by_dim": {
+            "0": 4.601650159588095
+          },
+          "num_features": 405
+        },
+        "Ne/Vortex(L)": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "total_persistence_by_dim": {
+            "1": 0.950005209179759,
+            "0": 9.232818371536121
+          },
+          "num_features": 207
+        },
+        "Ne/Spiral(R)": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "total_persistence_by_dim": {
+            "1": 0.9500052091797591,
+            "0": 9.232818371536121
+          },
+          "num_features": 207
+        },
+        "Ni/Pit(L)": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "total_persistence_by_dim": {
+            "1": 0.03814767210905562,
+            "0": 8.63205477047488
+          },
+          "num_features": 406
+        },
+        "Ni/Source(R)": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "total_persistence_by_dim": {
+            "1": 0.03814767210905562,
+            "0": 8.63205477047488
+          },
+          "num_features": 406
+        },
+        "Si/Hill(L)": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "total_persistence_by_dim": {
+            "1": 0.026690472149630023,
+            "0": 6.894967847680061
+          },
+          "num_features": 206
+        },
+        "Si/Citadel(R)": {
+          "betti_numbers": [
+            1,
+            0
+          ],
+          "total_persistence_by_dim": {
+            "1": 0.026690472149630023,
+            "0": 6.894967847680061
+          },
+          "num_features": 206
+        }
+      }
+    }
+  },
+  "negative": {
+    "N1_wrong_chirality_detected": {
+      "pass": true,
+      "bloch_distance": 0.423493961957718
+    },
+    "N2_non_cptp_flagged": {
+      "pass": true
+    },
+    "N3_negative_gamma_detected": {
+      "pass": true,
+      "any_invalid_step": true
+    },
+    "N4_ne_wrong_H_sign": {
+      "pass": true,
+      "distance": 0.9639827371112885
+    },
+    "N5_ni_L_rejects_wrong_target": {
+      "pass": true,
+      "distance": 1.4142109272312566
+    }
+  },
+  "boundary": {
+    "B1_zero_gamma_unitary": {
+      "pass": true,
+      "purity_change": 1.0847303277827791e-08
+    },
+    "B2_large_gamma_fast_converge": {
+      "pass": true,
+      "dist": 0.09569650073192386
+    },
+    "B3_zero_H_pure_dissipation": {
+      "pass": true,
+      "dist": 5.270283677192788e-06
+    },
+    "B4_mixed_under_Ne_stays": {
+      "pass": true,
+      "dist": 0.0
+    },
+    "B5_autograd_through_lindblad": {
+      "pass": true,
+      "grad_norm": 1.648810197276585
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 23,
+    "total_pass": 23,
+    "all_pass": true,
+    "elapsed_seconds": 63.91866087913513
+  }
+}

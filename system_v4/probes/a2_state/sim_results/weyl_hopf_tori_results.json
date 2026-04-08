@@ -1,0 +1,270 @@
+{
+  "name": "Weyl spinors on nested Hopf tori",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd for Berry connection/curvature, Fubini-Study metric, all core computation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph structure in this sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- numerical sim, not proof"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- torch autograd replaces symbolic diff"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) cross-check: Bloch vector via Pauli expansion"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- Hopf fibration built from scratch"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "positive": {
+    "LR_orthogonal_everywhere": {
+      "max_|<L|R>|^2": 1.3056080936009393e-32,
+      "pass": true,
+      "description": "|<L|R>|^2 should be 0 at every grid point"
+    },
+    "bloch_antipodal": {
+      "max_|bv_L + bv_R|": 3.3766115072321297e-16,
+      "pass": true,
+      "description": "Bloch vectors of L and R must be antipodal (sum to zero)"
+    },
+    "chiral_currents_opposite": {
+      "max_|J_L + J_R|": 3.3306690738754696e-16,
+      "signs_opposite_in_interior": true,
+      "pass": true,
+      "description": "J_L and J_R must have equal magnitude, opposite sign"
+    },
+    "chern_number": {
+      "integral_F": -6.268863786304255,
+      "chern_number": -0.9977206591600973,
+      "pass": true,
+      "description": "Berry curvature integral / 2\u03c0 should have |Chern| = 1 (sign = orientation convention)"
+    },
+    "clifford_crosscheck": {
+      "max_bloch_diff": 0.0,
+      "pass": "True",
+      "description": "Bloch vector from torch matches Cl(3) Pauli expansion"
+    },
+    "observable_grids": {
+      "A_eta_sample": [
+        0.0,
+        -1.8050915446991944e-17,
+        2.3204855113536042e-17,
+        -1.8560092313885854e-17,
+        8.453209289020468e-18,
+        -8.780296089021216e-34,
+        -9.091431817176894e-18,
+        -1.4517037767962765e-17,
+        -2.907604448693472e-17,
+        2.0802743610094926e-17,
+        1.832158647680466e-33,
+        -3.020053074853068e-17,
+        -2.7020904720809852e-17,
+        -2.1220869546995707e-17,
+        1.0329509621239901e-17,
+        5.5177928667298224e-33,
+        -7.21513148495747e-18,
+        3.0779447853647766e-18,
+        -5.154622870565171e-17,
+        -1.2535586326606316e-17
+      ],
+      "A_xi_sample": [
+        -0.5412896727361661,
+        -0.5412896727361661,
+        -0.5412896727361661,
+        -0.5412896727361661,
+        -0.5412896727361661,
+        -0.5412896727361661,
+        -0.5412896727361662,
+        -0.541289672736166,
+        -0.541289672736166,
+        -0.5412896727361661,
+        -0.5412896727361661,
+        -0.5412896727361662,
+        -0.541289672736166,
+        -0.541289672736166,
+        -0.5412896727361661,
+        -0.5412896727361661,
+        -0.5412896727361662,
+        -0.5412896727361661,
+        -0.5412896727361661,
+        -0.5412896727361661
+      ],
+      "F_berry_sample": [
+        -0.9965844930066698,
+        -0.9965844930066697,
+        -0.99658449300667,
+        -0.99658449300667,
+        -0.9965844930066698,
+        -0.9965844930066698,
+        -0.99658449300667,
+        -0.9965844930066697,
+        -0.9965844930066698,
+        -0.9965844930066698,
+        -0.9965844930066698,
+        -0.99658449300667,
+        -0.9965844930066697,
+        -0.9965844930066698,
+        -0.9965844930066698,
+        -0.9965844930066698,
+        -0.99658449300667,
+        -0.9965844930066698,
+        -0.99658449300667,
+        -0.99658449300667
+      ],
+      "J_L_sample": [
+        -0.08257934547233226,
+        -0.08257934547233226,
+        -0.08257934547233226,
+        -0.08257934547233226,
+        -0.08257934547233226,
+        -0.08257934547233226,
+        -0.08257934547233237,
+        -0.08257934547233214,
+        -0.08257934547233214,
+        -0.08257934547233226,
+        -0.08257934547233226,
+        -0.08257934547233237,
+        -0.08257934547233214,
+        -0.08257934547233214,
+        -0.08257934547233226,
+        -0.08257934547233226,
+        -0.08257934547233237,
+        -0.08257934547233226,
+        -0.08257934547233226,
+        -0.08257934547233226
+      ],
+      "J_R_sample": [
+        0.08257934547233226,
+        0.08257934547233237,
+        0.08257934547233226,
+        0.08257934547233226,
+        0.08257934547233231,
+        0.08257934547233226,
+        0.08257934547233226,
+        0.08257934547233231,
+        0.0825793454723322,
+        0.08257934547233231,
+        0.08257934547233226,
+        0.08257934547233226,
+        0.08257934547233231,
+        0.0825793454723322,
+        0.08257934547233231,
+        0.08257934547233226,
+        0.08257934547233231,
+        0.08257934547233226,
+        0.08257934547233214,
+        0.08257934547233226
+      ],
+      "description": "Mid-slice (\u03b7 = \u03c0/4, Clifford torus) values across \u03be"
+    }
+  },
+  "negative": {
+    "nonnormalized_breaks_density": {
+      "max_bloch_norm": 4.000000000000001,
+      "pass": true,
+      "description": "Non-normalized spinors produce Bloch vectors with |r| > 1 (unphysical)"
+    },
+    "swap_LR_flips_chirality": {
+      "chirality_flipped": true,
+      "pass": true,
+      "description": "Swapping L and R definitions must flip the chiral current sign"
+    },
+    "random_pair_not_orthogonal": {
+      "any_nonzero_overlap": true,
+      "max_overlap": 17.776234606635487,
+      "pass": true,
+      "description": "Random spinor pairs should generically NOT be orthogonal"
+    }
+  },
+  "boundary": {
+    "eta_0_north_pole": {
+      "L_is_ket0": true,
+      "R_is_neg_ket1": true,
+      "L_diff": 0.0,
+      "R_diff": 0.0,
+      "pass": true,
+      "description": "At \u03b7=0: L=|0\u27e9 (north pole), R=-|1\u27e9 (south pole)"
+    },
+    "eta_pi2_south_pole": {
+      "L_is_phase_ket1": true,
+      "R_is_ket0": true,
+      "L_diff": 6.123233995736766e-17,
+      "R_diff": 6.123233995736766e-17,
+      "pass": true,
+      "description": "At \u03b7=\u03c0/2: L=e^{i\u03be}|1\u27e9 (south pole), R=|0\u27e9 (north pole)"
+    },
+    "eta_pi4_clifford_torus": {
+      "L_is_plus_state": true,
+      "L_diff": 1.1102230246251565e-16,
+      "pass": true,
+      "description": "At \u03b7=\u03c0/4, \u03be=0: L = |+\u27e9 (Clifford torus = maximal entanglement base)"
+    },
+    "max_mixed_entropy": {
+      "S_vn": 0.6931471805599453,
+      "expected": 0.6931471805599453,
+      "diff": 0.0,
+      "pass": true,
+      "description": "50/50 mix of orthogonal pure states gives S = ln(2)"
+    },
+    "fubini_study_clifford": {
+      "trace_g": 1.25,
+      "expected": 1.25,
+      "diff": 0.0,
+      "pass": true,
+      "description": "FS metric trace at Clifford torus: g_\u03b7\u03b7 + g_\u03be\u03be = 1 + sin\u00b2cos\u00b2 = 1.25"
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 13,
+    "passed": 13,
+    "failed": 0,
+    "all_pass": true
+  }
+}

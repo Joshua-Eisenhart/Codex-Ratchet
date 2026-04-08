@@ -1,0 +1,569 @@
+{
+  "name": "density_hopf_geometry",
+  "description": "Density matrices ON the Hopf torus: Bures metric, QFI, channels, I_c, Frechet mean",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Density matrices, autograd, Bures metric, QFI, channels, I_c"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor cross-check against torch torus spinors"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Frechet mean on SPD(2) manifold of torus density matrices"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    }
+  },
+  "positive": {
+    "bures_metric_positive_definite": {
+      "points_tested": 4,
+      "results": [
+        {
+          "point": {
+            "eta": 0.3,
+            "xi": 1.0,
+            "r": 0.3
+          },
+          "metric_tensor": [
+            [
+              0.6400000085449165,
+              1.865174681370263e-06,
+              -3.997913111675189e-05
+            ],
+            [
+              1.865174681370263e-06,
+              0.05101141731245207,
+              -3.1752378504279477e-06
+            ],
+            [
+              -3.997913111675189e-05,
+              -3.1752378504279477e-06,
+              4.760998217889778
+            ]
+          ],
+          "eigenvalues": [
+            0.051011417304404366,
+            0.6400000081629713,
+            4.76099821827977
+          ],
+          "positive_definite": true
+        },
+        {
+          "point": {
+            "eta": 0.7,
+            "xi": 2.5,
+            "r": 0.7
+          },
+          "metric_tensor": [
+            [
+              0.6399999197270745,
+              7.327471962526033e-07,
+              4.0045744498229396e-05
+            ],
+            [
+              7.327471962526033e-07,
+              0.155377621879893,
+              9.769962616701378e-06
+            ],
+            [
+              4.0045744498229396e-05,
+              9.769962616701378e-06,
+              4.762812166880792
+            ]
+          ],
+          "eigenvalues": [
+            0.15537762185806697,
+            0.6399999193392094,
+            4.762812167290482
+          ],
+          "positive_definite": true
+        },
+        {
+          "point": {
+            "eta": 1.0,
+            "xi": 0.5,
+            "r": 0.7
+          },
+          "metric_tensor": [
+            [
+              0.6399998309092325,
+              -1.3988810110276972e-06,
+              4.00679489587219e-05
+            ],
+            [
+              -1.3988810110276972e-06,
+              0.13229124462554864,
+              8.393286066166183e-06
+            ],
+            [
+              4.00679489587219e-05,
+              8.393286066166183e-06,
+              4.76281207806295
+            ]
+          ],
+          "eigenvalues": [
+            0.13229124460647998,
+            0.6399998305236836,
+            4.762812078467565
+          ],
+          "positive_definite": true
+        },
+        {
+          "point": {
+            "eta": 0.5,
+            "xi": 2.0,
+            "r": 0.35
+          },
+          "metric_tensor": [
+            [
+              0.36000002978653356,
+              1.021405182655144e-06,
+              -3.000932835561798e-05
+            ],
+            [
+              1.021405182655144e-06,
+              0.06372662397780005,
+              -5.295763827461997e-06
+            ],
+            [
+              -3.000932835561798e-05,
+              -5.295763827461997e-06,
+              4.39502512161738
+            ]
+          ],
+          "eigenvalues": [
+            0.06372662396780406,
+            0.3600000295668695,
+            4.395025121847039
+          ],
+          "positive_definite": true
+        }
+      ],
+      "all_positive_definite": true,
+      "pass": true
+    },
+    "qfi_geq_classical_fi": {
+      "results": [
+        {
+          "point": {
+            "eta": 0.3,
+            "xi": 1.0,
+            "r": 0.3
+          },
+          "qfi_rr": 38.087985743118224,
+          "classical_fi_r": 4.761904761904762,
+          "qfi_geq_cfi": true,
+          "qfi_eigenvalues": [
+            0.40809133843523493,
+            5.1200000653037705,
+            38.08798574623816
+          ]
+        },
+        {
+          "point": {
+            "eta": 0.7,
+            "xi": 2.5,
+            "r": 0.7
+          },
+          "qfi_rr": 38.10249733504634,
+          "classical_fi_r": 4.761904761904762,
+          "qfi_geq_cfi": true,
+          "qfi_eigenvalues": [
+            1.2430209748645358,
+            5.119999354713675,
+            38.10249733832386
+          ]
+        },
+        {
+          "point": {
+            "eta": 1.0,
+            "xi": 0.5,
+            "r": 0.7
+          },
+          "qfi_rr": 38.1024966245036,
+          "classical_fi_r": 4.761904761904762,
+          "qfi_geq_cfi": true,
+          "qfi_eigenvalues": [
+            1.0583299568518398,
+            5.119998644189469,
+            38.10249662774052
+          ]
+        },
+        {
+          "point": {
+            "eta": 0.5,
+            "xi": 2.0,
+            "r": 0.35
+          },
+          "qfi_rr": 35.16020097293904,
+          "classical_fi_r": 4.395604395604396,
+          "qfi_geq_cfi": true,
+          "qfi_eigenvalues": [
+            0.5098129917424324,
+            2.880000236534956,
+            35.16020097477631
+          ]
+        }
+      ],
+      "pass": true
+    },
+    "channel_causes_state_change": {
+      "results": [
+        {
+          "point": {
+            "eta": 0.5,
+            "xi": 1.0,
+            "r": 0.3,
+            "gamma": 0.3
+          },
+          "entropy_before": 0.8812908992306927,
+          "entropy_after_zdeph": 0.95271252910953,
+          "entropy_after_amp_damp": 0.9255508658235272,
+          "bures_distance_zdeph": 0.010863936995715306,
+          "bures_distance_amp_damp": 0.03457772807938353,
+          "coherence_before": 0.33658839392315887,
+          "coherence_after_zdeph": 0.13463535756926337,
+          "coherence_reduced": true,
+          "zdeph_moved_state": true,
+          "ad_moved_state": true
+        },
+        {
+          "point": {
+            "eta": 0.7,
+            "xi": 2.0,
+            "r": 0.7,
+            "gamma": 0.3
+          },
+          "entropy_before": 0.8812908992306925,
+          "entropy_after_zdeph": 0.9786270025352217,
+          "entropy_after_amp_damp": 0.8273877390733912,
+          "bures_distance_zdeph": 0.015219540081681693,
+          "bures_distance_amp_damp": 0.021067926286232774,
+          "coherence_before": 0.39417989199538406,
+          "coherence_after_zdeph": 0.1576719567981537,
+          "coherence_reduced": true,
+          "zdeph_moved_state": true,
+          "ad_moved_state": true
+        }
+      ],
+      "all_channels_moved_state": true,
+      "pass": true
+    },
+    "ic_landscape_structure": {
+      "n_points": 144,
+      "I_c_min": -9.997818549700237e-14,
+      "I_c_max": 0.960809557657291,
+      "I_c_range": 0.9608095576573911,
+      "has_structure": true,
+      "sample_values": [
+        {
+          "eta": 0.2,
+          "xi": 0.0,
+          "r": 0.3,
+          "I_c": 0.23985457104324473
+        },
+        {
+          "eta": 0.2,
+          "xi": 0.7853981633974483,
+          "r": 0.3,
+          "I_c": 0.14674150896063584
+        },
+        {
+          "eta": 0.2,
+          "xi": 1.5707963267948966,
+          "r": 0.3,
+          "I_c": -9.997818549700237e-14
+        },
+        {
+          "eta": 0.2,
+          "xi": 2.356194490192345,
+          "r": 0.3,
+          "I_c": 0.14674150896063584
+        },
+        {
+          "eta": 0.2,
+          "xi": 3.141592653589793,
+          "r": 0.3,
+          "I_c": 0.23985457104324473
+        },
+        {
+          "eta": 0.2,
+          "xi": 3.9269908169872414,
+          "r": 0.3,
+          "I_c": 0.14674150896063615
+        },
+        {
+          "eta": 0.2,
+          "xi": 4.71238898038469,
+          "r": 0.3,
+          "I_c": -9.997818549700237e-14
+        },
+        {
+          "eta": 0.2,
+          "xi": 5.497787143782138,
+          "r": 0.3,
+          "I_c": 0.14674150896063543
+        },
+        {
+          "eta": 0.4341592653589793,
+          "xi": 0.0,
+          "r": 0.3,
+          "I_c": 0.6733471087320712
+        },
+        {
+          "eta": 0.4341592653589793,
+          "xi": 0.7853981633974483,
+          "r": 0.3,
+          "I_c": 0.5185147902853757
+        },
+        {
+          "eta": 0.4341592653589793,
+          "xi": 1.5707963267948966,
+          "r": 0.3,
+          "I_c": -9.965784284662087e-14
+        },
+        {
+          "eta": 0.4341592653589793,
+          "xi": 2.356194490192345,
+          "r": 0.3,
+          "I_c": 0.5185147902853757
+        }
+      ],
+      "pass": true
+    },
+    "time_s": 0.04162001609802246
+  },
+  "negative": {
+    "bures_singular_r0": {
+      "metric_tensor": [
+        [
+          3.8416007708264033,
+          1.0746958878371515e-05,
+          -9.78550573904613e-05
+        ],
+        [
+          1.0746958878371515e-05,
+          0.6800341845192293,
+          -1.765254609153999e-05
+        ],
+        [
+          -9.78550573904613e-05,
+          -1.765254609153999e-05,
+          100.02253072460832
+        ]
+      ],
+      "eigenvalues": [
+        0.680034184479562,
+        3.841600770763379,
+        100.022530724711
+      ],
+      "condition_number": 147.08456281688163,
+      "max_eigenvalue": 100.022530724711,
+      "min_eigenvalue": 0.680034184479562,
+      "is_ill_conditioned": true,
+      "pass": true
+    },
+    "bures_singular_r1": {
+      "metric_tensor": [
+        [
+          3.841599549581076,
+          1.0791367799356522e-05,
+          9.876544027065393e-05
+        ],
+        [
+          1.0791367799356522e-05,
+          0.6800330076828232,
+          1.723066134218243e-05
+        ],
+        [
+          9.876544027065393e-05,
+          1.723066134218243e-05,
+          102.02267695103018
+        ]
+      ],
+      "eigenvalues": [
+        0.6800330076430732,
+        3.8415995495185795,
+        102.02267695113244
+      ],
+      "condition_number": 150.02606609454577,
+      "max_eigenvalue": 102.02267695113244,
+      "min_eigenvalue": 0.6800330076430732,
+      "is_ill_conditioned": true,
+      "pass": true
+    },
+    "separable_zero_ic": {
+      "I_c": -9.965784284662086e-14,
+      "near_zero": true,
+      "pass": true
+    },
+    "time_s": 0.0031349658966064453
+  },
+  "boundary": {
+    "clifford_torus_symmetry": {
+      "eta": 0.7853981633974483,
+      "r": 0.5,
+      "metrics": [
+        {
+          "xi": 0.0,
+          "metric_eigenvalues": [
+            0.0,
+            0.0,
+            4.0000001755302605
+          ],
+          "det_g": 0.0
+        },
+        {
+          "xi": 1.5707963267948966,
+          "metric_eigenvalues": [
+            0.0,
+            0.0,
+            4.0000001755302605
+          ],
+          "det_g": 0.0
+        },
+        {
+          "xi": 3.141592653589793,
+          "metric_eigenvalues": [
+            0.0,
+            0.0,
+            4.0000001755302605
+          ],
+          "det_g": 0.0
+        },
+        {
+          "xi": 4.71238898038469,
+          "metric_eigenvalues": [
+            0.0,
+            0.0,
+            4.0000001755302605
+          ],
+          "det_g": 0.0
+        }
+      ],
+      "det_mean": 0.0,
+      "det_std": 0.0,
+      "xi_independent": true,
+      "pass": true
+    },
+    "fidelity_self": {
+      "F(rho, rho)": 1.0,
+      "is_one": true,
+      "pass": true
+    },
+    "maximally_mixed_at_clifford": {
+      "trace": 1.0,
+      "purity": 0.5,
+      "entropy_bits": 1.0,
+      "is_maximally_mixed": true,
+      "entropy_is_1_bit": true,
+      "pass": true
+    },
+    "frechet_mean_on_torus": {
+      "n_points": 20,
+      "frechet_mean": [
+        [
+          0.4667158187690023,
+          0.0012436692716407338
+        ],
+        [
+          0.0012436692716407455,
+          0.48099145444514046
+        ]
+      ],
+      "euclidean_mean": [
+        [
+          0.4905952065281506,
+          -0.0029117474470217695
+        ],
+        [
+          -0.0029117474470217695,
+          0.5094048134718495
+        ]
+      ],
+      "frechet_euclidean_diff_norm": 0.03757764105347632,
+      "frechet_mean_is_spd": true,
+      "frechet_eigenvalues": [
+        0.4666082824579162,
+        0.4810989907562266
+      ],
+      "pass": true
+    },
+    "time_s": 0.010567188262939453
+  },
+  "clifford_cross_check": {
+    "eta": 0.5235987755982988,
+    "xi": 1.0471975511965976,
+    "spinor_clifford": [
+      "(0.9553190031279277+0j)",
+      "(0.14778836410782026+0.2559769554022334j)"
+    ],
+    "spinor_torch": [
+      "(0.8660254037844387+0j)",
+      "(0.25+0.43301270189221924j)"
+    ],
+    "overlap_magnitude": 0.9751188895346313,
+    "rotor_components": {
+      "scalar": 0.8365163037378079,
+      "e12": 0.0,
+      "e23": 0.12940952255126034,
+      "e13": 0.2241438680420134
+    },
+    "pass": "True"
+  },
+  "classification": "canonical",
+  "summary": {
+    "tests_passed": 12,
+    "tests_total": 12,
+    "all_pass": true
+  }
+}

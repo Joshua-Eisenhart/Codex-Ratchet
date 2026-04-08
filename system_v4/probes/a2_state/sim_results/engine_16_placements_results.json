@@ -1,0 +1,778 @@
+{
+  "name": "engine_16_placements",
+  "description": "All 16 (terrain, loop) placement tuples with spinor evolution on Hopf torus",
+  "timestamp": "2026-04-08T07:01:50Z",
+  "elapsed_seconds": 0.496,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Spinor evolution, density matrix computation, autograd for Berry phase"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "available but not needed for this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "CPTP verification at each step via Choi positivity"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification of inner-loop stationarity condition"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor representation of terrain generators"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "available but not needed for this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "available but not needed for this sim"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Persistence diagrams across placement evolution trajectories"
+    }
+  },
+  "sympy_stationarity_proof": {
+    "inner_loop_stationary": true,
+    "drho_00_du": "0",
+    "drho_01_du": "0",
+    "drho_10_du": "0",
+    "drho_11_du": "0"
+  },
+  "pytorch_verification": {
+    "inner_loop_grad_zero": true,
+    "inner_grad_value": 0.0,
+    "outer_loop_grad_nonzero": true,
+    "outer_grad_value": -0.9092974268,
+    "pytorch_confirms_distinction": true
+  },
+  "positive": {
+    "Se_f__inner": {
+      "terrain_name": "Se_f",
+      "terrain_idx": 0,
+      "terrain_topo": "Se",
+      "terrain_loop": "fiber",
+      "evolution_loop": "inner",
+      "placement_label": "Se_f__inner",
+      "loop_max_density_drift": 0.0,
+      "loop_density_stationary": true,
+      "combined_density_drift": 0.0,
+      "combined_max_density_drift": 1.4142135624,
+      "trace_distance_first_last": 0.0,
+      "bloch_drift": 0.0,
+      "bloch_max_drift": 2.0,
+      "entropy_range": 0.0,
+      "entropy_initial": -0.0,
+      "entropy_final": -0.0,
+      "berry_phase_pure_loop": -0.0,
+      "berry_phase_combined": 3.1415926536,
+      "chiral_drift": 0.0,
+      "chiral_mean": 0.0,
+      "persistence": {
+        "betti_0": 1,
+        "betti_1": 0,
+        "num_finite_pairs": 51,
+        "max_persistence": 1.62703232
+      },
+      "cptp": {
+        "label": "Se_f_inner",
+        "trace_preservation_error": 0.0,
+        "choi_min_eigenvalue": -0.0,
+        "cptp_valid": true,
+        "z3_status": "sat"
+      },
+      "density_stationary": true,
+      "density_traversing": false
+    },
+    "Se_f__outer": {
+      "terrain_name": "Se_f",
+      "terrain_idx": 0,
+      "terrain_topo": "Se",
+      "terrain_loop": "fiber",
+      "evolution_loop": "outer",
+      "placement_label": "Se_f__outer",
+      "loop_max_density_drift": 1.411422934954,
+      "loop_density_stationary": false,
+      "combined_density_drift": 0.0,
+      "combined_max_density_drift": 1.4142135624,
+      "trace_distance_first_last": 0.0,
+      "bloch_drift": 0.0,
+      "bloch_max_drift": 2.0,
+      "entropy_range": 0.0,
+      "entropy_initial": -0.0,
+      "entropy_final": -0.0,
+      "berry_phase_pure_loop": -0.0,
+      "berry_phase_combined": 3.1415926536,
+      "chiral_drift": 0.0,
+      "chiral_mean": 0.0,
+      "persistence": {
+        "betti_0": 1,
+        "betti_1": 0,
+        "num_finite_pairs": 51,
+        "max_persistence": 1.62703232
+      },
+      "cptp": {
+        "label": "Se_f_outer",
+        "trace_preservation_error": 0.0,
+        "choi_min_eigenvalue": -0.0,
+        "cptp_valid": true,
+        "z3_status": "sat"
+      },
+      "density_stationary": false,
+      "density_traversing": true
+    },
+    "Si_f__inner": {
+      "terrain_name": "Si_f",
+      "terrain_idx": 1,
+      "terrain_topo": "Si",
+      "terrain_loop": "fiber",
+      "evolution_loop": "inner",
+      "placement_label": "Si_f__inner",
+      "loop_max_density_drift": 0.0,
+      "loop_density_stationary": true,
+      "combined_density_drift": 0.0,
+      "combined_max_density_drift": 1.4142135624,
+      "trace_distance_first_last": 0.0,
+      "bloch_drift": 0.0,
+      "bloch_max_drift": 2.0,
+      "entropy_range": 0.0,
+      "entropy_initial": -0.0,
+      "entropy_final": -0.0,
+      "berry_phase_pure_loop": -0.0,
+      "berry_phase_combined": -3.1415926536,
+      "chiral_drift": 0.0,
+      "chiral_mean": 0.0,
+      "persistence": {
+        "betti_0": 1,
+        "betti_1": 0,
+        "num_finite_pairs": 51,
+        "max_persistence": 1.62703232
+      },
+      "cptp": {
+        "label": "Si_f_inner",
+        "trace_preservation_error": 0.0,
+        "choi_min_eigenvalue": -0.0,
+        "cptp_valid": true,
+        "z3_status": "sat"
+      },
+      "density_stationary": true,
+      "density_traversing": false
+    },
+    "Si_f__outer": {
+      "terrain_name": "Si_f",
+      "terrain_idx": 1,
+      "terrain_topo": "Si",
+      "terrain_loop": "fiber",
+      "evolution_loop": "outer",
+      "placement_label": "Si_f__outer",
+      "loop_max_density_drift": 1.411422934954,
+      "loop_density_stationary": false,
+      "combined_density_drift": 0.0,
+      "combined_max_density_drift": 1.4142135624,
+      "trace_distance_first_last": 0.0,
+      "bloch_drift": 0.0,
+      "bloch_max_drift": 2.0,
+      "entropy_range": 0.0,
+      "entropy_initial": -0.0,
+      "entropy_final": -0.0,
+      "berry_phase_pure_loop": -0.0,
+      "berry_phase_combined": 3.1415926536,
+      "chiral_drift": 0.0,
+      "chiral_mean": 0.0,
+      "persistence": {
+        "betti_0": 1,
+        "betti_1": 0,
+        "num_finite_pairs": 51,
+        "max_persistence": 1.62703232
+      },
+      "cptp": {
+        "label": "Si_f_outer",
+        "trace_preservation_error": 0.0,
+        "choi_min_eigenvalue": -0.0,
+        "cptp_valid": true,
+        "z3_status": "sat"
+      },
+      "density_stationary": false,
+      "density_traversing": true
+    },
+    "Ne_f__inner": {
+      "terrain_name": "Ne_f",
+      "terrain_idx": 2,
+      "terrain_topo": "Ne",
+      "terrain_loop": "fiber",
+      "evolution_loop": "inner",
+      "placement_label": "Ne_f__inner",
+      "loop_max_density_drift": 0.0,
+      "loop_density_stationary": true,
+      "combined_density_drift": 0.0,
+      "combined_max_density_drift": 1.4142135624,
+      "trace_distance_first_last": 0.0,
+      "bloch_drift": 0.0,
+      "bloch_max_drift": 2.0,
+      "entropy_range": 0.0,
+      "entropy_initial": -0.0,
+      "entropy_final": -0.0,
+      "berry_phase_pure_loop": -0.0,
+      "berry_phase_combined": 3.1415926536,
+      "chiral_drift": 0.0,
+      "chiral_mean": 0.0,
+      "persistence": {
+        "betti_0": 1,
+        "betti_1": 0,
+        "num_finite_pairs": 51,
+        "max_persistence": 1.62703232
+      },
+      "cptp": {
+        "label": "Ne_f_inner",
+        "trace_preservation_error": 0.0,
+        "choi_min_eigenvalue": -0.0,
+        "cptp_valid": true,
+        "z3_status": "sat"
+      },
+      "density_stationary": true,
+      "density_traversing": false
+    },
+    "Ne_f__outer": {
+      "terrain_name": "Ne_f",
+      "terrain_idx": 2,
+      "terrain_topo": "Ne",
+      "terrain_loop": "fiber",
+      "evolution_loop": "outer",
+      "placement_label": "Ne_f__outer",
+      "loop_max_density_drift": 1.411422934954,
+      "loop_density_stationary": false,
+      "combined_density_drift": 0.0,
+      "combined_max_density_drift": 1.4142135624,
+      "trace_distance_first_last": 0.0,
+      "bloch_drift": 0.0,
+      "bloch_max_drift": 2.0,
+      "entropy_range": 0.0,
+      "entropy_initial": -0.0,
+      "entropy_final": -0.0,
+      "berry_phase_pure_loop": -0.0,
+      "berry_phase_combined": -3.1415926536,
+      "chiral_drift": 0.0,
+      "chiral_mean": 0.0,
+      "persistence": {
+        "betti_0": 1,
+        "betti_1": 0,
+        "num_finite_pairs": 53,
+        "max_persistence": 1.16586143
+      },
+      "cptp": {
+        "label": "Ne_f_outer",
+        "trace_preservation_error": 0.0,
+        "choi_min_eigenvalue": -0.0,
+        "cptp_valid": true,
+        "z3_status": "sat"
+      },
+      "density_stationary": false,
+      "density_traversing": true
+    },
+    "Ni_f__inner": {
+      "terrain_name": "Ni_f",
+      "terrain_idx": 3,
+      "terrain_topo": "Ni",
+      "terrain_loop": "fiber",
+      "evolution_loop": "inner",
+      "placement_label": "Ni_f__inner",
+      "loop_max_density_drift": 0.0,
+      "loop_density_stationary": true,
+      "combined_density_drift": 0.0,
+      "combined_max_density_drift": 1.4142135624,
+      "trace_distance_first_last": 0.0,
+      "bloch_drift": 0.0,
+      "bloch_max_drift": 2.0,
+      "entropy_range": 0.0,
+      "entropy_initial": -0.0,
+      "entropy_final": -0.0,
+      "berry_phase_pure_loop": -0.0,
+      "berry_phase_combined": 3.1415926536,
+      "chiral_drift": 0.0,
+      "chiral_mean": 0.0,
+      "persistence": {
+        "betti_0": 1,
+        "betti_1": 0,
+        "num_finite_pairs": 51,
+        "max_persistence": 1.62703232
+      },
+      "cptp": {
+        "label": "Ni_f_inner",
+        "trace_preservation_error": 0.0,
+        "choi_min_eigenvalue": -0.0,
+        "cptp_valid": true,
+        "z3_status": "sat"
+      },
+      "density_stationary": true,
+      "density_traversing": false
+    },
+    "Ni_f__outer": {
+      "terrain_name": "Ni_f",
+      "terrain_idx": 3,
+      "terrain_topo": "Ni",
+      "terrain_loop": "fiber",
+      "evolution_loop": "outer",
+      "placement_label": "Ni_f__outer",
+      "loop_max_density_drift": 1.411422934954,
+      "loop_density_stationary": false,
+      "combined_density_drift": 0.0,
+      "combined_max_density_drift": 1.4142135624,
+      "trace_distance_first_last": 0.0,
+      "bloch_drift": 0.0,
+      "bloch_max_drift": 2.0,
+      "entropy_range": 0.0,
+      "entropy_initial": -0.0,
+      "entropy_final": -0.0,
+      "berry_phase_pure_loop": -0.0,
+      "berry_phase_combined": -3.1415926536,
+      "chiral_drift": 0.0,
+      "chiral_mean": 0.0,
+      "persistence": {
+        "betti_0": 1,
+        "betti_1": 0,
+        "num_finite_pairs": 53,
+        "max_persistence": 1.16586143
+      },
+      "cptp": {
+        "label": "Ni_f_outer",
+        "trace_preservation_error": 0.0,
+        "choi_min_eigenvalue": -0.0,
+        "cptp_valid": true,
+        "z3_status": "sat"
+      },
+      "density_stationary": false,
+      "density_traversing": true
+    },
+    "Se_b__inner": {
+      "terrain_name": "Se_b",
+      "terrain_idx": 4,
+      "terrain_topo": "Se",
+      "terrain_loop": "base",
+      "evolution_loop": "inner",
+      "placement_label": "Se_b__inner",
+      "loop_max_density_drift": 0.0,
+      "loop_density_stationary": true,
+      "combined_density_drift": 0.0,
+      "combined_max_density_drift": 1.4142135624,
+      "trace_distance_first_last": 0.0,
+      "bloch_drift": 0.0,
+      "bloch_max_drift": 2.0,
+      "entropy_range": 0.0,
+      "entropy_initial": -0.0,
+      "entropy_final": -0.0,
+      "berry_phase_pure_loop": -0.0,
+      "berry_phase_combined": 3.1415926536,
+      "chiral_drift": 0.0,
+      "chiral_mean": 0.0,
+      "persistence": {
+        "betti_0": 1,
+        "betti_1": 0,
+        "num_finite_pairs": 51,
+        "max_persistence": 1.62703232
+      },
+      "cptp": {
+        "label": "Se_b_inner",
+        "trace_preservation_error": 0.0,
+        "choi_min_eigenvalue": -0.0,
+        "cptp_valid": true,
+        "z3_status": "sat"
+      },
+      "density_stationary": true,
+      "density_traversing": false
+    },
+    "Se_b__outer": {
+      "terrain_name": "Se_b",
+      "terrain_idx": 4,
+      "terrain_topo": "Se",
+      "terrain_loop": "base",
+      "evolution_loop": "outer",
+      "placement_label": "Se_b__outer",
+      "loop_max_density_drift": 1.411422934954,
+      "loop_density_stationary": false,
+      "combined_density_drift": 0.0,
+      "combined_max_density_drift": 1.4142135624,
+      "trace_distance_first_last": 0.0,
+      "bloch_drift": 0.0,
+      "bloch_max_drift": 2.0,
+      "entropy_range": 0.0,
+      "entropy_initial": -0.0,
+      "entropy_final": -0.0,
+      "berry_phase_pure_loop": -0.0,
+      "berry_phase_combined": 3.1415926536,
+      "chiral_drift": 0.0,
+      "chiral_mean": 0.0,
+      "persistence": {
+        "betti_0": 1,
+        "betti_1": 0,
+        "num_finite_pairs": 51,
+        "max_persistence": 1.62703232
+      },
+      "cptp": {
+        "label": "Se_b_outer",
+        "trace_preservation_error": 0.0,
+        "choi_min_eigenvalue": -0.0,
+        "cptp_valid": true,
+        "z3_status": "sat"
+      },
+      "density_stationary": false,
+      "density_traversing": true
+    },
+    "Si_b__inner": {
+      "terrain_name": "Si_b",
+      "terrain_idx": 5,
+      "terrain_topo": "Si",
+      "terrain_loop": "base",
+      "evolution_loop": "inner",
+      "placement_label": "Si_b__inner",
+      "loop_max_density_drift": 0.0,
+      "loop_density_stationary": true,
+      "combined_density_drift": 0.0,
+      "combined_max_density_drift": 1.4142135624,
+      "trace_distance_first_last": 0.0,
+      "bloch_drift": 0.0,
+      "bloch_max_drift": 2.0,
+      "entropy_range": 0.0,
+      "entropy_initial": -0.0,
+      "entropy_final": -0.0,
+      "berry_phase_pure_loop": -0.0,
+      "berry_phase_combined": -3.1415926536,
+      "chiral_drift": 0.0,
+      "chiral_mean": 0.0,
+      "persistence": {
+        "betti_0": 1,
+        "betti_1": 0,
+        "num_finite_pairs": 51,
+        "max_persistence": 1.62703232
+      },
+      "cptp": {
+        "label": "Si_b_inner",
+        "trace_preservation_error": 0.0,
+        "choi_min_eigenvalue": -0.0,
+        "cptp_valid": true,
+        "z3_status": "sat"
+      },
+      "density_stationary": true,
+      "density_traversing": false
+    },
+    "Si_b__outer": {
+      "terrain_name": "Si_b",
+      "terrain_idx": 5,
+      "terrain_topo": "Si",
+      "terrain_loop": "base",
+      "evolution_loop": "outer",
+      "placement_label": "Si_b__outer",
+      "loop_max_density_drift": 1.411422934954,
+      "loop_density_stationary": false,
+      "combined_density_drift": 0.0,
+      "combined_max_density_drift": 1.4142135624,
+      "trace_distance_first_last": 0.0,
+      "bloch_drift": 0.0,
+      "bloch_max_drift": 2.0,
+      "entropy_range": 0.0,
+      "entropy_initial": -0.0,
+      "entropy_final": -0.0,
+      "berry_phase_pure_loop": -0.0,
+      "berry_phase_combined": 3.1415926536,
+      "chiral_drift": 0.0,
+      "chiral_mean": 0.0,
+      "persistence": {
+        "betti_0": 1,
+        "betti_1": 0,
+        "num_finite_pairs": 51,
+        "max_persistence": 1.62703232
+      },
+      "cptp": {
+        "label": "Si_b_outer",
+        "trace_preservation_error": 0.0,
+        "choi_min_eigenvalue": -0.0,
+        "cptp_valid": true,
+        "z3_status": "sat"
+      },
+      "density_stationary": false,
+      "density_traversing": true
+    },
+    "Ne_b__inner": {
+      "terrain_name": "Ne_b",
+      "terrain_idx": 6,
+      "terrain_topo": "Ne",
+      "terrain_loop": "base",
+      "evolution_loop": "inner",
+      "placement_label": "Ne_b__inner",
+      "loop_max_density_drift": 0.0,
+      "loop_density_stationary": true,
+      "combined_density_drift": 0.0,
+      "combined_max_density_drift": 1.4142135624,
+      "trace_distance_first_last": 0.0,
+      "bloch_drift": 0.0,
+      "bloch_max_drift": 2.0,
+      "entropy_range": 0.0,
+      "entropy_initial": -0.0,
+      "entropy_final": -0.0,
+      "berry_phase_pure_loop": -0.0,
+      "berry_phase_combined": 3.1415926536,
+      "chiral_drift": 0.0,
+      "chiral_mean": 0.0,
+      "persistence": {
+        "betti_0": 1,
+        "betti_1": 0,
+        "num_finite_pairs": 51,
+        "max_persistence": 1.62703232
+      },
+      "cptp": {
+        "label": "Ne_b_inner",
+        "trace_preservation_error": 0.0,
+        "choi_min_eigenvalue": -0.0,
+        "cptp_valid": true,
+        "z3_status": "sat"
+      },
+      "density_stationary": true,
+      "density_traversing": false
+    },
+    "Ne_b__outer": {
+      "terrain_name": "Ne_b",
+      "terrain_idx": 6,
+      "terrain_topo": "Ne",
+      "terrain_loop": "base",
+      "evolution_loop": "outer",
+      "placement_label": "Ne_b__outer",
+      "loop_max_density_drift": 1.411422934954,
+      "loop_density_stationary": false,
+      "combined_density_drift": 0.0,
+      "combined_max_density_drift": 1.4142135624,
+      "trace_distance_first_last": 0.0,
+      "bloch_drift": 0.0,
+      "bloch_max_drift": 2.0,
+      "entropy_range": 0.0,
+      "entropy_initial": -0.0,
+      "entropy_final": -0.0,
+      "berry_phase_pure_loop": -0.0,
+      "berry_phase_combined": -3.1415926536,
+      "chiral_drift": 0.0,
+      "chiral_mean": 0.0,
+      "persistence": {
+        "betti_0": 1,
+        "betti_1": 0,
+        "num_finite_pairs": 53,
+        "max_persistence": 1.16586143
+      },
+      "cptp": {
+        "label": "Ne_b_outer",
+        "trace_preservation_error": 0.0,
+        "choi_min_eigenvalue": -0.0,
+        "cptp_valid": true,
+        "z3_status": "sat"
+      },
+      "density_stationary": false,
+      "density_traversing": true
+    },
+    "Ni_b__inner": {
+      "terrain_name": "Ni_b",
+      "terrain_idx": 7,
+      "terrain_topo": "Ni",
+      "terrain_loop": "base",
+      "evolution_loop": "inner",
+      "placement_label": "Ni_b__inner",
+      "loop_max_density_drift": 0.0,
+      "loop_density_stationary": true,
+      "combined_density_drift": 0.0,
+      "combined_max_density_drift": 1.4142135624,
+      "trace_distance_first_last": 0.0,
+      "bloch_drift": 0.0,
+      "bloch_max_drift": 2.0,
+      "entropy_range": 0.0,
+      "entropy_initial": -0.0,
+      "entropy_final": -0.0,
+      "berry_phase_pure_loop": -0.0,
+      "berry_phase_combined": 3.1415926536,
+      "chiral_drift": 0.0,
+      "chiral_mean": 0.0,
+      "persistence": {
+        "betti_0": 1,
+        "betti_1": 0,
+        "num_finite_pairs": 51,
+        "max_persistence": 1.62703232
+      },
+      "cptp": {
+        "label": "Ni_b_inner",
+        "trace_preservation_error": 0.0,
+        "choi_min_eigenvalue": -0.0,
+        "cptp_valid": true,
+        "z3_status": "sat"
+      },
+      "density_stationary": true,
+      "density_traversing": false
+    },
+    "Ni_b__outer": {
+      "terrain_name": "Ni_b",
+      "terrain_idx": 7,
+      "terrain_topo": "Ni",
+      "terrain_loop": "base",
+      "evolution_loop": "outer",
+      "placement_label": "Ni_b__outer",
+      "loop_max_density_drift": 1.411422934954,
+      "loop_density_stationary": false,
+      "combined_density_drift": 0.0,
+      "combined_max_density_drift": 1.4142135624,
+      "trace_distance_first_last": 0.0,
+      "bloch_drift": 0.0,
+      "bloch_max_drift": 2.0,
+      "entropy_range": 0.0,
+      "entropy_initial": -0.0,
+      "entropy_final": -0.0,
+      "berry_phase_pure_loop": -0.0,
+      "berry_phase_combined": -3.1415926536,
+      "chiral_drift": 0.0,
+      "chiral_mean": 0.0,
+      "persistence": {
+        "betti_0": 1,
+        "betti_1": 0,
+        "num_finite_pairs": 53,
+        "max_persistence": 1.16586143
+      },
+      "cptp": {
+        "label": "Ni_b_outer",
+        "trace_preservation_error": 0.0,
+        "choi_min_eigenvalue": -0.0,
+        "cptp_valid": true,
+        "z3_status": "sat"
+      },
+      "density_stationary": false,
+      "density_traversing": true
+    },
+    "__summary": {
+      "total_placements": 16,
+      "inner_all_stationary": true,
+      "outer_all_traversing": true,
+      "all_cptp_valid": true,
+      "all_valid_states": true,
+      "inner_loop_max_drifts": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "outer_loop_max_drifts": [
+        1.411422934954,
+        1.411422934954,
+        1.411422934954,
+        1.411422934954,
+        1.411422934954,
+        1.411422934954,
+        1.411422934954,
+        1.411422934954
+      ]
+    }
+  },
+  "negative": {
+    "neg_broken_inner_loop_not_stationary": {
+      "passed": true,
+      "max_drift": 1.411422935,
+      "description": "Inner loop with chi advancement must NOT be stationary"
+    },
+    "neg_non_unitary_fails_cptp": {
+      "passed": true,
+      "cptp_result": {
+        "label": "non_unitary_terrain",
+        "trace_preservation_error": 3.092329219213,
+        "choi_min_eigenvalue": 0.0,
+        "cptp_valid": false,
+        "z3_status": "unsat"
+      },
+      "description": "Non-unitary operator must fail CPTP verification"
+    },
+    "neg_degenerate_torus_pure_state": {
+      "passed": true,
+      "entropy": -0.0,
+      "description": "eta=0 must give pure state (zero entropy, one component vanishes)"
+    },
+    "neg_clifford_cos2eta_zero": {
+      "passed": "True",
+      "cos2eta": 0.0,
+      "description": "At Clifford torus cos(2*eta)=0, outer loop phi-advance vanishes. Density still traverses because chi alone changes relative phase."
+    }
+  },
+  "boundary": {
+    "bound_fine_resolution_inner_stationary": {
+      "passed": true,
+      "max_drift": 0.0,
+      "n_steps": 500
+    },
+    "bound_berry_phase_accumulation": {
+      "passed": true,
+      "phases": [
+        {
+          "n_cycles": 1,
+          "berry_phase": -0.0
+        },
+        {
+          "n_cycles": 2,
+          "berry_phase": -0.0
+        },
+        {
+          "n_cycles": 5,
+          "berry_phase": -0.0
+        },
+        {
+          "n_cycles": 10,
+          "berry_phase": -0.0
+        }
+      ]
+    },
+    "bound_degenerate_near_zero": {
+      "passed": true,
+      "entropy": -0.0,
+      "eta": 1e-08
+    },
+    "bound_degenerate_near_pi_half": {
+      "passed": true,
+      "entropy": -0.0,
+      "eta": 1.5707963167948966
+    },
+    "bound_trace_preservation_Se_f": {
+      "passed": true,
+      "trace": 1.0
+    },
+    "bound_trace_preservation_Se_b": {
+      "passed": true,
+      "trace": 1.0
+    }
+  },
+  "classification": "canonical"
+}

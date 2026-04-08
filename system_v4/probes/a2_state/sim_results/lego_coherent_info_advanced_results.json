@@ -1,0 +1,927 @@
+{
+  "name": "Advanced Coherent Information -- Axis 0 Foundation",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core compute: density matrices, entropy, autograd gradients"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Prove sign constraints: S(A|B) can be negative, I(A:B) >= 0"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification of entropy identities"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "positive": {
+    "T1_core_coherent_info": {
+      "product_01": {
+        "S_A": 3.986313713864835e-11,
+        "S_B": 3.986313713864835e-11,
+        "S_AB": 1.1958941141594506e-10,
+        "I_c_A_to_B": -7.972627427729671e-11,
+        "I_c_B_to_A": -7.972627427729671e-11,
+        "S_A_given_B": 7.972627427729671e-11,
+        "I_AB_mutual": -3.9863137138648357e-11,
+        "asymmetry": 0.0,
+        "identity_S_cond_eq_neg_Ic": true,
+        "identity_sum_Ic_eq_MI_minus_SAB": true
+      },
+      "bell_phi_plus": {
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_AB": 1.1958973175859543e-10,
+        "I_c_A_to_B": 0.9999999998804102,
+        "I_c_B_to_A": 0.9999999998804102,
+        "S_A_given_B": -0.9999999998804102,
+        "I_AB_mutual": 1.9999999998804103,
+        "asymmetry": 0.0,
+        "identity_S_cond_eq_neg_Ic": true,
+        "identity_sum_Ic_eq_MI_minus_SAB": true
+      },
+      "werner_p0.25": {
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_AB": 1.8802408149441479,
+        "I_c_A_to_B": -0.8802408149441479,
+        "I_c_B_to_A": -0.8802408149441479,
+        "S_A_given_B": 0.8802408149441479,
+        "I_AB_mutual": 0.11975918505585215,
+        "asymmetry": 0.0,
+        "identity_S_cond_eq_neg_Ic": true,
+        "identity_sum_Ic_eq_MI_minus_SAB": true
+      },
+      "werner_p0.50": {
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_AB": 1.5487949406953987,
+        "I_c_A_to_B": -0.5487949406953987,
+        "I_c_B_to_A": -0.5487949406953987,
+        "S_A_given_B": 0.5487949406953987,
+        "I_AB_mutual": 0.4512050593046013,
+        "asymmetry": 0.0,
+        "identity_S_cond_eq_neg_Ic": true,
+        "identity_sum_Ic_eq_MI_minus_SAB": true
+      },
+      "werner_p0.75": {
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_AB": 0.9933927290103628,
+        "I_c_A_to_B": 0.006607270989637204,
+        "I_c_B_to_A": 0.006607270989637204,
+        "S_A_given_B": -0.006607270989637204,
+        "I_AB_mutual": 1.0066072709896372,
+        "asymmetry": 0.0,
+        "identity_S_cond_eq_neg_Ic": true,
+        "identity_sum_Ic_eq_MI_minus_SAB": true
+      },
+      "werner_p1.00": {
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_AB": 1.1958973175859543e-10,
+        "I_c_A_to_B": 0.9999999998804102,
+        "I_c_B_to_A": 0.9999999998804102,
+        "S_A_given_B": -0.9999999998804102,
+        "I_AB_mutual": 1.9999999998804103,
+        "asymmetry": 0.0,
+        "identity_S_cond_eq_neg_Ic": true,
+        "identity_sum_Ic_eq_MI_minus_SAB": true
+      },
+      "random_seed7": {
+        "S_A": 0.5619624220110748,
+        "S_B": 0.5619624220110748,
+        "S_AB": 1.1958941141594506e-10,
+        "I_c_A_to_B": 0.5619624218914854,
+        "I_c_B_to_A": 0.5619624218914854,
+        "S_A_given_B": -0.5619624218914854,
+        "I_AB_mutual": 1.1239248439025602,
+        "asymmetry": 0.0,
+        "identity_S_cond_eq_neg_Ic": true,
+        "identity_sum_Ic_eq_MI_minus_SAB": true
+      },
+      "random_seed99": {
+        "S_A": 0.3691853797157387,
+        "S_B": 0.3691853797157387,
+        "S_AB": 1.1958957158727025e-10,
+        "I_c_A_to_B": 0.36918537959614917,
+        "I_c_B_to_A": 0.36918537959614917,
+        "S_A_given_B": -0.36918537959614917,
+        "I_AB_mutual": 0.7383707593118879,
+        "asymmetry": 0.0,
+        "identity_S_cond_eq_neg_Ic": true,
+        "identity_sum_Ic_eq_MI_minus_SAB": true
+      },
+      "asymmetric_mixed_seed13": {
+        "S_A": 0.8522511200390874,
+        "S_B": 0.98122963328748,
+        "S_AB": 0.9147785511832927,
+        "I_c_A_to_B": 0.06645108210418738,
+        "I_c_B_to_A": -0.06252743114420523,
+        "S_A_given_B": -0.06645108210418738,
+        "I_AB_mutual": 0.9187022021432749,
+        "asymmetry": 0.1289785132483926,
+        "identity_S_cond_eq_neg_Ic": true,
+        "identity_sum_Ic_eq_MI_minus_SAB": true
+      },
+      "asymmetric_mixed_seed42": {
+        "S_A": 0.3763562735934162,
+        "S_B": 0.17627884740128813,
+        "S_AB": 0.4434895003411534,
+        "I_c_A_to_B": -0.2672106529398653,
+        "I_c_B_to_A": -0.0671332267477372,
+        "S_A_given_B": 0.2672106529398653,
+        "I_AB_mutual": 0.10914562065355093,
+        "asymmetry": -0.2000774261921281,
+        "identity_S_cond_eq_neg_Ic": true,
+        "identity_sum_Ic_eq_MI_minus_SAB": true
+      }
+    },
+    "T2_sign_structure": {
+      "product_01": {
+        "S_rho_geq_0": true,
+        "S_A_geq_0": true,
+        "S_B_geq_0": true,
+        "MI_geq_0": true,
+        "I_c_sign": "zero",
+        "S_cond_sign": "zero",
+        "I_c_value": -7.972627427729671e-11,
+        "S_cond_value": 7.972627427729671e-11
+      },
+      "bell_phi_plus": {
+        "S_rho_geq_0": true,
+        "S_A_geq_0": true,
+        "S_B_geq_0": true,
+        "MI_geq_0": true,
+        "I_c_sign": "positive",
+        "S_cond_sign": "negative",
+        "I_c_value": 0.9999999998804102,
+        "S_cond_value": -0.9999999998804102
+      },
+      "werner_p0.25": {
+        "S_rho_geq_0": true,
+        "S_A_geq_0": true,
+        "S_B_geq_0": true,
+        "MI_geq_0": true,
+        "I_c_sign": "negative",
+        "S_cond_sign": "positive",
+        "I_c_value": -0.8802408149441479,
+        "S_cond_value": 0.8802408149441479
+      },
+      "werner_p0.50": {
+        "S_rho_geq_0": true,
+        "S_A_geq_0": true,
+        "S_B_geq_0": true,
+        "MI_geq_0": true,
+        "I_c_sign": "negative",
+        "S_cond_sign": "positive",
+        "I_c_value": -0.5487949406953987,
+        "S_cond_value": 0.5487949406953987
+      },
+      "werner_p0.75": {
+        "S_rho_geq_0": true,
+        "S_A_geq_0": true,
+        "S_B_geq_0": true,
+        "MI_geq_0": true,
+        "I_c_sign": "positive",
+        "S_cond_sign": "negative",
+        "I_c_value": 0.006607270989637204,
+        "S_cond_value": -0.006607270989637204
+      },
+      "werner_p1.00": {
+        "S_rho_geq_0": true,
+        "S_A_geq_0": true,
+        "S_B_geq_0": true,
+        "MI_geq_0": true,
+        "I_c_sign": "positive",
+        "S_cond_sign": "negative",
+        "I_c_value": 0.9999999998804102,
+        "S_cond_value": -0.9999999998804102
+      },
+      "random_seed7": {
+        "S_rho_geq_0": true,
+        "S_A_geq_0": true,
+        "S_B_geq_0": true,
+        "MI_geq_0": true,
+        "I_c_sign": "positive",
+        "S_cond_sign": "negative",
+        "I_c_value": 0.5619624218914854,
+        "S_cond_value": -0.5619624218914854
+      },
+      "random_seed99": {
+        "S_rho_geq_0": true,
+        "S_A_geq_0": true,
+        "S_B_geq_0": true,
+        "MI_geq_0": true,
+        "I_c_sign": "positive",
+        "S_cond_sign": "negative",
+        "I_c_value": 0.36918537959614917,
+        "S_cond_value": -0.36918537959614917
+      },
+      "asymmetric_mixed_seed13": {
+        "S_rho_geq_0": true,
+        "S_A_geq_0": true,
+        "S_B_geq_0": true,
+        "MI_geq_0": true,
+        "I_c_sign": "positive",
+        "S_cond_sign": "negative",
+        "I_c_value": 0.06645108210418738,
+        "S_cond_value": -0.06645108210418738
+      },
+      "asymmetric_mixed_seed42": {
+        "S_rho_geq_0": true,
+        "S_A_geq_0": true,
+        "S_B_geq_0": true,
+        "MI_geq_0": true,
+        "I_c_sign": "negative",
+        "S_cond_sign": "positive",
+        "I_c_value": -0.2672106529398653,
+        "S_cond_value": 0.2672106529398653
+      }
+    },
+    "T3_asymmetry": {
+      "product_01": {
+        "I_c_A_to_B": -7.972627427729671e-11,
+        "I_c_B_to_A": -7.972627427729671e-11,
+        "asymmetry": 0.0,
+        "is_pure": true,
+        "symmetric_expected": true,
+        "symmetric_check_pass": true
+      },
+      "bell_phi_plus": {
+        "I_c_A_to_B": 0.9999999998804102,
+        "I_c_B_to_A": 0.9999999998804102,
+        "asymmetry": 0.0,
+        "is_pure": true,
+        "symmetric_expected": true,
+        "symmetric_check_pass": true
+      },
+      "werner_p0.25": {
+        "I_c_A_to_B": -0.8802408149441479,
+        "I_c_B_to_A": -0.8802408149441479,
+        "asymmetry": 0.0,
+        "is_pure": false,
+        "symmetric_expected": false,
+        "symmetric_check_pass": true
+      },
+      "werner_p0.50": {
+        "I_c_A_to_B": -0.5487949406953987,
+        "I_c_B_to_A": -0.5487949406953987,
+        "asymmetry": 0.0,
+        "is_pure": false,
+        "symmetric_expected": false,
+        "symmetric_check_pass": true
+      },
+      "werner_p0.75": {
+        "I_c_A_to_B": 0.006607270989637204,
+        "I_c_B_to_A": 0.006607270989637204,
+        "asymmetry": 0.0,
+        "is_pure": false,
+        "symmetric_expected": false,
+        "symmetric_check_pass": true
+      },
+      "werner_p1.00": {
+        "I_c_A_to_B": 0.9999999998804102,
+        "I_c_B_to_A": 0.9999999998804102,
+        "asymmetry": 0.0,
+        "is_pure": true,
+        "symmetric_expected": true,
+        "symmetric_check_pass": true
+      },
+      "random_seed7": {
+        "I_c_A_to_B": 0.5619624218914854,
+        "I_c_B_to_A": 0.5619624218914854,
+        "asymmetry": 0.0,
+        "is_pure": true,
+        "symmetric_expected": true,
+        "symmetric_check_pass": true
+      },
+      "random_seed99": {
+        "I_c_A_to_B": 0.36918537959614917,
+        "I_c_B_to_A": 0.36918537959614917,
+        "asymmetry": 0.0,
+        "is_pure": true,
+        "symmetric_expected": true,
+        "symmetric_check_pass": true
+      },
+      "asymmetric_mixed_seed13": {
+        "I_c_A_to_B": 0.06645108210418738,
+        "I_c_B_to_A": -0.06252743114420523,
+        "asymmetry": 0.1289785132483926,
+        "is_pure": false,
+        "symmetric_expected": false,
+        "symmetric_check_pass": true
+      },
+      "asymmetric_mixed_seed42": {
+        "I_c_A_to_B": -0.2672106529398653,
+        "I_c_B_to_A": -0.0671332267477372,
+        "asymmetry": 0.2000774261921281,
+        "is_pure": false,
+        "symmetric_expected": false,
+        "symmetric_check_pass": true
+      }
+    },
+    "T4_autograd": {
+      "werner_p0.6_gradient": {
+        "I_c_value": -0.35677964944703944,
+        "dIc_dp": 2.1055161915432032,
+        "gradient_nonzero": true
+      },
+      "product_bloch_gradient": {
+        "I_c_value": -0.8112781244591329,
+        "dIc_dr": 0.792481250360578
+      }
+    },
+    "T5_channel_coherent_info": {
+      "depolarizing_p0.05": {
+        "max_I_c": 0.6343482178434072,
+        "positive_capacity": true
+      },
+      "depolarizing_p0.20": {
+        "max_I_c": -7.972622562135712e-11,
+        "positive_capacity": false
+      },
+      "amplitude_damping_g0.1": {
+        "max_I_c": 0.7094126134385667,
+        "positive_capacity": true
+      },
+      "amplitude_damping_g0.5": {
+        "max_I_c": -7.972555948754234e-11,
+        "positive_capacity": false
+      },
+      "dephasing_p0.1": {
+        "max_I_c": 0.5309985802172088,
+        "positive_capacity": true
+      }
+    },
+    "T6_private_info": {
+      "depolarizing_p0.05": {
+        "max_private_info": 1.2686889755135433,
+        "private_geq_coherent": true
+      },
+      "depolarizing_p0.20": {
+        "max_private_info": 7.972633664365958e-11,
+        "private_geq_coherent": true
+      },
+      "amplitude_damping_g0.1": {
+        "max_private_info": 1.4188252270365858,
+        "private_geq_coherent": true
+      },
+      "amplitude_damping_g0.5": {
+        "max_private_info": 0.0,
+        "private_geq_coherent": true
+      },
+      "dephasing_p0.1": {
+        "max_private_info": 1.0619344151539218,
+        "private_geq_coherent": true
+      }
+    },
+    "T7_runtime_entropy": {
+      "heisenberg_evolution": {
+        "n_steps": 20,
+        "dt": 0.15,
+        "trajectory": [
+          {
+            "t": 0.0,
+            "S_L": 3.986313713864835e-11,
+            "S_R": 3.986313713864835e-11,
+            "I_c_L_to_R": -7.972627427729671e-11
+          },
+          {
+            "t": 0.15,
+            "S_L": 0.42750177105602144,
+            "S_R": 0.42750177105602144,
+            "I_c_L_to_R": 0.4275017709364319
+          },
+          {
+            "t": 0.3,
+            "S_L": 0.9030948624816002,
+            "S_R": 0.9030948624816002,
+            "I_c_L_to_R": 0.9030948623620121
+          },
+          {
+            "t": 0.44999999999999996,
+            "S_L": 0.9624363026310068,
+            "S_R": 0.9624363026310068,
+            "I_c_L_to_R": 0.9624363025114161
+          },
+          {
+            "t": 0.6,
+            "S_L": 0.5610012572144715,
+            "S_R": 0.5610012572144715,
+            "I_c_L_to_R": 0.5610012570948849
+          },
+          {
+            "t": 0.75,
+            "S_L": 0.04544334061635642,
+            "S_R": 0.04544334061635642,
+            "I_c_L_to_R": 0.04544334049676701
+          },
+          {
+            "t": 0.8999999999999999,
+            "S_L": 0.29324247140014903,
+            "S_R": 0.29324247140014903,
+            "I_c_L_to_R": 0.2932424712805571
+          },
+          {
+            "t": 1.05,
+            "S_L": 0.8189054034291976,
+            "S_R": 0.8189054034291976,
+            "I_c_L_to_R": 0.8189054033096088
+          },
+          {
+            "t": 1.2,
+            "S_L": 0.994470242685219,
+            "S_R": 0.994470242685219,
+            "I_c_L_to_R": 0.9944702425656353
+          },
+          {
+            "t": 1.3499999999999999,
+            "S_L": 0.6858477681003297,
+            "S_R": 0.6858477681003297,
+            "I_c_L_to_R": 0.6858477679807387
+          },
+          {
+            "t": 1.5,
+            "S_L": 0.14096222030171152,
+            "S_R": 0.14096222030171152,
+            "I_c_L_to_R": 0.14096222018212162
+          },
+          {
+            "t": 1.65,
+            "S_L": 0.16804585961555263,
+            "S_R": 0.16804585961555263,
+            "I_c_L_to_R": 0.1680458594959645
+          },
+          {
+            "t": 1.7999999999999998,
+            "S_L": 0.7134977559917106,
+            "S_R": 0.7134977559917106,
+            "I_c_L_to_R": 0.7134977558721163
+          },
+          {
+            "t": 1.95,
+            "S_L": 0.9978990020884484,
+            "S_R": 0.9978990020884484,
+            "I_c_L_to_R": 0.9978990019688638
+          },
+          {
+            "t": 2.1,
+            "S_L": 0.79563125092195,
+            "S_R": 0.79563125092195,
+            "I_c_L_to_R": 0.7956312508023619
+          },
+          {
+            "t": 2.25,
+            "S_L": 0.2622688348598592,
+            "S_R": 0.2622688348598592,
+            "I_c_L_to_R": 0.2622688347402698
+          },
+          {
+            "t": 2.4,
+            "S_L": 0.06481889472602473,
+            "S_R": 0.06481889472602473,
+            "I_c_L_to_R": 0.06481889460644621
+          },
+          {
+            "t": 2.55,
+            "S_L": 0.5916987080825322,
+            "S_R": 0.5916987080825322,
+            "I_c_L_to_R": 0.5916987079629457
+          },
+          {
+            "t": 2.6999999999999997,
+            "S_L": 0.9725848517733504,
+            "S_R": 0.9725848517733504,
+            "I_c_L_to_R": 0.9725848516537581
+          },
+          {
+            "t": 2.85,
+            "S_L": 0.8852329476017313,
+            "S_R": 0.8852329476017313,
+            "I_c_L_to_R": 0.8852329474821403
+          }
+        ],
+        "S_L_range": [
+          3.986313713864835e-11,
+          0.9978990020884484
+        ],
+        "S_R_range": [
+          3.986313713864835e-11,
+          0.9978990020884484
+        ]
+      }
+    },
+    "T8_torus_seat_entropy": {
+      "torus_seat": {
+        "n_points": 40,
+        "max_entropy_eta": 4.672112464904785,
+        "max_entropy_value": 0.9988301661314773,
+        "curve": [
+          {
+            "eta": 0.0,
+            "S_A": 3.986313713864835e-11,
+            "I_c_A_to_B": -7.972627427729671e-11
+          },
+          {
+            "eta": 0.16110731661319733,
+            "S_A": 0.05638923392063157,
+            "I_c_A_to_B": 0.0563892923460358
+          },
+          {
+            "eta": 0.32221463322639465,
+            "S_A": 0.1725130580181401,
+            "I_c_A_to_B": 0.1725129811227553
+          },
+          {
+            "eta": 0.4833219647407532,
+            "S_A": 0.3165191109862514,
+            "I_c_A_to_B": 0.31651918510323135
+          },
+          {
+            "eta": 0.6444292664527893,
+            "S_A": 0.4698781494014468,
+            "I_c_A_to_B": 0.4698781958673741
+          },
+          {
+            "eta": 0.8055365681648254,
+            "S_A": 0.6188695596417219,
+            "I_c_A_to_B": 0.6188695860042305
+          },
+          {
+            "eta": 0.9666439294815063,
+            "S_A": 0.7527358730224616,
+            "I_c_A_to_B": 0.7527359097263641
+          },
+          {
+            "eta": 1.1277512311935425,
+            "S_A": 0.8630405606390303,
+            "I_c_A_to_B": 0.8630405053807375
+          },
+          {
+            "eta": 1.2888585329055786,
+            "S_A": 0.9434205170135482,
+            "I_c_A_to_B": 0.9434205558794497
+          },
+          {
+            "eta": 1.4499658346176147,
+            "S_A": 0.9894939771849489,
+            "I_c_A_to_B": 0.9894939044614882
+          },
+          {
+            "eta": 1.6110731363296509,
+            "S_A": 0.9988301435401543,
+            "I_c_A_to_B": 0.998830101016942
+          },
+          {
+            "eta": 1.772180438041687,
+            "S_A": 0.9709430603595147,
+            "I_c_A_to_B": 0.9709431277092043
+          },
+          {
+            "eta": 1.9332878589630127,
+            "S_A": 0.9072908579569507,
+            "I_c_A_to_B": 0.9072907525607972
+          },
+          {
+            "eta": 2.094395160675049,
+            "S_A": 0.811278135517101,
+            "I_c_A_to_B": 0.8112780535611159
+          },
+          {
+            "eta": 2.255502462387085,
+            "S_A": 0.6882710422167297,
+            "I_c_A_to_B": 0.6882710138536272
+          },
+          {
+            "eta": 2.416609764099121,
+            "S_A": 0.5456511290010271,
+            "I_c_A_to_B": 0.5456511972300048
+          },
+          {
+            "eta": 2.5777170658111572,
+            "S_A": 0.39296870720775345,
+            "I_c_A_to_B": 0.3929687356640319
+          },
+          {
+            "eta": 2.7388243675231934,
+            "S_A": 0.24233937590829313,
+            "I_c_A_to_B": 0.24233930700697642
+          },
+          {
+            "eta": 2.8999316692352295,
+            "S_A": 0.10950689217443936,
+            "I_c_A_to_B": 0.10950685855533801
+          },
+          {
+            "eta": 3.0610389709472656,
+            "S_A": 0.017364751482027072,
+            "I_c_A_to_B": 0.017364813298450927
+          },
+          {
+            "eta": 3.222146511077881,
+            "S_A": 0.01736497939373181,
+            "I_c_A_to_B": 0.017364879754565757
+          },
+          {
+            "eta": 3.383253812789917,
+            "S_A": 0.10950699266218569,
+            "I_c_A_to_B": 0.10950699013842341
+          },
+          {
+            "eta": 3.544361114501953,
+            "S_A": 0.24233949039218944,
+            "I_c_A_to_B": 0.24233947309230633
+          },
+          {
+            "eta": 3.7054684162139893,
+            "S_A": 0.39296881908043335,
+            "I_c_A_to_B": 0.39296891930959216
+          },
+          {
+            "eta": 3.8665757179260254,
+            "S_A": 0.545651366400692,
+            "I_c_A_to_B": 0.5456513653019356
+          },
+          {
+            "eta": 4.027683258056641,
+            "S_A": 0.6882713195499784,
+            "I_c_A_to_B": 0.6882713569921708
+          },
+          {
+            "eta": 4.188790321350098,
+            "S_A": 0.811278185344041,
+            "I_c_A_to_B": 0.8112782323750464
+          },
+          {
+            "eta": 4.349897861480713,
+            "S_A": 0.907291069143713,
+            "I_c_A_to_B": 0.9072909737615469
+          },
+          {
+            "eta": 4.51100492477417,
+            "S_A": 0.9709431255294932,
+            "I_c_A_to_B": 0.9709430596605707
+          },
+          {
+            "eta": 4.672112464904785,
+            "S_A": 0.9988301661314773,
+            "I_c_A_to_B": 0.998830113812833
+          },
+          {
+            "eta": 4.833219528198242,
+            "S_A": 0.9894939230329509,
+            "I_c_A_to_B": 0.9894939790403523
+          },
+          {
+            "eta": 4.994327068328857,
+            "S_A": 0.9434204371120098,
+            "I_c_A_to_B": 0.9434204068337235
+          },
+          {
+            "eta": 5.1554341316223145,
+            "S_A": 0.863040440924449,
+            "I_c_A_to_B": 0.8630404391053368
+          },
+          {
+            "eta": 5.31654167175293,
+            "S_A": 0.7527356513659889,
+            "I_c_A_to_B": 0.7527356405421831
+          },
+          {
+            "eta": 5.477648735046387,
+            "S_A": 0.6188695596417219,
+            "I_c_A_to_B": 0.6188695860042305
+          },
+          {
+            "eta": 5.638756275177002,
+            "S_A": 0.4698780078232735,
+            "I_c_A_to_B": 0.46987794536641647
+          },
+          {
+            "eta": 5.799863338470459,
+            "S_A": 0.3165191109862514,
+            "I_c_A_to_B": 0.31651918510323135
+          },
+          {
+            "eta": 5.960970878601074,
+            "S_A": 0.17251276426460443,
+            "I_c_A_to_B": 0.17251280884582904
+          },
+          {
+            "eta": 6.122077941894531,
+            "S_A": 0.056389254885598455,
+            "I_c_A_to_B": 0.05638931850057371
+          },
+          {
+            "eta": 6.2831854820251465,
+            "S_A": 3.986313713864835e-11,
+            "I_c_A_to_B": -7.971538262718374e-11
+          }
+        ]
+      }
+    },
+    "T9_bipartite_axis0": {
+      "axis0_canonical": {
+        "state": "Tr_C[ CNOT02 CNOT01 |000> ]",
+        "I_c_A_to_B": -7.972627427729671e-11,
+        "I_c_B_to_A": -7.972627427729671e-11,
+        "S_A_given_B": 7.972627427729671e-11,
+        "I_AB_mutual": -3.9863137138648357e-11,
+        "S_AB": 1.1958941141594506e-10,
+        "I_c_positive": false
+      }
+    }
+  },
+  "negative": {
+    "N1_product_no_coherent_info": {
+      "I_c": -7.972627427729671e-11,
+      "S_cond": 7.972627427729671e-11,
+      "I_c_is_zero": true,
+      "S_cond_nonneg": true,
+      "pass": true
+    },
+    "N2_max_mixed_no_coherent_info": {
+      "I_c": -1.0,
+      "I_c_leq_zero": true,
+      "pass": true
+    },
+    "N3_mutual_info_nonneg": {
+      "all_pass": true,
+      "min_MI": -3.9863137138648357e-11,
+      "pass": true
+    },
+    "N4_entropy_nonneg": {
+      "all_pass": true,
+      "pass": true
+    },
+    "N5_bell_negative_conditional": {
+      "S_A_given_B": -0.9999999998804102,
+      "is_negative": true,
+      "expected_value": -1.0,
+      "close_to_expected": true,
+      "pass": true
+    },
+    "N6_full_dephasing_zero_capacity": {
+      "max_I_c": -7.972600357675219e-11,
+      "at_or_below_zero": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_werner_ppt_threshold": {
+      "p": 0.3333333333333333,
+      "I_c": -0.792481250360578,
+      "S_cond": 0.792481250360578,
+      "near_zero_I_c": false
+    },
+    "B2_numerical_stability": {
+      "eps_1e-06": {
+        "I_c": 0.9999358773352509,
+        "finite": "True"
+      },
+      "eps_1e-10": {
+        "I_c": 0.9999999896014067,
+        "finite": "True"
+      },
+      "eps_1e-14": {
+        "I_c": 0.9999999998803674,
+        "finite": "True"
+      }
+    },
+    "B3_bell_swap_symmetry": {
+      "I_c_AB": 0.9999999998804102,
+      "I_c_BA": 0.9999999998804102,
+      "symmetric": true
+    },
+    "B4_erasure_half_boundary": {
+      "max_I_c": -1.1958878332052336e-10,
+      "at_or_below_zero": true
+    }
+  },
+  "sympy_verification": {
+    "product_Ic_eq_neg_SA": {
+      "Ic_A_to_B_plus_SA": "0",
+      "is_zero": true,
+      "pass": true
+    },
+    "conditional_eq_neg_Ic": {
+      "S_cond_minus_neg_Ic": "0",
+      "is_zero": true,
+      "pass": true
+    },
+    "product_MI_zero": {
+      "MI_simplified": "0",
+      "is_zero": true,
+      "pass": true
+    },
+    "bell_Ic_symbolic": {
+      "S_A": 1,
+      "S_B": 1,
+      "S_AB": 0,
+      "I_c_A_to_B": 1,
+      "S_cond_A_given_B": -1,
+      "note": "S(A|B) = -1 bit: negative conditional entropy for Bell state",
+      "pass": true
+    }
+  },
+  "z3_proofs": {
+    "P1_MI_nonneg": {
+      "claim": "I(A:B) >= 0 under quantum entropy axioms",
+      "z3_result": "unsat",
+      "proved": true
+    },
+    "P2_cond_entropy_can_be_negative": {
+      "claim": "S(A|B) < 0 is satisfiable (not forbidden)",
+      "z3_result": "sat",
+      "witness": {
+        "S_A": "1/4",
+        "S_B": "1/4",
+        "S_AB": "0"
+      },
+      "proved": true
+    },
+    "P3_Ic_can_be_negative": {
+      "claim": "I_c(A>B) < 0 is satisfiable",
+      "z3_result": "sat",
+      "witness": {
+        "S_A": "1/4",
+        "S_B": "0",
+        "S_AB": "1/4"
+      },
+      "proved": true
+    },
+    "P4_Ic_can_be_positive": {
+      "claim": "I_c(A>B) > 0 is satisfiable",
+      "z3_result": "sat",
+      "proved": true
+    },
+    "P5_asymmetry_possible": {
+      "claim": "I_c(A>B) != I_c(B>A) is satisfiable when S(A) != S(B)",
+      "z3_result": "sat",
+      "witness": {
+        "S_A": "0",
+        "S_B": "1/2",
+        "S_AB": "1/2",
+        "Ic_AB": "0",
+        "Ic_BA": "-1/2"
+      },
+      "proved": true
+    },
+    "P6_Ic_bounded_by_SB": {
+      "claim": "I_c(A>B) <= S(B) always",
+      "z3_result": "unsat",
+      "proved": true
+    }
+  },
+  "runtime_seconds": 0.59
+}

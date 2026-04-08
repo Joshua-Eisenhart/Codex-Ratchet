@@ -137,39 +137,38 @@ That said, the current failure mode is no longer "tool missing." It is
 
 ### Gap 1 — Bridge / `Phi0` seam is underusing proof tools
 
-The current bridge / `Phi0` work is now much more disciplined than before,
-but it is still mostly:
-- numpy-first
-- manifest-rich
-- proof-light
+**CLOSED 2026-04-08** — `sim_bridge_phi0_proof_integration.py`
 
-What is still missing there:
-- real `z3` / `cvc5` disqualification and impossibility claims
-- not just post-hoc numeric separation
+z3+cvc5 are now load-bearing on the Phi0 flip seam:
+- z3 UNSAT: classical states cannot achieve I_c>0 at the flip
+- cvc5 SyGuS: bisects flip boundary to relay=0.706180; UNSAT below 0.6562
+- sympy eigenvalue chain confirms dS(AC)/dr<0 on [0.5,0.7]
+- pytorch autograd: dI_c/d(relay)>0 at all tested relay values
 
 ### Gap 2 — Graph / topology tools are not yet central to the seam
 
-The seam is still weak on:
-- graph-structured packet / family reasoning
-- hypergraph treatment of multi-way packet relations
-- topology/cell-complex reasoning on shell families
+**PARTIALLY CLOSED 2026-04-08** — `sim_bridge_phi0_proof_integration.py`
 
-Right now:
-- `rustworkx`, `XGI`, `PyG`, `GUDHI`, `geomstats`, `e3nn` are present
-- `TopoNetX` is still barely used
-- recent seam sims do not yet make graph/topology tools load-bearing
+rustworkx 5-node dependency DAG (eigenvalue_chain → S_AC_monotone →
+flip_exists → relay_lower_bound → phi0_claim) is now load-bearing.
+geomstats SPD geodesic confirms no interior anomaly.
+
+Still open:
+- `TopoNetX` is still barely used (3 sim files)
+- hypergraph / XGI treatment of multi-way packet relations not yet done
+- cell-complex reasoning on shell families still missing
 
 ### Gap 3 — The basic plan is still only partially executed
 
 The actual plan should be:
-1. foundations as independent legos
-2. bridge families as independent legos
-3. `rho_AB` construction as its own object family
-4. cut kernels as their own family
-5. graph/proof integration on that seam
+1. foundations as independent legos ✓
+2. bridge families as independent legos ✓
+3. `rho_AB` construction as its own object family ✓
+4. cut kernels as their own family ✓
+5. graph/proof integration on that seam ✓ (closed by sim_bridge_phi0_proof_integration)
 6. only then promotion pressure
 
-The repo is now much closer to that than before, but step 5 is still behind.
+Step 5 closed. Step 6 (promotion pressure) is the remaining gap.
 
 ---
 

@@ -1,0 +1,323 @@
+{
+  "name": "geom_layer_4_5 -- Cl(3) and Clifford torus",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Torus geometry, metric tensor, Hopf projection, density matrices"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for layers 4-5"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for layers 4-5"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for layers 4-5"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for layers 4-5"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) multiplication table, rotors, even subalgebra, pseudoscalar"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for layers 4-5"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for layers 4-5"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for layers 4-5"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for layers 4-5"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for layers 4-5"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for layers 4-5"
+    }
+  },
+  "layer4_cl3": {
+    "4a_basis_count": {
+      "expected": 8,
+      "actual": 8,
+      "pass": true
+    },
+    "4b_generator_squares": {
+      "values": {
+        "e1": 1.0,
+        "e2": 1.0,
+        "e3": 1.0
+      },
+      "all_plus_one": true,
+      "pass": true
+    },
+    "4c_anticommutation": {
+      "values": {
+        "{e1,e2}": 0.0,
+        "{e1,e3}": 0.0,
+        "{e2,e3}": 0.0
+      },
+      "all_zero": true,
+      "pass": true
+    },
+    "4d_multiplication_table": {
+      "sample_entries": {
+        "1*1": "+1",
+        "1*e1": "+e1",
+        "1*e2": "+e2",
+        "1*e3": "+e3",
+        "1*e12": "+e12",
+        "1*e13": "+e13",
+        "1*e23": "+e23",
+        "1*e123": "+e123",
+        "e1*1": "+e1",
+        "e1*e1": "+1",
+        "e1*e2": "+e12",
+        "e1*e3": "+e13"
+      },
+      "total_entries": 64,
+      "all_single_blade": true,
+      "pass": true
+    },
+    "4e_pseudoscalar_squared": {
+      "e123_squared": -1.0,
+      "expected": -1.0,
+      "pass": true
+    },
+    "4f_even_subalgebra": {
+      "basis": [
+        "1",
+        "e12",
+        "e13",
+        "e23"
+      ],
+      "closed_under_product": true,
+      "e12_times_e13": {
+        "e23": -1.0
+      },
+      "e13_times_e12": {
+        "e23": 1.0
+      },
+      "quaternion_like": true,
+      "pass": true
+    },
+    "4g_rotors": {
+      "theta": 1.0471975511965976,
+      "R_norm_squared": 1.0,
+      "rotated_e1": {
+        "e1": 0.5,
+        "e2": -0.866025403784
+      },
+      "expected": {
+        "e1": 0.5,
+        "e2": -0.8660254
+      },
+      "e1_match": true,
+      "e2_match": true,
+      "pass": true
+    }
+  },
+  "layer5_clifford_torus": {
+    "5a_on_S3": {
+      "max_deviation_from_1": 4.440892098500626e-16,
+      "all_on_S3": true,
+      "n_points": 40000,
+      "pass": true
+    },
+    "5b_induced_metric": {
+      "g_phi_phi": {
+        "expected": 0.5,
+        "max_deviation": 2.220446049250313e-16
+      },
+      "g_chi_chi": {
+        "expected": 0.5,
+        "max_deviation": 2.220446049250313e-16
+      },
+      "g_phi_chi": {
+        "expected": 0.0,
+        "max_deviation": 0.0
+      },
+      "metric_is_constant": true,
+      "ds_squared": "0.5*(dphi^2 + dchi^2)",
+      "curvature": "zero (flat torus)",
+      "pass": true
+    },
+    "5c_gaussian_curvature": {
+      "K": 0.0,
+      "method": "constant metric => all Christoffel symbols vanish => R=0 => K=0",
+      "pass": true
+    },
+    "5d_self_dual": {
+      "torus_area": 19.739208802178716,
+      "S3_volume": 19.739208802178716,
+      "ratio": 1.0,
+      "self_dual": true,
+      "pass": true
+    },
+    "5e_hopf_to_equator": {
+      "hopf_z": 0.0,
+      "hopf_r_sq_max_dev": 6.661338147750939e-16,
+      "projects_to_equator": true,
+      "on_unit_circle": true,
+      "pass": true
+    }
+  },
+  "stacking": {
+    "S1_L5_on_L4_rotors": {
+      "n_samples": 50,
+      "all_unit_norm": true,
+      "all_even_grade": true,
+      "interpretation": "Torus points embed as Cl+(3) unit rotors (quaternions)",
+      "pass": true
+    },
+    "S2_L5_on_L3_S3_submanifold": {
+      "S3_dimension": 3,
+      "torus_dimension": 2,
+      "codimension": 1,
+      "proper_submanifold": true,
+      "pass": true
+    },
+    "S3_L5_on_L2_equator": {
+      "hopf_image": "S^1 equator of S^2",
+      "angle_coverage": 6.2831854820251465,
+      "full_circle": true,
+      "surjective_onto_equator": true,
+      "pass": true
+    },
+    "S4_L5_on_L1_density_matrices": {
+      "n_tested": 20,
+      "all_trace_1": true,
+      "all_pure": true,
+      "all_positive_semidefinite": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_odd_not_in_even": {
+      "e1_has_grade1": true,
+      "pass": true
+    },
+    "N2_non_unit_rotor": {
+      "R_norm_sq": 5.0,
+      "is_unit": false,
+      "pass": true
+    },
+    "N3_wrong_eta_not_equator": {
+      "eta": 0.5235987755982988,
+      "hopf_z": 0.5000000000000001,
+      "on_equator": false,
+      "pass": true
+    },
+    "N4_commutative_fails": {
+      "e1e2_minus_e2e1_norm": 2.0,
+      "is_commutative": false,
+      "pass": true
+    },
+    "N5_mixed_state_not_pure": {
+      "trace": 1.0,
+      "is_pure": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_identity_rotor": {
+      "theta": 0,
+      "deviation_from_e1": 0.0,
+      "pass": true
+    },
+    "B2_full_rotation_rotor": {
+      "theta": 6.283185307179586,
+      "R_scalar": -1.0,
+      "deviation_from_e1": 2.4492935982947064e-16,
+      "double_cover": true,
+      "pass": true
+    },
+    "B3_torus_origin_point": {
+      "point": [
+        0.7071067811865475,
+        0.0,
+        0.7071067811865475,
+        0.0
+      ],
+      "norm_squared": 0.9999999999999998,
+      "pass": true
+    },
+    "B4_torus_opposite_point": {
+      "point": [
+        -0.7071067811865475,
+        0.0,
+        -0.7071067811865475,
+        0.0
+      ],
+      "norm_squared": 0.9999999999999998,
+      "pass": true
+    },
+    "B5_metric_precision": {
+      "n_random_points": 10000,
+      "max_deviation_from_half": 1.1102230246251565e-16,
+      "pass": true
+    }
+  },
+  "tally": {
+    "passed": 26,
+    "total": 26,
+    "all_pass": true
+  },
+  "classification": "canonical",
+  "positive": {
+    "S1_L5_on_L4_rotors": {
+      "n_samples": 50,
+      "all_unit_norm": true,
+      "all_even_grade": true,
+      "interpretation": "Torus points embed as Cl+(3) unit rotors (quaternions)",
+      "pass": true
+    },
+    "S2_L5_on_L3_S3_submanifold": {
+      "S3_dimension": 3,
+      "torus_dimension": 2,
+      "codimension": 1,
+      "proper_submanifold": true,
+      "pass": true
+    },
+    "S3_L5_on_L2_equator": {
+      "hopf_image": "S^1 equator of S^2",
+      "angle_coverage": 6.2831854820251465,
+      "full_circle": true,
+      "surjective_onto_equator": true,
+      "pass": true
+    },
+    "S4_L5_on_L1_density_matrices": {
+      "n_tested": 20,
+      "all_trace_1": true,
+      "all_pure": true,
+      "all_positive_semidefinite": true,
+      "pass": true
+    }
+  }
+}

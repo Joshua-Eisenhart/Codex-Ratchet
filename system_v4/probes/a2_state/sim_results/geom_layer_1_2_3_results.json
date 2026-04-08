@@ -1,0 +1,681 @@
+{
+  "name": "geom_layer_1_2_3 -- Geometric Constraint Manifold Bottom 3 Layers",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core computation: density matrices, Fubini-Study metric via autograd, Hopf projection, full backward pass through all 3 layers"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for geometric constraint layers 1-3"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for geometric constraint layers 1-3"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for geometric constraint layers 1-3"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic cross-validation of Fubini-Study metric formula and Hopf projection identities"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for geometric constraint layers 1-3"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Cross-validation: S^2 metric tensor comparison, S^3 point membership check"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for geometric constraint layers 1-3"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for geometric constraint layers 1-3"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for geometric constraint layers 1-3"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for geometric constraint layers 1-3"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for geometric constraint layers 1-3"
+    }
+  },
+  "layer_1_density_matrices": {
+    "positive": {
+      "n_tests": 50,
+      "all_valid": true,
+      "samples": [
+        {
+          "r_norm": 0.5261718968547618,
+          "hermitian_error": 0.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.23691405157261908,
+          "valid": true
+        },
+        {
+          "r_norm": 0.9287525814574296,
+          "hermitian_error": 0.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.03562370927128515,
+          "valid": true
+        },
+        {
+          "r_norm": 0.8425197308314867,
+          "hermitian_error": 0.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.07874013458425676,
+          "valid": true
+        },
+        {
+          "r_norm": 0.6124365889937912,
+          "hermitian_error": 0.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.19378170550310436,
+          "valid": true
+        },
+        {
+          "r_norm": 0.07473487847374805,
+          "hermitian_error": 0.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.46263256076312603,
+          "valid": true
+        }
+      ]
+    },
+    "negative": {
+      "n_tests": 5,
+      "all_rejected": true,
+      "samples": [
+        {
+          "r_norm": 1.0099999999999998,
+          "hermitian_error": 0.0,
+          "trace": 1.0,
+          "min_eigenvalue": -0.004999999999999975,
+          "valid": false,
+          "correctly_rejected": true
+        },
+        {
+          "r_norm": 1.5000000000000002,
+          "hermitian_error": 0.0,
+          "trace": 1.0,
+          "min_eigenvalue": -0.2499999999999999,
+          "valid": false,
+          "correctly_rejected": true
+        },
+        {
+          "r_norm": 2.0,
+          "hermitian_error": 0.0,
+          "trace": 1.0,
+          "min_eigenvalue": -0.5,
+          "valid": false,
+          "correctly_rejected": true
+        },
+        {
+          "r_norm": 5.0,
+          "hermitian_error": 0.0,
+          "trace": 1.0,
+          "min_eigenvalue": -2.0000000000000004,
+          "valid": false,
+          "correctly_rejected": true
+        },
+        {
+          "r_norm": 10.0,
+          "hermitian_error": 0.0,
+          "trace": 1.0,
+          "min_eigenvalue": -4.5,
+          "valid": false,
+          "correctly_rejected": true
+        }
+      ]
+    },
+    "boundary": {
+      "pure_z": {
+        "r_norm": 1.0,
+        "hermitian_error": 0.0,
+        "trace": 1.0,
+        "min_eigenvalue": 0.0,
+        "valid": true,
+        "purity": 1.0,
+        "purity_is_1": true
+      },
+      "maximally_mixed": {
+        "r_norm": 0.0,
+        "hermitian_error": 0.0,
+        "trace": 1.0,
+        "min_eigenvalue": 0.5,
+        "valid": true,
+        "purity": 0.5,
+        "purity_is_half": true
+      }
+    }
+  },
+  "layer_2_s2_fubini_study": {
+    "positive": {
+      "n_tests": 6,
+      "all_pass": true,
+      "samples": [
+        {
+          "theta": 0.5,
+          "phi": 0.0,
+          "g_computed": [
+            [
+              0.24999999999999994,
+              -0.0
+            ],
+            [
+              -0.0,
+              0.057462211766482536
+            ]
+          ],
+          "g_expected": [
+            [
+              0.25,
+              0.0
+            ],
+            [
+              0.0,
+              0.057462211766482536
+            ]
+          ],
+          "max_metric_error": 5.551115123125783e-17,
+          "purity": 1.0000000000000002,
+          "pass": true
+        },
+        {
+          "theta": 1.0,
+          "phi": 0.5,
+          "g_computed": [
+            [
+              0.25,
+              -2.87848310250404e-18
+            ],
+            [
+              -2.87848310250404e-18,
+              0.17701835456839282
+            ]
+          ],
+          "g_expected": [
+            [
+              0.25,
+              0.0
+            ],
+            [
+              0.0,
+              0.1770183545683928
+            ]
+          ],
+          "max_metric_error": 2.7755575615628914e-17,
+          "purity": 1.0,
+          "pass": true
+        },
+        {
+          "theta": 1.0471975511965976,
+          "phi": 0.7853981633974483,
+          "g_computed": [
+            [
+              0.25,
+              -1.2908863399970908e-17
+            ],
+            [
+              -1.2908863399970908e-17,
+              0.18749999999999997
+            ]
+          ],
+          "g_expected": [
+            [
+              0.25,
+              0.0
+            ],
+            [
+              0.0,
+              0.18749999999999997
+            ]
+          ],
+          "max_metric_error": 1.2908863399970908e-17,
+          "purity": 1.0,
+          "pass": true
+        },
+        {
+          "theta": 1.5707963267948966,
+          "phi": 0.0,
+          "g_computed": [
+            [
+              0.25,
+              -0.0
+            ],
+            [
+              -0.0,
+              0.24999999999999997
+            ]
+          ],
+          "g_expected": [
+            [
+              0.25,
+              0.0
+            ],
+            [
+              0.0,
+              0.25
+            ]
+          ],
+          "max_metric_error": 2.7755575615628914e-17,
+          "purity": 1.0,
+          "pass": true
+        },
+        {
+          "theta": 2.0,
+          "phi": 1.0,
+          "g_computed": [
+            [
+              0.25000000000000006,
+              1.6413318302635602e-17
+            ],
+            [
+              1.6413318302635602e-17,
+              0.2067054526079515
+            ]
+          ],
+          "g_expected": [
+            [
+              0.25,
+              0.0
+            ],
+            [
+              0.0,
+              0.2067054526079515
+            ]
+          ],
+          "max_metric_error": 5.551115123125783e-17,
+          "purity": 1.0,
+          "pass": true
+        },
+        {
+          "theta": 0.3,
+          "phi": 2.5,
+          "g_computed": [
+            [
+              0.24999999999999994,
+              -1.3893201754831394e-18
+            ],
+            [
+              -1.3893201754831394e-18,
+              0.021833048136290206
+            ]
+          ],
+          "g_expected": [
+            [
+              0.25,
+              0.0
+            ],
+            [
+              0.0,
+              0.02183304813629021
+            ]
+          ],
+          "max_metric_error": 5.551115123125783e-17,
+          "purity": 0.9999999999999999,
+          "pass": true
+        }
+      ],
+      "sympy_cross_validation": {
+        "g_tt_symbolic": "1/4",
+        "g_pp_symbolic": "sin(theta)**2/4",
+        "g_tt_matches_quarter": true,
+        "g_pp_matches_sin2_quarter": true
+      },
+      "geomstats_cross_validation": {
+        "point_on_S2": true,
+        "pass": true
+      }
+    },
+    "negative": {
+      "n_tests": 4,
+      "all_correct": true,
+      "samples": [
+        {
+          "r_norm": 0.0,
+          "purity": 0.5,
+          "correctly_not_pure": true
+        },
+        {
+          "r_norm": 0.3,
+          "purity": 0.545,
+          "correctly_not_pure": true
+        },
+        {
+          "r_norm": 0.5,
+          "purity": 0.625,
+          "correctly_not_pure": true
+        },
+        {
+          "r_norm": 0.9,
+          "purity": 0.9049999999999999,
+          "correctly_not_pure": true
+        }
+      ]
+    },
+    "boundary": {
+      "north_pole": {
+        "g_pp_near_zero": true,
+        "g_tt_is_quarter": true
+      },
+      "equator": {
+        "g_pp_is_quarter": true,
+        "g_tt_is_quarter": true
+      }
+    }
+  },
+  "layer_3_s3_hopf": {
+    "positive": {
+      "n_projection_tests": 30,
+      "all_norms_valid": true,
+      "all_projections_valid": true,
+      "n_fiber_tests": 10,
+      "all_fiber_independent": true,
+      "projection_samples": [
+        {
+          "eta": 0.5266999677064563,
+          "phi": 1.3608936863145034,
+          "chi": 3.786568777749442,
+          "norm_sq": 1.0,
+          "norm_valid": true,
+          "bloch_projection_error": 1.0007415106216802e-16,
+          "projection_valid": true
+        },
+        {
+          "eta": 0.4967407354556639,
+          "phi": 5.217740798301648,
+          "chi": 5.203765837338204,
+          "norm_sq": 1.0,
+          "norm_valid": true,
+          "bloch_projection_error": 8.95090418262362e-16,
+          "projection_valid": true
+        },
+        {
+          "eta": 1.5034305671825319,
+          "phi": 0.6715980382074566,
+          "chi": 0.010325879873431448,
+          "norm_sq": 1.0,
+          "norm_valid": true,
+          "bloch_projection_error": 2.168404344971009e-18,
+          "projection_valid": true
+        }
+      ],
+      "fiber_samples": [
+        {
+          "phi1": 0.9609380661644198,
+          "phi2": 1.8122938874942098,
+          "density_matrix_diff": 1.146321405829619e-16,
+          "fiber_independent": true
+        },
+        {
+          "phi1": 3.3480139194120917,
+          "phi2": 2.2460220084635476,
+          "density_matrix_diff": 1.1443916996305594e-16,
+          "fiber_independent": true
+        },
+        {
+          "phi1": 0.5489828263718314,
+          "phi2": 2.658960532085325,
+          "density_matrix_diff": 2.250315034082123e-16,
+          "fiber_independent": true
+        }
+      ]
+    },
+    "negative": {
+      "n_tests": 4,
+      "all_rejected": true,
+      "samples": [
+        {
+          "scale": 0.5,
+          "norm_sq": 0.25,
+          "correctly_rejected": true
+        },
+        {
+          "scale": 1.5,
+          "norm_sq": 2.25,
+          "correctly_rejected": true
+        },
+        {
+          "scale": 2.0,
+          "norm_sq": 4.0,
+          "correctly_rejected": true
+        },
+        {
+          "scale": 0.01,
+          "norm_sq": 0.0001,
+          "correctly_rejected": true
+        }
+      ]
+    },
+    "boundary": {
+      "eta_zero_north": {
+        "rz": 1.0,
+        "is_north_pole": true
+      },
+      "eta_piover2_south": {
+        "rz": -1.0,
+        "is_south_pole": true
+      }
+    }
+  },
+  "stacking": {
+    "L2_on_L1": {
+      "all_pass": true,
+      "samples": [
+        {
+          "theta": 0.5,
+          "phi": 0.3,
+          "l1_valid": true,
+          "purity_is_1": true
+        },
+        {
+          "theta": 1.2,
+          "phi": 2.1,
+          "l1_valid": true,
+          "purity_is_1": true
+        },
+        {
+          "theta": 1.5707963267948966,
+          "phi": 3.141592653589793,
+          "l1_valid": true,
+          "purity_is_1": true
+        }
+      ]
+    },
+    "L3_on_L2": {
+      "all_pass": true,
+      "samples": [
+        {
+          "eta": 0.3,
+          "phi": 0.5,
+          "chi": 0.8,
+          "projected_theta": 0.6,
+          "projected_phi": -1.6,
+          "bloch_norm": 1.0,
+          "on_S2": true
+        },
+        {
+          "eta": 0.7,
+          "phi": 1.2,
+          "chi": 0.1,
+          "projected_theta": 1.4,
+          "projected_phi": -0.2,
+          "bloch_norm": 1.0,
+          "on_S2": true
+        },
+        {
+          "eta": 0.7853981633974483,
+          "phi": 0.0,
+          "chi": 1.0471975511965976,
+          "projected_theta": 1.5707963267948966,
+          "projected_phi": -2.0943951023931953,
+          "bloch_norm": 1.0,
+          "on_S2": true
+        }
+      ]
+    },
+    "L3_on_L1": {
+      "all_pass": true,
+      "samples": [
+        {
+          "eta": 0.2,
+          "phi": 0.4,
+          "chi": 0.6,
+          "l1_valid": true,
+          "purity_is_1": true,
+          "bloch_norm": 1.0
+        },
+        {
+          "eta": 1.0,
+          "phi": 2.0,
+          "chi": 3.0,
+          "l1_valid": true,
+          "purity_is_1": true,
+          "bloch_norm": 1.0
+        },
+        {
+          "eta": 0.7853981633974483,
+          "phi": 3.141592653589793,
+          "chi": 0.0,
+          "l1_valid": true,
+          "purity_is_1": true,
+          "bloch_norm": 1.0
+        }
+      ]
+    },
+    "autograd_through_all_3": {
+      "entropy": 6.0503827717221415e-15,
+      "grad_eta": -5.777366362888458e-15,
+      "grad_phi": null,
+      "grad_chi": 6.661338147750939e-16,
+      "base_grads_exist": true,
+      "fiber_grad_absent": true,
+      "entropy_near_zero": true,
+      "pass": true,
+      "note": "phi is fiber coord -> no gradient path through Hopf projection (correct)"
+    }
+  },
+  "all_pass": true,
+  "positive": {
+    "L2_on_L1": {
+      "all_pass": true,
+      "samples": [
+        {
+          "theta": 0.5,
+          "phi": 0.3,
+          "l1_valid": true,
+          "purity_is_1": true
+        },
+        {
+          "theta": 1.2,
+          "phi": 2.1,
+          "l1_valid": true,
+          "purity_is_1": true
+        },
+        {
+          "theta": 1.5707963267948966,
+          "phi": 3.141592653589793,
+          "l1_valid": true,
+          "purity_is_1": true
+        }
+      ]
+    },
+    "L3_on_L2": {
+      "all_pass": true,
+      "samples": [
+        {
+          "eta": 0.3,
+          "phi": 0.5,
+          "chi": 0.8,
+          "projected_theta": 0.6,
+          "projected_phi": -1.6,
+          "bloch_norm": 1.0,
+          "on_S2": true
+        },
+        {
+          "eta": 0.7,
+          "phi": 1.2,
+          "chi": 0.1,
+          "projected_theta": 1.4,
+          "projected_phi": -0.2,
+          "bloch_norm": 1.0,
+          "on_S2": true
+        },
+        {
+          "eta": 0.7853981633974483,
+          "phi": 0.0,
+          "chi": 1.0471975511965976,
+          "projected_theta": 1.5707963267948966,
+          "projected_phi": -2.0943951023931953,
+          "bloch_norm": 1.0,
+          "on_S2": true
+        }
+      ]
+    },
+    "L3_on_L1": {
+      "all_pass": true,
+      "samples": [
+        {
+          "eta": 0.2,
+          "phi": 0.4,
+          "chi": 0.6,
+          "l1_valid": true,
+          "purity_is_1": true,
+          "bloch_norm": 1.0
+        },
+        {
+          "eta": 1.0,
+          "phi": 2.0,
+          "chi": 3.0,
+          "l1_valid": true,
+          "purity_is_1": true,
+          "bloch_norm": 1.0
+        },
+        {
+          "eta": 0.7853981633974483,
+          "phi": 3.141592653589793,
+          "chi": 0.0,
+          "l1_valid": true,
+          "purity_is_1": true,
+          "bloch_norm": 1.0
+        }
+      ]
+    },
+    "autograd_through_all_3": {
+      "entropy": 6.0503827717221415e-15,
+      "grad_eta": -5.777366362888458e-15,
+      "grad_phi": null,
+      "grad_chi": 6.661338147750939e-16,
+      "base_grads_exist": true,
+      "fiber_grad_absent": true,
+      "entropy_near_zero": true,
+      "pass": true,
+      "note": "phi is fiber coord -> no gradient path through Hopf projection (correct)"
+    }
+  },
+  "negative": {}
+}

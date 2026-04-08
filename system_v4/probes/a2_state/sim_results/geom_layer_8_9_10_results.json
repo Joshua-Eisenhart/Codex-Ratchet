@@ -1,0 +1,1093 @@
+{
+  "name": "geom_layer_8_9_10",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd for nabla I_c, differentiable operator channels"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no GNN layers"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- numerical sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification of Ti chirality-preservation"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- torch native Pauli ops"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- Bloch/Hopf done in torch"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "classification": "canonical",
+  "layer_8_pauli_operators": {
+    "Ti": {
+      "density_matrix": {
+        "S_in": 0.5320770740509033,
+        "S_out": 0.6588167548179626,
+        "delta_S": 0.12673968076705933,
+        "purity_in": 0.7380324602127075,
+        "purity_out": 0.5358380079269409,
+        "trace_preserved": true
+      },
+      "bloch_sphere": {
+        "bloch_in": [
+          0.4918572008609772,
+          0.4142855703830719,
+          0.25001761317253113
+        ],
+        "bloch_out": [
+          -0.07323017716407776,
+          -0.06168091297149658,
+          0.25001761317253113
+        ],
+        "len_in": 0.6899745464324951,
+        "len_out": 0.2677237391471863,
+        "len_change": -0.42225080728530884
+      },
+      "hopf_torus": {
+        "inner": {
+          "S_after_op": 0.41116198897361755,
+          "bloch_after": [
+            -0.09238976240158081,
+            -0.050472766160964966,
+            0.7071067094802856
+          ],
+          "bloch_z": 0.7071067094802856
+        },
+        "clifford": {
+          "S_after_op": 0.6845868825912476,
+          "bloch_after": [
+            -0.13065886497497559,
+            -0.07137927412986755,
+            0.0
+          ],
+          "bloch_z": 0.0
+        },
+        "outer": {
+          "S_after_op": 0.411161869764328,
+          "bloch_after": [
+            -0.09238976240158081,
+            -0.050472766160964966,
+            -0.70710688829422
+          ],
+          "bloch_z": -0.70710688829422
+        }
+      },
+      "weyl_spinors": {
+        "chirality_L_before": 0.7071067094802856,
+        "chirality_L_after": 0.7071067094802856,
+        "chirality_R_before": -0.7071067094802856,
+        "chirality_R_after": -0.7071067094802856,
+        "delta_chi_L": 0.0,
+        "delta_chi_R": 0.0,
+        "LR_overlap_before": 5.83907233675518e-09,
+        "preserves_chirality": true
+      }
+    },
+    "Te": {
+      "density_matrix": {
+        "S_in": 0.5320770740509033,
+        "S_out": 0.5660052299499512,
+        "delta_S": 0.03392815589904785,
+        "purity_in": 0.7380324602127075,
+        "purity_out": 0.6235568523406982,
+        "trace_preserved": true
+      },
+      "bloch_sphere": {
+        "bloch_in": [
+          0.4918572008609772,
+          0.4142855703830719,
+          0.25001761317253113
+        ],
+        "bloch_out": [
+          0.4918572008609772,
+          -0.06168091297149658,
+          -0.03722390532493591
+        ],
+        "len_in": 0.6899745464324951,
+        "len_out": 0.49710527062416077,
+        "len_change": -0.19286927580833435
+      },
+      "hopf_torus": {
+        "inner": {
+          "S_after_op": 0.47932708263397217,
+          "bloch_after": [
+            0.6205446124076843,
+            -0.050472766160964966,
+            -0.10527756810188293
+          ],
+          "bloch_z": -0.10527756810188293
+        },
+        "clifford": {
+          "S_after_op": 0.23028044402599335,
+          "bloch_after": [
+            0.8775825500488281,
+            -0.07137927412986755,
+            0.0
+          ],
+          "bloch_z": 0.0
+        },
+        "outer": {
+          "S_after_op": 0.47932708263397217,
+          "bloch_after": [
+            0.6205446124076843,
+            -0.050472766160964966,
+            0.10527759790420532
+          ],
+          "bloch_z": 0.10527759790420532
+        }
+      },
+      "weyl_spinors": {
+        "chirality_L_before": 0.7071067094802856,
+        "chirality_L_after": -0.10527756810188293,
+        "chirality_R_before": -0.7071067094802856,
+        "chirality_R_after": 0.10527756810188293,
+        "delta_chi_L": -0.8123842775821686,
+        "delta_chi_R": 0.8123842775821686,
+        "LR_overlap_before": 5.83907233675518e-09,
+        "preserves_chirality": false
+      }
+    },
+    "Fe": {
+      "density_matrix": {
+        "S_in": 0.5320770740509033,
+        "S_out": 0.633548378944397,
+        "delta_S": 0.10147130489349365,
+        "purity_in": 0.7380324602127075,
+        "purity_out": 0.7380324602127075,
+        "trace_preserved": true
+      },
+      "bloch_sphere": {
+        "bloch_in": [
+          0.4918572008609772,
+          0.4142855703830719,
+          0.25001761317253113
+        ],
+        "bloch_out": [
+          0.2330261915922165,
+          0.599378764629364,
+          0.25001761317253113
+        ],
+        "len_in": 0.6899745464324951,
+        "len_out": 0.6899746060371399,
+        "len_change": 5.960464477539063e-08
+      },
+      "hopf_torus": {
+        "inner": {
+          "S_after_op": 0.3209785521030426,
+          "bloch_after": [
+            0.3820514976978302,
+            0.5950098037719727,
+            0.7071067094802856
+          ],
+          "bloch_z": 0.7071067094802856
+        },
+        "clifford": {
+          "S_after_op": 0.5390936732292175,
+          "bloch_after": [
+            0.5403022766113281,
+            0.8414708971977234,
+            0.0
+          ],
+          "bloch_z": 0.0
+        },
+        "outer": {
+          "S_after_op": 0.32097846269607544,
+          "bloch_after": [
+            0.3820514976978302,
+            0.5950098037719727,
+            -0.70710688829422
+          ],
+          "bloch_z": -0.70710688829422
+        }
+      },
+      "weyl_spinors": {
+        "chirality_L_before": 0.7071067094802856,
+        "chirality_L_after": 0.7071067094802856,
+        "chirality_R_before": -0.7071067094802856,
+        "chirality_R_after": -0.7071067094802856,
+        "delta_chi_L": 0.0,
+        "delta_chi_R": 0.0,
+        "LR_overlap_before": 5.83907233675518e-09,
+        "preserves_chirality": true
+      }
+    },
+    "Fi": {
+      "density_matrix": {
+        "S_in": 0.5320770740509033,
+        "S_out": 0.4671963155269623,
+        "delta_S": -0.06488075852394104,
+        "purity_in": 0.7380324602127075,
+        "purity_out": 0.7380325198173523,
+        "trace_preserved": true
+      },
+      "bloch_sphere": {
+        "bloch_in": [
+          0.4918572008609772,
+          0.4142855703830719,
+          0.25001761317253113
+        ],
+        "bloch_out": [
+          0.4918572008609772,
+          0.24370494484901428,
+          0.4180302321910858
+        ],
+        "len_in": 0.6899745464324951,
+        "len_out": 0.6899745464324951,
+        "len_change": 0.0
+      },
+      "hopf_torus": {
+        "inner": {
+          "S_after_op": 0.0037690233439207077,
+          "bloch_after": [
+            0.6205446124076843,
+            -0.04150013625621796,
+            0.7830721735954285
+          ],
+          "bloch_z": 0.7830721735954285
+        },
+        "clifford": {
+          "S_after_op": 0.187800794839859,
+          "bloch_after": [
+            0.8775825500488281,
+            0.4207354187965393,
+            0.22984886169433594
+          ],
+          "bloch_z": 0.22984886169433594
+        },
+        "outer": {
+          "S_after_op": 0.3555467128753662,
+          "bloch_after": [
+            0.6205446124076843,
+            0.6365100145339966,
+            -0.458016961812973
+          ],
+          "bloch_z": -0.458016961812973
+        }
+      },
+      "weyl_spinors": {
+        "chirality_L_before": 0.7071067094802856,
+        "chirality_L_after": 0.7830722332000732,
+        "chirality_R_before": -0.7071067094802856,
+        "chirality_R_after": -0.7830722332000732,
+        "delta_chi_L": 0.0759655237197876,
+        "delta_chi_R": -0.0759655237197876,
+        "LR_overlap_before": 5.83907233675518e-09,
+        "preserves_chirality": false
+      }
+    },
+    "assertions": {
+      "Ti_preserves_chirality": true,
+      "Fe_preserves_chirality": true,
+      "Fi_mixes_chirality": true,
+      "Te_mixes_chirality": true,
+      "Ti_entropy_nondecreasing": true,
+      "Te_entropy_nondecreasing": true,
+      "Fe_purity_preserved": true,
+      "Fi_purity_preserved": true,
+      "Ti_trace_preserved": true,
+      "Te_trace_preserved": true,
+      "Fe_trace_preserved": true,
+      "Fi_trace_preserved": true
+    },
+    "sympy_chirality_check": {
+      "comm_Z_K0_zero": true,
+      "comm_Z_K1_zero": true,
+      "Ti_commutes_with_Z": true
+    },
+    "all_pass": true
+  },
+  "layer_9_weyl_flux": {
+    "Ti": [
+      {
+        "w_L_0": 0.8535533547401428,
+        "w_L_1": 0.8535533547401428,
+        "w_L_2": 0.8535533547401428,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 0.39269908169872414,
+          "theta1": 0.0,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.8535533547401428,
+        "w_L_1": 0.8535533547401428,
+        "w_L_2": 0.8535533547401428,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 0.39269908169872414,
+          "theta1": 1.5707963267948966,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.8535533547401428,
+        "w_L_1": 0.8535533547401428,
+        "w_L_2": 0.8535533547401428,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 0.39269908169872414,
+          "theta1": 3.141592653589793,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.4999999701976776,
+        "w_L_1": 0.4999999403953552,
+        "w_L_2": 0.4999999403953552,
+        "J_LR": -2.9802322387695312e-08,
+        "J_LR_abs": 2.9802322387695312e-08,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.7853981633974483,
+          "theta1": 0.0,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.4999999701976776,
+        "w_L_1": 0.4999999403953552,
+        "w_L_2": 0.4999999403953552,
+        "J_LR": -2.9802322387695312e-08,
+        "J_LR_abs": 2.9802322387695312e-08,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.7853981633974483,
+          "theta1": 1.5707963267948966,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.4999999701976776,
+        "w_L_1": 0.4999999403953552,
+        "w_L_2": 0.4999999403953552,
+        "J_LR": -2.9802322387695312e-08,
+        "J_LR_abs": 2.9802322387695312e-08,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.7853981633974483,
+          "theta1": 3.141592653589793,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.1464466005563736,
+        "w_L_1": 0.1464466005563736,
+        "w_L_2": 0.1464466005563736,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 1.1780972450961724,
+          "theta1": 0.0,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.1464466005563736,
+        "w_L_1": 0.1464466005563736,
+        "w_L_2": 0.1464466005563736,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 1.1780972450961724,
+          "theta1": 1.5707963267948966,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.1464466005563736,
+        "w_L_1": 0.1464466005563736,
+        "w_L_2": 0.1464466005563736,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 1.1780972450961724,
+          "theta1": 3.141592653589793,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.49999991059303284,
+        "w_L_1": 0.49999988079071045,
+        "w_L_2": 0.49999988079071045,
+        "J_LR": -2.9802322387695312e-08,
+        "J_LR_abs": 2.9802322387695312e-08,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.7853981633974483,
+          "theta1": 1.0471975511965976,
+          "theta2": 1.0471975511965976
+        }
+      }
+    ],
+    "Te": [
+      {
+        "w_L_0": 0.8535533547401428,
+        "w_L_1": 0.44736120104789734,
+        "w_L_2": 0.5078371167182922,
+        "J_LR": -0.4061921536922455,
+        "J_LR_abs": 0.4061921536922455,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.39269908169872414,
+          "theta1": 0.0,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.8535533547401428,
+        "w_L_1": 0.44736120104789734,
+        "w_L_2": 0.5078371167182922,
+        "J_LR": -0.4061921536922455,
+        "J_LR_abs": 0.4061921536922455,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.39269908169872414,
+          "theta1": 1.5707963267948966,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.8535533547401428,
+        "w_L_1": 0.44736120104789734,
+        "w_L_2": 0.5078371167182922,
+        "J_LR": -0.4061921536922455,
+        "J_LR_abs": 0.4061921536922455,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.39269908169872414,
+          "theta1": 3.141592653589793,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.4999999701976776,
+        "w_L_1": 0.4999999403953552,
+        "w_L_2": 0.4999999403953552,
+        "J_LR": -2.9802322387695312e-08,
+        "J_LR_abs": 2.9802322387695312e-08,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.7853981633974483,
+          "theta1": 0.0,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.4999999701976776,
+        "w_L_1": 0.4999999403953552,
+        "w_L_2": 0.4999999403953552,
+        "J_LR": -2.9802322387695312e-08,
+        "J_LR_abs": 2.9802322387695312e-08,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.7853981633974483,
+          "theta1": 1.5707963267948966,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.4999999701976776,
+        "w_L_1": 0.4999999403953552,
+        "w_L_2": 0.4999999403953552,
+        "J_LR": -2.9802322387695312e-08,
+        "J_LR_abs": 2.9802322387695312e-08,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.7853981633974483,
+          "theta1": 3.141592653589793,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.1464466005563736,
+        "w_L_1": 0.552638828754425,
+        "w_L_2": 0.49216288328170776,
+        "J_LR": 0.40619222819805145,
+        "J_LR_abs": 0.40619222819805145,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 1.1780972450961724,
+          "theta1": 0.0,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.1464466005563736,
+        "w_L_1": 0.552638828754425,
+        "w_L_2": 0.49216288328170776,
+        "J_LR": 0.40619222819805145,
+        "J_LR_abs": 0.40619222819805145,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 1.1780972450961724,
+          "theta1": 1.5707963267948966,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.1464466005563736,
+        "w_L_1": 0.552638828754425,
+        "w_L_2": 0.49216288328170776,
+        "J_LR": 0.40619222819805145,
+        "J_LR_abs": 0.40619222819805145,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 1.1780972450961724,
+          "theta1": 3.141592653589793,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.49999991059303284,
+        "w_L_1": 0.49999988079071045,
+        "w_L_2": 0.49999988079071045,
+        "J_LR": -2.9802322387695312e-08,
+        "J_LR_abs": 2.9802322387695312e-08,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.7853981633974483,
+          "theta1": 1.0471975511965976,
+          "theta2": 1.0471975511965976
+        }
+      }
+    ],
+    "Fe": [
+      {
+        "w_L_0": 0.8535533547401428,
+        "w_L_1": 0.8535533547401428,
+        "w_L_2": 0.8535533547401428,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 0.39269908169872414,
+          "theta1": 0.0,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.8535533547401428,
+        "w_L_1": 0.8535533547401428,
+        "w_L_2": 0.8535533547401428,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 0.39269908169872414,
+          "theta1": 1.5707963267948966,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.8535533547401428,
+        "w_L_1": 0.8535533547401428,
+        "w_L_2": 0.8535533547401428,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 0.39269908169872414,
+          "theta1": 3.141592653589793,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.4999999701976776,
+        "w_L_1": 0.4999999701976776,
+        "w_L_2": 0.4999999701976776,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 0.7853981633974483,
+          "theta1": 0.0,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.4999999701976776,
+        "w_L_1": 0.4999999701976776,
+        "w_L_2": 0.4999999701976776,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 0.7853981633974483,
+          "theta1": 1.5707963267948966,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.4999999701976776,
+        "w_L_1": 0.4999999701976776,
+        "w_L_2": 0.4999999701976776,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 0.7853981633974483,
+          "theta1": 3.141592653589793,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.1464466005563736,
+        "w_L_1": 0.1464466005563736,
+        "w_L_2": 0.1464466005563736,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 1.1780972450961724,
+          "theta1": 0.0,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.1464466005563736,
+        "w_L_1": 0.1464466005563736,
+        "w_L_2": 0.1464466005563736,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 1.1780972450961724,
+          "theta1": 1.5707963267948966,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.1464466005563736,
+        "w_L_1": 0.1464466005563736,
+        "w_L_2": 0.1464466005563736,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 1.1780972450961724,
+          "theta1": 3.141592653589793,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.49999991059303284,
+        "w_L_1": 0.49999991059303284,
+        "w_L_2": 0.49999991059303284,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 0.7853981633974483,
+          "theta1": 1.0471975511965976,
+          "theta2": 1.0471975511965976
+        }
+      }
+    ],
+    "Fi": [
+      {
+        "w_L_0": 0.8535533547401428,
+        "w_L_1": 0.8915361166000366,
+        "w_L_2": 0.8336572051048279,
+        "J_LR": 0.0379827618598938,
+        "J_LR_abs": 0.0379827618598938,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.39269908169872414,
+          "theta1": 0.0,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.8535533547401428,
+        "w_L_1": 0.6615197658538818,
+        "w_L_2": 0.4299405515193939,
+        "J_LR": -0.192033588886261,
+        "J_LR_abs": 0.192033588886261,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.39269908169872414,
+          "theta1": 1.5707963267948966,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.8535533547401428,
+        "w_L_1": 0.7290084362030029,
+        "w_L_2": 0.5483942031860352,
+        "J_LR": -0.12454491853713989,
+        "J_LR_abs": 0.12454491853713989,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.39269908169872414,
+          "theta1": 3.141592653589793,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.4999999701976776,
+        "w_L_1": 0.614924430847168,
+        "w_L_2": 0.7017112970352173,
+        "J_LR": 0.11492446064949036,
+        "J_LR_abs": 0.11492446064949036,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.7853981633974483,
+          "theta1": 0.0,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.4999999701976776,
+        "w_L_1": 0.28963223099708557,
+        "w_L_2": 0.13076984882354736,
+        "J_LR": -0.21036773920059204,
+        "J_LR_abs": 0.21036773920059204,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.7853981633974483,
+          "theta1": 1.5707963267948966,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.4999999701976776,
+        "w_L_1": 0.38507556915283203,
+        "w_L_2": 0.29828864336013794,
+        "J_LR": -0.11492440104484558,
+        "J_LR_abs": 0.11492440104484558,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 0.7853981633974483,
+          "theta1": 3.141592653589793,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.1464466005563736,
+        "w_L_1": 0.2709915339946747,
+        "w_L_2": 0.45160573720932007,
+        "J_LR": 0.12454493343830109,
+        "J_LR_abs": 0.12454493343830109,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 1.1780972450961724,
+          "theta1": 0.0,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.1464466005563736,
+        "w_L_1": 0.04097522050142288,
+        "w_L_2": 0.04788912832736969,
+        "J_LR": -0.10547138005495071,
+        "J_LR_abs": 0.10547138005495071,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 1.1780972450961724,
+          "theta1": 1.5707963267948966,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.1464466005563736,
+        "w_L_1": 0.10846386104822159,
+        "w_L_2": 0.1663428246974945,
+        "J_LR": -0.03798273950815201,
+        "J_LR_abs": 0.03798273950815201,
+        "irreversible": true,
+        "torus_point": {
+          "eta": 1.1780972450961724,
+          "theta1": 3.141592653589793,
+          "theta2": 0.5
+        }
+      },
+      {
+        "w_L_0": 0.49999991059303284,
+        "w_L_1": 0.49999991059303284,
+        "w_L_2": 0.49999991059303284,
+        "J_LR": 0.0,
+        "J_LR_abs": 0.0,
+        "irreversible": false,
+        "torus_point": {
+          "eta": 0.7853981633974483,
+          "theta1": 1.0471975511965976,
+          "theta2": 1.0471975511965976
+        }
+      }
+    ],
+    "assertions": {
+      "Fe_zero_flux": true,
+      "Fe_max_flux": 0.0,
+      "Fi_nonzero_flux": true,
+      "Fi_mean_flux": 0.10627769231796265,
+      "Ti_preserves_L_weight": true,
+      "Ti_max_flux": 2.9802322387695312e-08,
+      "Te_has_flux_on_nonzero_pz": true
+    },
+    "all_pass": true
+  },
+  "layer_10_entropy_gradient": {
+    "L1_only": {
+      "I_c": 0.0741155743598938,
+      "grad_r": 0.027527691796422005,
+      "grad_theta": -0.05554286763072014,
+      "grad_phi": -0.08401286602020264,
+      "grad_norm": 0.10440759367599187,
+      "active_layers": [
+        "L1_CPTP"
+      ]
+    },
+    "L1_to_L3": {
+      "I_c": 0.0741155743598938,
+      "grad_r": 0.027527689933776855,
+      "grad_theta": -0.05554286018013954,
+      "grad_phi": -0.08401286602020264,
+      "grad_norm": 0.10440758922132629,
+      "active_layers": [
+        "L1_CPTP",
+        "L2_Hopf",
+        "L3_Noncomm"
+      ]
+    },
+    "L1_to_L6": {
+      "I_c": 0.03182876110076904,
+      "grad_r": 0.009654185734689236,
+      "grad_theta": -0.026475274935364723,
+      "grad_phi": -0.03436495363712311,
+      "grad_norm": 0.04444202429665698,
+      "active_layers": [
+        "L1_CPTP",
+        "L2_Hopf",
+        "L3_Noncomm",
+        "L4_Composition",
+        "L5_Chirality",
+        "L6_Irreversibility"
+      ]
+    },
+    "L1_to_L7": {
+      "I_c": 0.03182876110076904,
+      "grad_r": 0.009654185734689236,
+      "grad_theta": -0.026475274935364723,
+      "grad_phi": -0.03436495363712311,
+      "grad_norm": 0.04444202429665698,
+      "active_layers": [
+        "L1_CPTP",
+        "L2_Hopf",
+        "L3_Noncomm",
+        "L4_Composition",
+        "L5_Chirality",
+        "L6_Irreversibility",
+        "L7_StageOrder"
+      ]
+    },
+    "L1_to_L8": {
+      "I_c": 0.015370666980743408,
+      "grad_r": 0.004644027445465326,
+      "grad_theta": -0.047324951738119125,
+      "grad_phi": -0.0003387386677786708,
+      "grad_norm": 0.04755347297321814,
+      "active_layers": [
+        "L1_CPTP",
+        "L2_Hopf",
+        "L3_Noncomm",
+        "L4_Composition",
+        "L5_Chirality",
+        "L6_Irreversibility",
+        "L7_StageOrder",
+        "L8_Ti"
+      ]
+    },
+    "L1_to_L9": {
+      "I_c": 0.013133108615875244,
+      "grad_r": 0.003965901676565409,
+      "grad_theta": -0.04226663336157799,
+      "grad_phi": -0.0012025315081700683,
+      "grad_norm": 0.042469315439012945,
+      "active_layers": [
+        "L1_CPTP",
+        "L2_Hopf",
+        "L3_Noncomm",
+        "L4_Composition",
+        "L5_Chirality",
+        "L6_Irreversibility",
+        "L7_StageOrder",
+        "L8_Ti",
+        "L9_Fi"
+      ]
+    },
+    "full": {
+      "I_c": 0.013133108615875244,
+      "grad_r": 0.003965901676565409,
+      "grad_theta": -0.04226663336157799,
+      "grad_phi": -0.0012025315081700683,
+      "grad_norm": 0.042469315439012945,
+      "active_layers": [
+        "L1_CPTP",
+        "L2_Hopf",
+        "L3_Noncomm",
+        "L4_Composition",
+        "L5_Chirality",
+        "L6_Irreversibility",
+        "L7_StageOrder",
+        "L8_Ti",
+        "L9_Fi"
+      ]
+    },
+    "layer_contributions": {
+      "L1_only_to_L1_to_L3": {
+        "delta_grad_norm": 7.679882693323606e-09,
+        "delta_Ic": 0.0
+      },
+      "L1_to_L3_to_L1_to_L6": {
+        "delta_grad_norm": 0.060243687373159646,
+        "delta_Ic": -0.042286813259124756
+      },
+      "L1_to_L6_to_L1_to_L7": {
+        "delta_grad_norm": 0.0,
+        "delta_Ic": 0.0
+      },
+      "L1_to_L7_to_L1_to_L8": {
+        "delta_grad_norm": 0.040219323887932694,
+        "delta_Ic": -0.016458094120025635
+      },
+      "L1_to_L8_to_L1_to_L9": {
+        "delta_grad_norm": 0.005176154695139174,
+        "delta_Ic": -0.002237558364868164
+      },
+      "L1_to_L9_to_full": {
+        "delta_grad_norm": 0.0,
+        "delta_Ic": 0.0
+      }
+    },
+    "most_impactful_transition": {
+      "name": "L1_to_L3_to_L1_to_L6",
+      "delta_grad_norm": 0.060243687373159646
+    },
+    "assertions": {
+      "gradient_changes_with_layers": true,
+      "full_stack_grad_nonzero": true,
+      "Ic_monotonic_trend": true,
+      "at_least_one_significant_layer": true
+    },
+    "all_pass": true
+  },
+  "negative": {
+    "identity_zero_flux": {
+      "J_LR": 0.0,
+      "pass": true
+    },
+    "full_depolarize_kills_Ic": {
+      "I_c": 0.0,
+      "pass": true
+    },
+    "zero_strength_is_identity": {
+      "diff": 6.421275611501187e-05,
+      "pass": true
+    },
+    "nonphysical_input_handled": {
+      "trace_out": 3.0,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "boundary": {
+    "Ti_on_maximally_mixed": {
+      "S_out": 0.6931471824645996,
+      "S_max": 0.6931471805599453,
+      "pass": true
+    },
+    "Te_on_maximally_mixed": {
+      "S_out": 0.6931471824645996,
+      "S_max": 0.6931471805599453,
+      "pass": true
+    },
+    "Fe_on_maximally_mixed": {
+      "S_out": 0.6931471824645996,
+      "S_max": 0.6931471805599453,
+      "pass": true
+    },
+    "Fi_on_maximally_mixed": {
+      "S_out": 0.6931471824645996,
+      "S_max": 0.6931471805599453,
+      "pass": true
+    },
+    "Ti_on_pure_state": {
+      "S_out": 2.7631020735330303e-11,
+      "pass": true
+    },
+    "Te_on_pure_state": {
+      "S_out": 0.6820225119590759,
+      "pass": true
+    },
+    "degenerate_torus_eta_0": {
+      "spinor_norm": 1.0,
+      "pass": true
+    },
+    "degenerate_torus_eta_pi2": {
+      "spinor_norm": 1.0,
+      "pass": true
+    },
+    "large_rotation_stable": {
+      "trace": 0.9999998807907104,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "overall_pass": true,
+  "positive": {}
+}

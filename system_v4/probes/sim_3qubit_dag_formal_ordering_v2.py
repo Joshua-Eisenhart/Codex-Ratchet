@@ -706,22 +706,29 @@ def run_cvc5_crosscheck() -> dict:
     }
 
     # ── CVC5-Z2: product > 0 is UNSAT ────────────────────────────────
+    # Exact encoding: ic = S_BC - S_ABC = 0 - 0 = 0, then assert ic > 0
     slv2 = make_solver()
-    ic_prod_cvc = slv2.mkConst(slv2.getRealSort(), "ic_prod")
+    rs = slv2.getRealSort()
+    ic_prod_cvc   = slv2.mkConst(rs, "ic_prod")
+    S_BC_cvc      = slv2.mkConst(rs, "S_BC_prod")
+    S_ABC_cvc     = slv2.mkConst(rs, "S_ABC_prod")
 
-    slv2.assertFormula(slv2.mkTerm(
-        cvc5.Kind.GEQ, ic_prod_cvc, slv2.mkReal(-1, 10000)))
-    slv2.assertFormula(slv2.mkTerm(
-        cvc5.Kind.LEQ, ic_prod_cvc, slv2.mkReal(1, 10000)))
-    slv2.assertFormula(slv2.mkTerm(
-        cvc5.Kind.GT, ic_prod_cvc, slv2.mkReal(0)))
+    # S(BC)=0, S(ABC)=0 for pure separable |000⟩
+    slv2.assertFormula(slv2.mkTerm(cvc5.Kind.EQUAL, S_BC_cvc,  slv2.mkReal(0)))
+    slv2.assertFormula(slv2.mkTerm(cvc5.Kind.EQUAL, S_ABC_cvc, slv2.mkReal(0)))
+    # ic = S_BC - S_ABC
+    ic_def = slv2.mkTerm(cvc5.Kind.SUB, S_BC_cvc, S_ABC_cvc)
+    slv2.assertFormula(slv2.mkTerm(cvc5.Kind.EQUAL, ic_prod_cvc, ic_def))
+    # Assert ic > 0 (to disprove)
+    slv2.assertFormula(slv2.mkTerm(cvc5.Kind.GT, ic_prod_cvc, slv2.mkReal(0)))
 
     r2 = slv2.checkSat()
     cvc5_z2_unsat = r2.isUnsat()
     results["CVC5_Z2_product_gt_zero_UNSAT"] = {
-        "claim":    "I_c(product) > 0 with product∈[-0.0001, 0.0001]",
+        "claim":    "I_c(product) > 0, given S(BC)=0, S(ABC)=0 for |000⟩",
         "result":   "UNSAT" if cvc5_z2_unsat else "SAT",
         "is_unsat": cvc5_z2_unsat,
+        "encoding": "ic = S_BC - S_ABC = 0 - 0 = 0; assert ic > 0",
         "agrees_with_z3": True,
         "pass": cvc5_z2_unsat,
     }

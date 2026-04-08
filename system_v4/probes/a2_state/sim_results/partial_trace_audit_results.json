@@ -1,0 +1,1517 @@
+{
+  "audit_type": "partial_trace_einsum",
+  "timestamp": "2026-04-07T20:45:18.542222",
+  "classification": "audit",
+  "description": "Sweep all probe .py files for einsum partial trace patterns, test against Bell/GHZ states",
+  "bell_state_ground_truth": "Tr_A(|Bell><Bell|) = Tr_B(|Bell><Bell|) = I/2",
+  "known_pattern_tests": {
+    "trace_A_correct": {
+      "pattern": "aiaj->ij",
+      "reshape": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "label": "trace_A_correct",
+      "result_shape": [
+        2,
+        2
+      ],
+      "trace": 0.9999999999999998,
+      "hermitian": true,
+      "psd": true,
+      "trace_one": true,
+      "matches_I_over_2": true,
+      "max_diff_from_I_over_2": 1.1102230246251565e-16,
+      "pass": true,
+      "bug_type": null,
+      "classification": {
+        "pattern": "aiaj->ij",
+        "contracted": [
+          "a"
+        ],
+        "kept": [
+          "i",
+          "j"
+        ],
+        "is_valid_partial_trace": true,
+        "issues": []
+      }
+    },
+    "trace_A_WRONG_independent_sum": {
+      "pattern": "aibj->ij",
+      "reshape": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "label": "trace_A_WRONG_independent_sum",
+      "result_shape": [
+        2,
+        2
+      ],
+      "trace": 0.9999999999999998,
+      "hermitian": true,
+      "psd": true,
+      "trace_one": true,
+      "matches_I_over_2": false,
+      "max_diff_from_I_over_2": 0.4999999999999999,
+      "pass": false,
+      "bug_type": "wrong_contraction",
+      "classification": {
+        "pattern": "aibj->ij",
+        "contracted": [
+          "a",
+          "b"
+        ],
+        "kept": [
+          "i",
+          "j"
+        ],
+        "is_valid_partial_trace": false,
+        "issues": [
+          "index 'a' appears 1 times (need exactly 2)",
+          "index 'b' appears 1 times (need exactly 2)",
+          "TWO different contracted indices ['a', 'b'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+        ]
+      }
+    },
+    "trace_A_alt_correct": {
+      "pattern": "ijik->jk",
+      "reshape": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "label": "trace_A_alt_correct",
+      "result_shape": [
+        2,
+        2
+      ],
+      "trace": 0.9999999999999998,
+      "hermitian": true,
+      "psd": true,
+      "trace_one": true,
+      "matches_I_over_2": true,
+      "max_diff_from_I_over_2": 1.1102230246251565e-16,
+      "pass": true,
+      "bug_type": null,
+      "classification": {
+        "pattern": "ijik->jk",
+        "contracted": [
+          "i"
+        ],
+        "kept": [
+          "j",
+          "k"
+        ],
+        "is_valid_partial_trace": true,
+        "issues": []
+      }
+    },
+    "trace_B_correct": {
+      "pattern": "ijkj->ik",
+      "reshape": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "label": "trace_B_correct",
+      "result_shape": [
+        2,
+        2
+      ],
+      "trace": 0.9999999999999998,
+      "hermitian": true,
+      "psd": true,
+      "trace_one": true,
+      "matches_I_over_2": true,
+      "max_diff_from_I_over_2": 1.1102230246251565e-16,
+      "pass": true,
+      "bug_type": null,
+      "classification": {
+        "pattern": "ijkj->ik",
+        "contracted": [
+          "j"
+        ],
+        "kept": [
+          "i",
+          "k"
+        ],
+        "is_valid_partial_trace": true,
+        "issues": []
+      }
+    },
+    "trace_B_alt_correct": {
+      "pattern": "iaja->ij",
+      "reshape": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "label": "trace_B_alt_correct",
+      "result_shape": [
+        2,
+        2
+      ],
+      "trace": 0.9999999999999998,
+      "hermitian": true,
+      "psd": true,
+      "trace_one": true,
+      "matches_I_over_2": true,
+      "max_diff_from_I_over_2": 1.1102230246251565e-16,
+      "pass": true,
+      "bug_type": null,
+      "classification": {
+        "pattern": "iaja->ij",
+        "contracted": [
+          "a"
+        ],
+        "kept": [
+          "i",
+          "j"
+        ],
+        "is_valid_partial_trace": true,
+        "issues": []
+      }
+    },
+    "trace_B_via_jiki_correct": {
+      "pattern": "jiki->jk",
+      "reshape": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "label": "trace_B_via_jiki_correct",
+      "result_shape": [
+        2,
+        2
+      ],
+      "trace": 0.9999999999999998,
+      "hermitian": true,
+      "psd": true,
+      "trace_one": true,
+      "matches_I_over_2": true,
+      "max_diff_from_I_over_2": 1.1102230246251565e-16,
+      "pass": true,
+      "bug_type": null,
+      "classification": {
+        "pattern": "jiki->jk",
+        "contracted": [
+          "i"
+        ],
+        "kept": [
+          "j",
+          "k"
+        ],
+        "is_valid_partial_trace": true,
+        "issues": []
+      }
+    }
+  },
+  "3qubit_pattern_tests": {
+    "3q_trace_A": {
+      "pattern": "aiaj->ij",
+      "reshape": [
+        2,
+        4,
+        2,
+        4
+      ],
+      "label": "3q_trace_A",
+      "result_shape": [
+        4,
+        4
+      ],
+      "trace": 0.9999999999999998,
+      "expected_trace": 1.0,
+      "hermitian": true,
+      "max_diff": 1.1102230246251565e-16,
+      "pass": true,
+      "bug_type": null
+    },
+    "3q_trace_C": {
+      "pattern": "iaja->ij",
+      "reshape": [
+        4,
+        2,
+        4,
+        2
+      ],
+      "label": "3q_trace_C",
+      "result_shape": [
+        4,
+        4
+      ],
+      "trace": 0.9999999999999998,
+      "expected_trace": 1.0,
+      "hermitian": true,
+      "max_diff": 1.1102230246251565e-16,
+      "pass": true,
+      "bug_type": null
+    },
+    "3q_trace_AB": {
+      "pattern": "aiaj->ij",
+      "reshape": [
+        4,
+        2,
+        4,
+        2
+      ],
+      "label": "3q_trace_AB",
+      "result_shape": [
+        2,
+        2
+      ],
+      "trace": 0.9999999999999998,
+      "expected_trace": 1.0,
+      "hermitian": true,
+      "max_diff": 1.1102230246251565e-16,
+      "pass": true,
+      "bug_type": null
+    },
+    "3q_trace_BC": {
+      "pattern": "iaja->ij",
+      "reshape": [
+        2,
+        4,
+        2,
+        4
+      ],
+      "label": "3q_trace_BC",
+      "result_shape": [
+        2,
+        2
+      ],
+      "trace": 0.9999999999999998,
+      "expected_trace": 1.0,
+      "hermitian": true,
+      "max_diff": 1.1102230246251565e-16,
+      "pass": true,
+      "bug_type": null
+    }
+  },
+  "file_scan": {
+    "holodeck_fep_engine.py": {
+      "patterns": [
+        {
+          "file": "holodeck_fep_engine.py",
+          "line": 24,
+          "pattern": "jiki->jk",
+          "line_text": "return np.einsum('jiki->jk', reshaped)",
+          "classification": {
+            "pattern": "jiki->jk",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "j",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_axis0_through_shells.py": {
+      "patterns": [
+        {
+          "file": "sim_axis0_through_shells.py",
+          "line": 109,
+          "pattern": "iaja->ij",
+          "line_text": "return torch.einsum('iaja->ij', rho)",
+          "classification": {
+            "pattern": "iaja->ij",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_axis0_through_shells.py",
+          "line": 115,
+          "pattern": "aibj->ij",
+          "line_text": "return torch.einsum('aibj->ij', rho)",
+          "classification": {
+            "pattern": "aibj->ij",
+            "contracted": [
+              "a",
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": false,
+            "issues": [
+              "index 'a' appears 1 times (need exactly 2)",
+              "index 'b' appears 1 times (need exactly 2)",
+              "TWO different contracted indices ['a', 'b'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+            ]
+          },
+          "bell_test": {
+            "pass": false,
+            "matches_I_over_2": false,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_axis0_through_shells.py",
+          "line": 472,
+          "pattern": "iaja->ij",
+          "line_text": "rho_A = np.einsum('iaja->ij', rho_np.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "iaja->ij",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_axis0_through_shells.py",
+          "line": 473,
+          "pattern": "aibj->ij",
+          "line_text": "rho_B = np.einsum('aibj->ij', rho_np.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "aibj->ij",
+            "contracted": [
+              "a",
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": false,
+            "issues": [
+              "index 'a' appears 1 times (need exactly 2)",
+              "index 'b' appears 1 times (need exactly 2)",
+              "TWO different contracted indices ['a', 'b'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+            ]
+          },
+          "bell_test": {
+            "pass": false,
+            "matches_I_over_2": false,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": true
+    },
+    "sim_information_geometry.py": {
+      "patterns": [
+        {
+          "file": "sim_information_geometry.py",
+          "line": 190,
+          "pattern": "aiaj->ij",
+          "line_text": "return torch.einsum('aiaj->ij', rho_reshaped)",
+          "classification": {
+            "pattern": "aiaj->ij",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_layered_foundation.py": {
+      "patterns": [
+        {
+          "file": "sim_layered_foundation.py",
+          "line": 190,
+          "pattern": "ijik->jk",
+          "line_text": "return torch.einsum(\"ijik->jk\", rho_ab.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ijik->jk",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "j",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_layered_foundation.py",
+          "line": 195,
+          "pattern": "ijkj->ik",
+          "line_text": "return torch.einsum(\"ijkj->ik\", rho_ab.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_phase7_divergence_analysis.py": {
+      "patterns": [
+        {
+          "file": "sim_phase7_divergence_analysis.py",
+          "line": 129,
+          "pattern": "ijik->jk",
+          "line_text": "return torch.einsum('ijik->jk', rho)",
+          "classification": {
+            "pattern": "ijik->jk",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "j",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_phase7_divergence_analysis.py",
+          "line": 131,
+          "pattern": "ijkj->ik",
+          "line_text": "return torch.einsum('ijkj->ik', rho)",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_ratchet_optimizer.py": {
+      "patterns": [
+        {
+          "file": "sim_ratchet_optimizer.py",
+          "line": 107,
+          "pattern": "ijik->jk",
+          "line_text": "return torch.einsum(\"ijik->jk\", rho_r)",
+          "classification": {
+            "pattern": "ijik->jk",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "j",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_ratchet_optimizer.py",
+          "line": 113,
+          "pattern": "ijkj->ik",
+          "line_text": "return torch.einsum(\"ijkj->ik\", rho_r)",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_torch_axis0_3qubit.py": {
+      "patterns": [
+        {
+          "file": "sim_torch_axis0_3qubit.py",
+          "line": 249,
+          "pattern": "aiaj->ij",
+          "line_text": "return torch.einsum('aiaj->ij', rho)",
+          "classification": {
+            "pattern": "aiaj->ij",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_axis0_3qubit.py",
+          "line": 260,
+          "pattern": "iaja->ij",
+          "line_text": "return torch.einsum('iaja->ij', rho)",
+          "classification": {
+            "pattern": "iaja->ij",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_axis0_3qubit.py",
+          "line": 271,
+          "pattern": "aiaj->ij",
+          "line_text": "return torch.einsum('aiaj->ij', rho)",
+          "classification": {
+            "pattern": "aiaj->ij",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_axis0_3qubit.py",
+          "line": 282,
+          "pattern": "iaja->ij",
+          "line_text": "return torch.einsum('iaja->ij', rho)",
+          "classification": {
+            "pattern": "iaja->ij",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_axis0_3qubit.py",
+          "line": 404,
+          "pattern": "aiaj->ij",
+          "line_text": "rho_BC = np.einsum('aiaj->ij', rho_r)  # trace out A",
+          "classification": {
+            "pattern": "aiaj->ij",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_axis0_3qubit.py",
+          "line": 411,
+          "pattern": "aiaj->ij",
+          "line_text": "rho_C = np.einsum('aiaj->ij', rho_r)  # trace out AB",
+          "classification": {
+            "pattern": "aiaj->ij",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_torch_axis0_gradient.py": {
+      "patterns": [
+        {
+          "file": "sim_torch_axis0_gradient.py",
+          "line": 210,
+          "pattern": "aibj->ij",
+          "line_text": "rho_B = torch.einsum('aibj->ij', rho_reshaped)",
+          "classification": {
+            "pattern": "aibj->ij",
+            "contracted": [
+              "a",
+              "b"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": false,
+            "issues": [
+              "index 'a' appears 1 times (need exactly 2)",
+              "index 'b' appears 1 times (need exactly 2)",
+              "TWO different contracted indices ['a', 'b'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+            ]
+          },
+          "bell_test": {
+            "pass": false,
+            "matches_I_over_2": false,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_axis0_gradient.py",
+          "line": 213,
+          "pattern": "aiaj->ij",
+          "line_text": "rho_B = torch.einsum('aiaj->ij', rho_reshaped)",
+          "classification": {
+            "pattern": "aiaj->ij",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_axis0_gradient.py",
+          "line": 416,
+          "pattern": "aiaj->ij",
+          "line_text": "return np.einsum('aiaj->ij', rho)",
+          "classification": {
+            "pattern": "aiaj->ij",
+            "contracted": [
+              "a"
+            ],
+            "kept": [
+              "i",
+              "j"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": true
+    },
+    "sim_torch_mutual_info.py": {
+      "patterns": [
+        {
+          "file": "sim_torch_mutual_info.py",
+          "line": 103,
+          "pattern": "ijik->jk",
+          "line_text": "return torch.einsum(\"ijik->jk\", rho_reshaped)",
+          "classification": {
+            "pattern": "ijik->jk",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "j",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_mutual_info.py",
+          "line": 109,
+          "pattern": "ijkj->ik",
+          "line_text": "return torch.einsum(\"ijkj->ik\", rho_reshaped)",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_mutual_info.py",
+          "line": 139,
+          "pattern": "ijik->jk",
+          "line_text": "return np.einsum(\"ijik->jk\", rho_r)",
+          "classification": {
+            "pattern": "ijik->jk",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "j",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_mutual_info.py",
+          "line": 145,
+          "pattern": "ijkj->ik",
+          "line_text": "return np.einsum(\"ijkj->ik\", rho_r)",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_mutual_info.py",
+          "line": 243,
+          "pattern": "ijkj->ik",
+          "line_text": "rho_ab = np.einsum(\"ijkj->ik\", rho_8_r)",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_torch_quantum_discord.py": {
+      "patterns": [
+        {
+          "file": "sim_torch_quantum_discord.py",
+          "line": 93,
+          "pattern": "ijik->jk",
+          "line_text": "return torch.einsum(\"ijik->jk\", rho_ab.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ijik->jk",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "j",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_quantum_discord.py",
+          "line": 98,
+          "pattern": "ijkj->ik",
+          "line_text": "return torch.einsum(\"ijkj->ik\", rho_ab.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_quantum_discord.py",
+          "line": 179,
+          "pattern": "ijik->jk",
+          "line_text": "return np.einsum(\"ijik->jk\", rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ijik->jk",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "j",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_quantum_discord.py",
+          "line": 184,
+          "pattern": "ijkj->ik",
+          "line_text": "return np.einsum(\"ijkj->ik\", rho.reshape(2, 2, 2, 2))",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    },
+    "sim_torch_ratchet_gnn.py": {
+      "patterns": [
+        {
+          "file": "sim_torch_ratchet_gnn.py",
+          "line": 256,
+          "pattern": "ijik->jk",
+          "line_text": "return torch.einsum(\"ijik->jk\", rho_reshaped)",
+          "classification": {
+            "pattern": "ijik->jk",
+            "contracted": [
+              "i"
+            ],
+            "kept": [
+              "j",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        },
+        {
+          "file": "sim_torch_ratchet_gnn.py",
+          "line": 262,
+          "pattern": "ijkj->ik",
+          "line_text": "return torch.einsum(\"ijkj->ik\", rho_reshaped)",
+          "classification": {
+            "pattern": "ijkj->ik",
+            "contracted": [
+              "j"
+            ],
+            "kept": [
+              "i",
+              "k"
+            ],
+            "is_valid_partial_trace": true,
+            "issues": []
+          },
+          "bell_test": {
+            "pass": true,
+            "matches_I_over_2": true,
+            "trace": 0.9999999999999998
+          }
+        }
+      ],
+      "has_bug": false
+    }
+  },
+  "bugs_found": [
+    {
+      "file": "sim_axis0_through_shells.py",
+      "line": 115,
+      "pattern": "aibj->ij",
+      "line_text": "return torch.einsum('aibj->ij', rho)",
+      "classification": {
+        "pattern": "aibj->ij",
+        "contracted": [
+          "a",
+          "b"
+        ],
+        "kept": [
+          "i",
+          "j"
+        ],
+        "is_valid_partial_trace": false,
+        "issues": [
+          "index 'a' appears 1 times (need exactly 2)",
+          "index 'b' appears 1 times (need exactly 2)",
+          "TWO different contracted indices ['a', 'b'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+        ]
+      },
+      "bell_test": {
+        "pass": false,
+        "matches_I_over_2": false,
+        "trace": 0.9999999999999998
+      }
+    },
+    {
+      "file": "sim_axis0_through_shells.py",
+      "line": 473,
+      "pattern": "aibj->ij",
+      "line_text": "rho_B = np.einsum('aibj->ij', rho_np.reshape(2, 2, 2, 2))",
+      "classification": {
+        "pattern": "aibj->ij",
+        "contracted": [
+          "a",
+          "b"
+        ],
+        "kept": [
+          "i",
+          "j"
+        ],
+        "is_valid_partial_trace": false,
+        "issues": [
+          "index 'a' appears 1 times (need exactly 2)",
+          "index 'b' appears 1 times (need exactly 2)",
+          "TWO different contracted indices ['a', 'b'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+        ]
+      },
+      "bell_test": {
+        "pass": false,
+        "matches_I_over_2": false,
+        "trace": 0.9999999999999998
+      }
+    },
+    {
+      "file": "sim_torch_axis0_gradient.py",
+      "line": 210,
+      "pattern": "aibj->ij",
+      "line_text": "rho_B = torch.einsum('aibj->ij', rho_reshaped)",
+      "classification": {
+        "pattern": "aibj->ij",
+        "contracted": [
+          "a",
+          "b"
+        ],
+        "kept": [
+          "i",
+          "j"
+        ],
+        "is_valid_partial_trace": false,
+        "issues": [
+          "index 'a' appears 1 times (need exactly 2)",
+          "index 'b' appears 1 times (need exactly 2)",
+          "TWO different contracted indices ['a', 'b'] at positions [0, 2] -- sums independently, not a valid trace (must use SAME index letter)"
+        ]
+      },
+      "bell_test": {
+        "pass": false,
+        "matches_I_over_2": false,
+        "trace": 0.9999999999999998
+      }
+    }
+  ],
+  "np_trace_tests": {
+    "np_trace_axis1_3_traceB": {
+      "operation": "np.trace(rho.reshape(2,2,2,2), axis1=1, axis2=3)",
+      "meaning": "trace out B, keep A",
+      "matches_I_over_2": true,
+      "pass": true
+    },
+    "np_trace_axis0_2_traceA": {
+      "operation": "np.trace(rho.reshape(2,2,2,2), axis1=0, axis2=2)",
+      "meaning": "trace out A, keep B",
+      "matches_I_over_2": true,
+      "pass": true
+    }
+  },
+  "naming_mismatches": [
+    {
+      "file": "sim_torch_ratchet_gnn.py",
+      "function": "partial_trace_b",
+      "docstring": "Trace out subsystem B from rho_AB. Returns rho_A.",
+      "einsum": "ijik->jk",
+      "actual_operation": "traces out A (contracts positions 0,2 = dim_a), returns rho_B",
+      "bug": "NAME MISMATCH: function says 'trace B, return rho_A' but einsum traces A, returns rho_B",
+      "severity": "HIGH -- callers get rho_B labeled as rho_A"
+    },
+    {
+      "file": "sim_torch_ratchet_gnn.py",
+      "function": "partial_trace_a",
+      "docstring": "Trace out subsystem A from rho_AB. Returns rho_B.",
+      "einsum": "ijkj->ik",
+      "actual_operation": "traces out B (contracts positions 1,3 = dim_b), returns rho_A",
+      "bug": "NAME MISMATCH: function says 'trace A, return rho_B' but einsum traces B, returns rho_A",
+      "severity": "HIGH -- callers get rho_A labeled as rho_B"
+    },
+    {
+      "file": "holodeck_fep_engine.py",
+      "function": "partial_trace_A",
+      "docstring": "Trace out system B from a composite rho_{AB}.",
+      "einsum": "jiki->jk",
+      "actual_operation": "contracts i at positions 1,3 = dim_B, keeps j,k at 0,2 = dim_A -> returns rho_A",
+      "bug": "NAME MISLEADING: function named 'partial_trace_A' but traces B. Name convention inconsistent (other files: partial_trace_A means 'trace OUT A').",
+      "severity": "MEDIUM -- math is correct (returns rho_A), but naming convention opposite to rest of codebase"
+    }
+  ],
+  "priority_file_audit": {
+    "sim_torch_mutual_info.py": {
+      "torch_partial_trace_A": {
+        "einsum": "ijik->jk",
+        "correct": true,
+        "note": "Traces A (contracts 0,2), returns rho_B. Correctly named."
+      },
+      "torch_partial_trace_B": {
+        "einsum": "ijkj->ik",
+        "correct": true,
+        "note": "Traces B (contracts 1,3), returns rho_A. Correctly named."
+      },
+      "numpy_partial_trace_A": {
+        "einsum": "ijik->jk",
+        "correct": true,
+        "note": "Same correct pattern as torch version."
+      },
+      "numpy_partial_trace_B": {
+        "einsum": "ijkj->ik",
+        "correct": true,
+        "note": "Same correct pattern as torch version."
+      },
+      "N1_random_trace_C": {
+        "einsum": "ijkj->ik",
+        "correct": true,
+        "note": "Traces qubit C from 3-qubit via reshape (4,2,4,2). Correct."
+      },
+      "status": "CLEAN"
+    },
+    "sim_torch_quantum_discord.py": {
+      "torch_partial_trace_A": {
+        "einsum": "ijik->jk",
+        "correct": true,
+        "note": "Traces A, returns rho_B. Correctly named."
+      },
+      "torch_partial_trace_B": {
+        "einsum": "ijkj->ik",
+        "correct": true,
+        "note": "Traces B, returns rho_A. Correctly named."
+      },
+      "numpy_partial_trace_A": {
+        "einsum": "ijik->jk",
+        "correct": true,
+        "note": "Same correct pattern."
+      },
+      "numpy_partial_trace_B": {
+        "einsum": "ijkj->ik",
+        "correct": true,
+        "note": "Same correct pattern."
+      },
+      "status": "CLEAN"
+    },
+    "sim_torch_axis0_gradient.py": {
+      "partial_trace_A_line210": {
+        "einsum": "aibj->ij",
+        "correct": false,
+        "note": "DEAD CODE BUG: line 210 has wrong pattern 'aibj->ij' that sums a,b independently. Line 213 overwrites with correct 'aiaj->ij'. The wrong line executes but result is discarded."
+      },
+      "partial_trace_A_line213": {
+        "einsum": "aiaj->ij",
+        "correct": true,
+        "note": "Correct pattern, overwrites the buggy line 210 result."
+      },
+      "numpy_partial_trace_A": {
+        "einsum": "aiaj->ij",
+        "correct": true,
+        "note": "Correct pattern."
+      },
+      "status": "HAS_DEAD_CODE_BUG",
+      "severity": "LOW -- dead code, overwritten by correct line. But should be removed to prevent copy-paste propagation."
+    },
+    "sim_torch_axis0_3qubit.py": {
+      "partial_trace_A": {
+        "einsum": "aiaj->ij",
+        "reshape": "(2,4,2,4)",
+        "correct": true,
+        "note": "Traces A from 8x8, returns 4x4 rho_BC. Correct."
+      },
+      "partial_trace_C": {
+        "einsum": "iaja->ij",
+        "reshape": "(4,2,4,2)",
+        "correct": true,
+        "note": "Traces C from 8x8, returns 4x4 rho_AB. Correct."
+      },
+      "partial_trace_AB": {
+        "einsum": "aiaj->ij",
+        "reshape": "(4,2,4,2)",
+        "correct": true,
+        "note": "Traces AB from 8x8, returns 2x2 rho_C. Correct."
+      },
+      "partial_trace_BC": {
+        "einsum": "iaja->ij",
+        "reshape": "(2,4,2,4)",
+        "correct": true,
+        "note": "Traces BC from 8x8, returns 2x2 rho_A. Correct."
+      },
+      "numpy_Ic_A_BC_line404": {
+        "einsum": "aiaj->ij",
+        "reshape": "(2,4,2,4)",
+        "correct": true,
+        "note": "Traces out A, returns rho_BC. Correct."
+      },
+      "numpy_Ic_AB_C_line411": {
+        "einsum": "aiaj->ij",
+        "reshape": "(4,2,4,2)",
+        "correct": true,
+        "note": "Traces out AB, returns rho_C. Correct."
+      },
+      "status": "CLEAN",
+      "note": "This file was the one that CAUGHT the 'aibj' bug. All patterns here are correct."
+    },
+    "sim_axis0_through_shells.py": {
+      "partial_trace_B_line108": {
+        "einsum": "iaja->ij",
+        "correct": true,
+        "note": "Traces B (contracts 1,3), returns rho_A. Correct."
+      },
+      "partial_trace_A_line115": {
+        "einsum": "aibj->ij",
+        "correct": false,
+        "note": "LIVE BUG: 'aibj->ij' sums a,b independently. Should be 'aiaj->ij'. Called by coherent_info_A_to_B() -- coherent information values are WRONG."
+      },
+      "numpy_rho_A_line472": {
+        "einsum": "iaja->ij",
+        "correct": true,
+        "note": "Numpy version traces B. Correct."
+      },
+      "numpy_rho_B_line473": {
+        "einsum": "aibj->ij",
+        "correct": false,
+        "note": "LIVE BUG: same 'aibj->ij' error. Bloch vector for B will be wrong."
+      },
+      "status": "LIVE_BUG",
+      "severity": "CRITICAL -- coherent information and Bloch vectors computed with wrong partial trace. All results from this file are suspect."
+    },
+    "sim_torch_cnot.py": {
+      "partial_trace_B_numpy": {
+        "method": "explicit_loop",
+        "correct": true,
+        "note": "Manual loop: rho_A[i,j] = sum_k rho[2*i+k, 2*j+k]. Correct for trace B."
+      },
+      "partial_trace_A_numpy": {
+        "method": "explicit_loop",
+        "correct": true,
+        "note": "Manual loop: rho_B[k,l] = sum_i rho[2*i+k, 2*i+l]. Correct for trace A."
+      },
+      "torch_partial_trace_B": {
+        "method": "explicit_loop",
+        "correct": true,
+        "note": "Same manual loop as numpy version, differentiable. Correct."
+      },
+      "status": "CLEAN",
+      "note": "Uses explicit loops, no einsum. All implementations correct."
+    }
+  },
+  "additional_file_audit": {
+    "sim_torch_ratchet_gnn.py": {
+      "partial_trace_b": {
+        "einsum": "ijik->jk",
+        "math_correct": true,
+        "naming_bug": true,
+        "note": "Einsum traces A (correct math), but function named 'trace_b' and docstring says 'returns rho_A'. Actually returns rho_B. Callers get SWAPPED subsystems."
+      },
+      "partial_trace_a": {
+        "einsum": "ijkj->ik",
+        "math_correct": true,
+        "naming_bug": true,
+        "note": "Einsum traces B (correct math), but function named 'trace_a' and docstring says 'returns rho_B'. Actually returns rho_A. Callers get SWAPPED subsystems."
+      },
+      "caller_impact": "Line 549-550: rho_a_out = partial_trace_b(rho_ab) actually gets rho_B. SWAPPED.",
+      "status": "NAMING_BUG",
+      "severity": "HIGH -- subsystem labels swapped at call sites"
+    },
+    "sim_layered_foundation.py": {
+      "partial_trace_A": {
+        "einsum": "ijik->jk",
+        "correct": true,
+        "note": "Traces A, returns rho_B. Correctly named."
+      },
+      "partial_trace_B": {
+        "einsum": "ijkj->ik",
+        "correct": true,
+        "note": "Traces B, returns rho_A. Correctly named."
+      },
+      "status": "CLEAN"
+    },
+    "sim_phase7_divergence_analysis.py": {
+      "np_partial_trace_B": {
+        "method": "np.trace(axis1=1, axis2=3)",
+        "correct": true,
+        "note": "Traces out B (contracts dim_b at positions 1,3). Returns rho_A. Correct."
+      },
+      "np_partial_trace_A": {
+        "method": "np.trace(axis1=0, axis2=2)",
+        "correct": true,
+        "note": "Traces out A (contracts dim_a at positions 0,2). Returns rho_B. Correct."
+      },
+      "torch_partial_trace_B": {
+        "einsum": "ijik->jk",
+        "correct": false,
+        "note": "MISMATCH: when which='B' (trace out B), uses 'ijik->jk' which traces OUT A. Returns rho_B instead of rho_A. Torch and numpy disagree!"
+      },
+      "torch_partial_trace_A": {
+        "einsum": "ijkj->ik",
+        "correct": false,
+        "note": "MISMATCH: when which='A' (trace out A), uses 'ijkj->ik' which traces OUT B. Returns rho_A instead of rho_B. Torch and numpy disagree!"
+      },
+      "status": "BUG",
+      "severity": "HIGH -- torch version swaps which subsystem is traced vs numpy version. If results are compared torch-vs-numpy, divergence analysis is comparing wrong subsystems."
+    },
+    "holodeck_fep_engine.py": {
+      "partial_trace_A": {
+        "einsum": "jiki->jk",
+        "math_correct": true,
+        "naming_convention": "OPPOSITE to rest of codebase",
+        "note": "Function 'partial_trace_A' with doc 'trace out B' -- returns rho_A. Math is correct but naming convention is opposite (elsewhere partial_trace_A means 'trace OUT A')."
+      },
+      "status": "NAMING_INCONSISTENCY",
+      "severity": "MEDIUM"
+    }
+  },
+  "summary": {
+    "total_files_with_einsum_ptrace": 11,
+    "clean_files": 9,
+    "files_with_einsum_bugs": 2,
+    "live_einsum_bugs": 1,
+    "dead_code_bugs": 1,
+    "naming_swap_bugs": 2,
+    "naming_inconsistencies": 1,
+    "critical_bugs": [
+      {
+        "file": "sim_axis0_through_shells.py",
+        "lines": "115, 473",
+        "pattern": "aibj->ij",
+        "type": "LIVE_wrong_einsum",
+        "severity": "CRITICAL",
+        "fix": "Replace 'aibj->ij' with 'aiaj->ij' at both lines. All results from this file are invalid."
+      },
+      {
+        "file": "sim_torch_axis0_gradient.py",
+        "line": 210,
+        "pattern": "aibj->ij",
+        "type": "dead_code_wrong_einsum",
+        "severity": "LOW",
+        "fix": "Remove line 210 (dead code, overwritten by correct line 213)"
+      },
+      {
+        "file": "sim_torch_ratchet_gnn.py",
+        "lines": "253-262",
+        "pattern": "partial_trace_a/b naming swapped",
+        "type": "naming_swap",
+        "severity": "HIGH",
+        "fix": "Swap function names: partial_trace_b should use 'ijkj->ik' (trace B), partial_trace_a should use 'ijik->jk' (trace A)"
+      },
+      {
+        "file": "sim_phase7_divergence_analysis.py",
+        "lines": "126-131",
+        "pattern": "torch vs numpy disagreement on which subsystem traced",
+        "type": "torch_numpy_mismatch",
+        "severity": "HIGH",
+        "fix": "Swap einsum patterns in torch_partial_trace to match numpy: which='B' should use 'ijkj->ik', which='A' should use 'ijik->jk'"
+      },
+      {
+        "file": "holodeck_fep_engine.py",
+        "line": 21,
+        "pattern": "naming convention opposite",
+        "type": "naming_inconsistency",
+        "severity": "MEDIUM",
+        "fix": "Rename to partial_trace_B or trace_out_B to match codebase convention"
+      }
+    ],
+    "all_priority_files_status": {
+      "sim_torch_mutual_info.py": "CLEAN",
+      "sim_torch_quantum_discord.py": "CLEAN",
+      "sim_torch_axis0_gradient.py": "DEAD_CODE_BUG",
+      "sim_torch_axis0_3qubit.py": "CLEAN",
+      "sim_torch_cnot.py": "CLEAN"
+    },
+    "verdict": "4 files need fixes. 1 CRITICAL live bug (sim_axis0_through_shells.py), 1 dead code removal, 2 naming/swap bugs that affect correctness."
+  }
+}

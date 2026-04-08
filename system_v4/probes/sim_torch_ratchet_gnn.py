@@ -253,13 +253,13 @@ def make_product_state(rho_a, rho_b):
 def partial_trace_b(rho_ab, dim_a=2, dim_b=2):
     """Trace out subsystem B from rho_AB. Returns rho_A."""
     rho_reshaped = rho_ab.reshape(dim_a, dim_b, dim_a, dim_b)
-    return torch.einsum("ijik->jk", rho_reshaped)
+    return torch.einsum("ijkj->ik", rho_reshaped)
 
 
 def partial_trace_a(rho_ab, dim_a=2, dim_b=2):
     """Trace out subsystem A from rho_AB. Returns rho_B."""
     rho_reshaped = rho_ab.reshape(dim_a, dim_b, dim_a, dim_b)
-    return torch.einsum("ijkj->ik", rho_reshaped)
+    return torch.einsum("ijik->jk", rho_reshaped)
 
 
 # =====================================================================

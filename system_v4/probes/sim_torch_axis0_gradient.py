@@ -207,9 +207,7 @@ def partial_trace_A(rho_AB):
     rho_B[i, j] = sum_k rho_AB[k*2+i, k*2+j]
     """
     rho_reshaped = rho_AB.reshape(2, 2, 2, 2)
-    rho_B = torch.einsum('aibj->ij', rho_reshaped)
-    # Correct: trace over first index (A)
-    # rho_B[i,j] = sum_a rho_AB[a,i,a,j]
+    # Trace over first index (A): rho_B[i,j] = sum_a rho_AB[a,i,a,j]
     rho_B = torch.einsum('aiaj->ij', rho_reshaped)
     return rho_B
 

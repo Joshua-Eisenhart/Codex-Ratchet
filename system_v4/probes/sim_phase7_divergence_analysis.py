@@ -126,9 +126,9 @@ def torch_von_neumann(rho):
 def torch_partial_trace(rho_ab, d=2, which="B"):
     rho = rho_ab.reshape(d, d, d, d)
     if which == "B":
-        return torch.einsum('ijik->jk', rho)
-    else:
         return torch.einsum('ijkj->ik', rho)
+    else:
+        return torch.einsum('ijik->jk', rho)
 
 
 def torch_concurrence(rho):

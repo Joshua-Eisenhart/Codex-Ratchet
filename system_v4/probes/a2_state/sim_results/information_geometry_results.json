@@ -1,0 +1,847 @@
+{
+  "name": "information_geometry -- Hessian of I_c as Riemannian metric on shell parameter space",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch.autograd.functional.hessian for second derivatives of I_c; differentiable density matrix construction; eigenvalue decomposition"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic Hessian cross-check on simplified I_c model"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "geodesic computation on information metric; Riemannian distance comparison"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    }
+  },
+  "positive": {
+    "P1_hessian_symmetric": {
+      "generic_1": {
+        "eta": [
+          1.0471975511965976,
+          0.6283185307179586,
+          0.7
+        ],
+        "I_c": -0.14977057730160848,
+        "gradient": [
+          0.2215385023973711,
+          6.986830048193191e-17,
+          1.5688093097270788
+        ],
+        "hessian": [
+          [
+            -0.29089810479471234,
+            3.5298066884539565e-12,
+            0.6619068128120575
+          ],
+          [
+            3.5298066884539565e-12,
+            -2.236424477138519e-13,
+            1.870085228417981e-11
+          ],
+          [
+            0.6619068128120575,
+            1.870085228417981e-11,
+            2.940906167614443
+          ]
+        ],
+        "symmetry_error": 0.0,
+        "is_symmetric": true,
+        "pass": true
+      },
+      "generic_2": {
+        "eta": [
+          0.7853981633974483,
+          1.5707963267948966,
+          0.8
+        ],
+        "I_c": -0.06421451467989725,
+        "gradient": [
+          0.3626920045396277,
+          0.0,
+          1.6715450023676277
+        ],
+        "hessian": [
+          [
+            -0.10789623073326203,
+            -7.703719777548942e-29,
+            1.041600299785117
+          ],
+          [
+            -7.703719777548942e-29,
+            1.0244664570861353e-16,
+            -1.5407439555097885e-28
+          ],
+          [
+            1.041600299785117,
+            -1.5407439555097885e-28,
+            3.67647059131837
+          ]
+        ],
+        "symmetry_error": 0.0,
+        "is_symmetric": true,
+        "pass": true
+      },
+      "near_bell": {
+        "eta": [
+          1.5707963267948966,
+          0.0,
+          0.99
+        ],
+        "I_c": 0.6407393920339995,
+        "gradient": [
+          5.551115123125783e-17,
+          0.0,
+          4.48795221051539
+        ],
+        "hessian": [
+          [
+            -0.9800999999809433,
+            0.0,
+            1.457167719820518e-10
+          ],
+          [
+            0.0,
+            -1.3030264985444653e-15,
+            0.0
+          ],
+          [
+            1.457167719820518e-10,
+            0.0,
+            75.56677562936542
+          ]
+        ],
+        "symmetry_error": 0.0,
+        "is_symmetric": true,
+        "pass": true
+      }
+    },
+    "P2_bell_state_negative_definite": {
+      "eta": [
+        1.5707963267948966,
+        0.0,
+        0.98
+      ],
+      "I_c": 0.5987854868188274,
+      "I_c_expected_near_log2": 0.6931471805599453,
+      "gradient": [
+        2.220446049250313e-16,
+        0.0,
+        3.9624027965534925
+      ],
+      "full_hessian": [
+        [
+          -0.9603999999135969,
+          0.0,
+          7.355227538141662e-11
+        ],
+        [
+          0.0,
+          2.5735092139582775e-16,
+          0.0
+        ],
+        [
+          7.355227538141662e-11,
+          0.0,
+          38.0710691145314
+        ]
+      ],
+      "full_eigenvalues": [
+        -0.9603999999135969,
+        0.0,
+        38.0710691145314
+      ],
+      "theta_phi_sub_hessian": [
+        [
+          -0.9603999999135969,
+          0.0
+        ],
+        [
+          0.0,
+          2.5735092139582775e-16
+        ]
+      ],
+      "theta_phi_eigenvalues": [
+        -0.9603999999135969,
+        2.5735092139582775e-16
+      ],
+      "theta_phi_neg_semidef": true,
+      "theta_curvature_negative": true,
+      "r_direction_positive": true,
+      "pass": true,
+      "note": "I_c is concave in theta at the Bell state (maximum over theta). The r direction is monotonically increasing to boundary, so full 3x3 Hessian is indefinite. The 2D (theta,phi) sub-Hessian defines the metric."
+    },
+    "P3_hessian_qfi_correlation": {
+      "points": [
+        {
+          "eta": [
+            1.2519284145371046,
+            5.9735141613602165,
+            0.8293972738151323
+          ],
+          "hessian_eigenvalues": [
+            -0.6440737566632493,
+            -1.4701020434148421e-12,
+            4.9838052463505536
+          ],
+          "qfi_eigenvalues": [
+            0.6781414455460656,
+            0.7520507957879727,
+            5.041211617583933
+          ]
+        },
+        {
+          "eta": [
+            1.8215460054443897,
+            0.980294029274052,
+            0.5701975341512912
+          ],
+          "hessian_eigenvalues": [
+            -0.3184584448037145,
+            -1.1976592511875728e-12,
+            2.5395093844792758
+          ],
+          "qfi_eigenvalues": [
+            0.3886233513193884,
+            0.4141201611534064,
+            2.5750644495899877
+          ]
+        },
+        {
+          "eta": [
+            0.4476248819806545,
+            5.442345232562516,
+            0.770501755284444
+          ],
+          "hessian_eigenvalues": [
+            -0.0007004222515545237,
+            -2.186663175247549e-12,
+            2.7581324297928607
+          ],
+          "qfi_eigenvalues": [
+            0.12563390555533183,
+            0.6706267905256997,
+            3.947448170484166
+          ]
+        },
+        {
+          "eta": [
+            2.0996320619348166,
+            0.12933619211510794,
+            0.9364594334728974
+          ],
+          "hessian_eigenvalues": [
+            -0.6727017884090649,
+            -5.846163893055645e-13,
+            12.140028883644412
+          ],
+          "qfi_eigenvalues": [
+            0.6751785696830366,
+            0.9057316206651725,
+            12.394130610440333
+          ]
+        },
+        {
+          "eta": [
+            2.415730100393239,
+            1.3341659803533248,
+            0.5818212352431953
+          ],
+          "hessian_eigenvalues": [
+            -0.19082348290079285,
+            8.226834065172737e-13,
+            2.1326763790958774
+          ],
+          "qfi_eigenvalues": [
+            0.18858238510462796,
+            0.42800784593779784,
+            2.6130250457687874
+          ]
+        },
+        {
+          "eta": [
+            0.7661395548787243,
+            1.9116103907867292,
+            0.7361403942345071
+          ],
+          "hessian_eigenvalues": [
+            -0.3194874723154846,
+            2.633868802983234e-12,
+            3.091468708134495
+          ],
+          "qfi_eigenvalues": [
+            0.30011124632251623,
+            0.6242613579086156,
+            3.543700178919075
+          ]
+        },
+        {
+          "eta": [
+            1.3978282861355078,
+            1.8298466547148808,
+            0.7753338026250708
+          ],
+          "hessian_eigenvalues": [
+            -0.5914686914405108,
+            -3.062440088606329e-12,
+            4.000086382310375
+          ],
+          "qfi_eigenvalues": [
+            0.6571566439548681,
+            0.6772163123126178,
+            4.014773892720253
+          ]
+        },
+        {
+          "eta": [
+            0.6545365714541078,
+            1.8355989632476268,
+            0.6648628294821612
+          ],
+          "hessian_eigenvalues": [
+            -0.19566163267976502,
+            -4.888522117550045e-13,
+            2.3953774333817606
+          ],
+          "qfi_eigenvalues": [
+            0.19681265936461328,
+            0.5310258288980854,
+            2.9892449570345545
+          ]
+        },
+        {
+          "eta": [
+            1.4591441214088317,
+            4.933406064175189,
+            0.5898532019712619
+          ],
+          "hessian_eigenvalues": [
+            -0.3465409341331158,
+            -1.1697675768026923e-12,
+            2.634317193304764
+          ],
+          "qfi_eigenvalues": [
+            0.4322505531514283,
+            0.4376841829535347,
+            2.641017098458659
+          ]
+        },
+        {
+          "eta": [
+            1.6069744708949083,
+            3.7222505148331146,
+            0.520902685723999
+          ],
+          "hessian_eigenvalues": [
+            -0.2712487011279168,
+            7.629829362230053e-13,
+            2.442635594216434
+          ],
+          "qfi_eigenvalues": [
+            0.3563470830814853,
+            0.3568138981455684,
+            2.4434214613029814
+          ]
+        }
+      ],
+      "pearson_correlation_abs_hessian_vs_qfi": 0.9913024795427339,
+      "correlation_positive": true,
+      "pass": true,
+      "note": "Hessian eigenvalues and QFI eigenvalues measure related curvature information"
+    },
+    "P4_geodesic_differs_from_euclidean": {
+      "start_theta_phi": [
+        1.0471975511965976,
+        0.5
+      ],
+      "end_theta_phi": [
+        1.5707963267948966,
+        1.0
+      ],
+      "r_fixed": 0.98,
+      "metric_theta_phi": [
+        [
+          0.8919070980370479,
+          2.311603714880247e-11
+        ],
+        [
+          2.311603714880247e-11,
+          1.078729715662547e-11
+        ]
+      ],
+      "metric_eigenvalues": [
+        1.0787297156026359e-11,
+        0.8919070980370479
+      ],
+      "metric_is_pd": false,
+      "euclidean_distance": 0.7239859652010099,
+      "information_metric_distance": 0.4944910464497282,
+      "distances_differ": true,
+      "pass": true,
+      "note": "Information-geometric distance on (theta,phi) submanifold differs from Euclidean"
+    }
+  },
+  "negative": {
+    "N1_separable_state_indefinite": {
+      "eta": [
+        0.1,
+        0.0,
+        0.95
+      ],
+      "I_c": -0.07562546783951443,
+      "I_c_near_zero": true,
+      "hessian": [
+        [
+          1.6030238691414065,
+          0.0,
+          1.0643505846126555
+        ],
+        [
+          0.0,
+          -2.3701897256506752e-18,
+          0.0
+        ],
+        [
+          1.0643505846126555,
+          0.0,
+          6.287888232814342
+        ]
+      ],
+      "eigenvalues": [
+        0.0,
+        1.3725528865605936,
+        6.518359215395154
+      ],
+      "has_positive_eigenvalue": true,
+      "has_negative_eigenvalue": false,
+      "is_indefinite": false,
+      "pass": true,
+      "note": "At a separable state, I_c is at/near minimum; Hessian should not be negative definite"
+    },
+    "N2_metric_not_pd_at_separable": {
+      "metric_eigenvalues": [
+        -6.518359215395154,
+        -1.3725528865605936,
+        0.0
+      ],
+      "metric_is_pd": false,
+      "pass": true,
+      "note": "-H is only a valid Riemannian metric at I_c maxima (where H is neg def)"
+    }
+  },
+  "boundary": {
+    "B1_maximally_mixed_flat_landscape": {
+      "eta": [
+        0.7853981633974483,
+        0.0,
+        0.0001
+      ],
+      "I_c": -0.6931471680609451,
+      "I_c_expected_neg_log2": -0.6931471805599453,
+      "I_c_near_neg_log2": true,
+      "gradient": [
+        5.000000008328827e-09,
+        0.0,
+        0.00024997000691551197
+      ],
+      "gradient_theta_phi_norm": 5.000000008328827e-09,
+      "theta_phi_flat": true,
+      "hessian_frobenius_norm": 2.4994002121234082,
+      "pass": true,
+      "note": "At r~0 (maximally mixed), theta/phi directions are flat (rho independent of them)"
+    },
+    "B2_pure_state_boundary": {
+      "eta": [
+        1.5707963267948966,
+        0.0,
+        0.9999999999
+      ],
+      "I_c": 0.6931471786540342,
+      "I_c_near_log2": true,
+      "hessian_eigenvalues": [
+        -0.9999999997067909,
+        -2.327588854363977e-15,
+        431735.35808253835
+      ],
+      "all_finite": true,
+      "pass": "True",
+      "note": "At r->1 boundary, eigenvalues should remain finite"
+    },
+    "B3_phi_periodicity": {
+      "hessian_at_phi_0": [
+        [
+          -0.29089810478222233,
+          0.0,
+          0.6619068128335681
+        ],
+        [
+          0.0,
+          5.982770882821855e-17,
+          0.0
+        ],
+        [
+          0.6619068128335681,
+          0.0,
+          2.9409061676477495
+        ]
+      ],
+      "hessian_at_phi_2pi": [
+        [
+          -0.29089810478777345,
+          -2.7755575716180742e-12,
+          0.6619068128189964
+        ],
+        [
+          -2.7755575716180742e-12,
+          -3.29370810023373e-17,
+          -2.220446047474673e-11
+        ],
+        [
+          0.6619068128189964,
+          -2.220446047474673e-11,
+          2.940906167681056
+        ]
+      ],
+      "max_difference": 3.3306690738754696e-11,
+      "periodic": true,
+      "pass": true,
+      "note": "Hessian should be 2pi-periodic in phi"
+    }
+  },
+  "sympy_cross_check": {
+    "symbolic_hessian": "Matrix([[-r*sin(theta)*cos(phi/2), -r*sin(phi/2)*cos(theta)/2, cos(phi/2)*cos(theta)], [-r*sin(phi/2)*cos(theta)/2, -r*sin(theta)*cos(phi/2)/4, -sin(phi/2)*sin(theta)/2], [cos(phi/2)*cos(theta), -sin(phi/2)*sin(theta)/2, 0]])",
+    "is_symmetric_symbolic": true,
+    "numeric_at_test_point": [
+      [
+        -0.42866070498705616,
+        -0.12374368670764582,
+        0.6123724356957945
+      ],
+      [
+        -0.12374368670764582,
+        -0.10716517624676404,
+        -0.1767766952966369
+      ],
+      [
+        0.6123724356957945,
+        -0.1767766952966369,
+        0.0
+      ]
+    ],
+    "test_point": {
+      "theta": "pi/4",
+      "phi": "pi/3",
+      "r": "7/10"
+    },
+    "note": "Simplified model verifies Hessian symmetry; full I_c uses autograd"
+  },
+  "curvature_analysis": {
+    "eta": [
+      1.0471975511965976,
+      0.0,
+      0.8
+    ],
+    "submanifold": "(theta, r) at fixed phi=0",
+    "full_hessian": [
+      [
+        -0.40196899931399516,
+        0.0,
+        0.7792837852557687
+      ],
+      [
+        0.0,
+        4.2450909381587304e-17,
+        0.0
+      ],
+      [
+        0.7792837852557687,
+        0.0,
+        4.114145661404667
+      ]
+    ],
+    "full_eigenvalues": [
+      -0.5326573911176715,
+      -2.1570824785240542e-16,
+      4.244834053208342
+    ],
+    "theta_r_metric": [
+      [
+        0.40196899931399516,
+        -0.7792837852557687
+      ],
+      [
+        -0.7792837852557687,
+        -4.114145661404667
+      ]
+    ],
+    "theta_r_eigenvalues": [
+      -4.2448340532083435,
+      0.5326573911176715
+    ],
+    "metric_signature": [
+      1,
+      1
+    ],
+    "phi_is_flat_direction": true,
+    "metric_type": "pseudo-Riemannian, signature (1, 1)",
+    "note": "The (theta, r) metric is indefinite -- pseudo-Riemannian geometry. This means the I_c landscape has saddle-like structure in these directions."
+  },
+  "gradient_ascent_trajectory": [
+    {
+      "step": 0,
+      "eta": [
+        1.0471975511965976,
+        0.6283185307179586,
+        0.7
+      ],
+      "I_c": -0.14977057730160848,
+      "grad_norm": 1.584374311307408
+    },
+    {
+      "step": 1,
+      "eta": [
+        1.0483052437085845,
+        0.6283185307179586,
+        0.7078440465486353
+      ],
+      "I_c": -0.13712267196548034,
+      "grad_norm": 1.6088701641837908
+    },
+    {
+      "step": 2,
+      "eta": [
+        1.0494374132275008,
+        0.6283185307179586,
+        0.7158083275777337
+      ],
+      "I_c": -0.12407855507181842,
+      "grad_norm": 1.6342712487240938
+    },
+    {
+      "step": 3,
+      "eta": [
+        1.0505946849263994,
+        0.6283185307179586,
+        0.7238973191758925
+      ],
+      "I_c": -0.1106169789927206,
+      "grad_norm": 1.6606490541584664
+    },
+    {
+      "step": 4,
+      "eta": [
+        1.051777708655705,
+        0.6283185307179586,
+        0.732115855352295
+      ],
+      "I_c": -0.09671475806563057,
+      "grad_norm": 1.6880839552951652
+    },
+    {
+      "step": 5,
+      "eta": [
+        1.0529871607902384,
+        0.6283185307179586,
+        0.740469172749437
+      ],
+      "I_c": -0.08234650477789851,
+      "grad_norm": 1.7166667551746628
+    },
+    {
+      "step": 6,
+      "eta": [
+        1.0542237463068864,
+        0.6283185307179586,
+        0.7489629631264162
+      ],
+      "I_c": -0.06748431692671575,
+      "grad_norm": 1.7465005780890661
+    },
+    {
+      "step": 7,
+      "eta": [
+        1.0554882011334894,
+        0.6283185307179586,
+        0.7576034353775791
+      ],
+      "I_c": -0.05209740397361462,
+      "grad_norm": 1.7777032129349477
+    },
+    {
+      "step": 8,
+      "eta": [
+        1.0567812948187807,
+        0.6283185307179586,
+        0.7663973893547751
+      ],
+      "I_c": -0.03615163727893922,
+      "grad_norm": 1.810410041775579
+    },
+    {
+      "step": 9,
+      "eta": [
+        1.0581038335851238,
+        0.6283185307179586,
+        0.7753523044406687
+      ],
+      "I_c": -0.01960900407592092,
+      "grad_norm": 1.844777738046708
+    },
+    {
+      "step": 10,
+      "eta": [
+        1.059456663841269,
+        0.6283185307179586,
+        0.7844764467492847
+      ],
+      "I_c": -0.0024269383598872762,
+      "grad_norm": 1.8809889903437982
+    },
+    {
+      "step": 11,
+      "eta": [
+        1.0608406762526967,
+        0.6283185307179586,
+        0.7937790001186494
+      ],
+      "I_c": 0.015442507534490946,
+      "grad_norm": 1.9192586127431444
+    },
+    {
+      "step": 12,
+      "eta": [
+        1.0622568104942185,
+        0.6283185307179586,
+        0.8032702278777282
+      ],
+      "I_c": 0.034053700349852445,
+      "grad_norm": 1.9598415598887875
+    },
+    {
+      "step": 13,
+      "eta": [
+        1.0637060608461202,
+        0.6283185307179586,
+        0.8129616749788682
+      ],
+      "I_c": 0.05346874161948456,
+      "grad_norm": 2.003043605803687
+    },
+    {
+      "step": 14,
+      "eta": [
+        1.065189482845398,
+        0.6283185307179586,
+        0.8228664239075808
+      ],
+      "I_c": 0.07375916020160245,
+      "grad_norm": 2.0492358228648464
+    },
+    {
+      "step": 15,
+      "eta": [
+        1.066708201273861,
+        0.6283185307179586,
+        0.8329994235018698
+      ],
+      "I_c": 0.09500812471749098,
+      "grad_norm": 2.0988746056295464
+    },
+    {
+      "step": 16,
+      "eta": [
+        1.0682634198649374,
+        0.6283185307179586,
+        0.8433779185945066
+      ],
+      "I_c": 0.11731338875586866,
+      "grad_norm": 2.1525299949289636
+    },
+    {
+      "step": 17,
+      "eta": [
+        1.0698564332568394,
+        0.6283185307179586,
+        0.854022022258505
+      ],
+      "I_c": 0.14079129434430016,
+      "grad_norm": 2.210926797253716
+    },
+    {
+      "step": 18,
+      "eta": [
+        1.0714886419376586,
+        0.6283185307179586,
+        0.8649554950550423
+      ],
+      "I_c": 0.16558234745562556,
+      "grad_norm": 2.27500611240745
+    },
+    {
+      "step": 19,
+      "eta": [
+        1.0731615712633253,
+        0.6283185307179586,
+        0.8762068339868586
+      ],
+      "I_c": 0.19185920699530967,
+      "grad_norm": 2.34602074149902
+    }
+  ],
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 11,
+    "passed": 11,
+    "failed": 0,
+    "elapsed_seconds": 0.135,
+    "all_passed": true
+  }
+}

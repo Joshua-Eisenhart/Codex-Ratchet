@@ -1,0 +1,492 @@
+{
+  "name": "ratchet_optimizer -- autograd learns channel params to maximize I_c",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core: autograd optimizer learns channel params to maximize I_c"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure autograd optimizer"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "tests_passed": 8,
+    "tests_total": 8,
+    "elapsed_seconds": 2.32,
+    "answer": "YES -- the ratchet can learn to sustain coherent information. Adam finds channel parameters that maximize I_c > 0 through the constraint cascade. Multiple initial conditions converge to similar optima, indicating basin structure in the parameter landscape."
+  },
+  "positive": {
+    "ic_increases": {
+      "pass": "True",
+      "ic_start_avg": -0.8580984175205231,
+      "ic_end_avg": 0.7643967509269715,
+      "ic_max": 0.7737302184104919,
+      "improvement": 1.6224951684474944,
+      "trajectory_length": 200
+    },
+    "params_meaningful": {
+      "pass": true,
+      "p_dephasing": [
+        0.9923213124275208,
+        0.7885374426841736
+      ],
+      "gamma_damping": [
+        0.004577493295073509,
+        0.7030682563781738
+      ],
+      "p_depolarizing": [
+        0.02029251493513584,
+        0.022767873480916023
+      ],
+      "all_in_range": true,
+      "not_all_zero": true,
+      "not_all_one": true,
+      "non_degenerate": true
+    },
+    "basin_structure": {
+      "pass": true,
+      "final_ics": [
+        0.7349985837936401,
+        0.7626715898513794,
+        0.7380895614624023,
+        0.7737302184104919,
+        0.7372389435768127
+      ],
+      "ic_mean": 0.7493457794189453,
+      "ic_std": 0.015819595618839003,
+      "all_positive": true
+    },
+    "optimal_is_entangled": {
+      "pass": true,
+      "ic_final": 0.7756957411766052,
+      "purity_reduced_A": 0.5000433325767517,
+      "entangled": true
+    }
+  },
+  "negative": {
+    "max_noise_kills_ic": {
+      "pass": true,
+      "best_ic_achieved": -1.0,
+      "note": "All channels at max strength: p=gamma=q=1.0"
+    },
+    "no_cnot_no_ic": {
+      "pass": true,
+      "ic_final": -0.09051400423049927,
+      "ic_max": -0.09051400423049927,
+      "note": "Without CNOT, state remains separable, I_c ~ 0"
+    }
+  },
+  "boundary": {
+    "channels_off": {
+      "pass": true,
+      "ic_final": 0.9998143911361694,
+      "ic_max": 0.9999891519546509,
+      "note": "Zero noise + CNOT: I_c depends on input state optimization only"
+    },
+    "single_channel_active": {
+      "pass": true,
+      "ics": {
+        "dephasing_only": 0.1186753511428833,
+        "damping_only": 0.6377673149108887,
+        "depolarizing_only": -0.21968090534210205
+      },
+      "note": "Each channel at moderate strength (0.3) with CNOT"
+    }
+  },
+  "optimization_trajectory": {
+    "steps": 200,
+    "ic_initial": -0.8898274302482605,
+    "ic_final": 0.7737302184104919,
+    "ic_max": 0.7737302184104919,
+    "final_params": {
+      "p_dephasing": [
+        0.9923213124275208,
+        0.7885374426841736
+      ],
+      "gamma_damping": [
+        0.004577493295073509,
+        0.7030682563781738
+      ],
+      "p_depolarizing": [
+        0.02029251493513584,
+        0.022767873480916023
+      ]
+    },
+    "sampled_trajectory": [
+      {
+        "step": 0,
+        "ic": -0.8898274302482605,
+        "p_dephasing": [
+          0.5342538356781006,
+          0.5337402820587158
+        ],
+        "gamma_damping": [
+          0.35861387848854065,
+          0.4817170798778534
+        ],
+        "p_depolarizing": [
+          0.7472711801528931,
+          0.41605275869369507
+        ]
+      },
+      {
+        "step": 10,
+        "ic": -0.8158577680587769,
+        "p_dephasing": [
+          0.583663284778595,
+          0.5840241312980652
+        ],
+        "gamma_damping": [
+          0.31526216864585876,
+          0.531726598739624
+        ],
+        "p_depolarizing": [
+          0.7089399099349976,
+          0.36775919795036316
+        ]
+      },
+      {
+        "step": 20,
+        "ic": -0.7253100872039795,
+        "p_dephasing": [
+          0.6356948018074036,
+          0.6355663537979126
+        ],
+        "gamma_damping": [
+          0.2712840437889099,
+          0.580366849899292
+        ],
+        "p_depolarizing": [
+          0.6634496450424194,
+          0.31969010829925537
+        ]
+      },
+      {
+        "step": 30,
+        "ic": -0.6244370937347412,
+        "p_dephasing": [
+          0.691204309463501,
+          0.6851051449775696
+        ],
+        "gamma_damping": [
+          0.22554054856300354,
+          0.6238119006156921
+        ],
+        "p_depolarizing": [
+          0.606884241104126,
+          0.27263274788856506
+        ]
+      },
+      {
+        "step": 40,
+        "ic": -0.5175862908363342,
+        "p_dephasing": [
+          0.7477009296417236,
+          0.726935625076294
+        ],
+        "gamma_damping": [
+          0.18037863075733185,
+          0.6577959060668945
+        ],
+        "p_depolarizing": [
+          0.5386099219322205,
+          0.22854706645011902
+        ]
+      },
+      {
+        "step": 50,
+        "ic": -0.40538501739501953,
+        "p_dephasing": [
+          0.8012070059776306,
+          0.7566993236541748
+        ],
+        "gamma_damping": [
+          0.13899855315685272,
+          0.6803887486457825
+        ],
+        "p_depolarizing": [
+          0.460969477891922,
+          0.18938367068767548
+        ]
+      },
+      {
+        "step": 60,
+        "ic": -0.28661930561065674,
+        "p_dephasing": [
+          0.8478284478187561,
+          0.7742270827293396
+        ],
+        "gamma_damping": [
+          0.10411156713962555,
+          0.6930495500564575
+        ],
+        "p_depolarizing": [
+          0.37966421246528625,
+          0.1562090814113617
+        ]
+      },
+      {
+        "step": 70,
+        "ic": -0.15591967105865479,
+        "p_dephasing": [
+          0.8857458233833313,
+          0.7827620506286621
+        ],
+        "gamma_damping": [
+          0.07651730626821518,
+          0.699051558971405
+        ],
+        "p_depolarizing": [
+          0.30171945691108704,
+          0.12905488908290863
+        ]
+      },
+      {
+        "step": 80,
+        "ic": -0.018280982971191406,
+        "p_dephasing": [
+          0.914996862411499,
+          0.7862628698348999
+        ],
+        "gamma_damping": [
+          0.05576926842331886,
+          0.7014976143836975
+        ],
+        "p_depolarizing": [
+          0.2331024706363678,
+          0.10726717114448547
+        ]
+      },
+      {
+        "step": 90,
+        "ic": 0.11741268634796143,
+        "p_dephasing": [
+          0.9366626143455505,
+          0.7875776886940002
+        ],
+        "gamma_damping": [
+          0.040826257318258286,
+          0.7024180293083191
+        ],
+        "p_depolarizing": [
+          0.1771518439054489,
+          0.08992596715688705
+        ]
+      },
+      {
+        "step": 100,
+        "ic": 0.2422010898590088,
+        "p_dephasing": [
+          0.9522914886474609,
+          0.7881153225898743
+        ],
+        "gamma_damping": [
+          0.030282769352197647,
+          0.7027888298034668
+        ],
+        "p_depolarizing": [
+          0.13422897458076477,
+          0.07612036913633347
+        ]
+      },
+      {
+        "step": 110,
+        "ic": 0.3505825400352478,
+        "p_dephasing": [
+          0.9634336233139038,
+          0.7883634567260742
+        ],
+        "gamma_damping": [
+          0.022912561893463135,
+          0.7029546499252319
+        ],
+        "p_depolarizing": [
+          0.10258020460605621,
+          0.06507111340761185
+        ]
+      },
+      {
+        "step": 120,
+        "ic": 0.44127804040908813,
+        "p_dephasing": [
+          0.9713848829269409,
+          0.7884703874588013
+        ],
+        "gamma_damping": [
+          0.01774069480597973,
+          0.7030247449874878
+        ],
+        "p_depolarizing": [
+          0.07968046516180038,
+          0.05615723505616188
+        ]
+      },
+      {
+        "step": 130,
+        "ic": 0.5157200694084167,
+        "p_dephasing": [
+          0.977119505405426,
+          0.7885106801986694
+        ],
+        "gamma_damping": [
+          0.014062397181987762,
+          0.7030510902404785
+        ],
+        "p_depolarizing": [
+          0.06314190477132797,
+          0.048899706453084946
+        ]
+      },
+      {
+        "step": 140,
+        "ic": 0.5764833092689514,
+        "p_dephasing": [
+          0.9813251495361328,
+          0.7885264754295349
+        ],
+        "gamma_damping": [
+          0.011396119371056557,
+          0.7030612826347351
+        ],
+        "p_depolarizing": [
+          0.051078472286462784,
+          0.04293360188603401
+        ]
+      },
+      {
+        "step": 150,
+        "ic": 0.6262244582176208,
+        "p_dephasing": [
+          0.9844710826873779,
+          0.7885332107543945
+        ],
+        "gamma_damping": [
+          0.009421027265489101,
+          0.7030655741691589
+        ],
+        "p_depolarizing": [
+          0.04213089495897293,
+          0.03798183798789978
+        ]
+      },
+      {
+        "step": 160,
+        "ic": 0.6672565937042236,
+        "p_dephasing": [
+          0.9868733286857605,
+          0.7885358333587646
+        ],
+        "gamma_damping": [
+          0.007925109937787056,
+          0.7030672430992126
+        ],
+        "p_depolarizing": [
+          0.035362087190151215,
+          0.033833760768175125
+        ]
+      },
+      {
+        "step": 170,
+        "ic": 0.7014392018318176,
+        "p_dephasing": [
+          0.988744854927063,
+          0.7885368466377258
+        ],
+        "gamma_damping": [
+          0.006767731159925461,
+          0.7030678987503052
+        ],
+        "p_depolarizing": [
+          0.03013676218688488,
+          0.03032834641635418
+        ]
+      },
+      {
+        "step": 180,
+        "ic": 0.7302150130271912,
+        "p_dephasing": [
+          0.990230143070221,
+          0.7885372042655945
+        ],
+        "gamma_damping": [
+          0.005854524206370115,
+          0.7030681371688843
+        ],
+        "p_depolarizing": [
+          0.026024188846349716,
+          0.027341587468981743
+        ]
+      },
+      {
+        "step": 190,
+        "ic": 0.7546862363815308,
+        "p_dephasing": [
+          0.9914290308952332,
+          0.7885374426841736
+        ],
+        "gamma_damping": [
+          0.005121114198118448,
+          0.7030682563781738
+        ],
+        "p_depolarizing": [
+          0.022729411721229553,
+          0.024777250364422798
+        ]
+      }
+    ]
+  }
+}

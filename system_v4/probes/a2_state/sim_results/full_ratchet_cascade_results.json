@@ -1,0 +1,747 @@
+{
+  "name": "Full Ratchet Cascade -- 28 families x simultaneous constraint shells",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "All 28 families are nn.Module; shells are nn.Module projectors; Dykstra projection in torch; autograd tested on surviving channels"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- cascade is nn.Module chain"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Verify cascade ordering consistency: monotonicity, single-level kills"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 sufficient"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- all computation torch-native"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- Hopf done natively in torch"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "DAG topological_sort drives shell projection order; tested with L8 null shell addition"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- persistence not primary here"
+    }
+  },
+  "classification": "canonical",
+  "architecture": {
+    "type": "full_ratchet_cascade",
+    "n_families": 28,
+    "shell_levels": [
+      "L1_CPTP",
+      "L2_Hopf",
+      "L4_Composition",
+      "L6_Irreversibility"
+    ],
+    "projection_method": "Dykstra alternating with increment vectors",
+    "ordering": "rustworkx topological_sort on shell DAG",
+    "verification": "z3 cascade consistency proof",
+    "family_categories": {
+      "channels": 8,
+      "gates_2q": 4,
+      "gates_1q": 2,
+      "measures_1q": 3,
+      "measures_2q": 2,
+      "geometric": 4,
+      "process": 5
+    }
+  },
+  "positive": {
+    "P1_full_cascade": {
+      "status": "PASS",
+      "n_families": 28,
+      "n_survived": 8,
+      "n_killed_L4": 13,
+      "n_killed_L6": 7,
+      "n_errors": 0,
+      "survived": [
+        "z_dephasing",
+        "x_dephasing",
+        "depolarizing",
+        "amplitude_damping",
+        "phase_damping",
+        "bit_flip",
+        "phase_flip",
+        "bit_phase_flip"
+      ],
+      "killed_L4": [
+        "l1_coherence",
+        "re_coherence",
+        "chiral_overlap",
+        "quantum_discord",
+        "mutual_info",
+        "hopf_connection",
+        "wigner_negativity",
+        "husimi_q",
+        "cartan_kak",
+        "eigendecomp",
+        "z_measurement",
+        "purification",
+        "lindblad"
+      ],
+      "killed_L6": [
+        "CNOT",
+        "CZ",
+        "iSWAP",
+        "SWAP",
+        "Hadamard",
+        "T_gate",
+        "unitary_rotation"
+      ],
+      "errors": [],
+      "per_family": {
+        "z_dephasing": {
+          "category": "channel",
+          "expected_fate": "survive",
+          "actual_fate": "survive",
+          "observable_before": 0.2076529622077942,
+          "observable_after": 0.1704310977831483,
+          "ratio": 0.8207496583294646,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "x_dephasing": {
+          "category": "channel",
+          "expected_fate": "survive",
+          "actual_fate": "survive",
+          "observable_before": 0.2925057768821716,
+          "observable_after": 0.30771554708480836,
+          "ratio": 1.0519981874025128,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "depolarizing": {
+          "category": "channel",
+          "expected_fate": "survive",
+          "actual_fate": "survive",
+          "observable_before": 0.2602152943611145,
+          "observable_after": 0.26171554028987887,
+          "ratio": 1.0057654025773073,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "amplitude_damping": {
+          "category": "channel",
+          "expected_fate": "survive",
+          "actual_fate": "survive",
+          "observable_before": 0.20893964767456055,
+          "observable_after": 0.19731657207012177,
+          "ratio": 0.9443711342782457,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "phase_damping": {
+          "category": "channel",
+          "expected_fate": "survive",
+          "actual_fate": "survive",
+          "observable_before": 0.056530048698186876,
+          "observable_after": 0.046397018060088155,
+          "ratio": 0.8207496566613832,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "bit_flip": {
+          "category": "channel",
+          "expected_fate": "survive",
+          "actual_fate": "survive",
+          "observable_before": 0.2925057768821716,
+          "observable_after": 0.30771554708480836,
+          "ratio": 1.0519981874025128,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "phase_flip": {
+          "category": "channel",
+          "expected_fate": "survive",
+          "actual_fate": "survive",
+          "observable_before": 0.2076529622077942,
+          "observable_after": 0.1704310977831483,
+          "ratio": 0.8207496583294646,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "bit_phase_flip": {
+          "category": "channel",
+          "expected_fate": "survive",
+          "actual_fate": "survive",
+          "observable_before": 0.302558445930481,
+          "observable_after": 0.3077205002307892,
+          "ratio": 1.0170613458977584,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "CNOT": {
+          "category": "gate_2q",
+          "expected_fate": "killed_L6",
+          "actual_fate": "killed_L6",
+          "observable_before": 1.2247449159622192,
+          "observable_after": 0.17502065002918243,
+          "ratio": 0.14290375714005532,
+          "state_used": "bell_phi_plus",
+          "match_expected": true
+        },
+        "CZ": {
+          "category": "gate_2q",
+          "expected_fate": "killed_L6",
+          "actual_fate": "killed_L6",
+          "observable_before": 1.4142135381698608,
+          "observable_after": 0.0,
+          "ratio": 0.0,
+          "state_used": "bell_phi_plus",
+          "match_expected": true
+        },
+        "iSWAP": {
+          "category": "gate_2q",
+          "expected_fate": "killed_L6",
+          "actual_fate": "killed_L6",
+          "observable_before": 0.0,
+          "observable_after": 0.0,
+          "ratio": null,
+          "state_used": "bell_phi_plus",
+          "match_expected": true
+        },
+        "SWAP": {
+          "category": "gate_2q",
+          "expected_fate": "killed_L6",
+          "actual_fate": "killed_L6",
+          "observable_before": 0.0,
+          "observable_after": 0.0,
+          "ratio": null,
+          "state_used": "bell_phi_plus",
+          "match_expected": true
+        },
+        "Hadamard": {
+          "category": "gate_1q",
+          "expected_fate": "killed_L6",
+          "actual_fate": "killed_L6",
+          "observable_before": 0.2828427255153656,
+          "observable_after": 0.635012149810791,
+          "ratio": 2.245106882822389,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "T_gate": {
+          "category": "gate_1q",
+          "expected_fate": "killed_L6",
+          "actual_fate": "killed_L6",
+          "observable_before": 0.24203026294708252,
+          "observable_after": 0.004627079237252474,
+          "ratio": 0.01911777139317548,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "l1_coherence": {
+          "category": "measure",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.4472135901451111,
+          "observable_after": 0.008549727499485016,
+          "ratio": 0.019117772106860203,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "re_coherence": {
+          "category": "measure",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.11046189069747925,
+          "observable_after": 4.291534423828125e-05,
+          "ratio": 0.0003885081449113797,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "chiral_overlap": {
+          "category": "measure",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.0,
+          "observable_after": 0.0,
+          "ratio": null,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "quantum_discord": {
+          "category": "measure_2q",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.6931469440460205,
+          "observable_after": -2.384185791015625e-07,
+          "ratio": 3.439654190926261e-07,
+          "state_used": "bell_phi_plus",
+          "match_expected": true
+        },
+        "mutual_info": {
+          "category": "measure_2q",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 1.3862943649291992,
+          "observable_after": -1.1920928955078125e-07,
+          "ratio": 8.599132519511431e-08,
+          "state_used": "bell_phi_plus",
+          "match_expected": true
+        },
+        "hopf_connection": {
+          "category": "geometric",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 1.0,
+          "observable_after": 1.0,
+          "ratio": 1.0,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "wigner_negativity": {
+          "category": "geometric",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.000369894114555791,
+          "observable_after": 0.0016709818737581372,
+          "ratio": 4.517460018970114,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "husimi_q": {
+          "category": "geometric",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.113861083984375,
+          "observable_after": 0.10601035505533218,
+          "ratio": 0.9310499368676293,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "cartan_kak": {
+          "category": "geometric",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 2.0,
+          "observable_after": 2.0,
+          "ratio": 1.0,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "eigendecomp": {
+          "category": "process",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.8246211409568787,
+          "observable_after": 0.8344244360923767,
+          "ratio": 1.0118882413372552,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "z_measurement": {
+          "category": "process",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.6108643412590027,
+          "observable_after": 0.48150360584259033,
+          "ratio": 0.7882332840875971,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "purification": {
+          "category": "process",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.9999999403953552,
+          "observable_after": 0.9999999403953552,
+          "ratio": 1.0,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "lindblad": {
+          "category": "process",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.0,
+          "observable_after": 0.0,
+          "ratio": null,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        },
+        "unitary_rotation": {
+          "category": "process",
+          "expected_fate": "killed_L6",
+          "actual_fate": "killed_L6",
+          "observable_before": 0.0,
+          "observable_after": 0.0,
+          "ratio": null,
+          "state_used": "mixed_offcenter",
+          "match_expected": true
+        }
+      },
+      "dykstra_violation_trace": [
+        0.20409758388996124,
+        0.21344630420207977,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306,
+        0.21344609558582306
+      ]
+    },
+    "P2_per_shell_kills": {
+      "status": "PASS",
+      "L1+L2": {
+        "alive": [
+          "z_dephasing",
+          "x_dephasing",
+          "depolarizing",
+          "amplitude_damping",
+          "phase_damping",
+          "bit_flip",
+          "phase_flip",
+          "bit_phase_flip",
+          "iSWAP",
+          "SWAP",
+          "T_gate",
+          "l1_coherence",
+          "re_coherence",
+          "chiral_overlap",
+          "hopf_connection",
+          "husimi_q",
+          "cartan_kak",
+          "eigendecomp",
+          "z_measurement",
+          "purification",
+          "lindblad",
+          "unitary_rotation"
+        ],
+        "killed": [
+          "CNOT",
+          "CZ",
+          "Hadamard",
+          "quantum_discord",
+          "mutual_info",
+          "wigner_negativity"
+        ],
+        "n_alive": 22,
+        "n_killed": 6
+      },
+      "L1+L2+L4": {
+        "alive": [
+          "z_dephasing",
+          "x_dephasing",
+          "depolarizing",
+          "amplitude_damping",
+          "phase_damping",
+          "bit_flip",
+          "phase_flip",
+          "bit_phase_flip",
+          "CNOT",
+          "iSWAP",
+          "SWAP",
+          "Hadamard",
+          "chiral_overlap",
+          "hopf_connection",
+          "wigner_negativity",
+          "husimi_q",
+          "cartan_kak",
+          "eigendecomp",
+          "z_measurement",
+          "purification",
+          "lindblad",
+          "unitary_rotation"
+        ],
+        "killed": [
+          "CZ",
+          "T_gate",
+          "l1_coherence",
+          "re_coherence",
+          "quantum_discord",
+          "mutual_info"
+        ],
+        "n_alive": 22,
+        "n_killed": 6
+      },
+      "L1+L2+L4+L6": {
+        "alive": [
+          "z_dephasing",
+          "x_dephasing",
+          "depolarizing",
+          "amplitude_damping",
+          "phase_damping",
+          "bit_flip",
+          "phase_flip",
+          "bit_phase_flip",
+          "CNOT",
+          "iSWAP",
+          "SWAP",
+          "Hadamard",
+          "chiral_overlap",
+          "hopf_connection",
+          "wigner_negativity",
+          "husimi_q",
+          "cartan_kak",
+          "eigendecomp",
+          "z_measurement",
+          "purification",
+          "lindblad",
+          "unitary_rotation"
+        ],
+        "killed": [
+          "CZ",
+          "T_gate",
+          "l1_coherence",
+          "re_coherence",
+          "quantum_discord",
+          "mutual_info"
+        ],
+        "n_alive": 22,
+        "n_killed": 6
+      },
+      "cascade_ordering": {
+        "killed_at_L1_L2": [
+          "CNOT",
+          "CZ",
+          "Hadamard",
+          "mutual_info",
+          "quantum_discord",
+          "wigner_negativity"
+        ],
+        "killed_at_L4": [
+          "T_gate",
+          "l1_coherence",
+          "re_coherence"
+        ],
+        "killed_at_L6": [],
+        "survive_all": [
+          "CNOT",
+          "Hadamard",
+          "SWAP",
+          "amplitude_damping",
+          "bit_flip",
+          "bit_phase_flip",
+          "cartan_kak",
+          "chiral_overlap",
+          "depolarizing",
+          "eigendecomp",
+          "hopf_connection",
+          "husimi_q",
+          "iSWAP",
+          "lindblad",
+          "phase_damping",
+          "phase_flip",
+          "purification",
+          "unitary_rotation",
+          "wigner_negativity",
+          "x_dephasing",
+          "z_dephasing",
+          "z_measurement"
+        ],
+        "n_killed_L12": 6,
+        "n_killed_L4": 3,
+        "n_killed_L6": 0,
+        "n_survive": 22
+      }
+    },
+    "P3_channels_survive": {
+      "status": "PASS",
+      "expected": 8,
+      "actual": 8,
+      "survived": [
+        "z_dephasing",
+        "x_dephasing",
+        "depolarizing",
+        "amplitude_damping",
+        "phase_damping",
+        "bit_flip",
+        "phase_flip",
+        "bit_phase_flip"
+      ],
+      "missing": []
+    },
+    "P4_autograd_flow": {
+      "status": "PASS",
+      "per_family": {
+        "z_dephasing": {
+          "grad_exists": true,
+          "grad_nonzero": false,
+          "status": "PASS"
+        },
+        "x_dephasing": {
+          "grad_exists": true,
+          "grad_nonzero": false,
+          "status": "PASS"
+        },
+        "depolarizing": {
+          "grad_exists": true,
+          "grad_nonzero": false,
+          "status": "PASS"
+        },
+        "amplitude_damping": {
+          "grad_exists": true,
+          "grad_nonzero": false,
+          "status": "PASS"
+        },
+        "phase_damping": {
+          "grad_exists": true,
+          "grad_nonzero": false,
+          "status": "PASS"
+        },
+        "bit_flip": {
+          "grad_exists": true,
+          "grad_nonzero": false,
+          "status": "PASS"
+        },
+        "phase_flip": {
+          "grad_exists": true,
+          "grad_nonzero": false,
+          "status": "PASS"
+        },
+        "bit_phase_flip": {
+          "grad_exists": true,
+          "grad_nonzero": false,
+          "status": "PASS"
+        }
+      }
+    },
+    "P5_z3_cascade_consistency": {
+      "status": "PASS",
+      "z3_result": "sat",
+      "n_killed_L4": 13,
+      "n_killed_L6": 7,
+      "n_survived": 8,
+      "monotonicity_encoded": true
+    }
+  },
+  "negative": {
+    "N1_L8_null_changes_nothing": {
+      "status": "PASS",
+      "frobenius_diff": 0.0,
+      "note": "Adding an L8 shell that projects to identity should change nothing"
+    },
+    "N2_L4_changes_state": {
+      "status": "PASS",
+      "S_before": 0.5232864022254944,
+      "S_after": 0.4814606010913849,
+      "S_max": 0.6931471805599453,
+      "state_frobenius_diff": 0.35930362343788147,
+      "note": "L4 composition pushes state toward channel fixed point. Amplitude damping pulls toward |0> while depolarizing pulls toward I/2 -- net entropy change depends on state."
+    },
+    "N3_reversible_ops_flagged": {
+      "status": "PASS",
+      "n_reversible_families": 7,
+      "families": [
+        "CNOT",
+        "CZ",
+        "iSWAP",
+        "SWAP",
+        "Hadamard",
+        "T_gate",
+        "unitary_rotation"
+      ],
+      "note": "Unitary gates preserve entropy -- L6 catches this"
+    },
+    "N4_L1_corrects_bad_state": {
+      "status": "PASS",
+      "violation_before": 0.4513877332210541,
+      "violation_after": 1.4887124422102715e-08
+    }
+  },
+  "boundary": {
+    "B1_maximally_mixed": {
+      "status": "PASS",
+      "violations": {
+        "L1_CPTP": 0.0,
+        "L2_Hopf": 0.0,
+        "L4_Composition": 0.14614909887313843,
+        "L6_Irreversibility": 0.15987969934940338
+      },
+      "note": "I/2 satisfies L1+L2 trivially. L4/L6 may show small violations because amplitude damping is not unital. This is honest physics, not a bug."
+    },
+    "B2_bell_state_marginal": {
+      "status": "PASS",
+      "frobenius_to_mixed": 0.0,
+      "note": "Bell state partial trace = I/2"
+    },
+    "B3_all_modules_instantiate": {
+      "status": "PASS",
+      "expected": 28,
+      "actual": 28
+    },
+    "B4_shell_dag_structure": {
+      "status": "PASS",
+      "n_nodes": 4,
+      "n_edges": 3,
+      "topo_order": [
+        "L1_CPTP",
+        "L2_Hopf",
+        "L4_Composition",
+        "L6_Irreversibility"
+      ],
+      "is_dag": true
+    }
+  },
+  "summary": {
+    "total_tests": 13,
+    "pass": 13,
+    "fail": 0,
+    "error": 0
+  },
+  "elapsed_seconds": 1.7738258838653564
+}

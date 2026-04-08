@@ -1,0 +1,1540 @@
+{
+  "name": "lego_graph_cluster_states",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "state vectors, density matrices, entanglement entropy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "stabilizer property verification via symplectic formalism"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "graph construction for line, ring, star, complete, lattice"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "positive": {
+    "graph_states": {
+      "line_4": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "n_edges": 3,
+        "state_norm": 0.9999999999999998,
+        "stabilizer_verification": [
+          {
+            "generator": "XZII",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "ZXZI",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "IZXZ",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "IIZX",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          }
+        ],
+        "all_stabilized": true,
+        "bipartition_entropies": {
+          "[0]": 1.0,
+          "[1]": 1.0,
+          "[2]": 1.0,
+          "[3]": 1.0,
+          "[0, 1]": 1.0,
+          "[0, 2]": 2.0,
+          "[0, 3]": 2.0,
+          "[1, 2]": 2.0,
+          "[1, 3]": 2.0,
+          "[2, 3]": 1.0,
+          "[0, 1, 2]": 1.0,
+          "[0, 1, 3]": 1.0,
+          "[0, 2, 3]": 1.0,
+          "[1, 2, 3]": 1.0
+        },
+        "structure_checks": [
+          {
+            "partition_A": [
+              0
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              1
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              2
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              1
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              2
+            ],
+            "gf2_rank": 2,
+            "measured_entropy": 2.0,
+            "expected_entropy": 2.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              3
+            ],
+            "gf2_rank": 2,
+            "measured_entropy": 2.0,
+            "expected_entropy": 2.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              1,
+              2
+            ],
+            "gf2_rank": 2,
+            "measured_entropy": 2.0,
+            "expected_entropy": 2.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              1,
+              3
+            ],
+            "gf2_rank": 2,
+            "measured_entropy": 2.0,
+            "expected_entropy": 2.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              2,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              1,
+              2
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              1,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              2,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              1,
+              2,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          }
+        ],
+        "all_structure_match": true
+      },
+      "ring_4": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            0
+          ]
+        ],
+        "n_edges": 4,
+        "state_norm": 0.9999999999999998,
+        "stabilizer_verification": [
+          {
+            "generator": "XZIZ",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "ZXZI",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "IZXZ",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "ZIZX",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          }
+        ],
+        "all_stabilized": true,
+        "bipartition_entropies": {
+          "[0]": 1.0,
+          "[1]": 1.0,
+          "[2]": 1.0,
+          "[3]": 1.0,
+          "[0, 1]": 2.0,
+          "[0, 2]": 1.0,
+          "[0, 3]": 2.0,
+          "[1, 2]": 2.0,
+          "[1, 3]": 1.0,
+          "[2, 3]": 2.0,
+          "[0, 1, 2]": 1.0,
+          "[0, 1, 3]": 1.0,
+          "[0, 2, 3]": 1.0,
+          "[1, 2, 3]": 1.0
+        },
+        "structure_checks": [
+          {
+            "partition_A": [
+              0
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              1
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              2
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              1
+            ],
+            "gf2_rank": 2,
+            "measured_entropy": 2.0,
+            "expected_entropy": 2.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              2
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              3
+            ],
+            "gf2_rank": 2,
+            "measured_entropy": 2.0,
+            "expected_entropy": 2.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              1,
+              2
+            ],
+            "gf2_rank": 2,
+            "measured_entropy": 2.0,
+            "expected_entropy": 2.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              1,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              2,
+              3
+            ],
+            "gf2_rank": 2,
+            "measured_entropy": 2.0,
+            "expected_entropy": 2.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              1,
+              2
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              1,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              2,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              1,
+              2,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          }
+        ],
+        "all_structure_match": true
+      },
+      "star_4": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "n_edges": 3,
+        "state_norm": 0.9999999999999998,
+        "stabilizer_verification": [
+          {
+            "generator": "XZZZ",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "ZXII",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "ZIXI",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "ZIIX",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          }
+        ],
+        "all_stabilized": true,
+        "bipartition_entropies": {
+          "[0]": 1.0,
+          "[1]": 1.0,
+          "[2]": 1.0,
+          "[3]": 1.0,
+          "[0, 1]": 1.0,
+          "[0, 2]": 1.0,
+          "[0, 3]": 1.0,
+          "[1, 2]": 1.0,
+          "[1, 3]": 1.0,
+          "[2, 3]": 1.0,
+          "[0, 1, 2]": 1.0,
+          "[0, 1, 3]": 1.0,
+          "[0, 2, 3]": 1.0,
+          "[1, 2, 3]": 1.0
+        },
+        "structure_checks": [
+          {
+            "partition_A": [
+              0
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              1
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              2
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              1
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              2
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              1,
+              2
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              1,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              2,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              1,
+              2
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              1,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              2,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              1,
+              2,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          }
+        ],
+        "all_structure_match": true
+      },
+      "complete_4": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "n_edges": 6,
+        "state_norm": 0.9999999999999998,
+        "stabilizer_verification": [
+          {
+            "generator": "XZZZ",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "ZXZZ",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "ZZXZ",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "ZZZX",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          }
+        ],
+        "all_stabilized": true,
+        "bipartition_entropies": {
+          "[0]": 1.0,
+          "[1]": 1.0,
+          "[2]": 1.0,
+          "[3]": 1.0,
+          "[0, 1]": 1.0,
+          "[0, 2]": 1.0,
+          "[0, 3]": 1.0,
+          "[1, 2]": 1.0,
+          "[1, 3]": 1.0,
+          "[2, 3]": 1.0,
+          "[0, 1, 2]": 1.0,
+          "[0, 1, 3]": 1.0,
+          "[0, 2, 3]": 1.0,
+          "[1, 2, 3]": 1.0
+        },
+        "structure_checks": [
+          {
+            "partition_A": [
+              0
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              1
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              2
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              1
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              2
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              1,
+              2
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              1,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              2,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              1,
+              2
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              1,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              0,
+              2,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          },
+          {
+            "partition_A": [
+              1,
+              2,
+              3
+            ],
+            "gf2_rank": 1,
+            "measured_entropy": 1.0,
+            "expected_entropy": 1.0,
+            "match": true
+          }
+        ],
+        "all_structure_match": true
+      }
+    },
+    "cluster_states": {
+      "cluster_1d_4q": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "stabilizer_verification": [
+          {
+            "generator": "XZII",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "ZXZI",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "IZXZ",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "IIZX",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          }
+        ],
+        "all_stabilized": true
+      },
+      "mbqc": {
+        "z_byproduct_verified": true,
+        "sequential_measurement": {
+          "outcomes": [
+            {
+              "outcomes": [
+                0,
+                0,
+                0
+              ],
+              "output_state": [
+                1.0,
+                0.0
+              ],
+              "fidelities": {
+                "|+>": 0.5,
+                "|->": 0.5,
+                "|0>": 1.0,
+                "|1>": 0.0
+              },
+              "is_definite_state": true
+            },
+            {
+              "outcomes": [
+                0,
+                0,
+                1
+              ],
+              "output_state": [
+                0.0,
+                1.0
+              ],
+              "fidelities": {
+                "|+>": 0.5,
+                "|->": 0.5,
+                "|0>": 0.0,
+                "|1>": 1.0
+              },
+              "is_definite_state": true
+            },
+            {
+              "outcomes": [
+                0,
+                1,
+                0
+              ],
+              "output_state": [
+                1.0,
+                0.0
+              ],
+              "fidelities": {
+                "|+>": 0.5,
+                "|->": 0.5,
+                "|0>": 1.0,
+                "|1>": 0.0
+              },
+              "is_definite_state": true
+            },
+            {
+              "outcomes": [
+                0,
+                1,
+                1
+              ],
+              "output_state": [
+                0.0,
+                1.0
+              ],
+              "fidelities": {
+                "|+>": 0.5,
+                "|->": 0.5,
+                "|0>": 0.0,
+                "|1>": 1.0
+              },
+              "is_definite_state": true
+            },
+            {
+              "outcomes": [
+                1,
+                0,
+                0
+              ],
+              "output_state": [
+                0.0,
+                1.0
+              ],
+              "fidelities": {
+                "|+>": 0.5,
+                "|->": 0.5,
+                "|0>": 0.0,
+                "|1>": 1.0
+              },
+              "is_definite_state": true
+            },
+            {
+              "outcomes": [
+                1,
+                0,
+                1
+              ],
+              "output_state": [
+                1.0,
+                0.0
+              ],
+              "fidelities": {
+                "|+>": 0.5,
+                "|->": 0.5,
+                "|0>": 1.0,
+                "|1>": 0.0
+              },
+              "is_definite_state": true
+            },
+            {
+              "outcomes": [
+                1,
+                1,
+                0
+              ],
+              "output_state": [
+                0.0,
+                -1.0
+              ],
+              "fidelities": {
+                "|+>": 0.5,
+                "|->": 0.5,
+                "|0>": 0.0,
+                "|1>": 1.0
+              },
+              "is_definite_state": true
+            },
+            {
+              "outcomes": [
+                1,
+                1,
+                1
+              ],
+              "output_state": [
+                -1.0,
+                0.0
+              ],
+              "fidelities": {
+                "|+>": 0.5,
+                "|->": 0.5,
+                "|0>": 1.0,
+                "|1>": 0.0
+              },
+              "is_definite_state": true
+            }
+          ],
+          "all_definite_outputs": true
+        },
+        "rotated_basis": {
+          "phi": 1.5707963267948966,
+          "results": [
+            {
+              "rotated_outcome": 0,
+              "phi": 1.5707963267948966,
+              "output_fidelity_with_plus": 0.5,
+              "output_state": [
+                0.5,
+                -0.5,
+                0.5,
+                0.5
+              ]
+            },
+            {
+              "rotated_outcome": 1,
+              "phi": 1.5707963267948966,
+              "output_fidelity_with_plus": 0.5,
+              "output_state": [
+                0.5,
+                0.5,
+                0.5,
+                -0.5
+              ]
+            }
+          ],
+          "rotation_active": true
+        },
+        "all_mbqc_verified": true
+      },
+      "cluster_2d_grid": {
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "stabilizer_verification": [
+          {
+            "generator": "XZZI",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "ZXIZ",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "ZIXZ",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          },
+          {
+            "generator": "IZZX",
+            "eigenvalue": 0.9999999999999994,
+            "residual": 0.0,
+            "stabilized": true
+          }
+        ],
+        "all_stabilized": true,
+        "bipartition_entropies": {
+          "[0]": 1.0,
+          "[1]": 1.0,
+          "[2]": 1.0,
+          "[3]": 1.0,
+          "[0, 1]": 2.0,
+          "[0, 2]": 2.0,
+          "[0, 3]": 1.0,
+          "[1, 2]": 1.0,
+          "[1, 3]": 2.0,
+          "[2, 3]": 2.0,
+          "[0, 1, 2]": 1.0,
+          "[0, 1, 3]": 1.0,
+          "[0, 2, 3]": 1.0,
+          "[1, 2, 3]": 1.0
+        }
+      }
+    }
+  },
+  "z3_verification": {
+    "line_4": {
+      "all_commute": true,
+      "all_square_to_identity": true,
+      "gf2_rank": 4,
+      "n_generators": 4,
+      "independent": true,
+      "z3_independence_verified": true,
+      "symplectic_generators": [
+        {
+          "pauli": "XZII",
+          "x_bits": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "z_bits": [
+            0,
+            1,
+            0,
+            0
+          ]
+        },
+        {
+          "pauli": "ZXZI",
+          "x_bits": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "z_bits": [
+            1,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "pauli": "IZXZ",
+          "x_bits": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "z_bits": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "pauli": "IIZX",
+          "x_bits": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "z_bits": [
+            0,
+            0,
+            1,
+            0
+          ]
+        }
+      ]
+    },
+    "ring_4": {
+      "all_commute": true,
+      "all_square_to_identity": true,
+      "gf2_rank": 4,
+      "n_generators": 4,
+      "independent": true,
+      "z3_independence_verified": true,
+      "symplectic_generators": [
+        {
+          "pauli": "XZIZ",
+          "x_bits": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "z_bits": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "pauli": "ZXZI",
+          "x_bits": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "z_bits": [
+            1,
+            0,
+            1,
+            0
+          ]
+        },
+        {
+          "pauli": "IZXZ",
+          "x_bits": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "z_bits": [
+            0,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "pauli": "ZIZX",
+          "x_bits": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "z_bits": [
+            1,
+            0,
+            1,
+            0
+          ]
+        }
+      ]
+    },
+    "star_4": {
+      "all_commute": true,
+      "all_square_to_identity": true,
+      "gf2_rank": 4,
+      "n_generators": 4,
+      "independent": true,
+      "z3_independence_verified": true,
+      "symplectic_generators": [
+        {
+          "pauli": "XZZZ",
+          "x_bits": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "z_bits": [
+            0,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "pauli": "ZXII",
+          "x_bits": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "z_bits": [
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "pauli": "ZIXI",
+          "x_bits": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "z_bits": [
+            1,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "pauli": "ZIIX",
+          "x_bits": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "z_bits": [
+            1,
+            0,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    "complete_4": {
+      "all_commute": true,
+      "all_square_to_identity": true,
+      "gf2_rank": 4,
+      "n_generators": 4,
+      "independent": true,
+      "z3_independence_verified": true,
+      "symplectic_generators": [
+        {
+          "pauli": "XZZZ",
+          "x_bits": [
+            1,
+            0,
+            0,
+            0
+          ],
+          "z_bits": [
+            0,
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "pauli": "ZXZZ",
+          "x_bits": [
+            0,
+            1,
+            0,
+            0
+          ],
+          "z_bits": [
+            1,
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "pauli": "ZZXZ",
+          "x_bits": [
+            0,
+            0,
+            1,
+            0
+          ],
+          "z_bits": [
+            1,
+            1,
+            0,
+            1
+          ]
+        },
+        {
+          "pauli": "ZZZX",
+          "x_bits": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "z_bits": [
+            1,
+            1,
+            1,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "negative": {
+    "random_state_not_stabilized": {
+      "any_stabilized": false,
+      "expected": false,
+      "pass": true,
+      "note": "Random state should not be stabilized by graph state generators"
+    },
+    "wrong_stabilizer_fails": {
+      "generator": "YZII",
+      "eigenvalue": 0.0,
+      "stabilizes": false,
+      "expected": false,
+      "pass": true
+    },
+    "anticommutation_detected": {
+      "pauli_1": "XIII",
+      "pauli_2": "ZIII",
+      "symplectic_product": 1,
+      "anticommute": true,
+      "expected": true,
+      "pass": true
+    },
+    "product_state_zero_entanglement": {
+      "max_entropy": 0.0,
+      "zero_entanglement": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "single_qubit_graph_state": {
+      "fidelity_with_plus": 1.0,
+      "is_plus_state": true,
+      "pass": true
+    },
+    "two_qubit_graph_state": {
+      "entropy": 1.0,
+      "maximally_entangled": true,
+      "pass": true
+    },
+    "complete_graph_max_entanglement": {
+      "single_qubit_entropies": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "all_maximally_entangled": true,
+      "pass": true
+    },
+    "star_center_vs_leaf": {
+      "s_center": 1.0,
+      "s_leaf": 1.0,
+      "center_is_1": true,
+      "leaf_is_1": true,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_graph_states_stabilized": true,
+    "all_entanglement_matches_graph": true,
+    "all_z3_properties_verified": true,
+    "cluster_state_stabilized": true,
+    "mbqc_verified": true,
+    "all_negative_tests_pass": true,
+    "all_boundary_tests_pass": true,
+    "overall_pass": true
+  },
+  "classification": "canonical"
+}

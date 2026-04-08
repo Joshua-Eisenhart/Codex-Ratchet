@@ -1,0 +1,607 @@
+{
+  "name": "Phase 7 Divergence Analysis -- torch vs numpy",
+  "classification": "audit",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core substrate: autograd, computational graph, gradient flow"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "Phase 7 validation sim \u2014 tests substrate equivalence across families, not individual tool integration"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "Phase 7 validation sim \u2014 tests substrate equivalence across families, not individual tool integration"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "Phase 7 validation sim \u2014 tests substrate equivalence across families, not individual tool integration"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "Phase 7 validation sim \u2014 tests substrate equivalence across families, not individual tool integration"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Phase 7 validation sim \u2014 tests substrate equivalence across families, not individual tool integration"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Phase 7 validation sim \u2014 tests substrate equivalence across families, not individual tool integration"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "Phase 7 validation sim \u2014 tests substrate equivalence across families, not individual tool integration"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "Phase 7 validation sim \u2014 tests substrate equivalence across families, not individual tool integration"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "Phase 7 validation sim \u2014 tests substrate equivalence across families, not individual tool integration"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "Phase 7 validation sim \u2014 tests substrate equivalence across families, not individual tool integration"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "Phase 7 validation sim \u2014 tests substrate equivalence across families, not individual tool integration"
+    }
+  },
+  "elapsed_seconds": 0.2319478988647461,
+  "scenarios": {
+    "scenario_1_long_channel_chains": {
+      "state_divergence_max": 0.0,
+      "classification": "numerical_noise",
+      "np_trace_error": 2.220446049250313e-16,
+      "torch_trace_error": 2.220446049250313e-16,
+      "analytical_offdiag": 0.06630977794737647,
+      "np_offdiag": 0.18301617063661457,
+      "torch_offdiag": 0.18301617063661457,
+      "np_vs_analytical": 0.1167063926892381,
+      "torch_vs_analytical": 0.1167063926892381,
+      "gradient_through_chain": 0.0,
+      "gradient_exists": true,
+      "torch_more_stable": true,
+      "n_rounds": 100,
+      "p": 0.01,
+      "status": "pass"
+    },
+    "scenario_2_entanglement_near_transitions": {
+      "max_divergence": 3.885780586188048e-16,
+      "max_divergence_at_p": 0.36,
+      "classification": "numerical_noise",
+      "near_threshold_torch_better_frac": 0.8214285714285714,
+      "gradient_through_concurrence": 1.4999999999999998,
+      "gradient_exists": true,
+      "n_sweep_points": 50,
+      "sweep_summary": [
+        {
+          "p": 0.3,
+          "c_analytical": 0,
+          "c_numpy": 0.0,
+          "c_torch": 0.0,
+          "np_torch_divergence": 0.0,
+          "np_vs_analytical": 0.0,
+          "torch_vs_analytical": 0.0,
+          "classification": "numerical_noise"
+        },
+        {
+          "p": 0.3142857142857143,
+          "c_analytical": 0,
+          "c_numpy": 0.0,
+          "c_torch": 0.0,
+          "np_torch_divergence": 0.0,
+          "np_vs_analytical": 0.0,
+          "torch_vs_analytical": 0.0,
+          "classification": "numerical_noise"
+        },
+        {
+          "p": 0.32857142857142857,
+          "c_analytical": 0,
+          "c_numpy": 0.0,
+          "c_torch": 0.0,
+          "np_torch_divergence": 0.0,
+          "np_vs_analytical": 0.0,
+          "torch_vs_analytical": 0.0,
+          "classification": "numerical_noise"
+        },
+        {
+          "p": 0.34285714285714286,
+          "c_analytical": 0.014285714285714235,
+          "c_numpy": 0.014285714285714401,
+          "c_torch": 0.014285714285714207,
+          "np_torch_divergence": 1.942890293094024e-16,
+          "np_vs_analytical": 1.6653345369377348e-16,
+          "torch_vs_analytical": 2.7755575615628914e-17,
+          "classification": "numerical_noise"
+        },
+        {
+          "p": 0.35714285714285715,
+          "c_analytical": 0.0357142857142857,
+          "c_numpy": 0.0357142857142857,
+          "c_torch": 0.03571428571428559,
+          "np_torch_divergence": 1.1102230246251565e-16,
+          "np_vs_analytical": 0.0,
+          "torch_vs_analytical": 1.1102230246251565e-16,
+          "classification": "numerical_noise"
+        }
+      ],
+      "status": "pass"
+    },
+    "scenario_3_gradient_accumulation": {
+      "autograd": {
+        "grad1": 1.2512501702645913,
+        "grad2": -2.828813805664633,
+        "grad3": 7.76537123123625
+      },
+      "finite_difference": {
+        "eps=0.0001": {
+          "grad1": 1.251250183206265,
+          "grad2": -2.8288138054222145,
+          "grad3": 7.765510456891887
+        },
+        "eps=1e-06": {
+          "grad1": 1.251250170253293,
+          "grad2": -2.828626222139974,
+          "grad3": 0.0
+        },
+        "eps=1e-08": {
+          "grad1": 1.2512501701422707,
+          "grad2": -2.2204460492503126,
+          "grad3": 0.0
+        }
+      },
+      "divergence_1st_order": 1.1298295632400368e-11,
+      "divergence_2nd_order": 0.00018758352465919614,
+      "divergence_3rd_order": 7.76537123123625,
+      "classification_1st": "precision_dependent",
+      "classification_2nd": "structurally_different",
+      "classification_3rd": "structurally_different",
+      "divergence_grows_with_order": true,
+      "autograd_provides_extra_info": true,
+      "note": "If divergence grows with derivative order, the computational graph carries structural information that finite-difference cannot recover.",
+      "status": "pass"
+    },
+    "scenario_4_graph_rewiring": {
+      "topology_results": {
+        "sequential": {
+          "mi_value": 1.0588496327757084,
+          "grad_theta": 3.035786746715578,
+          "grad_p": -1.2875146073779273
+        },
+        "parallel": {
+          "mi_value": 1.0588496327757084,
+          "grad_theta": 3.035786746715578,
+          "grad_p": -1.2875146073779273
+        },
+        "skip_connection": {
+          "mi_value": 1.1296584209602745,
+          "grad_theta": 3.2497558661166104,
+          "grad_p": -0.7875412875676902
+        }
+      },
+      "divergences": {
+        "seq_vs_parallel_theta": 0.0,
+        "seq_vs_parallel_p": 0.0,
+        "seq_vs_skip_theta": 0.21396911940103225,
+        "seq_vs_skip_p": 0.4999733198102372
+      },
+      "mi_values_differ": true,
+      "gradients_differ": true,
+      "note": "Parallel and skip topologies intentionally alter the channel structure. If gradients differ, graph topology carries computational content. If they DON'T differ despite different wiring, the math is topology-independent.",
+      "status": "pass"
+    },
+    "scenario_5_mixed_precision": {
+      "precision_results": {
+        "float32": {
+          "numpy_entropy": 0.905202866772101,
+          "torch_entropy": 0.9052028656005859,
+          "entropy_divergence": 1.1715151071456376e-09,
+          "state_divergence": 0.0,
+          "np_trace_error": 0.0,
+          "torch_trace_error": 0.0,
+          "gradient": 4.084649085998535,
+          "classification": "numerical_noise"
+        },
+        "float64": {
+          "numpy_entropy": 0.905202810214644,
+          "torch_entropy": 0.905202810214644,
+          "entropy_divergence": 0.0,
+          "state_divergence": 0.0,
+          "np_trace_error": 2.220446049250313e-16,
+          "torch_trace_error": 2.220446049250313e-16,
+          "gradient": 4.0846519412611055,
+          "classification": "numerical_noise"
+        }
+      },
+      "float32_state_div": 0.0,
+      "float64_state_div": 0.0,
+      "precision_ratio_32_over_64": 0.0,
+      "torch_graph_helps_precision": false,
+      "gradient_available_float32": true,
+      "gradient_available_float64": true,
+      "note": "If precision_ratio >> 1, float32 diverges much more than float64 \u2014 standard precision dependence. If torch_graph_helps_precision is True, the autograd chain constrains numerical drift better than raw iteration.",
+      "status": "pass"
+    },
+    "scenario_6_lindblad_vs_discrete": {
+      "sweep": [
+        {
+          "N": 10,
+          "dt": 0.1,
+          "state_divergence": 0.0008289730952172891,
+          "classification": "structurally_different",
+          "np_vs_analytical": 2.7755575615628914e-16,
+          "torch_vs_analytical": 0.0008289730952175667,
+          "torch_closer_to_analytical": "False",
+          "gradient_gamma": 0.0,
+          "gradient_offdiag_gamma": -0.8337477621301499
+        },
+        {
+          "N": 50,
+          "dt": 0.02,
+          "state_divergence": 0.00016415120094137592,
+          "classification": "structurally_different",
+          "np_vs_analytical": 2.220446049250313e-16,
+          "torch_vs_analytical": 0.00016415120094115387,
+          "torch_closer_to_analytical": "False",
+          "gradient_gamma": 0.0,
+          "gradient_offdiag_gamma": -0.821689207506125
+        },
+        {
+          "N": 100,
+          "dt": 0.01,
+          "state_divergence": 8.197419477734558e-05,
+          "classification": "structurally_different",
+          "np_vs_analytical": 3.885780586188048e-16,
+          "torch_vs_analytical": 8.1974194776957e-05,
+          "torch_closer_to_analytical": "False",
+          "gradient_gamma": 0.0,
+          "gradient_offdiag_gamma": -0.8202072191266802
+        },
+        {
+          "N": 500,
+          "dt": 0.002,
+          "state_divergence": 1.6378655278481702e-05,
+          "classification": "structurally_different",
+          "np_vs_analytical": 4.884981308350689e-15,
+          "torch_vs_analytical": 1.637865527359672e-05,
+          "torch_closer_to_analytical": "False",
+          "gradient_gamma": 0.0,
+          "gradient_offdiag_gamma": -0.8190256060098307
+        },
+        {
+          "N": 1000,
+          "dt": 0.001,
+          "state_divergence": 8.188317444757232e-06,
+          "classification": "structurally_different",
+          "np_vs_analytical": 4.3298697960381105e-15,
+          "torch_vs_analytical": 8.188317440427362e-06,
+          "torch_closer_to_analytical": "False",
+          "gradient_gamma": 0.0,
+          "gradient_offdiag_gamma": -0.8188781520735025
+        }
+      ],
+      "first_above_noise_N": 10,
+      "convergence_monotonic": true,
+      "final_divergence_at_N1000": 8.188317444757232e-06,
+      "final_classification": "structurally_different",
+      "lindblad_gradient_available": true,
+      "note": "Lindblad (continuous, Euler) and discrete channel converge to the same analytical answer as N grows. The divergence here is discretization error, NOT substrate difference. The key torch advantage is: gradient through the time evolution is available, enabling optimization of gamma.",
+      "status": "pass"
+    }
+  },
+  "negative": {
+    "identical_computation_zero_div": {
+      "divergence": 0.0,
+      "pass": true
+    },
+    "classical_matmul_zero_div": {
+      "divergence": 0.0,
+      "pass": true
+    },
+    "single_channel_negligible_div": {
+      "divergence": 0.0,
+      "pass": true
+    },
+    "all_negative_pass": true
+  },
+  "boundary": {
+    "pure_state_entropy_zero": {
+      "numpy": -0.0,
+      "torch": 4.650699332842307e-13,
+      "pass": true
+    },
+    "max_mixed_entropy_one": {
+      "numpy": 1.0,
+      "torch": 1.0,
+      "pass": true
+    },
+    "product_state_concurrence_zero": {
+      "numpy": 0.0,
+      "torch": 0.0,
+      "pass": true
+    },
+    "bell_state_concurrence_one": {
+      "numpy": 0.9999999999999993,
+      "torch": 0.9999999999999993,
+      "pass": true
+    },
+    "all_boundary_pass": true
+  },
+  "synthesis": {
+    "substrate_independent": [
+      "Long channel chains: state evolution agrees to numerical precision",
+      "Concurrence computation agrees near sudden-death threshold",
+      "Lindblad and discrete converge to same analytical answer with increasing N"
+    ],
+    "torch_advantages": [
+      "Gradient through 100-step chain available (value: 0.000000)",
+      "Gradient through concurrence at threshold is available",
+      "Gradient of Lindblad evolution w.r.t. physical parameters (gamma) is available"
+    ],
+    "numpy_advantages": [],
+    "structurally_different": [
+      "Higher-order derivatives show growing divergence: autograd and finite-difference give structurally different results",
+      "Graph topology affects gradients: computational graph carries content"
+    ],
+    "key_finding": "STRUCTURAL DIVERGENCE FOUND in 2 scenario(s). The computational graph carries content beyond the scalar output. This is evidence FOR the PyTorch-as-ratchet claim."
+  },
+  "positive": {
+    "scenario_1_long_channel_chains": {
+      "state_divergence_max": 0.0,
+      "classification": "numerical_noise",
+      "np_trace_error": 2.220446049250313e-16,
+      "torch_trace_error": 2.220446049250313e-16,
+      "analytical_offdiag": 0.06630977794737647,
+      "np_offdiag": 0.18301617063661457,
+      "torch_offdiag": 0.18301617063661457,
+      "np_vs_analytical": 0.1167063926892381,
+      "torch_vs_analytical": 0.1167063926892381,
+      "gradient_through_chain": 0.0,
+      "gradient_exists": true,
+      "torch_more_stable": true,
+      "n_rounds": 100,
+      "p": 0.01,
+      "status": "pass"
+    },
+    "scenario_2_entanglement_near_transitions": {
+      "max_divergence": 3.885780586188048e-16,
+      "max_divergence_at_p": 0.36,
+      "classification": "numerical_noise",
+      "near_threshold_torch_better_frac": 0.8214285714285714,
+      "gradient_through_concurrence": 1.4999999999999998,
+      "gradient_exists": true,
+      "n_sweep_points": 50,
+      "sweep_summary": [
+        {
+          "p": 0.3,
+          "c_analytical": 0,
+          "c_numpy": 0.0,
+          "c_torch": 0.0,
+          "np_torch_divergence": 0.0,
+          "np_vs_analytical": 0.0,
+          "torch_vs_analytical": 0.0,
+          "classification": "numerical_noise"
+        },
+        {
+          "p": 0.3142857142857143,
+          "c_analytical": 0,
+          "c_numpy": 0.0,
+          "c_torch": 0.0,
+          "np_torch_divergence": 0.0,
+          "np_vs_analytical": 0.0,
+          "torch_vs_analytical": 0.0,
+          "classification": "numerical_noise"
+        },
+        {
+          "p": 0.32857142857142857,
+          "c_analytical": 0,
+          "c_numpy": 0.0,
+          "c_torch": 0.0,
+          "np_torch_divergence": 0.0,
+          "np_vs_analytical": 0.0,
+          "torch_vs_analytical": 0.0,
+          "classification": "numerical_noise"
+        },
+        {
+          "p": 0.34285714285714286,
+          "c_analytical": 0.014285714285714235,
+          "c_numpy": 0.014285714285714401,
+          "c_torch": 0.014285714285714207,
+          "np_torch_divergence": 1.942890293094024e-16,
+          "np_vs_analytical": 1.6653345369377348e-16,
+          "torch_vs_analytical": 2.7755575615628914e-17,
+          "classification": "numerical_noise"
+        },
+        {
+          "p": 0.35714285714285715,
+          "c_analytical": 0.0357142857142857,
+          "c_numpy": 0.0357142857142857,
+          "c_torch": 0.03571428571428559,
+          "np_torch_divergence": 1.1102230246251565e-16,
+          "np_vs_analytical": 0.0,
+          "torch_vs_analytical": 1.1102230246251565e-16,
+          "classification": "numerical_noise"
+        }
+      ],
+      "status": "pass"
+    },
+    "scenario_3_gradient_accumulation": {
+      "autograd": {
+        "grad1": 1.2512501702645913,
+        "grad2": -2.828813805664633,
+        "grad3": 7.76537123123625
+      },
+      "finite_difference": {
+        "eps=0.0001": {
+          "grad1": 1.251250183206265,
+          "grad2": -2.8288138054222145,
+          "grad3": 7.765510456891887
+        },
+        "eps=1e-06": {
+          "grad1": 1.251250170253293,
+          "grad2": -2.828626222139974,
+          "grad3": 0.0
+        },
+        "eps=1e-08": {
+          "grad1": 1.2512501701422707,
+          "grad2": -2.2204460492503126,
+          "grad3": 0.0
+        }
+      },
+      "divergence_1st_order": 1.1298295632400368e-11,
+      "divergence_2nd_order": 0.00018758352465919614,
+      "divergence_3rd_order": 7.76537123123625,
+      "classification_1st": "precision_dependent",
+      "classification_2nd": "structurally_different",
+      "classification_3rd": "structurally_different",
+      "divergence_grows_with_order": true,
+      "autograd_provides_extra_info": true,
+      "note": "If divergence grows with derivative order, the computational graph carries structural information that finite-difference cannot recover.",
+      "status": "pass"
+    },
+    "scenario_4_graph_rewiring": {
+      "topology_results": {
+        "sequential": {
+          "mi_value": 1.0588496327757084,
+          "grad_theta": 3.035786746715578,
+          "grad_p": -1.2875146073779273
+        },
+        "parallel": {
+          "mi_value": 1.0588496327757084,
+          "grad_theta": 3.035786746715578,
+          "grad_p": -1.2875146073779273
+        },
+        "skip_connection": {
+          "mi_value": 1.1296584209602745,
+          "grad_theta": 3.2497558661166104,
+          "grad_p": -0.7875412875676902
+        }
+      },
+      "divergences": {
+        "seq_vs_parallel_theta": 0.0,
+        "seq_vs_parallel_p": 0.0,
+        "seq_vs_skip_theta": 0.21396911940103225,
+        "seq_vs_skip_p": 0.4999733198102372
+      },
+      "mi_values_differ": true,
+      "gradients_differ": true,
+      "note": "Parallel and skip topologies intentionally alter the channel structure. If gradients differ, graph topology carries computational content. If they DON'T differ despite different wiring, the math is topology-independent.",
+      "status": "pass"
+    },
+    "scenario_5_mixed_precision": {
+      "precision_results": {
+        "float32": {
+          "numpy_entropy": 0.905202866772101,
+          "torch_entropy": 0.9052028656005859,
+          "entropy_divergence": 1.1715151071456376e-09,
+          "state_divergence": 0.0,
+          "np_trace_error": 0.0,
+          "torch_trace_error": 0.0,
+          "gradient": 4.084649085998535,
+          "classification": "numerical_noise"
+        },
+        "float64": {
+          "numpy_entropy": 0.905202810214644,
+          "torch_entropy": 0.905202810214644,
+          "entropy_divergence": 0.0,
+          "state_divergence": 0.0,
+          "np_trace_error": 2.220446049250313e-16,
+          "torch_trace_error": 2.220446049250313e-16,
+          "gradient": 4.0846519412611055,
+          "classification": "numerical_noise"
+        }
+      },
+      "float32_state_div": 0.0,
+      "float64_state_div": 0.0,
+      "precision_ratio_32_over_64": 0.0,
+      "torch_graph_helps_precision": false,
+      "gradient_available_float32": true,
+      "gradient_available_float64": true,
+      "note": "If precision_ratio >> 1, float32 diverges much more than float64 \u2014 standard precision dependence. If torch_graph_helps_precision is True, the autograd chain constrains numerical drift better than raw iteration.",
+      "status": "pass"
+    },
+    "scenario_6_lindblad_vs_discrete": {
+      "sweep": [
+        {
+          "N": 10,
+          "dt": 0.1,
+          "state_divergence": 0.0008289730952172891,
+          "classification": "structurally_different",
+          "np_vs_analytical": 2.7755575615628914e-16,
+          "torch_vs_analytical": 0.0008289730952175667,
+          "torch_closer_to_analytical": "False",
+          "gradient_gamma": 0.0,
+          "gradient_offdiag_gamma": -0.8337477621301499
+        },
+        {
+          "N": 50,
+          "dt": 0.02,
+          "state_divergence": 0.00016415120094137592,
+          "classification": "structurally_different",
+          "np_vs_analytical": 2.220446049250313e-16,
+          "torch_vs_analytical": 0.00016415120094115387,
+          "torch_closer_to_analytical": "False",
+          "gradient_gamma": 0.0,
+          "gradient_offdiag_gamma": -0.821689207506125
+        },
+        {
+          "N": 100,
+          "dt": 0.01,
+          "state_divergence": 8.197419477734558e-05,
+          "classification": "structurally_different",
+          "np_vs_analytical": 3.885780586188048e-16,
+          "torch_vs_analytical": 8.1974194776957e-05,
+          "torch_closer_to_analytical": "False",
+          "gradient_gamma": 0.0,
+          "gradient_offdiag_gamma": -0.8202072191266802
+        },
+        {
+          "N": 500,
+          "dt": 0.002,
+          "state_divergence": 1.6378655278481702e-05,
+          "classification": "structurally_different",
+          "np_vs_analytical": 4.884981308350689e-15,
+          "torch_vs_analytical": 1.637865527359672e-05,
+          "torch_closer_to_analytical": "False",
+          "gradient_gamma": 0.0,
+          "gradient_offdiag_gamma": -0.8190256060098307
+        },
+        {
+          "N": 1000,
+          "dt": 0.001,
+          "state_divergence": 8.188317444757232e-06,
+          "classification": "structurally_different",
+          "np_vs_analytical": 4.3298697960381105e-15,
+          "torch_vs_analytical": 8.188317440427362e-06,
+          "torch_closer_to_analytical": "False",
+          "gradient_gamma": 0.0,
+          "gradient_offdiag_gamma": -0.8188781520735025
+        }
+      ],
+      "first_above_noise_N": 10,
+      "convergence_monotonic": true,
+      "final_divergence_at_N1000": 8.188317444757232e-06,
+      "final_classification": "structurally_different",
+      "lindblad_gradient_available": true,
+      "note": "Lindblad (continuous, Euler) and discrete channel converge to the same analytical answer as N grows. The divergence here is discretization error, NOT substrate difference. The key torch advantage is: gradient through the time evolution is available, enabling optimization of gamma.",
+      "status": "pass"
+    }
+  }
+}

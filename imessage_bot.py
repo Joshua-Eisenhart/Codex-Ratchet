@@ -17,7 +17,6 @@ import subprocess
 import time
 import sys
 import os
-import plistlib
 from datetime import datetime
 
 # ── Config ────────────────────────────────────────────────────────────
@@ -85,33 +84,44 @@ def extract_text(text_col, abody_col):
 
 def _decode_attributed_body(blob):
     """
-    Decode NSAttributedString stored as binary plist.
-    Falls back to stripping non-printable bytes if plist parse fails.
+    Decode NSAttributedString from Messages attributedBody column.
+
+    Messages uses NSTypedStream (a.k.a. streamtyped), NOT binary plist.
+    plistlib cannot decode it. The string is stored as:
+      b'NSString\\x01' + 4 header bytes + length_byte + utf8_bytes
+
+    For strings > 127 bytes the length is multi-byte encoded:
+      \\x81 + 1 byte  (128–255)
+      \\x82 + 2 bytes (256–65535)
     """
-    # Try binary plist decode first (most reliable)
     try:
-        pl = plistlib.loads(blob, fmt=plistlib.FMT_BINARY)
-        # The string lives at pl["$objects"][2] (or similar index) — find it
-        if "$objects" in pl:
-            for obj in pl["$objects"]:
-                if isinstance(obj, str) and len(obj) > 0 and obj != "$null":
-                    return obj.strip()
-    except Exception:
-        pass
+        marker = b"NSString\x01"
+        idx = blob.find(marker)
+        if idx == -1:
+            return ""
+        # Skip past marker + 4 header bytes (\x94\x84\x01\x2b)
+        pos = idx + len(marker) + 4
+        if pos >= len(blob):
+            return ""
 
-    # Fallback: extract printable UTF-8 between NSString markers
-    try:
-        parts = blob.split(b"NSString\x94")
-        if len(parts) > 1:
-            raw = parts[1].split(b"NSDictionary")[0]
-            candidate = raw.decode("utf-8", errors="ignore")
-            text = "".join(c for c in candidate if c.isprintable() or c in "\n\t")
-            if len(text.strip()) > 1:
-                return text.strip()
-    except Exception:
-        pass
+        # Read length (may be multi-byte)
+        length_byte = blob[pos]
+        pos += 1
+        if length_byte == 0x81:
+            length = blob[pos]; pos += 1
+        elif length_byte == 0x82:
+            length = int.from_bytes(blob[pos:pos+2], "big"); pos += 2
+        elif length_byte == 0x83:
+            length = int.from_bytes(blob[pos:pos+3], "big"); pos += 3
+        else:
+            length = length_byte
 
-    return ""
+        if length == 0 or pos + length > len(blob):
+            return ""
+
+        return blob[pos:pos + length].decode("utf-8", errors="ignore").strip()
+    except Exception:
+        return ""
 
 
 def get_new_messages(since_rowid):
@@ -143,6 +153,8 @@ def get_new_messages(since_rowid):
     for rowid, text, abody in rows:
         content = extract_text(text, abody)
         if not content:
+            # Empty content = either bot reply (attributedBody we can't decode)
+            # or a reaction/tapback. Skip both.
             continue
         if BOT_TAG in content:
             continue

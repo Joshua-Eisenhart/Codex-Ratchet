@@ -1,0 +1,2921 @@
+{
+  "name": "Twilight Zone: Discord without Entanglement",
+  "hypothesis": "The region r in [0.51, 0.84] contains quantum discord without entanglement. The Lorentzian metric of the I_c Hessian detects quantum correlations (discord) that entanglement measures miss.",
+  "twilight_zone_definition": {
+    "r_lower_sampled": 0.3,
+    "r_upper": 0.84,
+    "theta_fixed": 0.7853981633974483,
+    "upper_boundary": "I_c=0, entanglement sudden death",
+    "lower_boundary_note": "At theta=pi/4, Lorentzian signature persists to r->0. The null surface (det(g)=0) at r~0.51 is theta-dependent and exists at theta~1.114 but not at theta=pi/4."
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Autograd for I_c gradient/Hessian, differentiable quantum states, SLD computation for QFI"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Tried import; not load-bearing in this sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    }
+  },
+  "positive": {
+    "discord_throughout": {
+      "n_points": 30,
+      "discord_positive_count": 30,
+      "discord_fraction": 1.0,
+      "discord_min": 0.052900843687918475,
+      "discord_max": 0.38260338524979165,
+      "discord_mean": 0.19054673708344896,
+      "pass": true,
+      "interpretation": "Discord remains positive throughout the twilight zone, confirming quantum correlations persist after entanglement death. The Lorentzian metric is detecting DISCORD, not entanglement."
+    },
+    "no_entanglement": {
+      "n_points": 30,
+      "ic_leq_zero_count": 29,
+      "ic_nearly_zero_count": 30,
+      "ic_fraction_negative": 0.9666666666666667,
+      "ic_max": 0.008361199842717104,
+      "ic_min": -0.8630097760095425,
+      "pass": true,
+      "interpretation": "I_c <= 0 (or near zero at the upper boundary) confirms no significant entanglement throughout the twilight zone. States are separable or at most marginally entangled."
+    },
+    "lorentzian_throughout": {
+      "n_points": 30,
+      "lorentzian_count": 30,
+      "lorentzian_fraction": 1.0,
+      "signature_distribution": {
+        "lorentzian": 30
+      },
+      "pass": true,
+      "interpretation": "The Hessian maintains Lorentzian (mixed) signature throughout the twilight zone. Mixed eigenvalues = the I_c landscape has both convex and concave directions even in the separable region."
+    },
+    "quantum_advantage": {
+      "n_points": 30,
+      "qfi_exceeds_cfi_count": 30,
+      "qfi_exceeds_fraction": 1.0,
+      "mean_advantage_ratio": 1.412648529696066,
+      "min_advantage_ratio": 1.4033125688496533,
+      "pass": true,
+      "interpretation": "QFI > classical FI means quantum advantage in parameter estimation persists even without entanglement. The quantum Fisher information captures non-classical resources (discord, coherence) that the classical measurement misses."
+    },
+    "mutual_information_profile": {
+      "mi_min": 0.10428163990233208,
+      "mi_max": 0.7362787650593372,
+      "mi_mean": 0.36801351193948406,
+      "mi_monotone_in_r": true,
+      "pass": true,
+      "interpretation": "Mutual information I(A:B) > 0 means total correlations (classical + quantum) persist. Discord = I(A:B) - J captures the purely quantum part."
+    },
+    "steering_profile": {
+      "n_points": 30,
+      "violations": 8,
+      "no_violations": false,
+      "violation_fraction": 0.26666666666666666,
+      "steering_min": 0.18,
+      "steering_max": 1.4111999999999998,
+      "steering_mean": 0.7017517241379312,
+      "pass": true,
+      "interpretation": "Steering is a stronger criterion than entanglement. We expect few or no steering violations in the twilight zone (steering dies before or with entanglement). This confirms the hierarchy: steering <= entanglement < discord."
+    },
+    "survey_points": [
+      {
+        "r": 0.3,
+        "theta": 0.7853981633974483,
+        "I_c": -0.8630097760095425,
+        "I_c_leq_zero": true,
+        "discord": 0.052900843687918475,
+        "discord_positive": true,
+        "mutual_information": 0.10428163990233208,
+        "classical_correlation_J": 0.051380796214413604,
+        "hessian": [
+          [
+            -0.0020581296451827047,
+            0.4463421985182597
+          ],
+          [
+            0.4463421985182597,
+            2.498861622818316
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.07932987548305759,
+          2.5761333686561905
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.13846153845407716,
+            1.0226541835578473e-12
+          ],
+          [
+            1.022751328072502e-12,
+            2.2556390977547705
+          ]
+        ],
+        "qfi_trace": 2.3941006362088477,
+        "qfi_eigenvalues": [
+          0.13846153845407716,
+          2.2556390977547705
+        ],
+        "classical_fi_trace": 1.6858088930984831,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4201494878868142,
+        "steering_parameter": 0.18,
+        "steering_singular_values": [
+          0.3,
+          0.21213203435596426,
+          0.21213203435596426
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.21213203435596426,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.21213203435596426,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.3
+          ]
+        ]
+      },
+      {
+        "r": 0.31862068965517243,
+        "theta": 0.7853981633974483,
+        "I_c": -0.846550658775842,
+        "I_c_leq_zero": true,
+        "discord": 0.05918751789935528,
+        "discord_positive": true,
+        "mutual_information": 0.11651782112505193,
+        "classical_correlation_J": 0.057330303225696655,
+        "hessian": [
+          [
+            -0.0026377118510223507,
+            0.4759744290563222
+          ],
+          [
+            0.4759744290563222,
+            2.4877247994326
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.09050859941937436,
+          2.575595687000952
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.15397778097551088,
+            -2.421216005465965e-12
+          ],
+          [
+            -2.4211604943147336e-12,
+            2.251096372279055
+          ]
+        ],
+        "qfi_trace": 2.405074153254566,
+        "qfi_eigenvalues": [
+          0.15397778097551088,
+          2.251096372279055
+        ],
+        "classical_fi_trace": 1.6939759805075298,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4197805523393459,
+        "steering_parameter": 0.2030382877526754,
+        "steering_singular_values": [
+          0.31862068965517243,
+          0.2252988502815069,
+          0.2252988502815069
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.2252988502815069,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.2252988502815069,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.31862068965517243
+          ]
+        ]
+      },
+      {
+        "r": 0.3372413793103448,
+        "theta": 0.7853981633974483,
+        "I_c": -0.8292288354353224,
+        "I_c_leq_zero": true,
+        "discord": 0.06579653802288321,
+        "discord_positive": true,
+        "mutual_information": 0.1293532113246334,
+        "classical_correlation_J": 0.06355667330175019,
+        "hessian": [
+          [
+            -0.0033361655535357744,
+            0.5059794608342633
+          ],
+          [
+            0.5059794608342633,
+            2.481334528670054
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.10242257518699202,
+          2.5804209383035097
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.17009905567347497,
+            -2.461961190469708e-12
+          ],
+          [
+            -2.4619195571062846e-12,
+            2.2500773213407586
+          ]
+        ],
+        "qfi_trace": 2.4201763770142337,
+        "qfi_eigenvalues": [
+          0.17009905567347497,
+          2.2500773213407586
+        ],
+        "classical_fi_trace": 1.7049047121556118,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4195376197619054,
+        "steering_parameter": 0.22746349583828773,
+        "steering_singular_values": [
+          0.3372413793103448,
+          0.23846566620704948,
+          0.23846566620704948
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.23846566620704948,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.23846566620704948,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.3372413793103448
+          ]
+        ]
+      },
+      {
+        "r": 0.35586206896551725,
+        "theta": 0.7853981633974483,
+        "I_c": -0.8110465224336175,
+        "I_c_leq_zero": true,
+        "discord": 0.07272706714263732,
+        "discord_positive": true,
+        "mutual_information": 0.1427838877636558,
+        "classical_correlation_J": 0.07005682062101848,
+        "hessian": [
+          [
+            -0.0041703870704012935,
+            0.5363867977219161
+          ],
+          [
+            0.5363867977219161,
+            2.479664954146976
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.11505362470375066,
+          2.590548191780326
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.18680043496817955,
+            -2.0590890104088544e-12
+          ],
+          [
+            -2.05911676598447e-12,
+            2.2525723787349414
+          ]
+        ],
+        "qfi_trace": 2.439372813703121,
+        "qfi_eigenvalues": [
+          0.18680043496817955,
+          2.2525723787349414
+        ],
+        "classical_fi_trace": 1.7186230733167667,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4193762737022848,
+        "steering_parameter": 0.25327562425683714,
+        "steering_singular_values": [
+          0.35586206896551725,
+          0.2516324821325921,
+          0.2516324821325921
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.2516324821325921,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.2516324821325921,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.35586206896551725
+          ]
+        ]
+      },
+      {
+        "r": 0.37448275862068964,
+        "theta": 0.7853981633974483,
+        "I_c": -0.7920042980664384,
+        "I_c_leq_zero": true,
+        "discord": 0.07997893282369073,
+        "discord_positive": true,
+        "mutual_information": 0.15680744478250608,
+        "classical_correlation_J": 0.07682851195881535,
+        "hessian": [
+          [
+            -0.0051589224628334485,
+            0.5672274906203673
+          ],
+          [
+            0.5672274906203673,
+            2.482736738163016
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.12838088067498865,
+          2.605958696375171
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.20405834212096907,
+            -2.9527491562930663e-12
+          ],
+          [
+            -2.9527214007174507e-12,
+            2.2586049896020803
+          ]
+        ],
+        "qfi_trace": 2.4626633317230495,
+        "qfi_eigenvalues": [
+          0.20405834212096907,
+          2.2586049896020803
+        ],
+        "classical_fi_trace": 1.7351786284189763,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4192563759080685,
+        "steering_parameter": 0.2804746730083234,
+        "steering_singular_values": [
+          0.37448275862068964,
+          0.2647992980581347,
+          0.2647992980581347
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.2647992980581347,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.2647992980581347,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.37448275862068964
+          ]
+        ]
+      },
+      {
+        "r": 0.3931034482758621,
+        "theta": 0.7853981633974483,
+        "I_c": -0.7721010952949026,
+        "I_c_leq_zero": true,
+        "discord": 0.08755262043450007,
+        "discord_positive": true,
+        "mutual_information": 0.17142299641786884,
+        "classical_correlation_J": 0.08387037598336877,
+        "hessian": [
+          [
+            -0.00632211360207524,
+            0.5985342964989759
+          ],
+          [
+            0.5985342964989759,
+            2.490617771178094
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.14238115290107944,
+          2.6266768104770986
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.2218504608984964,
+            -9.300338277284936e-13
+          ],
+          [
+            -9.300338277284936e-13,
+            2.2682321634008034
+          ]
+        ],
+        "qfi_trace": 2.4900826242993,
+        "qfi_eigenvalues": [
+          0.2218504608984964,
+          2.2682321634008034
+        ],
+        "classical_fi_trace": 1.7546393928774686,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.419142095183309,
+        "steering_parameter": 0.30906064209274675,
+        "steering_singular_values": [
+          0.39310344827586213,
+          0.2779661139836773,
+          0.2779661139836773
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.2779661139836773,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.2779661139836773,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.39310344827586213
+          ]
+        ]
+      },
+      {
+        "r": 0.41172413793103446,
+        "theta": 0.7853981633974483,
+        "I_c": -0.7513341781522744,
+        "I_c_leq_zero": true,
+        "discord": 0.09544927350878463,
+        "discord_positive": true,
+        "mutual_information": 0.1866311950152264,
+        "classical_correlation_J": 0.09118192150644178,
+        "hessian": [
+          [
+            -0.007682262327668442,
+            0.6303418534664429
+          ],
+          [
+            0.6303418534664429,
+            2.503425029731776
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.15702925701601478,
+          2.6527720244201225
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.24015565250232657,
+            -3.6335101594175967e-12
+          ],
+          [
+            -3.6335101594175967e-12,
+            2.281545830039885
+          ]
+        ],
+        "qfi_trace": 2.5217014825422117,
+        "qfi_eigenvalues": [
+          0.24015565250232657,
+          2.281545830039885
+        ],
+        "classical_fi_trace": 1.7770951570458788,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.419001944011887,
+        "steering_parameter": 0.33903353151010696,
+        "steering_singular_values": [
+          0.41172413793103446,
+          0.2911329299092199,
+          0.2911329299092199
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.2911329299092199,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.2911329299092199,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.41172413793103446
+          ]
+        ]
+      },
+      {
+        "r": 0.4303448275862069,
+        "theta": 0.7853981633974483,
+        "I_c": -0.7296991010955859,
+        "I_c_leq_zero": true,
+        "discord": 0.10367070115444199,
+        "discord_positive": true,
+        "mutual_information": 0.20243426644760776,
+        "classical_correlation_J": 0.09876356529316577,
+        "hessian": [
+          [
+            -0.00926381512611485,
+            0.6626868739589842
+          ],
+          [
+            0.6626868739589842,
+            2.521327667692752
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.17229828978941383,
+          2.6843621423560506
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.2589538788851006,
+            -4.215239268745563e-12
+          ],
+          [
+            -4.21519763538214e-12,
+            2.29867505937367
+          ]
+        ],
+        "qfi_trace": 2.5576289382587705,
+        "qfi_eigenvalues": [
+          0.2589538788851006,
+          2.29867505937367
+        ],
+        "classical_fi_trace": 1.8026593185838902,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4188088186668346,
+        "steering_parameter": 0.37039334126040435,
+        "steering_singular_values": [
+          0.4303448275862069,
+          0.30429974583476255,
+          0.30429974583476255
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.30429974583476255,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.30429974583476255,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.4303448275862069
+          ]
+        ]
+      },
+      {
+        "r": 0.44896551724137934,
+        "theta": 0.7853981633974483,
+        "I_c": -0.7071896502260637,
+        "I_c_leq_zero": true,
+        "discord": 0.11221939269886927,
+        "discord_positive": true,
+        "mutual_information": 0.21883606297822356,
+        "classical_correlation_J": 0.10661667027935429,
+        "hessian": [
+          [
+            -0.01109357108397546,
+            0.6956083585904492
+          ],
+          [
+            0.6956083585904492,
+            2.544551486260982
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.18815983655482466,
+          2.7216177517318307
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.27822613204705204,
+            -5.934031044318999e-12
+          ],
+          [
+            -5.9340032887433836e-12,
+            2.3197892458288294
+          ]
+        ],
+        "qfi_trace": 2.5980153778758814,
+        "qfi_eigenvalues": [
+          0.27822613204705204,
+          2.3197892458288294
+        ],
+        "classical_fi_trace": 1.8314713046150373,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4185400400919557,
+        "steering_parameter": 0.4031400713436386,
+        "steering_singular_values": [
+          0.44896551724137934,
+          0.3174665617603052,
+          0.3174665617603052
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.3174665617603052,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.3174665617603052,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.44896551724137934
+          ]
+        ]
+      },
+      {
+        "r": 0.4675862068965517,
+        "theta": 0.7853981633974483,
+        "I_c": -0.6837977648222775,
+        "I_c_leq_zero": true,
+        "discord": 0.12109853995185182,
+        "discord_positive": true,
+        "mutual_information": 0.23584213527992826,
+        "classical_correlation_J": 0.11474359532807643,
+        "hessian": [
+          [
+            -0.01320091638917775,
+            0.7291478334330025
+          ],
+          [
+            0.7291478334330025,
+            2.573384996973349
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.20458409772637315,
+          2.7647681783105447
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.2979543686684226,
+            -2.5131563496927356e-12
+          ],
+          [
+            -2.5132257386317747e-12,
+            2.3451024074593483
+          ]
+        ],
+        "qfi_trace": 2.643056776127771,
+        "qfi_eigenvalues": [
+          0.2979543686684226,
+          2.3451024074593483
+        ],
+        "classical_fi_trace": 1.8636996931849497,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4181773950989645,
+        "steering_parameter": 0.4372737217598097,
+        "steering_singular_values": [
+          0.46758620689655167,
+          0.3306333776858478,
+          0.3306333776858478
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.3306333776858478,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.3306333776858478,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.46758620689655167
+          ]
+        ]
+      },
+      {
+        "r": 0.4862068965517241,
+        "theta": 0.7853981633974483,
+        "I_c": -0.6595134370753022,
+        "I_c_leq_zero": true,
+        "discord": 0.13031206767852765,
+        "discord_positive": true,
+        "mutual_information": 0.2534598256737455,
+        "classical_correlation_J": 0.12314775799521782,
+        "hessian": [
+          [
+            -0.015618088988755828,
+            0.7633496142765704
+          ],
+          [
+            0.7633496142765704,
+            2.608187375885418
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.22153992249863094,
+          2.814109209395293
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.3181214497002958,
+            3.2102653868548714e-12
+          ],
+          [
+            3.2103208980061027e-12,
+            2.374878808715234
+          ]
+        ],
+        "qfi_trace": 2.69300025841553,
+        "qfi_eigenvalues": [
+          0.3181214497002958,
+          2.374878808715234
+        ],
+        "classical_fi_trace": 1.8995461822859883,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4177071784454685,
+        "steering_parameter": 0.4727942925089178,
+        "steering_singular_values": [
+          0.486206896551724,
+          0.34380019361139036,
+          0.34380019361139036
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.34380019361139036,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.34380019361139036,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.486206896551724
+          ]
+        ]
+      },
+      {
+        "r": 0.5048275862068965,
+        "theta": 0.7853981633974483,
+        "I_c": -0.6343245872559342,
+        "I_c_leq_zero": true,
+        "discord": 0.13986467311696327,
+        "discord_positive": true,
+        "mutual_information": 0.2716983853018877,
+        "classical_correlation_J": 0.13183371218492446,
+        "hessian": [
+          [
+            -0.018380477893875646,
+            0.7982611014235862
+          ],
+          [
+            0.7982611014235862,
+            2.6493987210662873
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.23899473805748422,
+          2.870012981229896
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.33871108440412667,
+            -1.8357537712176963e-12
+          ],
+          [
+            -1.8357537712176963e-12,
+            2.4094401923794573
+          ]
+        ],
+        "qfi_trace": 2.748151276783584,
+        "qfi_eigenvalues": [
+          0.33871108440412667,
+          2.4094401923794573
+        ],
+        "classical_fi_trace": 1.939250603111823,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.41712023828883,
+        "steering_parameter": 0.5097017835909631,
+        "steering_singular_values": [
+          0.5048275862068965,
+          0.35696700953693294,
+          0.35696700953693294
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.35696700953693294,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.35696700953693294,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.5048275862068965
+          ]
+        ]
+      },
+      {
+        "r": 0.523448275862069,
+        "theta": 0.7853981633974483,
+        "I_c": -0.6082169107417039,
+        "I_c_leq_zero": true,
+        "discord": 0.1497618756613126,
+        "discord_positive": true,
+        "mutual_information": 0.2905691187460815,
+        "classical_correlation_J": 0.14080724308476888,
+        "hessian": [
+          [
+            -0.021526962284967862,
+            0.8339331098949908
+          ],
+          [
+            0.8339331098949908,
+            2.697553164909827
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.25691436296472253,
+          2.9329405655895817
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.3597077785065922,
+            -2.304822999121825e-12
+          ],
+          [
+            -2.304822999121825e-12,
+            2.4491750075646523
+          ]
+        ],
+        "qfi_trace": 2.8088827860712446,
+        "qfi_eigenvalues": [
+          0.3597077785065922,
+          2.4491750075646523
+        ],
+        "classical_fi_trace": 1.9830972411419512,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.416412028516449,
+        "steering_parameter": 0.5479961950059452,
+        "steering_singular_values": [
+          0.5234482758620689,
+          0.3701338254624756,
+          0.3701338254624756
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.3701338254624756,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.3701338254624756,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.5234482758620689
+          ]
+        ]
+      },
+      {
+        "r": 0.5420689655172414,
+        "theta": 0.7853981633974483,
+        "I_c": -0.5811736923354442,
+        "I_c_leq_zero": true,
+        "discord": 0.16001007817997337,
+        "discord_positive": true,
+        "mutual_information": 0.31008556059007675,
+        "classical_correlation_J": 0.15007548241010338,
+        "hessian": [
+          [
+            -0.025100296288660392,
+            0.8704202397680215
+          ],
+          [
+            0.8704202397680215,
+            2.7532955931275356
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.27526269127986835,
+          3.0034579881187433
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.38109678611451453,
+            -6.932954210725484e-12
+          ],
+          [
+            -6.933009721876715e-12,
+            2.4945501543751876
+          ]
+        ],
+        "qfi_trace": 2.8756469404897023,
+        "qfi_eigenvalues": [
+          0.38109678611451453,
+          2.4945501543751876
+        ],
+        "classical_fi_trace": 2.0314228165290156,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4155826729381566,
+        "steering_parameter": 0.5876775267538643,
+        "steering_singular_values": [
+          0.5420689655172413,
+          0.38330064138801817,
+          0.38330064138801817
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.38330064138801817,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.38330064138801817,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.5420689655172413
+          ]
+        ]
+      },
+      {
+        "r": 0.5606896551724139,
+        "theta": 0.7853981633974483,
+        "I_c": -0.5531755820494222,
+        "I_c_leq_zero": true,
+        "discord": 0.1706166418719054,
+        "discord_positive": true,
+        "mutual_information": 0.33026368967389597,
+        "classical_correlation_J": 0.15964704780199057,
+        "hessian": [
+          [
+            -0.02914754676786035,
+            0.9077812935624762
+          ],
+          [
+            0.9077812935624762,
+            2.8174029837013665
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.2940012332341002,
+          3.082256670167606
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.40286406507682426,
+            -3.1435964942261307e-13
+          ],
+          [
+            -3.1433189384699745e-13,
+            2.5461259527792177
+          ]
+        ],
+        "qfi_trace": 2.948990017856042,
+        "qfi_eigenvalues": [
+          0.40286406507682426,
+          2.5461259527792177
+        ],
+        "classical_fi_trace": 2.084626599070642,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.414637047791075,
+        "steering_parameter": 0.6287457788347208,
+        "steering_singular_values": [
+          0.5606896551724139,
+          0.39646745731356087,
+          0.39646745731356087
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.39646745731356087,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.39646745731356087,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.5606896551724139
+          ]
+        ]
+      },
+      {
+        "r": 0.5793103448275863,
+        "theta": 0.7853981633974483,
+        "I_c": -0.5242003249162834,
+        "I_c_leq_zero": true,
+        "discord": 0.18158997711492053,
+        "discord_positive": true,
+        "mutual_information": 0.3511221883896736,
+        "classical_correlation_J": 0.16953221127475304,
+        "hessian": [
+          [
+            -0.03372059224626689,
+            0.9460797468649472
+          ],
+          [
+            0.9460797468649472,
+            2.890811752331856
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.31308849347808876,
+          3.170179653563678
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.4249962354869761,
+            -6.477596237175476e-12
+          ],
+          [
+            -6.477596237175476e-12,
+            2.6045752983254413
+          ]
+        ],
+        "qfi_trace": 3.0295715338124176,
+        "qfi_eigenvalues": [
+          0.4249962354869761,
+          2.6045752983254413
+        ],
+        "classical_fi_trace": 2.1431833026857334,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4135848902965535,
+        "steering_parameter": 0.6712009512485139,
+        "steering_singular_values": [
+          0.5793103448275863,
+          0.40963427323910345,
+          0.40963427323910345
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.40963427323910345,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.40963427323910345,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.5793103448275863
+          ]
+        ]
+      },
+      {
+        "r": 0.5979310344827586,
+        "theta": 0.7853981633974483,
+        "I_c": -0.49422243529058085,
+        "I_c_leq_zero": true,
+        "discord": 0.19293965347093167,
+        "discord_positive": true,
+        "mutual_information": 0.37268275645433824,
+        "classical_correlation_J": 0.17974310298340657,
+        "hessian": [
+          [
+            -0.038876693131406626,
+            0.9853842820442548
+          ],
+          [
+            0.9853842820442548,
+            2.974653011578176
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.3324791654055721,
+          3.2682554838523417
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.44748054110811913,
+            -3.768207967880244e-12
+          ],
+          [
+            -3.768263479031475e-12,
+            2.6707083315320044
+          ]
+        ],
+        "qfi_trace": 3.1181888726401237,
+        "qfi_eigenvalues": [
+          0.44748054110811913,
+          2.6707083315320044
+        ],
+        "classical_fi_trace": 2.207659646166592,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.412440943084042,
+        "steering_parameter": 0.7150430439952439,
+        "steering_singular_values": [
+          0.5979310344827586,
+          0.42280108916464604,
+          0.42280108916464604
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.42280108916464604,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.42280108916464604,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.5979310344827586
+          ]
+        ]
+      },
+      {
+        "r": 0.616551724137931,
+        "theta": 0.7853981633974483,
+        "I_c": -0.46321280333910253,
+        "I_c_leq_zero": true,
+        "discord": 0.20467653294639354,
+        "discord_positive": true,
+        "mutual_information": 0.39497049134594775,
+        "classical_correlation_J": 0.1902939583995542,
+        "hessian": [
+          [
+            -0.044679145072556985,
+            1.0257693936782664
+          ],
+          [
+            1.0257693936782664,
+            3.070298402119142
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.3521231125921027,
+          3.3777423696386877
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.4703048134319955,
+            4.963252031586762e-12
+          ],
+          [
+            4.963474076191687e-12,
+            2.745504467654374
+          ]
+        ],
+        "qfi_trace": 3.2158092810863694,
+        "qfi_eigenvalues": [
+          0.4703048134319955,
+          2.745504467654374
+        ],
+        "classical_fi_trace": 2.2787358138944556,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4112251457488685,
+        "steering_parameter": 0.7602720570749109,
+        "steering_singular_values": [
+          0.616551724137931,
+          0.4359679050901886,
+          0.4359679050901886
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.4359679050901886,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.4359679050901886,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.616551724137931
+          ]
+        ]
+      },
+      {
+        "r": 0.6351724137931034,
+        "theta": 0.7853981633974483,
+        "I_c": -0.43113821772128524,
+        "I_c_leq_zero": true,
+        "discord": 0.2168129318495582,
+        "discord_positive": true,
+        "mutual_information": 0.41801435127115116,
+        "classical_correlation_J": 0.20120141942159298,
+        "hessian": [
+          [
+            -0.051198029324406306,
+            1.0673160787330604
+          ],
+          [
+            1.0673160787330604,
+            3.179420246768316
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.3719641024664418,
+          3.500186319910352
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.49345743826728433,
+            1.1517453657461374e-12
+          ],
+          [
+            1.1517176101705218e-12,
+            2.8301543920186236
+          ]
+        ],
+        "qfi_trace": 3.323611830285908,
+        "qfi_eigenvalues": [
+          0.49345743826728433,
+          2.8301543920186236
+        ],
+        "classical_fi_trace": 2.3572335547582357,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.409962887884814,
+        "steering_parameter": 0.8068879904875148,
+        "steering_singular_values": [
+          0.6351724137931034,
+          0.4491347210157312,
+          0.4491347210157312
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.4491347210157312,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.4491347210157312,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.6351724137931034
+          ]
+        ]
+      },
+      {
+        "r": 0.6537931034482759,
+        "theta": 0.7853981633974483,
+        "I_c": -0.39796078344846064,
+        "I_c_leq_zero": true,
+        "discord": 0.22936281826810878,
+        "discord_positive": true,
+        "mutual_information": 0.44184772152478335,
+        "classical_correlation_J": 0.21248490325667457,
+        "hessian": [
+          [
+            -0.05851107763577001,
+            1.1101126258100669
+          ],
+          [
+            1.1101126258100669,
+            3.304071399679031
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.39193824887317597,
+          3.6374985709164376
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.5169273244674111,
+            -8.595901768160275e-12
+          ],
+          [
+            -8.595957279311506e-12,
+            2.926115751225241
+          ]
+        ],
+        "qfi_trace": 3.443043075692652,
+        "qfi_eigenvalues": [
+          0.5169273244674111,
+          2.926115751225241
+        ],
+        "classical_fi_trace": 2.444153407810343,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4086853405724602,
+        "steering_parameter": 0.8548908442330561,
+        "steering_singular_values": [
+          0.6537931034482759,
+          0.4623015369412739,
+          0.4623015369412739
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.4623015369412739,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.4623015369412739,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.6537931034482759
+          ]
+        ]
+      },
+      {
+        "r": 0.6724137931034483,
+        "theta": 0.7853981633974483,
+        "I_c": -0.3636372070117535,
+        "I_c_leq_zero": true,
+        "discord": 0.2423420545018684,
+        "discord_positive": true,
+        "mutual_information": 0.4665091119793152,
+        "classical_correlation_J": 0.2241670574774468,
+        "hessian": [
+          [
+            -0.0667046715141506,
+            1.1542555199736682
+          ],
+          [
+            1.1542555199736682,
+            3.4467926119718935
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.41197210860012645,
+          3.792060049057869
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.540703874839567,
+            -2.3929747072770624e-12
+          ],
+          [
+            -2.3931134851551406e-12,
+            3.035187969896999
+          ]
+        ],
+        "qfi_trace": 3.5758918447365655,
+        "qfi_eigenvalues": [
+          0.540703874839567,
+          3.035187969896999
+        ],
+        "classical_fi_trace": 2.5407246757693285,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.407429887559064,
+        "steering_parameter": 0.904280618311534,
+        "steering_singular_values": [
+          0.6724137931034483,
+          0.4754683528668165,
+          0.4754683528668165
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.4754683528668165,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.4754683528668165,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.6724137931034483
+          ]
+        ]
+      },
+      {
+        "r": 0.6910344827586208,
+        "theta": 0.7853981633974483,
+        "I_c": -0.32811791121940126,
+        "I_c_leq_zero": true,
+        "discord": 0.25576869701372806,
+        "discord_positive": true,
+        "mutual_information": 0.49204302306476944,
+        "classical_correlation_J": 0.23627432605104137,
+        "hessian": [
+          [
+            -0.07587500085171062,
+            1.1998504841334579
+          ],
+          [
+            1.1998504841334579,
+            3.6107590168144017
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.4319803660361005,
+          3.966864381998792
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.5647769589616651,
+            -3.0285773888749645e-12
+          ],
+          [
+            -3.0286329000261958e-12,
+            3.1596142440083037
+          ]
+        ],
+        "qfi_trace": 3.7243912029699686,
+        "qfi_eigenvalues": [
+          0.5647769589616651,
+          3.1596142440083037
+        ],
+        "classical_fi_trace": 2.6484735150706884,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4062406823315217,
+        "steering_parameter": 0.9550573127229492,
+        "steering_singular_values": [
+          0.6910344827586208,
+          0.48863516879235913,
+          0.48863516879235913
+        ],
+        "steering_violates": false,
+        "correlation_matrix": [
+          [
+            0.48863516879235913,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.48863516879235913,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.6910344827586208
+          ]
+        ]
+      },
+      {
+        "r": 0.7096551724137932,
+        "theta": 0.7853981633974483,
+        "I_c": -0.29134592845048557,
+        "I_c_leq_zero": true,
+        "discord": 0.26966337105312943,
+        "discord_positive": true,
+        "mutual_information": 0.5185010313026728,
+        "classical_correlation_J": 0.24883766024954335,
+        "hessian": [
+          [
+            -0.0861294121606848,
+            1.2470136825412648
+          ],
+          [
+            1.2470136825412648,
+            3.799983294561215
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.4518630268958974,
+          4.165716909296427
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.5891368877581821,
+            7.577272143066693e-13
+          ],
+          [
+            7.576994587310537e-13,
+            3.3022228946495367
+          ]
+        ],
+        "qfi_trace": 3.8913597824077186,
+        "qfi_eigenvalues": [
+          0.5891368877581821,
+          3.3022228946495367
+        ],
+        "classical_fi_trace": 2.7693172657325795,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4051693645070025,
+        "steering_parameter": 1.007220927467301,
+        "steering_singular_values": [
+          0.7096551724137932,
+          0.5018019847179017,
+          0.5018019847179017
+        ],
+        "steering_violates": true,
+        "correlation_matrix": [
+          [
+            0.5018019847179017,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.5018019847179017,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.7096551724137932
+          ]
+        ]
+      },
+      {
+        "r": 0.7282758620689656,
+        "theta": 0.7853981633974483,
+        "I_c": -0.25325550110464334,
+        "I_c_leq_zero": true,
+        "discord": 0.28404974376353587,
+        "discord_positive": true,
+        "mutual_information": 0.5459431653484754,
+        "classical_correlation_J": 0.26189342158493956,
+        "hessian": [
+          [
+            -0.09758798230341535,
+            1.2958731156309522
+          ],
+          [
+            1.2958731156309522,
+            4.019602715521486
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.4715020254343018,
+          4.393516758652373
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.6137743896986718,
+            -5.854983164965688e-12
+          ],
+          [
+            -5.854983164965688e-12,
+            3.466626948581794
+          ]
+        ],
+        "qfi_trace": 4.080401338280466,
+        "qfi_eigenvalues": [
+          0.6137743896986718,
+          3.466626948581794
+        ],
+        "classical_fi_trace": 2.9056975999231374,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4042759777853009,
+        "steering_parameter": 1.0607714625445899,
+        "steering_singular_values": [
+          0.7282758620689656,
+          0.5149688006434443,
+          0.5149688006434443
+        ],
+        "steering_violates": true,
+        "correlation_matrix": [
+          [
+            0.5149688006434443,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.5149688006434443,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.7282758620689656
+          ]
+        ]
+      },
+      {
+        "r": 0.7468965517241379,
+        "theta": 0.7853981633974483,
+        "I_c": -0.21377028848826352,
+        "I_c_leq_zero": true,
+        "discord": 0.29895512944833946,
+        "discord_positive": true,
+        "mutual_information": 0.5744396729924559,
+        "classical_correlation_J": 0.27548454354411644,
+        "hessian": [
+          [
+            -0.1103853635886498,
+            1.3465702444578898
+          ],
+          [
+            1.3465702444578898,
+            4.276293278437926
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.490757137543562,
+          4.656665052392839
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.6386805886101704,
+            -7.64066587777279e-12
+          ],
+          [
+            -7.640776900075252e-12,
+            3.657511917678184
+          ]
+        ],
+        "qfi_trace": 4.296192506288355,
+        "qfi_eigenvalues": [
+          0.6386805886101703,
+          3.6575119176781845
+        ],
+        "classical_fi_trace": 3.0607724713025286,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4036301445367112,
+        "steering_parameter": 1.1157089179548156,
+        "steering_singular_values": [
+          0.7468965517241379,
+          0.5281356165689869,
+          0.5281356165689869
+        ],
+        "steering_violates": true,
+        "correlation_matrix": [
+          [
+            0.5281356165689869,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.5281356165689869,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.7468965517241379
+          ]
+        ]
+      },
+      {
+        "r": 0.7655172413793103,
+        "theta": 0.7853981633974483,
+        "I_c": -0.17280103452988915,
+        "I_c_leq_zero": true,
+        "discord": 0.31441127563805255,
+        "discord_positive": true,
+        "mutual_information": 0.6040733243649279,
+        "classical_correlation_J": 0.28966204872687534,
+        "hessian": [
+          [
+            -0.12467295462670334,
+            1.3992618893440831
+          ],
+          [
+            1.3992618893440831,
+            4.578881627015363
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.509461076981882,
+          4.963669749370542
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.6638469827319439,
+            6.997291635002512e-12
+          ],
+          [
+            6.997208368275665e-12,
+            3.8810607924745493
+          ]
+        ],
+        "qfi_trace": 4.544907775206493,
+        "qfi_eigenvalues": [
+          0.6638469827319439,
+          3.8810607924745493
+        ],
+        "classical_fi_trace": 3.2386995428481913,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4033125688496533,
+        "steering_parameter": 1.1720332936979785,
+        "steering_singular_values": [
+          0.7655172413793103,
+          0.5413024324945295,
+          0.5413024324945295
+        ],
+        "steering_violates": true,
+        "correlation_matrix": [
+          [
+            0.5413024324945295,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.5413024324945295,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.7655172413793103
+          ]
+        ]
+      },
+      {
+        "r": 0.7841379310344828,
+        "theta": 0.7853981633974483,
+        "I_c": -0.130242480758881,
+        "I_c_leq_zero": true,
+        "discord": 0.33045540194356926,
+        "discord_positive": true,
+        "mutual_information": 0.6349424664878065,
+        "classical_correlation_J": 0.30448706454423724,
+        "hessian": [
+          [
+            -0.1406214662963423,
+            1.4541224593322963
+          ],
+          [
+            1.4541224593322963,
+            4.939274224513568
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.5274136476296487,
+          5.326066405846874
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.6892654252327147,
+            -1.1473710870291143e-11
+          ],
+          [
+            -1.1473821892593605e-11,
+            4.145599092425274
+          ]
+        ],
+        "qfi_trace": 4.834864517657989,
+        "qfi_eigenvalues": [
+          0.6892654252327147,
+          4.145599092425274
+        ],
+        "classical_fi_trace": 3.4450663224152187,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4034169636155016,
+        "steering_parameter": 1.2297445897740786,
+        "steering_singular_values": [
+          0.7841379310344827,
+          0.5544692484200722,
+          0.5544692484200722
+        ],
+        "steering_violates": true,
+        "correlation_matrix": [
+          [
+            0.5544692484200722,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.5544692484200722,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.7841379310344827
+          ]
+        ]
+      },
+      {
+        "r": 0.8027586206896553,
+        "theta": 0.7853981633974483,
+        "I_c": -0.0859691964280902,
+        "I_c_leq_zero": true,
+        "discord": 0.347131601224502,
+        "discord_positive": true,
+        "mutual_information": 0.6671651567925451,
+        "classical_correlation_J": 0.3200335555680431,
+        "hessian": [
+          [
+            -0.15842396767218325,
+            1.5113465822308434
+          ],
+          [
+            1.5113465822308434,
+            5.373913523731844
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.5443748296817017,
+          5.759864385741363
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.7149281059160995,
+            -1.7474910407599964e-12
+          ],
+          [
+            -1.747296751730687e-12,
+            4.462605383247704
+          ]
+        ],
+        "qfi_trace": 5.177533489163803,
+        "qfi_eigenvalues": [
+          0.7149281059160995,
+          4.462605383247704
+        ],
+        "classical_fi_trace": 3.687563946857562,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.4040525300112967,
+        "steering_parameter": 1.2888428061831156,
+        "steering_singular_values": [
+          0.8027586206896552,
+          0.5676360643456149,
+          0.5676360643456149
+        ],
+        "steering_violates": true,
+        "correlation_matrix": [
+          [
+            0.5676360643456149,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.5676360643456149,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.8027586206896552
+          ]
+        ]
+      },
+      {
+        "r": 0.8213793103448277,
+        "theta": 0.7853981633974483,
+        "I_c": -0.039829810010722944,
+        "I_c_leq_zero": true,
+        "discord": 0.3644927751834248,
+        "discord_positive": true,
+        "mutual_information": 0.7008848907836002,
+        "classical_correlation_J": 0.33639211560017535,
+        "hessian": [
+          [
+            -0.17829952003167723,
+            1.5711522218325722
+          ],
+          [
+            1.5711522218325722,
+            5.906145813061591
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.560056709883083,
+          6.287903002912996
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.7408275339362349,
+            -1.4457768315878639e-11
+          ],
+          [
+            -1.4457934849332332e-11,
+            4.848353942479461
+          ]
+        ],
+        "qfi_trace": 5.589181476415696,
+        "qfi_eigenvalues": [
+          0.7408275339362349,
+          4.848353942479461
+        ],
+        "classical_fi_trace": 3.9770824032651153,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.40534716399818,
+        "steering_parameter": 1.3493279429250893,
+        "steering_singular_values": [
+          0.8213793103448276,
+          0.5808028802711575,
+          0.5808028802711575
+        ],
+        "steering_violates": true,
+        "correlation_matrix": [
+          [
+            0.5808028802711575,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.5808028802711575,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.8213793103448276
+          ]
+        ]
+      },
+      {
+        "r": 0.84,
+        "theta": 0.7853981633974483,
+        "I_c": 0.008361199842717104,
+        "I_c_leq_zero": false,
+        "discord": 0.38260338524979165,
+        "discord_positive": true,
+        "mutual_information": 0.7362787650593372,
+        "classical_correlation_J": 0.35367537980954555,
+        "hessian": [
+          [
+            -0.20049753305384496,
+            1.6337843925767757
+          ],
+          [
+            1.6337843925767757,
+            6.570243614545389
+          ]
+        ],
+        "hessian_eigenvalues": [
+          -0.5741142382132579,
+          6.943860319704802
+        ],
+        "signature": "lorentzian",
+        "is_lorentzian": true,
+        "qfi_matrix": [
+          [
+            0.7669565217042512,
+            1.7912338279302276e-12
+          ],
+          [
+            1.7917056727156933e-12,
+            5.326704545410683
+          ]
+        ],
+        "qfi_trace": 6.093661067114934,
+        "qfi_eigenvalues": [
+          0.7669565217042512,
+          5.326704545410683
+        ],
+        "classical_fi_trace": 4.329570502363875,
+        "qfi_exceeds_cfi": true,
+        "quantum_advantage_ratio": 1.407451631469656,
+        "steering_parameter": 1.4111999999999998,
+        "steering_singular_values": [
+          0.84,
+          0.5939696961966999,
+          0.5939696961966999
+        ],
+        "steering_violates": true,
+        "correlation_matrix": [
+          [
+            0.5939696961966999,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            -0.5939696961966999,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.84
+          ]
+        ]
+      }
+    ],
+    "elapsed_seconds": 0.24546027183532715
+  },
+  "negative": {
+    "null_surface_theta_1114": {
+      "theta": 1.114,
+      "n_points": 15,
+      "signatures_found": [
+        "lorentzian"
+      ],
+      "has_riemannian_region": false,
+      "has_lorentzian_region": true,
+      "has_both": false,
+      "points": [
+        {
+          "r": 0.1,
+          "eigenvalues": [
+            -0.012646974504036011,
+            3.421811154793242
+          ],
+          "det_g": -0.043275558432296156,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.14285714285714285,
+          "eigenvalues": [
+            -0.026236387425477476,
+            3.260974318340511
+          ],
+          "det_g": -0.08555618560051394,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.18571428571428572,
+          "eigenvalues": [
+            -0.04494250173590269,
+            3.1451536941928055
+          ],
+          "det_g": -0.1413510753609409,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.22857142857142856,
+          "eigenvalues": [
+            -0.0688110296848469,
+            3.0668883256408304
+          ],
+          "det_g": -0.21103574361578156,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.27142857142857146,
+          "eigenvalues": [
+            -0.09781440197625174,
+            3.021279523847986
+          ],
+          "det_g": -0.2955246498282853,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.3142857142857143,
+          "eigenvalues": [
+            -0.13186131072225607,
+            3.0052804798096546
+          ],
+          "det_g": -0.3962802231557116,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.3571428571428571,
+          "eigenvalues": [
+            -0.17080980901784604,
+            3.017316798967272
+          ],
+          "det_g": -0.5153873061779384,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.4,
+          "eigenvalues": [
+            -0.21448174028171577,
+            3.057129874208921
+          ],
+          "det_g": -0.6556985356875523,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.44285714285714284,
+          "eigenvalues": [
+            -0.26267611389714834,
+            3.1257979886881335
+          ],
+          "det_g": -0.8210724684961214,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.48571428571428577,
+          "eigenvalues": [
+            -0.3151793382827647,
+            3.2259353861144615
+          ],
+          "det_g": -1.016748180338511,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.5285714285714286,
+          "eigenvalues": [
+            -0.37177071911865917,
+            3.3621160670341386
+          ],
+          "det_g": -1.2499363080016797,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.5714285714285714,
+          "eigenvalues": [
+            -0.43222205769390265,
+            3.541636167835664
+          ],
+          "det_g": -1.5307732720650788,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.6142857142857142,
+          "eigenvalues": [
+            -0.4962903315429834,
+            3.7758496380903694
+          ],
+          "det_g": -1.8739176687443233,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.6571428571428571,
+          "eigenvalues": [
+            -0.5637021792168273,
+            4.082560118638687
+          ],
+          "det_g": -2.3013480356603377,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.7,
+          "eigenvalues": [
+            -0.6341281511416234,
+            4.49051366900023
+          ],
+          "det_g": -2.847561130599303,
+          "signature": "lorentzian"
+        }
+      ],
+      "pass": true,
+      "interpretation": "At theta=1.114 the null surface (det(g)=0) should create a transition between Riemannian and Lorentzian regions. At theta=pi/4, by contrast, the metric stays Lorentzian throughout -- the null surface is theta-dependent."
+    },
+    "above_twilight_zone_entangled": {
+      "n_points": 8,
+      "entangled_count": 8,
+      "points": [
+        {
+          "r": 0.86,
+          "I_c": 0.06267291497946781,
+          "has_entanglement": true,
+          "discord": 0.40298209792396966,
+          "mutual_information": 0.7764146322661023,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.8771428571428571,
+          "I_c": 0.11160178353104822,
+          "has_entanglement": true,
+          "discord": 0.42130718290913444,
+          "mutual_information": 0.8128287776602299,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.8942857142857142,
+          "I_c": 0.16304547094371757,
+          "has_entanglement": true,
+          "discord": 0.44053380357280086,
+          "mutual_information": 0.851413171989063,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.9114285714285715,
+          "I_c": 0.21741615782246776,
+          "has_entanglement": true,
+          "discord": 0.4608020889790241,
+          "mutual_information": 0.8925712743482566,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.9285714285714286,
+          "I_c": 0.2752925346944911,
+          "has_entanglement": true,
+          "discord": 0.4823078761584068,
+          "mutual_information": 0.936872418377844,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.9457142857142857,
+          "I_c": 0.33754369547518775,
+          "has_entanglement": true,
+          "discord": 0.5053440296425733,
+          "mutual_information": 0.9851756393060331,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.9628571428571429,
+          "I_c": 0.4056189473272447,
+          "has_entanglement": true,
+          "discord": 0.5303970697218279,
+          "mutual_information": 1.0389194076265043,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.98,
+          "I_c": 0.4824385830314234,
+          "has_entanglement": true,
+          "discord": 0.5584441254147808,
+          "mutual_information": 1.101012313673041,
+          "signature": "lorentzian"
+        }
+      ],
+      "pass": true,
+      "interpretation": "Above the twilight zone (r > 0.84), I_c > 0 confirms entanglement is present. The twilight zone is specifically the gap between entanglement death and metric transition."
+    },
+    "maximally_mixed_no_discord": {
+      "r": 0.01,
+      "discord": 7.14275491882077e-05,
+      "mutual_information": 0.0001428510308847386,
+      "pass": true,
+      "interpretation": "Near-maximally mixed state should have near-zero discord. This validates the discord computation."
+    }
+  },
+  "boundary": {
+    "metric_transition_boundary": {
+      "theta_null_surface": 1.114,
+      "scan_range": [
+        0.3,
+        0.7
+      ],
+      "n_points": 25,
+      "det_g_zero_crossings": [],
+      "refined_transition_r": "not found in scan",
+      "theta_pi4_all_lorentzian": true,
+      "theta_pi4_check": [
+        {
+          "r": 0.1,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.3,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.5,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.7,
+          "signature": "lorentzian"
+        }
+      ],
+      "points": [
+        {
+          "r": 0.3,
+          "eigenvalues": [
+            -0.11995982651814792,
+            3.0074484796014507
+          ],
+          "det_g": -0.36077299787525763,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.31666666666666665,
+          "eigenvalues": [
+            -0.13389803366988823,
+            3.0052218459393707
+          ],
+          "det_g": -0.40239329591307355,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.3333333333333333,
+          "eigenvalues": [
+            -0.14857653454098588,
+            3.0072140142503105
+          ],
+          "det_g": -0.4468014368603981,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.35,
+          "eigenvalues": [
+            -0.16398521656821635,
+            3.013390827674631
+          ],
+          "det_g": -0.49415154748090107,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.36666666666666664,
+          "eigenvalues": [
+            -0.18011328792222067,
+            3.0237474220364797
+          ],
+          "det_g": -0.544617090029329,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.3833333333333333,
+          "eigenvalues": [
+            -0.19694939670703251,
+            3.038308615723325
+          ],
+          "det_g": -0.5983930488764879,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.4,
+          "eigenvalues": [
+            -0.21448174028171577,
+            3.057129874208921
+          ],
+          "det_g": -0.6556985356875523,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.41666666666666663,
+          "eigenvalues": [
+            -0.23269816166830143,
+            3.0802988770175586
+          ],
+          "det_g": -0.7167798860709191,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.43333333333333335,
+          "eigenvalues": [
+            -0.25158623124245455,
+            3.1079377397283534
+          ],
+          "det_g": -0.781914342874449,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.44999999999999996,
+          "eigenvalues": [
+            -0.2711333116799848,
+            3.1402059681383996
+          ],
+          "det_g": -0.851414443498617,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.4666666666666667,
+          "eigenvalues": [
+            -0.2913266045753147,
+            3.1773042529997233
+          ],
+          "det_g": -0.9256332597291159,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.4833333333333333,
+          "eigenvalues": [
+            -0.31215317719521096,
+            3.219479252916406
+          ],
+          "det_g": -1.0049706777119203,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.5,
+          "eigenvalues": [
+            -0.3335999683404249,
+            3.267029557710853
+          ],
+          "det_g": -1.0898809570195729,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.5166666666666666,
+          "eigenvalues": [
+            -0.3556537715354789,
+            3.3203130868917
+          ],
+          "det_g": -1.1808818720316414,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.5333333333333333,
+          "eigenvalues": [
+            -0.37830119516818456,
+            3.379756256840948
+          ],
+          "det_g": -1.2785658313400805,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.55,
+          "eigenvalues": [
+            -0.4015285972291163,
+            3.445865351101783
+          ],
+          "det_g": -1.3836134806683156,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.5666666666666667,
+          "eigenvalues": [
+            -0.4253219938821601,
+            3.5192406703904826
+          ],
+          "det_g": -1.4968104588816697,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.5833333333333333,
+          "eigenvalues": [
+            -0.4496669393935284,
+            3.6005942244898335
+          ],
+          "det_g": -1.6190681849243584,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.6,
+          "eigenvalues": [
+            -0.4745483756087646,
+            3.6907719866693176
+          ],
+          "det_g": -1.751449851016258,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.6166666666666667,
+          "eigenvalues": [
+            -0.49995044773172437,
+            3.7907820892403974
+          ],
+          "det_g": -1.8952032027691386,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.6333333333333333,
+          "eigenvalues": [
+            -0.5258562834129373,
+            3.9018308429639577
+          ],
+          "det_g": -2.0518022655869954,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.6499999999999999,
+          "eigenvalues": [
+            -0.5522477301699539,
+            4.025369183258877
+          ],
+          "det_g": -2.223000994550796,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.6666666666666666,
+          "eigenvalues": [
+            -0.5791050467755734,
+            4.163153190076951
+          ],
+          "det_g": -2.4109030228733905,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.6833333333333333,
+          "eigenvalues": [
+            -0.6064065417629755,
+            4.317323866635807
+          ],
+          "det_g": -2.6180534356373775,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.7,
+          "eigenvalues": [
+            -0.6341281511416234,
+            4.49051366900023
+          ],
+          "det_g": -2.847561130599303,
+          "signature": "lorentzian"
+        }
+      ],
+      "pass": true,
+      "interpretation": "At theta=pi/4, the metric stays Lorentzian everywhere (no null surface at this angle). The null surface (det(g)=0) exists at other theta values (e.g., theta=1.114). This means the twilight zone extent is theta-dependent."
+    },
+    "entanglement_death_boundary": {
+      "scan_range": [
+        0.75,
+        0.92
+      ],
+      "n_points": 20,
+      "ic_zero_crossings": [
+        0.8368084834786496
+      ],
+      "refined_death_r": 0.8368084834786496,
+      "discord_at_death_point": 0.3014919755724931,
+      "discord_positive_at_death": true,
+      "points": [
+        {
+          "r": 0.75,
+          "I_c": -0.20704776331487384,
+          "discord": 0.3014919755724931,
+          "mutual_information": 0.5792972023806148,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.7589473684210526,
+          "I_c": -0.18743172429898358,
+          "discord": 0.3088928538733506,
+          "mutual_information": 0.593482164837144,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.7678947368421053,
+          "I_c": -0.1674580593836945,
+          "discord": 0.3164262018066354,
+          "mutual_information": 0.6079436447280795,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.7768421052631579,
+          "I_c": -0.14711433632048954,
+          "discord": 0.3240964062754672,
+          "mutual_information": 0.6226932885841449,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.7857894736842106,
+          "I_c": -0.12638702486653974,
+          "discord": 0.3319082282036946,
+          "mutual_information": 0.6377438160759454,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.7947368421052632,
+          "I_c": -0.10526135850847962,
+          "discord": 0.33986684894836316,
+          "mutual_information": 0.6531091572629975,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.8036842105263158,
+          "I_c": -0.08372117187033934,
+          "discord": 0.3479779248380792,
+          "mutual_information": 0.6688046140986731,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.8126315789473685,
+          "I_c": -0.061748708246896156,
+          "discord": 0.35624765169159234,
+          "mutual_information": 0.6848470517454248,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.8215789473684211,
+          "I_c": -0.03932439010632727,
+          "discord": 0.3646828417035116,
+          "mutual_information": 0.7012551268516344,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.8305263157894737,
+          "I_c": -0.016426543246206182,
+          "discord": 0.3732910158041767,
+          "mutual_information": 0.7180495621008371,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.8394736842105264,
+          "I_c": 0.006968937673762943,
+          "discord": 0.38208051558772504,
+          "mutual_information": 0.7352534793042491,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.848421052631579,
+          "I_c": 0.030888998618926355,
+          "discord": 0.3910606402759542,
+          "mutual_information": 0.752892807427031,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.8573684210526316,
+          "I_c": 0.055363932912602554,
+          "discord": 0.4002418161288065,
+          "mutual_information": 0.7709967877673134,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.8663157894736843,
+          "I_c": 0.0804280158408811,
+          "discord": 0.4096358085126468,
+          "mutual_information": 0.7895986069066587,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.8752631578947369,
+          "I_c": 0.10612031011096845,
+          "discord": 0.4192559909562509,
+          "mutual_information": 0.8087362004054324,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.8842105263157896,
+          "I_c": 0.13248570373923219,
+          "discord": 0.42911769172286013,
+          "mutual_information": 0.8284532888102345,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.8931578947368422,
+          "I_c": 0.15957627066252733,
+          "discord": 0.4392386479994381,
+          "mutual_information": 0.848800736257044,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.9021052631578947,
+          "I_c": 0.18745309004413568,
+          "discord": 0.44963961303052785,
+          "mutual_information": 0.8698383676304693,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.9110526315789474,
+          "I_c": 0.21618873540312067,
+          "discord": 0.46034518657697315,
+          "mutual_information": 0.8916374553958113,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.92,
+          "I_c": 0.2458707733257109,
+          "discord": 0.47138498195681744,
+          "mutual_information": 0.9142842158491671,
+          "signature": "lorentzian"
+        }
+      ],
+      "pass": true,
+      "interpretation": "At the entanglement death boundary, discord should still be positive. This is the ENTRY into the twilight zone: entanglement dies but discord persists."
+    },
+    "cross_validation_theta_pi2": {
+      "n_points": 10,
+      "discord_positive_count": 10,
+      "points": [
+        {
+          "r": 0.3,
+          "theta": 1.5707963267948966,
+          "I_c": -0.8303011919214172,
+          "discord": 0.10376686345407338,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.36,
+          "theta": 1.5707963267948966,
+          "I_c": -0.7596275363413567,
+          "discord": 0.1447539213831368,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.42,
+          "theta": 1.5707963267948966,
+          "I_c": -0.6772333431296498,
+          "discord": 0.19148790320975462,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.48,
+          "theta": 1.5707963267948966,
+          "I_c": -0.5829349237863382,
+          "discord": 0.24381144870627947,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.54,
+          "theta": 1.5707963267948966,
+          "I_c": -0.47633524892802503,
+          "discord": 0.3016760546185123,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.6000000000000001,
+          "theta": 1.5707963267948966,
+          "I_c": -0.3567796494470392,
+          "discord": 0.36514844544032277,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.66,
+          "theta": 1.5707963267948966,
+          "I_c": -0.22327261751157756,
+          "discord": 0.4344321612326416,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.72,
+          "theta": 1.5707963267948966,
+          "I_c": -0.07432486508271685,
+          "discord": 0.5099139465601392,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.78,
+          "theta": 1.5707963267948966,
+          "I_c": 0.09234311151626284,
+          "discord": 0.5922590696807906,
+          "signature": "lorentzian"
+        },
+        {
+          "r": 0.84,
+          "theta": 1.5707963267948966,
+          "I_c": 0.28044363462609667,
+          "discord": 0.6826228248283692,
+          "signature": "lorentzian"
+        }
+      ],
+      "pass": true,
+      "interpretation": "Cross-validation at theta=pi/2 confirms the twilight zone is not an artifact of theta=pi/4. Discord persists at multiple angles."
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 12,
+    "passed": 12,
+    "failed": 0,
+    "details": {
+      "discord_throughout": true,
+      "no_entanglement": true,
+      "lorentzian_throughout": true,
+      "quantum_advantage": true,
+      "mutual_information_profile": true,
+      "steering_profile": true,
+      "null_surface_theta_1114": true,
+      "above_twilight_zone_entangled": true,
+      "maximally_mixed_no_discord": true,
+      "metric_transition_boundary": true,
+      "entanglement_death_boundary": true,
+      "cross_validation_theta_pi2": true
+    }
+  }
+}

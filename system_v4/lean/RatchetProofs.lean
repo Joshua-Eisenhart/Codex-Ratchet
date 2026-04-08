@@ -4,3 +4,4 @@ import RatchetProofs.Basic
 import RatchetProofs.ShellNesting
 import RatchetProofs.EntropyMonotonicity
 import RatchetProofs.CascadeEncoding
+import RatchetProofs.LorentzianMetric

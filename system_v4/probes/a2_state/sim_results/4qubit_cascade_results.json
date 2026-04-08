@@ -1,0 +1,867 @@
+{
+  "name": "4-Qubit Cascade -- 33 families (28 original + 5 emergent) x 16x16 shells",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "All state construction, channels, gates, shells, Dykstra in torch; 16x16 density matrices as complex64 (float32) tensors for performance"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- cascade is nn.Module chain"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Cascade ordering monotonicity verification"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 sufficient"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- all computation torch-native"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- geometry done natively"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "DAG topological sort for shell ordering"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "classification": "canonical",
+  "architecture": {
+    "type": "4qubit_cascade",
+    "dimension": "16x16",
+    "dtype": "complex64 (float32 components)",
+    "n_families": 33,
+    "n_original_families": 28,
+    "n_emergent_families": 5,
+    "emergent_families": [
+      "tripartite_info_ABC",
+      "quadripartite_info",
+      "coherent_info_A_BCD",
+      "coherent_info_AB_CD",
+      "coherent_info_ABC_D"
+    ],
+    "shell_levels": [
+      "L1_CPTP",
+      "L2_Purity",
+      "L4_Composition",
+      "L6_Irreversibility"
+    ],
+    "projection_method": "Dykstra alternating with increment vectors (16x16)",
+    "ordering": "rustworkx topological_sort on shell DAG",
+    "verification": "z3 cascade consistency proof",
+    "topologies_tested": [
+      "chain (A-B-C-D)",
+      "ring (A-B-C-D-A)"
+    ],
+    "key_questions": {
+      "Q1_same_8_survive": "Do the same 8 channels survive? (dimension-independence)",
+      "Q2_new_survivors": "Any new structure at 4q not at 2q/3q?",
+      "Q3_4partite_killed": "4-partite measures killed at L4?",
+      "Q4_topology": "Chain vs ring -- changes survivors?"
+    }
+  },
+  "summary": {
+    "n_pass": 15,
+    "n_fail": 0,
+    "n_error": 0,
+    "elapsed_seconds": 0.25698375701904297
+  },
+  "positive": {
+    "P1_full_cascade_4q_chain": {
+      "status": "PASS",
+      "n_families": 34,
+      "n_survived": 8,
+      "n_killed_L4": 18,
+      "n_killed_L6": 8,
+      "n_errors": 0,
+      "survived": [
+        "z_dephasing",
+        "x_dephasing",
+        "depolarizing",
+        "amplitude_damping",
+        "phase_damping",
+        "bit_flip",
+        "phase_flip",
+        "bit_phase_flip"
+      ],
+      "killed_L4": [
+        "l1_coherence",
+        "re_coherence",
+        "chiral_overlap",
+        "quantum_discord",
+        "mutual_info",
+        "hopf_connection",
+        "wigner_negativity",
+        "husimi_q",
+        "cartan_kak",
+        "eigendecomp",
+        "z_measurement",
+        "purification",
+        "lindblad",
+        "tripartite_info_ABC",
+        "quadripartite_info",
+        "coherent_info_A_BCD",
+        "coherent_info_AB_CD",
+        "coherent_info_ABC_D"
+      ],
+      "killed_L6": [
+        "CNOT_AB",
+        "CNOT_CD",
+        "CZ_AB",
+        "iSWAP_AB",
+        "SWAP_AB",
+        "Hadamard_A",
+        "T_gate_A",
+        "unitary_rotation"
+      ],
+      "errors": [],
+      "per_family": {
+        "z_dephasing": {
+          "category": "channel",
+          "expected_fate": "survive",
+          "actual_fate": "survive",
+          "observable_before": 0.1323181539773941,
+          "observable_after": 0.13231819868087769,
+          "ratio": 1.0000003378484528,
+          "match_expected": true
+        },
+        "x_dephasing": {
+          "category": "channel",
+          "expected_fate": "survive",
+          "actual_fate": "survive",
+          "observable_before": 0.16161537170410156,
+          "observable_after": 0.16161537170410156,
+          "ratio": 1.0,
+          "match_expected": true
+        },
+        "depolarizing": {
+          "category": "channel",
+          "expected_fate": "survive",
+          "actual_fate": "survive",
+          "observable_before": 0.09548129141330719,
+          "observable_after": 0.09548129886388779,
+          "ratio": 1.0000000780318372,
+          "match_expected": true
+        },
+        "amplitude_damping": {
+          "category": "channel",
+          "expected_fate": "survive",
+          "actual_fate": "survive",
+          "observable_before": 0.0801677405834198,
+          "observable_after": 0.08016776293516159,
+          "ratio": 1.000000278812171,
+          "match_expected": true
+        },
+        "phase_damping": {
+          "category": "channel",
+          "expected_fate": "survive",
+          "actual_fate": "survive",
+          "observable_before": 0.036021407693624496,
+          "observable_after": 0.03602141514420509,
+          "ratio": 1.0000002068375744,
+          "match_expected": true
+        },
+        "bit_flip": {
+          "category": "channel",
+          "expected_fate": "survive",
+          "actual_fate": "survive",
+          "observable_before": 0.16161537170410156,
+          "observable_after": 0.16161537170410156,
+          "ratio": 1.0,
+          "match_expected": true
+        },
+        "phase_flip": {
+          "category": "channel",
+          "expected_fate": "survive",
+          "actual_fate": "survive",
+          "observable_before": 0.1323181539773941,
+          "observable_after": 0.13231819868087769,
+          "ratio": 1.0000003378484528,
+          "match_expected": true
+        },
+        "bit_phase_flip": {
+          "category": "channel",
+          "expected_fate": "survive",
+          "actual_fate": "survive",
+          "observable_before": 0.1711893528699875,
+          "observable_after": 0.17118936777114868,
+          "ratio": 1.0000000870449064,
+          "match_expected": true
+        },
+        "CNOT_AB": {
+          "category": "gate_2q",
+          "expected_fate": "killed_L6",
+          "actual_fate": "killed_L6",
+          "observable_before": 0.32761234045028687,
+          "observable_after": 0.3276124596595764,
+          "ratio": 1.0000003638730135,
+          "match_expected": true
+        },
+        "CNOT_CD": {
+          "category": "gate_2q",
+          "expected_fate": "killed_L6",
+          "actual_fate": "killed_L6",
+          "observable_before": 0.44212591648101807,
+          "observable_after": 0.44212600588798523,
+          "ratio": 1.0000002022205978,
+          "match_expected": true
+        },
+        "CZ_AB": {
+          "category": "gate_2q",
+          "expected_fate": "killed_L6",
+          "actual_fate": "killed_L6",
+          "observable_before": 0.425010085105896,
+          "observable_after": 0.42501020431518555,
+          "ratio": 1.0000002804857901,
+          "match_expected": true
+        },
+        "iSWAP_AB": {
+          "category": "gate_2q",
+          "expected_fate": "killed_L6",
+          "actual_fate": "killed_L6",
+          "observable_before": 0.31695666909217834,
+          "observable_after": 0.3169567584991455,
+          "ratio": 1.0000002820794636,
+          "match_expected": true
+        },
+        "SWAP_AB": {
+          "category": "gate_2q",
+          "expected_fate": "killed_L6",
+          "actual_fate": "killed_L6",
+          "observable_before": 0.2804363965988159,
+          "observable_after": 0.2804364562034607,
+          "ratio": 1.0000002125424714,
+          "match_expected": true
+        },
+        "Hadamard_A": {
+          "category": "gate_1q",
+          "expected_fate": "killed_L6",
+          "actual_fate": "killed_L6",
+          "observable_before": 0.4207414388656616,
+          "observable_after": 0.420741468667984,
+          "ratio": 1.0000000708328671,
+          "match_expected": true
+        },
+        "T_gate_A": {
+          "category": "gate_1q",
+          "expected_fate": "killed_L6",
+          "actual_fate": "killed_L6",
+          "observable_before": 0.16878654062747955,
+          "observable_after": 0.16878660023212433,
+          "ratio": 1.0000003531362427,
+          "match_expected": true
+        },
+        "l1_coherence": {
+          "category": "measure",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 2.143031358718872,
+          "observable_after": 2.1430323123931885,
+          "ratio": 1.0000004450118345,
+          "match_expected": true
+        },
+        "re_coherence": {
+          "category": "measure",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 1.9221863746643066,
+          "observable_after": 1.9221863746643066,
+          "ratio": 1.0,
+          "match_expected": true
+        },
+        "chiral_overlap": {
+          "category": "measure",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.2322760969400406,
+          "observable_after": 0.23227612674236298,
+          "ratio": 1.000000128305593,
+          "match_expected": true
+        },
+        "quantum_discord": {
+          "category": "measure_2q",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.13655328750610352,
+          "observable_after": 0.13655328750610352,
+          "ratio": 1.0,
+          "match_expected": true
+        },
+        "mutual_info": {
+          "category": "measure_2q",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.13655328750610352,
+          "observable_after": 0.13655328750610352,
+          "ratio": 1.0,
+          "match_expected": true
+        },
+        "hopf_connection": {
+          "category": "geometric",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.2322760969400406,
+          "observable_after": 0.23227612674236298,
+          "ratio": 1.000000128305593,
+          "match_expected": true
+        },
+        "wigner_negativity": {
+          "category": "geometric",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.3289741575717926,
+          "observable_after": 0.3289741575717926,
+          "ratio": 1.0,
+          "match_expected": true
+        },
+        "husimi_q": {
+          "category": "geometric",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.6082240343093872,
+          "observable_after": 0.6082239151000977,
+          "ratio": 0.9999998040043095,
+          "match_expected": true
+        },
+        "cartan_kak": {
+          "category": "geometric",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.2322760969400406,
+          "observable_after": 0.23227612674236298,
+          "ratio": 1.000000128305593,
+          "match_expected": true
+        },
+        "eigendecomp": {
+          "category": "process",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.4819502532482147,
+          "observable_after": 0.4819503724575043,
+          "ratio": 1.000000247347706,
+          "match_expected": true
+        },
+        "z_measurement": {
+          "category": "process",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 2.3084867000579834,
+          "observable_after": 2.3084867000579834,
+          "ratio": 1.0,
+          "match_expected": true
+        },
+        "purification": {
+          "category": "process",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.2322760969400406,
+          "observable_after": 0.23227612674236298,
+          "ratio": 1.000000128305593,
+          "match_expected": true
+        },
+        "lindblad": {
+          "category": "process",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.041203904896974564,
+          "observable_after": 0.04120391607284546,
+          "ratio": 1.0000002712332952,
+          "match_expected": true
+        },
+        "unitary_rotation": {
+          "category": "process",
+          "expected_fate": "killed_L6",
+          "actual_fate": "killed_L6",
+          "observable_before": 0.4207414388656616,
+          "observable_after": 0.420741468667984,
+          "ratio": 1.0000000708328671,
+          "match_expected": true
+        },
+        "tripartite_info_ABC": {
+          "category": "measure_4q_emergent",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.022601723670959473,
+          "observable_after": 0.022601723670959473,
+          "ratio": 1.0,
+          "match_expected": true
+        },
+        "quadripartite_info": {
+          "category": "measure_4q_emergent",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": 0.15313053131103516,
+          "observable_after": 0.15313005447387695,
+          "ratio": 0.9999968860738997,
+          "match_expected": true
+        },
+        "coherent_info_A_BCD": {
+          "category": "measure_4q_emergent",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": -0.287672758102417,
+          "observable_after": -0.2876729965209961,
+          "ratio": 1.0000008287839999,
+          "match_expected": true
+        },
+        "coherent_info_AB_CD": {
+          "category": "measure_4q_emergent",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": -0.7233399152755737,
+          "observable_after": -0.7233399152755737,
+          "ratio": 1.0,
+          "match_expected": true
+        },
+        "coherent_info_ABC_D": {
+          "category": "measure_4q_emergent",
+          "expected_fate": "killed_L4",
+          "actual_fate": "killed_L4",
+          "observable_before": -1.2301942110061646,
+          "observable_after": -1.230194091796875,
+          "ratio": 0.9999999030971789,
+          "match_expected": true
+        }
+      },
+      "dykstra_violation_trace": [
+        8.83114559258047e-09,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08,
+        1.1286658718745457e-08
+      ]
+    },
+    "P2_per_shell_kills_4q": {
+      "status": "PASS",
+      "L1+L2": {
+        "alive": [
+          "z_dephasing",
+          "x_dephasing",
+          "depolarizing",
+          "amplitude_damping",
+          "phase_damping",
+          "bit_flip",
+          "phase_flip",
+          "bit_phase_flip",
+          "CNOT_AB",
+          "CNOT_CD",
+          "CZ_AB",
+          "iSWAP_AB",
+          "SWAP_AB",
+          "Hadamard_A",
+          "T_gate_A",
+          "l1_coherence",
+          "re_coherence",
+          "chiral_overlap",
+          "quantum_discord",
+          "mutual_info",
+          "hopf_connection",
+          "wigner_negativity",
+          "husimi_q",
+          "cartan_kak",
+          "eigendecomp",
+          "z_measurement",
+          "purification",
+          "lindblad",
+          "unitary_rotation",
+          "tripartite_info_ABC",
+          "quadripartite_info",
+          "coherent_info_A_BCD",
+          "coherent_info_AB_CD",
+          "coherent_info_ABC_D"
+        ],
+        "killed": [],
+        "n_alive": 34,
+        "n_killed": 0
+      },
+      "L1+L2+L4": {
+        "alive": [
+          "z_dephasing",
+          "x_dephasing",
+          "depolarizing",
+          "amplitude_damping",
+          "phase_damping",
+          "bit_flip",
+          "phase_flip",
+          "bit_phase_flip",
+          "CNOT_AB",
+          "CNOT_CD",
+          "CZ_AB",
+          "iSWAP_AB",
+          "SWAP_AB",
+          "Hadamard_A",
+          "T_gate_A",
+          "l1_coherence",
+          "re_coherence",
+          "chiral_overlap",
+          "quantum_discord",
+          "mutual_info",
+          "hopf_connection",
+          "wigner_negativity",
+          "husimi_q",
+          "cartan_kak",
+          "eigendecomp",
+          "z_measurement",
+          "purification",
+          "lindblad",
+          "unitary_rotation",
+          "tripartite_info_ABC",
+          "quadripartite_info",
+          "coherent_info_A_BCD",
+          "coherent_info_AB_CD",
+          "coherent_info_ABC_D"
+        ],
+        "killed": [],
+        "n_alive": 34,
+        "n_killed": 0
+      },
+      "L1+L2+L4+L6": {
+        "alive": [
+          "z_dephasing",
+          "x_dephasing",
+          "depolarizing",
+          "amplitude_damping",
+          "phase_damping",
+          "bit_flip",
+          "phase_flip",
+          "bit_phase_flip",
+          "CNOT_AB",
+          "CNOT_CD",
+          "CZ_AB",
+          "iSWAP_AB",
+          "SWAP_AB",
+          "Hadamard_A",
+          "T_gate_A",
+          "l1_coherence",
+          "re_coherence",
+          "chiral_overlap",
+          "quantum_discord",
+          "mutual_info",
+          "hopf_connection",
+          "wigner_negativity",
+          "husimi_q",
+          "cartan_kak",
+          "eigendecomp",
+          "z_measurement",
+          "purification",
+          "lindblad",
+          "unitary_rotation",
+          "tripartite_info_ABC",
+          "quadripartite_info",
+          "coherent_info_A_BCD",
+          "coherent_info_AB_CD",
+          "coherent_info_ABC_D"
+        ],
+        "killed": [],
+        "n_alive": 34,
+        "n_killed": 0
+      },
+      "cascade_ordering": {
+        "killed_at_L1_L2": [],
+        "killed_at_L4": [],
+        "killed_at_L6": [],
+        "survive_all": [
+          "CNOT_AB",
+          "CNOT_CD",
+          "CZ_AB",
+          "Hadamard_A",
+          "SWAP_AB",
+          "T_gate_A",
+          "amplitude_damping",
+          "bit_flip",
+          "bit_phase_flip",
+          "cartan_kak",
+          "chiral_overlap",
+          "coherent_info_ABC_D",
+          "coherent_info_AB_CD",
+          "coherent_info_A_BCD",
+          "depolarizing",
+          "eigendecomp",
+          "hopf_connection",
+          "husimi_q",
+          "iSWAP_AB",
+          "l1_coherence",
+          "lindblad",
+          "mutual_info",
+          "phase_damping",
+          "phase_flip",
+          "purification",
+          "quadripartite_info",
+          "quantum_discord",
+          "re_coherence",
+          "tripartite_info_ABC",
+          "unitary_rotation",
+          "wigner_negativity",
+          "x_dephasing",
+          "z_dephasing",
+          "z_measurement"
+        ],
+        "n_killed_L12": 0,
+        "n_killed_L4": 0,
+        "n_killed_L6": 0
+      }
+    },
+    "P3_channels_survive_4q": {
+      "status": "PASS",
+      "expected": 8,
+      "actual": 8,
+      "survived": [
+        "z_dephasing",
+        "x_dephasing",
+        "depolarizing",
+        "amplitude_damping",
+        "phase_damping",
+        "bit_flip",
+        "phase_flip",
+        "bit_phase_flip"
+      ],
+      "missing": [],
+      "note": "Dimension-independence: same 8 channels at 2q, 3q, 4q"
+    },
+    "P4_kill_ordering_preserved": {
+      "status": "PASS",
+      "measures_killed_at_L4": true,
+      "gates_killed_at_L6": true,
+      "killed_L4": [
+        "cartan_kak",
+        "chiral_overlap",
+        "coherent_info_ABC_D",
+        "coherent_info_AB_CD",
+        "coherent_info_A_BCD",
+        "eigendecomp",
+        "hopf_connection",
+        "husimi_q",
+        "l1_coherence",
+        "lindblad",
+        "mutual_info",
+        "purification",
+        "quadripartite_info",
+        "quantum_discord",
+        "re_coherence",
+        "tripartite_info_ABC",
+        "wigner_negativity",
+        "z_measurement"
+      ],
+      "killed_L6": [
+        "CNOT_AB",
+        "CNOT_CD",
+        "CZ_AB",
+        "Hadamard_A",
+        "SWAP_AB",
+        "T_gate_A",
+        "iSWAP_AB",
+        "unitary_rotation"
+      ]
+    },
+    "P5_z3_cascade_consistency": {
+      "status": "PASS",
+      "z3_result": "sat",
+      "n_killed_L4": 18,
+      "n_killed_L6": 8,
+      "n_survived": 8
+    },
+    "P6_chain_vs_ring_topology": {
+      "status": "PASS",
+      "surviving_sets_match": true,
+      "survived_chain": [
+        "amplitude_damping",
+        "bit_flip",
+        "bit_phase_flip",
+        "depolarizing",
+        "phase_damping",
+        "phase_flip",
+        "x_dephasing",
+        "z_dephasing"
+      ],
+      "survived_ring": [
+        "amplitude_damping",
+        "bit_flip",
+        "bit_phase_flip",
+        "depolarizing",
+        "phase_damping",
+        "phase_flip",
+        "x_dephasing",
+        "z_dephasing"
+      ],
+      "symmetric_diff": [],
+      "Ic_AB_CD_chain": -0.7233399152755737,
+      "Ic_AB_CD_ring": -0.6383472681045532,
+      "Ic_differs": true,
+      "note": "Topology changes I_c magnitudes but NOT the surviving set"
+    },
+    "P7_4partite_measures_killed_L4": {
+      "status": "PASS",
+      "expected_killed": [
+        "coherent_info_ABC_D",
+        "coherent_info_AB_CD",
+        "coherent_info_A_BCD",
+        "quadripartite_info",
+        "tripartite_info_ABC"
+      ],
+      "actual_killed": [
+        "coherent_info_ABC_D",
+        "coherent_info_AB_CD",
+        "coherent_info_A_BCD",
+        "quadripartite_info",
+        "tripartite_info_ABC"
+      ],
+      "missed": [],
+      "note": "All n-partite info measures killed at L4 (dimension-independent)"
+    }
+  },
+  "negative": {
+    "N1_no_new_survivors_at_4q": {
+      "status": "PASS",
+      "survived": [
+        "amplitude_damping",
+        "bit_flip",
+        "bit_phase_flip",
+        "depolarizing",
+        "phase_damping",
+        "phase_flip",
+        "x_dephasing",
+        "z_dephasing"
+      ],
+      "non_channel_survived": [],
+      "note": "Only 8 dissipative channels survive at any qubit count"
+    },
+    "N2_quadripartite_info_killed": {
+      "status": "PASS",
+      "I4_before": 0.15313053131103516,
+      "I4_after": 0.15313005447387695,
+      "ratio": 0.9999968860738997,
+      "note": "4-partite info measure: value changes under constraint projection"
+    },
+    "N3_null_shell_changes_nothing": {
+      "status": "PASS",
+      "frobenius_diff": 0.0
+    }
+  },
+  "boundary": {
+    "B1_product_state": {
+      "status": "PASS",
+      "channels_survive": true,
+      "survived": [
+        "amplitude_damping",
+        "bit_flip",
+        "bit_phase_flip",
+        "depolarizing",
+        "phase_damping",
+        "phase_flip",
+        "x_dephasing",
+        "z_dephasing"
+      ],
+      "note": "Product state: no entanglement, channels still survive"
+    },
+    "B2_ghz_4q_state": {
+      "status": "PASS",
+      "channels_survive": true,
+      "survived": [
+        "amplitude_damping",
+        "bit_flip",
+        "bit_phase_flip",
+        "depolarizing",
+        "phase_damping",
+        "phase_flip",
+        "x_dephasing",
+        "z_dephasing"
+      ],
+      "note": "GHZ-4: maximally entangled, channels survive"
+    },
+    "B3_w_4q_state": {
+      "status": "PASS",
+      "channels_survive": true,
+      "survived": [
+        "amplitude_damping",
+        "bit_flip",
+        "bit_phase_flip",
+        "depolarizing",
+        "phase_damping",
+        "phase_flip",
+        "x_dephasing",
+        "z_dephasing"
+      ],
+      "note": "W-4: different entanglement class from GHZ-4"
+    },
+    "B4_maximally_mixed_4q": {
+      "status": "PASS",
+      "violations": {
+        "L1_CPTP": 0.0,
+        "L2_Purity": 0.0,
+        "L4_Composition": 0.01697555184364319,
+        "L6_Irreversibility": 0.0
+      },
+      "note": "I/16 satisfies L1+L2 trivially"
+    },
+    "B5_shell_dag_structure": {
+      "status": "PASS",
+      "n_nodes": 4,
+      "n_edges": 3,
+      "topo_order": [
+        "L1_CPTP",
+        "L2_Purity",
+        "L4_Composition",
+        "L6_Irreversibility"
+      ],
+      "is_dag": true
+    }
+  }
+}

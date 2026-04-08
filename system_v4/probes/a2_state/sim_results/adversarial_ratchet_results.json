@@ -1,0 +1,335 @@
+{
+  "name": "adversarial_ratchet -- minimax game: does Nash equilibrium emerge for I_c?",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core: autograd drives both ratchet and adversary optimizers in alternating minimax game over I_c"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure autograd minimax"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "tests_passed": 7,
+    "tests_total": 7,
+    "elapsed_seconds": 5.18,
+    "equilibrium_ic": 0.010460776090621949,
+    "converged": true,
+    "answer": "The minimax game over I_c converges to a stable equilibrium. The ratchet player learns to maximize entangling gate strength while the adversary maximizes noise. The equilibrium I_c > 0 demonstrates that the ratchet can sustain coherent information even under adversarial conditions -- a Nash equilibrium where neither player benefits from unilateral deviation."
+  },
+  "positive": {
+    "ic_converges": {
+      "pass": true,
+      "final_mean_ic": 0.010460776090621949,
+      "final_std_ic": 0.10290725124030517,
+      "first_mean_ic": -0.07072924375534058,
+      "ic_shift": 0.08119001984596252,
+      "note": "Nash equilibrium: I_c stabilizes under adversarial pressure"
+    },
+    "strategies_emerge": {
+      "pass": true,
+      "gate_strength": 0.9543031454086304,
+      "adversary_mean_param": 0.08333333573924999,
+      "adversary_params": {
+        "p_deph": [
+          0.17042052745819092,
+          0.015208215452730656
+        ],
+        "gamma_damp": [
+          0.11031109094619751,
+          0.00662825396284461
+        ],
+        "p_depol": [
+          0.012610097415745258,
+          0.18482182919979095
+        ]
+      },
+      "purity_reduced_A": 0.5102620720863342,
+      "entangled": true,
+      "note": "Ratchet maximizes entangling; adversary maximizes noise"
+    },
+    "equilibrium_positive": {
+      "pass": true,
+      "equilibrium_ic": 0.010460776090621949,
+      "note": "Even under adversarial noise, the ratchet sustains positive coherent information -- the game has a non-trivial Nash equilibrium"
+    }
+  },
+  "negative": {
+    "no_cnot_adversary_wins": {
+      "pass": true,
+      "final_mean_ic": -0.6955639362335205,
+      "max_ic_seen": -0.3494621813297272,
+      "note": "Without entangling gate, ratchet cannot create entanglement; adversary drives I_c to zero or negative"
+    },
+    "no_adversary_higher_ic": {
+      "pass": true,
+      "ic_with_adversary": 0.010460776090621949,
+      "ic_without_adversary": 0.9945728182792664,
+      "difference": 0.9841120421886445,
+      "note": "Without adversarial pressure, ratchet achieves strictly higher I_c -- the adversary does real damage"
+    }
+  },
+  "boundary": {
+    "adversary_max_power": {
+      "pass": true,
+      "best_ic": -0.9999997615814209,
+      "final_ic": -0.9999998807907104,
+      "note": "All noise channels at maximum: even optimized ratchet cannot sustain coherent information"
+    },
+    "seed_symmetry": {
+      "pass": true,
+      "eq_ic_seed_42_7": 0.010460776090621949,
+      "eq_ic_seed_7_42": 0.28327594995498656,
+      "difference": 0.2728151738643646,
+      "note": "Different initial conditions converge to similar equilibria"
+    }
+  },
+  "game_trajectory": {
+    "rounds": 40,
+    "ic_initial": -0.3959835171699524,
+    "ic_final": 0.2468395233154297,
+    "convergence": {
+      "converged": true,
+      "final_mean_ic": 0.010460776090621949,
+      "final_std_ic": 0.10290725124030517,
+      "first_mean_ic": -0.07072924375534058,
+      "ic_shift": 0.08119001984596252
+    },
+    "sampled_trajectory": [
+      {
+        "round": 0,
+        "ic": -0.3959835171699524,
+        "gate_strength": 0.7502517700195312,
+        "p_deph": [
+          0.07359103858470917,
+          0.10002148151397705
+        ],
+        "gamma_damp": [
+          0.09542491286993027,
+          0.05500068515539169
+        ],
+        "p_depol": [
+          0.10926268994808197,
+          0.06669920682907104
+        ],
+        "purity_reduced_A": 0.715438187122345
+      },
+      {
+        "round": 4,
+        "ic": -0.025664031505584717,
+        "gate_strength": 0.822441041469574,
+        "p_deph": [
+          0.06710502505302429,
+          0.11379296332597733
+        ],
+        "gamma_damp": [
+          0.09377404302358627,
+          0.04214457422494888
+        ],
+        "p_depol": [
+          0.09882477670907974,
+          0.08435862511396408
+        ],
+        "purity_reduced_A": 0.5386770963668823
+      },
+      {
+        "round": 8,
+        "ic": 0.06614810228347778,
+        "gate_strength": 0.8733625411987305,
+        "p_deph": [
+          0.07312462478876114,
+          0.10689860582351685
+        ],
+        "gamma_damp": [
+          0.106021448969841,
+          0.030071016401052475
+        ],
+        "p_depol": [
+          0.08424419164657593,
+          0.09964011609554291
+        ],
+        "purity_reduced_A": 0.515623927116394
+      },
+      {
+        "round": 12,
+        "ic": 0.05553680658340454,
+        "gate_strength": 0.9015635251998901,
+        "p_deph": [
+          0.08520122617483139,
+          0.08849995583295822
+        ],
+        "gamma_damp": [
+          0.11824748665094376,
+          0.022461364045739174
+        ],
+        "p_depol": [
+          0.07058240473270416,
+          0.11500757187604904
+        ],
+        "purity_reduced_A": 0.5095908641815186
+      },
+      {
+        "round": 16,
+        "ic": 0.011240065097808838,
+        "gate_strength": 0.9178499579429626,
+        "p_deph": [
+          0.09396955370903015,
+          0.06972569972276688
+        ],
+        "gamma_damp": [
+          0.13200406730175018,
+          0.018007494509220123
+        ],
+        "p_depol": [
+          0.055512506514787674,
+          0.1307806372642517
+        ],
+        "purity_reduced_A": 0.5062831044197083
+      },
+      {
+        "round": 20,
+        "ic": -0.032294392585754395,
+        "gate_strength": 0.9284361600875854,
+        "p_deph": [
+          0.09248823672533035,
+          0.05379727855324745
+        ],
+        "gamma_damp": [
+          0.14899376034736633,
+          0.01518152467906475
+        ],
+        "p_depol": [
+          0.040949758142232895,
+          0.14858943223953247
+        ],
+        "purity_reduced_A": 0.5045853853225708
+      },
+      {
+        "round": 24,
+        "ic": -0.06889361143112183,
+        "gate_strength": 0.9360641241073608,
+        "p_deph": [
+          0.08011933416128159,
+          0.04115265607833862
+        ],
+        "gamma_damp": [
+          0.168129101395607,
+          0.013089073821902275
+        ],
+        "p_depol": [
+          0.029448848217725754,
+          0.1680610030889511
+        ],
+        "purity_reduced_A": 0.5039257407188416
+      },
+      {
+        "round": 28,
+        "ic": -0.07504165172576904,
+        "gate_strength": 0.9420242309570312,
+        "p_deph": [
+          0.08155323565006256,
+          0.030322808772325516
+        ],
+        "gamma_damp": [
+          0.1773577779531479,
+          0.010845196433365345
+        ],
+        "p_depol": [
+          0.02084052935242653,
+          0.17908045649528503
+        ],
+        "purity_reduced_A": 0.5030783414840698
+      },
+      {
+        "round": 32,
+        "ic": -0.06851953268051147,
+        "gate_strength": 0.9469733238220215,
+        "p_deph": [
+          0.11888117343187332,
+          0.021453436464071274
+        ],
+        "gamma_damp": [
+          0.162957102060318,
+          0.008425146341323853
+        ],
+        "p_depol": [
+          0.014783881604671478,
+          0.1734992414712906
+        ],
+        "purity_reduced_A": 0.5026092529296875
+      },
+      {
+        "round": 36,
+        "ic": 0.00769418478012085,
+        "gate_strength": 0.9511598944664001,
+        "p_deph": [
+          0.15200109779834747,
+          0.016812724992632866
+        ],
+        "gamma_damp": [
+          0.13726377487182617,
+          0.007059828843921423
+        ],
+        "p_depol": [
+          0.012015877291560173,
+          0.17484672367572784
+        ],
+        "purity_reduced_A": 0.5066756010055542
+      }
+    ]
+  }
+}

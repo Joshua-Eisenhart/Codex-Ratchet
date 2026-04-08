@@ -1,0 +1,328 @@
+{
+  "name": "GNN Cascade with Integrated Constraint Shell Projections",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core substrate: tensors, autograd, optimization, constraint projections"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "HeteroData graph + message passing with shell projectors wired in"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- constraint enforcement is differentiable"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    }
+  },
+  "classification": "canonical",
+  "positive": {
+    "valid_density_matrices_every_layer": {
+      "passed": true,
+      "n_layers": 3,
+      "layer_details": [
+        {
+          "layer": 0,
+          "all_valid": true,
+          "checks": [
+            {
+              "trace": 1.0,
+              "trace_ok": true,
+              "hermitian_error": 0.0,
+              "hermitian_ok": true,
+              "min_eigenvalue": 0.43057096004486084,
+              "psd_ok": true,
+              "valid": true
+            },
+            {
+              "trace": 1.0,
+              "trace_ok": true,
+              "hermitian_error": 0.0,
+              "hermitian_ok": true,
+              "min_eigenvalue": 0.21823829412460327,
+              "psd_ok": true,
+              "valid": true
+            },
+            {
+              "trace": 1.0,
+              "trace_ok": true,
+              "hermitian_error": 0.0,
+              "hermitian_ok": true,
+              "min_eigenvalue": 0.23981064558029175,
+              "psd_ok": true,
+              "valid": true
+            },
+            {
+              "trace": 1.0,
+              "trace_ok": true,
+              "hermitian_error": 0.0,
+              "hermitian_ok": true,
+              "min_eigenvalue": 0.20843422412872314,
+              "psd_ok": true,
+              "valid": true
+            }
+          ]
+        },
+        {
+          "layer": 1,
+          "all_valid": true,
+          "checks": [
+            {
+              "trace": 1.0,
+              "trace_ok": true,
+              "hermitian_error": 0.0,
+              "hermitian_ok": true,
+              "min_eigenvalue": 0.2701778709888458,
+              "psd_ok": true,
+              "valid": true
+            },
+            {
+              "trace": 1.0,
+              "trace_ok": true,
+              "hermitian_error": 0.0,
+              "hermitian_ok": true,
+              "min_eigenvalue": 0.32706335186958313,
+              "psd_ok": true,
+              "valid": true
+            },
+            {
+              "trace": 1.0,
+              "trace_ok": true,
+              "hermitian_error": 0.0,
+              "hermitian_ok": true,
+              "min_eigenvalue": 0.3950681686401367,
+              "psd_ok": true,
+              "valid": true
+            },
+            {
+              "trace": 1.0,
+              "trace_ok": true,
+              "hermitian_error": 0.0,
+              "hermitian_ok": true,
+              "min_eigenvalue": 0.23463594913482666,
+              "psd_ok": true,
+              "valid": true
+            }
+          ]
+        },
+        {
+          "layer": 2,
+          "all_valid": true,
+          "checks": [
+            {
+              "trace": 1.0,
+              "trace_ok": true,
+              "hermitian_error": 0.0,
+              "hermitian_ok": true,
+              "min_eigenvalue": 0.20682483911514282,
+              "psd_ok": true,
+              "valid": true
+            },
+            {
+              "trace": 1.0,
+              "trace_ok": true,
+              "hermitian_error": 0.0,
+              "hermitian_ok": true,
+              "min_eigenvalue": 0.283679723739624,
+              "psd_ok": true,
+              "valid": true
+            },
+            {
+              "trace": 1.0,
+              "trace_ok": true,
+              "hermitian_error": 0.0,
+              "hermitian_ok": true,
+              "min_eigenvalue": 0.21392756700515747,
+              "psd_ok": true,
+              "valid": true
+            },
+            {
+              "trace": 1.0,
+              "trace_ok": true,
+              "hermitian_error": 0.0,
+              "hermitian_ok": true,
+              "min_eigenvalue": 0.24942994117736816,
+              "psd_ok": true,
+              "valid": true
+            }
+          ]
+        }
+      ]
+    },
+    "shells_have_real_effect": {
+      "passed": true,
+      "ic_with_shells": -0.8766164779663086,
+      "ic_without_shells": -0.25098252296447754,
+      "ic_difference": 0.625633955001831,
+      "max_terrain_state_difference": 0.7621855139732361
+    },
+    "optimization_with_shells": {
+      "passed": "True",
+      "ic_start_avg": -0.2761614039540291,
+      "ic_end_avg": 0.2453431159257889,
+      "ic_delta": 0.521504519879818,
+      "ic_history_sample": [
+        -0.7655399441719055,
+        0.12609493732452393,
+        0.19826947152614594,
+        0.24830836057662964
+      ],
+      "n_steps": 50
+    },
+    "autograd_through_shells": {
+      "passed": true,
+      "operator_grad_nonzero": true,
+      "operator_grad_norm": 0.018098793923854828,
+      "shell_param_grads": {
+        "shell_L4.depol_p": {
+          "grad_norm": 0.0,
+          "nonzero": false
+        },
+        "shell_L6.depol_p": {
+          "grad_norm": 0.0,
+          "nonzero": false
+        },
+        "terrain_to_shell_layers.0.lin.weight": {
+          "grad_norm": 0.008135149255394936,
+          "nonzero": true
+        },
+        "terrain_to_shell_layers.0.lin.bias": {
+          "grad_norm": 0.02300967648625374,
+          "nonzero": true
+        },
+        "terrain_to_shell_layers.1.lin.weight": {
+          "grad_norm": 0.02426574006676674,
+          "nonzero": true
+        },
+        "terrain_to_shell_layers.1.lin.bias": {
+          "grad_norm": 0.0668552815914154,
+          "nonzero": true
+        },
+        "shell_to_terrain_layers.0.gate.0.weight": {
+          "grad_norm": 0.006117026321589947,
+          "nonzero": true
+        },
+        "shell_to_terrain_layers.0.gate.0.bias": {
+          "grad_norm": 0.016274699941277504,
+          "nonzero": true
+        },
+        "shell_to_terrain_layers.0.gate.2.weight": {
+          "grad_norm": 0.02047937735915184,
+          "nonzero": true
+        },
+        "shell_to_terrain_layers.0.gate.2.bias": {
+          "grad_norm": 0.03560258820652962,
+          "nonzero": true
+        },
+        "shell_to_terrain_layers.1.gate.0.weight": {
+          "grad_norm": 0.018720371648669243,
+          "nonzero": true
+        },
+        "shell_to_terrain_layers.1.gate.0.bias": {
+          "grad_norm": 0.02478749305009842,
+          "nonzero": true
+        },
+        "shell_to_terrain_layers.1.gate.2.weight": {
+          "grad_norm": 0.014886492863297462,
+          "nonzero": true
+        },
+        "shell_to_terrain_layers.1.gate.2.bias": {
+          "grad_norm": 0.03824585676193237,
+          "nonzero": true
+        }
+      },
+      "message_passing_grads_sample": {
+        "terrain_to_shell_layers.0.lin.weight": 0.008135149255394936,
+        "terrain_to_shell_layers.0.lin.bias": 0.02300967648625374,
+        "terrain_to_shell_layers.1.lin.weight": 0.02426574006676674,
+        "terrain_to_shell_layers.1.lin.bias": 0.0668552815914154
+      },
+      "ic_mean": -0.9354316592216492
+    }
+  },
+  "negative": {
+    "shells_off_allows_unphysical": {
+      "passed": true,
+      "state_difference": 1.4437490701675415,
+      "avg_norm_without_shells": 0.756557047367096,
+      "avg_norm_with_shells": 0.9352010488510132,
+      "norms_without_shells": [
+        0.721390962600708,
+        0.5326778888702393,
+        1.0,
+        0.7721593379974365
+      ],
+      "norms_with_shells": [
+        0.9107359051704407,
+        0.9999999403953552,
+        0.9389761090278625,
+        0.8910922408103943
+      ],
+      "all_valid_with_shells": true
+    }
+  },
+  "boundary": {
+    "single_vs_three_layers": {
+      "passed": true,
+      "ic_1_layer": -0.7944626808166504,
+      "ic_3_layers": -0.9338119626045227,
+      "ic_difference": 0.13934928178787231,
+      "terrain_state_difference": 0.8595753312110901,
+      "both_valid": true,
+      "layers_matter": true
+    }
+  },
+  "summary": {
+    "positive": "4/4",
+    "negative": "1/1",
+    "boundary": "1/1",
+    "all_passed": true
+  }
+}

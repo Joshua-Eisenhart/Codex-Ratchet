@@ -1,0 +1,295 @@
+{
+  "name": "torch_graph_integrated_pipeline",
+  "phase": "Integration sim",
+  "description": "Graph/topology tools drive torch module pipeline computation. rustworkx determines execution order, XGI constrains composition, GUDHI tracks persistence, TopoNetX structures the cell complex, PyG handles message passing, z3 verifies ordering, sympy checks algebra. Autograd flows through the entire pipeline.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core: all modules are nn.Module, autograd through full pipeline"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "HeteroData graph + MessagePassing for state propagation between modules"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "SMT verification that computed execution order satisfies dependency constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this integration sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification of dephasing purity formula"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this integration sim"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this integration sim"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this integration sim"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "DAG construction + topological sort determines pipeline execution order"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "Hypergraph constraint matrix determines which families can compose"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "CellComplex: 0-cells=modules, 1-cells=edges, 2-cells=constraint surfaces"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Rips persistence tracks topological features at each pipeline step"
+    }
+  },
+  "positive": {
+    "P1_pipeline_valid_output": {
+      "execution_order": [
+        "density_matrix",
+        "z_dephasing",
+        "CNOT",
+        "mutual_information"
+      ],
+      "mutual_information": 0.8858919143676758,
+      "mi_nonnegative": true,
+      "all_constraints_satisfied": true,
+      "constraint_checks": {
+        "density_matrix->z_dephasing": true,
+        "z_dephasing->CNOT": true,
+        "CNOT->mutual_information": true
+      },
+      "density_matrix_trace": 1.0,
+      "density_matrix_min_eigenvalue": 0.0,
+      "density_matrix_physical": true,
+      "z_dephasing_trace": 0.9999999403953552,
+      "z_dephasing_min_eigenvalue": 0.0,
+      "z_dephasing_physical": true,
+      "CNOT_trace": 0.9999999403953552,
+      "CNOT_min_eigenvalue": 0.0,
+      "CNOT_physical": true,
+      "pass": true
+    },
+    "P2_graph_ordering_matches_dag": {
+      "execution_order": [
+        "density_matrix",
+        "z_dephasing",
+        "CNOT",
+        "mutual_information"
+      ],
+      "edge_checks": [
+        {
+          "edge": "z_dephasing requires density_matrix",
+          "dependency_pos": 0,
+          "dependent_pos": 1,
+          "ok": true
+        },
+        {
+          "edge": "CNOT requires density_matrix",
+          "dependency_pos": 0,
+          "dependent_pos": 2,
+          "ok": true
+        },
+        {
+          "edge": "mutual_information requires density_matrix",
+          "dependency_pos": 0,
+          "dependent_pos": 3,
+          "ok": true
+        },
+        {
+          "edge": "mutual_information requires CNOT",
+          "dependency_pos": 2,
+          "dependent_pos": 3,
+          "ok": true
+        }
+      ],
+      "all_edges_respected": true,
+      "pass": true
+    },
+    "P3_xgi_constraints_satisfied": {
+      "pair_checks": {
+        "density_matrix->z_dephasing": true,
+        "z_dephasing->CNOT": true,
+        "CNOT->mutual_information": true
+      },
+      "incidence_matrix_shape": [
+        4,
+        4
+      ],
+      "incidence_rank": 4,
+      "num_hyperedges": 4,
+      "pass": true
+    },
+    "P4_gudhi_persistence_tracked": {
+      "steps_tracked": [
+        "density_matrix",
+        "z_dephasing",
+        "CNOT"
+      ],
+      "num_steps": 3,
+      "density_matrix_betti": [
+        1,
+        0
+      ],
+      "density_matrix_total_features": 2,
+      "z_dephasing_betti": [
+        1,
+        0
+      ],
+      "z_dephasing_total_features": 3,
+      "CNOT_betti": [
+        1,
+        0
+      ],
+      "CNOT_total_features": 3,
+      "topology_changes_after_cnot": false,
+      "pass": true
+    },
+    "P5_toponetx_cell_complex": {
+      "num_0cells": 4,
+      "num_1cells": 5,
+      "num_2cells": 1,
+      "shape": [
+        4,
+        5,
+        1
+      ],
+      "has_0cells": true,
+      "has_1cells": true,
+      "has_2cells": true,
+      "pass": true
+    },
+    "P6_pyg_message_passing": {
+      "node_types_with_state": [
+        "density_matrix",
+        "z_dephasing",
+        "CNOT",
+        "mutual_information"
+      ],
+      "state_propagated": true,
+      "all_states_nonzero": true,
+      "dm_state_norm": 2.0,
+      "mi_received_state": true,
+      "pass": true
+    },
+    "P7_autograd_through_pipeline": {
+      "mi_value": 0.7742326259613037,
+      "bloch_grad_exists": true,
+      "dephasing_grad_exists": true,
+      "bloch_grad": [
+        0.26117444038391113,
+        0.15670466423034668,
+        -0.09406901895999908
+      ],
+      "bloch_grad_nonzero": true,
+      "dephasing_grad": -0.5074246525764465,
+      "dephasing_grad_nonzero": true,
+      "pass": true
+    },
+    "P8_z3_order_verification": {
+      "z3_satisfiable": true,
+      "verified_order": [
+        "density_matrix",
+        "z_dephasing",
+        "CNOT",
+        "mutual_information"
+      ],
+      "pass": true
+    },
+    "P9_sympy_purity_verification": {
+      "purity_expression": "(2*p - 1)**2/2 + 1/2",
+      "expected_expression": "(1 - 2*p)**2/2 + 1/2",
+      "match": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_violating_dag_order": {
+      "mi_on_product_state": -2.7631019000606827e-11,
+      "mi_is_zero_without_cnot": true,
+      "detail": "Without CNOT, product state has zero MI -- skipping CNOT loses information",
+      "pass": true
+    },
+    "N2_incompatible_channels_flagged": {
+      "zdephasing_to_mi_allowed": false,
+      "detail": "z_dephasing and mutual_information do not share a hyperedge -- direct composition is not structurally supported",
+      "pass": true
+    },
+    "N3_cycle_breaks_dag": {
+      "cycle_injected": true,
+      "still_acyclic": false,
+      "pass": true
+    },
+    "N4_z3_catches_bad_order": {
+      "bad_order": [
+        "mutual_information",
+        "density_matrix",
+        "z_dephasing",
+        "CNOT"
+      ],
+      "z3_says_satisfiable": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_single_module_pipeline": {
+      "order": [
+        "density_matrix"
+      ],
+      "length": 1,
+      "pass": true
+    },
+    "B2_empty_pipeline": {
+      "order": [],
+      "length": 0,
+      "pass": true
+    },
+    "B3_maximally_mixed_input": {
+      "mi_on_maximally_mixed": 0.6931471824645996,
+      "expected_mi": 0.6931471805599453,
+      "mi_matches_expected": true,
+      "detail": "CNOT creates classical correlations from mixed state: MI = ln(2)",
+      "pass": true
+    },
+    "B4_pure_zero_no_dephasing": {
+      "mi_on_pure_zero": -2.7631019000606827e-11,
+      "mi_near_zero": true,
+      "pass": true
+    },
+    "B5_single_node_cell_complex": {
+      "shape": [
+        1,
+        0,
+        0
+      ],
+      "pass": true
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 18,
+    "total_pass": 18,
+    "all_pass": true
+  }
+}

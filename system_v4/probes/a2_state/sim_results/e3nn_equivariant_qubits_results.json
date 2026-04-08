@@ -1,0 +1,170 @@
+{
+  "name": "E3NN Equivariant Qubits",
+  "token": "E_E3NN_EQUIVARIANT_QUBITS",
+  "timestamp": "2026-04-08T01:19:24.713071+00:00",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "e3nn backend, all tensor ops"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "import verified; not used in computation"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "PRIMARY: irreps, FCTP, Wigner-D, spherical harmonics"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    }
+  },
+  "positive": {
+    "P1_depolarizing_equivariance": {
+      "test": "depolarizing channel commutes with SO(3)",
+      "diff": 1.5311124457184633e-07,
+      "tolerance": 1e-05,
+      "pass": true
+    },
+    "P2_z_dephasing_non_equivariance": {
+      "test": "z-dephasing does NOT commute with SO(3)",
+      "diff": 0.7602935433387756,
+      "min_expected_diff": 0.001,
+      "pass": true
+    },
+    "P3_spherical_harmonic_embedding": {
+      "test": "l=1 spherical harmonics recover Bloch vector direction",
+      "mean_abs_cosine_similarity": 1.0,
+      "tolerance": 0.99,
+      "pass": true
+    },
+    "P4_e3nn_linear_equivariance": {
+      "test": "e3nn Linear(1x1o -> 1x1o) is SO(3)-equivariant",
+      "diff": 1.293164046956008e-07,
+      "tolerance": 1e-05,
+      "pass": true
+    },
+    "P5_FCTP_equivariance": {
+      "test": "FullyConnectedTensorProduct(1o x 0e -> 1o) is equivariant",
+      "diff": 2.163556729328775e-07,
+      "tolerance": 1e-05,
+      "pass": true
+    },
+    "P6_tensor_product_decomposition": {
+      "test": "l=1 x l=1 decomposes into l=0 + l=1 + l=2",
+      "product_dim": 9,
+      "decomposition_dim": 9,
+      "dims_match": true,
+      "l0_dim": 1,
+      "l1_dim": 3,
+      "l2_dim": 5,
+      "multiplicities_correct": true,
+      "pass": true
+    },
+    "P7_wigner_D_orthogonality": {
+      "test": "Wigner D(l=1) is orthogonal",
+      "orthogonality_error": 2.6342480850871652e-05,
+      "tolerance": 0.0001,
+      "note": "float32 precision limits orthogonality to ~1e-5",
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_biased_map_detected": {
+      "test": "non-equivariant biased map detected by rotation test",
+      "diff": 3.128657817840576,
+      "min_expected": 0.001,
+      "pass": true
+    },
+    "N2_wrong_irrep_dimension": {
+      "test": "wrong irrep causes runtime error",
+      "pass": true,
+      "error_type": "AssertionError",
+      "error_msg": "Incorrect last dimension for x"
+    },
+    "N3_z_dephasing_systematic_break": {
+      "test": "z-dephasing breaks equivariance for generic rotations",
+      "violations": 50,
+      "trials": 50,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_identity_rotation": {
+      "test": "identity rotation: D(0,0,0) = I_3",
+      "identity_error": 0.0,
+      "z_dephasing_diff_at_identity": 0.0,
+      "pass": true
+    },
+    "B2_180_degree_rotation": {
+      "test": "180-deg rotation: depolarizing still equivariant",
+      "diff": 0.0,
+      "tolerance": 1e-05,
+      "pass": true
+    },
+    "B3_zero_bloch_vector": {
+      "test": "zero Bloch vector (maximally mixed) is fixed point",
+      "depolarizing_output_norm": 0.0,
+      "z_dephasing_output_norm": 0.0,
+      "pass": true
+    },
+    "B4_small_angle_precision": {
+      "test": "Wigner D at tiny angles is near identity",
+      "deviation_from_identity": 3.1622771956563156e-08,
+      "tolerance": 1e-06,
+      "pass": true
+    }
+  },
+  "summary": {
+    "total_tests": 14,
+    "passed": 14,
+    "failed": 0,
+    "all_pass": true
+  },
+  "classification": "canonical"
+}

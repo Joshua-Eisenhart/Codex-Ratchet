@@ -157,18 +157,54 @@ def check_file(filepath):
     return info, violations
 
 
+# ── CLI argument parsing ─────────────────────────────────────────────
+
+def parse_args():
+    """Parse CLI arguments.  Supports:
+      --files file1.json file2.json   Check only specific files (absolute or relative paths)
+      --hook                          Pre-commit hook mode: warn-only for non-canonical violations
+    """
+    import argparse
+    parser = argparse.ArgumentParser(description="Manifest Checker")
+    parser.add_argument(
+        "--files", nargs="+", default=None,
+        help="Specific JSON files to check (paths, absolute or relative)",
+    )
+    parser.add_argument(
+        "--hook", action="store_true", default=False,
+        help="Pre-commit hook mode: block only on canonical violations, warn on others",
+    )
+    return parser.parse_args()
+
+
 # ── Main ──────────────────────────────────────────────────────────────
 
 def main():
-    if not os.path.isdir(SIM_RESULTS_DIR):
-        print(f"ERROR: sim_results directory not found: {SIM_RESULTS_DIR}")
-        sys.exit(1)
+    args = parse_args()
 
-    json_files = sorted(
-        f for f in os.listdir(SIM_RESULTS_DIR)
-        if f.endswith(".json") and f != "MANIFEST_CHECK_REPORT.json"
-    )
+    if args.files:
+        # Explicit file list mode -- resolve paths
+        json_paths = []
+        for f in args.files:
+            p = os.path.abspath(f)
+            if os.path.isfile(p) and p.endswith(".json"):
+                json_paths.append(p)
+        json_files = [os.path.basename(p) for p in json_paths]
+        file_path_map = {os.path.basename(p): p for p in json_paths}
+    else:
+        if not os.path.isdir(SIM_RESULTS_DIR):
+            print(f"ERROR: sim_results directory not found: {SIM_RESULTS_DIR}")
+            sys.exit(1)
 
+        json_files = sorted(
+            f for f in os.listdir(SIM_RESULTS_DIR)
+            if f.endswith(".json") and f != "MANIFEST_CHECK_REPORT.json"
+        )
+        file_path_map = {
+            f: os.path.join(SIM_RESULTS_DIR, f) for f in json_files
+        }
+
+    hook_mode = args.hook
     total = len(json_files)
     files_with_manifest = 0
     files_without_manifest = 0
@@ -180,7 +216,7 @@ def main():
     all_violations = {}
 
     for fname in json_files:
-        fpath = os.path.join(SIM_RESULTS_DIR, fname)
+        fpath = file_path_map[fname]
         info, violations = check_file(fpath)
 
         if info["has_tool_manifest"]:
@@ -248,16 +284,22 @@ def main():
                 print(f"    - {v}")
         print()
 
-    # ── Write report JSON ──
-    os.makedirs(os.path.dirname(REPORT_PATH), exist_ok=True)
-    with open(REPORT_PATH, "w") as fh:
-        json.dump(report, fh, indent=2)
-    print(f"Report written to: {REPORT_PATH}")
+    # ── Write report JSON (skip in hook/targeted mode to avoid side-effects) ──
+    if not hook_mode and not args.files:
+        os.makedirs(os.path.dirname(REPORT_PATH), exist_ok=True)
+        with open(REPORT_PATH, "w") as fh:
+            json.dump(report, fh, indent=2)
+        print(f"Report written to: {REPORT_PATH}")
 
     # ── Exit code ──
     if canonical_fail > 0:
         print("\nRESULT: FAIL -- canonical files with violations detected")
         sys.exit(1)
+    elif hook_mode and all_violations:
+        # In hook mode, non-canonical violations are warnings only
+        print(f"\nRESULT: WARN -- {len(all_violations)} file(s) have non-canonical "
+              f"violations (not blocking commit)")
+        sys.exit(0)
     else:
         if canonical_count == 0:
             print("\nRESULT: PASS (no canonical files found to validate)")

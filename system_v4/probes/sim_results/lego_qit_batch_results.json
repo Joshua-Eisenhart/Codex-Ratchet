@@ -1,0 +1,405 @@
+{
+  "name": "QIT Batch -- 8 pure-math legos",
+  "timestamp": "2026-04-08T00:29:26.296279",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Renyi entropy, SVD cross-check, speed limits"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "no-cloning UNSAT proof"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "imported for cross-validation availability"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "classification": "canonical",
+  "sections": {
+    "1_renyi_entropies": {
+      "tests": {
+        "max_mixed_alpha_0": {
+          "pass": "True",
+          "computed": 1.3862943649291992,
+          "expected": 1.3862943611198906
+        },
+        "max_mixed_alpha_0.5": {
+          "pass": "True",
+          "computed": 1.3862943611198906,
+          "expected": 1.3862943611198906
+        },
+        "max_mixed_alpha_1": {
+          "pass": "True",
+          "computed": 1.3862943611198906,
+          "expected": 1.3862943611198906
+        },
+        "max_mixed_alpha_2": {
+          "pass": "True",
+          "computed": 1.3862943611198906,
+          "expected": 1.3862943611198906
+        },
+        "max_mixed_alpha_inf": {
+          "pass": "True",
+          "computed": 1.3862943611198906,
+          "expected": 1.3862943611198906
+        },
+        "pure_alpha_0": {
+          "pass": true,
+          "computed": 0.0,
+          "expected": 0.0
+        },
+        "pure_alpha_0.5": {
+          "pass": true,
+          "computed": -4.440892098500627e-16,
+          "expected": 0.0
+        },
+        "pure_alpha_1": {
+          "pass": true,
+          "computed": 3.330669073875469e-16,
+          "expected": 0.0
+        },
+        "pure_alpha_2": {
+          "pass": true,
+          "computed": 6.661338147750941e-16,
+          "expected": 0.0
+        },
+        "pure_alpha_inf": {
+          "pass": true,
+          "computed": 3.33066907387547e-16,
+          "expected": 0.0
+        },
+        "rank2_S0_eq_log_rank": {
+          "pass": "True",
+          "computed": 0.6931471824645996,
+          "expected": 0.6931471805599453
+        },
+        "rank2_Sinf_eq_neg_log_lmax": {
+          "pass": "True",
+          "computed": 0.4455869395671777,
+          "expected": 0.44558693956717793
+        },
+        "alpha1_matches_von_neumann": {
+          "pass": "True",
+          "computed": 0.6531598451890479,
+          "expected": 0.653159845189048
+        },
+        "neg_monotone_alpha_ordering": {
+          "pass": true,
+          "computed": {
+            "S_0.5": 0.6728108214047382,
+            "S_2": 0.6172025295012235
+          },
+          "note": "S_0.5 >= S_2 must hold"
+        }
+      },
+      "pass_count": 14,
+      "fail_count": 0
+    },
+    "2_relative_entropy": {
+      "tests": {
+        "klein_nonnegative": {
+          "pass": "True",
+          "computed": 1.8433057613227193
+        },
+        "self_relative_entropy_zero": {
+          "pass": "True",
+          "computed": 0.0,
+          "expected": 0.0
+        },
+        "data_processing_inequality": {
+          "pass": "True",
+          "computed": 0.4450273521087434,
+          "original": 1.8433057613227193
+        },
+        "pinsker_inequality": {
+          "pass": "True",
+          "computed_lhs": 0.3318252666203854,
+          "computed_rhs": 0.9216528806613596
+        },
+        "neg_asymmetric": {
+          "pass": "True",
+          "D_forward": 1.8433057613227193,
+          "D_reverse": 1.1053022966898394,
+          "note": "relative entropy is NOT symmetric"
+        }
+      },
+      "pass_count": 5,
+      "fail_count": 0
+    },
+    "3_majorization": {
+      "tests": {
+        "pure_majorizes_mixed": {
+          "pass": true,
+          "lambda": [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "mu": [
+            0.5,
+            0.3,
+            0.15,
+            0.05
+          ]
+        },
+        "everything_majorizes_max_mixed": {
+          "pass": true,
+          "lambda": [
+            0.5,
+            0.3,
+            0.15,
+            0.05
+          ],
+          "mu": [
+            0.25,
+            0.25,
+            0.25,
+            0.25
+          ]
+        },
+        "self_majorization": {
+          "pass": true
+        },
+        "nielsen_bell_to_product_possible": {
+          "pass": true,
+          "note": "Bell->product by LOCC: lambda_product majorizes lambda_bell"
+        },
+        "nielsen_product_to_bell_impossible": {
+          "pass": true,
+          "note": "Product->Bell by LOCC: impossible, entanglement cannot increase"
+        },
+        "neg_max_mixed_cannot_majorize_pure": {
+          "pass": true
+        }
+      },
+      "pass_count": 6,
+      "fail_count": 0
+    },
+    "4_quantum_speed_limits": {
+      "tests": {
+        "MT_bound_positive": {
+          "pass": "True",
+          "tau_MT": 0.7428545913701823
+        },
+        "ML_bound_positive": {
+          "pass": true,
+          "tau_ML": 0.5606458283938115
+        },
+        "unified_ge_both": {
+          "pass": "True",
+          "tau_unified": 0.7428545913701823,
+          "tau_MT": 0.7428545913701823,
+          "tau_ML": 0.5606458283938115
+        },
+        "evolution_respects_MT_bound": {
+          "pass": "True",
+          "t_half_actual": 0.3811037582981296,
+          "tau_MT_half": 0.37142729568509114
+        },
+        "neg_ground_state_no_evolution": {
+          "pass": "True",
+          "E_ground": 9.404828722934809e-17,
+          "note": "ground state of shifted H has E=0, infinite ML bound"
+        }
+      },
+      "pass_count": 5,
+      "fail_count": 0
+    },
+    "5_data_processing_inequality": {
+      "tests": {
+        "mutual_info_nonneg": {
+          "pass": "True",
+          "I_AB": 1.3862943611198906
+        },
+        "DPI_mutual_info_decrease": {
+          "pass": "True",
+          "I_before": 1.3862943611198906,
+          "I_after": -0.1454877454833774
+        },
+        "DPI_relative_entropy": {
+          "pass": "True",
+          "D_before": 1.8440253585053408,
+          "D_after": 0.2696014799443505
+        },
+        "product_state_zero_MI": {
+          "pass": "True",
+          "I_AB": 8.881784197001252e-16
+        },
+        "neg_channel_cannot_increase_D": {
+          "pass": "True",
+          "note": "violation would break DPI"
+        }
+      },
+      "pass_count": 5,
+      "fail_count": 0
+    },
+    "6_no_cloning_formal": {
+      "tests": {
+        "no_cloning_UNSAT": {
+          "pass": true,
+          "z3_result": "unsat",
+          "note": "x=x^2 with x in (0,1) is UNSAT => no cloning of non-orthogonal states"
+        },
+        "cloning_orthogonal_or_identical_SAT": {
+          "pass": true,
+          "z3_result": "sat",
+          "note": "x=0 (orthogonal) or x=1 (identical) CAN be cloned"
+        },
+        "no_cloning_two_states_UNSAT": {
+          "pass": true,
+          "z3_result": "unsat"
+        },
+        "neg_weakened_constraint_SAT": {
+          "pass": true,
+          "z3_result": "sat",
+          "note": "approximate cloning (x >= x^2) is not forbidden"
+        }
+      },
+      "pass_count": 4,
+      "fail_count": 0
+    },
+    "7_purification_uniqueness": {
+      "tests": {
+        "purification_maximally_mixed_2": {
+          "pass": true,
+          "rho_A_match_1": true,
+          "rho_A_match_2": true,
+          "unitary_related": true
+        },
+        "purification_pure_state": {
+          "pass": true,
+          "rho_A_match_1": true,
+          "rho_A_match_2": true,
+          "unitary_related": true
+        },
+        "purification_rank1_random": {
+          "pass": true,
+          "rho_A_match_1": true,
+          "rho_A_match_2": true,
+          "unitary_related": true
+        },
+        "purification_biased_mixed": {
+          "pass": true,
+          "rho_A_match_1": true,
+          "rho_A_match_2": true,
+          "unitary_related": true
+        },
+        "purification_rank2_in_3d": {
+          "pass": true,
+          "rho_A_match_1": true,
+          "rho_A_match_2": true,
+          "unitary_related": true
+        }
+      },
+      "pass_count": 5,
+      "fail_count": 0
+    },
+    "8_schmidt_decomposition": {
+      "tests": {
+        "bell_schmidt_rank_2": {
+          "pass": true,
+          "schmidt_coeffs": [
+            0.7071067811865475,
+            0.7071067811865475
+          ],
+          "schmidt_rank": 2
+        },
+        "product_schmidt_rank_1": {
+          "pass": "True",
+          "schmidt_coeffs": [
+            1.0,
+            0.0
+          ],
+          "schmidt_rank": 1
+        },
+        "random_reconstruction": {
+          "pass": true,
+          "schmidt_rank": 2,
+          "schmidt_coeffs": [
+            0.8468617018173636,
+            0.5318131795988121
+          ]
+        },
+        "torch_svd_crosscheck": {
+          "pass": true,
+          "torch_coeffs": [
+            0.8468617018173636,
+            0.5318131795988121
+          ],
+          "numpy_coeffs": [
+            0.8468617018173636,
+            0.5318131795988121
+          ]
+        },
+        "schmidt_rank_entanglement_witness": {
+          "pass": "True",
+          "bell_entangled": "True",
+          "product_separable": "True"
+        },
+        "neg_schmidt_normalization": {
+          "pass": "True",
+          "sum_sq": 0.9999999999999998,
+          "all_nonneg": true
+        }
+      },
+      "pass_count": 6,
+      "fail_count": 0
+    }
+  },
+  "summary": {
+    "total_pass": 50,
+    "total_fail": 0,
+    "total_tests": 50,
+    "all_pass": true
+  }
+}

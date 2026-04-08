@@ -68,6 +68,29 @@ Do not edit these docs to show progress until the code/result gate is satisfied.
 
 ---
 
+## System Framing (nonclassical constraint-admissibility)
+
+This system is NOT classical state mechanics. It is a constraint-admissibility geometry:
+- Distinguishability constraints are prior to entropy summaries. Do not infer ontology from entropy alone.
+- Constraints eliminate what cannot persist; they do not deterministically generate what must exist.
+- Surviving families are provisional. "Constraint-admitted" ≠ "theorem-proved."
+- Later-compatible organization feeds back on which earlier candidates are meaningful. Evaluation is not purely forward.
+
+**Operational rules** (required language discipline):
+- Use "candidate," "admissible," "excluded," "indistinguishable," "stable under probe/coupling" — not classical certainty language
+- Separate forward-evolution claims from backward-admissibility claims explicitly
+- Never collapse multiple surviving candidates into one "true" object prematurely
+- Prefer exclusion language over construction language ("L3 destroys L1's structure" not "L3 produces a dephased state")
+- Treat z3 UNSAT as the primary proof form — structural impossibility is more fundamental than existence
+
+**Do NOT do:**
+- Use entropy as the master organizing variable
+- Treat forward propagation and backward admissibility as the same process
+- Infer that passing a test = being the correct object (a candidate that passes is still a candidate)
+- Use "causes," "creates," "drives" — use "coupled with," "survived," "co-varies under"
+
+---
+
 ## Anti-Patterns to Avoid
 
 - "ALL PASS" when some tests are skipped or use weaker criteria
@@ -75,3 +98,4 @@ Do not edit these docs to show progress until the code/result gate is satisfied.
 - Editing a registry/status doc before the sim passes
 - Treating "exists" as "canonical"
 - Launching coupling sims before shell-local sims exist for both layers
+- Treating entropy as sufficient evidence for shell membership (coupling behavior determines shell)

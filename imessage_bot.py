@@ -57,8 +57,8 @@ Your job:
 # ── SQLite helpers ────────────────────────────────────────────────────
 
 def _db_connect():
-    """Open Messages DB read-only to avoid conflicts with running Messages app."""
-    uri = f"file:{DB_PATH}?mode=ro&immutable=1"
+    """Open Messages DB read-only. WAL mode allows concurrent reads with Messages app."""
+    uri = f"file:{DB_PATH}?mode=ro"
     return sqlite3.connect(uri, uri=True)
 
 
@@ -118,9 +118,11 @@ def get_new_messages(since_rowid):
     """
     Return list of (rowid, text) for inbound messages from our handles
     that arrived after since_rowid. Filters out:
-      - is_from_me = 1  (our own outbound messages)
-      - messages containing BOT_TAG (belt-and-suspenders duplicate guard)
+      - messages containing BOT_TAG (only valid dedup guard for self-chats,
+        where ALL messages show is_from_me=1 regardless of sending device)
       - empty messages
+    NOTE: is_from_me=0 filter intentionally omitted — iMessage self-chat
+    stores iPhone-sent messages as is_from_me=1 on the Mac side.
     """
     try:
         conn = _db_connect()
@@ -129,7 +131,6 @@ def get_new_messages(since_rowid):
             FROM message m
             LEFT JOIN handle h ON m.handle_id = h.ROWID
             WHERE m.ROWID > ?
-              AND m.is_from_me = 0
               AND (h.id = ? OR h.id = ?)
             ORDER BY m.ROWID ASC
         """, (since_rowid, PHONE_HANDLE, EMAIL_HANDLE)).fetchall()

@@ -249,6 +249,12 @@ PyTorch-native results must be compared against the numpy baseline.
 Where they agree: substrate-independent truth.
 Where they diverge: that divergence is the quantum content that the classical substrate misses.
 
+**AUDIT NOTE (2026-04-08)**: The family table below shows "PASS" per family, but this reflects
+C1/C3/C4 criteria only. C2_graph_topology is NOT_TESTED for 24/28 families
+(source: phase7_baseline_validation_results.json, criterion_summary.C2_graph_topology.not_tested=24).
+Do not read "PASS" here as "passes all 4 Phase 7 criteria."
+Status labels in this table mean: **runs + passes C1/C3/C4 local rerun**. C2 coverage is a separate open task.
+
 ---
 
 ## Tool integration requirements

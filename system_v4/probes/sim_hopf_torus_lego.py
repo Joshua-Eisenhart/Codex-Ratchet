@@ -306,12 +306,7 @@ def run_positive_tests():
     # ── 5. geomstats: S³ geodesic distances on the torus ─────────────
     test5 = {"name": "geomstats_s3_geodesics", "pass": False, "details": {}}
     try:
-        import os as _os2
-        _os2.environ["GEOMSTATS_BACKEND"] = "pytorch"
-        # Re-import to ensure pytorch backend
-        import importlib
-        import geomstats.backend
-        importlib.reload(geomstats.backend)
+        import torch
         from geomstats.geometry.hypersphere import Hypersphere
 
         S3 = Hypersphere(dim=3)
@@ -327,7 +322,6 @@ def run_positive_tests():
         xi_vals = np.linspace(0, 2 * np.pi, 10, endpoint=False)
         pts_xi_loop = np.array([s3_point(theta0, phi0, xi) for xi in xi_vals])
 
-        import torch
         t_phi = torch.tensor(pts_phi_loop, dtype=torch.float64)
         t_xi = torch.tensor(pts_xi_loop, dtype=torch.float64)
 
@@ -592,13 +586,8 @@ def run_boundary_tests():
     # ── B3. geomstats: zero distance to self ─────────────────────────
     test_b3 = {"name": "geomstats_zero_self_distance", "pass": False, "details": {}}
     try:
-        import os as _os3
-        _os3.environ["GEOMSTATS_BACKEND"] = "pytorch"
-        import importlib
-        import geomstats.backend
-        importlib.reload(geomstats.backend)
-        from geomstats.geometry.hypersphere import Hypersphere
         import torch
+        from geomstats.geometry.hypersphere import Hypersphere
 
         S3 = Hypersphere(dim=3)
         pt = torch.tensor(s3_point(np.pi / 4, 0.5, 0.7), dtype=torch.float64)
@@ -636,7 +625,7 @@ if __name__ == "__main__":
     # GUDHI Betti numbers summary (pull from positive test)
     gudhi_betti = (positive.get("gudhi_hopf_torus_homology", {})
                    .get("details", {})
-                   .get("betti_numbers_long_lived", []))
+                   .get("betti_at_alpha_sq_0.05", []))
     beta1_confirmed = (positive.get("gudhi_hopf_torus_homology", {})
                        .get("details", {})
                        .get("beta1_equals_2", False))

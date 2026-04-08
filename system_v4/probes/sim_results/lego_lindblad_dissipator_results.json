@@ -1,0 +1,3172 @@
+{
+  "name": "PURE LEGO: Lindblad Dissipator D[L](rho)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Numerical cross-validation of dissipator"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Formal proof that Tr(D[L](rho))=0 for arbitrary rho"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic dissipator computation and trace proof"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "bloch_action_sigma_x": {
+      "pass": true,
+      "states": [
+        {
+          "state": "|0>",
+          "bloch_in": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            -2.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|1>",
+          "bloch_in": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            2.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|+>",
+          "bloch_in": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|->",
+          "bloch_in": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|+i>",
+          "bloch_in": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            -2.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|-i>",
+          "bloch_in": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            2.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "maximally_mixed",
+          "bloch_in": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "r=0.5_along_z",
+          "bloch_in": [
+            0.0,
+            0.0,
+            0.5
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "r=0.5_along_x",
+          "bloch_in": [
+            0.5,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "off_axis",
+          "bloch_in": [
+            0.3,
+            0.4,
+            0.5
+          ],
+          "dbloch_dt": [
+            0.0,
+            -0.8,
+            -1.0
+          ],
+          "superop_cross_check": true
+        }
+      ]
+    },
+    "bloch_action_sigma_y": {
+      "pass": true,
+      "states": [
+        {
+          "state": "|0>",
+          "bloch_in": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            -2.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|1>",
+          "bloch_in": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            2.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|+>",
+          "bloch_in": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            -2.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|->",
+          "bloch_in": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            2.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|+i>",
+          "bloch_in": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|-i>",
+          "bloch_in": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "maximally_mixed",
+          "bloch_in": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "r=0.5_along_z",
+          "bloch_in": [
+            0.0,
+            0.0,
+            0.5
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "r=0.5_along_x",
+          "bloch_in": [
+            0.5,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "off_axis",
+          "bloch_in": [
+            0.3,
+            0.4,
+            0.5
+          ],
+          "dbloch_dt": [
+            -0.6,
+            0.0,
+            -1.0
+          ],
+          "superop_cross_check": true
+        }
+      ]
+    },
+    "bloch_action_sigma_z": {
+      "pass": true,
+      "states": [
+        {
+          "state": "|0>",
+          "bloch_in": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|1>",
+          "bloch_in": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|+>",
+          "bloch_in": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            -2.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|->",
+          "bloch_in": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            2.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|+i>",
+          "bloch_in": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            -2.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|-i>",
+          "bloch_in": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            2.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "maximally_mixed",
+          "bloch_in": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "r=0.5_along_z",
+          "bloch_in": [
+            0.0,
+            0.0,
+            0.5
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "r=0.5_along_x",
+          "bloch_in": [
+            0.5,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "off_axis",
+          "bloch_in": [
+            0.3,
+            0.4,
+            0.5
+          ],
+          "dbloch_dt": [
+            -0.6,
+            -0.8,
+            0.0
+          ],
+          "superop_cross_check": true
+        }
+      ]
+    },
+    "bloch_action_sigma_minus": {
+      "pass": true,
+      "states": [
+        {
+          "state": "|0>",
+          "bloch_in": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|1>",
+          "bloch_in": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            2.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|+>",
+          "bloch_in": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            -0.5,
+            0.0,
+            1.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|->",
+          "bloch_in": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.5,
+            0.0,
+            1.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|+i>",
+          "bloch_in": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            -0.5,
+            1.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|-i>",
+          "bloch_in": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.5,
+            1.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "maximally_mixed",
+          "bloch_in": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "r=0.5_along_z",
+          "bloch_in": [
+            0.0,
+            0.0,
+            0.5
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            0.5
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "r=0.5_along_x",
+          "bloch_in": [
+            0.5,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            -0.25,
+            0.0,
+            1.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "off_axis",
+          "bloch_in": [
+            0.3,
+            0.4,
+            0.5
+          ],
+          "dbloch_dt": [
+            -0.15,
+            -0.2,
+            0.5
+          ],
+          "superop_cross_check": true
+        }
+      ]
+    },
+    "bloch_action_sigma_plus": {
+      "pass": true,
+      "states": [
+        {
+          "state": "|0>",
+          "bloch_in": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            -2.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|1>",
+          "bloch_in": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|+>",
+          "bloch_in": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            -0.5,
+            0.0,
+            -1.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|->",
+          "bloch_in": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.5,
+            0.0,
+            -1.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|+i>",
+          "bloch_in": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            -0.5,
+            -1.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "|-i>",
+          "bloch_in": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.5,
+            -1.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "maximally_mixed",
+          "bloch_in": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "r=0.5_along_z",
+          "bloch_in": [
+            0.0,
+            0.0,
+            0.5
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            -1.5
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "r=0.5_along_x",
+          "bloch_in": [
+            0.5,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            -0.25,
+            0.0,
+            -1.0
+          ],
+          "superop_cross_check": true
+        },
+        {
+          "state": "off_axis",
+          "bloch_in": [
+            0.3,
+            0.4,
+            0.5
+          ],
+          "dbloch_dt": [
+            -0.15,
+            -0.2,
+            -1.5
+          ],
+          "superop_cross_check": true
+        }
+      ]
+    },
+    "bloch_behavior_summary": {
+      "sigma_x": {
+        "x": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "y": [
+          0.0,
+          -2.0,
+          0.0
+        ],
+        "z": [
+          0.0,
+          0.0,
+          -2.0
+        ]
+      },
+      "sigma_y": {
+        "x": [
+          -2.0,
+          0.0,
+          0.0
+        ],
+        "y": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "z": [
+          0.0,
+          0.0,
+          -2.0
+        ]
+      },
+      "sigma_z": {
+        "x": [
+          -2.0,
+          0.0,
+          0.0
+        ],
+        "y": [
+          0.0,
+          -2.0,
+          0.0
+        ],
+        "z": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "sigma_minus": {
+        "x": [
+          -0.5,
+          0.0,
+          1.0
+        ],
+        "y": [
+          0.0,
+          -0.5,
+          1.0
+        ],
+        "z": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "sigma_plus": {
+        "x": [
+          -0.5,
+          0.0,
+          -1.0
+        ],
+        "y": [
+          0.0,
+          -0.5,
+          -1.0
+        ],
+        "z": [
+          0.0,
+          0.0,
+          -2.0
+        ]
+      }
+    },
+    "trace_preservation": {
+      "pass": true,
+      "details": [
+        {
+          "operator": "sigma_x",
+          "state": "|0>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|1>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|+>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|->",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|+i>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|-i>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_x",
+          "state": "maximally_mixed",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_x",
+          "state": "r=0.5_along_z",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_x",
+          "state": "r=0.5_along_x",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_x",
+          "state": "off_axis",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|0>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|1>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|+>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|->",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|+i>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|-i>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_y",
+          "state": "maximally_mixed",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_y",
+          "state": "r=0.5_along_z",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_y",
+          "state": "r=0.5_along_x",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_y",
+          "state": "off_axis",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|0>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|1>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|+>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|->",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|+i>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|-i>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_z",
+          "state": "maximally_mixed",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_z",
+          "state": "r=0.5_along_z",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_z",
+          "state": "r=0.5_along_x",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_z",
+          "state": "off_axis",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|0>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|1>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|+>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|->",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|+i>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|-i>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "maximally_mixed",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "r=0.5_along_z",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "r=0.5_along_x",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "off_axis",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|0>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|1>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|+>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|->",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|+i>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|-i>",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "maximally_mixed",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "r=0.5_along_z",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "r=0.5_along_x",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "off_axis",
+          "trace_of_D": 0.0,
+          "pass": "True"
+        }
+      ]
+    },
+    "cptp_evolution": {
+      "pass": true,
+      "details": [
+        {
+          "operator": "sigma_x",
+          "state": "|0>",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.09063462346100906,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|1>",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.09063462346100909,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|+>",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|->",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|0>",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.43233235838169365,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|1>",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.43233235838169365,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|+>",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|->",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|0>",
+          "t": 10.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.4999999989694232,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|1>",
+          "t": 10.0,
+          "trace": 0.9999999999999998,
+          "min_eigenvalue": 0.4999999989694231,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|+>",
+          "t": 10.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|->",
+          "t": 10.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|0>",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.09063462346100906,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|1>",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.09063462346100909,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|+>",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.090634623461009,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|->",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.090634623461009,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|0>",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.43233235838169365,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|1>",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.43233235838169365,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|+>",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.4323323583816936,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|->",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.4323323583816936,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|0>",
+          "t": 10.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.4999999989694232,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|1>",
+          "t": 10.0,
+          "trace": 0.9999999999999998,
+          "min_eigenvalue": 0.4999999989694231,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|+>",
+          "t": 10.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.49999999896942315,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|->",
+          "t": 10.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.49999999896942315,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|0>",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|1>",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|+>",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.09063462346100909,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|->",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.09063462346100909,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|0>",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|1>",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|+>",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.4323323583816936,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|->",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.4323323583816936,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|0>",
+          "t": 10.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|1>",
+          "t": 10.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|+>",
+          "t": 10.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.49999999896942315,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|->",
+          "t": 10.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.49999999896942315,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|0>",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|1>",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.09516258196404044,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|+>",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.022011157284497297,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|->",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.022011157284497297,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|0>",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|1>",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.36787944117144233,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|+>",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.061977214615161154,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|->",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.061977214615161154,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|0>",
+          "t": 10.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|1>",
+          "t": 10.0,
+          "trace": 1.0000000000000002,
+          "min_eigenvalue": 4.5399929762484854e-05,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|+>",
+          "t": 10.0,
+          "trace": 1.0,
+          "min_eigenvalue": 1.1349595965544187e-05,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|->",
+          "t": 10.0,
+          "trace": 1.0,
+          "min_eigenvalue": 1.1349595965544187e-05,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|0>",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.09516258196404043,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|1>",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|+>",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.022011157284497297,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|->",
+          "t": 0.1,
+          "trace": 1.0,
+          "min_eigenvalue": 0.022011157284497297,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|0>",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.36787944117144233,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|1>",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|+>",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.061977214615161154,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|->",
+          "t": 1.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.061977214615161154,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|0>",
+          "t": 10.0,
+          "trace": 1.0000000000000002,
+          "min_eigenvalue": 4.5399929762484854e-05,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|1>",
+          "t": 10.0,
+          "trace": 1.0,
+          "min_eigenvalue": 0.0,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|+>",
+          "t": 10.0,
+          "trace": 1.0,
+          "min_eigenvalue": 1.1349595965544187e-05,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|->",
+          "t": 10.0,
+          "trace": 1.0,
+          "min_eigenvalue": 1.1349595965544187e-05,
+          "positive": true,
+          "trace_one": true,
+          "pass": true
+        }
+      ]
+    },
+    "steady_states": {
+      "sigma_x": {
+        "n_steady_states": 2,
+        "steady_states": [
+          {
+            "rho_ss": [
+              [
+                "(0.4999999999999999-3.061616997868384e-17j)",
+                "0j"
+              ],
+              [
+                "0j",
+                "(0.5000000000000001+3.061616997868384e-17j)"
+              ]
+            ],
+            "bloch": [
+              0.0,
+              0.0,
+              -2.220446049250313e-16
+            ],
+            "hermitian": true,
+            "D_is_zero": true
+          },
+          {
+            "rho_ss": [
+              [
+                "-0j",
+                "(0.7071067811865474-8.659560562354934e-17j)"
+              ],
+              [
+                "(0.7071067811865476+0j)",
+                "-0j"
+              ]
+            ],
+            "bloch": [
+              1.414213562373095,
+              8.659560562354934e-17,
+              0.0
+            ],
+            "hermitian": true,
+            "D_is_zero": true
+          }
+        ]
+      },
+      "sigma_y": {
+        "n_steady_states": 2,
+        "steady_states": [
+          {
+            "rho_ss": [
+              [
+                "(0.4999999999999999-3.061616997868384e-17j)",
+                "0j"
+              ],
+              [
+                "0j",
+                "(0.5000000000000001+3.061616997868384e-17j)"
+              ]
+            ],
+            "bloch": [
+              0.0,
+              0.0,
+              -2.220446049250313e-16
+            ],
+            "hermitian": true,
+            "D_is_zero": true
+          },
+          {
+            "rho_ss": [
+              [
+                "0j",
+                "(-0.7071067811865474+0j)"
+              ],
+              [
+                "(0.7071067811865476+0j)",
+                "0j"
+              ]
+            ],
+            "bloch": [
+              2.220446049250313e-16,
+              0.0,
+              0.0
+            ],
+            "hermitian": false,
+            "D_is_zero": true
+          }
+        ]
+      },
+      "sigma_z": {
+        "n_steady_states": 2,
+        "steady_states": [
+          {
+            "rho_ss": [
+              [
+                "(1+0j)",
+                "0j"
+              ],
+              [
+                "0j",
+                "0j"
+              ]
+            ],
+            "bloch": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "hermitian": true,
+            "D_is_zero": true
+          },
+          {
+            "rho_ss": [
+              [
+                "0j",
+                "0j"
+              ],
+              [
+                "0j",
+                "(1+0j)"
+              ]
+            ],
+            "bloch": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "hermitian": true,
+            "D_is_zero": true
+          }
+        ],
+        "diagonal_kernel": true
+      },
+      "sigma_minus": {
+        "n_steady_states": 1,
+        "steady_states": [
+          {
+            "rho_ss": [
+              [
+                "(1+0j)",
+                "0j"
+              ],
+              [
+                "0j",
+                "0j"
+              ]
+            ],
+            "bloch": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "hermitian": true,
+            "D_is_zero": true
+          }
+        ],
+        "ground_state_is_steady": true
+      },
+      "sigma_plus": {
+        "n_steady_states": 1,
+        "steady_states": [
+          {
+            "rho_ss": [
+              [
+                "0j",
+                "0j"
+              ],
+              [
+                "0j",
+                "(1+0j)"
+              ]
+            ],
+            "bloch": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "hermitian": true,
+            "D_is_zero": true
+          }
+        ]
+      }
+    },
+    "spectral_gap": {
+      "sigma_x": {
+        "eigenvalues": [
+          "(-4.930380657631324e-32+0j)",
+          "(-1.9999999999999998+0j)",
+          "(-4.930380657631324e-32+0j)",
+          "(-1.9999999999999998+0j)"
+        ],
+        "real_parts": [
+          -4.930380657631324e-32,
+          -1.9999999999999998,
+          -4.930380657631324e-32,
+          -1.9999999999999998
+        ],
+        "spectral_gap": 1.9999999999999998,
+        "decoherence_time": 0.5000000000000001
+      },
+      "sigma_y": {
+        "eigenvalues": [
+          "(-4.930380657631324e-32+0j)",
+          "(-1.9999999999999998+0j)",
+          "(-4.930380657631324e-32+0j)",
+          "(-1.9999999999999998+0j)"
+        ],
+        "real_parts": [
+          -4.930380657631324e-32,
+          -1.9999999999999998,
+          -4.930380657631324e-32,
+          -1.9999999999999998
+        ],
+        "spectral_gap": 1.9999999999999998,
+        "decoherence_time": 0.5000000000000001
+      },
+      "sigma_z": {
+        "eigenvalues": [
+          "0j",
+          "(-2+0j)",
+          "(-2-0j)",
+          "0j"
+        ],
+        "real_parts": [
+          0.0,
+          -2.0,
+          -2.0,
+          0.0
+        ],
+        "spectral_gap": 2.0,
+        "decoherence_time": 0.5
+      },
+      "sigma_minus": {
+        "eigenvalues": [
+          "0j",
+          "(-0.5+0j)",
+          "(-0.5+0j)",
+          "(-1+0j)"
+        ],
+        "real_parts": [
+          0.0,
+          -0.5,
+          -0.5,
+          -1.0
+        ],
+        "spectral_gap": 0.5,
+        "decoherence_time": 2.0
+      },
+      "sigma_plus": {
+        "eigenvalues": [
+          "0j",
+          "(-1+0j)",
+          "(-0.5+0j)",
+          "(-0.5+0j)"
+        ],
+        "real_parts": [
+          0.0,
+          -1.0,
+          -0.5,
+          -0.5
+        ],
+        "spectral_gap": 0.5,
+        "decoherence_time": 2.0
+      }
+    },
+    "depolarizing_channel": {
+      "pass": true,
+      "details": [
+        {
+          "state": "|0>",
+          "bloch_in": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            -4.0
+          ],
+          "expected_minus4r": [
+            -0.0,
+            -0.0,
+            -4.0
+          ],
+          "match": true
+        },
+        {
+          "state": "|1>",
+          "bloch_in": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            4.0
+          ],
+          "expected_minus4r": [
+            -0.0,
+            -0.0,
+            4.0
+          ],
+          "match": true
+        },
+        {
+          "state": "|+>",
+          "bloch_in": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            -4.0,
+            0.0,
+            0.0
+          ],
+          "expected_minus4r": [
+            -4.0,
+            -0.0,
+            -0.0
+          ],
+          "match": true
+        },
+        {
+          "state": "|->",
+          "bloch_in": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            4.0,
+            0.0,
+            0.0
+          ],
+          "expected_minus4r": [
+            4.0,
+            -0.0,
+            -0.0
+          ],
+          "match": true
+        },
+        {
+          "state": "|+i>",
+          "bloch_in": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            -4.0,
+            0.0
+          ],
+          "expected_minus4r": [
+            -0.0,
+            -4.0,
+            -0.0
+          ],
+          "match": true
+        },
+        {
+          "state": "|-i>",
+          "bloch_in": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            4.0,
+            0.0
+          ],
+          "expected_minus4r": [
+            -0.0,
+            4.0,
+            -0.0
+          ],
+          "match": true
+        },
+        {
+          "state": "maximally_mixed",
+          "bloch_in": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "expected_minus4r": [
+            -0.0,
+            -0.0,
+            -0.0
+          ],
+          "match": true
+        },
+        {
+          "state": "r=0.5_along_z",
+          "bloch_in": [
+            0.0,
+            0.0,
+            0.5
+          ],
+          "dbloch_dt": [
+            0.0,
+            0.0,
+            -2.0
+          ],
+          "expected_minus4r": [
+            -0.0,
+            -0.0,
+            -2.0
+          ],
+          "match": true
+        },
+        {
+          "state": "r=0.5_along_x",
+          "bloch_in": [
+            0.5,
+            0.0,
+            0.0
+          ],
+          "dbloch_dt": [
+            -2.0,
+            0.0,
+            0.0
+          ],
+          "expected_minus4r": [
+            -2.0,
+            -0.0,
+            -0.0
+          ],
+          "match": true
+        },
+        {
+          "state": "off_axis",
+          "bloch_in": [
+            0.3,
+            0.4,
+            0.5
+          ],
+          "dbloch_dt": [
+            -1.2,
+            -1.6,
+            -2.0
+          ],
+          "expected_minus4r": [
+            -1.2,
+            -1.6,
+            -2.0
+          ],
+          "match": true
+        }
+      ]
+    },
+    "superop_commutativity_Dz_Dx": {
+      "commutator_norm": 0.0,
+      "commutes": true,
+      "note": "D[sz] and D[sx] commute as superoperators"
+    },
+    "sympy_symbolic": {
+      "sigma_x": {
+        "D_rho": "Matrix([[-a + d, -b + c], [b - c, a - d]])",
+        "trace": "0",
+        "trace_is_zero": true
+      },
+      "sigma_y": {
+        "D_rho": "Matrix([[-a + d, -b - c], [-b - c, a - d]])",
+        "trace": "0",
+        "trace_is_zero": true
+      },
+      "sigma_z": {
+        "D_rho": "Matrix([[0, -2*b], [-2*c, 0]])",
+        "trace": "0",
+        "trace_is_zero": true
+      },
+      "sigma_minus": {
+        "D_rho": "Matrix([[d, -b/2], [-c/2, -d]])",
+        "trace": "0",
+        "trace_is_zero": true
+      },
+      "sigma_plus": {
+        "D_rho": "Matrix([[-a, -b/2], [-c/2, a]])",
+        "trace": "0",
+        "trace_is_zero": true
+      }
+    },
+    "z3_trace_proof": {
+      "sigma_x": {
+        "trace_always_zero": true,
+        "z3_result": "unsat"
+      },
+      "sigma_y": {
+        "trace_always_zero": true,
+        "z3_result": "unsat"
+      },
+      "sigma_z": {
+        "trace_always_zero": true,
+        "z3_result": "unsat"
+      },
+      "sigma_minus": {
+        "trace_always_zero": true,
+        "z3_result": "unsat"
+      },
+      "sigma_plus": {
+        "trace_always_zero": true,
+        "z3_result": "unsat"
+      }
+    },
+    "pytorch_cross_validation": {
+      "all_match": true,
+      "n_tests": 50,
+      "details": [
+        {
+          "operator": "sigma_x",
+          "state": "|0>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|1>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|+>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|->",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|+i>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_x",
+          "state": "|-i>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_x",
+          "state": "maximally_mixed",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_x",
+          "state": "r=0.5_along_z",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_x",
+          "state": "r=0.5_along_x",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_x",
+          "state": "off_axis",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|0>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|1>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|+>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|->",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|+i>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_y",
+          "state": "|-i>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_y",
+          "state": "maximally_mixed",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_y",
+          "state": "r=0.5_along_z",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_y",
+          "state": "r=0.5_along_x",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_y",
+          "state": "off_axis",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|0>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|1>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|+>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|->",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|+i>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_z",
+          "state": "|-i>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_z",
+          "state": "maximally_mixed",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_z",
+          "state": "r=0.5_along_z",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_z",
+          "state": "r=0.5_along_x",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_z",
+          "state": "off_axis",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|0>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|1>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|+>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|->",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|+i>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "|-i>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "maximally_mixed",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "r=0.5_along_z",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "r=0.5_along_x",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_minus",
+          "state": "off_axis",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|0>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|1>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|+>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|->",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|+i>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "|-i>",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "maximally_mixed",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "r=0.5_along_z",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "r=0.5_along_x",
+          "match": true,
+          "max_diff": 0.0
+        },
+        {
+          "operator": "sigma_plus",
+          "state": "off_axis",
+          "match": true,
+          "max_diff": 0.0
+        }
+      ]
+    },
+    "_time_positive": 0.15762877464294434
+  },
+  "negative": {
+    "bad_trace_rho_sigma_x": {
+      "input_trace": 3.0,
+      "D_trace": 0.0,
+      "still_zero": "True",
+      "note": "D[L] is trace-preserving even for unnormalized matrices"
+    },
+    "bad_trace_rho_sigma_y": {
+      "input_trace": 3.0,
+      "D_trace": 0.0,
+      "still_zero": "True",
+      "note": "D[L] is trace-preserving even for unnormalized matrices"
+    },
+    "bad_trace_rho_sigma_z": {
+      "input_trace": 3.0,
+      "D_trace": 0.0,
+      "still_zero": "True",
+      "note": "D[L] is trace-preserving even for unnormalized matrices"
+    },
+    "bad_trace_rho_sigma_minus": {
+      "input_trace": 3.0,
+      "D_trace": 0.0,
+      "still_zero": "True",
+      "note": "D[L] is trace-preserving even for unnormalized matrices"
+    },
+    "bad_trace_rho_sigma_plus": {
+      "input_trace": 3.0,
+      "D_trace": 0.0,
+      "still_zero": "True",
+      "note": "D[L] is trace-preserving even for unnormalized matrices"
+    },
+    "non_hermitian_sigma_x": {
+      "D_trace": 0.0,
+      "trace_still_zero": "True"
+    },
+    "non_hermitian_sigma_y": {
+      "D_trace": 0.0,
+      "trace_still_zero": "True"
+    },
+    "non_hermitian_sigma_z": {
+      "D_trace": 0.0,
+      "trace_still_zero": "True"
+    },
+    "non_hermitian_sigma_minus": {
+      "D_trace": 0.0,
+      "trace_still_zero": "True"
+    },
+    "non_hermitian_sigma_plus": {
+      "D_trace": 0.0,
+      "trace_still_zero": "True"
+    },
+    "zero_operator_|0>": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "zero_operator_|1>": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "zero_operator_|+>": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "zero_operator_|->": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "zero_operator_|+i>": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "zero_operator_|-i>": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "zero_operator_maximally_mixed": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "zero_operator_r=0.5_along_z": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "zero_operator_r=0.5_along_x": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "zero_operator_off_axis": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "identity_operator_|0>": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "identity_operator_|1>": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "identity_operator_|+>": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "identity_operator_|->": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "identity_operator_|+i>": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "identity_operator_|-i>": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "identity_operator_maximally_mixed": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "identity_operator_r=0.5_along_z": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "identity_operator_r=0.5_along_x": {
+      "D_norm": 0.0,
+      "is_zero": true
+    },
+    "identity_operator_off_axis": {
+      "D_norm": 0.0,
+      "is_zero": true
+    }
+  },
+  "boundary": {
+    "pure_evolution_|0>_sigma_x_dt1e-06": {
+      "min_eig": 1e-06,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|0>_sigma_x_dt0.001": {
+      "min_eig": 0.001,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|0>_sigma_x_dt0.1": {
+      "min_eig": 0.1,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|0>_sigma_y_dt1e-06": {
+      "min_eig": 1e-06,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|0>_sigma_y_dt0.001": {
+      "min_eig": 0.001,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|0>_sigma_y_dt0.1": {
+      "min_eig": 0.1,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|0>_sigma_z_dt1e-06": {
+      "min_eig": 0.0,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|0>_sigma_z_dt0.001": {
+      "min_eig": 0.0,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|0>_sigma_z_dt0.1": {
+      "min_eig": 0.0,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|0>_sigma_minus_dt1e-06": {
+      "min_eig": 0.0,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|0>_sigma_minus_dt0.001": {
+      "min_eig": 0.0,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|0>_sigma_minus_dt0.1": {
+      "min_eig": 0.0,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|0>_sigma_plus_dt1e-06": {
+      "min_eig": 1e-06,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|0>_sigma_plus_dt0.001": {
+      "min_eig": 0.001,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|0>_sigma_plus_dt0.1": {
+      "min_eig": 0.1,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|1>_sigma_x_dt1e-06": {
+      "min_eig": 1e-06,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|1>_sigma_x_dt0.001": {
+      "min_eig": 0.001,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|1>_sigma_x_dt0.1": {
+      "min_eig": 0.1,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|1>_sigma_y_dt1e-06": {
+      "min_eig": 1e-06,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|1>_sigma_y_dt0.001": {
+      "min_eig": 0.001,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|1>_sigma_y_dt0.1": {
+      "min_eig": 0.1,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|1>_sigma_z_dt1e-06": {
+      "min_eig": 0.0,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|1>_sigma_z_dt0.001": {
+      "min_eig": 0.0,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|1>_sigma_z_dt0.1": {
+      "min_eig": 0.0,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|1>_sigma_minus_dt1e-06": {
+      "min_eig": 1e-06,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|1>_sigma_minus_dt0.001": {
+      "min_eig": 0.001,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|1>_sigma_minus_dt0.1": {
+      "min_eig": 0.1,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|1>_sigma_plus_dt1e-06": {
+      "min_eig": 0.0,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|1>_sigma_plus_dt0.001": {
+      "min_eig": 0.0,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|1>_sigma_plus_dt0.1": {
+      "min_eig": 0.0,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|+>_sigma_x_dt1e-06": {
+      "min_eig": 0.0,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|+>_sigma_x_dt0.001": {
+      "min_eig": 0.0,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|+>_sigma_x_dt0.1": {
+      "min_eig": 0.0,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|+>_sigma_y_dt1e-06": {
+      "min_eig": 1.000000000001e-06,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|+>_sigma_y_dt0.001": {
+      "min_eig": 0.0010000000000000286,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|+>_sigma_y_dt0.1": {
+      "min_eig": 0.09999999999999998,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|+>_sigma_z_dt1e-06": {
+      "min_eig": 1.000000000001e-06,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|+>_sigma_z_dt0.001": {
+      "min_eig": 0.0010000000000000286,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|+>_sigma_z_dt0.1": {
+      "min_eig": 0.09999999999999998,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|+>_sigma_minus_dt1e-06": {
+      "min_eig": 2.499997499294629e-07,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|+>_sigma_minus_dt0.001": {
+      "min_eig": 0.00024974987499998356,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|+>_sigma_minus_dt0.1": {
+      "min_eig": 0.022375670636430024,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|+>_sigma_plus_dt1e-06": {
+      "min_eig": 2.499997499294629e-07,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|+>_sigma_plus_dt0.001": {
+      "min_eig": 0.00024974987499998356,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "pure_evolution_|+>_sigma_plus_dt0.1": {
+      "min_eig": 0.022375670636430024,
+      "trace": 1.0,
+      "positive": true,
+      "trace_one": true
+    },
+    "maximally_mixed_sigma_x": {
+      "D_rho": [
+        [
+          "0j",
+          "0j"
+        ],
+        [
+          "0j",
+          "0j"
+        ]
+      ],
+      "norm": 0.0,
+      "is_zero": true,
+      "note": "For Pauli L, D[L](I/2)=0. For sigma_pm, D[L](I/2)!=0."
+    },
+    "maximally_mixed_sigma_y": {
+      "D_rho": [
+        [
+          "0j",
+          "0j"
+        ],
+        [
+          "0j",
+          "0j"
+        ]
+      ],
+      "norm": 0.0,
+      "is_zero": true,
+      "note": "For Pauli L, D[L](I/2)=0. For sigma_pm, D[L](I/2)!=0."
+    },
+    "maximally_mixed_sigma_z": {
+      "D_rho": [
+        [
+          "0j",
+          "0j"
+        ],
+        [
+          "0j",
+          "0j"
+        ]
+      ],
+      "norm": 0.0,
+      "is_zero": true,
+      "note": "For Pauli L, D[L](I/2)=0. For sigma_pm, D[L](I/2)!=0."
+    },
+    "maximally_mixed_sigma_minus": {
+      "D_rho": [
+        [
+          "(0.5+0j)",
+          "0j"
+        ],
+        [
+          "0j",
+          "(-0.5+0j)"
+        ]
+      ],
+      "norm": 0.7071067811865476,
+      "is_zero": false,
+      "note": "For Pauli L, D[L](I/2)=0. For sigma_pm, D[L](I/2)!=0."
+    },
+    "maximally_mixed_sigma_plus": {
+      "D_rho": [
+        [
+          "(-0.5+0j)",
+          "0j"
+        ],
+        [
+          "0j",
+          "(0.5+0j)"
+        ]
+      ],
+      "norm": 0.7071067811865476,
+      "is_zero": false,
+      "note": "For Pauli L, D[L](I/2)=0. For sigma_pm, D[L](I/2)!=0."
+    },
+    "convergence_sigma_minus": [
+      {
+        "t": 0.1,
+        "bloch": [
+          0.8561064820506427,
+          0.2853688273502142,
+          -0.08580490164315147
+        ],
+        "trace": 1.0
+      },
+      {
+        "t": 1.0,
+        "bloch": [
+          0.5458775937413701,
+          0.18195919791379003,
+          0.5585446705942693
+        ],
+        "trace": 1.0
+      },
+      {
+        "t": 10.0,
+        "bloch": [
+          0.006064152299176921,
+          0.00202138409972564,
+          0.9999455200842852
+        ],
+        "trace": 1.0000000000000002
+      },
+      {
+        "t": 100.0,
+        "bloch": [
+          1.735874863167526e-22,
+          5.786249543891753e-23,
+          1.0
+        ],
+        "trace": 1.0
+      }
+    ],
+    "convergence_sigma_z": [
+      {
+        "t": 0.1,
+        "bloch": [
+          0.7368576777701836,
+          0.24561922592339452,
+          -0.19999999999999996
+        ],
+        "trace": 1.0
+      },
+      {
+        "t": 1.0,
+        "bloch": [
+          0.12180175491295143,
+          0.04060058497098381,
+          -0.19999999999999996
+        ],
+        "trace": 1.0
+      },
+      {
+        "t": 10.0,
+        "bloch": [
+          1.8550382601947021e-09,
+          6.183460867315673e-10,
+          -0.19999999999999996
+        ],
+        "trace": 1.0
+      },
+      {
+        "t": 100.0,
+        "bloch": [
+          1.245506874063064e-87,
+          4.1516895802102126e-88,
+          -0.19999999999999996
+        ],
+        "trace": 1.0
+      }
+    ],
+    "tiny_coupling": {
+      "L_scale": 1e-15,
+      "D_norm": 0.0,
+      "expected_order": 1e-30,
+      "ratio": 0.0,
+      "note": "D[eps*L] scales as eps^2 (quadratic in L)"
+    }
+  },
+  "classification": "canonical",
+  "total_time_s": 0.15926289558410645
+}

@@ -1,0 +1,439 @@
+{
+  "name": "Pauli Algebra -- Pure Math Lego",
+  "timestamp": "2026-04-08T00:05:37.536083",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "All 17 tests computed with torch complex128 tensors"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Formal constraint verification of multiplication, anticommutation, trace, determinant; unsatisfiability proof that sx^2 != I is impossible"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic multiplication table, commutator/anticommutator, decomposition"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) basis element algebra mirrors Pauli anticommutation relations"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "T01_involutory": {
+      "pass": true,
+      "detail": {
+        "sigma_x^2 = I": true,
+        "sigma_y^2 = I": true,
+        "sigma_z^2 = I": true
+      }
+    },
+    "T02_cyclic_products": {
+      "pass": true,
+      "detail": {
+        "sigma_x sigma_y = i sigma_z": true,
+        "sigma_y sigma_z = i sigma_x": true,
+        "sigma_z sigma_x = i sigma_y": true
+      }
+    },
+    "T03_anticyclic_products": {
+      "pass": true,
+      "detail": {
+        "sigma_y sigma_x = -i sigma_z": true,
+        "sigma_z sigma_y = -i sigma_x": true,
+        "sigma_x sigma_z = -i sigma_y": true
+      }
+    },
+    "T04_anticommutator": {
+      "pass": true,
+      "detail": {
+        "{sigma_x, sigma_x} = 2I": true,
+        "{sigma_x, sigma_y} = 0": true,
+        "{sigma_x, sigma_z} = 0": true,
+        "{sigma_y, sigma_x} = 0": true,
+        "{sigma_y, sigma_y} = 2I": true,
+        "{sigma_y, sigma_z} = 0": true,
+        "{sigma_z, sigma_x} = 0": true,
+        "{sigma_z, sigma_y} = 0": true,
+        "{sigma_z, sigma_z} = 2I": true
+      }
+    },
+    "T05_commutator": {
+      "pass": true,
+      "detail": {
+        "[sigma_x, sigma_x]": true,
+        "[sigma_x, sigma_y]": true,
+        "[sigma_x, sigma_z]": true,
+        "[sigma_y, sigma_x]": true,
+        "[sigma_y, sigma_y]": true,
+        "[sigma_y, sigma_z]": true,
+        "[sigma_z, sigma_x]": true,
+        "[sigma_z, sigma_y]": true,
+        "[sigma_z, sigma_z]": true
+      }
+    },
+    "T06_traceless": {
+      "pass": true,
+      "detail": {
+        "Tr(sigma_x) = 0": true,
+        "Tr(sigma_y) = 0": true,
+        "Tr(sigma_z) = 0": true
+      }
+    },
+    "T07_trace_orthogonality": {
+      "pass": true,
+      "detail": {
+        "Tr(sigma_x sigma_x) = 2": true,
+        "Tr(sigma_x sigma_y) = 0": true,
+        "Tr(sigma_x sigma_z) = 0": true,
+        "Tr(sigma_y sigma_x) = 0": true,
+        "Tr(sigma_y sigma_y) = 2": true,
+        "Tr(sigma_y sigma_z) = 0": true,
+        "Tr(sigma_z sigma_x) = 0": true,
+        "Tr(sigma_z sigma_y) = 0": true,
+        "Tr(sigma_z sigma_z) = 2": true
+      }
+    },
+    "T08_determinant": {
+      "pass": true,
+      "detail": {
+        "det(sigma_x) = -1": true,
+        "det(sigma_y) = -1": true,
+        "det(sigma_z) = -1": true
+      }
+    },
+    "T09_eigenvalues": {
+      "pass": true,
+      "detail": {
+        "eig(sigma_x)": {
+          "eigenvalues": [
+            -1.0,
+            1.0
+          ],
+          "pass": true
+        },
+        "eig(sigma_y)": {
+          "eigenvalues": [
+            -1.0,
+            1.0
+          ],
+          "pass": true
+        },
+        "eig(sigma_z)": {
+          "eigenvalues": [
+            -1.0,
+            1.0
+          ],
+          "pass": true
+        }
+      }
+    },
+    "T10_eigenvectors": {
+      "pass": true,
+      "detail": {
+        "sigma_z_eigvecs": {
+          "|1> (eig=-1)": [
+            "0j",
+            "(1+0j)"
+          ],
+          "|0> (eig=+1)": [
+            "(1+0j)",
+            "0j"
+          ],
+          "pass": true
+        },
+        "sigma_x_eigvecs": {
+          "|-> (eig=-1)": [
+            "(-0.7071067811865475+0j)",
+            "(0.7071067811865475+0j)"
+          ],
+          "|+> (eig=+1)": [
+            "(0.7071067811865475+0j)",
+            "(0.7071067811865475+0j)"
+          ],
+          "pass": true
+        },
+        "sigma_y_eigvecs": {
+          "|-i> (eig=-1)": [
+            "(-0.7071067811865475-0j)",
+            "0.7071067811865475j"
+          ],
+          "|+i> (eig=+1)": [
+            "(-0.7071067811865475+0j)",
+            "-0.7071067811865475j"
+          ],
+          "pass": true
+        }
+      }
+    },
+    "T11_completeness": {
+      "pass": true,
+      "detail": {
+        "gram_matrix_det": "(16+0j)",
+        "gram_nonsingular": true,
+        "gram_is_2I": true
+      }
+    },
+    "T12_hermitian_decomposition": {
+      "pass": true,
+      "detail": {
+        "reconstruction_matches": true,
+        "coefficients_real": true,
+        "coefficients": {
+          "c_I": 0.899755085682689,
+          "c_x": -0.31409471561207675,
+          "c_y": -0.14731202496291135,
+          "c_z": -0.6616790529377605
+        }
+      }
+    },
+    "T13_pauli_group": {
+      "pass": true,
+      "detail": {
+        "count": 16,
+        "closure": true,
+        "has_identity": true,
+        "has_inverses": true
+      }
+    },
+    "T14_bloch_rotation": {
+      "pass": true,
+      "detail": {
+        "sx|0>=|1>": true,
+        "sx|1>=|0>": true,
+        "sz|0>=|0>": true,
+        "sz|1>=-|1>": true,
+        "sy|0>=i|1>": true,
+        "sy|1>=-i|0>": true,
+        "R_x(pi) = -i sigma_x": true,
+        "R_y(pi) = -i sigma_y": true,
+        "R_z(pi) = -i sigma_z": true
+      }
+    },
+    "T15_tensor_products": {
+      "pass": true,
+      "detail": {
+        "count": 16,
+        "all_4x4": true
+      }
+    },
+    "T16_2qubit_basis": {
+      "pass": true,
+      "detail": {
+        "gram_det_nonzero": true,
+        "gram_is_4I": true
+      }
+    },
+    "T17_2qubit_trace_orthogonality": {
+      "pass": true,
+      "detail": {
+        "total_checked": 256,
+        "all_pass": true
+      }
+    },
+    "sympy_cross_validation": {
+      "pass": true,
+      "detail": {
+        "multiplication_table": {
+          "sigma_I * sigma_I": "[[1, 0], [0, 1]]",
+          "sigma_I * sigma_x": "[[0, 1], [1, 0]]",
+          "sigma_I * sigma_y": "[[0, -I], [I, 0]]",
+          "sigma_I * sigma_z": "[[1, 0], [0, -1]]",
+          "sigma_x * sigma_I": "[[0, 1], [1, 0]]",
+          "sigma_x * sigma_x": "[[1, 0], [0, 1]]",
+          "sigma_x * sigma_y": "[[I, 0], [0, -I]]",
+          "sigma_x * sigma_z": "[[0, -1], [1, 0]]",
+          "sigma_y * sigma_I": "[[0, -I], [I, 0]]",
+          "sigma_y * sigma_x": "[[-I, 0], [0, I]]",
+          "sigma_y * sigma_y": "[[1, 0], [0, 1]]",
+          "sigma_y * sigma_z": "[[0, I], [I, 0]]",
+          "sigma_z * sigma_I": "[[1, 0], [0, -1]]",
+          "sigma_z * sigma_x": "[[0, 1], [-1, 0]]",
+          "sigma_z * sigma_y": "[[0, -I], [-I, 0]]",
+          "sigma_z * sigma_z": "[[1, 0], [0, 1]]"
+        },
+        "involutory": {
+          "sigma_x^2 = I": true,
+          "sigma_y^2 = I": true,
+          "sigma_z^2 = I": true
+        },
+        "[sx,sy] = 2i sz": true,
+        "{sx,sy} = 0": true,
+        "decomposition_identity": true
+      }
+    },
+    "clifford_cross_validation": {
+      "pass": true,
+      "detail": {
+        "e1^2 = 1": true,
+        "e2^2 = 1": true,
+        "e3^2 = 1": true,
+        "{e1,e2} = 0": true,
+        "{e1,e3} = 0": true,
+        "{e2,e3} = 0": true,
+        "e123 is pseudoscalar": true,
+        "clifford_mirrors_pauli_anticommutation": true
+      }
+    },
+    "z3_cross_validation": {
+      "pass": true,
+      "detail": {
+        "sx_sy_eq_i_sz_satisfiable": true,
+        "anticommutator_sx_sy_eq_0_satisfiable": true,
+        "trace_sx_eq_0": true,
+        "det_sx_eq_neg1": true,
+        "sx_squared_neq_I_is_UNSAT": true
+      }
+    }
+  },
+  "negative": {
+    "N01_squared_not_zero": {
+      "pass": true,
+      "detail": {
+        "sigma_x^2 != 0": true,
+        "sigma_y^2 != 0": true,
+        "sigma_z^2 != 0": true
+      }
+    },
+    "N02_not_identity": {
+      "pass": true,
+      "detail": {
+        "sigma_x != I": true,
+        "sigma_y != I": true,
+        "sigma_z != I": true
+      }
+    },
+    "N03_noncommuting": {
+      "pass": true,
+      "detail": {
+        "[sigma_x,sigma_y] != 0": true,
+        "[sigma_x,sigma_z] != 0": true,
+        "[sigma_y,sigma_x] != 0": true,
+        "[sigma_y,sigma_z] != 0": true,
+        "[sigma_z,sigma_x] != 0": true,
+        "[sigma_z,sigma_y] != 0": true
+      }
+    },
+    "N04_products_not_scalar_identity": {
+      "pass": true,
+      "detail": {
+        "sigma_x*sigma_y != c*I": true,
+        "sigma_x*sigma_z != c*I": true,
+        "sigma_y*sigma_x != c*I": true,
+        "sigma_y*sigma_z != c*I": true,
+        "sigma_z*sigma_x != c*I": true,
+        "sigma_z*sigma_y != c*I": true
+      }
+    },
+    "N05_incomplete_basis": {
+      "pass": true,
+      "detail": {
+        "3_elements_insufficient": true,
+        "need_4_for_completeness": true
+      }
+    },
+    "N06_tensor_not_commutative": {
+      "pass": true,
+      "detail": {
+        "sx_x_sy != sy_x_sx": true
+      }
+    },
+    "N07_group_not_abelian": {
+      "pass": true,
+      "detail": {
+        "sx*sy != sy*sx": true
+      }
+    }
+  },
+  "boundary": {
+    "B01_hermiticity": {
+      "pass": true,
+      "detail": {
+        "sigma_x hermitian": true,
+        "sigma_y hermitian": true,
+        "sigma_z hermitian": true,
+        "I hermitian": true
+      }
+    },
+    "B02_unitarity": {
+      "pass": true,
+      "detail": {
+        "sigma_x unitary": true,
+        "sigma_y unitary": true,
+        "sigma_z unitary": true
+      }
+    },
+    "B03_numerical_stability": {
+      "pass": true,
+      "detail": {
+        "sx^1000 = I": true,
+        "1000_multiplications_finite": true
+      }
+    },
+    "B04_tensor_mixed_product": {
+      "pass": true,
+      "detail": {
+        "(sx x I)(I x sz) = sx x sz": true
+      }
+    },
+    "B05_exponential_precision": {
+      "pass": true,
+      "detail": {
+        "exp(i*1e-06*sz) accurate": true,
+        "exp(i*1e-10*sz) accurate": true,
+        "exp(i*1e-14*sz) accurate": true
+      }
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 32,
+    "passed": 32,
+    "failed": 0,
+    "all_pass": true
+  }
+}

@@ -118,10 +118,9 @@ except ImportError:
     SYMPY_OK = False
 
 try:
-    import geomstats
+    import geomstats  # noqa: F401
     import geomstats.backend as gs
-    from geomstats.geometry.spd_matrices import SPDMatrices, SPDMetricAffineInvariant
-    geomstats.setup_logging()
+    from geomstats.geometry.spd_matrices import SPDMatrices, SPDAffineMetric
     TOOL_MANIFEST["geomstats"]["tried"] = True
     TOOL_MANIFEST["geomstats"]["used"] = True
     TOOL_MANIFEST["geomstats"]["reason"] = (
@@ -563,7 +562,7 @@ def run_boundary_tests():
         import geomstats.backend as gs
 
         spd_space  = SPDMatrices(n=2)
-        spd_metric = SPDMetricAffineInvariant(n=2)
+        spd_metric = spd_space.metric  # SPDAffineMetric via equip_with_metric
 
         # Center point: maximally mixed state I/2 (as SPD matrix)
         center = np.array([[0.5, 0.0], [0.0, 0.5]])
@@ -605,17 +604,22 @@ def run_boundary_tests():
                 if step < N_STEPS:
                     rho_u = H @ rho_u @ H.conj().T
 
+            final_dist_ch  = distances[-1]["dist_from_center"]
+            final_dist_uni = unitary_distances[-1]["dist_from_center"]
             geodesic_results[channel_name] = {
                 "gamma": gamma_geo,
                 "initial_dist": distances[0]["dist_from_center"],
-                "final_dist": distances[-1]["dist_from_center"],
+                "final_dist": final_dist_ch,
                 "channel_trajectory": distances,
                 "unitary_baseline_trajectory": unitary_distances,
-                "moves_off_center_faster_than_unitary": (
-                    distances[-1]["dist_from_center"] < unitary_distances[-1]["dist_from_center"]
-                ),
-                "note": "S6 channels (dissipative) converge TOWARD center (I/2); "
-                        "unitary maintains constant geodesic distance from center"
+                "converges_toward_center": final_dist_ch < final_dist_uni,
+                "moves_off_center_faster_than_unitary": final_dist_ch > final_dist_uni,
+                "note": (
+                    "Unitary preserves geodesic distance from I/2 (isometry). "
+                    "Depolarizing converges toward I/2 (fixed point = I/2). "
+                    "Amplitude damping converges toward |0><0| (fixed point), moving AWAY from I/2. "
+                    "Phase damping preserves diagonal (I/2 is fixed: distance unchanged)."
+                )
             }
 
         results["geomstats_geodesic"] = geodesic_results

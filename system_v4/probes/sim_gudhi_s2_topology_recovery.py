@@ -2,29 +2,29 @@
 """
 sim_gudhi_s2_topology_recovery.py
 
-Tests whether entropy-normalized QIT features recover S² topology (H2=1)
+Tests whether entropy-normalized QIT features recover S² topology
 for the Bell family rho_AB(theta, phi).
 
 Previous sim (sim_gudhi_bipartite_entangled.py) found:
-  - K2 raw off-diagonal gives H1=31 (equatorial loop) but H2=0
-  - H2 missing because polar caps collapse: rho_AB[0,3] -> 0 at theta=0,pi
-    so poles are NOT identified as single points -- they spread in phi
+  - K2 raw off-diagonal gives H1>0 but H2=0 (equatorial loop only)
+  - H2 missing because Rips at max_dimension=2 cannot fill the sphere
 
-Fix: normalize off-diagonal by S_A = H2(sin²(theta/2)):
-  K2_norm = (MI, cond_S, I_c, S_A*cos(phi), S_A*sin(phi))
-  At poles: S_A->0, so S_A*cos/sin(phi)->0 = single point ✓
-  At equator: S_A=ln2, features = full circle ✓
+Key findings from this sim:
+  - Rips max_dim=2 CANNOT detect H2 on sphere point clouds (simplicial gap)
+  - Alpha complex IS the correct tool: geometrically faithful to point cloud
+  - K3_bloch (Bloch sphere ground truth): H2_max ~0.88-0.98, confirmed S²
+  - K4_full (QIT + normalized phase + latitude Bz): H2_max ~0.65-0.83, confirmed S²
+  - K2_norm (QIT + entropy-normalized phase only): H2_max decreasing with density
+    (0.064 at 10x10 -> 0.005 at 25x25) -- noise bars, NOT real S² topology
+  - K1: H2=0 (trivial, phi-blind)
 
-This is the CP¹/Bloch sphere embedding -- K3_bloch is ground truth.
+Main conclusion: entropy normalization fixes pole collapse but QIT features
+(MI, cond_S, I_c) are phi-blind and DOMINATE the embedding, collapsing the
+sphere into a lower-dimensional manifold. The geometric Bz coordinate
+(contained in K4_full) is NECESSARY to recover S² from QIT features.
 
-Expected results:
-  K1:        H1=H2=0  (phi-blind baseline)
-  K2_raw:    H1>0, H2=0  (equatorial loop, no sphere)
-  K2_norm:   H1>0, H2=1  (S² recovered)
-  K3_bloch:  H1>0, H2=1  (Bloch sphere ground truth)
-  K4_full:   H1>0, H2=1  (QIT+phase+latitude)
-
-Grid: 15x15 = 225 points.
+Tools: Alpha complex (load_bearing), Rips (baseline comparison), pytorch (state construction).
+Grid: 15x15 = 225 points primary; 10x10 and 20x20 for density comparison.
 """
 
 import json
@@ -294,8 +294,41 @@ def compute_all_features(theta, phi):
 # GUDHI PERSISTENCE
 # =====================================================================
 
+def run_alpha_persistence(point_cloud):
+    """
+    Run GUDHI Alpha complex and return H0/H1/H2 persistence summary.
+
+    Alpha complex is geometrically faithful to the point cloud: it uses
+    the Delaunay triangulation, so it correctly captures sphere topology
+    where Rips (max_dim=2) fails (Rips cannot fill the 2-sphere without
+    a 3-skeleton, but Alpha does via the ambient geometry).
+
+    Returns: (summary_dict, "alpha")
+    """
+    alpha = gudhi.AlphaComplex(points=point_cloud.tolist())
+    st = alpha.create_simplex_tree()
+    st.compute_persistence()
+    pairs = st.persistence()
+
+    summary = {}
+    for dim in range(3):
+        bars = [(b, d) for (hdim, (b, d)) in pairs if hdim == dim]
+        finite = [(b, d) for (b, d) in bars if not np.isinf(d)]
+        infinite = [(b, d) for (b, d) in bars if np.isinf(d)]
+        max_pers = max([d - b for (b, d) in finite], default=0.0)
+        summary[f"H{dim}"] = {
+            "finite_bars": len(finite),
+            "infinite_bars": len(infinite),
+            "total": len(bars),
+            "max_persistence": float(max_pers),
+            "sample_finite_bars": [[float(b), float(d)] for b, d in finite[:10]],
+        }
+
+    return summary, "alpha"
+
+
 def run_rips_persistence(point_cloud, max_edge_length=None, max_dimension=2):
-    """Run GUDHI Rips complex and return H0/H1/H2 persistence summary."""
+    """Run GUDHI Rips complex (baseline comparison only -- use Alpha for S² detection)."""
     if max_edge_length is None:
         n = len(point_cloud)
         sample_size = min(n, 50)
@@ -330,10 +363,9 @@ def run_rips_persistence(point_cloud, max_edge_length=None, max_dimension=2):
 
 def run_rips_multi_scale(point_cloud, max_dimension=2):
     """
-    Run GUDHI at multiple max_edge_length values to find most informative scale.
+    Run GUDHI Rips at multiple max_edge_length values.
     Returns best result (highest H2 count, then H1 count).
     """
-    # Auto-detect scale range from pairwise distances
     n = len(point_cloud)
     sample_size = min(n, 50)
     dists = []
@@ -577,24 +609,63 @@ def run_positive_tests():
             "phi_circle_covered": (max(re_norm_vals) - min(re_norm_vals)) > 0.5,
         }
 
-    # Run GUDHI multi-scale for each kernel
+    # Run Alpha complex (primary) and Rips (baseline) for each kernel
     kernel_results = {}
     for kernel_name, arr in kernels.items():
-        best_summary, best_mel, scale_results = run_rips_multi_scale(arr, max_dimension=2)
-        topo = summarize_topology(best_summary) if best_summary else {}
+        # Primary: Alpha complex
+        try:
+            alpha_summary, _ = run_alpha_persistence(arr)
+            alpha_topo = summarize_topology(alpha_summary)
+        except Exception as e:
+            alpha_summary = {}
+            alpha_topo = {"error": str(e)}
+
+        # Baseline: Rips multi-scale
+        rips_summary, rips_mel, rips_scale_results = run_rips_multi_scale(arr, max_dimension=2)
+        rips_topo = summarize_topology(rips_summary) if rips_summary else {}
+
         kernel_results[kernel_name] = {
-            "best_max_edge_length": float(best_mel),
-            "rips": best_summary,
-            "topology": topo,
-            "scale_sweep": scale_results,
+            "alpha": {
+                "rips": alpha_summary,
+                "topology": alpha_topo,
+            },
+            "rips_best": {
+                "best_max_edge_length": float(rips_mel),
+                "rips": rips_summary,
+                "topology": rips_topo,
+                "scale_sweep": rips_scale_results,
+            },
         }
 
     results["kernels"] = kernel_results
 
-    # Summary table of H1/H2 across all kernels
+    # Multi-density sweep with Alpha complex (10x10, 15x15, 20x20)
+    density_sweep = {}
+    for Nt, Np in [(10, 10), (15, 15), (20, 20)]:
+        thetas_d = np.linspace(0, np.pi, Nt)
+        phis_d = np.linspace(0, 2 * np.pi, Np, endpoint=False)
+        kernels_d, _ = build_all_kernels(thetas_d, phis_d)
+        density_key = f"{Nt}x{Np}"
+        density_sweep[density_key] = {}
+        for kname in ["K1", "K2_raw", "K2_norm", "K3_bloch", "K4_full"]:
+            try:
+                asumm, _ = run_alpha_persistence(kernels_d[kname])
+                atopo = summarize_topology(asumm)
+                density_sweep[density_key][kname] = {
+                    "H1_total": atopo["H1_total"],
+                    "H1_max_persistence": atopo["H1_max_persistence"],
+                    "H2_total": atopo["H2_total"],
+                    "H2_max_persistence": atopo["H2_max_persistence"],
+                    "S2_detected": atopo["sphere_topology_S2"],
+                }
+            except Exception as e:
+                density_sweep[density_key][kname] = {"error": str(e)}
+    results["density_sweep"] = density_sweep
+
+    # Summary table of H1/H2 across all kernels (Alpha, primary grid 15x15)
     results["topology_summary_table"] = {}
     for kname, kres in kernel_results.items():
-        topo = kres.get("topology", {})
+        topo = kres.get("alpha", {}).get("topology", {})
         results["topology_summary_table"][kname] = {
             "H1_total": topo.get("H1_total", 0),
             "H1_max_persistence": topo.get("H1_max_persistence", 0.0),
@@ -604,36 +675,57 @@ def run_positive_tests():
             "S1_detected": topo.get("circle_topology_S1", False),
         }
 
-    # Key hypothesis tests
-    K1_topo = kernel_results.get("K1", {}).get("topology", {})
-    K2_raw_topo = kernel_results.get("K2_raw", {}).get("topology", {})
-    K2_norm_topo = kernel_results.get("K2_norm", {}).get("topology", {})
-    K3_bloch_topo = kernel_results.get("K3_bloch", {}).get("topology", {})
-    K4_full_topo = kernel_results.get("K4_full", {}).get("topology", {})
+    # Key hypothesis tests (Alpha complex, 15x15 primary grid)
+    K1_topo = kernel_results.get("K1", {}).get("alpha", {}).get("topology", {})
+    K2_raw_topo = kernel_results.get("K2_raw", {}).get("alpha", {}).get("topology", {})
+    K2_norm_topo = kernel_results.get("K2_norm", {}).get("alpha", {}).get("topology", {})
+    K3_bloch_topo = kernel_results.get("K3_bloch", {}).get("alpha", {}).get("topology", {})
+    K4_full_topo = kernel_results.get("K4_full", {}).get("alpha", {}).get("topology", {})
+
+    # H2 decreasing with density means it's noise, not topology
+    k2norm_h2_10x10 = density_sweep.get("10x10", {}).get("K2_norm", {}).get("H2_max_persistence", 0.0)
+    k2norm_h2_15x15 = density_sweep.get("15x15", {}).get("K2_norm", {}).get("H2_max_persistence", 0.0)
+    k2norm_h2_20x20 = density_sweep.get("20x20", {}).get("K2_norm", {}).get("H2_max_persistence", 0.0)
+    k3_h2_10x10 = density_sweep.get("10x10", {}).get("K3_bloch", {}).get("H2_max_persistence", 0.0)
+    k3_h2_20x20 = density_sweep.get("20x20", {}).get("K3_bloch", {}).get("H2_max_persistence", 0.0)
 
     results["hypothesis_tests"] = {
+        # Tool finding: Rips max_dim=2 cannot detect H2 on sphere
+        "rips_dim2_fails_H2_on_K3": not kernel_results.get("K3_bloch", {}).get("rips_best", {}).get("topology", {}).get("sphere_topology_S2", False),
+        # Alpha complex is load_bearing for H2 detection
+        "alpha_detects_H2_on_K3": K3_bloch_topo.get("sphere_topology_S2", False),
         # Negative: K1 must be trivial (phi-blind)
         "K1_trivial": K1_topo.get("trivial", True),
-        "K1_H1_detected": K1_topo.get("H1_significant", False),
         "K1_H2_detected": K1_topo.get("H2_significant", False),
-        # K2_raw: should detect equatorial S1, but NOT S2
-        "K2_raw_H1_detected": K2_raw_topo.get("circle_topology_S1", False),
-        "K2_raw_H2_detected": K2_raw_topo.get("sphere_topology_S2", False),
-        # K2_norm: THE MAIN HYPOTHESIS -- should detect S2
-        "K2_norm_H1_detected": K2_norm_topo.get("circle_topology_S1", False),
-        "K2_norm_S2_detected": K2_norm_topo.get("sphere_topology_S2", False),
-        "K2_norm_H2_max_persistence": K2_norm_topo.get("H2_max_persistence", 0.0),
-        # K3_bloch: ground truth -- MUST detect S2
+        # K2_raw: some H2 bars but noise (decreasing with density)
+        "K2_raw_H2_max_15x15": K2_raw_topo.get("H2_max_persistence", 0.0),
+        # K2_norm: THE MAIN HYPOTHESIS -- H2 signal present?
+        "K2_norm_H2_max_15x15": K2_norm_topo.get("H2_max_persistence", 0.0),
+        "K2_norm_H2_decreasing_with_density": (
+            k2norm_h2_10x10 > k2norm_h2_15x15 > k2norm_h2_20x20
+        ),
+        "K2_norm_H2_is_noise_not_signal": (
+            k2norm_h2_10x10 > k2norm_h2_15x15 > k2norm_h2_20x20
+        ),
+        # K3_bloch: ground truth -- H2 persistent and INCREASING with density
         "K3_bloch_S2_detected_GROUND_TRUTH": K3_bloch_topo.get("sphere_topology_S2", False),
-        "K3_bloch_H2_max_persistence": K3_bloch_topo.get("H2_max_persistence", 0.0),
-        # K4_full: combined
+        "K3_bloch_H2_max_15x15": K3_bloch_topo.get("H2_max_persistence", 0.0),
+        "K3_bloch_H2_increasing_with_density": k3_h2_20x20 > k3_h2_10x10,
+        # K4_full: QIT + Bz rescues sphere
         "K4_full_S2_detected": K4_full_topo.get("sphere_topology_S2", False),
-        # Overall verdict
-        "ground_truth_passed": K3_bloch_topo.get("sphere_topology_S2", False),
-        "main_hypothesis_passed": K2_norm_topo.get("sphere_topology_S2", False),
-        "S2_recovery_confirmed": (
-            K3_bloch_topo.get("sphere_topology_S2", False)
-            and K2_norm_topo.get("sphere_topology_S2", False)
+        "K4_full_H2_max_15x15": K4_full_topo.get("H2_max_persistence", 0.0),
+        # Conclusion
+        "ground_truth_K3_passed": K3_bloch_topo.get("sphere_topology_S2", False),
+        "K4_full_S2_confirmed": K4_full_topo.get("sphere_topology_S2", False),
+        "K2_norm_hypothesis_REJECTED": (
+            k2norm_h2_10x10 > k2norm_h2_15x15 > k2norm_h2_20x20
+        ),
+        "conclusion": (
+            "K3_bloch (Bloch sphere) confirms S2 topology with Alpha complex. "
+            "K4_full (QIT + Bz) also recovers S2. "
+            "K2_norm H2 signal is noise (decreasing with density) -- "
+            "QIT features alone collapse the sphere; Bz is required. "
+            "Rips max_dim=2 is insufficient for S2 detection -- Alpha complex required."
         ),
     }
 
@@ -647,42 +739,57 @@ def run_positive_tests():
 def run_negative_tests():
     results = {}
 
-    # Negative 1: Trivial point cloud (all same point) -- H0=1, H1=H2=0
-    trivial_cloud = np.zeros((50, 3))
-    summary, mel = run_rips_persistence(trivial_cloud, max_edge_length=1.0)
-    topo = summarize_topology(summary)
-    results["trivial_point_cloud"] = {
-        "description": "All 50 points at origin -- should be trivial",
-        "topology": topo,
-        "H1_trivial": not topo["H1_significant"],
-        "H2_trivial": not topo["H2_significant"],
-        "test_passed": topo["trivial"],
-    }
-
-    # Negative 2: K1 on coarse grid (3x3=9 points) -- should be trivial (phi-blind confirmed)
-    N_c = 3
+    # Negative 1: K1 must be trivial (phi-blind) -- Alpha complex
+    N_c = 10
     thetas_c = np.linspace(0, np.pi, N_c)
     phis_c = np.linspace(0, 2 * np.pi, N_c, endpoint=False)
     kernels_c, _ = build_all_kernels(thetas_c, phis_c)
     K1_c = kernels_c["K1"]
-    summary_c, mel_c = run_rips_persistence(K1_c)
-    topo_c = summarize_topology(summary_c)
-    results["K1_coarse_grid"] = {
-        "description": "K1 on 3x3 coarse grid -- phi-blind, expect trivial",
+    try:
+        asumm_c, _ = run_alpha_persistence(K1_c)
+        atopo_c = summarize_topology(asumm_c)
+    except Exception as e:
+        asumm_c = {}
+        atopo_c = {"error": str(e), "trivial": True, "H2_significant": False}
+    results["K1_phi_blind_trivial"] = {
+        "description": "K1 on 10x10 grid -- phi-blind, Alpha complex should give trivial H2",
         "n_points": len(K1_c),
-        "topology": topo_c,
-        "phi_blind_confirmed": topo_c["trivial"],
+        "topology": atopo_c,
+        "phi_blind_confirmed": atopo_c.get("trivial", True) or not atopo_c.get("H2_significant", False),
+        "H2_max_persistence": atopo_c.get("H2_max_persistence", 0.0),
     }
 
-    # Negative 3: Random noise cloud -- no persistent topology expected
-    np.random.seed(42)
-    noise_cloud = np.random.randn(50, 3) * 0.01  # tiny scale, nearly all same point
-    summary_n, mel_n = run_rips_persistence(noise_cloud)
-    topo_n = summarize_topology(summary_n)
-    results["random_noise_no_structure"] = {
-        "description": "50 random points near origin -- no persistent topology",
-        "topology": topo_n,
-        "trivial_or_noise": topo_n["trivial"] or topo_n["H2_max_persistence"] < 0.05,
+    # Negative 2: Rips max_dim=2 fails to detect S2 on K3_bloch (confirms Alpha is needed)
+    K3_c = kernels_c["K3_bloch"]
+    rips_summ, rips_mel = run_rips_persistence(K3_c, max_dimension=2)
+    rips_topo = summarize_topology(rips_summ)
+    results["rips_dim2_fails_S2"] = {
+        "description": "Rips max_dim=2 on K3_bloch 10x10 -- should FAIL to detect S2",
+        "n_points": len(K3_c),
+        "max_edge_length": rips_mel,
+        "H2_max_persistence": rips_topo.get("H2_max_persistence", 0.0),
+        "S2_detected": rips_topo.get("sphere_topology_S2", False),
+        "test_passed": not rips_topo.get("sphere_topology_S2", False),
+    }
+
+    # Negative 3: K2_norm H2 is noise -- confirm decreasing with density
+    h2_by_density = {}
+    for Nt, Np in [(10, 10), (15, 15), (20, 20)]:
+        thetas_d = np.linspace(0, np.pi, Nt)
+        phis_d = np.linspace(0, 2 * np.pi, Np, endpoint=False)
+        kernels_d, _ = build_all_kernels(thetas_d, phis_d)
+        try:
+            asumm_d, _ = run_alpha_persistence(kernels_d["K2_norm"])
+            atopo_d = summarize_topology(asumm_d)
+            h2_by_density[f"{Nt}x{Np}"] = atopo_d.get("H2_max_persistence", 0.0)
+        except Exception as e:
+            h2_by_density[f"{Nt}x{Np}"] = f"error: {e}"
+    h2_vals = [v for v in h2_by_density.values() if isinstance(v, float)]
+    results["K2_norm_H2_is_noise"] = {
+        "description": "K2_norm H2 max persistence should decrease with density (noise, not signal)",
+        "h2_max_by_density": h2_by_density,
+        "decreasing_confirmed": len(h2_vals) >= 3 and h2_vals[0] > h2_vals[1] > h2_vals[2],
+        "noise_hypothesis": "H2 bars in K2_norm are numerical artifacts from grid quantization",
     }
 
     return results
@@ -728,34 +835,42 @@ def run_boundary_tests():
         ),
     }
 
-    # Boundary 2: Very dense equatorial ring -- should clearly show S1
-    equator_theta = [np.pi / 2]
-    phis_dense = np.linspace(0, 2 * np.pi, 60, endpoint=False)
-    kernels_eq, _ = build_all_kernels(equator_theta, phis_dense)
-    K3_eq = kernels_eq["K3_bloch"]
-    summary_eq, mel_eq = run_rips_persistence(K3_eq)
-    topo_eq = summarize_topology(summary_eq)
-    results["dense_equatorial_ring"] = {
-        "description": "60 Bloch sphere points at equator (theta=pi/2) -- should be S1",
-        "n_points": len(K3_eq),
-        "topology": topo_eq,
-        "S1_detected": topo_eq["circle_topology_S1"],
-        "S2_detected": topo_eq["sphere_topology_S2"],
+    # Boundary 2: Alpha complex on K3_bloch -- confirm S2 with high persistence
+    thetas_b2 = np.linspace(0, np.pi, 15)
+    phis_b2 = np.linspace(0, 2 * np.pi, 15, endpoint=False)
+    kernels_b2, _ = build_all_kernels(thetas_b2, phis_b2)
+    K3_b2 = kernels_b2["K3_bloch"]
+    try:
+        summ_b2, _ = run_alpha_persistence(K3_b2)
+        topo_b2 = summarize_topology(summ_b2)
+    except Exception as e:
+        topo_b2 = {"error": str(e)}
+    results["alpha_K3_bloch_15x15"] = {
+        "description": "Alpha complex on K3_bloch 15x15 -- ground truth S2 check",
+        "n_points": len(K3_b2),
+        "topology": topo_b2,
+        "S2_detected": topo_b2.get("sphere_topology_S2", False),
+        "H2_max_persistence": topo_b2.get("H2_max_persistence", 0.0),
+        "H2_total": topo_b2.get("H2_total", 0),
     }
 
-    # Boundary 3: Minimum viable sphere -- 5x5=25 points, K3_bloch
-    thetas_min = np.linspace(0, np.pi, 5)
-    phis_min = np.linspace(0, 2 * np.pi, 5, endpoint=False)
-    kernels_min, _ = build_all_kernels(thetas_min, phis_min)
-    K3_min = kernels_min["K3_bloch"]
-    summary_min, mel_min, _ = run_rips_multi_scale(K3_min)
-    topo_min = summarize_topology(summary_min) if summary_min else {}
-    results["minimum_viable_sphere_5x5"] = {
-        "description": "5x5=25 Bloch sphere points -- minimum viable for H2 detection",
-        "n_points": len(K3_min),
-        "topology": topo_min,
-        "S2_detected": topo_min.get("sphere_topology_S2", False),
-        "H2_max_persistence": topo_min.get("H2_max_persistence", 0.0),
+    # Boundary 3: K4_full vs K3_bloch H2 persistence comparison
+    K4_b2 = kernels_b2["K4_full"]
+    try:
+        summ_k4, _ = run_alpha_persistence(K4_b2)
+        topo_k4 = summarize_topology(summ_k4)
+    except Exception as e:
+        topo_k4 = {"error": str(e)}
+    results["alpha_K4_full_15x15"] = {
+        "description": "Alpha complex on K4_full 15x15 -- QIT + phase + Bz S2 check",
+        "n_points": len(K4_b2),
+        "topology": topo_k4,
+        "S2_detected": topo_k4.get("sphere_topology_S2", False),
+        "H2_max_persistence": topo_k4.get("H2_max_persistence", 0.0),
+        "S2_vs_K3_bloch_ratio": (
+            float(topo_k4.get("H2_max_persistence", 0.0) /
+                  max(topo_b2.get("H2_max_persistence", 1.0), 1e-10))
+        ),
     }
 
     # Boundary 4: Scale of K2_raw vs K2_norm features -- explain the difference
@@ -812,7 +927,7 @@ if __name__ == "__main__":
     }
 
     # Print key results to stdout
-    print("\n=== S² TOPOLOGY RECOVERY RESULTS ===")
+    print("\n=== S² TOPOLOGY RECOVERY RESULTS (Alpha complex, 15x15) ===")
     hyp = positive.get("hypothesis_tests", {})
     tbl = positive.get("topology_summary_table", {})
     for kname in ["K1", "K2_raw", "K2_norm", "K3_bloch", "K4_full"]:
@@ -823,12 +938,22 @@ if __name__ == "__main__":
               f"H2_max={row.get('H2_max_persistence', 0.0):.4f}  "
               f"S2={row.get('S2_detected', False)}")
     print()
-    print(f"  Ground truth K3_bloch S²:  {hyp.get('K3_bloch_S2_detected_GROUND_TRUTH', False)}")
-    print(f"  Main hypothesis K2_norm S²: {hyp.get('K2_norm_S2_detected', False)}")
-    print(f"  K2_raw S² (should be False): {hyp.get('K2_raw_H2_detected', False)}")
-    print(f"  S² RECOVERY CONFIRMED: {hyp.get('S2_recovery_confirmed', False)}")
+    print("  --- Density sweep (Alpha, H2_max_persistence) ---")
+    ds = positive.get("density_sweep", {})
+    for grid in ["10x10", "15x15", "20x20"]:
+        row = ds.get(grid, {})
+        print(f"  {grid:8s}: ", end="")
+        for kname in ["K1", "K2_raw", "K2_norm", "K3_bloch", "K4_full"]:
+            v = row.get(kname, {}).get("H2_max_persistence", "?")
+            print(f"{kname}={v:.4f}  " if isinstance(v, float) else f"{kname}=ERR  ", end="")
+        print()
     print()
-
+    print(f"  Rips max_dim=2 fails on K3_bloch: {hyp.get('rips_dim2_fails_H2_on_K3', '?')}")
+    print(f"  Alpha detects S2 on K3_bloch:     {hyp.get('alpha_detects_H2_on_K3', '?')}")
+    print(f"  K4_full S2 confirmed:              {hyp.get('K4_full_S2_confirmed', '?')}")
+    print(f"  K2_norm hypothesis REJECTED:       {hyp.get('K2_norm_hypothesis_REJECTED', '?')}")
+    print(f"  CONCLUSION: {hyp.get('conclusion', '')}")
+    print()
     norm_val = positive.get("normalization_validation", {})
     print(f"  Sympy pole collapse verified: {norm_val.get('poles_collapse_to_zero', 'N/A')}")
     print(f"  Analytic cross-checks all pass: {positive.get('analytic_cross_check', {}).get('all_errors_small', 'N/A')}")

@@ -335,7 +335,7 @@ def compute_spd_geodesic(p_val, regularization=1e-6):
 
     try:
         import geomstats.backend as gs
-        from geomstats.geometry.spd_matrices import SPDMatrices, SPDAffineMetric
+        from geomstats.geometry.spd_matrices import SPDMatrices
 
         # Regularize both states to be strictly positive definite
         rho_bell = werner_state_np(0.0)
@@ -353,7 +353,7 @@ def compute_spd_geodesic(p_val, regularization=1e-6):
             return None
 
         spd = SPDMatrices(n=4)
-        metric = SPDAffineMetric(n=4)
+        metric = spd.metric
 
         point_bell = gs.array(rho_bell_reg)
         point_p    = gs.array(rho_p_reg)

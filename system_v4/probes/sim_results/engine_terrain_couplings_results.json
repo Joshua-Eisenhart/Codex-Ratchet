@@ -1,6 +1,6 @@
 {
   "name": "engine_terrain_couplings",
-  "timestamp": "2026-04-08T07:02:51.277301+00:00",
+  "timestamp": "2026-04-08T07:03:39.002278+00:00",
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -308,10 +308,10 @@
     }
   },
   "negative": {
-    "scrambled_differs": {
-      "trace_distance": 1.734723475976807e-18,
-      "pass": false,
-      "note": "short steps keep state in non-trivial regime where ordering matters"
+    "cross_type_contamination": {
+      "trace_distance": 0.4995117187500003,
+      "pass": true,
+      "note": "mixing generator families from different engine types changes outcome"
     },
     "identity_preserves": {
       "trace_distance": 0.0,
@@ -322,10 +322,10 @@
       "tail_variance": 4.930380657631324e-33,
       "pass": true
     },
-    "reversed_differs": {
-      "trace_distance": 1.734723475976807e-17,
-      "pass": false,
-      "note": "non-commutative operators produce different states under reversal"
+    "subcycle_order_matters": {
+      "trace_distance": 0.011476210865867767,
+      "pass": true,
+      "note": "Ti(z-dephase)+Te(x-dephase) do not commute => subcycle order matters"
     },
     "outer_converges": {
       "trace_distance": 4.529715454672757e-16,
@@ -403,11 +403,11 @@
       "kill_reason": null
     },
     {
-      "token_id": "",
+      "token_id": "E_TERRAIN_NEGATIVES_PASS",
       "sim_spec_id": "S_TERRAIN_NEGATIVES_V1",
-      "status": "KILL",
-      "measured_value": 0.0,
-      "kill_reason": "negative_tests_failed: scrambled_differs, reversed_differs"
+      "status": "PASS",
+      "measured_value": 1.0,
+      "kill_reason": null
     }
   ],
   "classification": "canonical"

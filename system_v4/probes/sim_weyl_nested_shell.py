@@ -8,15 +8,17 @@ the Hopf torus (S³) geometry. Weyl chirality is a PROJECTOR-LEVEL restriction
 are geometrically connected — they touch at ξ=0 — and the combined topology
 is wedge S¹∨S¹ (β0=1, β1=1), NOT two disjoint circles.
 
-CRITICAL CORRECTION (2026-04-08):
-  weyl_spinor_hopf confirmed: ⟨ψ_L|ψ_R⟩ = e^{-iξ}, unit modulus everywhere.
-  Old wrong claim: β0=2 (disconnected). Correct: β0=1 (connected wedge).
-  Chirality separation is algebraic (P_L·P_R=0), not geometric (topology).
+CORRECTIONS (2026-04-08):
+  weyl_spinor_hopf: ⟨ψ_L|ψ_R⟩ = e^{-iξ} (unit modulus everywhere).
+  weyl_two_model_crosscheck: L and R fibers are COINCIDENT in Cl(3) (same S¹,
+  opposite winding). Chirality = orientation (CW vs CCW), NOT position.
+  Combined topology = one S¹ (β0=1, β1=1). The projector claim P_L·P_R=0
+  is algebraic, not topological — and that IS the shell constraint.
 
 Sub-claims tested:
 1. Unconstrained S³ fiber bundle: β0=1, β1=1 (one connected fiber)
 2. After Hopf structure (L-only fiber): β0=1, β1=1 (one connected U(1) circle)
-3. After Weyl chirality (L+R combined): β0=1 (wedge S¹∨S¹, geometrically connected)
+3. After Weyl chirality (L+R combined): β0=1, β1=1 (coincident fibers, one S¹)
 4. z3 UNSAT: no real scalar λ s.t. λ = -λ AND λ ≠ 0 (winding direction impossibility)
 5. geomstats: geodesic between L and R spinors is FINITE (not infinite); touch at ξ=0
 6. sympy: P_L·P_R = 0, (P_L)²=P_L, (P_R)²=P_R (projector orthogonality, load-bearing)

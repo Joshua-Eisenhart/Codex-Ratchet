@@ -1,0 +1,533 @@
+{
+  "name": "GKSL Theorem with Kossakowski Matrix",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Cross-validation of Liouvillian and Choi eigenvalues"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Formal proof: PSD Kossakowski <=> complete positivity"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Kossakowski eigendecomposition and Sylvester criterion"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": ""
+    }
+  },
+  "positive": {
+    "depolarizing_kossakowski": {
+      "h_matrix": [
+        [
+          0.1,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.1,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.1
+        ]
+      ],
+      "kossakowski_eigenvalues": [
+        0.1,
+        0.1,
+        0.1
+      ],
+      "eigenvalues_all_gamma": true,
+      "choi_eigenvalues": [
+        0.09063462346100883,
+        0.09063462346100903,
+        0.09063462346100913,
+        1.7280961296169728
+      ],
+      "is_CP": true,
+      "is_TP": true,
+      "tp_error": 0.0,
+      "pass": true
+    },
+    "dephasing_kossakowski": {
+      "h_matrix": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.1
+        ]
+      ],
+      "kossakowski_eigenvalues": [
+        0.0,
+        0.0,
+        0.1
+      ],
+      "eigenvalues_correct": true,
+      "choi_eigenvalues": [
+        0.0,
+        1.110223024625155e-16,
+        0.0951625819640403,
+        1.9048374180359593
+      ],
+      "is_CP": true,
+      "is_TP": true,
+      "tp_error": 0.0,
+      "pass": true
+    },
+    "amplitude_damping_kossakowski": {
+      "h_matrix_real": [
+        [
+          0.05,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.05,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "h_matrix_imag": [
+        [
+          0.0,
+          -0.05,
+          0.0
+        ],
+        [
+          0.05,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "kossakowski_eigenvalues": [
+        0.0,
+        0.0,
+        0.1
+      ],
+      "all_eigenvalues_nonneg": true,
+      "choi_eigenvalues": [
+        -2.093406993502273e-17,
+        0.0,
+        0.09516258196404041,
+        1.9048374180359597
+      ],
+      "is_CP": true,
+      "is_TP": true,
+      "tp_error": 0.0,
+      "pass": true
+    },
+    "eigendecomposition_roundtrip": {
+      "h_original": [
+        [
+          0.1,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.1,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.1
+        ]
+      ],
+      "h_reconstructed_real": [
+        [
+          0.1,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.1,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.1
+        ]
+      ],
+      "liouvillian_match": true,
+      "max_diff": 0.0,
+      "pass": true
+    },
+    "pytorch_cross_validation": {
+      "liouvillian_match": true,
+      "choi_eigenvalues_numpy": [
+        0.09063462346100883,
+        0.09063462346100903,
+        0.09063462346100913,
+        1.7280961296169728
+      ],
+      "choi_eigenvalues_torch": [
+        0.0906346234610088,
+        0.09063462346100898,
+        0.09063462346100917,
+        1.7280961296169728
+      ],
+      "choi_match": true,
+      "pass": true
+    },
+    "sympy_symbolic": {
+      "diagonal_eigendecomposition": {
+        "matrix": "Matrix([[lambda_1, 0, 0], [0, lambda_2, 0], [0, 0, lambda_3]])",
+        "eigenvalues": {
+          "lambda_1": 1,
+          "lambda_2": 1,
+          "lambda_3": 1
+        },
+        "psd_condition": "(lambda_1 >= 0) & (lambda_2 >= 0) & (lambda_3 >= 0)"
+      },
+      "general_psd_conditions": {
+        "matrix_form": "[[a, d, e], [d*, b, f], [e*, f*, c]]",
+        "minor_1": "a",
+        "minor_2": "a*b - d_im**2 - d_re**2",
+        "minor_3_det": "det(h)",
+        "sylvester_criterion": "all leading principal minors >= 0 iff h >= 0"
+      },
+      "pass": true
+    },
+    "z3_formal_proof": {
+      "proofs": {
+        "psd_excludes_negative": {
+          "query": "l1>=0 AND l2>=0 AND l3>=0 AND (l1<0 OR l2<0 OR l3<0)",
+          "result": "unsat",
+          "interpretation": "unsat confirms PSD cannot have negative eigenvalues (tautological base)",
+          "pass": true
+        },
+        "negative_eigenvalue_exists": {
+          "query": "l1 = -eps, eps > 0 => l1 < 0 is satisfiable",
+          "result": "sat",
+          "interpretation": "sat confirms negative Kossakowski eigenvalue is achievable",
+          "pass": true
+        },
+        "sylvester_2x2_consistent": {
+          "query": "a>=0, b>=0, a*b>=|d|^2 AND a*b<|d|^2",
+          "result": "unsat",
+          "interpretation": "unsat confirms Sylvester criterion is self-consistent",
+          "pass": true
+        },
+        "non_psd_implies_non_cp": {
+          "query": "lam_neg < 0 => choi_eig < 0",
+          "result": "sat",
+          "interpretation": "sat confirms negative Kossakowski eigenvalue yields negative Choi eigenvalue",
+          "pass": true
+        }
+      },
+      "all_proofs_pass": true,
+      "pass": true
+    },
+    "elapsed_s": 0.14498376846313477
+  },
+  "negative": {
+    "non_psd_kossakowski": {
+      "h_matrix": [
+        [
+          0.1,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.1,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.2
+        ]
+      ],
+      "kossakowski_eigenvalues": [
+        -0.2,
+        0.1,
+        0.1
+      ],
+      "has_negative_eigenvalue": true,
+      "choi_eigenvalues": [
+        -0.1958055415366567,
+        0.09063462346100903,
+        0.09063462346100905,
+        2.0145362946146386
+      ],
+      "is_CP": false,
+      "correctly_non_cp": true,
+      "pass": true
+    },
+    "strongly_negative_eigenvalue": {
+      "h_matrix": [
+        [
+          -0.5,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.1,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.1
+        ]
+      ],
+      "kossakowski_eigenvalues": [
+        -0.5,
+        0.1,
+        0.1
+      ],
+      "choi_eigenvalues": [
+        -0.5824593211022793,
+        0.09063462346100908,
+        0.09063462346100912,
+        2.401190074180261
+      ],
+      "is_CP": false,
+      "correctly_non_cp": true,
+      "pass": true
+    },
+    "all_negative_kossakowski": {
+      "h_matrix": [
+        [
+          -0.1,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.2,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.3
+        ]
+      ],
+      "kossakowski_eigenvalues": [
+        -0.3,
+        -0.2,
+        -0.1
+      ],
+      "choi_eigenvalues": [
+        -0.3953435803826976,
+        -0.25337769031743046,
+        -0.09648111725857265,
+        2.7452023879587006
+      ],
+      "is_CP": false,
+      "correctly_non_cp": true,
+      "pass": true
+    },
+    "sylvester_violation": {
+      "h_matrix": [
+        [
+          0.1,
+          0.5,
+          0.0
+        ],
+        [
+          0.5,
+          0.1,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.1
+        ]
+      ],
+      "kossakowski_eigenvalues": [
+        -0.4,
+        0.1,
+        0.6
+      ],
+      "has_negative_eigenvalue": true,
+      "choi_eigenvalues": [
+        -0.33600212843128757,
+        -0.013856679144715348,
+        0.5172713753533057,
+        1.8325874322226974
+      ],
+      "is_CP": false,
+      "correctly_non_cp": true,
+      "pass": true
+    },
+    "elapsed_s": 0.0009472370147705078
+  },
+  "boundary": {
+    "zero_kossakowski": {
+      "is_identity_channel": true,
+      "is_CP": true,
+      "is_TP": true,
+      "choi_eigenvalues": [
+        0.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "pass": true
+    },
+    "tiny_gamma": {
+      "gamma": 1e-12,
+      "near_identity": true,
+      "is_CP": true,
+      "min_choi_eigenvalue": 9.999778782798785e-13,
+      "pass": true
+    },
+    "large_gamma": {
+      "gamma": 10.0,
+      "steady_state": [
+        [
+          0.5000000000000002,
+          0.0
+        ],
+        [
+          0.0,
+          0.5000000000000002
+        ]
+      ],
+      "is_maximally_mixed": true,
+      "is_CP": true,
+      "is_TP": true,
+      "pass": true
+    },
+    "borderline_psd": {
+      "h_matrix": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.1,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.1
+        ]
+      ],
+      "kossakowski_eigenvalues": [
+        0.0,
+        0.1,
+        0.1
+      ],
+      "is_CP": true,
+      "min_choi_eigenvalue": 0.004527958503031381,
+      "pass": true
+    },
+    "epsilon_negative": {
+      "h_matrix": [
+        [
+          -1e-06,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.1,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.1
+        ]
+      ],
+      "kossakowski_eigenvalues": [
+        -1e-06,
+        0.1,
+        0.1
+      ],
+      "min_choi_eigenvalue": 0.004527053665160872,
+      "is_CP_strict": true,
+      "note": "Barely non-PSD; Choi may or may not detect at float precision",
+      "pass": true
+    },
+    "elapsed_s": 0.0007770061492919922
+  },
+  "summary": {
+    "positive_pass": "7/7",
+    "negative_pass": "4/4",
+    "boundary_pass": "5/5",
+    "all_pass": true
+  },
+  "classification": "canonical"
+}

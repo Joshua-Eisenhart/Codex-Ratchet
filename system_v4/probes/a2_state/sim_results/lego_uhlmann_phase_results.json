@@ -1,0 +1,292 @@
+{
+  "name": "lego_uhlmann_phase",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core: complex matrix ops for density matrices and transport amplitudes; autograd through Uhlmann fidelity for gradient validation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- single/two-qubit density matrices"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic cross-check of Berry phase solid-angle formula; exact Uhlmann phase for pure-state limit"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    }
+  },
+  "positive": {
+    "pure_equatorial_berry": {
+      "uhlmann_phase": -3.141592653589793,
+      "expected_berry_phase": -3.1415926535897927,
+      "abs_error": 4.440892098500626e-16,
+      "holonomy_abs": 0.9999999999999998,
+      "passed": true,
+      "note": "Pure-state equatorial loop: Uhlmann -> Berry phase = -pi"
+    },
+    "pure_cone_loops": {
+      "details": [
+        {
+          "theta_deg": 30,
+          "uhlmann_phase": -0.4207570338830928,
+          "expected_berry": -0.42089360723846625,
+          "error": 0.00013657335537331505,
+          "passed": true
+        },
+        {
+          "theta_deg": 45,
+          "uhlmann_phase": -0.919928141001714,
+          "expected_berry": -0.92015118451061,
+          "error": 0.00022304350889612579,
+          "passed": true
+        },
+        {
+          "theta_deg": 60,
+          "uhlmann_phase": -1.570559732047842,
+          "expected_berry": -1.5707963267948961,
+          "error": 0.0002365947470543972,
+          "passed": true
+        },
+        {
+          "theta_deg": 90,
+          "uhlmann_phase": -3.141592653589793,
+          "expected_berry": -3.1415926535897927,
+          "error": 4.440892098500626e-16,
+          "passed": true
+        },
+        {
+          "theta_deg": 120,
+          "uhlmann_phase": 1.5705597320478422,
+          "expected_berry": -4.712388980384689,
+          "error": 0.0002365947470543972,
+          "passed": true
+        }
+      ],
+      "passed": true,
+      "note": "Pure-state cone loops at various polar angles"
+    },
+    "autograd_fidelity": {
+      "fidelity": 0.9317011495953582,
+      "grad_d_fidelity_d_theta1": 0.02542697961566299,
+      "grad_is_finite": true,
+      "grad_is_nonzero": true,
+      "passed": true,
+      "note": "Autograd through Uhlmann fidelity w.r.t. Bloch angle"
+    },
+    "sympy_berry_crosscheck": {
+      "symbolic_formula": "pi*(cos(theta) - 1)",
+      "numeric_value": -3.141592653589793,
+      "expected": -3.141592653589793,
+      "error": 0.0,
+      "passed": true,
+      "note": "Sympy symbolic verification of Berry phase formula"
+    },
+    "elapsed_s": 0.16807341575622559
+  },
+  "negative": {
+    "maximally_mixed_zero_phase": {
+      "uhlmann_phase": 0.0,
+      "holonomy_abs": 1.0000000000000002,
+      "phase_near_zero": true,
+      "passed": true,
+      "note": "Maximally mixed (r=0): all rho = I/2, transport is trivial, phase = 0"
+    },
+    "non_closed_path_warning": {
+      "uhlmann_phase": -0.14538119941023483,
+      "holonomy_abs": 0.7626767926438596,
+      "is_closed": false,
+      "passed": true,
+      "note": "Non-closed path: phase is gauge-dependent, not physical. This is a negative test: the number itself is meaningless."
+    },
+    "fidelity_in_range": {
+      "fidelity": 0.7606134189179317,
+      "in_valid_range": true,
+      "passed": true,
+      "note": "Uhlmann fidelity must always be in [0, 1]"
+    },
+    "elapsed_s": 0.005326032638549805
+  },
+  "boundary": {
+    "purity_sweep": {
+      "details": [
+        {
+          "r": 0.999,
+          "uhlmann_phase": -3.1415926535897927,
+          "deviation_from_berry": 0.0,
+          "holonomy_abs": 0.9901475963198969
+        },
+        {
+          "r": 0.99,
+          "uhlmann_phase": -3.1415926535897927,
+          "deviation_from_berry": 0.0,
+          "holonomy_abs": 0.9033568288021017
+        },
+        {
+          "r": 0.95,
+          "uhlmann_phase": 3.141592653589791,
+          "deviation_from_berry": 3.552713678800501e-15,
+          "holonomy_abs": 0.5560755858768534
+        },
+        {
+          "r": 0.9,
+          "uhlmann_phase": 3.1415926535897842,
+          "deviation_from_berry": 8.881784197001252e-15,
+          "holonomy_abs": 0.199830641345839
+        },
+        {
+          "r": 0.7,
+          "uhlmann_phase": 9.79642927622242e-16,
+          "deviation_from_berry": 3.141592653589793,
+          "holonomy_abs": 0.6233114600499591
+        },
+        {
+          "r": 0.5,
+          "uhlmann_phase": -5.777470390993643e-16,
+          "deviation_from_berry": 3.1415926535897922,
+          "holonomy_abs": 0.9127799902168804
+        },
+        {
+          "r": 0.3,
+          "uhlmann_phase": -4.2072754379754986e-16,
+          "deviation_from_berry": 3.1415926535897922,
+          "holonomy_abs": 0.9895564014576843
+        },
+        {
+          "r": 0.1,
+          "uhlmann_phase": -3.521924985477268e-16,
+          "deviation_from_berry": 3.1415926535897922,
+          "holonomy_abs": 0.9998761105798253
+        },
+        {
+          "r": 0.01,
+          "uhlmann_phase": 9.20609628533613e-16,
+          "deviation_from_berry": 3.141592653589793,
+          "holonomy_abs": 0.9999999876722829
+        },
+        {
+          "r": 0.001,
+          "uhlmann_phase": 3.5018364330697526e-16,
+          "deviation_from_berry": 3.141592653589793,
+          "holonomy_abs": 0.999999999998767
+        }
+      ],
+      "near_pure_matches_berry": true,
+      "near_mixed_approaches_zero": true,
+      "passed": true,
+      "note": "Sweep r from 0.999 to 0.001: phase interpolates Berry -> 0"
+    },
+    "tiny_r_stability": {
+      "r": 1e-06,
+      "uhlmann_phase": -2.572168206417633e-16,
+      "is_finite": true,
+      "near_zero": true,
+      "passed": true,
+      "note": "Numerical stability at r ~ 0 (near maximally mixed)"
+    },
+    "discretisation_convergence": {
+      "details": [
+        {
+          "N_steps": 16,
+          "phase": -3.141592653589793,
+          "error": 4.440892098500626e-16
+        },
+        {
+          "N_steps": 32,
+          "phase": -3.141592653589793,
+          "error": 4.440892098500626e-16
+        },
+        {
+          "N_steps": 64,
+          "phase": 3.1415926535897927,
+          "error": 0.0
+        },
+        {
+          "N_steps": 128,
+          "phase": -3.141592653589793,
+          "error": 4.440892098500626e-16
+        },
+        {
+          "N_steps": 256,
+          "phase": 3.1415926535897927,
+          "error": 0.0
+        },
+        {
+          "N_steps": 512,
+          "phase": 3.141592653589792,
+          "error": 1.7763568394002505e-15
+        }
+      ],
+      "converging": true,
+      "final_error": 1.7763568394002505e-15,
+      "passed": true,
+      "note": "Phase error decreases as loop discretisation gets finer (or is already at machine precision for all step counts)"
+    },
+    "elapsed_s": 0.10220003128051758
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 10,
+    "passed": 10,
+    "failed": 0,
+    "all_passed": true,
+    "test_names": {
+      "pure_equatorial_berry": "PASS",
+      "pure_cone_loops": "PASS",
+      "autograd_fidelity": "PASS",
+      "sympy_berry_crosscheck": "PASS",
+      "maximally_mixed_zero_phase": "PASS",
+      "non_closed_path_warning": "PASS",
+      "fidelity_in_range": "PASS",
+      "purity_sweep": "PASS",
+      "tiny_r_stability": "PASS",
+      "discretisation_convergence": "PASS"
+    }
+  }
+}

@@ -1,0 +1,442 @@
+{
+  "name": "CP^1 projective structure, U(1) fiber, principal bundle P(S^2, U(1))",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core computation: CP^1 Fubini-Study metric via autograd, Berry connection/curvature, Chern number integration, holonomy computation, principal bundle tests"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for CP^1/U(1) projective geometry"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for CP^1/U(1) projective geometry"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for CP^1/U(1) projective geometry"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic cross-validation of Kahler potential, symplectic form, and Fubini-Study metric derivation"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for CP^1/U(1) projective geometry"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for CP^1/U(1) projective geometry"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for CP^1/U(1) projective geometry"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for CP^1/U(1) projective geometry"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for CP^1/U(1) projective geometry"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for CP^1/U(1) projective geometry"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for CP^1/U(1) projective geometry"
+    }
+  },
+  "positive": {
+    "P1_cp1_metric_autograd": {
+      "description": "FS metric from direct formula vs Kahler autograd",
+      "all_pass": true,
+      "max_error": 1.1102230246251565e-16,
+      "samples": 20
+    },
+    "P2_integral_omega_pi": {
+      "description": "int(omega) over CP^1 should equal pi",
+      "numerical_value": 3.14159262774606,
+      "expected": 3.141592653589793,
+      "error": 2.5843732931463137e-08,
+      "pass": true
+    },
+    "P3_berry_connection_curvature": {
+      "description": "Berry connection A_phi and curvature F vs analytic",
+      "all_pass": true,
+      "max_A_error": 0.0,
+      "max_F_error": 0.0,
+      "samples": [
+        {
+          "theta": 0.3,
+          "A_phi": 0.02233175543719701,
+          "A_phi_expected": 0.02233175543719701,
+          "A_error": 0.0,
+          "F": 0.14776010333066977,
+          "F_expected": 0.14776010333066977,
+          "F_error": 0.0,
+          "pass": true
+        },
+        {
+          "theta": 0.7,
+          "A_phi": 0.11757890635775575,
+          "A_phi_expected": 0.11757890635775575,
+          "A_error": 0.0,
+          "F": 0.3221088436188455,
+          "F_expected": 0.3221088436188455,
+          "F_error": 0.0,
+          "pass": true
+        },
+        {
+          "theta": 1.0,
+          "A_phi": 0.22984884706593012,
+          "A_phi_expected": 0.22984884706593012,
+          "A_error": 0.0,
+          "F": 0.42073549240394825,
+          "F_expected": 0.42073549240394825,
+          "F_error": 0.0,
+          "pass": true
+        },
+        {
+          "theta": 1.5,
+          "A_phi": 0.46463139916614854,
+          "A_phi_expected": 0.46463139916614854,
+          "A_error": 0.0,
+          "F": 0.4987474933020272,
+          "F_expected": 0.4987474933020272,
+          "F_error": 0.0,
+          "pass": true
+        },
+        {
+          "theta": 2.0,
+          "A_phi": 0.7080734182735712,
+          "A_phi_expected": 0.7080734182735712,
+          "A_error": 0.0,
+          "F": 0.45464871341284085,
+          "F_expected": 0.45464871341284085,
+          "F_error": 0.0,
+          "pass": true
+        },
+        {
+          "theta": 2.8,
+          "A_phi": 0.971111170334329,
+          "A_phi_expected": 0.971111170334329,
+          "A_error": 0.0,
+          "F": 0.16749407507795255,
+          "F_expected": 0.16749407507795255,
+          "F_error": 0.0,
+          "pass": true
+        }
+      ]
+    },
+    "P4_holonomy_berry_phase": {
+      "description": "Holonomy = exp(-i*Omega/2) via line integral of A",
+      "all_pass": true,
+      "max_integral_error": 6.661338147750939e-16,
+      "samples": [
+        {
+          "theta_cap": 0.5,
+          "solid_angle": 0.7691714484729762,
+          "numerical_A_integral": 0.38458572423648807,
+          "expected_A_integral": 0.3845857242364881,
+          "integral_error": 5.551115123125783e-17,
+          "holonomy_phase": -0.3845857242364881,
+          "expected_phase": -0.3845857242364881,
+          "phase_error": 0.0,
+          "pass": true
+        },
+        {
+          "theta_cap": 1.0,
+          "solid_angle": 2.88836579751364,
+          "numerical_A_integral": 1.4441828987568193,
+          "expected_A_integral": 1.44418289875682,
+          "integral_error": 6.661338147750939e-16,
+          "holonomy_phase": -1.44418289875682,
+          "expected_phase": -1.44418289875682,
+          "phase_error": 0.0,
+          "pass": true
+        },
+        {
+          "theta_cap": 1.0471975511965976,
+          "solid_angle": 3.1415926535897922,
+          "numerical_A_integral": 1.5707963267948963,
+          "expected_A_integral": 1.5707963267948961,
+          "integral_error": 2.220446049250313e-16,
+          "holonomy_phase": -1.5707963267948961,
+          "expected_phase": -1.5707963267948961,
+          "phase_error": 0.0,
+          "pass": true
+        },
+        {
+          "theta_cap": 1.5707963267948966,
+          "solid_angle": 6.283185307179585,
+          "numerical_A_integral": 3.1415926535897927,
+          "expected_A_integral": 3.1415926535897927,
+          "integral_error": 0.0,
+          "holonomy_phase": -3.1415926535897927,
+          "expected_phase": -3.1415926535897927,
+          "phase_error": 0.0,
+          "pass": true
+        },
+        {
+          "theta_cap": 2.0,
+          "solid_angle": 8.897912996201855,
+          "numerical_A_integral": 4.4489564981009275,
+          "expected_A_integral": 4.4489564981009275,
+          "integral_error": 0.0,
+          "holonomy_phase": 1.834228809078659,
+          "expected_phase": -4.4489564981009275,
+          "phase_error": 0.0,
+          "pass": true
+        }
+      ]
+    },
+    "P5_chern_number": {
+      "description": "c_1 = (1/2pi) int F = 1",
+      "chern_numerical": 0.9999999670881555,
+      "curvature_integral": 6.283185100388368,
+      "expected_chern": 1.0,
+      "expected_integral": 6.283185307179586,
+      "error": 3.291184447196116e-08,
+      "pass": true
+    },
+    "P6_hopf_fiber_invariance": {
+      "description": "U(1) action on S^3 preserves base point on S^2",
+      "all_pass": true,
+      "max_error": 3.3306690738754696e-16,
+      "samples": 20
+    },
+    "P7_topological_obstruction": {
+      "description": "Transition function winding != 0 proves no global section",
+      "winding_number": -1,
+      "winding_raw": -1.0,
+      "is_nontrivial": true,
+      "note": "winding != 0 proves no global section exists",
+      "pass": true
+    },
+    "P8_sympy_cross_validation": {
+      "description": "Symbolic verification of Kahler->metric, int(omega)=pi, c_1=1",
+      "kahler_to_metric_match": true,
+      "sympy_integral_omega": 3.141592653589793,
+      "sympy_integral_matches_pi": true,
+      "sympy_chern_number": 1.0,
+      "sympy_chern_equals_1": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_flat_metric_rejected": {
+      "description": "Flat metric g=1 does NOT equal Fubini-Study",
+      "all_pass": true,
+      "note": "At w=0, g_FS=1 so one sample may coincidentally match"
+    },
+    "N2_wrong_curvature_chern": {
+      "description": "Doubled curvature gives c_1=2, not 1",
+      "wrong_chern": 1.9999998171076392,
+      "expected_wrong": 2.0,
+      "pass": true
+    },
+    "N3_trivial_bundle_no_obstruction": {
+      "description": "Constant transition function -> winding=0 -> trivial bundle",
+      "winding": 0.0,
+      "pass": "True"
+    },
+    "N4_wrong_holonomy_formula": {
+      "description": "exp(-i*Omega) != exp(-i*Omega/2): wrong factor rejected",
+      "correct_phase": -1.5707963267948961,
+      "wrong_phase": -3.1415926535897922,
+      "difference": 1.5707963267948961,
+      "pass": true
+    },
+    "N5_unnormalized_state": {
+      "description": "Non-unit state has |psi|^2 != 1",
+      "norm_sq": 4.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_north_pole_metric": {
+      "description": "At w=0 (north pole), g_{ww_bar}=1",
+      "g_value": 1.0,
+      "expected": 1.0,
+      "error": 0.0,
+      "pass": true
+    },
+    "B2_south_pole_metric": {
+      "description": "As |w|->inf (south pole), g->0",
+      "g_value": 9.999999999980001e-25,
+      "expected_near_zero": true,
+      "pass": true
+    },
+    "B3_connection_north_pole": {
+      "description": "A_phi(theta=0) = 0 (no monopole singularity at north)",
+      "A_phi": 0.0,
+      "pass": true
+    },
+    "B4_connection_south_pole": {
+      "description": "A_phi(theta=pi) = 1 (maximal connection at south pole)",
+      "A_phi": 1.0,
+      "expected": 1.0,
+      "error": 0.0,
+      "pass": true
+    },
+    "B5_full_sphere_holonomy": {
+      "description": "Full sphere Omega=4pi -> holonomy=1 (phase wraps to 0)",
+      "holonomy_abs": 1.0,
+      "holonomy_phase": 2.4492935982947064e-16,
+      "pass": true
+    },
+    "B6_equator_holonomy": {
+      "description": "Equator: Omega=2pi, oint A = pi, phase=-pi",
+      "solid_angle": 6.283185307179585,
+      "numerical_A_integral": 3.1415926535897927,
+      "expected_A_integral": 3.1415926535897927,
+      "error": 0.0,
+      "pass": true
+    },
+    "B7_hopf_north_pole": {
+      "description": "(1,0) in S^3 maps to (0,0,1) in S^2 (north pole)",
+      "mapped_point": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "pass": true
+    },
+    "B7_hopf_south_pole": {
+      "description": "(0,1) in S^3 maps to (0,0,-1) in S^2 (south pole)",
+      "mapped_point": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "expected": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "pass": true
+    }
+  },
+  "stacking": {
+    "S1_cp1_matches_s2_metric": {
+      "description": "CP^1 g_{ww_bar} at w=tan(theta/2) equals cos^4(theta/2)",
+      "all_pass": true,
+      "max_error": 2.220446049250313e-16,
+      "samples": [
+        {
+          "theta": 0.3,
+          "|w|": 0.15113521805829508,
+          "g_cp1": 0.9558351964265127,
+          "g_expected_cos4": 0.9558351964265126,
+          "error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "theta": 0.7,
+          "|w|": 0.36502849483042454,
+          "g_cp1": 0.7786669865047744,
+          "g_expected_cos4": 0.7786669865047742,
+          "error": 2.220446049250313e-16,
+          "pass": true
+        },
+        {
+          "theta": 1.0,
+          "|w|": 0.5463024898437905,
+          "g_cp1": 0.5931327983656771,
+          "g_expected_cos4": 0.5931327983656772,
+          "error": 1.1102230246251565e-16,
+          "pass": true
+        },
+        {
+          "theta": 1.5,
+          "|w|": 0.9315964599440724,
+          "g_cp1": 0.2866195387587958,
+          "g_expected_cos4": 0.2866195387587958,
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "theta": 2.0,
+          "|w|": 1.557407724654902,
+          "g_cp1": 0.08522112911847735,
+          "g_expected_cos4": 0.08522112911847735,
+          "error": 0.0,
+          "pass": true
+        },
+        {
+          "theta": 2.5,
+          "|w|": 3.0095696738628313,
+          "g_cp1": 0.009885965409436426,
+          "g_expected_cos4": 0.009885965409436428,
+          "error": 1.734723475976807e-18,
+          "pass": true
+        }
+      ]
+    },
+    "S2_hopf_cp1_coordinate_match": {
+      "description": "CP^1 w=z2/z1 matches tan(theta/2)*e^{i phi}, Hopf recovers Bloch",
+      "all_pass": true,
+      "max_w_error": 8.881784197001252e-16,
+      "max_bloch_error": 3.188872858294072e-16,
+      "samples": 20
+    },
+    "S3_berry_phase_hopf_holonomy": {
+      "description": "Berry phase from A matches Hopf holonomy -Omega/2",
+      "all_pass": true,
+      "samples": [
+        {
+          "theta_cap": 0.5,
+          "solid_angle": 0.7691714484729762,
+          "berry_phase": -0.38458572423648807,
+          "expected": -0.3845857242364881,
+          "error": 5.551115123125783e-17,
+          "pass": true
+        },
+        {
+          "theta_cap": 1.0,
+          "solid_angle": 2.88836579751364,
+          "berry_phase": -1.4441828987568193,
+          "expected": -1.44418289875682,
+          "error": 6.661338147750939e-16,
+          "pass": true
+        },
+        {
+          "theta_cap": 1.5707963267948966,
+          "solid_angle": 6.283185307179585,
+          "berry_phase": -3.1415926535897927,
+          "expected": -3.1415926535897927,
+          "error": 0.0,
+          "pass": true
+        }
+      ]
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 24,
+    "passed": 24,
+    "failed": 0,
+    "all_pass": true
+  }
+}

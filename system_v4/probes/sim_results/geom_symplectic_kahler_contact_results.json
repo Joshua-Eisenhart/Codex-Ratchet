@@ -1,0 +1,191 @@
+{
+  "name": "geom_symplectic_kahler_contact",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core computation: symplectic form via autograd, Hamiltonian flow, Kahler compatibility check, contact form on S3, Hopf projection"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symplectic/Kahler/contact structure probes"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symplectic/Kahler/contact structure probes"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symplectic/Kahler/contact structure probes"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic cross-validation: d(omega)=0 closure, integral of omega over S2, Kahler compatibility identity"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symplectic/Kahler/contact structure probes"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symplectic/Kahler/contact structure probes"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symplectic/Kahler/contact structure probes"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symplectic/Kahler/contact structure probes"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symplectic/Kahler/contact structure probes"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symplectic/Kahler/contact structure probes"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for symplectic/Kahler/contact structure probes"
+    }
+  },
+  "positive": {
+    "symplectic_closure": {
+      "pass": true,
+      "domega_is_zero": true,
+      "reason": "dtheta^dtheta=0 kills the 3-form; grad check confirms df/dtheta=(1/4)cos(theta)",
+      "grad_max_error": 0.0
+    },
+    "symplectic_integral_pi": {
+      "pass": true,
+      "integral": 3.14172185012838,
+      "expected": 3.141592653589793,
+      "abs_error": 0.00012919653858700642
+    },
+    "hamiltonian_z_rotation": {
+      "pass": true,
+      "theta_max_error": 0.0,
+      "phi_max_error": 2.6645352591003757e-15,
+      "expected_angular_speed": 4.0,
+      "flow_description": "uniform z-rotation, theta constant"
+    },
+    "kahler_compatibility": {
+      "pass": true,
+      "g_tt_vs_omega_J_tt_error": 2.7755575615628914e-17,
+      "g_pp_vs_omega_J_pp_error": 0.0,
+      "kahler_identity": "g(u,v) = omega(u, Jv)"
+    },
+    "kahler_J_squared": {
+      "pass": true,
+      "J_squared_minus_I_max_error": 1.1102230246251565e-16
+    },
+    "contact_non_integrability": {
+      "pass": true,
+      "non_integrability_confirmed": true,
+      "alpha_dalpha_min_abs": 1.9999999999999991,
+      "alpha_dalpha_max_abs": 2.000000000000001,
+      "alpha_dalpha_mean_abs": 2.0,
+      "num_points": 500,
+      "reason": "alpha^dalpha nowhere zero => genuine contact structure"
+    },
+    "reeb_field_hopf": {
+      "pass": true,
+      "alpha_R_eq_1_max_error": 4.440892098500626e-16,
+      "dalpha_R_v_max_abs": 2.3314683517128287e-15,
+      "R_tangent_to_S3_max_error": 0.0,
+      "reeb_field": "(-y1, x1, -y2, x2) = Hopf fiber direction"
+    },
+    "hopf_projection": {
+      "pass": true,
+      "fiber_collapse_max_error": 5.551115123125783e-16,
+      "bloch_on_S2_max_error": 4.440892098500626e-16,
+      "reason": "Hopf fiber (U(1) orbits) collapse to single S2 point"
+    },
+    "stacking_symplectic_on_metric": {
+      "pass": true,
+      "metric_det_min": 0.0006229194424611991,
+      "omega_min_abs": 0.02495835416170704,
+      "structures_on_same_manifold": true
+    },
+    "stacking_kahler_triple": {
+      "pass": true,
+      "compatibility": true,
+      "J_squared_minus_I": true,
+      "metric_positive_definite": true,
+      "kahler_verified": true
+    },
+    "stacking_contact_to_symplectic": {
+      "pass": true,
+      "hopf_fiber_correct": true,
+      "contact_genuine": true,
+      "stacking": "contact(S3) -> symplectic(S2) via Hopf projection"
+    },
+    "sympy_closure_integral": {
+      "pass": true,
+      "d_omega_zero": true,
+      "integral_value": "pi",
+      "expected": "pi"
+    },
+    "sympy_kahler_identity": {
+      "pass": true,
+      "g_tt_identity_residual": "0",
+      "g_pp_identity_residual": "0"
+    }
+  },
+  "negative": {
+    "broken_symplectic_degenerate": {
+      "pass": true,
+      "degenerate_form_detected": true,
+      "min_abs_omega_bad": 0.00039058951246750457,
+      "reason": "cos(theta) vanishes at equator => not a valid symplectic form"
+    },
+    "broken_contact_integrable": {
+      "pass": true,
+      "integrable_form_detected": true,
+      "reason": "alpha=x1*dx2 has alpha^dalpha=0 everywhere => integrable, not contact"
+    },
+    "broken_J_not_complex_structure": {
+      "pass": true,
+      "J2_plus_I_max_error": 2.25,
+      "reason": "random matrix fails J^2=-I => not a complex structure"
+    }
+  },
+  "boundary": {
+    "symplectic_at_poles": {
+      "pass": true,
+      "omega_at_north_pole": 2.499999990010493e-13,
+      "omega_at_south_pole": -2.1855695000931186e-08,
+      "coordinate_singularity": true,
+      "reason": "omega coefficient -> 0 at poles is coordinate artifact, not geometric"
+    },
+    "contact_near_fiber": {
+      "pass": true,
+      "dalpha_Rv_at_eps_1e-8": 2.7755575615628914e-16,
+      "reason": "d(alpha)(R, R+eps) -> 0 as eps -> 0, confirming R in ker(d(alpha))"
+    },
+    "kahler_near_poles": {
+      "pass": true,
+      "compatibility_error_near_poles": 0.0,
+      "reason": "Kahler identity holds algebraically even near coordinate singularity"
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 19,
+    "passed": 19,
+    "failed": 0
+  }
+}

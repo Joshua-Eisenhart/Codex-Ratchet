@@ -1,0 +1,225 @@
+{
+  "name": "2-qubit geometry: S^7, CP^3, Segre embedding, concurrence fibration",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd through concurrence, S7 norm, all core computation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph layer not needed for pure geometry"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "proof layer not needed for numerical geometry"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "proof layer not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic verification of Segre concurrence=0"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for S7/CP3 embedding"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "manual embedding preferred for transparency"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant NN not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "no cell complex needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "no persistence needed"
+    }
+  },
+  "positive": {
+    "s7_unit_norm": {
+      "pass": true,
+      "real_dof": 7,
+      "norms_range": [
+        0.9999999999999998,
+        1.0000000000000002
+      ],
+      "detail": "2-qubit pure states live on S^7 in C^4"
+    },
+    "segre_product_concurrence_zero": {
+      "pass": true,
+      "max_concurrence": 7.850462293418876e-17,
+      "detail": "Product states = Segre image => C=0"
+    },
+    "bell_state_concurrence_one": {
+      "pass": true,
+      "concurrences": [
+        0.9999999999999998,
+        0.9999999999999998,
+        0.9999999999999998,
+        0.9999999999999998
+      ],
+      "detail": "All four Bell states have C=1"
+    },
+    "concurrence_distance_relation": {
+      "pass": true,
+      "max_diff": 0.0,
+      "detail": "d_FS(psi, Segre) = acos(sqrt((1+sqrt(1-C^2))/2))"
+    },
+    "cp3_phase_equivalence": {
+      "pass": true,
+      "fs_distances": [
+        2.5809568279517847e-08,
+        2.5809568279517847e-08,
+        2.1073424255447017e-08,
+        2.5809568279517847e-08
+      ],
+      "detail": "CP^3 = S^7/U(1): global phase does not change state"
+    },
+    "quaternionic_hopf_on_s4": {
+      "pass": true,
+      "norms_range": [
+        0.9999999999999994,
+        1.0000000000000002
+      ],
+      "detail": "Hopf image has |q|=1, confirming it lands on S^4"
+    },
+    "local_unitaries_preserve_concurrence": {
+      "pass": true,
+      "max_concurrence_diff": 2.220446049250313e-16,
+      "detail": "SU(2)xSU(2) local unitaries preserve concurrence (SLOCC invariant)"
+    },
+    "concurrence_fiber_5dim": {
+      "pass": true,
+      "max_C_deviation": 7.221947982971599e-06,
+      "n_samples": 30,
+      "detail": "Perturbations orthogonal to grad(C) preserve concurrence (5-dim fiber)"
+    },
+    "segre_overlap_factorisation": {
+      "pass": true,
+      "max_diff": 5.551115123125783e-16,
+      "detail": "|<a1xb1|a2xb2>| = |<a1|a2>|*|<b1|b2>| (Segre isometry)"
+    },
+    "sympy_segre_symbolic": {
+      "concurrence_expression": "0",
+      "is_zero": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "entangled_not_on_segre": {
+      "pass": true,
+      "concurrence": 0.9999999999999998,
+      "detail": "Bell state has C~1, far from Segre variety"
+    },
+    "non_normalised_not_on_s7": {
+      "pass": true,
+      "norm": 2.0,
+      "detail": "Un-normalised vector not on S^7"
+    },
+    "phase_changes_s7_not_cp3": {
+      "pass": true,
+      "s7_distance": 0.6857956149109026,
+      "fs_distance": 0.0,
+      "detail": "Global phase moves on S^7 but not on CP^3"
+    },
+    "generic_state_entangled": {
+      "pass": true,
+      "n_nonzero_of_100": 100,
+      "detail": "Generic random 2-qubit state is entangled (measure-zero product states)"
+    },
+    "concurrence_bounded_0_1": {
+      "pass": true,
+      "detail": "C in [0,1] for all random pure states"
+    },
+    "hopf_non_unit_input": {
+      "pass": true,
+      "q_norm": 5.0,
+      "detail": "Hopf map of non-unit vector leaves S^4"
+    }
+  },
+  "boundary": {
+    "product_to_bell_interpolation": {
+      "pass": true,
+      "C_start": 0.0,
+      "C_end": 1.0,
+      "monotonic": true,
+      "detail": "cos(t)|00> + sin(t)|11> interpolates C from 0 to 1"
+    },
+    "concurrence_autograd": {
+      "pass": true,
+      "concurrence": 0.6630118966402527,
+      "grad_norm": 2.0,
+      "detail": "Autograd through concurrence yields finite nonzero gradient"
+    },
+    "gradient_descent_toward_segre": {
+      "pass": true,
+      "C_initial": 0.5700877125495689,
+      "C_final": 0.045609028753948865,
+      "n_steps": 50,
+      "detail": "Gradient descent on C drives state toward Segre variety (product states)"
+    },
+    "exact_product_precision": {
+      "pass": true,
+      "concurrence": 0.0,
+      "detail": "|01> is exactly on Segre, C should be machine-zero"
+    },
+    "exact_bell_precision": {
+      "pass": true,
+      "concurrence": 0.9999999999999998,
+      "detail": "Bell state |00>+|11> should have C=1 to machine precision"
+    },
+    "hopf_antipodal_product_states": {
+      "pass": true,
+      "dot_product": -1.0,
+      "q_00": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "q_11": [
+        -1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "detail": "|00> and |11> map to antipodal points on S^4"
+    }
+  },
+  "summary": {
+    "total_tests": 22,
+    "passed": 22,
+    "failed": 0,
+    "elapsed_s": 0.099
+  }
+}

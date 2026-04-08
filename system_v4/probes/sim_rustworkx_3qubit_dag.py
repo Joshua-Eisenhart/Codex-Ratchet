@@ -94,6 +94,9 @@ def vn_entropy(rho: "torch.Tensor") -> float:
 
 def partial_trace_3q(rho_ABC: "torch.Tensor", keep: list) -> "torch.Tensor":
     """
+    CANONICAL: use this implementation. Bug in prior version: out_labels was
+    interleaved (b,b',c,c') instead of (b,c,b',c').
+
     Partial trace of a 3-qubit 8×8 density matrix.
     keep: list of subsystem indices to retain, e.g. [0,1] keeps AB, [2] keeps C.
     Qubits are ordered A=0, B=1, C=2, each dim=2.
@@ -102,17 +105,17 @@ def partial_trace_3q(rho_ABC: "torch.Tensor", keep: list) -> "torch.Tensor":
     rho = rho_ABC.reshape(2, 2, 2, 2, 2, 2)
     trace_out = [i for i in range(3) if i not in keep]
 
-    # Trace out by contracting matching indices
-    # We build the einsum string dynamically
-    # Input indices: a b c a' b' c'  (positions 0,1,2,3,4,5)
-    # For each traced-out subsystem i, we set input[i] == input[i+3]
-    in_labels  = list("abcdef")   # a=0,b=1,c=2,a'=3,b'=4,c'=5
-    out_labels = []
-    for k in keep:
-        out_labels.append(in_labels[k])
-        out_labels.append(in_labels[k + 3])
+    # Build einsum with correct output ordering: all ket indices first, then all bra.
+    # Output must be (keep[0], keep[1], ..., keep[0]+3, keep[1]+3, ...)
+    # so that reshape(n, n) gives the correct (2*i+j, 2*i'+j') matrix ordering.
+    # WRONG (prior bug): interleaved (b, b', c, c') per-subsystem pairs
+    # CORRECT:           ket-first  (b, c, b', c') — all kets, then all bras
+    in_labels = list("abcdef")   # a=0,b=1,c=2,a'=3,b'=4,c'=5
+    ket_out = [in_labels[k]     for k in keep]   # e.g. [b, c] for keep=[1,2]
+    bra_out = [in_labels[k + 3] for k in keep]   # e.g. [e, f] for keep=[1,2]
+    out_labels = ket_out + bra_out               # [b,c,e,f] — correct ordering
 
-    # Set trace indices equal
+    # Set trace indices equal (contract traced-out subsystems)
     for t in trace_out:
         in_labels[t + 3] = in_labels[t]
 

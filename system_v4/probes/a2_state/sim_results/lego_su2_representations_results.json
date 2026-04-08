@@ -1,0 +1,506 @@
+{
+  "name": "lego_su2_representations",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Numeric tensor ops: rotation matrices, invariance checks, autograd for matrix element derivatives"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; sympy handles symbolic proofs here"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic CG coefficients, Wigner 3j-symbols, exact rational arithmetic"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "positive": {
+    "dimension_check": {
+      "pass": true,
+      "details": [
+        {
+          "j1": "1/2",
+          "j2": "1/2",
+          "product_dim": 4,
+          "sum_dim": 4,
+          "decomposition": [
+            "j=0.0(d=1)",
+            "j=1.0(d=3)"
+          ],
+          "pass": true
+        },
+        {
+          "j1": "1/2",
+          "j2": "1",
+          "product_dim": 6,
+          "sum_dim": 6,
+          "decomposition": [
+            "j=0.5(d=2)",
+            "j=1.5(d=4)"
+          ],
+          "pass": true
+        },
+        {
+          "j1": "1",
+          "j2": "1",
+          "product_dim": 9,
+          "sum_dim": 9,
+          "decomposition": [
+            "j=0.0(d=1)",
+            "j=1.0(d=3)",
+            "j=2.0(d=5)"
+          ],
+          "pass": true
+        },
+        {
+          "j1": "3/2",
+          "j2": "1/2",
+          "product_dim": 8,
+          "sum_dim": 8,
+          "decomposition": [
+            "j=1.0(d=3)",
+            "j=2.0(d=5)"
+          ],
+          "pass": true
+        },
+        {
+          "j1": "2",
+          "j2": "1",
+          "product_dim": 15,
+          "sum_dim": 15,
+          "decomposition": [
+            "j=1.0(d=3)",
+            "j=2.0(d=5)",
+            "j=3.0(d=7)"
+          ],
+          "pass": true
+        }
+      ]
+    },
+    "half_x_half_cg": {
+      "pass": true,
+      "cg_table": {
+        "<1/2,-1/2;1/2,-1/2|1,-1>": "1",
+        "<1/2,-1/2;1/2,1/2|0,0>": "-sqrt(2)/2",
+        "<1/2,-1/2;1/2,1/2|1,0>": "sqrt(2)/2",
+        "<1/2,1/2;1/2,-1/2|0,0>": "sqrt(2)/2",
+        "<1/2,1/2;1/2,-1/2|1,0>": "sqrt(2)/2",
+        "<1/2,1/2;1/2,1/2|1,1>": "1"
+      },
+      "singlet_coeffs": {
+        "c_ud": 0.7071067811865476,
+        "c_du": -0.7071067811865476,
+        "opposite_sign": true
+      },
+      "triplet_m0_coeffs": {
+        "t_ud": 0.7071067811865476,
+        "t_du": 0.7071067811865476,
+        "same_sign": true
+      },
+      "triplet_extremal": {
+        "t_uu": 1.0,
+        "t_dd": 1.0,
+        "both_one": true
+      }
+    },
+    "cg_unitarity_half_x_half": {
+      "pass": true,
+      "max_row_deviation": 2.220446049250313e-16,
+      "max_col_deviation": 2.220446049250313e-16
+    },
+    "cg_orthogonality_half_x_one": {
+      "pass": true,
+      "max_row_deviation": 1.1102230246251565e-16,
+      "max_col_deviation": 1.1102230246251565e-16,
+      "J_values": [
+        0.5,
+        1.5
+      ],
+      "expected_Js": [
+        0.5,
+        1.5
+      ],
+      "decomposition_correct": true
+    },
+    "singlet_rotational_invariance": {
+      "pass": true,
+      "rotations_tested": 4,
+      "details": [
+        {
+          "axis_angle": [
+            0.5,
+            0,
+            0,
+            1
+          ],
+          "overlap": 1.0000000000000002,
+          "invariant": true
+        },
+        {
+          "axis_angle": [
+            1.2,
+            1,
+            0,
+            0
+          ],
+          "overlap": 0.9999999999999997,
+          "invariant": true
+        },
+        {
+          "axis_angle": [
+            0.7,
+            0,
+            1,
+            0
+          ],
+          "overlap": 0.9999999999999996,
+          "invariant": true
+        },
+        {
+          "axis_angle": [
+            2.1,
+            0.5773502691896258,
+            0.5773502691896258,
+            0.5773502691896258
+          ],
+          "overlap": 0.9999999999999998,
+          "invariant": true
+        }
+      ]
+    },
+    "wigner_3j_cg_relation": {
+      "pass": "True",
+      "details": [
+        {
+          "j1": "1/2",
+          "m1": "1/2",
+          "j2": "1/2",
+          "m2": "-1/2",
+          "J": "0",
+          "M": "0",
+          "cg": 0.7071067811865476,
+          "w3j": 0.7071067811865476,
+          "reconstructed_from_w3j": 0.7071067811865476,
+          "error": 0.0,
+          "pass": "True"
+        },
+        {
+          "j1": "1/2",
+          "m1": "1/2",
+          "j2": "1/2",
+          "m2": "-1/2",
+          "J": "1",
+          "M": "0",
+          "cg": 0.7071067811865476,
+          "w3j": 0.408248290463863,
+          "reconstructed_from_w3j": 0.7071067811865475,
+          "error": 1.1102230246251565e-16,
+          "pass": "True"
+        },
+        {
+          "j1": "1/2",
+          "m1": "1/2",
+          "j2": "1/2",
+          "m2": "1/2",
+          "J": "1",
+          "M": "1",
+          "cg": 1.0,
+          "w3j": -0.5773502691896257,
+          "reconstructed_from_w3j": 0.9999999999999999,
+          "error": 1.1102230246251565e-16,
+          "pass": "True"
+        },
+        {
+          "j1": "1",
+          "m1": "0",
+          "j2": "1",
+          "m2": "0",
+          "J": "0",
+          "M": "0",
+          "cg": -0.5773502691896257,
+          "w3j": -0.5773502691896257,
+          "reconstructed_from_w3j": -0.5773502691896257,
+          "error": 0.0,
+          "pass": "True"
+        },
+        {
+          "j1": "1",
+          "m1": "1",
+          "j2": "1",
+          "m2": "-1",
+          "J": "0",
+          "M": "0",
+          "cg": 0.5773502691896257,
+          "w3j": 0.5773502691896257,
+          "reconstructed_from_w3j": 0.5773502691896257,
+          "error": 0.0,
+          "pass": "True"
+        },
+        {
+          "j1": "1",
+          "m1": "0",
+          "j2": "1",
+          "m2": "0",
+          "J": "2",
+          "M": "0",
+          "cg": 0.816496580927726,
+          "w3j": 0.3651483716701107,
+          "reconstructed_from_w3j": 0.816496580927726,
+          "error": 0.0,
+          "pass": "True"
+        },
+        {
+          "j1": "1/2",
+          "m1": "1/2",
+          "j2": "1",
+          "m2": "0",
+          "J": "3/2",
+          "M": "1/2",
+          "cg": 0.816496580927726,
+          "w3j": 0.408248290463863,
+          "reconstructed_from_w3j": 0.816496580927726,
+          "error": 0.0,
+          "pass": "True"
+        }
+      ]
+    },
+    "wigner_eckart_jz": {
+      "pass": "True",
+      "tests": 14,
+      "details": [
+        {
+          "j": "1/2",
+          "m": "-1/2",
+          "direct": -0.5,
+          "wigner_eckart": -0.49999999999999994,
+          "error": 5.551115123125783e-17,
+          "pass": "True"
+        },
+        {
+          "j": "1/2",
+          "m": "1/2",
+          "direct": 0.5,
+          "wigner_eckart": 0.49999999999999994,
+          "error": 5.551115123125783e-17,
+          "pass": "True"
+        },
+        {
+          "j": "1",
+          "m": "-1",
+          "direct": -1.0,
+          "wigner_eckart": -1.0,
+          "error": 0.0,
+          "pass": "True"
+        },
+        {
+          "j": "1",
+          "m": "0",
+          "direct": 0.0,
+          "wigner_eckart": 0.0,
+          "error": 0.0,
+          "pass": "True"
+        },
+        {
+          "j": "1",
+          "m": "1",
+          "direct": 1.0,
+          "wigner_eckart": 1.0,
+          "error": 0.0,
+          "pass": "True"
+        },
+        {
+          "j": "3/2",
+          "m": "-3/2",
+          "direct": -1.5,
+          "wigner_eckart": -1.5,
+          "error": 0.0,
+          "pass": "True"
+        },
+        {
+          "j": "3/2",
+          "m": "-1/2",
+          "direct": -0.5,
+          "wigner_eckart": -0.49999999999999994,
+          "error": 5.551115123125783e-17,
+          "pass": "True"
+        },
+        {
+          "j": "3/2",
+          "m": "1/2",
+          "direct": 0.5,
+          "wigner_eckart": 0.49999999999999994,
+          "error": 5.551115123125783e-17,
+          "pass": "True"
+        },
+        {
+          "j": "3/2",
+          "m": "3/2",
+          "direct": 1.5,
+          "wigner_eckart": 1.5,
+          "error": 0.0,
+          "pass": "True"
+        },
+        {
+          "j": "2",
+          "m": "-2",
+          "direct": -2.0,
+          "wigner_eckart": -2.0,
+          "error": 0.0,
+          "pass": "True"
+        },
+        {
+          "j": "2",
+          "m": "-1",
+          "direct": -1.0,
+          "wigner_eckart": -1.0,
+          "error": 0.0,
+          "pass": "True"
+        },
+        {
+          "j": "2",
+          "m": "0",
+          "direct": 0.0,
+          "wigner_eckart": 0.0,
+          "error": 0.0,
+          "pass": "True"
+        },
+        {
+          "j": "2",
+          "m": "1",
+          "direct": 1.0,
+          "wigner_eckart": 1.0,
+          "error": 0.0,
+          "pass": "True"
+        },
+        {
+          "j": "2",
+          "m": "2",
+          "direct": 2.0,
+          "wigner_eckart": 2.0,
+          "error": 0.0,
+          "pass": "True"
+        }
+      ]
+    },
+    "cg_unitarity_one_x_one": {
+      "pass": true,
+      "dimension": 9,
+      "max_row_deviation": 2.220446049250313e-16,
+      "max_col_deviation": 2.220446049250313e-16,
+      "J_values": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "decomposition_correct": true
+    },
+    "_elapsed_s": 0.01
+  },
+  "negative": {
+    "cg_zero_wrong_M": {
+      "pass": true,
+      "value": 0.0,
+      "note": "CG must vanish when M != m1+m2"
+    },
+    "cg_zero_invalid_J": {
+      "pass": true,
+      "value": 0.0,
+      "note": "CG must vanish when J outside |j1-j2|..j1+j2"
+    },
+    "triplet_not_invariant": {
+      "pass": true,
+      "overlap": 0.5403023058681397,
+      "note": "Triplet M=0 should NOT be invariant under arbitrary rotation"
+    },
+    "broken_cg_not_unitary": {
+      "pass": true,
+      "max_deviation": 0.1,
+      "note": "Perturbed CG matrix must fail unitarity"
+    },
+    "wrong_dimension_sum": {
+      "pass": true,
+      "wrong_sum": 4,
+      "correct": 9,
+      "note": "Omitting J=2 from 1x1 decomposition gives wrong dimension"
+    }
+  },
+  "boundary": {
+    "tensor_with_trivial_rep": {
+      "pass": true,
+      "note": "j x 0 = j with all CG = 1"
+    },
+    "cg_magnitude_bound": {
+      "pass": true,
+      "note": "|CG| <= 1 for all tested coefficients"
+    },
+    "high_spin_5half_x_5half": {
+      "pass": true,
+      "product_dim": 36,
+      "sum_dim": 36,
+      "unitarity_deviation": 2.220446049250313e-16
+    },
+    "wigner_3j_permutation_symmetry": {
+      "pass": true,
+      "w_123": 0.408248290463863,
+      "w_231": 0.408248290463863,
+      "w_213": 0.408248290463863,
+      "phase": 1.0,
+      "even_perm_ok": true,
+      "odd_perm_ok": true
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "total": 17,
+    "passed": 17,
+    "failed": 0
+  }
+}

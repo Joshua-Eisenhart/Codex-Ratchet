@@ -667,34 +667,50 @@ def run_positive_tests():
         ("CNOT", "mutual_information"),
     ]
     pair_checks = {}
+    negative_control_pairs = [
+        ("z_dephasing", "mutual_information"),
+    ]
+    negative_control_checks = {}
     for a, b in pipeline_pairs:
-        # At least one of (a,b) or (b,a) must share a hyperedge
-        # Check if they have a common hyperedge via the constraint matrix
         a_allowed = check_composition_allowed(a, b, C, fam_node)
-        # z_dephasing and CNOT don't share a direct hyperedge, but
-        # both share hyperedges with density_matrix. The constraint
-        # is that consecutive steps must be *reachable* through the
-        # hypergraph (connected), not necessarily sharing the same edge.
-        pair_checks[f"{a}->{b}"] = a_allowed
+        pair_checks[f"{a}->{b}"] = {
+            "observed": a_allowed,
+            "expected": True,
+            "match": a_allowed is True,
+        }
+
+    for a, b in negative_control_pairs:
+        a_allowed = check_composition_allowed(a, b, C, fam_node)
+        negative_control_checks[f"{a}->{b}"] = {
+            "observed": a_allowed,
+            "expected": False,
+            "match": a_allowed is False,
+        }
 
     # The key constraint: density_matrix connects to both z_dephasing and CNOT
-    # via different hyperedges. This is the multi-way structure XGI captures.
+    # via different hyperedges, while at least one computed non-edge remains disallowed.
     incidence = xgi.incidence_matrix(H, sparse=False)
+    pair_pass = all(item["match"] for item in pair_checks.values())
+    negative_pass = all(item["match"] for item in negative_control_checks.values())
 
     p3 = {
         "pair_checks": pair_checks,
+        "negative_control_checks": negative_control_checks,
         "incidence_matrix_shape": list(incidence.shape),
         "incidence_rank": int(np.linalg.matrix_rank(incidence)),
         "num_hyperedges": H.num_edges,
-        "pass": True,  # Pipeline is valid by construction from hypergraph
+        "all_pairs_allowed": pair_pass,
+        "negative_controls_allowed": negative_pass,
+        "pass": pair_pass and negative_pass,
     }
     results["P3_xgi_constraints_satisfied"] = p3
 
     # ── P4: GUDHI persistence tracked at each step ──────────────────
     persistence = pipe.get_persistence_trace(out["states"])
 
+    ordered_steps = list(persistence.keys())
     p4 = {
-        "steps_tracked": list(persistence.keys()),
+        "steps_tracked": ordered_steps,
         "num_steps": len(persistence),
     }
     # Check that persistence was computed at each step
@@ -702,11 +718,32 @@ def run_positive_tests():
         p4[f"{step_name}_betti"] = pers_data["betti_numbers"]
         p4[f"{step_name}_total_features"] = pers_data["total_features"]
 
-    # After CNOT, topology should differ from before (entanglement changes structure)
-    pre_cnot_features = persistence.get("z_dephasing", {}).get("total_features", 0)
-    post_cnot_features = persistence.get("CNOT", {}).get("total_features", 0)
-    p4["topology_changes_after_cnot"] = pre_cnot_features != post_cnot_features
-    p4["pass"] = len(persistence) >= 2
+    transition_checks = []
+    for prev_step, next_step in zip(ordered_steps, ordered_steps[1:]):
+        prev_data = persistence[prev_step]
+        next_data = persistence[next_step]
+        transition_checks.append(
+            {
+                "from": prev_step,
+                "to": next_step,
+                "betti_changed": prev_data["betti_numbers"] != next_data["betti_numbers"],
+                "feature_count_changed": prev_data["total_features"] != next_data["total_features"],
+            }
+        )
+
+    p4["transition_checks"] = transition_checks
+    p4["topology_changes_detected"] = any(
+        item["betti_changed"] or item["feature_count_changed"]
+        for item in transition_checks
+    )
+    p4["nontrivial_persistence_detected"] = any(
+        len(pers_data["persistence_pairs"]) > 0 for pers_data in persistence.values()
+    )
+    p4["pass"] = (
+        len(persistence) >= 2
+        and p4["nontrivial_persistence_detected"]
+        and p4["topology_changes_detected"]
+    )
     results["P4_gudhi_persistence_tracked"] = p4
 
     # ── P5: TopoNetX cell complex structure ─────────────────────────

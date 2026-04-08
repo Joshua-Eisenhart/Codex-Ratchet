@@ -29,6 +29,21 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": ""},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": "supportive",
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 try:
     import torch
     import torch.nn as nn
@@ -418,6 +433,7 @@ if __name__ == "__main__":
         "name": "torch_quantum_discord",
         "description": "QuantumDiscord: Q(A:B) = I(A:B) - C(A:B), optimize over measurements on A",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive, "negative": negative,
         "boundary": boundary, "sympy_check": sympy_check,
         "classification": "canonical",

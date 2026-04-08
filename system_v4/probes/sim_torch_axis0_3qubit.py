@@ -46,6 +46,26 @@ TOOL_MANIFEST = {
     "gudhi":      {"tried": False, "used": False, "reason": ""},
 }
 
+# Classification of how deeply each tool is integrated into the result.
+# load_bearing  = result materially depends on this tool
+# supportive    = useful cross-check / helper but not decisive
+# decorative    = present only at manifest/import level
+# not_applicable = not used in this sim
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch":   "load_bearing",    # All 3-qubit ops, autograd nabla_eta I_c (7-dim), CNOT gates, partial trace
+    "pyg":       "not_applicable",  # Imported but not used
+    "z3":        "not_applicable",  # Imported but not used
+    "cvc5":      "not_applicable",  # Not used
+    "sympy":     "supportive",      # Symbolic entropy formulas for maximally mixed 3-qubit state -- cross-check
+    "clifford":  "not_applicable",  # Not used
+    "geomstats": "not_applicable",  # Not used
+    "e3nn":      "not_applicable",  # Not used
+    "rustworkx": "not_applicable",  # Imported but not used
+    "xgi":       "not_applicable",  # Not used
+    "toponetx":  "not_applicable",  # Not used
+    "gudhi":     "not_applicable",  # Not used
+}
+
 try:
     import torch
     TOOL_MANIFEST["pytorch"]["tried"] = True
@@ -55,18 +75,21 @@ except ImportError:
 try:
     import torch_geometric  # noqa: F401
     TOOL_MANIFEST["pyg"]["tried"] = True
+    TOOL_MANIFEST["pyg"]["reason"] = "imported but not used -- 3-qubit gradient needs no graph layer"
 except ImportError:
     TOOL_MANIFEST["pyg"]["reason"] = "not installed"
 
 try:
     from z3 import Real, Solver, And, sat  # noqa: F401
     TOOL_MANIFEST["z3"]["tried"] = True
+    TOOL_MANIFEST["z3"]["reason"] = "imported but not used -- no SMT verification in this sim"
 except ImportError:
     TOOL_MANIFEST["z3"]["reason"] = "not installed"
 
 try:
     import cvc5  # noqa: F401
     TOOL_MANIFEST["cvc5"]["tried"] = True
+    TOOL_MANIFEST["cvc5"]["reason"] = "imported but not used"
 except ImportError:
     TOOL_MANIFEST["cvc5"]["reason"] = "not installed"
 
@@ -97,6 +120,7 @@ except ImportError:
 try:
     import rustworkx  # noqa: F401
     TOOL_MANIFEST["rustworkx"]["tried"] = True
+    TOOL_MANIFEST["rustworkx"]["reason"] = "imported but not used -- no DAG ordering needed for 3-qubit gradient sim"
 except ImportError:
     TOOL_MANIFEST["rustworkx"]["reason"] = "not installed"
 
@@ -814,6 +838,7 @@ if __name__ == "__main__":
             "axis_0": "nabla_eta I_c  (7-dim gradient field via autograd)",
         },
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

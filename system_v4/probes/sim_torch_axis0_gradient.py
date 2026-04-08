@@ -52,6 +52,26 @@ TOOL_MANIFEST = {
     "gudhi":      {"tried": False, "used": False, "reason": ""},
 }
 
+# Classification of how deeply each tool is integrated into the result.
+# load_bearing  = result materially depends on this tool
+# supportive    = useful cross-check / helper but not decisive
+# decorative    = present only at manifest/import level
+# not_applicable = not used in this sim
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch":   "load_bearing",    # All differentiable ops: autograd computes nabla_eta I_c (Axis 0)
+    "pyg":       "not_applicable",  # Imported but not used in computation
+    "z3":        "not_applicable",  # Imported but not used in computation
+    "cvc5":      "not_applicable",  # Not used
+    "sympy":     "supportive",      # Symbolic I_c formula and derivative cross-check (not decisive)
+    "clifford":  "not_applicable",  # Not used
+    "geomstats": "supportive",      # SPD manifold distance on rho_B states -- cross-check, not load-bearing
+    "e3nn":      "not_applicable",  # Not used
+    "rustworkx": "not_applicable",  # Imported but not used in computation
+    "xgi":       "not_applicable",  # Not used
+    "toponetx":  "not_applicable",  # Not used
+    "gudhi":     "not_applicable",  # Not used
+}
+
 try:
     import torch
     import torch.nn as nn
@@ -62,18 +82,21 @@ except ImportError:
 try:
     import torch_geometric  # noqa: F401
     TOOL_MANIFEST["pyg"]["tried"] = True
+    TOOL_MANIFEST["pyg"]["reason"] = "imported but not used -- gradient field needs no graph layer"
 except ImportError:
     TOOL_MANIFEST["pyg"]["reason"] = "not installed"
 
 try:
     from z3 import Real, Solver, And, sat  # noqa: F401
     TOOL_MANIFEST["z3"]["tried"] = True
+    TOOL_MANIFEST["z3"]["reason"] = "imported but not used -- no SMT verification in this sim"
 except ImportError:
     TOOL_MANIFEST["z3"]["reason"] = "not installed"
 
 try:
     import cvc5  # noqa: F401
     TOOL_MANIFEST["cvc5"]["tried"] = True
+    TOOL_MANIFEST["cvc5"]["reason"] = "imported but not used"
 except ImportError:
     TOOL_MANIFEST["cvc5"]["reason"] = "not installed"
 
@@ -104,6 +127,7 @@ except ImportError:
 try:
     import rustworkx  # noqa: F401
     TOOL_MANIFEST["rustworkx"]["tried"] = True
+    TOOL_MANIFEST["rustworkx"]["reason"] = "imported but not used -- no DAG ordering needed for gradient sim"
 except ImportError:
     TOOL_MANIFEST["rustworkx"]["reason"] = "not installed"
 
@@ -995,6 +1019,7 @@ if __name__ == "__main__":
             "axis_0": "nabla_eta I_c  (gradient field via autograd)",
         },
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

@@ -2,13 +2,66 @@
 
 | Field | Value |
 |-------|-------|
-| last_verified | 2026-04-07 |
-| status | Machine-generated from repo scan. All counts are grep-verified. |
+| last_verified | 2026-04-08 |
+| status | Hybrid surface. The detailed lists below are preserved from the older full recursive scan; the top summary now includes a newer sim-like controller scan. |
 | scope | `system_v4/probes/` (all .py files, recursive) and `system_v4/probes/a2_state/sim_results/` (all .json files) |
 | total_py_files | 11,242 |
 | total_json_results | 577 (561 non-history + 16 history) |
 
 ---
+
+## Current Truth
+
+The older full recursive scan below is still useful as a broad repo inventory,
+but it is no longer the best picture of current simulation reality.
+
+For current controller work, the more useful view is the sim-like subset:
+- files beginning with `sim_`
+- files beginning with `axis0_`
+- files beginning with `validate_`
+
+### 2026-04-08 sim-like controller scan
+
+This spot audit covered `425` sim-like probe files.
+
+| Tool | Detected in sim-like files | Read |
+|------|---------------------------:|------|
+| torch | 134 | heavily present |
+| sympy | 102 | heavily present |
+| z3 | 100 | heavily present |
+| clifford | 82 | strong geometry presence |
+| rustworkx | 64 | present, but often in broad all-tools files |
+| geomstats | 59 | present, seam depth still mixed |
+| gudhi | 59 | present, seam depth still mixed |
+| e3nn | 55 | present, seam depth still mixed |
+| xgi | 55 | present, seam depth still mixed |
+| torch_geometric / pyg | 55 | present, seam depth still mixed |
+| cvc5 | 54 | present, but still underused as a proving engine |
+| toponetx | 3 | underused outlier |
+
+Interpretation:
+- the stack is broader than this doc previously said
+- import presence alone is not enough to prove deep usage
+- the recent bridge / `Phi0` seam is still underintegrated with proof/graph tools
+- `TopoNetX` is now the clearest graph/topology underuse case
+
+---
+
+## Bridge / Phi0 Seam Note
+
+Recent bridge / `Phi0` files now do a much better job on:
+- classification
+- tool manifests
+- positive / negative / boundary structure
+
+But many of them are still:
+- numeric-first
+- numpy-first
+- graph/proof-light
+
+So the main repo problem has changed:
+- it is no longer "tools missing from the stack"
+- it is now "tools present in the repo but not yet load-bearing in the newest seam work"
 
 ## Import Usage (across .py files in system_v4/probes/)
 

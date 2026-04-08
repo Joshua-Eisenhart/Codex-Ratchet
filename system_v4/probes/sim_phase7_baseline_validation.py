@@ -3,14 +3,17 @@
 Phase 7 Baseline Validation -- Falsification Protocol
 
 Systematic comparison of all 28 irreducible torch modules against numpy baselines.
-Tests 4 disconfirmation criteria from PYTORCH_RATCHET_BUILD_PLAN.md:
+Tests 4 disconfirmation criteria from PYTORCH_RATCHET_BUILD_PLAN.md.
+Current limitation: the graph-topology criterion is only implemented on an
+explicit topology subset, not yet across all 28 families.
 
   1. Gradient triviality: autograd vs finite-difference
   2. Graph topology independence: chain vs star vs parallel
   3. Forward sufficiency: forward-only rejection vs backward selection
   4. Substrate equivalence: torch vs numpy on 100 random states
 
-If ALL 4 show null across ALL 28 families -> PyTorch claim is falsified.
+If all tested criteria show null on their covered families, the claim weakens.
+Full falsification still requires complete criterion coverage, especially for C2.
 This is the honest test. No bias toward confirming or denying.
 
 Classification: canonical
@@ -40,6 +43,26 @@ TOOL_MANIFEST = {
     "xgi": {"tried": False, "used": False, "reason": ""},
     "toponetx": {"tried": False, "used": False, "reason": ""},
     "gudhi": {"tried": False, "used": False, "reason": ""},
+}
+
+# Classification of how deeply each tool is integrated into the result.
+# load_bearing  = result materially depends on this tool
+# supportive    = useful cross-check / helper but not decisive
+# decorative    = present only at manifest/import level
+# not_applicable = not used in this sim
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch":   "load_bearing",    # All 28 torch modules; autograd gradient test; graph topology test; substrate equivalence
+    "pyg":       "not_applicable",  # Not used -- this is a falsification protocol, not a graph sim
+    "z3":        "not_applicable",  # Not used
+    "cvc5":      "not_applicable",  # Not used
+    "sympy":     "not_applicable",  # Not used
+    "clifford":  "not_applicable",  # Not used
+    "geomstats": "not_applicable",  # Not used
+    "e3nn":      "not_applicable",  # Not used
+    "rustworkx": "not_applicable",  # Not used
+    "xgi":       "not_applicable",  # Not used
+    "toponetx":  "not_applicable",  # Not used
+    "gudhi":     "not_applicable",  # Not used
 }
 
 try:
@@ -84,13 +107,54 @@ def random_bloch(rng, r_max=0.95):
 
 
 def random_2q_density(rng):
-    """Random 4x4 density matrix via partial trace of random pure state."""
+    """Random 4x4 density matrix from a proper partial trace.
+
+    Sample a random pure state on two qubits plus a 2D environment,
+    then trace out the environment. This produces a bona fide mixed
+    two-qubit state with rank at most 2.
+    """
     psi = rng.randn(8) + 1j * rng.randn(8)
     psi /= np.linalg.norm(psi)
-    psi_4 = psi[:4]  # partial trace approximation: use first 4 components
-    psi_4 /= np.linalg.norm(psi_4)
-    rho = np.outer(psi_4, psi_4.conj())
+
+    # Reshape as a 4 x 2 amplitude matrix for AB x E, then trace out E.
+    psi_ab_e = psi.reshape(4, 2)
+    rho = psi_ab_e @ psi_ab_e.conj().T
+    rho /= np.trace(rho)
     return rho
+
+
+def test_random_2q_density_baseline(rng, n_samples=8, tol=1e-10):
+    """Sanity check that the 2-qubit baseline is an actual mixed state."""
+    purity_values = []
+    min_eigs = []
+    hermitian_errors = []
+    trace_errors = []
+
+    for _ in range(n_samples):
+        rho = random_2q_density(rng)
+        hermitian_errors.append(float(np.max(np.abs(rho - rho.conj().T))))
+        trace_errors.append(float(abs(np.trace(rho) - 1.0)))
+        purity = float(np.real(np.trace(rho @ rho)))
+        purity_values.append(purity)
+        min_eigs.append(float(np.min(np.linalg.eigvalsh(rho))))
+
+    mixed_count = sum(p < 1.0 - 1e-8 for p in purity_values)
+    return {
+        "n_samples": n_samples,
+        "hermitian_max_error": float(max(hermitian_errors)),
+        "trace_max_error": float(max(trace_errors)),
+        "min_eigenvalue_min": float(min(min_eigs)),
+        "purity_min": float(min(purity_values)),
+        "purity_max": float(max(purity_values)),
+        "mixed_count": int(mixed_count),
+        "all_mixed": mixed_count == n_samples,
+        "verdict": "PASS" if (
+            max(hermitian_errors) < tol
+            and max(trace_errors) < tol
+            and min(min_eigs) >= -1e-10
+            and mixed_count == n_samples
+        ) else "FAIL",
+    }
 
 
 def random_pure_state(rng, d=2):
@@ -839,8 +903,8 @@ class TorchQuantumDiscord(nn.Module):
         for p_k, P_k in [(p0, P0), (p1, P1)]:
             if p_k.item() > 1e-12:
                 rho_k = P_k @ rho_AB @ P_k / p_k
-                # Partial trace over B
-                rho_A_k = rho_k[:2, :2] + rho_k[2:, 2:]
+                # Partial trace over B: contract B indices (axis1=1, axis2=3 in (a,b,a',b') reshape)
+                rho_A_k = torch.einsum("ijkj->ik", rho_k.reshape(2, 2, 2, 2))
                 S_cond = S_cond + p_k * self._von_neumann(rho_A_k)
         J = S_A - S_cond
         return mi - J
@@ -1462,11 +1526,13 @@ def test_substrate_equivalence(family_name, registry_entry, rng, n_states=100):
 
 def run_all_tests():
     rng = np.random.RandomState(42)
+    baseline_sanity = test_random_2q_density_baseline(np.random.RandomState(1234))
     registry = build_family_registry(rng)
     family_names = list(registry.keys())
 
     print(f"Phase 7 Baseline Validation: {len(family_names)} families")
     print("=" * 70)
+    print(f"2q baseline sanity: {baseline_sanity['verdict']}")
 
     all_results = OrderedDict()
     criterion_summary = {
@@ -1580,11 +1646,13 @@ def run_all_tests():
         "sensitive_1q": sensitive_1q,
         "sensitive_2q": sensitive_2q,
         "interpretation": (
-            "ALL 4 criteria show null across ALL 28 families. "
-            "PyTorch claim is FALSIFIED: numpy is sufficient for these computations."
+            "All currently tested criteria show null on their covered families. "
+            "This is only a provisional falsification signal because C2 graph-topology "
+            "coverage remains limited to the topology subset."
         ) if all_null else (
             f"{len(sensitive_families)} families show substrate sensitivity. "
             f"PyTorch provides value beyond numpy for: {', '.join(sensitive_families)}. "
+            f"C2 graph-topology coverage currently spans {len(TOPOLOGY_FAMILIES)} families. "
             f"Structural features: "
             f"{'2q families overrepresented' if len(sensitive_2q) > len(sensitive_1q) else '1q families overrepresented' if len(sensitive_1q) > len(sensitive_2q) else 'balanced'}."
         ),
@@ -1599,9 +1667,11 @@ def run_all_tests():
     return {
         "name": "phase7_baseline_validation",
         "phase": "Phase 7",
-        "description": "Systematic falsification protocol: 28 families x 4 disconfirmation criteria",
+        "description": "Systematic falsification protocol: 28 families; C1/C3/C4 full coverage, C2 graph-topology currently limited to a topology subset",
         "date": "2026-04-07",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "baseline_sanity": baseline_sanity,
         "n_families": len(family_names),
         "families_tested": family_names,
         "criterion_summary": verdict_counts,

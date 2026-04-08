@@ -60,6 +60,26 @@ TOOL_MANIFEST = {
     "gudhi":     {"tried": False, "used": False, "reason": "not relevant to this sim"},
 }
 
+# Classification of how deeply each tool is integrated into the result.
+# load_bearing  = result materially depends on this tool
+# supportive    = useful cross-check / helper but not decisive
+# decorative    = present only at manifest/import level
+# not_applicable = not used in this sim
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch":   "load_bearing",    # Core substrate: tensors, autograd, nn.Module, optimization loop
+    "pyg":       "load_bearing",    # HeteroData graph + MessagePassing IS the ratchet dynamics
+    "z3":        "supportive",      # Verifies shell constraint feasibility -- cross-check, not decisive for I_c result
+    "cvc5":      "not_applicable",  # Not used
+    "sympy":     "not_applicable",  # Not used
+    "clifford":  "not_applicable",  # Not used
+    "geomstats": "not_applicable",  # Not used
+    "e3nn":      "not_applicable",  # Not used
+    "rustworkx": "supportive",      # DAG for message passing order verification -- cross-check, not decisive
+    "xgi":       "not_applicable",  # Not used
+    "toponetx":  "not_applicable",  # Not used
+    "gudhi":     "not_applicable",  # Not used
+}
+
 # ── Imports ─────────────────────────────────────────────────────────
 
 try:
@@ -1106,6 +1126,7 @@ if __name__ == "__main__":
     results = {
         "name": "Phase 5/6: Full Ratchet as GNN",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "classification": "canonical",
     }
 

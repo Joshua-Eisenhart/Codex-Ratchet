@@ -51,6 +51,26 @@ TOOL_MANIFEST = {
     "gudhi":     {"tried": True,  "used": True,  "reason": "persistence diagrams as early warning signal -- test 3"},
 }
 
+# Classification of how deeply each tool is integrated into the result.
+# load_bearing  = result materially depends on this tool
+# supportive    = useful cross-check / helper but not decisive
+# decorative    = present only at manifest/import level
+# not_applicable = not used in this sim
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch":   "load_bearing",    # Shared substrate for density matrix ops; removing it kills all 5 tests
+    "pyg":       "not_applicable",  # Not used -- graph layer is rustworkx/xgi
+    "z3":        "not_applicable",  # Not used -- empirical not SMT
+    "cvc5":      "not_applicable",  # Not used
+    "sympy":     "not_applicable",  # Not used
+    "clifford":  "not_applicable",  # Not used
+    "geomstats": "load_bearing",    # Frechet mean on SPD(2) differs from arithmetic mean -- test 4 result depends on it
+    "e3nn":      "load_bearing",    # Wigner-D equivariant channel selector produces different dynamics -- test 5
+    "rustworkx": "load_bearing",    # DAG topo-sort order changes final state vs random order -- test 1
+    "xgi":       "load_bearing",    # Hypergraph forbidden combos change result vs unconstrained -- test 2
+    "toponetx":  "not_applicable",  # Not used
+    "gudhi":     "load_bearing",    # Persistence diagram early-warning differs from post-hoc measurement -- test 3
+}
+
 # =====================================================================
 # Imports
 # =====================================================================
@@ -354,6 +374,7 @@ def test_xgi_hypergraph_constraint():
     # Purity difference: allowed combos vs forbidden combo
     allowed_mean_purities = [allowed_stats[k]["mean_purity"] for k in allowed_stats]
     purity_diff = abs(np.mean(allowed_mean_purities) - forb_mean)
+    purity_signal = purity_diff > 0.02
 
     return {
         "test": "XGI hypergraph constrains allowed channel combinations",
@@ -371,14 +392,17 @@ def test_xgi_hypergraph_constraint():
         "avg_degree_allowed_combos": float(avg_degree_allowed),
         "avg_degree_forbidden_combo": float(avg_degree_forbidden),
         "degree_signal": degree_signal,
+        "purity_signal": purity_signal,
         "purity_diff_allowed_vs_forbidden": float(purity_diff),
-        "load_bearing": is_forbidden and degree_signal,
-        "pass": is_forbidden and degree_signal,
+        "load_bearing": is_forbidden and degree_signal and purity_signal,
+        "pass": is_forbidden and degree_signal and purity_signal,
         "explanation": (
             "The hypergraph encodes which multi-channel combinations are "
             "structurally allowed. Forbidden combos (not sharing a hyperedge) "
-            "have lower average node degree -- the hypergraph topology carries "
-            "constraint information that a flat list of channels cannot express."
+            "have lower average node degree, and the allowed/forbidden sets "
+            "must also separate measurably in purity -- the hypergraph topology "
+            "carries constraint information that a flat list of channels cannot "
+            "express."
         ),
     }
 
@@ -506,11 +530,13 @@ def test_gudhi_persistence_early_warning():
 
     # If correlation < 1.0, then persistence carries ADDITIONAL information
     # beyond what purity alone provides
-    persistence_adds_info = abs(correlation) < 0.999
+    persistence_adds_info = abs(correlation) < 0.95
 
     # Also check: do H1 features exist at all? If yes, persistence sees
     # topological structure that purity is blind to.
     any_h1 = any(f["n_h1_features"] > 0 for f in persistence_features)
+    spread_collapse_ratio = float(spread_sequence[0] / (spread_sequence[-1] + 1e-15))
+    collapse_signal = spread_collapse_ratio > 2.5
 
     return {
         "test": "GUDHI persistence as early warning signal for state cloud collapse",
@@ -521,16 +547,19 @@ def test_gudhi_persistence_early_warning():
         "h1_feature_counts": h1_sequence,
         "h1_deltas": [int(d) for d in h1_deltas],
         "spread_purity_correlation": correlation,
+        "spread_collapse_ratio": spread_collapse_ratio,
         "persistence_adds_info_beyond_purity": persistence_adds_info,
         "h1_features_detected": any_h1,
-        "load_bearing": persistence_adds_info,
-        "pass": persistence_adds_info,
+        "collapse_signal": collapse_signal,
+        "load_bearing": persistence_adds_info and any_h1 and collapse_signal,
+        "pass": persistence_adds_info and any_h1 and collapse_signal,
         "explanation": (
             "Persistence diagrams track the topological shape of the state "
             "cloud (connected components, loops) as channels deform it. "
-            "The spread-purity correlation is < 1.0, meaning persistence "
-            "carries information that purity alone cannot see. H1 features "
-            "detect loops in the point cloud that have no purity analog."
+            "The spread-purity correlation is well below 1, the point cloud "
+            "actually carries H1 structure, and the cloud collapses strongly "
+            "through the cascade. That combination is the early-warning signal; "
+            "purity alone does not certify it."
         ),
     }
 
@@ -1007,6 +1036,7 @@ if __name__ == "__main__":
         "name": "tools_load_bearing -- anti-theater sim",
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "classification": "canonical",
         "positive": positive,
         "negative": negative,

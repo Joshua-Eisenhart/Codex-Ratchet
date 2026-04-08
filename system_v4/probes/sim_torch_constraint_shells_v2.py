@@ -51,6 +51,26 @@ TOOL_MANIFEST = {
     "gudhi":     {"tried": False, "used": False, "reason": ""},
 }
 
+# Classification of how deeply each tool is integrated into the result.
+# load_bearing  = result materially depends on this tool
+# supportive    = useful cross-check / helper but not decisive
+# decorative    = present only at manifest/import level
+# not_applicable = not used in this sim
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch":   "load_bearing",    # All shell projections are nn.Module; Dykstra runs in torch
+    "pyg":       "not_applicable",  # Not used -- shells are torch modules, not a PyG graph
+    "z3":        "load_bearing",    # Verifies converged state satisfies all shells via SMT
+    "cvc5":      "not_applicable",  # Not used -- z3 is sufficient
+    "sympy":     "not_applicable",  # Not used -- computation is torch-native
+    "clifford":  "not_applicable",  # Not used
+    "geomstats": "not_applicable",  # Not used -- shell metrics computed directly in torch
+    "e3nn":      "not_applicable",  # Not used
+    "rustworkx": "load_bearing",    # DAG topological_sort DRIVES projection order; changing DAG changes order
+    "xgi":       "not_applicable",  # Not used
+    "toponetx":  "not_applicable",  # Not used
+    "gudhi":     "load_bearing",    # Rips persistence on Bloch trajectory cloud; Betti stabilization tracked
+}
+
 # ── Imports ─────────────────────────────────────────────────────────
 
 try:
@@ -1232,6 +1252,7 @@ if __name__ == "__main__":
     all_results = {
         "name": "Constraint Shells v2 -- Honest Dykstra + rustworkx + GUDHI + z3",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

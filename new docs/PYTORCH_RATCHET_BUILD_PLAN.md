@@ -19,6 +19,24 @@ Let S0 ⊃ S1 ⊃ S2 ⊃ ... denote nested admissible state sets. Each layer add
 - Operator layers live on top of those shells.
 - The engine runs at the most constrained level where all active shells are simultaneously present.
 
+### Plan preservation note
+
+The build plan must preserve the already-corrected operating order:
+- the two root constraints bind the whole space
+- candidate layers may be nested and simultaneously active
+- the exact final layer order is still open
+- likely candidate layers and likely candidate orders must remain non-canon until tested
+
+That means the build program has two distinct jobs:
+1. simulate each foundational lego independently
+2. simulate which subsets and sequences of layers can actually nest on each other
+
+Concrete preserved examples:
+- density matrices are near-first admissible objects
+- left/right Weyl spinors run on nested Hopf tori
+- flux is a derived candidate family downstream of stagewise differential machinery
+- bridge / cut-state / `Phi0` work comes after the relevant geometry/chirality/delta objects exist
+
 ## The computational claim
 The PyTorch computational graph IS the ratchet.
 
@@ -165,6 +183,21 @@ Goal:
 - each surviving family becomes a `torch.nn.Module`
 - each module exposes parameters, forward maps, and gradients
 - each module is tested against a classical baseline and at least one negative control
+- each module should use the actual stack load-bearing where relevant, not only declare the stack in a manifest
+- backprop is part of the computation, not just a later interpretation
+
+### Hard-way requirement
+
+The PyTorch phase is only aligned with the actual plan if it does the hard work on the real math objects:
+- actual density matrices
+- actual channels / generators
+- actual spinor / torus geometry
+- actual graph / topology structures when those structures are part of the object
+
+Not enough:
+- scalar surrogate losses detached from the object family
+- manifest-only proof / graph declarations
+- compound ranking before the foundations are explicit
 
 Example shape:
 ```python
@@ -252,34 +285,34 @@ All irreducible families from the minimal surviving set (currently 28 per L0-L7 
 
 | # | Irreducible family | Numpy baseline | Baseline? | Torch target | Tools needed | Negative battery | Status |
 |---|---|---|---|---|---|---|---|
-| 1 | density_matrix | sim_pure_lego_density_matrices.py | YES | torch DensityMatrix module | sympy, z3 | negative_density_matrices | NOT STARTED |
-| 2 | purification | sim_pure_lego_density_matrices.py | PARTIAL | torch Purification module | sympy, z3 | negative_density_matrices | NOT STARTED |
-| 3 | z_dephasing | sim_pure_lego_channels_choi_lindblad.py | YES | torch ZDephasing module | z3, clifford | negative_channels | NOT STARTED |
-| 4 | x_dephasing | sim_pure_lego_channels_choi_lindblad.py | YES | torch XDephasing module | z3, clifford | negative_channels | NOT STARTED |
-| 5 | depolarizing | sim_pure_lego_channels_choi_lindblad.py | YES | torch Depolarizing module | z3 | negative_channels | NOT STARTED |
-| 6 | amplitude_damping | sim_pure_lego_channels_choi_lindblad.py | YES | torch AmplitudeDamping module | z3, sympy | negative_channels | NOT STARTED |
-| 7 | phase_damping | sim_pure_lego_channels_choi_lindblad.py | YES | torch PhaseDamping module | z3 | negative_channels | NOT STARTED |
-| 8 | bit_flip | sim_pure_lego_channels_choi_lindblad.py | YES | torch BitFlip module | z3 | negative_channels | NOT STARTED |
-| 9 | phase_flip | sim_pure_lego_channels_choi_lindblad.py | YES | torch PhaseFlip module | z3 | negative_channels | NOT STARTED |
-| 10 | bit_phase_flip | sim_pure_lego_channels_choi_lindblad.py | YES | torch BitPhaseFlip module | z3 | negative_channels | NOT STARTED |
-| 11 | unitary_rotation | sim_pure_lego_channels_choi_lindblad.py | PARTIAL | torch UnitaryRotation module | clifford, sympy | negative_channels | NOT STARTED |
-| 12 | z_measurement | **NONE** | **NO** | torch ZMeasurement module | z3 | negative_channels | NOT STARTED |
-| 13 | CNOT | sim_pure_lego_gates_decompositions.py | YES | torch CNOT module | z3, sympy | negative_entanglement | NOT STARTED |
-| 14 | CZ | sim_pure_lego_gates_decompositions.py | YES | torch CZ module | z3 | negative_entanglement | NOT STARTED |
-| 15 | SWAP | sim_pure_lego_gates_decompositions.py | YES | torch SWAP module | z3 | negative_entanglement | NOT STARTED |
-| 16 | Hadamard | sim_pure_lego_stabilizer_magic.py | YES | torch Hadamard module | z3, clifford | negative_channels | NOT STARTED |
-| 17 | T_gate | sim_pure_lego_stabilizer_magic.py | YES | torch TGate module | z3 | negative_channels | NOT STARTED |
-| 18 | iSWAP | sim_pure_lego_gates_decompositions.py | YES | torch iSWAP module | z3 | negative_entanglement | NOT STARTED |
-| 19 | cartan_kak | sim_pure_lego_gates_decompositions.py | YES | torch CartanKAK module | sympy, clifford | negative_entanglement | NOT STARTED |
-| 20 | eigenvalue_decomposition | sim_pure_lego_density_matrices.py | YES | torch EigenDecomp module | sympy | negative_density_matrices | NOT STARTED |
-| 21 | husimi_q | sim_pure_lego_wigner_quasiprobability.py | YES | torch HusimiQ module | sympy | negative_density_matrices | NOT STARTED |
-| 22 | l1_coherence | sim_pure_lego_majorization_steering_coherence.py | YES | torch L1Coherence module | z3, sympy | negative_entropy_boundaries | NOT STARTED |
-| 23 | relative_entropy_coherence | sim_pure_lego_majorization_steering_coherence.py | YES | torch RECoherence module | z3, sympy | negative_entropy_boundaries | NOT STARTED |
-| 24 | wigner_negativity | sim_pure_lego_wigner_quasiprobability.py | YES | torch WignerNegativity module | sympy | negative_density_matrices | NOT STARTED |
-| 25 | hopf_connection | sim_pure_lego_quaternion_octonion.py | YES | torch HopfConnection module | clifford, toponetx | negative_geometry | NOT STARTED |
-| 26 | chiral_overlap | **NONE** | **NO** | torch ChiralOverlap module | clifford | negative_geometry | NOT STARTED |
-| 27 | mutual_information | sim_pure_lego_all_axes_discord.py | YES | torch MutualInformation module | z3, sympy | negative_entropy_boundaries | NOT STARTED |
-| 28 | quantum_discord | sim_pure_lego_all_axes_discord.py | YES | torch QuantumDiscord module | z3, sympy | negative_entropy_boundaries | NOT STARTED |
+| 1 | density_matrix | sim_pure_lego_density_matrices.py | YES | torch DensityMatrix module | sympy, z3 | negative_density_matrices | PASS 2026-04-08 |
+| 2 | purification | sim_pure_lego_density_matrices.py | PARTIAL | torch Purification module | sympy, z3 | negative_density_matrices | PASS 2026-04-08 |
+| 3 | z_dephasing | sim_pure_lego_channels_choi_lindblad.py | YES | torch ZDephasing module | z3, clifford | negative_channels | PASS 2026-04-08 |
+| 4 | x_dephasing | sim_pure_lego_channels_choi_lindblad.py | YES | torch XDephasing module | z3, clifford | negative_channels | PASS 2026-04-08 |
+| 5 | depolarizing | sim_pure_lego_channels_choi_lindblad.py | YES | torch Depolarizing module | z3 | negative_channels | PASS 2026-04-08 |
+| 6 | amplitude_damping | sim_pure_lego_channels_choi_lindblad.py | YES | torch AmplitudeDamping module | z3, sympy | negative_channels | PASS 2026-04-08 |
+| 7 | phase_damping | sim_pure_lego_channels_choi_lindblad.py | YES | torch PhaseDamping module | z3 | negative_channels | PASS 2026-04-08 |
+| 8 | bit_flip | sim_pure_lego_channels_choi_lindblad.py | YES | torch BitFlip module | z3 | negative_channels | PASS 2026-04-08 |
+| 9 | phase_flip | sim_pure_lego_channels_choi_lindblad.py | YES | torch PhaseFlip module | z3 | negative_channels | PASS 2026-04-08 |
+| 10 | bit_phase_flip | sim_pure_lego_channels_choi_lindblad.py | YES | torch BitPhaseFlip module | z3 | negative_channels | PASS 2026-04-08 |
+| 11 | unitary_rotation | sim_pure_lego_channels_choi_lindblad.py | PARTIAL | torch UnitaryRotation module | clifford, sympy | negative_channels | PASS 2026-04-08 |
+| 12 | z_measurement | **NONE** | **NO** | torch ZMeasurement module | z3 | negative_channels | PASS 2026-04-08 |
+| 13 | CNOT | sim_pure_lego_gates_decompositions.py | YES | torch CNOT module | z3, sympy | negative_entanglement | PASS 2026-04-08 |
+| 14 | CZ | sim_pure_lego_gates_decompositions.py | YES | torch CZ module | z3 | negative_entanglement | PASS 2026-04-08 |
+| 15 | SWAP | sim_pure_lego_gates_decompositions.py | YES | torch SWAP module | z3 | negative_entanglement | PASS 2026-04-08 |
+| 16 | Hadamard | sim_pure_lego_stabilizer_magic.py | YES | torch Hadamard module | z3, clifford | negative_channels | PASS 2026-04-08 |
+| 17 | T_gate | sim_pure_lego_stabilizer_magic.py | YES | torch TGate module | z3 | negative_channels | PASS 2026-04-08 |
+| 18 | iSWAP | sim_pure_lego_gates_decompositions.py | YES | torch iSWAP module | z3 | negative_entanglement | PASS 2026-04-08 |
+| 19 | cartan_kak | sim_pure_lego_gates_decompositions.py | YES | torch CartanKAK module | sympy, clifford | negative_entanglement | PASS 2026-04-08 (16.7s) |
+| 20 | eigenvalue_decomposition | sim_pure_lego_density_matrices.py | YES | torch EigenDecomp module | sympy | negative_density_matrices | PASS 2026-04-08 |
+| 21 | husimi_q | sim_pure_lego_wigner_quasiprobability.py | YES | torch HusimiQ module | sympy | negative_density_matrices | PASS 2026-04-08 |
+| 22 | l1_coherence | sim_pure_lego_majorization_steering_coherence.py | YES | torch L1Coherence module | z3, sympy | negative_entropy_boundaries | PASS 2026-04-08 |
+| 23 | relative_entropy_coherence | sim_pure_lego_majorization_steering_coherence.py | YES | torch RECoherence module | z3, sympy | negative_entropy_boundaries | PASS 2026-04-08 |
+| 24 | wigner_negativity | sim_pure_lego_wigner_quasiprobability.py | YES | torch WignerNegativity module | sympy | negative_density_matrices | PASS 2026-04-08 |
+| 25 | hopf_connection | sim_pure_lego_quaternion_octonion.py | YES | torch HopfConnection module | clifford, toponetx | negative_geometry | PASS 2026-04-08 |
+| 26 | chiral_overlap | **NONE** | **NO** | torch ChiralOverlap module | clifford | negative_geometry | PASS 2026-04-08 |
+| 27 | mutual_information | sim_pure_lego_all_axes_discord.py | YES | torch MutualInformation module | z3, sympy | negative_entropy_boundaries | PASS 2026-04-08 |
+| 28 | quantum_discord | sim_pure_lego_all_axes_discord.py | YES | torch QuantumDiscord module | z3, sympy | negative_entropy_boundaries | PASS 2026-04-08 (C4 bug under fix) |
 
 ## Folder structure
 ```

@@ -8,6 +8,7 @@ Usage:
   2. Rename "TEMPLATE" throughout
   3. Implement positive, negative, and boundary tests
   4. Update TOOL_MANIFEST entries with used=True and reason for each tool
+  5. Record which tools were actually load-bearing for the claim
   5. Run and commit the result JSON
 """
 
@@ -38,6 +39,26 @@ TOOL_MANIFEST = {
     # --- Topology layer ---
     "toponetx": {"tried": False, "used": False, "reason": ""},
     "gudhi": {"tried": False, "used": False, "reason": ""},
+}
+
+# Record actual integration depth, not just import presence.
+# Each entry should be one of:
+# - "load_bearing"  : the result materially depends on this tool
+# - "supportive"    : useful cross-check/helper but not decisive
+# - "decorative"    : present only at manifest/import level (avoid this)
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
 }
 
 # Try importing each tool
@@ -157,6 +178,7 @@ if __name__ == "__main__":
     results = {
         "name": "TEMPLATE -- RENAME THIS",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": run_positive_tests(),
         "negative": run_negative_tests(),
         "boundary": run_boundary_tests(),

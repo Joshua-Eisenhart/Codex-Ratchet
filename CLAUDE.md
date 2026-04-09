@@ -39,7 +39,7 @@ Do not advance to step 6 without evidence from steps 1–5.
 
 | Lane | What it tracks | Current status |
 |---|---|---|
-| Foundation migration | 28 families numpy→torch | C2_graph_topology: 24/28 not tested |
+| Foundation migration | 28 families numpy→torch | C2_graph_topology: 11/28 non-null, 0 mismatches (migration registry still NOT_STARTED) |
 | Seam proof depth | z3/cvc5 load-bearing | Phi0 seam closed 2026-04-08; Axis 6 open |
 | Stack/nesting sims | shell-local→coupling→coexistence | Layer triple catalog done; coupling matrix in progress |
 
@@ -53,7 +53,7 @@ Every canonical sim must:
 - Have `TOOL_MANIFEST` with `tried`, `used`, and non-empty `reason` for every tool
 - Have `TOOL_INTEGRATION_DEPTH` with `"load_bearing"`, `"supportive"`, or `None`
 - Have positive + negative + boundary test sections
-- Use `/opt/homebrew/bin/python3` as interpreter
+- Use interpreter defined in `Makefile` (`PYTHON` var — codex-ratchet env)
 
 At least one tool outside the numeric baseline must be `load_bearing`.
 
@@ -61,7 +61,7 @@ At least one tool outside the numeric baseline must be `load_bearing`.
 
 ## Known Stale State (2026-04-08)
 
-- Phase 7 table: "PASS" = C1/C3/C4 only; C2_graph_topology 24/28 not tested
+- Phase 7 table: "PASS" = C1/C3/C4 only; C2_graph_topology surface consistent (0 mismatches) — migration registry remains NOT_STARTED
 - MIGRATION_REGISTRY.md: shows all 28 NOT_STARTED; torch sims exist
 
 Do not edit these docs to show progress until the code/result gate is satisfied.

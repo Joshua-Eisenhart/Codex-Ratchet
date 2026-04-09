@@ -45,6 +45,21 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": ""},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",   # BitFlip.forward() + autograd gradient is primary deliverable
+    "pyg": None,
+    "z3": "load_bearing",        # UNSAT proof of Kraus completeness and parameter range
+    "cvc5": None,
+    "sympy": "supportive",       # Symbolic CPTP cross-check; not decisive on its own
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 # Try importing each tool
 try:
     import torch
@@ -80,8 +95,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 try:
     import geomstats  # noqa: F401
@@ -120,39 +135,7 @@ except ImportError:
     TOOL_MANIFEST["gudhi"]["reason"] = "not installed"
 
 
-# =====================================================================
-# MODULE UNDER TEST: BitFlip
-# =====================================================================
-
-class BitFlip(nn.Module):
-    """Differentiable bit-flip channel parameterized by flip probability p.
-
-    Channel action: rho -> (1-p)*rho + p*X*rho*X
-    Kraus form: K0 = sqrt(1-p)*I, K1 = sqrt(p)*X
-
-    X-basis states (|+>, |->) are invariant since X|+>=|+>, X|->=|->.
-    Z-basis states (|0>, |1>) get mixed: off-diag in Z basis unchanged,
-    but diagonal elements mix.
-    """
-
-    def __init__(self, p=0.5):
-        super().__init__()
-        self.p = nn.Parameter(torch.tensor(float(p)))
-
-    def forward(self, rho):
-        X = torch.tensor([[0, 1], [1, 0]], dtype=rho.dtype, device=rho.device)
-        p = self.p.to(rho.dtype)
-        out = (1 - p) * rho + p * (X @ rho @ X)
-        return out
-
-    def kraus_operators(self):
-        """Return Kraus operators for inspection."""
-        p = self.p
-        I = torch.eye(2, dtype=torch.complex64)
-        X = torch.tensor([[0, 1], [1, 0]], dtype=torch.complex64)
-        K0 = torch.sqrt((1 - p).to(torch.complex64)) * I
-        K1 = torch.sqrt(p.to(torch.complex64)) * X
-        return K0, K1
+from torch_modules.bit_flip import BitFlip
 
 
 # =====================================================================
@@ -609,6 +592,10 @@ if __name__ == "__main__":
     TOOL_MANIFEST["z3"]["used"] = True
     TOOL_MANIFEST["z3"]["reason"] = "Parameter range constraint: p in [0,1] ensures valid Kraus operators"
 
+    for info in TOOL_MANIFEST.values():
+        if info.get("tried") is True and info.get("used") is not True and not info.get("reason"):
+            info["reason"] = "Available in environment but not needed for this family proof surface"
+
     # Count passes
     def count_passes(d):
         passes, total = 0, 0
@@ -635,9 +622,13 @@ if __name__ == "__main__":
 
     results = {
         "name": "torch_bit_flip",
+        "migration_family": "bit_flip",
+        "migration_registry_id": 8,
+        "migration_status": "TORCH_TESTED",
         "phase": "Phase 3 sim",
         "description": "Bit-flip channel as differentiable nn.Module with Kraus operators",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

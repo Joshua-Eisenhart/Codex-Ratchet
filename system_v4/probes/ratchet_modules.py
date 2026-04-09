@@ -15,8 +15,11 @@ This is a thin re-export layer, not a copy.
 from sim_torch_density_matrix_pilot import DensityMatrix
 
 # --- Channels ---
-from sim_torch_z_dephasing import ZDephasing
-from sim_torch_amplitude_damping import AmplitudeDamping
+from torch_modules.amplitude_damping import AmplitudeDamping
+from torch_modules.bit_flip import BitFlip
+from torch_modules.depolarizing import Depolarizing
+from torch_modules.phase_damping import PhaseDamping
+from torch_modules.z_dephasing import ZDephasing
 
 # --- Gates ---
 from sim_torch_cnot import CNOT
@@ -31,6 +34,9 @@ __all__ = [
     "DensityMatrix",
     "ZDephasing",
     "AmplitudeDamping",
+    "BitFlip",
+    "Depolarizing",
+    "PhaseDamping",
     "CNOT",
     "MutualInformation",
     "partial_trace_A",

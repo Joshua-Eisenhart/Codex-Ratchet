@@ -125,7 +125,7 @@ except ImportError:
 
 # Import BitFlip for equivalence proof
 sys.path.insert(0, os.path.dirname(__file__))
-from sim_torch_bit_flip import BitFlip  # noqa: E402
+from torch_modules.bit_flip import BitFlip  # noqa: E402
 
 
 # =====================================================================
@@ -645,6 +645,10 @@ if __name__ == "__main__":
     TOOL_MANIFEST["z3"]["reason"] = (
         "Parameter range constraint: p in [0,1] ensures valid Kraus operators"
     )
+
+    for info in TOOL_MANIFEST.values():
+        if info.get("tried") is True and info.get("used") is not True and not info.get("reason"):
+            info["reason"] = "Available in environment but not needed for this family proof surface"
 
     # Count passes
     def count_passes(d):

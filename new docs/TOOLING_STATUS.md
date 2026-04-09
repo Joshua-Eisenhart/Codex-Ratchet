@@ -7,7 +7,7 @@ Supersedes: all prior tooling status docs
 
 ## Canonical Interpreter
 
-`/opt/homebrew/bin/python3` — all live skills and probes must use this.
+`/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3` — see Makefile `PYTHON` var for authority.
 
 ---
 
@@ -169,6 +169,26 @@ The actual plan should be:
 6. only then promotion pressure
 
 Step 5 closed. Step 6 (promotion pressure) is the remaining gap.
+
+---
+
+## Overclassification Audit (2026-04-08)
+
+Scanned all `canonical`-classified result JSONs in `system_v4/probes/a2_state/sim_results/`.
+
+**Reclassified to `exploratory_signal` (genuine failures or schema non-compliance):**
+
+| File | Reason |
+|------|--------|
+| `q3_bipartite_analysis_results.json` | `clifford_z_rotor_on_ket0` fails: e3_component=0.0, expected 1.0 |
+| `z3_channel_boundary_theorem_results.json` | `test_single_qubit_boundary_strict` returns SAT, expected UNSAT |
+| `xgi_torch_autograd_results.json` | No per-test status fields; `joint_kill_edges_in_top2_for_L4=false` with unclear pass/fail semantics |
+
+**False positives (not real failures):**
+- Files with `"error": <float>` — these are numerical tolerance fields, not failure flags
+- `torch_constraint_shells_v2`: `z3_verdict: "FAIL"` is z3 correctly rejecting an invalid state (the negative battery test has `status: PASS`)
+
+**Requirements files:** 5 files confirmed present — `requirements-core.txt`, `requirements-dev.txt`, `requirements-runtime.txt`, `requirements-security.txt`, `requirements-sim-stack.txt`. The sim-stack file is the authoritative list for the constraint-admissibility tool stack.
 
 ---
 

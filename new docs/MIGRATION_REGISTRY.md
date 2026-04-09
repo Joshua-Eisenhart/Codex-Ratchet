@@ -5,7 +5,7 @@
 | Field | Value |
 |-------|-------|
 | **last_verified** | 2026-04-08 |
-| **status** | Verified 2026-04-08: NOT_STARTED is correct — no standalone torch module files exist yet. Numpy baselines exist for most families (Baseline sim exists? column is accurate). The PYTORCH_RATCHET_BUILD_PLAN.md Phase 7 "PASS" entries refer to C1/C3/C4 criteria only; C2_graph_topology is 24/28 not tested. |
+| **status** | Verified 2026-04-08: NOT_STARTED is correct — no standalone torch module files exist yet. Numpy baselines exist for most families (Baseline sim exists? column is accurate). The PYTORCH_RATCHET_BUILD_PLAN.md Phase 7 "PASS" entries refer to C1/C3/C4 criteria only; C2_graph_topology: 11/28 non-null, 0 mismatches (per 2026-04-09 audit). |
 | **authority** | This is the authoritative family-level migration registry. ENFORCEMENT_AND_PROCESS_RULES.md defers here for migration state. |
 | **source_of_truth** | PYTORCH_RATCHET_BUILD_PLAN.md defines the 28 irreducible families. This doc tracks their actual migration state against the filesystem. |
 

@@ -1,5 +1,8 @@
 {
   "name": "torch_phase_damping",
+  "migration_family": "phase_damping",
+  "migration_registry_id": 7,
+  "migration_status": "TORCH_TESTED",
   "phase": "Phase 3 sim",
   "description": "Phase damping channel as differentiable nn.Module with Kraus operators",
   "tool_manifest": {
@@ -11,7 +14,7 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "Available in environment but not needed for this family proof surface"
     },
     "z3": {
       "tried": true,
@@ -21,7 +24,7 @@
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "Available in environment but not needed for this family proof surface"
     },
     "sympy": {
       "tried": true,
@@ -31,38 +34,52 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "Available in environment but not needed for this family proof surface"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "Available in environment but not needed for this family proof surface"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "Available in environment but not needed for this family proof surface"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "Available in environment but not needed for this family proof surface"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "Available in environment but not needed for this family proof surface"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "Available in environment but not needed for this family proof surface"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "Available in environment but not needed for this family proof surface"
     }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
   },
   "positive": {
     "P1_element_wise_substrate_match": {

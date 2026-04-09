@@ -51,7 +51,7 @@ These three programs run in parallel. Their progress does NOT aggregate.
 
 | Lane | What it tracks | Current blocker |
 |---|---|---|
-| **Foundation migration** | 28 families numpy → torch | C2_graph_topology: 24/28 not tested |
+| **Foundation migration** | 28 families numpy → torch | C2_graph_topology: 11/28 non-null, 0 mismatches |
 | **Seam proof depth** | z3/cvc5 load-bearing on bridge/Phi0 | CLOSED 2026-04-08 for Phi0; open for Axis 6 |
 | **Stack/nesting sims** | shell-local → coupling → coexistence | coupling sims in progress (2026-04-08) |
 
@@ -116,7 +116,7 @@ Every agent prompt should have these sections in order:
 
 | Doc | Stale claim | Actual state |
 |---|---|---|
-| PYTORCH_RATCHET_BUILD_PLAN.md Phase 7 table | "PASS" for all 28 | C2_graph_topology: 24/28 not tested |
+| PYTORCH_RATCHET_BUILD_PLAN.md Phase 7 table | "PASS" for all 28 | C2_graph_topology: surface consistent, 0 mismatches; migration registry still NOT_STARTED |
 | MIGRATION_REGISTRY.md | all 28 NOT_STARTED | torch sims and result files exist |
 | ENFORCEMENT_AND_PROCESS_RULES.md | "enforcement is aspirational" | partially true — hook exists but not all sims comply |
 

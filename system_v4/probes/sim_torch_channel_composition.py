@@ -84,8 +84,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 try:
     import geomstats  # noqa: F401
@@ -125,10 +125,10 @@ except ImportError:
 
 # Import sibling channel modules
 sys.path.insert(0, os.path.dirname(__file__))
-from sim_torch_z_dephasing import ZDephasing  # noqa: E402
-from sim_torch_amplitude_damping import AmplitudeDamping  # noqa: E402
-from sim_torch_depolarizing import Depolarizing  # noqa: E402
-from sim_torch_bit_flip import BitFlip  # noqa: E402
+from torch_modules.z_dephasing import ZDephasing  # noqa: E402
+from torch_modules.amplitude_damping import AmplitudeDamping  # noqa: E402
+from torch_modules.depolarizing import Depolarizing  # noqa: E402
+from torch_modules.bit_flip import BitFlip  # noqa: E402
 from sim_torch_phase_flip import PhaseFlip  # noqa: E402
 
 

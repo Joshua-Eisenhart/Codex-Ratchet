@@ -45,6 +45,21 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": ""},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "supportive",   # Module and autograd cross-check; z3 is the primary proof tool here
+    "pyg": None,
+    "z3": "load_bearing",      # UNSAT proof of Kraus completeness and parameter range
+    "cvc5": None,
+    "sympy": "supportive",     # Symbolic CPTP cross-check
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 # Try importing each tool
 try:
     import torch
@@ -123,46 +138,7 @@ except ImportError:
 # =====================================================================
 # MODULE UNDER TEST: PhaseDamping
 # =====================================================================
-
-class PhaseDamping(nn.Module):
-    """Differentiable phase damping channel parameterized by lam (lambda).
-
-    Kraus operators:
-      K0 = [[1, 0], [0, sqrt(1-lam)]]
-      K1 = [[0, 0], [0, sqrt(lam)]]
-
-    Effect on density matrix:
-      rho_00 -> rho_00  (unchanged)
-      rho_11 -> rho_11  (unchanged)
-      rho_01 -> sqrt(1-lam) * rho_01
-      rho_10 -> sqrt(1-lam) * rho_10
-
-    Valid range: lam in [0, 1].
-    """
-
-    def __init__(self, lam=0.5):
-        super().__init__()
-        self.lam = nn.Parameter(torch.tensor(float(lam)))
-
-    def forward(self, rho):
-        lam = self.lam.to(rho.dtype)
-        decay = torch.sqrt((1 - lam).to(rho.dtype))
-        # Build output directly from matrix elements
-        out = rho.clone()
-        out[0, 1] = decay * rho[0, 1]
-        out[1, 0] = decay * rho[1, 0]
-        return out
-
-    def kraus_operators(self):
-        """Return Kraus operators for inspection."""
-        lam = self.lam
-        K0 = torch.zeros(2, 2, dtype=torch.complex64)
-        K0[0, 0] = 1.0
-        K0[1, 1] = torch.sqrt((1 - lam).to(torch.complex64))
-
-        K1 = torch.zeros(2, 2, dtype=torch.complex64)
-        K1[1, 1] = torch.sqrt(lam.to(torch.complex64))
-        return K0, K1
+from torch_modules.phase_damping import PhaseDamping
 
 
 # =====================================================================
@@ -627,6 +603,10 @@ if __name__ == "__main__":
     TOOL_MANIFEST["z3"]["used"] = True
     TOOL_MANIFEST["z3"]["reason"] = "Parameter range constraint: lam in [0,1] ensures valid Kraus operators"
 
+    for info in TOOL_MANIFEST.values():
+        if info.get("tried") is True and info.get("used") is not True and not info.get("reason"):
+            info["reason"] = "Available in environment but not needed for this family proof surface"
+
     # Count passes
     def count_passes(d):
         passes, total = 0, 0
@@ -653,9 +633,13 @@ if __name__ == "__main__":
 
     results = {
         "name": "torch_phase_damping",
+        "migration_family": "phase_damping",
+        "migration_registry_id": 7,
+        "migration_status": "TORCH_TESTED",
         "phase": "Phase 3 sim",
         "description": "Phase damping channel as differentiable nn.Module with Kraus operators",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

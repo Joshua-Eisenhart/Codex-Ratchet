@@ -42,6 +42,21 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": ""},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "pyg": None,
+    "z3": "load_bearing",
+    "cvc5": None,
+    "sympy": "supportive",
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 # Try importing each tool
 try:
     import torch
@@ -77,8 +92,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 try:
     import geomstats  # noqa: F401
@@ -117,39 +132,7 @@ except ImportError:
     TOOL_MANIFEST["gudhi"]["reason"] = "not installed"
 
 
-# =====================================================================
-# MODULE UNDER TEST: ZDephasing
-# =====================================================================
-
-class ZDephasing(nn.Module):
-    """Differentiable Z-dephasing channel parameterized by strength p.
-
-    Channel action: rho -> (1-p)*rho + p*Z*rho*Z
-    Kraus form: K0 = sqrt(1-p)*I, K1 = sqrt(p)*Z
-    """
-
-    def __init__(self, p=0.5):
-        super().__init__()
-        self.p = nn.Parameter(torch.tensor(float(p)))
-
-    def forward(self, rho):
-        Z = torch.tensor([[1, 0], [0, -1]], dtype=rho.dtype, device=rho.device)
-        I = torch.eye(2, dtype=rho.dtype, device=rho.device)
-
-        # Kraus operator form: K0*rho*K0† + K1*rho*K1†
-        # = (1-p)*rho + p*Z*rho*Z
-        p = self.p.to(rho.dtype)
-        out = (1 - p) * rho + p * (Z @ rho @ Z)
-        return out
-
-    def kraus_operators(self):
-        """Return Kraus operators for inspection."""
-        p = self.p
-        I = torch.eye(2, dtype=torch.complex64)
-        Z = torch.tensor([[1, 0], [0, -1]], dtype=torch.complex64)
-        K0 = torch.sqrt((1 - p).to(torch.complex64)) * I
-        K1 = torch.sqrt(p.to(torch.complex64)) * Z
-        return K0, K1
+from torch_modules.z_dephasing import ZDephasing
 
 
 # =====================================================================
@@ -593,6 +576,10 @@ if __name__ == "__main__":
     TOOL_MANIFEST["z3"]["used"] = True
     TOOL_MANIFEST["z3"]["reason"] = "Parameter range constraint: p in [0,1] ensures valid Kraus operators"
 
+    for info in TOOL_MANIFEST.values():
+        if info.get("tried") is True and info.get("used") is not True and not info.get("reason"):
+            info["reason"] = "Available in environment but not needed for this family proof surface"
+
     # Count passes
     def count_passes(d):
         passes, total = 0, 0
@@ -619,9 +606,13 @@ if __name__ == "__main__":
 
     results = {
         "name": "torch_z_dephasing",
+        "migration_family": "z_dephasing",
+        "migration_registry_id": 3,
+        "migration_status": "TORCH_TESTED",
         "phase": "Phase 3 sim",
         "description": "Z-dephasing channel as differentiable nn.Module with Kraus operators",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

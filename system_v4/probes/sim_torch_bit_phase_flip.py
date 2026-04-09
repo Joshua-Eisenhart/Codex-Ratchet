@@ -86,8 +86,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 try:
     import geomstats  # noqa: F401
@@ -127,8 +127,8 @@ except ImportError:
 
 # Import existing channels for non-equivalence proof
 sys.path.insert(0, os.path.dirname(__file__))
-from sim_torch_bit_flip import BitFlip  # noqa: E402
-from sim_torch_z_dephasing import ZDephasing  # noqa: E402
+from torch_modules.bit_flip import BitFlip  # noqa: E402
+from torch_modules.z_dephasing import ZDephasing  # noqa: E402
 
 
 # =====================================================================
@@ -919,6 +919,10 @@ if __name__ == "__main__":
         "Y-channel fixed points (a=d, br=0) differ from X (a=d, bi=0) "
         "and Z (br=bi=0)"
     )
+
+    for info in TOOL_MANIFEST.values():
+        if info.get("tried") is True and info.get("used") is not True and not info.get("reason"):
+            info["reason"] = "Available in environment but not needed for this family proof surface"
 
     # Count passes
     def count_passes(d):

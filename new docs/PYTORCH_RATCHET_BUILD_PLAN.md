@@ -37,10 +37,10 @@ Concrete preserved examples:
 - flux is a derived candidate family downstream of stagewise differential machinery
 - bridge / cut-state / `Phi0` work comes after the relevant geometry/chirality/delta objects exist
 
-## The computational claim
-The PyTorch computational graph IS the ratchet.
+## The computational direction
+The PyTorch computational graph is the primary execution carrier for the ratchet build.
 
-Not a tool for simulating the ratchet — the architecture itself.
+Not just a simulator — the graph structure carries the constraint manifold forward and backward.
 
 - Forward pass = exploring the allowed mathematical space.
 - Backward pass = constraints flowing from output back to input, selecting what survives.

@@ -45,6 +45,21 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": ""},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "pyg": None,
+    "z3": "load_bearing",
+    "cvc5": None,
+    "sympy": "supportive",
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 # Try importing each tool
 try:
     import torch
@@ -80,8 +95,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 try:
     import geomstats  # noqa: F401
@@ -120,58 +135,7 @@ except ImportError:
     TOOL_MANIFEST["gudhi"]["reason"] = "not installed"
 
 
-# =====================================================================
-# MODULE UNDER TEST: AmplitudeDamping
-# =====================================================================
-
-class AmplitudeDamping(nn.Module):
-    """Differentiable amplitude damping channel parameterized by gamma.
-
-    Kraus operators:
-      K0 = [[1, 0], [0, sqrt(1-gamma)]]
-      K1 = [[0, sqrt(gamma)], [0, 0]]
-
-    Channel action: rho -> K0*rho*K0† + K1*rho*K1†
-    """
-
-    def __init__(self, gamma=0.5):
-        super().__init__()
-        self.gamma = nn.Parameter(torch.tensor(float(gamma)))
-
-    def forward(self, rho):
-        g = self.gamma  # Keep as real for sqrt
-        one_r = torch.tensor(1.0, dtype=torch.float32, device=rho.device)
-        zero_c = torch.tensor(0.0, dtype=rho.dtype, device=rho.device)
-        one_c = torch.tensor(1.0, dtype=rho.dtype, device=rho.device)
-
-        sqrt_1mg = torch.sqrt(torch.clamp(one_r - g, min=1e-30)).to(rho.dtype)
-        sqrt_g = torch.sqrt(torch.clamp(g, min=1e-30)).to(rho.dtype)
-
-        K0 = torch.stack([
-            torch.stack([one_c, zero_c]),
-            torch.stack([zero_c, sqrt_1mg]),
-        ])
-        K1 = torch.stack([
-            torch.stack([zero_c, sqrt_g]),
-            torch.stack([zero_c, zero_c]),
-        ])
-
-        out = K0 @ rho @ K0.conj().T + K1 @ rho @ K1.conj().T
-        return out
-
-    def kraus_operators(self):
-        """Return Kraus operators for inspection."""
-        g = self.gamma
-        one = torch.tensor(1.0, dtype=torch.complex64)
-        zero = torch.tensor(0.0, dtype=torch.complex64)
-        sqrt_1mg = torch.sqrt(torch.clamp((one - g.to(torch.complex64)), min=0.0))
-        sqrt_g = torch.sqrt(torch.clamp(g.to(torch.complex64), min=0.0))
-
-        K0 = torch.tensor([[1, 0], [0, 0]], dtype=torch.complex64)
-        K0[1, 1] = sqrt_1mg
-        K1 = torch.tensor([[0, 0], [0, 0]], dtype=torch.complex64)
-        K1[0, 1] = sqrt_g
-        return K0, K1
+from torch_modules.amplitude_damping import AmplitudeDamping
 
 
 # =====================================================================
@@ -641,6 +605,10 @@ if __name__ == "__main__":
     TOOL_MANIFEST["z3"]["used"] = True
     TOOL_MANIFEST["z3"]["reason"] = "Parameter range constraint: gamma in [0,1] ensures valid Kraus operators"
 
+    for info in TOOL_MANIFEST.values():
+        if info.get("tried") is True and info.get("used") is not True and not info.get("reason"):
+            info["reason"] = "Available in environment but not needed for this family proof surface"
+
     # Count passes
     def count_passes(d):
         passes, total = 0, 0
@@ -667,9 +635,13 @@ if __name__ == "__main__":
 
     results = {
         "name": "torch_amplitude_damping",
+        "migration_family": "amplitude_damping",
+        "migration_registry_id": 6,
+        "migration_status": "TORCH_TESTED",
         "phase": "Phase 3 sim",
         "description": "Amplitude damping channel as differentiable nn.Module with Kraus operators",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

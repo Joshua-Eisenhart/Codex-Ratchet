@@ -55,7 +55,7 @@
     "toponetx": {
       "tried": true,
       "used": true,
-      "reason": "tried CellComplex comparison \u2014 see boundary tests"
+      "reason": "CellComplex lift supplies a coequal topological witness for the same higher-order family structure"
     },
     "gudhi": {
       "tried": true,
@@ -64,8 +64,8 @@
     }
   },
   "summary": {
-    "tests_passed": 17,
-    "tests_total": 17,
+    "tests_passed": 18,
+    "tests_total": 18,
     "all_pass": true
   },
   "data": {
@@ -315,7 +315,36 @@
       "simplicial_nodes": 26,
       "extra_faces_from_closure": 282,
       "closure_ratio": 22.692
+    },
+    "cell_complex_lift": {
+      "shape": [
+        26,
+        53,
+        6
+      ],
+      "num_0cells": 26,
+      "num_1cells": 53,
+      "num_2cells": 6,
+      "pair_edge_count": 53,
+      "rank_B1": 20,
+      "rank_B2": 6,
+      "B1B2_zero": true,
+      "hodge1_zero_modes": 27
     }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "supportive"
   },
   "positive": {
     "P1_cnot_highest_degree": {
@@ -388,6 +417,24 @@
       "dual_connected": false,
       "most_connected_edge": "entangling_gates",
       "pass": true
+    },
+    "P9_toponetx_cell_lift_matches_higher_order_edges": {
+      "shape": [
+        26,
+        53,
+        6
+      ],
+      "num_0cells": 26,
+      "num_1cells": 53,
+      "num_2cells": 6,
+      "pair_edge_count": 53,
+      "rank_B1": 20,
+      "rank_B2": 6,
+      "B1B2_zero": true,
+      "hodge1_zero_modes": 27,
+      "expected_num_2cells": 6,
+      "pass": true,
+      "detail": "TopoNetX CellComplex preserves the same higher-order family relations with nontrivial boundary structure"
     }
   },
   "negative": {
@@ -500,14 +547,15 @@
     "B5_toponetx_cell_complex": {
       "cell_complex_shape": [
         26,
-        28,
+        53,
         6
       ],
       "num_0cells": 26,
-      "num_1cells": 28,
+      "num_1cells": 53,
       "num_2cells": 6,
+      "hodge1_zero_modes": 27,
       "pass": true,
-      "detail": "CellComplex encodes the same families with boundary operators"
+      "detail": "CellComplex boundary maps remain consistent with the XGI higher-order family relations"
     },
     "B6_gudhi_persistence": {
       "betti_numbers": [

@@ -1,0 +1,445 @@
+{
+  "name": "sim_xgi_l7_marginal",
+  "description": "Quantify L7 marginal contribution to joint kill (L4+L6) via three XGI hypergraph variants: H1={L4,L6}, H2={L4,L6,L7}, H3={L4,L7}. Measures shift in node_edge_centrality for L4, L6 when L7 added/removed.",
+  "shells": {
+    "L0": "density_matrix_validity",
+    "L1": "loop_family_finiteness",
+    "L2": "hopf_carrier_structure",
+    "L3": "operator_chirality",
+    "L4": "engine_family_absolute_kill",
+    "L5": "axis_orthogonality",
+    "L6": "reversible_family_kill",
+    "L7": "full_axis_composition"
+  },
+  "hypergraph_variants": {
+    "H1": {
+      "extra_edge": [
+        "L4",
+        "L6"
+      ],
+      "description": "base + {L4,L6}"
+    },
+    "H2": {
+      "extra_edge": [
+        "L4",
+        "L6",
+        "L7"
+      ],
+      "description": "base + {L4,L6,L7}"
+    },
+    "H3": {
+      "extra_edge": [
+        "L4",
+        "L7"
+      ],
+      "description": "base + {L4,L7}"
+    }
+  },
+  "summary": {
+    "L4_nec_H1": 0.13752103506157792,
+    "L4_nec_H2": 0.14372331884914497,
+    "L6_nec_H1": 0.1186273786527028,
+    "L6_nec_H2": 0.13443171044225655,
+    "L7_nec_H1": 0.12972982804604077,
+    "L7_nec_H2": 0.16017762457569953,
+    "L7_addition_shifts_L4": true,
+    "L7_addition_shifts_L6": true,
+    "L7_addition_shifts_any_kill_shell": true,
+    "L6_drops_without_joint_edge": true,
+    "H2_H3_rankings_differ": true,
+    "spearman_rho_H2_vs_H3": 0.8333333333333334,
+    "L7_marginal_total_abs": 0.10490882421355939,
+    "L6_marginal_total_abs": 0.09524738746953061,
+    "larger_marginal_contributor": "L7"
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "XGI Hypergraph: three variant hypergraphs (H1, H2, H3) to isolate L7 marginal contribution to joint kill; node_edge_centrality, clique_eigenvector_centrality, katz_centrality computed on each"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "H1_description": "base hyperedges + {L4, L6} (2-way joint kill)",
+    "H2_description": "base hyperedges + {L4, L6, L7} (3-way, L7 added)",
+    "H1_centralities": {
+      "hyperedge_degree": {
+        "L0": 2,
+        "L1": 2,
+        "L2": 3,
+        "L3": 2,
+        "L4": 3,
+        "L5": 2,
+        "L6": 2,
+        "L7": 2
+      },
+      "clique_eigenvector_centrality": {
+        "L0": 0.09380747474529418,
+        "L1": 0.05331054731225703,
+        "L2": 0.18702446996980757,
+        "L3": 0.1464108895846451,
+        "L4": 0.1227318690592213,
+        "L5": 0.1406966931283502,
+        "L6": 0.11177229881442297,
+        "L7": 0.14424575738600162
+      },
+      "node_edge_centrality": {
+        "L0": 0.1060099243146474,
+        "L1": 0.08202971715415448,
+        "L2": 0.16527111730885838,
+        "L3": 0.13308982961004787,
+        "L4": 0.13752103506157792,
+        "L5": 0.12772116985197055,
+        "L6": 0.1186273786527028,
+        "L7": 0.12972982804604077
+      },
+      "katz_centrality": {
+        "L0": 0.09997274830167903,
+        "L1": 0.06651848562289168,
+        "L2": 0.19968970504739833,
+        "L3": 0.13355820019471992,
+        "L4": 0.13316867689050685,
+        "L5": 0.13342903315740925,
+        "L6": 0.10023310456858142,
+        "L7": 0.13343004621681356
+      }
+    },
+    "H2_centralities": {
+      "hyperedge_degree": {
+        "L0": 2,
+        "L1": 2,
+        "L2": 3,
+        "L3": 2,
+        "L4": 3,
+        "L5": 2,
+        "L6": 2,
+        "L7": 3
+      },
+      "clique_eigenvector_centrality": {
+        "L0": 0.07081017576001866,
+        "L1": 0.04568309954876641,
+        "L2": 0.16805295157215797,
+        "L3": 0.13026064904430432,
+        "L4": 0.14292587536090556,
+        "L5": 0.1175612447197139,
+        "L6": 0.1437997592152136,
+        "L7": 0.18090624477891973
+      },
+      "node_edge_centrality": {
+        "L0": 0.09016187941932961,
+        "L1": 0.07370979528656872,
+        "L2": 0.15420929581179088,
+        "L3": 0.12587575091884484,
+        "L4": 0.14372331884914497,
+        "L5": 0.11771062469636477,
+        "L6": 0.13443171044225655,
+        "L7": 0.16017762457569953
+      },
+      "katz_centrality": {
+        "L0": 0.08801111233005969,
+        "L1": 0.0586734791541581,
+        "L2": 0.17625591566837223,
+        "L3": 0.11792266948868212,
+        "L4": 0.14691828249247066,
+        "L5": 0.11769345870984008,
+        "L6": 0.11815188720836264,
+        "L7": 0.17637319494805434
+      }
+    },
+    "L7_marginal_delta_nec": {
+      "L0": -0.015848044895317784,
+      "L1": -0.008319921867585761,
+      "L2": -0.011061821497067498,
+      "L3": -0.007214078691203024,
+      "L4": 0.006202283787567042,
+      "L5": -0.010010545155605774,
+      "L6": 0.015804331789553747,
+      "L7": 0.03044779652965876
+    },
+    "L7_marginal_delta_cec": {
+      "L0": -0.022997298985275513,
+      "L1": -0.00762744776349062,
+      "L2": -0.0189715183976496,
+      "L3": -0.016150240540340782,
+      "L4": 0.02019400630168426,
+      "L5": -0.023135448408636308,
+      "L6": 0.03202746040079063,
+      "L7": 0.036660487392918106
+    },
+    "L4_nec_H1": 0.13752103506157792,
+    "L4_nec_H2": 0.14372331884914497,
+    "L6_nec_H1": 0.1186273786527028,
+    "L6_nec_H2": 0.13443171044225655,
+    "L7_nec_H1": 0.12972982804604077,
+    "L7_nec_H2": 0.16017762457569953,
+    "L7_addition_shifts_L4_nec": true,
+    "L7_addition_shifts_L6_nec": true,
+    "L7_addition_shifts_any_kill_shell": true,
+    "H1_nec_ranking": [
+      {
+        "shell": "L2",
+        "value": 0.16527111730885838
+      },
+      {
+        "shell": "L4",
+        "value": 0.13752103506157792
+      },
+      {
+        "shell": "L3",
+        "value": 0.13308982961004787
+      },
+      {
+        "shell": "L7",
+        "value": 0.12972982804604077
+      },
+      {
+        "shell": "L5",
+        "value": 0.12772116985197055
+      },
+      {
+        "shell": "L6",
+        "value": 0.1186273786527028
+      },
+      {
+        "shell": "L0",
+        "value": 0.1060099243146474
+      },
+      {
+        "shell": "L1",
+        "value": 0.08202971715415448
+      }
+    ],
+    "H2_nec_ranking": [
+      {
+        "shell": "L7",
+        "value": 0.16017762457569953
+      },
+      {
+        "shell": "L2",
+        "value": 0.15420929581179088
+      },
+      {
+        "shell": "L4",
+        "value": 0.14372331884914497
+      },
+      {
+        "shell": "L6",
+        "value": 0.13443171044225655
+      },
+      {
+        "shell": "L3",
+        "value": 0.12587575091884484
+      },
+      {
+        "shell": "L5",
+        "value": 0.11771062469636477
+      },
+      {
+        "shell": "L0",
+        "value": 0.09016187941932961
+      },
+      {
+        "shell": "L1",
+        "value": 0.07370979528656872
+      }
+    ]
+  },
+  "negative": {
+    "H2_description": "base + {L4, L6, L7}",
+    "H3_description": "base + {L4, L7} (L7 without L6)",
+    "H2_nec": {
+      "L0": 0.09016187941932961,
+      "L1": 0.07370979528656872,
+      "L2": 0.15420929581179088,
+      "L3": 0.12587575091884484,
+      "L4": 0.14372331884914497,
+      "L5": 0.11771062469636477,
+      "L6": 0.13443171044225655,
+      "L7": 0.16017762457569953
+    },
+    "H3_nec": {
+      "L0": 0.10208598830198548,
+      "L1": 0.08020573717927064,
+      "L2": 0.16218942828810007,
+      "L3": 0.13558461182325593,
+      "L4": 0.14175472285457388,
+      "L5": 0.1292252742750521,
+      "L6": 0.0936853652740199,
+      "L7": 0.15526887200374204
+    },
+    "delta_H2_vs_H3_nec": {
+      "L0": -0.011924108882655868,
+      "L1": -0.0064959418927019175,
+      "L2": -0.007980132476309187,
+      "L3": -0.009708860904411087,
+      "L4": 0.001968595994571082,
+      "L5": -0.011514649578687322,
+      "L6": 0.04074634516823665,
+      "L7": 0.004908752571957498
+    },
+    "L6_centrality_H2": 0.13443171044225655,
+    "L6_centrality_H3": 0.0936853652740199,
+    "L6_drops_without_joint_edge": true,
+    "H3_nec_ranking": [
+      {
+        "shell": "L2",
+        "value": 0.16218942828810007
+      },
+      {
+        "shell": "L7",
+        "value": 0.15526887200374204
+      },
+      {
+        "shell": "L4",
+        "value": 0.14175472285457388
+      },
+      {
+        "shell": "L3",
+        "value": 0.13558461182325593
+      },
+      {
+        "shell": "L5",
+        "value": 0.1292252742750521
+      },
+      {
+        "shell": "L0",
+        "value": 0.10208598830198548
+      },
+      {
+        "shell": "L6",
+        "value": 0.0936853652740199
+      },
+      {
+        "shell": "L1",
+        "value": 0.08020573717927064
+      }
+    ],
+    "spearman_rho_H2_vs_H3": 0.8333333333333334,
+    "H2_H3_rankings_differ": true,
+    "top1_H2": "L7",
+    "top1_H3": "L2",
+    "top1_differs_H2_H3": true
+  },
+  "boundary": {
+    "L7_marginal_contribution": {
+      "description": "delta nec when L7 added to {L4,L6} (H1 -> H2)",
+      "delta_by_shell": {
+        "L0": -0.015848044895317784,
+        "L1": -0.008319921867585761,
+        "L2": -0.011061821497067498,
+        "L3": -0.007214078691203024,
+        "L4": 0.006202283787567042,
+        "L5": -0.010010545155605774,
+        "L6": 0.015804331789553747,
+        "L7": 0.03044779652965876
+      },
+      "abs_impact_on_L4": 0.006202283787567042,
+      "abs_impact_on_L6": 0.015804331789553747,
+      "total_abs_delta": 0.10490882421355939
+    },
+    "L6_marginal_contribution": {
+      "description": "delta nec when L6 added to {L4,L7} (H3 -> H2)",
+      "delta_by_shell": {
+        "L0": -0.011924108882655868,
+        "L1": -0.0064959418927019175,
+        "L2": -0.007980132476309187,
+        "L3": -0.009708860904411087,
+        "L4": 0.001968595994571082,
+        "L5": -0.011514649578687322,
+        "L6": 0.04074634516823665,
+        "L7": 0.004908752571957498
+      },
+      "abs_impact_on_L4": 0.001968595994571082,
+      "abs_impact_on_L7": 0.004908752571957498,
+      "total_abs_delta": 0.09524738746953061
+    },
+    "L7_marginal_total_abs": 0.10490882421355939,
+    "L6_marginal_total_abs": 0.09524738746953061,
+    "L6_larger_marginal_than_L7": false,
+    "winner": "L7",
+    "winner_description": "L7 has a larger total marginal contribution to the joint kill than L6 (summed over all shells)",
+    "L7_unique_add_impact_on_L7_shell": 0.03044779652965876,
+    "L6_unique_add_impact_on_L6_shell": 0.04074634516823665,
+    "rank_changes_H1_to_H2": {
+      "L0": 0,
+      "L1": 0,
+      "L2": 1,
+      "L3": 2,
+      "L4": 1,
+      "L5": 1,
+      "L6": -2,
+      "L7": -3
+    },
+    "L7_rank_change_H1_to_H2": -3
+  },
+  "classification": "canonical"
+}

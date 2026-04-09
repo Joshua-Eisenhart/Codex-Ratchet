@@ -1,0 +1,1040 @@
+{
+  "name": "sim_xgi_indirect_pathway",
+  "description": "Investigate why {L2,L6,L7} (edge 6) outranks direct L4 edges in the single-step autograd result. Tests three hypergraph variants (H_full, H_no_indirect, H_only_direct) and includes analytical gradient verification and synthetic control to confirm the co-membership mechanism.",
+  "shells": {
+    "L0": "density_matrix_validity",
+    "L1": "loop_family_finiteness",
+    "L2": "hopf_carrier_structure",
+    "L3": "operator_chirality",
+    "L4": "engine_family_absolute_kill",
+    "L5": "axis_orthogonality",
+    "L6": "reversible_family_kill",
+    "L7": "full_axis_composition"
+  },
+  "all_hyperedges": [
+    {
+      "idx": 0,
+      "edge": [
+        "L0",
+        "L1"
+      ],
+      "label": "density_matrix_validity_and_finiteness"
+    },
+    {
+      "idx": 1,
+      "edge": [
+        "L2",
+        "L3",
+        "L4"
+      ],
+      "label": "spinor_carrier_chirality_composition"
+    },
+    {
+      "idx": 2,
+      "edge": [
+        "L4",
+        "L6"
+      ],
+      "label": "joint_family_kill"
+    },
+    {
+      "idx": 3,
+      "edge": [
+        "L0",
+        "L2",
+        "L5"
+      ],
+      "label": "spinor_structure_finitude_carrier_su2"
+    },
+    {
+      "idx": 4,
+      "edge": [
+        "L3",
+        "L5",
+        "L7"
+      ],
+      "label": "axis_orthogonality_manifold"
+    },
+    {
+      "idx": 5,
+      "edge": [
+        "L1",
+        "L4"
+      ],
+      "label": "family_count_upper_bound"
+    },
+    {
+      "idx": 6,
+      "edge": [
+        "L2",
+        "L6",
+        "L7"
+      ],
+      "label": "composition_reversibility_surface"
+    },
+    {
+      "idx": 7,
+      "edge": [
+        "L4",
+        "L6",
+        "L7"
+      ],
+      "label": "surviving_family_filter"
+    }
+  ],
+  "variants": {
+    "H_full": "All 8 hyperedges (baseline)",
+    "H_no_indirect": "Remove {L2,L6,L7} (idx 6) and {L2,L3,L4} (idx 1) \u2014 the indirect pathways",
+    "H_only_direct": "Keep only {L4,L6} (idx 2), {L4,L6,L7} (idx 7), {L1,L4} (idx 5) \u2014 direct L4 edges"
+  },
+  "summary": {
+    "L4_centrality_H_full": 0.5216641534515861,
+    "L4_centrality_H_no_indirect": 0.47781783386613813,
+    "L4_centrality_H_only_direct": 0.8590796667429879,
+    "indirect_removal_significant": true,
+    "indirect_removal_delta": -0.04384631958544799,
+    "edge_2_rank_H_full": 4,
+    "edge_7_rank_H_full": 5,
+    "edge_2_rises_when_edge6_removed": true,
+    "analytical_gradient_rank_agreement": true,
+    "analytical_gradient_verified_numerically": true,
+    "synthetic_edge6_grad_drops": true,
+    "mechanism_explanation": "Edge 6 {L2,L6,L7} wins single-step gradient because L6 and L7 have high co-membership scores with L4 (both appear in direct L4 edges). d(c[L4])/d(w_6) is large because edge 6 shares L6/L7 with the joint kill edges (2,7), amplifying L4's co-membership score indirectly. This is a structural coupling effect, not direct L4 membership."
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch autograd: incidence matrix B for each variant, w with requires_grad=True, differentiable centrality, gradient of c[L4] w.r.t. edge weights; load_bearing"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "XGI hyperedge structure defines the three variant hypergraphs (H_full, H_no_indirect, H_only_direct) whose incidence matrices are analyzed via PyTorch autograd; load_bearing"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "available in environment but not used in this structural XGI lane"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "H_full": {
+      "description": "All 8 hyperedges (baseline)",
+      "n_edges": 8,
+      "edge_indices_kept": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "L4_centrality": 0.5216641534515861,
+      "centrality_all_nodes": {
+        "L0": 0.0035149454172795753,
+        "L1": 0.0012930761558569324,
+        "L2": 0.19190951725094305,
+        "L3": 0.009554612255816464,
+        "L4": 0.5216641534515861,
+        "L5": 0.009554612255816464,
+        "L6": 0.0705995659617582,
+        "L7": 0.19190951725094305
+      },
+      "gradient_ranking": [
+        {
+          "rank": 1,
+          "orig_edge_idx": 6,
+          "edge": [
+            "L2",
+            "L6",
+            "L7"
+          ],
+          "label": "composition_reversibility_surface",
+          "grad_abs": 1.4223233671411293,
+          "grad": 1.4223233671411293,
+          "direct_L4_member": false
+        },
+        {
+          "rank": 2,
+          "orig_edge_idx": 5,
+          "edge": [
+            "L1",
+            "L4"
+          ],
+          "label": "family_count_upper_bound",
+          "grad_abs": 0.9954244519081303,
+          "grad": -0.9954244519081303,
+          "direct_L4_member": true
+        },
+        {
+          "rank": 3,
+          "orig_edge_idx": 1,
+          "edge": [
+            "L2",
+            "L3",
+            "L4"
+          ],
+          "label": "spinor_carrier_chirality_composition",
+          "grad_abs": 0.8666042993113303,
+          "grad": -0.8666042993113303,
+          "direct_L4_member": true
+        },
+        {
+          "rank": 4,
+          "orig_edge_idx": 2,
+          "edge": [
+            "L4",
+            "L6"
+          ],
+          "label": "joint_family_kill",
+          "grad_abs": 0.8508056065749445,
+          "grad": -0.8508056065749445,
+          "direct_L4_member": true
+        },
+        {
+          "rank": 5,
+          "orig_edge_idx": 7,
+          "edge": [
+            "L4",
+            "L6",
+            "L7"
+          ],
+          "label": "surviving_family_filter",
+          "grad_abs": 0.6755345147263221,
+          "grad": -0.6755345147263221,
+          "direct_L4_member": true
+        },
+        {
+          "rank": 6,
+          "orig_edge_idx": 4,
+          "edge": [
+            "L3",
+            "L5",
+            "L7"
+          ],
+          "label": "axis_orthogonality_manifold",
+          "grad_abs": 0.6604854797039583,
+          "grad": 0.6604854797039583,
+          "direct_L4_member": false
+        },
+        {
+          "rank": 7,
+          "orig_edge_idx": 3,
+          "edge": [
+            "L0",
+            "L2",
+            "L5"
+          ],
+          "label": "spinor_structure_finitude_carrier_su2",
+          "grad_abs": 0.6415814135732285,
+          "grad": 0.6415814135732285,
+          "direct_L4_member": false
+        },
+        {
+          "rank": 8,
+          "orig_edge_idx": 0,
+          "edge": [
+            "L0",
+            "L1"
+          ],
+          "label": "density_matrix_validity_and_finiteness",
+          "grad_abs": 0.010032690014908878,
+          "grad": 0.010032690014908878,
+          "direct_L4_member": false
+        }
+      ],
+      "co_membership_analysis": {
+        "co_membership_matrix": [
+          [
+            2.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0,
+            3.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            2.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            4.0,
+            0.0,
+            2.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            3.0,
+            2.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0,
+            3.0
+          ]
+        ],
+        "target_co_membership_row": [
+          0.0,
+          1.0,
+          1.0,
+          1.0,
+          4.0,
+          0.0,
+          2.0,
+          1.0
+        ],
+        "edge_direct_membership_to_L4": [
+          0.0,
+          1.0,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "edge_indirect_coupling_to_L4": [
+          1.0,
+          6.0,
+          6.0,
+          1.0,
+          2.0,
+          5.0,
+          4.0,
+          7.0
+        ]
+      }
+    },
+    "H_no_indirect": {
+      "description": "Remove {L2,L6,L7} (idx 6) and {L2,L3,L4} (idx 1) \u2014 the indirect pathways",
+      "n_edges": 6,
+      "edge_indices_kept": [
+        0,
+        2,
+        3,
+        4,
+        5,
+        7
+      ],
+      "L4_centrality": 0.47781783386613813,
+      "centrality_all_nodes": {
+        "L0": 0.06466561188177855,
+        "L1": 0.023789149162078076,
+        "L2": 0.008751538899689366,
+        "L3": 0.008751538899689366,
+        "L4": 0.47781783386613813,
+        "L5": 0.17577935770442396,
+        "L6": 0.06466561188177855,
+        "L7": 0.17577935770442396
+      },
+      "gradient_ranking": [
+        {
+          "rank": 1,
+          "orig_edge_idx": 4,
+          "edge": [
+            "L3",
+            "L5",
+            "L7"
+          ],
+          "label": "axis_orthogonality_manifold",
+          "grad_abs": 1.0329759914007761,
+          "grad": 1.0329759914007761,
+          "direct_L4_member": false
+        },
+        {
+          "rank": 2,
+          "orig_edge_idx": 5,
+          "edge": [
+            "L1",
+            "L4"
+          ],
+          "label": "family_count_upper_bound",
+          "grad_abs": 0.9525642871338688,
+          "grad": -0.9525642871338688,
+          "direct_L4_member": true
+        },
+        {
+          "rank": 3,
+          "orig_edge_idx": 2,
+          "edge": [
+            "L4",
+            "L6"
+          ],
+          "label": "joint_family_kill",
+          "grad_abs": 0.8744382756425199,
+          "grad": -0.8744382756425199,
+          "direct_L4_member": true
+        },
+        {
+          "rank": 4,
+          "orig_edge_idx": 7,
+          "edge": [
+            "L4",
+            "L6",
+            "L7"
+          ],
+          "label": "surviving_family_filter",
+          "grad_abs": 0.807714341843526,
+          "grad": -0.807714341843526,
+          "direct_L4_member": true
+        },
+        {
+          "rank": 5,
+          "orig_edge_idx": 3,
+          "edge": [
+            "L0",
+            "L2",
+            "L5"
+          ],
+          "label": "spinor_structure_finitude_carrier_su2",
+          "grad_abs": 0.7144232153504014,
+          "grad": 0.7144232153504014,
+          "direct_L4_member": false
+        },
+        {
+          "rank": 6,
+          "orig_edge_idx": 0,
+          "edge": [
+            "L0",
+            "L1"
+          ],
+          "label": "density_matrix_validity_and_finiteness",
+          "grad_abs": 0.16906104926848975,
+          "grad": 0.16906104926848975,
+          "direct_L4_member": false
+        }
+      ],
+      "co_membership_analysis": {
+        "co_membership_matrix": [
+          [
+            2.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            3.0,
+            0.0,
+            2.0,
+            1.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            2.0,
+            0.0,
+            2.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            2.0
+          ]
+        ],
+        "target_co_membership_row": [
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          3.0,
+          0.0,
+          2.0,
+          1.0
+        ],
+        "edge_direct_membership_to_L4": [
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "edge_indirect_coupling_to_L4": [
+          1.0,
+          5.0,
+          0.0,
+          1.0,
+          4.0,
+          6.0
+        ]
+      }
+    },
+    "H_only_direct": {
+      "description": "Keep only {L4,L6} (idx 2), {L4,L6,L7} (idx 7), {L1,L4} (idx 5) \u2014 direct L4 edges",
+      "n_edges": 3,
+      "edge_indices_kept": [
+        2,
+        5,
+        7
+      ],
+      "L4_centrality": 0.8590796667429879,
+      "centrality_all_nodes": {
+        "L0": 0.0007833792550775145,
+        "L1": 0.005788433262506258,
+        "L2": 0.0007833792550775145,
+        "L3": 0.0007833792550775145,
+        "L4": 0.8590796667429879,
+        "L5": 0.0007833792550775145,
+        "L6": 0.11626379002147712,
+        "L7": 0.015734592952718666
+      },
+      "gradient_ranking": [
+        {
+          "rank": 1,
+          "orig_edge_idx": 5,
+          "edge": [
+            "L1",
+            "L4"
+          ],
+          "label": "family_count_upper_bound",
+          "grad_abs": 0.4643562704545075,
+          "grad": -0.4643562704545075,
+          "direct_L4_member": true
+        },
+        {
+          "rank": 2,
+          "orig_edge_idx": 2,
+          "edge": [
+            "L4",
+            "L6"
+          ],
+          "label": "joint_family_kill",
+          "grad_abs": 0.08472773978327003,
+          "grad": -0.08472773978327003,
+          "direct_L4_member": true
+        },
+        {
+          "rank": 3,
+          "orig_edge_idx": 7,
+          "edge": [
+            "L4",
+            "L6",
+            "L7"
+          ],
+          "label": "surviving_family_filter",
+          "grad_abs": 0.045987996453956334,
+          "grad": -0.045987996453956334,
+          "direct_L4_member": true
+        }
+      ],
+      "co_membership_analysis": {
+        "co_membership_matrix": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            3.0,
+            0.0,
+            2.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            2.0,
+            0.0,
+            2.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "target_co_membership_row": [
+          0.0,
+          1.0,
+          0.0,
+          0.0,
+          3.0,
+          0.0,
+          2.0,
+          1.0
+        ],
+        "edge_direct_membership_to_L4": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "edge_indirect_coupling_to_L4": [
+          5.0,
+          4.0,
+          6.0
+        ]
+      }
+    },
+    "comparison": {
+      "L4_centrality_H_full": 0.5216641534515861,
+      "L4_centrality_H_no_indirect": 0.47781783386613813,
+      "L4_centrality_H_only_direct": 0.8590796667429879,
+      "indirect_removal_delta": -0.04384631958544799,
+      "indirect_removal_significant": true,
+      "hypothesis_indirect_does_not_much_change_centrality": true
+    },
+    "H_only_direct_direct_edge_ranks": {
+      "edge_2_L4_L6_rank": 2,
+      "edge_5_L1_L4_rank": 1,
+      "edge_7_L4_L6_L7_rank": 3,
+      "edge_7_outranks_edge_2": false
+    }
+  },
+  "negative": {
+    "synthetic_edge6_replaced": {
+      "description": "Edge 6 {L2,L6,L7} replaced with {L0,L5} \u2014 no co-membership overlap with L4 neighborhood",
+      "L4_centrality": 0.8004572420228355,
+      "gradient_ranking": [
+        {
+          "rank": 1,
+          "edge_col": 7,
+          "edge": [
+            "L4",
+            "L6",
+            "L7"
+          ],
+          "label": "surviving_family_filter",
+          "grad_abs": 0.8620368997572105,
+          "direct_L4_member": true
+        },
+        {
+          "rank": 2,
+          "edge_col": 1,
+          "edge": [
+            "L2",
+            "L3",
+            "L4"
+          ],
+          "label": "spinor_carrier_chirality_composition",
+          "grad_abs": 0.8175277278279625,
+          "direct_L4_member": true
+        },
+        {
+          "rank": 3,
+          "edge_col": 3,
+          "edge": [
+            "L0",
+            "L2",
+            "L5"
+          ],
+          "label": "spinor_structure_finitude_carrier_su2",
+          "grad_abs": 0.7820951345145692,
+          "direct_L4_member": false
+        },
+        {
+          "rank": 4,
+          "edge_col": 4,
+          "edge": [
+            "L3",
+            "L5",
+            "L7"
+          ],
+          "label": "axis_orthogonality_manifold",
+          "grad_abs": 0.661106661259535,
+          "direct_L4_member": false
+        },
+        {
+          "rank": 5,
+          "edge_col": 5,
+          "edge": [
+            "L1",
+            "L4"
+          ],
+          "label": "family_count_upper_bound",
+          "grad_abs": 0.6325489215251056,
+          "direct_L4_member": true
+        },
+        {
+          "rank": 6,
+          "edge_col": 2,
+          "edge": [
+            "L4",
+            "L6"
+          ],
+          "label": "joint_family_kill",
+          "grad_abs": 0.6216329153275486,
+          "direct_L4_member": true
+        },
+        {
+          "rank": 7,
+          "edge_col": 6,
+          "edge": [
+            "L0",
+            "L5"
+          ],
+          "label": "SYNTHETIC_no_L4_overlap",
+          "grad_abs": 0.4744551075203045,
+          "direct_L4_member": false
+        },
+        {
+          "rank": 8,
+          "edge_col": 0,
+          "edge": [
+            "L0",
+            "L1"
+          ],
+          "label": "density_matrix_validity_and_finiteness",
+          "grad_abs": 0.1339534923317839,
+          "direct_L4_member": false
+        }
+      ],
+      "synthetic_edge_rank": 7,
+      "synthetic_edge_grad_abs": 0.4744551075203045,
+      "original_edge6_grad_abs_from_H_full": 1.4223233671411293,
+      "synthetic_grad_much_lower": true
+    },
+    "co_membership_edge6_nodes_with_L4": {
+      "L2": 1.0,
+      "L6": 2.0,
+      "L7": 1.0
+    },
+    "co_membership_all_nodes_with_L4": {
+      "L0": 0.0,
+      "L1": 1.0,
+      "L2": 1.0,
+      "L3": 1.0,
+      "L4": 4.0,
+      "L5": 0.0,
+      "L6": 2.0,
+      "L7": 1.0
+    }
+  },
+  "boundary": {
+    "boundary1_edge6_removal_ranking_shift": {
+      "H_full_top4_orig_indices": [
+        6,
+        5,
+        1,
+        2
+      ],
+      "H_full_top4_edges": [
+        [
+          "L2",
+          "L6",
+          "L7"
+        ],
+        [
+          "L1",
+          "L4"
+        ],
+        [
+          "L2",
+          "L3",
+          "L4"
+        ],
+        [
+          "L4",
+          "L6"
+        ]
+      ],
+      "H_no_edge6_top4_orig_indices": [
+        7,
+        5,
+        2,
+        4
+      ],
+      "H_no_edge6_top4_edges": [
+        [
+          "L4",
+          "L6",
+          "L7"
+        ],
+        [
+          "L1",
+          "L4"
+        ],
+        [
+          "L4",
+          "L6"
+        ],
+        [
+          "L3",
+          "L5",
+          "L7"
+        ]
+      ],
+      "edge_2_rank_H_full": 4,
+      "edge_7_rank_H_full": 5,
+      "edge_2_rank_H_no_edge6": 3,
+      "edge_7_rank_H_no_edge6": 1,
+      "edge_2_rises_when_edge6_removed": true
+    },
+    "boundary2_analytical_gradient_verification": {
+      "note": "analytical_grad = dc[L4]/dw; autograd_grad = grad of loss=-c[L4] = -dc[L4]/dw; comparison uses -autograd_grad",
+      "analytical_grad": [
+        -0.010032690014908878,
+        0.8666042993113303,
+        0.8508056065749444,
+        -0.6415814135732285,
+        -0.6604854797039583,
+        0.9954244519081303,
+        -1.4223233671411293,
+        0.6755345147263221
+      ],
+      "autograd_grad_raw": [
+        0.010032690014908878,
+        -0.8666042993113303,
+        -0.8508056065749445,
+        0.6415814135732285,
+        0.6604854797039583,
+        -0.9954244519081303,
+        1.4223233671411293,
+        -0.6755345147263221
+      ],
+      "autograd_grad_negated": [
+        -0.010032690014908878,
+        0.8666042993113303,
+        0.8508056065749445,
+        -0.6415814135732285,
+        -0.6604854797039583,
+        0.9954244519081303,
+        -1.4223233671411293,
+        0.6755345147263221
+      ],
+      "max_abs_diff": 1.1102230246251565e-16,
+      "verified_match": true,
+      "rank_agreement_top3": true,
+      "analytical_top_edge_idx": 6,
+      "analytical_top_edge": [
+        "L2",
+        "L6",
+        "L7"
+      ]
+    },
+    "boundary3_gradient_norm_comparison": {
+      "grad_norm_H_full": 2.4068780830225647,
+      "grad_norm_H_no_indirect": 1.9825350047030756,
+      "grad_norm_H_only_direct": 0.47425776916888807,
+      "indirect_edges_increase_total_gradient": true
+    }
+  },
+  "classification": "canonical"
+}

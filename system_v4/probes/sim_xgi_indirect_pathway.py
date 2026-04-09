@@ -56,6 +56,14 @@ TOOL_INTEGRATION_DEPTH = {
     "gudhi":     None,
 }
 
+
+def fill_unused_tool_reasons():
+    for tool_name, tool_info in TOOL_MANIFEST.items():
+        if tool_info["tried"] and not tool_info["used"] and not tool_info["reason"]:
+            tool_info["reason"] = (
+                "available in environment but not used in this structural XGI lane"
+            )
+
 try:
     import torch
     TOOL_MANIFEST["pytorch"]["tried"] = True
@@ -95,8 +103,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 try:
     import geomstats  # noqa: F401
@@ -609,6 +617,8 @@ if __name__ == "__main__":
             "This is a structural coupling effect, not direct L4 membership."
         ),
     }
+
+    fill_unused_tool_reasons()
 
     results = {
         "name": "sim_xgi_indirect_pathway",

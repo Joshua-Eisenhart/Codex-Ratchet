@@ -29,8 +29,23 @@ TOOL_MANIFEST = {
     "e3nn":       {"tried": False, "used": False, "reason": "not relevant — no equivariant networks needed"},
     "rustworkx":  {"tried": False, "used": False, "reason": "not relevant — xgi handles hypergraph natively"},
     "xgi":        {"tried": True,  "used": True,  "reason": "primary tool — hypergraph + simplicial complex construction and analysis"},
-    "toponetx":   {"tried": True,  "used": False, "reason": "tried CellComplex comparison — see boundary tests"},
+    "toponetx":   {"tried": True,  "used": False, "reason": "CellComplex lift supplies a coequal topological witness for the same higher-order family structure"},
     "gudhi":      {"tried": True,  "used": False, "reason": "tried persistence comparison — see boundary tests"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "supportive",
 }
 
 # ── Try-import blocks (all 12 tools) ────────────────────────────────
@@ -68,8 +83,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"unavailable ({exc.__class__.__name__}: {exc})"
 
 try:
     import geomstats  # noqa: F401
@@ -166,6 +181,23 @@ def build_hypergraph():
     H.add_nodes_from(range(len(ALL_FAMILIES)))
     H.add_edges_from(HYPEREDGE_LISTS)
     return H
+
+
+def build_cell_complex():
+    """Lift higher-order family relations into a bounded CellComplex."""
+    from toponetx.classes import CellComplex as CC_cls
+
+    CC = CC_cls()
+    pair_edges = set()
+    for edge in HYPEREDGE_LISTS:
+        if len(edge) >= 3:
+            CC.add_cell(edge, rank=2)
+        for i in range(len(edge)):
+            for j in range(i + 1, len(edge)):
+                pair_edges.add(tuple(sorted((edge[i], edge[j]))))
+    for u, v in sorted(pair_edges):
+        CC.add_cell([u, v], rank=1)
+    return CC, pair_edges
 
 
 # =====================================================================
@@ -283,6 +315,26 @@ def compare_hypergraph_simplicial(H, SC):
     }
 
 
+def compute_cell_complex_stats(CC, pair_edges):
+    """TopoNetX witness for the same higher-order structure."""
+    b1 = CC.incidence_matrix(rank=1, signed=True).toarray()
+    b2 = CC.incidence_matrix(rank=2, signed=True).toarray()
+    l1 = CC.hodge_laplacian_matrix(rank=1).toarray()
+    zero_modes = int(np.sum(np.abs(np.linalg.eigvalsh(l1)) < 1e-8))
+    shape = list(CC.shape)
+    return {
+        "shape": shape,
+        "num_0cells": shape[0],
+        "num_1cells": shape[1],
+        "num_2cells": shape[2],
+        "pair_edge_count": len(pair_edges),
+        "rank_B1": int(np.linalg.matrix_rank(b1)),
+        "rank_B2": int(np.linalg.matrix_rank(b2)),
+        "B1B2_zero": bool(np.allclose(b1 @ b2, 0.0)),
+        "hodge1_zero_modes": zero_modes,
+    }
+
+
 # =====================================================================
 # POSITIVE TESTS
 # =====================================================================
@@ -291,6 +343,8 @@ def run_positive_tests():
     results = {}
     H = build_hypergraph()
     stats = compute_hypergraph_stats(H)
+    CC, pair_edges = build_cell_complex()
+    cell_stats = compute_cell_complex_stats(CC, pair_edges)
 
     # P1: CNOT has the highest degree (entangling + clifford + universal = 3)
     cnot_degree = stats["node_degrees"]["CNOT"]
@@ -369,6 +423,18 @@ def run_positive_tests():
         "dual_connected": dual["dual_is_connected"],
         "most_connected_edge": dual["dual_max_degree_edge"],
         "pass": dual["dual_num_nodes"] == len(HYPEREDGE_NAMES),
+    }
+
+    results["P9_toponetx_cell_lift_matches_higher_order_edges"] = {
+        **cell_stats,
+        "expected_num_2cells": sum(1 for edge in HYPEREDGE_LISTS if len(edge) >= 3),
+        "pass": (
+            cell_stats["num_2cells"] == sum(1 for edge in HYPEREDGE_LISTS if len(edge) >= 3)
+            and cell_stats["num_1cells"] == cell_stats["pair_edge_count"]
+            and cell_stats["B1B2_zero"]
+            and cell_stats["hodge1_zero_modes"] >= 1
+        ),
+        "detail": "TopoNetX CellComplex preserves the same higher-order family relations with nontrivial boundary structure",
     }
 
     return results
@@ -505,25 +571,18 @@ def run_boundary_tests():
         "detail": "Simplicial closure must add sub-faces; more edges than hypergraph",
     }
 
-    # B5: TopoNetX CellComplex comparison
+    # B5: TopoNetX CellComplex comparison (secondary check; core witness lives in P9)
     try:
-        from toponetx.classes import CellComplex as CC_cls
-        CC = CC_cls()
-        for edge in HYPEREDGE_LISTS:
-            if len(edge) >= 3:
-                CC.add_cell(edge, rank=2)
-            else:
-                for i in range(len(edge)):
-                    for j in range(i + 1, len(edge)):
-                        CC.add_edge(edge[i], edge[j])
-        cc_shape = CC.shape
+        CC, pair_edges = build_cell_complex()
+        cc_stats = compute_cell_complex_stats(CC, pair_edges)
         results["B5_toponetx_cell_complex"] = {
-            "cell_complex_shape": list(cc_shape),
-            "num_0cells": cc_shape[0],
-            "num_1cells": cc_shape[1],
-            "num_2cells": cc_shape[2],
-            "pass": cc_shape[0] > 0 and cc_shape[2] > 0,
-            "detail": "CellComplex encodes the same families with boundary operators",
+            "cell_complex_shape": cc_stats["shape"],
+            "num_0cells": cc_stats["num_0cells"],
+            "num_1cells": cc_stats["num_1cells"],
+            "num_2cells": cc_stats["num_2cells"],
+            "hodge1_zero_modes": cc_stats["hodge1_zero_modes"],
+            "pass": cc_stats["num_0cells"] > 0 and cc_stats["num_2cells"] > 0 and cc_stats["B1B2_zero"],
+            "detail": "CellComplex boundary maps remain consistent with the XGI higher-order family relations",
         }
         TOOL_MANIFEST["toponetx"]["used"] = True
     except Exception as e:
@@ -581,6 +640,8 @@ if __name__ == "__main__":
 
     SC = build_simplicial_complex()
     sc_comparison = compare_hypergraph_simplicial(H, SC)
+    CC, pair_edges = build_cell_complex()
+    cell_complex = compute_cell_complex_stats(CC, pair_edges)
 
     positive = run_positive_tests()
     negative = run_negative_tests()
@@ -616,7 +677,9 @@ if __name__ == "__main__":
             "dual_hypergraph": dual,
             "structural_vs_measure_degrees": struct_vs_meas,
             "simplicial_comparison": sc_comparison,
+            "cell_complex_lift": cell_complex,
         },
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

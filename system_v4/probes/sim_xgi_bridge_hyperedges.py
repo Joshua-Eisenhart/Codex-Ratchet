@@ -34,6 +34,21 @@ TOOL_MANIFEST = {
     "gudhi":      {"tried": False, "used": False, "reason": "not relevant — no persistence needed for bridge test"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": "load_bearing",
+    "toponetx": None,
+    "gudhi": None,
+}
+
 # ── Try-import blocks (all 12 tools) ────────────────────────────────
 
 try:
@@ -69,8 +84,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 try:
     import geomstats  # noqa: F401
@@ -499,6 +514,7 @@ if __name__ == "__main__":
         "name": "xgi_bridge_hyperedges",
         "classification": "canonical",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "summary": {
             "tests_passed": n_pass,
             "tests_total": n_total,

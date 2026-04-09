@@ -1,0 +1,2303 @@
+{
+  "generated_at": "2026-04-09T23:38:28.963850+00:00",
+  "strict": false,
+  "source_surface": "repo_hygiene",
+  "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
+  "dirty_source_count": 164,
+  "plan_group_count": 89,
+  "checkpoint_candidate_count": 1,
+  "quarantine_candidate_count": 0,
+  "manual_only_count": 88,
+  "code_only_manual_count": 88,
+  "largest_group_id": "probe_source__probe_misc",
+  "next_code_only_manual_group_id": "probe_source__sim_family_coherent",
+  "next_code_only_manual_file_count": 1,
+  "summary": {
+    "dirty_source_count": 164,
+    "plan_group_count": 89,
+    "checkpoint_candidate_count": 1,
+    "quarantine_candidate_count": 0,
+    "manual_only_count": 88,
+    "code_only_manual_count": 88,
+    "largest_group_id": "probe_source__probe_misc",
+    "next_code_only_manual_group_id": "probe_source__sim_family_coherent",
+    "next_code_only_manual_file_count": 1,
+    "ok": true
+  },
+  "rules": {
+    "checkpoint": "Bounded source/config cluster suitable for an explicit scoped checkpoint.",
+    "quarantine": "Residue cluster that may be isolated later, but not auto-moved here.",
+    "archive_review": "Legacy or reference cluster requiring separate ownership review.",
+    "manual_split_required": "Active cluster too broad for one safe checkpoint and should be split further."
+  },
+  "recommended_checkpoint_order": [
+    {
+      "group_id": "docs_and_specs__docs_and_specs",
+      "file_count": 3,
+      "safe_next_action": "checkpoint"
+    }
+  ],
+  "recommended_manual_split_order": [
+    {
+      "group_id": "probe_source__probe_misc",
+      "file_count": 19,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__lego_family",
+      "file_count": 9,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_bridge",
+      "file_count": 8,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__torch_family",
+      "file_count": 8,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "other_source__other_source",
+      "file_count": 5,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "legacy_runtime__legacy_runtime",
+      "file_count": 4,
+      "safe_next_action": "archive_review"
+    },
+    {
+      "group_id": "probe_source__sim_family_operator",
+      "file_count": 4,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_shell",
+      "file_count": 4,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_entanglement",
+      "file_count": 3,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__tool_family_rustworkx",
+      "file_count": 3,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_channel",
+      "file_count": 2,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_constraint",
+      "file_count": 2,
+      "safe_next_action": "manual_split_required"
+    }
+  ],
+  "recommended_code_only_order": [
+    {
+      "group_id": "probe_source__sim_family_coherent",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_commutative",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_commutator",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_concurrence",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_conditional",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_covariance",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_discrete",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_distinguishability",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_dual",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_eigenvalue",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_fubini",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required"
+    },
+    {
+      "group_id": "probe_source__sim_family_gauge",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required"
+    }
+  ],
+  "next_code_only_manual": {
+    "group_id": "probe_source__sim_family_coherent",
+    "file_count": 1,
+    "untracked_count": 1,
+    "tracked_dirty_count": 0,
+    "safe_next_action": "manual_split_required"
+  },
+  "checkpoint_groups": [
+    {
+      "group_id": "docs_and_specs__docs_and_specs",
+      "bucket": "docs_and_specs",
+      "label": "docs_and_specs",
+      "display_name": "Docs and specs",
+      "path_prefixes": [
+        "new docs/16_lego_build_catalog 2.md",
+        "new docs/16_lego_build_catalog.md",
+        "new docs/17_actual_lego_registry.md"
+      ],
+      "file_count": 3,
+      "tracked_dirty_count": 0,
+      "untracked_count": 3,
+      "sample_paths": [
+        "new docs/16_lego_build_catalog 2.md",
+        "new docs/16_lego_build_catalog.md",
+        "new docs/17_actual_lego_registry.md"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "checkpoint",
+      "safe_auto": false,
+      "blocking_reason": "bounded_human_checkpoint",
+      "notes": "Docs/specs are bounded and can be checkpointed separately."
+    },
+    {
+      "group_id": "legacy_runtime__legacy_runtime",
+      "bucket": "legacy_runtime",
+      "label": "legacy_runtime",
+      "display_name": "Legacy/reference runtime surfaces",
+      "path_prefixes": [
+        "system_v5/READ ONLY Reference Docs/Older Legacy"
+      ],
+      "file_count": 4,
+      "tracked_dirty_count": 0,
+      "untracked_count": 4,
+      "sample_paths": [
+        "system_v5/READ ONLY Reference Docs/Older Legacy/Joshua Personality Model v1.1 copy.pdf",
+        "system_v5/READ ONLY Reference Docs/Older Legacy/Personality theory._ copy.xlsx",
+        "system_v5/READ ONLY Reference Docs/Older Legacy/The Dark Empress-A Practical Guide to Universal Dominion V6.1 copy.md",
+        "system_v5/READ ONLY Reference Docs/Older Legacy/The Grandmaster of the Universe.txt"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "archive_review",
+      "safe_auto": false,
+      "blocking_reason": "bounded_human_checkpoint",
+      "notes": "Legacy/reference surfaces should be reviewed separately from active work."
+    },
+    {
+      "group_id": "other_source__other_source",
+      "bucket": "other_source",
+      "label": "other_source",
+      "display_name": "Other source surfaces",
+      "path_prefixes": [
+        "obsidian_vault/.obsidian/workspace.json",
+        "obsidian_vault/2026-04-08.md",
+        "obsidian_vault/Untitled 1.md",
+        "obsidian_vault/Untitled.canvas",
+        "system_v4/a2_state/graphs"
+      ],
+      "file_count": 5,
+      "tracked_dirty_count": 1,
+      "untracked_count": 4,
+      "sample_paths": [
+        "obsidian_vault/.obsidian/workspace.json",
+        "obsidian_vault/2026-04-08.md",
+        "obsidian_vault/Untitled 1.md",
+        "obsidian_vault/Untitled.canvas",
+        "system_v4/a2_state/graphs/system_graph_a2_refinery 2.json"
+      ],
+      "dominant_kinds": [
+        "untracked",
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Unclassified source/config residue needs manual grouping before checkpointing."
+    },
+    {
+      "group_id": "probe_source__lego_family",
+      "bucket": "probe_source",
+      "label": "lego_family",
+      "display_name": "Lego and pure-lego sims",
+      "path_prefixes": [
+        "system_v4/probes/sim_lego_choi_state_duality.py",
+        "system_v4/probes/sim_lego_lindblad_dissipator.py",
+        "system_v4/probes/sim_lego_povm_measurement.py",
+        "system_v4/probes/sim_pure_lego_density_matrices.py",
+        "system_v4/probes/sim_pure_lego_hypothesis_testing.py",
+        "system_v4/probes/sim_pure_lego_ml_density_matrix.py",
+        "system_v4/probes/sim_pure_lego_petz_recovery.py",
+        "system_v4/probes/sim_pure_lego_qfi_wy_qgt.py",
+        "system_v4/probes/sim_pure_lego_qpca_tensor_rmt.py"
+      ],
+      "file_count": 9,
+      "tracked_dirty_count": 9,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_lego_choi_state_duality.py",
+        "system_v4/probes/sim_lego_lindblad_dissipator.py",
+        "system_v4/probes/sim_lego_povm_measurement.py",
+        "system_v4/probes/sim_pure_lego_density_matrices.py",
+        "system_v4/probes/sim_pure_lego_hypothesis_testing.py",
+        "system_v4/probes/sim_pure_lego_ml_density_matrix.py",
+        "system_v4/probes/sim_pure_lego_petz_recovery.py",
+        "system_v4/probes/sim_pure_lego_qfi_wy_qgt.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active probe family; checkpoint in bounded family batches rather than sweeping."
+    },
+    {
+      "group_id": "probe_source__probe_misc",
+      "bucket": "probe_source",
+      "label": "probe_misc",
+      "display_name": "Misc active probes",
+      "path_prefixes": [
+        "system_v4/probes/actual_lego_normalization_queue.py",
+        "system_v4/probes/audit_overclassification.py",
+        "system_v4/probes/axis_orthogonality_suite.py",
+        "system_v4/probes/extract_actual_lego_registry.py",
+        "system_v4/probes/heartbeat.sh",
+        "system_v4/probes/lego_batch_queue.py",
+        "system_v4/probes/lego_coupling_candidates.py",
+        "system_v4/probes/lego_stack_audit.py",
+        "system_v4/probes/repo_hygiene_audit.py",
+        "system_v4/probes/run_formal_geometry_packet.py",
+        "system_v4/probes/run_root_emergence_packet.py",
+        "system_v4/probes/run_with_numba_safety.sh",
+        "system_v4/probes/runtime_hygiene_audit.py",
+        "system_v4/probes/source_dirty_checkpoint_packet.py",
+        "system_v4/probes/source_dirty_checkpoint_plan.py",
+        "system_v4/probes/source_dirty_lane_manifest.py",
+        "system_v4/probes/source_dirty_stage_plan.py",
+        "system_v4/probes/system_hygiene_repair.py",
+        "system_v4/probes/system_hygiene_supervisor.py"
+      ],
+      "file_count": 19,
+      "tracked_dirty_count": 7,
+      "untracked_count": 12,
+      "sample_paths": [
+        "system_v4/probes/axis_orthogonality_suite.py",
+        "system_v4/probes/heartbeat.sh",
+        "system_v4/probes/run_formal_geometry_packet.py",
+        "system_v4/probes/run_root_emergence_packet.py",
+        "system_v4/probes/source_dirty_checkpoint_plan.py",
+        "system_v4/probes/source_dirty_lane_manifest.py",
+        "system_v4/probes/system_hygiene_supervisor.py",
+        "system_v4/probes/actual_lego_normalization_queue.py"
+      ],
+      "dominant_kinds": [
+        "untracked",
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active probe/control sources still mixed together."
+    },
+    {
+      "group_id": "probe_source__sim_family_L2",
+      "bucket": "probe_source",
+      "label": "sim_family_L2",
+      "display_name": "Probe sim family: L2",
+      "path_prefixes": [
+        "system_v4/probes/sim_L2_eight_stages.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_L2_eight_stages.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'L2' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_bridge",
+      "bucket": "probe_source",
+      "label": "sim_family_bridge",
+      "display_name": "Probe sim family: bridge",
+      "path_prefixes": [
+        "system_v4/probes/sim_bridge_chain_integration.py",
+        "system_v4/probes/sim_bridge_cvc5_crosscheck.py",
+        "system_v4/probes/sim_bridge_family_xi_history.py",
+        "system_v4/probes/sim_bridge_family_xi_point.py",
+        "system_v4/probes/sim_bridge_family_xi_shell.py",
+        "system_v4/probes/sim_bridge_fe_relay_sweep.py",
+        "system_v4/probes/sim_bridge_phi0_proof_integration.py",
+        "system_v4/probes/sim_bridge_to_rhoab_construction.py"
+      ],
+      "file_count": 8,
+      "tracked_dirty_count": 5,
+      "untracked_count": 3,
+      "sample_paths": [
+        "system_v4/probes/sim_bridge_chain_integration.py",
+        "system_v4/probes/sim_bridge_cvc5_crosscheck.py",
+        "system_v4/probes/sim_bridge_fe_relay_sweep.py",
+        "system_v4/probes/sim_bridge_phi0_proof_integration.py",
+        "system_v4/probes/sim_bridge_to_rhoab_construction.py",
+        "system_v4/probes/sim_bridge_family_xi_history.py",
+        "system_v4/probes/sim_bridge_family_xi_point.py",
+        "system_v4/probes/sim_bridge_family_xi_shell.py"
+      ],
+      "dominant_kinds": [
+        "modified",
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'bridge' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_c2",
+      "bucket": "probe_source",
+      "label": "sim_family_c2",
+      "display_name": "Probe sim family: c2",
+      "path_prefixes": [
+        "system_v4/probes/sim_c2_topology_remaining.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_c2_topology_remaining.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'c2' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_channel",
+      "bucket": "probe_source",
+      "label": "sim_family_channel",
+      "display_name": "Probe sim family: channel",
+      "path_prefixes": [
+        "system_v4/probes/sim_channel_capacity.py",
+        "system_v4/probes/sim_channel_space_geometry.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 0,
+      "untracked_count": 2,
+      "sample_paths": [
+        "system_v4/probes/sim_channel_capacity.py",
+        "system_v4/probes/sim_channel_space_geometry.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'channel' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_coherent",
+      "bucket": "probe_source",
+      "label": "sim_family_coherent",
+      "display_name": "Probe sim family: coherent",
+      "path_prefixes": [
+        "system_v4/probes/sim_coherent_information_measure.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_coherent_information_measure.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'coherent' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_commutative",
+      "bucket": "probe_source",
+      "label": "sim_family_commutative",
+      "display_name": "Probe sim family: commutative",
+      "path_prefixes": [
+        "system_v4/probes/sim_commutative_geometry_collapse.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_commutative_geometry_collapse.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'commutative' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_commutator",
+      "bucket": "probe_source",
+      "label": "sim_family_commutator",
+      "display_name": "Probe sim family: commutator",
+      "path_prefixes": [
+        "system_v4/probes/sim_commutator_algebra.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_commutator_algebra.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'commutator' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_compound",
+      "bucket": "probe_source",
+      "label": "sim_family_compound",
+      "display_name": "Probe sim family: compound",
+      "path_prefixes": [
+        "system_v4/probes/sim_compound_operator_geometry.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_compound_operator_geometry.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'compound' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_concurrence",
+      "bucket": "probe_source",
+      "label": "sim_family_concurrence",
+      "display_name": "Probe sim family: concurrence",
+      "path_prefixes": [
+        "system_v4/probes/sim_concurrence_measure.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_concurrence_measure.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'concurrence' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_conditional",
+      "bucket": "probe_source",
+      "label": "sim_family_conditional",
+      "display_name": "Probe sim family: conditional",
+      "path_prefixes": [
+        "system_v4/probes/sim_conditional_entropy.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_conditional_entropy.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'conditional' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_constraint",
+      "bucket": "probe_source",
+      "label": "sim_family_constraint",
+      "display_name": "Probe sim family: constraint",
+      "path_prefixes": [
+        "system_v4/probes/sim_constraint_manifold_L0_L1.py",
+        "system_v4/probes/sim_constraint_shells_binding_crosscheck.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 2,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_constraint_manifold_L0_L1.py",
+        "system_v4/probes/sim_constraint_shells_binding_crosscheck.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'constraint' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_correlation",
+      "bucket": "probe_source",
+      "label": "sim_family_correlation",
+      "display_name": "Probe sim family: correlation",
+      "path_prefixes": [
+        "system_v4/probes/sim_correlation_tensor_object.py",
+        "system_v4/probes/sim_correlation_tensor_principal_directions.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 0,
+      "untracked_count": 2,
+      "sample_paths": [
+        "system_v4/probes/sim_correlation_tensor_object.py",
+        "system_v4/probes/sim_correlation_tensor_principal_directions.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'correlation' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_covariance",
+      "bucket": "probe_source",
+      "label": "sim_family_covariance",
+      "display_name": "Probe sim family: covariance",
+      "path_prefixes": [
+        "system_v4/probes/sim_covariance_operator.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_covariance_operator.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'covariance' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_density",
+      "bucket": "probe_source",
+      "label": "sim_family_density",
+      "display_name": "Probe sim family: density",
+      "path_prefixes": [
+        "system_v4/probes/sim_density_hopf_geometry.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_density_hopf_geometry.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'density' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_discrete",
+      "bucket": "probe_source",
+      "label": "sim_family_discrete",
+      "display_name": "Probe sim family: discrete",
+      "path_prefixes": [
+        "system_v4/probes/sim_discrete_axis0_field.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_discrete_axis0_field.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'discrete' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_distinguishability",
+      "bucket": "probe_source",
+      "label": "sim_family_distinguishability",
+      "display_name": "Probe sim family: distinguishability",
+      "path_prefixes": [
+        "system_v4/probes/sim_distinguishability_relation.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_distinguishability_relation.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'distinguishability' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_dual",
+      "bucket": "probe_source",
+      "label": "sim_family_dual",
+      "display_name": "Probe sim family: dual",
+      "path_prefixes": [
+        "system_v4/probes/sim_dual_hypergraph_geometry.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_dual_hypergraph_geometry.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'dual' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_edge",
+      "bucket": "probe_source",
+      "label": "sim_family_edge",
+      "display_name": "Probe sim family: edge",
+      "path_prefixes": [
+        "system_v4/probes/sim_edge_state_writeback.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_edge_state_writeback.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'edge' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_eigenvalue",
+      "bucket": "probe_source",
+      "label": "sim_family_eigenvalue",
+      "display_name": "Probe sim family: eigenvalue",
+      "path_prefixes": [
+        "system_v4/probes/sim_eigenvalue_spectrum_view.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_eigenvalue_spectrum_view.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'eigenvalue' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_entanglement",
+      "bucket": "probe_source",
+      "label": "sim_family_entanglement",
+      "display_name": "Probe sim family: entanglement",
+      "path_prefixes": [
+        "system_v4/probes/sim_entanglement_entropy.py",
+        "system_v4/probes/sim_entanglement_spectrum.py",
+        "system_v4/probes/sim_entanglement_witness_family.py"
+      ],
+      "file_count": 3,
+      "tracked_dirty_count": 0,
+      "untracked_count": 3,
+      "sample_paths": [
+        "system_v4/probes/sim_entanglement_entropy.py",
+        "system_v4/probes/sim_entanglement_spectrum.py",
+        "system_v4/probes/sim_entanglement_witness_family.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'entanglement' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_foundation",
+      "bucket": "probe_source",
+      "label": "sim_family_foundation",
+      "display_name": "Probe sim family: foundation",
+      "path_prefixes": [
+        "system_v4/probes/sim_foundation_equivariant_graph_backprop.py",
+        "system_v4/probes/sim_foundation_pauli_bloch_backprop.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 2,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_foundation_equivariant_graph_backprop.py",
+        "system_v4/probes/sim_foundation_pauli_bloch_backprop.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'foundation' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_fubini",
+      "bucket": "probe_source",
+      "label": "sim_family_fubini",
+      "display_name": "Probe sim family: fubini",
+      "path_prefixes": [
+        "system_v4/probes/sim_fubini_study_geometry.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_fubini_study_geometry.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'fubini' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_gauge",
+      "bucket": "probe_source",
+      "label": "sim_family_gauge",
+      "display_name": "Probe sim family: gauge",
+      "path_prefixes": [
+        "system_v4/probes/sim_gauge_group_correspondence.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_gauge_group_correspondence.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'gauge' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_geometry",
+      "bucket": "probe_source",
+      "label": "sim_family_geometry",
+      "display_name": "Probe sim family: geometry",
+      "path_prefixes": [
+        "system_v4/probes/sim_geometry_preserving_basis_change.py",
+        "system_v4/probes/sim_geometry_truth.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 1,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_geometry_truth.py",
+        "system_v4/probes/sim_geometry_preserving_basis_change.py"
+      ],
+      "dominant_kinds": [
+        "modified",
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'geometry' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_geomstats",
+      "bucket": "probe_source",
+      "label": "sim_family_geomstats",
+      "display_name": "Probe sim family: geomstats",
+      "path_prefixes": [
+        "system_v4/probes/sim_geomstats_frechet_mean.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_geomstats_frechet_mean.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'geomstats' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_gnn",
+      "bucket": "probe_source",
+      "label": "sim_family_gnn",
+      "display_name": "Probe sim family: gnn",
+      "path_prefixes": [
+        "system_v4/probes/sim_gnn_cascade_integrated.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_gnn_cascade_integrated.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'gnn' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_graph",
+      "bucket": "probe_source",
+      "label": "sim_family_graph",
+      "display_name": "Probe sim family: graph",
+      "path_prefixes": [
+        "system_v4/probes/sim_graph_geometry.py",
+        "system_v4/probes/sim_graph_shell_geometry.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 0,
+      "untracked_count": 2,
+      "sample_paths": [
+        "system_v4/probes/sim_graph_geometry.py",
+        "system_v4/probes/sim_graph_shell_geometry.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'graph' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_helstrom",
+      "bucket": "probe_source",
+      "label": "sim_family_helstrom",
+      "display_name": "Probe sim family: helstrom",
+      "path_prefixes": [
+        "system_v4/probes/sim_helstrom_guess_bound.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_helstrom_guess_bound.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'helstrom' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_hilbert",
+      "bucket": "probe_source",
+      "label": "sim_family_hilbert",
+      "display_name": "Probe sim family: hilbert",
+      "path_prefixes": [
+        "system_v4/probes/sim_hilbert_schmidt_flatness_rejection.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_hilbert_schmidt_flatness_rejection.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'hilbert' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_history",
+      "bucket": "probe_source",
+      "label": "sim_family_history",
+      "display_name": "Probe sim family: history",
+      "path_prefixes": [
+        "system_v4/probes/sim_history_window_entropy.py",
+        "system_v4/probes/sim_history_window_support.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 0,
+      "untracked_count": 2,
+      "sample_paths": [
+        "system_v4/probes/sim_history_window_entropy.py",
+        "system_v4/probes/sim_history_window_support.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'history' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_holevo",
+      "bucket": "probe_source",
+      "label": "sim_family_holevo",
+      "display_name": "Probe sim family: holevo",
+      "path_prefixes": [
+        "system_v4/probes/sim_holevo_quantity.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_holevo_quantity.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'holevo' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_husimi",
+      "bucket": "probe_source",
+      "label": "sim_family_husimi",
+      "display_name": "Probe sim family: husimi",
+      "path_prefixes": [
+        "system_v4/probes/sim_husimi_phase_space_representation.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_husimi_phase_space_representation.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'husimi' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_hypergraph",
+      "bucket": "probe_source",
+      "label": "sim_family_hypergraph",
+      "display_name": "Probe sim family: hypergraph",
+      "path_prefixes": [
+        "system_v4/probes/sim_hypergraph_geometry.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_hypergraph_geometry.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'hypergraph' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_joint",
+      "bucket": "probe_source",
+      "label": "sim_family_joint",
+      "display_name": "Probe sim family: joint",
+      "path_prefixes": [
+        "system_v4/probes/sim_joint_density_matrix.py",
+        "system_v4/probes/sim_joint_operator_action.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 0,
+      "untracked_count": 2,
+      "sample_paths": [
+        "system_v4/probes/sim_joint_density_matrix.py",
+        "system_v4/probes/sim_joint_operator_action.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'joint' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_layer",
+      "bucket": "probe_source",
+      "label": "sim_family_layer",
+      "display_name": "Probe sim family: layer",
+      "path_prefixes": [
+        "system_v4/probes/sim_layer_stacking_coexistence.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_layer_stacking_coexistence.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'layer' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_local",
+      "bucket": "probe_source",
+      "label": "sim_family_local",
+      "display_name": "Probe sim family: local",
+      "path_prefixes": [
+        "system_v4/probes/sim_local_operator_action.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_local_operator_action.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'local' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_loop",
+      "bucket": "probe_source",
+      "label": "sim_family_loop",
+      "display_name": "Probe sim family: loop",
+      "path_prefixes": [
+        "system_v4/probes/sim_loop_order_family.py",
+        "system_v4/probes/sim_loop_vector_fields.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 0,
+      "untracked_count": 2,
+      "sample_paths": [
+        "system_v4/probes/sim_loop_order_family.py",
+        "system_v4/probes/sim_loop_vector_fields.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'loop' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_low",
+      "bucket": "probe_source",
+      "label": "sim_family_low",
+      "display_name": "Probe sim family: low",
+      "path_prefixes": [
+        "system_v4/probes/sim_low_rank_psd_approximation.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_low_rank_psd_approximation.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'low' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_measurement",
+      "bucket": "probe_source",
+      "label": "sim_family_measurement",
+      "display_name": "Probe sim family: measurement",
+      "path_prefixes": [
+        "system_v4/probes/sim_measurement_instrument.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_measurement_instrument.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'measurement' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_mutual",
+      "bucket": "probe_source",
+      "label": "sim_family_mutual",
+      "display_name": "Probe sim family: mutual",
+      "path_prefixes": [
+        "system_v4/probes/sim_mutual_information_measure.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_mutual_information_measure.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'mutual' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_negativity",
+      "bucket": "probe_source",
+      "label": "sim_family_negativity",
+      "display_name": "Probe sim family: negativity",
+      "path_prefixes": [
+        "system_v4/probes/sim_negativity_measure.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_negativity_measure.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'negativity' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_nested",
+      "bucket": "probe_source",
+      "label": "sim_family_nested",
+      "display_name": "Probe sim family: nested",
+      "path_prefixes": [
+        "system_v4/probes/sim_nested_torus_geometry.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_nested_torus_geometry.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'nested' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_nonclassical",
+      "bucket": "probe_source",
+      "label": "sim_family_nonclassical",
+      "display_name": "Probe sim family: nonclassical",
+      "path_prefixes": [
+        "system_v4/probes/sim_nonclassical_guard_probe.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_nonclassical_guard_probe.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'nonclassical' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_operator",
+      "bucket": "probe_source",
+      "label": "sim_family_operator",
+      "display_name": "Probe sim family: operator",
+      "path_prefixes": [
+        "system_v4/probes/sim_operator_coordinate_representation.py",
+        "system_v4/probes/sim_operator_geometry_compatibility.py",
+        "system_v4/probes/sim_operator_low_rank_factorization.py",
+        "system_v4/probes/sim_operator_ordered_entropy.py"
+      ],
+      "file_count": 4,
+      "tracked_dirty_count": 1,
+      "untracked_count": 3,
+      "sample_paths": [
+        "system_v4/probes/sim_operator_geometry_compatibility.py",
+        "system_v4/probes/sim_operator_coordinate_representation.py",
+        "system_v4/probes/sim_operator_low_rank_factorization.py",
+        "system_v4/probes/sim_operator_ordered_entropy.py"
+      ],
+      "dominant_kinds": [
+        "untracked",
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'operator' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_path",
+      "bucket": "probe_source",
+      "label": "sim_family_path",
+      "display_name": "Probe sim family: path",
+      "path_prefixes": [
+        "system_v4/probes/sim_path_entropy.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_path_entropy.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'path' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_pauli",
+      "bucket": "probe_source",
+      "label": "sim_family_pauli",
+      "display_name": "Probe sim family: pauli",
+      "path_prefixes": [
+        "system_v4/probes/sim_pauli_algebra_relations.py",
+        "system_v4/probes/sim_pauli_generator_basis.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 0,
+      "untracked_count": 2,
+      "sample_paths": [
+        "system_v4/probes/sim_pauli_algebra_relations.py",
+        "system_v4/probes/sim_pauli_generator_basis.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'pauli' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_persistence",
+      "bucket": "probe_source",
+      "label": "sim_family_persistence",
+      "display_name": "Probe sim family: persistence",
+      "path_prefixes": [
+        "system_v4/probes/sim_persistence_geometry.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_persistence_geometry.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'persistence' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_phase7",
+      "bucket": "probe_source",
+      "label": "sim_family_phase7",
+      "display_name": "Probe sim family: phase7",
+      "path_prefixes": [
+        "system_v4/probes/sim_phase7_baseline_validation.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_phase7_baseline_validation.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'phase7' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_phi0",
+      "bucket": "probe_source",
+      "label": "sim_family_phi0",
+      "display_name": "Probe sim family: phi0",
+      "path_prefixes": [
+        "system_v4/probes/sim_phi0_integrated_bakeoff.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_phi0_integrated_bakeoff.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'phi0' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_positivity",
+      "bucket": "probe_source",
+      "label": "sim_family_positivity",
+      "display_name": "Probe sim family: positivity",
+      "path_prefixes": [
+        "system_v4/probes/sim_positivity_constraint.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_positivity_constraint.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'positivity' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_probe",
+      "bucket": "probe_source",
+      "label": "sim_family_probe",
+      "display_name": "Probe sim family: probe",
+      "path_prefixes": [
+        "system_v4/probes/sim_probe_identity_preservation.py",
+        "system_v4/probes/sim_probe_object.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 0,
+      "untracked_count": 2,
+      "sample_paths": [
+        "system_v4/probes/sim_probe_identity_preservation.py",
+        "system_v4/probes/sim_probe_object.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'probe' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_pyg",
+      "bucket": "probe_source",
+      "label": "sim_family_pyg",
+      "display_name": "Probe sim family: pyg",
+      "path_prefixes": [
+        "system_v4/probes/sim_pyg_dynamic_edge_werner.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_pyg_dynamic_edge_werner.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'pyg' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_q3",
+      "bucket": "probe_source",
+      "label": "sim_family_q3",
+      "display_name": "Probe sim family: q3",
+      "path_prefixes": [
+        "system_v4/probes/sim_q3_bipartite_analysis.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_q3_bipartite_analysis.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'q3' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_qpca",
+      "bucket": "probe_source",
+      "label": "sim_family_qpca",
+      "display_name": "Probe sim family: qpca",
+      "path_prefixes": [
+        "system_v4/probes/sim_qpca_spectral_extraction.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_qpca_spectral_extraction.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'qpca' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_real",
+      "bucket": "probe_source",
+      "label": "sim_family_real",
+      "display_name": "Probe sim family: real",
+      "path_prefixes": [
+        "system_v4/probes/sim_real_only_geometry_rejection.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_real_only_geometry_rejection.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'real' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_reduced",
+      "bucket": "probe_source",
+      "label": "sim_family_reduced",
+      "display_name": "Probe sim family: reduced",
+      "path_prefixes": [
+        "system_v4/probes/sim_reduced_state_object.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_reduced_state_object.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'reduced' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_relative",
+      "bucket": "probe_source",
+      "label": "sim_family_relative",
+      "display_name": "Probe sim family: relative",
+      "path_prefixes": [
+        "system_v4/probes/sim_relative_entropy_js.py",
+        "system_v4/probes/sim_relative_entropy_nonmetric_boundary.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 0,
+      "untracked_count": 2,
+      "sample_paths": [
+        "system_v4/probes/sim_relative_entropy_js.py",
+        "system_v4/probes/sim_relative_entropy_nonmetric_boundary.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'relative' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_representation",
+      "bucket": "probe_source",
+      "label": "sim_family_representation",
+      "display_name": "Probe sim family: representation",
+      "path_prefixes": [
+        "system_v4/probes/sim_representation_violation_check.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_representation_violation_check.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'representation' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_ring",
+      "bucket": "probe_source",
+      "label": "sim_family_ring",
+      "display_name": "Probe sim family: ring",
+      "path_prefixes": [
+        "system_v4/probes/sim_ring_checkerboard_support.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_ring_checkerboard_support.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'ring' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_schmidt",
+      "bucket": "probe_source",
+      "label": "sim_family_schmidt",
+      "display_name": "Probe sim family: schmidt",
+      "path_prefixes": [
+        "system_v4/probes/sim_schmidt_decomposition.py",
+        "system_v4/probes/sim_schmidt_mode_truncation.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 0,
+      "untracked_count": 2,
+      "sample_paths": [
+        "system_v4/probes/sim_schmidt_decomposition.py",
+        "system_v4/probes/sim_schmidt_mode_truncation.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'schmidt' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_shannon",
+      "bucket": "probe_source",
+      "label": "sim_family_shannon",
+      "display_name": "Probe sim family: shannon",
+      "path_prefixes": [
+        "system_v4/probes/sim_shannon_entropy.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_shannon_entropy.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'shannon' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_shell",
+      "bucket": "probe_source",
+      "label": "sim_family_shell",
+      "display_name": "Probe sim family: shell",
+      "path_prefixes": [
+        "system_v4/probes/sim_shell_fuzz_jk.py",
+        "system_v4/probes/sim_shell_indexed_tensor_network.py",
+        "system_v4/probes/sim_shell_weighted_entropy_field.py",
+        "system_v4/probes/sim_shell_window_support.py"
+      ],
+      "file_count": 4,
+      "tracked_dirty_count": 0,
+      "untracked_count": 4,
+      "sample_paths": [
+        "system_v4/probes/sim_shell_fuzz_jk.py",
+        "system_v4/probes/sim_shell_indexed_tensor_network.py",
+        "system_v4/probes/sim_shell_weighted_entropy_field.py",
+        "system_v4/probes/sim_shell_window_support.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'shell' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_spectral",
+      "bucket": "probe_source",
+      "label": "sim_family_spectral",
+      "display_name": "Probe sim family: spectral",
+      "path_prefixes": [
+        "system_v4/probes/sim_spectral_truncation.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_spectral_truncation.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'spectral' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_sphere",
+      "bucket": "probe_source",
+      "label": "sim_family_sphere",
+      "display_name": "Probe sim family: sphere",
+      "path_prefixes": [
+        "system_v4/probes/sim_sphere_geometry.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_sphere_geometry.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'sphere' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_state",
+      "bucket": "probe_source",
+      "label": "sim_family_state",
+      "display_name": "Probe sim family: state",
+      "path_prefixes": [
+        "system_v4/probes/sim_state_class_binding_geometry.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_state_class_binding_geometry.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'state' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_stokes",
+      "bucket": "probe_source",
+      "label": "sim_family_stokes",
+      "display_name": "Probe sim family: stokes",
+      "path_prefixes": [
+        "system_v4/probes/sim_stokes_parameterization.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_stokes_parameterization.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'stokes' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_svd",
+      "bucket": "probe_source",
+      "label": "sim_family_svd",
+      "display_name": "Probe sim family: svd",
+      "path_prefixes": [
+        "system_v4/probes/sim_svd_factorization.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_svd_factorization.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'svd' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_torus",
+      "bucket": "probe_source",
+      "label": "sim_family_torus",
+      "display_name": "Probe sim family: torus",
+      "path_prefixes": [
+        "system_v4/probes/sim_torus_seat_entropy.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_torus_seat_entropy.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'torus' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_trace",
+      "bucket": "probe_source",
+      "label": "sim_family_trace",
+      "display_name": "Probe sim family: trace",
+      "path_prefixes": [
+        "system_v4/probes/sim_trace_distance_geometry.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_trace_distance_geometry.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'trace' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_transport",
+      "bucket": "probe_source",
+      "label": "sim_family_transport",
+      "display_name": "Probe sim family: transport",
+      "path_prefixes": [
+        "system_v4/probes/sim_transport_weighted_entropy.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_transport_weighted_entropy.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'transport' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_unsigned",
+      "bucket": "probe_source",
+      "label": "sim_family_unsigned",
+      "display_name": "Probe sim family: unsigned",
+      "path_prefixes": [
+        "system_v4/probes/sim_unsigned_entropy_family.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_unsigned_entropy_family.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'unsigned' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_viability",
+      "bucket": "probe_source",
+      "label": "sim_family_viability",
+      "display_name": "Probe sim family: viability",
+      "path_prefixes": [
+        "system_v4/probes/sim_viability_vs_attractor.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_viability_vs_attractor.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'viability' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_von",
+      "bucket": "probe_source",
+      "label": "sim_family_von",
+      "display_name": "Probe sim family: von",
+      "path_prefixes": [
+        "system_v4/probes/sim_von_neumann_entropy.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 0,
+      "untracked_count": 1,
+      "sample_paths": [
+        "system_v4/probes/sim_von_neumann_entropy.py"
+      ],
+      "dominant_kinds": [
+        "untracked"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'von' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_weyl",
+      "bucket": "probe_source",
+      "label": "sim_family_weyl",
+      "display_name": "Probe sim family: weyl",
+      "path_prefixes": [
+        "system_v4/probes/sim_weyl_nested_shell.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_weyl_nested_shell.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'weyl' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__sim_family_z3",
+      "bucket": "probe_source",
+      "label": "sim_family_z3",
+      "display_name": "Probe sim family: z3",
+      "path_prefixes": [
+        "system_v4/probes/sim_z3_channel_boundary_theorem.py"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_z3_channel_boundary_theorem.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active sim family 'z3' should be checkpointed in a bounded family batch."
+    },
+    {
+      "group_id": "probe_source__tool_family_e3nn",
+      "bucket": "probe_source",
+      "label": "tool_family_e3nn",
+      "display_name": "Tool family: e3nn",
+      "path_prefixes": [
+        "system_v4/probes/sim_e3nn_equivariant_qubits.py",
+        "system_v4/probes/sim_e3nn_ic_pipeline.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 2,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_e3nn_equivariant_qubits.py",
+        "system_v4/probes/sim_e3nn_ic_pipeline.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active e3nn probe cluster; checkpoint by tool family batch, not repo-wide."
+    },
+    {
+      "group_id": "probe_source__tool_family_gudhi_bipartite",
+      "bucket": "probe_source",
+      "label": "tool_family_gudhi_bipartite",
+      "display_name": "Tool family: gudhi bipartite",
+      "path_prefixes": [
+        "system_v4/probes/sim_gudhi_bipartite_entangled.py",
+        "system_v4/probes/sim_gudhi_concurrence_filtration.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 2,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_gudhi_bipartite_entangled.py",
+        "system_v4/probes/sim_gudhi_concurrence_filtration.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active tool family: gudhi bipartite cluster; keep as a bounded semantic batch."
+    },
+    {
+      "group_id": "probe_source__tool_family_gudhi_bridge",
+      "bucket": "probe_source",
+      "label": "tool_family_gudhi_bridge",
+      "display_name": "Tool family: gudhi bridge",
+      "path_prefixes": [
+        "system_v4/probes/sim_gudhi_3qubit_bridge.py",
+        "system_v4/probes/sim_gudhi_phase_sensitive_kernel.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 2,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_gudhi_3qubit_bridge.py",
+        "system_v4/probes/sim_gudhi_phase_sensitive_kernel.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active tool family: gudhi bridge cluster; keep as a bounded semantic batch."
+    },
+    {
+      "group_id": "probe_source__tool_family_gudhi_significance",
+      "bucket": "probe_source",
+      "label": "tool_family_gudhi_significance",
+      "display_name": "Tool family: gudhi significance",
+      "path_prefixes": [
+        "system_v4/probes/sim_gudhi_cascade_persistence.py",
+        "system_v4/probes/sim_gudhi_wasserstein_significance.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 2,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_gudhi_cascade_persistence.py",
+        "system_v4/probes/sim_gudhi_wasserstein_significance.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active tool family: gudhi significance cluster; keep as a bounded semantic batch."
+    },
+    {
+      "group_id": "probe_source__tool_family_gudhi_topology",
+      "bucket": "probe_source",
+      "label": "tool_family_gudhi_topology",
+      "display_name": "Tool family: gudhi topology",
+      "path_prefixes": [
+        "system_v4/probes/sim_gudhi_bloch_sphere_2d.py",
+        "system_v4/probes/sim_gudhi_s2_topology_recovery.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 2,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_gudhi_bloch_sphere_2d.py",
+        "system_v4/probes/sim_gudhi_s2_topology_recovery.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active tool family: gudhi topology cluster; keep as a bounded semantic batch."
+    },
+    {
+      "group_id": "probe_source__tool_family_rustworkx",
+      "bucket": "probe_source",
+      "label": "tool_family_rustworkx",
+      "display_name": "Tool family: rustworkx",
+      "path_prefixes": [
+        "system_v4/probes/sim_rustworkx_3qubit_dag.py",
+        "system_v4/probes/sim_rustworkx_cascade_dag.py",
+        "system_v4/probes/sim_rustworkx_family_dag.py"
+      ],
+      "file_count": 3,
+      "tracked_dirty_count": 3,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_rustworkx_3qubit_dag.py",
+        "system_v4/probes/sim_rustworkx_cascade_dag.py",
+        "system_v4/probes/sim_rustworkx_family_dag.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active rustworkx probe cluster; checkpoint by tool family batch, not repo-wide."
+    },
+    {
+      "group_id": "probe_source__tool_family_toponetx",
+      "bucket": "probe_source",
+      "label": "tool_family_toponetx",
+      "display_name": "Tool family: toponetx",
+      "path_prefixes": [
+        "system_v4/probes/sim_toponetx_bridge_seam.py",
+        "system_v4/probes/sim_toponetx_constraint_shells.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 2,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_toponetx_bridge_seam.py",
+        "system_v4/probes/sim_toponetx_constraint_shells.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active toponetx probe cluster; checkpoint by tool family batch, not repo-wide."
+    },
+    {
+      "group_id": "probe_source__tool_family_xgi_exploratory",
+      "bucket": "probe_source",
+      "label": "tool_family_xgi_exploratory",
+      "display_name": "Tool family: xgi exploratory",
+      "path_prefixes": [
+        "system_v4/probes/sim_xgi_gradient_ascent.py",
+        "system_v4/probes/sim_xgi_torch_autograd.py"
+      ],
+      "file_count": 2,
+      "tracked_dirty_count": 2,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_xgi_gradient_ascent.py",
+        "system_v4/probes/sim_xgi_torch_autograd.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Active tool family: xgi exploratory cluster; structural and exploratory lanes stay separate."
+    },
+    {
+      "group_id": "probe_source__torch_family",
+      "bucket": "probe_source",
+      "label": "torch_family",
+      "display_name": "Torch family sims",
+      "path_prefixes": [
+        "system_v4/probes/sim_torch_cnot.py",
+        "system_v4/probes/sim_torch_density_matrix_pilot.py",
+        "system_v4/probes/sim_torch_eigendecomp.py",
+        "system_v4/probes/sim_torch_graph_integrated_pipeline.py",
+        "system_v4/probes/sim_torch_hopf_connection.py",
+        "system_v4/probes/sim_torch_phase_flip.py",
+        "system_v4/probes/sim_torch_ratchet_pipeline_v2.py",
+        "system_v4/probes/sim_torch_shells_displacement_metric.py"
+      ],
+      "file_count": 8,
+      "tracked_dirty_count": 8,
+      "untracked_count": 0,
+      "sample_paths": [
+        "system_v4/probes/sim_torch_cnot.py",
+        "system_v4/probes/sim_torch_density_matrix_pilot.py",
+        "system_v4/probes/sim_torch_eigendecomp.py",
+        "system_v4/probes/sim_torch_graph_integrated_pipeline.py",
+        "system_v4/probes/sim_torch_hopf_connection.py",
+        "system_v4/probes/sim_torch_phase_flip.py",
+        "system_v4/probes/sim_torch_ratchet_pipeline_v2.py",
+        "system_v4/probes/sim_torch_shells_displacement_metric.py"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "manual_split_required",
+      "safe_auto": false,
+      "blocking_reason": "active_source_pressure",
+      "notes": "Large active migration/sim cluster in active probe sources."
+    }
+  ]
+}

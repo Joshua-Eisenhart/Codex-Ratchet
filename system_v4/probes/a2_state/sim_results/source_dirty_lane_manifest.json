@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-04-09T23:38:28.998735+00:00",
+  "lane_id": "source_dirty__docs_and_specs__docs_and_specs",
+  "source_plan_path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
+  "selection_mode": "default_docs_blocked_requires_opt_in",
+  "allow_docs": false,
+  "docs_opt_in_required": true,
+  "code_only_fallback": {
+    "group_id": "probe_source__sim_family_coherent",
+    "file_count": 1,
+    "untracked_count": 1,
+    "tracked_dirty_count": 0,
+    "safe_next_action": "manual_split_required"
+  },
+  "code_only_fallback_group_id": "probe_source__sim_family_coherent",
+  "active_actionable_lane": {
+    "group_id": "probe_source__sim_family_coherent",
+    "file_count": 1,
+    "untracked_count": 1,
+    "tracked_dirty_count": 0,
+    "safe_next_action": "manual_split_required"
+  },
+  "selected_group_id": "docs_and_specs__docs_and_specs",
+  "file_count": 3,
+  "safe_next_action": "checkpoint",
+  "stop_condition": "All files in this lane are either checkpointed together or intentionally reclassified in the checkpoint plan.",
+  "summary": {
+    "selected_group_id": "docs_and_specs__docs_and_specs",
+    "file_count": 3,
+    "safe_next_action": "checkpoint",
+    "docs_opt_in_required": true,
+    "code_only_fallback_group_id": "probe_source__sim_family_coherent",
+    "active_actionable_lane_group_id": "probe_source__sim_family_coherent",
+    "ok": true
+  },
+  "lane": {
+    "group_id": "docs_and_specs__docs_and_specs",
+    "display_name": "Docs and specs",
+    "bucket": "docs_and_specs",
+    "notes": "Docs/specs are bounded and can be checkpointed separately.",
+    "blocking_reason": "bounded_human_checkpoint",
+    "goal": "Reduce dirty source pressure by resolving one bounded checkpoint-ready lane without widening scope.",
+    "stop_condition": "All files in this lane are either checkpointed together or intentionally reclassified in the checkpoint plan.",
+    "verification_commands": [
+      "make source-dirty-checkpoint-plan",
+      "make maintenance-report"
+    ],
+    "result_companions": [],
+    "required_git_paths_clean": [
+      "new docs/16_lego_build_catalog 2.md",
+      "new docs/16_lego_build_catalog.md",
+      "new docs/17_actual_lego_registry.md"
+    ],
+    "docs_opt_in_required": true,
+    "code_only_fallback": {
+      "group_id": "probe_source__sim_family_coherent",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required"
+    },
+    "active_actionable_lane": {
+      "group_id": "probe_source__sim_family_coherent",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required"
+    },
+    "files": [
+      "new docs/16_lego_build_catalog 2.md",
+      "new docs/16_lego_build_catalog.md",
+      "new docs/17_actual_lego_registry.md"
+    ]
+  }
+}

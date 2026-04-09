@@ -1,0 +1,337 @@
+{
+  "generated_at": "2026-04-09T23:38:29.030430+00:00",
+  "strict": false,
+  "overall_green": false,
+  "repair_queue_count": 3,
+  "safe_auto_repair_count": 0,
+  "manual_repair_count": 3,
+  "truth_green": true,
+  "controller_green": true,
+  "migration_green": true,
+  "repo_hygiene_green": false,
+  "runtime_hygiene_green": true,
+  "active_actionable_lane": {
+    "group_id": "probe_source__sim_family_coherent",
+    "file_count": 1,
+    "untracked_count": 1,
+    "tracked_dirty_count": 0,
+    "safe_next_action": "manual_split_required"
+  },
+  "summary": {
+    "missing_surface_count": 0,
+    "repair_queue_count": 3,
+    "safe_auto_repair_count": 0,
+    "manual_repair_count": 3,
+    "truth_green": true,
+    "controller_green": true,
+    "migration_green": true,
+    "repo_hygiene_green": false,
+    "runtime_hygiene_green": true,
+    "overall_green": false
+  },
+  "process_model": {
+    "name": "closed_loop_maintenance",
+    "phases": [
+      "detect",
+      "classify",
+      "plan",
+      "remediate",
+      "verify",
+      "gate"
+    ]
+  },
+  "surface_catalog": {
+    "truth": "integrity_verification",
+    "controller": "contract_compliance",
+    "migration": "migration_compliance",
+    "repo_hygiene": "repository_hygiene",
+    "runtime_hygiene": "runtime_environment"
+  },
+  "source_dirty_surface": {
+    "source_dirty_count": 164,
+    "dirty_source_bucket_count": 4,
+    "dirty_source_buckets": [
+      {
+        "label": "probe_source",
+        "count": 156
+      },
+      {
+        "label": "legacy_runtime",
+        "count": 4
+      },
+      {
+        "label": "docs_and_specs",
+        "count": 3
+      },
+      {
+        "label": "other_source",
+        "count": 1
+      }
+    ],
+    "top_dirty_prefixes": [
+      {
+        "prefix": "system_v4",
+        "count": 528
+      },
+      {
+        "prefix": "obsidian_vault",
+        "count": 4
+      },
+      {
+        "prefix": "system_v5",
+        "count": 4
+      },
+      {
+        "prefix": "new docs",
+        "count": 3
+      },
+      {
+        "prefix": "results_axis0_traj_corr_suite.json",
+        "count": 1
+      },
+      {
+        "prefix": "results_terrain8_sign_suite.json",
+        "count": 1
+      }
+    ],
+    "checkpoint_recommended": true
+  },
+  "source_dirty_checkpoint": {
+    "present": true,
+    "path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
+    "status": "current",
+    "dirty_source_checkpoint_required": true,
+    "plan_group_count": 89,
+    "largest_group_id": "probe_source__probe_misc",
+    "next_code_only_manual": {
+      "group_id": "probe_source__sim_family_coherent",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required"
+    },
+    "recommended_code_only_order": [
+      {
+        "group_id": "probe_source__sim_family_coherent",
+        "file_count": 1,
+        "untracked_count": 1,
+        "tracked_dirty_count": 0,
+        "safe_next_action": "manual_split_required"
+      },
+      {
+        "group_id": "probe_source__sim_family_commutative",
+        "file_count": 1,
+        "untracked_count": 1,
+        "tracked_dirty_count": 0,
+        "safe_next_action": "manual_split_required"
+      },
+      {
+        "group_id": "probe_source__sim_family_commutator",
+        "file_count": 1,
+        "untracked_count": 1,
+        "tracked_dirty_count": 0,
+        "safe_next_action": "manual_split_required"
+      },
+      {
+        "group_id": "probe_source__sim_family_concurrence",
+        "file_count": 1,
+        "untracked_count": 1,
+        "tracked_dirty_count": 0,
+        "safe_next_action": "manual_split_required"
+      },
+      {
+        "group_id": "probe_source__sim_family_conditional",
+        "file_count": 1,
+        "untracked_count": 1,
+        "tracked_dirty_count": 0,
+        "safe_next_action": "manual_split_required"
+      }
+    ]
+  },
+  "source_dirty_lane_manifest": {
+    "present": true,
+    "path": "system_v4/probes/a2_state/sim_results/source_dirty_lane_manifest.json",
+    "status": "current",
+    "required": true,
+    "selected_group_id": "docs_and_specs__docs_and_specs",
+    "file_count": 3,
+    "docs_opt_in_required": true,
+    "code_only_fallback_group_id": "probe_source__sim_family_coherent",
+    "active_actionable_lane_group_id": "probe_source__sim_family_coherent"
+  },
+  "maintenance_lanes": [
+    {
+      "lane": "build",
+      "standard_name": "feature_delivery",
+      "purpose": "Main feature, sim, or migration work."
+    },
+    {
+      "lane": "truth",
+      "standard_name": "integrity_verification",
+      "purpose": "Rerun touched sims and preserve result/source honesty."
+    },
+    {
+      "lane": "hygiene",
+      "standard_name": "repository_maintenance",
+      "purpose": "Keep repo placement, state surfaces, and runtime organization bounded."
+    },
+    {
+      "lane": "contract",
+      "standard_name": "contract_governance",
+      "purpose": "Keep controller, docs, and process surfaces enforceable."
+    }
+  ],
+  "missing_surfaces": [],
+  "repair_queue": [
+    {
+      "kind": "dirty_source_pressure",
+      "action_class": "human_scoped_checkpoint",
+      "safe_auto": false,
+      "recommendation": "Checkpoint or quarantine bounded source/config work instead of letting active surfaces drift.",
+      "dirty_source_buckets": [
+        {
+          "label": "probe_source",
+          "count": 156
+        },
+        {
+          "label": "legacy_runtime",
+          "count": 4
+        },
+        {
+          "label": "docs_and_specs",
+          "count": 3
+        },
+        {
+          "label": "other_source",
+          "count": 1
+        }
+      ],
+      "source_surface": "repo_hygiene"
+    },
+    {
+      "kind": "duplicate_agent_state_dirs",
+      "action_class": "manual_state_audit",
+      "safe_auto": false,
+      "recommendation": "Audit .agent vs .agents ownership before any consolidation.",
+      "source_surface": "repo_hygiene"
+    },
+    {
+      "kind": "multiple_codex_runtime_homes",
+      "action_class": "manual_state_audit",
+      "safe_auto": false,
+      "recommendation": "Audit .codex_bg_home vs .codex_runtime_home before cleanup or automation.",
+      "source_surface": "repo_hygiene"
+    }
+  ],
+  "safe_auto_queue": [],
+  "manual_queue": [
+    {
+      "kind": "dirty_source_pressure",
+      "action_class": "human_scoped_checkpoint",
+      "safe_auto": false,
+      "recommendation": "Checkpoint or quarantine bounded source/config work instead of letting active surfaces drift.",
+      "dirty_source_buckets": [
+        {
+          "label": "probe_source",
+          "count": 156
+        },
+        {
+          "label": "legacy_runtime",
+          "count": 4
+        },
+        {
+          "label": "docs_and_specs",
+          "count": 3
+        },
+        {
+          "label": "other_source",
+          "count": 1
+        }
+      ],
+      "source_surface": "repo_hygiene"
+    },
+    {
+      "kind": "duplicate_agent_state_dirs",
+      "action_class": "manual_state_audit",
+      "safe_auto": false,
+      "recommendation": "Audit .agent vs .agents ownership before any consolidation.",
+      "source_surface": "repo_hygiene"
+    },
+    {
+      "kind": "multiple_codex_runtime_homes",
+      "action_class": "manual_state_audit",
+      "safe_auto": false,
+      "recommendation": "Audit .codex_bg_home vs .codex_runtime_home before cleanup or automation.",
+      "source_surface": "repo_hygiene"
+    }
+  ],
+  "surface_status": {
+    "truth": {
+      "hard_finding_count": 0,
+      "warning_finding_count": 1,
+      "ok": true
+    },
+    "controller": {
+      "doc_drift_count": 0,
+      "interpreter_aligned": true,
+      "phase7_c2_surface_consistent": true,
+      "phase7_source_has_legacy_subset_branch": false,
+      "trusted_spine_risky_entries": 0,
+      "truth_audit_ok": true,
+      "shallow_tool_count": 0,
+      "code_process_green": true,
+      "docs_current": true,
+      "controller_contract_current": true
+    },
+    "migration": {
+      "extracted_family_count": 5,
+      "promoted_result_count": 5,
+      "advisory_finding_count": 0,
+      "ok": true
+    },
+    "repo_hygiene": {
+      "blocker_count": 1,
+      "advisory_count": 7,
+      "repair_candidate_count": 3,
+      "primary_result_count": 763,
+      "secondary_result_count": 0,
+      "secondary_unique_result_count": 0,
+      "secondary_duplicate_result_count": 0,
+      "root_result_orphan_count": 0,
+      "duplicate_result_basename_count": 0,
+      "source_dirty_count": 164,
+      "generated_dirty_count": 377,
+      "dirty_worktree_count": 541,
+      "dirty_source_bucket_count": 4,
+      "ok": false
+    },
+    "runtime_hygiene": {
+      "blocker_count": 0,
+      "advisory_count": 0,
+      "repair_candidate_count": 0,
+      "requirements_package_count": 19,
+      "ok": true
+    },
+    "source_dirty_checkpoint": {
+      "dirty_source_count": 164,
+      "plan_group_count": 89,
+      "checkpoint_candidate_count": 1,
+      "quarantine_candidate_count": 0,
+      "manual_only_count": 88,
+      "code_only_manual_count": 88,
+      "largest_group_id": "probe_source__probe_misc",
+      "next_code_only_manual_group_id": "probe_source__sim_family_coherent",
+      "next_code_only_manual_file_count": 1,
+      "ok": true
+    },
+    "source_dirty_lane_manifest": {
+      "selected_group_id": "docs_and_specs__docs_and_specs",
+      "file_count": 3,
+      "safe_next_action": "checkpoint",
+      "docs_opt_in_required": true,
+      "code_only_fallback_group_id": "probe_source__sim_family_coherent",
+      "active_actionable_lane_group_id": "probe_source__sim_family_coherent",
+      "ok": true
+    }
+  }
+}

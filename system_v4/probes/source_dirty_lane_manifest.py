@@ -96,6 +96,12 @@ def main() -> int:
             selected = checkpoint_groups[chosen["group_id"]]
             selection_mode = "default_docs_blocked_requires_opt_in"
             docs_opt_in_required = True
+    active_actionable_lane = code_only_fallback if docs_opt_in_required else {
+        "group_id": selected["group_id"],
+        "file_count": selected["file_count"],
+        "safe_next_action": selected["safe_next_action"],
+        "selection_mode": selection_mode,
+    }
     files = list(selected["sample_paths"])
     result_companions = [p for p in (result_companion_for(f) for f in files) if p]
     required_git_paths_clean = files + result_companions
@@ -108,13 +114,19 @@ def main() -> int:
         "allow_docs": allow_docs,
         "docs_opt_in_required": docs_opt_in_required,
         "code_only_fallback": code_only_fallback,
+        "code_only_fallback_group_id": code_only_fallback["group_id"] if code_only_fallback else None,
+        "active_actionable_lane": active_actionable_lane,
         "selected_group_id": selected["group_id"],
+        "file_count": selected["file_count"],
+        "safe_next_action": selected["safe_next_action"],
+        "stop_condition": "All files in this lane are either checkpointed together or intentionally reclassified in the checkpoint plan.",
         "summary": {
             "selected_group_id": selected["group_id"],
             "file_count": selected["file_count"],
             "safe_next_action": selected["safe_next_action"],
             "docs_opt_in_required": docs_opt_in_required,
             "code_only_fallback_group_id": code_only_fallback["group_id"] if code_only_fallback else None,
+            "active_actionable_lane_group_id": active_actionable_lane["group_id"] if active_actionable_lane else None,
             "ok": True,
         },
         "lane": {
@@ -130,6 +142,7 @@ def main() -> int:
             "required_git_paths_clean": required_git_paths_clean,
             "docs_opt_in_required": docs_opt_in_required,
             "code_only_fallback": code_only_fallback,
+            "active_actionable_lane": active_actionable_lane,
             "files": files,
         },
     }

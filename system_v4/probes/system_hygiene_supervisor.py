@@ -221,11 +221,23 @@ def main() -> int:
         "file_count": source_dirty_lane_manifest_summary.get("file_count", 0),
         "docs_opt_in_required": source_dirty_lane_manifest_summary.get("docs_opt_in_required", False),
         "code_only_fallback_group_id": source_dirty_lane_manifest_summary.get("code_only_fallback_group_id"),
+        "active_actionable_lane_group_id": source_dirty_lane_manifest_summary.get("active_actionable_lane_group_id"),
     }
+    active_actionable_lane = (payloads["source_dirty_lane_manifest"] or {}).get("active_actionable_lane")
 
     report = {
         "generated_at": datetime.now(UTC).isoformat(),
         "strict": strict,
+        "overall_green": summary["overall_green"],
+        "repair_queue_count": summary["repair_queue_count"],
+        "safe_auto_repair_count": summary["safe_auto_repair_count"],
+        "manual_repair_count": summary["manual_repair_count"],
+        "truth_green": summary["truth_green"],
+        "controller_green": summary["controller_green"],
+        "migration_green": summary["migration_green"],
+        "repo_hygiene_green": summary["repo_hygiene_green"],
+        "runtime_hygiene_green": summary["runtime_hygiene_green"],
+        "active_actionable_lane": active_actionable_lane,
         "summary": summary,
         "process_model": process_model,
         "surface_catalog": surface_catalog,

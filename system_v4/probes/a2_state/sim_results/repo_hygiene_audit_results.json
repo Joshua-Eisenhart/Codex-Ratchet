@@ -1,0 +1,266 @@
+{
+  "generated_at": "2026-04-09T23:38:24.963011+00:00",
+  "strict": false,
+  "blocker_count": 1,
+  "advisory_count": 7,
+  "repair_candidate_count": 3,
+  "source_dirty_count": 164,
+  "generated_dirty_count": 377,
+  "dirty_worktree_count": 541,
+  "git": {
+    "ok": true,
+    "tracked_dirty_count": 208,
+    "untracked_count": 333,
+    "source_dirty_count": 164,
+    "generated_dirty_count": 377,
+    "total_dirty_count": 541,
+    "status_class_counts": {
+      "modified": 179,
+      "deleted": 29,
+      "untracked": 333
+    },
+    "dirty_source_buckets": [
+      {
+        "label": "probe_source",
+        "count": 156
+      },
+      {
+        "label": "legacy_runtime",
+        "count": 4
+      },
+      {
+        "label": "docs_and_specs",
+        "count": 3
+      },
+      {
+        "label": "other_source",
+        "count": 1
+      }
+    ],
+    "dirty_generated_buckets": [
+      {
+        "label": "generated_artifacts",
+        "count": 377
+      }
+    ],
+    "top_dirty_prefixes": [
+      {
+        "prefix": "system_v4",
+        "count": 528
+      },
+      {
+        "prefix": "obsidian_vault",
+        "count": 4
+      },
+      {
+        "prefix": "system_v5",
+        "count": 4
+      },
+      {
+        "prefix": "new docs",
+        "count": 3
+      },
+      {
+        "prefix": "results_axis0_traj_corr_suite.json",
+        "count": 1
+      },
+      {
+        "prefix": "results_terrain8_sign_suite.json",
+        "count": 1
+      }
+    ]
+  },
+  "root_result_files": [],
+  "secondary_unique_results": [],
+  "duplicate_result_basenames": [],
+  "primary_result_dir": "system_v4/probes/a2_state/sim_results",
+  "secondary_result_dir": "system_v4/probes/sim_results",
+  "agent_state_dirs": [
+    ".agent",
+    ".agents"
+  ],
+  "codex_runtime_dirs": [
+    ".codex_bg_home",
+    ".codex_runtime_home"
+  ],
+  "path_class_counts": {
+    "obsidian_vault": {
+      "path": "obsidian_vault",
+      "file_count": 13692,
+      "threshold": 5000
+    },
+    "work_zip_dropins": {
+      "path": "work/zip_dropins",
+      "file_count": 2082,
+      "threshold": 1000
+    },
+    "primary_sim_results": {
+      "path": "system_v4/probes/a2_state/sim_results",
+      "file_count": 916,
+      "threshold": 500
+    },
+    "secondary_sim_results": {
+      "path": "system_v4/probes/sim_results",
+      "file_count": 0,
+      "threshold": 1
+    }
+  },
+  "summary": {
+    "blocker_count": 1,
+    "advisory_count": 7,
+    "repair_candidate_count": 3,
+    "primary_result_count": 763,
+    "secondary_result_count": 0,
+    "secondary_unique_result_count": 0,
+    "secondary_duplicate_result_count": 0,
+    "root_result_orphan_count": 0,
+    "duplicate_result_basename_count": 0,
+    "source_dirty_count": 164,
+    "generated_dirty_count": 377,
+    "dirty_worktree_count": 541,
+    "dirty_source_bucket_count": 4,
+    "ok": false
+  },
+  "blockers": [
+    {
+      "kind": "dirty_source_pressure",
+      "severity": "high",
+      "source_dirty_count": 164,
+      "dirty_source_buckets": [
+        {
+          "label": "probe_source",
+          "count": 156
+        },
+        {
+          "label": "legacy_runtime",
+          "count": 4
+        },
+        {
+          "label": "docs_and_specs",
+          "count": 3
+        },
+        {
+          "label": "other_source",
+          "count": 1
+        }
+      ],
+      "top_dirty_prefixes": [
+        {
+          "prefix": "system_v4",
+          "count": 528
+        },
+        {
+          "prefix": "obsidian_vault",
+          "count": 4
+        },
+        {
+          "prefix": "system_v5",
+          "count": 4
+        },
+        {
+          "prefix": "new docs",
+          "count": 3
+        },
+        {
+          "prefix": "results_axis0_traj_corr_suite.json",
+          "count": 1
+        },
+        {
+          "prefix": "results_terrain8_sign_suite.json",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "advisories": [
+    {
+      "kind": "dirty_generated_pressure",
+      "severity": "advisory",
+      "generated_dirty_count": 377,
+      "total_dirty_count": 541
+    },
+    {
+      "kind": "duplicate_agent_state_dirs",
+      "severity": "advisory",
+      "present_dirs": [
+        ".agent",
+        ".agents"
+      ]
+    },
+    {
+      "kind": "multiple_codex_runtime_homes",
+      "severity": "advisory",
+      "present_dirs": [
+        ".codex_bg_home",
+        ".codex_runtime_home"
+      ]
+    },
+    {
+      "kind": "repo_root_autoresearch_state_present",
+      "severity": "advisory",
+      "path": "autoresearch-state.json"
+    },
+    {
+      "kind": "bulky_path_class",
+      "severity": "advisory",
+      "label": "obsidian_vault",
+      "path": "obsidian_vault",
+      "file_count": 13692,
+      "threshold": 5000
+    },
+    {
+      "kind": "bulky_path_class",
+      "severity": "advisory",
+      "label": "work_zip_dropins",
+      "path": "work/zip_dropins",
+      "file_count": 2082,
+      "threshold": 1000
+    },
+    {
+      "kind": "bulky_path_class",
+      "severity": "advisory",
+      "label": "primary_sim_results",
+      "path": "system_v4/probes/a2_state/sim_results",
+      "file_count": 916,
+      "threshold": 500
+    }
+  ],
+  "repair_candidates": [
+    {
+      "kind": "dirty_source_pressure",
+      "action_class": "human_scoped_checkpoint",
+      "safe_auto": false,
+      "recommendation": "Checkpoint or quarantine bounded source/config work instead of letting active surfaces drift.",
+      "dirty_source_buckets": [
+        {
+          "label": "probe_source",
+          "count": 156
+        },
+        {
+          "label": "legacy_runtime",
+          "count": 4
+        },
+        {
+          "label": "docs_and_specs",
+          "count": 3
+        },
+        {
+          "label": "other_source",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "duplicate_agent_state_dirs",
+      "action_class": "manual_state_audit",
+      "safe_auto": false,
+      "recommendation": "Audit .agent vs .agents ownership before any consolidation."
+    },
+    {
+      "kind": "multiple_codex_runtime_homes",
+      "action_class": "manual_state_audit",
+      "safe_auto": false,
+      "recommendation": "Audit .codex_bg_home vs .codex_runtime_home before cleanup or automation."
+    }
+  ]
+}

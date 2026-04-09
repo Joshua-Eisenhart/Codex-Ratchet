@@ -75,7 +75,7 @@ source-checkpoint-plan:
 
 # Advisory source-dirty lane manifest for the next executable checkpoint group
 source-dirty-lane-manifest:
-	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/source_dirty_lane_manifest.py $(if $(GROUP_ID),--group-id $(GROUP_ID),)
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/source_dirty_lane_manifest.py $(if $(GROUP_ID),--group-id $(GROUP_ID),) $(if $(ALLOW_DOCS),--allow-docs,)
 
 # Standard terminology alias: source lane manifest
 source-lane-manifest:

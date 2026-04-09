@@ -60,6 +60,7 @@ def main() -> int:
     argv = sys.argv[1:]
     requested_group_id = parse_group_id(argv)
     allow_docs = parse_allow_docs(argv)
+    code_only_fallback = plan.get("next_code_only_manual")
 
     checkpoint_groups = {
         group["group_id"]: group
@@ -95,7 +96,6 @@ def main() -> int:
             selected = checkpoint_groups[chosen["group_id"]]
             selection_mode = "default_docs_blocked_requires_opt_in"
             docs_opt_in_required = True
-
     files = list(selected["sample_paths"])
     result_companions = [p for p in (result_companion_for(f) for f in files) if p]
     required_git_paths_clean = files + result_companions
@@ -107,12 +107,14 @@ def main() -> int:
         "selection_mode": selection_mode,
         "allow_docs": allow_docs,
         "docs_opt_in_required": docs_opt_in_required,
+        "code_only_fallback": code_only_fallback,
         "selected_group_id": selected["group_id"],
         "summary": {
             "selected_group_id": selected["group_id"],
             "file_count": selected["file_count"],
             "safe_next_action": selected["safe_next_action"],
             "docs_opt_in_required": docs_opt_in_required,
+            "code_only_fallback_group_id": code_only_fallback["group_id"] if code_only_fallback else None,
             "ok": True,
         },
         "lane": {
@@ -127,6 +129,7 @@ def main() -> int:
             "result_companions": result_companions,
             "required_git_paths_clean": required_git_paths_clean,
             "docs_opt_in_required": docs_opt_in_required,
+            "code_only_fallback": code_only_fallback,
             "files": files,
         },
     }

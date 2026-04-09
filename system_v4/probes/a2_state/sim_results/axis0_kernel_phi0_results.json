@@ -1,0 +1,123 @@
+{
+  "name": "axis0_kernel_phi0",
+  "classification": "canonical",
+  "classification_note": "Canonical late-layer lego for a signed Axis-0 kernel Phi0 on one bounded point-bridge family, kept separate from bridge search, unsigned entropy bundles, and final selector promotion.",
+  "lego_ids": [
+    "axis0_kernel_phi0"
+  ],
+  "primary_lego_ids": [
+    "axis0_kernel_phi0"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "phi0_vanishes_on_symmetric_reference_case": {
+      "phi0_same": 0.0,
+      "pass": true
+    },
+    "phi0_changes_sign_under_packet_reversal": {
+      "phi0_forward": 0.8767470929795835,
+      "phi0_reverse": -0.8767470929795822,
+      "pass": true
+    },
+    "unsigned_companion_mi_is_reversal_invariant": {
+      "mi_forward": 0.3668559845571647,
+      "mi_reverse": 0.3668559845571645,
+      "pass": true
+    }
+  },
+  "negative": {
+    "phi0_row_does_not_promote_final_winner": {
+      "pass": true
+    },
+    "phi0_is_not_collapsed_to_unsigned_entropy_family": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bridge_outputs_remain_valid_density_operators": {
+      "pass": true
+    },
+    "signed_kernel_uses_one_bounded_bridge_family_only": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct late-layer signed kernel row on one bounded point-bridge family with MI kept as an unsigned companion."
+  }
+}

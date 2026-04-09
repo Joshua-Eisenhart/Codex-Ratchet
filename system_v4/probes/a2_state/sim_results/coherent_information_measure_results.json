@@ -1,0 +1,127 @@
+{
+  "name": "coherent_information_measure",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for coherent information on bounded two-qubit states, kept separate from conditional entropy, mutual information, and seam-level Phi0 files.",
+  "lego_ids": [
+    "coherent_information_measure"
+  ],
+  "primary_lego_ids": [
+    "coherent_information_measure"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "product_state_has_zero_coherent_information": {
+      "value": 0.0,
+      "pass": true
+    },
+    "bell_state_has_positive_coherent_information": {
+      "value": 0.9999999999999997,
+      "pass": true
+    },
+    "high_werner_state_has_positive_coherent_information": {
+      "value": 0.15241532017542614,
+      "pass": true
+    }
+  },
+  "negative": {
+    "classical_correlation_does_not_force_positive_coherent_information": {
+      "value": 0.0,
+      "pass": true
+    },
+    "low_werner_state_is_not_positive": {
+      "value": -0.9219280948873623,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bell_exceeds_product": {
+      "bell": 0.9999999999999997,
+      "product": 0.0,
+      "pass": true
+    },
+    "werner_coherent_information_grows_with_entanglement_strength": {
+      "low": -0.9219280948873623,
+      "high": 0.15241532017542614,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local coherent-information lego on bounded two-qubit product, Bell, classical-mixture, and Werner states."
+  }
+}

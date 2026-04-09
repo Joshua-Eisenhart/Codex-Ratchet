@@ -29,13 +29,129 @@ audit:
 truth-audit:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/probe_truth_audit.py
 
+# Standard terminology alias: source/result integrity verification
+integrity-audit:
+	$(MAKE) truth-audit
+
 # Advisory audit for standalone torch-family migration metadata coverage
 migration-audit:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/migration_contract_audit.py
 
+# Standard terminology alias: migration compliance report
+migration-compliance-audit:
+	$(MAKE) migration-audit
+
 # Fail-closed structural migration-contract gate for extracted torch families
 migration-audit-strict:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/migration_contract_audit.py --strict
+
+# Standard terminology alias: migration compliance gate
+migration-compliance-gate:
+	$(MAKE) migration-audit-strict
+
+# Advisory repo hygiene audit: dirty worktree pressure, result placement, control dirs
+repo-hygiene-audit:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/repo_hygiene_audit.py
+
+# Standard terminology alias: repository hygiene audit
+repository-hygiene-audit:
+	$(MAKE) repo-hygiene-audit
+
+# Advisory runtime hygiene audit: interpreter, cache dirs, dependency floors
+runtime-hygiene-audit:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/runtime_hygiene_audit.py
+
+# Standard terminology alias: runtime environment audit
+runtime-environment-audit:
+	$(MAKE) runtime-hygiene-audit
+
+# Advisory dirty-source checkpoint plan for bounded source/config cleanup
+source-dirty-checkpoint-plan:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/source_dirty_checkpoint_plan.py
+
+# Standard terminology alias: source checkpoint planning report
+source-checkpoint-plan:
+	$(MAKE) source-dirty-checkpoint-plan
+
+# Advisory source-dirty lane manifest for the next executable checkpoint group
+source-dirty-lane-manifest:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/source_dirty_lane_manifest.py $(if $(GROUP_ID),--group-id $(GROUP_ID),)
+
+# Standard terminology alias: source lane manifest
+source-lane-manifest:
+	$(MAKE) source-dirty-lane-manifest
+
+# Advisory checkpoint packet for the currently selected source-dirty lane
+source-dirty-checkpoint-packet:
+	$(if $(GROUP_ID),$(MAKE) source-dirty-lane-manifest GROUP_ID=$(GROUP_ID),@true)
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/source_dirty_checkpoint_packet.py $(if $(GROUP_ID),--group-id $(GROUP_ID),)
+
+# Standard terminology alias: source checkpoint packet
+source-checkpoint-packet:
+	$(MAKE) source-dirty-checkpoint-packet
+
+# Advisory stage plan for the currently selected source-dirty lane
+source-dirty-stage-plan:
+	$(if $(GROUP_ID),$(MAKE) source-dirty-checkpoint-packet GROUP_ID=$(GROUP_ID),@true)
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/source_dirty_stage_plan.py
+
+# Standard terminology alias: source stage plan
+source-stage-plan:
+	$(MAKE) source-dirty-stage-plan
+
+# Advisory maintenance surface: truth + controller + migration + repo/runtime hygiene
+system-hygiene-report:
+	$(MAKE) align
+	$(MAKE) migration-audit-strict
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/repo_hygiene_audit.py
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/runtime_hygiene_audit.py
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/source_dirty_checkpoint_plan.py
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/source_dirty_lane_manifest.py
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/system_hygiene_supervisor.py
+	$(MAKE) truth-audit
+
+# Standard terminology alias: maintenance status report
+maintenance-report:
+	$(MAKE) system-hygiene-report
+
+# Fail closed unless the full hygiene surface is green
+system-hygiene:
+	$(MAKE) system-hygiene-report
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/system_hygiene_supervisor.py --strict
+
+# Standard terminology alias: maintenance gate
+maintenance-gate:
+	$(MAKE) system-hygiene
+
+# Backwards-compatible explicit strict alias
+system-hygiene-strict:
+	$(MAKE) system-hygiene
+
+# Safe self-repair dry run for low-risk hygiene actions
+system-hygiene-repair:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/system_hygiene_repair.py
+
+# Standard terminology alias: bounded remediation dry run
+maintenance-remediation:
+	$(MAKE) system-hygiene-repair
+
+# Apply low-risk hygiene repair actions, then rebuild the advisory surface
+system-hygiene-repair-apply:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/system_hygiene_repair.py --apply
+	$(MAKE) system-hygiene-report
+
+# Standard terminology alias: bounded remediation apply
+maintenance-remediation-apply:
+	$(MAKE) system-hygiene-repair-apply
+
+# Apply the opt-in quarantine for unique legacy secondary result JSONs, then rebuild the advisory surface
+system-hygiene-repair-secondary-apply:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/system_hygiene_repair.py --apply --include-secondary-unique
+	$(MAKE) system-hygiene-report
+
+# Standard terminology alias: opt-in legacy result remediation apply
+maintenance-remediation-secondary-apply:
+	$(MAKE) system-hygiene-repair-secondary-apply
 
 # Build one machine-readable controller alignment report
 align:
@@ -43,6 +159,10 @@ align:
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/controller_alignment_audit.py
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/probe_truth_audit.py
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/controller_alignment_audit.py
+
+# Standard terminology alias: contract compliance report
+contract-compliance-audit:
+	$(MAKE) align
 
 # Build alignment surfaces and fail closed if docs still drift
 align-strict-docs:
@@ -85,4 +205,4 @@ telegram:
 telegram-log:
 	tail -f /tmp/telegram_bot.log
 
-.PHONY: imessage imessage-log telegram telegram-log sim tools status audit truth-audit migration-audit migration-audit-strict align align-strict-docs align-strict-contract lego-audit lego-coupling lego-queue lego-registry lego-normalize
+.PHONY: imessage imessage-log telegram telegram-log sim tools status audit truth-audit integrity-audit migration-audit migration-compliance-audit migration-audit-strict migration-compliance-gate repo-hygiene-audit repository-hygiene-audit runtime-hygiene-audit runtime-environment-audit source-dirty-checkpoint-plan source-checkpoint-plan source-dirty-lane-manifest source-lane-manifest source-dirty-checkpoint-packet source-checkpoint-packet source-dirty-stage-plan source-stage-plan system-hygiene-report maintenance-report system-hygiene maintenance-gate system-hygiene-strict system-hygiene-repair maintenance-remediation system-hygiene-repair-apply maintenance-remediation-apply system-hygiene-repair-secondary-apply maintenance-remediation-secondary-apply align contract-compliance-audit align-strict-docs align-strict-contract lego-audit lego-coupling lego-queue lego-registry lego-normalize

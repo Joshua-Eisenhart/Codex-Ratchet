@@ -1,0 +1,137 @@
+{
+  "name": "characteristic_representation",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for characteristic-function state representation on bounded qubit states, kept separate from operator-coordinate, Bloch-vector, and density-matrix rows.",
+  "lego_ids": [
+    "characteristic_representation"
+  ],
+  "primary_lego_ids": [
+    "characteristic_representation"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "characteristic_values_reconstruct_density": {
+      "pass": true
+    },
+    "identity_label_tracks_trace_one": {
+      "values": {
+        "rho_0": 1.0,
+        "rho_1": 1.0,
+        "rho_p": 0.9999999999999998,
+        "rho_mix": 1.0
+      },
+      "pass": true
+    },
+    "basis_states_have_expected_label_pattern": {
+      "rho_0": {
+        "I": 1.0,
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": 1.0
+      },
+      "rho_1": {
+        "I": 1.0,
+        "X": 0.0,
+        "Y": 0.0,
+        "Z": -1.0
+      },
+      "pass": true
+    }
+  },
+  "negative": {
+    "same_trace_does_not_mean_same_characteristic_representation": {
+      "pass": true
+    },
+    "plus_and_minus_states_are_distinct_in_characteristic_view": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "generic_phase_information_appears_in_y_label": {
+      "value": 0.22674947410312435,
+      "pass": true
+    },
+    "diagonal_mixed_state_has_no_x_or_y_characteristic_component": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local characteristic-function lego on bounded qubit pure and mixed states using Pauli-label evaluations."
+  }
+}

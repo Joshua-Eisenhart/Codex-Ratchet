@@ -1,0 +1,119 @@
+{
+  "name": "commutator_algebra",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for commutator algebra on the qubit Pauli generators, kept separate from the basis row, full Pauli algebra bundle, and later gauge/falsifier work.",
+  "lego_ids": [
+    "commutator_algebra"
+  ],
+  "primary_lego_ids": [
+    "commutator_algebra"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bracket-structure row"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "basic_pauli_commutators_match_expected_closure": {
+      "pass": true
+    },
+    "identity_commutes_with_generators": {
+      "pass": true
+    },
+    "commutator_of_generators_stays_in_generator_span": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "generators_are_not_pairwise_commuting": {
+      "pass": "True"
+    },
+    "anticommutator_differs_from_commutator": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "self_commutators_vanish": {
+      "pass": true
+    },
+    "jacobi_identity_holds": {
+      "value": "[[0.+0.j 0.+0.j]\n [0.+0.j 0.+0.j]]",
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local commutator-algebra lego on the qubit Pauli generators."
+  }
+}

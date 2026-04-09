@@ -19,6 +19,7 @@ import json
 import os
 import time
 import hashlib
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
@@ -90,7 +91,7 @@ CROSS_LAYER_RELATIONS = {
     "QIT_OPERATOR_FAMILY_BRIDGE",
 }
 
-PREFERRED_INTERPRETER = "/opt/homebrew/bin/python3"
+PREFERRED_INTERPRETER = sys.executable
 
 
 def _utc_iso() -> str:

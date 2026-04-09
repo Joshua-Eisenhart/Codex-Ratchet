@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 import time
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -24,7 +25,7 @@ REPORT_JSON = "system_v4/a2_state/audit_logs/TOPONETX_PROJECTION_ADAPTER_AUDIT__
 REPORT_MD = "system_v4/a2_state/audit_logs/TOPONETX_PROJECTION_ADAPTER_AUDIT__CURRENT__v1.md"
 PACKET_JSON = "system_v4/a2_state/audit_logs/TOPONETX_PROJECTION_ADAPTER_PACKET__CURRENT__v1.json"
 
-PREFERRED_INTERPRETER = "/opt/homebrew/bin/python3"
+PREFERRED_INTERPRETER = sys.executable
 ADMITTED_RELATIONS = ("DEPENDS_ON", "EXCLUDES", "STRUCTURALLY_RELATED", "RELATED_TO")
 QUARANTINED_RELATIONS = ("OVERLAPS",)
 

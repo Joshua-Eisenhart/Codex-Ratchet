@@ -9,9 +9,9 @@ and renders a clean status dashboard. Refreshes every POLL_INTERVAL seconds.
 Exits automatically when overall_status is 'all_complete' or 'all_already_complete'.
 
 Usage:
-    /opt/homebrew/bin/python3 system_v4/skills/pi_mono_watch.py
-    /opt/homebrew/bin/python3 system_v4/skills/pi_mono_watch.py --once   # single snapshot, no loop
-    /opt/homebrew/bin/python3 system_v4/skills/pi_mono_watch.py --plan .agent/state/pi_mono_claude_launch_plan__wave2.json
+    python3 system_v4/skills/pi_mono_watch.py
+    python3 system_v4/skills/pi_mono_watch.py --once   # single snapshot, no loop
+    python3 system_v4/skills/pi_mono_watch.py --plan .agent/state/pi_mono_claude_launch_plan__wave2.json
 """
 from __future__ import annotations
 

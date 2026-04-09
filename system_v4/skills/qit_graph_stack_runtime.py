@@ -21,6 +21,7 @@ import importlib.util
 import json
 import os
 import subprocess
+import sys
 import time
 from pathlib import Path
 from typing import Any
@@ -68,7 +69,7 @@ HISTORY_GRAPH_PATH = GRAPH_DIR / "qit_history_graph_v1.json"
 LIGHTRAG_WORK_DIR = REPO_ROOT / "work" / "lightrag_smoke"
 LIGHTRAG_RESULT_PATH = LIGHTRAG_WORK_DIR / "smoke_test_result.json"
 LIGHTRAG_MANIFEST_PATH = LIGHTRAG_WORK_DIR / "corpus_manifest.json"
-PREFERRED_INTERPRETER = Path("/opt/homebrew/bin/python3")  # canonical interpreter; all probed packages (clifford, kingdon, toponetx, torch_geometric) confirmed available here
+PREFERRED_INTERPRETER = Path(sys.executable).resolve()
 RUNTIME_PACKET_ADAPTER_PATH = REPO_ROOT / "system_v4" / "skills" / "qit_runtime_state_history_adapter.py"
 
 

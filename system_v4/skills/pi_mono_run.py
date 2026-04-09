@@ -12,9 +12,9 @@ One-command Pi-Mono runner.
 - Exits when all tasks are complete, timed out, or errored
 
 Usage:
-    /opt/homebrew/bin/python3 system_v4/skills/pi_mono_run.py
-    /opt/homebrew/bin/python3 system_v4/skills/pi_mono_run.py --plan .agent/state/pi_mono_claude_launch_plan__current.json
-    /opt/homebrew/bin/python3 system_v4/skills/pi_mono_run.py --no-view   # skip Terminal window
+    python3 system_v4/skills/pi_mono_run.py
+    python3 system_v4/skills/pi_mono_run.py --plan .agent/state/pi_mono_claude_launch_plan__current.json
+    python3 system_v4/skills/pi_mono_run.py --no-view   # skip Terminal window
 """
 from __future__ import annotations
 
@@ -213,7 +213,7 @@ def _find_claude() -> str | None:
 
 def _open_watch_window(plan_path: str) -> None:
     watch_script = str(REPO_ROOT / "system_v4" / "skills" / "pi_mono_watch.py")
-    python = "/opt/homebrew/bin/python3"
+    python = sys.executable
     cmd = f"cd '{REPO_ROOT}' && '{python}' '{watch_script}' --plan '{plan_path}'; echo ''; echo '\\033[1;32m=== Pi-Mono batch finished ===\\033[0m'; echo 'Press Enter to close this window.'; read"
     # Activate Terminal to bring it to front, then open the script in a new window
     script = (

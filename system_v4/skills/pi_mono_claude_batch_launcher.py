@@ -28,17 +28,17 @@ Rules  (PI_MONO_BATCH_AUTOMATION_CONTRACT__CURRENT.md)
 Usage
 -----
   dry-run:
-    /opt/homebrew/bin/python3 system_v4/skills/pi_mono_claude_batch_launcher.py \\
+    python3 system_v4/skills/pi_mono_claude_batch_launcher.py \\
         --plan .agent/state/pi_mono_claude_launch_plan__pilot_live.json \\
         --mode dry-run
 
   live (up to 3 terminals):
-    /opt/homebrew/bin/python3 system_v4/skills/pi_mono_claude_batch_launcher.py \\
+    python3 system_v4/skills/pi_mono_claude_batch_launcher.py \\
         --plan .agent/state/pi_mono_claude_launch_plan__pilot_live.json \\
         --mode live
 
   legacy positional (dry-run only, backward-compat):
-    /opt/homebrew/bin/python3 system_v4/skills/pi_mono_claude_batch_launcher.py \\
+    python3 system_v4/skills/pi_mono_claude_batch_launcher.py \\
         .agent/state/pi_mono_claude_launch_plan__current.json
 
 Outputs (dry-run):

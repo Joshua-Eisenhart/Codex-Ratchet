@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 import os
 import subprocess
+import sys
 import time
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -26,7 +27,7 @@ REPORT_JSON = "system_v4/a2_state/audit_logs/CLIFFORD_EDGE_SEMANTICS_AUDIT__CURR
 REPORT_MD = "system_v4/a2_state/audit_logs/CLIFFORD_EDGE_SEMANTICS_AUDIT__CURRENT__v1.md"
 PACKET_JSON = "system_v4/a2_state/audit_logs/CLIFFORD_EDGE_SEMANTICS_PACKET__CURRENT__v1.json"
 
-PREFERRED_INTERPRETER = "/opt/homebrew/bin/python3"
+PREFERRED_INTERPRETER = sys.executable
 ADMITTED_RELATIONS = ("DEPENDS_ON", "EXCLUDES", "STRUCTURALLY_RELATED", "RELATED_TO")
 FORBIDDEN_RELATIONS = ("OVERLAPS",)
 DEFERRED_GA_FIELDS = [

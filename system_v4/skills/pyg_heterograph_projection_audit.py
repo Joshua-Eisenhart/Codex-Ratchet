@@ -12,6 +12,7 @@ data flow and expose real relation families.
 from __future__ import annotations
 
 import json
+import sys
 import time
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -28,7 +29,7 @@ PACKET_JSON = "system_v4/a2_state/audit_logs/PYG_HETEROGRAPH_PROJECTION_PACKET__
 
 SKILL_ID = "pyg-heterograph-projection-audit"
 PROJECTION_ID = "PYG_PROJECTION::control_subgraph_v1"
-PREFERRED_INTERPRETER = "/opt/homebrew/bin/python3"
+PREFERRED_INTERPRETER = sys.executable
 
 FOCUS_NODE_TYPES = (
     "KERNEL_CONCEPT",

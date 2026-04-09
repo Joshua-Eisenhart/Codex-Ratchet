@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-# REQUIRES: clifford, scipy, engine_core (available under /opt/homebrew/bin/python3)
-# Run as: /opt/homebrew/bin/python3 sim_axis_7_12_audit.py  (from system_v4/probes/)
+# REQUIRES: clifford, scipy, engine_core
+# Run as: make sim NAME=sim_axis_7_12_audit  (from repo root)
 """
 Axes 7-12 Audit: Redundancy Check + New Candidate Mapping
 ============================================================
@@ -42,7 +42,7 @@ try:
 except ImportError:
     print("\n[ERROR] Missing 'clifford' library. This probe requires geometric algebra support.", file=sys.stderr)
     print("        Please run this script inside the graph toolchain environment:", file=sys.stderr)
-    print("        /opt/homebrew/bin/python3 system_v4/probes/sim_axis_7_12_audit.py\n", file=sys.stderr)
+    print("        make sim NAME=sim_axis_7_12_audit  (from repo root)\n", file=sys.stderr)
     sys.exit(1)
 
 try:
@@ -357,7 +357,7 @@ def run_axis_7_12_audit():
     
     # Save
     out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                           "..", "a2_state", "sim_results")
+                           "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     results = {
         "schema": "AXIS_7_12_AUDIT_v1",

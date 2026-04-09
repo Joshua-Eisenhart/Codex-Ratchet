@@ -1,0 +1,148 @@
+{
+  "name": "eigenvalue_spectrum_view",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for the eigenvalue-only state view, showing where spectral descriptions track mixedness and where they collapse distinct states with the same spectrum.",
+  "lego_ids": [
+    "eigenvalue_spectrum_view"
+  ],
+  "primary_lego_ids": [
+    "eigenvalue_spectrum_view"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pure_states_share_rank_one_spectrum": {
+      "spectra": {
+        "rho_0": [
+          1.0,
+          0.0
+        ],
+        "rho_p": [
+          1.0,
+          0.0
+        ],
+        "rho_m": [
+          1.0,
+          0.0
+        ]
+      },
+      "pass": true
+    },
+    "maximally_mixed_state_has_flat_spectrum": {
+      "spectrum": [
+        0.5,
+        0.5
+      ],
+      "pass": true
+    },
+    "mixedness_order_is_visible_spectrally": {
+      "pure": [
+        1.0,
+        0.0
+      ],
+      "mixed": [
+        0.75,
+        0.25
+      ],
+      "max_mixed": [
+        0.5,
+        0.5
+      ],
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "same_spectrum_does_not_mean_same_density": {
+      "pass": true
+    },
+    "orthogonal_pure_states_are_not_collapsed_by_density_matrix": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "spectral_view_cannot_see_relative_phase_for_pure_qubits": {
+      "pass": true
+    },
+    "degenerate_flat_spectrum_is_fixed_by_maximally_mixed_state": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local spectral-view lego on bounded one-qubit pure and mixed states, keeping eigenvalue-only representation separate from full density-state structure."
+  }
+}

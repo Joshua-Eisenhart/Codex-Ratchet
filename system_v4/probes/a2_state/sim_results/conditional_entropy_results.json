@@ -1,0 +1,127 @@
+{
+  "name": "conditional_entropy",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for conditional entropy on bounded two-qubit states, kept separate from coherent information and seam-level files.",
+  "lego_ids": [
+    "conditional_entropy"
+  ],
+  "primary_lego_ids": [
+    "conditional_entropy"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "product_state_conditional_equals_local_entropy": {
+      "value": 0.0,
+      "pass": true
+    },
+    "bell_state_has_negative_conditional_entropy": {
+      "value": -0.9999999999999997,
+      "pass": true
+    },
+    "classical_mixture_has_nonnegative_conditional_entropy": {
+      "value": 0.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "product_state_is_not_negative": {
+      "value": 0.0,
+      "pass": true
+    },
+    "bell_and_product_do_not_share_same_sign": {
+      "bell": -0.9999999999999997,
+      "product": 0.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "pure_product_has_zero_conditional_entropy": {
+      "value": 0.0,
+      "pass": true
+    },
+    "independent_product_matches_marginal_entropy": {
+      "value": 0.0,
+      "marginal_a_entropy": 3.2034265038149176e-16,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local conditional-entropy lego on bounded two-qubit product, Bell, and classical-mixture states."
+  }
+}

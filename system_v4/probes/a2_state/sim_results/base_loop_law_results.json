@@ -1,0 +1,121 @@
+{
+  "name": "base_loop_law",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for the base-loop law on one fixed sample, kept separate from fiber-loop, Berry phase, holonomy, and transport rows.",
+  "lego_ids": [
+    "base_loop_law"
+  ],
+  "primary_lego_ids": [
+    "base_loop_law"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "closed_base_loop_is_well_defined": {
+      "pass": true
+    },
+    "density_changes_along_base_motion": {
+      "start_to_quarter": 0.9999999999999999,
+      "start_to_half": 1.4142135623730951,
+      "pass": "True"
+    },
+    "base_loop_returns_to_same_density_class_on_closure": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "nontrivial_variation_exists_inside_base_loop": {
+      "pass": true
+    },
+    "base_vs_fiber_contrast_is_visible": {
+      "fiber_start_to_mid": 0.0,
+      "pass": "True"
+    }
+  },
+  "boundary": {
+    "all_sampled_states_stay_normalized": {
+      "pass": true
+    },
+    "reparameterization_endpoints_do_not_change_loop_law": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local base-loop lego on one fixed sample showing density traversal and closure."
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "name": "blackwell_style_comparison",
+  "classification": "canonical",
+  "classification_note": "Canonical local cvc5 lego for operational comparison of finite probe families via stochastic post-processing synthesis.",
+  "lego_ids": [
+    "blackwell_style_comparison",
+    "povm_measurement_family",
+    "measurement_instrument"
+  ],
+  "primary_lego_ids": [
+    "blackwell_style_comparison"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "cvc5 is the primary synthesis engine here"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "synthesizes or refutes stochastic post-processing maps between POVM families"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "noisy_z_measurement_is_postprocessing_of_projective_z": {
+      "sat": true,
+      "K": [
+        [
+          0.8,
+          0.2
+        ],
+        [
+          0.2,
+          0.8
+        ]
+      ],
+      "pass": true
+    },
+    "postprocessing_reproduces_probabilities_on_test_states": {
+      "rho0_E": [
+        1.0,
+        0.0
+      ],
+      "rho0_F": [
+        0.8,
+        0.2
+      ],
+      "rho1_E": [
+        0.0,
+        1.0
+      ],
+      "rho1_F": [
+        0.2,
+        0.8
+      ],
+      "rho_plus_E": [
+        0.4999999999999999,
+        0.4999999999999999
+      ],
+      "rho_plus_F": [
+        0.4999999999999999,
+        0.4999999999999999
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "x_basis_measurement_is_not_postprocessing_of_projective_z": {
+      "sat": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "identity_postprocessing_exists_for_same_measurement": {
+      "pass": true
+    },
+    "stochastic_kernel_columns_sum_to_one": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local operational-comparison lego on bounded qubit POVM families."
+  }
+}

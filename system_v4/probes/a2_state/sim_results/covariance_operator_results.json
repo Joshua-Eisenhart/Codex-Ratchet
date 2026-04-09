@@ -1,0 +1,204 @@
+{
+  "name": "covariance_operator",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for covariance-style operators represented as normalized positive semidefinite trace-one matrices with explicit spectral summaries.",
+  "lego_ids": [
+    "covariance_operator",
+    "density_matrix_representability",
+    "spectral_decomposition"
+  ],
+  "primary_lego_ids": [
+    "covariance_operator"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure numpy local spectral lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph-native computation"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no SMT proof layer here"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no second-solver layer here"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no symbolic derivation here"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold-statistics layer"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant network layer"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency DAG"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell-complex topology"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "linear": {
+      "validity": {
+        "trace_ok": true,
+        "hermitian": true,
+        "psd": true,
+        "trace": 1.0,
+        "eigenvalues": [
+          2.051529325465674e-18,
+          6.973612268575513e-18,
+          4.687495017077399e-17,
+          4.8961014303981664e-17,
+          0.04665938890078593,
+          0.19391343400043,
+          0.2920128375093447,
+          0.46741433958943907
+        ]
+      },
+      "entropy": 1.6966561434113183,
+      "top_eigenvalue": 0.46741433958943907,
+      "operator_rank": 4,
+      "pass": true
+    },
+    "rbf": {
+      "validity": {
+        "trace_ok": true,
+        "hermitian": true,
+        "psd": true,
+        "trace": 1.0,
+        "eigenvalues": [
+          0.0449766729028089,
+          0.07170692356984885,
+          0.09112326360241864,
+          0.12236739111983067,
+          0.12607465104007806,
+          0.13125249462953475,
+          0.17917224474663762,
+          0.23332635838884247
+        ]
+      },
+      "entropy": 2.8551731826164675,
+      "top_eigenvalue": 0.23332635838884247,
+      "operator_rank": 8,
+      "pass": true
+    },
+    "polynomial": {
+      "validity": {
+        "trace_ok": true,
+        "hermitian": true,
+        "psd": true,
+        "trace": 0.9999999999999999,
+        "eigenvalues": [
+          0.004429173820042813,
+          0.010901504565269959,
+          0.0378648553915293,
+          0.10009696328807176,
+          0.132317629620799,
+          0.1475364514770584,
+          0.20718121528400246,
+          0.35967220655322607
+        ]
+      },
+      "entropy": 2.411451794484071,
+      "top_eigenvalue": 0.35967220655322607,
+      "operator_rank": 8,
+      "pass": true
+    },
+    "cosine": {
+      "validity": {
+        "trace_ok": true,
+        "hermitian": true,
+        "psd": true,
+        "trace": 1.0,
+        "eigenvalues": [
+          2.463529156136303e-17,
+          3.620879697981396e-17,
+          4.583317277191058e-17,
+          7.037534968353098e-17,
+          0.04606188913962707,
+          0.16332291684104308,
+          0.3022887673222523,
+          0.48832642669707754
+        ]
+      },
+      "entropy": 1.6582070309709742,
+      "top_eigenvalue": 0.48832642669707754,
+      "operator_rank": 4,
+      "pass": true
+    }
+  },
+  "negative": {
+    "raw_covariance_not_trace_one": {
+      "trace": 28.34529846416364,
+      "pass": "True"
+    },
+    "unsymmetrized_operator_can_break_hermiticity": {
+      "pass": true,
+      "note": "Normalization step explicitly symmetrizes the operator before spectral use."
+    }
+  },
+  "boundary": {
+    "max_entropy_kernel_is_rbf": {
+      "winner": "rbf",
+      "pass": true
+    },
+    "all_top_eigenvalues_in_unit_interval": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "kernel_count": 4,
+    "max_entropy_kernel": "rbf",
+    "scope_note": "Direct covariance-style operator lego on a fixed bounded data family."
+  }
+}

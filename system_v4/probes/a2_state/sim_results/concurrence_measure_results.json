@@ -1,0 +1,130 @@
+{
+  "name": "concurrence_measure",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for concurrence on bounded two-qubit states, including product, Bell, and Werner-family checks.",
+  "lego_ids": [
+    "concurrence_measure"
+  ],
+  "primary_lego_ids": [
+    "concurrence_measure"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "saved for later filtration successor"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "product_state_has_zero_concurrence": {
+      "value": 0.0,
+      "pass": true
+    },
+    "bell_state_has_unit_concurrence": {
+      "value": 0.9999999999999994,
+      "pass": true
+    },
+    "werner_concurrence_increases_with_r": {
+      "values": {
+        "r_0_2": 0.0,
+        "r_0_5": 0.25000000000000006,
+        "r_0_9": 0.8499999999999994
+      },
+      "pass": true
+    }
+  },
+  "negative": {
+    "low_werner_state_is_not_maximally_entangled": {
+      "value": 0.0,
+      "pass": true
+    },
+    "product_and_bell_do_not_share_same_readout": {
+      "product": 0.0,
+      "bell": 0.9999999999999994,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "werner_below_one_third_is_zero": {
+      "value": 0.0,
+      "pass": true
+    },
+    "werner_above_one_third_is_positive": {
+      "value": 0.25000000000000006,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local concurrence lego on bounded two-qubit product, Bell, and Werner states."
+  }
+}

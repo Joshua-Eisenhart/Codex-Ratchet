@@ -517,6 +517,10 @@ def run_codex_learning_tick() -> bool:
         "-a", "never",
         prompt,
     ]
+    child_env = os.environ.copy()
+    # Keep Codex on its default runtime home unless a future launch path
+    # explicitly opts into something else at this call site.
+    child_env.pop("CODEX_HOME", None)
     
     print(f"    Spawning: {codex_bin} exec ...")
     print(f"    Prompt: {prompt[:80]}...")
@@ -526,6 +530,7 @@ def run_codex_learning_tick() -> bool:
         result = subprocess.run(
             cmd,
             cwd=REPO,
+            env=child_env,
             capture_output=True,
             text=True,
             timeout=600,  # 10 minute max per learning tick

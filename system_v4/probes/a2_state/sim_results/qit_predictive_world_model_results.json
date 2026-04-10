@@ -1,0 +1,163 @@
+{
+  "name": "qit_predictive_world_model",
+  "classification": "canonical",
+  "classification_note": "Canonical finite predictive-world-model row: an internal qubit density state updated from noncommuting probe errors reduces full-state mismatch to a finite environment and re-adapts after a shift, while limited or absent observation controls fail to recover the same alignment.",
+  "lego_ids": [
+    "predictive_world_model",
+    "channel_cptp_map"
+  ],
+  "primary_lego_ids": [
+    "predictive_world_model"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "full_probe_predictive_updates_reduce_pre_shift_model_error": {
+      "initial_trace_distance": 0.49368512231988515,
+      "final_trace_distance": 0.01534723891241331,
+      "initial_relative_entropy": 0.6035413886228855,
+      "final_relative_entropy": 0.000824052240887968,
+      "pass": true
+    },
+    "full_probe_model_re_adapts_after_environment_shift": {
+      "trace_distance_immediately_after_shift": 0.5518297263733276,
+      "trace_distance_after_readaptation": 0.007932373069667528,
+      "relative_entropy_immediately_after_shift": 0.7100317092737563,
+      "relative_entropy_after_readaptation": 0.00018786177835520895,
+      "pass": true
+    },
+    "full_noncommuting_probe_set_recovers_observables_better_than_partial_probe_control": {
+      "environment_observables_after_shift": [
+        -0.3300000000000001,
+        0.45999999999999996,
+        0.23999999999999982
+      ],
+      "full_probe_final_observables": [
+        -0.318094332977762,
+        0.4495414871565521,
+        0.2407515130900888
+      ],
+      "z_only_final_observables": [
+        0.4982390297925,
+        -0.26756515988142854,
+        0.24075151309008908
+      ],
+      "full_probe_observable_error": 0.015864746139335056,
+      "z_only_observable_error": 1.1024207532139603,
+      "pass": true
+    }
+  },
+  "negative": {
+    "frozen_model_without_observation_does_not_recover_after_shift": {
+      "frozen_trace_distance": 0.5518297263733276,
+      "adaptive_trace_distance": 0.007932373069667528,
+      "pass": true
+    },
+    "tracking_the_stale_pre_shift_target_does_not_match_the_new_environment": {
+      "stale_target_trace_distance_to_new_env": 0.5643952998021557,
+      "adaptive_trace_distance_to_new_env": 0.007932373069667528,
+      "pass": true
+    },
+    "row_does_not_claim_general_agency_or_alignment_solution": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_world_model_states_remain_valid_density_operators": {
+      "pass": true
+    },
+    "comparison_uses_one_finite_qubit_carrier_and_explicit_probe_updates_only": {
+      "carrier_dimension": 2,
+      "full_probe_set": [
+        "sigma_x",
+        "sigma_y",
+        "sigma_z"
+      ],
+      "partial_probe_control": [
+        "sigma_z"
+      ],
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "pre_shift_final_trace_distance": 0.01534723891241331,
+    "post_shift_final_trace_distance": 0.007932373069667528,
+    "frozen_post_shift_trace_distance": 0.5518297263733276,
+    "scope_note": "Finite predictive-world-model row only. It shows bounded probe-driven state estimation and re-adaptation on a qubit carrier, not a general world-engine or alignment theorem."
+  }
+}

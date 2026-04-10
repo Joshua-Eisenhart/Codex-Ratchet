@@ -1,0 +1,1020 @@
+{
+  "name": "lego_stack_audit",
+  "generated_at": "2026-04-09T07:10:07.203864+00:00",
+  "docs_scanned": [
+    "new docs/07_model_math_geometry_sim_plan.md",
+    "new docs/08_aligned_sim_backlog_and_build_order.md",
+    "new docs/LEGO_SIM_CONTRACT.md",
+    "new docs/FALSIFICATION_SIM_DESIGNS.md"
+  ],
+  "doc_supports_lego_first": true,
+  "source_notes": {
+    "07_model_math_geometry_sim_plan": "simulate families early; promote only after survival",
+    "08_aligned_sim_backlog_and_build_order": "carrier -> geometry -> operators -> correlations -> entropy -> axes",
+    "lego_contract": "small sims must be rich enough to compose upward",
+    "falsification_designs": "kills are useful boundary evidence"
+  },
+  "stage_bias": {
+    "stage_counts": {
+      "boundary": 2,
+      "lego": 3,
+      "coupling": 3,
+      "coexistence": 3,
+      "topology": 6,
+      "assembly": 5
+    },
+    "lego_anchor_count": 3,
+    "post_lego_anchor_count": 17,
+    "post_lego_overweight": true
+  },
+  "candidates": [
+    {
+      "id": "constraint_probe_admissibility",
+      "family": "Constraint and probe admissibility",
+      "assembly_stage": "lego",
+      "doc_stage": "Layer 0 / L1 upward fence",
+      "match_tokens": [
+        "constraint",
+        "probe",
+        "guard",
+        "fence",
+        "admissibility"
+      ],
+      "useful_if_rejected": true,
+      "why": "Root-constraint kills are useful because they map the admissible boundary early.",
+      "source_docs": [
+        "new docs/07_model_math_geometry_sim_plan.md",
+        "new docs/08_aligned_sim_backlog_and_build_order.md",
+        "new docs/LEGO_SIM_CONTRACT.md"
+      ],
+      "matching_probe_files": [
+        "sim_nonclassical_guard_probe.py",
+        "sim_bc1_fence_investigation.py",
+        "sim_bridge_entropy_inequality_guardrails.py",
+        "sim_c1_mispair_probe.py",
+        "sim_carrier_probe_support.py",
+        "sim_checkerboard_admissibility.py"
+      ],
+      "matching_result_files": [
+        "layer1_admissibility_fences_formal_results.json",
+        "layer1_admissibility_fences_results.json",
+        "bc1_fence_investigation_results.json",
+        "bridge_entropy_inequality_guardrails_results.json",
+        "c1_mispair_probe_results.json",
+        "carrier_probe_support_results.json"
+      ],
+      "recommended_probe_files": [
+        "sim_carrier_probe_support.py"
+      ],
+      "result_rankings": [
+        {
+          "probe_file": "sim_carrier_probe_support.py",
+          "result_file": "carrier_probe_support_results.json",
+          "score": 5,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_bridge_entropy_inequality_guardrails.py",
+          "result_file": "bridge_entropy_inequality_guardrails_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_bc1_fence_investigation.py",
+          "result_file": "bc1_fence_investigation_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_c1_mispair_probe.py",
+          "result_file": "c1_mispair_probe_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_layer1_admissibility_fences.py",
+          "result_file": "layer1_admissibility_fences_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_layer1_admissibility_fences_formal.py",
+          "result_file": "layer1_admissibility_fences_formal_results.json",
+          "score": 0,
+          "reason": "weak"
+        }
+      ],
+      "already_simulated": true,
+      "needs_deeper_lego_work": true
+    },
+    {
+      "id": "carrier_admission_density_matrix",
+      "family": "Carrier admission and density-matrix representability",
+      "assembly_stage": "lego",
+      "doc_stage": "Layer 1",
+      "match_tokens": [
+        "carrier",
+        "density",
+        "positivity",
+        "trace",
+        "normalization",
+        "rhoab"
+      ],
+      "useful_if_rejected": true,
+      "why": "Rejected carrier families still show what the root constraints refuse to admit.",
+      "source_docs": [
+        "new docs/07_model_math_geometry_sim_plan.md",
+        "new docs/08_aligned_sim_backlog_and_build_order.md"
+      ],
+      "matching_probe_files": [
+        "sim_Ax3_density_path.py",
+        "sim_bridge_to_rhoab_construction.py",
+        "sim_carrier_probe_support.py",
+        "sim_contract_s5_topology_density_forms.py",
+        "sim_density_hopf_geometry.py",
+        "sim_engine_inside_trace.py"
+      ],
+      "matching_result_files": [
+        "Ax3_density_path_results.json",
+        "bridge_to_rhoab_construction_results.json",
+        "carrier_probe_support_results.json",
+        "carrier_selection_packet_run_results.json",
+        "contract_s5_topology_density_forms_results.json",
+        "density_hopf_geometry_results.json"
+      ],
+      "recommended_probe_files": [
+        "sim_carrier_probe_support.py",
+        "sim_density_hopf_geometry.py"
+      ],
+      "result_rankings": [
+        {
+          "probe_file": "sim_carrier_probe_support.py",
+          "result_file": "carrier_probe_support_results.json",
+          "score": 5,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_density_hopf_geometry.py",
+          "result_file": "density_hopf_geometry_results.json",
+          "score": 5,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_bridge_to_rhoab_construction.py",
+          "result_file": "bridge_to_rhoab_construction_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_Ax3_density_path.py",
+          "result_file": "Ax3_density_path_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_carrier_selection_packet_run.py",
+          "result_file": "carrier_selection_packet_run_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_contract_s5_topology_density_forms.py",
+          "result_file": "contract_s5_topology_density_forms_results.json",
+          "score": 0,
+          "reason": "weak"
+        }
+      ],
+      "already_simulated": true,
+      "needs_deeper_lego_work": false
+    },
+    {
+      "id": "geometry_crosschecks_same_carrier",
+      "family": "Geometry cross-checks on the same carrier",
+      "assembly_stage": "lego",
+      "doc_stage": "Layer 2",
+      "match_tokens": [
+        "hopf",
+        "torus",
+        "geometry",
+        "fubini",
+        "bures",
+        "berry",
+        "qfi",
+        "qgt",
+        "holonomy"
+      ],
+      "useful_if_rejected": true,
+      "why": "Geometry failures are useful because they kill metric smuggling and flat-only shortcuts.",
+      "source_docs": [
+        "new docs/07_model_math_geometry_sim_plan.md",
+        "new docs/08_aligned_sim_backlog_and_build_order.md"
+      ],
+      "matching_probe_files": [
+        "sim_axis_hopf_geometry.py",
+        "sim_berry_qfi_entangled_path.py",
+        "sim_berry_qfi_shell_paths.py",
+        "sim_density_hopf_geometry.py",
+        "sim_foundation_hopf_torus_geomstats_clifford.py",
+        "sim_hopf_torus_lego.py"
+      ],
+      "matching_result_files": [
+        "berry_phase_torus_ladder_results.json",
+        "berry_qfi_entangled_path_results.json",
+        "berry_qfi_shell_paths_results.json",
+        "density_hopf_geometry_results.json",
+        "foundation_hopf_torus_geomstats_clifford_results.json",
+        "hopf_torus_lego_results.json"
+      ],
+      "recommended_probe_files": [
+        "sim_density_hopf_geometry.py",
+        "sim_foundation_hopf_torus_geomstats_clifford.py",
+        "sim_berry_qfi_entangled_path.py",
+        "sim_berry_qfi_shell_paths.py",
+        "sim_hopf_torus_lego.py"
+      ],
+      "result_rankings": [
+        {
+          "probe_file": "sim_density_hopf_geometry.py",
+          "result_file": "density_hopf_geometry_results.json",
+          "score": 5,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_foundation_hopf_torus_geomstats_clifford.py",
+          "result_file": "foundation_hopf_torus_geomstats_clifford_results.json",
+          "score": 5,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_berry_qfi_entangled_path.py",
+          "result_file": "berry_qfi_entangled_path_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_berry_qfi_shell_paths.py",
+          "result_file": "berry_qfi_shell_paths_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_hopf_torus_lego.py",
+          "result_file": "hopf_torus_lego_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_berry_phase_torus_ladder.py",
+          "result_file": "berry_phase_torus_ladder_results.json",
+          "score": 0,
+          "reason": "weak"
+        }
+      ],
+      "already_simulated": true,
+      "needs_deeper_lego_work": false
+    },
+    {
+      "id": "graph_cell_complex_geometry",
+      "family": "Graph and cell-complex carrier geometry",
+      "assembly_stage": "lego",
+      "doc_stage": "Layer 2",
+      "match_tokens": [
+        "graph",
+        "cell",
+        "toponetx",
+        "xgi",
+        "gudhi",
+        "hypergraph"
+      ],
+      "useful_if_rejected": true,
+      "why": "Topology-sensitive failures are still evidence about which carrier views survive.",
+      "source_docs": [
+        "new docs/07_model_math_geometry_sim_plan.md",
+        "new docs/08_aligned_sim_backlog_and_build_order.md"
+      ],
+      "matching_probe_files": [
+        "sim_xgi_dual_hypergraph.py",
+        "sim_xgi_family_hypergraph.py",
+        "sim_xgi_shell_hypergraph.py",
+        "sim_cell_complex_geometry.py",
+        "sim_foundation_equivariant_graph_backprop.py",
+        "sim_foundation_shell_graph_topology.py"
+      ],
+      "matching_result_files": [
+        "xgi_dual_hypergraph_results.json",
+        "xgi_family_hypergraph_results.json",
+        "xgi_shell_hypergraph_results.json",
+        "cell_complex_geometry_results.json",
+        "foundation_equivariant_graph_backprop_results.json",
+        "foundation_shell_graph_topology_results.json"
+      ],
+      "recommended_probe_files": [
+        "sim_cell_complex_geometry.py",
+        "sim_foundation_equivariant_graph_backprop.py",
+        "sim_xgi_dual_hypergraph.py",
+        "sim_xgi_family_hypergraph.py",
+        "sim_xgi_shell_hypergraph.py",
+        "sim_foundation_shell_graph_topology.py"
+      ],
+      "result_rankings": [
+        {
+          "probe_file": "sim_cell_complex_geometry.py",
+          "result_file": "cell_complex_geometry_results.json",
+          "score": 5,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_foundation_equivariant_graph_backprop.py",
+          "result_file": "foundation_equivariant_graph_backprop_results.json",
+          "score": 5,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_xgi_dual_hypergraph.py",
+          "result_file": "xgi_dual_hypergraph_results.json",
+          "score": 5,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_xgi_family_hypergraph.py",
+          "result_file": "xgi_family_hypergraph_results.json",
+          "score": 5,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_xgi_shell_hypergraph.py",
+          "result_file": "xgi_shell_hypergraph_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_foundation_shell_graph_topology.py",
+          "result_file": "foundation_shell_graph_topology_results.json",
+          "score": 2,
+          "reason": "weak"
+        }
+      ],
+      "already_simulated": true,
+      "needs_deeper_lego_work": false
+    },
+    {
+      "id": "operator_family_admission",
+      "family": "Operator family admission",
+      "assembly_stage": "lego",
+      "doc_stage": "Layer 3",
+      "match_tokens": [
+        "operator",
+        "pauli",
+        "clifford",
+        "commutator",
+        "channel",
+        "left_right",
+        "chirality"
+      ],
+      "useful_if_rejected": true,
+      "why": "Operator families that collapse under commutative or symmetric reductions are useful kills.",
+      "source_docs": [
+        "new docs/07_model_math_geometry_sim_plan.md",
+        "new docs/08_aligned_sim_backlog_and_build_order.md",
+        "new docs/FALSIFICATION_SIM_DESIGNS.md"
+      ],
+      "matching_probe_files": [
+        "sim_L3_operators_on_stages.py",
+        "sim_L4_engine_chirality.py",
+        "sim_bridge_operator_cut_analysis.py",
+        "sim_compound_operator_geometry.py",
+        "sim_covariance_operator.py",
+        "sim_engine_4_operators.py"
+      ],
+      "matching_result_files": [
+        "L3_operators_results.json",
+        "L4_engine_chirality_results.json",
+        "active_clifford_driven_results.json",
+        "axis_7_12_commutator_results.json",
+        "bridge_operator_cut_analysis_results.json",
+        "chirality_mirror_symmetry_results.json"
+      ],
+      "recommended_probe_files": [],
+      "result_rankings": [
+        {
+          "probe_file": "sim_L3_operators.py",
+          "result_file": "L3_operators_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_L4_engine_chirality.py",
+          "result_file": "L4_engine_chirality_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_active_clifford_driven.py",
+          "result_file": "active_clifford_driven_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_axis_7_12_commutator.py",
+          "result_file": "axis_7_12_commutator_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_chirality_mirror_symmetry.py",
+          "result_file": "chirality_mirror_symmetry_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_bridge_operator_cut_analysis.py",
+          "result_file": "bridge_operator_cut_analysis_results.json",
+          "score": -2,
+          "reason": "late_stage_name"
+        }
+      ],
+      "already_simulated": true,
+      "needs_deeper_lego_work": true
+    },
+    {
+      "id": "bipartite_structure_local",
+      "family": "Bipartite structure lego set",
+      "assembly_stage": "lego",
+      "doc_stage": "Layer 4",
+      "match_tokens": [
+        "bipartite",
+        "partial_trace",
+        "concurrence",
+        "negativity",
+        "werner",
+        "schmidt",
+        "discord"
+      ],
+      "useful_if_rejected": true,
+      "why": "False bipartite or witness candidates are still useful because they clarify which summaries are lossy.",
+      "source_docs": [
+        "new docs/07_model_math_geometry_sim_plan.md",
+        "new docs/08_aligned_sim_backlog_and_build_order.md"
+      ],
+      "matching_probe_files": [
+        "sim_gudhi_bipartite_entangled.py",
+        "sim_gudhi_concurrence_filtration.py",
+        "sim_lego_entropy_bipartite_cut.py",
+        "sim_partial_trace_audit.py",
+        "sim_pure_lego_all_axes_discord.py",
+        "sim_pyg_dynamic_edge_werner.py"
+      ],
+      "matching_result_files": [
+        "gudhi_bipartite_entangled_results.json",
+        "gudhi_concurrence_filtration_results.json",
+        "lego_entropy_bipartite_cut_results.json",
+        "partial_trace_audit_results.json",
+        "pure_lego_all_axes_discord_results.json",
+        "pyg_dynamic_edge_werner_results.json"
+      ],
+      "recommended_probe_files": [
+        "sim_gudhi_bipartite_entangled.py",
+        "sim_gudhi_concurrence_filtration.py",
+        "sim_pyg_dynamic_edge_werner.py"
+      ],
+      "result_rankings": [
+        {
+          "probe_file": "sim_lego_entropy_bipartite_cut.py",
+          "result_file": "lego_entropy_bipartite_cut_results.json",
+          "score": 5,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_gudhi_bipartite_entangled.py",
+          "result_file": "gudhi_bipartite_entangled_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_gudhi_concurrence_filtration.py",
+          "result_file": "gudhi_concurrence_filtration_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_pyg_dynamic_edge_werner.py",
+          "result_file": "pyg_dynamic_edge_werner_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_pure_lego_all_axes_discord.py",
+          "result_file": "pure_lego_all_axes_discord_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_partial_trace_audit.py",
+          "result_file": "partial_trace_audit_results.json",
+          "score": -2,
+          "reason": "exploratory_signal"
+        }
+      ],
+      "already_simulated": true,
+      "needs_deeper_lego_work": false
+    },
+    {
+      "id": "entropy_family_crosschecks",
+      "family": "Entropy family cross-checks",
+      "assembly_stage": "lego",
+      "doc_stage": "Layer 5",
+      "match_tokens": [
+        "entropy",
+        "mutual_information",
+        "coherent_information",
+        "renyi",
+        "tsallis",
+        "min_entropy"
+      ],
+      "useful_if_rejected": true,
+      "why": "Rejected entropy candidates are useful because entropy is later-layer and should lose if underpowered.",
+      "source_docs": [
+        "new docs/07_model_math_geometry_sim_plan.md",
+        "new docs/08_aligned_sim_backlog_and_build_order.md"
+      ],
+      "matching_probe_files": [
+        "sim_axis6_entropy_decomposition.py",
+        "sim_bridge_entropy_inequality_guardrails.py",
+        "sim_c2_entropy_structure_search.py",
+        "sim_entropy_topology_compatibility.py",
+        "sim_entropy_type_sweep_L0_L3.py",
+        "sim_entropy_type_sweep_L4_L6.py"
+      ],
+      "matching_result_files": [
+        "axis6_entropy_decomposition_results.json",
+        "bridge_entropy_inequality_guardrails_results.json",
+        "c2_entropy_structure_search_results.json",
+        "entropy_form_negative_battery_results.json",
+        "entropy_readout_packet_run_results.json",
+        "entropy_topology_compatibility_results.json"
+      ],
+      "recommended_probe_files": [],
+      "result_rankings": [
+        {
+          "probe_file": "sim_bridge_entropy_inequality_guardrails.py",
+          "result_file": "bridge_entropy_inequality_guardrails_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_axis6_entropy_decomposition.py",
+          "result_file": "axis6_entropy_decomposition_results.json",
+          "score": 1,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_c2_entropy_structure_search.py",
+          "result_file": "c2_entropy_structure_search_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_entropy_form_negative_battery.py",
+          "result_file": "entropy_form_negative_battery_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_entropy_readout_packet_run.py",
+          "result_file": "entropy_readout_packet_run_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_entropy_topology_compatibility.py",
+          "result_file": "entropy_topology_compatibility_results.json",
+          "score": 0,
+          "reason": "weak"
+        }
+      ],
+      "already_simulated": true,
+      "needs_deeper_lego_work": true
+    },
+    {
+      "id": "dependency_dag_and_collapse",
+      "family": "Collapse analysis and dependency DAG",
+      "assembly_stage": "coupling",
+      "doc_stage": "Build-order analysis",
+      "match_tokens": [
+        "dependency",
+        "dag",
+        "collapse",
+        "family",
+        "derived",
+        "basis"
+      ],
+      "useful_if_rejected": true,
+      "why": "Collapse failures show which families are genuinely distinct rather than renamed summaries.",
+      "source_docs": [
+        "new docs/08_aligned_sim_backlog_and_build_order.md"
+      ],
+      "matching_probe_files": [
+        "sim_rustworkx_family_dag.py",
+        "sim_3qubit_dag_formal_ordering.py",
+        "sim_3qubit_dag_formal_ordering_v2.py",
+        "sim_integrated_dependency_chain.py",
+        "sim_lower_tier_operator_basis_search.py",
+        "sim_operator_basis_search.py"
+      ],
+      "matching_result_files": [
+        "rustworkx_family_dag_results.json",
+        "3qubit_dag_formal_ordering_results.json",
+        "3qubit_dag_formal_ordering_v2_results.json",
+        "bridge_family_live_test_results.json",
+        "integrated_dependency_chain_results.json",
+        "lower_tier_operator_basis_search_results.json"
+      ],
+      "recommended_probe_files": [
+        "sim_3qubit_dag_formal_ordering.py",
+        "sim_3qubit_dag_formal_ordering_v2.py",
+        "sim_integrated_dependency_chain.py",
+        "sim_rustworkx_family_dag.py"
+      ],
+      "result_rankings": [
+        {
+          "probe_file": "sim_3qubit_dag_formal_ordering.py",
+          "result_file": "3qubit_dag_formal_ordering_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_3qubit_dag_formal_ordering_v2.py",
+          "result_file": "3qubit_dag_formal_ordering_v2_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_integrated_dependency_chain.py",
+          "result_file": "integrated_dependency_chain_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_rustworkx_family_dag.py",
+          "result_file": "rustworkx_family_dag_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_lower_tier_operator_basis_search.py",
+          "result_file": "lower_tier_operator_basis_search_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_bridge_family_live_test.py",
+          "result_file": "bridge_family_live_test_results.json",
+          "score": -2,
+          "reason": "late_stage_name"
+        }
+      ],
+      "already_simulated": true,
+      "needs_deeper_lego_work": false
+    },
+    {
+      "id": "axis_entry_after_admission",
+      "family": "Axis entry only after lower-layer admission",
+      "assembly_stage": "assembly",
+      "doc_stage": "Layer 6",
+      "match_tokens": [
+        "axis0",
+        "axis6",
+        "signed",
+        "left_right",
+        "bridge",
+        "phi0"
+      ],
+      "useful_if_rejected": true,
+      "why": "Axis candidates that fail lower-layer admission are useful because they prevent premature promotion.",
+      "source_docs": [
+        "new docs/07_model_math_geometry_sim_plan.md",
+        "new docs/08_aligned_sim_backlog_and_build_order.md"
+      ],
+      "matching_probe_files": [
+        "sim_axis0_bridge_search.py",
+        "sim_axis0_phase4_final_bridge.py",
+        "sim_axis6_e3nn_fe_bridge.py",
+        "sim_bridge_phi0_cross_consistency_audit.py",
+        "sim_bridge_phi0_proof_integration.py",
+        "sim_bridge_phi0_tool_penetration_audit.py"
+      ],
+      "matching_result_files": [
+        "axis0_bridge_search_results.json",
+        "axis6_e3nn_fe_bridge_results.json",
+        "bridge_phi0_cross_consistency_audit_results.json",
+        "bridge_phi0_proof_integration_results.json",
+        "c1_signed_bridge_candidate_search_results.json",
+        "signed_vs_unsigned_phi0_discriminator_results.json"
+      ],
+      "recommended_probe_files": [],
+      "result_rankings": [
+        {
+          "probe_file": "sim_axis6_e3nn_fe_bridge.py",
+          "result_file": "axis6_e3nn_fe_bridge_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_bridge_phi0_proof_integration.py",
+          "result_file": "bridge_phi0_proof_integration_results.json",
+          "score": 1,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_axis0_bridge_search.py",
+          "result_file": "axis0_bridge_search_results.json",
+          "score": -2,
+          "reason": "late_stage_name"
+        },
+        {
+          "probe_file": "sim_bridge_phi0_cross_consistency_audit.py",
+          "result_file": "bridge_phi0_cross_consistency_audit_results.json",
+          "score": -2,
+          "reason": "exploratory_signal"
+        },
+        {
+          "probe_file": "sim_c1_signed_bridge_candidate_search.py",
+          "result_file": "c1_signed_bridge_candidate_search_results.json",
+          "score": -2,
+          "reason": "late_stage_name"
+        },
+        {
+          "probe_file": "sim_signed_vs_unsigned_phi0_discriminator.py",
+          "result_file": "signed_vs_unsigned_phi0_discriminator_results.json",
+          "score": -2,
+          "reason": "candidate_discriminator"
+        }
+      ],
+      "already_simulated": true,
+      "needs_deeper_lego_work": false
+    },
+    {
+      "id": "gauge_group_falsifier",
+      "family": "Gauge-group correspondence falsifier",
+      "assembly_stage": "lego",
+      "doc_stage": "Falsification sim",
+      "match_tokens": [
+        "gauge",
+        "lie",
+        "commutator",
+        "su2",
+        "su3",
+        "u1"
+      ],
+      "useful_if_rejected": true,
+      "why": "A kill here is more informative than a vague positive mapping claim.",
+      "source_docs": [
+        "new docs/FALSIFICATION_SIM_DESIGNS.md"
+      ],
+      "matching_probe_files": [
+        "sim_L1_loop_families.py",
+        "sim_geom_cp1_u1_projective.py",
+        "sim_geom_su2_so3_quaternions.py",
+        "sim_geometry_families_L0.py",
+        "sim_lego_entropy_spectral_families.py",
+        "sim_lego_su2_representations.py"
+      ],
+      "matching_result_files": [
+        "L1_loop_families_results.json",
+        "axis_7_12_commutator_results.json",
+        "axis_lie_closure_results.json",
+        "gauge_group_correspondence_results.json",
+        "geom_cp1_u1_projective_results.json",
+        "geom_su2_so3_quaternions_results.json"
+      ],
+      "recommended_probe_files": [
+        "sim_geom_cp1_u1_projective.py",
+        "sim_geom_su2_so3_quaternions.py"
+      ],
+      "result_rankings": [
+        {
+          "probe_file": "sim_geom_cp1_u1_projective.py",
+          "result_file": "geom_cp1_u1_projective_results.json",
+          "score": 5,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_geom_su2_so3_quaternions.py",
+          "result_file": "geom_su2_so3_quaternions_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_L1_loop_families.py",
+          "result_file": "L1_loop_families_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_axis_7_12_commutator.py",
+          "result_file": "axis_7_12_commutator_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_axis_lie_closure.py",
+          "result_file": "axis_lie_closure_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_gauge_group_correspondence.py",
+          "result_file": "gauge_group_correspondence_results.json",
+          "score": 0,
+          "reason": "weak"
+        }
+      ],
+      "already_simulated": true,
+      "needs_deeper_lego_work": false
+    },
+    {
+      "id": "viability_vs_attractor_falsifier",
+      "family": "Viability vs attractor falsifier",
+      "assembly_stage": "coupling",
+      "doc_stage": "Falsification sim",
+      "match_tokens": [
+        "viability",
+        "attractor",
+        "trajectory",
+        "perturb",
+        "cycle"
+      ],
+      "useful_if_rejected": true,
+      "why": "If viability fails, that changes the framing cleanly and usefully.",
+      "source_docs": [
+        "new docs/FALSIFICATION_SIM_DESIGNS.md"
+      ],
+      "matching_probe_files": [
+        "sim_axis0_attractor_basin_boundary.py",
+        "sim_bridge_cut_perturbation_stability.py",
+        "sim_geomstats_ratchet_trajectory.py"
+      ],
+      "matching_result_files": [
+        "viability_vs_attractor_results.json",
+        "axis0_attractor_basin_boundary_results.json",
+        "bridge_cut_perturbation_stability_results.json",
+        "dual_stack_200cycle_oscillation_results.json",
+        "exploratory_process_cycle_stage_matrix_results.json",
+        "geomstats_ratchet_trajectory_results.json"
+      ],
+      "recommended_probe_files": [
+        "sim_geomstats_ratchet_trajectory.py"
+      ],
+      "result_rankings": [
+        {
+          "probe_file": "sim_geomstats_ratchet_trajectory.py",
+          "result_file": "geomstats_ratchet_trajectory_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_axis0_attractor_basin_boundary.py",
+          "result_file": "axis0_attractor_basin_boundary_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_bridge_cut_perturbation_stability.py",
+          "result_file": "bridge_cut_perturbation_stability_results.json",
+          "score": 0,
+          "reason": "late_stage_name"
+        },
+        {
+          "probe_file": "sim_dual_stack_200cycle_oscillation.py",
+          "result_file": "dual_stack_200cycle_oscillation_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_exploratory_process_cycle_stage_matrix.py",
+          "result_file": "exploratory_process_cycle_stage_matrix_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_viability_vs_attractor.py",
+          "result_file": "viability_vs_attractor_results.json",
+          "score": 0,
+          "reason": "weak"
+        }
+      ],
+      "already_simulated": true,
+      "needs_deeper_lego_work": false
+    },
+    {
+      "id": "quantum_metric_nonuniqueness",
+      "family": "Quantum metric non-uniqueness cross-check",
+      "assembly_stage": "lego",
+      "doc_stage": "Falsification sim",
+      "match_tokens": [
+        "bures",
+        "wigner",
+        "kubo",
+        "metric",
+        "distance",
+        "rho_ab"
+      ],
+      "useful_if_rejected": true,
+      "why": "If the metrics disagree qualitatively, that is useful structure pressure, not failure noise.",
+      "source_docs": [
+        "new docs/FALSIFICATION_SIM_DESIGNS.md",
+        "new docs/08_aligned_sim_backlog_and_build_order.md"
+      ],
+      "matching_probe_files": [
+        "sim_formal_ladder_geometric_engine.py",
+        "sim_geom_metric_layers.py",
+        "sim_geometric_higher_constraints.py",
+        "sim_geomstats_shell_metrics.py",
+        "sim_lego_weyl_wigner_phase_space.py",
+        "sim_pure_lego_wigner_quasiprobability.py"
+      ],
+      "matching_result_files": [
+        "formal_ladder_geometric_comparison_results.json",
+        "geometric_ablation_battery_results.json",
+        "geometric_engine_results.json",
+        "geometric_higher_constraints_results.json",
+        "geomstats_shell_metrics_results.json",
+        "lego_weyl_wigner_phase_space_results.json"
+      ],
+      "recommended_probe_files": [
+        "sim_geomstats_shell_metrics.py",
+        "sim_lego_weyl_wigner_phase_space.py"
+      ],
+      "result_rankings": [
+        {
+          "probe_file": "sim_geomstats_shell_metrics.py",
+          "result_file": "geomstats_shell_metrics_results.json",
+          "score": 5,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_lego_weyl_wigner_phase_space.py",
+          "result_file": "lego_weyl_wigner_phase_space_results.json",
+          "score": 3,
+          "reason": "canonical"
+        },
+        {
+          "probe_file": "sim_formal_ladder_geometric_comparison.py",
+          "result_file": "formal_ladder_geometric_comparison_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_geometric_ablation_battery.py",
+          "result_file": "geometric_ablation_battery_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_geometric_engine.py",
+          "result_file": "geometric_engine_results.json",
+          "score": 0,
+          "reason": "weak"
+        },
+        {
+          "probe_file": "sim_geometric_higher_constraints.py",
+          "result_file": "geometric_higher_constraints_results.json",
+          "score": 0,
+          "reason": "weak"
+        }
+      ],
+      "already_simulated": true,
+      "needs_deeper_lego_work": false
+    }
+  ],
+  "recommended_lego_probes": [
+    "sim_carrier_probe_support.py",
+    "sim_carrier_probe_support.py",
+    "sim_density_hopf_geometry.py",
+    "sim_density_hopf_geometry.py",
+    "sim_foundation_hopf_torus_geomstats_clifford.py",
+    "sim_berry_qfi_entangled_path.py",
+    "sim_berry_qfi_shell_paths.py",
+    "sim_hopf_torus_lego.py",
+    "sim_cell_complex_geometry.py",
+    "sim_foundation_equivariant_graph_backprop.py",
+    "sim_xgi_dual_hypergraph.py",
+    "sim_xgi_family_hypergraph.py",
+    "sim_xgi_shell_hypergraph.py",
+    "sim_foundation_shell_graph_topology.py",
+    "sim_gudhi_bipartite_entangled.py",
+    "sim_gudhi_concurrence_filtration.py",
+    "sim_pyg_dynamic_edge_werner.py",
+    "sim_geom_cp1_u1_projective.py",
+    "sim_geom_su2_so3_quaternions.py",
+    "sim_geomstats_shell_metrics.py",
+    "sim_lego_weyl_wigner_phase_space.py"
+  ],
+  "summary": {
+    "candidate_count": 12,
+    "lego_candidate_count": 9,
+    "already_simulated_count": 12,
+    "needs_deeper_lego_work_count": 3,
+    "useful_if_rejected_count": 12
+  }
+}

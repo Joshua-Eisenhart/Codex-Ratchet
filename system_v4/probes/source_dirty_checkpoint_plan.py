@@ -318,6 +318,12 @@ def main() -> int:
             "untracked_count": g["untracked_count"],
             "tracked_dirty_count": g["tracked_dirty_count"],
             "safe_next_action": g["safe_next_action"],
+            "source_path": g["sample_paths"][0] if g["file_count"] == 1 and g["sample_paths"] else None,
+            "result_path": (
+                f"system_v4/probes/a2_state/sim_results/{Path(g['sample_paths'][0]).stem[len('sim_') :]}_results.json"
+                if g["file_count"] == 1 and g["sample_paths"] and Path(g["sample_paths"][0]).name.startswith("sim_")
+                else None
+            ),
         }
         for g in sorted(
             code_only_manual_groups,
@@ -341,6 +347,8 @@ def main() -> int:
         "largest_group_id": max(rendered_groups, key=lambda g: g["file_count"])["group_id"] if rendered_groups else None,
         "next_code_only_manual_group_id": next_code_only_manual["group_id"] if next_code_only_manual else None,
         "next_code_only_manual_file_count": next_code_only_manual["file_count"] if next_code_only_manual else 0,
+        "next_code_only_manual_source_path": next_code_only_manual["source_path"] if next_code_only_manual else None,
+        "next_code_only_manual_result_path": next_code_only_manual["result_path"] if next_code_only_manual else None,
         "summary": {
             "dirty_source_count": source_dirty_count,
             "plan_group_count": len(rendered_groups),
@@ -351,6 +359,8 @@ def main() -> int:
             "largest_group_id": max(rendered_groups, key=lambda g: g["file_count"])["group_id"] if rendered_groups else None,
             "next_code_only_manual_group_id": next_code_only_manual["group_id"] if next_code_only_manual else None,
             "next_code_only_manual_file_count": next_code_only_manual["file_count"] if next_code_only_manual else 0,
+            "next_code_only_manual_source_path": next_code_only_manual["source_path"] if next_code_only_manual else None,
+            "next_code_only_manual_result_path": next_code_only_manual["result_path"] if next_code_only_manual else None,
             "ok": True,
         },
         "rules": {

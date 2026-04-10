@@ -1,0 +1,282 @@
+{
+  "name": "lego_coupling_candidates",
+  "generated_at": "2026-04-09T04:30:44.944236+00:00",
+  "rows": [
+    {
+      "lego_family_id": "carrier_admission_density_matrix",
+      "lego_probe": "sim_density_hopf_geometry.py",
+      "recommended_lego_probes": [
+        "sim_density_hopf_geometry.py"
+      ],
+      "coupling_probe": "sim_operator_geometry_compatibility.py",
+      "existing_anchor": "operator_geometry_compatibility_results.json",
+      "existing_anchor_stage": "coupling",
+      "existing_anchor_promotion_ready": false,
+      "status": "existing_anchor",
+      "topology_rerun_needed": false,
+      "coexistence_rerun_needed": true,
+      "blocked_from_assembly": false,
+      "reason": "Carrier/geometry object should feed operator-vs-geometry compatibility before wider assembly.",
+      "shallow_tool_pressure": []
+    },
+    {
+      "lego_family_id": "carrier_admission_density_matrix",
+      "lego_probe": "sim_density_hopf_geometry.py",
+      "recommended_lego_probes": [
+        "sim_density_hopf_geometry.py"
+      ],
+      "coupling_probe": "sim_integrated_dependency_chain.py",
+      "existing_anchor": "integrated_dependency_chain_results.json",
+      "existing_anchor_stage": "coupling",
+      "existing_anchor_promotion_ready": true,
+      "status": "existing_anchor",
+      "topology_rerun_needed": false,
+      "coexistence_rerun_needed": true,
+      "blocked_from_assembly": false,
+      "reason": "Density/carrier admission already has a stronger pairwise dependency successor.",
+      "shallow_tool_pressure": []
+    },
+    {
+      "lego_family_id": "geometry_crosschecks_same_carrier",
+      "lego_probe": "sim_foundation_hopf_torus_geomstats_clifford.py",
+      "recommended_lego_probes": [
+        "sim_density_hopf_geometry.py",
+        "sim_foundation_hopf_torus_geomstats_clifford.py",
+        "sim_berry_qfi_entangled_path.py",
+        "sim_berry_qfi_shell_paths.py",
+        "sim_hopf_torus_lego.py"
+      ],
+      "coupling_probe": "sim_operator_geometry_compatibility.py",
+      "existing_anchor": "operator_geometry_compatibility_results.json",
+      "existing_anchor_stage": "coupling",
+      "existing_anchor_promotion_ready": false,
+      "status": "existing_anchor",
+      "topology_rerun_needed": true,
+      "coexistence_rerun_needed": false,
+      "blocked_from_assembly": false,
+      "reason": "Geometry families should meet operator compatibility before stacking/coexistence.",
+      "shallow_tool_pressure": []
+    },
+    {
+      "lego_family_id": "geometry_crosschecks_same_carrier",
+      "lego_probe": "sim_berry_qfi_shell_paths.py",
+      "recommended_lego_probes": [
+        "sim_density_hopf_geometry.py",
+        "sim_foundation_hopf_torus_geomstats_clifford.py",
+        "sim_berry_qfi_entangled_path.py",
+        "sim_berry_qfi_shell_paths.py",
+        "sim_hopf_torus_lego.py"
+      ],
+      "coupling_probe": "sim_compound_operator_geometry.py",
+      "existing_anchor": "compound_operator_geometry_results.json",
+      "existing_anchor_stage": null,
+      "existing_anchor_promotion_ready": null,
+      "status": "supporting_only",
+      "topology_rerun_needed": false,
+      "coexistence_rerun_needed": false,
+      "blocked_from_assembly": false,
+      "reason": "Berry/QFI shell-local geometry can feed the existing compound operator/geometry map, but that successor is still supporting rather than closure-grade.",
+      "shallow_tool_pressure": []
+    },
+    {
+      "lego_family_id": "graph_cell_complex_geometry",
+      "lego_probe": "sim_xgi_family_hypergraph.py",
+      "recommended_lego_probes": [
+        "sim_foundation_equivariant_graph_backprop.py",
+        "sim_xgi_dual_hypergraph.py",
+        "sim_xgi_family_hypergraph.py",
+        "sim_xgi_shell_hypergraph.py",
+        "sim_foundation_shell_graph_topology.py"
+      ],
+      "coupling_probe": "sim_xgi_indirect_pathway.py",
+      "existing_anchor": "xgi_indirect_pathway_results.json",
+      "existing_anchor_stage": "coupling",
+      "existing_anchor_promotion_ready": true,
+      "status": "existing_anchor",
+      "topology_rerun_needed": true,
+      "coexistence_rerun_needed": true,
+      "blocked_from_assembly": false,
+      "reason": "Pure hypergraph family structure already has a pairwise/multi-way pathway successor.",
+      "shallow_tool_pressure": [
+        "toponetx"
+      ]
+    },
+    {
+      "lego_family_id": "graph_cell_complex_geometry",
+      "lego_probe": "sim_foundation_shell_graph_topology.py",
+      "recommended_lego_probes": [
+        "sim_foundation_equivariant_graph_backprop.py",
+        "sim_xgi_dual_hypergraph.py",
+        "sim_xgi_family_hypergraph.py",
+        "sim_xgi_shell_hypergraph.py",
+        "sim_foundation_shell_graph_topology.py"
+      ],
+      "coupling_probe": "sim_toponetx_state_class_binding.py",
+      "existing_anchor": "toponetx_state_class_binding_results.json",
+      "existing_anchor_stage": "topology",
+      "existing_anchor_promotion_ready": true,
+      "status": "existing_anchor",
+      "topology_rerun_needed": true,
+      "coexistence_rerun_needed": true,
+      "blocked_from_assembly": false,
+      "reason": "Shell-local topology should feed state-class binding before assembly.",
+      "shallow_tool_pressure": [
+        "toponetx"
+      ]
+    },
+    {
+      "lego_family_id": "graph_cell_complex_geometry",
+      "lego_probe": "sim_foundation_equivariant_graph_backprop.py",
+      "recommended_lego_probes": [
+        "sim_foundation_equivariant_graph_backprop.py",
+        "sim_xgi_dual_hypergraph.py",
+        "sim_xgi_family_hypergraph.py",
+        "sim_xgi_shell_hypergraph.py",
+        "sim_foundation_shell_graph_topology.py"
+      ],
+      "coupling_probe": "sim_pyg_dynamic_edge_werner.py",
+      "existing_anchor": "pyg_dynamic_edge_werner_results.json",
+      "existing_anchor_stage": "assembly",
+      "existing_anchor_promotion_ready": true,
+      "status": "existing_anchor",
+      "topology_rerun_needed": true,
+      "coexistence_rerun_needed": true,
+      "blocked_from_assembly": false,
+      "reason": "PyG foundation lego already has a narrow pairwise/regime successor.",
+      "shallow_tool_pressure": [
+        "pyg",
+        "toponetx"
+      ]
+    },
+    {
+      "lego_family_id": "bipartite_structure_local",
+      "lego_probe": "sim_gudhi_concurrence_filtration.py",
+      "recommended_lego_probes": [
+        "sim_gudhi_bipartite_entangled.py",
+        "sim_gudhi_concurrence_filtration.py",
+        "sim_pyg_dynamic_edge_werner.py"
+      ],
+      "coupling_probe": "sim_pyg_dynamic_edge_werner.py",
+      "existing_anchor": "pyg_dynamic_edge_werner_results.json",
+      "existing_anchor_stage": "assembly",
+      "existing_anchor_promotion_ready": true,
+      "status": "existing_anchor",
+      "topology_rerun_needed": false,
+      "coexistence_rerun_needed": true,
+      "blocked_from_assembly": false,
+      "reason": "Local bipartite witnesses should first feed a narrow differentiable/regime coupling surface.",
+      "shallow_tool_pressure": [
+        "pyg"
+      ]
+    },
+    {
+      "lego_family_id": "bipartite_structure_local",
+      "lego_probe": "sim_gudhi_bipartite_entangled.py",
+      "recommended_lego_probes": [
+        "sim_gudhi_bipartite_entangled.py",
+        "sim_gudhi_concurrence_filtration.py",
+        "sim_pyg_dynamic_edge_werner.py"
+      ],
+      "coupling_probe": "sim_lego_entropy_bipartite_cut.py",
+      "existing_anchor": "lego_entropy_bipartite_cut_results.json",
+      "existing_anchor_stage": null,
+      "existing_anchor_promotion_ready": null,
+      "status": "existing_anchor",
+      "topology_rerun_needed": false,
+      "coexistence_rerun_needed": true,
+      "blocked_from_assembly": false,
+      "reason": "Local bipartite topology already has a canonical entropy/cut successor before wider assembly.",
+      "shallow_tool_pressure": [
+        "pyg"
+      ]
+    },
+    {
+      "lego_family_id": "constraint_probe_admissibility",
+      "lego_probe": "sim_bc1_fence_investigation.py",
+      "recommended_lego_probes": [],
+      "coupling_probe": "sim_constraint_shells_binding_crosscheck.py",
+      "existing_anchor": "constraint_shells_binding_crosscheck_results.json",
+      "existing_anchor_stage": null,
+      "existing_anchor_promotion_ready": null,
+      "status": "existing_anchor",
+      "topology_rerun_needed": false,
+      "coexistence_rerun_needed": false,
+      "blocked_from_assembly": false,
+      "reason": "Constraint/probe legos already feed an explicit canonical binding crosscheck successor.",
+      "shallow_tool_pressure": []
+    },
+    {
+      "lego_family_id": "operator_family_admission",
+      "lego_probe": null,
+      "recommended_lego_probes": [],
+      "coupling_probe": "sim_operator_geometry_compatibility.py",
+      "existing_anchor": "operator_geometry_compatibility_results.json",
+      "existing_anchor_stage": "coupling",
+      "existing_anchor_promotion_ready": false,
+      "status": "supporting_only",
+      "topology_rerun_needed": false,
+      "coexistence_rerun_needed": false,
+      "blocked_from_assembly": false,
+      "reason": "Best current operator/geometry successor exists, but it is supporting rather than closure-grade.",
+      "shallow_tool_pressure": []
+    },
+    {
+      "lego_family_id": "entropy_family_crosschecks",
+      "lego_probe": null,
+      "recommended_lego_probes": [],
+      "coupling_probe": null,
+      "existing_anchor": null,
+      "existing_anchor_stage": null,
+      "existing_anchor_promotion_ready": null,
+      "status": "blocked_until_better_lego",
+      "topology_rerun_needed": false,
+      "coexistence_rerun_needed": false,
+      "blocked_from_assembly": true,
+      "reason": "Entropy family work is still too tied to later surfaces; lower-layer local entropy witnesses need a cleaner lego set first.",
+      "shallow_tool_pressure": []
+    },
+    {
+      "lego_family_id": "gauge_group_falsifier",
+      "lego_probe": "sim_geom_cp1_u1_projective.py",
+      "recommended_lego_probes": [
+        "sim_geom_cp1_u1_projective.py",
+        "sim_geom_su2_so3_quaternions.py"
+      ],
+      "coupling_probe": null,
+      "existing_anchor": null,
+      "existing_anchor_stage": null,
+      "existing_anchor_promotion_ready": null,
+      "status": "blocked_from_assembly",
+      "topology_rerun_needed": false,
+      "coexistence_rerun_needed": false,
+      "blocked_from_assembly": true,
+      "reason": "Useful falsifier/root-kill candidate, but not part of the main assembly ladder until lower operator legos are stronger.",
+      "shallow_tool_pressure": []
+    },
+    {
+      "lego_family_id": "quantum_metric_nonuniqueness",
+      "lego_probe": "sim_geomstats_shell_metrics.py",
+      "recommended_lego_probes": [
+        "sim_geomstats_shell_metrics.py",
+        "sim_lego_weyl_wigner_phase_space.py"
+      ],
+      "coupling_probe": null,
+      "existing_anchor": null,
+      "existing_anchor_stage": null,
+      "existing_anchor_promotion_ready": null,
+      "status": "blocked_from_assembly",
+      "topology_rerun_needed": false,
+      "coexistence_rerun_needed": false,
+      "blocked_from_assembly": true,
+      "reason": "Useful geometry pressure surface, but should remain a boundary/selection lego until pairwise metric-choice effects are cleaner.",
+      "shallow_tool_pressure": []
+    }
+  ],
+  "summary": {
+    "pairing_count": 14,
+    "existing_anchor_count": 9,
+    "missing_pairwise_count": 0,
+    "blocked_from_assembly_count": 3,
+    "supporting_only_count": 2
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-10T04:32:08.497681+00:00",
+  "generated_at": "2026-04-10T04:53:18.604117+00:00",
   "strict": false,
   "overall_green": false,
   "repair_queue_count": 3,
@@ -12,13 +12,13 @@
   "runtime_hygiene_green": true,
   "lego_tool_reporting_green": true,
   "active_actionable_lane": {
-    "group_id": "probe_source__sim_family_local",
+    "group_id": "probe_source__sim_family_negativity",
     "file_count": 1,
     "untracked_count": 1,
     "tracked_dirty_count": 0,
     "safe_next_action": "manual_split_required",
-    "source_path": "system_v4/probes/sim_local_operator_action.py",
-    "result_path": "system_v4/probes/a2_state/sim_results/local_operator_action_results.json"
+    "source_path": "system_v4/probes/sim_negativity_measure.py",
+    "result_path": "system_v4/probes/a2_state/sim_results/negativity_measure_results.json"
   },
   "summary": {
     "missing_surface_count": 0,
@@ -65,12 +65,12 @@
     "ok": true
   },
   "source_dirty_surface": {
-    "source_dirty_count": 142,
+    "source_dirty_count": 138,
     "dirty_source_bucket_count": 4,
     "dirty_source_buckets": [
       {
         "label": "probe_source",
-        "count": 134
+        "count": 130
       },
       {
         "label": "legacy_runtime",
@@ -88,7 +88,7 @@
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 484
+        "count": 482
       },
       {
         "prefix": "obsidian_vault",
@@ -118,54 +118,18 @@
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
     "status": "current",
     "dirty_source_checkpoint_required": true,
-    "plan_group_count": 72,
+    "plan_group_count": 68,
     "largest_group_id": "probe_source__probe_misc",
     "next_code_only_manual": {
-      "group_id": "probe_source__sim_family_local",
+      "group_id": "probe_source__sim_family_negativity",
       "file_count": 1,
       "untracked_count": 1,
       "tracked_dirty_count": 0,
       "safe_next_action": "manual_split_required",
-      "source_path": "system_v4/probes/sim_local_operator_action.py",
-      "result_path": "system_v4/probes/a2_state/sim_results/local_operator_action_results.json"
+      "source_path": "system_v4/probes/sim_negativity_measure.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/negativity_measure_results.json"
     },
     "recommended_code_only_order": [
-      {
-        "group_id": "probe_source__sim_family_local",
-        "file_count": 1,
-        "untracked_count": 1,
-        "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_local_operator_action.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/local_operator_action_results.json"
-      },
-      {
-        "group_id": "probe_source__sim_family_low",
-        "file_count": 1,
-        "untracked_count": 1,
-        "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_low_rank_psd_approximation.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/low_rank_psd_approximation_results.json"
-      },
-      {
-        "group_id": "probe_source__sim_family_measurement",
-        "file_count": 1,
-        "untracked_count": 1,
-        "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_measurement_instrument.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/measurement_instrument_results.json"
-      },
-      {
-        "group_id": "probe_source__sim_family_mutual",
-        "file_count": 1,
-        "untracked_count": 1,
-        "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_mutual_information_measure.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/mutual_information_measure_results.json"
-      },
       {
         "group_id": "probe_source__sim_family_negativity",
         "file_count": 1,
@@ -174,6 +138,42 @@
         "safe_next_action": "manual_split_required",
         "source_path": "system_v4/probes/sim_negativity_measure.py",
         "result_path": "system_v4/probes/a2_state/sim_results/negativity_measure_results.json"
+      },
+      {
+        "group_id": "probe_source__sim_family_nested",
+        "file_count": 1,
+        "untracked_count": 1,
+        "tracked_dirty_count": 0,
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_nested_torus_geometry.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/nested_torus_geometry_results.json"
+      },
+      {
+        "group_id": "probe_source__sim_family_path",
+        "file_count": 1,
+        "untracked_count": 1,
+        "tracked_dirty_count": 0,
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_path_entropy.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/path_entropy_results.json"
+      },
+      {
+        "group_id": "probe_source__sim_family_persistence",
+        "file_count": 1,
+        "untracked_count": 1,
+        "tracked_dirty_count": 0,
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_persistence_geometry.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/persistence_geometry_results.json"
+      },
+      {
+        "group_id": "probe_source__sim_family_positivity",
+        "file_count": 1,
+        "untracked_count": 1,
+        "tracked_dirty_count": 0,
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_positivity_constraint.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/positivity_constraint_results.json"
       }
     ]
   },
@@ -185,8 +185,8 @@
     "selected_group_id": "docs_and_specs__docs_and_specs",
     "file_count": 3,
     "docs_opt_in_required": true,
-    "code_only_fallback_group_id": "probe_source__sim_family_local",
-    "active_actionable_lane_group_id": "probe_source__sim_family_local"
+    "code_only_fallback_group_id": "probe_source__sim_family_negativity",
+    "active_actionable_lane_group_id": "probe_source__sim_family_negativity"
   },
   "maintenance_lanes": [
     {
@@ -220,7 +220,7 @@
       "dirty_source_buckets": [
         {
           "label": "probe_source",
-          "count": 134
+          "count": 130
         },
         {
           "label": "legacy_runtime",
@@ -262,7 +262,7 @@
       "dirty_source_buckets": [
         {
           "label": "probe_source",
-          "count": 134
+          "count": 130
         },
         {
           "label": "legacy_runtime",
@@ -328,9 +328,9 @@
       "secondary_duplicate_result_count": 0,
       "root_result_orphan_count": 0,
       "duplicate_result_basename_count": 0,
-      "source_dirty_count": 142,
-      "generated_dirty_count": 355,
-      "dirty_worktree_count": 497,
+      "source_dirty_count": 138,
+      "generated_dirty_count": 357,
+      "dirty_worktree_count": 495,
       "dirty_source_bucket_count": 4,
       "ok": false
     },
@@ -355,17 +355,17 @@
       "ok": true
     },
     "source_dirty_checkpoint": {
-      "dirty_source_count": 142,
-      "plan_group_count": 72,
+      "dirty_source_count": 138,
+      "plan_group_count": 68,
       "checkpoint_candidate_count": 1,
       "quarantine_candidate_count": 0,
-      "manual_only_count": 71,
-      "code_only_manual_count": 71,
+      "manual_only_count": 67,
+      "code_only_manual_count": 67,
       "largest_group_id": "probe_source__probe_misc",
-      "next_code_only_manual_group_id": "probe_source__sim_family_local",
+      "next_code_only_manual_group_id": "probe_source__sim_family_negativity",
       "next_code_only_manual_file_count": 1,
-      "next_code_only_manual_source_path": "system_v4/probes/sim_local_operator_action.py",
-      "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/local_operator_action_results.json",
+      "next_code_only_manual_source_path": "system_v4/probes/sim_negativity_measure.py",
+      "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/negativity_measure_results.json",
       "ok": true
     },
     "source_dirty_lane_manifest": {
@@ -373,9 +373,9 @@
       "file_count": 3,
       "safe_next_action": "checkpoint",
       "docs_opt_in_required": true,
-      "code_only_fallback_group_id": "probe_source__sim_family_local",
-      "active_actionable_lane_group_id": "probe_source__sim_family_local",
-      "executable_lane_group_id": "probe_source__sim_family_local",
+      "code_only_fallback_group_id": "probe_source__sim_family_negativity",
+      "active_actionable_lane_group_id": "probe_source__sim_family_negativity",
+      "executable_lane_group_id": "probe_source__sim_family_negativity",
       "ok": true
     }
   }

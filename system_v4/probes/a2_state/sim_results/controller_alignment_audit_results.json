@@ -1,0 +1,1000 @@
+{
+  "name": "controller_alignment_audit",
+  "generated_at": "2026-04-10T04:03:54.987041+00:00",
+  "classification": "audit",
+  "interpreter_authority": {
+    "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "makefile_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "imessage_bot_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+    "makefile_and_bot_agree": true
+  },
+  "env_requirements": {
+    "torch": {
+      "distribution": "torch",
+      "import_name": "torch",
+      "installed_version": "2.11.0",
+      "import_ok": true,
+      "import_error": null,
+      "required_floor": "2.11.0",
+      "meets_floor": true
+    },
+    "sympy": {
+      "distribution": "sympy",
+      "import_name": "sympy",
+      "installed_version": "1.14.0",
+      "import_ok": true,
+      "import_error": null,
+      "required_floor": "1.14.0",
+      "meets_floor": true
+    },
+    "z3-solver": {
+      "distribution": "z3-solver",
+      "import_name": "z3",
+      "installed_version": "4.16.0.0",
+      "import_ok": true,
+      "import_error": null,
+      "required_floor": "4.16.0.0",
+      "meets_floor": true
+    },
+    "cvc5": {
+      "distribution": "cvc5",
+      "import_name": "cvc5",
+      "installed_version": "1.3.3",
+      "import_ok": true,
+      "import_error": null,
+      "required_floor": "1.3.3",
+      "meets_floor": true
+    },
+    "clifford": {
+      "distribution": "clifford",
+      "import_name": "clifford",
+      "installed_version": "1.5.1",
+      "import_ok": true,
+      "import_error": null,
+      "required_floor": "1.5.1",
+      "meets_floor": true
+    },
+    "geomstats": {
+      "distribution": "geomstats",
+      "import_name": "geomstats",
+      "installed_version": "2.8.0",
+      "import_ok": true,
+      "import_error": null,
+      "required_floor": "2.8.0",
+      "meets_floor": true
+    },
+    "e3nn": {
+      "distribution": "e3nn",
+      "import_name": "e3nn",
+      "installed_version": "0.6.0",
+      "import_ok": true,
+      "import_error": null,
+      "required_floor": "0.6.0",
+      "meets_floor": true
+    },
+    "rustworkx": {
+      "distribution": "rustworkx",
+      "import_name": "rustworkx",
+      "installed_version": "0.17.1",
+      "import_ok": true,
+      "import_error": null,
+      "required_floor": "0.17.1",
+      "meets_floor": true
+    },
+    "xgi": {
+      "distribution": "xgi",
+      "import_name": "xgi",
+      "installed_version": "0.10.1",
+      "import_ok": true,
+      "import_error": null,
+      "required_floor": "0.10.1",
+      "meets_floor": true
+    },
+    "TopoNetX": {
+      "distribution": "TopoNetX",
+      "import_name": "toponetx",
+      "installed_version": "0.4.0",
+      "import_ok": true,
+      "import_error": null,
+      "required_floor": "0.4.0",
+      "meets_floor": true
+    },
+    "gudhi": {
+      "distribution": "gudhi",
+      "import_name": "gudhi",
+      "installed_version": "3.12.0",
+      "import_ok": true,
+      "import_error": null,
+      "required_floor": "3.12.0",
+      "meets_floor": true
+    },
+    "torch-geometric": {
+      "distribution": "torch-geometric",
+      "import_name": "torch_geometric",
+      "installed_version": "2.7.0",
+      "import_ok": true,
+      "import_error": null,
+      "required_floor": "2.7.0",
+      "meets_floor": true
+    },
+    "matplotlib": {
+      "distribution": "matplotlib",
+      "import_name": "matplotlib",
+      "installed_version": null,
+      "import_ok": false,
+      "import_error": "not checked",
+      "required_floor": "3.10.0",
+      "meets_floor": null
+    },
+    "pandas": {
+      "distribution": "pandas",
+      "import_name": "pandas",
+      "installed_version": "3.0.2",
+      "import_ok": true,
+      "import_error": null,
+      "required_floor": "3.0.0",
+      "meets_floor": true
+    },
+    "networkx": {
+      "distribution": "networkx",
+      "import_name": "networkx",
+      "installed_version": "3.6.1",
+      "import_ok": true,
+      "import_error": null,
+      "required_floor": "3.6",
+      "meets_floor": true
+    }
+  },
+  "known_env_risks": {
+    "clifford_import_ok": true,
+    "clifford_import_error": null
+  },
+  "probe_truth_audit": {
+    "available": true,
+    "ok": true,
+    "hard_finding_count": 0,
+    "warning_finding_count": 0,
+    "blocked_results": {}
+  },
+  "stale_doc_hits": [],
+  "stale_doc_summary": {
+    "count": 0,
+    "by_kind": {},
+    "by_file": {},
+    "markdown_edit_required_count": 0,
+    "highest_severity": "none"
+  },
+  "phase7_source_flags": {
+    "mentions_full_c2_coverage": true,
+    "uses_topology_subset_gate": false,
+    "still_has_not_tested_branch": false,
+    "topology_family_count": null
+  },
+  "c2_crosscheck": {
+    "phase7_summary": {
+      "null_count": 17,
+      "non_null_count": 11,
+      "not_tested": 0,
+      "total": 28
+    },
+    "c2_remaining_counts": {
+      "load_bearing": 11,
+      "topology_independent": 3
+    },
+    "compared_families": 14,
+    "mismatch_count": 0,
+    "mismatches": [],
+    "sample": [
+      {
+        "family": "amplitude_damping",
+        "phase7": "NON_NULL_topology",
+        "c2_remaining": "NON_NULL_topology"
+      },
+      {
+        "family": "bit_flip",
+        "phase7": "NON_NULL_topology",
+        "c2_remaining": "NON_NULL_topology"
+      },
+      {
+        "family": "bit_phase_flip",
+        "phase7": "NON_NULL_topology",
+        "c2_remaining": "NON_NULL_topology"
+      },
+      {
+        "family": "cartan_kak",
+        "phase7": "NON_NULL_topology",
+        "c2_remaining": "NON_NULL_topology"
+      },
+      {
+        "family": "cnot",
+        "phase7": "NON_NULL_topology",
+        "c2_remaining": "NON_NULL_topology"
+      },
+      {
+        "family": "cz",
+        "phase7": "NON_NULL_topology",
+        "c2_remaining": "NON_NULL_topology"
+      },
+      {
+        "family": "husimi_q",
+        "phase7": "NON_NULL_topology",
+        "c2_remaining": "NON_NULL_topology"
+      },
+      {
+        "family": "iswap",
+        "phase7": "NON_NULL_topology",
+        "c2_remaining": "NON_NULL_topology"
+      }
+    ]
+  },
+  "tool_stack_summary": {
+    "files_with_manifest_or_depth": 321,
+    "per_tool": {
+      "pytorch": {
+        "tried_count": 182,
+        "used_count": 168,
+        "load_bearing_count": 132,
+        "depth_present_count": 160,
+        "anchor_stage_coverage": [
+          "lego",
+          "topology",
+          "coupling",
+          "coexistence",
+          "assembly"
+        ],
+        "anchor_result_files": [
+          "3qubit_dag_formal_ordering_v2_results.json",
+          "3qubit_full_cascade_results.json",
+          "4qubit_cascade_results.json",
+          "adversarial_ratchet_results.json",
+          "axis0_through_shells_results.json",
+          "axis6_canonical_results.json",
+          "axis6_e3nn_fe_bridge_results.json",
+          "axis6_entropy_decomposition_results.json",
+          "axis6_rank_coherence_results.json",
+          "axis7_12_gs_residual_axes_results.json",
+          "axis7_12_orthogonal_closure_results.json",
+          "berry_qfi_entangled_path_results.json",
+          "berry_qfi_shell_paths_results.json",
+          "bridge_chain_integration_results.json",
+          "bridge_entropy_inequality_guardrails_results.json",
+          "bridge_fe_relay_sweep_results.json",
+          "bridge_finite_blocklength_cut_states_results.json",
+          "bridge_to_rhoab_construction_results.json",
+          "c2_c4_independence_crosscheck_results.json",
+          "c2_topology_expansion_results.json",
+          "c2_topology_remaining_results.json",
+          "constraint_shells_binding_crosscheck_results.json",
+          "density_hopf_geometry_results.json",
+          "dissipative_kraus_shell_compatibility_results.json",
+          "e3nn_equivariant_qubits_results.json",
+          "e3nn_hopf_spinor_equivariance_results.json",
+          "e3nn_ic_invariance_results.json",
+          "e3nn_ic_pipeline_results.json",
+          "e3nn_relay_equivariance_results.json",
+          "e3nn_tensor_product_results.json",
+          "engine_16_placements_results.json",
+          "engine_8_terrains_results.json",
+          "foundation_pauli_bloch_backprop_results.json",
+          "full_ratchet_cascade_results.json",
+          "geom_cp1_u1_projective_results.json",
+          "geom_layer_1_2_3_results.json",
+          "geom_layer_4_5_results.json",
+          "geom_layer_6_7_results.json",
+          "geom_layer_8_9_10_results.json",
+          "geom_su2_so3_quaternions_results.json",
+          "geom_topology_layers_results.json",
+          "geomstats_frechet_mean_results.json",
+          "geomstats_ratchet_trajectory_results.json",
+          "gnn_cascade_integrated_results.json",
+          "gudhi_bipartite_entangled_results.json",
+          "gudhi_phase_sensitive_kernel_results.json",
+          "gudhi_s2_topology_recovery_results.json",
+          "hopf_torus_lego_results.json",
+          "information_geometry_results.json",
+          "integrated_dependency_chain_results.json",
+          "l6_binding_radius_sweep_results.json",
+          "layer_coupling_matrix_results.json",
+          "layer_coupling_matrix_v2_results.json",
+          "layer_coupling_matrix_v3_results.json",
+          "layer_stacking_coexistence_results.json",
+          "layer_stacking_nonprefix_results.json",
+          "layer_triple_catalog_results.json",
+          "lego_choi_state_duality_results.json",
+          "lego_clifford_hierarchy_results.json",
+          "lego_entanglement_distillation_results.json",
+          "lego_entropy_bipartite_cut_results.json",
+          "lego_entropy_finite_blocklength_results.json",
+          "lego_entropy_smooth_one_shot_results.json",
+          "lego_entropy_spectral_families_results.json",
+          "lego_graph_cluster_states_results.json",
+          "lego_su2_representations_results.json",
+          "lego_uhlmann_phase_results.json",
+          "lego_weyl_wigner_phase_space_results.json",
+          "lego_zeno_speed_limits_results.json",
+          "lorentzian_geometry_results.json",
+          "phase7_baseline_validation_results.json",
+          "phase_damping_fixed_point_geometry_results.json",
+          "phase_transition_sweep_results.json",
+          "phi0_ic_vs_mi_regime_map_results.json",
+          "phi0_matched_packet_head_to_head_results.json",
+          "pyg_dynamic_edge_werner_results.json",
+          "q3_bipartite_analysis_results.json",
+          "quantum_discord_depolarizing_c2_results.json",
+          "ratchet_optimizer_results.json",
+          "substrate_divergence_resolution_results.json",
+          "substrate_insensitive_analysis_results.json",
+          "temporal_cascade_results.json",
+          "tensor_network_spinor_torus_results.json",
+          "tools_load_bearing_results.json",
+          "toponetx_hopf_crosscheck_results.json",
+          "toponetx_state_class_binding_results.json",
+          "torch_amplitude_damping_results.json",
+          "torch_axis0_3qubit_results.json",
+          "torch_axis0_gradient_results.json",
+          "torch_bit_flip_results.json",
+          "torch_cartan_kak_results.json",
+          "torch_channel_composition_results.json",
+          "torch_channel_taxonomy_results.json",
+          "torch_chiral_overlap_results.json",
+          "torch_constraint_shells_results.json",
+          "torch_constraint_shells_v2_results.json",
+          "torch_depolarizing_results.json",
+          "torch_eigendecomp_results.json",
+          "torch_gnn_axis0_seeded_results.json",
+          "torch_gnn_directional_gate_results.json",
+          "torch_gnn_extended_training_results.json",
+          "torch_gnn_gradient_ref_ablation_results.json",
+          "torch_gnn_loss_regularized_results.json",
+          "torch_hopf_connection_results.json",
+          "torch_husimi_q_results.json",
+          "torch_iswap_results.json",
+          "torch_l1_coherence_results.json",
+          "torch_mutual_info_results.json",
+          "torch_purification_results.json",
+          "torch_quantum_discord_results.json",
+          "torch_ratchet_gnn_results.json",
+          "torch_ratchet_pipeline_v2_results.json",
+          "torch_re_coherence_results.json",
+          "torch_shells_displacement_metric_results.json",
+          "torch_shells_gradient_flow_results.json",
+          "torch_swap_results.json",
+          "torch_wigner_results.json",
+          "torch_z_dephasing_results.json",
+          "tripartite_mi_bug_fix_results.json",
+          "twilight_zone_results.json",
+          "w_ghz_analytic_resolution_results.json",
+          "w_ghz_bipartition_audit_results.json",
+          "werner_manifold_scan_results.json",
+          "werner_qwci_gap_results.json",
+          "weyl_hopf_tori_results.json",
+          "weyl_nested_shell_results.json",
+          "weyl_spinor_hopf_results.json",
+          "weyl_two_model_crosscheck_results.json",
+          "xgi_gradient_ascent_results.json",
+          "xgi_indirect_pathway_results.json",
+          "xgi_torch_autograd_results.json",
+          "z3_channel_composition_boundary_results.json"
+        ]
+      },
+      "pyg": {
+        "tried_count": 86,
+        "used_count": 11,
+        "load_bearing_count": 10,
+        "depth_present_count": 21,
+        "anchor_stage_coverage": [
+          "assembly"
+        ],
+        "anchor_result_files": [
+          "gnn_cascade_integrated_results.json",
+          "pyg_dynamic_edge_werner_results.json",
+          "torch_gnn_axis0_seeded_results.json",
+          "torch_gnn_directional_gate_results.json",
+          "torch_gnn_extended_training_results.json",
+          "torch_gnn_gradient_ref_ablation_results.json",
+          "torch_gnn_loss_regularized_results.json",
+          "torch_graph_integrated_pipeline_results.json",
+          "torch_ratchet_gnn_results.json",
+          "torch_ratchet_pipeline_v2_results.json"
+        ]
+      },
+      "z3": {
+        "tried_count": 139,
+        "used_count": 98,
+        "load_bearing_count": 60,
+        "depth_present_count": 99,
+        "anchor_stage_coverage": [
+          "boundary",
+          "lego",
+          "coupling",
+          "coexistence",
+          "assembly",
+          "topology"
+        ],
+        "anchor_result_files": [
+          "3qubit_dag_formal_ordering_results.json",
+          "3qubit_dag_formal_ordering_v2_results.json",
+          "axis6_canonical_results.json",
+          "axis6_e3nn_fe_bridge_results.json",
+          "axis6_entropy_decomposition_results.json",
+          "axis6_rank_coherence_results.json",
+          "axis7_12_orthogonal_closure_results.json",
+          "berry_qfi_entangled_path_results.json",
+          "bridge_chain_integration_results.json",
+          "bridge_extended_proofs_results.json",
+          "bridge_kernel_z3_proof_results.json",
+          "bridge_phi0_proof_integration_results.json",
+          "bridge_z3_kernel_ordering_results.json",
+          "cvc5_shells_crosscheck_results.json",
+          "dissipative_kraus_shell_compatibility_results.json",
+          "distinguishability_relation_results.json",
+          "foundation_channel_constraints_hardway_results.json",
+          "foundation_pauli_bloch_backprop_results.json",
+          "hopf_torus_lego_results.json",
+          "layer_coupling_matrix_results.json",
+          "layer_coupling_matrix_v2_results.json",
+          "layer_coupling_matrix_v3_results.json",
+          "layer_stacking_coexistence_results.json",
+          "layer_stacking_nonprefix_results.json",
+          "layer_triple_catalog_results.json",
+          "lego_choi_state_duality_results.json",
+          "lego_coherent_info_advanced_results.json",
+          "phase_damping_fixed_point_geometry_results.json",
+          "probe_object_results.json",
+          "pyg_dynamic_edge_werner_results.json",
+          "toponetx_hopf_crosscheck_results.json",
+          "toponetx_state_class_binding_results.json",
+          "torch_amplitude_damping_results.json",
+          "torch_bit_flip_results.json",
+          "torch_cnot_results.json",
+          "torch_constraint_shells_v2_results.json",
+          "torch_cz_results.json",
+          "torch_density_matrix_pilot_results.json",
+          "torch_depolarizing_results.json",
+          "torch_graph_integrated_pipeline_results.json",
+          "torch_hadamard_results.json",
+          "torch_lindblad_results.json",
+          "torch_phase_damping_results.json",
+          "torch_ratchet_pipeline_v2_results.json",
+          "torch_t_gate_results.json",
+          "torch_unitary_rotation_results.json",
+          "torch_z_dephasing_results.json",
+          "tripartite_mi_bug_fix_results.json",
+          "w_ghz_bipartition_audit_results.json",
+          "werner_manifold_scan_results.json",
+          "werner_qwci_gap_results.json",
+          "weyl_nested_shell_results.json",
+          "weyl_spinor_hopf_results.json",
+          "weyl_two_model_crosscheck_results.json",
+          "z3_channel_boundary_theorem_results.json",
+          "z3_channel_composition_boundary_results.json",
+          "z3_dephasing_symmetry_guard_results.json",
+          "z3_dpi_proof_results.json",
+          "z3_quantum_capacity_bound_results.json",
+          "z3_s6_unitary_impossibility_results.json"
+        ]
+      },
+      "cvc5": {
+        "tried_count": 96,
+        "used_count": 18,
+        "load_bearing_count": 10,
+        "depth_present_count": 32,
+        "anchor_stage_coverage": [
+          "boundary"
+        ],
+        "anchor_result_files": [
+          "3qubit_dag_formal_ordering_v2_results.json",
+          "axis6_canonical_results.json",
+          "blackwell_style_comparison_results.json",
+          "bridge_cvc5_crosscheck_results.json",
+          "bridge_extended_proofs_results.json",
+          "bridge_phi0_proof_integration_results.json",
+          "cvc5_amplitude_damping_boundary_results.json",
+          "cvc5_shells_crosscheck_results.json",
+          "measurement_instrument_results.json",
+          "z3_channel_composition_boundary_results.json"
+        ]
+      },
+      "sympy": {
+        "tried_count": 137,
+        "used_count": 89,
+        "load_bearing_count": 40,
+        "depth_present_count": 92,
+        "anchor_stage_coverage": [
+          "lego",
+          "coupling",
+          "topology",
+          "coexistence"
+        ],
+        "anchor_result_files": [
+          "3qubit_dag_formal_ordering_v2_results.json",
+          "axis6_canonical_results.json",
+          "axis6_entropy_decomposition_results.json",
+          "axis6_rank_coherence_results.json",
+          "axis7_12_gs_residual_axes_results.json",
+          "axis7_12_orthogonal_closure_results.json",
+          "berry_qfi_entangled_path_results.json",
+          "berry_qfi_shell_paths_results.json",
+          "bridge_phi0_proof_integration_results.json",
+          "dissipative_kraus_shell_compatibility_results.json",
+          "foundation_channel_constraints_hardway_results.json",
+          "foundation_pauli_bloch_backprop_results.json",
+          "frozen_kernel_classification_results.json",
+          "layer_coupling_matrix_results.json",
+          "layer_coupling_matrix_v2_results.json",
+          "layer_coupling_matrix_v3_results.json",
+          "layer_triple_catalog_results.json",
+          "lego_lindblad_dissipator_results.json",
+          "lego_povm_measurement_results.json",
+          "lego_uhlmann_phase_results.json",
+          "phase_damping_fixed_point_geometry_results.json",
+          "pure_lego_qfi_wy_qgt_results.json",
+          "q3_bipartite_analysis_results.json",
+          "substrate_divergence_resolution_results.json",
+          "substrate_insensitive_analysis_results.json",
+          "toponetx_hopf_crosscheck_results.json",
+          "toponetx_state_class_binding_results.json",
+          "torch_mutual_info_results.json",
+          "torch_z_measurement_results.json",
+          "tripartite_mi_bug_fix_results.json",
+          "w_ghz_analytic_resolution_results.json",
+          "w_ghz_bipartition_audit_results.json",
+          "werner_qwci_gap_results.json",
+          "weyl_nested_shell_results.json",
+          "weyl_spinor_hopf_results.json",
+          "weyl_two_model_crosscheck_results.json",
+          "z3_channel_boundary_theorem_results.json",
+          "z3_channel_composition_boundary_results.json",
+          "z3_quantum_capacity_bound_results.json",
+          "z3_s6_unitary_impossibility_results.json"
+        ]
+      },
+      "clifford": {
+        "tried_count": 82,
+        "used_count": 23,
+        "load_bearing_count": 14,
+        "depth_present_count": 31,
+        "anchor_stage_coverage": [
+          "coexistence"
+        ],
+        "anchor_result_files": [
+          "axis6_entropy_decomposition_results.json",
+          "axis6_rank_coherence_results.json",
+          "compound_operator_geometry_results.json",
+          "geom_su2_so3_quaternions_results.json",
+          "hopf_torus_lego_results.json",
+          "layer_coupling_matrix_results.json",
+          "layer_coupling_matrix_v2_results.json",
+          "layer_triple_catalog_results.json",
+          "operator_geometry_compatibility_results.json",
+          "phase_damping_fixed_point_geometry_results.json",
+          "q2_clifford_structure_results.json",
+          "weyl_nested_shell_results.json",
+          "weyl_spinor_hopf_results.json",
+          "weyl_two_model_crosscheck_results.json"
+        ]
+      },
+      "geomstats": {
+        "tried_count": 99,
+        "used_count": 27,
+        "load_bearing_count": 20,
+        "depth_present_count": 37,
+        "anchor_stage_coverage": [
+          "coexistence"
+        ],
+        "anchor_result_files": [
+          "axis6_canonical_results.json",
+          "axis6_e3nn_fe_bridge_results.json",
+          "axis6_entropy_decomposition_results.json",
+          "bridge_phi0_proof_integration_results.json",
+          "constraint_shells_binding_crosscheck_results.json",
+          "density_hopf_geometry_results.json",
+          "dissipative_kraus_shell_compatibility_results.json",
+          "geom_layer_1_2_3_results.json",
+          "geomstats_frechet_mean_results.json",
+          "geomstats_ratchet_trajectory_results.json",
+          "geomstats_shell_metrics_results.json",
+          "hopf_torus_lego_results.json",
+          "information_geometry_results.json",
+          "l6_binding_radius_sweep_results.json",
+          "phase_damping_fixed_point_geometry_results.json",
+          "tools_load_bearing_results.json",
+          "werner_qwci_gap_results.json",
+          "weyl_nested_shell_results.json",
+          "weyl_spinor_hopf_results.json",
+          "weyl_two_model_crosscheck_results.json"
+        ]
+      },
+      "e3nn": {
+        "tried_count": 88,
+        "used_count": 10,
+        "load_bearing_count": 10,
+        "depth_present_count": 23,
+        "anchor_stage_coverage": [
+          "lego"
+        ],
+        "anchor_result_files": [
+          "axis6_e3nn_fe_bridge_results.json",
+          "density_hopf_geometry_results.json",
+          "e3nn_equivariant_qubits_results.json",
+          "e3nn_hopf_spinor_equivariance_results.json",
+          "e3nn_ic_invariance_results.json",
+          "e3nn_ic_pipeline_results.json",
+          "e3nn_relay_equivariance_results.json",
+          "e3nn_tensor_product_results.json",
+          "tools_load_bearing_results.json",
+          "torch_hopf_connection_results.json"
+        ]
+      },
+      "rustworkx": {
+        "tried_count": 111,
+        "used_count": 37,
+        "load_bearing_count": 26,
+        "depth_present_count": 42,
+        "anchor_stage_coverage": [
+          "boundary",
+          "topology",
+          "coupling",
+          "assembly",
+          "coexistence"
+        ],
+        "anchor_result_files": [
+          "3qubit_dag_formal_ordering_results.json",
+          "3qubit_dag_formal_ordering_v2_results.json",
+          "axis6_rank_coherence_results.json",
+          "bridge_phi0_proof_integration_results.json",
+          "bridge_z3_kernel_ordering_results.json",
+          "c2_topology_expansion_results.json",
+          "c2_topology_remaining_results.json",
+          "graph_geometry_results.json",
+          "graph_shell_geometry_results.json",
+          "layer_coupling_matrix_results.json",
+          "layer_coupling_matrix_v2_results.json",
+          "layer_coupling_matrix_v3_results.json",
+          "layer_triple_catalog_results.json",
+          "lego_graph_cluster_states_results.json",
+          "pyg_dynamic_edge_werner_results.json",
+          "rustworkx_3qubit_dag_results.json",
+          "rustworkx_bridge_dag_results.json",
+          "rustworkx_cascade_dag_results.json",
+          "rustworkx_dag_reduction_results.json",
+          "rustworkx_family_dag_results.json",
+          "tools_load_bearing_results.json",
+          "torch_constraint_shells_v2_results.json",
+          "torch_shells_displacement_metric_results.json",
+          "torch_shells_gradient_flow_results.json",
+          "weyl_nested_shell_results.json",
+          "weyl_two_model_crosscheck_results.json"
+        ]
+      },
+      "xgi": {
+        "tried_count": 89,
+        "used_count": 19,
+        "load_bearing_count": 15,
+        "depth_present_count": 28,
+        "anchor_stage_coverage": [
+          "assembly",
+          "topology",
+          "coupling",
+          "coexistence"
+        ],
+        "anchor_result_files": [
+          "dual_hypergraph_geometry_results.json",
+          "hypergraph_geometry_results.json",
+          "phase_damping_fixed_point_geometry_results.json",
+          "pyg_dynamic_edge_werner_results.json",
+          "tools_load_bearing_results.json",
+          "toponetx_hopf_crosscheck_results.json",
+          "toponetx_state_class_binding_results.json",
+          "torch_graph_integrated_pipeline_results.json",
+          "xgi_bridge_hyperedges_results.json",
+          "xgi_family_hypergraph_results.json",
+          "xgi_gradient_ascent_results.json",
+          "xgi_indirect_pathway_results.json",
+          "xgi_l7_marginal_results.json",
+          "xgi_shell_hypergraph_results.json",
+          "xgi_torch_autograd_results.json"
+        ]
+      },
+      "toponetx": {
+        "tried_count": 88,
+        "used_count": 10,
+        "load_bearing_count": 10,
+        "depth_present_count": 23,
+        "anchor_stage_coverage": [
+          "topology",
+          "assembly"
+        ],
+        "anchor_result_files": [
+          "cell_complex_geometry_results.json",
+          "hypergraph_geometry_results.json",
+          "state_class_binding_geometry_results.json",
+          "toponetx_bridge_seam_results.json",
+          "toponetx_constraint_shells_results.json",
+          "toponetx_hopf_crosscheck_results.json",
+          "toponetx_state_class_binding_results.json",
+          "torch_graph_integrated_pipeline_results.json",
+          "werner_topology_boundary_results.json",
+          "xgi_family_hypergraph_results.json"
+        ]
+      },
+      "gudhi": {
+        "tried_count": 93,
+        "used_count": 23,
+        "load_bearing_count": 16,
+        "depth_present_count": 33,
+        "anchor_stage_coverage": [
+          "topology",
+          "coexistence"
+        ],
+        "anchor_result_files": [
+          "gudhi_3qubit_bridge_results.json",
+          "gudhi_bipartite_entangled_results.json",
+          "gudhi_bloch_sphere_2d_results.json",
+          "gudhi_bridge_persistence_results.json",
+          "gudhi_cascade_persistence_results.json",
+          "gudhi_concurrence_filtration_results.json",
+          "gudhi_phase_sensitive_kernel_results.json",
+          "gudhi_s2_topology_recovery_results.json",
+          "gudhi_wasserstein_significance_results.json",
+          "hopf_torus_lego_results.json",
+          "persistence_geometry_results.json",
+          "tools_load_bearing_results.json",
+          "torch_constraint_shells_v2_results.json",
+          "weyl_nested_shell_results.json",
+          "weyl_spinor_hopf_results.json",
+          "weyl_two_model_crosscheck_results.json"
+        ]
+      }
+    },
+    "shallow_tools": [],
+    "missing_anchor_tools": [],
+    "forcing_targets": {}
+  },
+  "xgi_source_result_drift": [
+    {
+      "source": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_xgi_torch_autograd.py",
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/xgi_torch_autograd_results.json",
+      "kind": "source_expectation_vs_result",
+      "source_mentions_expected_largest": false,
+      "result_is_exploratory": true,
+      "result_joint_kill_top2_false": true,
+      "result_note_mentions_top_2_claim_failure": true
+    },
+    {
+      "source": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/sim_xgi_gradient_ascent.py",
+      "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/xgi_gradient_ascent_results.json",
+      "kind": "source_question_vs_result",
+      "source_mentions_direct_edges_dominate": true,
+      "result_is_exploratory": true,
+      "objective_alignment_false": true,
+      "result_note_mentions_objective_mismatch": false
+    }
+  ],
+  "trusted_spine": {
+    "boundary": [
+      {
+        "file": "bridge_extended_proofs_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": {
+          "all_pass": true
+        }
+      },
+      {
+        "file": "bridge_z3_kernel_ordering_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": {
+          "all_tests_passed": true
+        }
+      }
+    ],
+    "lego": [
+      {
+        "file": "foundation_channel_constraints_hardway_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": {
+          "all_pass": true
+        }
+      },
+      {
+        "file": "foundation_hopf_torus_geomstats_clifford_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": {
+          "all_pass": true
+        }
+      },
+      {
+        "file": "bridge_to_rhoab_construction_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": {
+          "all_pass": true
+        }
+      },
+      {
+        "file": "torch_hopf_connection_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": {
+          "all_pass": true
+        }
+      }
+    ],
+    "coupling": [
+      {
+        "file": "integrated_dependency_chain_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": {
+          "all_pass": true
+        }
+      },
+      {
+        "file": "layer_coupling_matrix_v3_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": null
+      },
+      {
+        "file": "xgi_indirect_pathway_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": null
+      }
+    ],
+    "coexistence": [
+      {
+        "file": "weyl_nested_shell_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": {
+          "pass": 15
+        }
+      },
+      {
+        "file": "xgi_l7_marginal_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": null
+      },
+      {
+        "file": "layer_stacking_nonprefix_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": null
+      }
+    ],
+    "topology": [
+      {
+        "file": "xgi_shell_hypergraph_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": null
+      },
+      {
+        "file": "toponetx_hopf_crosscheck_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": {
+          "tests_passed": "8/8"
+        }
+      },
+      {
+        "file": "toponetx_state_class_binding_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": null
+      },
+      {
+        "file": "gudhi_cascade_persistence_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": null
+      },
+      {
+        "file": "gudhi_wasserstein_significance_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": null
+      },
+      {
+        "file": "c2_topology_remaining_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": null
+      }
+    ],
+    "assembly": [
+      {
+        "file": "rustworkx_bridge_dag_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": {
+          "all_tests_passed": true
+        }
+      },
+      {
+        "file": "rustworkx_dag_reduction_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": {
+          "all_tests_passed": true
+        }
+      },
+      {
+        "file": "xgi_bridge_hyperedges_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": {
+          "all_pass": true
+        }
+      },
+      {
+        "file": "pyg_dynamic_edge_werner_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": null
+      },
+      {
+        "file": "torch_graph_integrated_pipeline_results.json",
+        "exists": true,
+        "classification": "canonical",
+        "signal": {
+          "all_pass": true
+        }
+      }
+    ]
+  },
+  "exploratory_branch": [
+    {
+      "file": "xgi_torch_autograd_results.json",
+      "exists": true,
+      "classification": "exploratory_signal",
+      "signal": {
+        "classification_note": "The autograd computation is stable and informative, but the stronger joint-kill top-2 attribution claim does not hold under this centrality objective. Treat as exploratory until the objective or claim is narrowed."
+      }
+    },
+    {
+      "file": "xgi_gradient_ascent_results.json",
+      "exists": true,
+      "classification": "exploratory_signal",
+      "signal": {
+        "classification_note": "The centrality optimization itself converges, but the claimed joint-kill dominance does not stabilize under this objective. Treat as exploratory until the objective is better aligned to joint-kill attribution."
+      }
+    },
+    {
+      "file": "rustworkx_3qubit_dag_results.json",
+      "exists": true,
+      "classification": "exploratory_signal",
+      "signal": {
+        "all_tests_passed": false
+      }
+    }
+  ],
+  "summary": {
+    "doc_drift_count": 0,
+    "interpreter_aligned": true,
+    "phase7_c2_surface_consistent": true,
+    "phase7_source_has_legacy_subset_branch": false,
+    "trusted_spine_risky_entries": 0,
+    "truth_audit_ok": true,
+    "shallow_tool_count": 0,
+    "code_process_green": true,
+    "docs_current": true,
+    "controller_contract_current": true
+  },
+  "doc_drift_count": 0,
+  "phase7_c2_surface_consistent": true,
+  "phase7_source_has_legacy_subset_branch": false,
+  "trusted_spine_risky_entries": 0,
+  "shallow_tools": [],
+  "shallow_tool_count": 0,
+  "doc_drift_by_kind": {},
+  "code_process_green": true,
+  "docs_current": true,
+  "controller_contract_current": true
+}

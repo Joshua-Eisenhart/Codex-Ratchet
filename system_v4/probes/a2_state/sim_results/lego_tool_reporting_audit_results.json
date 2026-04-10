@@ -1,43 +1,19 @@
 {
-  "generated_at": "2026-04-10T03:59:49.852108+00:00",
+  "generated_at": "2026-04-10T04:04:01.127523+00:00",
   "summary": {
     "registry_row_count": 150,
     "registry_linked_result_count": 117,
     "registry_linked_lego_count": 148,
-    "blocker_count": 1,
-    "advisory_count": 10,
-    "blocker_result_count": 1,
-    "advisory_result_count": 10,
+    "blocker_count": 0,
+    "advisory_count": 9,
+    "blocker_result_count": 0,
+    "advisory_result_count": 9,
     "issue_kind_counts": {
-      "blank_unused_reason": 10,
-      "missing_tool_integration_depth": 1
+      "blank_unused_reason": 9
     },
-    "ok": false
+    "ok": true
   },
-  "blockers": [
-    {
-      "severity": "blocker",
-      "kind": "missing_tool_integration_depth",
-      "result_json": "torch_channel_composition_results.json",
-      "result_path": "system_v4/probes/a2_state/sim_results/torch_channel_composition_results.json",
-      "lego_ids": [
-        "composition_order_noncommutation",
-        "composition_order_sensitivity",
-        "unitary_channel_map"
-      ],
-      "probe_paths": [
-        "sim_torch_channel_composition.py"
-      ],
-      "sections": [
-        "Loop, Connection, And Placement Legos",
-        "Operator And Channel Legos"
-      ],
-      "classifications": [
-        "canonical"
-      ],
-      "detail": "Registry-selected result is missing tool_integration_depth."
-    }
-  ],
+  "blockers": [],
   "advisories": [
     {
       "severity": "advisory",
@@ -179,41 +155,6 @@
         "rustworkx",
         "toponetx",
         "xgi"
-      ]
-    },
-    {
-      "severity": "advisory",
-      "kind": "blank_unused_reason",
-      "result_json": "torch_channel_composition_results.json",
-      "result_path": "system_v4/probes/a2_state/sim_results/torch_channel_composition_results.json",
-      "lego_ids": [
-        "composition_order_noncommutation",
-        "composition_order_sensitivity",
-        "unitary_channel_map"
-      ],
-      "probe_paths": [
-        "sim_torch_channel_composition.py"
-      ],
-      "sections": [
-        "Loop, Connection, And Placement Legos",
-        "Operator And Channel Legos"
-      ],
-      "classifications": [
-        "canonical"
-      ],
-      "detail": "Manifest has tried=true, used=false tools with blank reasons.",
-      "tools": [
-        "clifford",
-        "cvc5",
-        "e3nn",
-        "geomstats",
-        "gudhi",
-        "pyg",
-        "rustworkx",
-        "sympy",
-        "toponetx",
-        "xgi",
-        "z3"
       ]
     },
     {

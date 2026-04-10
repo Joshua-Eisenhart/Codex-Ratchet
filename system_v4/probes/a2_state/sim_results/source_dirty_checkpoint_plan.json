@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-04-10T03:59:49.991608+00:00",
+  "generated_at": "2026-04-10T04:04:01.241173+00:00",
   "strict": false,
   "source_surface": "repo_hygiene",
   "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
-  "dirty_source_count": 155,
-  "plan_group_count": 80,
-  "checkpoint_candidate_count": 2,
+  "dirty_source_count": 150,
+  "plan_group_count": 79,
+  "checkpoint_candidate_count": 1,
   "quarantine_candidate_count": 0,
   "manual_only_count": 78,
   "code_only_manual_count": 78,
@@ -15,9 +15,9 @@
   "next_code_only_manual_source_path": "system_v4/probes/sim_fubini_study_geometry.py",
   "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/fubini_study_geometry_results.json",
   "summary": {
-    "dirty_source_count": 155,
-    "plan_group_count": 80,
-    "checkpoint_candidate_count": 2,
+    "dirty_source_count": 150,
+    "plan_group_count": 79,
+    "checkpoint_candidate_count": 1,
     "quarantine_candidate_count": 0,
     "manual_only_count": 78,
     "code_only_manual_count": 78,
@@ -39,17 +39,12 @@
       "group_id": "docs_and_specs__docs_and_specs",
       "file_count": 3,
       "safe_next_action": "checkpoint"
-    },
-    {
-      "group_id": "build_contract__build_contract",
-      "file_count": 1,
-      "safe_next_action": "checkpoint"
     }
   ],
   "recommended_manual_split_order": [
     {
       "group_id": "probe_source__probe_misc",
-      "file_count": 19,
+      "file_count": 14,
       "safe_next_action": "manual_split_required"
     },
     {
@@ -58,12 +53,12 @@
       "safe_next_action": "manual_split_required"
     },
     {
-      "group_id": "probe_source__sim_family_bridge",
-      "file_count": 8,
+      "group_id": "probe_source__torch_family",
+      "file_count": 9,
       "safe_next_action": "manual_split_required"
     },
     {
-      "group_id": "probe_source__torch_family",
+      "group_id": "probe_source__sim_family_bridge",
       "file_count": 8,
       "safe_next_action": "manual_split_required"
     },
@@ -229,28 +224,6 @@
   },
   "checkpoint_groups": [
     {
-      "group_id": "build_contract__build_contract",
-      "bucket": "build_contract",
-      "label": "build_contract",
-      "display_name": "Build and dependency contract",
-      "path_prefixes": [
-        "Makefile"
-      ],
-      "file_count": 1,
-      "tracked_dirty_count": 1,
-      "untracked_count": 0,
-      "sample_paths": [
-        "Makefile"
-      ],
-      "dominant_kinds": [
-        "modified"
-      ],
-      "safe_next_action": "checkpoint",
-      "safe_auto": false,
-      "blocking_reason": "bounded_human_checkpoint",
-      "notes": "Core build/runtime contract files should be checkpointed together."
-    },
-    {
       "group_id": "docs_and_specs__docs_and_specs",
       "bucket": "docs_and_specs",
       "label": "docs_and_specs",
@@ -383,30 +356,25 @@
         "system_v4/probes/lego_batch_queue.py",
         "system_v4/probes/lego_coupling_candidates.py",
         "system_v4/probes/lego_stack_audit.py",
-        "system_v4/probes/lego_tool_reporting_audit.py",
         "system_v4/probes/run_formal_geometry_packet.py",
         "system_v4/probes/run_root_emergence_packet.py",
         "system_v4/probes/run_with_numba_safety.sh",
         "system_v4/probes/runtime_hygiene_audit.py",
-        "system_v4/probes/source_dirty_checkpoint_packet.py",
         "system_v4/probes/source_dirty_checkpoint_plan.py",
-        "system_v4/probes/source_dirty_lane_manifest.py",
-        "system_v4/probes/source_dirty_stage_plan.py",
-        "system_v4/probes/system_hygiene_repair.py",
-        "system_v4/probes/system_hygiene_supervisor.py"
+        "system_v4/probes/system_hygiene_repair.py"
       ],
-      "file_count": 19,
-      "tracked_dirty_count": 7,
-      "untracked_count": 12,
+      "file_count": 14,
+      "tracked_dirty_count": 5,
+      "untracked_count": 9,
       "sample_paths": [
         "system_v4/probes/axis_orthogonality_suite.py",
         "system_v4/probes/heartbeat.sh",
         "system_v4/probes/run_formal_geometry_packet.py",
         "system_v4/probes/run_root_emergence_packet.py",
         "system_v4/probes/source_dirty_checkpoint_plan.py",
-        "system_v4/probes/source_dirty_lane_manifest.py",
-        "system_v4/probes/system_hygiene_supervisor.py",
-        "system_v4/probes/actual_lego_normalization_queue.py"
+        "system_v4/probes/actual_lego_normalization_queue.py",
+        "system_v4/probes/audit_overclassification.py",
+        "system_v4/probes/extract_actual_lego_registry.py"
       ],
       "dominant_kinds": [
         "untracked",
@@ -2106,6 +2074,7 @@
       "label": "torch_family",
       "display_name": "Torch family sims",
       "path_prefixes": [
+        "system_v4/probes/sim_torch_channel_composition.py",
         "system_v4/probes/sim_torch_cnot.py",
         "system_v4/probes/sim_torch_density_matrix_pilot.py",
         "system_v4/probes/sim_torch_eigendecomp.py",
@@ -2115,18 +2084,18 @@
         "system_v4/probes/sim_torch_ratchet_pipeline_v2.py",
         "system_v4/probes/sim_torch_shells_displacement_metric.py"
       ],
-      "file_count": 8,
-      "tracked_dirty_count": 8,
+      "file_count": 9,
+      "tracked_dirty_count": 9,
       "untracked_count": 0,
       "sample_paths": [
+        "system_v4/probes/sim_torch_channel_composition.py",
         "system_v4/probes/sim_torch_cnot.py",
         "system_v4/probes/sim_torch_density_matrix_pilot.py",
         "system_v4/probes/sim_torch_eigendecomp.py",
         "system_v4/probes/sim_torch_graph_integrated_pipeline.py",
         "system_v4/probes/sim_torch_hopf_connection.py",
         "system_v4/probes/sim_torch_phase_flip.py",
-        "system_v4/probes/sim_torch_ratchet_pipeline_v2.py",
-        "system_v4/probes/sim_torch_shells_displacement_metric.py"
+        "system_v4/probes/sim_torch_ratchet_pipeline_v2.py"
       ],
       "dominant_kinds": [
         "modified"

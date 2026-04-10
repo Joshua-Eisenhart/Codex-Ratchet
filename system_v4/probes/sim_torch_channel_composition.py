@@ -49,6 +49,21 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": ""},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 # Try importing each tool
 try:
     import torch
@@ -658,6 +673,9 @@ if __name__ == "__main__":
         "Core module: ChannelComposition as nn.Module chaining channel nn.Modules, "
         "autograd for purity gradients through composed chain"
     )
+    for tool, meta in TOOL_MANIFEST.items():
+        if meta["tried"] and not meta["used"] and not meta["reason"]:
+            meta["reason"] = "import probe only; not used in the executed composition checks"
 
     # Count passes
     def count_passes(d):
@@ -689,6 +707,7 @@ if __name__ == "__main__":
             "and Kraus operator product equivalence."
         ),
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

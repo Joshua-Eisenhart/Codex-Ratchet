@@ -1,0 +1,430 @@
+{
+  "name": "low_rank_psd_approximation",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for low-rank PSD approximation with trace renormalization on bounded density operators.",
+  "lego_ids": [
+    "low_rank_psd_approximation",
+    "spectral_truncation",
+    "operator_low_rank_factorization"
+  ],
+  "primary_lego_ids": [
+    "low_rank_psd_approximation"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure numpy/scipy spectral lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph-native computation"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no SMT proof layer here"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no second-solver layer here"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no symbolic derivation here"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold-statistics layer"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant network layer"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency DAG"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell-complex topology"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "trial_0": {
+      "truncations": [
+        {
+          "k": 1,
+          "retained_eigenvalues": [
+            0.6502580845776997
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 1
+          },
+          "fidelity": 0.6502580943240424,
+          "trace_distance": 0.3497419154223002
+        },
+        {
+          "k": 2,
+          "retained_eigenvalues": [
+            0.6502580845776997,
+            0.2314888594195621
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 2
+          },
+          "fidelity": 0.8817469510109396,
+          "trace_distance": 0.11825305600273811
+        },
+        {
+          "k": 3,
+          "retained_eigenvalues": [
+            0.6502580845776997,
+            0.2314888594195621,
+            0.0902842036124016
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 3
+          },
+          "fidelity": 0.972031151139494,
+          "trace_distance": 0.0279688523903365
+        }
+      ],
+      "psd_preserved": true,
+      "trace_preserved": true,
+      "fidelity_monotone_in_k": true,
+      "trace_distance_nonincreasing_in_k": true,
+      "pass": true
+    },
+    "trial_1": {
+      "truncations": [
+        {
+          "k": 1,
+          "retained_eigenvalues": [
+            0.4947580978833068
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 1
+          },
+          "fidelity": 0.4947581064334518,
+          "trace_distance": 0.505241902116694
+        },
+        {
+          "k": 2,
+          "retained_eigenvalues": [
+            0.4947580978833068,
+            0.34408761368453383
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 2
+          },
+          "fidelity": 0.8388457306258985,
+          "trace_distance": 0.16115428843215934
+        },
+        {
+          "k": 3,
+          "retained_eigenvalues": [
+            0.4947580978833068,
+            0.34408761368453383,
+            0.15335096405088858
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 3
+          },
+          "fidelity": 0.9921966778022517,
+          "trace_distance": 0.007803324381270734
+        }
+      ],
+      "psd_preserved": true,
+      "trace_preserved": true,
+      "fidelity_monotone_in_k": true,
+      "trace_distance_nonincreasing_in_k": true,
+      "pass": true
+    },
+    "trial_2": {
+      "truncations": [
+        {
+          "k": 1,
+          "retained_eigenvalues": [
+            0.6713349640217997
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 1
+          },
+          "fidelity": 0.6713349882903156,
+          "trace_distance": 0.32866503597820046
+        },
+        {
+          "k": 2,
+          "retained_eigenvalues": [
+            0.6713349640217997,
+            0.21454568487342843
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 2
+          },
+          "fidelity": 0.8858806618344817,
+          "trace_distance": 0.11411935110477195
+        },
+        {
+          "k": 3,
+          "retained_eigenvalues": [
+            0.6713349640217997,
+            0.21454568487342843,
+            0.07101499919312328
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 3
+          },
+          "fidelity": 0.956895657758314,
+          "trace_distance": 0.0431043519116487
+        }
+      ],
+      "psd_preserved": true,
+      "trace_preserved": true,
+      "fidelity_monotone_in_k": true,
+      "trace_distance_nonincreasing_in_k": true,
+      "pass": true
+    },
+    "trial_3": {
+      "truncations": [
+        {
+          "k": 1,
+          "retained_eigenvalues": [
+            0.6325504291127304
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 1
+          },
+          "fidelity": 0.6325504506063288,
+          "trace_distance": 0.3674495708872699
+        },
+        {
+          "k": 2,
+          "retained_eigenvalues": [
+            0.6325504291127304,
+            0.24210463556398987
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 2
+          },
+          "fidelity": 0.8746550788315038,
+          "trace_distance": 0.1253449353232801
+        },
+        {
+          "k": 3,
+          "retained_eigenvalues": [
+            0.6325504291127304,
+            0.24210463556398987,
+            0.09362948358909692
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 3
+          },
+          "fidelity": 0.968284548612921,
+          "trace_distance": 0.03171545173418326
+        }
+      ],
+      "psd_preserved": true,
+      "trace_preserved": true,
+      "fidelity_monotone_in_k": true,
+      "trace_distance_nonincreasing_in_k": true,
+      "pass": true
+    },
+    "trial_4": {
+      "truncations": [
+        {
+          "k": 1,
+          "retained_eigenvalues": [
+            0.6030684374430362
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 1
+          },
+          "fidelity": 0.6030684485264813,
+          "trace_distance": 0.3969315625569638
+        },
+        {
+          "k": 2,
+          "retained_eigenvalues": [
+            0.6030684374430362,
+            0.25889861760442284
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 2
+          },
+          "fidelity": 0.8619670700553642,
+          "trace_distance": 0.13803294495254098
+        },
+        {
+          "k": 3,
+          "retained_eigenvalues": [
+            0.6030684374430362,
+            0.25889861760442284,
+            0.13321532963982552
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 3
+          },
+          "fidelity": 0.9951823847055182,
+          "trace_distance": 0.004817615312715424
+        }
+      ],
+      "psd_preserved": true,
+      "trace_preserved": true,
+      "fidelity_monotone_in_k": true,
+      "trace_distance_nonincreasing_in_k": true,
+      "pass": true
+    },
+    "trial_5": {
+      "truncations": [
+        {
+          "k": 1,
+          "retained_eigenvalues": [
+            0.8127307035362181
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 1
+          },
+          "fidelity": 0.8127307195381761,
+          "trace_distance": 0.18726929646378176
+        },
+        {
+          "k": 2,
+          "retained_eigenvalues": [
+            0.8127307035362181,
+            0.11782393128330983
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 2
+          },
+          "fidelity": 0.9305546370734278,
+          "trace_distance": 0.06944536518047194
+        },
+        {
+          "k": 3,
+          "retained_eigenvalues": [
+            0.8127307035362181,
+            0.11782393128330983,
+            0.05717814181435047
+          ],
+          "validity": {
+            "trace_ok": true,
+            "hermitian": true,
+            "psd": true,
+            "rank": 3
+          },
+          "fidelity": 0.9877327774056309,
+          "trace_distance": 0.012267223366121474
+        }
+      ],
+      "psd_preserved": true,
+      "trace_preserved": true,
+      "fidelity_monotone_in_k": true,
+      "trace_distance_nonincreasing_in_k": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "rank_one_not_exact_for_generic_mixed_states": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "rank_three_better_than_rank_one": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "state_count": 6,
+    "scope_note": "Direct local low-rank PSD approximation lego with trace renormalization."
+  }
+}

@@ -530,6 +530,20 @@ def main():
         "probe": "sim_pure_lego_hypothesis_testing",
         "description": "Quantum hypothesis testing: Stein's lemma, "
                        "Chernoff bound, multiple hypothesis, Neyman-Pearson",
+        "lego_ids": [
+            "distinguishability_relation",
+            "helstrom_guess_bound",
+            "blackwell_style_comparison",
+        ],
+        "primary_lego_ids": [
+            "distinguishability_relation",
+            "helstrom_guess_bound",
+        ],
+        "tool_manifest": {
+            "numpy": "load-bearing",
+            "scipy": "load-bearing",
+        },
+        "tool_integration_depth": "single_stack_load_bearing",
         "sections": {}
     }
 
@@ -603,6 +617,17 @@ def main():
             checks.append(ab["alpha_constraint_met"])
 
     all_pass = all(checks)
+    classification = "canonical" if all_pass else "exploratory_signal"
+    summary = (
+        "Canonical distinguishability lego: binary, symmetric, multiple, "
+        "and Neyman-Pearson quantum hypothesis tests on the same local state pairs."
+        if all_pass
+        else
+        "Exploratory distinguishability lego: most hypothesis-testing checks pass, "
+        "but the Neyman-Pearson monotonicity surface is still mixed on several pairs."
+    )
+    all_results["classification"] = classification
+    all_results["summary"] = summary
     all_results["all_pass"] = all_pass
     all_results["total_checks"] = len(checks)
     all_results["passed_checks"] = sum(1 for c in checks if c)

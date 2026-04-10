@@ -22,6 +22,55 @@ np.random.seed(42)
 EPS = 1e-14
 RESULTS = {}
 
+CLASSIFICATION = "supporting"
+CLASSIFICATION_NOTE = (
+    "Supporting multi-lego compression/spectral evidence. This probe covers QPCA, low-rank "
+    "approximation, and related spectral structure, but it remains a bundled local probe rather "
+    "than a single canonical lego surface."
+)
+LEGO_IDS = [
+    "spectral_decomposition",
+    "principal_subspace",
+    "spectral_truncation",
+    "low_rank_psd_approximation",
+    "operator_low_rank_factorization",
+    "qpca_spectral_extraction",
+    "schmidt_mode_truncation",
+]
+PRIMARY_LEGO_IDS = [
+    "qpca_spectral_extraction",
+    "spectral_truncation",
+    "low_rank_psd_approximation",
+]
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed -- pure numpy/scipy compression probe"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed -- no graph-native computation"},
+    "z3": {"tried": False, "used": False, "reason": "not needed -- no SMT proof layer in this probe"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed -- no second-solver layer here"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed -- no symbolic derivation in this probe"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed -- no geometric algebra in this probe"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed -- no manifold-statistics layer"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed -- no equivariant network layer"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed -- no dependency DAG or routing graph"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed -- no hypergraph structure"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed -- no cell-complex topology"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed -- no persistent homology"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 # ──────────────────────────────────────────────────────────────────────
 # Helpers
 # ──────────────────────────────────────────────────────────────────────
@@ -658,6 +707,26 @@ print("  Section 5 complete.\n")
 # ══════════════════════════════════════════════════════════════════════
 # Write results
 # ══════════════════════════════════════════════════════════════════════
+
+RESULTS["name"] = "pure_lego_qpca_tensor_rmt"
+RESULTS["classification"] = CLASSIFICATION
+RESULTS["classification_note"] = CLASSIFICATION_NOTE
+RESULTS["lego_ids"] = LEGO_IDS
+RESULTS["primary_lego_ids"] = PRIMARY_LEGO_IDS
+RESULTS["tool_manifest"] = TOOL_MANIFEST
+RESULTS["tool_integration_depth"] = TOOL_INTEGRATION_DEPTH
+RESULTS["honest_summary"] = {
+    "covers_qpca": True,
+    "covers_tensor_decomposition": True,
+    "covers_random_matrix_theory": True,
+    "covers_low_rank_approximation": True,
+    "covers_eigenvalue_interlacing": True,
+    "closure_grade": False,
+    "notes": [
+        "This is a bundled compression and spectral probe, not a single-lego canonical surface.",
+        "Use it as supporting evidence for truncation and QPCA-style rows until narrower direct legos are split out.",
+    ],
+}
 
 out_path = pathlib.Path(__file__).resolve().parent / \
     "a2_state" / "sim_results" / "pure_lego_qpca_tensor_rmt_results.json"

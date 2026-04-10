@@ -47,6 +47,30 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": ""},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "supporting",
+    "pyg": None,
+    "z3": "supporting",
+    "cvc5": None,
+    "sympy": "load_bearing",
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
+LEGO_IDS = [
+    "lindbladian_evolution",
+    "channel_cptp_map",
+]
+
+PRIMARY_LEGO_IDS = [
+    "lindbladian_evolution",
+]
+
 try:
     import torch
     TOOL_MANIFEST["pytorch"]["tried"] = True
@@ -782,15 +806,24 @@ if __name__ == "__main__":
 
     results = {
         "name": "PURE LEGO: Lindblad Dissipator D[L](rho)",
+        "lego_ids": LEGO_IDS,
+        "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
         "classification": "canonical",
+        "summary": {
+            "scope_note": (
+                "Local open-system dynamics lego for infinitesimal Lindblad evolution, "
+                "steady states, and dissipator spectra on bounded carriers."
+            ),
+        },
         "total_time_s": time.time() - t_start,
     }
 
-    out_dir = os.path.join(os.path.dirname(__file__), "sim_results")
+    out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "lego_lindblad_dissipator_results.json")
     with open(out_path, "w") as f:

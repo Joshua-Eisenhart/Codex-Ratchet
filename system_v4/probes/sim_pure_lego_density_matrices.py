@@ -25,6 +25,75 @@ np.random.seed(42)
 EPS = 1e-14
 RESULTS = {}
 
+CLASSIFICATION = "canonical"
+CLASSIFICATION_NOTE = (
+    "Canonical local lego evidence for density-matrix validity, local spectral structure, "
+    "basic entropy/distance identities, bipartite reductions, correlation measures, and "
+    "elementary CPTP channel behavior. This is a broad local probe, not a closure-grade "
+    "coexistence or topology result."
+)
+LEGO_IDS = [
+    "density_matrix_object",
+    "density_matrix_representability",
+    "positivity_constraint",
+    "trace_constraint",
+    "pauli_algebra_relations",
+    "spectral_decomposition",
+    "von_neumann_entropy",
+    "renyi_entropy",
+    "tsallis_entropy",
+    "min_entropy",
+    "max_entropy",
+    "relative_entropy",
+    "partial_trace_operator",
+    "reduced_state_object",
+    "joint_density_matrix",
+    "conditional_entropy",
+    "mutual_information_measure",
+    "concurrence_measure",
+    "negativity_measure",
+    "logarithmic_negativity",
+    "channel_cptp_map",
+    "kraus_operator_sum",
+]
+PRIMARY_LEGO_IDS = [
+    "density_matrix_object",
+    "density_matrix_representability",
+    "positivity_constraint",
+    "trace_constraint",
+    "spectral_decomposition",
+    "partial_trace_operator",
+    "channel_cptp_map",
+]
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed -- pure numpy/scipy local lego probe"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed -- no graph-native computation"},
+    "z3": {"tried": False, "used": False, "reason": "not needed -- no SMT proof layer in this probe"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed -- no solver cross-check layer here"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed -- no symbolic derivation in this probe"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed -- no geometric algebra in this probe"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed -- no manifold-statistics layer"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed -- no equivariant network layer"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed -- no dependency DAG or routing graph"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed -- no hypergraph structure"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed -- no cell-complex topology"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed -- no persistent homology"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 # ──────────────────────────────────────────────────────────────────────
 # Helpers
 # ──────────────────────────────────────────────────────────────────────
@@ -642,8 +711,29 @@ summary = {
 }
 
 all_pass = all(summary.values())
+RESULTS["name"] = "pure_lego_density_matrices"
+RESULTS["classification"] = CLASSIFICATION
+RESULTS["classification_note"] = CLASSIFICATION_NOTE
+RESULTS["lego_ids"] = LEGO_IDS
+RESULTS["primary_lego_ids"] = PRIMARY_LEGO_IDS
+RESULTS["tool_manifest"] = TOOL_MANIFEST
+RESULTS["tool_integration_depth"] = TOOL_INTEGRATION_DEPTH
 RESULTS["summary"] = summary
 RESULTS["ALL_PASS"] = all_pass
+RESULTS["honest_summary"] = {
+    "all_pass": all_pass,
+    "section_pass_count": sum(1 for v in summary.values() if v),
+    "section_total": len(summary),
+    "state_count": RESULTS["1_construction"]["count"],
+    "pair_distance_count": RESULTS["5_distances"]["num_pairs"],
+    "covers_local_bipartite_checks": True,
+    "covers_local_channel_checks": True,
+    "closure_grade": False,
+    "notes": [
+        "This probe is local lego evidence, not a coexistence, topology, or seam-closure result.",
+        "True numeric dependencies are numpy and scipy; tracked non-numeric tool-stack items are intentionally unused here.",
+    ],
+}
 
 print(f"\n{'='*60}")
 print(f"PURE LEGO DENSITY MATRICES — ALL PASS: {all_pass}")

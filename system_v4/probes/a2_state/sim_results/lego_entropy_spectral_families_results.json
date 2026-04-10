@@ -1,0 +1,211 @@
+{
+  "name": "Spectral Entropy Families on Density Matrices",
+  "schema_version": "1.0",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core numeric substrate: density matrices, eigenspectra, and exact spectral entropy evaluation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph layer in this spectral entropy lego"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- all claims are exact spectral evaluations, no satisfiability search required"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no synthesis or SMT constraint search required"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- closed-form spectral formulas are evaluated directly"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra structure is part of this lego"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold geometry or geodesic computation here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant neural network layer here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency graph or lattice graph computation here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph or simplicial complex layer here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex or topological filtration in this lego"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology or filtration computation here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pure_state_zero_entropy": {
+      "pass": true,
+      "details": {
+        "von_neumann": -0.0,
+        "renyi": {
+          "0.0": 0.0,
+          "0.5": 0.0,
+          "1.0": -0.0,
+          "2.0": -0.0,
+          "3.0": -0.0
+        },
+        "tsallis": {
+          "0.5": -0.0,
+          "1.0": -0.0,
+          "2.0": 0.0,
+          "3.0": 0.0
+        },
+        "linear": 0.0,
+        "hartley": 0.0,
+        "collision": -0.0,
+        "rank": 1
+      }
+    },
+    "maximally_mixed_qubit_saturates_one_bit": {
+      "pass": true,
+      "details": {
+        "von_neumann": 1.0,
+        "renyi": {
+          "0.0": 1.0,
+          "0.5": 1.0000000000000002,
+          "1.0": 1.0,
+          "2.0": 1.0,
+          "3.0": 1.0
+        },
+        "tsallis": {
+          "0.5": 1.1951677046092315,
+          "1.0": 1.0,
+          "2.0": 0.7213475204444817,
+          "3.0": 0.5410106403333613
+        },
+        "linear": 0.5,
+        "hartley": 1.0,
+        "collision": 1.0,
+        "rank": 2
+      }
+    },
+    "renyi_sweep_is_nonincreasing": {
+      "pass": true,
+      "alpha_sweep": [
+        0.0,
+        0.5,
+        1.0,
+        2.0,
+        3.0
+      ],
+      "renyi_trace": [
+        1.0,
+        0.8479969065549501,
+        0.7219280948873623,
+        0.5563933485243849,
+        0.4717082358168161
+      ]
+    },
+    "tsallis_q1_matches_von_neumann": {
+      "pass": true,
+      "tsallis_q1": 0.7219280948873623,
+      "von_neumann": 0.7219280948873623
+    },
+    "collision_equals_renyi_two": {
+      "pass": true,
+      "collision": 0.5563933485243849,
+      "renyi_alpha_2": 0.5563933485243849
+    },
+    "hartley_equals_log_rank": {
+      "pass": true,
+      "hartley": 1.0,
+      "rank": 2
+    }
+  },
+  "negative": {
+    "pure_state_not_positive_entropy": {
+      "pass": true,
+      "von_neumann": -0.0
+    },
+    "mixed_state_not_zero_entropy": {
+      "pass": true,
+      "von_neumann": 0.7219280948873623
+    },
+    "reversed_renyi_order_is_false": {
+      "pass": true,
+      "renyi_alpha_05": 0.8479969065549501,
+      "renyi_alpha_2": 0.5563933485243849
+    },
+    "collision_is_not_linear_entropy": {
+      "pass": true,
+      "collision": 0.5563933485243849,
+      "linear": 0.31999999999999984
+    }
+  },
+  "boundary": {
+    "alpha_one_limit": {
+      "pass": true,
+      "renyi_alpha_1": 0.8812908992306927,
+      "von_neumann": 0.8812908992306927
+    },
+    "alpha_zero_limit": {
+      "pass": true,
+      "renyi_alpha_0": 1.0,
+      "hartley": 1.0
+    },
+    "q_one_limit": {
+      "pass": true,
+      "tsallis_q_1": 0.8812908992306927,
+      "von_neumann": 0.8812908992306927
+    },
+    "q_two_linear_relation": {
+      "pass": true,
+      "tsallis_q_2": 0.6059319171733647,
+      "linear": 0.42000000000000004,
+      "scaled_tsallis_q_2": 0.42000000000000004
+    }
+  },
+  "summary": {
+    "positive": "6/6",
+    "negative": "4/4",
+    "boundary": "4/4",
+    "all_pass": true,
+    "total_time_s": 0.02975916862487793
+  }
+}

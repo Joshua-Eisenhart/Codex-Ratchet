@@ -23,6 +23,56 @@ np.random.seed(42)
 EPS = 1e-14
 RESULTS = {}
 
+CLASSIFICATION = "supporting"
+CLASSIFICATION_NOTE = (
+    "Supporting multi-lego compression/spectral evidence. This probe is mathematically strong "
+    "and all-pass locally, but it bundles several compression analogies and should not be treated "
+    "as a single canonical lego surface."
+)
+LEGO_IDS = [
+    "covariance_operator",
+    "spectral_truncation",
+    "svd_factorization",
+    "low_rank_psd_approximation",
+    "operator_low_rank_factorization",
+    "qpca_spectral_extraction",
+    "coarse_grained_operator_algebra",
+]
+PRIMARY_LEGO_IDS = [
+    "covariance_operator",
+    "spectral_truncation",
+    "svd_factorization",
+    "low_rank_psd_approximation",
+]
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed -- pure numpy/scipy compression probe"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed -- no graph-native computation"},
+    "z3": {"tried": False, "used": False, "reason": "not needed -- no SMT proof layer in this probe"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed -- no second-solver layer here"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed -- no symbolic derivation in this probe"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed -- no geometric algebra in this probe"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed -- no manifold-statistics layer"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed -- no equivariant network layer"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed -- no dependency DAG or routing graph"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed -- no hypergraph structure"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed -- no cell-complex topology"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed -- no persistent homology"},
+}
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 # ──────────────────────────────────────────────────────────────────────
 # Helpers
 # ──────────────────────────────────────────────────────────────────────
@@ -783,8 +833,31 @@ summary = {
 }
 
 all_pass = all(summary.values())
+RESULTS["name"] = "pure_lego_ml_density_matrix"
+RESULTS["classification"] = CLASSIFICATION
+RESULTS["classification_note"] = CLASSIFICATION_NOTE
+RESULTS["lego_ids"] = LEGO_IDS
+RESULTS["primary_lego_ids"] = PRIMARY_LEGO_IDS
+RESULTS["tool_manifest"] = TOOL_MANIFEST
+RESULTS["tool_integration_depth"] = TOOL_INTEGRATION_DEPTH
 RESULTS["summary"] = summary
 RESULTS["ALL_PASS"] = all_pass
+RESULTS["honest_summary"] = {
+    "all_pass": all_pass,
+    "section_pass_count": sum(1 for v in summary.values() if v),
+    "section_total": len(summary),
+    "covers_kernel_density": True,
+    "covers_information_bottleneck": True,
+    "covers_attention_density": True,
+    "covers_diffusion_open_system": True,
+    "covers_loss_hamiltonian_spectrum": True,
+    "covers_representation_partial_trace": True,
+    "closure_grade": False,
+    "notes": [
+        "This is a bundled compression/ML analogy probe, not a single-lego canonical surface.",
+        "Best used as supporting evidence for compression/spectral rows until narrower direct legos are split out.",
+    ],
+}
 
 print(f"\n{'='*60}")
 print(f"PURE LEGO ML DENSITY MATRIX — ALL PASS: {all_pass}")

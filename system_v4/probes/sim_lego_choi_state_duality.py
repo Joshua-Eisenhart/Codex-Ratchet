@@ -53,6 +53,31 @@ TOOL_MANIFEST = {
     "gudhi":     {"tried": False, "used": False, "reason": "not needed"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "pyg": None,
+    "z3": "load_bearing",
+    "cvc5": None,
+    "sympy": "supporting",
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
+LEGO_IDS = [
+    "channel_cptp_map",
+    "kraus_operator_sum",
+]
+
+PRIMARY_LEGO_IDS = [
+    "channel_cptp_map",
+    "kraus_operator_sum",
+]
+
 # --- Tool imports ---
 try:
     import torch
@@ -751,7 +776,10 @@ if __name__ == "__main__":
         "name": "Choi-Jamiolkowski Isomorphism -- Channel-State Duality",
         "probe": "lego_choi_state_duality",
         "purpose": "Validate channel-state duality, CP/TP Choi criteria, and Kraus recovery for canonical qubit channels",
+        "lego_ids": LEGO_IDS,
+        "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "tools_used": [name for name, meta in TOOL_MANIFEST.items() if meta["used"]],
         "positive": pos,
         "negative": neg,
@@ -765,7 +793,7 @@ if __name__ == "__main__":
     print(f"Boundary: {bp} passed, {bf} failed")
     print(f"ALL PASSED: {summary['all_passed']}")
 
-    out_dir = os.path.join(os.path.dirname(__file__), "sim_results")
+    out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "lego_choi_state_duality_results.json")
     with open(out_path, "w") as f:

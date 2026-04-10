@@ -1,7 +1,21 @@
 {
-  "timestamp": "2026-04-07T14:03:56.022197+00:00",
+  "timestamp": "2026-04-09T05:55:10.002205+00:00",
   "probe": "sim_pure_lego_hypothesis_testing",
   "description": "Quantum hypothesis testing: Stein's lemma, Chernoff bound, multiple hypothesis, Neyman-Pearson",
+  "lego_ids": [
+    "distinguishability_relation",
+    "helstrom_guess_bound",
+    "blackwell_style_comparison"
+  ],
+  "primary_lego_ids": [
+    "distinguishability_relation",
+    "helstrom_guess_bound"
+  ],
+  "tool_manifest": {
+    "numpy": "load-bearing",
+    "scipy": "load-bearing"
+  },
+  "tool_integration_depth": "single_stack_load_bearing",
   "sections": {
     "stein_lemma": {
       "stein_lemma_tests": [
@@ -455,6 +469,8 @@
       ]
     }
   },
+  "classification": "supporting",
+  "summary": "Exploratory distinguishability lego: most hypothesis-testing checks pass, but the Neyman-Pearson monotonicity surface is still mixed on several pairs.",
   "all_pass": false,
   "total_checks": 59,
   "passed_checks": 55

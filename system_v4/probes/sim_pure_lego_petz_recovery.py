@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Pure lego: numpy/scipy only.  No engine imports.
-# Run as: /opt/homebrew/bin/python3 sim_pure_lego_petz_recovery.py
+# Run as: make sim NAME=sim_pure_lego_petz_recovery  (from repo root)
 """
 Petz Recovery Map & Quantum Channel Reversal
 =============================================

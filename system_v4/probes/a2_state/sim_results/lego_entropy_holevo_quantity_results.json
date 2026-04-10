@@ -1,0 +1,156 @@
+{
+  "name": "lego_entropy_holevo_quantity",
+  "schema": "lego_entropy_holevo_quantity/v1",
+  "description": "Pure-math cq ensemble entropy lego for Holevo quantity and simple channel-entropy bounds.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for cq ensemble entropy algebra"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for graph-free entropy lego"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this numerical entropy identity batch"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this numerical entropy identity batch"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for current exact cases"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for cq entropy relations"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this state-entropy lego"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this state-entropy lego"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for non-graph entropy batch"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for non-hypergraph entropy batch"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for non-topological entropy batch"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for non-persistent entropy batch"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "orthogonal_ensemble_one_bit": {
+      "chi": 1.0,
+      "avg_entropy": 1.0,
+      "pass": true
+    },
+    "identical_states_zero_information": {
+      "chi": -0.0,
+      "avg_entropy": -0.0,
+      "pass": true
+    },
+    "nonorthogonal_between_zero_and_one": {
+      "chi": 0.600876036692856,
+      "avg_entropy": 0.6008760366928562,
+      "pass": true
+    },
+    "holevo_bounded_by_output_entropy": {
+      "chi": 0.600876036692856,
+      "output_entropy": 0.6008760366928562,
+      "pass": true
+    },
+    "dephasing_does_not_increase_chi": {
+      "chi_before": 0.600876036692856,
+      "chi_after": 0.35542489546179834,
+      "avg_entropy_before": 0.6008760366928562,
+      "avg_entropy_after": 0.7610639576913649,
+      "pass": true
+    },
+    "pass": true
+  },
+  "negative": {
+    "chi_never_negative": {
+      "chi": 0.600876036692856,
+      "pass": true
+    },
+    "qubit_chi_not_above_one": {
+      "chi": 0.600876036692856,
+      "pass": true
+    },
+    "average_entropy_not_less_than_zero": {
+      "entropy_avg": 0.6008760366928562,
+      "pass": true
+    },
+    "binary_entropy_caps_classical_qubit_case": {
+      "H_half": 1.0,
+      "pass": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "delta_ensemble_zero_info": {
+      "chi_p0": -0.0,
+      "chi_p1": -0.0,
+      "pass": true
+    },
+    "maximally_mixed_average_reaches_one": {
+      "chi": 1.0,
+      "avg_entropy": 1.0,
+      "pass": true
+    },
+    "pure_state_ensemble_average_matches_binary_entropy": {
+      "avg_entropy": 0.8112781244591328,
+      "binary_entropy": 0.8112781244591328,
+      "pass": true
+    },
+    "pass": true
+  },
+  "classification": "classical_baseline",
+  "summary": {
+    "positive_pass": true,
+    "negative_pass": true,
+    "boundary_pass": true,
+    "all_pass": true
+  },
+  "classification_note": "Reclassified 2026-04-08: no tools used (all null in tool_integration_depth). Cannot meet canonical load_bearing requirement. numpy-only baseline."
+}

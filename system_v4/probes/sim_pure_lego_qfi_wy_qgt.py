@@ -24,6 +24,36 @@ I2 = np.eye(2, dtype=complex)
 
 GENERATORS = {"sx": sx, "sy": sy, "sz": sz}
 
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed -- pure numpy/scipy/sympy math"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed -- no graph layer"},
+    "z3": {"tried": False, "used": False, "reason": "not needed -- no SMT proof search"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed -- no synthesis/proof search"},
+    "sympy": {"tried": True, "used": True, "reason": "symbolic spot checks and closed-form simplification for pure-math metric relations"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed -- no geometric algebra layer"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed -- direct information-geometry formulas used instead"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed -- no equivariant network layer"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed -- no dependency graph"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed -- no hypergraph layer"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed -- no cell-complex layer"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed -- no persistence layer"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": "load_bearing",
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # 1. Quantum Fisher Information
@@ -133,7 +163,13 @@ def is_pure(rho, tol=1e-10):
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def run_tests():
-    results = {"sections": {}}
+    results = {
+        "name": "pure_lego_qfi_wy_qgt",
+        "classification": "canonical",
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "sections": {},
+    }
     all_pass = True
 
     # ── Section 1: QFI on 10×3 ────────────────────────────────────────────────

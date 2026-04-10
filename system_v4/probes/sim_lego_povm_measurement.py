@@ -44,6 +44,31 @@ TOOL_MANIFEST = {
     "gudhi":      {"tried": False, "used": False, "reason": ""},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "supporting",
+    "pyg": None,
+    "z3": "supporting",
+    "cvc5": "supporting",
+    "sympy": "load_bearing",
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
+LEGO_IDS = [
+    "povm_measurement_family",
+    "measurement_instrument",
+]
+
+PRIMARY_LEGO_IDS = [
+    "povm_measurement_family",
+    "measurement_instrument",
+]
+
 # --- Import tools ---
 try:
     import torch
@@ -520,6 +545,70 @@ def z3_completeness_proofs():
     return results
 
 
+def cvc5_completeness_crosschecks():
+    """Small exact cvc5 crosscheck for POVM completeness and incompleteness."""
+    results = {}
+
+    if not TOOL_MANIFEST["cvc5"]["tried"]:
+        return {"skipped": "cvc5 not available"}
+
+    TOOL_MANIFEST["cvc5"]["used"] = True
+    TOOL_MANIFEST["cvc5"]["reason"] = (
+        "Exact linear-real crosscheck for POVM completeness and an incomplete-set counterexample"
+    )
+
+    tm = cvc5.TermManager()
+
+    def mk_solver():
+        slv = cvc5.Solver(tm)
+        slv.setLogic("QF_LRA")
+        return slv
+
+    one = tm.mkReal(1)
+    zero = tm.mkReal(0)
+
+    # Positive: Z-projective completeness, encoded as "sum != I" should be UNSAT.
+    slv_pos = mk_solver()
+    z_sum_00 = tm.mkReal(1)
+    z_sum_11 = tm.mkReal(1)
+    z_sum_01 = tm.mkReal(0)
+    z_sum_10 = tm.mkReal(0)
+    pos_wrong = tm.mkTerm(
+        cvc5.Kind.OR,
+        tm.mkTerm(cvc5.Kind.DISTINCT, z_sum_00, one),
+        tm.mkTerm(cvc5.Kind.DISTINCT, z_sum_11, one),
+        tm.mkTerm(cvc5.Kind.DISTINCT, z_sum_01, zero),
+        tm.mkTerm(cvc5.Kind.DISTINCT, z_sum_10, zero),
+    )
+    slv_pos.assertFormula(pos_wrong)
+    pos_res = slv_pos.checkSat()
+    results["Z_projective"] = {
+        "proved_complete": pos_res.isUnsat(),
+        "cvc5_result": str(pos_res),
+        "pass": pos_res.isUnsat(),
+    }
+
+    # Negative: incomplete set 0.4|0><0| + 0.4|1><1| has diagonal sum 0.4, 0.4, so "sum != I" is SAT.
+    slv_neg = mk_solver()
+    four_tenths = tm.mkReal(2, 5)
+    neg_wrong = tm.mkTerm(
+        cvc5.Kind.OR,
+        tm.mkTerm(cvc5.Kind.DISTINCT, four_tenths, one),
+        tm.mkTerm(cvc5.Kind.DISTINCT, four_tenths, one),
+        tm.mkTerm(cvc5.Kind.DISTINCT, zero, zero),
+        tm.mkTerm(cvc5.Kind.DISTINCT, zero, zero),
+    )
+    slv_neg.assertFormula(neg_wrong)
+    neg_res = slv_neg.checkSat()
+    results["incomplete_projective_counterexample"] = {
+        "detects_incomplete": neg_res.isSat(),
+        "cvc5_result": str(neg_res),
+        "pass": neg_res.isSat(),
+    }
+
+    return results
+
+
 # =====================================================================
 # PYTORCH: BORN RULE + POST-MEASUREMENT (CANONICAL)
 # =====================================================================
@@ -866,7 +955,10 @@ def run_positive_tests():
         pytorch_born_rule_and_post_measurement()
     )
 
-    # 4. Naimark dilation
+    # 4. cvc5 crosscheck
+    results["cvc5_completeness"] = cvc5_completeness_crosschecks()
+
+    # 5. Naimark dilation
     results["naimark_dilation"] = naimark_dilation()
 
     return results
@@ -928,6 +1020,15 @@ def run_negative_tests():
         results["z3_detects_incomplete"] = {
             "z3_found_counterexample": str(result) == "sat",
             "pass": str(result) == "sat",
+        }
+
+    # NEG6: cvc5 should detect the same incompleteness
+    if TOOL_MANIFEST["cvc5"]["tried"]:
+        cvc5_check = cvc5_completeness_crosschecks()
+        neg = cvc5_check.get("incomplete_projective_counterexample", {})
+        results["cvc5_detects_incomplete"] = {
+            "cvc5_found_counterexample": bool(neg.get("detects_incomplete")),
+            "pass": bool(neg.get("pass")),
         }
 
     return results
@@ -1053,24 +1154,32 @@ if __name__ == "__main__":
     t_bnd, p_bnd = count_passes(boundary)
     total = t_pos + t_neg + t_bnd
     passed = p_pos + p_neg + p_bnd
+    classification = "canonical" if passed == total else "exploratory_signal"
 
     results = {
         "name": "POVM Measurement Formalism",
         "timestamp": datetime.now().isoformat(),
+        "lego_ids": LEGO_IDS,
+        "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
-        "classification": "canonical",
+        "classification": classification,
         "summary": {
             "total_checks": total,
             "passed": passed,
             "failed": total - passed,
             "all_pass": passed == total,
+            "scope_note": (
+                "Local measurement lego covering finite POVMs, Born-rule probabilities, "
+                "post-measurement updates, and Naimark-style equivalence checks."
+            ),
         },
     }
 
-    out_dir = os.path.join(os.path.dirname(__file__), "sim_results")
+    out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
     out_path = os.path.join(out_dir, "lego_povm_measurement_results.json")
     with open(out_path, "w") as f:

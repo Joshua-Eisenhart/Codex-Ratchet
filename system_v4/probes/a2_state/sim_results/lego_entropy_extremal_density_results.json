@@ -1,0 +1,305 @@
+{
+  "name": "lego_entropy_extremal_density",
+  "schema": "lego_entropy_extremal_density/v1",
+  "description": "Pure-math density-matrix lego for min-entropy, max-entropy, and explicit regularized proxy approximations.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure-math numpy baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "pure-math numpy baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this entropy lego"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this entropy lego"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this entropy lego"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this entropy lego"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this entropy lego"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this entropy lego"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this entropy lego"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this entropy lego"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this entropy lego"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this entropy lego"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "exact_spectrum_matches": {
+      "pure_qubit": {
+        "min_entropy": -0.0,
+        "min_entropy_expected": -0.0,
+        "min_entropy_pass": true,
+        "max_entropy": 0.0,
+        "max_entropy_expected": 0.0,
+        "max_entropy_pass": true,
+        "dimension": 2
+      },
+      "balanced_qubit": {
+        "min_entropy": 1.0,
+        "min_entropy_expected": 1.0,
+        "min_entropy_pass": true,
+        "max_entropy": 0.9999999999999998,
+        "max_entropy_expected": 1.0000000000000002,
+        "max_entropy_pass": true,
+        "dimension": 2
+      },
+      "skew_qubit": {
+        "min_entropy": 0.3219280948873623,
+        "min_entropy_expected": 0.3219280948873623,
+        "min_entropy_pass": true,
+        "max_entropy": 0.8479969065549501,
+        "max_entropy_expected": 0.8479969065549501,
+        "max_entropy_pass": true,
+        "dimension": 2
+      },
+      "rank2_qutrit": {
+        "min_entropy": 0.736965594166206,
+        "min_entropy_expected": 0.7369655941662062,
+        "min_entropy_pass": true,
+        "max_entropy": 0.9853517063653559,
+        "max_entropy_expected": 0.9853517063653559,
+        "max_entropy_pass": true,
+        "dimension": 3
+      },
+      "generic_qutrit": {
+        "min_entropy": 1.0000000000000002,
+        "min_entropy_expected": 1.0,
+        "min_entropy_pass": true,
+        "max_entropy": 1.534534859199537,
+        "max_entropy_expected": 1.534534859199537,
+        "max_entropy_pass": true,
+        "dimension": 3
+      }
+    },
+    "ordering_checks": {
+      "pure_qubit": {
+        "min_leq_max": true,
+        "bounded_above_by_log_dim": true
+      },
+      "balanced_qubit": {
+        "min_leq_max": true,
+        "bounded_above_by_log_dim": true
+      },
+      "skew_qubit": {
+        "min_leq_max": true,
+        "bounded_above_by_log_dim": true
+      },
+      "rank2_qutrit": {
+        "min_leq_max": true,
+        "bounded_above_by_log_dim": true
+      },
+      "generic_qutrit": {
+        "min_leq_max": true,
+        "bounded_above_by_log_dim": true
+      }
+    },
+    "unitary_invariance": {
+      "pure_qubit": {
+        "min_invariant": true,
+        "max_invariant": true
+      },
+      "balanced_qubit": {
+        "min_invariant": true,
+        "max_invariant": true
+      },
+      "skew_qubit": {
+        "min_invariant": true,
+        "max_invariant": true
+      },
+      "rank2_qutrit": {
+        "min_invariant": true,
+        "max_invariant": true
+      },
+      "generic_qutrit": {
+        "min_invariant": true,
+        "max_invariant": true
+      }
+    },
+    "regularized_proxy_trace": [
+      {
+        "eps": 0.0,
+        "min_entropy_approx": 0.3584539709124763,
+        "max_entropy_approx": 0.8706547936256409,
+        "trace_error": 0.0,
+        "hermitian_error": 0.0
+      },
+      {
+        "eps": 0.05,
+        "min_entropy_approx": 0.38458370273712994,
+        "max_entropy_approx": 0.8849841664711269,
+        "trace_error": 0.0,
+        "hermitian_error": 0.0
+      },
+      {
+        "eps": 0.15,
+        "min_entropy_approx": 0.438307278601691,
+        "max_entropy_approx": 0.9103069117396975,
+        "trace_error": 0.0,
+        "hermitian_error": 0.0
+      },
+      {
+        "eps": 0.3,
+        "min_entropy_approx": 0.5228407888133588,
+        "max_entropy_approx": 0.9410801744358777,
+        "trace_error": 0.0,
+        "hermitian_error": 0.0
+      }
+    ],
+    "regularized_proxy_pass": true,
+    "pass": true,
+    "elapsed_s": 0.0028581619262695312
+  },
+  "negative": {
+    "vN_equals_min_entropy": {
+      "claim": "Von Neumann entropy equals min-entropy for generic mixed states",
+      "counterexample": {
+        "spectrum": [
+          0.8,
+          0.2
+        ],
+        "von_neumann_entropy": 0.7219280948873623,
+        "min_entropy": 0.3219280948873623
+      },
+      "claim_holds": false,
+      "pass": true
+    },
+    "vN_equals_max_entropy": {
+      "claim": "Von Neumann entropy equals max-entropy for generic mixed states",
+      "counterexample": {
+        "spectrum": [
+          0.8,
+          0.2
+        ],
+        "von_neumann_entropy": 0.7219280948873623,
+        "max_entropy": 0.8479969065549501
+      },
+      "claim_holds": false,
+      "pass": true
+    },
+    "proxy_equals_exact_for_positive_eps": {
+      "claim": "Regularized proxy entropies equal the exact entropies for eps > 0",
+      "counterexample": {
+        "eps": 0.2,
+        "approx_min_entropy": 0.4344028241457747,
+        "exact_min_entropy": 0.3219280948873623,
+        "approx_max_entropy": 0.90863499996873,
+        "exact_max_entropy": 0.8479969065549501
+      },
+      "claim_holds": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "boundary_cases": {
+      "pure_qubit": {
+        "min_entropy": -0.0,
+        "max_entropy": 0.0,
+        "trace": 1.0,
+        "hermitian_error": 0.0
+      },
+      "maximally_mixed_qubit": {
+        "min_entropy": 1.0,
+        "max_entropy": 1.0000000000000002,
+        "trace": 1.0,
+        "hermitian_error": 0.0
+      },
+      "rank2_qutrit_edge": {
+        "min_entropy": 0.4150374992788438,
+        "max_entropy": 0.8999686269529916,
+        "trace": 1.0,
+        "hermitian_error": 0.0
+      },
+      "near_pure_qubit": {
+        "min_entropy": 0.0014434168696687186,
+        "max_entropy": 0.08843190157669677,
+        "trace": 1.0,
+        "hermitian_error": 0.0
+      }
+    },
+    "regularized_proxy_boundary_trace": [
+      {
+        "eps": 0.0,
+        "min_entropy_approx": 0.0014434168696687186,
+        "max_entropy_approx": 0.08843190157669677
+      },
+      {
+        "eps": 0.05,
+        "min_entropy_approx": 0.03793226416023794,
+        "max_entropy_approx": 0.39832006042250717
+      },
+      {
+        "eps": 0.2,
+        "min_entropy_approx": 0.1532860593285233,
+        "max_entropy_approx": 0.679988899913696
+      }
+    ],
+    "pure_state_zero_entropy": true,
+    "maximally_mixed_qubit_one_bit": true,
+    "rank_edge_matches_spectrum": true,
+    "proxy_moves_toward_mixing": true,
+    "pass": true
+  },
+  "classification": "classical_baseline",
+  "summary": {
+    "positive_pass": true,
+    "negative_pass": true,
+    "boundary_pass": true,
+    "all_pass": true
+  },
+  "classification_note": "Reclassified 2026-04-08: no tools used (all null in tool_integration_depth). Cannot meet canonical load_bearing requirement. numpy-only baseline."
+}

@@ -1,0 +1,483 @@
+{
+  "name": "lego_entropy_multipartite_cuts",
+  "schema": "lego_entropy_multipartite_cuts/v1",
+  "description": "Pure-math 3-qubit lego for reduced entropies, cut entanglement entropy, entanglement spectra, tripartite mutual information, and GHZ-white-noise thresholds.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure-math numpy baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "pure-math numpy baseline"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pure_state_checks": {
+      "product_000": {
+        "single_qubit_entropies": {
+          "A": -0.0,
+          "B": -0.0,
+          "C": -0.0
+        },
+        "pair_entropies": {
+          "AB": -0.0,
+          "AC": -0.0,
+          "BC": -0.0
+        },
+        "tripartite_mutual_information": 0.0,
+        "cut_entropies": {
+          "A|BC": -0.0,
+          "B|AC": -0.0,
+          "C|AB": -0.0
+        },
+        "cut_negativities": {
+          "A|BC": 0.0,
+          "B|AC": 0.0,
+          "C|AB": 0.0
+        },
+        "cut_log_negativities": {
+          "A|BC": 0.0,
+          "B|AC": 0.0,
+          "C|AB": 0.0
+        }
+      },
+      "ghz": {
+        "single_qubit_entropies": {
+          "A": 1.0,
+          "B": 1.0,
+          "C": 1.0
+        },
+        "pair_entropies": {
+          "AB": 1.0,
+          "AC": 1.0,
+          "BC": 1.0
+        },
+        "tripartite_mutual_information": 0.0,
+        "cut_entropies": {
+          "A|BC": 1.0,
+          "B|AC": 1.0,
+          "C|AB": 1.0
+        },
+        "cut_negativities": {
+          "A|BC": 0.5,
+          "B|AC": 0.5,
+          "C|AB": 0.5
+        },
+        "cut_log_negativities": {
+          "A|BC": 1.0,
+          "B|AC": 1.0,
+          "C|AB": 1.0
+        }
+      },
+      "w": {
+        "single_qubit_entropies": {
+          "A": 0.9182958340544896,
+          "B": 0.9182958340544896,
+          "C": 0.9182958340544896
+        },
+        "pair_entropies": {
+          "AB": 0.9182958340544896,
+          "AC": 0.9182958340544896,
+          "BC": 0.9182958340544896
+        },
+        "tripartite_mutual_information": 0.0,
+        "cut_entropies": {
+          "A|BC": 0.9182958340544896,
+          "B|AC": 0.9182958340544896,
+          "C|AB": 0.9182958340544896
+        },
+        "cut_negativities": {
+          "A|BC": 0.4714045207910318,
+          "B|AC": 0.4714045207910319,
+          "C|AB": 0.47140452079103157
+        },
+        "cut_log_negativities": {
+          "A|BC": 0.9581441056060679,
+          "B|AC": 0.9581441056060681,
+          "C|AB": 0.9581441056060676
+        }
+      },
+      "bell_ab_tensor_0": {
+        "single_qubit_entropies": {
+          "A": 1.0,
+          "B": 1.0,
+          "C": -0.0
+        },
+        "pair_entropies": {
+          "AB": -0.0,
+          "AC": 1.0,
+          "BC": 1.0
+        },
+        "tripartite_mutual_information": 0.0,
+        "cut_entropies": {
+          "A|BC": 1.0,
+          "B|AC": 1.0,
+          "C|AB": -0.0
+        },
+        "cut_negativities": {
+          "A|BC": 0.5,
+          "B|AC": 0.5,
+          "C|AB": 0.0
+        },
+        "cut_log_negativities": {
+          "A|BC": 1.0,
+          "B|AC": 1.0,
+          "C|AB": 0.0
+        }
+      }
+    },
+    "exact_checks": {
+      "ghz_single_entropies_one": true,
+      "ghz_pair_entropies_one": true,
+      "ghz_cut_entropy_one": true,
+      "ghz_tmi_zero": "True",
+      "ghz_negativity_half": true,
+      "ghz_logneg_one": true,
+      "w_single_equal": true,
+      "w_pair_equal": true,
+      "w_cut_equal": true,
+      "product_zero_all": true,
+      "bell0_asymmetric_cuts": "True"
+    },
+    "noisy_ghz_trace": [
+      {
+        "p": 0.0,
+        "single_qubit_entropies": {
+          "A": 1.0,
+          "B": 1.0,
+          "C": 1.0
+        },
+        "tripartite_mutual_information": 0.0,
+        "negativities": {
+          "A|BC": 0.0,
+          "B|AC": 0.0,
+          "C|AB": 0.0
+        },
+        "log_negativities": {
+          "A|BC": 0.0,
+          "B|AC": 0.0,
+          "C|AB": 0.0
+        },
+        "expected_negativity": 0.0,
+        "expected_log_negativity": 0.0
+      },
+      {
+        "p": 0.1,
+        "single_qubit_entropies": {
+          "A": 1.0,
+          "B": 1.0,
+          "C": 1.0
+        },
+        "tripartite_mutual_information": -0.02129705947758076,
+        "negativities": {
+          "A|BC": 0.0,
+          "B|AC": 0.0,
+          "C|AB": 0.0
+        },
+        "log_negativities": {
+          "A|BC": 0.0,
+          "B|AC": 0.0,
+          "C|AB": 0.0
+        },
+        "expected_negativity": 0.0,
+        "expected_log_negativity": 0.0
+      },
+      {
+        "p": 0.2,
+        "single_qubit_entropies": {
+          "A": 1.0,
+          "B": 1.0,
+          "C": 1.0
+        },
+        "tripartite_mutual_information": -0.06641243869299096,
+        "negativities": {
+          "A|BC": 0.0,
+          "B|AC": 0.0,
+          "C|AB": 0.0
+        },
+        "log_negativities": {
+          "A|BC": 0.0,
+          "B|AC": 0.0,
+          "C|AB": 0.0
+        },
+        "expected_negativity": 0.0,
+        "expected_log_negativity": 0.0
+      },
+      {
+        "p": 0.25,
+        "single_qubit_entropies": {
+          "A": 1.0,
+          "B": 1.0,
+          "C": 1.0
+        },
+        "tripartite_mutual_information": -0.09261326877972387,
+        "negativities": {
+          "A|BC": 0.03125,
+          "B|AC": 0.03125,
+          "C|AB": 0.03125
+        },
+        "log_negativities": {
+          "A|BC": 0.0874628412503394,
+          "B|AC": 0.0874628412503394,
+          "C|AB": 0.0874628412503394
+        },
+        "expected_negativity": 0.03125,
+        "expected_log_negativity": 0.0874628412503394
+      },
+      {
+        "p": 0.5,
+        "single_qubit_entropies": {
+          "A": 1.0,
+          "B": 1.0,
+          "C": 1.0
+        },
+        "tripartite_mutual_information": -0.21691718668869964,
+        "negativities": {
+          "A|BC": 0.1875,
+          "B|AC": 0.1875,
+          "C|AB": 0.1875
+        },
+        "log_negativities": {
+          "A|BC": 0.45943161863729726,
+          "B|AC": 0.45943161863729726,
+          "C|AB": 0.45943161863729726
+        },
+        "expected_negativity": 0.1875,
+        "expected_log_negativity": 0.45943161863729726
+      },
+      {
+        "p": 1.0,
+        "single_qubit_entropies": {
+          "A": 1.0,
+          "B": 1.0,
+          "C": 1.0
+        },
+        "tripartite_mutual_information": 0.0,
+        "negativities": {
+          "A|BC": 0.5,
+          "B|AC": 0.5,
+          "C|AB": 0.5
+        },
+        "log_negativities": {
+          "A|BC": 1.0,
+          "B|AC": 1.0,
+          "C|AB": 1.0
+        },
+        "expected_negativity": 0.5,
+        "expected_log_negativity": 1.0
+      }
+    ],
+    "noisy_ghz_pass": true,
+    "pass": true,
+    "elapsed_s": 0.008835077285766602
+  },
+  "negative": {
+    "product_state_has_nonzero_cut_entropy": {
+      "claim": "Product state has nonzero entanglement entropy and negativity across a cut",
+      "cut_entropy_A|BC": -0.0,
+      "negativity_A|BC": 0.0,
+      "claim_holds": false,
+      "pass": true
+    },
+    "ghz_is_separable": {
+      "claim": "GHZ state is separable across every bipartition",
+      "cut_entropy_A|BC": 1.0,
+      "negativity_A|BC": 0.5,
+      "claim_holds": false,
+      "pass": true
+    },
+    "noisy_ghz_is_separable_at_p_half": {
+      "claim": "GHZ white-noise mixture at p=0.5 is separable across all cuts",
+      "negativity_A|BC": 0.1875,
+      "negativity_B|AC": 0.1875,
+      "negativity_C|AB": 0.1875,
+      "claim_holds": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "product_zero_entanglement": {
+      "single_qubit_entropies": {
+        "A": -0.0,
+        "B": -0.0,
+        "C": -0.0
+      },
+      "pair_entropies": {
+        "AB": -0.0,
+        "AC": -0.0,
+        "BC": -0.0
+      },
+      "tripartite_mutual_information": 0.0,
+      "pass": true
+    },
+    "ghz_max_cut_entropy": {
+      "cut_entropies": {
+        "A|BC": 1.0,
+        "B|AC": 1.0,
+        "C|AB": 1.0
+      },
+      "negativities": {
+        "A|BC": 0.5,
+        "B|AC": 0.5,
+        "C|AB": 0.5
+      },
+      "log_negativities": {
+        "A|BC": 1.0,
+        "B|AC": 1.0,
+        "C|AB": 1.0
+      },
+      "tripartite_mutual_information": 0.0,
+      "pass": true
+    },
+    "w_symmetric_cut_structure": {
+      "single_qubit_entropies": {
+        "A": 0.9182958340544896,
+        "B": 0.9182958340544896,
+        "C": 0.9182958340544896
+      },
+      "pair_entropies": {
+        "AB": 0.9182958340544896,
+        "AC": 0.9182958340544896,
+        "BC": 0.9182958340544896
+      },
+      "cut_entropies": {
+        "A|BC": 0.9182958340544896,
+        "B|AC": 0.9182958340544896,
+        "C|AB": 0.9182958340544896
+      },
+      "negativities": {
+        "A|BC": 0.4714045207910318,
+        "B|AC": 0.4714045207910319,
+        "C|AB": 0.47140452079103157
+      },
+      "pass": true
+    },
+    "bell_pair_boundary_asymmetry": {
+      "single_qubit_entropies": {
+        "A": 1.0,
+        "B": 1.0,
+        "C": -0.0
+      },
+      "pair_entropies": {
+        "AB": -0.0,
+        "AC": 1.0,
+        "BC": 1.0
+      },
+      "cut_entropies": {
+        "A|BC": 1.0,
+        "B|AC": 1.0,
+        "C|AB": -0.0
+      },
+      "negativities": {
+        "A|BC": 0.5,
+        "B|AC": 0.5,
+        "C|AB": 0.0
+      },
+      "pass": true
+    },
+    "werner_threshold_p_one_fifth": {
+      "p": 0.2,
+      "negativities": {
+        "A|BC": 0.0,
+        "B|AC": 0.0,
+        "C|AB": 0.0
+      },
+      "log_negativities": {
+        "A|BC": 0.0,
+        "B|AC": 0.0,
+        "C|AB": 0.0
+      },
+      "pass": true
+    },
+    "nearly_pure_noise_has_small_entropy_growth": {
+      "p": 0.95,
+      "single_qubit_entropies": {
+        "A": 1.0,
+        "B": 1.0,
+        "C": 1.0
+      },
+      "negativities": {
+        "A|BC": 0.4687499999999999,
+        "B|AC": 0.4687499999999999,
+        "C|AB": 0.4687499999999999
+      },
+      "pass": true
+    },
+    "pass": true
+  },
+  "classification": "classical_baseline",
+  "summary": {
+    "total_tests": 9,
+    "passed": 9,
+    "failed": 0,
+    "all_pass": true
+  },
+  "classification_note": "Reclassified 2026-04-08: no tools used (all null in tool_integration_depth). Cannot meet canonical load_bearing requirement. numpy-only baseline."
+}

@@ -1,0 +1,392 @@
+{
+  "name": "Choi-Jamiolkowski Isomorphism -- Channel-State Duality",
+  "probe": "lego_choi_state_duality",
+  "purpose": "Validate channel-state duality, CP/TP Choi criteria, and Kraus recovery for canonical qubit channels",
+  "lego_ids": [
+    "channel_cptp_map",
+    "kraus_operator_sum"
+  ],
+  "primary_lego_ids": [
+    "channel_cptp_map",
+    "kraus_operator_sum"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core compute: Choi matrices, eigendecomposition, partial trace, Kraus recovery, all channel arithmetic"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Prove CP <=> PSD equivalence; verify non-CP channel has negative eigenvalue; symbolic constraint proofs"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Choi matrix construction for identity channel; verify Bell state structure analytically"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supporting",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "tools_used": [
+    "pytorch",
+    "z3",
+    "sympy"
+  ],
+  "positive": {
+    "identity": {
+      "choi_shape": [
+        4,
+        4
+      ],
+      "choi_trace": 0.9999999999999998,
+      "choi_hermitian": true,
+      "cp_verified": true,
+      "choi_eigenvalues": [
+        0.0,
+        0.0,
+        0.0,
+        0.9999999999999998
+      ],
+      "min_eigenvalue": 0.0,
+      "tp_verified": true,
+      "partial_trace_diff": 1.1102230246251565e-16,
+      "original_kraus_count": 1,
+      "recovered_kraus_count": 1,
+      "choi_rank": 1,
+      "kraus_recovery_match": true,
+      "kraus_recovery_max_diff": 4.440892098500626e-16,
+      "original_completeness_diff": 0.0,
+      "recovered_completeness_diff": 4.440892098500626e-16,
+      "passed": true
+    },
+    "z_dephasing": {
+      "choi_shape": [
+        4,
+        4
+      ],
+      "choi_trace": 0.9999999999999998,
+      "choi_hermitian": true,
+      "cp_verified": true,
+      "choi_eigenvalues": [
+        -2.9347503914472176e-32,
+        0.0,
+        0.2999999999999999,
+        0.6999999999999997
+      ],
+      "min_eigenvalue": -2.9347503914472176e-32,
+      "tp_verified": true,
+      "partial_trace_diff": 1.1102230246251565e-16,
+      "original_kraus_count": 2,
+      "recovered_kraus_count": 2,
+      "choi_rank": 2,
+      "kraus_recovery_match": true,
+      "kraus_recovery_max_diff": 8.881784197001252e-16,
+      "original_completeness_diff": 0.0,
+      "recovered_completeness_diff": 8.881784197001252e-16,
+      "passed": true
+    },
+    "amplitude_damping": {
+      "choi_shape": [
+        4,
+        4
+      ],
+      "choi_trace": 0.9999999999999998,
+      "choi_hermitian": true,
+      "cp_verified": true,
+      "choi_eigenvalues": [
+        0.0,
+        9.575673587391976e-17,
+        0.19999999999999996,
+        0.7999999999999997
+      ],
+      "min_eigenvalue": 0.0,
+      "tp_verified": true,
+      "partial_trace_diff": 1.1102230246251565e-16,
+      "original_kraus_count": 2,
+      "recovered_kraus_count": 2,
+      "choi_rank": 2,
+      "kraus_recovery_match": true,
+      "kraus_recovery_max_diff": 2.220446049250313e-16,
+      "original_completeness_diff": 0.0,
+      "recovered_completeness_diff": 2.220446049250313e-16,
+      "passed": true
+    },
+    "depolarizing": {
+      "choi_shape": [
+        4,
+        4
+      ],
+      "choi_trace": 0.9999999999999998,
+      "choi_hermitian": true,
+      "cp_verified": true,
+      "choi_eigenvalues": [
+        0.04999999999999979,
+        0.049999999999999975,
+        0.05000000000000001,
+        0.8499999999999999
+      ],
+      "min_eigenvalue": 0.04999999999999979,
+      "tp_verified": true,
+      "partial_trace_diff": 1.1102230246251565e-16,
+      "original_kraus_count": 4,
+      "recovered_kraus_count": 4,
+      "choi_rank": 4,
+      "kraus_recovery_match": true,
+      "kraus_recovery_max_diff": 5.551115123125783e-16,
+      "original_completeness_diff": 2.220446049250313e-16,
+      "recovered_completeness_diff": 5.551115123125783e-16,
+      "passed": true
+    },
+    "bit_flip": {
+      "choi_shape": [
+        4,
+        4
+      ],
+      "choi_trace": 0.9999999999999998,
+      "choi_hermitian": true,
+      "cp_verified": true,
+      "choi_eigenvalues": [
+        9.416880621897533e-18,
+        4.119078558393246e-17,
+        0.2999999999999999,
+        0.7
+      ],
+      "min_eigenvalue": 9.416880621897533e-18,
+      "tp_verified": true,
+      "partial_trace_diff": 1.1102230246251565e-16,
+      "original_kraus_count": 2,
+      "recovered_kraus_count": 2,
+      "choi_rank": 2,
+      "kraus_recovery_match": true,
+      "kraus_recovery_max_diff": 5.551115123125783e-16,
+      "original_completeness_diff": 0.0,
+      "recovered_completeness_diff": 4.440892098500626e-16,
+      "passed": true
+    },
+    "identity_choi_is_bell_state": {
+      "diff": 0.0,
+      "passed": true
+    },
+    "choi_rank_equals_kraus_count": {
+      "identity": {
+        "choi_rank": 1,
+        "kraus_count": 1,
+        "match": true
+      },
+      "z_dephasing": {
+        "choi_rank": 2,
+        "kraus_count": 2,
+        "match": true
+      },
+      "amplitude_damping": {
+        "choi_rank": 2,
+        "kraus_count": 2,
+        "match": true
+      },
+      "depolarizing": {
+        "choi_rank": 4,
+        "kraus_count": 4,
+        "match": true
+      },
+      "bit_flip": {
+        "choi_rank": 2,
+        "kraus_count": 2,
+        "match": true
+      }
+    },
+    "sympy_bell_verification": {
+      "rank": 1,
+      "matches_bell_projector": true,
+      "bell_state_entries": "[[1/2, 0, 0, 1/2], [0, 0, 0, 0], [0, 0, 0, 0], [1/2, 0, 0, 1/2]]",
+      "passed": true
+    },
+    "z3_cp_psd_equivalence": {
+      "psd_implies_no_negative_eigenvalue": true,
+      "not_psd_implies_negative_eigenvalue": true,
+      "cp_iff_psd_proven": true,
+      "passed": true
+    },
+    "z3_non_cp_negative_eigenvalue": {
+      "non_cp_implies_negative_eigenvalue": true,
+      "proof_method": "z3 unsat check: not_CP AND all_eigenvalues>=0 is unsatisfiable",
+      "passed": true
+    },
+    "elapsed_s": 0.0833
+  },
+  "negative": {
+    "transpose_map_non_cp": {
+      "is_psd": false,
+      "eigenvalues": [
+        -0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "has_negative_eigenvalue": true,
+      "min_eigenvalue": -0.5,
+      "passed": true
+    },
+    "amplifying_map_non_tp": {
+      "partial_trace_diff": 0.5,
+      "is_tp": false,
+      "passed": true
+    },
+    "zero_channel": {
+      "is_psd": true,
+      "trace": 0.0,
+      "is_valid_cptp": false,
+      "passed": true
+    },
+    "non_cp_kraus_recovery_incomplete": {
+      "negative_eigenvalues_skipped": 1,
+      "recovered_kraus_count": 3,
+      "total_eigenvalues": 4,
+      "passed": true
+    },
+    "different_params_different_choi": {
+      "max_diff": 0.7999999999999997,
+      "passed": true
+    },
+    "elapsed_s": 0.0012
+  },
+  "boundary": {
+    "z_dephasing_p0": {
+      "diff_from_identity_choi": 0.0,
+      "passed": true
+    },
+    "bit_flip_p0": {
+      "diff_from_identity_choi": 0.0,
+      "passed": true
+    },
+    "depolarizing_p0": {
+      "diff_from_identity_choi": 0.0,
+      "passed": true
+    },
+    "amplitude_damping_g0": {
+      "diff_from_identity_choi": 0.0,
+      "passed": true
+    },
+    "amplitude_damping_g1": {
+      "eigenvalues": [
+        0.0,
+        0.0,
+        0.4999999999999999,
+        0.4999999999999999
+      ],
+      "choi_rank": 2,
+      "is_psd": true,
+      "passed": true
+    },
+    "depolarizing_p1_is_maximally_mixed": {
+      "diff_from_expected": 5.551115123125783e-17,
+      "passed": true
+    },
+    "tiny_parameter_near_identity": {
+      "diff": 1.0547118733938987e-15,
+      "passed": true
+    },
+    "all_choi_traces_equal_one": {
+      "details": {
+        "identity": {
+          "trace": 0.9999999999999998,
+          "is_one": true
+        },
+        "z_dephasing": {
+          "trace": 1.0,
+          "is_one": true
+        },
+        "amplitude_damping": {
+          "trace": 0.9999999999999999,
+          "is_one": true
+        },
+        "depolarizing": {
+          "trace": 0.9999999999999998,
+          "is_one": true
+        },
+        "bit_flip": {
+          "trace": 1.0,
+          "is_one": true
+        }
+      },
+      "passed": true
+    },
+    "elapsed_s": 0.0008
+  },
+  "summary": {
+    "positive": {
+      "passed": 9,
+      "failed": 0
+    },
+    "negative": {
+      "passed": 5,
+      "failed": 0
+    },
+    "boundary": {
+      "passed": 8,
+      "failed": 0
+    },
+    "total_passed": 22,
+    "total_failed": 0,
+    "all_passed": true
+  },
+  "classification": "canonical"
+}

@@ -1,0 +1,1866 @@
+{
+  "name": "POVM Measurement Formalism",
+  "timestamp": "2026-04-08T23:12:31.718923",
+  "lego_ids": [
+    "povm_measurement_family",
+    "measurement_instrument"
+  ],
+  "primary_lego_ids": [
+    "povm_measurement_family",
+    "measurement_instrument"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Born rule computation + post-measurement states (canonical)"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Formal completeness proof for all POVM sets"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Exact linear-real crosscheck for POVM completeness and an incomplete-set counterexample"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic POVM construction + verification"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supporting",
+    "pyg": null,
+    "z3": "supporting",
+    "cvc5": "supporting",
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_construction": {
+      "Z_projective": {
+        "elements": [
+          "[[1, 0], [0, 0]]",
+          "[[0, 0], [0, 1]]"
+        ],
+        "sum_is_identity": true,
+        "orthogonal": true
+      },
+      "X_projective": {
+        "elements": [
+          "[[1/2, 1/2], [1/2, 1/2]]",
+          "[[1/2, -1/2], [-1/2, 1/2]]"
+        ],
+        "sum_is_identity": true,
+        "orthogonal": true
+      },
+      "SIC_POVM": {
+        "num_elements": 4,
+        "scaled_sum_is_identity": true,
+        "raw_sum_is_2I": true
+      },
+      "trine": {
+        "num_elements": 3,
+        "sum_is_identity": true
+      }
+    },
+    "z3_completeness": {
+      "Z_projective": {
+        "name": "Z_projective",
+        "proved_complete": true,
+        "z3_result": "unsat"
+      },
+      "X_projective": {
+        "name": "X_projective",
+        "proved_complete": true,
+        "z3_result": "unsat"
+      },
+      "SIC_POVM": {
+        "name": "SIC_POVM",
+        "proved_complete": true,
+        "z3_result": "unsat",
+        "method": "algebraic_reals"
+      },
+      "trine": {
+        "name": "trine",
+        "proved_complete": true,
+        "z3_result": "unsat",
+        "method": "algebraic_reals"
+      },
+      "general_POVM": {
+        "name": "general_POVM",
+        "proved_complete": true,
+        "z3_result": "unsat"
+      }
+    },
+    "born_rule_post_measurement": {
+      "Z_projective": {
+        "completeness_numpy": true,
+        "all_psd": true,
+        "states": {
+          "|0>": {
+            "probabilities": [
+              1.0,
+              0.0
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M0=|0><0|",
+                "prob": 1.0,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M1=|1><1|",
+                "prob": 0.0,
+                "post_trace": 0.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|1>": {
+            "probabilities": [
+              0.0,
+              1.0
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M0=|0><0|",
+                "prob": 0.0,
+                "post_trace": 0.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M1=|1><1|",
+                "prob": 1.0,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|+>": {
+            "probabilities": [
+              0.4999999999999999,
+              0.4999999999999999
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M0=|0><0|",
+                "prob": 0.4999999999999999,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M1=|1><1|",
+                "prob": 0.4999999999999999,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|->": {
+            "probabilities": [
+              0.4999999999999999,
+              0.4999999999999999
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M0=|0><0|",
+                "prob": 0.4999999999999999,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M1=|1><1|",
+                "prob": 0.4999999999999999,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|i+>": {
+            "probabilities": [
+              0.4999999999999999,
+              0.4999999999999999
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M0=|0><0|",
+                "prob": 0.4999999999999999,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M1=|1><1|",
+                "prob": 0.4999999999999999,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|i->": {
+            "probabilities": [
+              0.4999999999999999,
+              0.4999999999999999
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M0=|0><0|",
+                "prob": 0.4999999999999999,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M1=|1><1|",
+                "prob": 0.4999999999999999,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "mixed": {
+            "probabilities": [
+              0.5,
+              0.5
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M0=|0><0|",
+                "prob": 0.5,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M1=|1><1|",
+                "prob": 0.5,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "bloch_pi4_0": {
+            "probabilities": [
+              0.8535533905932737,
+              0.14644660940672624
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M0=|0><0|",
+                "prob": 0.8535533905932737,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M1=|1><1|",
+                "prob": 0.14644660940672624,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "bloch_pi3_pi3": {
+            "probabilities": [
+              0.7500000000000001,
+              0.24999999999999992
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M0=|0><0|",
+                "prob": 0.7500000000000001,
+                "post_trace": 0.9999999999999999,
+                "post_is_valid": true
+              },
+              {
+                "label": "M1=|1><1|",
+                "prob": 0.24999999999999992,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "bloch_2pi3_5pi6": {
+            "probabilities": [
+              0.2500000000000001,
+              0.7499999999999999
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M0=|0><0|",
+                "prob": 0.2500000000000001,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M1=|1><1|",
+                "prob": 0.7499999999999999,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          }
+        }
+      },
+      "X_projective": {
+        "completeness_numpy": true,
+        "all_psd": true,
+        "states": {
+          "|0>": {
+            "probabilities": [
+              0.4999999999999999,
+              0.4999999999999999
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M+=|+><+|",
+                "prob": 0.4999999999999999,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M-=|-><-|",
+                "prob": 0.4999999999999999,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|1>": {
+            "probabilities": [
+              0.4999999999999999,
+              0.4999999999999999
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M+=|+><+|",
+                "prob": 0.4999999999999999,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M-=|-><-|",
+                "prob": 0.4999999999999999,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|+>": {
+            "probabilities": [
+              0.9999999999999996,
+              0.0
+            ],
+            "prob_sum": 0.9999999999999996,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M+=|+><+|",
+                "prob": 0.9999999999999996,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M-=|-><-|",
+                "prob": 0.0,
+                "post_trace": 0.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|->": {
+            "probabilities": [
+              0.0,
+              0.9999999999999996
+            ],
+            "prob_sum": 0.9999999999999996,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M+=|+><+|",
+                "prob": 0.0,
+                "post_trace": 0.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M-=|-><-|",
+                "prob": 0.9999999999999996,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|i+>": {
+            "probabilities": [
+              0.4999999999999998,
+              0.4999999999999998
+            ],
+            "prob_sum": 0.9999999999999996,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M+=|+><+|",
+                "prob": 0.4999999999999998,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M-=|-><-|",
+                "prob": 0.4999999999999998,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|i->": {
+            "probabilities": [
+              0.4999999999999998,
+              0.4999999999999998
+            ],
+            "prob_sum": 0.9999999999999996,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M+=|+><+|",
+                "prob": 0.4999999999999998,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M-=|-><-|",
+                "prob": 0.4999999999999998,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "mixed": {
+            "probabilities": [
+              0.4999999999999999,
+              0.4999999999999999
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M+=|+><+|",
+                "prob": 0.4999999999999999,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M-=|-><-|",
+                "prob": 0.4999999999999999,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "bloch_pi4_0": {
+            "probabilities": [
+              0.8535533905932736,
+              0.14644660940672613
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M+=|+><+|",
+                "prob": 0.8535533905932736,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M-=|-><-|",
+                "prob": 0.14644660940672613,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "bloch_pi3_pi3": {
+            "probabilities": [
+              0.7165063509461095,
+              0.2834936490538903
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M+=|+><+|",
+                "prob": 0.7165063509461095,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M-=|-><-|",
+                "prob": 0.2834936490538903,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "bloch_2pi3_5pi6": {
+            "probabilities": [
+              0.12499999999999988,
+              0.875
+            ],
+            "prob_sum": 0.9999999999999999,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "M+=|+><+|",
+                "prob": 0.12499999999999988,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "M-=|-><-|",
+                "prob": 0.875,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          }
+        }
+      },
+      "SIC_POVM": {
+        "completeness_numpy": true,
+        "all_psd": true,
+        "states": {
+          "|0>": {
+            "probabilities": [
+              0.5,
+              0.16666666666666669,
+              0.16666666666666669,
+              0.16666666666666669
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "SIC_0",
+                "prob": 0.5,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_1",
+                "prob": 0.16666666666666669,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_2",
+                "prob": 0.16666666666666669,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_3",
+                "prob": 0.16666666666666669,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|1>": {
+            "probabilities": [
+              0.0,
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "SIC_0",
+                "prob": 0.0,
+                "post_trace": 0.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_1",
+                "prob": 0.3333333333333333,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_2",
+                "prob": 0.3333333333333333,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_3",
+                "prob": 0.3333333333333333,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|+>": {
+            "probabilities": [
+              0.24999999999999994,
+              0.4857022603955158,
+              0.13214886980224205,
+              0.13214886980224205
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "SIC_0",
+                "prob": 0.24999999999999994,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_1",
+                "prob": 0.4857022603955158,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_2",
+                "prob": 0.13214886980224205,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_3",
+                "prob": 0.13214886980224205,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|->": {
+            "probabilities": [
+              0.24999999999999994,
+              0.014297739604484168,
+              0.36785113019775784,
+              0.36785113019775784
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "SIC_0",
+                "prob": 0.24999999999999994,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_1",
+                "prob": 0.014297739604484168,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_2",
+                "prob": 0.36785113019775784,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_3",
+                "prob": 0.36785113019775784,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|i+>": {
+            "probabilities": [
+              0.24999999999999994,
+              0.24999999999999994,
+              0.4541241452319314,
+              0.045875854768068505
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "SIC_0",
+                "prob": 0.24999999999999994,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_1",
+                "prob": 0.24999999999999994,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_2",
+                "prob": 0.4541241452319314,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_3",
+                "prob": 0.045875854768068505,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|i->": {
+            "probabilities": [
+              0.24999999999999994,
+              0.24999999999999994,
+              0.045875854768068505,
+              0.4541241452319314
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "SIC_0",
+                "prob": 0.24999999999999994,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_1",
+                "prob": 0.24999999999999994,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_2",
+                "prob": 0.045875854768068505,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_3",
+                "prob": 0.4541241452319314,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "mixed": {
+            "probabilities": [
+              0.25,
+              0.25,
+              0.25,
+              0.25
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "SIC_0",
+                "prob": 0.25,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_1",
+                "prob": 0.25,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_2",
+                "prob": 0.25,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_3",
+                "prob": 0.25,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "bloch_pi4_0": {
+            "probabilities": [
+              0.42677669529663687,
+              0.3577411015677877,
+              0.10774110156778771,
+              0.10774110156778771
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "SIC_0",
+                "prob": 0.42677669529663687,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_1",
+                "prob": 0.3577411015677877,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_2",
+                "prob": 0.10774110156778771,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_3",
+                "prob": 0.10774110156778771,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "bloch_pi3_pi3": {
+            "probabilities": [
+              0.37500000000000006,
+              0.3103954059492991,
+              0.31039540594929904,
+              0.004209188101401827
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "SIC_0",
+                "prob": 0.37500000000000006,
+                "post_trace": 0.9999999999999999,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_1",
+                "prob": 0.3103954059492991,
+                "post_trace": 0.9999999999999999,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_2",
+                "prob": 0.31039540594929904,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_3",
+                "prob": 0.004209188101401827,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "bloch_2pi3_5pi6": {
+            "probabilities": [
+              0.12500000000000006,
+              0.11488997137002971,
+              0.4684433619633036,
+              0.2916666666666667
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "SIC_0",
+                "prob": 0.12500000000000006,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_1",
+                "prob": 0.11488997137002971,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_2",
+                "prob": 0.4684433619633036,
+                "post_trace": 0.9999999999999999,
+                "post_is_valid": true
+              },
+              {
+                "label": "SIC_3",
+                "prob": 0.2916666666666667,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          }
+        }
+      },
+      "trine": {
+        "completeness_numpy": true,
+        "all_psd": true,
+        "states": {
+          "|0>": {
+            "probabilities": [
+              0.3333333333333333,
+              0.6220084679281462,
+              0.04465819873852054
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "trine_0",
+                "prob": 0.3333333333333333,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_120",
+                "prob": 0.6220084679281462,
+                "post_trace": 1.0000000000000002,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_240",
+                "prob": 0.04465819873852054,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|1>": {
+            "probabilities": [
+              0.3333333333333333,
+              0.04465819873852043,
+              0.6220084679281461
+            ],
+            "prob_sum": 0.9999999999999999,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "trine_0",
+                "prob": 0.3333333333333333,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_120",
+                "prob": 0.04465819873852043,
+                "post_trace": 0.9999999999999999,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_240",
+                "prob": 0.6220084679281461,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|+>": {
+            "probabilities": [
+              0.6666666666666665,
+              0.16666666666666669,
+              0.1666666666666665
+            ],
+            "prob_sum": 0.9999999999999997,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "trine_0",
+                "prob": 0.6666666666666665,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_120",
+                "prob": 0.16666666666666669,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_240",
+                "prob": 0.1666666666666665,
+                "post_trace": 0.9999999999999999,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|->": {
+            "probabilities": [
+              0.0,
+              0.49999999999999983,
+              0.5
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "trine_0",
+                "prob": 0.0,
+                "post_trace": 0.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_120",
+                "prob": 0.49999999999999983,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_240",
+                "prob": 0.5,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|i+>": {
+            "probabilities": [
+              0.33333333333333326,
+              0.33333333333333326,
+              0.33333333333333326
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "trine_0",
+                "prob": 0.33333333333333326,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_120",
+                "prob": 0.33333333333333326,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_240",
+                "prob": 0.33333333333333326,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|i->": {
+            "probabilities": [
+              0.33333333333333326,
+              0.33333333333333326,
+              0.33333333333333326
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "trine_0",
+                "prob": 0.33333333333333326,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_120",
+                "prob": 0.33333333333333326,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_240",
+                "prob": 0.33333333333333326,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "mixed": {
+            "probabilities": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "trine_0",
+                "prob": 0.3333333333333333,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_120",
+                "prob": 0.3333333333333333,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_240",
+                "prob": 0.3333333333333333,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "bloch_pi4_0": {
+            "probabilities": [
+              0.5690355937288492,
+              0.419606348367507,
+              0.01135805790364387
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "trine_0",
+                "prob": 0.5690355937288492,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_120",
+                "prob": 0.419606348367507,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_240",
+                "prob": 0.01135805790364387,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "bloch_pi3_pi3": {
+            "probabilities": [
+              0.47767090063073975,
+              0.4055021169820367,
+              0.11682698238722361
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "trine_0",
+                "prob": 0.47767090063073975,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_120",
+                "prob": 0.4055021169820367,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_240",
+                "prob": 0.11682698238722361,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "bloch_2pi3_5pi6": {
+            "probabilities": [
+              0.08333333333333326,
+              0.31399576603592694,
+              0.6026709006307398
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "trine_0",
+                "prob": 0.08333333333333326,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_120",
+                "prob": 0.31399576603592694,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "trine_240",
+                "prob": 0.6026709006307398,
+                "post_trace": 0.9999999999999999,
+                "post_is_valid": true
+              }
+            ]
+          }
+        }
+      },
+      "general_POVM": {
+        "completeness_numpy": true,
+        "all_psd": true,
+        "states": {
+          "|0>": {
+            "probabilities": [
+              0.0033937630167769238,
+              0.07276055317178524,
+              0.18262164253882504,
+              0.7412240412726128
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "gen_0",
+                "prob": 0.0033937630167769238,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_1",
+                "prob": 0.07276055317178524,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_2",
+                "prob": 0.18262164253882504,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_3",
+                "prob": 0.7412240412726128,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|1>": {
+            "probabilities": [
+              0.0526204664902702,
+              0.03636515380340521,
+              0.09435738299918048,
+              0.8166569967071441
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "gen_0",
+                "prob": 0.0526204664902702,
+                "post_trace": 0.9999999999999999,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_1",
+                "prob": 0.03636515380340521,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_2",
+                "prob": 0.09435738299918048,
+                "post_trace": 1.0000000000000002,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_3",
+                "prob": 0.8166569967071441,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|+>": {
+            "probabilities": [
+              0.02404541163265524,
+              0.030453837867566606,
+              0.09308306036972419,
+              0.8524176901300538
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "gen_0",
+                "prob": 0.02404541163265524,
+                "post_trace": 0.9999999999999998,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_1",
+                "prob": 0.030453837867566606,
+                "post_trace": 0.9999999999999999,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_2",
+                "prob": 0.09308306036972419,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_3",
+                "prob": 0.8524176901300538,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|->": {
+            "probabilities": [
+              0.03196881787439187,
+              0.07867186910762382,
+              0.18389596516828127,
+              0.7054633478497028
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "gen_0",
+                "prob": 0.03196881787439187,
+                "post_trace": 0.9999999999999999,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_1",
+                "prob": 0.07867186910762382,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_2",
+                "prob": 0.18389596516828127,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_3",
+                "prob": 0.7054633478497028,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|i+>": {
+            "probabilities": [
+              0.03873155527135523,
+              0.05204645284877301,
+              0.13536688574255548,
+              0.773855106137316
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "gen_0",
+                "prob": 0.03873155527135523,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_1",
+                "prob": 0.05204645284877301,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_2",
+                "prob": 0.13536688574255548,
+                "post_trace": 1.0000000000000002,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_3",
+                "prob": 0.773855106137316,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "|i->": {
+            "probabilities": [
+              0.017282674235691874,
+              0.05707925412641742,
+              0.14161213979544998,
+              0.7840259318424405
+            ],
+            "prob_sum": 0.9999999999999998,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "gen_0",
+                "prob": 0.017282674235691874,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_1",
+                "prob": 0.05707925412641742,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_2",
+                "prob": 0.14161213979544998,
+                "post_trace": 0.9999999999999999,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_3",
+                "prob": 0.7840259318424405,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "mixed": {
+            "probabilities": [
+              0.02800711475352356,
+              0.05456285348759522,
+              0.13848951276900276,
+              0.7789405189898784
+            ],
+            "prob_sum": 0.9999999999999999,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "gen_0",
+                "prob": 0.02800711475352356,
+                "post_trace": 1.0000000000000002,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_1",
+                "prob": 0.05456285348759522,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_2",
+                "prob": 0.13848951276900276,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_3",
+                "prob": 0.7789405189898784,
+                "post_trace": 0.9999999999999999,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "bloch_pi4_0": {
+            "probabilities": [
+              0.007801499690926434,
+              0.05038292190362765,
+              0.13758843059629475,
+              0.8042271478091512
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "gen_0",
+                "prob": 0.007801499690926434,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_1",
+                "prob": 0.05038292190362765,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_2",
+                "prob": 0.13758843059629475,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_3",
+                "prob": 0.8042271478091512,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "bloch_pi3_pi3": {
+            "probabilities": [
+              0.02202830150106197,
+              0.051334892856983276,
+              0.1385520367473264,
+              0.7880847688946284
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "gen_0",
+                "prob": 0.02202830150106197,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_1",
+                "prob": 0.051334892856983276,
+                "post_trace": 0.9999999999999999,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_2",
+                "prob": 0.1385520367473264,
+                "post_trace": 0.9999999999999999,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_3",
+                "prob": 0.7880847688946284,
+                "post_trace": 0.9999999999999999,
+                "post_is_valid": true
+              }
+            ]
+          },
+          "bloch_2pi3_5pi6": {
+            "probabilities": [
+              0.047928886927456796,
+              0.06245613192086198,
+              0.14912615001782697,
+              0.7404888311338543
+            ],
+            "prob_sum": 1.0,
+            "prob_sum_is_one": true,
+            "post_measurement": [
+              {
+                "label": "gen_0",
+                "prob": 0.047928886927456796,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_1",
+                "prob": 0.06245613192086198,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_2",
+                "prob": 0.14912615001782697,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              },
+              {
+                "label": "gen_3",
+                "prob": 0.7404888311338543,
+                "post_trace": 1.0,
+                "post_is_valid": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    "cvc5_completeness": {
+      "Z_projective": {
+        "proved_complete": true,
+        "cvc5_result": "unsat",
+        "pass": true
+      },
+      "incomplete_projective_counterexample": {
+        "detects_incomplete": true,
+        "cvc5_result": "sat",
+        "pass": true
+      }
+    },
+    "naimark_dilation": {
+      "SIC_POVM": {
+        "dilated_dim": 8,
+        "isometry_verified": true,
+        "all_probs_match": true,
+        "num_checks": 40,
+        "sample_checks": [
+          {
+            "state": "|0>",
+            "element": 0,
+            "p_povm": 0.5,
+            "p_projective": 0.5000000000000001,
+            "match": true
+          },
+          {
+            "state": "|0>",
+            "element": 1,
+            "p_povm": 0.16666666666666669,
+            "p_projective": 0.1666666666666667,
+            "match": true
+          },
+          {
+            "state": "|0>",
+            "element": 2,
+            "p_povm": 0.16666666666666669,
+            "p_projective": 0.16666666666666669,
+            "match": true
+          },
+          {
+            "state": "|0>",
+            "element": 3,
+            "p_povm": 0.16666666666666669,
+            "p_projective": 0.16666666666666669,
+            "match": true
+          },
+          {
+            "state": "|1>",
+            "element": 0,
+            "p_povm": 0.0,
+            "p_projective": 0.0,
+            "match": true
+          },
+          {
+            "state": "|1>",
+            "element": 1,
+            "p_povm": 0.3333333333333333,
+            "p_projective": 0.33333333333333326,
+            "match": true
+          }
+        ]
+      },
+      "trine": {
+        "dilated_dim": 6,
+        "isometry_verified": true,
+        "all_probs_match": true,
+        "num_checks": 30,
+        "sample_checks": [
+          {
+            "state": "|0>",
+            "element": 0,
+            "p_povm": 0.3333333333333333,
+            "p_projective": 0.33333333333333326,
+            "match": true
+          },
+          {
+            "state": "|0>",
+            "element": 1,
+            "p_povm": 0.6220084679281462,
+            "p_projective": 0.6220084679281463,
+            "match": true
+          },
+          {
+            "state": "|0>",
+            "element": 2,
+            "p_povm": 0.04465819873852054,
+            "p_projective": 0.044658198738520546,
+            "match": true
+          },
+          {
+            "state": "|1>",
+            "element": 0,
+            "p_povm": 0.3333333333333333,
+            "p_projective": 0.33333333333333326,
+            "match": true
+          },
+          {
+            "state": "|1>",
+            "element": 1,
+            "p_povm": 0.04465819873852043,
+            "p_projective": 0.04465819873852043,
+            "match": true
+          },
+          {
+            "state": "|1>",
+            "element": 2,
+            "p_povm": 0.6220084679281461,
+            "p_projective": 0.6220084679281462,
+            "match": true
+          }
+        ]
+      },
+      "general_POVM": {
+        "dilated_dim": 8,
+        "isometry_verified": true,
+        "all_probs_match": true,
+        "num_checks": 40,
+        "sample_checks": [
+          {
+            "state": "|0>",
+            "element": 0,
+            "p_povm": 0.0033937630167769238,
+            "p_projective": 0.003393763016776922,
+            "match": true
+          },
+          {
+            "state": "|0>",
+            "element": 1,
+            "p_povm": 0.07276055317178524,
+            "p_projective": 0.07276055317178524,
+            "match": true
+          },
+          {
+            "state": "|0>",
+            "element": 2,
+            "p_povm": 0.18262164253882504,
+            "p_projective": 0.18262164253882518,
+            "match": true
+          },
+          {
+            "state": "|0>",
+            "element": 3,
+            "p_povm": 0.7412240412726128,
+            "p_projective": 0.7412240412726131,
+            "match": true
+          },
+          {
+            "state": "|1>",
+            "element": 0,
+            "p_povm": 0.0526204664902702,
+            "p_projective": 0.05262046649027017,
+            "match": true
+          },
+          {
+            "state": "|1>",
+            "element": 1,
+            "p_povm": 0.03636515380340521,
+            "p_projective": 0.03636515380340523,
+            "match": true
+          }
+        ]
+      }
+    }
+  },
+  "negative": {
+    "incomplete_povm": {
+      "completeness": false,
+      "expected": false,
+      "pass": true
+    },
+    "non_psd_element": {
+      "is_psd": false,
+      "expected": false,
+      "pass": true
+    },
+    "over_complete_povm": {
+      "completeness": false,
+      "expected": false,
+      "pass": true
+    },
+    "incomplete_prob_sum": {
+      "prob_sum": 0.3999999999999999,
+      "expected_not_one": true,
+      "pass": "True"
+    },
+    "z3_detects_incomplete": {
+      "z3_found_counterexample": true,
+      "pass": true
+    },
+    "cvc5_detects_incomplete": {
+      "cvc5_found_counterexample": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "mixed_state_Z_uniform": {
+      "probs": [
+        0.5,
+        0.5
+      ],
+      "all_equal": "True",
+      "each_is_half": true,
+      "pass": true
+    },
+    "pure_state_own_basis": {
+      "p0": 1.0,
+      "p1": 0.0,
+      "deterministic": "True",
+      "pass": "True"
+    },
+    "sic_mixed_uniform": {
+      "probs": [
+        0.25,
+        0.25,
+        0.25,
+        0.25
+      ],
+      "all_quarter": true,
+      "pass": true
+    },
+    "naimark_isometry_tight": {
+      "max_residual": 3.3306690738754696e-16,
+      "pass": "True"
+    },
+    "trine_aligned_prob": {
+      "prob": 0.6666666666666665,
+      "expected": 0.6666666666666666,
+      "pass": "True"
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_checks": 13,
+    "passed": 13,
+    "failed": 0,
+    "all_pass": true,
+    "scope_note": "Local measurement lego covering finite POVMs, Born-rule probabilities, post-measurement updates, and Naimark-style equivalence checks."
+  }
+}

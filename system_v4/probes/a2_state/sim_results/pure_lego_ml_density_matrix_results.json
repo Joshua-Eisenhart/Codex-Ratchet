@@ -146,7 +146,7 @@
       "rbf"
     ],
     "all_entropy_computed": true,
-    "elapsed_s": 0.0035829544067382812
+    "elapsed_s": 0.010209083557128906
   },
   "2_information_bottleneck": {
     "original_mi_bits": 0.15356065532886923,
@@ -197,7 +197,7 @@
     "quantum_mi_bits": 0.15356065532898455,
     "classical_vs_quantum_mi_match": "True",
     "mi_difference": 1.1532441668293814e-13,
-    "elapsed_s": 0.13554096221923828
+    "elapsed_s": 0.13245797157287598
   },
   "3_attention_density": {
     "row_stochastic": true,
@@ -225,7 +225,7 @@
     "is_unitary_channel": false,
     "trace_preserved_as_channel": true,
     "better_model": "CHANNEL",
-    "elapsed_s": 0.00022411346435546875
+    "elapsed_s": 0.00026297569274902344
   },
   "4_diffusion_open_system": {
     "quantum_entropy_monotone": true,
@@ -430,7 +430,7 @@
       }
     ],
     "max_entropy_bits": 2.0,
-    "elapsed_s": 0.0005509853363037109
+    "elapsed_s": 0.0010807514190673828
   },
   "5_loss_hamiltonian": {
     "eigenvalues": [
@@ -474,7 +474,7 @@
     "temperature_ordering_ok": true,
     "anneal_converged_to_ground": true,
     "anneal_final_energy": -2.024495757749583,
-    "elapsed_s": 0.0016868114471435547
+    "elapsed_s": 0.005244016647338867
   },
   "6_representation_partial_trace": {
     "product_repr_valid": {
@@ -511,7 +511,101 @@
     "concurrence_entangled": 0.9999999937348322,
     "product_C_zero": true,
     "entangled_C_high": true,
-    "elapsed_s": 0.003712892532348633
+    "elapsed_s": 0.0034558773040771484
+  },
+  "name": "pure_lego_ml_density_matrix",
+  "classification": "supporting",
+  "classification_note": "Supporting multi-lego compression/spectral evidence. This probe is mathematically strong and all-pass locally, but it bundles several compression analogies and should not be treated as a single canonical lego surface.",
+  "lego_ids": [
+    "covariance_operator",
+    "spectral_truncation",
+    "svd_factorization",
+    "low_rank_psd_approximation",
+    "operator_low_rank_factorization",
+    "qpca_spectral_extraction",
+    "coarse_grained_operator_algebra"
+  ],
+  "primary_lego_ids": [
+    "covariance_operator",
+    "spectral_truncation",
+    "svd_factorization",
+    "low_rank_psd_approximation"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure numpy/scipy compression probe"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph-native computation"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no SMT proof layer in this probe"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no second-solver layer here"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no symbolic derivation in this probe"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra in this probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold-statistics layer"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant network layer"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency DAG or routing graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell-complex topology"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
   },
   "summary": {
     "1_kernels_all_valid": true,
@@ -532,5 +626,21 @@
     "6_product_disentangled": true,
     "6_entangled_C_high": true
   },
-  "ALL_PASS": true
+  "ALL_PASS": true,
+  "honest_summary": {
+    "all_pass": true,
+    "section_pass_count": 17,
+    "section_total": 17,
+    "covers_kernel_density": true,
+    "covers_information_bottleneck": true,
+    "covers_attention_density": true,
+    "covers_diffusion_open_system": true,
+    "covers_loss_hamiltonian_spectrum": true,
+    "covers_representation_partial_trace": true,
+    "closure_grade": false,
+    "notes": [
+      "This is a bundled compression/ML analogy probe, not a single-lego canonical surface.",
+      "Best used as supporting evidence for compression/spectral rows until narrower direct legos are split out."
+    ]
+  }
 }

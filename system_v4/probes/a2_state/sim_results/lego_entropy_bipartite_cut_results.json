@@ -1,0 +1,291 @@
+{
+  "name": "Bipartite Cut-State Entropies",
+  "schema_version": "1.0",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core numeric substrate: density matrices, partial trace, eigenspectra, and exact entropy evaluation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph layer in this cut-entropy lego"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- this sim uses exact spectral identities, not satisfiability search"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no synthesis or SMT constraints are required"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no symbolic derivation beyond closed-form spectral evaluation"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra layer in this lego"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold geometry or statistics here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant learning layer here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency graph or lattice graph computation here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph or simplicial complex layer here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex or filtration layer here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology or filtration computation here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "product_state_zero_correlations": {
+      "pass": true,
+      "state": "product |01><01|",
+      "details": {
+        "hermitian_error": 0.0,
+        "trace": 1.0,
+        "min_eigenvalue": 0.0,
+        "valid": true,
+        "S_AB": -0.0,
+        "S_A": -0.0,
+        "S_B": -0.0,
+        "S_A_given_B": 0.0,
+        "I_AB": 0.0,
+        "I_c_A_to_B": 0.0
+      }
+    },
+    "bell_state_maximal_cut_entropy_structure": {
+      "pass": true,
+      "state": "Bell |Phi+><Phi+|",
+      "details": {
+        "hermitian_error": 0.0,
+        "trace": 0.9999999999999998,
+        "min_eigenvalue": 0.0,
+        "valid": true,
+        "S_AB": -0.0,
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_A_given_B": -1.0,
+        "I_AB": 2.0,
+        "I_c_A_to_B": 1.0
+      }
+    },
+    "maximally_mixed_state_boundary": {
+      "pass": true,
+      "state": "I/4",
+      "details": {
+        "hermitian_error": 0.0,
+        "trace": 1.0,
+        "min_eigenvalue": 0.25,
+        "valid": true,
+        "S_AB": 2.0,
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_A_given_B": 1.0,
+        "I_AB": 0.0,
+        "I_c_A_to_B": -1.0
+      }
+    },
+    "werner_sweep_spectral_monotonicity": {
+      "pass": true,
+      "p_values": [
+        0.0,
+        0.25,
+        0.3333333333333333,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "sweep": [
+        {
+          "p": 0.0,
+          "S_AB": 2.0,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "S_A_given_B": 1.0,
+          "I_AB": 0.0,
+          "I_c_A_to_B": -1.0
+        },
+        {
+          "p": 0.25,
+          "S_AB": 1.8802408149441479,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "S_A_given_B": 0.8802408149441479,
+          "I_AB": 0.11975918505585215,
+          "I_c_A_to_B": -0.8802408149441479
+        },
+        {
+          "p": 0.3333333333333333,
+          "S_AB": 1.792481250360578,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "S_A_given_B": 0.792481250360578,
+          "I_AB": 0.20751874963942196,
+          "I_c_A_to_B": -0.792481250360578
+        },
+        {
+          "p": 0.5,
+          "S_AB": 1.5487949406953985,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "S_A_given_B": 0.5487949406953985,
+          "I_AB": 0.45120505930460153,
+          "I_c_A_to_B": -0.5487949406953985
+        },
+        {
+          "p": 0.75,
+          "S_AB": 0.9933927290103627,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "S_A_given_B": -0.006607270989637315,
+          "I_AB": 1.0066072709896372,
+          "I_c_A_to_B": 0.006607270989637315
+        },
+        {
+          "p": 1.0,
+          "S_AB": -0.0,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "S_A_given_B": -1.0,
+          "I_AB": 2.0,
+          "I_c_A_to_B": 1.0
+        }
+      ]
+    },
+    "werner_marginals_are_maximally_mixed": {
+      "pass": true,
+      "details": [
+        {
+          "p": 0.0,
+          "S_A": 1.0,
+          "S_B": 1.0
+        },
+        {
+          "p": 0.25,
+          "S_A": 1.0,
+          "S_B": 1.0
+        },
+        {
+          "p": 0.3333333333333333,
+          "S_A": 1.0,
+          "S_B": 1.0
+        },
+        {
+          "p": 0.5,
+          "S_A": 1.0,
+          "S_B": 1.0
+        },
+        {
+          "p": 0.75,
+          "S_A": 1.0,
+          "S_B": 1.0
+        },
+        {
+          "p": 1.0,
+          "S_A": 1.0,
+          "S_B": 1.0
+        }
+      ]
+    }
+  },
+  "negative": {
+    "product_state_not_negative_conditional_entropy": {
+      "pass": true,
+      "S_A_given_B": 0.0
+    },
+    "product_state_not_positive_mutual_information": {
+      "pass": true,
+      "I_AB": 0.0
+    },
+    "bell_state_not_maximally_mixed_joint_entropy": {
+      "pass": true,
+      "S_AB": -0.0
+    },
+    "maximally_mixed_state_not_negative_coherent_info": {
+      "pass": true,
+      "I_c_A_to_B": -1.0
+    }
+  },
+  "boundary": {
+    "werner_p_zero_boundary": {
+      "pass": true,
+      "details": {
+        "S_AB": 2.0,
+        "I_AB": 0.0,
+        "S_A_given_B": 1.0,
+        "I_c_A_to_B": -1.0
+      }
+    },
+    "werner_p_third_boundary": {
+      "pass": true,
+      "details": {
+        "p": 0.3333333333333333,
+        "S_AB": 1.792481250360578,
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_A_given_B": 0.792481250360578,
+        "I_c_A_to_B": -0.792481250360578
+      }
+    },
+    "werner_p_one_boundary": {
+      "pass": true,
+      "details": {
+        "S_AB": -0.0,
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "I_AB": 2.0,
+        "S_A_given_B": -1.0,
+        "I_c_A_to_B": 1.0
+      }
+    }
+  },
+  "summary": {
+    "positive": "5/5",
+    "negative": "4/4",
+    "boundary": "3/3",
+    "all_pass": true,
+    "total_time_s": 0.01919412612915039
+  }
+}

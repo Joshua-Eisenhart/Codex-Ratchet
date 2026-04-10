@@ -1,0 +1,234 @@
+{
+  "name": "lego_entropy_finite_blocklength",
+  "probe": "lego_entropy_finite_blocklength",
+  "purpose": "Evaluate bounded one-shot / finite-blocklength entropy-adjacent quantities on finite density matrices before any bridge or Axis-0 closure claim",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core finite-dimensional density-matrix arithmetic, eigendecomposition, support checks, and one-shot entropy evaluation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "tools_used": [
+    "pytorch"
+  ],
+  "positive": {
+    "tests": [
+      {
+        "name": "pure_vs_maximally_mixed",
+        "d_max": 0.6931471805599451,
+        "d_min": 0.6931471805599453,
+        "expected_log2": 0.6931471805599453,
+        "pass": true
+      },
+      {
+        "name": "diagonal_dmax_matches_ratio_formula",
+        "d_max": 0.4054651081081642,
+        "expected": 0.4054651081081644,
+        "pass": true
+      },
+      {
+        "name": "hypothesis_testing_zero_epsilon_exact_subset",
+        "d_h_eps": -0.0,
+        "beta_eps": 1.0,
+        "accept_subset": [
+          1,
+          1
+        ],
+        "expected": 0.0,
+        "pass": true
+      },
+      {
+        "name": "hypothesis_testing_relaxes_with_epsilon",
+        "d_h_zero": -0.0,
+        "d_h_relaxed": 0.6931471805599453,
+        "beta_relaxed": 0.5,
+        "accept_subset_relaxed": [
+          1,
+          0
+        ],
+        "expected_relaxed_value": 0.6931471805599453,
+        "pass": true
+      },
+      {
+        "name": "convex_smoothing_nonincreasing_dmax",
+        "curve": [
+          {
+            "eps": 0.0,
+            "d_max": 0.3746934494414107
+          },
+          {
+            "eps": 0.1,
+            "d_max": 0.3429447511268303
+          },
+          {
+            "eps": 0.2,
+            "d_max": 0.31015492830383945
+          },
+          {
+            "eps": 0.4,
+            "d_max": 0.24116205681688788
+          }
+        ],
+        "pass": true
+      },
+      {
+        "name": "noncommuting_density_case_is_well_defined_prebridge",
+        "d_max": 0.8675005677047228,
+        "d_min": 0.6931471805599455,
+        "entropy": 2.220446049250313e-16,
+        "pass": true
+      }
+    ]
+  },
+  "negative": {
+    "tests": [
+      {
+        "name": "reject_non_normalized_matrix",
+        "message": "trace must equal 1",
+        "pass": true
+      },
+      {
+        "name": "support_violation_gives_infinite_one_shot_divergence",
+        "d_max_is_inf": true,
+        "d_min_is_inf": true,
+        "pass": true
+      },
+      {
+        "name": "reject_invalid_hypothesis_testing_epsilon",
+        "pass": true
+      },
+      {
+        "name": "identical_commuting_states_do_not_fake_discrimination",
+        "d_h_eps": -0.0,
+        "beta_eps": 1.0,
+        "subset": [
+          1,
+          1
+        ],
+        "pass": true
+      }
+    ]
+  },
+  "boundary": {
+    "tests": [
+      {
+        "name": "identical_states_zero_dmax_dmin",
+        "d_max": -2.2204460492503136e-16,
+        "d_min": -0.0,
+        "pass": true
+      },
+      {
+        "name": "perfectly_distinguishable_commuting_case_stays_exact",
+        "d_h_eps0": 0.6931471805599453,
+        "d_h_eps_small": 0.6931471805599453,
+        "beta_eps0": 0.5,
+        "beta_eps_small": 0.5,
+        "subsets": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "expected": 0.6931471805599453,
+        "pass": true
+      },
+      {
+        "name": "full_smoothing_reaches_reference_state",
+        "pass": true
+      }
+    ]
+  },
+  "summary": {
+    "positive": {
+      "passed": 6,
+      "failed": 0
+    },
+    "negative": {
+      "passed": 4,
+      "failed": 0
+    },
+    "boundary": {
+      "passed": 3,
+      "failed": 0
+    },
+    "total_passed": 13,
+    "total_failed": 0,
+    "all_pass": true,
+    "scope_note": "Finite-blocklength / one-shot pre-bridge math only. No claim of final Axis-0 kernel selection."
+  }
+}

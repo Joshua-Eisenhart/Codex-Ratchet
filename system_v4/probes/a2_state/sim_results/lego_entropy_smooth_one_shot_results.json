@@ -1,0 +1,586 @@
+{
+  "name": "One-Shot Entropy Proxies",
+  "schema_version": "1.0",
+  "classification": "canonical",
+  "proxy_note": "Hypothesis-testing style proxy only; not an exact smooth min/max entropy solver",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core numeric substrate: density matrices, spectra, epsilon-trimmed proxy evaluation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph layer in this one-shot entropy lego"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- this sim uses exact numeric evaluation, not satisfiability search"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no synthesis or SMT constraints are required"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no symbolic derivation beyond the explicit proxy formulas"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra layer in this lego"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold geometry or statistics here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant neural network layer here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency graph or lattice graph computation here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph or simplicial complex layer here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex or filtration layer here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology or filtration computation here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "pure_state_zero_proxy_entropy": {
+      "pass": true,
+      "details": {
+        "von_neumann": -0.0,
+        "eps_grid": [
+          0.0,
+          0.05,
+          0.1,
+          0.25
+        ],
+        "eps_results": {
+          "0.0": {
+            "retained_rank": 1,
+            "retained_spectrum": [
+              1.0
+            ],
+            "H_min_proxy": -0.0,
+            "H_max_proxy": 0.0
+          },
+          "0.05": {
+            "retained_rank": 1,
+            "retained_spectrum": [
+              1.0
+            ],
+            "H_min_proxy": -0.0,
+            "H_max_proxy": 0.0
+          },
+          "0.1": {
+            "retained_rank": 1,
+            "retained_spectrum": [
+              1.0
+            ],
+            "H_min_proxy": -0.0,
+            "H_max_proxy": 0.0
+          },
+          "0.25": {
+            "retained_rank": 1,
+            "retained_spectrum": [
+              1.0
+            ],
+            "H_min_proxy": -0.0,
+            "H_max_proxy": 0.0
+          }
+        }
+      }
+    },
+    "bell_state_zero_joint_proxy_entropy": {
+      "pass": true,
+      "details": {
+        "von_neumann": -0.0,
+        "eps_grid": [
+          0.0,
+          0.05,
+          0.1,
+          0.25
+        ],
+        "eps_results": {
+          "0.0": {
+            "retained_rank": 1,
+            "retained_spectrum": [
+              1.0
+            ],
+            "H_min_proxy": -0.0,
+            "H_max_proxy": 0.0
+          },
+          "0.05": {
+            "retained_rank": 1,
+            "retained_spectrum": [
+              1.0
+            ],
+            "H_min_proxy": -0.0,
+            "H_max_proxy": 0.0
+          },
+          "0.1": {
+            "retained_rank": 1,
+            "retained_spectrum": [
+              1.0
+            ],
+            "H_min_proxy": -0.0,
+            "H_max_proxy": 0.0
+          },
+          "0.25": {
+            "retained_rank": 1,
+            "retained_spectrum": [
+              1.0
+            ],
+            "H_min_proxy": -0.0,
+            "H_max_proxy": 0.0
+          }
+        }
+      }
+    },
+    "maximally_mixed_state_coding_scale": {
+      "pass": true,
+      "details": {
+        "von_neumann": 2.0,
+        "eps_grid": [
+          0.0,
+          0.05,
+          0.1,
+          0.25
+        ],
+        "eps_results": {
+          "0.0": {
+            "retained_rank": 4,
+            "retained_spectrum": [
+              0.25,
+              0.25,
+              0.25,
+              0.25
+            ],
+            "H_min_proxy": 2.0,
+            "H_max_proxy": 2.0
+          },
+          "0.05": {
+            "retained_rank": 4,
+            "retained_spectrum": [
+              0.25,
+              0.25,
+              0.25,
+              0.25
+            ],
+            "H_min_proxy": 2.0,
+            "H_max_proxy": 2.0
+          },
+          "0.1": {
+            "retained_rank": 4,
+            "retained_spectrum": [
+              0.25,
+              0.25,
+              0.25,
+              0.25
+            ],
+            "H_min_proxy": 2.0,
+            "H_max_proxy": 2.0
+          },
+          "0.25": {
+            "retained_rank": 3,
+            "retained_spectrum": [
+              0.3333333333333333,
+              0.3333333333333333,
+              0.3333333333333333
+            ],
+            "H_min_proxy": 1.5849625007211563,
+            "H_max_proxy": 1.584962500721156
+          }
+        }
+      }
+    },
+    "skewed_state_retained_rank_decreases_with_eps": {
+      "pass": true,
+      "details": {
+        "von_neumann": 1.1567796494470395,
+        "eps_grid": [
+          0.0,
+          0.05,
+          0.1,
+          0.25
+        ],
+        "eps_results": {
+          "0.0": {
+            "retained_rank": 3,
+            "retained_spectrum": [
+              0.7000000000000001,
+              0.20000000000000007,
+              0.10000000000000003
+            ],
+            "H_min_proxy": 0.5145731728297581,
+            "H_max_proxy": 1.584962500721156
+          },
+          "0.05": {
+            "retained_rank": 3,
+            "retained_spectrum": [
+              0.7000000000000001,
+              0.20000000000000007,
+              0.10000000000000003
+            ],
+            "H_min_proxy": 0.5145731728297581,
+            "H_max_proxy": 1.584962500721156
+          },
+          "0.1": {
+            "retained_rank": 2,
+            "retained_spectrum": [
+              0.7777777777777778,
+              0.22222222222222227
+            ],
+            "H_min_proxy": 0.36257007938470825,
+            "H_max_proxy": 1.0
+          },
+          "0.25": {
+            "retained_rank": 2,
+            "retained_spectrum": [
+              0.7777777777777778,
+              0.22222222222222227
+            ],
+            "H_min_proxy": 0.36257007938470825,
+            "H_max_proxy": 1.0
+          }
+        }
+      }
+    },
+    "werner_proxy_tracks_rank_and_entropy_limits": {
+      "pass": true,
+      "details": [
+        {
+          "von_neumann": 2.0,
+          "eps_grid": [
+            0.0,
+            0.1,
+            0.25
+          ],
+          "eps_results": {
+            "0.0": {
+              "retained_rank": 4,
+              "retained_spectrum": [
+                0.25,
+                0.25,
+                0.25,
+                0.25
+              ],
+              "H_min_proxy": 2.0,
+              "H_max_proxy": 2.0
+            },
+            "0.1": {
+              "retained_rank": 4,
+              "retained_spectrum": [
+                0.25,
+                0.25,
+                0.25,
+                0.25
+              ],
+              "H_min_proxy": 2.0,
+              "H_max_proxy": 2.0
+            },
+            "0.25": {
+              "retained_rank": 3,
+              "retained_spectrum": [
+                0.3333333333333333,
+                0.3333333333333333,
+                0.3333333333333333
+              ],
+              "H_min_proxy": 1.5849625007211563,
+              "H_max_proxy": 1.584962500721156
+            }
+          }
+        },
+        {
+          "von_neumann": 1.8802408149441479,
+          "eps_grid": [
+            0.0,
+            0.1,
+            0.25
+          ],
+          "eps_results": {
+            "0.0": {
+              "retained_rank": 4,
+              "retained_spectrum": [
+                0.4375,
+                0.18750000000000003,
+                0.1875,
+                0.1875
+              ],
+              "H_min_proxy": 1.1926450779423958,
+              "H_max_proxy": 2.0
+            },
+            "0.1": {
+              "retained_rank": 4,
+              "retained_spectrum": [
+                0.4375,
+                0.18750000000000003,
+                0.1875,
+                0.1875
+              ],
+              "H_min_proxy": 1.1926450779423958,
+              "H_max_proxy": 2.0
+            },
+            "0.25": {
+              "retained_rank": 3,
+              "retained_spectrum": [
+                0.5384615384615384,
+                0.2307692307692308,
+                0.23076923076923078
+              ],
+              "H_min_proxy": 0.8930847960834881,
+              "H_max_proxy": 1.584962500721156
+            }
+          }
+        },
+        {
+          "von_neumann": 1.792481250360578,
+          "eps_grid": [
+            0.0,
+            0.1,
+            0.25
+          ],
+          "eps_results": {
+            "0.0": {
+              "retained_rank": 4,
+              "retained_spectrum": [
+                0.49999999999999994,
+                0.16666666666666669,
+                0.16666666666666669,
+                0.16666666666666669
+              ],
+              "H_min_proxy": 1.0000000000000002,
+              "H_max_proxy": 2.0
+            },
+            "0.1": {
+              "retained_rank": 4,
+              "retained_spectrum": [
+                0.49999999999999994,
+                0.16666666666666669,
+                0.16666666666666669,
+                0.16666666666666669
+              ],
+              "H_min_proxy": 1.0000000000000002,
+              "H_max_proxy": 2.0
+            },
+            "0.25": {
+              "retained_rank": 3,
+              "retained_spectrum": [
+                0.6,
+                0.20000000000000004,
+                0.20000000000000004
+              ],
+              "H_min_proxy": 0.7369655941662062,
+              "H_max_proxy": 1.584962500721156
+            }
+          }
+        },
+        {
+          "von_neumann": 1.5487949406953985,
+          "eps_grid": [
+            0.0,
+            0.1,
+            0.25
+          ],
+          "eps_results": {
+            "0.0": {
+              "retained_rank": 4,
+              "retained_spectrum": [
+                0.625,
+                0.12500000000000003,
+                0.12500000000000003,
+                0.12500000000000003
+              ],
+              "H_min_proxy": 0.6780719051126377,
+              "H_max_proxy": 2.0
+            },
+            "0.1": {
+              "retained_rank": 4,
+              "retained_spectrum": [
+                0.625,
+                0.12500000000000003,
+                0.12500000000000003,
+                0.12500000000000003
+              ],
+              "H_min_proxy": 0.6780719051126377,
+              "H_max_proxy": 2.0
+            },
+            "0.25": {
+              "retained_rank": 2,
+              "retained_spectrum": [
+                0.8333333333333334,
+                0.1666666666666667
+              ],
+              "H_min_proxy": 0.2630344058337938,
+              "H_max_proxy": 1.0
+            }
+          }
+        },
+        {
+          "von_neumann": 0.9933927290103627,
+          "eps_grid": [
+            0.0,
+            0.1,
+            0.25
+          ],
+          "eps_results": {
+            "0.0": {
+              "retained_rank": 4,
+              "retained_spectrum": [
+                0.8125,
+                0.06250000000000006,
+                0.06250000000000001,
+                0.0625
+              ],
+              "H_min_proxy": 0.2995602818589078,
+              "H_max_proxy": 2.0
+            },
+            "0.1": {
+              "retained_rank": 3,
+              "retained_spectrum": [
+                0.8666666666666667,
+                0.06666666666666672,
+                0.06666666666666668
+              ],
+              "H_min_proxy": 0.20645087746742632,
+              "H_max_proxy": 1.584962500721156
+            },
+            "0.25": {
+              "retained_rank": 1,
+              "retained_spectrum": [
+                1.0
+              ],
+              "H_min_proxy": -0.0,
+              "H_max_proxy": 0.0
+            }
+          }
+        },
+        {
+          "von_neumann": -0.0,
+          "eps_grid": [
+            0.0,
+            0.1,
+            0.25
+          ],
+          "eps_results": {
+            "0.0": {
+              "retained_rank": 1,
+              "retained_spectrum": [
+                1.0
+              ],
+              "H_min_proxy": -0.0,
+              "H_max_proxy": 0.0
+            },
+            "0.1": {
+              "retained_rank": 1,
+              "retained_spectrum": [
+                1.0
+              ],
+              "H_min_proxy": -0.0,
+              "H_max_proxy": 0.0
+            },
+            "0.25": {
+              "retained_rank": 1,
+              "retained_spectrum": [
+                1.0
+              ],
+              "H_min_proxy": -0.0,
+              "H_max_proxy": 0.0
+            }
+          }
+        }
+      ]
+    }
+  },
+  "negative": {
+    "proxy_is_not_exact_von_neumann": {
+      "pass": true,
+      "H_min_proxy": 0.36257007938470825,
+      "H_max_proxy": 1.0,
+      "von_neumann": 1.1567796494470395,
+      "note": "Proxy is intentionally not exact on a skewed mixed state"
+    },
+    "larger_eps_does_not_increase_retained_rank": {
+      "pass": true,
+      "note": "More smoothing budget should not increase the retained coding rank proxy"
+    },
+    "pure_state_not_positive_proxy": {
+      "pass": true,
+      "H_min_proxy": -0.0
+    },
+    "maximally_mixed_not_zero_proxy": {
+      "pass": true,
+      "H_max_proxy": 2.0
+    }
+  },
+  "boundary": {
+    "eps_zero_matches_unsmoothed_proxy": {
+      "pass": true,
+      "H_min_proxy_eps0": 0.5145731728297581,
+      "expected": 0.5145731728297583
+    },
+    "pure_state_all_eps_zero": {
+      "pass": true,
+      "details": {
+        "0.0": -0.0,
+        "0.05": -0.0,
+        "0.25": -0.0
+      }
+    },
+    "maximally_mixed_state_stable": {
+      "pass": true,
+      "details": {
+        "0.0": 2.0,
+        "0.05": 2.0,
+        "0.1": 2.0
+      }
+    },
+    "eps_large_reduces_support": {
+      "pass": true,
+      "H_max_eps0": 1.584962500721156,
+      "H_max_eps25": 1.0
+    }
+  },
+  "summary": {
+    "positive": "5/5",
+    "negative": "4/4",
+    "boundary": "4/4",
+    "all_pass": true,
+    "total_time_s": 0.006926059722900391
+  }
+}

@@ -1,0 +1,310 @@
+{
+  "name": "sim_pure_lego_levi_civita_connection",
+  "lego_ids": [
+    "levi_civita_connection"
+  ],
+  "classification": "canonical",
+  "overall_pass": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Torch autograd computes \u2202_\u03b8 g_{\u03c6\u03c6} = d/d\u03b8 sin\u00b2\u03b8; the resulting gradient drives Christoffel computation \u2014 load_bearing for verifying the metric-derivative input."
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "Levi-Civita connection is coordinate-local on S\u00b2/R\u00b2; no graph message-passing structure is needed for Christoffel verification."
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Torsion-free property \u0393^k_ij = \u0393^k_ji encoded as z3 SMT equality constraints; SAT confirms the computed S\u00b2 Christoffels satisfy torsion-free; UNSAT confirms deliberately torsionful connections are detected (negative test)."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Metric compatibility \u2207_k g_ij = 0 cross-checked via cvc5 QF_LRA solver; encodes max|\u2207g| <= tol as a rational arithmetic satisfiability query."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Exact symbolic Christoffel derivation on S\u00b2 via sympy diff/simplify; cross-validates the numerical computation \u2014 both must agree to < 1e-10."
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Connection 1-forms can be expressed in Clifford algebra; not required for coordinate Christoffel computation on these 2D manifolds."
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Geomstats Hypersphere confirms metric determinant at test point; independent geometry cross-check for the S\u00b2 metric."
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "SO(3) equivariant representations apply to tangent bundle coupling; not required for standalone Christoffel verification on S\u00b2."
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "Coordinate chart transition graphs could use rustworkx; single-chart S\u00b2/R\u00b2 Christoffel computation needs no graph structure."
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "Hypergraph structure not relevant for 2D Riemannian connection; reserved for multi-shell coupling topology probes."
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "Cell complex topology not needed for smooth manifold Christoffel computation; applies to discrete geometry variants only."
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "Persistent homology not relevant for local connection coefficient verification; reserved for topological feature extraction from metric spaces."
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": "supportive",
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": "supportive",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "s2_christoffel_pi4": {
+      "theta_rad": 0.7853981633974483,
+      "Gamma_theta_phiphi_computed": -0.5,
+      "Gamma_theta_phiphi_expected": -0.5,
+      "Gamma_phi_thetaphi_computed": 1.0000000000000002,
+      "Gamma_phi_thetaphi_expected": 1.0000000000000002,
+      "Gamma_phi_phitheta_computed": 1.0000000000000002,
+      "Gamma_phi_phitheta_expected": 1.0000000000000002,
+      "max_nonzero_error": 0.0,
+      "max_zero_entry": 0.0,
+      "pass": true
+    },
+    "s2_torsion_free_z3": {
+      "used": true,
+      "z3_result": "sat",
+      "torsion_free": true,
+      "max_asymmetry": 0.0,
+      "pass": true
+    },
+    "s2_metric_compatibility_cvc5": {
+      "used": true,
+      "max_nabla_g": 0.0,
+      "metric_compatible": true,
+      "cvc5_sat": true,
+      "pass": true
+    },
+    "s2_sympy_cross_validation": {
+      "nonzero_count": 3,
+      "max_error": 0.0,
+      "values": {
+        "(0, 1, 1)": {
+          "sympy": -0.5,
+          "numerical": -0.5
+        },
+        "(1, 0, 1)": {
+          "sympy": 1.0000000000000002,
+          "numerical": 1.0000000000000002
+        },
+        "(1, 1, 0)": {
+          "sympy": 1.0000000000000002,
+          "numerical": 1.0000000000000002
+        }
+      },
+      "pass": true
+    },
+    "s2_torch_autograd_validation": {
+      "max_error_vs_numerical": 0.0,
+      "pass": true
+    },
+    "s2_geomstats_det_check": {
+      "used": true,
+      "theta": 0.7853981633974483,
+      "det_metric_ours": 0.4999999999999999,
+      "det_metric_expected": 0.4999999999999999,
+      "det_match": true,
+      "pass": true
+    },
+    "s2_parallel_transport_holonomy": {
+      "latitudes_tested": 4,
+      "all_pass": true,
+      "details": [
+        {
+          "theta_0": 0.5235987755982988,
+          "num_steps": 1440,
+          "final_V_coord": [
+            0.6729950666281562,
+            1.5071191245152276
+          ],
+          "final_U_orthonormal": [
+            0.6729950666281562,
+            0.7535595622576137
+          ],
+          "computed_angle_rad": 0.8418131133901569,
+          "expected_angle_rad": 0.8417872144769325,
+          "circular_residual_rad": 2.589891322435367e-05,
+          "pass": true
+        },
+        {
+          "theta_0": 0.7853981633974483,
+          "num_steps": 1440,
+          "final_V_coord": [
+            -0.26810016889872884,
+            1.3725337151538997
+          ],
+          "final_U_orthonormal": [
+            -0.26810016889872884,
+            0.9705278973924876
+          ],
+          "computed_angle_rad": 1.8403164666442096,
+          "expected_angle_rad": 1.84030236902122,
+          "circular_residual_rad": 1.409762298965056e-05,
+          "pass": true
+        },
+        {
+          "theta_0": 1.0471975511965976,
+          "num_steps": 1440,
+          "final_V_coord": [
+            -1.0034328164693895,
+            -5.775103970376543e-06
+          ],
+          "final_U_orthonormal": [
+            -1.0034328164693895,
+            -5.00138674784246e-06
+          ],
+          "computed_angle_rad": 3.141597637866434,
+          "expected_angle_rad": 3.1415926535897922,
+          "circular_residual_rad": 4.9842766416396955e-06,
+          "pass": true
+        },
+        {
+          "theta_0": 1.5707963267948966,
+          "num_steps": 1440,
+          "final_V_coord": [
+            1.0,
+            -3.8473413874434933e-16
+          ],
+          "final_U_orthonormal": [
+            1.0,
+            -3.8473413874434933e-16
+          ],
+          "computed_angle_rad": 6.283185307179586,
+          "expected_angle_rad": 6.283185307179585,
+          "circular_residual_rad": 8.881784197001252e-16,
+          "pass": true
+        }
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "r2_flat_zero_christoffels": {
+      "max_christoffel_value": 0.0,
+      "pass": true,
+      "interpretation": "R\u00b2 has trivial Levi-Civita connection; any non-zero value would indicate a formula error."
+    },
+    "wrong_metric_changes_christoffels": {
+      "max_diff_wrong_vs_s2": 1.0000000000000002,
+      "pass": true,
+      "interpretation": "Sensitivity check: swapping the metric must change Christoffels, confirming they are metric-derived and not trivially zero."
+    },
+    "torsionful_connection_z3_unsat": {
+      "z3_result": "unsat",
+      "torsion_free_claimed": false,
+      "max_asymmetry": 1.0,
+      "pass": true,
+      "interpretation": "A deliberately asymmetric \u0393^k_ij must yield z3 UNSAT on torsion-free constraint; UNSAT here is the positive result (torsion detected)."
+    },
+    "zero_connection_on_s2_fails_compatibility": {
+      "max_nabla_g_zero_connection": 1.0,
+      "pass": true,
+      "interpretation": "The zero connection on the curved S\u00b2 metric must fail metric compatibility; confirms that only the Levi-Civita connection makes \u2207g = 0."
+    },
+    "equator_zero_christoffels_zero_holonomy": {
+      "theta_0": 1.5707963267948966,
+      "computed_angle_rad": 6.283185307179586,
+      "expected_angle_rad": 6.283185307179585,
+      "circular_residual_rad": 8.881784197001252e-16,
+      "pass": true,
+      "interpretation": "At \u03b8=\u03c0/2 all Christoffels are zero; vector must not rotate. Confirms connection vanishes at equator for this metric."
+    }
+  },
+  "boundary": {
+    "near_north_pole_theta_0p01": {
+      "theta_rad": 0.01,
+      "Gamma_phi_thetaphi_computed": 99.99666664444425,
+      "Gamma_phi_thetaphi_expected": 99.99666664444423,
+      "error": 1.4210854715202004e-14,
+      "pass": true,
+      "note": "\u0393^\u03c6_\u03b8\u03c6 = cot\u03b8 \u2192 large near north pole; formula must remain valid."
+    },
+    "near_south_pole_theta_pi_minus_0p01": {
+      "theta_rad": 3.1315926535897933,
+      "Gamma_phi_thetaphi_computed": -99.99666664444514,
+      "Gamma_phi_thetaphi_expected": -99.99666664444514,
+      "error": 0.0,
+      "pass": true,
+      "note": "\u0393^\u03c6_\u03b8\u03c6 = cot\u03b8 \u2192 large and negative near south pole."
+    },
+    "holonomy_convergence_pi3": {
+      "theta_rad": 1.0471975511965976,
+      "coarse_360_residual": 7.974501028717995e-05,
+      "fine_3600_residual": 7.974861762072294e-07,
+      "fine_pass": true,
+      "converging": true,
+      "pass": true,
+      "note": "Higher step count must reduce the Euler discretisation error."
+    },
+    "multi_latitude_christoffel_structure": {
+      "latitudes_tested": 5,
+      "all_pass": true,
+      "details": [
+        {
+          "theta_rad": 0.5235987755982988,
+          "max_formula_error": 0.0,
+          "torsion_err": 0.0,
+          "pass": true
+        },
+        {
+          "theta_rad": 0.7853981633974483,
+          "max_formula_error": 0.0,
+          "torsion_err": 0.0,
+          "pass": true
+        },
+        {
+          "theta_rad": 1.0471975511965976,
+          "max_formula_error": 0.0,
+          "torsion_err": 0.0,
+          "pass": true
+        },
+        {
+          "theta_rad": 1.5707963267948966,
+          "max_formula_error": 0.0,
+          "torsion_err": 0.0,
+          "pass": true
+        },
+        {
+          "theta_rad": 2.0943951023931953,
+          "max_formula_error": 0.0,
+          "torsion_err": 0.0,
+          "pass": true
+        }
+      ],
+      "pass": true
+    }
+  }
+}

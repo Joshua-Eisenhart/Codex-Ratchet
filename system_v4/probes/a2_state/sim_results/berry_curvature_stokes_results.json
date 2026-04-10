@@ -1,0 +1,313 @@
+{
+  "name": "berry_curvature_stokes",
+  "classification": "canonical",
+  "classification_note": "Local Stokes theorem for abelian Berry curvature on CP^1. Pancharatnam holonomy vs. torch curvature-flux grid, verified for cap and rectangle patches. F=-sin(theta)/2 confirmed via finite-difference and sympy. Orientation, additivity, and Chern anchor included.",
+  "lego_ids": [
+    "berry_curvature_stokes"
+  ],
+  "primary_lego_ids": [
+    "berry_curvature_stokes"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: bloch_state/discrete_holonomy use complex128 torch tensors; torch.dot + torch.angle for Pancharatnam overlaps; torch.linspace + torch.sin + torch.sum for curvature flux grid"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 this probe has no graph/message-passing structure; all computation is matrix/scalar"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "tried; continuous integrals and transcendental functions not amenable to SMT constraint proof"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "tried; same scope as z3 \u2014 continuous domain, no algebraic constraint proof applicable"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: symbolic derivation F=dA=-sin(theta)/2; symbolic Stokes integrals for cap and rectangle; point-checks F at pi/6, pi/4, pi/3, pi/2"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "tried; Cl(3) geometric algebra not relevant \u2014 probe uses standard matrix/sympy/numpy algebra"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "tried; numeric integration and numpy suffice; Riemannian manifold library not needed here"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no equivariant neural network computation needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no DAG, dependency, or routing structure in this probe"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no hypergraph or multi-way interaction structure"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no higher-order cell complex needed"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant \u2014 no persistent homology or TDA filtration needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_cap_stokes": {
+      "theta_cap=0.5236": {
+        "holonomy_pancharatnam": -0.4208873914545623,
+        "flux_torch_numeric": -0.4208936264701957,
+        "flux_analytic": -0.42089360723846625,
+        "stokes_residual": 6.2350156334045614e-06,
+        "analytic_residual": 6.215783903973371e-06,
+        "pass": true
+      },
+      "theta_cap=0.7854": {
+        "holonomy_pancharatnam": -0.9201410341362535,
+        "flux_torch_numeric": -0.9201512791098689,
+        "flux_analytic": -0.92015118451061,
+        "stokes_residual": 1.0244973615458619e-05,
+        "analytic_residual": 1.015037435647681e-05,
+        "pass": true
+      },
+      "theta_cap=1.0472": {
+        "holonomy_pancharatnam": -1.570785560652797,
+        "flux_torch_numeric": -1.5707966138900877,
+        "flux_analytic": -1.5707963267948961,
+        "stokes_residual": 1.1053237290781226e-05,
+        "analytic_residual": 1.0766142099161158e-05,
+        "pass": true
+      },
+      "theta_cap=1.5708": {
+        "holonomy_pancharatnam": -3.141592653589793,
+        "flux_torch_numeric": -3.1415939455183604,
+        "flux_analytic": -3.1415926535897927,
+        "stokes_residual": 1.291928567237477e-06,
+        "analytic_residual": 4.440892098500626e-16,
+        "pass": true
+      },
+      "theta_cap=2.0944": {
+        "holonomy_pancharatnam": -4.712399746526777,
+        "flux_torch_numeric": -4.712392425528306,
+        "flux_analytic": -4.712388980384689,
+        "stokes_residual": 7.320998470561335e-06,
+        "analytic_residual": 1.0766142088058928e-05,
+        "pass": true
+      }
+    },
+    "P2_rectangle_stokes": {
+      "[0.785,1.571]x[0.000,1.571]": {
+        "holonomy_pancharatnam": -0.5553617946644719,
+        "flux_torch_numeric": -0.555360424365499,
+        "flux_analytic": -0.5553603672697958,
+        "stokes_residual": 1.3702989728470172e-06,
+        "analytic_residual": 1.4273946761234058e-06,
+        "pass": true
+      },
+      "[1.047,2.094]x[0.785,2.356]": {
+        "holonomy_pancharatnam": -0.7854011913658285,
+        "flux_torch_numeric": -0.7853983069450439,
+        "flux_analytic": -0.7853981633974483,
+        "stokes_residual": 2.8844207846656644e-06,
+        "analytic_residual": 3.027968380253654e-06,
+        "pass": true
+      },
+      "[0.524,1.047]x[0.000,3.142]": {
+        "holonomy_pancharatnam": -0.5749462405095173,
+        "flux_torch_numeric": -0.5749513860492457,
+        "flux_analytic": -0.574951359778215,
+        "stokes_residual": 5.145539728412807e-06,
+        "analytic_residual": 5.119268697728607e-06,
+        "pass": true
+      },
+      "[1.571,2.356]x[1.571,3.142]": {
+        "holonomy_pancharatnam": -0.5553617946644784,
+        "flux_torch_numeric": -0.5553604243654992,
+        "flux_analytic": -0.5553603672697958,
+        "stokes_residual": 1.3702989792863107e-06,
+        "analytic_residual": 1.4273946826737216e-06,
+        "pass": true
+      }
+    },
+    "P3_pointwise_curvature_fd": {
+      "theta=0.5236": {
+        "F_finite_diff": -0.24999999999469888,
+        "F_analytic": -0.24999999999999997,
+        "diff": 5.3010928979801974e-12,
+        "pass": true
+      },
+      "theta=0.7854": {
+        "F_finite_diff": -0.35355339058490415,
+        "F_analytic": -0.35355339059327373,
+        "diff": 8.369582804590436e-12,
+        "pass": true
+      },
+      "theta=1.0472": {
+        "F_finite_diff": -0.4330127018864482,
+        "F_analytic": -0.4330127018922193,
+        "diff": 5.7711058154552575e-12,
+        "pass": true
+      },
+      "theta=1.5708": {
+        "F_finite_diff": -0.4999999999921733,
+        "F_analytic": -0.5,
+        "diff": 7.826683745548735e-12,
+        "pass": true
+      },
+      "theta=2.3562": {
+        "F_finite_diff": -0.35355339059739416,
+        "F_analytic": -0.3535533905932738,
+        "diff": 4.1203707112913435e-12,
+        "pass": true
+      }
+    },
+    "P4_stokes_additivity": {
+      "analytic_big": -2.221441469079183,
+      "analytic_sub1": -1.1107207345395915,
+      "analytic_sub2": -1.1107207345395915,
+      "analytic_sum": -2.221441469079183,
+      "analytic_additivity_check": true,
+      "holonomy_big": -2.2214643074997715,
+      "holonomy_sub1": -1.110732153749883,
+      "holonomy_sub2": -1.110732153749881,
+      "holonomy_sum": -2.2214643074997644,
+      "additivity_residual": 7.105427357601002e-15,
+      "pass": true
+    },
+    "P5_sympy_stokes": {
+      "available": true,
+      "A_phi_expr": "-sin(theta/2)**2",
+      "F_expr": "-sin(theta)/2",
+      "F_equals_neg_sin_theta_over_2": true,
+      "cap_flux_expr": "pi*(cos(theta_cap) - 1)",
+      "rect_flux_expr": "(phi1 - phi2)*(cos(theta1) - cos(theta2))/2",
+      "point_checks": {
+        "theta=0.5236": {
+          "F_computed": "-1/4",
+          "F_expected": "-1/4",
+          "diff_is_zero": true,
+          "pass": true
+        },
+        "theta=0.7854": {
+          "F_computed": "-sqrt(2)/4",
+          "F_expected": "-sqrt(2)/4",
+          "diff_is_zero": true,
+          "pass": true
+        },
+        "theta=1.0472": {
+          "F_computed": "-sqrt(3)/4",
+          "F_expected": "-sqrt(3)/4",
+          "diff_is_zero": true,
+          "pass": true
+        },
+        "theta=1.5708": {
+          "F_computed": "-1/2",
+          "F_expected": "-1/2",
+          "diff_is_zero": true,
+          "pass": true
+        }
+      },
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_degenerate_zero_area": {
+      "description": "zero phi-span: no area enclosed, both holonomy and flux are 0",
+      "analytic_flux": -0.0,
+      "torch_flux": -0.0,
+      "holonomy_pancharatnam": 5.551191217481479e-17,
+      "pass": true
+    },
+    "N2_meridian_path_zero_holonomy": {
+      "description": "constant-phi meridian arc: A_theta=0, all overlaps real, holonomy=0",
+      "holonomy": -1.2490520204348858e-16,
+      "expected": 0.0,
+      "pass": true
+    },
+    "N3_reversed_orientation_negates": {
+      "description": "CW loop = negated CCW loop; their sum should be ~0",
+      "holonomy_ccw": -0.5553617946644719,
+      "holonomy_cw": 0.5553617946644772,
+      "sum": 5.329070518200751e-15,
+      "expected_sum": 0.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_small_cap_stokes": {
+      "theta_cap": 0.1,
+      "holonomy": -0.01569471751224081,
+      "flux_torch": -0.015694877687261192,
+      "analytic": -0.015694877661102887,
+      "stokes_residual": 1.601750203826524e-07,
+      "analytic_residual": 1.6014886207796342e-07,
+      "pass": true
+    },
+    "B2_equatorial_cap_equals_neg_pi": {
+      "theta_cap": 1.5707963267948966,
+      "holonomy": -3.1415926535897944,
+      "analytic": -3.1415926535897927,
+      "expected_exact": -3.141592653589793,
+      "diff": 1.7763568394002505e-15,
+      "pass": true
+    },
+    "B3_full_sphere_chern_anchor": {
+      "description": "\u222c_{S^2} F = -2*pi; Chern number = (1/2pi)*(-2pi) = -1",
+      "flux_torch": -6.283187891036721,
+      "analytic": -6.283185307179586,
+      "expected_exact": -6.283185307179586,
+      "chern_number_numeric": -1.0000004112336351,
+      "chern_number_analytic": -1.0,
+      "diff": 2.583857134474954e-06,
+      "pass": true
+    },
+    "B4_holonomy_equals_connection_difference": {
+      "description": "\u222eA = [A_phi(t2)-A_phi(t1)]*(p2-p1): algebraic Stokes check",
+      "holonomy": -0.7854011913658299,
+      "A_phi_t1": -0.24999999999999994,
+      "A_phi_t2": -0.7499999999999999,
+      "algebraic_prediction": -0.7853981633974482,
+      "diff": 3.027968381696944e-06,
+      "pass": true
+    }
+  },
+  "summary": {
+    "total_tests": 27,
+    "total_pass": 27,
+    "all_pass": true,
+    "scope_note": "Abelian Stokes theorem only. Distinct from sim_pure_lego_berry_phase_u1_abelian (that probe validates gauge-invariant holonomy; this probe validates curvature = dA and Stokes closure). Non-abelian curvature is out of scope."
+  },
+  "timestamp": "2026-04-10T07:44:01.014899+00:00"
+}

@@ -1,0 +1,248 @@
+{
+  "name": "sim_pure_lego_adiabatic_berry_dynamics",
+  "timestamp": "2026-04-10T09:09:58Z",
+  "lego_ids": [
+    "adiabatic_berry_dynamics",
+    "rk4_schrodinger",
+    "phase_decomposition"
+  ],
+  "primary_lego_ids": [
+    "adiabatic_berry_dynamics"
+  ],
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: complex128 state vectors, hamiltonian matrix construction, RK4 integration, torch.mv, torch.dot, torch.angle, torch.norm throughout"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph/message-passing structure; sim is ODE over scalar state vector"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "no discrete logical constraints to encode; continuous phase is tracked numerically"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "no SMT-amenable formula; continuous ODE does not map to CVC5 theory"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic cross-check of Berry phase formula -\u03c0(1-cos\u03b8) at specific angles"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Bloch sphere rotation handled via explicit H(t) matrix; Cl(3) rotor form not needed"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "geometry computed directly on CP\u00b9 via analytic formulas; geomstats overhead not needed"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "no SE(3)/SO(3) equivariant network; rotating B-field encoded in Hamiltonian directly"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "no graph; sim operates on 2D Hilbert space, no network topology"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "no hypergraph structure; sim is single spin-1/2 ODE"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "no cell complex or topological chain; Berry phase computed via holonomy integral"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "no persistent homology or \u010cech/Rips complex; sim does not require TDA"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P_theta_pi_half": {
+      "B0": 10.0,
+      "omega": 0.1,
+      "theta_rad": 1.5707963267948966,
+      "phi_total": 311.03336,
+      "phi_dyn": 314.159265,
+      "phi_geom": -3.125906,
+      "phi_berry": -3.141593,
+      "residual": 0.01568713,
+      "excitation": 2e-08,
+      "adiabatic_condition": 0.0001,
+      "tolerance": 0.05,
+      "passed": true
+    },
+    "P_theta_pi_third": {
+      "B0": 10.0,
+      "omega": 0.1,
+      "theta_rad": 1.0471975511965976,
+      "phi_total": 312.600172,
+      "phi_dyn": 314.159265,
+      "phi_geom": -1.559093,
+      "phi_berry": -1.570796,
+      "residual": 0.01170292,
+      "excitation": 7.424e-05,
+      "adiabatic_condition": 7.5e-05,
+      "tolerance": 0.05,
+      "passed": true
+    },
+    "P_theta_pi_sixth": {
+      "B0": 10.0,
+      "omega": 0.1,
+      "theta_rad": 0.5235987755982988,
+      "phi_total": 313.74225,
+      "phi_dyn": 314.159265,
+      "phi_geom": -0.417015,
+      "phi_berry": -0.420894,
+      "residual": 0.00387814,
+      "excitation": 4.03e-06,
+      "adiabatic_condition": 2.5e-05,
+      "tolerance": 0.05,
+      "passed": true
+    },
+    "P_dynamic_phase": {
+      "B0": 10.0,
+      "omega": 0.1,
+      "T": 62.83185307179586,
+      "phi_dyn_formula": 314.15926535897927,
+      "phi_dyn_integral": 314.1592653589793,
+      "match": true,
+      "passed": true
+    },
+    "P_berry_formula_vs_stokes": {
+      "checks": [
+        {
+          "theta": 1.5708,
+          "expected": -3.141593,
+          "got": -3.141593,
+          "match": true
+        },
+        {
+          "theta": 1.0472,
+          "expected": -1.570796,
+          "got": -1.570796,
+          "match": true
+        }
+      ],
+      "passed": true
+    }
+  },
+  "negative": {
+    "N_nonadiabatic_fast": {
+      "B0": 1.0,
+      "omega": 2.0,
+      "theta_rad": 1.5707963267948966,
+      "phi_geom": -1.398641,
+      "phi_berry": -3.141593,
+      "residual": 1.742952,
+      "excitation": 0.105052,
+      "adiabatic_condition": 4.0,
+      "expected_residual_gt": 0.25,
+      "expected_excitation_gt": 0.05,
+      "passed": true
+    },
+    "N_trivial_loop_zero_berry": {
+      "theta_rad": 1e-06,
+      "phi_berry_analytic": -1.5709359715030878e-12,
+      "expected_near_zero": true,
+      "passed": true
+    },
+    "N_sign_convention_negative": {
+      "phi_geom_pi_half": -3.125927,
+      "phi_berry_pi_half": -3.141593,
+      "phi_geom_pi_third": -1.559114,
+      "phi_berry_pi_third": -1.570796,
+      "sign_negative": true,
+      "nontrivial": true,
+      "passed": true
+    }
+  },
+  "boundary": {
+    "B_near_adiabatic": {
+      "B0": 5.0,
+      "omega": 1.0,
+      "theta_rad": 1.5707963267948966,
+      "phi_geom": -2.836183,
+      "phi_berry": -3.141593,
+      "residual": 0.30541,
+      "excitation": 0.003603,
+      "adiabatic_condition": 0.04,
+      "expected_residual_range": [
+        0.01,
+        0.5
+      ],
+      "passed": true
+    },
+    "B_small_polar_angle": {
+      "theta_rad": 0.3,
+      "phi_geom": -0.138996,
+      "phi_berry": -0.140315,
+      "residual": 0.001319,
+      "excitation": 1.6e-07,
+      "passed": true
+    },
+    "B_normalization_preserved": {
+      "n_steps": 3000,
+      "norm_violations": 0,
+      "passed": true
+    },
+    "B_deterministic_rk4": {
+      "run1_phi_geom": -3.1259266,
+      "run2_phi_geom": -3.1259266,
+      "diff": 0.0,
+      "passed": true
+    },
+    "B_sympy_berry_formula": {
+      "theta_pi_half_sympy": -3.14159265,
+      "theta_pi_half_expected": -3.14159265,
+      "theta_pi_third_sympy": -1.57079633,
+      "theta_pi_third_expected": -1.57079633,
+      "passed": true
+    }
+  },
+  "summary": {
+    "total_tests": 13,
+    "passed": 13,
+    "failed": 0,
+    "elapsed_seconds": 5.65,
+    "adiabatic_params_used": {
+      "B0": 10.0,
+      "omega": 0.1,
+      "n_steps": 6000
+    },
+    "nonadiabatic_control": {
+      "B0": 1.0,
+      "omega": 2.0
+    },
+    "bridge_claim": "In the adiabatic regime (\u03c9 sin\u03b8 / B\u2080 << 1), the geometric residual \u03a6_geom = \u03a6_total - \u03a6_dyn agrees with the kinematic Berry prediction -\u03c0(1-cos\u03b8) to within \u00b10.05 rad, cross-validated against Stokes probe."
+  }
+}

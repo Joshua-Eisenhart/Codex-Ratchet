@@ -1,31 +1,31 @@
 {
-  "generated_at": "2026-04-10T04:12:05.957818+00:00",
+  "generated_at": "2026-04-10T04:14:09.015864+00:00",
   "strict": false,
   "source_surface": "repo_hygiene",
   "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
-  "dirty_source_count": 146,
-  "plan_group_count": 76,
+  "dirty_source_count": 145,
+  "plan_group_count": 75,
   "checkpoint_candidate_count": 1,
   "quarantine_candidate_count": 0,
-  "manual_only_count": 75,
-  "code_only_manual_count": 75,
+  "manual_only_count": 74,
+  "code_only_manual_count": 74,
   "largest_group_id": "probe_source__probe_misc",
-  "next_code_only_manual_group_id": "probe_source__sim_family_hilbert",
+  "next_code_only_manual_group_id": "probe_source__sim_family_holevo",
   "next_code_only_manual_file_count": 1,
-  "next_code_only_manual_source_path": "system_v4/probes/sim_hilbert_schmidt_flatness_rejection.py",
-  "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/hilbert_schmidt_flatness_rejection_results.json",
+  "next_code_only_manual_source_path": "system_v4/probes/sim_holevo_quantity.py",
+  "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/holevo_quantity_results.json",
   "summary": {
-    "dirty_source_count": 146,
-    "plan_group_count": 76,
+    "dirty_source_count": 145,
+    "plan_group_count": 75,
     "checkpoint_candidate_count": 1,
     "quarantine_candidate_count": 0,
-    "manual_only_count": 75,
-    "code_only_manual_count": 75,
+    "manual_only_count": 74,
+    "code_only_manual_count": 74,
     "largest_group_id": "probe_source__probe_misc",
-    "next_code_only_manual_group_id": "probe_source__sim_family_hilbert",
+    "next_code_only_manual_group_id": "probe_source__sim_family_holevo",
     "next_code_only_manual_file_count": 1,
-    "next_code_only_manual_source_path": "system_v4/probes/sim_hilbert_schmidt_flatness_rejection.py",
-    "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/hilbert_schmidt_flatness_rejection_results.json",
+    "next_code_only_manual_source_path": "system_v4/probes/sim_holevo_quantity.py",
+    "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/holevo_quantity_results.json",
     "ok": true
   },
   "rules": {
@@ -104,15 +104,6 @@
     }
   ],
   "recommended_code_only_order": [
-    {
-      "group_id": "probe_source__sim_family_hilbert",
-      "file_count": 1,
-      "untracked_count": 1,
-      "tracked_dirty_count": 0,
-      "safe_next_action": "manual_split_required",
-      "source_path": "system_v4/probes/sim_hilbert_schmidt_flatness_rejection.py",
-      "result_path": "system_v4/probes/a2_state/sim_results/hilbert_schmidt_flatness_rejection_results.json"
-    },
     {
       "group_id": "probe_source__sim_family_holevo",
       "file_count": 1,
@@ -211,16 +202,25 @@
       "safe_next_action": "manual_split_required",
       "source_path": "system_v4/probes/sim_persistence_geometry.py",
       "result_path": "system_v4/probes/a2_state/sim_results/persistence_geometry_results.json"
+    },
+    {
+      "group_id": "probe_source__sim_family_positivity",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_positivity_constraint.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/positivity_constraint_results.json"
     }
   ],
   "next_code_only_manual": {
-    "group_id": "probe_source__sim_family_hilbert",
+    "group_id": "probe_source__sim_family_holevo",
     "file_count": 1,
     "untracked_count": 1,
     "tracked_dirty_count": 0,
     "safe_next_action": "manual_split_required",
-    "source_path": "system_v4/probes/sim_hilbert_schmidt_flatness_rejection.py",
-    "result_path": "system_v4/probes/a2_state/sim_results/hilbert_schmidt_flatness_rejection_results.json"
+    "source_path": "system_v4/probes/sim_holevo_quantity.py",
+    "result_path": "system_v4/probes/a2_state/sim_results/holevo_quantity_results.json"
   },
   "checkpoint_groups": [
     {
@@ -746,28 +746,6 @@
       "safe_auto": false,
       "blocking_reason": "active_source_pressure",
       "notes": "Active sim family 'graph' should be checkpointed in a bounded family batch."
-    },
-    {
-      "group_id": "probe_source__sim_family_hilbert",
-      "bucket": "probe_source",
-      "label": "sim_family_hilbert",
-      "display_name": "Probe sim family: hilbert",
-      "path_prefixes": [
-        "system_v4/probes/sim_hilbert_schmidt_flatness_rejection.py"
-      ],
-      "file_count": 1,
-      "tracked_dirty_count": 0,
-      "untracked_count": 1,
-      "sample_paths": [
-        "system_v4/probes/sim_hilbert_schmidt_flatness_rejection.py"
-      ],
-      "dominant_kinds": [
-        "untracked"
-      ],
-      "safe_next_action": "manual_split_required",
-      "safe_auto": false,
-      "blocking_reason": "active_source_pressure",
-      "notes": "Active sim family 'hilbert' should be checkpointed in a bounded family batch."
     },
     {
       "group_id": "probe_source__sim_family_history",

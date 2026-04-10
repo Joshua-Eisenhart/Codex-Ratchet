@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-10T04:12:06.039730+00:00",
+  "generated_at": "2026-04-10T04:14:09.091238+00:00",
   "strict": false,
   "overall_green": false,
   "repair_queue_count": 3,
@@ -12,13 +12,13 @@
   "runtime_hygiene_green": true,
   "lego_tool_reporting_green": true,
   "active_actionable_lane": {
-    "group_id": "probe_source__sim_family_hilbert",
+    "group_id": "probe_source__sim_family_holevo",
     "file_count": 1,
     "untracked_count": 1,
     "tracked_dirty_count": 0,
     "safe_next_action": "manual_split_required",
-    "source_path": "system_v4/probes/sim_hilbert_schmidt_flatness_rejection.py",
-    "result_path": "system_v4/probes/a2_state/sim_results/hilbert_schmidt_flatness_rejection_results.json"
+    "source_path": "system_v4/probes/sim_holevo_quantity.py",
+    "result_path": "system_v4/probes/a2_state/sim_results/holevo_quantity_results.json"
   },
   "summary": {
     "missing_surface_count": 0,
@@ -65,12 +65,12 @@
     "ok": true
   },
   "source_dirty_surface": {
-    "source_dirty_count": 146,
+    "source_dirty_count": 145,
     "dirty_source_bucket_count": 4,
     "dirty_source_buckets": [
       {
         "label": "probe_source",
-        "count": 138
+        "count": 137
       },
       {
         "label": "legacy_runtime",
@@ -88,7 +88,7 @@
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 496
+        "count": 494
       },
       {
         "prefix": "obsidian_vault",
@@ -118,27 +118,18 @@
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
     "status": "current",
     "dirty_source_checkpoint_required": true,
-    "plan_group_count": 76,
+    "plan_group_count": 75,
     "largest_group_id": "probe_source__probe_misc",
     "next_code_only_manual": {
-      "group_id": "probe_source__sim_family_hilbert",
+      "group_id": "probe_source__sim_family_holevo",
       "file_count": 1,
       "untracked_count": 1,
       "tracked_dirty_count": 0,
       "safe_next_action": "manual_split_required",
-      "source_path": "system_v4/probes/sim_hilbert_schmidt_flatness_rejection.py",
-      "result_path": "system_v4/probes/a2_state/sim_results/hilbert_schmidt_flatness_rejection_results.json"
+      "source_path": "system_v4/probes/sim_holevo_quantity.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/holevo_quantity_results.json"
     },
     "recommended_code_only_order": [
-      {
-        "group_id": "probe_source__sim_family_hilbert",
-        "file_count": 1,
-        "untracked_count": 1,
-        "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_hilbert_schmidt_flatness_rejection.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/hilbert_schmidt_flatness_rejection_results.json"
-      },
       {
         "group_id": "probe_source__sim_family_holevo",
         "file_count": 1,
@@ -174,6 +165,15 @@
         "safe_next_action": "manual_split_required",
         "source_path": "system_v4/probes/sim_local_operator_action.py",
         "result_path": "system_v4/probes/a2_state/sim_results/local_operator_action_results.json"
+      },
+      {
+        "group_id": "probe_source__sim_family_low",
+        "file_count": 1,
+        "untracked_count": 1,
+        "tracked_dirty_count": 0,
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_low_rank_psd_approximation.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/low_rank_psd_approximation_results.json"
       }
     ]
   },
@@ -185,8 +185,8 @@
     "selected_group_id": "docs_and_specs__docs_and_specs",
     "file_count": 3,
     "docs_opt_in_required": true,
-    "code_only_fallback_group_id": "probe_source__sim_family_hilbert",
-    "active_actionable_lane_group_id": "probe_source__sim_family_hilbert"
+    "code_only_fallback_group_id": "probe_source__sim_family_holevo",
+    "active_actionable_lane_group_id": "probe_source__sim_family_holevo"
   },
   "maintenance_lanes": [
     {
@@ -220,7 +220,7 @@
       "dirty_source_buckets": [
         {
           "label": "probe_source",
-          "count": 138
+          "count": 137
         },
         {
           "label": "legacy_runtime",
@@ -262,7 +262,7 @@
       "dirty_source_buckets": [
         {
           "label": "probe_source",
-          "count": 138
+          "count": 137
         },
         {
           "label": "legacy_runtime",
@@ -328,9 +328,9 @@
       "secondary_duplicate_result_count": 0,
       "root_result_orphan_count": 0,
       "duplicate_result_basename_count": 0,
-      "source_dirty_count": 146,
-      "generated_dirty_count": 363,
-      "dirty_worktree_count": 509,
+      "source_dirty_count": 145,
+      "generated_dirty_count": 362,
+      "dirty_worktree_count": 507,
       "dirty_source_bucket_count": 4,
       "ok": false
     },
@@ -355,17 +355,17 @@
       "ok": true
     },
     "source_dirty_checkpoint": {
-      "dirty_source_count": 146,
-      "plan_group_count": 76,
+      "dirty_source_count": 145,
+      "plan_group_count": 75,
       "checkpoint_candidate_count": 1,
       "quarantine_candidate_count": 0,
-      "manual_only_count": 75,
-      "code_only_manual_count": 75,
+      "manual_only_count": 74,
+      "code_only_manual_count": 74,
       "largest_group_id": "probe_source__probe_misc",
-      "next_code_only_manual_group_id": "probe_source__sim_family_hilbert",
+      "next_code_only_manual_group_id": "probe_source__sim_family_holevo",
       "next_code_only_manual_file_count": 1,
-      "next_code_only_manual_source_path": "system_v4/probes/sim_hilbert_schmidt_flatness_rejection.py",
-      "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/hilbert_schmidt_flatness_rejection_results.json",
+      "next_code_only_manual_source_path": "system_v4/probes/sim_holevo_quantity.py",
+      "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/holevo_quantity_results.json",
       "ok": true
     },
     "source_dirty_lane_manifest": {
@@ -373,9 +373,9 @@
       "file_count": 3,
       "safe_next_action": "checkpoint",
       "docs_opt_in_required": true,
-      "code_only_fallback_group_id": "probe_source__sim_family_hilbert",
-      "active_actionable_lane_group_id": "probe_source__sim_family_hilbert",
-      "executable_lane_group_id": "probe_source__sim_family_hilbert",
+      "code_only_fallback_group_id": "probe_source__sim_family_holevo",
+      "active_actionable_lane_group_id": "probe_source__sim_family_holevo",
+      "executable_lane_group_id": "probe_source__sim_family_holevo",
       "ok": true
     }
   }

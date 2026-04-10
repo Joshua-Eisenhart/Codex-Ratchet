@@ -1,6 +1,14 @@
 {
   "name": "pure_lego_chiral_overlap",
   "description": "Chiral overlap <L|R> for Weyl spinors: orthogonality, completeness, Cl(3) projectors",
+  "classification": "classical_baseline",
+  "classification_note": "Classical baseline for fixed-reference chiral overlap on Weyl spinors, including orthogonality, completeness, and Cl(3) projector cross-checks.",
+  "lego_ids": [
+    "chiral_overlap"
+  ],
+  "primary_lego_ids": [
+    "chiral_overlap"
+  ],
   "tool_manifest": {
     "pytorch": {
       "tried": false,
@@ -62,6 +70,20 @@
       "used": false,
       "reason": "not needed for this baseline"
     }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
   },
   "positive": {
     "LR_always_orthogonal": {
@@ -225,7 +247,7 @@
     "LR_normalized": {
       "pass": true
     },
-    "elapsed_s": 0.6014902591705322
+    "elapsed_s": 1.1027870178222656
   },
   "negative": {
     "non_normalized_spinors": {
@@ -252,7 +274,7 @@
       "is_idempotent": false,
       "pass": true
     },
-    "elapsed_s": 0.12636899948120117
+    "elapsed_s": 0.22448301315307617
   },
   "boundary": {
     "north_pole": {
@@ -305,7 +327,10 @@
       "all_phi_match": true,
       "pass": true
     },
-    "elapsed_s": 0.00043272972106933594
+    "elapsed_s": 0.0010228157043457031
   },
-  "classification": "classical_baseline"
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local chiral-overlap baseline on one Weyl-spinor family with Cl(3) cross-validation."
+  }
 }

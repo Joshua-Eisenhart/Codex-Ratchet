@@ -481,10 +481,14 @@ if __name__ == "__main__":
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "pure_lego_chiral_overlap_results.json")
-    with open(out_path, "w") as f:
-        json.dump(results, f, indent=2, default=str)
-    print(f"Results written to {out_path}")
+    out_paths = [
+        os.path.join(out_dir, "chiral_overlap_results.json"),
+        os.path.join(out_dir, "pure_lego_chiral_overlap_results.json"),
+    ]
+    for out_path in out_paths:
+        with open(out_path, "w") as f:
+            json.dump(results, f, indent=2, default=str)
+    print(f"Results written to {out_paths[0]}")
 
     # Summary
     for section in ["positive", "negative", "boundary"]:

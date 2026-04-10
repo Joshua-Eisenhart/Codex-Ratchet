@@ -1,0 +1,236 @@
+{
+  "name": "toponetx_state_class_binding",
+  "timestamp": "2026-04-08T22:00:17.941523+00:00",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Werner state density matrices as torch tensors; concurrence via autograd"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; topology via toponetx/xgi"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: r<0.17 AND r>0.17 is unsatisfiable (disjoint regimes)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; z3 sufficient for this inequality"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic Euler characteristic \u03c7=\u03b20-\u03b21+\u03b22 and verification"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no spinor geometry in this sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; topology is combinatorial here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no equivariance check in this sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; graph structure handled by toponetx internally"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "hyperedge model: L4/L6 regimes + QWCI gap as three hyperedges"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "CellComplex construction and Betti number computation"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; exact Betti numbers from incidence matrices"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "not_applicable",
+    "z3": "load_bearing",
+    "cvc5": "not_applicable",
+    "sympy": "load_bearing",
+    "clifford": "not_applicable",
+    "geomstats": "not_applicable",
+    "e3nn": "not_applicable",
+    "rustworkx": "not_applicable",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "not_applicable"
+  },
+  "summary": {
+    "beta0": 1,
+    "beta1": 0,
+    "beta2": 0,
+    "qwci_gap_creates_topological_hole": false,
+    "r_star_0_17_is_coboundary": true,
+    "euler_characteristic": 1,
+    "euler_consistent_across_methods": true,
+    "z3_l4_l6_regimes_disjoint_unsat": true,
+    "xgi_r_star_is_unique_l4_l6_interface": true,
+    "r_star_is_strict_boundary": true
+  },
+  "positive": {
+    "cell_complex_betti": {
+      "n_nodes": 7,
+      "n_edges": 9,
+      "n_faces": 3,
+      "rank_B1": 6,
+      "rank_B2": 3,
+      "beta0": 1,
+      "beta1": 0,
+      "beta2": 0,
+      "euler_from_betti": 1,
+      "euler_from_cell_counts": 1,
+      "euler_from_api": 1,
+      "euler_consistent": true,
+      "qwci_gap_creates_hole": false,
+      "interpretation_beta1": "beta1 = 0: no topological holes \u2014 all 1-cycles are coboundaries."
+    },
+    "coboundary_test": {
+      "qwci_gap_edge": "0.252 -- 0.333",
+      "gap_edge_row_in_B2": 5,
+      "gap_edge_is_coboundary": true,
+      "r_star_boundary_edge": "0.17 -- 0.252",
+      "boundary_edge_row_in_B2": 3,
+      "r_star_is_coboundary": true,
+      "interpretation": "r*=0.17 is a coboundary if it appears in the boundary of some 2-cell. A coboundary edge = it belongs to the \u2202 of a face = it separates two regimes properly. If r*=0.17 IS a coboundary, the L4/L6 transition is topologically clean."
+    },
+    "werner_states": [
+      {
+        "r": 0.0,
+        "regime": "L4",
+        "concurrence": 0.0,
+        "rho_trace": 1.0,
+        "rho_is_valid": true
+      },
+      {
+        "r": 0.1,
+        "regime": "L4",
+        "concurrence": 0.0,
+        "rho_trace": 1.0,
+        "rho_is_valid": true
+      },
+      {
+        "r": 0.17,
+        "regime": "boundary",
+        "concurrence": 0.0,
+        "rho_trace": 1.0,
+        "rho_is_valid": true
+      },
+      {
+        "r": 0.252,
+        "regime": "QWCI_gap",
+        "concurrence": 0.0,
+        "rho_trace": 0.9999999999999999,
+        "rho_is_valid": true
+      },
+      {
+        "r": 0.333,
+        "regime": "QWCI_gap",
+        "concurrence": 0.0,
+        "rho_trace": 1.0,
+        "rho_is_valid": true
+      },
+      {
+        "r": 0.5,
+        "regime": "L6_post_gap",
+        "concurrence": 0.25,
+        "rho_trace": 1.0,
+        "rho_is_valid": true
+      },
+      {
+        "r": 1.0,
+        "regime": "L6_post_gap",
+        "concurrence": 1.0,
+        "rho_trace": 0.9999999999999998,
+        "rho_is_valid": true
+      }
+    ]
+  },
+  "negative": {
+    "z3_l4_l6_disjoint": {
+      "claim": "L4 regime (r<0.17) AND L6 regime (r>0.17) simultaneously is unsatisfiable",
+      "z3_result": "unsat",
+      "is_unsat": true,
+      "interpretation": "UNSAT confirms the regimes are strictly disjoint \u2014 no Werner state r can simultaneously satisfy both binding conditions. The cell boundary at r*=0.17 is a topological separator with no interior overlap."
+    },
+    "z3_l6_pregap_sat": {
+      "claim": "L6 pre-gap (0.17 < r < 0.252) is satisfiable",
+      "z3_result": "sat",
+      "is_sat": true
+    },
+    "z3_qwci_gap_nonempty": {
+      "claim": "QWCI gap [0.252, 0.333] is non-empty (satisfiable)",
+      "z3_result": "sat",
+      "is_sat": true
+    }
+  },
+  "boundary": {
+    "r_star_boundary": {
+      "r_star": 0.17,
+      "z3_r_star_in_L4_strict": "unsat",
+      "z3_r_star_in_L6_strict": "unsat",
+      "is_strict_boundary": true,
+      "interpretation": "r*=0.17 is a strict boundary: it is NOT in the open L4 regime (r<0.17) and NOT in the open L6 regime (r>0.17). It lives exactly on the shared 1-cell separating the two 2-cells."
+    },
+    "xgi_hypergraph": {
+      "n_nodes": 7,
+      "n_hyperedges": 3,
+      "l4_hyperedge_members": [
+        0.0,
+        0.1,
+        0.17
+      ],
+      "l6_hyperedge_members": [
+        0.17,
+        0.252,
+        0.333,
+        0.5,
+        1.0
+      ],
+      "qwci_gap_hyperedge_members": [
+        0.252,
+        0.333
+      ],
+      "shared_l4_l6_nodes": [
+        0.17
+      ],
+      "shared_node_is_r_star": true,
+      "interpretation": "The only node shared between L4 and L6 hyperedges is r*=0.17, confirming it is the unique binding-regime interface. The QWCI gap hyperedge captures the entangled-but-no-I_c region as a distinct topological object."
+    },
+    "sympy_euler": {
+      "beta0": 1,
+      "beta1": 0,
+      "beta2": 0,
+      "chi_formula": "beta_0 - beta_1 + beta_2",
+      "chi_from_betti": 1,
+      "chi_from_sympy_eval": 1,
+      "chi_from_api": 1,
+      "chi_from_cell_counts": 1,
+      "all_consistent": true,
+      "qwci_gap_creates_hole": false,
+      "interpretation": "\u03c7 = \u03b20 - \u03b21 + \u03b22 = 1 - 0 + 0 = 1. \u03b21 = 0: no topological holes. The binding manifold is topologically trivial (simply connected). The QWCI gap is topologically captured as a face boundary, not a hole \u2014 it is filled by the surrounding 2-cells."
+    }
+  }
+}

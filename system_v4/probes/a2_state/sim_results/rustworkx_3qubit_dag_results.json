@@ -1,0 +1,376 @@
+{
+  "name": "rustworkx_3qubit_dag",
+  "description": "Extends the bridge DAG to genuine 3-qubit states (8\u00d78 density matrices). Uses tripartite MI = I(A:B:C) and coherent information I_c(A\u2192BC). Key question: does 3-qubit representation break the GHZ/Bell\u2297|0\u27e9 tie?",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "8\u00d78 density matrix arithmetic: von Neumann entropy, partial traces for all 3-qubit subsystem combinations, tripartite MI, coherent information."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "3-qubit DAG construction and ALL graph algorithms: PyDAG, topological_sort, dag_longest_path, is_directed_acyclic_graph, descendants. DAG structure IS the result; no numpy fallback for graph queries."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "state_metrics": {
+    "GHZ": {
+      "tripartite_MI": 0.0,
+      "I_c": 1.0,
+      "MI_AB": 1.0,
+      "S_A": 1.0,
+      "S_B": 1.0,
+      "S_C": 1.0,
+      "S_AB": 1.0,
+      "S_BC": 1.0,
+      "S_AC": 1.0,
+      "S_ABC": 0.0
+    },
+    "W": {
+      "tripartite_MI": 0.0,
+      "I_c": 0.91829583,
+      "MI_AB": 0.91829583,
+      "S_A": 0.91829583,
+      "S_B": 0.91829583,
+      "S_C": 0.91829583,
+      "S_AB": 0.91829583,
+      "S_BC": 0.91829583,
+      "S_AC": 0.91829583,
+      "S_ABC": 0.0
+    },
+    "Bell_otimes_0": {
+      "tripartite_MI": 0.0,
+      "I_c": 1.0,
+      "MI_AB": 2.0,
+      "S_A": 1.0,
+      "S_B": 1.0,
+      "S_C": 0.0,
+      "S_AB": 0.0,
+      "S_BC": 1.0,
+      "S_AC": 1.0,
+      "S_ABC": 0.0
+    },
+    "separable": {
+      "tripartite_MI": 0.0,
+      "I_c": -0.0,
+      "MI_AB": -0.0,
+      "S_A": 0.0,
+      "S_B": 0.0,
+      "S_C": 0.0,
+      "S_AB": 0.0,
+      "S_BC": 0.0,
+      "S_AC": 0.0,
+      "S_ABC": 0.0
+    },
+    "product_mixed": {
+      "tripartite_MI": 0.0,
+      "I_c": -1.0,
+      "MI_AB": 0.0,
+      "S_A": 1.0,
+      "S_B": 1.0,
+      "S_C": 1.0,
+      "S_AB": 2.0,
+      "S_BC": 2.0,
+      "S_AC": 2.0,
+      "S_ABC": 3.0
+    },
+    "Werner3_0.5": {
+      "tripartite_MI": -0.21691719,
+      "I_c": -0.40563906,
+      "MI_AB": 0.18872188,
+      "S_A": 1.0,
+      "S_B": 1.0,
+      "S_C": 1.0,
+      "S_AB": 1.81127812,
+      "S_BC": 1.81127812,
+      "S_AC": 1.81127812,
+      "S_ABC": 2.21691719
+    },
+    "PartSep_Bell_AB": {
+      "tripartite_MI": 0.0,
+      "I_c": 1.0,
+      "MI_AB": 2.0,
+      "S_A": 1.0,
+      "S_B": 1.0,
+      "S_C": 1.0,
+      "S_AB": 0.0,
+      "S_BC": 2.0,
+      "S_AC": 2.0,
+      "S_ABC": 1.0
+    }
+  },
+  "dag_summary": {
+    "num_nodes": 7,
+    "num_edges": 5,
+    "is_dag": true,
+    "edges": [
+      "GHZ\u2192Werner3_0.5",
+      "W\u2192Werner3_0.5",
+      "Bell_otimes_0\u2192Werner3_0.5",
+      "separable\u2192Werner3_0.5",
+      "PartSep_Bell_AB\u2192Werner3_0.5"
+    ],
+    "topological_sort_order": [
+      "PartSep_Bell_AB",
+      "product_mixed",
+      "separable",
+      "Bell_otimes_0",
+      "W",
+      "GHZ",
+      "Werner3_0.5"
+    ],
+    "dag_longest_path": [
+      "GHZ",
+      "Werner3_0.5"
+    ],
+    "dag_longest_path_length": 1
+  },
+  "positive": {
+    "P1_dag_acyclic": {
+      "is_dag": true,
+      "pass": true,
+      "note": "3-qubit dominance partial order must be acyclic."
+    },
+    "P2_GHZ_vs_Bell0_separation": {
+      "GHZ_tripartite_MI": 0.0,
+      "Bell_otimes_0_tripartite_MI": 0.0,
+      "GHZ_Ic": 1.0,
+      "Bell_otimes_0_Ic": 1.0,
+      "MI_separated": false,
+      "Ic_separated": false,
+      "any_axis_separated": false,
+      "GHZ_dom_Bell0": false,
+      "Bell0_dom_GHZ": false,
+      "incomparable": true,
+      "pass": false,
+      "note": "Key question: does 3-qubit representation separate GHZ from Bell\u2297|0\u27e9? Under the current metric pair (tripartite MI, I_c for A\u2192BC), they remain incomparable rather than cleanly separated."
+    },
+    "P3_GHZ_vs_W": {
+      "GHZ_tripartite_MI": 0.0,
+      "W_tripartite_MI": 0.0,
+      "GHZ_Ic": 1.0,
+      "W_Ic": 0.91829583,
+      "MI_diff": 0.0,
+      "Ic_diff": 0.08170417,
+      "GHZ_dom_W": false,
+      "W_dom_GHZ": false,
+      "pass": true,
+      "note": "GHZ and W have different entanglement structures. Tripartite MI should differ, placing them at different DAG levels or incomparable on the two axes."
+    },
+    "P4_separable_and_product_are_sinks": {
+      "separable_out_degree": 1,
+      "product_mixed_out_degree": 0,
+      "separable_tripartite_MI": 0.0,
+      "product_mixed_tripartite_MI": 0.0,
+      "pass": true,
+      "note": "Pure separable |000\u27e9 has MI=0=I_c; product mixed has MI=0 but I_c=-S_A. Neither should dominate entangled states."
+    }
+  },
+  "negative": {
+    "N1_product_mixed_no_entangled_successors": {
+      "product_mixed_MI": 0.0,
+      "product_mixed_Ic": -1.0,
+      "successors": [],
+      "entangled_successors": [],
+      "pass": true,
+      "note": "Product mixed (MI=0) cannot dominate any entangled state."
+    },
+    "N2_no_cycles": {
+      "is_dag": true,
+      "pass": true,
+      "note": "Negative: a cycle would mean A dom B dom A \u2014 impossible for strict ordering."
+    },
+    "N3_Werner3_cannot_dom_GHZ": {
+      "Werner3_tripartite_MI": -0.21691719,
+      "GHZ_tripartite_MI": 0.0,
+      "Werner3_dom_GHZ": false,
+      "pass": true,
+      "note": "Werner3 (mixed) should have lower tripartite MI than pure GHZ. Mixed states cannot dominate pure states with higher information."
+    }
+  },
+  "boundary": {
+    "B1_topological_order": {
+      "topo_order": [
+        "PartSep_Bell_AB",
+        "product_mixed",
+        "separable",
+        "Bell_otimes_0",
+        "W",
+        "GHZ",
+        "Werner3_0.5"
+      ],
+      "topo_with_metrics": {
+        "PartSep_Bell_AB": {
+          "tripartite_MI": 0.0,
+          "I_c": 1.0
+        },
+        "product_mixed": {
+          "tripartite_MI": 0.0,
+          "I_c": -1.0
+        },
+        "separable": {
+          "tripartite_MI": 0.0,
+          "I_c": -0.0
+        },
+        "Bell_otimes_0": {
+          "tripartite_MI": 0.0,
+          "I_c": 1.0
+        },
+        "W": {
+          "tripartite_MI": 0.0,
+          "I_c": 0.91829583
+        },
+        "GHZ": {
+          "tripartite_MI": 0.0,
+          "I_c": 1.0
+        },
+        "Werner3_0.5": {
+          "tripartite_MI": -0.21691719,
+          "I_c": -0.40563906
+        }
+      },
+      "pass": true,
+      "note": "Topological sort reveals the 3-qubit information content hierarchy."
+    },
+    "B2_longest_chain": {
+      "path": [
+        "GHZ",
+        "Werner3_0.5"
+      ],
+      "length": 1,
+      "pass": true,
+      "note": "Longest monotone chain through the 3-qubit information-content partial order. dag_longest_path_length() returns edge count, so length>=1 means >=2 nodes."
+    },
+    "B3_descendants_summary": {
+      "by_node": {
+        "GHZ": {
+          "descendants": [
+            "Werner3_0.5"
+          ],
+          "count": 1,
+          "in_degree": 0,
+          "out_degree": 1
+        },
+        "W": {
+          "descendants": [
+            "Werner3_0.5"
+          ],
+          "count": 1,
+          "in_degree": 0,
+          "out_degree": 1
+        },
+        "Bell_otimes_0": {
+          "descendants": [
+            "Werner3_0.5"
+          ],
+          "count": 1,
+          "in_degree": 0,
+          "out_degree": 1
+        },
+        "separable": {
+          "descendants": [
+            "Werner3_0.5"
+          ],
+          "count": 1,
+          "in_degree": 0,
+          "out_degree": 1
+        },
+        "product_mixed": {
+          "descendants": [],
+          "count": 0,
+          "in_degree": 0,
+          "out_degree": 0
+        },
+        "Werner3_0.5": {
+          "descendants": [],
+          "count": 0,
+          "in_degree": 5,
+          "out_degree": 0
+        },
+        "PartSep_Bell_AB": {
+          "descendants": [
+            "Werner3_0.5"
+          ],
+          "count": 1,
+          "in_degree": 0,
+          "out_degree": 1
+        }
+      },
+      "pass": true,
+      "note": "Full descendant summary for all 7 states."
+    },
+    "B4_GHZ_negative_tripartite_MI": {
+      "GHZ_tripartite_MI": 0.0,
+      "is_negative": false,
+      "pass": true,
+      "note": "Under this implementation and sign convention, GHZ does not come back negative on the tripartite-MI axis. Treat this as an observational check, not as confirmation of a negative-tripartite-MI signature."
+    }
+  },
+  "all_tests_passed": false,
+  "classification": "supporting",
+  "classification_note": "The 3-qubit DAG structure is informative, but the headline GHZ vs Bell\u2297|0\u27e9 separation claim does not close under the current metric pair."
+}

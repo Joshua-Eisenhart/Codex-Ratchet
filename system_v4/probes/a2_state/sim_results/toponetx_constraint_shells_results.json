@@ -1,0 +1,551 @@
+{
+  "name": "sim_toponetx_constraint_shells",
+  "description": "Constraint shells L1-L7 as nested cell complex; Betti numbers, adjacency, z3 tree topology proof",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "edge weight tensors for binding displacement metrics"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: \u03b21>0 impossible for strictly nested tree hierarchy"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "optional import unavailable: cannot cache function 'canonical_reordering_sign': no locator available for file '/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/clifford/_layout.py'"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not installed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "CellComplex, Betti numbers, adjacency_matrix, incidence_matrix \u2014 load-bearing result"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": null
+  },
+  "binding_results_input": {
+    "pure_north_pole": "L6",
+    "pure_plus_x": "L4",
+    "mixed_r0.5": "L4",
+    "pure_minus_z": "L4",
+    "maximally_mixed": "L4",
+    "werner_p0.7": "L4"
+  },
+  "positive": {
+    "full_complex": {
+      "shells": [
+        "L1",
+        "L2",
+        "L3",
+        "L4",
+        "L5",
+        "L6",
+        "L7"
+      ],
+      "containment_edges": [
+        [
+          "L1",
+          "L2"
+        ],
+        [
+          "L2",
+          "L3"
+        ],
+        [
+          "L3",
+          "L4"
+        ],
+        [
+          "L4",
+          "L5"
+        ],
+        [
+          "L5",
+          "L6"
+        ],
+        [
+          "L6",
+          "L7"
+        ]
+      ],
+      "faces_added": [
+        [
+          "L4",
+          "L5",
+          "L6"
+        ],
+        [
+          "L4",
+          "L6",
+          "L7"
+        ]
+      ],
+      "shell_to_states": {
+        "L6": [
+          "pure_north_pole"
+        ],
+        "L4": [
+          "pure_plus_x",
+          "mixed_r0.5",
+          "pure_minus_z",
+          "maximally_mixed",
+          "werner_p0.7"
+        ]
+      },
+      "betti_numbers": {
+        "beta_0": 1,
+        "beta_1": 0,
+        "beta_2": 0,
+        "rank_B1": 6,
+        "rank_B2": 2,
+        "shape": [
+          7,
+          8,
+          2
+        ],
+        "euler_characteristic": 1,
+        "note": ""
+      },
+      "interpretation": {
+        "beta_0": "connected components (expect 1 = all shells in one complex)",
+        "beta_1": "independent loops (expect 0 for pure tree; >0 if co-binding 2-cells create cycles)",
+        "beta_2": "independent 2D cavities"
+      }
+    },
+    "adjacency": {
+      "rank_0": {
+        "rank": 0,
+        "matrix": [
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0
+          ]
+        ],
+        "shape": [
+          7,
+          7
+        ]
+      },
+      "rank_1": {
+        "rank": 1,
+        "matrix": [
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "shape": [
+          8,
+          8
+        ]
+      },
+      "rank_2": {
+        "rank": 2,
+        "error": "Only dimensions 0, 1 and 2 are supported, got 3."
+      }
+    },
+    "edge_weights": {
+      "edge_weights": [
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        7.0
+      ],
+      "edges": [
+        [
+          "L1",
+          "L2"
+        ],
+        [
+          "L2",
+          "L3"
+        ],
+        [
+          "L3",
+          "L4"
+        ],
+        [
+          "L4",
+          "L5"
+        ],
+        [
+          "L5",
+          "L6"
+        ],
+        [
+          "L6",
+          "L7"
+        ]
+      ],
+      "binding_counts_per_shell": {
+        "L1": 0,
+        "L2": 0,
+        "L3": 0,
+        "L4": 5,
+        "L5": 0,
+        "L6": 1,
+        "L7": 0
+      },
+      "binding_tensor": [
+        0.0,
+        0.0,
+        0.0,
+        5.0,
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  },
+  "negative": {
+    "l6_only_complex": {
+      "description": "Degenerate complex: only L6-binding states (pure_north_pole), L6\u2192L7 edge only",
+      "nodes": [
+        "L6",
+        "L7"
+      ],
+      "edges": [
+        [
+          "L6",
+          "L7"
+        ]
+      ],
+      "betti_numbers": {
+        "beta_0": 1,
+        "beta_1": 0,
+        "beta_2": 0,
+        "rank_B1": 1,
+        "rank_B2": 0,
+        "shape": [
+          2,
+          1,
+          0
+        ],
+        "euler_characteristic": null,
+        "note": ""
+      },
+      "is_degenerate": true,
+      "interpretation": "Single edge graph: \u03b20=1 (connected), \u03b21=0 (no loops), \u03b22=0 (no cavities)"
+    },
+    "betti_comparison": {
+      "full_complex": {
+        "beta_0": 1,
+        "beta_1": 0,
+        "beta_2": 0,
+        "rank_B1": 6,
+        "rank_B2": 2,
+        "shape": [
+          7,
+          8,
+          2
+        ],
+        "euler_characteristic": 1,
+        "note": ""
+      },
+      "l6_only": {
+        "beta_0": 1,
+        "beta_1": 0,
+        "beta_2": 0,
+        "rank_B1": 1,
+        "rank_B2": 0,
+        "shape": [
+          2,
+          1,
+          0
+        ],
+        "euler_characteristic": null,
+        "note": ""
+      },
+      "note": "Full complex has more faces \u2192 potentially higher \u03b21/\u03b22 from co-binding 2-cells"
+    }
+  },
+  "boundary": {
+    "z3_tree_topology_unsat": {
+      "claim": "\u03b21 > 0 is impossible for strictly nested shell hierarchy (tree/Hasse)",
+      "encoding": "z3 Boolean edge variables; strict forward-only containment axioms; cycle existence asserted",
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "passed": true,
+      "interpretation": "UNSAT confirms: no cycle exists in a strictly forward-ordered containment chain. \u03b21 = 0 is enforced by the strict nesting axioms. Any loop in the binding structure would require a backward edge, which contradicts strict containment L1\u2283L2\u2283...\u2283L7."
+    },
+    "single_node_complex": {
+      "description": "Minimal complex: single shell L4 (dominant binder for 5/6 states)",
+      "node": "L4",
+      "betti_numbers": {
+        "beta_0": 1,
+        "beta_1": 0,
+        "beta_2": 0,
+        "rank_B1": null,
+        "rank_B2": null,
+        "shape": [
+          1,
+          0,
+          0
+        ],
+        "euler_characteristic": null,
+        "note": "no edges \u2014 single/isolated nodes"
+      },
+      "interpretation": "\u03b20=1 (one component), \u03b21=0, \u03b22=0"
+    },
+    "cross_edge_complex": {
+      "description": "Non-containment cross-edge L1\u2192L7 added (violates strict nesting)",
+      "extra_edge": [
+        "L1",
+        "L7"
+      ],
+      "betti_numbers": {
+        "beta_0": 1,
+        "beta_1": 1,
+        "beta_2": 0,
+        "rank_B1": 6,
+        "rank_B2": 0,
+        "shape": [
+          7,
+          7,
+          0
+        ],
+        "euler_characteristic": null,
+        "note": ""
+      },
+      "interpretation": "\u03b21 should increase to 1 \u2014 the cross-edge creates a cycle, confirming z3 UNSAT result: such edges are forbidden in strict nesting"
+    }
+  },
+  "summary": {
+    "full_complex_betti": {
+      "beta_0": 1,
+      "beta_1": 0,
+      "beta_2": 0,
+      "rank_B1": 6,
+      "rank_B2": 2,
+      "shape": [
+        7,
+        8,
+        2
+      ],
+      "euler_characteristic": 1,
+      "note": ""
+    },
+    "l6_only_betti": {
+      "beta_0": 1,
+      "beta_1": 0,
+      "beta_2": 0,
+      "rank_B1": 1,
+      "rank_B2": 0,
+      "shape": [
+        2,
+        1,
+        0
+      ],
+      "euler_characteristic": null,
+      "note": ""
+    },
+    "z3_unsat_passed": true,
+    "z3_result": "unsat",
+    "cross_edge_betti": {
+      "beta_0": 1,
+      "beta_1": 1,
+      "beta_2": 0,
+      "rank_B1": 6,
+      "rank_B2": 0,
+      "shape": [
+        7,
+        7,
+        0
+      ],
+      "euler_characteristic": null,
+      "note": ""
+    }
+  },
+  "classification": "canonical"
+}

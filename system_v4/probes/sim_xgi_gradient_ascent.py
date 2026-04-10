@@ -7,14 +7,14 @@ that maximally concentrates softmax centrality at L4.
 
 Questions answered:
 1. Does gradient ascent converge to heavy weight on {L4,L6} and {L4,L6,L7}
-   (the joint kill edges, idx 2 and 7), or does it stay on {L2,L6,L7} (idx 6),
-   which won the single-step gradient in sim_xgi_torch_autograd?
+   (the joint-kill edges, idx 2 and 7), or does it stay on {L2,L6,L7} (idx 6),
+   which can dominate under the same objective in sim_xgi_torch_autograd?
 2. Which edges shrink to near-zero under ascent (maximize L4)?
 3. Under gradient *descent* (minimize L4): which edges get suppressed?
 
-The distinction between single-step gradient direction and the gradient ascent
-fixed point is the core question: does the single-step winner idx=6 remain the
-fixed point, or do the direct L4 edges (2, 7) dominate at convergence?
+The distinction between single-step gradient direction and the gradient-ascent
+fixed point is the core question. This file tests that alignment question; it
+does not assume the direct L4 edges must dominate at convergence.
 """
 
 import json
@@ -95,8 +95,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"unavailable ({exc.__class__.__name__}: {exc})"
 
 try:
     import geomstats  # noqa: F401
@@ -526,12 +526,26 @@ if __name__ == "__main__":
         "descent_c_L4_decreased": desc.get("c_L4_decreased"),
         "convergence_confirmed": boundary.get("boundary1_convergence", {}).get("converging"),
         "random_reinit_top2_agrees": boundary.get("boundary2_random_reinit", {}).get("top2_agrees"),
+        "objective_alignment_with_joint_kill_claim": (
+            asc.get("joint_kill_edges_2_7_in_top2_final")
+            and boundary.get("boundary2_random_reinit", {}).get("top2_agrees")
+        ),
         "single_step_winner_edge6_interpretation": (
             "edge_6 ({L2,L6,L7}) won single-step gradient due to indirect co-membership "
             "overlap; ascent fixed point reveals whether direct L4 edges (2,7) dominate "
             "at convergence or edge_6 remains dominant"
         ),
     }
+
+    objective_aligned = bool(summary["objective_alignment_with_joint_kill_claim"])
+    classification = "canonical" if objective_aligned else "exploratory_signal"
+    classification_note = (
+        "Joint-kill-aligned claim holds under the current optimization objective."
+        if objective_aligned else
+        "The centrality optimization itself converges, but the claimed joint-kill dominance "
+        "does not stabilize under this objective. Treat as exploratory until the objective "
+        "is better aligned to joint-kill attribution."
+    )
 
     results = {
         "name": "sim_xgi_gradient_ascent",
@@ -553,7 +567,8 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
-        "classification": "canonical",
+        "classification": classification,
+        "classification_note": classification_note,
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

@@ -310,8 +310,8 @@ def run_positive_tests(dag, id_to_name, name_to_id, metrics):
         "pass": any_sep,
         "note": (
             "Key question: does 3-qubit representation separate GHZ from Bell⊗|0⟩? "
-            "Tripartite MI distinguishes them because GHZ has genuine 3-way entanglement "
-            "while Bell⊗|0⟩ has only bipartite AB entanglement."
+            "Under the current metric pair (tripartite MI, I_c for A→BC), they remain "
+            "incomparable rather than cleanly separated."
         ),
     }
 
@@ -475,9 +475,9 @@ def run_boundary_tests(dag, id_to_name, name_to_id, metrics):
         "is_negative": ghz_tmi < 0,
         "pass": True,   # observational — documents the signature
         "note": (
-            "GHZ state has I(A:B:C) < 0 (negative tripartite mutual information). "
-            "This is a hallmark of genuine 3-way quantum entanglement that has no "
-            "classical analog. W state has I(A:B:C) > 0 by contrast."
+            "Under this implementation and sign convention, GHZ does not come back "
+            "negative on the tripartite-MI axis. Treat this as an observational check, "
+            "not as confirmation of a negative-tripartite-MI signature."
         ),
     }
 
@@ -553,7 +553,13 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "all_tests_passed": all_passed,
-        "classification": "canonical",
+        "classification": "canonical" if all_passed else "exploratory_signal",
+        "classification_note": (
+            "The 3-qubit DAG structure is informative, but the headline GHZ vs Bell⊗|0⟩ "
+            "separation claim does not close under the current metric pair."
+            if not all_passed else
+            "Tripartite DAG ordering and boundary checks close cleanly under the current metric pair."
+        ),
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

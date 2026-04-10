@@ -7,13 +7,12 @@ shell centrality gradients flow back through the hypergraph structure.
 
 Positive test: loss = -c[L4] where c = softmax(B^T @ B @ ones).
   grad on edge weights reveals which hyperedges contribute most to L4 centrality.
-  Expected: {L4, L6} (edge idx 2) and {L4, L6, L7} (edge idx 7) have largest
-  gradient magnitudes since they encode the joint kill.
+  This probes whether the direct L4-linked joint-kill edges dominate under the
+  chosen centrality objective. Treat that as a hypothesis, not a guaranteed outcome.
 
 Negative test: loss = -c[L1] (weakest shell by centrality).
-  Gradient should concentrate on edges that *don't* involve L4/L6 at all,
-  and magnitude should be smaller overall — confirming L4 is genuinely
-  elevated in the hypergraph structure.
+  Check whether gradients shift away from the direct L4/L6-linked edges under an
+  L1-targeted loss. This is a discrimination probe, not a theorem of the setup.
 
 Boundary test: uniform edge weights (all 1.0) vs perturbed weights.
   The gradient direction tells us which edges to *increase* to raise L4
@@ -97,8 +96,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 try:
     import geomstats  # noqa: F401
@@ -496,6 +495,19 @@ if __name__ == "__main__":
             "boundary3_gradient_stability", {}).get("all_grads_finite"),
     }
 
+    objective_aligned = bool(
+        summary["joint_kill_edges_in_top2_for_L4"]
+        and summary["joint_kill_edges_absent_from_top2_for_L1"]
+    )
+    classification = "canonical" if objective_aligned else "exploratory_signal"
+    classification_note = (
+        "Autograd ranking matches the intended joint-kill attribution claim."
+        if objective_aligned else
+        "The autograd computation is stable and informative, but the stronger joint-kill "
+        "top-2 attribution claim does not hold under this centrality objective. Treat as "
+        "exploratory until the objective or claim is narrowed."
+    )
+
     results = {
         "name": "sim_xgi_torch_autograd",
         "description": (
@@ -516,7 +528,8 @@ if __name__ == "__main__":
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
-        "classification": "canonical",
+        "classification": classification,
+        "classification_note": classification_note,
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

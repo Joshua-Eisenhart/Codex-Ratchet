@@ -1,0 +1,202 @@
+{
+  "name": "sim_toponetx_hopf_crosscheck",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Betti tensor comparison torus vs contractible"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: contractible chi=0 is impossible"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic Euler characteristic verification for torus vs sphere"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "Fundamental torus cycles represented as hyperedges"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "CellComplex construction + Euler char"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": null
+  },
+  "positive": {
+    "cw_structure": {
+      "V": 9,
+      "E": 18,
+      "F": 9,
+      "euler_from_api": 0,
+      "V_expected": 9,
+      "E_expected": 18,
+      "F_expected": 9,
+      "euler_expected": 0,
+      "pass": true
+    },
+    "betti_numbers": {
+      "beta0": 1,
+      "beta1": 2,
+      "beta2": 1,
+      "chi_from_betti": 0,
+      "beta0_expected": 1,
+      "beta1_expected": 2,
+      "beta2_expected": 1,
+      "chi_expected": 0,
+      "beta1_matches_gudhi": true,
+      "pass": true
+    },
+    "pytorch_betti_tensor": {
+      "betti_torus": [
+        1.0,
+        2.0,
+        1.0
+      ],
+      "betti_contractible": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "l1_distance": 3.0,
+      "chi_torus": 0,
+      "chi_contractible": 1,
+      "torus_distinguishable": true,
+      "pass": true
+    },
+    "xgi_fundamental_cycles": {
+      "num_nodes": 9,
+      "num_hyperedges": 6,
+      "phi_cycles_count": 3,
+      "xi_cycles_count": 3,
+      "phi0_members": [
+        0,
+        1,
+        2
+      ],
+      "xi0_members": [
+        0,
+        3,
+        6
+      ],
+      "shared_nodes": [
+        0
+      ],
+      "cycles_share_nodes": true,
+      "cycles_are_distinct": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "z3_unsat_contractible_chi0": {
+      "z3_result": "unsat",
+      "expected": "unsat",
+      "interpretation": "A contractible connected space requires chi=1. chi=0 is inconsistent with contractibility. UNSAT confirms torus is non-contractible.",
+      "pass": true
+    },
+    "sympy_euler_torus_vs_sphere": {
+      "torus_V_E_F": [
+        9,
+        18,
+        9
+      ],
+      "chi_torus_sympy": 0,
+      "sphere_V_E_F": [
+        1,
+        0,
+        1
+      ],
+      "chi_sphere_sympy": 2,
+      "chi_torus_expected": 0,
+      "chi_sphere_expected": 2,
+      "torus_formula": "V - E + F = 9 - 18 + 9 = 0",
+      "sphere_formula": "V - E + F = 1 - 0 + 1 = 2",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "eigenvalue_gap_L1": {
+      "two_smallest_evals": [
+        9.095371156791284e-17,
+        2.6645352591003757e-15
+      ],
+      "third_eval": 2.9999999999999956,
+      "spectral_gap": 2.999999999999993,
+      "harmonic_modes_are_zero": true,
+      "gap_significant": true,
+      "pass": true
+    },
+    "relabelled_nodes_stability": {
+      "beta0": 1,
+      "beta1": 2,
+      "beta2": 1,
+      "chi": 0,
+      "pass": true
+    }
+  },
+  "summary": {
+    "beta0": 1,
+    "beta1": 2,
+    "beta2": 1,
+    "chi": 0,
+    "beta1_matches_gudhi": true,
+    "chi_confirmed_zero": true,
+    "z3_unsat_for_contractible_chi0": true,
+    "sympy_chi_torus": 0,
+    "tests_passed": "8/8"
+  },
+  "classification": "canonical"
+}

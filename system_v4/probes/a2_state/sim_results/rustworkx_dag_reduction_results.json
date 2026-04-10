@@ -1,0 +1,282 @@
+{
+  "name": "rustworkx_dag_reduction",
+  "description": "Applies transitive reduction to the bridge DAG and compares to the full 12-edge structure. Identifies redundant skip-edges.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Density matrix arithmetic: von Neumann entropy, partial trace, mutual information, and coherent information for all bridge packet states."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Core operation: PyDAG construction, transitive_reduction(), dag_longest_path(), descendants(), is_directed_acyclic_graph(). transitive_reduction IS the result being tested."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "state_metrics": {
+    "product": {
+      "MI": -0.0,
+      "I_c": -0.0
+    },
+    "separable": {
+      "MI": 1.0,
+      "I_c": -0.0
+    },
+    "Bell": {
+      "MI": 1.0,
+      "I_c": -0.0
+    },
+    "Werner-0.3": {
+      "MI": 0.10376686,
+      "I_c": -0.89623314
+    },
+    "Werner-0.7": {
+      "MI": 0.48403091,
+      "I_c": -0.51596909
+    },
+    "GHZ": {
+      "MI": 1.0,
+      "I_c": -0.0
+    },
+    "mixed-entangled": {
+      "MI": 0.26248318,
+      "I_c": -0.73751682
+    }
+  },
+  "dag_summary": {
+    "full_num_nodes": 7,
+    "full_num_edges": 12,
+    "full_edges": [
+      "separable\u2192Werner-0.3",
+      "separable\u2192Werner-0.7",
+      "separable\u2192mixed-entangled",
+      "Bell\u2192Werner-0.3",
+      "Bell\u2192Werner-0.7",
+      "Bell\u2192mixed-entangled",
+      "Werner-0.7\u2192Werner-0.3",
+      "Werner-0.7\u2192mixed-entangled",
+      "GHZ\u2192Werner-0.3",
+      "GHZ\u2192Werner-0.7",
+      "GHZ\u2192mixed-entangled",
+      "mixed-entangled\u2192Werner-0.3"
+    ],
+    "reduced_num_nodes": 7,
+    "reduced_num_edges": 5,
+    "reduced_edges": [
+      "separable\u2192Werner-0.7",
+      "Bell\u2192Werner-0.7",
+      "Werner-0.7\u2192mixed-entangled",
+      "GHZ\u2192Werner-0.7",
+      "mixed-entangled\u2192Werner-0.3"
+    ],
+    "redundant_edges": 7
+  },
+  "positive": {
+    "P1_reduction_removes_redundant_edges": {
+      "full_edge_count": 12,
+      "reduced_edge_count": 5,
+      "redundant_edges": 7,
+      "full_edges": [
+        "separable\u2192Werner-0.3",
+        "separable\u2192Werner-0.7",
+        "separable\u2192mixed-entangled",
+        "Bell\u2192Werner-0.3",
+        "Bell\u2192Werner-0.7",
+        "Bell\u2192mixed-entangled",
+        "Werner-0.7\u2192Werner-0.3",
+        "Werner-0.7\u2192mixed-entangled",
+        "GHZ\u2192Werner-0.3",
+        "GHZ\u2192Werner-0.7",
+        "GHZ\u2192mixed-entangled",
+        "mixed-entangled\u2192Werner-0.3"
+      ],
+      "reduced_edges": [
+        "separable\u2192Werner-0.7",
+        "Bell\u2192Werner-0.7",
+        "Werner-0.7\u2192mixed-entangled",
+        "GHZ\u2192Werner-0.7",
+        "mixed-entangled\u2192Werner-0.3"
+      ],
+      "pass": true,
+      "note": "Transitive reduction removes edges implied by longer paths. If redundant>0, skip-edges were pruned correctly."
+    },
+    "P2_reduced_is_DAG": {
+      "is_dag": true,
+      "pass": true,
+      "note": "Transitive reduction must preserve acyclicity."
+    },
+    "P3_longest_chain_survives": {
+      "full_longest_path": [
+        "separable",
+        "Werner-0.7",
+        "mixed-entangled",
+        "Werner-0.3"
+      ],
+      "full_longest_length": 3,
+      "reduced_longest_path": [
+        "separable",
+        "Werner-0.7",
+        "mixed-entangled",
+        "Werner-0.3"
+      ],
+      "reduced_longest_length": 3,
+      "pass": true,
+      "note": "Transitive reduction preserves reachability; longest path length must be unchanged."
+    },
+    "P4_reachability_preserved_Bell": {
+      "Bell_full_descendants": [
+        "Werner-0.3",
+        "Werner-0.7",
+        "mixed-entangled"
+      ],
+      "Bell_reduced_descendants": [
+        "Werner-0.3",
+        "Werner-0.7",
+        "mixed-entangled"
+      ],
+      "match": true,
+      "pass": true,
+      "note": "Transitive reduction must not change reachability sets."
+    }
+  },
+  "negative": {
+    "N1_reduction_never_adds_edges": {
+      "full_edge_count": 12,
+      "reduced_edge_count": 5,
+      "pass": true,
+      "note": "Transitive reduction can only remove edges, never add new ones."
+    },
+    "N2_skip_edges_removed": {
+      "edge": "product\u2192Bell",
+      "in_full_dag": false,
+      "in_reduced_dag": false,
+      "note": "If product\u2192Bell exists in the full DAG AND there is a longer path through separable or Werner states, it should be removed by reduction.",
+      "pass": true
+    },
+    "N3_source_nodes_preserved": {
+      "full_sources": [
+        "Bell",
+        "GHZ",
+        "product",
+        "separable"
+      ],
+      "reduced_sources": [
+        "Bell",
+        "GHZ",
+        "product",
+        "separable"
+      ],
+      "pass": true,
+      "note": "Source nodes (in-degree=0) must be preserved by transitive reduction."
+    }
+  },
+  "boundary": {
+    "B1_sink_nodes_preserved": {
+      "full_sinks": [
+        "Werner-0.3",
+        "product"
+      ],
+      "reduced_sinks": [
+        "Werner-0.3",
+        "product"
+      ],
+      "pass": true,
+      "note": "Sink nodes (out-degree=0) must be preserved by transitive reduction."
+    },
+    "B2_Werner_chain_survives": {
+      "edge": "Werner-0.7\u2192Werner-0.3",
+      "in_reduced_dag": false,
+      "pass": true,
+      "note": "Werner-0.7\u2192Werner-0.3 is a direct dominance edge. If no intermediate node has strictly intermediate MI AND I_c, this edge must survive transitive reduction."
+    },
+    "B3_node_count_unchanged": {
+      "full_nodes": 7,
+      "reduced_nodes": 7,
+      "pass": true,
+      "note": "Transitive reduction only removes edges, never nodes."
+    },
+    "B4_edge_diff_summary": {
+      "full_edges_count": 12,
+      "reduced_edges_count": 5,
+      "removed_edges": [
+        "Bell\u2192Werner-0.3",
+        "Bell\u2192mixed-entangled",
+        "GHZ\u2192Werner-0.3",
+        "GHZ\u2192mixed-entangled",
+        "Werner-0.7\u2192Werner-0.3",
+        "separable\u2192Werner-0.3",
+        "separable\u2192mixed-entangled"
+      ],
+      "added_edges": [],
+      "redundancy_fraction": 0.5833,
+      "pass": true,
+      "note": "Added edges should always be empty. Removed edges are the redundant skip-paths."
+    }
+  },
+  "all_tests_passed": true,
+  "classification": "canonical"
+}

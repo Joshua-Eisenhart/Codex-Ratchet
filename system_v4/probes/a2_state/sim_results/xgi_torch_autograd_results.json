@@ -1,0 +1,597 @@
+{
+  "name": "sim_xgi_torch_autograd",
+  "description": "XGI incidence matrix fed into PyTorch autograd. Edge weights w have requires_grad=True. Differentiable centrality c = softmax(B_w @ B_w^T @ ones). loss = -c[L4]; loss.backward() reveals which hyperedges most contribute to L4 centrality via gradient magnitude.",
+  "shells": {
+    "L0": "density_matrix_validity",
+    "L1": "loop_family_finiteness",
+    "L2": "hopf_carrier_structure",
+    "L3": "operator_chirality",
+    "L4": "engine_family_absolute_kill",
+    "L5": "axis_orthogonality",
+    "L6": "reversible_family_kill",
+    "L7": "full_axis_composition"
+  },
+  "hyperedges": [
+    {
+      "idx": 0,
+      "edge": [
+        "L0",
+        "L1"
+      ],
+      "dof": "density_matrix_validity_and_finiteness"
+    },
+    {
+      "idx": 1,
+      "edge": [
+        "L2",
+        "L3",
+        "L4"
+      ],
+      "dof": "spinor_carrier_chirality_composition"
+    },
+    {
+      "idx": 2,
+      "edge": [
+        "L4",
+        "L6"
+      ],
+      "dof": "joint_family_kill"
+    },
+    {
+      "idx": 3,
+      "edge": [
+        "L0",
+        "L2",
+        "L5"
+      ],
+      "dof": "spinor_structure_finitude_carrier_su2"
+    },
+    {
+      "idx": 4,
+      "edge": [
+        "L3",
+        "L5",
+        "L7"
+      ],
+      "dof": "axis_orthogonality_manifold"
+    },
+    {
+      "idx": 5,
+      "edge": [
+        "L1",
+        "L4"
+      ],
+      "dof": "family_count_upper_bound"
+    },
+    {
+      "idx": 6,
+      "edge": [
+        "L2",
+        "L6",
+        "L7"
+      ],
+      "dof": "composition_reversibility_surface"
+    },
+    {
+      "idx": 7,
+      "edge": [
+        "L4",
+        "L6",
+        "L7"
+      ],
+      "dof": "surviving_family_filter"
+    }
+  ],
+  "summary": {
+    "L4_centrality": 0.5216641534515861,
+    "joint_kill_edges_in_top2_for_L4": false,
+    "joint_kill_edge2_rank_for_L4": 4,
+    "joint_kill_edge7_rank_for_L4": 5,
+    "joint_kill_edges_absent_from_top2_for_L1": false,
+    "L4_grad_larger_than_L1": true,
+    "L4_increases_when_edge2_boosted": true,
+    "L4_drops_when_joint_edges_killed": true,
+    "gradient_numerically_stable": true
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch autograd: incidence matrix B as float64 tensor, edge weights w with requires_grad=True, differentiable centrality c=softmax(B_w @ B_w^T @ ones), loss=-c[L4], loss.backward() -> grad on edge weights"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "XGI hypergraph structure (shell nodes, 8 hyperedges) used to define the incidence matrix B fed into PyTorch autograd"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "centrality_values": {
+      "L0": 0.0035149454172795753,
+      "L1": 0.0012930761558569324,
+      "L2": 0.19190951725094305,
+      "L3": 0.009554612255816464,
+      "L4": 0.5216641534515861,
+      "L5": 0.009554612255816464,
+      "L6": 0.0705995659617582,
+      "L7": 0.19190951725094305
+    },
+    "L4_centrality": 0.5216641534515861,
+    "loss_L4": -0.5216641534515861,
+    "edge_gradients": {
+      "0": {
+        "label": "density_matrix_validity_and_finiteness",
+        "edge": [
+          "L0",
+          "L1"
+        ],
+        "grad": 0.010032690014908878,
+        "grad_abs": 0.010032690014908878
+      },
+      "1": {
+        "label": "spinor_carrier_chirality_composition",
+        "edge": [
+          "L2",
+          "L3",
+          "L4"
+        ],
+        "grad": -0.8666042993113303,
+        "grad_abs": 0.8666042993113303
+      },
+      "2": {
+        "label": "joint_family_kill",
+        "edge": [
+          "L4",
+          "L6"
+        ],
+        "grad": -0.8508056065749445,
+        "grad_abs": 0.8508056065749445
+      },
+      "3": {
+        "label": "spinor_structure_finitude_carrier_su2",
+        "edge": [
+          "L0",
+          "L2",
+          "L5"
+        ],
+        "grad": 0.6415814135732285,
+        "grad_abs": 0.6415814135732285
+      },
+      "4": {
+        "label": "axis_orthogonality_manifold",
+        "edge": [
+          "L3",
+          "L5",
+          "L7"
+        ],
+        "grad": 0.6604854797039583,
+        "grad_abs": 0.6604854797039583
+      },
+      "5": {
+        "label": "family_count_upper_bound",
+        "edge": [
+          "L1",
+          "L4"
+        ],
+        "grad": -0.9954244519081303,
+        "grad_abs": 0.9954244519081303
+      },
+      "6": {
+        "label": "composition_reversibility_surface",
+        "edge": [
+          "L2",
+          "L6",
+          "L7"
+        ],
+        "grad": 1.4223233671411293,
+        "grad_abs": 1.4223233671411293
+      },
+      "7": {
+        "label": "surviving_family_filter",
+        "edge": [
+          "L4",
+          "L6",
+          "L7"
+        ],
+        "grad": -0.6755345147263221,
+        "grad_abs": 0.6755345147263221
+      }
+    },
+    "gradient_ranking": [
+      {
+        "rank": 1,
+        "edge_idx": 6,
+        "edge": [
+          "L2",
+          "L6",
+          "L7"
+        ],
+        "label": "composition_reversibility_surface",
+        "grad_abs": 1.4223233671411293
+      },
+      {
+        "rank": 2,
+        "edge_idx": 5,
+        "edge": [
+          "L1",
+          "L4"
+        ],
+        "label": "family_count_upper_bound",
+        "grad_abs": 0.9954244519081303
+      },
+      {
+        "rank": 3,
+        "edge_idx": 1,
+        "edge": [
+          "L2",
+          "L3",
+          "L4"
+        ],
+        "label": "spinor_carrier_chirality_composition",
+        "grad_abs": 0.8666042993113303
+      },
+      {
+        "rank": 4,
+        "edge_idx": 2,
+        "edge": [
+          "L4",
+          "L6"
+        ],
+        "label": "joint_family_kill",
+        "grad_abs": 0.8508056065749445
+      },
+      {
+        "rank": 5,
+        "edge_idx": 7,
+        "edge": [
+          "L4",
+          "L6",
+          "L7"
+        ],
+        "label": "surviving_family_filter",
+        "grad_abs": 0.6755345147263221
+      },
+      {
+        "rank": 6,
+        "edge_idx": 4,
+        "edge": [
+          "L3",
+          "L5",
+          "L7"
+        ],
+        "label": "axis_orthogonality_manifold",
+        "grad_abs": 0.6604854797039583
+      },
+      {
+        "rank": 7,
+        "edge_idx": 3,
+        "edge": [
+          "L0",
+          "L2",
+          "L5"
+        ],
+        "label": "spinor_structure_finitude_carrier_su2",
+        "grad_abs": 0.6415814135732285
+      },
+      {
+        "rank": 8,
+        "edge_idx": 0,
+        "edge": [
+          "L0",
+          "L1"
+        ],
+        "label": "density_matrix_validity_and_finiteness",
+        "grad_abs": 0.010032690014908878
+      }
+    ],
+    "joint_kill_edges_in_top2": false,
+    "joint_kill_edge2_rank": 4,
+    "joint_kill_edge7_rank": 5,
+    "L4_containing_edges": [
+      1,
+      2,
+      5,
+      7
+    ],
+    "L4_edge_top3_coverage": {
+      "1": true,
+      "2": false,
+      "5": true,
+      "7": false
+    }
+  },
+  "negative": {
+    "L1_centrality": 0.0012930761558569324,
+    "loss_L1": -0.0012930761558569324,
+    "edge_gradients_L1": {
+      "0": {
+        "label": "density_matrix_validity_and_finiteness",
+        "edge": [
+          "L0",
+          "L1"
+        ],
+        "grad": -0.005147436071215455,
+        "grad_abs": 0.005147436071215455
+      },
+      "1": {
+        "label": "spinor_carrier_chirality_composition",
+        "edge": [
+          "L2",
+          "L3",
+          "L4"
+        ],
+        "grad": 0.005610359641915209,
+        "grad_abs": 0.005610359641915209
+      },
+      "2": {
+        "label": "joint_family_kill",
+        "edge": [
+          "L4",
+          "L6"
+        ],
+        "grad": 0.003063368374210144,
+        "grad_abs": 0.003063368374210144
+      },
+      "3": {
+        "label": "spinor_structure_finitude_carrier_su2",
+        "edge": [
+          "L0",
+          "L2",
+          "L5"
+        ],
+        "grad": 0.0015903213254033193,
+        "grad_abs": 0.0015903213254033193
+      },
+      "4": {
+        "label": "axis_orthogonality_manifold",
+        "edge": [
+          "L3",
+          "L5",
+          "L7"
+        ],
+        "grad": 0.0016371798204727105,
+        "grad_abs": 0.0016371798204727105
+      },
+      "5": {
+        "label": "family_count_upper_bound",
+        "edge": [
+          "L1",
+          "L4"
+        ],
+        "grad": -0.0024674105268741955,
+        "grad_abs": 0.0024674105268741955
+      },
+      "6": {
+        "label": "composition_reversibility_surface",
+        "edge": [
+          "L2",
+          "L6",
+          "L7"
+        ],
+        "grad": 0.003525587142224498,
+        "grad_abs": 0.003525587142224498
+      },
+      "7": {
+        "label": "surviving_family_filter",
+        "edge": [
+          "L4",
+          "L6",
+          "L7"
+        ],
+        "grad": 0.006083974286350471,
+        "grad_abs": 0.006083974286350471
+      }
+    },
+    "gradient_ranking_L1": [
+      {
+        "rank": 1,
+        "edge_idx": 7,
+        "edge": [
+          "L4",
+          "L6",
+          "L7"
+        ],
+        "label": "surviving_family_filter",
+        "grad_abs": 0.006083974286350471
+      },
+      {
+        "rank": 2,
+        "edge_idx": 1,
+        "edge": [
+          "L2",
+          "L3",
+          "L4"
+        ],
+        "label": "spinor_carrier_chirality_composition",
+        "grad_abs": 0.005610359641915209
+      },
+      {
+        "rank": 3,
+        "edge_idx": 0,
+        "edge": [
+          "L0",
+          "L1"
+        ],
+        "label": "density_matrix_validity_and_finiteness",
+        "grad_abs": 0.005147436071215455
+      },
+      {
+        "rank": 4,
+        "edge_idx": 6,
+        "edge": [
+          "L2",
+          "L6",
+          "L7"
+        ],
+        "label": "composition_reversibility_surface",
+        "grad_abs": 0.003525587142224498
+      },
+      {
+        "rank": 5,
+        "edge_idx": 2,
+        "edge": [
+          "L4",
+          "L6"
+        ],
+        "label": "joint_family_kill",
+        "grad_abs": 0.003063368374210144
+      },
+      {
+        "rank": 6,
+        "edge_idx": 5,
+        "edge": [
+          "L1",
+          "L4"
+        ],
+        "label": "family_count_upper_bound",
+        "grad_abs": 0.0024674105268741955
+      },
+      {
+        "rank": 7,
+        "edge_idx": 4,
+        "edge": [
+          "L3",
+          "L5",
+          "L7"
+        ],
+        "label": "axis_orthogonality_manifold",
+        "grad_abs": 0.0016371798204727105
+      },
+      {
+        "rank": 8,
+        "edge_idx": 3,
+        "edge": [
+          "L0",
+          "L2",
+          "L5"
+        ],
+        "label": "spinor_structure_finitude_carrier_su2",
+        "grad_abs": 0.0015903213254033193
+      }
+    ],
+    "joint_kill_edges_absent_from_top2": false,
+    "edge2_rank_for_L1": 5,
+    "edge7_rank_for_L1": 1,
+    "total_grad_magnitude_L4": 6.122791822953952,
+    "total_grad_magnitude_L1": 0.029125637188666002,
+    "L4_grad_larger_than_L1": true
+  },
+  "boundary": {
+    "boundary1_boost_edge2": {
+      "L4_centrality_boosted": 0.8792965892942746,
+      "L4_centrality_baseline": 0.5216641534515861,
+      "L4_increases_with_edge2_boost": true,
+      "grad_edge2_boosted": -0.011983460115921774
+    },
+    "boundary2_kill_joint_edges": {
+      "L4_centrality_killed": 0.015324211998785982,
+      "L4_centrality_baseline": 0.5216641534515861,
+      "L4_drops_when_joint_edges_killed": true,
+      "centrality_ranking_killed": [
+        {
+          "shell": "L2",
+          "value": 0.8366736258494263
+        },
+        {
+          "shell": "L3",
+          "value": 0.041655527011754005
+        },
+        {
+          "shell": "L5",
+          "value": 0.041655527011754005
+        },
+        {
+          "shell": "L7",
+          "value": 0.041655527011754005
+        },
+        {
+          "shell": "L0",
+          "value": 0.015324211998785982
+        },
+        {
+          "shell": "L4",
+          "value": 0.015324211998785982
+        },
+        {
+          "shell": "L1",
+          "value": 0.005637462546506098
+        },
+        {
+          "shell": "L6",
+          "value": 0.0020739065712336
+        }
+      ]
+    },
+    "boundary3_gradient_stability": {
+      "all_grads_finite": true,
+      "any_grad_nonzero": true,
+      "grad_norm": 2.4068780830225647
+    }
+  },
+  "classification": "supporting",
+  "classification_note": "The autograd computation is stable and informative, but the stronger joint-kill top-2 attribution claim does not hold under this centrality objective. Treat as exploratory until the objective or claim is narrowed."
+}

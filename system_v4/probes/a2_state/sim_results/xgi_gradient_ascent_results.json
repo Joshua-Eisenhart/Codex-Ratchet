@@ -1,0 +1,918 @@
+{
+  "name": "sim_xgi_gradient_ascent",
+  "description": "100-step gradient ascent (Adam, lr=0.05) on XGI hyperedge weights to find the fixed-point weight configuration maximizing L4 centrality. Contrasts single-step gradient direction (edge 6 wins) against the ascent fixed point (do direct L4 edges 2 and 7 take over?). Also runs gradient descent to identify edges that suppress L4.",
+  "shells": {
+    "L0": "density_matrix_validity",
+    "L1": "loop_family_finiteness",
+    "L2": "hopf_carrier_structure",
+    "L3": "operator_chirality",
+    "L4": "engine_family_absolute_kill",
+    "L5": "axis_orthogonality",
+    "L6": "reversible_family_kill",
+    "L7": "full_axis_composition"
+  },
+  "hyperedges": [
+    {
+      "idx": 0,
+      "edge": [
+        "L0",
+        "L1"
+      ],
+      "label": "density_matrix_validity_and_finiteness"
+    },
+    {
+      "idx": 1,
+      "edge": [
+        "L2",
+        "L3",
+        "L4"
+      ],
+      "label": "spinor_carrier_chirality_composition"
+    },
+    {
+      "idx": 2,
+      "edge": [
+        "L4",
+        "L6"
+      ],
+      "label": "joint_family_kill"
+    },
+    {
+      "idx": 3,
+      "edge": [
+        "L0",
+        "L2",
+        "L5"
+      ],
+      "label": "spinor_structure_finitude_carrier_su2"
+    },
+    {
+      "idx": 4,
+      "edge": [
+        "L3",
+        "L5",
+        "L7"
+      ],
+      "label": "axis_orthogonality_manifold"
+    },
+    {
+      "idx": 5,
+      "edge": [
+        "L1",
+        "L4"
+      ],
+      "label": "family_count_upper_bound"
+    },
+    {
+      "idx": 6,
+      "edge": [
+        "L2",
+        "L6",
+        "L7"
+      ],
+      "label": "composition_reversibility_surface"
+    },
+    {
+      "idx": 7,
+      "edge": [
+        "L4",
+        "L6",
+        "L7"
+      ],
+      "label": "surviving_family_filter"
+    }
+  ],
+  "summary": {
+    "ascent_c_L4_initial": 0.5216641534515861,
+    "ascent_c_L4_final": 0.9999293605190333,
+    "ascent_c_L4_increased": true,
+    "joint_kill_edges_2_7_in_top2_at_convergence": false,
+    "indirect_edge_6_in_top2_at_convergence": false,
+    "edge_2_final_rank": 4,
+    "edge_7_final_rank": 3,
+    "edge_6_final_rank": 8,
+    "descent_c_L4_decreased": true,
+    "convergence_confirmed": true,
+    "random_reinit_top2_agrees": false,
+    "objective_alignment_with_joint_kill_claim": false,
+    "single_step_winner_edge6_interpretation": "edge_6 ({L2,L6,L7}) won single-step gradient due to indirect co-membership overlap; ascent fixed point reveals whether direct L4 edges (2,7) dominate at convergence or edge_6 remains dominant"
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch.optim.Adam on unconstrained params p, w=softplus(p), differentiable centrality c=softmax(B_w @ B_w^T @ ones), 100-step gradient ascent maximizing c[L4]; load_bearing"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "XGI hyperedge structure defines the incidence matrix B whose columns are the differentiable edge weight channels; load_bearing"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "gradient_ascent_maximize_L4": {
+      "n_steps": 100,
+      "lr": 0.05,
+      "c_L4_initial": 0.5216641534515861,
+      "c_L4_final": 0.9999293605190333,
+      "c_L4_increased": true,
+      "trajectory_c_L4": [
+        0.5216641534515861,
+        0.7020303611817176,
+        0.8332594809421916,
+        0.9106606612336041,
+        0.9515751128964167,
+        0.9726708808181563,
+        0.983791422792865,
+        0.989899453322564,
+        0.9934112633097075,
+        0.9955218273691252,
+        0.9968429808584264,
+        0.9977008655904646,
+        0.9982764706048146,
+        0.9986741196049689,
+        0.998956084194482,
+        0.999160737226201,
+        0.9993124180929713,
+        0.9994269752378029,
+        0.9995149772594564,
+        0.999583626640356,
+        0.9996379302610847,
+        0.9996814326015657,
+        0.9997166851875402,
+        0.9997455532923053,
+        0.9997694200828326,
+        0.9997893248672245,
+        0.9998060582256658,
+        0.9998202284530506,
+        0.9998323086123755,
+        0.9998426702910707,
+        0.9998516081129296,
+        0.999859357740417,
+        0.9998661092377558,
+        0.9998720170902593,
+        0.9998772077878877,
+        0.9998817856165806,
+        0.9998858371183561,
+        0.9998894345537075,
+        0.9998926386099034,
+        0.9998955005347258,
+        0.9998980638290923,
+        0.9999003655985501,
+        0.9999024376391484,
+        0.9999043073151167,
+        0.9999059982723434,
+        0.9999075310215692,
+        0.9999089234176203,
+        0.9999101910552209,
+        0.999911347597524,
+        0.9999124050500962,
+        0.999913373990461,
+        0.9999142637612746,
+        0.9999150826335862,
+        0.999915837945402,
+        0.999916536219754,
+        0.9999171832657018,
+        0.9999177842650575,
+        0.9999183438471223,
+        0.9999188661533117,
+        0.9999193548932322,
+        0.9999198133934877,
+        0.9999202446402895,
+        0.9999206513167713,
+        0.9999210358357455,
+        0.9999214003685438,
+        0.9999217468704655,
+        0.9999220771032884,
+        0.9999223926552238,
+        0.9999226949586401,
+        0.9999229853058361,
+        0.9999232648631029,
+        0.9999235346832821,
+        0.9999237957169929,
+        0.9999240488226899,
+        0.9999242947756812,
+        0.9999245342762227,
+        0.9999247679567941,
+        0.9999249963886441,
+        0.9999252200876819,
+        0.9999254395197886,
+        0.999925655105604,
+        0.9999258672248483,
+        0.9999260762202224,
+        0.9999262824009322,
+        0.9999264860458722,
+        0.9999266874065059,
+        0.999926886709471,
+        0.9999270841589326,
+        0.9999272799387185,
+        0.9999274742142482,
+        0.9999276671342802,
+        0.999927858832496,
+        0.9999280494289323,
+        0.9999282390312805,
+        0.9999284277360616,
+        0.9999286156296933,
+        0.9999288027894545,
+        0.9999289892843605,
+        0.9999291751759565,
+        0.9999293605190333
+      ],
+      "weight_snapshots": [
+        {
+          "step": 1,
+          "w": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "c_L4": 0.5216641534515861
+        },
+        {
+          "step": 10,
+          "w": [
+            0.8005108449441989,
+            1.2532036452324533,
+            1.2397449605217554,
+            0.7988043736375672,
+            0.7979834099211999,
+            1.2484301943568281,
+            0.7919622431642103,
+            1.240123029532819
+          ],
+          "c_L4": 0.9955218273691252
+        },
+        {
+          "step": 25,
+          "w": [
+            0.7094278176611654,
+            1.4234921041860176,
+            1.3822415548213962,
+            0.7063058777166226,
+            0.7048873381280747,
+            1.408547938662896,
+            0.6913170505708919,
+            1.3836648988481763
+          ],
+          "c_L4": 0.9997694200828326
+        },
+        {
+          "step": 50,
+          "w": [
+            0.6843340097156152,
+            1.481269490662445,
+            1.4258448943097695,
+            0.6808040831962144,
+            0.6792603546618387,
+            1.4610038191149683,
+            0.662979365311247,
+            1.4278341818820612
+          ],
+          "c_L4": 0.9999124050500962
+        },
+        {
+          "step": 75,
+          "w": [
+            0.6819253618645036,
+            1.4910148343583018,
+            1.4305223586277176,
+            0.6783286023053073,
+            0.6767937231417444,
+            1.4687823822594275,
+            0.6598117110297984,
+            1.4327266892496848
+          ],
+          "c_L4": 0.9999242947756812
+        },
+        {
+          "step": 100,
+          "w": [
+            0.681614017709778,
+            1.4963447826221645,
+            1.4315297836758183,
+            0.6779774008712337,
+            0.6764672985849526,
+            1.472417617808425,
+            0.6589566565879414,
+            1.433931768024093
+          ],
+          "c_L4": 0.9999293605190333
+        }
+      ],
+      "final_weights": {
+        "0": {
+          "label": "density_matrix_validity_and_finiteness",
+          "edge": [
+            "L0",
+            "L1"
+          ],
+          "w": 0.681607655985563
+        },
+        "1": {
+          "label": "spinor_carrier_chirality_composition",
+          "edge": [
+            "L2",
+            "L3",
+            "L4"
+          ],
+          "w": 1.4965509187349073
+        },
+        "2": {
+          "label": "joint_family_kill",
+          "edge": [
+            "L4",
+            "L6"
+          ],
+          "w": 1.4315601303781995
+        },
+        "3": {
+          "label": "spinor_structure_finitude_carrier_su2",
+          "edge": [
+            "L0",
+            "L2",
+            "L5"
+          ],
+          "w": 0.6779694143440771
+        },
+        "4": {
+          "label": "axis_orthogonality_manifold",
+          "edge": [
+            "L3",
+            "L5",
+            "L7"
+          ],
+          "w": 0.6764604495013977
+        },
+        "5": {
+          "label": "family_count_upper_bound",
+          "edge": [
+            "L1",
+            "L4"
+          ],
+          "w": 1.472554802679236
+        },
+        "6": {
+          "label": "composition_reversibility_surface",
+          "edge": [
+            "L2",
+            "L6",
+            "L7"
+          ],
+          "w": 0.6589286098267485
+        },
+        "7": {
+          "label": "surviving_family_filter",
+          "edge": [
+            "L4",
+            "L6",
+            "L7"
+          ],
+          "w": 1.4339704512734492
+        }
+      },
+      "final_weight_ranking": [
+        {
+          "rank": 1,
+          "edge_idx": 1,
+          "edge": [
+            "L2",
+            "L3",
+            "L4"
+          ],
+          "label": "spinor_carrier_chirality_composition",
+          "w": 1.4965509187349073
+        },
+        {
+          "rank": 2,
+          "edge_idx": 5,
+          "edge": [
+            "L1",
+            "L4"
+          ],
+          "label": "family_count_upper_bound",
+          "w": 1.472554802679236
+        },
+        {
+          "rank": 3,
+          "edge_idx": 7,
+          "edge": [
+            "L4",
+            "L6",
+            "L7"
+          ],
+          "label": "surviving_family_filter",
+          "w": 1.4339704512734492
+        },
+        {
+          "rank": 4,
+          "edge_idx": 2,
+          "edge": [
+            "L4",
+            "L6"
+          ],
+          "label": "joint_family_kill",
+          "w": 1.4315601303781995
+        },
+        {
+          "rank": 5,
+          "edge_idx": 0,
+          "edge": [
+            "L0",
+            "L1"
+          ],
+          "label": "density_matrix_validity_and_finiteness",
+          "w": 0.681607655985563
+        },
+        {
+          "rank": 6,
+          "edge_idx": 3,
+          "edge": [
+            "L0",
+            "L2",
+            "L5"
+          ],
+          "label": "spinor_structure_finitude_carrier_su2",
+          "w": 0.6779694143440771
+        },
+        {
+          "rank": 7,
+          "edge_idx": 4,
+          "edge": [
+            "L3",
+            "L5",
+            "L7"
+          ],
+          "label": "axis_orthogonality_manifold",
+          "w": 0.6764604495013977
+        },
+        {
+          "rank": 8,
+          "edge_idx": 6,
+          "edge": [
+            "L2",
+            "L6",
+            "L7"
+          ],
+          "label": "composition_reversibility_surface",
+          "w": 0.6589286098267485
+        }
+      ],
+      "joint_kill_edges_2_7_in_top2_final": false,
+      "indirect_edge_6_in_top2_final": false,
+      "indirect_edge_6_in_top3_final": false,
+      "edge_2_final_rank": 4,
+      "edge_7_final_rank": 3,
+      "edge_6_final_rank": 8,
+      "final_centrality": {
+        "L0": 5.517523528838712e-09,
+        "L1": 1.062544656927818e-07,
+        "L2": 6.63627323946586e-06,
+        "L3": 1.7929430776361039e-06,
+        "L4": 0.9999295453622821,
+        "L5": 8.598152454985813e-09,
+        "L6": 5.8100344222895816e-05,
+        "L7": 3.804707036290768e-06
+      }
+    }
+  },
+  "negative": {
+    "gradient_descent_minimize_L4": {
+      "n_steps": 100,
+      "lr": 0.05,
+      "c_L4_initial": 0.5216641534515861,
+      "c_L4_final": 2.484353684127173e-05,
+      "c_L4_decreased": true,
+      "trajectory_c_L4": [
+        0.5216641534515861,
+        0.33321268998919307,
+        0.185451434771865,
+        0.0952423965938833,
+        0.04821846098243919,
+        0.02511602838163802,
+        0.013709187670911685,
+        0.00787666548354431,
+        0.004756330346249322,
+        0.003007426761430249,
+        0.0019828328506412245,
+        0.001357613977706987,
+        0.0009617157102880479,
+        0.0007025029792965783,
+        0.000527586214470579,
+        0.000406293996654392,
+        0.0003200912710740703,
+        0.00025744734437313456,
+        0.00021099590115074063,
+        0.00017591508717995015,
+        0.00014897729803224678,
+        0.00012797721253502982,
+        0.00011137918354876967,
+        9.809500125707944e-05,
+        8.73409262890097e-05,
+        7.854395148964007e-05,
+        7.127924387341942e-05,
+        6.52277011234644e-05,
+        6.014670841487782e-05,
+        5.584969802727676e-05,
+        5.2191668016490054e-05,
+        4.905879212155056e-05,
+        4.636087597816362e-05,
+        4.4025818359417144e-05,
+        4.199550150150515e-05,
+        4.022271135734665e-05,
+        3.8668807917088587e-05,
+        3.730194721281671e-05,
+        3.609571291310679e-05,
+        3.502805472273677e-05,
+        3.408045853922466e-05,
+        3.323729308060311e-05,
+        3.24852919119185e-05,
+        3.181314011082421e-05,
+        3.12111423591071e-05,
+        3.0670954813839365e-05,
+        3.0185367250146963e-05,
+        2.9748125066614753e-05,
+        2.935378308149635e-05,
+        2.899758482234293e-05,
+        2.8675362367571634e-05,
+        2.8383452840983986e-05,
+        2.8118628466473254e-05,
+        2.7878037717203004e-05,
+        2.7659155583847574e-05,
+        2.7459741371855287e-05,
+        2.72778027420898e-05,
+        2.7111564950774522e-05,
+        2.695944443724925e-05,
+        2.6820026062248382e-05,
+        2.6692043423400754e-05,
+        2.657436177474077e-05,
+        2.6465963158148762e-05,
+        2.6365933420628116e-05,
+        2.627345084521293e-05,
+        2.6187776167450765e-05,
+        2.6108243785710025e-05,
+        2.6034254003513692e-05,
+        2.5965266166897658e-05,
+        2.590079258038586e-05,
+        2.5840393102335314e-05,
+        2.5783670334751114e-05,
+        2.5730265334701116e-05,
+        2.5679853784587567e-05,
+        2.563214256707328e-05,
+        2.5586866697699254e-05,
+        2.554378657437518e-05,
+        2.5502685508163615e-05,
+        2.5463367504254984e-05,
+        2.542565526587296e-05,
+        2.53893883971495e-05,
+        2.5354421783864926e-05,
+        2.5320624133408436e-05,
+        2.52878766574632e-05,
+        2.525607188277891e-05,
+        2.522511257702711e-05,
+        2.519491077815639e-05,
+        2.5165386916917675e-05,
+        2.513646902333022e-05,
+        2.5108092008829887e-05,
+        2.508019701669952e-05,
+        2.5052730834144653e-05,
+        2.502564536005028e-05,
+        2.499889712305796e-05,
+        2.4972446845137647e-05,
+        2.4946259046307772e-05,
+        2.49203016865839e-05,
+        2.4894545841620956e-05,
+        2.4868965408856427e-05,
+        2.484353684127173e-05
+      ],
+      "weight_snapshots": [
+        {
+          "step": 1,
+          "w": [
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "c_L4": 0.5216641534515861
+        },
+        {
+          "step": 10,
+          "w": [
+            1.2565090276238953,
+            0.7928896137782289,
+            0.7891088877198076,
+            1.2527541240678002,
+            1.2516032504589953,
+            0.7915182442660301,
+            1.2477759375090407,
+            0.788849353834559
+          ],
+          "c_L4": 0.003007426761430249
+        },
+        {
+          "step": 25,
+          "w": [
+            1.4231796467129767,
+            0.6957240905951045,
+            0.688662919304362,
+            1.412807374240639,
+            1.4096034288856425,
+            0.693218059623359,
+            1.3999078504274698,
+            0.6880150715670076
+          ],
+          "c_L4": 8.73409262890097e-05
+        },
+        {
+          "step": 50,
+          "w": [
+            1.4757285336281982,
+            0.6689574225826042,
+            0.6610181810646333,
+            1.4628176126390178,
+            1.458776915404394,
+            0.6661569207537266,
+            1.446827118147974,
+            0.6602335462027031
+          ],
+          "c_L4": 2.899758482234293e-05
+        },
+        {
+          "step": 75,
+          "w": [
+            1.4821029943289616,
+            0.6663212713718843,
+            0.6582805333741747,
+            1.4687093074839268,
+            1.4644705696876794,
+            0.6634920622191205,
+            1.4520431878128015,
+            0.6574621255393787
+          ],
+          "c_L4": 2.563214256707328e-05
+        },
+        {
+          "step": 100,
+          "w": [
+            1.4841828686939114,
+            0.665904970018065,
+            0.6578318790425454,
+            1.4704893788477214,
+            1.466104753465225,
+            0.6630710611296197,
+            1.4533518145860838,
+            0.6569875454939276
+          ],
+          "c_L4": 2.484353684127173e-05
+        }
+      ],
+      "final_weights_ascending": [
+        {
+          "rank_suppressed": 1,
+          "edge_idx": 7,
+          "edge": [
+            "L4",
+            "L6",
+            "L7"
+          ],
+          "label": "surviving_family_filter",
+          "w": 0.6569749015109811
+        },
+        {
+          "rank_suppressed": 2,
+          "edge_idx": 2,
+          "edge": [
+            "L4",
+            "L6"
+          ],
+          "label": "joint_family_kill",
+          "w": 0.6578203003466024
+        },
+        {
+          "rank_suppressed": 3,
+          "edge_idx": 5,
+          "edge": [
+            "L1",
+            "L4"
+          ],
+          "label": "family_count_upper_bound",
+          "w": 0.6630604977874139
+        },
+        {
+          "rank_suppressed": 4,
+          "edge_idx": 1,
+          "edge": [
+            "L2",
+            "L3",
+            "L4"
+          ],
+          "label": "spinor_carrier_chirality_composition",
+          "w": 0.6658945278163284
+        },
+        {
+          "rank_suppressed": 5,
+          "edge_idx": 6,
+          "edge": [
+            "L2",
+            "L6",
+            "L7"
+          ],
+          "label": "composition_reversibility_surface",
+          "w": 1.453394300426081
+        },
+        {
+          "rank_suppressed": 6,
+          "edge_idx": 4,
+          "edge": [
+            "L3",
+            "L5",
+            "L7"
+          ],
+          "label": "axis_orthogonality_manifold",
+          "w": 1.4661604239923327
+        },
+        {
+          "rank_suppressed": 7,
+          "edge_idx": 3,
+          "edge": [
+            "L0",
+            "L2",
+            "L5"
+          ],
+          "label": "spinor_structure_finitude_carrier_su2",
+          "w": 1.4705510339280008
+        },
+        {
+          "rank_suppressed": 8,
+          "edge_idx": 0,
+          "edge": [
+            "L0",
+            "L1"
+          ],
+          "label": "density_matrix_validity_and_finiteness",
+          "w": 1.4842565694489354
+        }
+      ],
+      "L4_edge_suppression_ranks": {
+        "1": 4,
+        "2": 2,
+        "5": 3,
+        "7": 1
+      },
+      "indirect_edge_6_suppression_rank": 5,
+      "final_centrality": {
+        "L0": 0.016904359191496316,
+        "L1": 6.19956502463834e-05,
+        "L2": 0.4409131622894056,
+        "L3": 0.0007505876124858942,
+        "L4": 2.4818238906165825e-05,
+        "L5": 0.1303750853189817,
+        "L6": 0.0015393242281108114,
+        "L7": 0.4094306674703674
+      }
+    }
+  },
+  "boundary": {
+    "boundary1_convergence": {
+      "delta_c_L4_first_10_steps": 0.4738576739175391,
+      "delta_c_L4_last_10_steps": 1.8863047850370407e-06,
+      "converging": true,
+      "c_L4_step100": 0.9999293605190333
+    },
+    "boundary2_random_reinit": {
+      "top2_standard_init": [
+        1,
+        5
+      ],
+      "top2_random_init": [
+        2,
+        1
+      ],
+      "top2_agrees": false,
+      "top3_standard_init": [
+        1,
+        5,
+        7
+      ],
+      "top3_random_init": [
+        2,
+        1,
+        5
+      ],
+      "top3_agrees": false
+    },
+    "boundary3_small_lr_sgd": {
+      "top3_small_lr": [
+        5,
+        1,
+        2
+      ],
+      "top3_labels": [
+        "family_count_upper_bound",
+        "spinor_carrier_chirality_composition",
+        "joint_family_kill"
+      ],
+      "top3_edges": [
+        [
+          "L1",
+          "L4"
+        ],
+        [
+          "L2",
+          "L3",
+          "L4"
+        ],
+        [
+          "L4",
+          "L6"
+        ]
+      ],
+      "agrees_with_adam_top2": true,
+      "final_weights": {
+        "0": 0.9995985428430427,
+        "1": 1.0332879802734287,
+        "2": 1.031954612523933,
+        "3": 0.9771250369895358,
+        "4": 0.9768091801784418,
+        "5": 1.038302045328342,
+        "6": 0.9503784973241449,
+        "7": 1.0255847538551457
+      }
+    }
+  },
+  "classification": "supporting",
+  "classification_note": "The centrality optimization itself converges, but the claimed joint-kill dominance does not stabilize under this objective. Treat as exploratory until the objective is better aligned to joint-kill attribution."
+}

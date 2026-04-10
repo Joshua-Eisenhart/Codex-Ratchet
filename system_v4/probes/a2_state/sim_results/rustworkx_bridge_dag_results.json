@@ -1,0 +1,317 @@
+{
+  "name": "rustworkx_bridge_dag",
+  "description": "rustworkx DAG partial order on bridge packet states by information content (MI and I_c). Edge A\u2192B means A strictly dominates B on both axes.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Density matrix arithmetic: von Neumann entropy, partial trace, mutual information, and coherent information for all bridge packet states"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no message-passing layer"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "DAG construction and ALL graph algorithms: PyDAG, topological_sort, dag_longest_path, is_directed_acyclic_graph, descendants -- these ARE the result; no numpy fallback"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "state_metrics": {
+    "product": {
+      "MI": -0.0,
+      "I_c": -0.0
+    },
+    "separable": {
+      "MI": 1.0,
+      "I_c": -0.0
+    },
+    "Bell": {
+      "MI": 1.0,
+      "I_c": -0.0
+    },
+    "Werner-0.3": {
+      "MI": 0.10376686,
+      "I_c": -0.89623314
+    },
+    "Werner-0.7": {
+      "MI": 0.48403091,
+      "I_c": -0.51596909
+    },
+    "GHZ": {
+      "MI": 1.0,
+      "I_c": -0.0
+    },
+    "mixed-entangled": {
+      "MI": 0.26248318,
+      "I_c": -0.73751682
+    }
+  },
+  "dag_summary": {
+    "num_nodes": 7,
+    "num_edges": 12,
+    "is_dag": true,
+    "edges": [
+      "separable\u2192Werner-0.3",
+      "separable\u2192Werner-0.7",
+      "separable\u2192mixed-entangled",
+      "Bell\u2192Werner-0.3",
+      "Bell\u2192Werner-0.7",
+      "Bell\u2192mixed-entangled",
+      "Werner-0.7\u2192Werner-0.3",
+      "Werner-0.7\u2192mixed-entangled",
+      "GHZ\u2192Werner-0.3",
+      "GHZ\u2192Werner-0.7",
+      "GHZ\u2192mixed-entangled",
+      "mixed-entangled\u2192Werner-0.3"
+    ],
+    "topological_sort_order": [
+      "GHZ",
+      "Bell",
+      "separable",
+      "Werner-0.7",
+      "mixed-entangled",
+      "Werner-0.3",
+      "product"
+    ],
+    "dag_longest_path": [
+      "separable",
+      "Werner-0.7",
+      "mixed-entangled",
+      "Werner-0.3"
+    ],
+    "dag_longest_path_length": 3,
+    "descendants_by_node": {
+      "product": {
+        "descendants": [],
+        "count": 0,
+        "in_degree": 0,
+        "out_degree": 0
+      },
+      "separable": {
+        "descendants": [
+          "Werner-0.3",
+          "Werner-0.7",
+          "mixed-entangled"
+        ],
+        "count": 3,
+        "in_degree": 0,
+        "out_degree": 3
+      },
+      "Bell": {
+        "descendants": [
+          "Werner-0.3",
+          "Werner-0.7",
+          "mixed-entangled"
+        ],
+        "count": 3,
+        "in_degree": 0,
+        "out_degree": 3
+      },
+      "Werner-0.3": {
+        "descendants": [],
+        "count": 0,
+        "in_degree": 5,
+        "out_degree": 0
+      },
+      "Werner-0.7": {
+        "descendants": [
+          "Werner-0.3",
+          "mixed-entangled"
+        ],
+        "count": 2,
+        "in_degree": 3,
+        "out_degree": 2
+      },
+      "GHZ": {
+        "descendants": [
+          "Werner-0.3",
+          "Werner-0.7",
+          "mixed-entangled"
+        ],
+        "count": 3,
+        "in_degree": 0,
+        "out_degree": 3
+      },
+      "mixed-entangled": {
+        "descendants": [
+          "Werner-0.3"
+        ],
+        "count": 1,
+        "in_degree": 4,
+        "out_degree": 1
+      }
+    }
+  },
+  "positive": {
+    "P1_GHZ_near_top": {
+      "topo_position": 0,
+      "topo_order": [
+        "GHZ",
+        "Bell",
+        "separable",
+        "Werner-0.7",
+        "mixed-entangled",
+        "Werner-0.3",
+        "product"
+      ],
+      "in_degree": 0,
+      "is_source_node": true,
+      "pass": true,
+      "note": "GHZ should appear near position 0 (highest information) or be a source"
+    },
+    "P2_product_is_source": {
+      "in_degree": 0,
+      "out_degree": 0,
+      "is_source": true,
+      "pass": true,
+      "note": "product state has no parents -- nothing has lower MI and lower I_c"
+    },
+    "P3_bell_subsumes_werner": {
+      "Bell_descendants": [
+        "Werner-0.3",
+        "Werner-0.7",
+        "mixed-entangled"
+      ],
+      "werner_states_subsumed": [
+        "Werner-0.3",
+        "Werner-0.7"
+      ],
+      "pass": true,
+      "note": "Bell state (pure, max entanglement) should subsume Werner states"
+    }
+  },
+  "negative": {
+    "N1_Werner03_no_entangled_successors": {
+      "Werner-0.3_MI": 0.10376686,
+      "Werner-0.3_I_c": -0.89623314,
+      "successors": [],
+      "entangled_successors": [],
+      "pass": true,
+      "note": "Werner-0.3 (separable/PPT limit) must not subsume entangled states"
+    },
+    "N2_product_no_ic_positive_successors": {
+      "product_I_c": -0.0,
+      "successors": [],
+      "successors_with_Ic_gt0": [],
+      "pass": true,
+      "note": "product state (I_c <= 0) cannot subsume any state with I_c > 0"
+    },
+    "N3_dag_acyclic": {
+      "is_dag": true,
+      "pass": true,
+      "note": "information-content partial order must be acyclic"
+    }
+  },
+  "boundary": {
+    "B1_Werner03_dag_position": {
+      "Werner-0.3_MI": 0.10376686,
+      "Werner-0.3_I_c": -0.89623314,
+      "in_degree": 5,
+      "out_degree": 0,
+      "position": "sink",
+      "pass": true,
+      "note": "PPT boundary state: p=1/3 is the separability threshold for Werner"
+    },
+    "B2_longest_chain": {
+      "path_node_ids": "NodeIndices[1, 4, 6, 3]",
+      "path_names": [
+        "separable",
+        "Werner-0.7",
+        "mixed-entangled",
+        "Werner-0.3"
+      ],
+      "length": 3,
+      "pass": true,
+      "note": "longest monotone chain through the information-content partial order"
+    },
+    "B3_Werner07_subsumes_Werner03": {
+      "Werner-0.7_MI": 0.48403091,
+      "Werner-0.7_I_c": -0.51596909,
+      "Werner-0.3_MI": 0.10376686,
+      "Werner-0.3_I_c": -0.89623314,
+      "Werner07_subsumes_Werner03": true,
+      "pass": true,
+      "note": "higher-p Werner state must subsume lower-p Werner state"
+    },
+    "B4_GHZ_vs_Bell": {
+      "GHZ_MI": 1.0,
+      "GHZ_I_c": -0.0,
+      "Bell_MI": 1.0,
+      "Bell_I_c": -0.0,
+      "GHZ_subsumes_Bell": false,
+      "Bell_subsumes_GHZ": false,
+      "pass": true,
+      "note": "GHZ (rho_AB after partial trace) vs Bell -- GHZ-reduced may equal Bell due to local structure; result reveals whether partial-trace collapses the distinction"
+    }
+  },
+  "z3_ordering_cross_check": {
+    "z3_ordering_file_exists": true,
+    "z3_ordering_file_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/bridge_z3_kernel_ordering_results.json",
+    "z3_ordering_loaded": true,
+    "discrepancy_flag": false,
+    "note": "Cross-check performed against loaded z3 ordering file"
+  },
+  "all_tests_passed": true,
+  "classification": "canonical"
+}

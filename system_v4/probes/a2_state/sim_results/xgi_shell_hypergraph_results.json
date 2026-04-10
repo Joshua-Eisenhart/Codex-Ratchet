@@ -1,0 +1,800 @@
+{
+  "name": "sim_xgi_shell_hypergraph",
+  "description": "XGI hypergraph model of constraint shell family (L0-L7). Nodes = shells, hyperedges = multi-way co-constraint groups. Tests whether hypergraph centrality reflects kill ordering and whether multi-way structure is load-bearing vs pairwise expansion.",
+  "shells": {
+    "L0": "density_matrix_validity",
+    "L1": "loop_family_finiteness",
+    "L2": "hopf_carrier_structure",
+    "L3": "operator_chirality",
+    "L4": "engine_family_absolute_kill",
+    "L5": "axis_orthogonality",
+    "L6": "reversible_family_kill",
+    "L7": "full_axis_composition"
+  },
+  "hyperedges": [
+    {
+      "edge": [
+        "L0",
+        "L1"
+      ],
+      "dof": "density_matrix_validity_and_finiteness"
+    },
+    {
+      "edge": [
+        "L2",
+        "L3",
+        "L4"
+      ],
+      "dof": "spinor_carrier_chirality_composition"
+    },
+    {
+      "edge": [
+        "L4",
+        "L6"
+      ],
+      "dof": "joint_family_kill"
+    },
+    {
+      "edge": [
+        "L0",
+        "L2",
+        "L5"
+      ],
+      "dof": "spinor_structure_finitude_carrier_su2"
+    },
+    {
+      "edge": [
+        "L3",
+        "L5",
+        "L7"
+      ],
+      "dof": "axis_orthogonality_manifold"
+    },
+    {
+      "edge": [
+        "L1",
+        "L4"
+      ],
+      "dof": "family_count_upper_bound"
+    },
+    {
+      "edge": [
+        "L2",
+        "L6",
+        "L7"
+      ],
+      "dof": "composition_reversibility_surface"
+    },
+    {
+      "edge": [
+        "L4",
+        "L6",
+        "L7"
+      ],
+      "dof": "surviving_family_filter"
+    }
+  ],
+  "summary": {
+    "hypergraph_shell_count": 8,
+    "hyperedge_count": 8,
+    "max_hyperedge_size": 3,
+    "L4_top3_across_measures": 4,
+    "L6_top3_across_measures": 3,
+    "kill_shells_dominate_hypergraph": true,
+    "rankings_differ_from_pairwise": true,
+    "spearman_rho_hyper_vs_pairwise": 0.6190476190476191,
+    "L4_rank_changes_in_pairwise": true,
+    "L6_rank_changes_in_pairwise": true,
+    "multi_way_structure_load_bearing": true
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "optional import unavailable: cannot cache function 'canonical_reordering_sign': no locator available for file '/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/clifford/_layout.py'"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "rustworkx PyDiGraph DAG for sequential + cross-constraint kill ordering of shells; in-degree as DAG constraint depth."
+    },
+    "xgi": {
+      "tried": true,
+      "used": true,
+      "reason": "XGI Hypergraph: shell nodes, multi-way hyperedges, clique_eigenvector_centrality, node_edge_centrality, katz_centrality"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "load_bearing",
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "node_count": 8,
+    "edge_count": 8,
+    "edge_sizes": {
+      "0": 2,
+      "1": 3,
+      "2": 2,
+      "3": 3,
+      "4": 3,
+      "5": 2,
+      "6": 3,
+      "7": 3
+    },
+    "max_edge_size": 3,
+    "hyperedge_annotations": {
+      "0": "density_matrix_validity_and_finiteness",
+      "1": "spinor_carrier_chirality_composition",
+      "2": "joint_family_kill",
+      "3": "spinor_structure_finitude_carrier_su2",
+      "4": "axis_orthogonality_manifold",
+      "5": "family_count_upper_bound",
+      "6": "composition_reversibility_surface",
+      "7": "surviving_family_filter"
+    },
+    "centrality_measures": {
+      "hyperedge_degree": {
+        "L0": 2,
+        "L1": 2,
+        "L2": 3,
+        "L3": 2,
+        "L4": 4,
+        "L5": 2,
+        "L6": 3,
+        "L7": 3
+      },
+      "clique_eigenvector_centrality": {
+        "L0": 0.06113234702826038,
+        "L1": 0.04541121624893626,
+        "L2": 0.15857147512687184,
+        "L3": 0.12045499813489745,
+        "L4": 0.1668286662050944,
+        "L5": 0.10289725857976564,
+        "L6": 0.16832608099943114,
+        "L7": 0.17637795767674302
+      },
+      "node_edge_centrality": {
+        "L0": 0.07852842200750365,
+        "L1": 0.07489512938290584,
+        "L2": 0.14547178664405208,
+        "L3": 0.11755453628903596,
+        "L4": 0.1672047927660445,
+        "L5": 0.103648073410307,
+        "L6": 0.1571148830961875,
+        "L7": 0.1555823764039634
+      },
+      "katz_centrality": {
+        "L0": 0.08302433157452294,
+        "L1": 0.055457111806188,
+        "L2": 0.16648662170909426,
+        "L3": 0.11135047315457981,
+        "L4": 0.16648999379513316,
+        "L5": 0.11102570404088094,
+        "L6": 0.13945954992121992,
+        "L7": 0.16670621399838098
+      }
+    },
+    "rankings": {
+      "hyperedge_degree": [
+        {
+          "shell": "L4",
+          "value": 4.0
+        },
+        {
+          "shell": "L2",
+          "value": 3.0
+        },
+        {
+          "shell": "L6",
+          "value": 3.0
+        },
+        {
+          "shell": "L7",
+          "value": 3.0
+        },
+        {
+          "shell": "L0",
+          "value": 2.0
+        },
+        {
+          "shell": "L1",
+          "value": 2.0
+        },
+        {
+          "shell": "L3",
+          "value": 2.0
+        },
+        {
+          "shell": "L5",
+          "value": 2.0
+        }
+      ],
+      "clique_eigenvector_centrality": [
+        {
+          "shell": "L7",
+          "value": 0.17637795767674302
+        },
+        {
+          "shell": "L6",
+          "value": 0.16832608099943114
+        },
+        {
+          "shell": "L4",
+          "value": 0.1668286662050944
+        },
+        {
+          "shell": "L2",
+          "value": 0.15857147512687184
+        },
+        {
+          "shell": "L3",
+          "value": 0.12045499813489745
+        },
+        {
+          "shell": "L5",
+          "value": 0.10289725857976564
+        },
+        {
+          "shell": "L0",
+          "value": 0.06113234702826038
+        },
+        {
+          "shell": "L1",
+          "value": 0.04541121624893626
+        }
+      ],
+      "node_edge_centrality": [
+        {
+          "shell": "L4",
+          "value": 0.1672047927660445
+        },
+        {
+          "shell": "L6",
+          "value": 0.1571148830961875
+        },
+        {
+          "shell": "L7",
+          "value": 0.1555823764039634
+        },
+        {
+          "shell": "L2",
+          "value": 0.14547178664405208
+        },
+        {
+          "shell": "L3",
+          "value": 0.11755453628903596
+        },
+        {
+          "shell": "L5",
+          "value": 0.103648073410307
+        },
+        {
+          "shell": "L0",
+          "value": 0.07852842200750365
+        },
+        {
+          "shell": "L1",
+          "value": 0.07489512938290584
+        }
+      ],
+      "katz_centrality": [
+        {
+          "shell": "L7",
+          "value": 0.16670621399838098
+        },
+        {
+          "shell": "L4",
+          "value": 0.16648999379513316
+        },
+        {
+          "shell": "L2",
+          "value": 0.16648662170909426
+        },
+        {
+          "shell": "L6",
+          "value": 0.13945954992121992
+        },
+        {
+          "shell": "L3",
+          "value": 0.11135047315457981
+        },
+        {
+          "shell": "L5",
+          "value": 0.11102570404088094
+        },
+        {
+          "shell": "L0",
+          "value": 0.08302433157452294
+        },
+        {
+          "shell": "L1",
+          "value": 0.055457111806188
+        }
+      ]
+    },
+    "top3_counts_across_measures": {
+      "L0": 0,
+      "L1": 0,
+      "L2": 2,
+      "L3": 0,
+      "L4": 4,
+      "L5": 0,
+      "L6": 3,
+      "L7": 3
+    },
+    "L4_top3_count": 4,
+    "L6_top3_count": 3,
+    "kill_shells_dominate": true,
+    "shell_memberships": {
+      "L0": {
+        "edge_ids": [
+          0,
+          3
+        ],
+        "edge_labels": [
+          "density_matrix_validity_and_finiteness",
+          "spinor_structure_finitude_carrier_su2"
+        ],
+        "count": 2
+      },
+      "L1": {
+        "edge_ids": [
+          0,
+          5
+        ],
+        "edge_labels": [
+          "density_matrix_validity_and_finiteness",
+          "family_count_upper_bound"
+        ],
+        "count": 2
+      },
+      "L2": {
+        "edge_ids": [
+          1,
+          3,
+          6
+        ],
+        "edge_labels": [
+          "spinor_carrier_chirality_composition",
+          "spinor_structure_finitude_carrier_su2",
+          "composition_reversibility_surface"
+        ],
+        "count": 3
+      },
+      "L3": {
+        "edge_ids": [
+          1,
+          4
+        ],
+        "edge_labels": [
+          "spinor_carrier_chirality_composition",
+          "axis_orthogonality_manifold"
+        ],
+        "count": 2
+      },
+      "L4": {
+        "edge_ids": [
+          1,
+          2,
+          5,
+          7
+        ],
+        "edge_labels": [
+          "spinor_carrier_chirality_composition",
+          "joint_family_kill",
+          "family_count_upper_bound",
+          "surviving_family_filter"
+        ],
+        "count": 4
+      },
+      "L5": {
+        "edge_ids": [
+          3,
+          4
+        ],
+        "edge_labels": [
+          "spinor_structure_finitude_carrier_su2",
+          "axis_orthogonality_manifold"
+        ],
+        "count": 2
+      },
+      "L6": {
+        "edge_ids": [
+          2,
+          6,
+          7
+        ],
+        "edge_labels": [
+          "joint_family_kill",
+          "composition_reversibility_surface",
+          "surviving_family_filter"
+        ],
+        "count": 3
+      },
+      "L7": {
+        "edge_ids": [
+          4,
+          6,
+          7
+        ],
+        "edge_labels": [
+          "axis_orthogonality_manifold",
+          "composition_reversibility_surface",
+          "surviving_family_filter"
+        ],
+        "count": 3
+      }
+    }
+  },
+  "negative": {
+    "pairwise_edge_count": 16,
+    "pairwise_edges": [
+      [
+        "L3",
+        "L4"
+      ],
+      [
+        "L4",
+        "L6"
+      ],
+      [
+        "L2",
+        "L6"
+      ],
+      [
+        "L1",
+        "L4"
+      ],
+      [
+        "L2",
+        "L4"
+      ],
+      [
+        "L3",
+        "L7"
+      ],
+      [
+        "L0",
+        "L2"
+      ],
+      [
+        "L2",
+        "L5"
+      ],
+      [
+        "L0",
+        "L1"
+      ],
+      [
+        "L4",
+        "L7"
+      ],
+      [
+        "L2",
+        "L3"
+      ],
+      [
+        "L6",
+        "L7"
+      ],
+      [
+        "L5",
+        "L7"
+      ],
+      [
+        "L2",
+        "L7"
+      ],
+      [
+        "L3",
+        "L5"
+      ],
+      [
+        "L0",
+        "L5"
+      ]
+    ],
+    "pairwise_centrality": {
+      "hyperedge_degree": {
+        "L0": 3,
+        "L1": 2,
+        "L2": 6,
+        "L3": 4,
+        "L4": 5,
+        "L5": 4,
+        "L6": 3,
+        "L7": 5
+      },
+      "clique_eigenvector_centrality": {
+        "L0": 0.08195726777523933,
+        "L1": 0.05251618318598778,
+        "L2": 0.1766479134478169,
+        "L3": 0.1406366894802427,
+        "L4": 0.14720682885856542,
+        "L5": 0.12847162806788714,
+        "L6": 0.11119560489099121,
+        "L7": 0.16136788429326948
+      },
+      "node_edge_centrality": {
+        "L0": 0.09082191380935627,
+        "L1": 0.06421630775345245,
+        "L2": 0.17651531554595312,
+        "L3": 0.13312700492490193,
+        "L4": 0.14599278731436796,
+        "L5": 0.12491977809286191,
+        "L6": 0.11099678450512397,
+        "L7": 0.15341010805398236
+      },
+      "katz_centrality": {
+        "L0": 0.09361176809110351,
+        "L1": 0.06240721053087646,
+        "L2": 0.18722734171380626,
+        "L3": 0.12530390800875052,
+        "L4": 0.15602278415357923,
+        "L5": 0.12506106358827399,
+        "L6": 0.0940993504485235,
+        "L7": 0.1562665734650866
+      }
+    },
+    "pairwise_rankings": {
+      "hyperedge_degree": [
+        {
+          "shell": "L2",
+          "value": 6.0
+        },
+        {
+          "shell": "L4",
+          "value": 5.0
+        },
+        {
+          "shell": "L7",
+          "value": 5.0
+        },
+        {
+          "shell": "L3",
+          "value": 4.0
+        },
+        {
+          "shell": "L5",
+          "value": 4.0
+        },
+        {
+          "shell": "L0",
+          "value": 3.0
+        },
+        {
+          "shell": "L6",
+          "value": 3.0
+        },
+        {
+          "shell": "L1",
+          "value": 2.0
+        }
+      ],
+      "clique_eigenvector_centrality": [
+        {
+          "shell": "L2",
+          "value": 0.1766479134478169
+        },
+        {
+          "shell": "L7",
+          "value": 0.16136788429326948
+        },
+        {
+          "shell": "L4",
+          "value": 0.14720682885856542
+        },
+        {
+          "shell": "L3",
+          "value": 0.1406366894802427
+        },
+        {
+          "shell": "L5",
+          "value": 0.12847162806788714
+        },
+        {
+          "shell": "L6",
+          "value": 0.11119560489099121
+        },
+        {
+          "shell": "L0",
+          "value": 0.08195726777523933
+        },
+        {
+          "shell": "L1",
+          "value": 0.05251618318598778
+        }
+      ],
+      "node_edge_centrality": [
+        {
+          "shell": "L2",
+          "value": 0.17651531554595312
+        },
+        {
+          "shell": "L7",
+          "value": 0.15341010805398236
+        },
+        {
+          "shell": "L4",
+          "value": 0.14599278731436796
+        },
+        {
+          "shell": "L3",
+          "value": 0.13312700492490193
+        },
+        {
+          "shell": "L5",
+          "value": 0.12491977809286191
+        },
+        {
+          "shell": "L6",
+          "value": 0.11099678450512397
+        },
+        {
+          "shell": "L0",
+          "value": 0.09082191380935627
+        },
+        {
+          "shell": "L1",
+          "value": 0.06421630775345245
+        }
+      ],
+      "katz_centrality": [
+        {
+          "shell": "L2",
+          "value": 0.18722734171380626
+        },
+        {
+          "shell": "L7",
+          "value": 0.1562665734650866
+        },
+        {
+          "shell": "L4",
+          "value": 0.15602278415357923
+        },
+        {
+          "shell": "L3",
+          "value": 0.12530390800875052
+        },
+        {
+          "shell": "L5",
+          "value": 0.12506106358827399
+        },
+        {
+          "shell": "L6",
+          "value": 0.0940993504485235
+        },
+        {
+          "shell": "L0",
+          "value": 0.09361176809110351
+        },
+        {
+          "shell": "L1",
+          "value": 0.06240721053087646
+        }
+      ]
+    },
+    "top1_ranking_comparison": {
+      "clique_eigenvector_centrality": {
+        "hypergraph_top1": "L7",
+        "pairwise_top1": "L2",
+        "top1_differs": true
+      },
+      "node_edge_centrality": {
+        "hypergraph_top1": "L4",
+        "pairwise_top1": "L2",
+        "top1_differs": true
+      },
+      "katz_centrality": {
+        "hypergraph_top1": "L7",
+        "pairwise_top1": "L2",
+        "top1_differs": true
+      }
+    },
+    "node_edge_centrality_spearman_rho_hyper_vs_pairwise": 0.6190476190476191,
+    "rankings_differ_from_pairwise": true,
+    "L4_rank_hyper_vs_pairwise": {
+      "hypergraph": 0,
+      "pairwise": 2
+    },
+    "L6_rank_hyper_vs_pairwise": {
+      "hypergraph": 1,
+      "pairwise": 5
+    },
+    "L4_rank_changes": true,
+    "L6_rank_changes": true
+  },
+  "boundary": {
+    "singleton_test": {
+      "L0_degree": 1,
+      "L4_degree": 1,
+      "L0_degree_is_1": true,
+      "L4_degree_is_1": true
+    },
+    "full_hyperedge_test": {
+      "katz_values": {
+        "L0": 0.125,
+        "L1": 0.125,
+        "L2": 0.125,
+        "L3": 0.125,
+        "L4": 0.125,
+        "L5": 0.125,
+        "L6": 0.125,
+        "L7": 0.125
+      },
+      "katz_range": 0.0,
+      "centrality_uniform": true
+    },
+    "rustworkx_dag_kill_order": {
+      "in_degrees": {
+        "L0": 0,
+        "L1": 1,
+        "L2": 1,
+        "L3": 1,
+        "L4": 1,
+        "L5": 2,
+        "L6": 2,
+        "L7": 2
+      },
+      "L4_in_degree": 1,
+      "L6_in_degree": 2,
+      "rustworkx_dag_ok": true
+    }
+  },
+  "classification": "canonical"
+}

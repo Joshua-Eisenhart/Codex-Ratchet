@@ -1,0 +1,285 @@
+# Actual Lego Registry
+
+Status: expanded extracted registry, still being completed against all math-source docs  
+Date: 2026-04-08
+
+## Purpose
+
+This is the actual one-row-per-lego registry.
+
+It is broader than [16_lego_build_catalog.md](/Users/joshuaeisenhart/Desktop/Codex%20Ratchet/new%20docs/16_lego_build_catalog.md).
+
+- `16_lego_build_catalog.md` is the grouped controller ledger
+- `17_actual_lego_registry.md` is the exhaustive lego registry
+
+If one concrete math object deserves its own local simulation, it should get its own row here.
+
+This file is intended to become exhaustive. It is materially closer now, but it should still be treated as an active registry rather than a finished canon list.
+
+## Source Keys
+
+- `01` = `new docs/01_pca_qpca_alignment.md`
+- `02` = `new docs/02_compression_to_density_matrix_map.md`
+- `04` = `new docs/04_system_math_alignment.md`
+- `06` = `new docs/06_entropy_sweep_protocol.md`
+- `07` = `new docs/07_model_math_geometry_sim_plan.md`
+- `08` = `new docs/08_aligned_sim_backlog_and_build_order.md`
+- `09` = `new docs/09_research_inventory_and_foundations.md`
+- `10` = `new docs/10_cross_domain_equivalence_map.md`
+- `11` = `new docs/11_mass_equivalence_engine.md`
+- `AER` = `new docs/AXIS_AND_ENTROPY_REFERENCE.md`
+- `CD` = `new docs/CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md`
+- `EMR` = `new docs/ENGINE_MATH_REFERENCE.md`
+- `FSD` = `new docs/FALSIFICATION_SIM_DESIGNS.md`
+- `LFA` = `new docs/LADDERS_FENCES_ADMISSION_REFERENCE.md`
+- `16` = `new docs/16_lego_build_catalog.md`
+
+## Status Keys
+
+- `covered`: a clean or mostly clean current probe/result already exists
+- `partial`: there is some real coverage, but it is still thin, bundled, or indirect
+- `not_normalized_yet`: clearly present in docs, but not yet represented cleanly in the machine ledger
+- `blocked_as_late_surface`: real math object, but should not be treated as an early/default lego yet
+
+## Root And Admission Legos
+
+| Lego ID | Lego Name | Lego Type | Concrete Math | Minimal Honest Sim | Source Docs | Suggested First Probe | Best Existing Result | Current Coverage | Useful If Rejected | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `probe_object` | Probe object | root/admission | admissible probe object | tiny admissible probe set with explicit probe rules | `07` | no clean standalone probe yet | none | `not_normalized_yet` | yes | should be split out of generic admissibility work |
+| `distinguishability_relation` | Distinguishability relation | root/admission | probe-relative distinguishability rule | minimal distinguishability checks under admissible probes | `07` | no clean standalone probe yet | none | `not_normalized_yet` | yes | should be upstream of entropy readouts |
+| `probe_identity_preservation` | Probe identity preservation | root/admission | identity-preserving probe condition | test which probe maps preserve identity locally | `07` | no clean standalone probe yet | none | `not_normalized_yet` | yes | belongs before geometry |
+| `representation_violation_check` | Representation violation check | root/admission | bad representation detector | feed in candidate representations and kill invalid ones | `07` | `sim_negative_density_matrices.py` | `negative_density_matrix_battery_results.json` | `partial` | yes | currently absorbed into broader density/admission work |
+| `finite_carrier_candidate` | Finite carrier candidate | carrier/admission | finite admitted carrier | smallest finite carrier candidate under root constraints | `07` | `sim_density_hopf_geometry.py` | `density_hopf_geometry_results.json` | `partial` | yes | still bundled with density-matrix admission |
+| `density_matrix_representability` | Density-matrix representability | carrier/admission | density operator as admitted base state | exact PSD/trace-valid density matrix checks | `07`, `08` | `sim_density_hopf_geometry.py` | `density_hopf_geometry_results.json` | `covered` | yes | one of the strongest current local anchors |
+| `positivity_constraint` | Positivity constraint | carrier/admission | positive semidefinite condition | local eigenvalue positivity checks | `07` | `sim_negative_density_matrices.py` | `negative_density_matrix_battery_results.json` | `partial` | yes | should eventually separate from general density-matrix admission |
+| `trace_constraint` | Trace-one constraint | carrier/admission | trace normalization | local trace checks on candidate states | `07` | `sim_density_hopf_geometry.py` | `density_hopf_geometry_results.json` | `partial` | yes | still bundled with density-matrix admission |
+| `normalization_constraint` | Normalization constraint | carrier/admission | normalized state condition | local normalization checks | `07` | `sim_density_hopf_geometry.py` | `density_hopf_geometry_results.json` | `partial` | yes | still bundled with density-matrix admission |
+| `carrier_probe_support` | Carrier supports probe | carrier/admission | carrier/probe compatibility relation | smallest carrier-plus-probe compatibility test | `07` | no clean standalone probe yet | none | `not_normalized_yet` | yes | should sit between carrier admission and geometry admission |
+
+## Constraint And Carrier Reference Legos
+
+| Lego ID | Lego Name | Lego Type | Concrete Math | Minimal Honest Sim | Source Docs | Suggested First Probe | Best Existing Result | Current Coverage | Useful If Rejected | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `f01_finitude_constraint` | F01 finitude constraint | root/admission | finite state set, finite measurement set, finite Hilbert dimension | explicit finite-state finite-measurement admission test | `CD`, `LFA` | no clean standalone probe yet | none | `not_normalized_yet` | yes | should be a direct admission lego, not only a doctrine sentence |
+| `n01_noncommutation_constraint` | N01 noncommutation constraint | root/admission | noncommuting probe composition law | smallest composition-order witness on one finite carrier | `CD`, `LFA` | `sim_bridge_z3_kernel_ordering.py` | `bridge_z3_kernel_ordering_results.json` | `partial` | yes | current evidence is downstream and should be pulled earlier |
+| `admissibility_manifold_mc` | Admissibility manifold M(C) | root/admission | admissible state set `M(C)` | search the smallest admitted set under explicit constraints | `CD`, `LFA` | no clean standalone probe yet | none | `not_normalized_yet` | yes | central pre-entropy object still lacks a direct local sim |
+| `finite_carrier_c2` | Finite carrier C² | carrier/admission | qubit carrier `H = C²` | same-carrier admission test against alternative carriers | `CD`, `LFA` | `sim_density_hopf_geometry.py` | `density_hopf_geometry_results.json` | `partial` | yes | currently mixed into density-matrix admission |
+| `density_state_space_dc2` | Density state space D(C²) | carrier/admission | qubit density-state surface `D(C²)` | generate legal one-qubit states and test admission boundaries | `CD`, `LFA` | `sim_pure_lego_density_matrices.py` | `pure_lego_density_matrices_results.json` | `partial` | yes | deserves a cleaner row than generic density object |
+| `bloch_decomposition_map` | Bloch decomposition map | carrier/state representation | `ρ = 1/2(I + r_x σ_x + r_y σ_y + r_z σ_z)` | compare density states and Bloch coordinates on the same carrier | `CD`, `11` | `sim_foundation_pauli_bloch_backprop.py` | `foundation_pauli_bloch_backprop_results.json` | `partial` | yes | stronger than generic Bloch representation wording |
+| `pauli_algebra_relations` | Pauli algebra relations | carrier/operator | Pauli multiplication and commutation relations | verify Pauli algebra on the admitted carrier | `CD`, `EMR` | `sim_axis6_operators_algebra.py` | `axis6_operators_algebra_results.json` | `partial` | yes | foundational operator-carrier lego |
+| `helstrom_guess_bound` | Helstrom guess bound | distinguishability | `p_guess = 1/2(1 + T)` | compare trace distance and optimal guessing on local state pairs | `CD`, `11` | no clean standalone probe yet | none | `not_normalized_yet` | yes | useful because it ties geometry to operational distinguishability |
+
+## State Representation Legos
+
+| Lego ID | Lego Name | Lego Type | Concrete Math | Minimal Honest Sim | Source Docs | Suggested First Probe | Best Existing Result | Current Coverage | Useful If Rejected | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `density_matrix_object` | Density matrix object | state representation | density matrix / density operator | smallest legal density-matrix family | `07`, `08` | `sim_pure_lego_density_matrices.py` | `pure_lego_density_matrices_results.json` | `covered` | yes | should remain foundational |
+| `pure_state_ray` | Pure-state ray | state representation | pure-state ray / state vector carrier | compare pure-state rays and density states on the same admitted carrier | `11` | `sim_hopf_torus_lego.py` | `hopf_torus_lego_results.json` | `partial` | yes | explicit state-vector lego from the mass-equivalence docs |
+| `bloch_vector_representation` | Bloch vector representation | state representation | Bloch vector | compare Bloch representation against density form on same state set | `08` | `sim_foundation_pauli_bloch_backprop.py` | `foundation_pauli_bloch_backprop_results.json` | `partial` | yes | important because docs name Bloch-style views explicitly |
+| `coherence_vector_representation` | Coherence vector representation | state representation | coherence vector | local vectorized state encoding checks | `08` | `sim_torch_l1_coherence.py` | `torch_l1_coherence_results.json` | `partial` | yes | still not normalized into machine ledger |
+| `operator_coordinate_representation` | Operator-coordinate representation | state representation | operator-coordinate state view | compare operator-coordinate view against density and Bloch views on one fixed state family | `11` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit representation row from the mass-equivalence map |
+| `purification_representation` | Purification representation | state representation | purification / purified state view | compare density-state and purified-state descriptions locally | `08` | `sim_torch_purification.py` | `torch_purification_results.json` | `partial` | yes | should become its own lego row in the machine ledger |
+| `stokes_parameterization` | Stokes parameterization | state representation | Stokes-type parameterization | local parameterization comparison on the same admitted state | `08` | `sim_pure_lego_stokes_mueller.py` | `pure_lego_stokes_mueller_results.json` | `partial` | yes | current docs name this explicitly |
+| `characteristic_representation` | Characteristic-function representation | state representation | characteristic-function state view | compare characteristic-function view against density form on one fixed state family | `09` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit L0 representation from the research inventory |
+| `eigenvalue_spectrum_view` | Eigenvalue spectrum view | state representation | eigenvalue-only state representation | compare phase-blind spectral view against full density representation | `09` | no clean standalone probe yet | none | `not_normalized_yet` | yes | useful because rejection is evidence of lost phase structure |
+| `wigner_phase_space_representation` | Wigner phase-space representation | state representation | Wigner phase-space view | compare Wigner view against exact state representation on same carrier | `09`, `11` | `sim_lego_weyl_wigner_phase_space.py` | `lego_weyl_wigner_phase_space_results.json` | `partial` | yes | should stay distinct from generic phase-space geometry |
+| `husimi_phase_space_representation` | Husimi phase-space representation | state representation | Husimi phase-space view | compare Husimi view against exact state representation on same carrier | `09` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit smoothed representation row |
+
+## Compression And Spectral Legos
+
+| Lego ID | Lego Name | Lego Type | Concrete Math | Minimal Honest Sim | Source Docs | Suggested First Probe | Best Existing Result | Current Coverage | Useful If Rejected | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `covariance_operator` | Covariance operator | compression/spectral | covariance matrix / covariance operator | build covariance operator from one fixed data/state family and inspect spectrum | `01`, `02`, `04`, `11` | no clean standalone probe yet | none | `not_normalized_yet` | yes | major missing compression lego |
+| `spectral_decomposition` | Spectral decomposition | compression/spectral | eigendecomposition / spectral decomposition | diagonalize one Hermitian operator and verify retained modes | `01`, `02`, `11` | no clean standalone probe yet | none | `not_normalized_yet` | yes | more primitive than truncation and should be explicit |
+| `principal_subspace` | Principal subspace | compression/spectral | dominant eigenspace / principal subspace | recover top eigenspace on one operator family | `01`, `02` | no clean standalone probe yet | none | `not_normalized_yet` | yes | central compression object |
+| `spectral_truncation` | Spectral truncation | compression/spectral | eigenvalue thresholding / top-k spectral truncation | truncate one Hermitian operator and compare retained structure | `01`, `02`, `11` | no clean standalone probe yet | none | `not_normalized_yet` | yes | should sit before any higher-level compression story |
+| `svd_factorization` | SVD factorization | compression/spectral | singular-value decomposition | compare singular-mode compression on one fixed matrix family | `01`, `02` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit row because docs name SVD separately |
+| `low_rank_psd_approximation` | Low-rank PSD approximation | compression/spectral | low-rank positive semidefinite approximation | low-rank reconstruction with positivity preserved | `01`, `02`, `11` | no clean standalone probe yet | none | `not_normalized_yet` | yes | useful because root constraints can reject bad low-rank reconstructions |
+| `operator_low_rank_factorization` | Operator low-rank factorization | compression/spectral | low-rank operator factorization | compare operator factorization and density reconstruction on same object | `02`, `11` | no clean standalone probe yet | none | `not_normalized_yet` | yes | separate from pure SVD because the operator view is load-bearing |
+| `qpca_spectral_extraction` | QPCA spectral extraction | compression/spectral | quantum-access spectral extraction | compare ordinary spectral extraction and QPCA-style dominant-mode recovery on the same operator | `01`, `02` | no clean standalone probe yet | none | `not_normalized_yet` | yes | still only described in docs, not normalized into probes |
+| `entanglement_spectrum` | Entanglement spectrum | compression/spectral | spectrum of joint or reduced bipartite states | compute local entanglement spectrum on one bipartite family | `01`, `02`, `11` | `sim_lego_entropy_entanglement_spectrum.py` | `lego_entropy_entanglement_spectrum_results.json` | `partial` | yes | should be treated as a spectral lego, not only an entropy one |
+| `schmidt_mode_truncation` | Schmidt-mode truncation | compression/spectral | truncation in the Schmidt basis | truncate bipartite amplitudes in Schmidt basis and compare retained structure | `01`, `02` | no clean standalone probe yet | none | `not_normalized_yet` | yes | distinct from general Schmidt decomposition |
+| `coarse_grained_operator_algebra` | Coarse-grained operator algebra | compression/spectral | projection to reduced operator algebra | keep macro-modes and compare admissibility of reduced description | `01`, `02`, `04` | no clean standalone probe yet | none | `not_normalized_yet` | yes | useful because rejection is informative under root constraints |
+| `correlation_tensor_principal_directions` | Correlation-tensor principal directions | compression/spectral | principal directions of the `C_ij` correlation tensor | extract leading directions of one fixed correlation tensor family | `04` | no clean standalone probe yet | none | `not_normalized_yet` | yes | concrete correlation-compression row |
+| `geometry_preserving_basis_change` | Geometry-preserving basis change | compression/geometry | basis change preserving geometric generators | compare basis changes that preserve or destroy the same geometry | `04` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit from the alignment doc |
+
+## Geometry Legos
+
+| Lego ID | Lego Name | Lego Type | Concrete Math | Minimal Honest Sim | Source Docs | Suggested First Probe | Best Existing Result | Current Coverage | Useful If Rejected | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `sphere_geometry` | Sphere geometry | geometry | spherical state-space geometry | local sphere geometry on one admitted carrier | `07`, `08` | `sim_axis_hopf_geometry.py` | `berry_phase_torus_ladder_results.json` | `partial` | yes | should not remain bundled with Hopf/torus forever |
+| `hopf_geometry` | Hopf geometry | geometry | Hopf-fibration geometry | local Hopf geometry on one admitted carrier | `07`, `08` | `sim_hopf_torus_lego.py` | `hopf_torus_lego_results.json` | `covered` | yes | one of the clearest current geometry legos |
+| `torus_geometry` | Torus geometry | geometry | torus geometry | local torus geometry on one admitted carrier | `07`, `08` | `sim_hopf_torus_lego.py` | `hopf_torus_lego_results.json` | `covered` | yes | currently shares a probe with Hopf geometry |
+| `nested_torus_geometry` | Nested torus geometry | geometry | nested torus family | compare single torus vs nested torus local structure | `07` | `sim_pure_geometry_hopf_tori.py` | `pure_geometry_hopf_tori_results.json` | `partial` | yes | should become distinct from basic torus geometry |
+| `clifford_geometry` | Clifford geometry | geometry | Clifford-geometric encoding | same carrier viewed through Clifford geometry | `07`, `08` | `sim_foundation_hopf_torus_geomstats_clifford.py` | `foundation_hopf_torus_geomstats_clifford_results.json` | `covered` | yes | current strong geometry anchor |
+| `spinor_geometry` | Spinor geometry | geometry | spinor encoding | local spinor geometry on same carrier | `07` | `sim_weyl_spinor_hopf.py` | `weyl_spinor_hopf_results.json` | `partial` | yes | should be separated from generic Clifford geometry |
+| `graph_geometry` | Graph geometry | graph/topology | graph carrier geometry | encode one admitted carrier as a graph | `07`, `08` | `sim_foundation_shell_graph_topology.py` | `foundation_shell_graph_topology_results.json` | `partial` | yes | good candidate for a separate machine row |
+| `hypergraph_geometry` | Hypergraph geometry | graph/topology | hypergraph carrier geometry | encode one admitted carrier as a hypergraph | `07`, `08`, `16` | `sim_xgi_family_hypergraph.py` | `xgi_family_hypergraph_results.json` | `covered` | yes | current best XGI-local lego |
+| `cell_complex_geometry` | Cell-complex geometry | graph/topology | cell-complex carrier geometry | encode one admitted carrier as a cell complex | `07`, `08` | `sim_toponetx_constraint_shells.py` | `toponetx_constraint_shells_results.json` | `partial` | yes | still underused relative to graph/hypergraph |
+| `persistence_geometry` | Persistence geometry | graph/topology | filtration / persistence geometry | local filtration and persistence on one admitted carrier | `07`, `16` | `sim_gudhi_cascade_persistence.py` | `gudhi_cascade_persistence_results.json` | `partial` | yes | should not be hidden under generic topology |
+| `bures_geometry` | Bures geometry | metric geometry | Bures metric | compare Bures behavior on a fixed local state set | `08`, `FSD` | `sim_geomstats_shell_metrics.py` | `geomstats_shell_metrics_results.json` | `partial` | yes | currently bundled under metric nonuniqueness |
+| `fubini_study_geometry` | Fubini-Study geometry | metric geometry | Fubini-Study metric | compare Fubini-Study behavior on pure-state local sets | `08`, `FSD` | `sim_geom_cp1_u1_projective.py` | `geom_cp1_u1_projective_results.json` | `partial` | yes | docs name this explicitly |
+| `berry_phase_geometry` | Berry phase geometry | metric/phase geometry | Berry phase | local Berry-phase comparison on same carrier | `07`, `08` | `sim_berry_qfi_shell_paths.py` | `berry_qfi_shell_paths_results.json` | `covered` | yes | should be a standalone lego row |
+| `berry_curvature` | Berry curvature | metric/phase geometry | Berry curvature | compare local curvature and phase accumulation on the same carrier | `11`, `AER` | `sim_berry_qfi_shell_paths.py` | `berry_qfi_shell_paths_results.json` | `partial` | yes | related to Berry phase, but not the same lego |
+| `holonomy_geometry` | Holonomy geometry | metric/phase geometry | holonomy / connection transport | local connection/holonomy behavior on same carrier | `08` | `sim_torch_hopf_connection.py` | `torch_hopf_connection_results.json` | `partial` | yes | close to Berry but not the same lego |
+| `qfi_geometry` | Quantum Fisher information geometry | metric geometry | QFI geometry | local QFI comparison on fixed states | `07`, `08`, `FSD` | `sim_pure_lego_qfi_wy_qgt.py` | `pure_lego_qfi_wy_qgt_results.json` | `covered` | yes | should be split from generic Berry/QGT bundle |
+| `qgt_geometry` | Quantum geometric tensor geometry | metric geometry | QGT geometry | local QGT comparison on fixed states | `07`, `08`, `FSD` | `sim_pure_lego_qfi_wy_qgt.py` | `pure_lego_qfi_wy_qgt_results.json` | `covered` | yes | shares a first probe with QFI but is still its own lego |
+| `trace_distance_geometry` | Trace-distance geometry | metric geometry | trace distance | compare trace-distance ordering on local states | `08` | no clean standalone probe yet | none | `not_normalized_yet` | yes | docs name it, machine ledger does not yet |
+| `phase_space_geometry` | Phase-space geometry | phase-space geometry | Wigner / phase-space description | local phase-space comparison on the same state set | `08`, `FSD` | `sim_lego_weyl_wigner_phase_space.py` | `lego_weyl_wigner_phase_space_results.json` | `partial` | yes | should be linked with metric nonuniqueness but not collapsed into it |
+| `transport_geometry` | Transport geometry | metric/phase geometry | transport geometry on state space | compare transport-sensitive geometry on one fixed carrier | `09`, `10` | `sim_torch_hopf_connection.py` | `torch_hopf_connection_results.json` | `partial` | yes | named implicitly by the research inventory and bridge docs |
+| `channel_space_geometry` | Channel-space geometry | channel geometry | geometry on channel space | compare geometric distinctions between channels on one local family | `10` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit in the cross-domain map |
+
+## Loop, Connection, And Placement Legos
+
+| Lego ID | Lego Name | Lego Type | Concrete Math | Minimal Honest Sim | Source Docs | Suggested First Probe | Best Existing Result | Current Coverage | Useful If Rejected | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `hopf_map_s3_to_s2` | Hopf map S³ -> S² | geometry/connection | Hopf map from spinor carrier to Bloch sphere | compute Hopf map on one small spinor family and compare projected density data | `CD`, `LFA` | `sim_density_hopf_geometry.py` | `density_hopf_geometry_results.json` | `partial` | yes | should be explicit, not hidden inside generic Hopf geometry |
+| `hopf_fiber_equivalence` | Hopf fiber equivalence | geometry/connection | fiber equivalence under density-matrix measurements | move along one Hopf fiber and show density invariance | `CD`, `LFA` | `sim_hopf_torus_lego.py` | `hopf_torus_lego_results.json` | `partial` | yes | core pre-entropy loop lego |
+| `hopf_connection_form` | Hopf connection form | geometry/connection | connection form `A = -i ψ^† dψ` | compute local connection transport on one admitted carrier | `CD`, `AER`, `EMR` | `sim_torch_hopf_connection.py` | `torch_hopf_connection_results.json` | `partial` | yes | distinct from Berry phase and should stay separate |
+| `fiber_loop_law` | Fiber loop law | loop law | density-stationary fiber loop | traverse a fiber loop and verify no density change | `CD`, `EMR`, `LFA` | `sim_weyl_nested_shell.py` | `weyl_nested_shell_results.json` | `partial` | yes | pre-entropy grammar object |
+| `base_loop_law` | Base loop law | loop law | density-traversing base loop | traverse a horizontal/base loop and verify density change | `CD`, `EMR`, `LFA` | `sim_axis_hopf_geometry.py` | `berry_phase_torus_ladder_results.json` | `partial` | yes | pair to the fiber loop law, not the same lego |
+| `berry_holonomy` | Berry holonomy | loop law | Berry phase as loop holonomy | compute geometric phase on closed loops over one carrier | `CD`, `07`, `08` | `sim_berry_qfi_shell_paths.py` | `berry_qfi_shell_paths_results.json` | `covered` | yes | explicit loop-law version of Berry work |
+| `weyl_chirality_pair` | Weyl chirality pair | chirality | left/right Weyl pair from one carrier point | compare left/right spinors with shared carrier support | `CD`, `LFA` | `sim_weyl_spinor_hopf.py` | `weyl_spinor_hopf_results.json` | `partial` | yes | should stay local before any engine promotion |
+| `chiral_density_bookkeeping` | Chiral density bookkeeping | chirality | `ρ_L`, `ρ_R`, and joint bookkeeping | generate local left/right marginals and compare bookkeeping identities | `CD`, `LFA` | `sim_weyl_nested_shell.py` | `weyl_nested_shell_results.json` | `partial` | yes | distinct from just extracting the Weyl pair |
+| `terrain_family_fourfold` | Four-terrain family | engine/terrain | `{Se, Ne, Ni, Si}` topology family | local classification of the four one-parameter families on one carrier | `CD`, `EMR`, `LFA` | no clean standalone probe yet | none | `not_normalized_yet` | yes | should not stay buried inside engine docs |
+| `loop_vector_fields` | Loop vector fields | engine/loop | inner and outer loop vector fields | compare `Y_in` and `Y_out` on one spinor family | `EMR` | no clean standalone probe yet | none | `not_normalized_yet` | yes | useful because loop law and engine placement depend on it |
+| `engine_type_split` | Engine Type 1 / Type 2 split | engine/terrain | Type 1 vs Type 2 engine family split | verify same components with opposite arrangement on the same carrier | `CD`, `LFA` | `sim_layer_coupling_matrix_v3.py` | `layer_coupling_matrix_v3_results.json` | `partial` | yes | should become a cleaner local lego |
+| `placement_law` | Placement law | engine/placement | terrain/operator/loop assignment law | verify placement-sensitive behavior on one small stage table | `CD`, `EMR`, `LFA` | no clean standalone probe yet | none | `not_normalized_yet` | yes | current evidence is scattered across later sims |
+| `composition_order_noncommutation` | Composition-order noncommutation | engine/placement | order-sensitive engine composition | compare normal, swapped, and reversed composition on one local engine instance | `CD`, `EMR`, `LFA` | `sim_torch_channel_composition.py` | `torch_channel_composition_results.json` | `partial` | yes | should remain an early necessity test |
+| `loop_order_family` | Loop-order family | engine/placement | inductive vs deductive loop order family | compare `Se→Si→Ni→Ne` against `Se→Ne→Ni→Si` locally | `AER` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit Axis-4 object |
+| `signed_operator_variant` | Signed operator variant | engine/operator | eight signed operator variants `{Ti↑, Ti↓, Fe↑, Fe↓, Te↑, Te↓, Fi↑, Fi↓}` | compare signed operator variants on one fixed terrain family | `AER` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit Axis operator table object |
+| `operator_parameter_tuple` | Operator parameter tuple | engine/operator | operator strength tuple `{q1, q2, θ, φ, κ1, κ2, ω3, ω4}` | vary local operator parameters on one fixed carrier and compare behavior | `EMR` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit engine-parameter object |
+
+## Operator And Channel Legos
+
+| Lego ID | Lego Name | Lego Type | Concrete Math | Minimal Honest Sim | Source Docs | Suggested First Probe | Best Existing Result | Current Coverage | Useful If Rejected | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `pauli_generator_basis` | Pauli generator basis | operator | Pauli basis | local algebra on admitted states | `07`, `08` | `sim_lego_pauli_algebra.py` | `lego_pauli_algebra_results.json` | `partial` | yes | should be one of the first operator legos |
+| `clifford_generator_basis` | Clifford generator basis | operator | Clifford basis | local Clifford algebra on admitted states | `07`, `08` | `sim_pure_lego_clifford_algebra.py` | `pure_lego_clifford_algebra_results.json` | `partial` | yes | should be separate from generic operator admission |
+| `local_operator_action` | Local operator action | operator | local operator action | apply primitive operators to local states | `07` | `sim_layer6_operators_algebra.py` | `layer6_operators_algebra_results.json` | `partial` | yes | currently bundled under operator admission |
+| `joint_operator_action` | Joint operator action | operator | joint operator action | compare local vs joint operator behavior | `07` | `sim_L3_operators_on_stages.py` | `L3_operators_results.json` | `partial` | yes | should remain below bridge work |
+| `commutator_algebra` | Commutator algebra | operator | commutator algebra | direct commutator generation and collapse tests | `08`, `FSD` | `axis_7_12_commutator_construction_sim.py` | `axis_7_12_commutator_results.json` | `partial` | yes | also feeds gauge falsifier work |
+| `left_right_asymmetry` | Left/right asymmetry | operator | asymmetric operator action | test left/right action on local states | `07` | `sim_weyl_spinor_hopf.py` | `weyl_spinor_hopf_results.json` | `partial` | yes | should be kept local before axis promotion |
+| `composition_order_sensitivity` | Composition-order sensitivity | operator/channel | order-sensitive composition | test whether operator or channel composition order matters | `07` | `sim_torch_channel_composition.py` | `torch_channel_composition_results.json` | `partial` | yes | important local operator property |
+| `channel_cptp_map` | CPTP channel map | channel | channel / CPTP map | smallest CPTP-map legality and behavior tests | `07`, `08` | `sim_pure_lego_channels_choi_lindblad.py` | `pure_lego_channels_choi_lindblad_results.json` | `partial` | yes | should be a named lego, not a generic operator footnote |
+| `unitary_channel_map` | Unitary channel map | channel | unitary channel action | compare one-unitary channel action on a fixed admitted state set | `11` | `sim_torch_channel_composition.py` | `torch_channel_composition_results.json` | `partial` | yes | distinct from generic CPTP channel math |
+| `kraus_operator_sum` | Kraus operator-sum | channel | Kraus operator-sum representation | verify Kraus completeness and action on one local channel family | `11`, `EMR` | `sim_pure_lego_channels_choi_lindblad.py` | `pure_lego_channels_choi_lindblad_results.json` | `partial` | yes | should be explicit because the docs name Kraus maps directly |
+| `lindbladian_evolution` | Lindbladian evolution | channel/dynamics | Lindblad generator / open-system evolution | compare infinitesimal Lindblad evolution on one local state family | `11`, `EMR`, `10` | `sim_pure_lego_channels_choi_lindblad.py` | `pure_lego_channels_choi_lindblad_results.json` | `partial` | yes | distinct from the Kraus finite-step view |
+| `povm_measurement_family` | POVM measurement family | measurement | POVM / finite measurement family | compare a finite POVM family on the same admitted carrier | `10`, `CD` | no clean standalone probe yet | none | `not_normalized_yet` | yes | should connect back to probe admissibility later |
+| `measurement_instrument` | Measurement instrument | measurement/channel | state-update instrument | compare measurement readout and state-update together on one local carrier | `11` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit measurement-update lego from the mass-equivalence docs |
+| `blackwell_style_comparison` | Blackwell-style comparison | measurement/distinguishability | operational comparison under finite probe families | compare two probe structures by operational informativeness on one finite carrier | `10` | no clean standalone probe yet | none | `not_normalized_yet` | yes | cross-domain operational comparison object |
+| `channel_capacity` | Channel capacity | channel | channel-capacity quantity | local channel-capacity probe | `07` | `sim_pure_lego_channel_capacity.py` | `pure_lego_channel_capacity_results.json` | `partial` | yes | later than CPTP legality, but still local |
+| `channel_taxonomy` | Channel taxonomy | channel | channel class/taxonomy | compare local channel classes before bridge use | `07`, `08` | `sim_torch_channel_taxonomy.py` | `torch_channel_taxonomy_results.json` | `partial` | yes | still not normalized as a separate lego |
+
+## Graph / Topology Legos
+
+| Lego ID | Lego Name | Lego Type | Concrete Math | Minimal Honest Sim | Source Docs | Suggested First Probe | Best Existing Result | Current Coverage | Useful If Rejected | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `graph_shell_geometry` | Graph shell geometry | graph/topology | shell graph | graph view of shell structure | `16` | `sim_foundation_shell_graph_topology.py` | `foundation_shell_graph_topology_results.json` | `partial` | yes | more specific than generic graph geometry |
+| `hypergraph_shell_geometry` | Hypergraph shell geometry | graph/topology | shell hypergraph | hypergraph view of shell structure | `16` | `sim_xgi_shell_hypergraph.py` | `xgi_shell_hypergraph_results.json` | `covered` | yes | strong current XGI topology anchor |
+| `dual_hypergraph_geometry` | Dual hypergraph geometry | graph/topology | dual hypergraph | local dual-hypergraph conversion on same carrier | `16` | `sim_xgi_dual_hypergraph.py` | `xgi_dual_hypergraph_results.json` | `covered` | yes | should be tracked separately from family hypergraph |
+| `state_class_binding_geometry` | State-class binding geometry | graph/topology | topology-to-state-class binding | bind topology class to state class locally | `16` | `sim_toponetx_state_class_binding.py` | `toponetx_state_class_binding_results.json` | `covered` | yes | useful TopoNetX lego/successor boundary |
+
+## Bipartite And Correlation Legos
+
+| Lego ID | Lego Name | Lego Type | Concrete Math | Minimal Honest Sim | Source Docs | Suggested First Probe | Best Existing Result | Current Coverage | Useful If Rejected | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `partial_trace_operator` | Partial trace operator | bipartite | partial trace | local subsystem reduction | `07`, `08` | `sim_partial_trace_audit.py` | `partial_trace_audit_results.json` | `partial` | yes | deserves a direct machine-ledger row |
+| `reduced_state_object` | Reduced state object | bipartite | reduced density state | compare reduced states from small joint states | `07`, `08` | `sim_partial_trace_audit.py` | `partial_trace_audit_results.json` | `partial` | yes | still bundled with partial trace |
+| `joint_density_matrix` | Joint density matrix | bipartite | joint density matrix | smallest two-party joint state families | `07` | no clean standalone probe yet | none | `not_normalized_yet` | yes | should be more explicit than current bipartite bundle |
+| `correlation_tensor_object` | Correlation tensor object | bipartite/correlation | correlation tensor | local tensor comparison on joint states | `07` | no clean standalone probe yet | none | `not_normalized_yet` | yes | named in docs, missing in routing surfaces |
+| `schmidt_decomposition` | Schmidt decomposition | bipartite | Schmidt decomposition | local factorization and rank comparison | `07`, `08` | no clean standalone probe yet | none | `not_normalized_yet` | yes | should not be hidden under generic bipartite work |
+| `mutual_information_measure` | Mutual information | correlation | mutual information | local MI on two-party states | `07`, `08` | no clean standalone probe yet | none | `not_normalized_yet` | no | appears in docs but lacks a clean local-first row |
+| `coherent_information_measure` | Coherent information | correlation | coherent information | local coherent-information comparisons on two-party states | `07`, `08` | no clean standalone probe yet | none | `not_normalized_yet` | no | currently over-entangled with later seam work |
+| `concurrence_measure` | Concurrence | correlation | concurrence | local concurrence on two-party states | `07`, `08` | `sim_gudhi_concurrence_filtration.py` | `gudhi_concurrence_filtration_results.json` | `covered` | no | one of the strongest current bipartite legos |
+| `negativity_measure` | Negativity | correlation | negativity | local negativity on two-party states | `07`, `08` | `sim_gudhi_bipartite_entangled.py` | `gudhi_bipartite_entangled_results.json` | `partial` | no | currently proxied by broader witness work |
+| `werner_local_structure` | Werner local structure | bipartite/correlation | Werner-state local structure | local Werner-state witness and cut behavior | `16` | `sim_pyg_dynamic_edge_werner.py` | `pyg_dynamic_edge_werner_results.json` | `covered` | no | already a useful shallow-tool pressure row |
+
+## Entropy Legos
+
+| Lego ID | Lego Name | Lego Type | Concrete Math | Minimal Honest Sim | Source Docs | Suggested First Probe | Best Existing Result | Current Coverage | Useful If Rejected | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `shannon_entropy` | Shannon entropy | entropy | Shannon entropy | local same-state entropy comparison | `08` | no clean standalone probe yet | none | `not_normalized_yet` | no | docs name it explicitly |
+| `von_neumann_entropy` | von Neumann entropy | entropy | von Neumann entropy | local spectral entropy on same state set | `07`, `08` | `sim_lego_entropy_extremal_density.py` | `lego_entropy_extremal_density_results.json` | `partial` | no | should be split from generic entropy bundle |
+| `renyi_entropy` | Renyi entropy | entropy | Renyi entropy | local Renyi comparison on same state set | `07`, `08` | `sim_lego_entropy_spectral_families.py` | `lego_entropy_spectral_families_results.json` | `partial` | no | currently bundled with other entropy variants |
+| `tsallis_entropy` | Tsallis entropy | entropy | Tsallis entropy | local Tsallis comparison on same state set | `07`, `08` | `sim_lego_entropy_spectral_families.py` | `lego_entropy_spectral_families_results.json` | `partial` | no | should become its own row in machine surfaces |
+| `min_entropy` | Min entropy | entropy | min-entropy | local extremal entropy comparison | `07`, `08` | `sim_lego_entropy_smooth_one_shot.py` | `lego_entropy_smooth_one_shot_results.json` | `partial` | no | currently hidden inside smooth/one-shot work |
+| `max_entropy` | Max entropy | entropy | max-entropy | local extremal entropy comparison | `07`, `08` | `sim_lego_entropy_smooth_one_shot.py` | `lego_entropy_smooth_one_shot_results.json` | `partial` | no | paired with min-entropy but still its own lego |
+| `conditional_entropy` | Conditional entropy | entropy | conditional entropy | local conditional-entropy comparison on same joint state set | `08` | no clean standalone probe yet | none | `not_normalized_yet` | no | should be separate from coherent information |
+| `entanglement_entropy` | Entanglement entropy | entropy | entanglement entropy | local entanglement-spectrum entropy comparison | `07` | `sim_lego_entropy_entanglement_spectrum.py` | `lego_entropy_entanglement_spectrum_results.json` | `partial` | no | explicit local entropy lego |
+| `holevo_quantity` | Holevo quantity | entropy | Holevo quantity | local information-capacity comparison | `07` | `sim_lego_entropy_holevo_quantity.py` | `lego_entropy_holevo_quantity_results.json` | `partial` | no | should stay below bridge work |
+| `relative_entropy` | Relative entropy | entropy | quantum relative entropy `D(ρ||σ)` | compare relative entropy on one fixed state family | `06`, `10`, `11` | `sim_lego_entropy_relative_js.py` | `sim_lego_entropy_relative_js_results.json` | `partial` | no | should not stay fused with JS-style comparisons |
+| `relative_entropy_js` | Relative / Jensen-Shannon entropy | entropy | relative entropy / JS-style comparison | compare relative-style quantities locally | `07` | `sim_lego_entropy_relative_js.py` | `sim_lego_entropy_relative_js_results.json` | `partial` | no | still not normalized into ledger |
+| `logarithmic_negativity` | Logarithmic negativity | entropy/correlation | logarithmic negativity | compare log-negativity on one fixed bipartite state family | `06` | `sim_gudhi_bipartite_entangled.py` | `gudhi_bipartite_entangled_results.json` | `partial` | no | distinct from raw negativity and worth an explicit row |
+| `spectral_entropy` | Spectral entropy | entropy | spectral entropy variants | compare spectral families locally | `07` | `sim_lego_entropy_spectral_families.py` | `lego_entropy_spectral_families_results.json` | `partial` | no | separate from Renyi/Tsallis rows even if probes overlap |
+| `bridge_weighted_entropy` | Bridge-weighted entropy | entropy | shell-weighted or bridge-weighted entropy | late local candidate only after lower entropy legos are clean | `07` | `sim_lego_entropy_shell_history_weighted.py` | `sim_lego_entropy_shell_history_weighted_results.json` | `blocked_as_late_surface` | yes | keep listed, but not as an early default lego |
+
+## Bridge, Axis, And Support Legos
+
+| Lego ID | Lego Name | Lego Type | Concrete Math | Minimal Honest Sim | Source Docs | Suggested First Probe | Best Existing Result | Current Coverage | Useful If Rejected | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `joint_cut_state_rho_ab` | Joint cut state rho_AB | bridge/support | bipartite cut state `ρ_AB` | construct one local joint cut-state family before entropy | `CD`, `LFA`, `AER` | `sim_bridge_to_rhoab_construction.py` | `bridge_to_rhoab_construction_results.json` | `covered` | yes | pre-entropy bridge object |
+| `bridge_family_xi_point` | Xi point bridge | bridge/support | point bridge `Ξ_point` | compare point-bridge construction on one local bipartite family | `LFA`, `AER` | `sim_phi0_integrated_bakeoff.py` | `phi0_integrated_bakeoff_results.json` | `partial` | yes | keep as a late lego, but still list it explicitly |
+| `bridge_family_xi_shell` | Xi shell bridge | bridge/support | shell bridge `Ξ_shell` | compare shell-aggregated bridge on one shell family | `LFA`, `AER` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit row because docs separate point and shell bridges |
+| `bridge_family_xi_history` | Xi history bridge | bridge/support | history bridge `Ξ_hist` | compare history-window bridge on one path family | `LFA`, `AER` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit row because docs separate history bridge too |
+| `shell_window_support` | Shell window support | bridge/support | shell-cut support object | vary shell windowing on the same underlying carrier | `LFA`, `AER` | `sim_layer_stacking_coexistence.py` | `layer_stacking_coexistence_results.json` | `partial` | yes | late-surface support object, but still a real lego |
+| `history_window_support` | History window support | bridge/support | history-window support object | vary local history windows on the same path family | `LFA`, `AER` | no clean standalone probe yet | none | `not_normalized_yet` | yes | still undercounted in the current registry |
+| `shell_fuzz_jk` | Shell fuzz j/k support | bridge/support | j/k shell-history fuzz variables | small fuzz-window support audit on one shell family | `LFA`, `AER` | no clean standalone probe yet | none | `not_normalized_yet` | yes | useful because docs make j/k fuzz load-bearing |
+| `signed_entropy_family` | Signed entropy family | bridge/axis | signed scalar family `{S(A|B), I_c}` | compare signed entropies on the same joint-state output | `LFA`, `AER` | `sim_signed_vs_unsigned_phi0_discriminator.py` | `signed_vs_unsigned_phi0_discriminator_results.json` | `partial` | yes | should stay below Axis-0 promotion |
+| `unsigned_entropy_family` | Unsigned entropy family | bridge/axis | unsigned scalar family `{S, I}` | compare unsigned entropies on the same joint-state output | `LFA`, `AER` | `sim_phi0_ic_vs_mi_regime_map.py` | `phi0_ic_vs_mi_regime_map_results.json` | `partial` | yes | pair to signed family, not the same lego |
+| `axis0_kernel_phi0` | Axis-0 kernel Phi0 | bridge/axis | preferred signed scalar candidate `Phi0` | candidate-discriminator and negative tests on one bridge output family | `LFA`, `AER` | `sim_signed_vs_unsigned_phi0_discriminator.py` | `signed_vs_unsigned_phi0_discriminator_results.json` | `partial` | yes | late-surface lego, but essential to list explicitly |
+| `axis0_field_candidate` | Axis-0 field candidate | bridge/axis | field-level Axis-0 candidate | local perturbation/evolution tests on one candidate scalar field | `AER` | no clean standalone probe yet | none | `blocked_as_late_surface` | yes | list it, but keep it late by default |
+| `torus_seat_entropy` | Torus-seat entropy | bridge/axis | torus-latitude entropy of embedding | compare geometry-seat entropy across one local torus family | `AER` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit geometry-level entropy layer |
+| `path_entropy` | Path entropy | bridge/axis | branch/path entropy `H_path` | compute branch entropy on one bounded CPTP branching family | `AER` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit from the Axis reference |
+| `shell_weighted_entropy_field` | Shell-weighted entropy field | bridge/axis | shell-weighted scalar field over cuts | compare weighted shell contributions on one local shell family | `AER` | `sim_lego_entropy_shell_history_weighted.py` | `sim_lego_entropy_shell_history_weighted_results.json` | `partial` | yes | distinct from generic bridge-weighted entropy wording |
+| `history_window_entropy` | History-window entropy | bridge/axis | entropy over admissible history windows | compare entropy across bounded history windows on one local family | `06`, `AER` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit candidate from the entropy sweep and Axis reference |
+| `transport_weighted_entropy` | Transport-weighted entropy | bridge/axis | transport-weighted entropy functional | compare entropy weighted by transport structure on one local carrier | `06` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit geometry-sensitive entropy candidate |
+| `operator_ordered_entropy` | Operator-ordered entropy | bridge/axis | entropy under left/right action ordering asymmetry | compare entropy under changed operator ordering on one fixed family | `06` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit geometry-sensitive entropy candidate |
+| `branch_weight` | Branch weight | bridge/support | branch weight `P(α₁...αₙ) = Tr(ρ̃)` | compute branch weights on one bounded CPTP branching family | `AER` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit support object underlying path entropy |
+| `shell_indexed_tensor_network` | Shell-indexed tensor network | bridge/support | shell-indexed tensor-network family | compare shell-indexed bond structures on one bounded shell family | `AER` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit support object from Axis-0 formalization |
+| `discrete_axis0_field` | Discrete Axis-0 field | bridge/support | discrete scalar field on ring/checkerboard support | evaluate directed field differences on one finite support graph | `AER` | no clean standalone probe yet | none | `not_normalized_yet` | yes | should stay below Axis promotion but still be listed |
+| `ring_checkerboard_support` | Ring / checkerboard support | bridge/support | ring/checkerboard support graph | small support-graph audit on the same shell family | `AER` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit support object named in docs |
+
+## Boundary Falsifier Legos
+
+| Lego ID | Lego Name | Lego Type | Concrete Math | Minimal Honest Sim | Source Docs | Suggested First Probe | Best Existing Result | Current Coverage | Useful If Rejected | Notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `hilbert_schmidt_flatness_rejection` | Hilbert-Schmidt flatness rejection | falsifier | Hilbert-Schmidt-as-sole-geometry rejection | compare Hilbert-Schmidt against curved geometries on one fixed state family | `09`, `10`, `11` | `sim_geomstats_shell_metrics.py` | `geomstats_shell_metrics_results.json` | `partial` | yes | explicit geometry-killer row |
+| `relative_entropy_nonmetric_boundary` | Relative-entropy non-metric boundary | falsifier | relative entropy fails metric axioms | compare relative-entropy behavior against true metrics on the same family | `09`, `10` | `sim_lego_entropy_relative_js.py` | `sim_lego_entropy_relative_js_results.json` | `partial` | yes | explicit boundary row, distinct from the entropy functional itself |
+| `real_only_geometry_rejection` | Real-only geometry rejection | falsifier | real-only restriction kills Berry/curvature structure | compare complex carrier and real-only collapse on the same state family | `09`, `10`, `11` | `sim_berry_qfi_shell_paths.py` | `berry_qfi_shell_paths_results.json` | `partial` | yes | useful because rejection is structural evidence |
+| `commutative_geometry_collapse` | Commutative geometry collapse | falsifier | commutative-operator collapse of nontrivial geometry | compare commuting reduction against full noncommuting carrier structure | `09`, `10` | no clean standalone probe yet | none | `not_normalized_yet` | yes | explicit geometry-killer row |
+| `gauge_group_correspondence` | Gauge/group correspondence | falsifier | Lie algebra generated by engine commutators | generate local commutator algebra and compare against claimed gauge structure | `FSD` | no clean standalone sim file found yet | `gauge_group_correspondence_results.json` | `partial` | yes | result exists, file naming needs normalization |
+| `viability_vs_attractor` | Viability vs attractor | falsifier | trajectory geometry under constraint vs attractor pull | small trajectory family with perturbation response and convergence checks | `FSD` | no clean standalone sim file found yet | `viability_vs_attractor_results.json` | `partial` | yes | result exists, first-probe naming still needs cleanup |
+| `quantum_metric_nonuniqueness` | Quantum metric nonuniqueness | falsifier | Bures / Wigner-Yanase / Kubo-Mori style metric disagreement | compare the same state set under multiple quantum metrics | `FSD`, `16` | `sim_geomstats_shell_metrics.py` | `geomstats_shell_metrics_results.json` | `covered` | yes | keep as a boundary lego and selection-pressure surface |
+
+## Math-Source Coverage Notes
+
+| Source Doc | Main Math Added Or Confirmed In This Registry | Coverage Read |
+| --- | --- | --- |
+| `01_pca_qpca_alignment.md` | PCA/QPCA, principal subspace, spectral truncation, Schmidt-mode truncation | `broadly mapped` |
+| `02_compression_to_density_matrix_map.md` | low-rank PSD approximation, operator low-rank factorization, coarse-grained operator algebra | `broadly mapped` |
+| `04_system_math_alignment.md` | covariance spectral compression, correlation-tensor compression, operator compression | `partially mapped` |
+| `06_entropy_sweep_protocol.md` | entropy family sweep, log-negativity, weighted/history/transport entropy candidates | `broadly mapped` |
+| `07_model_math_geometry_sim_plan.md` | carrier, geometry, operator, bipartite, entropy baseline legos | `broadly mapped` |
+| `08_aligned_sim_backlog_and_build_order.md` | representation, geometry, metric, entropy, channel candidates | `broadly mapped` |
+| `09_research_inventory_and_foundations.md` | characteristic/eigenvalue/Husimi/Wigner views, geometry killers, equivalence classes | `partially mapped` |
+| `10_cross_domain_equivalence_map.md` | POVMs, Blackwell-style comparison, channel-space geometry, non-metric boundaries | `partially mapped` |
+| `11_mass_equivalence_engine.md` | pure-state rays, Kraus/Lindblad/instrument rows, Berry curvature, spectral decomposition | `broadly mapped` |
+| `AXIS_AND_ENTROPY_REFERENCE.md` | Axis-0 field candidates, torus-seat/path/shell-weighted entropy, tensor-network and ring support | `partially mapped` |
+| `CONSTRAINT_ON_DISTINGUISHABILITY_FULL_MATH.md` | F01/N01, `M(C)`, `D(C²)`, Hopf map, loop laws, Weyl pair, engine family split | `broadly mapped` |
+| `ENGINE_MATH_REFERENCE.md` | Ti/Te/Fi/Fe, loop vector fields, placement tuples, operator parameters | `partially mapped` |
+| `LADDERS_FENCES_ADMISSION_REFERENCE.md` | pre-entropy ladder, admissibility/embargo/fence objects, bridge/shell/history support | `broadly mapped` |
+| `FALSIFICATION_SIM_DESIGNS.md` | gauge-group, viability-vs-attractor, quantum-metric nonuniqueness | `broadly mapped` |
+
+## Read-Only Machine Sources
+
+- `system_v4/probes/a2_state/sim_results/lego_stack_audit_results.json`
+- `system_v4/probes/a2_state/sim_results/lego_coupling_candidates.json`
+- `system_v4/probes/a2_state/sim_results/lego_batch_queue.json`
+- `system_v4/probes/a2_state/sim_results/controller_alignment_audit_results.json`
+
+## Operator Notes
+
+- This file is intentionally broader than the current machine-routed lego set.
+- Many rows are still `not_normalized_yet`; that is the point.
+- A row should move from this registry into the grouped controller ledger only after it has a clean local probe and clear evidence state.

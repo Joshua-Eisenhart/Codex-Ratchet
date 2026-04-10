@@ -23,6 +23,36 @@ import sys, os, json, time
 import numpy as np
 from scipy.linalg import expm
 
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed -- numpy/scipy state evolution"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed -- no graph message passing"},
+    "z3": {"tried": False, "used": False, "reason": "not needed -- no SMT proof layer in this sim"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed -- no synthesis/proof search"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed -- numeric comparison only"},
+    "clifford": {"tried": True, "used": True, "reason": "Cl(3) rotor/dephasing cross-check is part of the core comparison"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed -- geometry is classified directly, not via manifold package"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed -- no equivariant NN layer"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed -- no dependency/order graph"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed -- no hypergraph layer"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed -- no cell-complex layer"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed -- no persistence layer"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": "load_bearing",
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 # ─── Pauli matrices ──────────────────────────────────────────────────────────
 
 sx = np.array([[0, 1], [1, 0]], dtype=complex)
@@ -271,8 +301,16 @@ def main():
 
     pure_states = make_pure_states(10)
     results = {
+        "name": "compound_operator_geometry",
         "sim": "compound_operator_geometry",
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%S"),
+        "classification": "supporting",
+        "classification_note": (
+            "Supporting pairwise operator/geometry coupling map. Useful as a successor "
+            "surface for local geometry/operator legos, but not a closure-grade proof."
+        ),
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "tests": {}
     }
 

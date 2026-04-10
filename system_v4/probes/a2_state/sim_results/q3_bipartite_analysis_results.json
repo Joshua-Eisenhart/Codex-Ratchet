@@ -1,0 +1,365 @@
+{
+  "name": "q3_bipartite_analysis",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: torch autograd provides the gradient computation that diverges from numpy finite-diff; the divergence between backends IS the Q3 classification signal"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: exact gradient formulas derived symbolically for z_dephasing, phase_damping, phase_flip; confirmed numerically against torch autograd"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: Cl(3) rotor representation of Z gate used as boundary cross-check to confirm the dephasing channels are correctly parameterized"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "supportive",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "z_dephasing": {
+      "gradient_divergence_by_p": {
+        "0.1": {
+          "grad_numpy_frobnorm": 1.0198039027250199,
+          "grad_torch_scalar": -0.832,
+          "divergence": 0.1878039027250199,
+          "substrate_divergent": true
+        },
+        "0.3": {
+          "grad_numpy_frobnorm": 1.0198039027173993,
+          "grad_torch_scalar": -0.4159999999999999,
+          "divergence": 0.6038039027173994,
+          "substrate_divergent": true
+        },
+        "0.5": {
+          "grad_numpy_frobnorm": 1.0198039027108674,
+          "grad_torch_scalar": 0.0,
+          "divergence": 1.0198039027108674,
+          "substrate_divergent": true
+        },
+        "0.7": {
+          "grad_numpy_frobnorm": 1.019803902713589,
+          "grad_torch_scalar": 0.4159999999999997,
+          "divergence": 0.6038039027135893,
+          "substrate_divergent": true
+        }
+      },
+      "sympy_gradient_formula": {
+        "formula_out_01": "rho_01*(1 - 2*p)",
+        "gradient_out_01_wrt_p": "-2*rho_01",
+        "formula_out_00": "rho_00",
+        "gradient_out_00_wrt_p": "0",
+        "interpretation": "gradient of off-diagonal = -2*rho_01, diagonal unchanged"
+      },
+      "sympy_torch_confirmation": {
+        "sympy_formula_frob_grad": "rho_01_abs_sq*(16*p - 8)",
+        "quantity": "d(||output||_F^2)/dp",
+        "sympy_numeric_at_p": -0.41600000000000015,
+        "torch_grad": -0.4159999999999999,
+        "rho_01_abs_sq_used": 0.13000000000000003,
+        "match": true,
+        "status": "PASS"
+      },
+      "substrate_divergence_source": "gradient_path_via_p_parameter",
+      "has_parameter_p": true
+    },
+    "phase_damping": {
+      "gradient_divergence_by_p": {
+        "0.1": {
+          "grad_numpy_frobnorm": 0.26874267145027814,
+          "grad_torch_scalar": -0.26,
+          "divergence": 0.008742671450278128,
+          "substrate_divergent": true
+        },
+        "0.3": {
+          "grad_numpy_frobnorm": 0.30472578842240206,
+          "grad_torch_scalar": -0.25999999999999995,
+          "divergence": 0.0447257884224021,
+          "substrate_divergent": true
+        },
+        "0.5": {
+          "grad_numpy_frobnorm": 0.3605569303397001,
+          "grad_torch_scalar": -0.26,
+          "divergence": 0.10055693033970009,
+          "substrate_divergent": true
+        }
+      },
+      "sympy_gradient_formula": {
+        "formula_out_01": "rho_01*sqrt(1 - p)",
+        "gradient_out_01_wrt_p": "-rho_01/(2*sqrt(1 - p))",
+        "interpretation": "gradient = -rho_01 / (2*sqrt(1-p)) \u2014 singular at p=1"
+      },
+      "sympy_torch_confirmation": {
+        "sympy_formula_frob_grad": "-2*rho_01_abs_sq",
+        "quantity": "d(||output||_F^2)/dp",
+        "sympy_numeric_at_p": -0.26000000000000006,
+        "torch_grad": -0.25999999999999995,
+        "rho_01_abs_sq_used": 0.13000000000000003,
+        "match": true,
+        "status": "PASS"
+      },
+      "substrate_divergence_source": "gradient_path_via_p_parameter_with_sqrt_singularity",
+      "has_parameter_p": true
+    },
+    "phase_flip": {
+      "gradient_divergence_by_p": {
+        "0.1": {
+          "grad_numpy_frobnorm": 1.0198039027250199,
+          "grad_torch_scalar": -0.832,
+          "divergence": 0.1878039027250199,
+          "substrate_divergent": true
+        },
+        "0.3": {
+          "grad_numpy_frobnorm": 1.0198039027173993,
+          "grad_torch_scalar": -0.4159999999999999,
+          "divergence": 0.6038039027173994,
+          "substrate_divergent": true
+        },
+        "0.5": {
+          "grad_numpy_frobnorm": 1.0198039027108674,
+          "grad_torch_scalar": 0.0,
+          "divergence": 1.0198039027108674,
+          "substrate_divergent": true
+        },
+        "0.7": {
+          "grad_numpy_frobnorm": 1.019803902713589,
+          "grad_torch_scalar": 0.4159999999999997,
+          "divergence": 0.6038039027135893,
+          "substrate_divergent": true
+        }
+      },
+      "sympy_gradient_formula": {
+        "formula_out_01": "rho_01*(1 - 2*p)",
+        "gradient_out_01_wrt_p": "-2*rho_01",
+        "formula_out_00": "rho_00",
+        "gradient_out_00_wrt_p": "0",
+        "interpretation": "gradient of off-diagonal = -2*rho_01, diagonal unchanged"
+      },
+      "sympy_note": "phase_flip is algebraically identical to z_dephasing",
+      "substrate_divergence_source": "gradient_path_via_p_parameter",
+      "has_parameter_p": true
+    },
+    "CNOT": {
+      "cnot_dtype_analysis": {
+        "max_diff_complex64_vs_numpy_complex128": 1.3113021835042815e-08,
+        "max_diff_complex128_vs_numpy_complex128": 0.0,
+        "c128_available": true,
+        "conclusion": "CNOT substrate sensitivity comes from complex dtype precision: torch defaults to complex64 (float32 backing) vs numpy complex128. The 4x4 unitary matrix is real-valued, but state rho is complex, so the matmul rho@CNOT\u2020  accumulates float32 rounding error.",
+        "substrate_divergence_source": "complex_dtype_precision"
+      },
+      "has_parameter_p": false,
+      "substrate_divergence_source": "complex_dtype_precision"
+    },
+    "mutual_information": {
+      "partial_trace_ordering_analysis": {
+        "bell_mi_original": 1.3862943611197838,
+        "bell_mi_after_swap": 1.3862943611197838,
+        "bell_mi_swap_invariant": true,
+        "product_mi_original": 0.0,
+        "product_mi_after_swap": 0.0,
+        "product_mi_swap_invariant": true,
+        "torch_vs_numpy": {
+          "mi_torch_complex64": 1.3862943649290955,
+          "mi_numpy_complex128": 1.3862943611197838,
+          "diff": 3.809311754920941e-09,
+          "substrate_divergent": "False"
+        },
+        "conclusion": "MI is symmetric under SWAP (invariant to qubit labeling), so partial_trace ORDERING is not the source of substrate divergence. The divergence comes from eigenvalue computation precision: torch.linalg.eigvalsh runs in float32 vs numpy's float64, accumulating error in the log computation for near-zero eigenvalues.",
+        "substrate_divergence_source": "eigenvalue_precision_in_log_computation"
+      },
+      "has_parameter_p": false,
+      "substrate_divergence_source": "eigenvalue_precision_in_log_computation"
+    }
+  },
+  "negative": {
+    "purity_u_shaped_under_z_dephasing": {
+      "description": "z_dephasing purity is U-shaped: minimum at p=0.5, equal at p=0 and p=1. z_dephasing is unitary at p=0 (identity) and p=1 (Z channel), so purity is preserved at both endpoints and minimized midway.",
+      "purity_vals": {
+        "0.0": 0.84,
+        "0.25": 0.645,
+        "0.5": 0.58,
+        "0.75": 0.645,
+        "1.0": 0.84
+      },
+      "minimum_at_half": true,
+      "p0_equals_p1": true,
+      "status": "PASS"
+    },
+    "cnot_squared_is_identity": {
+      "description": "CNOT^2 = I (self-inverse), so applying twice should return original",
+      "max_diff_from_original": 0.0,
+      "is_identity": true,
+      "status": "PASS"
+    },
+    "phase_flip_boundary_conditions": {
+      "description": "phase_flip(p=0) = identity, phase_flip(p=1) = Z channel",
+      "identity_at_p0": true,
+      "z_channel_at_p1": true,
+      "status": "PASS"
+    },
+    "mutual_info_product_state_zero": {
+      "description": "MI of product state should be ~0 (no correlations)",
+      "mi_value": 2.220446049250313e-16,
+      "is_near_zero": true,
+      "status": "PASS"
+    }
+  },
+  "boundary": {
+    "z_dephasing_gradient_at_boundary": {
+      "description": "Gradient of z_dephasing at boundary p values",
+      "grads_by_p": {
+        "0.001": {
+          "grad_norm": 1.0198039021817773,
+          "off_diag_grad": 0.7211102547132373
+        },
+        "0.01": {
+          "grad_norm": 1.0198039021817773,
+          "off_diag_grad": 0.7211102547132373
+        },
+        "0.5": {
+          "grad_norm": 1.0198039021817773,
+          "off_diag_grad": 0.7211102547132373
+        },
+        "0.99": {
+          "grad_norm": 1.0198039021817773,
+          "off_diag_grad": 0.7211102547132373
+        },
+        "0.999": {
+          "grad_norm": 1.0198039021817773,
+          "off_diag_grad": 0.7211102547132373
+        }
+      },
+      "note": "Gradient is constant (-2*rho_01) for z_dephasing \u2014 no boundary singularity"
+    },
+    "phase_damping_gradient_near_singularity": {
+      "description": "phase_damping gradient diverges as p\u21921 (sqrt(1-p) \u2192 0)",
+      "grads_by_p": {
+        "0.5": {
+          "grad_norm": 0.360555145431677,
+          "off_diag_grad": 0.25495098832644064
+        },
+        "0.9": {
+          "grad_norm": 0.8062259759791462,
+          "off_diag_grad": 0.5700878547835969
+        },
+        "0.99": {
+          "grad_norm": 2.549516129305569,
+          "off_diag_grad": 1.8027801437764464
+        },
+        "0.999": {
+          "grad_norm": 8.062459310559692,
+          "off_diag_grad": 5.701019651537375
+        }
+      },
+      "note": "Gradient = -rho_01/(2*sqrt(1-p)) \u2192 \u221e as p\u21921. This singularity is the KEY source of substrate divergence: float32 and float64 diverge near the singularity."
+    },
+    "cnot_dtype_divergence_vs_state_complexity": {
+      "description": "Max dtype divergence for CNOT across 20 random pure states",
+      "max_divergence": 2.7796815627034732e-08,
+      "mean_divergence": 1.4692867956995744e-08,
+      "min_divergence": 7.206219590666236e-09,
+      "all_below_1e3": true,
+      "note": "Divergence is consistent (~float32 precision) regardless of state complexity"
+    },
+    "clifford_z_rotor_on_ket0": {
+      "description": "Z rotor on |0> Bloch vector should preserve [0,0,1]",
+      "e3_component_after_Z": 1.0,
+      "preserved": true,
+      "status": "PASS"
+    }
+  },
+  "substrate_divergence_summary": {
+    "z_dephasing": {
+      "has_param_p": true,
+      "divergence_source": "gradient_path_via_p_parameter",
+      "sympy_confirmed": true,
+      "exact_formula": "d(output_01)/dp = -2*rho_01"
+    },
+    "phase_damping": {
+      "has_param_p": true,
+      "divergence_source": "sqrt_singularity_near_p1_amplified_by_float32",
+      "sympy_confirmed": true,
+      "exact_formula": "d(output_01)/dp = -rho_01 / (2*sqrt(1-p))"
+    },
+    "phase_flip": {
+      "has_param_p": true,
+      "divergence_source": "gradient_path_via_p_parameter (identical to z_dephasing)",
+      "sympy_confirmed": true,
+      "exact_formula": "d(output_01)/dp = -2*rho_01"
+    },
+    "CNOT": {
+      "has_param_p": false,
+      "divergence_source": "complex_dtype_precision_float32_vs_float64",
+      "sympy_confirmed": "N/A",
+      "exact_formula": "no parameter; divergence is float32 rounding in 4x4 matmul"
+    },
+    "mutual_information": {
+      "has_param_p": false,
+      "divergence_source": "eigenvalue_precision_in_log_computation",
+      "sympy_confirmed": "N/A",
+      "exact_formula": "no parameter; divergence in eigvalsh float32 \u2192 log(near-zero)"
+    }
+  },
+  "key_finding": "Q3 families are substrate-sensitive for two distinct reasons: (1) parametric families (z_dephasing, phase_damping, phase_flip) have a channel parameter p whose gradient path differs between float32/autograd and float64/finite-diff; (2) non-parametric families (CNOT, mutual_information) accumulate dtype precision error in complex matrix operations or near-zero eigenvalue log computations. All Q3 families are topology-insensitive because the OUTPUT STRUCTURE is fixed regardless of how the computation is wired (no graph-level ordering effect).",
+  "classification": "canonical"
+}

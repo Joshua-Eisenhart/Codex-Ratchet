@@ -1,0 +1,650 @@
+{
+  "name": "layer_stacking_coexistence",
+  "description": "Tests prefix subsets of constraint shells S0-S7 for coexistence, plus targeted triad impossibility checks",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "gradient descent to find satisfying states for coexisting shell subsets"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim \u2014 no message-passing graph dynamics"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "proves UNSAT (impossibility) for shell subsets that cannot coexist"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 z3 UNSAT proofs are sufficient for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 constraints are numeric/SMT, not symbolic algebra"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 chirality tested via matrix commutator, not geometric product"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 Hopf geometry tested via Bloch sphere parameterization"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 SU(2) symmetry tested via commutator residual"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "DAG of shell subset inclusion: shows which subsets are subsets of which"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 shell interactions are pairwise, not multi-way hyperedges"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 coexistence structure is a subset lattice, not a cell complex"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed \u2014 no persistent homology computation required here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "dag": {
+    "num_nodes": 8,
+    "num_edges": 7,
+    "topological_order": [
+      "{S0}",
+      "{S0,S1}",
+      "{S0,S1,S2}",
+      "{S0,S1,S2,S3}",
+      "{S0,S1,S2,S3,S4}",
+      "{S0,S1,S2,S3,S4,S5}",
+      "{S0,S1,S2,S3,S4,S5,S6}",
+      "{S0,S1,S2,S3,S4,S5,S6,S7}"
+    ],
+    "dag_built": true
+  },
+  "positive": {
+    "{S0}": {
+      "shells_tested": [
+        0
+      ],
+      "found_satisfying_state": true,
+      "best_loss": 0.0,
+      "details": {
+        "loss": 0.0,
+        "bloch_params": [
+          -0.1467950940132141,
+          0.7861412763595581,
+          0.9468216300010681
+        ],
+        "euler_params": [
+          -1.1143440008163452,
+          1.6907901763916016,
+          -0.8948279023170471
+        ],
+        "shell_checks": {
+          "S0": true
+        },
+        "rho_diag": [
+          0.8819769620895386,
+          0.11802303791046143
+        ],
+        "rho_offdiag_mag": 0.32263535261154175,
+        "purity": 0.9999998807907104,
+        "entropy_in": 0.353687584400177,
+        "entropy_out": 0.22856299579143524
+      }
+    },
+    "{S0,S1}": {
+      "shells_tested": [
+        0,
+        1
+      ],
+      "found_satisfying_state": true,
+      "best_loss": 0.0,
+      "details": {
+        "loss": 0.0,
+        "bloch_params": [
+          -0.1467950940132141,
+          0.7861412763595581,
+          0.9468216300010681
+        ],
+        "euler_params": [
+          -1.1143440008163452,
+          1.6907901763916016,
+          -0.8948279023170471
+        ],
+        "shell_checks": {
+          "S0": true,
+          "S1": true
+        },
+        "rho_diag": [
+          0.8819769620895386,
+          0.11802303791046143
+        ],
+        "rho_offdiag_mag": 0.32263535261154175,
+        "purity": 0.9999998807907104,
+        "entropy_in": 0.353687584400177,
+        "entropy_out": 0.22856299579143524
+      }
+    },
+    "{S0,S1,S2}": {
+      "shells_tested": [
+        0,
+        1,
+        2
+      ],
+      "found_satisfying_state": true,
+      "best_loss": 0.0,
+      "details": {
+        "loss": 0.0,
+        "bloch_params": [
+          -2.015700101852417,
+          2.0105552673339844,
+          0.05826425924897194
+        ],
+        "euler_params": [
+          0.06555803120136261,
+          -1.65336275100708,
+          2.251706838607788
+        ],
+        "shell_checks": {
+          "S0": true,
+          "S1": true,
+          "S2": true
+        },
+        "rho_diag": [
+          0.5102304220199585,
+          0.4897695481777191
+        ],
+        "rho_offdiag_mag": 0.4998953342437744,
+        "purity": 1.0,
+        "entropy_in": 0.41556861996650696,
+        "entropy_out": 0.5561569929122925
+      }
+    },
+    "{S0,S1,S2,S3}": {
+      "shells_tested": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "found_satisfying_state": true,
+      "best_loss": 0.0,
+      "details": {
+        "loss": 0.0,
+        "bloch_params": [
+          -2.015700101852417,
+          2.0105552673339844,
+          0.05826425924897194
+        ],
+        "euler_params": [
+          0.06555803120136261,
+          -1.65336275100708,
+          2.251706838607788
+        ],
+        "shell_checks": {
+          "S0": true,
+          "S1": true,
+          "S2": true,
+          "S3": true
+        },
+        "rho_diag": [
+          0.5102304220199585,
+          0.4897695481777191
+        ],
+        "rho_offdiag_mag": 0.4998953342437744,
+        "purity": 1.0,
+        "entropy_in": 0.41556861996650696,
+        "entropy_out": 0.5561569929122925
+      }
+    },
+    "{S0,S1,S2,S3,S4}": {
+      "shells_tested": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "found_satisfying_state": true,
+      "best_loss": 0.0,
+      "details": {
+        "loss": 0.0,
+        "bloch_params": [
+          -0.00034346990287303925,
+          1.3634498119354248,
+          1.517327070236206
+        ],
+        "euler_params": [
+          -1.569920301437378,
+          2.8530378341674805,
+          -1.4237711429595947
+        ],
+        "shell_checks": {
+          "S0": true,
+          "S1": true,
+          "S2": true,
+          "S3": true,
+          "S4": true
+        },
+        "rho_diag": [
+          0.8719083070755005,
+          0.12809166312217712
+        ],
+        "rho_offdiag_mag": 0.33419185876846313,
+        "purity": 1.0,
+        "entropy_in": 0.38274291157722473,
+        "entropy_out": 3.997367059582757e-07
+      }
+    },
+    "{S0,S1,S2,S3,S4,S5}": {
+      "shells_tested": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "found_satisfying_state": true,
+      "best_loss": 7.714533421676606e-05,
+      "details": {
+        "loss": 7.714533421676606e-05,
+        "bloch_params": [
+          -1.3873485326766968,
+          -1.3873659372329712,
+          0.003418439067900181
+        ],
+        "euler_params": [
+          1.570788025856018,
+          0.0024638185277581215,
+          1.0656452178955078
+        ],
+        "shell_checks": {
+          "S0": true,
+          "S1": true,
+          "S2": true,
+          "S3": true,
+          "S4": true,
+          "S5": true
+        },
+        "rho_diag": [
+          0.5008711814880371,
+          0.4991288483142853
+        ],
+        "rho_offdiag_mag": 0.4999992251396179,
+        "purity": 1.0,
+        "entropy_in": 0.41649848222732544,
+        "entropy_out": 0.41649070382118225
+      }
+    },
+    "{S0,S1,S2,S3,S4,S5,S6}": {
+      "shells_tested": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "found_satisfying_state": true,
+      "best_loss": 7.871670095482841e-05,
+      "details": {
+        "loss": 7.871670095482841e-05,
+        "bloch_params": [
+          -1.5471216440200806,
+          -1.5468714237213135,
+          -0.02778009884059429
+        ],
+        "euler_params": [
+          1.5707749128341675,
+          -0.01794620230793953,
+          0.8966081142425537
+        ],
+        "shell_checks": {
+          "S0": true,
+          "S1": true,
+          "S2": true,
+          "S3": true,
+          "S4": true,
+          "S5": true,
+          "S6": true
+        },
+        "rho_diag": [
+          0.4936515986919403,
+          0.5063484311103821
+        ],
+        "rho_offdiag_mag": 0.49995967745780945,
+        "purity": 1.0,
+        "entropy_in": 0.4163948893547058,
+        "entropy_out": 0.416495680809021
+      }
+    },
+    "{S0,S1,S2,S3,S4,S5,S6,S7}": {
+      "shells_tested": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "found_satisfying_state": true,
+      "best_loss": 7.871670095482841e-05,
+      "details": {
+        "loss": 7.871670095482841e-05,
+        "bloch_params": [
+          -1.5471216440200806,
+          -1.5468714237213135,
+          -0.02778009884059429
+        ],
+        "euler_params": [
+          1.5707749128341675,
+          -0.01794620230793953,
+          0.8966081142425537
+        ],
+        "shell_checks": {
+          "S0": true,
+          "S1": true,
+          "S2": true,
+          "S3": true,
+          "S4": true,
+          "S5": true,
+          "S6": true,
+          "S7": true
+        },
+        "rho_diag": [
+          0.4936515986919403,
+          0.5063484311103821
+        ],
+        "rho_offdiag_mag": 0.49995967745780945,
+        "purity": 1.0,
+        "entropy_in": 0.4163948893547058,
+        "entropy_out": 0.416495680809021
+      }
+    }
+  },
+  "negative": {
+    "S2_S6_unitary_conflict": {
+      "status": "unsat",
+      "is_unsat": true,
+      "interpretation": "PROVED IMPOSSIBLE: S2 (pure state, entropy=0) + S6 (entropy increases) + unitary channel (entropy preserved) are mutually inconsistent."
+    },
+    "S5_S6_conflict": {
+      "status": "unsat",
+      "is_unsat": true,
+      "interpretation": "PROVED IMPOSSIBLE: S5 (SU(2) unitary symmetry) implies entropy preservation; S6 requires entropy increase. These are mutually inconsistent."
+    },
+    "S2_S5_S6_via_depolarizing": {
+      "status": "sat",
+      "is_sat_with_depolarizing": true,
+      "interpretation": "S2 + S5 + S6 is SATISFIABLE if we allow a depolarizing channel: pure state (S_in=0) + depolarizing (S_out=0.693 > 0) satisfies all three. The conflict is S2 + S5 + S6 ONLY when the channel is unitary."
+    },
+    "S3_S7_tension": {
+      "pure_left_chiral_and_s7": "unsat",
+      "pure_right_chiral_and_s7": "unsat",
+      "mixed_chiral_and_s7": "sat",
+      "interpretation": "Pure chiral states (S3 extreme) conflict with S7 (dual mode). Mixed chiral states satisfy both S3 (nonzero [rho,gamma5]) and S7. The S3+S7 constraint requires: chiral asymmetry but not pure chirality."
+    },
+    "torch_S0S1S2S6_gradient_finds_nonunitary_escape": {
+      "shells": [
+        0,
+        1,
+        2,
+        6
+      ],
+      "found_satisfying_state": true,
+      "best_loss": 0.0,
+      "details": {
+        "loss": 0.0,
+        "bloch_params": [
+          -0.5677695274353027,
+          0.3634144365787506,
+          1.3677490949630737
+        ],
+        "euler_params": [
+          -0.6924289464950562,
+          1.2818543910980225,
+          -0.4892038404941559
+        ],
+        "shell_checks": {
+          "S0": true,
+          "S1": true,
+          "S2": true,
+          "S6": true
+        },
+        "rho_diag": [
+          0.9484862089157104,
+          0.05151376128196716
+        ],
+        "rho_offdiag_mag": 0.22104325890541077,
+        "purity": 1.0,
+        "entropy_in": 0.07539153844118118,
+        "entropy_out": 0.41332322359085083,
+        "unitary_residual": 1.0433934926986694,
+        "channel_is_actually_unitary": false
+      },
+      "expected_outcome": "The optimizer finds a non-unitary channel that satisfies S2+S6. z3 proves S2+S6+unitary is IMPOSSIBLE. The torch result is consistent: it discovered the non-unitary escape route.",
+      "key_finding": "S2+S6 conflict is CHANNEL-TYPE DEPENDENT: impossible under unitary channels (z3: UNSAT), satisfiable under non-unitary CPTP channels (torch finds solution). This means S6 (irreversibility) acts as a FILTER on channel type, not a filter on state type alone. The binding constraint is: S2 + S6 + S5(unitary) -> IMPOSSIBLE. But S2 + S6 + S1(CPTP, non-unitary) -> POSSIBLE."
+    }
+  },
+  "boundary": {
+    "maximally_mixed_vs_S0": {
+      "off_diagonal_magnitude": 0.0,
+      "entropy": 0.6931471824645996,
+      "S0_satisfied": false,
+      "note": "Maximally mixed state is diagonal => S0 NOT satisfied"
+    },
+    "pure_plus_state": {
+      "off_diagonal_magnitude": 0.5,
+      "entropy": 2.7631020735330303e-11,
+      "S0_satisfied": true,
+      "S2_purity": 1.0,
+      "note": "|+> state: maximum off-diagonal, purity=1, entropy=0"
+    },
+    "near_pure_entropy_boundary": {
+      "entropy": 0.03147910535335541,
+      "purity": 0.9900500178337097,
+      "note": "Near-pure state: entropy just above 0"
+    },
+    "dephasing_entropy_increase": {
+      "p=0.0": {
+        "S_in": 2.7631020735330303e-11,
+        "S_out": 2.7631020735330303e-11,
+        "delta_S": 0.0,
+        "S6_satisfied": false
+      },
+      "p=0.1": {
+        "S_in": 2.7631020735330303e-11,
+        "S_out": 0.19851531088352203,
+        "delta_S": 0.19851531085589103,
+        "S6_satisfied": true
+      },
+      "p=0.3": {
+        "S_in": 2.7631020735330303e-11,
+        "S_out": 0.42270904779434204,
+        "delta_S": 0.42270904776671103,
+        "S6_satisfied": true
+      },
+      "p=0.5": {
+        "S_in": 2.7631020735330303e-11,
+        "S_out": 0.5623351335525513,
+        "delta_S": 0.5623351335249203,
+        "S6_satisfied": true
+      },
+      "p=1.0": {
+        "S_in": 2.7631020735330303e-11,
+        "S_out": 0.6931471824645996,
+        "delta_S": 0.6931471824369686,
+        "S6_satisfied": true
+      }
+    }
+  },
+  "analysis": {
+    "coexistence_table": [
+      {
+        "subset": "{S0}",
+        "shells": [
+          0
+        ],
+        "coexists": true,
+        "best_loss": 0.0
+      },
+      {
+        "subset": "{S0,S1}",
+        "shells": [
+          0,
+          1
+        ],
+        "coexists": true,
+        "best_loss": 0.0
+      },
+      {
+        "subset": "{S0,S1,S2}",
+        "shells": [
+          0,
+          1,
+          2
+        ],
+        "coexists": true,
+        "best_loss": 0.0
+      },
+      {
+        "subset": "{S0,S1,S2,S3}",
+        "shells": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "coexists": true,
+        "best_loss": 0.0
+      },
+      {
+        "subset": "{S0,S1,S2,S3,S4}",
+        "shells": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "coexists": true,
+        "best_loss": 0.0
+      },
+      {
+        "subset": "{S0,S1,S2,S3,S4,S5}",
+        "shells": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "coexists": true,
+        "best_loss": 7.714533421676606e-05
+      },
+      {
+        "subset": "{S0,S1,S2,S3,S4,S5,S6}",
+        "shells": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "coexists": true,
+        "best_loss": 7.871670095482841e-05
+      },
+      {
+        "subset": "{S0,S1,S2,S3,S4,S5,S6,S7}",
+        "shells": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "coexists": true,
+        "best_loss": 7.871670095482841e-05
+      }
+    ],
+    "first_impossible_subset": null,
+    "binding_constraint_pairs": [
+      {
+        "pair": [
+          "S2",
+          "S6",
+          "unitary-channel"
+        ],
+        "mechanism": "Pure state (S2) => entropy=0; irreversibility (S6) => entropy must increase; unitary channel preserves entropy => contradiction. BUT: non-unitary CPTP channel can escape this \u2014 the gradient descent confirmed a non-unitary channel satisfies S2+S6 simultaneously.",
+        "z3_proof": "UNSAT under unitary channel assumption",
+        "escape_route": "non-unitary CPTP channel (depolarizing or dephasing)"
+      },
+      {
+        "pair": [
+          "S5",
+          "S6",
+          "unitary-channel"
+        ],
+        "mechanism": "SU(2) symmetry (S5) => unitary dynamics => entropy preserved; S6 => entropy increases => contradiction under strict unitary SU(2). Depolarizing channel (SU(2)-covariant, non-unitary) provides an escape.",
+        "z3_proof": "UNSAT under unitary channel assumption; SAT under depolarizing",
+        "escape_route": "depolarizing channel (SU(2)-covariant non-unitary CPTP)"
+      },
+      {
+        "pair": [
+          "S3-pure",
+          "S7"
+        ],
+        "mechanism": "A purely chiral state (only L or only R population) conflicts with S7 (requires both L and R support). Mixed-chiral states satisfy both.",
+        "z3_proof": "UNSAT for pure chiral + S7; SAT for mixed chiral + S7",
+        "escape_route": "mixed chiral state (S3 asymmetry without pure chirality)"
+      }
+    ],
+    "summary": "All 8 prefix subsets S0..S7 can be simultaneously satisfied by some (state, channel) pair. The first_impossible_subset is null \u2014 no tested prefix subset is globally impossible. However, three binding constraint TRIADS exist: (1) S2+S6+unitary-channel: IMPOSSIBLE (z3 UNSAT); escape via non-unitary CPTP. (2) S5+S6+unitary-channel: IMPOSSIBLE (z3 UNSAT); escape via depolarizing. (3) S3-pure+S7: IMPOSSIBLE (z3 UNSAT); escape via mixed-chiral state. Key insight: S6 (irreversibility) does not conflict with shells directly \u2014 it conflicts with the CHANNEL TYPE (unitary). The audit finding of 28 surviving families is consistent with this: the tested prefix manifold S0..S7 survives only for specific (state, channel) combinations, not for all states/channels. The constraint is on the (state, channel) PAIR. This sim is therefore strongest as a prefix-coexistence map plus targeted triad-impossibility audit, not as a full arbitrary-subset coexistence closure result."
+  },
+  "classification": "canonical",
+  "classification_note": "Canonical as a prefix-coexistence map and targeted triad-impossibility audit. Not a full arbitrary-subset coexistence closure result.",
+  "rule_4a_note": "Layer order is NOT assumed canon. This sim discovers which prefix subsets can coexist. The stronger binding results come from targeted triad impossibility checks.",
+  "rule_11a_note": "This is the 'second required program' per Rule 11a: sim the stack, not just the objects."
+}

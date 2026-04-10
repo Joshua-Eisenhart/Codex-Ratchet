@@ -1,5 +1,5 @@
-# REQUIRES: torch, torch_geometric, engine_core (available under /opt/homebrew/bin/python3)
-# Run as: /opt/homebrew/bin/python3 sim_edge_state_writeback.py  (from system_v4/probes/)
+# REQUIRES: torch, torch_geometric, engine_core
+# Run as: make sim NAME=sim_edge_state_writeback  (from repo root)
 # NOTE: writeback path has known real failures; probe may not satisfy all pass conditions.
 """
 Edge State Write-Back Probe

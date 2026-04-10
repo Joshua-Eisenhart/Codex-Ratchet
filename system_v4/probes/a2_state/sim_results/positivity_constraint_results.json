@@ -1,0 +1,141 @@
+{
+  "name": "positivity_constraint",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for the positive-semidefinite admission constraint on bounded density-operator candidates.",
+  "lego_ids": [
+    "positivity_constraint",
+    "density_matrix_representability"
+  ],
+  "primary_lego_ids": [
+    "positivity_constraint"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure numpy eigenvalue lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "max_mixed": {
+      "eigenvalues": [
+        0.5,
+        0.5
+      ],
+      "psd": true,
+      "pass": true
+    },
+    "pure_zero": {
+      "eigenvalues": [
+        0.0,
+        1.0
+      ],
+      "psd": true,
+      "pass": true
+    },
+    "bloch_x_plus": {
+      "eigenvalues": [
+        0.0,
+        1.0
+      ],
+      "psd": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "negative_eigenvalue": {
+      "eigenvalues": [
+        -0.2,
+        1.2
+      ],
+      "psd": false,
+      "pass": true
+    },
+    "indefinite_offdiag": {
+      "eigenvalues": [
+        -0.30000000000000004,
+        1.3
+      ],
+      "psd": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "rank_deficient_pure_state_is_still_psd": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local PSD admission lego on bounded 2x2 candidates."
+  }
+}

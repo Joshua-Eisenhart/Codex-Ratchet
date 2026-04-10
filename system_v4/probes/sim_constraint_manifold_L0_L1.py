@@ -971,6 +971,28 @@ def main():
 
     output = {
         "name": "constraint_manifold_L0_L1",
+        "classification": "canonical",
+        "summary": (
+            "Canonical early admission manifold result: F01/N01 kill d=1, "
+            "admit finite nonabelian carriers d>=2, and Layer-1 fences sharply "
+            "restrict the allowed combinatorial space."
+        ),
+        "lego_ids": [
+            "f01_finitude_constraint",
+            "n01_noncommutation_constraint",
+            "admissibility_manifold_mc",
+            "finite_carrier_c2",
+        ],
+        "primary_lego_ids": [
+            "f01_finitude_constraint",
+            "admissibility_manifold_mc",
+        ],
+        "tool_manifest": {
+            "z3": "load-bearing",
+            "sympy": "load-bearing",
+            "numpy": "supporting",
+        },
+        "tool_integration_depth": "multi_tool_load_bearing",
         "L0_allowed_space": l0_result,
         "L1_restriction": l1_result,
         "constraint_power": power,

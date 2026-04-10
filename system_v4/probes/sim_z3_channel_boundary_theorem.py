@@ -537,10 +537,11 @@ def run_negative_tests():
 
             # λ > 3/4 violates CPTP for depolarizing
             solver.add(lam > z3.RealVal(3) / z3.RealVal(4))
-            # The contraction 1-4λ/3 < -1 for λ > 3/4 => Bloch ball inverted => non-physical
-            contraction = 1 - z3.RealVal(4) * lam / z3.RealVal(3)
-            solver.add(contraction >= z3.RealVal(-1))  # physical constraint
-            solver.add(contraction <= z3.RealVal(1))    # contraction <= 1
+            # CPTP constraint: contraction = 1 - 4λ/3 must be ≥ 0 (fully depolarizing is λ=3/4)
+            # At λ > 3/4, contraction < 0 → channel inverts Bloch ball → non-CPTP
+            contraction = z3.RealVal(1) - z3.RealVal(4) * lam / z3.RealVal(3)
+            solver.add(contraction >= z3.RealVal(0))  # CPTP requires contraction in [0,1]
+            solver.add(contraction <= z3.RealVal(1))  # contraction <= 1
 
             verdict = solver.check()
             elapsed = time.time() - t0

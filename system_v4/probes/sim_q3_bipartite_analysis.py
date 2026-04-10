@@ -865,14 +865,16 @@ def run_boundary_tests():
         # But wait: Z rotates |1>→-|1>, so Z|0>=|0>, Z|1>=-|1>
         # Bloch vector of |0> is [0,0,1], which is the Z axis — invariant under Z rotation
         try:
-            rz_val = float(v_prime.value[4])  # e3 component
+            # In Cl(3): value indices are [scalar, e1, e2, e3, e12, e13, e23, e123]
+            # e3 is at index 3, NOT 4 (which is e12)
+            rz_val = float(v_prime.value[3])  # e3 component
             clifford_z_test = abs(rz_val - 1.0) < 1e-6
         except Exception:
             clifford_z_test = None
 
         results["clifford_z_rotor_on_ket0"] = {
             "description": "Z rotor on |0> Bloch vector should preserve [0,0,1]",
-            "e3_component_after_Z": float(v_prime.value[4]) if clifford_z_test is not None else "ERROR",
+            "e3_component_after_Z": float(v_prime.value[3]) if clifford_z_test is not None else "ERROR",
             "preserved": clifford_z_test,
             "status": "PASS" if clifford_z_test else "FAIL",
         }

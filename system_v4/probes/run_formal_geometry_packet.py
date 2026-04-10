@@ -30,18 +30,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 RESULTS_PATH = ROOT / "a2_state" / "sim_results" / "formal_geometry_packet_run_results.json"
-SPEC_GRAPH_PYTHON = ROOT.parent.parent / ".venv_spec_graph" / "bin" / "python3"  # legacy; no step requires this now
 
 
-def choose_python(require_spec_graph: bool) -> str:
-    if require_spec_graph and SPEC_GRAPH_PYTHON.exists():
-        return str(SPEC_GRAPH_PYTHON)
+def choose_python() -> str:
     return sys.executable
 
 
 def run_step(label: str, script_name: str, require_spec_graph: bool = False) -> dict:
     script_path = ROOT / script_name
-    python_bin = choose_python(require_spec_graph=require_spec_graph)
+    python_bin = choose_python()
     cmd = [python_bin, str(script_path)]
     started = time.time()
     proc = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)

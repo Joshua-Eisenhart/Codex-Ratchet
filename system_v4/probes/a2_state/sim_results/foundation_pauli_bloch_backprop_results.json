@@ -1,0 +1,231 @@
+{
+  "name": "foundation_pauli_bloch_backprop",
+  "probe": "foundation_pauli_bloch_backprop",
+  "purpose": "Verify Pauli-basis Bloch density identities and optimize over actual 2x2 density matrices with backprop under physical-state constraints",
+  "lego_ids": [
+    "density_state_space_dc2",
+    "bloch_decomposition_map",
+    "bloch_vector_representation",
+    "pauli_algebra_relations"
+  ],
+  "primary_lego_ids": [
+    "bloch_decomposition_map",
+    "bloch_vector_representation"
+  ],
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Actual 2x2 density-matrix construction, Bloch extraction, and autograd optimization over PSD trace-one states"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Structural impossibility proofs for Bloch-ball admissibility constraints"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic determinant and purity identities for Bloch-form density matrices"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "tools_used": [
+    "pytorch",
+    "z3",
+    "sympy"
+  ],
+  "positive": {
+    "tests": [
+      {
+        "name": "sympy_bloch_identities",
+        "determinant_expr": "-x**2/4 - y**2/4 - z**2/4 + 1/4",
+        "purity_expr": "x**2/2 + y**2/2 + z**2/2 + 1/2",
+        "pass": true
+      },
+      {
+        "name": "z3_bloch_ball_structure",
+        "outside_status": "unsat",
+        "orthogonal_status": "unsat",
+        "interior_status": "sat",
+        "pass": true
+      },
+      {
+        "name": "autograd_reconstructs_mixed_density_matrix",
+        "target_bloch": [
+          0.25,
+          -0.35,
+          0.4
+        ],
+        "recovered_bloch": [
+          0.24999999999999023,
+          -0.3499999999999892,
+          0.40000000000000063
+        ],
+        "matrix_sq_error": 1.05935391405031e-28,
+        "bloch_sq_error": 2.117999085881086e-28,
+        "purity": 0.672499999999994,
+        "determinant": 0.16375000000000295,
+        "density_valid": true,
+        "pass": true
+      },
+      {
+        "name": "autograd_reconstructs_near_pure_density_matrix",
+        "target_bloch": [
+          0.520430590953299,
+          -0.3903229432149742,
+          0.6505382386916236
+        ],
+        "recovered_bloch": [
+          0.5204305909529036,
+          -0.3903229432147016,
+          0.6505382386911459
+        ],
+        "matrix_sq_error": 2.2943851872447967e-25,
+        "bloch_sq_error": 4.5890353670425015e-25,
+        "purity": 0.9231999999993769,
+        "determinant": 0.03840000000031142,
+        "density_valid": true,
+        "pass": true
+      },
+      {
+        "name": "autograd_saturates_pauli_expectation_bound",
+        "direction": [
+          0.42426406871192845,
+          -0.565685424949238,
+          0.7071067811865475
+        ],
+        "expectation": 0.9993863312690829,
+        "recovered_bloch": [
+          0.4242010360429204,
+          -0.5655688228277931,
+          0.7063700238430413
+        ],
+        "target_pure_state_sq_error": 2.801902776490649e-07,
+        "purity": 0.9993866114593606,
+        "determinant": 0.0003066942703197124,
+        "density_valid": true,
+        "pass": true
+      }
+    ]
+  },
+  "negative": {
+    "tests": [
+      {
+        "name": "outside_bloch_ball_is_not_physical",
+        "determinant": -0.05250000000000004,
+        "validator_message": "matrix must be positive semidefinite",
+        "pass": true
+      },
+      {
+        "name": "orthogonal_pauli_expectations_cannot_both_be_near_one",
+        "solver_status": "unsat",
+        "pass": true
+      },
+      {
+        "name": "invalid_target_matrix_stays_separated_from_physical_fit",
+        "invalid_target_determinant": -0.10999999999999997,
+        "fit_matrix_sq_error_to_near_boundary_state": 7.857345913096154e-05,
+        "pass": true
+      }
+    ]
+  },
+  "boundary": {
+    "tests": [
+      {
+        "name": "maximally_mixed_boundary_values",
+        "purity": 0.5,
+        "determinant": 0.25,
+        "pass": true
+      },
+      {
+        "name": "pure_state_boundary_values",
+        "purity": 1.0000000000000002,
+        "determinant": -7.529997592130555e-17,
+        "pass": true
+      },
+      {
+        "name": "near_boundary_state_remains_physical",
+        "validator_message": "ok",
+        "purity": 0.9990005,
+        "determinant": 0.0004997500000000004,
+        "pass": true
+      }
+    ]
+  },
+  "summary": {
+    "positive": {
+      "passed": 5,
+      "failed": 0
+    },
+    "negative": {
+      "passed": 3,
+      "failed": 0
+    },
+    "boundary": {
+      "passed": 3,
+      "failed": 0
+    },
+    "all_pass": true,
+    "scope_note": "Foundation-only Pauli/Bloch/backprop lego on physical 2x2 density matrices. No bridge or late-stage entropy claims."
+  }
+}

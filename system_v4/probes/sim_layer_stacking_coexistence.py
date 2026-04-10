@@ -23,7 +23,8 @@ For each prefix-subset {S0}, {S0,S1}, ..., {S0..S7}:
   - z3 proves impossibility for subsets that can't coexist
   - rustworkx builds the DAG of subset inclusion
 
-Key question: which shell pair is the first binding constraint?
+Key question: which prefix coexistence claims survive, and which targeted
+binding triads are provably impossible?
 """
 
 import json
@@ -114,8 +115,8 @@ try:
     from clifford import Cl  # noqa
     TOOL_MANIFEST["clifford"]["tried"] = True
     TOOL_MANIFEST["clifford"]["reason"] = "not needed — chirality tested via matrix commutator, not geometric product"
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 try:
     import geomstats  # noqa
@@ -879,8 +880,8 @@ def analyze_coexistence(positive_results):
     """
     From the positive test results, determine:
     1. Coexistence table: which prefix subsets succeeded
-    2. First impossible subset
-    3. Binding constraint pairs
+    2. First impossible prefix subset
+    3. Binding constraint triads identified by targeted impossibility checks
     """
     coexistence_table = []
     first_impossible = None
@@ -904,7 +905,7 @@ def analyze_coexistence(positive_results):
             first_impossible = {
                 "subset": label,
                 "size": k + 1,
-                "note": f"Shell S{k} is the first shell that breaks coexistence when added",
+                "note": f"Shell S{k} is the first shell that breaks prefix coexistence when added",
             }
 
     # Identify binding pairs from z3 analysis
@@ -947,7 +948,7 @@ def analyze_coexistence(positive_results):
         "binding_constraint_pairs": binding_pairs,
         "summary": (
             "All 8 prefix subsets S0..S7 can be simultaneously satisfied by some (state, channel) pair. "
-            "The first_impossible_subset is null — no prefix subset is globally impossible. "
+            "The first_impossible_subset is null — no tested prefix subset is globally impossible. "
             "However, three binding constraint TRIADS exist: "
             "(1) S2+S6+unitary-channel: IMPOSSIBLE (z3 UNSAT); escape via non-unitary CPTP. "
             "(2) S5+S6+unitary-channel: IMPOSSIBLE (z3 UNSAT); escape via depolarizing. "
@@ -955,8 +956,10 @@ def analyze_coexistence(positive_results):
             "Key insight: S6 (irreversibility) does not conflict with shells directly — "
             "it conflicts with the CHANNEL TYPE (unitary). "
             "The audit finding of 28 surviving families is consistent with this: "
-            "the full manifold S0..S7 survives only for specific (state, channel) combinations, "
-            "not for all states/channels. The constraint is on the (state, channel) PAIR."
+            "the tested prefix manifold S0..S7 survives only for specific (state, channel) combinations, "
+            "not for all states/channels. The constraint is on the (state, channel) PAIR. "
+            "This sim is therefore strongest as a prefix-coexistence map plus targeted triad-impossibility audit, "
+            "not as a full arbitrary-subset coexistence closure result."
         ),
     }
 
@@ -1002,7 +1005,7 @@ if __name__ == "__main__":
 
     results = {
         "name": "layer_stacking_coexistence",
-        "description": "Tests which subsets of constraint shells S0-S7 can coexist simultaneously",
+        "description": "Tests prefix subsets of constraint shells S0-S7 for coexistence, plus targeted triad impossibility checks",
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "dag": dag_results,
@@ -1011,9 +1014,13 @@ if __name__ == "__main__":
         "boundary": boundary,
         "analysis": analysis,
         "classification": "canonical",
+        "classification_note": (
+            "Canonical as a prefix-coexistence map and targeted triad-impossibility audit. "
+            "Not a full arbitrary-subset coexistence closure result."
+        ),
         "rule_4a_note": (
             "Layer order is NOT assumed canon. This sim discovers which prefix subsets "
-            "can coexist. The first binding constraint is empirically determined."
+            "can coexist. The stronger binding results come from targeted triad impossibility checks."
         ),
         "rule_11a_note": (
             "This is the 'second required program' per Rule 11a: sim the stack, "

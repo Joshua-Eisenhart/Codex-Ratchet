@@ -1,6 +1,8 @@
 {
+  "name": "operator_geometry_compatibility",
   "sim": "operator_geometry_compatibility",
-  "timestamp": "2026-04-07T00:43:15",
+  "description": "Supporting compatibility matrix between operator families and geometry manifolds, plus attractor discovery.",
+  "timestamp": "2026-04-08T21:11:56",
   "n_operators": 8,
   "n_geometries": 6,
   "n_cells": 48,
@@ -1096,10 +1098,89 @@
       "n_iterations": 50
     }
   },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed \u2014 numpy/scipy compatibility map"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed \u2014 no SMT proof obligations"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "load-bearing for native Cl(3) rotor action"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
   "summary": {
     "compatible_count": 24,
     "breaks_count": 24,
-    "trivial_count": 0
+    "trivial_count": 0,
+    "all_cells_accounted_for": true
   },
-  "elapsed_seconds": 114.83
+  "classification": "supporting",
+  "classification_note": "Supporting compatibility-map lego. Useful for operator/geometry routing, not a closure-grade proof or full promotion surface.",
+  "elapsed_seconds": 159.38
 }

@@ -1,0 +1,769 @@
+{
+  "name": "phi0_integrated_bakeoff",
+  "probe": "phi0_integrated_bakeoff",
+  "purpose": "Compare Phi0 candidate families on separated bridge-built cut states and disqualify unsigned, trivial, or overly arbitrary candidates",
+  "classification": "canonical",
+  "classification_note": "Canonical as a Phi0 candidate disqualifier and bakeoff surface. This run does not discriminate sharply enough to promote a final winner when the top candidates tie or near-tie.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core bipartite density-matrix construction, partial traces, entropy evaluation, finite-blocklength proxy computation, and candidate ranking"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    }
+  },
+  "tools_used": [
+    "pytorch"
+  ],
+  "positive": {
+    "case_scores": {
+      "product": {
+        "coherent_information": -0.0,
+        "conditional_entropy": 0.0,
+        "mutual_information_companion": 0.0,
+        "weighted_shell_cut_coherent_information": 0.0,
+        "finite_blocklength_proxy": -0.0,
+        "finite_proxy_subset": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "finite_proxy_beta": 1.0,
+        "negativity": 0.0
+      },
+      "separable_correlated": {
+        "coherent_information": -0.0,
+        "conditional_entropy": 0.0,
+        "mutual_information_companion": 0.9709505944546686,
+        "weighted_shell_cut_coherent_information": -0.5184110968249251,
+        "finite_blocklength_proxy": 0.6539264674066639,
+        "finite_proxy_subset": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "finite_proxy_beta": 0.52,
+        "negativity": 0.0
+      },
+      "bell": {
+        "coherent_information": 1.0,
+        "conditional_entropy": -1.0,
+        "mutual_information_companion": 2.0,
+        "weighted_shell_cut_coherent_information": -0.031007766294187167,
+        "finite_blocklength_proxy": 0.6931471805599453,
+        "finite_proxy_subset": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "finite_proxy_beta": 0.5,
+        "negativity": 0.5
+      },
+      "werner_0.33": {
+        "coherent_information": -0.792481250360578,
+        "conditional_entropy": 0.792481250360578,
+        "mutual_information_companion": 0.20751874963942196,
+        "weighted_shell_cut_coherent_information": -0.8944708930638682,
+        "finite_blocklength_proxy": -0.0,
+        "finite_proxy_subset": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "finite_proxy_beta": 1.0,
+        "negativity": 0.0
+      },
+      "werner_0.80": {
+        "coherent_information": 0.15241532017542625,
+        "conditional_entropy": -0.15241532017542625,
+        "mutual_information_companion": 1.1524153201754261,
+        "weighted_shell_cut_coherent_information": -0.4208202185892195,
+        "finite_blocklength_proxy": 0.6931471805599453,
+        "finite_proxy_subset": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "finite_proxy_beta": 0.5,
+        "negativity": 0.3500000000000001
+      },
+      "history_cnot_bell": {
+        "coherent_information": 1.0,
+        "conditional_entropy": -1.0,
+        "mutual_information_companion": 2.0,
+        "weighted_shell_cut_coherent_information": -0.031007766294187167,
+        "finite_blocklength_proxy": 0.6931471805599453,
+        "finite_proxy_subset": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "finite_proxy_beta": 0.5,
+        "negativity": 0.5
+      },
+      "history_dephased_bell": {
+        "coherent_information": 0.06593194462450902,
+        "conditional_entropy": -0.06593194462450902,
+        "mutual_information_companion": 1.065931944624509,
+        "weighted_shell_cut_coherent_information": -0.4993869633644829,
+        "finite_blocklength_proxy": 0.6931471805599453,
+        "finite_proxy_subset": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "finite_proxy_beta": 0.5,
+        "negativity": 0.15000000000000002
+      },
+      "history_mixed": {
+        "coherent_information": -0.4355530500115161,
+        "conditional_entropy": 0.4355530500115161,
+        "mutual_information_companion": 0.5585961214693769,
+        "weighted_shell_cut_coherent_information": -0.7308473196615926,
+        "finite_blocklength_proxy": -0.0,
+        "finite_proxy_subset": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "finite_proxy_beta": 1.0,
+        "negativity": 0.05365749586185531
+      }
+    },
+    "candidate_bakeoff": {
+      "coherent_information": {
+        "signed": true,
+        "values": {
+          "product": -0.0,
+          "separable_correlated": -0.0,
+          "bell": 1.0,
+          "werner_0.33": -0.792481250360578,
+          "werner_0.80": 0.15241532017542625,
+          "history_cnot_bell": 1.0,
+          "history_dephased_bell": 0.06593194462450902,
+          "history_mixed": -0.4355530500115161
+        },
+        "ranking": [
+          "bell",
+          "history_cnot_bell",
+          "werner_0.80",
+          "history_dephased_bell",
+          "product",
+          "separable_correlated",
+          "history_mixed",
+          "werner_0.33"
+        ],
+        "unsigned_only": false,
+        "trivial_on_key_cases": false,
+        "too_arbitrary": false,
+        "disqualified": false,
+        "disqualification_reasons": [],
+        "product_value": -0.0,
+        "separable_value": -0.0,
+        "entangled_value": 1.0,
+        "pass": true,
+        "score": 4.0
+      },
+      "conditional_entropy": {
+        "signed": true,
+        "values": {
+          "product": 0.0,
+          "separable_correlated": 0.0,
+          "bell": -1.0,
+          "werner_0.33": 0.792481250360578,
+          "werner_0.80": -0.15241532017542625,
+          "history_cnot_bell": -1.0,
+          "history_dephased_bell": -0.06593194462450902,
+          "history_mixed": 0.4355530500115161
+        },
+        "ranking": [
+          "werner_0.33",
+          "history_mixed",
+          "product",
+          "separable_correlated",
+          "history_dephased_bell",
+          "werner_0.80",
+          "bell",
+          "history_cnot_bell"
+        ],
+        "unsigned_only": false,
+        "trivial_on_key_cases": false,
+        "too_arbitrary": false,
+        "disqualified": false,
+        "disqualification_reasons": [],
+        "product_value": 0.0,
+        "separable_value": 0.0,
+        "entangled_value": -1.0,
+        "pass": true,
+        "score": 4.0
+      },
+      "mutual_information_companion": {
+        "signed": false,
+        "values": {
+          "product": 0.0,
+          "separable_correlated": 0.9709505944546686,
+          "bell": 2.0,
+          "werner_0.33": 0.20751874963942196,
+          "werner_0.80": 1.1524153201754261,
+          "history_cnot_bell": 2.0,
+          "history_dephased_bell": 1.065931944624509,
+          "history_mixed": 0.5585961214693769
+        },
+        "ranking": [
+          "bell",
+          "history_cnot_bell",
+          "werner_0.80",
+          "history_dephased_bell",
+          "separable_correlated",
+          "history_mixed",
+          "werner_0.33",
+          "product"
+        ],
+        "unsigned_only": true,
+        "trivial_on_key_cases": false,
+        "too_arbitrary": false,
+        "disqualified": true,
+        "disqualification_reasons": [
+          "unsigned_only"
+        ],
+        "product_value": 0.0,
+        "separable_value": 0.9709505944546686,
+        "entangled_value": 2.0,
+        "pass": true,
+        "score": 2.029049405545331
+      },
+      "weighted_shell_cut_coherent_information": {
+        "signed": true,
+        "values": {
+          "product": 0.0,
+          "separable_correlated": -0.5184110968249251,
+          "bell": -0.031007766294187167,
+          "werner_0.33": -0.8944708930638682,
+          "werner_0.80": -0.4208202185892195,
+          "history_cnot_bell": -0.031007766294187167,
+          "history_dephased_bell": -0.4993869633644829,
+          "history_mixed": -0.7308473196615926
+        },
+        "ranking": [
+          "product",
+          "bell",
+          "history_cnot_bell",
+          "werner_0.80",
+          "history_dephased_bell",
+          "separable_correlated",
+          "history_mixed",
+          "werner_0.33"
+        ],
+        "unsigned_only": false,
+        "trivial_on_key_cases": false,
+        "too_arbitrary": false,
+        "disqualified": false,
+        "disqualification_reasons": [],
+        "product_value": 0.0,
+        "separable_value": -0.5184110968249251,
+        "entangled_value": -0.031007766294187167,
+        "pass": true,
+        "arbitrariness_check": {
+          "alt_ranking": [
+            "bell",
+            "history_cnot_bell",
+            "product",
+            "werner_0.80",
+            "history_dephased_bell",
+            "separable_correlated",
+            "history_mixed",
+            "werner_0.33"
+          ],
+          "tau_distance": 0.07142857142857142
+        },
+        "score": 3.487403330530738
+      },
+      "finite_blocklength_proxy": {
+        "signed": false,
+        "values": {
+          "product": -0.0,
+          "separable_correlated": 0.6539264674066639,
+          "bell": 0.6931471805599453,
+          "werner_0.33": -0.0,
+          "werner_0.80": 0.6931471805599453,
+          "history_cnot_bell": 0.6931471805599453,
+          "history_dephased_bell": 0.6931471805599453,
+          "history_mixed": -0.0
+        },
+        "ranking": [
+          "bell",
+          "werner_0.80",
+          "history_cnot_bell",
+          "history_dephased_bell",
+          "separable_correlated",
+          "product",
+          "werner_0.33",
+          "history_mixed"
+        ],
+        "unsigned_only": true,
+        "trivial_on_key_cases": false,
+        "too_arbitrary": false,
+        "disqualified": true,
+        "disqualification_reasons": [
+          "unsigned_only"
+        ],
+        "product_value": -0.0,
+        "separable_value": 0.6539264674066639,
+        "entangled_value": 0.6931471805599453,
+        "pass": true,
+        "score": 1.0392207131532814
+      }
+    },
+    "summary": {
+      "top_candidate_by_score": "coherent_information",
+      "top_score": 4.0,
+      "second_score": 4.0,
+      "strong_margin": false,
+      "promoted_winner": null,
+      "non_disqualified_candidates": [
+        "coherent_information",
+        "conditional_entropy",
+        "weighted_shell_cut_coherent_information"
+      ],
+      "all_pass": true
+    }
+  },
+  "bakeoff": {
+    "case_scores": {
+      "product": {
+        "coherent_information": -0.0,
+        "conditional_entropy": 0.0,
+        "mutual_information_companion": 0.0,
+        "weighted_shell_cut_coherent_information": 0.0,
+        "finite_blocklength_proxy": -0.0,
+        "finite_proxy_subset": [
+          0,
+          1,
+          0,
+          0
+        ],
+        "finite_proxy_beta": 1.0,
+        "negativity": 0.0
+      },
+      "separable_correlated": {
+        "coherent_information": -0.0,
+        "conditional_entropy": 0.0,
+        "mutual_information_companion": 0.9709505944546686,
+        "weighted_shell_cut_coherent_information": -0.5184110968249251,
+        "finite_blocklength_proxy": 0.6539264674066639,
+        "finite_proxy_subset": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "finite_proxy_beta": 0.52,
+        "negativity": 0.0
+      },
+      "bell": {
+        "coherent_information": 1.0,
+        "conditional_entropy": -1.0,
+        "mutual_information_companion": 2.0,
+        "weighted_shell_cut_coherent_information": -0.031007766294187167,
+        "finite_blocklength_proxy": 0.6931471805599453,
+        "finite_proxy_subset": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "finite_proxy_beta": 0.5,
+        "negativity": 0.5
+      },
+      "werner_0.33": {
+        "coherent_information": -0.792481250360578,
+        "conditional_entropy": 0.792481250360578,
+        "mutual_information_companion": 0.20751874963942196,
+        "weighted_shell_cut_coherent_information": -0.8944708930638682,
+        "finite_blocklength_proxy": -0.0,
+        "finite_proxy_subset": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "finite_proxy_beta": 1.0,
+        "negativity": 0.0
+      },
+      "werner_0.80": {
+        "coherent_information": 0.15241532017542625,
+        "conditional_entropy": -0.15241532017542625,
+        "mutual_information_companion": 1.1524153201754261,
+        "weighted_shell_cut_coherent_information": -0.4208202185892195,
+        "finite_blocklength_proxy": 0.6931471805599453,
+        "finite_proxy_subset": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "finite_proxy_beta": 0.5,
+        "negativity": 0.3500000000000001
+      },
+      "history_cnot_bell": {
+        "coherent_information": 1.0,
+        "conditional_entropy": -1.0,
+        "mutual_information_companion": 2.0,
+        "weighted_shell_cut_coherent_information": -0.031007766294187167,
+        "finite_blocklength_proxy": 0.6931471805599453,
+        "finite_proxy_subset": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "finite_proxy_beta": 0.5,
+        "negativity": 0.5
+      },
+      "history_dephased_bell": {
+        "coherent_information": 0.06593194462450902,
+        "conditional_entropy": -0.06593194462450902,
+        "mutual_information_companion": 1.065931944624509,
+        "weighted_shell_cut_coherent_information": -0.4993869633644829,
+        "finite_blocklength_proxy": 0.6931471805599453,
+        "finite_proxy_subset": [
+          1,
+          0,
+          0,
+          1
+        ],
+        "finite_proxy_beta": 0.5,
+        "negativity": 0.15000000000000002
+      },
+      "history_mixed": {
+        "coherent_information": -0.4355530500115161,
+        "conditional_entropy": 0.4355530500115161,
+        "mutual_information_companion": 0.5585961214693769,
+        "weighted_shell_cut_coherent_information": -0.7308473196615926,
+        "finite_blocklength_proxy": -0.0,
+        "finite_proxy_subset": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "finite_proxy_beta": 1.0,
+        "negativity": 0.05365749586185531
+      }
+    },
+    "candidate_bakeoff": {
+      "coherent_information": {
+        "signed": true,
+        "values": {
+          "product": -0.0,
+          "separable_correlated": -0.0,
+          "bell": 1.0,
+          "werner_0.33": -0.792481250360578,
+          "werner_0.80": 0.15241532017542625,
+          "history_cnot_bell": 1.0,
+          "history_dephased_bell": 0.06593194462450902,
+          "history_mixed": -0.4355530500115161
+        },
+        "ranking": [
+          "bell",
+          "history_cnot_bell",
+          "werner_0.80",
+          "history_dephased_bell",
+          "product",
+          "separable_correlated",
+          "history_mixed",
+          "werner_0.33"
+        ],
+        "unsigned_only": false,
+        "trivial_on_key_cases": false,
+        "too_arbitrary": false,
+        "disqualified": false,
+        "disqualification_reasons": [],
+        "product_value": -0.0,
+        "separable_value": -0.0,
+        "entangled_value": 1.0,
+        "pass": true,
+        "score": 4.0
+      },
+      "conditional_entropy": {
+        "signed": true,
+        "values": {
+          "product": 0.0,
+          "separable_correlated": 0.0,
+          "bell": -1.0,
+          "werner_0.33": 0.792481250360578,
+          "werner_0.80": -0.15241532017542625,
+          "history_cnot_bell": -1.0,
+          "history_dephased_bell": -0.06593194462450902,
+          "history_mixed": 0.4355530500115161
+        },
+        "ranking": [
+          "werner_0.33",
+          "history_mixed",
+          "product",
+          "separable_correlated",
+          "history_dephased_bell",
+          "werner_0.80",
+          "bell",
+          "history_cnot_bell"
+        ],
+        "unsigned_only": false,
+        "trivial_on_key_cases": false,
+        "too_arbitrary": false,
+        "disqualified": false,
+        "disqualification_reasons": [],
+        "product_value": 0.0,
+        "separable_value": 0.0,
+        "entangled_value": -1.0,
+        "pass": true,
+        "score": 4.0
+      },
+      "mutual_information_companion": {
+        "signed": false,
+        "values": {
+          "product": 0.0,
+          "separable_correlated": 0.9709505944546686,
+          "bell": 2.0,
+          "werner_0.33": 0.20751874963942196,
+          "werner_0.80": 1.1524153201754261,
+          "history_cnot_bell": 2.0,
+          "history_dephased_bell": 1.065931944624509,
+          "history_mixed": 0.5585961214693769
+        },
+        "ranking": [
+          "bell",
+          "history_cnot_bell",
+          "werner_0.80",
+          "history_dephased_bell",
+          "separable_correlated",
+          "history_mixed",
+          "werner_0.33",
+          "product"
+        ],
+        "unsigned_only": true,
+        "trivial_on_key_cases": false,
+        "too_arbitrary": false,
+        "disqualified": true,
+        "disqualification_reasons": [
+          "unsigned_only"
+        ],
+        "product_value": 0.0,
+        "separable_value": 0.9709505944546686,
+        "entangled_value": 2.0,
+        "pass": true,
+        "score": 2.029049405545331
+      },
+      "weighted_shell_cut_coherent_information": {
+        "signed": true,
+        "values": {
+          "product": 0.0,
+          "separable_correlated": -0.5184110968249251,
+          "bell": -0.031007766294187167,
+          "werner_0.33": -0.8944708930638682,
+          "werner_0.80": -0.4208202185892195,
+          "history_cnot_bell": -0.031007766294187167,
+          "history_dephased_bell": -0.4993869633644829,
+          "history_mixed": -0.7308473196615926
+        },
+        "ranking": [
+          "product",
+          "bell",
+          "history_cnot_bell",
+          "werner_0.80",
+          "history_dephased_bell",
+          "separable_correlated",
+          "history_mixed",
+          "werner_0.33"
+        ],
+        "unsigned_only": false,
+        "trivial_on_key_cases": false,
+        "too_arbitrary": false,
+        "disqualified": false,
+        "disqualification_reasons": [],
+        "product_value": 0.0,
+        "separable_value": -0.5184110968249251,
+        "entangled_value": -0.031007766294187167,
+        "pass": true,
+        "arbitrariness_check": {
+          "alt_ranking": [
+            "bell",
+            "history_cnot_bell",
+            "product",
+            "werner_0.80",
+            "history_dephased_bell",
+            "separable_correlated",
+            "history_mixed",
+            "werner_0.33"
+          ],
+          "tau_distance": 0.07142857142857142
+        },
+        "score": 3.487403330530738
+      },
+      "finite_blocklength_proxy": {
+        "signed": false,
+        "values": {
+          "product": -0.0,
+          "separable_correlated": 0.6539264674066639,
+          "bell": 0.6931471805599453,
+          "werner_0.33": -0.0,
+          "werner_0.80": 0.6931471805599453,
+          "history_cnot_bell": 0.6931471805599453,
+          "history_dephased_bell": 0.6931471805599453,
+          "history_mixed": -0.0
+        },
+        "ranking": [
+          "bell",
+          "werner_0.80",
+          "history_cnot_bell",
+          "history_dephased_bell",
+          "separable_correlated",
+          "product",
+          "werner_0.33",
+          "history_mixed"
+        ],
+        "unsigned_only": true,
+        "trivial_on_key_cases": false,
+        "too_arbitrary": false,
+        "disqualified": true,
+        "disqualification_reasons": [
+          "unsigned_only"
+        ],
+        "product_value": -0.0,
+        "separable_value": 0.6539264674066639,
+        "entangled_value": 0.6931471805599453,
+        "pass": true,
+        "score": 1.0392207131532814
+      }
+    },
+    "summary": {
+      "top_candidate_by_score": "coherent_information",
+      "top_score": 4.0,
+      "second_score": 4.0,
+      "strong_margin": false,
+      "promoted_winner": null,
+      "non_disqualified_candidates": [
+        "coherent_information",
+        "conditional_entropy",
+        "weighted_shell_cut_coherent_information"
+      ],
+      "all_pass": true
+    }
+  },
+  "negative": {
+    "tests": [
+      {
+        "name": "mutual_information_disqualified_as_unsigned_only",
+        "pass": true
+      },
+      {
+        "name": "finite_blocklength_proxy_disqualified_as_unsigned_only",
+        "pass": true
+      },
+      {
+        "name": "conditional_entropy_not_trivial_on_key_cases",
+        "pass": true
+      },
+      {
+        "name": "no_forced_final_winner_without_strong_margin",
+        "pass": true
+      }
+    ]
+  },
+  "boundary": {
+    "tests": [
+      {
+        "name": "coherent_information_and_conditional_entropy_are_sign_duals",
+        "pass": true
+      },
+      {
+        "name": "weighted_shell_candidate_zero_on_product_case",
+        "pass": true
+      },
+      {
+        "name": "top_two_margin_is_not_strong_enough_for_promotion",
+        "pass": true
+      }
+    ]
+  },
+  "summary": {
+    "bakeoff_checks": {
+      "passed": 5,
+      "failed": 0
+    },
+    "negative": {
+      "passed": 4,
+      "failed": 0
+    },
+    "boundary": {
+      "passed": 3,
+      "failed": 0
+    },
+    "top_candidate_by_score": "coherent_information",
+    "promoted_winner": null,
+    "strong_margin": false,
+    "all_pass": true,
+    "scope_note": "Pure-math bridge bakeoff only. No final Phi0 winner is promoted unless the margin is strong."
+  }
+}

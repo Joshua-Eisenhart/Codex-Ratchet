@@ -63,6 +63,19 @@ TOOL_INTEGRATION_DEPTH = {
     "gudhi":     None,
 }
 
+# Registry alignment: this sim is primarily an order-sensitive operator/channel
+# crosscheck with a transport-geometry comparison surface over shell projections.
+LEGO_IDS = [
+    "composition_order_sensitivity",
+    "transport_geometry",
+    "channel_cptp_map",
+]
+
+PRIMARY_LEGO_IDS = [
+    "composition_order_sensitivity",
+    "transport_geometry",
+]
+
 # ── Imports ─────────────────────────────────────────────────────────
 
 try:
@@ -1090,6 +1103,15 @@ if __name__ == "__main__":
     TOOL_MANIFEST["z3"]["used"] = Z3_AVAILABLE
     TOOL_MANIFEST["sympy"]["used"] = SYMPY_AVAILABLE
     TOOL_MANIFEST["geomstats"]["used"] = GEOMSTATS_AVAILABLE
+    negative_all_pass = all(item.get("pass", True) for item in negative.values())
+    classification = "canonical" if negative_all_pass else "exploratory_signal"
+    summary = {
+        "negative_all_pass": negative_all_pass,
+        "scope_note": (
+            "Constraint-shell binding probe for local carrier/probe and shell-binding behavior. "
+            "Useful as early-ladder evidence, but only canonical if its negative lane closes cleanly."
+        ),
+    }
 
     results = {
         "name": "constraint_shells_binding_crosscheck",
@@ -1097,6 +1119,8 @@ if __name__ == "__main__":
             "Crosscheck: is L4/L6 displacement contradiction genuine or artifact? "
             "Per-step displacement, z3 proofs, geomstats geodesic, sympy symbolic."
         ),
+        "lego_ids": LEGO_IDS,
+        "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": {
@@ -1108,7 +1132,8 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "final_verdict": final_verdict,
-        "classification": "canonical",
+        "summary": summary,
+        "classification": classification,
     }
 
     out_dir = os.path.join(

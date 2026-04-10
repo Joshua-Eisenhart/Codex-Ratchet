@@ -60,6 +60,21 @@ TOOL_MANIFEST = {
     "gudhi":     {"tried": False, "used": False, "reason": "not relevant to this sim"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 # ── Imports ─────────────────────────────────────────────────────────
 
 try:
@@ -991,6 +1006,7 @@ if __name__ == "__main__":
     results = {
         "name": "GNN Cascade with Integrated Constraint Shell Projections",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "classification": "canonical",
     }
 

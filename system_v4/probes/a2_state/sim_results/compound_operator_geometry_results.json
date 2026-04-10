@@ -1,6 +1,85 @@
 {
+  "name": "compound_operator_geometry",
   "sim": "compound_operator_geometry",
-  "timestamp": "2026-04-07T00:50:28",
+  "timestamp": "2026-04-08T21:30:45",
+  "classification": "supporting",
+  "classification_note": "Supporting pairwise operator/geometry coupling map. Useful as a successor surface for local geometry/operator legos, but not a closure-grade proof.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- numpy/scipy state evolution"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph message passing"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no SMT proof layer in this sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no synthesis/proof search"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- numeric comparison only"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) rotor/dephasing cross-check is part of the core comparison"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- geometry is classified directly, not via manifold package"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant NN layer"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency/order graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph layer"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell-complex layer"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistence layer"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
   "tests": {
     "two_operator_pairs": [
       {
@@ -1775,5 +1854,5 @@
     "cl3_exact_agreement_count": 16,
     "cl3_partial_agreement_count": 0
   },
-  "elapsed_seconds": 1.95
+  "elapsed_seconds": 2.39
 }

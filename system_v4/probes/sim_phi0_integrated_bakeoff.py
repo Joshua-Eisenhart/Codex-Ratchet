@@ -520,6 +520,11 @@ if __name__ == "__main__":
             "disqualify unsigned, trivial, or overly arbitrary candidates"
         ),
         "classification": "canonical",
+        "classification_note": (
+            "Canonical as a Phi0 candidate disqualifier and bakeoff surface. "
+            "This run does not discriminate sharply enough to promote a final winner "
+            "when the top candidates tie or near-tie."
+        ),
         "tool_manifest": TOOL_MANIFEST,
         "tools_used": [name for name, meta in TOOL_MANIFEST.items() if meta["used"]],
         "positive": bakeoff,

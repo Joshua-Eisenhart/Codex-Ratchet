@@ -1,5 +1,23 @@
 {
   "name": "constraint_manifold_L0_L1",
+  "classification": "canonical",
+  "summary": "Canonical early admission manifold result: F01/N01 kill d=1, admit finite nonabelian carriers d>=2, and Layer-1 fences sharply restrict the allowed combinatorial space.",
+  "lego_ids": [
+    "f01_finitude_constraint",
+    "n01_noncommutation_constraint",
+    "admissibility_manifold_mc",
+    "finite_carrier_c2"
+  ],
+  "primary_lego_ids": [
+    "f01_finitude_constraint",
+    "admissibility_manifold_mc"
+  ],
+  "tool_manifest": {
+    "z3": "load-bearing",
+    "sympy": "load-bearing",
+    "numpy": "supporting"
+  },
+  "tool_integration_depth": "multi_tool_load_bearing",
   "L0_allowed_space": {
     "d_cutoff": 2,
     "z3_sat_by_dim": {
@@ -4291,5 +4309,5 @@
     "space_reduction_ratio": 0.08333333333333333,
     "space_reduction_factor": 12.0
   },
-  "timestamp": "2026-04-06"
+  "timestamp": "2026-04-08"
 }

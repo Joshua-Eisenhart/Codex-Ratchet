@@ -25,7 +25,7 @@ Sub-claims tested:
 7. rustworkx DAG: S3_shell → Hopf_shell → Weyl_shell (projector is higher constraint layer)
 
 Classification: canonical
-Interpreter: /opt/homebrew/bin/python3
+Interpreter: see Makefile PYTHON variable (codex-ratchet env)
 """
 
 import json

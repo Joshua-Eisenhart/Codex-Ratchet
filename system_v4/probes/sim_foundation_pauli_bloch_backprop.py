@@ -34,6 +34,33 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": "not needed for this lego"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "pyg": None,
+    "z3": "load_bearing",
+    "cvc5": None,
+    "sympy": "load_bearing",
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
+LEGO_IDS = [
+    "density_state_space_dc2",
+    "bloch_decomposition_map",
+    "bloch_vector_representation",
+    "pauli_algebra_relations",
+]
+
+PRIMARY_LEGO_IDS = [
+    "bloch_decomposition_map",
+    "bloch_vector_representation",
+]
+
 try:
     import torch
 
@@ -443,8 +470,11 @@ if __name__ == "__main__":
             "Verify Pauli-basis Bloch density identities and optimize over actual "
             "2x2 density matrices with backprop under physical-state constraints"
         ),
+        "lego_ids": LEGO_IDS,
+        "primary_lego_ids": PRIMARY_LEGO_IDS,
         "classification": "canonical",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "tools_used": [name for name, meta in TOOL_MANIFEST.items() if meta["used"]],
         "positive": positive,
         "negative": negative,

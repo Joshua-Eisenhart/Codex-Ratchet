@@ -1,0 +1,365 @@
+{
+  "name": "constraint_shells_binding_crosscheck",
+  "description": "Crosscheck: is L4/L6 displacement contradiction genuine or artifact? Per-step displacement, z3 proofs, geomstats geodesic, sympy symbolic.",
+  "lego_ids": [
+    "composition_order_sensitivity",
+    "transport_geometry",
+    "channel_cptp_map"
+  ],
+  "primary_lego_ids": [
+    "composition_order_sensitivity",
+    "transport_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "per-step displacement tracking for L4 sub-projections vs L6; depth-normalized gradient; frobenius distance computation"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- shells are projections not message passing"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "encode binding-constraint hypotheses; test UNSAT for 'L4 per-step > L6' and consistency of normalized-grad claim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic Dykstra displacement derivation: CPTP (L1) vs Irreversibility (L6); theoretical prediction for which is tighter"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- density matrices native"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "SPD geodesic distance (fallback import path)"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant layers"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- projection order is fixed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "per_step_displacement": {
+      "north_pole": {
+        "l4_substep_displacements": [
+          0.070710688829422,
+          0.007071063853800297,
+          1.0000000116860974e-07
+        ],
+        "l4_max_substep": 0.070710688829422,
+        "l4_mean_substep": 0.025927284227741154,
+        "l4_total_displacement": 0.06363961845636368,
+        "l6_single_step_displacement": 1.0000000116860974e-07,
+        "l4_max_substep_exceeds_l6": true,
+        "verdict": "L4_substep_dominates"
+      },
+      "plus_x": {
+        "l4_substep_displacements": [
+          0.0707106962800026,
+          0.07788791507482529,
+          0.12074768543243408
+        ],
+        "l4_max_substep": 0.12074768543243408,
+        "l4_mean_substep": 0.08978209892908733,
+        "l4_total_displacement": 0.23500646650791168,
+        "l6_single_step_displacement": 1.0000000116860974e-07,
+        "l4_max_substep_exceeds_l6": true,
+        "verdict": "L4_substep_dominates"
+      },
+      "mixed_r05": {
+        "l4_substep_displacements": [
+          0.03535536676645279,
+          0.038890909403562546,
+          1.5842674372379406e-07
+        ],
+        "l4_max_substep": 0.038890909403562546,
+        "l4_mean_substep": 0.02474881153225302,
+        "l4_total_displacement": 0.0035354779101908207,
+        "l6_single_step_displacement": 0.10118969529867172,
+        "l4_max_substep_exceeds_l6": false,
+        "verdict": "L6_dominates_per_step"
+      },
+      "werner_p07_reduced": {
+        "l4_substep_displacements": [
+          0.049497492611408234,
+          0.026162972673773766,
+          1.0000000116860974e-07
+        ],
+        "l4_max_substep": 0.049497492611408234,
+        "l4_mean_substep": 0.02522018842839439,
+        "l4_total_displacement": 0.02333451807498932,
+        "l6_single_step_displacement": 0.14030396938323975,
+        "l4_max_substep_exceeds_l6": false,
+        "verdict": "L6_dominates_per_step"
+      },
+      "werner_p03_reduced": {
+        "l4_substep_displacements": [
+          0.02121320553123951,
+          0.05161876231431961,
+          1.0000000116860974e-07
+        ],
+        "l4_max_substep": 0.05161876231431961,
+        "l4_mean_substep": 0.024277355948520096,
+        "l4_total_displacement": 0.03040555864572525,
+        "l6_single_step_displacement": 0.059472087770700455,
+        "l4_max_substep_exceeds_l6": false,
+        "verdict": "L6_dominates_per_step"
+      },
+      "bell_reduced": {
+        "l4_substep_displacements": [
+          1.0000000116860974e-07,
+          0.0707106739282608,
+          1.0434643371581842e-07
+        ],
+        "l4_max_substep": 0.0707106739282608,
+        "l4_mean_substep": 0.023570292758231897,
+        "l4_total_displacement": 0.0707106962800026,
+        "l6_single_step_displacement": 1.0000000116860974e-07,
+        "l4_max_substep_exceeds_l6": true,
+        "verdict": "L4_substep_dominates"
+      },
+      "ghz_traced": {
+        "l4_substep_displacements": [
+          1.0000000116860974e-07,
+          0.0707106739282608,
+          1.0434643371581842e-07
+        ],
+        "l4_max_substep": 0.0707106739282608,
+        "l4_mean_substep": 0.023570292758231897,
+        "l4_total_displacement": 0.0707106962800026,
+        "l6_single_step_displacement": 1.0000000116860974e-07,
+        "l4_max_substep_exceeds_l6": true,
+        "verdict": "L4_substep_dominates"
+      }
+    },
+    "geomstats_geodesic": {
+      "north_pole": {
+        "geodesic_distances": {
+          "L1_CPTP": 0.0,
+          "L2_Hopf": 0.0,
+          "L4_Composition": 10.714517752816839,
+          "L6_Irreversibility": 0.0
+        },
+        "binding_by_geodesic": "L4_Composition",
+        "per_step_verdict_from_task1": "L4_substep_dominates",
+        "geodesic_agrees_with_per_step": true,
+        "metric_used": "log_euclidean_fallback"
+      },
+      "plus_x": {
+        "geodesic_distances": {
+          "L1_CPTP": 0.0,
+          "L2_Hopf": 0.0,
+          "L4_Composition": 11.961632035040344,
+          "L6_Irreversibility": 0.0
+        },
+        "binding_by_geodesic": "L4_Composition",
+        "per_step_verdict_from_task1": "L4_substep_dominates",
+        "geodesic_agrees_with_per_step": true,
+        "metric_used": "log_euclidean_fallback"
+      },
+      "mixed_r05": {
+        "geodesic_distances": {
+          "L1_CPTP": 0.0,
+          "L2_Hopf": 0.0,
+          "L4_Composition": 0.010586825990194141,
+          "L6_Irreversibility": 0.2709336732553493
+        },
+        "binding_by_geodesic": "L6_Irreversibility",
+        "per_step_verdict_from_task1": "L6_dominates_per_step",
+        "geodesic_agrees_with_per_step": true,
+        "metric_used": "log_euclidean_fallback"
+      },
+      "werner_p07_reduced": {
+        "geodesic_distances": {
+          "L1_CPTP": 0.0,
+          "L2_Hopf": 1.7148929554911115e-07,
+          "L4_Composition": 0.1061850779266022,
+          "L6_Irreversibility": 0.5226108997466961
+        },
+        "binding_by_geodesic": "L6_Irreversibility",
+        "per_step_verdict_from_task1": "L6_dominates_per_step",
+        "geodesic_agrees_with_per_step": true,
+        "metric_used": "log_euclidean_fallback"
+      },
+      "werner_p03_reduced": {
+        "geodesic_distances": {
+          "L1_CPTP": 0.0,
+          "L2_Hopf": 6.286085741444391e-08,
+          "L4_Composition": 0.07126035747285636,
+          "L6_Irreversibility": 0.1317106949580687
+        },
+        "binding_by_geodesic": "L6_Irreversibility",
+        "per_step_verdict_from_task1": "L6_dominates_per_step",
+        "geodesic_agrees_with_per_step": true,
+        "metric_used": "log_euclidean_fallback"
+      },
+      "bell_reduced": {
+        "geodesic_distances": {
+          "L1_CPTP": 0.0,
+          "L2_Hopf": 0.0,
+          "L4_Composition": 0.14207349628907923,
+          "L6_Irreversibility": 0.0
+        },
+        "binding_by_geodesic": "L4_Composition",
+        "per_step_verdict_from_task1": "L4_substep_dominates",
+        "geodesic_agrees_with_per_step": true,
+        "metric_used": "log_euclidean_fallback"
+      },
+      "ghz_traced": {
+        "geodesic_distances": {
+          "L1_CPTP": 0.0,
+          "L2_Hopf": 0.0,
+          "L4_Composition": 0.14207349628907923,
+          "L6_Irreversibility": 0.0
+        },
+        "binding_by_geodesic": "L4_Composition",
+        "per_step_verdict_from_task1": "L4_substep_dominates",
+        "geodesic_agrees_with_per_step": true,
+        "metric_used": "log_euclidean_fallback"
+      }
+    },
+    "z3_proofs": {
+      "proof1_L6_tightest_per_projection": {
+        "claim": "L6_disp > L4_max_substep for all test states",
+        "negation_tested": "L4_max >= L6_min (worst case across states)",
+        "z3_result": "sat",
+        "verdict": "SAT: counterexample found -- L4 substep can exceed L6",
+        "model": "[l6_disp = 5000000058430487/50000000000000000000000,\n l4_max_substep = 754673033952713/6250000000000000]",
+        "observed_L4_max": 0.12074768543243408,
+        "observed_L6_min": 1.0000000116860974e-07,
+        "any_l4_exceeds_l6_empirically": true
+      },
+      "proof2_normalized_grad_consistency": {
+        "claim": "L4_raw > L6_raw AND L4_norm <= L6_norm (cumulative artifact)",
+        "z3_result": "sat",
+        "verdict": "SAT: scenario consistent -- L4 raw > L6 raw AND L4 norm <= L6 norm is possible",
+        "model": "[l4_raw_grad = 1/2, l6_raw_grad = 0]"
+      },
+      "proof3_depth_confound_realizable": {
+        "claim": "l4_total > l6_single AND l4_per_step < l6_single simultaneously possible",
+        "z3_result": "sat",
+        "verdict": "SAT: depth-confound scenario is realizable -- displacement artifact confirmed",
+        "model": "[l4_total = 1/2, l4_per_step = 0, l6_single = 1/4]"
+      }
+    },
+    "sympy_symbolic": {
+      "l2_displacement_formula": "Piecewise((0, r <= 1), (r - 1, True))",
+      "l6_displacement_formula": "5*delta*r/8 + r/8",
+      "l6_dominance_condition_t_min": "2*epsilon/r",
+      "l1_displacement_r_gt_1": "sqrt(2)*sqrt((r - 1)**2)/2",
+      "l6_disp_at_r1_delta01": 0.1875,
+      "l6_disp_at_r05_delta01": 0.09375,
+      "theoretical_prediction": "L6 dominates for all physical states (r <= 1): L1 acts only for r > 1. L6 displacement = t*r/2 where t encodes entropy violation severity. L4 cumulative displacement = sum of 3 sub-steps, each O(epsilon). L6 dominates when t*r/2 > max_substep_epsilon, i.e., when entropy violation rate t > 2*epsilon/r.",
+      "key_insight": "L6 displacement is proportional to BOTH entropy violation (delta) AND Bloch radius (r). States with entropy violations from channel composition will show L6 as tightest. L4 cumulative > L6 is a depth artifact."
+    }
+  },
+  "negative": {
+    "max_mixed_L6_displacement": {
+      "displacement": 1.0000000116860974e-07,
+      "expected": "near zero (max entropy -- L6 should not activate)",
+      "pass": true
+    },
+    "pure_state_L6_activation": {
+      "displacement": 1.0000000116860974e-07,
+      "expected": "positive (pure state has entropy violations from channels)",
+      "pass": false
+    },
+    "identity_L4_substeps": {
+      "substep_displacements": [
+        1.0000000116860974e-07,
+        0.0707106739282608,
+        1.0434643371581842e-07
+      ],
+      "expected": "small displacements (I/2 is fixed point of depolarizing/dephasing)",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "near_bloch_boundary": {
+      "L2_displacement": 1.0010835893581316e-07,
+      "expected": "very small (r~0.99 is just inside ball)"
+    },
+    "bloch_surface": {
+      "L2_displacement": 1.0000000116860974e-07,
+      "expected": "zero (pure state is on ball boundary -- no projection needed)"
+    },
+    "werner_p05_PPT_boundary_L6": {
+      "L6_displacement": 0.10118969529867172,
+      "expected": "moderate (entropy violations still present at PPT boundary)"
+    }
+  },
+  "final_verdict": {
+    "per_step_summary": {
+      "total_states": 7,
+      "L6_wins": 3,
+      "L4_wins": 4,
+      "L6_win_rate": 0.429
+    },
+    "z3_depth_confound_realizable": true,
+    "geomstats_summary": {
+      "total_states": 7,
+      "L6_wins": 3,
+      "L4_wins": 4
+    },
+    "sympy_theoretical_prediction": "L6 dominates for all physical states (r <= 1): L1 acts only for r > 1. L6 displacement = t*r/2 where t encodes entropy violation severity. L4 cumulative displacement = sum of 3 sub-steps, each O(epsilon). L6 dominates when t*r/2 > max_substep_epsilon, i.e., when entropy violation rate t > 2*epsilon/r.",
+    "evidence_score": {
+      "L6_evidence": 2,
+      "L4_evidence": 4
+    },
+    "final_verdict": "L4_Composition is the tightest binding constraint",
+    "contradiction_resolution": "L4 genuinely dominates per-step AND geodesic -- depth normalization overcorrects. The multiple sub-steps represent real constraint activity."
+  },
+  "summary": {
+    "negative_all_pass": false,
+    "scope_note": "Constraint-shell binding probe for local carrier/probe and shell-binding behavior. Useful as early-ladder evidence, but only canonical if its negative lane closes cleanly."
+  },
+  "classification": "supporting"
+}

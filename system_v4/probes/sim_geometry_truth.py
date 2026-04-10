@@ -1,5 +1,5 @@
-# REQUIRES: numpy (available under /opt/homebrew/bin/python3)
-# Run as: /opt/homebrew/bin/python3 sim_geometry_truth.py  (from system_v4/probes/)
+# REQUIRES: numpy
+# Run as: make sim NAME=sim_geometry_truth  (from repo root)
 """
 Geometry Truth Probe  [Class 1 — geometry truth]
 =================================================

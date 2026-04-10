@@ -8,6 +8,7 @@ Operator-Geometry Compatibility Matrix (48-cell) + Attractor Discovery.
 Tests which operators preserve which geometric manifolds,
 and discovers each operator's natural attractor geometry.
 
+Supporting compatibility-map lego, not a closure-grade proof surface.
 NO engine imports. Pure legos: numpy, scipy, clifford.
 """
 
@@ -16,6 +17,36 @@ import numpy as np
 from scipy.linalg import expm
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "not needed — numpy/scipy compatibility map"},
+    "pyg": {"tried": False, "used": False, "reason": "not needed"},
+    "z3": {"tried": False, "used": False, "reason": "not needed — no SMT proof obligations"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed"},
+    "clifford": {"tried": True, "used": True, "reason": "load-bearing for native Cl(3) rotor action"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed"},
+}
+
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": None,
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": "load_bearing",
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
 
 # ─── Pauli matrices ──────────────────────────────────────────────────────────
 
@@ -526,18 +557,25 @@ def main():
 
     # ── Save results ──
     output = {
+        'name': 'operator_geometry_compatibility',
         'sim': 'operator_geometry_compatibility',
+        'description': 'Supporting compatibility matrix between operator families and geometry manifolds, plus attractor discovery.',
         'timestamp': time.strftime('%Y-%m-%dT%H:%M:%S'),
         'n_operators': len(op_names),
         'n_geometries': len(geom_names),
         'n_cells': len(all_cells),
         'compatibility_matrix': results_matrix,
         'attractor_discovery': attractor_results,
+        'tool_manifest': TOOL_MANIFEST,
+        'tool_integration_depth': TOOL_INTEGRATION_DEPTH,
         'summary': {
             'compatible_count': verdicts.count('COMPATIBLE'),
             'breaks_count': verdicts.count('BREAKS'),
             'trivial_count': verdicts.count('TRIVIAL'),
+            'all_cells_accounted_for': verdicts.count('COMPATIBLE') + verdicts.count('BREAKS') + verdicts.count('TRIVIAL') == len(all_cells),
         },
+        'classification': 'supporting',
+        'classification_note': 'Supporting compatibility-map lego. Useful for operator/geometry routing, not a closure-grade proof or full promotion surface.',
         'elapsed_seconds': round(time.time() - t0, 2),
     }
 

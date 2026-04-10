@@ -484,24 +484,36 @@ def execute_suite():
     results_dir = os.path.join(base, "a2_state", "sim_results")
     os.makedirs(results_dir, exist_ok=True)
     outpath = os.path.join(results_dir, "axis_orthogonality_v3_results.json")
+    compat_outpath = os.path.join(results_dir, "axis_orthogonality_suite_results.json")
 
     serializable = {}
     for d_key, data in all_results.items():
         serializable[str(d_key)] = data
 
-    with open(outpath, "w") as f:
-        json.dump({
-            "timestamp": datetime.now(UTC).isoformat(),
-            "version": "v3_AXES_MASTER_SPEC",
-            "dimensions": DIMS,
-            "epsilon": EPS,
-            "total_raw_pass": total_raw_pass,
-            "total_tests": total_tests,
-            "evidence_ledger": evidence,
-            "results_by_dimension": serializable,
-        }, f, indent=2)
+    payload = {
+        "timestamp": datetime.now(UTC).isoformat(),
+        "name": "axis_orthogonality_suite",
+        "classification": "evidence",
+        "version": "v3_AXES_MASTER_SPEC",
+        "dimensions": DIMS,
+        "epsilon": EPS,
+        "total_raw_pass": total_raw_pass,
+        "total_tests": total_tests,
+        "evidence_ledger": evidence,
+        "results_by_dimension": serializable,
+        "source_file": "axis_orthogonality_suite.py",
+        "summary": {
+            "all_pass": total_raw_pass == total_tests,
+            "graveyard_deformations": kills,
+        },
+    }
+
+    for target in (outpath, compat_outpath):
+        with open(target, "w") as f:
+            json.dump(payload, f, indent=2)
 
     print(f"\n  Results saved: {outpath}")
+    print(f"  Compat results saved: {compat_outpath}")
     return evidence
 
 

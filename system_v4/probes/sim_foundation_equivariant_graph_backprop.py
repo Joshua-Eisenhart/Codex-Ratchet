@@ -694,6 +694,12 @@ def main() -> Dict[str, object]:
     neg = count_section(negative)
     bnd = count_section(boundary)
     total_fail = pos["failed"] + neg["failed"] + bnd["failed"]
+    overall_pass = bool(
+        total_fail == 0
+        and positive.get("pass", True)
+        and negative.get("pass", True)
+        and boundary.get("pass", True)
+    )
 
     results = {
         "name": "foundation_equivariant_graph_backprop",
@@ -703,7 +709,7 @@ def main() -> Dict[str, object]:
             "autograd central and swap symmetry load-bearing."
         ),
         "schema": "foundation_equivariant_graph_backprop/v1",
-        "classification": "canonical",
+        "classification": "canonical" if overall_pass else "exploratory_signal",
         "tool_manifest": TOOL_MANIFEST,
         "tools_used": ["torch", "pyg"],
         "positive": positive,
@@ -713,7 +719,7 @@ def main() -> Dict[str, object]:
             "tests_total": pos["total"] + neg["total"] + bnd["total"],
             "tests_passed": pos["passed"] + neg["passed"] + bnd["passed"],
             "tests_failed": total_fail,
-            "all_pass": total_fail == 0,
+            "all_pass": overall_pass,
             "elapsed_s": None,
             "full_model_mse": experiments["full_model"]["eval"]["mse"],
             "full_model_swap_error": experiments["full_model"]["eval"]["swap_error"],

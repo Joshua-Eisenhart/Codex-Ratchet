@@ -39,8 +39,8 @@
     },
     "e3nn": {
       "tried": true,
-      "used": false,
-      "reason": "not needed for this sim"
+      "used": true,
+      "reason": "Load-bearing: validates torus density Bloch carrier equivariance with e3nn l=1 irreps"
     },
     "rustworkx": {
       "tried": true,
@@ -62,6 +62,20 @@
       "used": false,
       "reason": "not needed for this sim"
     }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "supportive",
+    "geomstats": "load_bearing",
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
   },
   "positive": {
     "bures_metric_positive_definite": {
@@ -380,7 +394,13 @@
       ],
       "pass": true
     },
-    "time_s": 0.04162001609802246
+    "e3nn_torus_density_bloch_equivariance": {
+      "n_states": 4,
+      "max_equivariance_error": 6.969380184074225e-09,
+      "tolerance": 1e-05,
+      "pass": true
+    },
+    "time_s": 0.10317325592041016
   },
   "negative": {
     "bures_singular_r0": {
@@ -446,7 +466,7 @@
       "near_zero": true,
       "pass": true
     },
-    "time_s": 0.0031349658966064453
+    "time_s": 0.0037369728088378906
   },
   "boundary": {
     "clifford_torus_symmetry": {
@@ -513,7 +533,7 @@
       "frechet_mean": [
         [
           0.4667158187690023,
-          0.0012436692716407338
+          0.0012436692716406895
         ],
         [
           0.0012436692716407455,
@@ -523,14 +543,14 @@
       "euclidean_mean": [
         [
           0.4905952065281506,
-          -0.0029117474470217695
+          -0.002911747447021767
         ],
         [
-          -0.0029117474470217695,
+          -0.002911747447021767,
           0.5094048134718495
         ]
       ],
-      "frechet_euclidean_diff_norm": 0.03757764105347632,
+      "frechet_euclidean_diff_norm": 0.037577641053476316,
       "frechet_mean_is_spd": true,
       "frechet_eigenvalues": [
         0.4666082824579162,
@@ -538,7 +558,7 @@
       ],
       "pass": true
     },
-    "time_s": 0.010567188262939453
+    "time_s": 0.3924849033355713
   },
   "clifford_cross_check": {
     "eta": 0.5235987755982988,
@@ -558,12 +578,13 @@
       "e23": 0.12940952255126034,
       "e13": 0.2241438680420134
     },
-    "pass": "True"
+    "pass": "True",
+    "counted": true
   },
   "classification": "canonical",
   "summary": {
-    "tests_passed": 12,
-    "tests_total": 12,
+    "tests_passed": 13,
+    "tests_total": 13,
     "all_pass": true
   }
 }

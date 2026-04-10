@@ -81,8 +81,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"unavailable ({exc.__class__.__name__}: {exc})"
 
 try:
     import geomstats  # noqa
@@ -189,7 +189,9 @@ def run_family_on_topology(family_name, topo_name, topo_graph, n_trials=8):
         if loss is not None and loss.requires_grad:
             loss.backward()
             if param.grad is not None:
-                grad_norms.append(param.grad.item() ** 2 ** 0.5)
+                # Some family paths can backprop through complex intermediates;
+                # record the scalar gradient magnitude explicitly.
+                grad_norms.append(float(abs(param.grad.item())))
                 param.grad = None
 
     return {

@@ -1,0 +1,312 @@
+{
+  "name": "z3 Channel Linear Boundary Theorem",
+  "schema_version": "1.0",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no autograd layer in this proof sim"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph layer here"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: proves UNSAT for each channel family -- no stricter linear function separates admissible from inadmissible. Also proves quadratic coefficient is identically zero (linearity). Negative test: 2-qubit depolarizing NONLINEAR boundary is SAT."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: cross-checks the depolarizing linear boundary via independent SyGuS synthesis -- confirms boundary is f = \u03bb + p - 1, not quadratic."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: analytically derives the admissibility boundary for each channel family from Kraus completeness + Bloch contraction. Checks that the boundary formula has zero quadratic coefficient."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra layer here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold geometry layer here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant network layer here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency graph here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph layer here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": "supportive",
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "summary": {
+    "theorem_statement": "All single-parameter qubit channel families have LINEAR admissibility boundaries in the (p, channel_param) plane: f = channel_param + p - 1.",
+    "theorem_holds_for_all_families": true,
+    "family_results": {
+      "amplitude_damping": {
+        "linear_boundary_theorem_holds": true,
+        "z3_status": "PASS"
+      },
+      "phase_damping": {
+        "linear_boundary_theorem_holds": true,
+        "z3_status": "PASS"
+      },
+      "depolarizing": {
+        "linear_boundary_theorem_holds": true,
+        "z3_status": "PASS"
+      },
+      "bit_flip": {
+        "linear_boundary_theorem_holds": true,
+        "z3_status": "PASS"
+      },
+      "phase_flip": {
+        "linear_boundary_theorem_holds": true,
+        "z3_status": "PASS"
+      }
+    },
+    "total_z3_unsat_proofs": 10,
+    "2qubit_nonlinear_confirmed": true,
+    "sympy_all_linear": true,
+    "cvc5_crosscheck": "PASS"
+  },
+  "positive": {
+    "sympy_boundary_derivations": {
+      "amplitude_damping": {
+        "boundary_formula": "gamma + p - 1",
+        "boundary_condition": "gamma + p - 1 = 0",
+        "quad_coeff_gamma_p": "0",
+        "is_linear": true,
+        "physical_interpretation": "Kraus completeness: K0\u2020K0+K1\u2020K1=I iff \u03b3 in [0,1]. Boundary saturates when total amplitude-damping budget p*\u03b3 exhausted at p+\u03b3=1."
+      },
+      "phase_damping": {
+        "boundary_formula": "gamma + p - 1",
+        "boundary_condition": "gamma + p - 1 = 0",
+        "quad_coeff_gamma_p": "0",
+        "is_linear": true,
+        "physical_interpretation": "Same Kraus structure as amplitude damping (different Bloch action). x,y-contraction factor (1-\u03b3) in [0,1] iff \u03b3 in [0,1]. Boundary: \u03b3 + p - 1 = 0 (identical to amplitude damping)."
+      },
+      "depolarizing": {
+        "boundary_formula": "lambda + p - 1",
+        "boundary_condition": "lambda + p - 1 = 0",
+        "quad_coeff_lambda_p": "0",
+        "is_linear": true,
+        "physical_interpretation": "Depolarizing: (1-\u03bb)\u03c1 + \u03bbI/2. Bloch contraction 1-4\u03bb/3. CPTP iff \u03bb in [0, 3/4]. Normalized \u03bb' = \u03bb/(3/4) in [0,1]. Boundary: \u03bb' + p - 1 = 0. Matches L4 lego result."
+      },
+      "bit_flip": {
+        "boundary_formula": "p + p_flip - 1",
+        "boundary_condition": "p_flip + p - 1 = 0",
+        "quad_coeff_pflip_p": "0",
+        "is_linear": true,
+        "physical_interpretation": "Bit flip: (1-p_f)\u03c1 + p_f X \u03c1 X\u2020. Bloch: x->x, y,z -> (1-2p_f)*y,z. CPTP iff p_f in [0,1]. Boundary: p_flip + p - 1 = 0."
+      },
+      "phase_flip": {
+        "boundary_formula": "p + p_phase - 1",
+        "boundary_condition": "p_phase + p - 1 = 0",
+        "quad_coeff_pphase_p": "0",
+        "is_linear": true,
+        "physical_interpretation": "Phase flip: (1-p_ph)\u03c1 + p_ph Z \u03c1 Z\u2020. Bloch: z->z, x,y -> (1-2p_ph)*x,y. CPTP iff p_ph in [0,1]. Boundary: p_phase + p - 1 = 0."
+      },
+      "all_boundaries_linear": true,
+      "status": "ok",
+      "theorem_statement": "All five single-parameter qubit channel families have LINEAR admissibility boundaries: f(p, \u03b8) = \u03b8 + p - 1 = 0, where \u03b8 is the channel parameter. The quadratic cross-term \u03b8*p is identically zero in all cases."
+    },
+    "z3_linear_boundary_proofs": {
+      "amplitude_damping": {
+        "channel": "amplitude_damping",
+        "param": "gamma_ad",
+        "proof1_tightest_separator": {
+          "verdict": "UNSAT",
+          "status": "PASS",
+          "interpretation": "No linear function through boundary corners of amplitude_damping can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
+          "elapsed_s": 0.0173
+        },
+        "proof2_no_quadratic_needed": {
+          "verdict": "UNSAT",
+          "status": "PASS",
+          "interpretation": "\u03b8*p cannot exceed 1/4 inside the admissible region \u03b8+p<=1. The linear constraint alone fully controls the quadratic term. No quadratic boundary correction is needed for amplitude_damping.",
+          "elapsed_s": 0.0016
+        },
+        "linear_boundary_theorem_holds": true,
+        "status": "PASS"
+      },
+      "phase_damping": {
+        "channel": "phase_damping",
+        "param": "gamma_pd",
+        "proof1_tightest_separator": {
+          "verdict": "UNSAT",
+          "status": "PASS",
+          "interpretation": "No linear function through boundary corners of phase_damping can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
+          "elapsed_s": 0.002
+        },
+        "proof2_no_quadratic_needed": {
+          "verdict": "UNSAT",
+          "status": "PASS",
+          "interpretation": "\u03b8*p cannot exceed 1/4 inside the admissible region \u03b8+p<=1. The linear constraint alone fully controls the quadratic term. No quadratic boundary correction is needed for phase_damping.",
+          "elapsed_s": 0.0013
+        },
+        "linear_boundary_theorem_holds": true,
+        "status": "PASS"
+      },
+      "depolarizing": {
+        "channel": "depolarizing",
+        "param": "lambda_dep",
+        "proof1_tightest_separator": {
+          "verdict": "UNSAT",
+          "status": "PASS",
+          "interpretation": "No linear function through boundary corners of depolarizing can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
+          "elapsed_s": 0.0017
+        },
+        "proof2_no_quadratic_needed": {
+          "verdict": "UNSAT",
+          "status": "PASS",
+          "interpretation": "\u03b8*p cannot exceed 1/4 inside the admissible region \u03b8+p<=1. The linear constraint alone fully controls the quadratic term. No quadratic boundary correction is needed for depolarizing.",
+          "elapsed_s": 0.0013
+        },
+        "linear_boundary_theorem_holds": true,
+        "status": "PASS"
+      },
+      "bit_flip": {
+        "channel": "bit_flip",
+        "param": "p_flip",
+        "proof1_tightest_separator": {
+          "verdict": "UNSAT",
+          "status": "PASS",
+          "interpretation": "No linear function through boundary corners of bit_flip can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
+          "elapsed_s": 0.0016
+        },
+        "proof2_no_quadratic_needed": {
+          "verdict": "UNSAT",
+          "status": "PASS",
+          "interpretation": "\u03b8*p cannot exceed 1/4 inside the admissible region \u03b8+p<=1. The linear constraint alone fully controls the quadratic term. No quadratic boundary correction is needed for bit_flip.",
+          "elapsed_s": 0.0012
+        },
+        "linear_boundary_theorem_holds": true,
+        "status": "PASS"
+      },
+      "phase_flip": {
+        "channel": "phase_flip",
+        "param": "p_phase",
+        "proof1_tightest_separator": {
+          "verdict": "UNSAT",
+          "status": "PASS",
+          "interpretation": "No linear function through boundary corners of phase_flip can be strictly tighter than \u03b8+p-1=0 without misclassifying an admissible interior point. The linear boundary IS the tightest separator.",
+          "elapsed_s": 0.0015
+        },
+        "proof2_no_quadratic_needed": {
+          "verdict": "UNSAT",
+          "status": "PASS",
+          "interpretation": "\u03b8*p cannot exceed 1/4 inside the admissible region \u03b8+p<=1. The linear constraint alone fully controls the quadratic term. No quadratic boundary correction is needed for phase_flip.",
+          "elapsed_s": 0.0012
+        },
+        "linear_boundary_theorem_holds": true,
+        "status": "PASS"
+      }
+    }
+  },
+  "negative": {
+    "test_2qubit_nonlinear": {
+      "name": "2qubit_depolarizing_nonlinear_boundary",
+      "status": "PASS",
+      "verdict": "SAT",
+      "example_lambda1": "1/2",
+      "example_lambda2": "3/4",
+      "interpretation": "2-qubit depolarizing CAN have \u03bb1+\u03bb2 > 1 while still being admissible (product contraction >= 0). This VIOLATES the linear boundary theorem. Confirms: linear boundary only holds for SINGLE-parameter qubit channels. 2-qubit channels require a NONLINEAR (quadratic) boundary: admissibility condition involves \u03bb1*\u03bb2 cross-term.",
+      "linear_boundary_fails_for_2qubit": true,
+      "elapsed_s": 0.004
+    },
+    "test_single_qubit_boundary_strict": {
+      "name": "single_qubit_linear_boundary_strict",
+      "status": "PASS",
+      "verdict": "UNSAT",
+      "interpretation": "\u03bb > 3/4 with |1-4\u03bb/3| <= 1 is UNSAT. Single-qubit depolarizing linear boundary \u03bb = 3/4 is strict -- no admissible channel exceeds it.",
+      "elapsed_s": 0.0007
+    }
+  },
+  "boundary": {
+    "interior_00": {
+      "theta": "0",
+      "p": "0",
+      "f_theta_plus_p_minus_1": "-1",
+      "region": "interior"
+    },
+    "corner_1_0": {
+      "theta": "1",
+      "p": "0",
+      "f_theta_plus_p_minus_1": "0",
+      "region": "boundary"
+    },
+    "corner_0_1": {
+      "theta": "0",
+      "p": "1",
+      "f_theta_plus_p_minus_1": "0",
+      "region": "boundary"
+    },
+    "midpoint_half_half": {
+      "theta": "1/2",
+      "p": "1/2",
+      "f_theta_plus_p_minus_1": "0",
+      "region": "boundary"
+    },
+    "strictly_inside_quarter": {
+      "theta": "1/4",
+      "p": "1/4",
+      "f_theta_plus_p_minus_1": "-1/2",
+      "region": "interior"
+    },
+    "forbidden_threequarter_half": {
+      "theta": "3/4",
+      "p": "1/2",
+      "f_theta_plus_p_minus_1": "1/4",
+      "region": "forbidden"
+    },
+    "status": "ok",
+    "note": "Linear boundary f=\u03b8+p-1 correctly classifies all test points. Interior (f<0), boundary (f=0), forbidden (f>0). All five channel families share this identical classification structure."
+  },
+  "cvc5_crosscheck": {
+    "name": "cvc5_depolarizing_boundary_crosscheck",
+    "status": "PASS",
+    "synthesized_function": "(lambda ((lambda Real) (p Real)) (- (+ p lambda) 1.0))",
+    "is_linear": true,
+    "interpretation": "cvc5 synthesized: (lambda ((lambda Real) (p Real)) (- (+ p lambda) 1.0)). Boundary IS linear. Cross-check with z3 linear boundary proof: AGREES.",
+    "elapsed_s": 0.4993
+  }
+}

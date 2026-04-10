@@ -1,5 +1,5 @@
-# REQUIRES: z3, engine_core (available under /opt/homebrew/bin/python3)
-# Run as: /opt/homebrew/bin/python3 sim_nonclassical_guard_probe.py  (from system_v4/probes/)
+# REQUIRES: z3, engine_core
+# Run as: make sim NAME=sim_nonclassical_guard_probe  (from repo root)
 """
 Nonclassical Guard Probe
 =========================

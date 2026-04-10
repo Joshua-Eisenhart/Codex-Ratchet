@@ -1,0 +1,2027 @@
+{
+  "name": "gudhi_s2_topology_recovery",
+  "description": "Tests whether entropy-normalized QIT features recover S\u00b2 topology. K3_bloch is ground truth (Bloch sphere). K2_norm is the main hypothesis (entropy-normalized off-diagonal). Expected: H2=1 for K2_norm and K3_bloch.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "tensor state construction and partial trace"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "analytic verification of entropy normalization formula"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Rips filtration for persistent homology H0/H1/H2"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "grid": {
+      "N_theta": 15,
+      "N_phi": 15,
+      "n_states": 225
+    },
+    "normalization_validation": {
+      "sympy_available": true,
+      "lim_q_log_q_at_north_pole": "0",
+      "S_A_north_pole_limit": "0",
+      "S_A_south_pole_limit": "0",
+      "poles_collapse_to_zero": true,
+      "normalization_valid": true,
+      "S_A_equator_analytic": 1.0,
+      "S_A_equator_is_1_bit": true
+    },
+    "point_cloud_shapes": {
+      "K1": [
+        225,
+        3
+      ],
+      "K2_raw": [
+        225,
+        5
+      ],
+      "K2_norm": [
+        225,
+        5
+      ],
+      "K3_bloch": [
+        225,
+        3
+      ],
+      "K4_full": [
+        225,
+        6
+      ]
+    },
+    "analytic_cross_check": {
+      "max_re_raw_error": 0.0,
+      "max_im_raw_error": 1.3877787807814457e-17,
+      "max_re_norm_error": 4.9828921423310435e-14,
+      "max_im_norm_error": 4.955595337806746e-14,
+      "max_S_A_error": 4.9828921423310435e-14,
+      "all_errors_small": true
+    },
+    "pole_collapse_check": {
+      "north_pole_n": 15,
+      "south_pole_n": 15,
+      "north_re_norm_max": 4.9828921423310435e-14,
+      "north_im_norm_max": 4.955595337806746e-14,
+      "south_re_norm_max": 4.9828921423310435e-14,
+      "south_im_norm_max": 4.955595337806746e-14,
+      "poles_collapsed_K2_norm": true,
+      "raw_poles_NOT_collapsed": true
+    },
+    "equatorial_coverage": {
+      "theta": 1.5707963267948966,
+      "n_points": 15,
+      "re_norm_range": [
+        -0.9781476007338057,
+        1.0
+      ],
+      "im_norm_range": [
+        -0.9945218953682733,
+        0.9945218953682734
+      ],
+      "Bx_range": [
+        -0.9781476007338057,
+        1.0
+      ],
+      "By_range": [
+        -0.9945218953682733,
+        0.9945218953682734
+      ],
+      "phi_circle_covered": true
+    },
+    "kernels": {
+      "K1": {
+        "alpha": {
+          "rips": {
+            "H0": {
+              "finite_bars": 49,
+              "infinite_bars": 1,
+              "total": 50,
+              "max_persistence": 0.06793346589168238,
+              "sample_finite_bars": [
+                [
+                  0.0,
+                  0.06793346589168238
+                ],
+                [
+                  0.0,
+                  0.06039625954198671
+                ],
+                [
+                  0.0,
+                  0.05254543141667021
+                ],
+                [
+                  0.0,
+                  0.039257881234645714
+                ],
+                [
+                  0.0,
+                  0.01634809012871325
+                ],
+                [
+                  0.0,
+                  0.014163521489630548
+                ],
+                [
+                  0.0,
+                  0.001946019517676314
+                ],
+                [
+                  0.0,
+                  5.130970682671937e-32
+                ],
+                [
+                  0.0,
+                  3.848228012003851e-32
+                ],
+                [
+                  0.0,
+                  3.697785493223493e-32
+                ]
+              ]
+            },
+            "H1": {
+              "finite_bars": 11,
+              "infinite_bars": 0,
+              "total": 11,
+              "max_persistence": 3.0814879110195774e-33,
+              "sample_finite_bars": [
+                [
+                  2.465190328815662e-32,
+                  2.7733391199176196e-32
+                ],
+                [
+                  2.465190328815662e-32,
+                  2.7733391199176196e-32
+                ],
+                [
+                  2.465190328815662e-32,
+                  2.7733391199176196e-32
+                ],
+                [
+                  2.3303752327085554e-32,
+                  2.626506857628593e-32
+                ],
+                [
+                  9.533353224716817e-33,
+                  1.1089819057323644e-32
+                ],
+                [
+                  1.6948183510607676e-32,
+                  1.8304038191456288e-32
+                ],
+                [
+                  1.6466701024510867e-32,
+                  1.7407468708513865e-32
+                ],
+                [
+                  2.9274135154685985e-32,
+                  3.018895187826992e-32
+                ],
+                [
+                  1.8488927466117464e-32,
+                  1.9066706449433635e-32
+                ],
+                [
+                  1.18444691579815e-32,
+                  1.2214608819168422e-32
+                ]
+              ]
+            },
+            "H2": {
+              "finite_bars": 0,
+              "infinite_bars": 0,
+              "total": 0,
+              "max_persistence": 0.0,
+              "sample_finite_bars": []
+            }
+          },
+          "topology": {
+            "H0_total": 50,
+            "H1_total": 11,
+            "H2_total": 0,
+            "H1_infinite": 0,
+            "H2_infinite": 0,
+            "H1_max_persistence": 3.0814879110195774e-33,
+            "H2_max_persistence": 0.0,
+            "H1_significant": false,
+            "H2_significant": false,
+            "sphere_topology_S2": false,
+            "circle_topology_S1": false,
+            "trivial": true
+          }
+        },
+        "rips_best": {
+          "best_max_edge_length": 0.4584558055763736,
+          "rips": {
+            "H0": {
+              "finite_bars": 47,
+              "infinite_bars": 3,
+              "total": 50,
+              "max_persistence": 0.4584558055763727,
+              "sample_finite_bars": [
+                [
+                  0.0,
+                  0.4584558055763727
+                ],
+                [
+                  0.0,
+                  0.3962720340102022
+                ],
+                [
+                  0.0,
+                  0.25571930023925254
+                ],
+                [
+                  0.0,
+                  0.23802118804535488
+                ],
+                [
+                  0.0,
+                  0.08822742244169471
+                ],
+                [
+                  0.0,
+                  4.530329207760486e-16
+                ],
+                [
+                  0.0,
+                  3.923380181427159e-16
+                ],
+                [
+                  0.0,
+                  3.8459253727671276e-16
+                ],
+                [
+                  0.0,
+                  3.8459253727671276e-16
+                ],
+                [
+                  0.0,
+                  3.203426503815045e-16
+                ]
+              ]
+            },
+            "H1": {
+              "finite_bars": 0,
+              "infinite_bars": 0,
+              "total": 0,
+              "max_persistence": 0.0,
+              "sample_finite_bars": []
+            },
+            "H2": {
+              "finite_bars": 0,
+              "infinite_bars": 0,
+              "total": 0,
+              "max_persistence": 0.0,
+              "sample_finite_bars": []
+            }
+          },
+          "topology": {
+            "H0_total": 50,
+            "H1_total": 0,
+            "H2_total": 0,
+            "H1_infinite": 0,
+            "H2_infinite": 0,
+            "H1_max_persistence": 0.0,
+            "H2_max_persistence": 0.0,
+            "H1_significant": false,
+            "H2_significant": false,
+            "sphere_topology_S2": false,
+            "circle_topology_S1": false,
+            "trivial": true
+          },
+          "scale_sweep": {
+            "0.4584558055763736": {
+              "H1_total": 0,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.0,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "0.6876837083645604": {
+              "H1_total": 0,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.0,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "0.9169116111527472": {
+              "H1_total": 0,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.0,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "0.9797367888922147": {
+              "H1_total": 0,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.0,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "1.4696051833383221": {
+              "H1_total": 0,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.0,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "1.9594735777844294": {
+              "H1_total": 0,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.0,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            }
+          }
+        }
+      },
+      "K2_raw": {
+        "alpha": {
+          "rips": {
+            "H0": {
+              "finite_bars": 208,
+              "infinite_bars": 1,
+              "total": 209,
+              "max_persistence": 0.07018036958094553,
+              "sample_finite_bars": [
+                [
+                  0.0,
+                  0.07018036958094553
+                ],
+                [
+                  0.0,
+                  0.06196326503062277
+                ],
+                [
+                  0.0,
+                  0.05533757112952214
+                ],
+                [
+                  0.0,
+                  0.04014498852265461
+                ],
+                [
+                  0.0,
+                  0.017258244367679955
+                ],
+                [
+                  0.0,
+                  0.016689961393133432
+                ],
+                [
+                  0.0,
+                  0.010271712094385443
+                ],
+                [
+                  0.0,
+                  0.010271712094385425
+                ],
+                [
+                  0.0,
+                  0.010271712094385422
+                ],
+                [
+                  0.0,
+                  0.010271712094385418
+                ]
+              ]
+            },
+            "H1": {
+              "finite_bars": 126,
+              "infinite_bars": 0,
+              "total": 126,
+              "max_persistence": 0.06900412891900098,
+              "sample_finite_bars": [
+                [
+                  0.004201037302954074,
+                  0.07320516622195505
+                ],
+                [
+                  0.006605780491720857,
+                  0.06730477582135144
+                ],
+                [
+                  0.002034438554574811,
+                  0.0470637747676583
+                ],
+                [
+                  0.008772379240100117,
+                  0.0478030362685372
+                ],
+                [
+                  0.010271712094385457,
+                  0.026205654589324306
+                ],
+                [
+                  0.0005351057002894701,
+                  0.012378891512197607
+                ],
+                [
+                  0.016689961393133432,
+                  0.0262056545893243
+                ],
+                [
+                  0.016689961393133466,
+                  0.026205654589324293
+                ],
+                [
+                  0.016689961393133466,
+                  0.026205654589324286
+                ],
+                [
+                  0.016689961393133466,
+                  0.02620565458932428
+                ]
+              ]
+            },
+            "H2": {
+              "finite_bars": 16,
+              "infinite_bars": 0,
+              "total": 16,
+              "max_persistence": 0.045184111918399245,
+              "sample_finite_bars": [
+                [
+                  0.09718488325546068,
+                  0.14236899517385992
+                ],
+                [
+                  0.1528151167445393,
+                  0.1885987787268648
+                ],
+                [
+                  0.056504191187297215,
+                  0.08369771808339624
+                ],
+                [
+                  0.20293622523234162,
+                  0.22113294902737213
+                ],
+                [
+                  0.017393065854821727,
+                  0.02102916275960169
+                ],
+                [
+                  0.23762110848780232,
+                  0.2412260753073665
+                ],
+                [
+                  0.004201037302954061,
+                  0.0042010373029540615
+                ],
+                [
+                  4.005844960963789e-32,
+                  4.0229838555700944e-32
+                ],
+                [
+                  3.994418330368722e-32,
+                  4.010864106009824e-32
+                ],
+                [
+                  7.809778307780152e-32,
+                  7.820034210933097e-32
+                ]
+              ]
+            }
+          },
+          "topology": {
+            "H0_total": 209,
+            "H1_total": 126,
+            "H2_total": 16,
+            "H1_infinite": 0,
+            "H2_infinite": 0,
+            "H1_max_persistence": 0.06900412891900098,
+            "H2_max_persistence": 0.045184111918399245,
+            "H1_significant": true,
+            "H2_significant": true,
+            "sphere_topology_S2": false,
+            "circle_topology_S1": true,
+            "trivial": false
+          }
+        },
+        "rips_best": {
+          "best_max_edge_length": 0.18041900363652608,
+          "rips": {
+            "H0": {
+              "finite_bars": 174,
+              "infinite_bars": 35,
+              "total": 209,
+              "max_persistence": 0.16255190545448367,
+              "sample_finite_bars": [
+                [
+                  0.0,
+                  0.16255190545448367
+                ],
+                [
+                  0.0,
+                  0.16255190545448353
+                ],
+                [
+                  0.0,
+                  0.1625519054544835
+                ],
+                [
+                  0.0,
+                  0.16255190545448348
+                ],
+                [
+                  0.0,
+                  0.16255190545448345
+                ],
+                [
+                  0.0,
+                  0.16255190545448342
+                ],
+                [
+                  0.0,
+                  0.16255190545448342
+                ],
+                [
+                  0.0,
+                  0.16255190545448342
+                ],
+                [
+                  0.0,
+                  0.16255190545448342
+                ],
+                [
+                  0.0,
+                  0.16255190545448334
+                ]
+              ]
+            },
+            "H1": {
+              "finite_bars": 3,
+              "infinite_bars": 4,
+              "total": 7,
+              "max_persistence": 1.2436904758991482e-17,
+              "sample_finite_bars": [
+                [
+                  2.3767887882269147e-16,
+                  2.5011578358168295e-16
+                ],
+                [
+                  3.9316335753530537e-16,
+                  3.970875469424957e-16
+                ],
+                [
+                  3.9316335753530537e-16,
+                  3.954873493926671e-16
+                ]
+              ]
+            },
+            "H2": {
+              "finite_bars": 0,
+              "infinite_bars": 0,
+              "total": 0,
+              "max_persistence": 0.0,
+              "sample_finite_bars": []
+            }
+          },
+          "topology": {
+            "H0_total": 209,
+            "H1_total": 7,
+            "H2_total": 0,
+            "H1_infinite": 4,
+            "H2_infinite": 0,
+            "H1_max_persistence": 1.2436904758991482e-17,
+            "H2_max_persistence": 0.0,
+            "H1_significant": false,
+            "H2_significant": false,
+            "sphere_topology_S2": false,
+            "circle_topology_S1": false,
+            "trivial": true
+          },
+          "scale_sweep": {
+            "0.18041900363652608": {
+              "H1_total": 7,
+              "H1_infinite": 4,
+              "H1_max_persistence": 1.2436904758991482e-17,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "0.4871577867298308": {
+              "H1_total": 66,
+              "H1_infinite": 2,
+              "H1_max_persistence": 0.2855448385465221,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "0.7307366800947461": {
+              "H1_total": 94,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.4103271884981101,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "0.9743155734596616": {
+              "H1_total": 94,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.4103271884981101,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "1.0237243347350835": {
+              "H1_total": 94,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.4103271884981101,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "1.5355865021026252": {
+              "H1_total": 94,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.4103271884981101,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "2.047448669470167": {
+              "H1_total": 94,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.4103271884981101,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            }
+          }
+        }
+      },
+      "K2_norm": {
+        "alpha": {
+          "rips": {
+            "H0": {
+              "finite_bars": 207,
+              "infinite_bars": 1,
+              "total": 208,
+              "max_persistence": 0.07925571020696276,
+              "sample_finite_bars": [
+                [
+                  0.0,
+                  0.07925571020696276
+                ],
+                [
+                  0.0,
+                  0.07046230279898455
+                ],
+                [
+                  0.0,
+                  0.06130300331944864
+                ],
+                [
+                  0.0,
+                  0.045800861440420046
+                ],
+                [
+                  0.0,
+                  0.03193999241968874
+                ],
+                [
+                  0.0,
+                  0.03193999241968868
+                ],
+                [
+                  0.0,
+                  0.03193999241968867
+                ],
+                [
+                  0.0,
+                  0.03193999241968866
+                ],
+                [
+                  0.0,
+                  0.031939992419688645
+                ],
+                [
+                  0.0,
+                  0.031939992419688645
+                ]
+              ]
+            },
+            "H1": {
+              "finite_bars": 118,
+              "infinite_bars": 0,
+              "total": 118,
+              "max_persistence": 0.07521274706945802,
+              "sample_finite_bars": [
+                [
+                  0.010683868559428015,
+                  0.08589661562888604
+                ],
+                [
+                  0.021048851867197085,
+                  0.08598942041987642
+                ],
+                [
+                  0.0034947822438556415,
+                  0.06288568554353585
+                ],
+                [
+                  0.031939992419688784,
+                  0.07217531923839465
+                ],
+                [
+                  0.045800861440420046,
+                  0.07217531923839463
+                ],
+                [
+                  0.04580086144042011,
+                  0.0721753192383946
+                ],
+                [
+                  0.04580086144042017,
+                  0.07217531923839457
+                ],
+                [
+                  0.0458008614404201,
+                  0.07217531923839449
+                ],
+                [
+                  0.04580086144042013,
+                  0.07217531923839449
+                ],
+                [
+                  0.04580086144042024,
+                  0.0721753192383946
+                ]
+              ]
+            },
+            "H2": {
+              "finite_bars": 6,
+              "infinite_bars": 0,
+              "total": 6,
+              "max_persistence": 0.02290774705075449,
+              "sample_finite_bars": [
+                [
+                  0.08084670044075548,
+                  0.10375444749150997
+                ],
+                [
+                  0.24715574839923032,
+                  0.25738118699579415
+                ],
+                [
+                  0.016626784191580674,
+                  0.019278126472002853
+                ],
+                [
+                  0.48693455064933455,
+                  0.4869379267774835
+                ],
+                [
+                  2.4829956664394993e-27,
+                  2.4829983747706858e-27
+                ],
+                [
+                  2.4829983747706854e-27,
+                  2.4829983747706858e-27
+                ]
+              ]
+            }
+          },
+          "topology": {
+            "H0_total": 208,
+            "H1_total": 118,
+            "H2_total": 6,
+            "H1_infinite": 0,
+            "H2_infinite": 0,
+            "H1_max_persistence": 0.07521274706945802,
+            "H2_max_persistence": 0.02290774705075449,
+            "H1_significant": true,
+            "H2_significant": true,
+            "sphere_topology_S2": false,
+            "circle_topology_S1": true,
+            "trivial": false
+          }
+        },
+        "rips_best": {
+          "best_max_edge_length": 0.5323484551380605,
+          "rips": {
+            "H0": {
+              "finite_bars": 206,
+              "infinite_bars": 2,
+              "total": 208,
+              "max_persistence": 0.5308947270372331,
+              "sample_finite_bars": [
+                [
+                  0.0,
+                  0.5308947270372331
+                ],
+                [
+                  0.0,
+                  0.4951888662700269
+                ],
+                [
+                  0.0,
+                  0.42802271640846373
+                ],
+                [
+                  0.0,
+                  0.3574352664172283
+                ],
+                [
+                  0.0,
+                  0.3574352664172279
+                ],
+                [
+                  0.0,
+                  0.3574352664172279
+                ],
+                [
+                  0.0,
+                  0.35743526641722784
+                ],
+                [
+                  0.0,
+                  0.3574352664172278
+                ],
+                [
+                  0.0,
+                  0.3574352664172278
+                ],
+                [
+                  0.0,
+                  0.3574352664172278
+                ]
+              ]
+            },
+            "H1": {
+              "finite_bars": 62,
+              "infinite_bars": 31,
+              "total": 93,
+              "max_persistence": 0.37425023853951256,
+              "sample_finite_bars": [
+                [
+                  0.11823336659091868,
+                  0.49248360513043127
+                ],
+                [
+                  0.0404062828209751,
+                  0.16830639613303602
+                ],
+                [
+                  0.40084596633472724,
+                  0.468580379483022
+                ],
+                [
+                  0.40084596633472747,
+                  0.46858037948302217
+                ],
+                [
+                  0.40084596633472747,
+                  0.46858037948302206
+                ],
+                [
+                  0.4008459663347274,
+                  0.468580379483022
+                ],
+                [
+                  0.40084596633472763,
+                  0.4685803794830222
+                ],
+                [
+                  0.4008459663347277,
+                  0.4685803794830223
+                ],
+                [
+                  0.4008459663347277,
+                  0.4685803794830223
+                ],
+                [
+                  0.40084596633472774,
+                  0.46858037948302234
+                ]
+              ]
+            },
+            "H2": {
+              "finite_bars": 0,
+              "infinite_bars": 0,
+              "total": 0,
+              "max_persistence": 0.0,
+              "sample_finite_bars": []
+            }
+          },
+          "topology": {
+            "H0_total": 208,
+            "H1_total": 93,
+            "H2_total": 0,
+            "H1_infinite": 31,
+            "H2_infinite": 0,
+            "H1_max_persistence": 0.37425023853951256,
+            "H2_max_persistence": 0.0,
+            "H1_significant": true,
+            "H2_significant": false,
+            "sphere_topology_S2": false,
+            "circle_topology_S1": true,
+            "trivial": false
+          },
+          "scale_sweep": {
+            "0.15809323438363315": {
+              "H1_total": 4,
+              "H1_infinite": 2,
+              "H1_max_persistence": 6.558619298203944e-14,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "0.5323484551380605": {
+              "H1_total": 93,
+              "H1_infinite": 31,
+              "H1_max_persistence": 0.37425023853951256,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "0.7985226827070908": {
+              "H1_total": 107,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.37762421226865417,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "1.064696910276121": {
+              "H1_total": 107,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.37762421226865417,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "1.0893235758818283": {
+              "H1_total": 107,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.37762421226865417,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "1.6339853638227424": {
+              "H1_total": 107,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.37762421226865417,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "2.1786471517636565": {
+              "H1_total": 107,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.37762421226865417,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            }
+          }
+        }
+      },
+      "K3_bloch": {
+        "alpha": {
+          "rips": {
+            "H0": {
+              "finite_bars": 210,
+              "infinite_bars": 1,
+              "total": 211,
+              "max_persistence": 0.0125360439090882,
+              "sample_finite_bars": [
+                [
+                  0.0,
+                  0.0125360439090882
+                ],
+                [
+                  0.0,
+                  0.0125360439090882
+                ],
+                [
+                  0.0,
+                  0.0125360439090882
+                ],
+                [
+                  0.0,
+                  0.0125360439090882
+                ],
+                [
+                  0.0,
+                  0.0125360439090882
+                ],
+                [
+                  0.0,
+                  0.012536043909088199
+                ],
+                [
+                  0.0,
+                  0.012536043909088199
+                ],
+                [
+                  0.0,
+                  0.012536043909088199
+                ],
+                [
+                  0.0,
+                  0.012536043909088199
+                ],
+                [
+                  0.0,
+                  0.012536043909088199
+                ]
+              ]
+            },
+            "H1": {
+              "finite_bars": 228,
+              "infinite_bars": 0,
+              "total": 228,
+              "max_persistence": 0.04217312007915824,
+              "sample_finite_bars": [
+                [
+                  0.012536043909088199,
+                  0.054709163988246434
+                ],
+                [
+                  0.012536043909088197,
+                  0.054709163988246365
+                ],
+                [
+                  0.012536043909088199,
+                  0.05470916398824635
+                ],
+                [
+                  0.012536043909088199,
+                  0.05470916398824634
+                ],
+                [
+                  0.012536043909088197,
+                  0.05470916398824634
+                ],
+                [
+                  0.0125360439090882,
+                  0.05470916398824632
+                ],
+                [
+                  0.0125360439090882,
+                  0.05470916398824632
+                ],
+                [
+                  0.0125360439090882,
+                  0.05470916398824631
+                ],
+                [
+                  0.0125360439090882,
+                  0.05470916398824631
+                ],
+                [
+                  0.012536043909088204,
+                  0.05470916398824628
+                ]
+              ]
+            },
+            "H2": {
+              "finite_bars": 68,
+              "infinite_bars": 0,
+              "total": 68,
+              "max_persistence": 0.9452908360117592,
+              "sample_finite_bars": [
+                [
+                  0.054709163988246504,
+                  1.0000000000000058
+                ],
+                [
+                  0.9999999999999993,
+                  1.0000000000000056
+                ],
+                [
+                  0.999999999999996,
+                  1.0000000000000013
+                ],
+                [
+                  0.9999999999999849,
+                  0.9999999999999902
+                ],
+                [
+                  0.999999999999988,
+                  0.9999999999999931
+                ],
+                [
+                  0.9999999999999964,
+                  1.0000000000000013
+                ],
+                [
+                  0.9999999999999964,
+                  1.0000000000000013
+                ],
+                [
+                  0.9999999999999871,
+                  0.9999999999999916
+                ],
+                [
+                  0.9999999999999849,
+                  0.9999999999999893
+                ],
+                [
+                  0.9999999999999982,
+                  1.0000000000000022
+                ]
+              ]
+            }
+          },
+          "topology": {
+            "H0_total": 211,
+            "H1_total": 228,
+            "H2_total": 68,
+            "H1_infinite": 0,
+            "H2_infinite": 0,
+            "H1_max_persistence": 0.04217312007915824,
+            "H2_max_persistence": 0.9452908360117592,
+            "H1_significant": true,
+            "H2_significant": true,
+            "sphere_topology_S2": true,
+            "circle_topology_S1": false,
+            "trivial": false
+          }
+        },
+        "rips_best": {
+          "best_max_edge_length": 0.4450418679126288,
+          "rips": {
+            "H0": {
+              "finite_bars": 210,
+              "infinite_bars": 1,
+              "total": 211,
+              "max_persistence": 0.22392895220661577,
+              "sample_finite_bars": [
+                [
+                  0.0,
+                  0.22392895220661577
+                ],
+                [
+                  0.0,
+                  0.22392895220661574
+                ],
+                [
+                  0.0,
+                  0.22392895220661574
+                ],
+                [
+                  0.0,
+                  0.22392895220661574
+                ],
+                [
+                  0.0,
+                  0.22392895220661574
+                ],
+                [
+                  0.0,
+                  0.22392895220661574
+                ],
+                [
+                  0.0,
+                  0.22392895220661574
+                ],
+                [
+                  0.0,
+                  0.22392895220661574
+                ],
+                [
+                  0.0,
+                  0.22392895220661574
+                ],
+                [
+                  0.0,
+                  0.22392895220661574
+                ]
+              ]
+            },
+            "H1": {
+              "finite_bars": 130,
+              "infinite_bars": 59,
+              "total": 189,
+              "max_persistence": 0.13139954496420697,
+              "sample_finite_bars": [
+                [
+                  0.09252940724240875,
+                  0.2239289522066157
+                ],
+                [
+                  0.0925294072424088,
+                  0.2239289522066157
+                ],
+                [
+                  0.1804190036365266,
+                  0.25853092483899603
+                ],
+                [
+                  0.18041900363652655,
+                  0.2585309248389959
+                ],
+                [
+                  0.25926163782415784,
+                  0.3113196139239563
+                ],
+                [
+                  0.2592616378241579,
+                  0.31131961392395635
+                ],
+                [
+                  0.2592616378241579,
+                  0.31131961392395635
+                ],
+                [
+                  0.2592616378241579,
+                  0.31131961392395635
+                ],
+                [
+                  0.25926163782415784,
+                  0.3113196139239563
+                ],
+                [
+                  0.25926163782415806,
+                  0.31131961392395646
+                ]
+              ]
+            },
+            "H2": {
+              "finite_bars": 0,
+              "infinite_bars": 0,
+              "total": 0,
+              "max_persistence": 0.0,
+              "sample_finite_bars": []
+            }
+          },
+          "topology": {
+            "H0_total": 211,
+            "H1_total": 189,
+            "H2_total": 0,
+            "H1_infinite": 59,
+            "H2_infinite": 0,
+            "H1_max_persistence": 0.13139954496420697,
+            "H2_max_persistence": 0.0,
+            "H1_significant": true,
+            "H2_significant": false,
+            "sphere_topology_S2": false,
+            "circle_topology_S1": true,
+            "trivial": false
+          },
+          "scale_sweep": {
+            "0.36083800727305215": {
+              "H1_total": 114,
+              "H1_infinite": 44,
+              "H1_max_persistence": 0.13139954496420697,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "0.4450418679126288": {
+              "H1_total": 189,
+              "H1_infinite": 59,
+              "H1_max_persistence": 0.13139954496420697,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "0.6675628018689432": {
+              "H1_total": 189,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.24374408378607598,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "0.7103138676679046": {
+              "H1_total": 189,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.24374408378607598,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "0.8900837358252576": {
+              "H1_total": 189,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.24374408378607598,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "1.0654708015018568": {
+              "H1_total": 189,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.24374408378607598,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "1.4206277353358092": {
+              "H1_total": 189,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.24374408378607598,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            }
+          }
+        }
+      },
+      "K4_full": {
+        "alpha": {
+          "rips": {
+            "H0": {
+              "finite_bars": 224,
+              "infinite_bars": 1,
+              "total": 225,
+              "max_persistence": 0.08280413935899844,
+              "sample_finite_bars": [
+                [
+                  0.0,
+                  0.08280413935899844
+                ],
+                [
+                  0.0,
+                  0.08280413935899844
+                ],
+                [
+                  0.0,
+                  0.07673032475352883
+                ],
+                [
+                  0.0,
+                  0.07673032475352866
+                ],
+                [
+                  0.0,
+                  0.06267048837712955
+                ],
+                [
+                  0.0,
+                  0.06267048837712946
+                ],
+                [
+                  0.0,
+                  0.05478847619747293
+                ],
+                [
+                  0.0,
+                  0.05478847619747268
+                ],
+                [
+                  0.0,
+                  0.03193999241968874
+                ],
+                [
+                  0.0,
+                  0.03193999241968868
+                ]
+              ]
+            },
+            "H1": {
+              "finite_bars": 272,
+              "infinite_bars": 0,
+              "total": 272,
+              "max_persistence": 0.07875940837006565,
+              "sample_finite_bars": [
+                [
+                  0.01068386855942802,
+                  0.08944327692949366
+                ],
+                [
+                  0.010683868559428015,
+                  0.08944327692949355
+                ],
+                [
+                  0.021048851867197082,
+                  0.09224956495566614
+                ],
+                [
+                  0.0034947822438556415,
+                  0.0642529560433904
+                ],
+                [
+                  0.003494782243855645,
+                  0.0642529560433904
+                ],
+                [
+                  0.021048851867197096,
+                  0.08113607768689579
+                ],
+                [
+                  0.031939992419688784,
+                  0.08113607768689562
+                ],
+                [
+                  0.03193999241968866,
+                  0.06631874268620067
+                ],
+                [
+                  0.031939992419688645,
+                  0.06631874268620061
+                ],
+                [
+                  0.03193999241968862,
+                  0.06631874268620058
+                ]
+              ]
+            },
+            "H2": {
+              "finite_bars": 72,
+              "infinite_bars": 0,
+              "total": 72,
+              "max_persistence": 0.7661666504217213,
+              "sample_finite_bars": [
+                [
+                  0.09224956495566622,
+                  0.8584162153773875
+                ],
+                [
+                  0.08084670044075551,
+                  0.10496810851650319
+                ],
+                [
+                  0.08084670044075554,
+                  0.1049681085165031
+                ],
+                [
+                  0.24715574839923038,
+                  0.25966642788741945
+                ],
+                [
+                  0.24715574839923038,
+                  0.25966642788741945
+                ],
+                [
+                  0.8152396831732225,
+                  0.8270054078590883
+                ],
+                [
+                  0.9508926008740617,
+                  0.9599267816109731
+                ],
+                [
+                  0.8224548550149151,
+                  0.8270054078590883
+                ],
+                [
+                  0.8224548550149151,
+                  0.8270054078590883
+                ],
+                [
+                  0.8224548550149151,
+                  0.8270054078590883
+                ]
+              ]
+            }
+          },
+          "topology": {
+            "H0_total": 225,
+            "H1_total": 272,
+            "H2_total": 72,
+            "H1_infinite": 0,
+            "H2_infinite": 0,
+            "H1_max_persistence": 0.07875940837006565,
+            "H2_max_persistence": 0.7661666504217213,
+            "H1_significant": true,
+            "H2_significant": true,
+            "sphere_topology_S2": true,
+            "circle_topology_S1": true,
+            "trivial": false
+          }
+        },
+        "rips_best": {
+          "best_max_edge_length": 0.5374614571470242,
+          "rips": {
+            "H0": {
+              "finite_bars": 220,
+              "infinite_bars": 5,
+              "total": 225,
+              "max_persistence": 0.5006814890811505,
+              "sample_finite_bars": [
+                [
+                  0.0,
+                  0.5006814890811505
+                ],
+                [
+                  0.0,
+                  0.5006814890811502
+                ],
+                [
+                  0.0,
+                  0.4681387665958586
+                ],
+                [
+                  0.0,
+                  0.4681387665958575
+                ],
+                [
+                  0.0,
+                  0.3574352664172283
+                ],
+                [
+                  0.0,
+                  0.3574352664172279
+                ],
+                [
+                  0.0,
+                  0.3574352664172279
+                ],
+                [
+                  0.0,
+                  0.35743526641722784
+                ],
+                [
+                  0.0,
+                  0.3574352664172278
+                ],
+                [
+                  0.0,
+                  0.3574352664172278
+                ]
+              ]
+            },
+            "H1": {
+              "finite_bars": 122,
+              "infinite_bars": 33,
+              "total": 155,
+              "max_persistence": 0.3742502385395128,
+              "sample_finite_bars": [
+                [
+                  0.11823336659091874,
+                  0.49248360513043155
+                ],
+                [
+                  0.11823336659091868,
+                  0.49248360513043127
+                ],
+                [
+                  0.35743526641722784,
+                  0.5140445578372399
+                ],
+                [
+                  0.3574352664172276,
+                  0.5140445578372397
+                ],
+                [
+                  0.35743526641722745,
+                  0.5140445578372395
+                ],
+                [
+                  0.3574352664172278,
+                  0.5140445578372398
+                ],
+                [
+                  0.3574352664172278,
+                  0.5140445578372398
+                ],
+                [
+                  0.3574352664172276,
+                  0.5140445578372396
+                ],
+                [
+                  0.3574352664172275,
+                  0.5140445578372393
+                ],
+                [
+                  0.3574352664172276,
+                  0.5140445578372395
+                ]
+              ]
+            },
+            "H2": {
+              "finite_bars": 0,
+              "infinite_bars": 0,
+              "total": 0,
+              "max_persistence": 0.0,
+              "sample_finite_bars": []
+            }
+          },
+          "topology": {
+            "H0_total": 225,
+            "H1_total": 155,
+            "H2_total": 0,
+            "H1_infinite": 33,
+            "H2_infinite": 0,
+            "H1_max_persistence": 0.3742502385395128,
+            "H2_max_persistence": 0.0,
+            "H1_significant": true,
+            "H2_significant": false,
+            "sphere_topology_S2": false,
+            "circle_topology_S1": true,
+            "trivial": false
+          },
+          "scale_sweep": {
+            "0.15809323438363315": {
+              "H1_total": 6,
+              "H1_infinite": 4,
+              "H1_max_persistence": 6.558619298203944e-14,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "0.5374614571470242": {
+              "H1_total": 155,
+              "H1_infinite": 33,
+              "H1_max_persistence": 0.3742502385395128,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "0.8061921857205363": {
+              "H1_total": 211,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.38964544194873185,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "1.0749229142940484": {
+              "H1_total": 211,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.38964544194873185,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "1.106305601603909": {
+              "H1_total": 211,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.38964544194873185,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "1.6594584024058636": {
+              "H1_total": 211,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.38964544194873185,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            },
+            "2.212611203207818": {
+              "H1_total": 211,
+              "H1_infinite": 0,
+              "H1_max_persistence": 0.38964544194873185,
+              "H2_total": 0,
+              "H2_infinite": 0,
+              "H2_max_persistence": 0.0
+            }
+          }
+        }
+      }
+    },
+    "density_sweep": {
+      "10x10": {
+        "K1": {
+          "H1_total": 1,
+          "H1_max_persistence": 1.960118049908877e-34,
+          "H2_total": 0,
+          "H2_max_persistence": 0.0,
+          "S2_detected": false
+        },
+        "K2_raw": {
+          "H1_total": 49,
+          "H1_max_persistence": 0.12555928099582064,
+          "H2_total": 5,
+          "H2_max_persistence": 0.08812518230100336,
+          "S2_detected": true
+        },
+        "K2_norm": {
+          "H1_total": 45,
+          "H1_max_persistence": 0.17187288404258724,
+          "H2_total": 3,
+          "H2_max_persistence": 0.0637487464171339,
+          "S2_detected": true
+        },
+        "K3_bloch": {
+          "H1_total": 96,
+          "H1_max_persistence": 0.09261208167660703,
+          "H2_total": 28,
+          "H2_max_persistence": 0.8772342287163477,
+          "S2_detected": true
+        },
+        "K4_full": {
+          "H1_total": 120,
+          "H1_max_persistence": 0.1794046078795437,
+          "H2_total": 49,
+          "H2_max_persistence": 0.6494404465212729,
+          "S2_detected": true
+        }
+      },
+      "15x15": {
+        "K1": {
+          "H1_total": 11,
+          "H1_max_persistence": 3.0814879110195774e-33,
+          "H2_total": 0,
+          "H2_max_persistence": 0.0,
+          "S2_detected": false
+        },
+        "K2_raw": {
+          "H1_total": 126,
+          "H1_max_persistence": 0.06900412891900098,
+          "H2_total": 16,
+          "H2_max_persistence": 0.045184111918399245,
+          "S2_detected": false
+        },
+        "K2_norm": {
+          "H1_total": 118,
+          "H1_max_persistence": 0.07521274706945802,
+          "H2_total": 6,
+          "H2_max_persistence": 0.02290774705075449,
+          "S2_detected": false
+        },
+        "K3_bloch": {
+          "H1_total": 228,
+          "H1_max_persistence": 0.04217312007915824,
+          "H2_total": 68,
+          "H2_max_persistence": 0.9452908360117592,
+          "S2_detected": true
+        },
+        "K4_full": {
+          "H1_total": 272,
+          "H1_max_persistence": 0.07875940837006565,
+          "H2_total": 72,
+          "H2_max_persistence": 0.7661666504217213,
+          "S2_detected": true
+        }
+      },
+      "20x20": {
+        "K1": {
+          "H1_total": 16,
+          "H1_max_persistence": 8.1175559639462e-33,
+          "H2_total": 0,
+          "H2_max_persistence": 0.0,
+          "S2_detected": false
+        },
+        "K2_raw": {
+          "H1_total": 208,
+          "H1_max_persistence": 0.037908815584374304,
+          "H2_total": 12,
+          "H2_max_persistence": 0.02074706273764146,
+          "S2_detected": false
+        },
+        "K2_norm": {
+          "H1_total": 194,
+          "H1_max_persistence": 0.04169645199806532,
+          "H2_total": 4,
+          "H2_max_persistence": 0.00983338243588426,
+          "S2_detected": false
+        },
+        "K3_bloch": {
+          "H1_total": 426,
+          "H1_max_persistence": 0.024304860521257184,
+          "H2_total": 125,
+          "H2_max_persistence": 0.968875791180116,
+          "S2_detected": true
+        },
+        "K4_full": {
+          "H1_total": 453,
+          "H1_max_persistence": 0.043735834354998046,
+          "H2_total": 91,
+          "H2_max_persistence": 0.8078313667753163,
+          "S2_detected": true
+        }
+      }
+    },
+    "topology_summary_table": {
+      "K1": {
+        "H1_total": 11,
+        "H1_max_persistence": 3.0814879110195774e-33,
+        "H2_total": 0,
+        "H2_max_persistence": 0.0,
+        "S2_detected": false,
+        "S1_detected": false
+      },
+      "K2_raw": {
+        "H1_total": 126,
+        "H1_max_persistence": 0.06900412891900098,
+        "H2_total": 16,
+        "H2_max_persistence": 0.045184111918399245,
+        "S2_detected": false,
+        "S1_detected": true
+      },
+      "K2_norm": {
+        "H1_total": 118,
+        "H1_max_persistence": 0.07521274706945802,
+        "H2_total": 6,
+        "H2_max_persistence": 0.02290774705075449,
+        "S2_detected": false,
+        "S1_detected": true
+      },
+      "K3_bloch": {
+        "H1_total": 228,
+        "H1_max_persistence": 0.04217312007915824,
+        "H2_total": 68,
+        "H2_max_persistence": 0.9452908360117592,
+        "S2_detected": true,
+        "S1_detected": false
+      },
+      "K4_full": {
+        "H1_total": 272,
+        "H1_max_persistence": 0.07875940837006565,
+        "H2_total": 72,
+        "H2_max_persistence": 0.7661666504217213,
+        "S2_detected": true,
+        "S1_detected": true
+      }
+    },
+    "hypothesis_tests": {
+      "rips_dim2_fails_H2_on_K3": true,
+      "alpha_detects_H2_on_K3": true,
+      "K1_trivial": true,
+      "K1_H2_detected": false,
+      "K2_raw_H2_max_15x15": 0.045184111918399245,
+      "K2_norm_H2_max_15x15": 0.02290774705075449,
+      "K2_norm_H2_decreasing_with_density": true,
+      "K2_norm_H2_is_noise_not_signal": true,
+      "K3_bloch_S2_detected_GROUND_TRUTH": true,
+      "K3_bloch_H2_max_15x15": 0.9452908360117592,
+      "K3_bloch_H2_increasing_with_density": true,
+      "K4_full_S2_detected": true,
+      "K4_full_H2_max_15x15": 0.7661666504217213,
+      "ground_truth_K3_passed": true,
+      "K4_full_S2_confirmed": true,
+      "K2_norm_hypothesis_REJECTED": true,
+      "conclusion": "K3_bloch (Bloch sphere) confirms S2 topology with Alpha complex. K4_full (QIT + Bz) also recovers S2. K2_norm H2 signal is noise (decreasing with density) -- QIT features alone collapse the sphere; Bz is required. Rips max_dim=2 is insufficient for S2 detection -- Alpha complex required."
+    }
+  },
+  "negative": {
+    "K1_phi_blind_trivial": {
+      "description": "K1 on 10x10 grid -- phi-blind, Alpha complex should give trivial H2",
+      "n_points": 100,
+      "topology": {
+        "H0_total": 31,
+        "H1_total": 1,
+        "H2_total": 0,
+        "H1_infinite": 0,
+        "H2_infinite": 0,
+        "H1_max_persistence": 1.960118049908877e-34,
+        "H2_max_persistence": 0.0,
+        "H1_significant": false,
+        "H2_significant": false,
+        "sphere_topology_S2": false,
+        "circle_topology_S1": false,
+        "trivial": true
+      },
+      "phi_blind_confirmed": true,
+      "H2_max_persistence": 0.0
+    },
+    "rips_dim2_fails_S2": {
+      "description": "Rips max_dim=2 on K3_bloch 10x10 -- should FAIL to detect S2",
+      "n_points": 100,
+      "max_edge_length": 2.9999999999999996,
+      "H2_max_persistence": 0.0,
+      "S2_detected": false,
+      "test_passed": true
+    },
+    "K2_norm_H2_is_noise": {
+      "description": "K2_norm H2 max persistence should decrease with density (noise, not signal)",
+      "h2_max_by_density": {
+        "10x10": 0.0637487464171339,
+        "15x15": 0.02290774705075449,
+        "20x20": 0.00983338243588426
+      },
+      "decreasing_confirmed": true,
+      "noise_hypothesis": "H2 bars in K2_norm are numerical artifacts from grid quantization"
+    }
+  },
+  "boundary": {
+    "polar_collapse_comparison": {
+      "description": "K2_raw vs K2_norm at theta=0,pi only (20 phi values each)",
+      "K2_raw_re_spread_at_poles": 3.061616997868383e-17,
+      "K2_norm_re_spread_at_poles": 3.523461065923117e-14,
+      "both_collapse_to_zero": true,
+      "note": "sin(theta)/2 is ALSO 0 at poles for raw! The distinction is that K2_raw middle-latitude points have DIFFERENT scale than K2_norm middle-latitude points. Run persistence to compare."
+    },
+    "alpha_K3_bloch_15x15": {
+      "description": "Alpha complex on K3_bloch 15x15 -- ground truth S2 check",
+      "n_points": 225,
+      "topology": {
+        "H0_total": 211,
+        "H1_total": 228,
+        "H2_total": 68,
+        "H1_infinite": 0,
+        "H2_infinite": 0,
+        "H1_max_persistence": 0.04217312007915824,
+        "H2_max_persistence": 0.9452908360117592,
+        "H1_significant": true,
+        "H2_significant": true,
+        "sphere_topology_S2": true,
+        "circle_topology_S1": false,
+        "trivial": false
+      },
+      "S2_detected": true,
+      "H2_max_persistence": 0.9452908360117592,
+      "H2_total": 68
+    },
+    "alpha_K4_full_15x15": {
+      "description": "Alpha complex on K4_full 15x15 -- QIT + phase + Bz S2 check",
+      "n_points": 225,
+      "topology": {
+        "H0_total": 225,
+        "H1_total": 272,
+        "H2_total": 72,
+        "H1_infinite": 0,
+        "H2_infinite": 0,
+        "H1_max_persistence": 0.07875940837006565,
+        "H2_max_persistence": 0.7661666504217213,
+        "H1_significant": true,
+        "H2_significant": true,
+        "sphere_topology_S2": true,
+        "circle_topology_S1": true,
+        "trivial": false
+      },
+      "S2_detected": true,
+      "H2_max_persistence": 0.7661666504217213,
+      "S2_vs_K3_bloch_ratio": 0.8105089155991673
+    },
+    "scale_comparison": {
+      "description": "Feature scale comparison K2_raw vs K2_norm on 15x15 grid",
+      "K2_raw": {
+        "MI_std": 0.7172153335747632,
+        "re_raw_std": 0.24152294576982397,
+        "im_raw_std": 0.241522945769824,
+        "re_raw_max": 0.5
+      },
+      "K2_norm": {
+        "MI_std": 0.7172153335747632,
+        "re_norm_std": 0.44665606004645686,
+        "im_norm_std": 0.44665606004645686,
+        "re_norm_max": 1.0
+      }
+    }
+  },
+  "classification": "canonical"
+}

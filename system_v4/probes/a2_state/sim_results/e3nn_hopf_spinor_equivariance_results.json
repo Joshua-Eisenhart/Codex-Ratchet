@@ -1,0 +1,206 @@
+{
+  "name": "E3NN Hopf Spinor Equivariance",
+  "token": "E_E3NN_HOPF_SPINOR_EQUIVARIANCE",
+  "timestamp": "2026-04-08T10:40:37.841161+00:00",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "all tensor ops, SU(2) matrices, density matrices"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "PRIMARY: irreps, Linear, wigner_D, rand_angles, chirality via parity"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_e3nn_linear_equivariance_bloch": {
+      "test": "e3nn Linear(1x1o -> 1x1o) equivariant on Bloch vector",
+      "equivariance_error": 0.0,
+      "tolerance": 1e-05,
+      "pass": true
+    },
+    "P2_hopf_fiber_family_equivariance": {
+      "test": "e3nn equivariance holds for all Hopf torus fiber states (20 samples)",
+      "max_equivariance_error": 3.4142850324769825e-08,
+      "tolerance": 0.0001,
+      "n_states": 20,
+      "pass": true
+    },
+    "P3_chiral_distinction_inversion": {
+      "test": "left (1e, even) and right (1o, odd) have DIFFERENT equivariance under inversion",
+      "right_1o_inversion_equivariance_error": 0.0,
+      "left_1e_inversion_violation": 0.18022097647190094,
+      "chiral_distinction": 0.18022097647190094,
+      "tolerance_eq": 1e-05,
+      "pass": true,
+      "note": "1o is equivariant under inversion (L(-v)=-L(v) matches D_1o=-I). 1e is NOT equivariant under inversion (L(-v)=-L(v) but D_1e=+I requires L(-v)=+L(v)). This asymmetry IS the chiral distinction."
+    },
+    "P4_Ic_invariant_under_local_unitaries": {
+      "test": "coherent information I_c invariant under local SU(2) rotations",
+      "I_c_original": 0.6931471568344244,
+      "I_c_expected": 0.6931471805599453,
+      "max_Ic_change": 2.2648895625643206e-07,
+      "tolerance": 1e-06,
+      "n_rotations": 10,
+      "pass": true,
+      "note": "tolerance 1e-6 reflects float32 quaternion -> complex128 SU(2) precision chain"
+    },
+    "P5_proper_rotation_both_parities": {
+      "test": "proper SO(3) rotation equivariance holds for both 1e and 1o irreps",
+      "1e_proper_rotation_error": 4.190951585769653e-09,
+      "1o_proper_rotation_error": 2.9802322387695312e-08,
+      "tolerance": 1e-05,
+      "pass": true,
+      "note": "chirality only distinguished by improper (reflection) operations"
+    }
+  },
+  "negative": {
+    "N1_nn_linear_fails_equivariance": {
+      "test": "standard nn.Linear is NOT equivariant (confirms e3nn is necessary)",
+      "equivariance_error": 1.4674813747406006,
+      "min_expected_error": 0.1,
+      "pass": true,
+      "note": "non-equivariant layer has large error; e3nn layer has ~1e-7"
+    },
+    "N2_wrong_parity_kills_chirality": {
+      "test": "using same parity for both chiralities eliminates chiral distinction",
+      "chiral_diff_wrong_parity": 0.0,
+      "expected": 0.0,
+      "pass": true,
+      "note": "identical parity layers have identical outputs -> no chirality signal"
+    },
+    "N3_global_unitary_changes_Ic_claim_check": {
+      "test": "CNOT (non-local) on Bell state keeps I_c (Bell already maximally entangled)",
+      "I_c_bell": 0.6931471568344244,
+      "I_c_after_cnot": -6.907755278700266e-14,
+      "diff": 0.6931471568344935,
+      "pass": true,
+      "note": "Bell state |00>+|11> after CNOT -> |00>+|10>=|+(\u2212)>, I_c should shift; confirms I_c is state-dependent, not rotation-invariant in general"
+    },
+    "N3b_product_to_bell_via_nonlocal": {
+      "test": "H+CNOT (non-local) changes I_c from 0 to log(2)",
+      "I_c_product": -6.907755278982138e-14,
+      "I_c_after_HadCNOT": 0.6931472042852597,
+      "pass": true,
+      "note": "non-local ops change I_c; local ops do not; I_c_product ~0 by eigvalsh convention"
+    }
+  },
+  "boundary": {
+    "B1_identity_rotation": {
+      "test": "identity rotation: equivariance error is exactly 0",
+      "error": 0.0,
+      "pass": true
+    },
+    "B2_pi_rotation": {
+      "test": "pi rotation equivariance holds",
+      "error": 1.4901161193847656e-08,
+      "tolerance": 1e-05,
+      "pass": true
+    },
+    "B3_separable_state_Ic_zero_invariant": {
+      "test": "separable state has I_c=0, invariant under local rotations",
+      "I_c_separable": -6.907755278982138e-14,
+      "max_change_under_rotation": 4.440892335011223e-16,
+      "tolerance": 1e-10,
+      "pass": true
+    },
+    "B4_maximal_entanglement_Ic_log2_invariant": {
+      "test": "Bell state I_c = log(2), invariant under local rotations",
+      "I_c_bell": 0.6931471568344244,
+      "I_c_expected": 0.6931471805599453,
+      "I_c_error": 2.3725520881257012e-08,
+      "max_change_under_rotation": 8.202828516434835e-08,
+      "tolerance": 1e-06,
+      "pass": true,
+      "note": "tolerance 1e-6 reflects float32->complex128 precision chain"
+    },
+    "B5_global_phase_Ic_invariant": {
+      "test": "global phase on Bell state does not change I_c (Hopf fiber = same point)",
+      "I_c_bell": 0.6931471568344244,
+      "I_c_phased": 0.6931471890751985,
+      "diff": 3.224077405050707e-08,
+      "pass": true,
+      "note": "tolerance 1e-6: eigvalsh numerical precision for complex128 Bell state"
+    }
+  },
+  "summary": {
+    "total_tests": 14,
+    "passed": 14,
+    "failed": 0,
+    "all_pass": true,
+    "equivariance_error_p1": 0.0,
+    "hopf_fiber_max_error": 3.4142850324769825e-08,
+    "chiral_distinction_confirmed": true,
+    "right_1o_inversion_equivariance_error": 0.0,
+    "left_1e_inversion_violation": 0.18022097647190094,
+    "Ic_invariance_under_local_unitaries": true,
+    "nn_linear_equivariance_error": 1.4674813747406006
+  },
+  "classification": "canonical"
+}

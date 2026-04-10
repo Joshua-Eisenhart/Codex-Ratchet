@@ -1,0 +1,1404 @@
+{
+  "name": "gudhi_bridge_persistence",
+  "description": "GUDHI Rips + Alpha persistent homology on the bridge state family embedded in R^3 via (MI, conditional_entropy, coherent_information) kernel triples. 20 states, theta in [0, pi].",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "State construction: density matrices, partial traces, entropy/MI/I_c kernels"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph message passing layer"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no SMT/SAT constraints required"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no synthesis constraints"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no symbolic derivation"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra layer"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- topology via gudhi, not Riemannian statistics"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant neural network layer"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency graph"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph layer"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- topology via gudhi directly"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Rips and Alpha complex persistence diagrams \u2014 primary topological analysis"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "point_cloud_shape": [
+      20,
+      3
+    ],
+    "point_cloud_sample": [
+      {
+        "theta": 0.0,
+        "MI": 0.0,
+        "cond_S": 0.0,
+        "I_c": 0.0
+      },
+      {
+        "theta": 0.826735,
+        "MI": 1.275103,
+        "cond_S": -0.637551,
+        "I_c": 0.637551
+      },
+      {
+        "theta": 1.65347,
+        "MI": 1.990151,
+        "cond_S": -0.995075,
+        "I_c": 0.995075
+      },
+      {
+        "theta": 2.480205,
+        "MI": 0.97195,
+        "cond_S": -0.485975,
+        "I_c": 0.485975
+      }
+    ],
+    "ic_min": 0.0,
+    "ic_max": 0.995075,
+    "ic_at_theta0": 0.0,
+    "ic_at_thetaPi": 0.0,
+    "ic_at_thetaPi_2": 0.995075,
+    "rips_persistence": {
+      "threshold_0.3": {
+        "H0": {
+          "finite_pairs": 13,
+          "infinite_pairs": 5,
+          "total_pairs": 18,
+          "births": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "deaths": [
+            0.29568,
+            0.265393,
+            0.185744,
+            0.14422,
+            0.095514,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "lifetimes": [
+            0.29568,
+            0.265393,
+            0.185744,
+            0.14422,
+            0.095514,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_lifetime": 0.29568,
+          "mean_lifetime": 0.075889
+        },
+        "H1": {
+          "finite_pairs": 0,
+          "infinite_pairs": 0,
+          "total_pairs": 0,
+          "births": [],
+          "deaths": [],
+          "lifetimes": [],
+          "max_lifetime": 0.0,
+          "mean_lifetime": 0.0
+        },
+        "H2": {
+          "finite_pairs": 0,
+          "infinite_pairs": 0,
+          "total_pairs": 0,
+          "births": [],
+          "deaths": [],
+          "lifetimes": [],
+          "max_lifetime": 0.0,
+          "mean_lifetime": 0.0
+        }
+      },
+      "threshold_0.5": {
+        "H0": {
+          "finite_pairs": 17,
+          "infinite_pairs": 1,
+          "total_pairs": 18,
+          "births": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "deaths": [
+            0.385761,
+            0.371285,
+            0.364729,
+            0.3291,
+            0.29568,
+            0.265393,
+            0.185744,
+            0.14422,
+            0.095514,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "lifetimes": [
+            0.385761,
+            0.371285,
+            0.364729,
+            0.3291,
+            0.29568,
+            0.265393,
+            0.185744,
+            0.14422,
+            0.095514,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_lifetime": 0.385761,
+          "mean_lifetime": 0.143378
+        },
+        "H1": {
+          "finite_pairs": 0,
+          "infinite_pairs": 0,
+          "total_pairs": 0,
+          "births": [],
+          "deaths": [],
+          "lifetimes": [],
+          "max_lifetime": 0.0,
+          "mean_lifetime": 0.0
+        },
+        "H2": {
+          "finite_pairs": 0,
+          "infinite_pairs": 0,
+          "total_pairs": 0,
+          "births": [],
+          "deaths": [],
+          "lifetimes": [],
+          "max_lifetime": 0.0,
+          "mean_lifetime": 0.0
+        }
+      },
+      "threshold_1.0": {
+        "H0": {
+          "finite_pairs": 17,
+          "infinite_pairs": 1,
+          "total_pairs": 18,
+          "births": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "deaths": [
+            0.385761,
+            0.371285,
+            0.364729,
+            0.3291,
+            0.29568,
+            0.265393,
+            0.185744,
+            0.14422,
+            0.095514,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "lifetimes": [
+            0.385761,
+            0.371285,
+            0.364729,
+            0.3291,
+            0.29568,
+            0.265393,
+            0.185744,
+            0.14422,
+            0.095514,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_lifetime": 0.385761,
+          "mean_lifetime": 0.143378
+        },
+        "H1": {
+          "finite_pairs": 0,
+          "infinite_pairs": 0,
+          "total_pairs": 0,
+          "births": [],
+          "deaths": [],
+          "lifetimes": [],
+          "max_lifetime": 0.0,
+          "mean_lifetime": 0.0
+        },
+        "H2": {
+          "finite_pairs": 0,
+          "infinite_pairs": 0,
+          "total_pairs": 0,
+          "births": [],
+          "deaths": [],
+          "lifetimes": [],
+          "max_lifetime": 0.0,
+          "mean_lifetime": 0.0
+        }
+      },
+      "threshold_2.0": {
+        "H0": {
+          "finite_pairs": 17,
+          "infinite_pairs": 1,
+          "total_pairs": 18,
+          "births": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "deaths": [
+            0.385761,
+            0.371285,
+            0.364729,
+            0.3291,
+            0.29568,
+            0.265393,
+            0.185744,
+            0.14422,
+            0.095514,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "lifetimes": [
+            0.385761,
+            0.371285,
+            0.364729,
+            0.3291,
+            0.29568,
+            0.265393,
+            0.185744,
+            0.14422,
+            0.095514,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "max_lifetime": 0.385761,
+          "mean_lifetime": 0.143378
+        },
+        "H1": {
+          "finite_pairs": 0,
+          "infinite_pairs": 0,
+          "total_pairs": 0,
+          "births": [],
+          "deaths": [],
+          "lifetimes": [],
+          "max_lifetime": 0.0,
+          "mean_lifetime": 0.0
+        },
+        "H2": {
+          "finite_pairs": 0,
+          "infinite_pairs": 0,
+          "total_pairs": 0,
+          "births": [],
+          "deaths": [],
+          "lifetimes": [],
+          "max_lifetime": 0.0,
+          "mean_lifetime": 0.0
+        }
+      }
+    },
+    "alpha_persistence": {
+      "H0": {
+        "finite_pairs": 17,
+        "infinite_pairs": 1,
+        "total_pairs": 18,
+        "births": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "deaths": [
+          0.037203,
+          0.034463,
+          0.033257,
+          0.027077,
+          0.021857,
+          0.017608,
+          0.008625,
+          0.0052,
+          0.002281,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "lifetimes": [
+          0.037203,
+          0.034463,
+          0.033257,
+          0.027077,
+          0.021857,
+          0.017608,
+          0.008625,
+          0.0052,
+          0.002281,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "max_lifetime": 0.037203,
+        "mean_lifetime": 0.011034
+      },
+      "H1": {
+        "finite_pairs": 0,
+        "infinite_pairs": 0,
+        "total_pairs": 0,
+        "births": [],
+        "deaths": [],
+        "lifetimes": [],
+        "max_lifetime": 0.0,
+        "mean_lifetime": 0.0
+      },
+      "H2": {
+        "finite_pairs": 0,
+        "infinite_pairs": 0,
+        "total_pairs": 0,
+        "births": [],
+        "deaths": [],
+        "lifetimes": [],
+        "max_lifetime": 0.0,
+        "mean_lifetime": 0.0
+      }
+    },
+    "ic_filtration": {
+      "filtration_steps": [
+        {
+          "k": 2,
+          "max_ic": 0.0,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 3,
+          "max_ic": 0.058878,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 4,
+          "max_ic": 0.058878,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 5,
+          "max_ic": 0.179589,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 6,
+          "max_ic": 0.179589,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 7,
+          "max_ic": 0.328489,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 8,
+          "max_ic": 0.328489,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 9,
+          "max_ic": 0.485975,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 10,
+          "max_ic": 0.485975,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 11,
+          "max_ic": 0.637551,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 12,
+          "max_ic": 0.637551,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 13,
+          "max_ic": 0.771906,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 14,
+          "max_ic": 0.771906,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 15,
+          "max_ic": 0.880252,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 16,
+          "max_ic": 0.880252,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 17,
+          "max_ic": 0.956082,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 18,
+          "max_ic": 0.956082,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 19,
+          "max_ic": 0.995075,
+          "H0_components": 1,
+          "H1_loops": 0
+        },
+        {
+          "k": 20,
+          "max_ic": 0.995075,
+          "H0_components": 1,
+          "H1_loops": 0
+        }
+      ],
+      "ic_zero_crossing_step": {
+        "k": 2,
+        "max_ic": 0.0,
+        "H0_components": 1,
+        "H1_loops": 0
+      },
+      "total_states": 20
+    },
+    "h1_loop_detected": false,
+    "h1_summary_at_1.0": {
+      "finite_pairs": 0,
+      "infinite_pairs": 0,
+      "total_pairs": 0,
+      "births": [],
+      "deaths": [],
+      "lifetimes": [],
+      "max_lifetime": 0.0,
+      "mean_lifetime": 0.0
+    },
+    "entangled_count": 18,
+    "separable_count": 2,
+    "entangled_subset_rips": {
+      "H0": {
+        "finite_pairs": 16,
+        "infinite_pairs": 1,
+        "total_pairs": 17,
+        "births": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "deaths": [
+          0.385761,
+          0.371285,
+          0.364729,
+          0.3291,
+          0.29568,
+          0.265393,
+          0.185744,
+          0.095514,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "lifetimes": [
+          0.385761,
+          0.371285,
+          0.364729,
+          0.3291,
+          0.29568,
+          0.265393,
+          0.185744,
+          0.095514,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "max_lifetime": 0.385761,
+        "mean_lifetime": 0.143325
+      },
+      "H1": {
+        "finite_pairs": 0,
+        "infinite_pairs": 0,
+        "total_pairs": 0,
+        "births": [],
+        "deaths": [],
+        "lifetimes": [],
+        "max_lifetime": 0.0,
+        "mean_lifetime": 0.0
+      }
+    },
+    "separable_subset_rips": {
+      "H0": {
+        "finite_pairs": 0,
+        "infinite_pairs": 1,
+        "total_pairs": 1,
+        "births": [],
+        "deaths": [],
+        "lifetimes": [],
+        "max_lifetime": 0.0,
+        "mean_lifetime": 0.0
+      },
+      "H1": {
+        "finite_pairs": 0,
+        "infinite_pairs": 0,
+        "total_pairs": 0,
+        "births": [],
+        "deaths": [],
+        "lifetimes": [],
+        "max_lifetime": 0.0,
+        "mean_lifetime": 0.0
+      }
+    },
+    "separable_has_two_components": false
+  },
+  "negative": {
+    "random_rips_at_1.0": {
+      "H0": {
+        "finite_pairs": 17,
+        "infinite_pairs": 3,
+        "total_pairs": 20,
+        "births": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "deaths": [
+          0.908631,
+          0.784022,
+          0.783788,
+          0.711961,
+          0.577568,
+          0.537701,
+          0.528042,
+          0.522179,
+          0.495596,
+          0.447883,
+          0.424072,
+          0.417282,
+          0.411299,
+          0.284461,
+          0.256895,
+          0.214666,
+          0.151852
+        ],
+        "lifetimes": [
+          0.908631,
+          0.784022,
+          0.783788,
+          0.711961,
+          0.577568,
+          0.537701,
+          0.528042,
+          0.522179,
+          0.495596,
+          0.447883,
+          0.424072,
+          0.417282,
+          0.411299,
+          0.284461,
+          0.256895,
+          0.214666,
+          0.151852
+        ],
+        "max_lifetime": 0.908631,
+        "mean_lifetime": 0.497523
+      },
+      "H1": {
+        "finite_pairs": 0,
+        "infinite_pairs": 1,
+        "total_pairs": 1,
+        "births": [],
+        "deaths": [],
+        "lifetimes": [],
+        "max_lifetime": 0.0,
+        "mean_lifetime": 0.0
+      },
+      "H2": {
+        "finite_pairs": 0,
+        "infinite_pairs": 0,
+        "total_pairs": 0,
+        "births": [],
+        "deaths": [],
+        "lifetimes": [],
+        "max_lifetime": 0.0,
+        "mean_lifetime": 0.0
+      }
+    },
+    "random_alpha": {
+      "H0": {
+        "finite_pairs": 19,
+        "infinite_pairs": 1,
+        "total_pairs": 20,
+        "births": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "deaths": [
+          0.303671,
+          0.271583,
+          0.206403,
+          0.153673,
+          0.153581,
+          0.126722,
+          0.083396,
+          0.072281,
+          0.069707,
+          0.068168,
+          0.061404,
+          0.05015,
+          0.044959,
+          0.043531,
+          0.042292,
+          0.020229,
+          0.016499,
+          0.01152,
+          0.005765
+        ],
+        "lifetimes": [
+          0.303671,
+          0.271583,
+          0.206403,
+          0.153673,
+          0.153581,
+          0.126722,
+          0.083396,
+          0.072281,
+          0.069707,
+          0.068168,
+          0.061404,
+          0.05015,
+          0.044959,
+          0.043531,
+          0.042292,
+          0.020229,
+          0.016499,
+          0.01152,
+          0.005765
+        ],
+        "max_lifetime": 0.303671,
+        "mean_lifetime": 0.095028
+      },
+      "H1": {
+        "finite_pairs": 25,
+        "infinite_pairs": 0,
+        "total_pairs": 25,
+        "births": [
+          0.307839,
+          0.318787,
+          0.186443,
+          0.401886,
+          0.256573,
+          0.193666,
+          0.43803,
+          0.263992,
+          0.357006,
+          0.370201,
+          0.20513,
+          0.084136,
+          0.455454,
+          0.059298,
+          0.387731,
+          0.280824,
+          0.588033,
+          0.112592,
+          0.022129,
+          0.504378,
+          0.074785,
+          0.559743,
+          0.114514,
+          0.139906,
+          0.598983
+        ],
+        "deaths": [
+          0.534145,
+          0.501734,
+          0.298173,
+          0.459636,
+          0.291273,
+          0.223175,
+          0.467395,
+          0.292542,
+          0.383562,
+          0.396117,
+          0.228275,
+          0.105772,
+          0.461733,
+          0.065562,
+          0.393428,
+          0.285374,
+          0.589805,
+          0.113989,
+          0.023187,
+          0.50499,
+          0.074965,
+          0.559908,
+          0.11458,
+          0.13997,
+          0.599025
+        ],
+        "lifetimes": [
+          0.226307,
+          0.182946,
+          0.11173,
+          0.05775,
+          0.0347,
+          0.029509,
+          0.029365,
+          0.02855,
+          0.026555,
+          0.025916,
+          0.023145,
+          0.021636,
+          0.006278,
+          0.006264,
+          0.005696,
+          0.00455,
+          0.001771,
+          0.001398,
+          0.001058,
+          0.000612,
+          0.00018,
+          0.000165,
+          6.5e-05,
+          6.4e-05,
+          4.2e-05
+        ],
+        "max_lifetime": 0.226307,
+        "mean_lifetime": 0.03305
+      },
+      "H2": {
+        "finite_pairs": 8,
+        "infinite_pairs": 0,
+        "total_pairs": 8,
+        "births": [
+          0.591335,
+          0.62346,
+          0.308157,
+          0.639724,
+          0.115169,
+          0.506639,
+          0.604601,
+          0.505077
+        ],
+        "deaths": [
+          0.67327,
+          0.63912,
+          0.319227,
+          0.641095,
+          0.115395,
+          0.506737,
+          0.604686,
+          0.505102
+        ],
+        "lifetimes": [
+          0.081935,
+          0.01566,
+          0.01107,
+          0.00137,
+          0.000226,
+          9.8e-05,
+          8.5e-05,
+          2.6e-05
+        ],
+        "max_lifetime": 0.081935,
+        "mean_lifetime": 0.013809
+      }
+    },
+    "bridge_h1_max_lifetime": 0.0,
+    "random_h1_max_lifetime": 0.0,
+    "bridge_has_more_persistent_h1_than_random": true,
+    "noisy_bridge_rips": {
+      "H0": {
+        "finite_pairs": 19,
+        "infinite_pairs": 1,
+        "total_pairs": 20,
+        "births": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "deaths": [
+          0.35681,
+          0.323404,
+          0.262863,
+          0.255412,
+          0.249984,
+          0.21985,
+          0.173651,
+          0.166445,
+          0.157464,
+          0.157046,
+          0.119014,
+          0.109416,
+          0.106357,
+          0.102419,
+          0.097926,
+          0.051173,
+          0.045929,
+          0.041303,
+          0.012967
+        ],
+        "lifetimes": [
+          0.35681,
+          0.323404,
+          0.262863,
+          0.255412,
+          0.249984,
+          0.21985,
+          0.173651,
+          0.166445,
+          0.157464,
+          0.157046,
+          0.119014,
+          0.109416,
+          0.106357,
+          0.102419,
+          0.097926,
+          0.051173,
+          0.045929,
+          0.041303,
+          0.012967
+        ],
+        "max_lifetime": 0.35681,
+        "mean_lifetime": 0.158391
+      },
+      "H1": {
+        "finite_pairs": 0,
+        "infinite_pairs": 0,
+        "total_pairs": 0,
+        "births": [],
+        "deaths": [],
+        "lifetimes": [],
+        "max_lifetime": 0.0,
+        "mean_lifetime": 0.0
+      },
+      "H2": {
+        "finite_pairs": 0,
+        "infinite_pairs": 0,
+        "total_pairs": 0,
+        "births": [],
+        "deaths": [],
+        "lifetimes": [],
+        "max_lifetime": 0.0,
+        "mean_lifetime": 0.0
+      }
+    },
+    "noise_preserves_h0": true,
+    "degenerate_h0": 1,
+    "degenerate_h0_is_1": true
+  },
+  "boundary": {
+    "theta_0": {
+      "MI": 0.0,
+      "cond_S": 0.0,
+      "I_c": 0.0
+    },
+    "theta_pi2": {
+      "MI": 2.0,
+      "cond_S": -1.0,
+      "I_c": 1.0
+    },
+    "theta_pi": {
+      "MI": 0.0,
+      "cond_S": 0.0,
+      "I_c": 0.0
+    },
+    "theta_0_is_product": true,
+    "theta_pi_is_product": true,
+    "theta_pi2_is_max_entangled": true,
+    "threshold_sweep": {
+      "0.1": {
+        "H0_inf": 9,
+        "H1_total": 0,
+        "H2_total": 0
+      },
+      "0.2": {
+        "H0_inf": 7,
+        "H1_total": 0,
+        "H2_total": 0
+      },
+      "0.5": {
+        "H0_inf": 1,
+        "H1_total": 0,
+        "H2_total": 0
+      },
+      "0.75": {
+        "H0_inf": 1,
+        "H1_total": 0,
+        "H2_total": 0
+      },
+      "1.0": {
+        "H0_inf": 1,
+        "H1_total": 0,
+        "H2_total": 0
+      },
+      "1.5": {
+        "H0_inf": 1,
+        "H1_total": 0,
+        "H2_total": 0
+      },
+      "2.0": {
+        "H0_inf": 1,
+        "H1_total": 0,
+        "H2_total": 0
+      }
+    },
+    "alpha_vs_rips_h0_inf_match": true,
+    "alpha_h1_total": 0,
+    "rips_h1_total": 0,
+    "alpha_persistence_summary": {
+      "H0": {
+        "finite_pairs": 17,
+        "infinite_pairs": 1,
+        "total_pairs": 18,
+        "births": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "deaths": [
+          0.037203,
+          0.034463,
+          0.033257,
+          0.027077,
+          0.021857,
+          0.017608,
+          0.008625,
+          0.0052,
+          0.002281,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "lifetimes": [
+          0.037203,
+          0.034463,
+          0.033257,
+          0.027077,
+          0.021857,
+          0.017608,
+          0.008625,
+          0.0052,
+          0.002281,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "max_lifetime": 0.037203,
+        "mean_lifetime": 0.011034
+      },
+      "H1": {
+        "finite_pairs": 0,
+        "infinite_pairs": 0,
+        "total_pairs": 0,
+        "births": [],
+        "deaths": [],
+        "lifetimes": [],
+        "max_lifetime": 0.0,
+        "mean_lifetime": 0.0
+      },
+      "H2": {
+        "finite_pairs": 0,
+        "infinite_pairs": 0,
+        "total_pairs": 0,
+        "births": [],
+        "deaths": [],
+        "lifetimes": [],
+        "max_lifetime": 0.0,
+        "mean_lifetime": 0.0
+      }
+    },
+    "rips_persistence_summary_at_2.0": {
+      "H0": {
+        "finite_pairs": 17,
+        "infinite_pairs": 1,
+        "total_pairs": 18,
+        "births": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "deaths": [
+          0.385761,
+          0.371285,
+          0.364729,
+          0.3291,
+          0.29568,
+          0.265393,
+          0.185744,
+          0.14422,
+          0.095514,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "lifetimes": [
+          0.385761,
+          0.371285,
+          0.364729,
+          0.3291,
+          0.29568,
+          0.265393,
+          0.185744,
+          0.14422,
+          0.095514,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "max_lifetime": 0.385761,
+        "mean_lifetime": 0.143378
+      },
+      "H1": {
+        "finite_pairs": 0,
+        "infinite_pairs": 0,
+        "total_pairs": 0,
+        "births": [],
+        "deaths": [],
+        "lifetimes": [],
+        "max_lifetime": 0.0,
+        "mean_lifetime": 0.0
+      },
+      "H2": {
+        "finite_pairs": 0,
+        "infinite_pairs": 0,
+        "total_pairs": 0,
+        "births": [],
+        "deaths": [],
+        "lifetimes": [],
+        "max_lifetime": 0.0,
+        "mean_lifetime": 0.0
+      }
+    },
+    "n10_rips_h1": 0,
+    "n10_rips_h0_inf": 1,
+    "n20_rips_h1": 0,
+    "n20_rips_h0_inf": 1,
+    "n40_rips_h1": 0,
+    "n40_rips_h0_inf": 1
+  },
+  "findings": {
+    "h1_loop_detected": false,
+    "separable_has_two_components": false,
+    "ic_max_near_1": true,
+    "bridge_more_persistent_than_random": true,
+    "boundary_product_states_correct": true,
+    "bell_state_max_entangled": true
+  },
+  "elapsed_seconds": 0.058,
+  "classification": "canonical",
+  "gudhi_available": true,
+  "pytorch_available": true
+}

@@ -1,0 +1,870 @@
+{
+  "name": "gudhi_bipartite_entangled",
+  "description": "Three kernel embeddings of 100 Bell-family states |psi(theta,phi)> = cos(theta/2)|00> + e^{i*phi}sin(theta/2)|11>. K1=(MI,cond_S,I_c): phi-blind -- negative control. K2=(MI,cond_S,I_c,Re[rho_AB[0,3]],Im[rho_AB[0,3]]): joint off-diagonal -- phi-sensitive. K3=K2+Berry(A_phi=-sin^2(theta/2)). Fix over previous sim: uses rho_AB joint off-diagonal, NOT rho_A off-diagonal (rho_A for Bell family is always diagonal, so previous K2 was still phi-blind).",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Bell state construction, bipartite density matrix, partial traces, von Neumann entropy via numpy eigvalsh"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "optional import unavailable: cannot cache function 'canonical_reordering_sign': no locator available for file '/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/clifford/_layout.py'"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "RipsComplex + compute_persistence for K1/K2/K3 -- primary topological analysis tool"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "n_states": 100,
+    "grid": {
+      "N_theta": 10,
+      "N_phi": 10
+    },
+    "point_cloud_shapes": {
+      "K1": [
+        100,
+        3
+      ],
+      "K2": [
+        100,
+        5
+      ],
+      "K3": [
+        100,
+        6
+      ]
+    },
+    "feature_sample": [
+      {
+        "theta": 0.0,
+        "phi": 0.0,
+        "MI": -4.982892142331042e-14,
+        "cond_S": 9.965784284662086e-14,
+        "I_c": -9.965784284662086e-14,
+        "re_rhoAB_03": 0.0,
+        "im_rhoAB_03": 0.0,
+        "A_phi_berry": -0.0,
+        "S_AB": 1.494867642699313e-13,
+        "S_A": 4.9828921423310435e-14,
+        "S_B": 4.9828921423310435e-14,
+        "H2_analytic": 0.0,
+        "MI_analytic": 0.0,
+        "re_rhoAB_03_analytic": 0.0,
+        "im_rhoAB_03_analytic": -0.0
+      },
+      {
+        "theta": 0.0,
+        "phi": 0.6283185307179586,
+        "MI": -4.982892142331042e-14,
+        "cond_S": 9.965784284662086e-14,
+        "I_c": -9.965784284662086e-14,
+        "re_rhoAB_03": 0.0,
+        "im_rhoAB_03": 0.0,
+        "A_phi_berry": -0.0,
+        "S_AB": 1.494867642699313e-13,
+        "S_A": 4.9828921423310435e-14,
+        "S_B": 4.9828921423310435e-14,
+        "H2_analytic": 0.0,
+        "MI_analytic": 0.0,
+        "re_rhoAB_03_analytic": 0.0,
+        "im_rhoAB_03_analytic": -0.0
+      },
+      {
+        "theta": 0.0,
+        "phi": 1.2566370614359172,
+        "MI": -4.982892142331042e-14,
+        "cond_S": 9.965784284662086e-14,
+        "I_c": -9.965784284662086e-14,
+        "re_rhoAB_03": 0.0,
+        "im_rhoAB_03": 0.0,
+        "A_phi_berry": -0.0,
+        "S_AB": 1.494867642699313e-13,
+        "S_A": 4.9828921423310435e-14,
+        "S_B": 4.9828921423310435e-14,
+        "H2_analytic": 0.0,
+        "MI_analytic": 0.0,
+        "re_rhoAB_03_analytic": 0.0,
+        "im_rhoAB_03_analytic": -0.0
+      },
+      {
+        "theta": 0.0,
+        "phi": 1.8849555921538759,
+        "MI": -4.982892142331042e-14,
+        "cond_S": 9.965784284662086e-14,
+        "I_c": -9.965784284662086e-14,
+        "re_rhoAB_03": 0.0,
+        "im_rhoAB_03": -0.0,
+        "A_phi_berry": -0.0,
+        "S_AB": 1.494867642699313e-13,
+        "S_A": 4.9828921423310435e-14,
+        "S_B": 4.9828921423310435e-14,
+        "H2_analytic": 0.0,
+        "MI_analytic": 0.0,
+        "re_rhoAB_03_analytic": -0.0,
+        "im_rhoAB_03_analytic": -0.0
+      },
+      {
+        "theta": 0.0,
+        "phi": 2.5132741228718345,
+        "MI": -4.982892142331042e-14,
+        "cond_S": 9.965784284662086e-14,
+        "I_c": -9.965784284662086e-14,
+        "re_rhoAB_03": 0.0,
+        "im_rhoAB_03": -0.0,
+        "A_phi_berry": -0.0,
+        "S_AB": 1.494867642699313e-13,
+        "S_A": 4.9828921423310435e-14,
+        "S_B": 4.9828921423310435e-14,
+        "H2_analytic": 0.0,
+        "MI_analytic": 0.0,
+        "re_rhoAB_03_analytic": -0.0,
+        "im_rhoAB_03_analytic": -0.0
+      },
+      {
+        "theta": 0.0,
+        "phi": 3.141592653589793,
+        "MI": -4.982892142331042e-14,
+        "cond_S": 9.965784284662086e-14,
+        "I_c": -9.965784284662086e-14,
+        "re_rhoAB_03": 0.0,
+        "im_rhoAB_03": -0.0,
+        "A_phi_berry": -0.0,
+        "S_AB": 1.494867642699313e-13,
+        "S_A": 4.9828921423310435e-14,
+        "S_B": 4.9828921423310435e-14,
+        "H2_analytic": 0.0,
+        "MI_analytic": 0.0,
+        "re_rhoAB_03_analytic": -0.0,
+        "im_rhoAB_03_analytic": -0.0
+      }
+    ],
+    "analytic_validation": [
+      {
+        "theta": 0.0,
+        "phi": 0.0,
+        "re_error": 0.0,
+        "im_error": 0.0,
+        "MI_error": 4.982892142331042e-14,
+        "S_AB_near_zero": true
+      },
+      {
+        "theta": 0.0,
+        "phi": 0.6283185307179586,
+        "re_error": 0.0,
+        "im_error": 0.0,
+        "MI_error": 4.982892142331042e-14,
+        "S_AB_near_zero": true
+      },
+      {
+        "theta": 0.0,
+        "phi": 1.2566370614359172,
+        "re_error": 0.0,
+        "im_error": 0.0,
+        "MI_error": 4.982892142331042e-14,
+        "S_AB_near_zero": true
+      },
+      {
+        "theta": 0.0,
+        "phi": 1.8849555921538759,
+        "re_error": 0.0,
+        "im_error": 0.0,
+        "MI_error": 4.982892142331042e-14,
+        "S_AB_near_zero": true
+      },
+      {
+        "theta": 0.0,
+        "phi": 2.5132741228718345,
+        "re_error": 0.0,
+        "im_error": 0.0,
+        "MI_error": 4.982892142331042e-14,
+        "S_AB_near_zero": true
+      },
+      {
+        "theta": 0.0,
+        "phi": 3.141592653589793,
+        "re_error": 0.0,
+        "im_error": 0.0,
+        "MI_error": 4.982892142331042e-14,
+        "S_AB_near_zero": true
+      },
+      {
+        "theta": 0.0,
+        "phi": 3.7699111843077517,
+        "re_error": 0.0,
+        "im_error": 0.0,
+        "MI_error": 4.982892142331042e-14,
+        "S_AB_near_zero": true
+      },
+      {
+        "theta": 0.0,
+        "phi": 4.39822971502571,
+        "re_error": 0.0,
+        "im_error": 0.0,
+        "MI_error": 4.982892142331042e-14,
+        "S_AB_near_zero": true
+      },
+      {
+        "theta": 0.0,
+        "phi": 5.026548245743669,
+        "re_error": 0.0,
+        "im_error": 0.0,
+        "MI_error": 4.982892142331042e-14,
+        "S_AB_near_zero": true
+      },
+      {
+        "theta": 0.0,
+        "phi": 5.654866776461628,
+        "re_error": 0.0,
+        "im_error": 0.0,
+        "MI_error": 4.982892142331042e-14,
+        "S_AB_near_zero": true
+      }
+    ],
+    "analytic_all_pass": true,
+    "K1_phi_blind": {
+      "rips_max_edge_length": 1.4341420913618719,
+      "rips": {
+        "H0": {
+          "finite_bars": 30,
+          "infinite_bars": 1,
+          "total": 31,
+          "max_persistence": 0.7971832838738255,
+          "sample_finite_bars": [
+            [
+              0.0,
+              0.7971832838738255
+            ],
+            [
+              0.0,
+              0.7119867967457809
+            ],
+            [
+              0.0,
+              0.47804736378728896
+            ],
+            [
+              0.0,
+              0.408721693181155
+            ],
+            [
+              0.0,
+              5.548497462920394e-16
+            ],
+            [
+              0.0,
+              4.530329207760486e-16
+            ],
+            [
+              0.0,
+              3.923380181427159e-16
+            ],
+            [
+              0.0,
+              3.8459253727671276e-16
+            ],
+            [
+              0.0,
+              3.8459253727671276e-16
+            ],
+            [
+              0.0,
+              3.2034265038147924e-16
+            ]
+          ]
+        },
+        "H1": {
+          "finite_bars": 0,
+          "infinite_bars": 0,
+          "total": 0,
+          "max_persistence": 0.0,
+          "sample_finite_bars": []
+        },
+        "H2": {
+          "finite_bars": 0,
+          "infinite_bars": 0,
+          "total": 0,
+          "max_persistence": 0.0,
+          "sample_finite_bars": []
+        }
+      },
+      "topology": {
+        "H0_total": 31,
+        "H1_total": 0,
+        "H2_total": 0,
+        "H1_infinite": 0,
+        "H2_infinite": 0,
+        "H1_max_persistence": 0.0,
+        "H2_max_persistence": 0.0,
+        "H1_significant": false,
+        "H2_significant": false,
+        "sphere_topology_S2": false,
+        "circle_topology_S1": false,
+        "trivial": true
+      }
+    },
+    "K2_phase_aware": {
+      "rips_max_edge_length": 1.5600783000301828,
+      "rips": {
+        "H0": {
+          "finite_bars": 90,
+          "infinite_bars": 1,
+          "total": 91,
+          "max_persistence": 0.8112437705727795,
+          "sample_finite_bars": [
+            [
+              0.0,
+              0.8112437705727795
+            ],
+            [
+              0.0,
+              0.720682993360286
+            ],
+            [
+              0.0,
+              0.5077142174827335
+            ],
+            [
+              0.0,
+              0.41301420568654446
+            ],
+            [
+              0.0,
+              0.3043223318729781
+            ],
+            [
+              0.0,
+              0.3043223318729781
+            ],
+            [
+              0.0,
+              0.3043223318729781
+            ],
+            [
+              0.0,
+              0.3043223318729781
+            ],
+            [
+              0.0,
+              0.304322331872978
+            ],
+            [
+              0.0,
+              0.304322331872978
+            ]
+          ]
+        },
+        "H1": {
+          "finite_bars": 31,
+          "infinite_bars": 0,
+          "total": 31,
+          "max_persistence": 0.48904800162535866,
+          "sample_finite_bars": [
+            [
+              0.26761656732981753,
+              0.7566645689551762
+            ],
+            [
+              0.19863229516679132,
+              0.6113273447861689
+            ],
+            [
+              0.1056900367061869,
+              0.32528048601407955
+            ],
+            [
+              0.3043223318729782,
+              0.5020183581469304
+            ],
+            [
+              0.41301420568654446,
+              0.5020183581469301
+            ],
+            [
+              0.413014205686545,
+              0.5020183581469304
+            ],
+            [
+              0.41301420568654446,
+              0.5020183581469299
+            ],
+            [
+              0.41301420568654457,
+              0.5020183581469297
+            ],
+            [
+              0.41301420568654507,
+              0.5020183581469301
+            ],
+            [
+              0.41301420568654523,
+              0.5020183581469301
+            ]
+          ]
+        },
+        "H2": {
+          "finite_bars": 0,
+          "infinite_bars": 0,
+          "total": 0,
+          "max_persistence": 0.0,
+          "sample_finite_bars": []
+        }
+      },
+      "topology": {
+        "H0_total": 91,
+        "H1_total": 31,
+        "H2_total": 0,
+        "H1_infinite": 0,
+        "H2_infinite": 0,
+        "H1_max_persistence": 0.48904800162535866,
+        "H2_max_persistence": 0.0,
+        "H1_significant": true,
+        "H2_significant": false,
+        "sphere_topology_S2": false,
+        "circle_topology_S1": true,
+        "trivial": false
+      }
+    },
+    "K3_berry_extended": {
+      "rips_max_edge_length": 1.5600783000301828,
+      "rips": {
+        "H0": {
+          "finite_bars": 90,
+          "infinite_bars": 1,
+          "total": 91,
+          "max_persistence": 0.8158767539861046,
+          "sample_finite_bars": [
+            [
+              0.0,
+              0.8158767539861046
+            ],
+            [
+              0.0,
+              0.8158767539861043
+            ],
+            [
+              0.0,
+              0.732856662893478
+            ],
+            [
+              0.0,
+              0.7328566628934777
+            ],
+            [
+              0.0,
+              0.5086088591747336
+            ],
+            [
+              0.0,
+              0.5086088591747321
+            ],
+            [
+              0.0,
+              0.4440800739550433
+            ],
+            [
+              0.0,
+              0.44408007395504306
+            ],
+            [
+              0.0,
+              0.3043223318729781
+            ],
+            [
+              0.0,
+              0.3043223318729781
+            ]
+          ]
+        },
+        "H1": {
+          "finite_bars": 103,
+          "infinite_bars": 0,
+          "total": 103,
+          "max_persistence": 0.5006517330319407,
+          "sample_finite_bars": [
+            [
+              0.26761656732981753,
+              0.7682683003617582
+            ],
+            [
+              0.19863229516679132,
+              0.6113273447861691
+            ],
+            [
+              0.19863229516679132,
+              0.6113273447861689
+            ],
+            [
+              0.2676165673298176,
+              0.5278719635494663
+            ],
+            [
+              0.9396926207859083,
+              1.1770731447483866
+            ],
+            [
+              0.3043223318729782,
+              0.5278719635494662
+            ],
+            [
+              0.10569003670618696,
+              0.3252804860140797
+            ],
+            [
+              0.1056900367061869,
+              0.32528048601407955
+            ],
+            [
+              0.7660444431189779,
+              0.9592190103969233
+            ],
+            [
+              1.0,
+              1.0947034266946145
+            ]
+          ]
+        },
+        "H2": {
+          "finite_bars": 0,
+          "infinite_bars": 0,
+          "total": 0,
+          "max_persistence": 0.0,
+          "sample_finite_bars": []
+        }
+      },
+      "topology": {
+        "H0_total": 91,
+        "H1_total": 103,
+        "H2_total": 0,
+        "H1_infinite": 0,
+        "H2_infinite": 0,
+        "H1_max_persistence": 0.5006517330319407,
+        "H2_max_persistence": 0.0,
+        "H1_significant": true,
+        "H2_significant": false,
+        "sphere_topology_S2": false,
+        "circle_topology_S1": true,
+        "trivial": false
+      }
+    },
+    "key_tests": {
+      "K1_trivial_confirmed": true,
+      "K1_H1_detected": false,
+      "K1_H2_detected": false,
+      "K2_H1_detected": true,
+      "K2_H2_detected": false,
+      "K2_nontrivial": true,
+      "K3_H1_detected": true,
+      "K3_H2_detected": false,
+      "K3_nontrivial": true,
+      "phase_sensitivity_restored": true
+    },
+    "interpretation": "K1: TRIVIAL (H1=H2=0) -- phi-blind collapse confirmed for Bell family. | K2: S^1 TOPOLOGY (H1>0, H2=0) -- equatorial circle detected, phi variation present. | K3: S^1 TOPOLOGY (H1>0) -- circle from Berry axis theta variation."
+  },
+  "negative": {
+    "equatorial_K1_phi_blind": {
+      "theta": 1.5707963267948966,
+      "n_phi_tested": 20,
+      "K1_unique_rows": 1,
+      "K1_MI_spread": 2.220446049250313e-16,
+      "K1_phi_blind_confirmed": true
+    },
+    "equatorial_K2_phi_sensitive": {
+      "theta": 1.5707963267948966,
+      "K2_unique_rows": 20,
+      "re_rhoAB_03_range": 1.0,
+      "im_rhoAB_03_range": 1.0,
+      "circle_radius_mean": 0.5,
+      "circle_radius_std": 3.510833468576701e-17,
+      "forms_circle_confirmed": true,
+      "expected_radius": 0.5,
+      "note": "Bell |psi(pi/2,phi)>: rho_AB[0,3] traces circle of radius 0.5 in Re/Im plane"
+    },
+    "feature_details_sample": [
+      {
+        "phi": 0.0,
+        "MI": 1.9999999999998506,
+        "re_rhoAB_03": 0.5,
+        "im_rhoAB_03": 0.0
+      },
+      {
+        "phi": 0.3141592653589793,
+        "MI": 1.9999999999998506,
+        "re_rhoAB_03": 0.47552825814757677,
+        "im_rhoAB_03": -0.1545084971874737
+      },
+      {
+        "phi": 0.6283185307179586,
+        "MI": 1.9999999999998506,
+        "re_rhoAB_03": 0.4045084971874737,
+        "im_rhoAB_03": -0.29389262614623657
+      },
+      {
+        "phi": 0.9424777960769379,
+        "MI": 1.9999999999998506,
+        "re_rhoAB_03": 0.29389262614623657,
+        "im_rhoAB_03": -0.4045084971874737
+      },
+      {
+        "phi": 1.2566370614359172,
+        "MI": 1.9999999999998503,
+        "re_rhoAB_03": 0.15450849718747373,
+        "im_rhoAB_03": -0.47552825814757677
+      },
+      {
+        "phi": 1.5707963267948966,
+        "MI": 1.9999999999998506,
+        "re_rhoAB_03": 3.061616997868383e-17,
+        "im_rhoAB_03": -0.5
+      },
+      {
+        "phi": 1.8849555921538759,
+        "MI": 1.9999999999998503,
+        "re_rhoAB_03": -0.15450849718747367,
+        "im_rhoAB_03": -0.47552825814757677
+      },
+      {
+        "phi": 2.199114857512855,
+        "MI": 1.9999999999998503,
+        "re_rhoAB_03": -0.2938926261462365,
+        "im_rhoAB_03": -0.4045084971874737
+      }
+    ],
+    "rho_A_off_diagonal_check": {
+      "note": "rho_A for Bell family cos(t/2)|00>+e^{i*phi}sin(t/2)|11> is always diagonal (rho_A = cos^2(t/2)|0><0| + sin^2(t/2)|1><1|), so rho_A[0,1]=0 always. Previous sims using rho_A off-diagonal were always phi-blind. This sim uses rho_AB[0,3] (joint system) which is phi-sensitive.",
+      "rho_A_off_diag_at_equator_phi0": {
+        "MI": 1.9999999999998506,
+        "S_A": 1.0,
+        "re_rhoAB_03": 0.5,
+        "im_rhoAB_03": 0.0
+      },
+      "rho_AB_03_phi_sensitive_confirmed": true
+    }
+  },
+  "boundary": {
+    "north_pole_theta0_phi0": {
+      "theta": 0.0,
+      "phi": 0.0,
+      "K1": [
+        -4.982892142331042e-14,
+        9.965784284662086e-14,
+        -9.965784284662086e-14
+      ],
+      "K2": [
+        -4.982892142331042e-14,
+        9.965784284662086e-14,
+        -9.965784284662086e-14,
+        0.0,
+        0.0
+      ],
+      "K3_extra": [
+        0.0,
+        0.0,
+        -0.0
+      ],
+      "S_AB": 1.494867642699313e-13,
+      "S_A": 4.9828921423310435e-14,
+      "entanglement_entropy": 4.9828921423310435e-14
+    },
+    "south_pole_thetaPi_phi0": {
+      "theta": 3.141592653589793,
+      "phi": 0.0,
+      "K1": [
+        -4.982892142331042e-14,
+        9.965784284662086e-14,
+        -9.965784284662086e-14
+      ],
+      "K2": [
+        -4.982892142331042e-14,
+        9.965784284662086e-14,
+        -9.965784284662086e-14,
+        6.123233995736766e-17,
+        0.0
+      ],
+      "K3_extra": [
+        6.123233995736766e-17,
+        0.0,
+        -1.0
+      ],
+      "S_AB": 1.494867642699313e-13,
+      "S_A": 4.9828921423310435e-14,
+      "entanglement_entropy": 4.9828921423310435e-14
+    },
+    "equator_max_entangle_phi0": {
+      "theta": 1.5707963267948966,
+      "phi": 0.0,
+      "K1": [
+        1.9999999999998506,
+        -0.9999999999998506,
+        0.9999999999998506
+      ],
+      "K2": [
+        1.9999999999998506,
+        -0.9999999999998506,
+        0.9999999999998506,
+        0.5,
+        0.0
+      ],
+      "K3_extra": [
+        0.5,
+        0.0,
+        -0.4999999999999999
+      ],
+      "S_AB": 1.494867642699313e-13,
+      "S_A": 1.0,
+      "entanglement_entropy": 1.0
+    },
+    "equator_max_entangle_phiPi": {
+      "theta": 1.5707963267948966,
+      "phi": 3.141592653589793,
+      "K1": [
+        1.9999999999998506,
+        -0.9999999999998506,
+        0.9999999999998506
+      ],
+      "K2": [
+        1.9999999999998506,
+        -0.9999999999998506,
+        0.9999999999998506,
+        -0.5,
+        -6.123233995736766e-17
+      ],
+      "K3_extra": [
+        -0.5,
+        -6.123233995736766e-17,
+        -0.4999999999999999
+      ],
+      "S_AB": 1.494867642699313e-13,
+      "S_A": 1.0,
+      "entanglement_entropy": 1.0
+    },
+    "equator_max_entangle_phiPi2": {
+      "theta": 1.5707963267948966,
+      "phi": 1.5707963267948966,
+      "K1": [
+        1.9999999999998506,
+        -0.9999999999998506,
+        0.9999999999998506
+      ],
+      "K2": [
+        1.9999999999998506,
+        -0.9999999999998506,
+        0.9999999999998506,
+        3.061616997868383e-17,
+        -0.5
+      ],
+      "K3_extra": [
+        3.061616997868383e-17,
+        -0.5,
+        -0.4999999999999999
+      ],
+      "S_AB": 1.494867642699313e-13,
+      "S_A": 1.0,
+      "entanglement_entropy": 1.0
+    },
+    "equator_max_entangle_phi3Pi2": {
+      "theta": 1.5707963267948966,
+      "phi": 4.71238898038469,
+      "K1": [
+        1.9999999999998506,
+        -0.9999999999998506,
+        0.9999999999998506
+      ],
+      "K2": [
+        1.9999999999998506,
+        -0.9999999999998506,
+        0.9999999999998506,
+        -9.184850993605148e-17,
+        0.5
+      ],
+      "K3_extra": [
+        -9.184850993605148e-17,
+        0.5,
+        -0.4999999999999999
+      ],
+      "S_AB": 1.494867642699313e-13,
+      "S_A": 1.0,
+      "entanglement_entropy": 1.0
+    },
+    "equatorial_K1_collapse_confirmed": true,
+    "equatorial_K2_distinct_confirmed": true,
+    "boundary_summary": {
+      "K1_collapses_phi": true,
+      "K2_distinguishes_phi": true,
+      "fix_validated": true,
+      "note": "K1 collapses phi (phi-blind), K2 distinguishes phi via rho_AB[0,3]. This is the core fix over previous sims."
+    },
+    "equatorial_ring_geometry": {
+      "n_points": 20,
+      "re_center": -1.9428902930940238e-17,
+      "im_center": -4.163336342344337e-18,
+      "mean_radius": 0.5,
+      "radius_std": 3.284083995358298e-17,
+      "forms_clean_circle": true,
+      "circle_radius_expected": 0.5
+    }
+  },
+  "classification": "canonical"
+}

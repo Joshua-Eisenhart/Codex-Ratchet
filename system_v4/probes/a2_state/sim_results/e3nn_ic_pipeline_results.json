@@ -1,0 +1,204 @@
+{
+  "name": "e3nn_ic_pipeline",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd + Adam training of e3nn network"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "commutativity proofs [XX, R_x\u2297R_x]=0 and [XX, R_y\u2297R_y]\u22600"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "QF_NRA cross-check of XX commutativity claims"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "FCTP CG decomposition + Linear for equivariant I_c prediction"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": "supportive",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "summary": {
+    "pipeline_test_mse": 0.642240047454834,
+    "equivariance_error_mean": 2.654269337654114e-09,
+    "equivariance_error_max": 7.450580596923828e-09,
+    "z3_unsat_count_ry_noncommuting": 3,
+    "z3_rx_commutes": true,
+    "z3_ry_noncommutes": true,
+    "cvc5_rx_commutes": true,
+    "cvc5_ry_noncommutes": true
+  },
+  "positive": {
+    "e3nn_pipeline": {
+      "status": "pass",
+      "test_mse": 0.642240047454834,
+      "train_loss_trajectory": [
+        0.5489711761474609,
+        0.548811674118042,
+        0.5488079190254211,
+        0.5488079190254211,
+        0.5488079190254211
+      ],
+      "equivariance": {
+        "mean_equivariance_error": 2.654269337654114e-09,
+        "max_equivariance_error": 7.450580596923828e-09,
+        "n_tests": 50
+      },
+      "model_architecture": {
+        "layer1": "FCTP(1o \u2297 1o \u2192 0e + 1e + 2e)",
+        "layer2": "Linear(0e + 1e + 2e \u2192 0e)",
+        "output": "scalar I_c estimate"
+      }
+    }
+  },
+  "negative": {
+    "product_vs_bell_Ic": {
+      "status": "pass",
+      "product_state_Ic": -3.453877639491069e-14,
+      "bell_state_Ic": 1.3862943611197869,
+      "ln2": 0.6931471805599453,
+      "bell_state_error_from_ln2": 0.6931471805598416,
+      "product_state_near_zero": "True",
+      "bell_state_near_ln2": false
+    },
+    "z3_xx_rx_commutes": {
+      "status": "pass",
+      "claim": "[XX(t), R_x\u2297R_x] = 0 for all t, theta",
+      "z3_result": "unsat",
+      "commutes": true,
+      "expected": true,
+      "correct": true
+    },
+    "z3_xx_ry_noncommutes": {
+      "status": "pass",
+      "claim": "[XX(t), R_y\u2297R_y] != 0 for t=pi/4, theta=pi/3",
+      "z3_result_entry_zero_unsat": "unsat",
+      "z3_result_entry_positive_sat": "sat",
+      "ry_entry_zero_is_unsat": true,
+      "ry_entry_positive_is_sat": true,
+      "ry_noncommutes": true,
+      "expected_noncommutes": true,
+      "correct": true,
+      "note": "comm[0,1] real part = ct*c*s at specific angles; UNSAT on zero-claim confirms nonzero \u2192 non-commuting; z3 NRA used with concrete rational angle squares"
+    },
+    "z3_unsat_count_ry_noncommuting": {
+      "status": "pass",
+      "unsat_count": 3,
+      "total_queries": 3,
+      "interpretation": "3/3 queries confirmed UNSAT: comm[0,1] real part = ct*c*s > 0 at each angle pair \u2192 Y-axis non-commutativity proved"
+    }
+  },
+  "boundary": {
+    "cvc5_xx_rx_commutes": {
+      "status": "pass",
+      "claim": "[XX(t), R_x\u2297R_x] = 0 for all t, theta (cvc5 QF_NRA)",
+      "cvc5_result": "unsat",
+      "commutes": true,
+      "expected": true,
+      "correct": true,
+      "agrees_with_z3": true
+    },
+    "cvc5_xx_ry_noncommutes": {
+      "status": "pass",
+      "claim": "[XX(t), R_y\u2297R_y] != 0 for generic t, theta (cvc5 QF_NRA)",
+      "cvc5_result": "sat",
+      "noncommutes": true,
+      "expected": true,
+      "correct": true
+    },
+    "network_predictions_product_vs_bell": {
+      "status": "pass",
+      "product_state": {
+        "bloch_v_A": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "bloch_v_B": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "true_Ic": -3.453877639491069e-14,
+        "predicted_Ic": -0.10017553716897964,
+        "error": 0.1001755371689451
+      },
+      "bell_state": {
+        "bloch_v_A": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "bloch_v_B": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "true_Ic": 1.3862943611197869,
+        "ln2": 0.6931471805599453,
+        "predicted_Ic": 0.0,
+        "error": 1.3862943611197869
+      },
+      "note": "Bell and product states have identical mixed state (maximally mixed rho_A, rho_B vs pure zero Bloch vector), so Bloch vectors alone cannot distinguish them. Network limited by information available in input."
+    }
+  },
+  "classification": "canonical"
+}

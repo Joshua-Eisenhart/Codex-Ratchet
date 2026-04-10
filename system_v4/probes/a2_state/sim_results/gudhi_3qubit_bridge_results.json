@@ -1,0 +1,406 @@
+{
+  "name": "gudhi_3qubit_bridge",
+  "description": "GUDHI Rips persistent homology on 6 canonical 3-qubit states (|000>, GHZ, W, Fe-bridge, Werner-3q, Product\u2297Bell). Embedded as (tripartite_MI, I_c(A->BC), I_c(AB->C)) triples. Tests whether XX relay creates H1 and is topologically load-bearing.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "3-qubit density matrix construction, partial traces, quantum entropy kernels"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "optional import unavailable: cannot cache function 'canonical_reordering_sign': no locator available for file '/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/clifford/_layout.py'"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Rips complex persistence on 3-qubit kernel embedding -- primary topological analysis"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "kernel_triples_with_relay": [
+      {
+        "name": "000",
+        "tripartite_MI": 3.9863137138648344e-11,
+        "I_c_A_to_BC": -1.594525485545934e-10,
+        "I_c_AB_to_C": -2.391788228318901e-10,
+        "S_A": 3.986313713864835e-11,
+        "S_B": 3.986313713864835e-11,
+        "S_C": 3.986313713864835e-11,
+        "S_AB": 1.1958941141594506e-10,
+        "S_BC": 1.1958941141594506e-10,
+        "S_ABC": 2.7904195997053846e-10
+      },
+      {
+        "name": "GHZ",
+        "tripartite_MI": 3.986360344911745e-11,
+        "I_c_A_to_BC": 0.999999999800684,
+        "I_c_AB_to_C": 0.9999999997209578,
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_C": 1.0,
+        "S_AB": 1.0000000000797262,
+        "S_BC": 1.0000000000797262,
+        "S_ABC": 2.790422803131888e-10
+      },
+      {
+        "name": "W",
+        "tripartite_MI": 3.986318480842169e-11,
+        "I_c_A_to_BC": 0.9182958338551739,
+        "I_c_AB_to_C": 0.9182958337754477,
+        "S_A": 0.9182958340544893,
+        "S_B": 0.9182958340544893,
+        "S_C": 0.9182958340544893,
+        "S_AB": 0.9182958341342156,
+        "S_BC": 0.9182958341342156,
+        "S_ABC": 2.790416396278881e-10
+      },
+      {
+        "name": "Fe_bridge",
+        "tripartite_MI": 3.986328310646711e-11,
+        "I_c_A_to_BC": -1.594525485545934e-10,
+        "I_c_AB_to_C": 0.999999999720958,
+        "S_A": 3.986313713864835e-11,
+        "S_B": 1.0,
+        "S_C": 1.0,
+        "S_AB": 1.0000000000797262,
+        "S_BC": 1.1958941141594506e-10,
+        "S_ABC": 2.7904195997053846e-10
+      },
+      {
+        "name": "Werner_3q",
+        "tripartite_MI": -0.2620947246055003,
+        "I_c_A_to_BC": 0.04241411517269933,
+        "I_c_AB_to_C": -0.5674261895437012,
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_C": 1.0,
+        "S_AB": 1.6098403047164005,
+        "S_BC": 1.6098403047164005,
+        "S_ABC": 1.5674261895437012
+      },
+      {
+        "name": "Product_Bell",
+        "tripartite_MI": 3.9863270382210065e-11,
+        "I_c_A_to_BC": -1.5945254855459337e-10,
+        "I_c_AB_to_C": 0.9999999997209578,
+        "S_A": 3.986345748129873e-11,
+        "S_B": 1.0,
+        "S_C": 1.0,
+        "S_AB": 1.0000000000797262,
+        "S_BC": 1.1958973175859543e-10,
+        "S_ABC": 2.790422803131888e-10
+      }
+    ],
+    "point_cloud_with_relay": [
+      [
+        3.9863137138648344e-11,
+        -1.594525485545934e-10,
+        -2.391788228318901e-10
+      ],
+      [
+        3.986360344911745e-11,
+        0.999999999800684,
+        0.9999999997209578
+      ],
+      [
+        3.986318480842169e-11,
+        0.9182958338551739,
+        0.9182958337754477
+      ],
+      [
+        3.986328310646711e-11,
+        -1.594525485545934e-10,
+        0.999999999720958
+      ],
+      [
+        -0.2620947246055003,
+        0.04241411517269933,
+        -0.5674261895437012
+      ],
+      [
+        3.9863270382210065e-11,
+        -1.5945254855459337e-10,
+        0.9999999997209578
+      ]
+    ],
+    "rips_with_relay": {
+      "H0": {
+        "finite_bars": 4,
+        "infinite_bars": 1,
+        "total": 6,
+        "max_persistence": 0.9999999999601366
+      },
+      "H1": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0
+      },
+      "H2": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0
+      }
+    }
+  },
+  "negative": {
+    "kernel_triples_no_relay": [
+      {
+        "name": "000",
+        "tripartite_MI": 3.9863137138648344e-11,
+        "I_c_A_to_BC": -1.594525485545934e-10,
+        "I_c_AB_to_C": -2.391788228318901e-10,
+        "S_A": 3.986313713864835e-11,
+        "S_B": 3.986313713864835e-11,
+        "S_C": 3.986313713864835e-11,
+        "S_AB": 1.1958941141594506e-10,
+        "S_BC": 1.1958941141594506e-10,
+        "S_ABC": 2.7904195997053846e-10
+      },
+      {
+        "name": "GHZ",
+        "tripartite_MI": 3.986360344911745e-11,
+        "I_c_A_to_BC": 0.999999999800684,
+        "I_c_AB_to_C": 0.9999999997209578,
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_C": 1.0,
+        "S_AB": 1.0000000000797262,
+        "S_BC": 1.0000000000797262,
+        "S_ABC": 2.790422803131888e-10
+      },
+      {
+        "name": "W",
+        "tripartite_MI": 3.986318480842169e-11,
+        "I_c_A_to_BC": 0.9182958338551739,
+        "I_c_AB_to_C": 0.9182958337754477,
+        "S_A": 0.9182958340544893,
+        "S_B": 0.9182958340544893,
+        "S_C": 0.9182958340544893,
+        "S_AB": 0.9182958341342156,
+        "S_BC": 0.9182958341342156,
+        "S_ABC": 2.790416396278881e-10
+      },
+      {
+        "name": "Fe_bridge",
+        "tripartite_MI": 3.9863137138648344e-11,
+        "I_c_A_to_BC": -1.594525485545934e-10,
+        "I_c_AB_to_C": -2.391788228318901e-10,
+        "S_A": 3.986313713864835e-11,
+        "S_B": 3.986313713864835e-11,
+        "S_C": 3.986313713864835e-11,
+        "S_AB": 1.1958941141594506e-10,
+        "S_BC": 1.1958941141594506e-10,
+        "S_ABC": 2.7904195997053846e-10
+      },
+      {
+        "name": "Werner_3q",
+        "tripartite_MI": -0.2620947246055003,
+        "I_c_A_to_BC": 0.04241411517269933,
+        "I_c_AB_to_C": -0.5674261895437012,
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_C": 1.0,
+        "S_AB": 1.6098403047164005,
+        "S_BC": 1.6098403047164005,
+        "S_ABC": 1.5674261895437012
+      },
+      {
+        "name": "Product_Bell",
+        "tripartite_MI": 3.9863270382210065e-11,
+        "I_c_A_to_BC": -1.5945254855459337e-10,
+        "I_c_AB_to_C": 0.9999999997209578,
+        "S_A": 3.986345748129873e-11,
+        "S_B": 1.0,
+        "S_C": 1.0,
+        "S_AB": 1.0000000000797262,
+        "S_BC": 1.1958973175859543e-10,
+        "S_ABC": 2.790422803131888e-10
+      }
+    ],
+    "point_cloud_no_relay": [
+      [
+        3.9863137138648344e-11,
+        -1.594525485545934e-10,
+        -2.391788228318901e-10
+      ],
+      [
+        3.986360344911745e-11,
+        0.999999999800684,
+        0.9999999997209578
+      ],
+      [
+        3.986318480842169e-11,
+        0.9182958338551739,
+        0.9182958337754477
+      ],
+      [
+        3.9863137138648344e-11,
+        -1.594525485545934e-10,
+        -2.391788228318901e-10
+      ],
+      [
+        -0.2620947246055003,
+        0.04241411517269933,
+        -0.5674261895437012
+      ],
+      [
+        3.9863270382210065e-11,
+        -1.5945254855459337e-10,
+        0.9999999997209578
+      ]
+    ],
+    "rips_no_relay": {
+      "H0": {
+        "finite_bars": 4,
+        "infinite_bars": 1,
+        "total": 5,
+        "max_persistence": 0.9999999999601366
+      },
+      "H1": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0
+      },
+      "H2": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0
+      }
+    }
+  },
+  "boundary": {
+    "H1_with_relay": 0,
+    "H1_no_relay": 0,
+    "relay_changes_topology": false,
+    "relay_topologically_load_bearing": false,
+    "Fe_bridge_with_relay": {
+      "name": "Fe_bridge_relay",
+      "tripartite_MI": 3.986328310646711e-11,
+      "I_c_A_to_BC": -1.594525485545934e-10,
+      "I_c_AB_to_C": 0.999999999720958,
+      "S_A": 3.986313713864835e-11,
+      "S_B": 1.0,
+      "S_C": 1.0,
+      "S_AB": 1.0000000000797262,
+      "S_BC": 1.1958941141594506e-10,
+      "S_ABC": 2.7904195997053846e-10
+    },
+    "Fe_bridge_no_relay": {
+      "name": "Fe_bridge_no_relay",
+      "tripartite_MI": 3.9863137138648344e-11,
+      "I_c_A_to_BC": -1.594525485545934e-10,
+      "I_c_AB_to_C": -2.391788228318901e-10,
+      "S_A": 3.986313713864835e-11,
+      "S_B": 3.986313713864835e-11,
+      "S_C": 3.986313713864835e-11,
+      "S_AB": 1.1958941141594506e-10,
+      "S_BC": 1.1958941141594506e-10,
+      "S_ABC": 2.7904195997053846e-10
+    },
+    "Fe_bridge_kernel_shifts": {
+      "delta_tripartite_MI": 1.4596781876472101e-16,
+      "delta_I_c_A_to_BC": 0.0,
+      "delta_I_c_AB_to_C": 0.9999999999601368
+    }
+  },
+  "classification": "canonical",
+  "topology_verdict": {
+    "H0_with_relay": {
+      "finite_bars": 4,
+      "infinite_bars": 1,
+      "total": 6,
+      "max_persistence": 0.9999999999601366
+    },
+    "H1_with_relay": {
+      "finite_bars": 0,
+      "infinite_bars": 0,
+      "total": 0,
+      "max_persistence": 0.0
+    },
+    "H2_with_relay": {
+      "finite_bars": 0,
+      "infinite_bars": 0,
+      "total": 0,
+      "max_persistence": 0.0
+    },
+    "H0_no_relay": {
+      "finite_bars": 4,
+      "infinite_bars": 1,
+      "total": 5,
+      "max_persistence": 0.9999999999601366
+    },
+    "H1_no_relay": {
+      "finite_bars": 0,
+      "infinite_bars": 0,
+      "total": 0,
+      "max_persistence": 0.0
+    },
+    "relay_changes_topology": false,
+    "relay_topologically_load_bearing": false
+  }
+}

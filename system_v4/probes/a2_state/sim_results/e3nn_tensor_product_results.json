@@ -1,0 +1,233 @@
+{
+  "name": "E3NN Tensor Product Two-Qubit",
+  "token": "E_E3NN_TENSOR_PRODUCT",
+  "timestamp": "2026-04-08T10:49:55.836112+00:00",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "all tensor ops, density matrices, von Neumann entropy"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "PRIMARY: FullyConnectedTensorProduct, Irreps, wigner_D, rand_angles"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_FCTP_1o_x_1o_equivariance": {
+      "test": "FCTP(1o \u2297 1o \u2192 0e+1e+2e) equivariant under simultaneous SO(3) rotation",
+      "equivariance_error": 2.1452797227539122e-05,
+      "tolerance": 0.0001,
+      "output_dim": 9,
+      "pass": true,
+      "note": "simultaneous rotation of both Bloch vectors; output rotates by block-diagonal D. Tolerance 1e-4 reflects float32 precision for the full 9-dim output block."
+    },
+    "P2_scalar_output_correlates_with_dot_product": {
+      "test": "0e scalar output of 1o \u2297 1o correlates with Bloch vector dot product v1\u00b7v2",
+      "pearson_correlation": 0.999999999999998,
+      "n_samples": 20,
+      "tolerance": 0.99,
+      "pass": "True",
+      "note": "CG(1,1\u21920) is the dot product; e3nn scalar channel must be proportional to it"
+    },
+    "P3_dot_product_vs_mutual_information": {
+      "test": "Bloch vector dot product v1\u00b7v2 correlates with mutual information I(A:B)",
+      "pearson_correlation_mi_vs_dot": -0.9943920882723957,
+      "n_states": 20,
+      "theta_range": [
+        0.0,
+        0.7853981633974483
+      ],
+      "mi_at_product": -3.453877639491069e-14,
+      "mi_at_bell": 1.3862943611197869,
+      "dot_at_product": 1.0,
+      "dot_at_bell": 4.930380657631324e-32,
+      "tolerance": 0.95,
+      "pass": "True",
+      "note": "for the cos(theta)|00>+sin(theta)|11> family, both MI and dot decrease monotonically"
+    },
+    "P4_scalar_is_rotation_invariant": {
+      "test": "FCTP scalar output is invariant under simultaneous rotation of both inputs",
+      "scalar_std_over_rotations": 1.7155598873633235e-07,
+      "scalar_mean": 0.054956506192684176,
+      "tolerance": 1e-05,
+      "pass": true,
+      "note": "0e irrep is invariant under all SO(3) rotations; std across rotations should be ~0"
+    },
+    "P5_CG_decomposition_dimension": {
+      "test": "1o \u2297 1o \u2192 0e + 1e + 2e has total output dim 9 = 1+3+5",
+      "output_dim": 9,
+      "expected_dim": 9,
+      "l0_channels": 1,
+      "l1_channels": 3,
+      "l2_channels": 5,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_nn_bilinear_fails_equivariance": {
+      "test": "standard nn.Bilinear two-qubit map fails equivariance test",
+      "equivariance_error": 2.507520914077759,
+      "min_expected_error": 0.1,
+      "pass": true,
+      "note": "nn.Bilinear has no rotational structure; e3nn FCTP is necessary for equivariance"
+    },
+    "N2_single_qubit_rotation_changes_scalar": {
+      "test": "rotating only ONE Bloch vector DOES change the scalar output (not jointly invariant)",
+      "mean_change_under_single_rotation": 0.1753511182963848,
+      "min_expected_change": 0.01,
+      "pass": true,
+      "note": "scalar is invariant under SIMULTANEOUS rotation, but NOT single-qubit rotation. This confirms the scalar is v1\u00b7v2 (dot product), not |v1| or |v2|."
+    },
+    "N3_bell_state_bloch_vectors_zero": {
+      "test": "Bell state Bloch vectors are both zero; scalar output should be 0",
+      "bloch_norm_A": 0.0,
+      "bloch_norm_B": 0.0,
+      "scalar_output": 0.0,
+      "tolerance": 1e-05,
+      "pass": true,
+      "note": "maximally entangled state \u2192 maximally mixed marginals \u2192 zero Bloch vectors \u2192 zero dot product"
+    }
+  },
+  "boundary": {
+    "B1_product_state_bloch_vectors_aligned": {
+      "test": "product state |00>: both Bloch vectors = (0,0,1), dot product = 1",
+      "bloch_A": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "bloch_B": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "dot_product": 1.0,
+      "expected_dot": 1.0,
+      "tolerance": 1e-06,
+      "pass": true
+    },
+    "B2_bell_state_bloch_zero_dot_zero": {
+      "test": "Bell state: both Bloch vectors = 0, dot product = 0",
+      "bloch_norm_A": 0.0,
+      "bloch_norm_B": 0.0,
+      "dot_product": 0.0,
+      "tolerance": 1e-06,
+      "pass": true
+    },
+    "B3_interpolation_dot_and_mi_monotone": {
+      "test": "cos(theta)|00>+sin(theta)|11>: dot product decreases and MI increases with theta",
+      "dots": [
+        1.0,
+        0.969846248626709,
+        0.8830221891403198,
+        0.75,
+        0.5868240594863892,
+        0.41317594051361084,
+        0.25,
+        0.11697778850793839,
+        0.03015368990600109,
+        4.930380657631324e-32
+      ],
+      "mis": [
+        -3.453877639491069e-14,
+        0.08927434549996263,
+        0.2705520064817542,
+        0.4915507333368383,
+        0.7217197219087402,
+        0.9385468001765277,
+        1.1246702892375129,
+        1.266922019307498,
+        1.3559872727822635,
+        1.3862943611197869
+      ],
+      "dots_decreasing": true,
+      "mi_increasing": true,
+      "pass": true,
+      "note": "dot product and MI are anti-correlated: more entanglement = smaller dot product"
+    },
+    "B4_identity_rotation_equivariance_zero": {
+      "test": "identity rotation: FCTP equivariance error is 0",
+      "error": 0.0,
+      "tolerance": 1e-10,
+      "pass": true
+    }
+  },
+  "summary": {
+    "total_tests": 12,
+    "passed": 12,
+    "failed": 0,
+    "all_pass": true,
+    "FCTP_equivariance_error": 2.1452797227539122e-05,
+    "scalar_dot_correlation": 0.999999999999998,
+    "mi_dot_correlation": -0.9943920882723957,
+    "scalar_rotation_invariant": true
+  },
+  "classification": "canonical",
+  "key_finding": "e3nn FullyConnectedTensorProduct(1o\u22971o\u21920e+1e+2e) is equivariant under simultaneous SO(3) rotation. The 0e scalar output is the dot product v1\u00b7v2, which anti-correlates with mutual information (Bell state: v1=v2=0, dot=0, MI=log2; product: dot=1, MI=0). e3nn naturally encodes two-qubit correlations via CG decomposition."
+}

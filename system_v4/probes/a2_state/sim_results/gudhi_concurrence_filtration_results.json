@@ -1,0 +1,403 @@
+{
+  "name": "gudhi_concurrence_filtration",
+  "description": "Filtration by concurrence C in [0,1] on 20 two-qubit states. Tests for persistent H0 gap at C=0 boundary. Compares concurrence filtration vs I_c filtration persistence diagrams.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Density matrix construction, partial traces, concurrence and I_c computation"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "optional import unavailable: cannot cache function 'canonical_reordering_sign': no locator available for file '/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/clifford/_layout.py'"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Simplex tree filtration (by concurrence and I_c) -- primary topological analysis"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "n_states": 20,
+    "state_sample": [
+      {
+        "alpha": 0.0,
+        "C": 0.0,
+        "MI": -3.9863137138648357e-11,
+        "cond_S": 7.972627427729671e-11,
+        "I_c": -7.972627427729671e-11,
+        "S_A": 3.986313713864835e-11,
+        "S_B": 3.986313713864835e-11,
+        "S_AB": 1.1958941141594506e-10
+      },
+      {
+        "alpha": 0.04133674544197096,
+        "C": 0.08257934547233232,
+        "MI": 0.018162209386482085,
+        "cond_S": -0.018162209346618947,
+        "I_c": -7.972627427729671e-11,
+        "S_A": 0.01816220946620836,
+        "S_B": 3.986313713864835e-11,
+        "S_AB": 1.1958941141594506e-10
+      },
+      {
+        "alpha": 0.08267349088394192,
+        "C": 0.1645945902807339,
+        "MI": 0.058877674257066616,
+        "cond_S": -0.058877674217203475,
+        "I_c": -7.972627427729671e-11,
+        "S_A": 0.05887767433679289,
+        "S_B": 3.986313713864835e-11,
+        "S_AB": 1.1958941141594506e-10
+      },
+      {
+        "alpha": 0.7440614179554773,
+        "C": 0.9965844930066698,
+        "MI": 0.9950752737622109,
+        "cond_S": -0.9950752737223478,
+        "I_c": -7.972627427729671e-11,
+        "S_A": 0.9950752738419373,
+        "S_B": 3.986313713864835e-11,
+        "S_AB": 1.1958941141594506e-10
+      },
+      {
+        "alpha": 0.7853981633974483,
+        "C": 1.0,
+        "MI": 0.9999999999202738,
+        "cond_S": -0.9999999998804106,
+        "I_c": -7.972627427729671e-11,
+        "S_A": 1.0,
+        "S_B": 3.986313713864835e-11,
+        "S_AB": 1.1958941141594506e-10
+      }
+    ],
+    "kernel_range": {
+      "C_min": 0.0,
+      "C_max": 1.0,
+      "MI_range": [
+        -3.9863137138648357e-11,
+        0.9999999999202738
+      ],
+      "I_c_range": [
+        -7.972643444862191e-11,
+        -7.972627427729669e-11
+      ]
+    },
+    "concurrence_filtration": {
+      "H0": {
+        "finite_bars": 0,
+        "infinite_bars": 1,
+        "total": 1,
+        "max_persistence": 0.0,
+        "pairs": [
+          [
+            0.0,
+            Infinity
+          ]
+        ]
+      },
+      "H1": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0,
+        "pairs": []
+      }
+    },
+    "I_c_filtration": {
+      "H0": {
+        "finite_bars": 0,
+        "infinite_bars": 1,
+        "total": 1,
+        "max_persistence": 0.0,
+        "pairs": [
+          [
+            -7.972643444862191e-11,
+            Infinity
+          ]
+        ]
+      },
+      "H1": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0,
+        "pairs": []
+      }
+    },
+    "rips_kernel": {
+      "H0": {
+        "finite_bars": 19,
+        "infinite_bars": 1,
+        "total": 20,
+        "max_persistence": 0.11147285719835759,
+        "pairs": [
+          [
+            0.0,
+            0.006964614523705924
+          ],
+          [
+            0.0,
+            0.02079852957458322
+          ],
+          [
+            0.0,
+            0.025685242893397884
+          ],
+          [
+            0.0,
+            0.034346493615198065
+          ],
+          [
+            0.0,
+            0.04741780560654526
+          ],
+          [
+            0.0,
+            0.05758036261830595
+          ],
+          [
+            0.0,
+            0.05982153033982882
+          ],
+          [
+            0.0,
+            0.07136612128938992
+          ],
+          [
+            0.0,
+            0.07819045114959854
+          ],
+          [
+            0.0,
+            0.08185871834995452
+          ]
+        ]
+      },
+      "H1": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0,
+        "pairs": []
+      },
+      "H2": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0,
+        "pairs": []
+      }
+    }
+  },
+  "negative": {
+    "all_separable_rips": {
+      "H0": {
+        "finite_bars": 0,
+        "infinite_bars": 1,
+        "total": 1,
+        "max_persistence": 0.0,
+        "pairs": [
+          [
+            0.0,
+            Infinity
+          ]
+        ]
+      },
+      "H1": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0,
+        "pairs": []
+      },
+      "H2": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0,
+        "pairs": []
+      }
+    },
+    "all_separable_degenerate": true,
+    "I_c_monotone": true,
+    "note": "Monotone I_c family: no loop expected, H1 should be 0 in Rips"
+  },
+  "boundary": {
+    "n_separable": 1,
+    "n_entangled": 19,
+    "concurrence_H0_gap": {
+      "finite_bars": [],
+      "persistent_H0_at_C0_boundary": false,
+      "gap_bars": []
+    },
+    "I_c_H0_gap": {
+      "finite_bars": [],
+      "max_persistence": 0.0
+    },
+    "filtration_comparison": {
+      "concurrence_H0_max_persistence": 0.0,
+      "I_c_H0_max_persistence": 0.0,
+      "filtrations_produce_different_diagrams": false,
+      "interpretation": "Concurrence and I_c filtrations agree on H0 structure"
+    }
+  },
+  "classification": "canonical",
+  "topology_verdict": {
+    "concurrence_filtration_H0": {
+      "finite_bars": 0,
+      "infinite_bars": 1,
+      "total": 1,
+      "max_persistence": 0.0,
+      "pairs": [
+        [
+          0.0,
+          Infinity
+        ]
+      ]
+    },
+    "concurrence_filtration_H1": {
+      "finite_bars": 0,
+      "infinite_bars": 0,
+      "total": 0,
+      "max_persistence": 0.0,
+      "pairs": []
+    },
+    "I_c_filtration_H0": {
+      "finite_bars": 0,
+      "infinite_bars": 1,
+      "total": 1,
+      "max_persistence": 0.0,
+      "pairs": [
+        [
+          -7.972643444862191e-11,
+          Infinity
+        ]
+      ]
+    },
+    "I_c_filtration_H1": {
+      "finite_bars": 0,
+      "infinite_bars": 0,
+      "total": 0,
+      "max_persistence": 0.0,
+      "pairs": []
+    },
+    "rips_kernel_H0": {
+      "finite_bars": 19,
+      "infinite_bars": 1,
+      "total": 20,
+      "max_persistence": 0.11147285719835759,
+      "pairs": [
+        [
+          0.0,
+          0.006964614523705924
+        ],
+        [
+          0.0,
+          0.02079852957458322
+        ],
+        [
+          0.0,
+          0.025685242893397884
+        ],
+        [
+          0.0,
+          0.034346493615198065
+        ],
+        [
+          0.0,
+          0.04741780560654526
+        ],
+        [
+          0.0,
+          0.05758036261830595
+        ],
+        [
+          0.0,
+          0.05982153033982882
+        ],
+        [
+          0.0,
+          0.07136612128938992
+        ],
+        [
+          0.0,
+          0.07819045114959854
+        ],
+        [
+          0.0,
+          0.08185871834995452
+        ]
+      ]
+    },
+    "rips_kernel_H1": {
+      "finite_bars": 0,
+      "infinite_bars": 0,
+      "total": 0,
+      "max_persistence": 0.0,
+      "pairs": []
+    },
+    "C0_gap_detected": false,
+    "filtrations_differ": false
+  }
+}

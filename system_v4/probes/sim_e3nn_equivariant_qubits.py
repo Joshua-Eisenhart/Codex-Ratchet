@@ -55,7 +55,12 @@ from e3nn.o3 import (
     spherical_harmonics,
     angles_to_matrix,
 )
-from clifford import Cl  # tried, not used in computation
+try:
+    from clifford import Cl  # noqa: F401
+except Exception as exc:  # pragma: no cover - optional import only
+    TOOL_MANIFEST["clifford"]["tried"] = False
+    TOOL_MANIFEST["clifford"]["used"] = False
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 torch.manual_seed(42)
 np.random.seed(42)

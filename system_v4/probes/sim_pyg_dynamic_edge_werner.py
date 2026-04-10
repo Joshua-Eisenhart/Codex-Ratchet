@@ -155,8 +155,8 @@ try:
     from clifford import Cl  # noqa
     TOOL_MANIFEST["clifford"]["tried"] = True
     TOOL_MANIFEST["clifford"]["reason"] = "not needed — no Clifford algebra structure here"
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"unavailable ({exc.__class__.__name__}: {exc})"
 
 try:
     import geomstats  # noqa

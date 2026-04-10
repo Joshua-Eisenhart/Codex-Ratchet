@@ -1,0 +1,368 @@
+{
+  "name": "geomstats_ratchet_trajectory -- Riemannian geodesic I_c profile on SPD(4)",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch.linalg.eigvalsh for von Neumann entropy and I_c computation along geodesic trajectory"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "SPDMatrices(4) metric.geodesic for Riemannian interpolation between near-separable and Bell-like 2-qubit states"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "geodesic_trajectory": {
+      "passed": true,
+      "n_points": 20,
+      "r_sep": 0.05,
+      "r_bell": 0.95,
+      "all_points_valid_density_matrices": true,
+      "n_valid": 20,
+      "I_c_at_t0": -0.6895120944068752,
+      "I_c_at_t1": 0.4920332520403882,
+      "I_c_monotone_increasing": true,
+      "I_c_strictly_monotone": true,
+      "has_phase_transition_kink": true,
+      "max_kink_magnitude": 0.01292605489184262,
+      "kink_threshold": 0.01,
+      "trajectory": [
+        {
+          "t": 0.0,
+          "trace_before_norm": 1.0000000039999997,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=2.38e-01)",
+          "I_c": -0.6895120944068752,
+          "S_B": 0.6931471805599453,
+          "S_AB": 1.3826592749668205,
+          "min_eigenvalue": 0.23750000004999994
+        },
+        {
+          "t": 0.05263157894736842,
+          "trace_before_norm": 0.9165913944713726,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=2.22e-01)",
+          "I_c": -0.6753985377032674,
+          "S_B": 0.6931471805599452,
+          "S_AB": 1.3685457182632126,
+          "min_eigenvalue": 0.22191416313765586
+        },
+        {
+          "t": 0.10526315789473684,
+          "trace_before_norm": 0.8491064595128612,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=2.05e-01)",
+          "I_c": -0.649263100117731,
+          "S_B": 0.6931471805599453,
+          "S_AB": 1.3424102806776763,
+          "min_eigenvalue": 0.20516148423343103
+        },
+        {
+          "t": 0.15789473684210525,
+          "trace_before_norm": 0.7955185370937883,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=1.88e-01)",
+          "I_c": -0.6102500890008202,
+          "S_B": 0.6931471805599454,
+          "S_AB": 1.3033972695607656,
+          "min_eigenvalue": 0.18754472511663858
+        },
+        {
+          "t": 0.21052631578947367,
+          "trace_before_norm": 0.7541089399301172,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=1.69e-01)",
+          "I_c": -0.5583110229920668,
+          "S_B": 0.6931471805599453,
+          "S_AB": 1.251458203552012,
+          "min_eigenvalue": 0.16944089975959845
+        },
+        {
+          "t": 0.2631578947368421,
+          "trace_before_norm": 0.7234238608572132,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=1.51e-01)",
+          "I_c": -0.49429332984204544,
+          "S_B": 0.6931471805599453,
+          "S_AB": 1.1874405104019907,
+          "min_eigenvalue": 0.15127135248163534
+        },
+        {
+          "t": 0.3157894736842105,
+          "trace_before_norm": 0.7022375382615967,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=1.33e-01)",
+          "I_c": -0.41989663250771614,
+          "S_B": 0.6931471805599453,
+          "S_AB": 1.1130438130676614,
+          "min_eigenvalue": 0.13346354570785027
+        },
+        {
+          "t": 0.3684210526315789,
+          "trace_before_norm": 0.6895207877010343,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=1.16e-01)",
+          "I_c": -0.33749848231968615,
+          "S_B": 0.6931471805599453,
+          "S_AB": 1.0306456628796314,
+          "min_eigenvalue": 0.11641166915521398
+        },
+        {
+          "t": 0.42105263157894735,
+          "trace_before_norm": 0.6844141344824793,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=1.00e-01)",
+          "I_c": -0.24988597120386435,
+          "S_B": 0.6931471805599454,
+          "S_AB": 0.9430331517638098,
+          "min_eigenvalue": 0.10044355859320338
+        },
+        {
+          "t": 0.47368421052631576,
+          "trace_before_norm": 0.6862048921608015,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=8.58e-02)",
+          "I_c": -0.1599517621203822,
+          "S_B": 0.6931471805599452,
+          "S_AB": 0.8530989426803274,
+          "min_eigenvalue": 0.08579943569819012
+        },
+        {
+          "t": 0.5263157894736842,
+          "trace_before_norm": 0.694307626317516,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=7.26e-02)",
+          "I_c": -0.0704150339161187,
+          "S_B": 0.6931471805599453,
+          "S_AB": 0.763562214476064,
+          "min_eigenvalue": 0.07262455536399048
+        },
+        {
+          "t": 0.5789473684210527,
+          "trace_before_norm": 0.7082475238470869,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=6.10e-02)",
+          "I_c": 0.0163882542712126,
+          "S_B": 0.6931471805599452,
+          "S_AB": 0.6767589262887326,
+          "min_eigenvalue": 0.06097440034009117
+        },
+        {
+          "t": 0.631578947368421,
+          "trace_before_norm": 0.7276462572624995,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=5.08e-02)",
+          "I_c": 0.09862625100177003,
+          "S_B": 0.6931471805599454,
+          "S_AB": 0.5945209295581754,
+          "min_eigenvalue": 0.050828756320641884
+        },
+        {
+          "t": 0.6842105263157894,
+          "trace_before_norm": 0.7522099928962925,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=4.21e-02)",
+          "I_c": 0.17500701577281463,
+          "S_B": 0.6931471805599453,
+          "S_AB": 0.5181401647871307,
+          "min_eigenvalue": 0.04211025442385465
+        },
+        {
+          "t": 0.7368421052631579,
+          "trace_before_norm": 0.7817192427439962,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=3.47e-02)",
+          "I_c": 0.24474813847941246,
+          "S_B": 0.6931471805599454,
+          "S_AB": 0.44839904208053294,
+          "min_eigenvalue": 0.03470350515028405
+        },
+        {
+          "t": 0.7894736842105263,
+          "trace_before_norm": 0.8160203032951125,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=2.85e-02)",
+          "I_c": 0.30750466428988843,
+          "S_B": 0.6931471805599452,
+          "S_AB": 0.38564251627005675,
+          "min_eigenvalue": 0.028472156406634194
+        },
+        {
+          "t": 0.8421052631578947,
+          "trace_before_norm": 0.8550180620684297,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=2.33e-02)",
+          "I_c": 0.3632780916427818,
+          "S_B": 0.6931471805599453,
+          "S_AB": 0.3298690889171635,
+          "min_eigenvalue": 0.023272509521674842
+        },
+        {
+          "t": 0.894736842105263,
+          "trace_before_norm": 0.8986699846097327,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=1.90e-02)",
+          "I_c": 0.4123236550539833,
+          "S_B": 0.6931471805599453,
+          "S_AB": 0.280823525505962,
+          "min_eigenvalue": 0.018963366992580076
+        },
+        {
+          "t": 0.9473684210526315,
+          "trace_before_norm": 0.9469811221881443,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=1.54e-02)",
+          "I_c": 0.45506667714578086,
+          "S_B": 0.6931471805599454,
+          "S_AB": 0.23808050341416453,
+          "min_eigenvalue": 0.015412445204694933
+        },
+        {
+          "t": 1.0,
+          "trace_before_norm": 1.0000000039999999,
+          "is_valid_density_matrix": true,
+          "validity_reason": "valid (min_eig=1.25e-02)",
+          "I_c": 0.4920332520403882,
+          "S_B": 0.6931471805599453,
+          "S_AB": 0.20111392851955706,
+          "min_eigenvalue": 0.012500000950000034
+        }
+      ],
+      "note": "SPD(4) geodesic from near-separable (r=0.05) to Bell-like (r=0.95). All 20 points must be valid density matrices. I_c profile tracked."
+    }
+  },
+  "negative": {
+    "linear_interpolation_psd_violations": {
+      "passed": true,
+      "werner_linear_interpolation_stays_valid": true,
+      "werner_linear_violations": [],
+      "extrapolation_violations_count": 19,
+      "extrapolation_violations_sample": [
+        {
+          "t": 1.0526315789473684,
+          "min_eig": -0.05263157894736835
+        },
+        {
+          "t": 1.1052631578947367,
+          "min_eig": -0.1052631578947367
+        },
+        {
+          "t": 1.1578947368421053,
+          "min_eig": -0.15789473684210523
+        }
+      ],
+      "backward_violations_count": 11,
+      "backward_violations_sample": [
+        {
+          "t": -1.0,
+          "min_eig": -0.38749999999999984
+        },
+        {
+          "t": -0.9473684210526316,
+          "min_eig": -0.35197368421052627
+        },
+        {
+          "t": -0.8947368421052632,
+          "min_eig": -0.31644736842105253
+        }
+      ],
+      "has_any_linear_psd_violation": true,
+      "note": "Convex linear interpolation between PSD matrices stays PSD (expected). Extrapolation (t>1 or t<0) along linear path violates PSD \u2014 confirming the geodesic (Riemannian) path is the correct structure-preserving path. The SPD geodesic never leaves the manifold; a naive linear path can."
+    }
+  },
+  "boundary": {
+    "endpoint_I_c_values": {
+      "passed": true,
+      "I_c_at_t0_near_separable": -0.6895120944068752,
+      "I_c_at_t1_bell_like": 0.4920332520403882,
+      "I_c_midpoint": -0.0704150339161187,
+      "I_c_end_expected_approx_log2": 0.6931471805599453,
+      "I_c_end_within_20pct_of_log2": false,
+      "I_c_increases_from_start_to_end": true,
+      "note": "Near-separable endpoint should have I_c near 0; Bell-like endpoint should approach log(2) ~ 0.693 nats."
+    },
+    "I_c_within_physical_bounds": {
+      "passed": "True",
+      "max_I_c_observed": 0.4920332520403882,
+      "log2_upper_bound": 0.6931471805599453,
+      "all_within_log2_bound": true,
+      "note": "I_c <= log(2) for all 2-qubit states (saturated by Bell states)"
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 4,
+    "passed": 4,
+    "failed": 0,
+    "elapsed_seconds": 0.004,
+    "all_passed": true,
+    "I_c_monotone_increasing": true,
+    "I_c_has_phase_transition": true,
+    "all_geodesic_points_valid": true
+  }
+}

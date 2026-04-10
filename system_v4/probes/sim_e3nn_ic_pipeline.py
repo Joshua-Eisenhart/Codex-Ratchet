@@ -72,9 +72,7 @@ except ImportError:
 
 try:
     from z3 import (
-        Solver, Real, And, Or, Not, sat, unsat,
-        ForAll, Implies, RealVal, pi as z3_pi,
-        ArithRef
+        Solver, Real, And, Or, Not, sat, unsat, RealVal,
     )
     TOOL_MANIFEST["z3"]["tried"] = True
 except ImportError:

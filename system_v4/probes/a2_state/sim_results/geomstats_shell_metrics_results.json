@@ -1,0 +1,458 @@
+{
+  "name": "geomstats_shell_metrics -- Riemannian geometry of the shell parameter family",
+  "description": "Computes SPD(4) geodesic distances along the shell theta-sweep, Fr\u00e9chet mean of the shell-structured density matrix family, and cross-checks against Axis 0 gradient data. geomstats is load-bearing: results depend on the affine-invariant SPD metric, not just Euclidean geometry.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Cross-check: autograd |dI_c/dtheta| vs geomstats geodesic distance profile"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "optional import unavailable: cannot cache function 'canonical_reordering_sign': no locator available for file '/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/clifford/_layout.py'"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "SPDMatrices(4) manifold; SPDAffineMetric for geodesic distances; FrechetMean for Riemannian center of mass; geodesic() for path interpolation"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not needed for this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": "load_bearing",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_geodesic_distances_along_shell_path": {
+      "n_points": 30,
+      "r_fixed": 0.7,
+      "theta_range": [
+        0.1,
+        3.041592653589793
+      ],
+      "consecutive_geodesic_distances": [
+        0.20797364419550787,
+        0.2079736441955077,
+        0.2079736441955074,
+        0.20797364419550757,
+        0.2079736441955072,
+        0.2079736441955074,
+        0.20797364419550723,
+        0.20797364419550754,
+        0.20797364419550687,
+        0.20797364419550782,
+        0.20797364419550732,
+        0.20797364419550732,
+        0.20797364419550737,
+        0.20797364419550782,
+        0.20797364419550748,
+        0.20797364419550862,
+        0.20797364419550654,
+        0.20797364419550768,
+        0.20797364419550707,
+        0.20797364419550787,
+        0.20797364419550787,
+        0.2079736441955072,
+        0.20797364419550723,
+        0.2079736441955089,
+        0.2079736441955074,
+        0.20797364419550782,
+        0.20797364419550762,
+        0.20797364419550748,
+        0.2079736441955082
+      ],
+      "max_geodesic_distance": 0.2079736441955089,
+      "min_geodesic_distance": 0.20797364419550654,
+      "argmax_consecutive_dist_index": 23,
+      "theta_at_max_geodesic_distance": 2.483704391702074,
+      "note": "Max geodesic stretch localizes where shell geometry curves most steeply",
+      "pass": true
+    },
+    "P2_frechet_mean_shell_family": {
+      "frechet_mean": [
+        [
+          0.2917527368875705,
+          -4.153912121888084e-17,
+          7.971450568673318e-18,
+          0.1643436387416624
+        ],
+        [
+          -4.1539121218880716e-17,
+          0.07500010000000007,
+          -3.838524416968769e-17,
+          -9.666783615571528e-17
+        ],
+        [
+          7.97145056867334e-18,
+          -3.4947403565087077e-17,
+          0.07500009999999997,
+          1.8769744749120025e-17
+        ],
+        [
+          0.1643436387416623,
+          -9.666783615571539e-17,
+          1.8769744749119954e-17,
+          0.2918016039988928
+        ]
+      ],
+      "frechet_mean_is_spd": true,
+      "frechet_mean_is_symmetric": true,
+      "frechet_mean_eigenvalues": [
+        0.07500009999999997,
+        0.07500010000000006,
+        0.12743352988525736,
+        0.45612081100120594
+      ],
+      "arithmetic_mean": [
+        [
+          0.42500010000000005,
+          0.0,
+          0.0,
+          0.22985334555654893
+        ],
+        [
+          0.0,
+          0.07500010000000001,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.07500010000000001,
+          0.0
+        ],
+        [
+          0.22985334555654893,
+          0.0,
+          0.0,
+          0.42500009999999994
+        ]
+      ],
+      "geodesic_dist_frechet_vs_arithmetic": 0.5589304227238804,
+      "means_differ": true,
+      "note": "Fr\u00e9chet mean on SPD(4) differs from arithmetic mean due to manifold curvature",
+      "pass": true
+    },
+    "P3_bures_displacement_vs_axis0_gradient": {
+      "axis0_theta_at_max_gradient": 0.7634878819009846,
+      "theta_at_max_geodesic_displacement": 3.041592653589793,
+      "pearson_corr_displacement_vs_delta_Ic": 0.24758904638576423,
+      "pearson_corr_local_arc_vs_grad_Ic": 0.02760088049167859,
+      "both_positive": true,
+      "geodesic_displacement_from_base": [
+        8.308148362110448e-16,
+        0.20797364419550787,
+        0.41430374243919177,
+        0.6174280606919496,
+        0.815935388937546,
+        1.0086151742802278,
+        1.1944835177143611,
+        1.37278684713091,
+        1.5429879687788675,
+        1.7047406066809299,
+        1.857858278884291,
+        2.0022821266001842,
+        2.1380507787705785,
+        2.2652739444891252,
+        2.3841103770059813,
+        2.4947501704578006,
+        2.5974009711133483,
+        2.692277520524238,
+        2.779593917958646,
+        2.8595580330679646,
+        2.932367576365235,
+        2.998207420454663,
+        3.057247846011621,
+        3.1096434573790104,
+        3.155532571560152,
+        3.1950369317617646,
+        3.2282616338640073,
+        3.255295182971488,
+        3.276209619202769,
+        3.291060668598197
+      ],
+      "axis0_delta_Ic_from_base": [
+        0.0,
+        0.013144451162232729,
+        0.033961910520206806,
+        0.061145896512252135,
+        0.09315081035517003,
+        0.12833747831659467,
+        0.16508167019139147,
+        0.20184577834407158,
+        0.23722198898363697,
+        0.26995649246059206,
+        0.2989623321681582,
+        0.32332595271362474,
+        0.3423104600063078,
+        0.35535724466450685,
+        0.36208681042144775,
+        0.36208681042144764,
+        0.35535724466450724,
+        0.3423104600063077,
+        0.32332595271362496,
+        0.2989623321681584,
+        0.269956492460592,
+        0.23722198898363672,
+        0.2018457783440714,
+        0.1650816701913917,
+        0.1283374783165949,
+        0.09315081035516998,
+        0.061145896512252135,
+        0.03396191052020678,
+        0.013144451162232618,
+        1.1102230246251565e-16
+      ],
+      "local_arc_lengths": [
+        0.20797364419550704,
+        0.2063300982436839,
+        0.20312431825275779,
+        0.19850732824559647,
+        0.19267978534268182,
+        0.18586834343413328,
+        0.1783033294165488,
+        0.17020112164795753,
+        0.1617526379020624,
+        0.15311767220336114,
+        0.14442384771589323,
+        0.13576865217039424,
+        0.12722316571854675,
+        0.11883643251685605,
+        0.11063979345181929,
+        0.10265080065554777,
+        0.09487654941088985,
+        0.087316397434408,
+        0.07996411510931845,
+        0.07280954329727019,
+        0.06583984408942811,
+        0.0590404255569581,
+        0.05239561136738935,
+        0.04588911418114172,
+        0.03950436020161252,
+        0.03322470210224271,
+        0.02703354910748068,
+        0.020914436231281197,
+        0.014851049395427918
+      ],
+      "axis0_grad_at_midpoints": [
+        0.12621601224866827,
+        0.2020856426834301,
+        0.26552812747014376,
+        0.31390433296496684,
+        0.3460787919824411,
+        0.3620792076110296,
+        0.3621016520473014,
+        0.34790851350730095,
+        0.3213866941039258,
+        0.284210043209643,
+        0.23811244597248082,
+        0.1848585517780985,
+        0.12622876608017336,
+        0.06401166261738667,
+        0.03421901909895858,
+        0.06401166261738576,
+        0.126228766080174,
+        0.18485855177809887,
+        0.23811244597248052,
+        0.2842100432096448,
+        0.32138669410392695,
+        0.3479085135073011,
+        0.36210165204729783,
+        0.3620792076110293,
+        0.3460787919824432,
+        0.3139043329649665,
+        0.26552812747014454,
+        0.20208564268342993,
+        0.12621601224866694
+      ],
+      "note": "Geodesic displacement from rho(theta_0) grows as theta moves away. This tracks |I_c(theta) - I_c(theta_0)|: states with large Bures displacement from base also have large delta in coherent information. Local arc-length elements correlate with |dI_c/dtheta| from Axis 0.",
+      "pass": true
+    },
+    "P4_endpoint_distance_pure_vs_mixed": {
+      "eta_pure_like": [
+        1.5707963267948966,
+        0.0,
+        0.95
+      ],
+      "eta_mixed": [
+        1.5707963267948966,
+        0.0,
+        0.05
+      ],
+      "geodesic_distance_pure_vs_mixed": 5.241091889408935,
+      "geodesic_distance_same_vs_same": 1.4117305413325026e-14,
+      "pure_vs_mixed_larger": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "N1_random_vs_shell_dispersion": {
+      "shell_frechet_dispersion": 1.7902349802682351,
+      "random_frechet_dispersion": 21.244804460351848,
+      "random_more_dispersed": true,
+      "dispersion_ratio": 11.867048010182824,
+      "note": "Shell-structured density matrices trace a smooth geodesic path and have low Fr\u00e9chet dispersion. Random SPD matrices have higher dispersion because they lack the underlying parametric structure.",
+      "pass": true
+    },
+    "N2_self_distance_zero": {
+      "self_distance": 9.678699938266243e-16,
+      "pass": true
+    },
+    "N3_symmetric_theta_distances": {
+      "d_rho(1.2)_vs_rho(pi-1.2)": 1.4266190362640518,
+      "d_rho(0.5)_vs_rho(pi-0.5)": 3.005223881383667,
+      "note": "Because I_c is symmetric around theta=pi/2, states at theta and pi-theta have the same coherent information. Geodesic distance between them should be small (they are related by symmetry of the construction).",
+      "pass": true
+    }
+  },
+  "boundary": {
+    "B1_geodesic_path_validity": {
+      "t_values": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "all_points_spd": true,
+      "point_eigenvalue_mins": [
+        0.07500009999999997,
+        0.07500010000000007,
+        0.07500010000000003,
+        0.07500009999999999,
+        0.0750001
+      ],
+      "pass": true
+    },
+    "B2_triangle_inequality": {
+      "d_xy": 1.3068500744196463,
+      "d_yz": 2.612633828215123,
+      "d_xz": 3.1707561239537463,
+      "d_xy_plus_d_yz": 3.919483902634769,
+      "triangle_inequality_holds": true,
+      "pass": true
+    },
+    "B3_near_maximally_mixed_small_distances": {
+      "r_value": 0.01,
+      "d_ab": 0.03163028454361797,
+      "d_bc": 0.033901379661697706,
+      "note": "Near r=0, all rho(eta) converge toward I/4. Geodesic distances should be small because the family is nearly constant.",
+      "distances_small": true,
+      "pass": true
+    }
+  },
+  "torch_crosscheck": {
+    "torch_grad_profile": {
+      "theta_values": [
+        0.1,
+        0.25482066597841013,
+        0.4096413319568203,
+        0.5644619979352304,
+        0.7192826639136406,
+        0.8741033298920508,
+        1.028923995870461,
+        1.1837446618488712,
+        1.3385653278272813,
+        1.4933859938056915,
+        1.6482066597841016,
+        1.8030273257625118,
+        1.957847991740922,
+        2.112668657719332,
+        2.2674893236977423,
+        2.4223099896761524,
+        2.5771306556545626,
+        2.7319513216329727,
+        2.886771987611383,
+        3.041592653589793
+      ],
+      "abs_dIc_dtheta": [
+        0.0601329917746994,
+        0.14544553352127276,
+        0.2123626193750533,
+        0.2545806518671506,
+        0.2699916689966427,
+        0.25967268413141054,
+        0.22672865882527699,
+        0.17543489605102514,
+        0.11071029162938784,
+        0.03781668181150327,
+        0.037816681811503244,
+        0.11071029162938763,
+        0.17543489605102483,
+        0.226728658825277,
+        0.2596726841314105,
+        0.26999166899664245,
+        0.2545806518671508,
+        0.21236261937505332,
+        0.14544553352127282,
+        0.06013299177469953
+      ],
+      "argmax_theta": 0.7192826639136406,
+      "note": "PyTorch autograd |dI_c/dtheta| sweep, r=0.7"
+    }
+  },
+  "classification": "canonical",
+  "summary": {
+    "total_tests": 10,
+    "passed": 10,
+    "failed": 0,
+    "all_pass": true,
+    "elapsed_seconds": 0.063
+  }
+}

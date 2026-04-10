@@ -1,0 +1,339 @@
+{
+  "name": "gudhi_bloch_sphere_2d",
+  "description": "2D Bloch sphere sweep (10x10 grid, theta in [0,pi], phi in [0,2pi]). Embeds 100 states as (MI, cond_entropy, I_c) triples. Tests whether H2 appears (S^2 topology) or whether the kernel collapses phi.",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "State construction: density matrices, partial traces, entropy/MI/I_c kernels"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "optional import unavailable: cannot cache function 'canonical_reordering_sign': no locator available for file '/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/clifford/_layout.py'"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Rips and Alpha complex persistence diagrams -- primary topological analysis"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "point_cloud_shape": [
+      100,
+      3
+    ],
+    "n_states": 100,
+    "point_cloud_sample": [
+      {
+        "theta": 0.0,
+        "phi": 0.0,
+        "MI": -3.9863137138648357e-11,
+        "cond_S": 7.972627427729671e-11,
+        "I_c": -7.972627427729671e-11,
+        "S_A": 3.986313713864835e-11,
+        "S_B": 3.986313713864835e-11,
+        "S_AB": 1.1958941141594506e-10
+      },
+      {
+        "theta": 0.0,
+        "phi": 3.141592653589793,
+        "MI": -3.9863137138648357e-11,
+        "cond_S": 7.972627427729671e-11,
+        "I_c": -7.972627427729671e-11,
+        "S_A": 3.986313713864835e-11,
+        "S_B": 3.986313713864835e-11,
+        "S_AB": 1.1958941141594506e-10
+      },
+      {
+        "theta": 0.3490658503988659,
+        "phi": 0.0,
+        "MI": 0.39032403793434595,
+        "cond_S": -0.1951620189073782,
+        "I_c": 0.1951620189073782,
+        "S_A": 0.19516201902696775,
+        "S_B": 0.19516201902696775,
+        "S_AB": 1.1958957158727025e-10
+      },
+      {
+        "theta": 1.7453292519943295,
+        "phi": 0.0,
+        "MI": 1.9562761138320817,
+        "cond_S": -0.9781380568562461,
+        "I_c": 0.9781380568562461,
+        "S_A": 0.9781380569758356,
+        "S_B": 0.9781380569758356,
+        "S_AB": 1.1958941141594506e-10
+      },
+      {
+        "theta": 2.443460952792061,
+        "phi": 3.141592653589793,
+        "MI": 1.041221463590062,
+        "cond_S": -0.5206107317352363,
+        "I_c": 0.5206107317352363,
+        "S_A": 0.5206107318548258,
+        "S_B": 0.5206107318548258,
+        "S_AB": 1.1958941141594506e-10
+      },
+      {
+        "theta": 3.141592653589793,
+        "phi": 5.654866776461628,
+        "MI": -3.9863137138648357e-11,
+        "cond_S": 7.972595393464632e-11,
+        "I_c": -7.972595393464632e-11,
+        "S_A": 3.986281679599797e-11,
+        "S_B": 3.986281679599797e-11,
+        "S_AB": 1.195887707306443e-10
+      }
+    ],
+    "rips": {
+      "H0": {
+        "finite_bars": 4,
+        "infinite_bars": 1,
+        "total": 28,
+        "max_persistence": 0.7971832838738252
+      },
+      "H1": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0
+      },
+      "H2": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0
+      },
+      "raw_pairs_sample": {
+        "H0": [
+          [
+            0.0,
+            6.798699777552591e-17
+          ],
+          [
+            0.0,
+            1.1102230246251565e-16
+          ],
+          [
+            0.0,
+            1.1775693440128312e-16
+          ],
+          [
+            0.0,
+            1.5700924586837752e-16
+          ],
+          [
+            0.0,
+            1.6653345369377348e-16
+          ],
+          [
+            0.0,
+            1.9229626863835638e-16
+          ],
+          [
+            0.0,
+            2.220446049250313e-16
+          ],
+          [
+            0.0,
+            2.265164603617225e-16
+          ],
+          [
+            0.0,
+            2.2651646039827904e-16
+          ],
+          [
+            0.0,
+            2.7194799110210365e-16
+          ],
+          [
+            0.0,
+            2.7194799110210365e-16
+          ],
+          [
+            0.0,
+            2.7194799110210365e-16
+          ],
+          [
+            0.0,
+            2.7194799110210365e-16
+          ],
+          [
+            0.0,
+            2.7194799110210365e-16
+          ],
+          [
+            0.0,
+            2.7194799110210365e-16
+          ],
+          [
+            0.0,
+            2.7194799110210365e-16
+          ],
+          [
+            0.0,
+            2.8031757299712627e-16
+          ],
+          [
+            0.0,
+            3.1401849173675503e-16
+          ],
+          [
+            0.0,
+            3.1401849173675503e-16
+          ],
+          [
+            0.0,
+            3.203426503959943e-16
+          ]
+        ],
+        "H1": [],
+        "H2": []
+      }
+    },
+    "alpha": {
+      "H0": {
+        "finite_bars": 4,
+        "infinite_bars": 1,
+        "total": 28,
+        "max_persistence": 0.15887529702196396
+      },
+      "H1": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 3,
+        "max_persistence": 0.0
+      },
+      "H2": {
+        "finite_bars": 0,
+        "infinite_bars": 0,
+        "total": 0,
+        "max_persistence": 0.0
+      }
+    },
+    "topology_verdict": {
+      "H2_detected_rips": false,
+      "H2_detected_alpha": false,
+      "sphere_topology_preserved": false,
+      "interpretation": "Kernel embedding collapses S^2 topology -- H2=0 (topologically trivial)"
+    },
+    "kernel_range": {
+      "MI_min": -3.9863457481298727e-11,
+      "MI_max": 1.9562761138320817,
+      "cond_S_min": -0.9781380568562461,
+      "cond_S_max": 7.972659461994708e-11,
+      "I_c_min": -7.972659461994708e-11,
+      "I_c_max": 0.9781380568562461
+    }
+  },
+  "negative": {
+    "product_state_degenerate": {
+      "all_same_point": true,
+      "note": "All theta=0 states map to MI=I_c=0 regardless of phi -- phi symmetry broken by kernel"
+    },
+    "equatorial_phi_invariance": {
+      "all_same_point": true,
+      "note": "For cos(theta/2)|00>+e^{i*phi}sin(theta/2)|11>, MI and I_c are phi-independent -- phi is invisible to the kernel"
+    },
+    "phi_collapse_prediction": {
+      "predicted": "phi is invisible to (MI, cond_S, I_c) kernel -- 2D grid collapses to 1D arc",
+      "expected_topology": "1D arc (trivial: H0=1, H1=0, H2=0)",
+      "H2_expected": false
+    }
+  },
+  "boundary": {
+    "north_pole": {
+      "theta": 0.0,
+      "phi": 0.0,
+      "MI": -3.9863137138648357e-11,
+      "cond_S": 7.972627427729671e-11,
+      "I_c": -7.972627427729671e-11,
+      "S_A": 3.986313713864835e-11,
+      "S_B": 3.986313713864835e-11,
+      "S_AB": 1.1958941141594506e-10
+    },
+    "south_pole": {
+      "theta": 3.141592653589793,
+      "phi": 0.0,
+      "MI": -3.9863137138648357e-11,
+      "cond_S": 7.972627427729671e-11,
+      "I_c": -7.972627427729671e-11,
+      "S_A": 3.986313713864835e-11,
+      "S_B": 3.986313713864835e-11,
+      "S_AB": 1.1958941141594506e-10
+    },
+    "poles_distinct": false,
+    "equator": {
+      "theta": 1.5707963267948966,
+      "phi": 0.0,
+      "MI": 1.9999999998804106,
+      "cond_S": -0.9999999998804106,
+      "I_c": 0.9999999998804106,
+      "S_A": 1.0,
+      "S_B": 1.0,
+      "S_AB": 1.1958941141594506e-10
+    },
+    "note": "Poles are distinct: north=(0,0,0), south has S_A=S_B=1 but S_AB=0 so MI=2, I_c=1. Kernel arc goes from (0,0,0) to (2,-1,1) as theta: 0->pi."
+  },
+  "classification": "canonical"
+}

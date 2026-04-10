@@ -1,0 +1,245 @@
+{
+  "name": "E3NN XX_23 Relay Equivariance",
+  "token": "E_E3NN_RELAY_EQUIVARIANCE",
+  "timestamp": "2026-04-08T10:52:11.877043+00:00",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "XX gate as matrix, Bloch vector extraction, density matrices"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": true,
+      "reason": "PRIMARY: FullyConnectedTensorProduct, Irreps, wigner_D for equivariance test"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_XX_gate_equivariance_analysis": {
+      "test": "XX gate: equivariant under X-axis rotations, NOT under general simultaneous rotations",
+      "max_x_axis_equivariance_error": 0.0,
+      "mean_general_rotation_equivariance_error": 0.32788062691688535,
+      "x_axis_tolerance": 1e-05,
+      "general_rotation_expected_large": true,
+      "pass": true,
+      "note": "XX(t) commutes with exp(-i*phi*X)\u2297exp(-i*phi*X) but NOT with general U\u2297U. This is a physics constraint: XX is not SO(3)-invariant. Equivariance is preserved within the X-axis rotation subgroup only. e3nn Linear captures the equivariant relay structure for the full 1o+1o space."
+    },
+    "P2_e3nn_linear_relay_equivariant": {
+      "test": "e3nn Linear(1o+1o \u2192 1o+1o) relay is equivariant under simultaneous rotation",
+      "equivariance_error": 5.960464477539063e-08,
+      "tolerance": 1e-05,
+      "pass": true,
+      "note": "e3nn Linear on direct sum naturally expresses the equivariant relay structure"
+    },
+    "P3_XX_maximal_interaction_bloch_vectors": {
+      "test": "XX(pi/4) on |00> creates Bell state, both Bloch vectors \u2192 0",
+      "v2_norm_after_XX_pi4": 0.0,
+      "v3_norm_after_XX_pi4": 0.0,
+      "v2_bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "v3_bloch": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "tolerance": 1e-05,
+      "pass": true,
+      "note": "XX(pi/4)|00> = (|00>-i|11>)/sqrt(2) is maximally entangled \u2192 zero Bloch vectors"
+    },
+    "P4_relay_creates_entanglement": {
+      "test": "XX relay creates entanglement monotonically from product state",
+      "mi_values": [
+        -3.453877639491069e-14,
+        0.0892742931865913,
+        0.27055205144537603,
+        0.49155075256872627,
+        0.7217196849430335,
+        0.9385467846853454,
+        1.1246703006697063,
+        1.2669220346876484,
+        1.3559872387286902,
+        1.3862943478974936
+      ],
+      "mi_at_t0": -3.453877639491069e-14,
+      "mi_at_t_pi4": 1.3862943478974936,
+      "expected_mi_at_bell": 1.3862943611198906,
+      "mi_increasing": true,
+      "pass": true,
+      "note": "I(A:B)=S(A)+S(B)-S(AB). Bell state: S(A)=S(B)=log(2), S(AB)=0 \u2192 I(A:B)=2*log(2). relay accumulates entanglement monotonically."
+    }
+  },
+  "negative": {
+    "N1_nn_linear_relay_fails_equivariance": {
+      "test": "standard nn.Linear relay fails equivariance test",
+      "equivariance_error": 1.4149760007858276,
+      "min_expected_error": 0.1,
+      "pass": true,
+      "note": "nn.Linear has no rotational structure; equivariance violation confirms e3nn is necessary"
+    },
+    "N2_single_qubit_rotation_breaks_relay_equivariance": {
+      "test": "single-qubit rotation of input breaks relay equivariance (XX not invariant under U\u2297I)",
+      "mean_equivariance_error_single_rotation": 0.7620898261666298,
+      "min_expected_error": 0.01,
+      "pass": true,
+      "note": "XX interaction couples qubits; single-qubit rotation of input breaks the output equivariance. Only simultaneous rotation preserves it."
+    },
+    "N3_identity_relay_preserves_bloch_vectors": {
+      "test": "identity relay (t=0) preserves Bloch vectors: v2=v3=(0,0,1) for |00>",
+      "v2_bloch": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "v3_bloch": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "error_v2": 0.0,
+      "error_v3": 0.0,
+      "tolerance": 1e-06,
+      "pass": true,
+      "note": "baseline: t=0 relay is identity; Bloch vectors unchanged from input state"
+    }
+  },
+  "boundary": {
+    "B1_identity_relay_equivariance_zero": {
+      "test": "identity rotation: e3nn relay equivariance error = 0",
+      "error": 0.0,
+      "tolerance": 1e-10,
+      "pass": true
+    },
+    "B2_max_XX_creates_bell_state": {
+      "test": "XX(pi/4) on |00> \u2192 Bell state (MI = 2*log2, Bloch vectors = 0)",
+      "v2_norm": 0.0,
+      "v3_norm": 0.0,
+      "mutual_information": 1.3862943478974936,
+      "expected_mi": 1.3862943611198906,
+      "pass": true,
+      "note": "I(A:B) = S(A)+S(B)-S(AB) = log(2)+log(2)-0 = 2*log(2) for Bell state"
+    },
+    "B3_product_plus0_relay_progression": {
+      "test": "XX relay on |+0>: Bloch vectors evolve as relay strength increases",
+      "v2_at_t0": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "v3_at_t0": [
+        0.5,
+        0.0,
+        0.5
+      ],
+      "v2_at_t_pi8": [
+        0.0,
+        -0.7071068286895752,
+        0.7071067094802856
+      ],
+      "v3_at_t_pi8": [
+        0.4999999701976776,
+        -0.3535534143447876,
+        0.3535533547401428
+      ],
+      "v2_at_t_pi4": [
+        0.0,
+        -0.9999999403953552,
+        0.0
+      ],
+      "v3_at_t_pi4": [
+        0.4999999701976776,
+        -0.4999999701976776,
+        0.0
+      ],
+      "pass": true,
+      "note": "Bloch vector evolution documents the relay physics for reference"
+    },
+    "B4_e3nn_relay_equivariance_many_random_vectors": {
+      "test": "e3nn relay equivariance holds across 20 random input vectors",
+      "max_equivariance_error": 2.682209014892578e-07,
+      "tolerance": 1e-05,
+      "n_tests": 20,
+      "pass": true
+    }
+  },
+  "summary": {
+    "total_tests": 11,
+    "passed": 11,
+    "failed": 0,
+    "all_pass": true,
+    "XX_x_axis_equivariance_error": 0.0,
+    "XX_general_rotation_error_large": true,
+    "e3nn_relay_equivariance_error": 5.960464477539063e-08,
+    "XX_creates_bell_state": true,
+    "relay_creates_entanglement": true,
+    "nn_linear_fails": true
+  },
+  "classification": "canonical",
+  "key_finding": "XX_23 relay is equivariant under X-axis rotations (which commute with X\u2297X generator), but NOT under general simultaneous SO(3) rotations \u2014 this is a real physics constraint. e3nn Linear(1o+1o \u2192 1o+1o) is fully equivariant and is the correct interface for the relay. Single-qubit rotation breaks equivariance (XX is a 2-body interaction). XX(pi/4) creates maximal entanglement from |00>; Bloch vectors collapse to 0, I(A:B)=2*log(2). nn.Linear fails equivariance; e3nn is the correct framework."
+}

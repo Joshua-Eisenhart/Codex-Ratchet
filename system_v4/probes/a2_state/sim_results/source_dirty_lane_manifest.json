@@ -1,28 +1,28 @@
 {
-  "generated_at": "2026-04-10T04:58:40.138639+00:00",
+  "generated_at": "2026-04-10T05:03:47.377407+00:00",
   "lane_id": "source_dirty__docs_and_specs__docs_and_specs",
   "source_plan_path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
   "selection_mode": "default_docs_blocked_requires_opt_in",
   "allow_docs": false,
   "docs_opt_in_required": true,
   "code_only_fallback": {
-    "group_id": "probe_source__sim_family_positivity",
-    "file_count": 1,
+    "group_id": "probe_source__probe_misc",
+    "file_count": 2,
     "untracked_count": 1,
-    "tracked_dirty_count": 0,
+    "tracked_dirty_count": 1,
     "safe_next_action": "manual_split_required",
-    "source_path": "system_v4/probes/sim_positivity_constraint.py",
-    "result_path": "system_v4/probes/a2_state/sim_results/positivity_constraint_results.json"
+    "source_path": null,
+    "result_path": null
   },
-  "code_only_fallback_group_id": "probe_source__sim_family_positivity",
+  "code_only_fallback_group_id": "probe_source__probe_misc",
   "active_actionable_lane": {
-    "group_id": "probe_source__sim_family_positivity",
-    "file_count": 1,
+    "group_id": "probe_source__probe_misc",
+    "file_count": 2,
     "untracked_count": 1,
-    "tracked_dirty_count": 0,
+    "tracked_dirty_count": 1,
     "safe_next_action": "manual_split_required",
-    "source_path": "system_v4/probes/sim_positivity_constraint.py",
-    "result_path": "system_v4/probes/a2_state/sim_results/positivity_constraint_results.json"
+    "source_path": null,
+    "result_path": null
   },
   "selected_group_id": "docs_and_specs__docs_and_specs",
   "file_count": 3,
@@ -33,9 +33,9 @@
     "file_count": 3,
     "safe_next_action": "checkpoint",
     "docs_opt_in_required": true,
-    "code_only_fallback_group_id": "probe_source__sim_family_positivity",
-    "active_actionable_lane_group_id": "probe_source__sim_family_positivity",
-    "executable_lane_group_id": "probe_source__sim_family_positivity",
+    "code_only_fallback_group_id": "probe_source__probe_misc",
+    "active_actionable_lane_group_id": "probe_source__probe_misc",
+    "executable_lane_group_id": "probe_source__probe_misc",
     "ok": true
   },
   "lane": {
@@ -58,22 +58,22 @@
     ],
     "docs_opt_in_required": true,
     "code_only_fallback": {
-      "group_id": "probe_source__sim_family_positivity",
-      "file_count": 1,
+      "group_id": "probe_source__probe_misc",
+      "file_count": 2,
       "untracked_count": 1,
-      "tracked_dirty_count": 0,
+      "tracked_dirty_count": 1,
       "safe_next_action": "manual_split_required",
-      "source_path": "system_v4/probes/sim_positivity_constraint.py",
-      "result_path": "system_v4/probes/a2_state/sim_results/positivity_constraint_results.json"
+      "source_path": null,
+      "result_path": null
     },
     "active_actionable_lane": {
-      "group_id": "probe_source__sim_family_positivity",
-      "file_count": 1,
+      "group_id": "probe_source__probe_misc",
+      "file_count": 2,
       "untracked_count": 1,
-      "tracked_dirty_count": 0,
+      "tracked_dirty_count": 1,
       "safe_next_action": "manual_split_required",
-      "source_path": "system_v4/probes/sim_positivity_constraint.py",
-      "result_path": "system_v4/probes/a2_state/sim_results/positivity_constraint_results.json"
+      "source_path": null,
+      "result_path": null
     },
     "files": [
       "new docs/16_lego_build_catalog 2.md",
@@ -82,16 +82,17 @@
     ]
   },
   "executable_lane": {
-    "group_id": "probe_source__sim_family_positivity",
+    "group_id": "probe_source__probe_misc",
     "files": [
-      "system_v4/probes/sim_positivity_constraint.py"
+      "new docs/16_lego_build_catalog 2.md",
+      "new docs/16_lego_build_catalog.md",
+      "new docs/17_actual_lego_registry.md"
     ],
-    "result_companions": [
-      "system_v4/probes/a2_state/sim_results/positivity_constraint_results.json"
-    ],
+    "result_companions": [],
     "required_git_paths_clean": [
-      "system_v4/probes/sim_positivity_constraint.py",
-      "system_v4/probes/a2_state/sim_results/positivity_constraint_results.json"
+      "new docs/16_lego_build_catalog 2.md",
+      "new docs/16_lego_build_catalog.md",
+      "new docs/17_actual_lego_registry.md"
     ],
     "goal": "Execute the currently actionable bounded lane without widening scope.",
     "stop_condition": "All files in this executable lane are either checkpointed together or intentionally reclassified in the checkpoint plan."

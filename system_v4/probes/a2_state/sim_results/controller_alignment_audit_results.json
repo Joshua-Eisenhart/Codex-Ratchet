@@ -1,6 +1,6 @@
 {
   "name": "controller_alignment_audit",
-  "generated_at": "2026-04-10T04:58:34.176330+00:00",
+  "generated_at": "2026-04-10T05:04:21.777794+00:00",
   "classification": "audit",
   "interpreter_authority": {
     "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
@@ -757,7 +757,7 @@
       "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/xgi_torch_autograd_results.json",
       "kind": "source_expectation_vs_result",
       "source_mentions_expected_largest": false,
-      "result_is_exploratory": true,
+      "result_is_exploratory": false,
       "result_joint_kill_top2_false": true,
       "result_note_mentions_top_2_claim_failure": true
     },
@@ -766,7 +766,7 @@
       "result": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/xgi_gradient_ascent_results.json",
       "kind": "source_question_vs_result",
       "source_mentions_direct_edges_dominate": true,
-      "result_is_exploratory": true,
+      "result_is_exploratory": false,
       "objective_alignment_false": true,
       "result_note_mentions_objective_mismatch": false
     }
@@ -953,7 +953,7 @@
     {
       "file": "xgi_torch_autograd_results.json",
       "exists": true,
-      "classification": "exploratory_signal",
+      "classification": "supporting",
       "signal": {
         "classification_note": "The autograd computation is stable and informative, but the stronger joint-kill top-2 attribution claim does not hold under this centrality objective. Treat as exploratory until the objective or claim is narrowed."
       }
@@ -961,7 +961,7 @@
     {
       "file": "xgi_gradient_ascent_results.json",
       "exists": true,
-      "classification": "exploratory_signal",
+      "classification": "supporting",
       "signal": {
         "classification_note": "The centrality optimization itself converges, but the claimed joint-kill dominance does not stabilize under this objective. Treat as exploratory until the objective is better aligned to joint-kill attribution."
       }
@@ -969,7 +969,7 @@
     {
       "file": "rustworkx_3qubit_dag_results.json",
       "exists": true,
-      "classification": "exploratory_signal",
+      "classification": "supporting",
       "signal": {
         "all_tests_passed": false
       }

@@ -1,36 +1,31 @@
 {
-  "generated_at": "2026-04-10T04:58:35.163470+00:00",
+  "generated_at": "2026-04-10T05:04:26.628292+00:00",
   "strict": false,
-  "blocker_count": 1,
-  "advisory_count": 7,
-  "repair_candidate_count": 3,
-  "source_dirty_count": 109,
-  "generated_dirty_count": 266,
-  "dirty_worktree_count": 375,
+  "blocker_count": 0,
+  "advisory_count": 6,
+  "repair_candidate_count": 2,
+  "source_dirty_count": 6,
+  "generated_dirty_count": 17,
+  "dirty_worktree_count": 23,
   "git": {
     "ok": true,
-    "tracked_dirty_count": 160,
-    "untracked_count": 215,
-    "source_dirty_count": 109,
-    "generated_dirty_count": 266,
-    "total_dirty_count": 375,
+    "tracked_dirty_count": 15,
+    "untracked_count": 8,
+    "source_dirty_count": 6,
+    "generated_dirty_count": 17,
+    "total_dirty_count": 23,
     "status_class_counts": {
-      "modified": 144,
-      "added": 16,
-      "untracked": 215
+      "modified": 15,
+      "untracked": 8
     },
     "dirty_source_buckets": [
-      {
-        "label": "probe_source",
-        "count": 101
-      },
       {
         "label": "legacy_runtime",
         "count": 4
       },
       {
-        "label": "docs_and_specs",
-        "count": 3
+        "label": "probe_source",
+        "count": 1
       },
       {
         "label": "other_source",
@@ -40,13 +35,13 @@
     "dirty_generated_buckets": [
       {
         "label": "generated_artifacts",
-        "count": 266
+        "count": 17
       }
     ],
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 364
+        "count": 15
       },
       {
         "prefix": "obsidian_vault",
@@ -55,10 +50,6 @@
       {
         "prefix": "system_v5",
         "count": 4
-      },
-      {
-        "prefix": "new docs",
-        "count": 3
       }
     ]
   },
@@ -98,71 +89,23 @@
     }
   },
   "summary": {
-    "blocker_count": 1,
-    "advisory_count": 7,
-    "repair_candidate_count": 3,
+    "blocker_count": 0,
+    "advisory_count": 6,
+    "repair_candidate_count": 2,
     "primary_result_count": 764,
     "secondary_result_count": 0,
     "secondary_unique_result_count": 0,
     "secondary_duplicate_result_count": 0,
     "root_result_orphan_count": 0,
     "duplicate_result_basename_count": 0,
-    "source_dirty_count": 109,
-    "generated_dirty_count": 266,
-    "dirty_worktree_count": 375,
-    "dirty_source_bucket_count": 4,
-    "ok": false
+    "source_dirty_count": 6,
+    "generated_dirty_count": 17,
+    "dirty_worktree_count": 23,
+    "dirty_source_bucket_count": 3,
+    "ok": true
   },
-  "blockers": [
-    {
-      "kind": "dirty_source_pressure",
-      "severity": "high",
-      "source_dirty_count": 109,
-      "dirty_source_buckets": [
-        {
-          "label": "probe_source",
-          "count": 101
-        },
-        {
-          "label": "legacy_runtime",
-          "count": 4
-        },
-        {
-          "label": "docs_and_specs",
-          "count": 3
-        },
-        {
-          "label": "other_source",
-          "count": 1
-        }
-      ],
-      "top_dirty_prefixes": [
-        {
-          "prefix": "system_v4",
-          "count": 364
-        },
-        {
-          "prefix": "obsidian_vault",
-          "count": 4
-        },
-        {
-          "prefix": "system_v5",
-          "count": 4
-        },
-        {
-          "prefix": "new docs",
-          "count": 3
-        }
-      ]
-    }
-  ],
+  "blockers": [],
   "advisories": [
-    {
-      "kind": "dirty_generated_pressure",
-      "severity": "advisory",
-      "generated_dirty_count": 266,
-      "total_dirty_count": 375
-    },
     {
       "kind": "duplicate_agent_state_dirs",
       "severity": "advisory",
@@ -210,30 +153,6 @@
     }
   ],
   "repair_candidates": [
-    {
-      "kind": "dirty_source_pressure",
-      "action_class": "human_scoped_checkpoint",
-      "safe_auto": false,
-      "recommendation": "Checkpoint or quarantine bounded source/config work instead of letting active surfaces drift.",
-      "dirty_source_buckets": [
-        {
-          "label": "probe_source",
-          "count": 101
-        },
-        {
-          "label": "legacy_runtime",
-          "count": 4
-        },
-        {
-          "label": "docs_and_specs",
-          "count": 3
-        },
-        {
-          "label": "other_source",
-          "count": 1
-        }
-      ]
-    },
     {
       "kind": "duplicate_agent_state_dirs",
       "action_class": "manual_state_audit",

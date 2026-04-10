@@ -1,37 +1,37 @@
 {
-  "generated_at": "2026-04-10T04:58:40.281820+00:00",
-  "strict": false,
-  "overall_green": false,
-  "repair_queue_count": 3,
+  "generated_at": "2026-04-10T05:04:29.915682+00:00",
+  "strict": true,
+  "overall_green": true,
+  "repair_queue_count": 2,
   "safe_auto_repair_count": 0,
-  "manual_repair_count": 3,
+  "manual_repair_count": 2,
   "truth_green": true,
   "controller_green": true,
   "migration_green": true,
-  "repo_hygiene_green": false,
+  "repo_hygiene_green": true,
   "runtime_hygiene_green": true,
   "lego_tool_reporting_green": true,
   "active_actionable_lane": {
-    "group_id": "probe_source__sim_family_positivity",
-    "file_count": 1,
+    "group_id": "probe_source__probe_misc",
+    "file_count": 2,
     "untracked_count": 1,
-    "tracked_dirty_count": 0,
+    "tracked_dirty_count": 1,
     "safe_next_action": "manual_split_required",
-    "source_path": "system_v4/probes/sim_positivity_constraint.py",
-    "result_path": "system_v4/probes/a2_state/sim_results/positivity_constraint_results.json"
+    "source_path": null,
+    "result_path": null
   },
   "summary": {
     "missing_surface_count": 0,
-    "repair_queue_count": 3,
+    "repair_queue_count": 2,
     "safe_auto_repair_count": 0,
-    "manual_repair_count": 3,
+    "manual_repair_count": 2,
     "truth_green": true,
     "controller_green": true,
     "migration_green": true,
-    "repo_hygiene_green": false,
+    "repo_hygiene_green": true,
     "runtime_hygiene_green": true,
     "lego_tool_reporting_green": true,
-    "overall_green": false
+    "overall_green": true
   },
   "process_model": {
     "name": "closed_loop_maintenance",
@@ -63,20 +63,16 @@
     "ok": true
   },
   "source_dirty_surface": {
-    "source_dirty_count": 109,
-    "dirty_source_bucket_count": 4,
+    "source_dirty_count": 6,
+    "dirty_source_bucket_count": 3,
     "dirty_source_buckets": [
-      {
-        "label": "probe_source",
-        "count": 101
-      },
       {
         "label": "legacy_runtime",
         "count": 4
       },
       {
-        "label": "docs_and_specs",
-        "count": 3
+        "label": "probe_source",
+        "count": 1
       },
       {
         "label": "other_source",
@@ -86,7 +82,7 @@
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 364
+        "count": 15
       },
       {
         "prefix": "obsidian_vault",
@@ -95,10 +91,6 @@
       {
         "prefix": "system_v5",
         "count": 4
-      },
-      {
-        "prefix": "new docs",
-        "count": 3
       }
     ],
     "checkpoint_recommended": true
@@ -108,62 +100,44 @@
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
     "status": "current",
     "dirty_source_checkpoint_required": true,
-    "plan_group_count": 62,
-    "largest_group_id": "probe_source__lego_family",
+    "plan_group_count": 4,
+    "largest_group_id": "other_source__other_source",
     "next_code_only_manual": {
-      "group_id": "probe_source__sim_family_positivity",
-      "file_count": 1,
+      "group_id": "probe_source__probe_misc",
+      "file_count": 2,
       "untracked_count": 1,
-      "tracked_dirty_count": 0,
+      "tracked_dirty_count": 1,
       "safe_next_action": "manual_split_required",
-      "source_path": "system_v4/probes/sim_positivity_constraint.py",
-      "result_path": "system_v4/probes/a2_state/sim_results/positivity_constraint_results.json"
+      "source_path": null,
+      "result_path": null
     },
     "recommended_code_only_order": [
       {
-        "group_id": "probe_source__sim_family_positivity",
-        "file_count": 1,
+        "group_id": "probe_source__probe_misc",
+        "file_count": 2,
         "untracked_count": 1,
-        "tracked_dirty_count": 0,
+        "tracked_dirty_count": 1,
         "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_positivity_constraint.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/positivity_constraint_results.json"
+        "source_path": null,
+        "result_path": null
       },
       {
-        "group_id": "probe_source__sim_family_qpca",
-        "file_count": 1,
-        "untracked_count": 1,
+        "group_id": "legacy_runtime__legacy_runtime",
+        "file_count": 4,
+        "untracked_count": 4,
         "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_qpca_spectral_extraction.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/qpca_spectral_extraction_results.json"
+        "safe_next_action": "archive_review",
+        "source_path": null,
+        "result_path": null
       },
       {
-        "group_id": "probe_source__sim_family_real",
-        "file_count": 1,
-        "untracked_count": 1,
-        "tracked_dirty_count": 0,
+        "group_id": "other_source__other_source",
+        "file_count": 5,
+        "untracked_count": 4,
+        "tracked_dirty_count": 1,
         "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_real_only_geometry_rejection.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/real_only_geometry_rejection_results.json"
-      },
-      {
-        "group_id": "probe_source__sim_family_reduced",
-        "file_count": 1,
-        "untracked_count": 1,
-        "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_reduced_state_object.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/reduced_state_object_results.json"
-      },
-      {
-        "group_id": "probe_source__sim_family_representation",
-        "file_count": 1,
-        "untracked_count": 1,
-        "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_representation_violation_check.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/representation_violation_check_results.json"
+        "source_path": null,
+        "result_path": null
       }
     ]
   },
@@ -175,8 +149,8 @@
     "selected_group_id": "docs_and_specs__docs_and_specs",
     "file_count": 3,
     "docs_opt_in_required": true,
-    "code_only_fallback_group_id": "probe_source__sim_family_positivity",
-    "active_actionable_lane_group_id": "probe_source__sim_family_positivity"
+    "code_only_fallback_group_id": "probe_source__probe_misc",
+    "active_actionable_lane_group_id": "probe_source__probe_misc"
   },
   "maintenance_lanes": [
     {
@@ -203,31 +177,6 @@
   "missing_surfaces": [],
   "repair_queue": [
     {
-      "kind": "dirty_source_pressure",
-      "action_class": "human_scoped_checkpoint",
-      "safe_auto": false,
-      "recommendation": "Checkpoint or quarantine bounded source/config work instead of letting active surfaces drift.",
-      "dirty_source_buckets": [
-        {
-          "label": "probe_source",
-          "count": 101
-        },
-        {
-          "label": "legacy_runtime",
-          "count": 4
-        },
-        {
-          "label": "docs_and_specs",
-          "count": 3
-        },
-        {
-          "label": "other_source",
-          "count": 1
-        }
-      ],
-      "source_surface": "repo_hygiene"
-    },
-    {
       "kind": "duplicate_agent_state_dirs",
       "action_class": "manual_state_audit",
       "safe_auto": false,
@@ -244,31 +193,6 @@
   ],
   "safe_auto_queue": [],
   "manual_queue": [
-    {
-      "kind": "dirty_source_pressure",
-      "action_class": "human_scoped_checkpoint",
-      "safe_auto": false,
-      "recommendation": "Checkpoint or quarantine bounded source/config work instead of letting active surfaces drift.",
-      "dirty_source_buckets": [
-        {
-          "label": "probe_source",
-          "count": 101
-        },
-        {
-          "label": "legacy_runtime",
-          "count": 4
-        },
-        {
-          "label": "docs_and_specs",
-          "count": 3
-        },
-        {
-          "label": "other_source",
-          "count": 1
-        }
-      ],
-      "source_surface": "repo_hygiene"
-    },
     {
       "kind": "duplicate_agent_state_dirs",
       "action_class": "manual_state_audit",
@@ -309,20 +233,20 @@
       "ok": true
     },
     "repo_hygiene": {
-      "blocker_count": 1,
-      "advisory_count": 7,
-      "repair_candidate_count": 3,
+      "blocker_count": 0,
+      "advisory_count": 6,
+      "repair_candidate_count": 2,
       "primary_result_count": 764,
       "secondary_result_count": 0,
       "secondary_unique_result_count": 0,
       "secondary_duplicate_result_count": 0,
       "root_result_orphan_count": 0,
       "duplicate_result_basename_count": 0,
-      "source_dirty_count": 109,
-      "generated_dirty_count": 266,
-      "dirty_worktree_count": 375,
-      "dirty_source_bucket_count": 4,
-      "ok": false
+      "source_dirty_count": 6,
+      "generated_dirty_count": 17,
+      "dirty_worktree_count": 23,
+      "dirty_source_bucket_count": 3,
+      "ok": true
     },
     "runtime_hygiene": {
       "blocker_count": 0,
@@ -343,17 +267,17 @@
       "ok": true
     },
     "source_dirty_checkpoint": {
-      "dirty_source_count": 109,
-      "plan_group_count": 62,
+      "dirty_source_count": 10,
+      "plan_group_count": 4,
       "checkpoint_candidate_count": 1,
       "quarantine_candidate_count": 0,
-      "manual_only_count": 61,
-      "code_only_manual_count": 61,
-      "largest_group_id": "probe_source__lego_family",
-      "next_code_only_manual_group_id": "probe_source__sim_family_positivity",
-      "next_code_only_manual_file_count": 1,
-      "next_code_only_manual_source_path": "system_v4/probes/sim_positivity_constraint.py",
-      "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/positivity_constraint_results.json",
+      "manual_only_count": 3,
+      "code_only_manual_count": 3,
+      "largest_group_id": "other_source__other_source",
+      "next_code_only_manual_group_id": "probe_source__probe_misc",
+      "next_code_only_manual_file_count": 2,
+      "next_code_only_manual_source_path": null,
+      "next_code_only_manual_result_path": null,
       "ok": true
     },
     "source_dirty_lane_manifest": {
@@ -361,9 +285,9 @@
       "file_count": 3,
       "safe_next_action": "checkpoint",
       "docs_opt_in_required": true,
-      "code_only_fallback_group_id": "probe_source__sim_family_positivity",
-      "active_actionable_lane_group_id": "probe_source__sim_family_positivity",
-      "executable_lane_group_id": "probe_source__sim_family_positivity",
+      "code_only_fallback_group_id": "probe_source__probe_misc",
+      "active_actionable_lane_group_id": "probe_source__probe_misc",
+      "executable_lane_group_id": "probe_source__probe_misc",
       "ok": true
     }
   }

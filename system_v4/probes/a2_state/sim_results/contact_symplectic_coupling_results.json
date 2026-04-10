@@ -1,0 +1,254 @@
+{
+  "name": "pure_lego_contact_symplectic_coupling",
+  "timestamp": "2026-04-10T08:46:58.312517+00:00",
+  "classification": "canonical",
+  "classification_note": "Pairwise coupling probe: S\u00b3 contact shell \u2194 S\u00b2 symplectic shell via Hopf projection. Tests whether the two shells coexist under explicit coupling constraints derived from the bridge identity established in sim_pure_lego_hopf_contact_symplectic_bridge.py. Coupling Program step 2 (pairwise coupling). Distinct from: bridge probe (establishes identity), contact probe (standalone S\u00b3), sim_geom_symplectic_kahler_contact (comparative survey). Uses pytorch (load_bearing) + z3 UNSAT uniqueness proof + sympy polynomial checks.",
+  "lego_ids": [
+    "contact_symplectic_coupling",
+    "contact_S3",
+    "symplectic_S2"
+  ],
+  "primary_lego_ids": [
+    "contact_symplectic_coupling"
+  ],
+  "coupling_judgment": {
+    "shell_pair": [
+      "contact_structure_s3",
+      "symplectic_s2"
+    ],
+    "coupling_map": "hopf_projection",
+    "coupling_constant": {
+      "value": -2,
+      "status": "exact",
+      "source": "hopf_contact_symplectic_bridge"
+    },
+    "coexistence_verdict": "compatible",
+    "compatibility_residual": 1.3322676295501878e-15,
+    "compatibility_threshold": 1e-10,
+    "n_test_points": 100,
+    "positive_case_key": "P2_ground_truth_north_pole",
+    "negative_case_key": "N1_rescaled_symplectic_incompatible",
+    "boundary_case_key": "B1_antipodal_fiber",
+    "positive_diagnosis": "Contact ker(\u03b1) and S\u00b2 symplectic form coexist: \u03c9_S\u00b2(d\u03c0(h\u2081),d\u03c0(h\u2082))=-2\u00b7d\u03b1(h\u2081,h\u2082) at 100 random S\u00b3 points (max residual <1e-10), confirmed at two explicit points.",
+    "negative_diagnosis": "Incompatible couplings confirmed: rescaled \u03c9\u0303=2\u00b7\u03c9 gives c=-4 (residual 2.0), trivial map d\u03c0=0 gives c=0 (residual 2.0), integrable form d\u03b2=0 breaks contact condition and leaves coupling undefined. z3 UNSAT proves c=-2 is uniquely forced.",
+    "sign_convention_note": "Hopf map: X=2(x\u2080x\u2082+x\u2081x\u2083), Y=2(x\u2081x\u2082-x\u2080x\u2083), Z=x\u2080\u00b2+x\u2081\u00b2-x\u2082\u00b2-x\u2083\u00b2. Jacobian row 1: [-2x\u2083, 2x\u2082, 2x\u2081, -2x\u2080] (from Y=2(x\u2081x\u2082-x\u2080x\u2083)). \u03c9_S\u00b2(q;u,v) = q\u00b7(u\u00d7v) [no 1/2 factor]. Bridge identity: \u03c9_S\u00b2(d\u03c0(h\u2081),d\u03c0(h\u2082)) = -2\u00b7d\u03b1(h\u2081,h\u2082). c=-2 is exact (algebraic identity, not fitted)."
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Primary engine for all coupling geometry: S\u00b3 point generation, contact form \u03b1, exterior derivative d\u03b1, Reeb field R, horizontal basis via \u03b1-projection, Hopf map \u03c0, Jacobian d\u03c0, area form \u03c9_S\u00b2, pullback coupling ratio at 100 random S\u00b3 points"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to pairwise contact-symplectic coupling"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof N4: asserting coupling constant c \u2260 -2 while enforcing the bridge identity (\u03c9_S\u00b2=-4, d\u03b1=2, \u03c9_S\u00b2=c\u00b7d\u03b1 at north pole) is structurally impossible. Proves coupling constant uniqueness as an algebraic fact."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to pairwise contact-symplectic coupling"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic coupling checks: J\u00b7R=0 as polynomial identity (Reeb verticality, underpins coupling well-definedness), coupling constant c=-2 at canonical point, and coupling constant scaling c=-2k under \u03c9 rescaling (uniqueness of k=1)."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to pairwise contact-symplectic coupling"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to pairwise contact-symplectic coupling"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to pairwise contact-symplectic coupling"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to pairwise contact-symplectic coupling"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to pairwise contact-symplectic coupling"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to pairwise contact-symplectic coupling"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to pairwise contact-symplectic coupling"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_batch_coupling_ratio": {
+      "pass": true,
+      "coupling_residual": 1.3322676295501878e-15,
+      "coupling_constant": -2.0,
+      "n_valid_points": 100,
+      "threshold": 1e-10,
+      "verdict": "compatible",
+      "description": "\u03c9_S\u00b2(d\u03c0(h\u2081),d\u03c0(h\u2082)) = -2\u00b7d\u03b1(h\u2081,h\u2082) at 100 random S\u00b3 points"
+    },
+    "P2_ground_truth_north_pole": {
+      "pass": true,
+      "coupling_residual": 0.0,
+      "lhs_omega_s2": -4.0,
+      "rhs_dalpha": 2.0,
+      "coupling_constant": -2.0,
+      "expected": -2.0,
+      "verdict": "compatible",
+      "description": "Explicit coupling at p=(1,0,0,0): lhs=-4, rhs=2, c=-2"
+    },
+    "P3_ground_truth_equidistant": {
+      "pass": true,
+      "coupling_residual": 0.0,
+      "lhs_omega_s2": -3.999999999999999,
+      "rhs_dalpha": 1.9999999999999996,
+      "coupling_constant": -2.0,
+      "expected": -2.0,
+      "verdict": "compatible",
+      "description": "Explicit coupling at p=(1/2,1/2,1/2,1/2): c=-2"
+    },
+    "P4_sympy_reeb_kernel": {
+      "pass": true,
+      "JR0": "0",
+      "JR1": "0",
+      "JR2": "0",
+      "verdict": "compatible",
+      "description": "J\u00b7R=0 polynomial identity: Reeb is vertical, coupling map well-defined"
+    },
+    "P5_sympy_coupling_constant": {
+      "pass": true,
+      "omega_s2_value": "-4",
+      "dalpha_value": "2",
+      "coupling_constant_sympy": "-2",
+      "expected": "-2",
+      "verdict": "compatible",
+      "description": "Sympy: c = \u03c9_S\u00b2/d\u03b1 = -4/2 = -2 at p=(1,0,0,0) (symbolic arithmetic)"
+    }
+  },
+  "negative": {
+    "N1_rescaled_symplectic_incompatible": {
+      "pass": true,
+      "coupling_residual": 2.0,
+      "rescaling_k": 2.0,
+      "lhs_standard": -4.0,
+      "lhs_rescaled": -8.0,
+      "rhs_dalpha": 2.0,
+      "coupling_constant_rescaled": -4.0,
+      "expected_incompatible": true,
+      "verdict": "incompatible",
+      "description": "\u03c9\u0303=2\u00b7\u03c9_S\u00b2 yields c=-4 \u2260 -2: rescaled symplectic shell is incompatible"
+    },
+    "N2_trivial_map_incompatible": {
+      "pass": true,
+      "coupling_residual": 2.0,
+      "lhs_trivial_map": 0.0,
+      "rhs_dalpha": 2.0,
+      "coupling_constant_trivial": 0.0,
+      "verdict": "incompatible",
+      "description": "d\u03c0=0 (constant map): lhs=0, rhs=2, c=0 \u2260 -2 \u2014 contact data invisible to base"
+    },
+    "N3_integrable_form_incompatible": {
+      "pass": true,
+      "beta_form": "dx_1 (integrable)",
+      "dbeta_h1h2": 0.0,
+      "lhs_omega_s2": -4.0,
+      "contact_condition_fails": true,
+      "coupling_ratio": "undefined (division by zero)",
+      "coupling_undefined": true,
+      "verdict": "incompatible",
+      "description": "\u03b2=dx\u2081 has d\u03b2=0: contact condition \u03b2\u2227d\u03b2=0 fails, coupling denominator undefined"
+    },
+    "N4_z3_coupling_uniqueness_unsat": {
+      "pass": true,
+      "z3_result": "unsat",
+      "encoding": {
+        "A1": "omega_s2 = -4 (Hopf geometry at p=(1,0,0,0))",
+        "A2": "dalpha = 2 (contact structure at north pole)",
+        "A3": "omega_s2 = c * dalpha (bridge identity)",
+        "negation": "c \u2260 -2"
+      },
+      "verdict": "incompatible",
+      "description": "z3 UNSAT: c\u2260-2 is impossible under bridge identity \u2014 c=-2 is uniquely forced"
+    }
+  },
+  "boundary": {
+    "B1_antipodal_fiber": {
+      "pass": true,
+      "coupling_residual": 1.7763568394002505e-15,
+      "base_point_diff": 0.0,
+      "n_valid_pairs": 20,
+      "verdict": "compatible",
+      "description": "p and -p share Hopf fiber: \u03c0(p)=\u03c0(-p), both give c=-2 (fiber-invariant coupling)"
+    },
+    "B2_equatorial_fiber": {
+      "pass": true,
+      "coupling_residual": 8.881784197001252e-16,
+      "lhs_omega_s2": -3.9999999999999982,
+      "rhs_dalpha": 2.0,
+      "coupling_constant": -1.9999999999999991,
+      "point": [
+        0.0,
+        0.0,
+        0.7071067811865475,
+        0.7071067811865475
+      ],
+      "verdict": "compatible",
+      "description": "Equatorial fiber p=(0,0,1/\u221a2,1/\u221a2): basis stable via \u03b1-projection, c=-2"
+    },
+    "B3_antipodal_s2_coverage": {
+      "pass": true,
+      "coupling_residual": 0.0,
+      "c_north_pole": -2.0,
+      "c_south_pole": -2.0,
+      "base_dot_product": -1.0,
+      "expected_dot": -1.0,
+      "verdict": "compatible",
+      "description": "p\u2081\u2192north S\u00b2, p\u2082\u2192south S\u00b2: coupling c=-2 at both antipodal base extremes"
+    }
+  },
+  "tests_passed": 12,
+  "tests_total": 12,
+  "summary": {
+    "tests_passed": 12,
+    "tests_total": 12,
+    "coexistence_verdict": "compatible",
+    "coupling_identity": "omega_S2(d_pi(h1), d_pi(h2)) = -2 * dalpha(h1, h2)",
+    "coupling_constant": -2,
+    "coexistence_criterion": "surjectivity + coupling ratio -2 + contact non-degeneracy",
+    "positive_cases": "100 random points + 2 explicit ground truth",
+    "negative_cases": "rescaled omega (c=-4), trivial map (c=0), integrable form (undefined)",
+    "z3_uniqueness": "c != -2 is UNSAT under bridge identity at north pole"
+  }
+}

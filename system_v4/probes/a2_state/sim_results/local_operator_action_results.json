@@ -1,0 +1,124 @@
+{
+  "name": "local_operator_action",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for primitive local operator action on admitted qubit states, kept separate from basis rows, commutator rows, joint action, and composition-order rows.",
+  "lego_ids": [
+    "local_operator_action"
+  ],
+  "primary_lego_ids": [
+    "local_operator_action"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "unitary_action_preserves_density_matrix_legality": {
+      "pass": true
+    },
+    "unitary_action_preserves_purity": {
+      "pass": true
+    },
+    "x_flips_zero_to_one_projector": {
+      "pass": true
+    },
+    "z_flips_plus_to_minus_projector": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "nontrivial_local_action_does_not_fix_all_pure_states": {
+      "pass": true
+    },
+    "counterfeit_nonunitary_map_fails_density_legality": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "identity_action_leaves_states_unchanged": {
+      "pass": true
+    },
+    "maximally_mixed_state_is_fixed_by_unitary_conjugation": {
+      "pass": true
+    },
+    "z_action_keeps_z_eigenstate_fixed": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local operator-action lego on a tiny admitted qubit state set under unitary conjugation."
+  }
+}

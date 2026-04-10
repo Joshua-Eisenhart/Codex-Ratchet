@@ -1,0 +1,863 @@
+{
+  "name": "Bridge / Phi0 cross-consistency audit",
+  "schema_version": "1.0",
+  "probe": "bridge_phi0_cross_consistency_audit",
+  "purpose": "Audit whether family sensitivity, kernel ranking, robustness, and packet claims stay mutually consistent on a shared reduced bridge/Phi0 packet set.",
+  "classification": "supporting",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- exact finite-dimensional numpy checks are sufficient"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- there is no graph layer in this audit"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- this audit is constructive and numerical"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no synthesis or SMT constraints are required"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- all formulas are explicit finite matrix formulas"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra layer is required"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold statistics are required"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant learning layer is required"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph algorithms are needed here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph or simplicial layer is needed here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- this audit uses direct packet arrays, not complexes"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistence computation is needed here"
+    }
+  },
+  "positive": {
+    "shared_packet_rows": [
+      {
+        "packet_label": "aligned_low_coupling",
+        "packet_kind": "product_like",
+        "family": "Xi_ref",
+        "kernels": {
+          "mutual_information": 2.4211317923183984e-05,
+          "conditional_entropy_a_given_b": 0.9382118531515695,
+          "coherent_information": -0.9382118531515695,
+          "negativity": 0.0,
+          "weighted_cut_functional": 1.0895093065432793e-05
+        }
+      },
+      {
+        "packet_label": "aligned_low_coupling",
+        "packet_kind": "product_like",
+        "family": "Xi_shell",
+        "kernels": {
+          "mutual_information": 0.07996032307706424,
+          "conditional_entropy_a_given_b": 0.8814205615567905,
+          "coherent_information": -0.8814205615567905,
+          "negativity": 1.1102230246251565e-16,
+          "weighted_cut_functional": 0.035982145384678935
+        }
+      },
+      {
+        "packet_label": "aligned_low_coupling",
+        "packet_kind": "product_like",
+        "family": "Xi_hist",
+        "kernels": {
+          "mutual_information": 0.05698035968499182,
+          "conditional_entropy_a_given_b": 0.9023029866988255,
+          "coherent_information": -0.9023029866988255,
+          "negativity": 0.0,
+          "weighted_cut_functional": 0.02564116185824632
+        }
+      },
+      {
+        "packet_label": "aligned_low_coupling",
+        "packet_kind": "product_like",
+        "family": "Xi_blend",
+        "kernels": {
+          "mutual_information": 0.031681771704161976,
+          "conditional_entropy_a_given_b": 0.9252818007778707,
+          "coherent_information": -0.9252818007778707,
+          "negativity": 1.1102230246251565e-16,
+          "weighted_cut_functional": 0.014256797266872913
+        }
+      },
+      {
+        "packet_label": "reference_split",
+        "packet_kind": "reference_driven",
+        "family": "Xi_ref",
+        "kernels": {
+          "mutual_information": 0.0029293755278296807,
+          "conditional_entropy_a_given_b": 0.8738362440386737,
+          "coherent_information": -0.8738362440386737,
+          "negativity": 2.220446049250313e-16,
+          "weighted_cut_functional": 0.0013182189875234009
+        }
+      },
+      {
+        "packet_label": "reference_split",
+        "packet_kind": "reference_driven",
+        "family": "Xi_shell",
+        "kernels": {
+          "mutual_information": 0.10709055616325869,
+          "conditional_entropy_a_given_b": 0.795039767646033,
+          "coherent_information": -0.795039767646033,
+          "negativity": 4.440892098500626e-16,
+          "weighted_cut_functional": 0.048190750273466504
+        }
+      },
+      {
+        "packet_label": "reference_split",
+        "packet_kind": "reference_driven",
+        "family": "Xi_hist",
+        "kernels": {
+          "mutual_information": 0.07616063315928367,
+          "conditional_entropy_a_given_b": 0.8162128858174008,
+          "coherent_information": -0.8162128858174008,
+          "negativity": 0.0,
+          "weighted_cut_functional": 0.03427228492167766
+        }
+      },
+      {
+        "packet_label": "reference_split",
+        "packet_kind": "reference_driven",
+        "family": "Xi_blend",
+        "kernels": {
+          "mutual_information": 0.04672103128455407,
+          "conditional_entropy_a_given_b": 0.8517864702109956,
+          "coherent_information": -0.8517864702109956,
+          "negativity": 0.0,
+          "weighted_cut_functional": 0.021024464078049334
+        }
+      },
+      {
+        "packet_label": "shell_gradient",
+        "packet_kind": "shell_driven",
+        "family": "Xi_ref",
+        "kernels": {
+          "mutual_information": 0.0019167049854551532,
+          "conditional_entropy_a_given_b": 0.7724640800919642,
+          "coherent_information": -0.7724640800919642,
+          "negativity": 0.0,
+          "weighted_cut_functional": 0.000862517243454819
+        }
+      },
+      {
+        "packet_label": "shell_gradient",
+        "packet_kind": "shell_driven",
+        "family": "Xi_shell",
+        "kernels": {
+          "mutual_information": 0.23537624021875203,
+          "conditional_entropy_a_given_b": 0.6488255462880969,
+          "coherent_information": -0.6488255462880969,
+          "negativity": 0.031196503513759577,
+          "weighted_cut_functional": 0.11215860880119033
+        }
+      },
+      {
+        "packet_label": "shell_gradient",
+        "packet_kind": "shell_driven",
+        "family": "Xi_hist",
+        "kernels": {
+          "mutual_information": 0.0838798799721967,
+          "conditional_entropy_a_given_b": 0.7542191418691655,
+          "coherent_information": -0.7542191418691655,
+          "negativity": 0.0,
+          "weighted_cut_functional": 0.03774594598748852
+        }
+      },
+      {
+        "packet_label": "shell_gradient",
+        "packet_kind": "shell_driven",
+        "family": "Xi_blend",
+        "kernels": {
+          "mutual_information": 0.0775622537228704,
+          "conditional_entropy_a_given_b": 0.7620168870912505,
+          "coherent_information": -0.7620168870912505,
+          "negativity": 2.220446049250313e-16,
+          "weighted_cut_functional": 0.03490301417529172
+        }
+      },
+      {
+        "packet_label": "mixed_competition",
+        "packet_kind": "mixed_case",
+        "family": "Xi_ref",
+        "kernels": {
+          "mutual_information": 0.006837568816584705,
+          "conditional_entropy_a_given_b": 0.8554588667078171,
+          "coherent_information": -0.8554588667078171,
+          "negativity": 0.0,
+          "weighted_cut_functional": 0.0030769059674631174
+        }
+      },
+      {
+        "packet_label": "mixed_competition",
+        "packet_kind": "mixed_case",
+        "family": "Xi_shell",
+        "kernels": {
+          "mutual_information": 0.1897684466880447,
+          "conditional_entropy_a_given_b": 0.6954821176403279,
+          "coherent_information": -0.6954821176403279,
+          "negativity": 0.006706627525035258,
+          "weighted_cut_functional": 0.08673712651462717
+        }
+      },
+      {
+        "packet_label": "mixed_competition",
+        "packet_kind": "mixed_case",
+        "family": "Xi_hist",
+        "kernels": {
+          "mutual_information": 0.1071272511227288,
+          "conditional_entropy_a_given_b": 0.782069772427032,
+          "coherent_information": -0.782069772427032,
+          "negativity": 0.0,
+          "weighted_cut_functional": 0.048207263005227964
+        }
+      },
+      {
+        "packet_label": "mixed_competition",
+        "packet_kind": "mixed_case",
+        "family": "Xi_blend",
+        "kernels": {
+          "mutual_information": 0.07539948992341183,
+          "conditional_entropy_a_given_b": 0.8052924060978761,
+          "coherent_information": -0.8052924060978761,
+          "negativity": 2.220446049250313e-16,
+          "weighted_cut_functional": 0.033929770465535365
+        }
+      }
+    ],
+    "family_consistency": {
+      "family_kernel": {
+        "Xi_ref": {
+          "mutual_information": 2.4211317923183984e-05,
+          "conditional_entropy_a_given_b": 0.9382118531515695,
+          "coherent_information": -0.9382118531515695,
+          "negativity": 0.0,
+          "weighted_cut_functional": 1.0895093065432793e-05
+        },
+        "Xi_shell": {
+          "mutual_information": 0.07996032307706424,
+          "conditional_entropy_a_given_b": 0.8814205615567905,
+          "coherent_information": -0.8814205615567905,
+          "negativity": 1.1102230246251565e-16,
+          "weighted_cut_functional": 0.035982145384678935
+        },
+        "Xi_hist": {
+          "mutual_information": 0.05698035968499182,
+          "conditional_entropy_a_given_b": 0.9023029866988255,
+          "coherent_information": -0.9023029866988255,
+          "negativity": 0.0,
+          "weighted_cut_functional": 0.02564116185824632
+        },
+        "Xi_blend": {
+          "mutual_information": 0.031681771704161976,
+          "conditional_entropy_a_given_b": 0.9252818007778707,
+          "coherent_information": -0.9252818007778707,
+          "negativity": 1.1102230246251565e-16,
+          "weighted_cut_functional": 0.014256797266872913
+        }
+      },
+      "dominant_perturbation_families": {
+        "history_scramble": "Xi_hist",
+        "shell_ablation": "Xi_shell",
+        "reference_freeze": "Xi_ref"
+      },
+      "pass": true
+    },
+    "ranking_consistency": {
+      "ranking": [
+        {
+          "family": "Xi_shell",
+          "kernel_scores": {
+            "mutual_information": {
+              "spread": 0.1554159171416878,
+              "class_gap": 0.23537624021875203,
+              "combined_score": 0.18740004637251348
+            },
+            "conditional_entropy_a_given_b": {
+              "spread": 0.23259501526869364,
+              "class_gap": 0.8814205615567905,
+              "combined_score": 0.49212523378393236
+            },
+            "coherent_information": {
+              "spread": 0.23259501526869364,
+              "class_gap": 0.0,
+              "combined_score": 0.1395570091612162
+            },
+            "negativity": {
+              "spread": 0.031196503513759466,
+              "class_gap": 0.031196503513759577,
+              "combined_score": 0.03119650351375951
+            },
+            "weighted_cut_functional": {
+              "spread": 0.0761764634165114,
+              "class_gap": 0.11215860880119033,
+              "combined_score": 0.09056932157038297
+            }
+          },
+          "aggregate_discrimination_score": 0.1881696228803609
+        },
+        {
+          "family": "Xi_blend",
+          "kernel_scores": {
+            "mutual_information": {
+              "spread": 0.045880482018708424,
+              "class_gap": 0.0775622537228704,
+              "combined_score": 0.05855319070037321
+            },
+            "conditional_entropy_a_given_b": {
+              "spread": 0.16326491368662022,
+              "class_gap": 0.9252818007778707,
+              "combined_score": 0.46807166852312043
+            },
+            "coherent_information": {
+              "spread": 0.16326491368662022,
+              "class_gap": 0.0,
+              "combined_score": 0.09795894821197212
+            },
+            "negativity": {
+              "spread": 2.220446049250313e-16,
+              "class_gap": 2.220446049250313e-16,
+              "combined_score": 2.220446049250313e-16
+            },
+            "weighted_cut_functional": {
+              "spread": 0.020646216908418807,
+              "class_gap": 0.03490301417529172,
+              "combined_score": 0.02634893581516797
+            }
+          },
+          "aggregate_discrimination_score": 0.1301865486501268
+        },
+        {
+          "family": "Xi_hist",
+          "kernel_scores": {
+            "mutual_information": {
+              "spread": 0.050146891437736985,
+              "class_gap": 0.1071272511227288,
+              "combined_score": 0.07293903531173371
+            },
+            "conditional_entropy_a_given_b": {
+              "spread": 0.14808384482965997,
+              "class_gap": 0.9023029866988255,
+              "combined_score": 0.4497715015773262
+            },
+            "coherent_information": {
+              "spread": 0.14808384482965997,
+              "class_gap": 0.0,
+              "combined_score": 0.08885030689779598
+            },
+            "negativity": {
+              "spread": 0.0,
+              "class_gap": 0.0,
+              "combined_score": 0.0
+            },
+            "weighted_cut_functional": {
+              "spread": 0.022566101146981644,
+              "class_gap": 0.048207263005227964,
+              "combined_score": 0.032822565890280174
+            }
+          },
+          "aggregate_discrimination_score": 0.1288766819354272
+        },
+        {
+          "family": "Xi_ref",
+          "kernel_scores": {
+            "mutual_information": {
+              "spread": 0.006813357498661521,
+              "class_gap": 0.006837568816584705,
+              "combined_score": 0.006823042025830794
+            },
+            "conditional_entropy_a_given_b": {
+              "spread": 0.1657477730596053,
+              "class_gap": 0.9382118531515695,
+              "combined_score": 0.474733405096391
+            },
+            "coherent_information": {
+              "spread": 0.1657477730596053,
+              "class_gap": 0.0,
+              "combined_score": 0.09944866383576319
+            },
+            "negativity": {
+              "spread": 2.220446049250313e-16,
+              "class_gap": 2.220446049250313e-16,
+              "combined_score": 2.220446049250313e-16
+            },
+            "weighted_cut_functional": {
+              "spread": 0.0030660108743976846,
+              "class_gap": 0.0030769059674631174,
+              "combined_score": 0.0030703689116238575
+            }
+          },
+          "aggregate_discrimination_score": 0.11681509597392181
+        }
+      ],
+      "alt_ranking": [
+        {
+          "family": "Xi_shell",
+          "kernel_scores": {
+            "mutual_information": {
+              "spread": 0.1554159171416878,
+              "class_gap": 0.23537624021875203,
+              "combined_score": 0.18740004637251348
+            },
+            "conditional_entropy_a_given_b": {
+              "spread": 0.23259501526869364,
+              "class_gap": 0.8814205615567905,
+              "combined_score": 0.49212523378393236
+            },
+            "coherent_information": {
+              "spread": 0.23259501526869364,
+              "class_gap": 0.0,
+              "combined_score": 0.1395570091612162
+            },
+            "negativity": {
+              "spread": 0.031196503513759466,
+              "class_gap": 0.031196503513759577,
+              "combined_score": 0.03119650351375951
+            },
+            "weighted_cut_functional": {
+              "spread": 0.0761764634165114,
+              "class_gap": 0.11215860880119033,
+              "combined_score": 0.09056932157038297
+            }
+          },
+          "aggregate_discrimination_score": 0.1881696228803609
+        },
+        {
+          "family": "Xi_blend",
+          "kernel_scores": {
+            "mutual_information": {
+              "spread": 0.045880482018708424,
+              "class_gap": 0.0775622537228704,
+              "combined_score": 0.05855319070037321
+            },
+            "conditional_entropy_a_given_b": {
+              "spread": 0.16326491368662022,
+              "class_gap": 0.9252818007778707,
+              "combined_score": 0.46807166852312043
+            },
+            "coherent_information": {
+              "spread": 0.16326491368662022,
+              "class_gap": 0.0,
+              "combined_score": 0.09795894821197212
+            },
+            "negativity": {
+              "spread": 2.220446049250313e-16,
+              "class_gap": 2.220446049250313e-16,
+              "combined_score": 2.220446049250313e-16
+            },
+            "weighted_cut_functional": {
+              "spread": 0.020646216908418807,
+              "class_gap": 0.03490301417529172,
+              "combined_score": 0.02634893581516797
+            }
+          },
+          "aggregate_discrimination_score": 0.1301865486501268
+        },
+        {
+          "family": "Xi_hist",
+          "kernel_scores": {
+            "mutual_information": {
+              "spread": 0.02689952028720488,
+              "class_gap": 0.0838798799721967,
+              "combined_score": 0.04969166416120161
+            },
+            "conditional_entropy_a_given_b": {
+              "spread": 0.14808384482965997,
+              "class_gap": 0.9023029866988255,
+              "combined_score": 0.4497715015773262
+            },
+            "coherent_information": {
+              "spread": 0.14808384482965997,
+              "class_gap": 0.0,
+              "combined_score": 0.08885030689779598
+            },
+            "negativity": {
+              "spread": 0.0,
+              "class_gap": 0.0,
+              "combined_score": 0.0
+            },
+            "weighted_cut_functional": {
+              "spread": 0.012104784129242197,
+              "class_gap": 0.03774594598748852,
+              "combined_score": 0.022361248872540724
+            }
+          },
+          "aggregate_discrimination_score": 0.12213494430177292
+        },
+        {
+          "family": "Xi_ref",
+          "kernel_scores": {
+            "mutual_information": {
+              "spread": 0.0029051642099064967,
+              "class_gap": 0.0029293755278296807,
+              "combined_score": 0.0029148487370757705
+            },
+            "conditional_entropy_a_given_b": {
+              "spread": 0.1657477730596053,
+              "class_gap": 0.9382118531515695,
+              "combined_score": 0.474733405096391
+            },
+            "coherent_information": {
+              "spread": 0.1657477730596053,
+              "class_gap": 0.0,
+              "combined_score": 0.09944866383576319
+            },
+            "negativity": {
+              "spread": 2.220446049250313e-16,
+              "class_gap": 2.220446049250313e-16,
+              "combined_score": 2.220446049250313e-16
+            },
+            "weighted_cut_functional": {
+              "spread": 0.001307323894457968,
+              "class_gap": 0.0013182189875234009,
+              "combined_score": 0.0013116819316841412
+            }
+          },
+          "aggregate_discrimination_score": 0.11568171992018288
+        }
+      ],
+      "kendall_tau_distance": 0.0,
+      "top_family": "Xi_shell",
+      "runner_up": "Xi_blend",
+      "pass": true
+    },
+    "robustness_consistency": {
+      "base_candidates": {
+        "Phi0_ref_Ic": -0.8738362440386737,
+        "Phi0_shell_weighted_Ic": -0.7778139632996811,
+        "Phi0_hist_Ic": -0.8162128858174008,
+        "Phi0_blend_weighted_cut": 0.021024464078049334,
+        "Phi0_ref_MI": 0.0029293755278296807,
+        "Phi0_blend_MI": 0.04672103128455407
+      },
+      "small_shell_delta": {
+        "Phi0_ref_Ic": 0.0,
+        "Phi0_shell_weighted_Ic": 0.0016455614631344373,
+        "Phi0_hist_Ic": 0.0,
+        "Phi0_blend_weighted_cut": 4.742178142728981e-05,
+        "Phi0_ref_MI": 0.0,
+        "Phi0_blend_MI": 0.00010538173650509464
+      },
+      "large_shell_delta": {
+        "Phi0_ref_Ic": 0.0,
+        "Phi0_shell_weighted_Ic": 0.004463303694529297,
+        "Phi0_hist_Ic": 0.0,
+        "Phi0_blend_weighted_cut": 0.00012684586239349732,
+        "Phi0_ref_MI": 0.0,
+        "Phi0_blend_MI": 0.0002818796942076762
+      },
+      "history_delta": {
+        "Phi0_ref_Ic": 0.0,
+        "Phi0_shell_weighted_Ic": 0.0,
+        "Phi0_hist_Ic": 0.1889973894161434,
+        "Phi0_blend_weighted_cut": 0.02425432815990167,
+        "Phi0_ref_MI": 0.0,
+        "Phi0_blend_MI": 0.05389850702200372
+      },
+      "reference_delta": {
+        "Phi0_ref_Ic": 0.04708987154605582,
+        "Phi0_shell_weighted_Ic": 0.0,
+        "Phi0_hist_Ic": 0.0,
+        "Phi0_blend_weighted_cut": 0.0014919196162659146,
+        "Phi0_ref_MI": 0.0029293755278299027,
+        "Phi0_blend_MI": 0.0033153769250353626
+      },
+      "blind_small_delta": {
+        "fake_constant": 0.0,
+        "fake_packet_score": 0.0,
+        "fake_shell_mean_radius": 0.0,
+        "fake_history_mean_phase": 0.0
+      },
+      "blind_large_delta": {
+        "fake_constant": 0.0,
+        "fake_packet_score": 0.0,
+        "fake_shell_mean_radius": 0.0,
+        "fake_history_mean_phase": 0.0
+      },
+      "blind_history_delta": {
+        "fake_constant": 0.0,
+        "fake_packet_score": 0.14999999999999997,
+        "fake_shell_mean_radius": 0.0,
+        "fake_history_mean_phase": 0.0
+      },
+      "blind_reference_delta": {
+        "fake_constant": 0.0,
+        "fake_packet_score": 0.23672318769174105,
+        "fake_shell_mean_radius": 0.0,
+        "fake_history_mean_phase": 0.0
+      },
+      "pass": true
+    },
+    "packet_audit": {
+      "packet_rows": [
+        {
+          "label": "aligned_low_coupling",
+          "kind": "product_like",
+          "packet_features": {
+            "reference_offset": 0.04226234206169294,
+            "shell_dispersion": 0.02054804667656325,
+            "history_turning": 0.010000000000000007,
+            "shell_weight_entropy": 1.4854752972273344
+          },
+          "validity": {
+            "trace": 1.0,
+            "trace_error": 0.0,
+            "min_eigenvalue": 0.15933255950941463,
+            "hermitian_error": 0.0,
+            "psd": true,
+            "valid": true,
+            "rho_a_max_error": 0.0,
+            "rho_b_max_error": 0.0,
+            "marginals_consistent": true,
+            "S_AB": 1.882121718270444,
+            "S_A": 0.9569635724820327,
+            "S_B": 0.9568399174925732,
+            "I_AB": 0.031681771704161976,
+            "Ic_A_to_B": -0.9252818007778707
+          },
+          "candidate_values": {
+            "Phi0_ref_Ic": -0.9382118531515695,
+            "Phi0_shell_weighted_Ic": -0.8754624642881443,
+            "Phi0_hist_Ic": -0.9023029866988255,
+            "Phi0_blend_weighted_cut": 0.014256797266872913,
+            "Phi0_ref_MI": 2.4211317923183984e-05,
+            "Phi0_blend_MI": 0.031681771704161976
+          },
+          "blind_values": {
+            "fake_constant": 1.0,
+            "fake_packet_score": 0.027031039069176907,
+            "fake_shell_mean_radius": 0.3066666666666667,
+            "fake_history_mean_phase": 0.04
+          }
+        },
+        {
+          "label": "reference_split",
+          "kind": "reference_driven",
+          "packet_features": {
+            "reference_offset": 0.5636266373612882,
+            "shell_dispersion": 0.048989794855663585,
+            "history_turning": 0.039999999999999994,
+            "shell_weight_entropy": 1.4854752972273344
+          },
+          "validity": {
+            "trace": 1.0,
+            "trace_error": 0.0,
+            "min_eigenvalue": 0.12211851773882305,
+            "hermitian_error": 0.0,
+            "psd": true,
+            "valid": true,
+            "rho_a_max_error": 0.0,
+            "rho_b_max_error": 0.0,
+            "marginals_consistent": true,
+            "S_AB": 1.7468450205303299,
+            "S_A": 0.8985075014955497,
+            "S_B": 0.8950585503193342,
+            "I_AB": 0.04672103128455407,
+            "Ic_A_to_B": -0.8517864702109956
+          },
+          "candidate_values": {
+            "Phi0_ref_Ic": -0.8738362440386737,
+            "Phi0_shell_weighted_Ic": -0.7778139632996811,
+            "Phi0_hist_Ic": -0.8162128858174008,
+            "Phi0_blend_weighted_cut": 0.021024464078049334,
+            "Phi0_ref_MI": 0.0029293755278296807,
+            "Phi0_blend_MI": 0.04672103128455407
+          },
+          "blind_values": {
+            "fake_constant": 1.0,
+            "fake_packet_score": 0.26288981999411004,
+            "fake_shell_mean_radius": 0.49,
+            "fake_history_mean_phase": 0.27
+          }
+        },
+        {
+          "label": "shell_gradient",
+          "kind": "shell_driven",
+          "packet_features": {
+            "reference_offset": 0.08340378908457133,
+            "shell_dispersion": 0.2900957696271277,
+            "history_turning": 0.025000000000000022,
+            "shell_weight_entropy": 1.4854752972273344
+          },
+          "validity": {
+            "trace": 1.0000000000000004,
+            "trace_error": 4.440892098500626e-16,
+            "min_eigenvalue": 0.10721485267842804,
+            "hermitian_error": 0.0,
+            "psd": true,
+            "valid": true,
+            "rho_a_max_error": 0.0,
+            "rho_b_max_error": 0.0,
+            "marginals_consistent": true,
+            "S_AB": 1.601116026898033,
+            "S_A": 0.8395791408141209,
+            "S_B": 0.8390991398067824,
+            "I_AB": 0.0775622537228704,
+            "Ic_A_to_B": -0.7620168870912505
+          },
+          "candidate_values": {
+            "Phi0_ref_Ic": -0.7724640800919642,
+            "Phi0_shell_weighted_Ic": -0.5749262461445015,
+            "Phi0_hist_Ic": -0.7542191418691655,
+            "Phi0_blend_weighted_cut": 0.03490301417529172,
+            "Phi0_ref_MI": 0.0019167049854551532,
+            "Phi0_blend_MI": 0.0775622537228704
+          },
+          "blind_values": {
+            "fake_constant": 1.0,
+            "fake_packet_score": 0.1370111953924721,
+            "fake_shell_mean_radius": 0.5433333333333333,
+            "fake_history_mean_phase": 0.3225
+          }
+        },
+        {
+          "label": "mixed_competition",
+          "kind": "mixed_case",
+          "packet_features": {
+            "reference_offset": 0.43792369267889514,
+            "shell_dispersion": 0.21648710508172692,
+            "history_turning": 0.10000000000000009,
+            "shell_weight_entropy": 1.4854752972273344
+          },
+          "validity": {
+            "trace": 1.0,
+            "trace_error": 0.0,
+            "min_eigenvalue": 0.11863027894028703,
+            "hermitian_error": 0.0,
+            "psd": true,
+            "valid": true,
+            "rho_a_max_error": 0.0,
+            "rho_b_max_error": 0.0,
+            "marginals_consistent": true,
+            "S_AB": 1.6791830403609063,
+            "S_A": 0.880691896021288,
+            "S_B": 0.8738906342630302,
+            "I_AB": 0.07539948992341183,
+            "Ic_A_to_B": -0.8052924060978761
+          },
+          "candidate_values": {
+            "Phi0_ref_Ic": -0.8554588667078171,
+            "Phi0_shell_weighted_Ic": -0.647016591656979,
+            "Phi0_hist_Ic": -0.782069772427032,
+            "Phi0_blend_weighted_cut": 0.033929770465535365,
+            "Phi0_ref_MI": 0.006837568816584705,
+            "Phi0_blend_MI": 0.07539948992341183
+          },
+          "blind_values": {
+            "fake_constant": 1.0,
+            "fake_packet_score": 0.28036869560210587,
+            "fake_shell_mean_radius": 0.54,
+            "fake_history_mean_phase": 0.49
+          }
+        }
+      ],
+      "invalid_packet": {
+        "trace": 1.0,
+        "trace_error": 0.0,
+        "min_eigenvalue": -0.1,
+        "hermitian_error": 0.0,
+        "psd": false,
+        "valid": false
+      },
+      "counterfeit_packet": {
+        "trace": 1.0,
+        "trace_error": 0.0,
+        "min_eigenvalue": -0.12355339059327378,
+        "hermitian_error": 0.0,
+        "psd": false,
+        "valid": false
+      },
+      "pass": true
+    },
+    "signed_duals_hold": true,
+    "pass": true
+  },
+  "negative": {
+    "unsigned_only_kernels_do_not_stand_in_for_signed_primitives": {
+      "mutual_information": 0.0019167049854551532,
+      "signed_coherent_info": -0.7724640800919642,
+      "pass": true
+    },
+    "history_blind_metric_does_not_falsely_track_history_scramble": {
+      "blind_delta": 0.0,
+      "pass": true
+    },
+    "counterfeit_packet_is_not_accepted": {
+      "pass": true
+    },
+    "invalid_packet_is_not_accepted": {
+      "pass": true
+    },
+    "candidate_deltas_are_not_all_zero": {
+      "pass": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "identity_packet_change_is_zero": {
+      "ref_gap": 0.0,
+      "shell_gap": 0.0,
+      "hist_gap": 0.0,
+      "cut_gap": 0.0,
+      "pass": true
+    },
+    "tiny_shell_perturbation_is_small_but_nonzero": {
+      "shell_gap": 5.375014366193476e-05,
+      "pass": true
+    },
+    "tiny_reference_change_is_small_but_nonzero": {
+      "ref_gap": 0.004143797776078317,
+      "pass": true
+    },
+    "tiny_history_change_is_small_but_nonzero": {
+      "hist_gap": 0.010692982662237949,
+      "pass": true
+    },
+    "pass": true
+  },
+  "summary": {
+    "positive": "4/4",
+    "negative": "5/5",
+    "boundary": "4/4",
+    "all_pass": true,
+    "shared_packet_count": 4,
+    "note": "Audit classification only. The bridge / Phi0 surfaces are internally consistent on the reduced packet set.",
+    "elapsed_s": 0.07212591171264648
+  }
+}

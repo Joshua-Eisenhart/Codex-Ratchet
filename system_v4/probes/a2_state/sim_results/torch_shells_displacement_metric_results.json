@@ -1,0 +1,917 @@
+{
+  "name": "Phase 8 Fixed: Projection Displacement Metric",
+  "claim": "Displacement ||x_before - x_after||_F directly identifies binding constraint independent of depth; agrees with depth-normalized gradient when both are honest",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "displacement metric via tensor frobenius norm; autograd for depth-normalized gradient"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- shells are projection functions not message passing"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "verify converged state satisfies all shell constraints (PSD, trace=1, Bloch ball, entropy)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 sufficient for state validity"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- all computation torch-native"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- density matrices native"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- Bloch ball computed directly"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant layers"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "topological_sort drives Dykstra projection order; reordering changes displacement measurements"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- shells are nested DAG not hyperedges"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- displacement is the topology probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "shell_step_counts": {
+    "L1_CPTP": 1,
+    "L2_Hopf": 1,
+    "L4_Composition": 3,
+    "L6_Irreversibility": 1
+  },
+  "shell_dag_order": [
+    "L1_CPTP",
+    "L2_Hopf",
+    "L4_Composition",
+    "L6_Irreversibility"
+  ],
+  "positive": {
+    "probe_results": [
+      {
+        "label": "pure_north_pole",
+        "loss": 0.48526254296302795,
+        "backward_ok": true,
+        "final_displacements": {
+          "L1_CPTP": 2.0703285485978995e-07,
+          "L2_Hopf": 1.1736591432054411e-07,
+          "L4_Composition": 0.01984086073935032,
+          "L6_Irreversibility": 0.20200324058532715
+        },
+        "mean_displacements": {
+          "L1_CPTP": 1.1286084315997868e-07,
+          "L2_Hopf": 1.0472160691203196e-07,
+          "L4_Composition": 0.030192378225425878,
+          "L6_Irreversibility": 0.2023042897383372
+        },
+        "binding_by_displacement": "L6_Irreversibility",
+        "binding_by_mean_displacement": "L6_Irreversibility",
+        "raw_grad_mags": {
+          "L1_CPTP": 0.3580436408519745,
+          "L2_Hopf": 0.37424376606941223,
+          "L4_Composition": 2.206096887588501,
+          "L6_Irreversibility": 1.0
+        },
+        "depth_norm_grads": {
+          "L1_CPTP": 0.3580436408519745,
+          "L2_Hopf": 0.37424376606941223,
+          "L4_Composition": 0.735365629196167,
+          "L6_Irreversibility": 1.0
+        },
+        "binding_by_raw_grad": "L4_Composition",
+        "binding_by_depth_norm_grad": "L6_Irreversibility",
+        "rank_displacement": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L1_CPTP",
+          "L2_Hopf"
+        ],
+        "rank_depth_norm_grad": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "rank_raw_grad": [
+          "L4_Composition",
+          "L6_Irreversibility",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "top1_disp_vs_norm_agree": true,
+        "top1_disp_vs_raw_agree": false,
+        "full_rank_agree_disp_vs_norm": 0.8333333333333334,
+        "full_rank_agree_disp_vs_raw": 0.6666666666666666,
+        "input_grad_mag": 7.09522442223485e-20
+      },
+      {
+        "label": "pure_plus_x",
+        "loss": 0.3453786075115204,
+        "backward_ok": true,
+        "final_displacements": {
+          "L1_CPTP": 1.2017747508252796e-07,
+          "L2_Hopf": 1.2017025596833264e-07,
+          "L4_Composition": 0.9303236603736877,
+          "L6_Irreversibility": 0.22861601412296295
+        },
+        "mean_displacements": {
+          "L1_CPTP": 1.1614198029974432e-07,
+          "L2_Hopf": 1.230959028930556e-07,
+          "L4_Composition": 0.9205855290095012,
+          "L6_Irreversibility": 0.22424488067626952
+        },
+        "binding_by_displacement": "L4_Composition",
+        "binding_by_mean_displacement": "L4_Composition",
+        "raw_grad_mags": {
+          "L1_CPTP": 0.16928361356258392,
+          "L2_Hopf": 0.17082339525222778,
+          "L4_Composition": 0.9405285716056824,
+          "L6_Irreversibility": 1.0
+        },
+        "depth_norm_grads": {
+          "L1_CPTP": 0.16928361356258392,
+          "L2_Hopf": 0.17082339525222778,
+          "L4_Composition": 0.3135095238685608,
+          "L6_Irreversibility": 1.0
+        },
+        "binding_by_raw_grad": "L6_Irreversibility",
+        "binding_by_depth_norm_grad": "L6_Irreversibility",
+        "rank_displacement": [
+          "L4_Composition",
+          "L6_Irreversibility",
+          "L1_CPTP",
+          "L2_Hopf"
+        ],
+        "rank_depth_norm_grad": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "rank_raw_grad": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "top1_disp_vs_norm_agree": false,
+        "top1_disp_vs_raw_agree": false,
+        "full_rank_agree_disp_vs_norm": 0.6666666666666666,
+        "full_rank_agree_disp_vs_raw": 0.6666666666666666,
+        "input_grad_mag": 1.501963050459798e-12
+      },
+      {
+        "label": "mixed_r0.5",
+        "loss": 0.3928235173225403,
+        "backward_ok": true,
+        "final_displacements": {
+          "L1_CPTP": 5.053415748079715e-07,
+          "L2_Hopf": 1.2470411547838012e-07,
+          "L4_Composition": 0.45298051834106445,
+          "L6_Irreversibility": 0.22916817665100098
+        },
+        "mean_displacements": {
+          "L1_CPTP": 2.871570435066436e-07,
+          "L2_Hopf": 1.0554639402471367e-07,
+          "L4_Composition": 0.44220042824745176,
+          "L6_Irreversibility": 0.22668238282203673
+        },
+        "binding_by_displacement": "L4_Composition",
+        "binding_by_mean_displacement": "L4_Composition",
+        "raw_grad_mags": {
+          "L1_CPTP": 0.21376821398735046,
+          "L2_Hopf": 0.21378570795059204,
+          "L4_Composition": 1.2286311388015747,
+          "L6_Irreversibility": 1.0
+        },
+        "depth_norm_grads": {
+          "L1_CPTP": 0.21376821398735046,
+          "L2_Hopf": 0.21378570795059204,
+          "L4_Composition": 0.4095437129338582,
+          "L6_Irreversibility": 1.0
+        },
+        "binding_by_raw_grad": "L4_Composition",
+        "binding_by_depth_norm_grad": "L6_Irreversibility",
+        "rank_displacement": [
+          "L4_Composition",
+          "L6_Irreversibility",
+          "L1_CPTP",
+          "L2_Hopf"
+        ],
+        "rank_depth_norm_grad": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "rank_raw_grad": [
+          "L4_Composition",
+          "L6_Irreversibility",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "top1_disp_vs_norm_agree": false,
+        "top1_disp_vs_raw_agree": true,
+        "full_rank_agree_disp_vs_norm": 0.6666666666666666,
+        "full_rank_agree_disp_vs_raw": 0.8333333333333334,
+        "input_grad_mag": 4.538525805175553e-11
+      },
+      {
+        "label": "pure_minus_z",
+        "loss": 0.21988365054130554,
+        "backward_ok": true,
+        "final_displacements": {
+          "L1_CPTP": 2.2353529516294657e-07,
+          "L2_Hopf": 1.4678664683742682e-07,
+          "L4_Composition": 1.1015779972076416,
+          "L6_Irreversibility": 0.17458750307559967
+        },
+        "mean_displacements": {
+          "L1_CPTP": 1.643235757834797e-07,
+          "L2_Hopf": 1.2425682408926755e-07,
+          "L4_Composition": 1.087209407488505,
+          "L6_Irreversibility": 0.16845302979151408
+        },
+        "binding_by_displacement": "L4_Composition",
+        "binding_by_mean_displacement": "L4_Composition",
+        "raw_grad_mags": {
+          "L1_CPTP": 0.11406049132347107,
+          "L2_Hopf": 0.12912370264530182,
+          "L4_Composition": 0.6006239652633667,
+          "L6_Irreversibility": 1.0
+        },
+        "depth_norm_grads": {
+          "L1_CPTP": 0.11406049132347107,
+          "L2_Hopf": 0.12912370264530182,
+          "L4_Composition": 0.20020798842112222,
+          "L6_Irreversibility": 1.0
+        },
+        "binding_by_raw_grad": "L6_Irreversibility",
+        "binding_by_depth_norm_grad": "L6_Irreversibility",
+        "rank_displacement": [
+          "L4_Composition",
+          "L6_Irreversibility",
+          "L1_CPTP",
+          "L2_Hopf"
+        ],
+        "rank_depth_norm_grad": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "rank_raw_grad": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "top1_disp_vs_norm_agree": false,
+        "top1_disp_vs_raw_agree": false,
+        "full_rank_agree_disp_vs_norm": 0.6666666666666666,
+        "full_rank_agree_disp_vs_raw": 0.6666666666666666,
+        "input_grad_mag": 0.0
+      },
+      {
+        "label": "maximally_mixed",
+        "loss": 0.3449981212615967,
+        "backward_ok": true,
+        "final_displacements": {
+          "L1_CPTP": 2.1337089606277004e-07,
+          "L2_Hopf": 1.0434643371581842e-07,
+          "L4_Composition": 0.5735976696014404,
+          "L6_Irreversibility": 0.22859947383403778
+        },
+        "mean_displacements": {
+          "L1_CPTP": 1.6295892824776577e-07,
+          "L2_Hopf": 1.0347714720637669e-07,
+          "L4_Composition": 0.5577338914076487,
+          "L6_Irreversibility": 0.2242164582014084
+        },
+        "binding_by_displacement": "L4_Composition",
+        "binding_by_mean_displacement": "L4_Composition",
+        "raw_grad_mags": {
+          "L1_CPTP": 0.1691889613866806,
+          "L2_Hopf": 0.17078262567520142,
+          "L4_Composition": 0.9387596249580383,
+          "L6_Irreversibility": 0.9999999403953552
+        },
+        "depth_norm_grads": {
+          "L1_CPTP": 0.1691889613866806,
+          "L2_Hopf": 0.17078262567520142,
+          "L4_Composition": 0.31291987498601276,
+          "L6_Irreversibility": 0.9999999403953552
+        },
+        "binding_by_raw_grad": "L6_Irreversibility",
+        "binding_by_depth_norm_grad": "L6_Irreversibility",
+        "rank_displacement": [
+          "L4_Composition",
+          "L6_Irreversibility",
+          "L1_CPTP",
+          "L2_Hopf"
+        ],
+        "rank_depth_norm_grad": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "rank_raw_grad": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "top1_disp_vs_norm_agree": false,
+        "top1_disp_vs_raw_agree": false,
+        "full_rank_agree_disp_vs_norm": 0.6666666666666666,
+        "full_rank_agree_disp_vs_raw": 0.6666666666666666,
+        "input_grad_mag": NaN
+      },
+      {
+        "label": "werner_p0.7",
+        "loss": 0.3992186188697815,
+        "backward_ok": true,
+        "final_displacements": {
+          "L1_CPTP": 2.690623261969449e-07,
+          "L2_Hopf": 1.0110412773656208e-07,
+          "L4_Composition": 0.3447882831096649,
+          "L6_Irreversibility": 0.22841233015060425
+        },
+        "mean_displacements": {
+          "L1_CPTP": 2.395817451391243e-07,
+          "L2_Hopf": 1.0145815518095939e-07,
+          "L4_Composition": 0.3306804925203323,
+          "L6_Irreversibility": 0.22618890404701233
+        },
+        "binding_by_displacement": "L4_Composition",
+        "binding_by_mean_displacement": "L4_Composition",
+        "raw_grad_mags": {
+          "L1_CPTP": 0.2209876924753189,
+          "L2_Hopf": 0.22110621631145477,
+          "L4_Composition": 1.2761573791503906,
+          "L6_Irreversibility": 1.0
+        },
+        "depth_norm_grads": {
+          "L1_CPTP": 0.2209876924753189,
+          "L2_Hopf": 0.22110621631145477,
+          "L4_Composition": 0.4253857930501302,
+          "L6_Irreversibility": 1.0
+        },
+        "binding_by_raw_grad": "L4_Composition",
+        "binding_by_depth_norm_grad": "L6_Irreversibility",
+        "rank_displacement": [
+          "L4_Composition",
+          "L6_Irreversibility",
+          "L1_CPTP",
+          "L2_Hopf"
+        ],
+        "rank_depth_norm_grad": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "rank_raw_grad": [
+          "L4_Composition",
+          "L6_Irreversibility",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "top1_disp_vs_norm_agree": false,
+        "top1_disp_vs_raw_agree": true,
+        "full_rank_agree_disp_vs_norm": 0.6666666666666666,
+        "full_rank_agree_disp_vs_raw": 0.8333333333333334,
+        "input_grad_mag": 7.474659086126323e-11
+      }
+    ],
+    "binding_summary": {
+      "pure_north_pole": {
+        "binding_by_displacement": "L6_Irreversibility",
+        "binding_by_depth_norm_grad": "L6_Irreversibility",
+        "binding_by_raw_grad": "L4_Composition",
+        "top1_disp_vs_norm_agree": true,
+        "final_displacements": {
+          "L1_CPTP": 2.0703285485978995e-07,
+          "L2_Hopf": 1.1736591432054411e-07,
+          "L4_Composition": 0.01984086073935032,
+          "L6_Irreversibility": 0.20200324058532715
+        }
+      },
+      "pure_plus_x": {
+        "binding_by_displacement": "L4_Composition",
+        "binding_by_depth_norm_grad": "L6_Irreversibility",
+        "binding_by_raw_grad": "L6_Irreversibility",
+        "top1_disp_vs_norm_agree": false,
+        "final_displacements": {
+          "L1_CPTP": 1.2017747508252796e-07,
+          "L2_Hopf": 1.2017025596833264e-07,
+          "L4_Composition": 0.9303236603736877,
+          "L6_Irreversibility": 0.22861601412296295
+        }
+      },
+      "mixed_r0.5": {
+        "binding_by_displacement": "L4_Composition",
+        "binding_by_depth_norm_grad": "L6_Irreversibility",
+        "binding_by_raw_grad": "L4_Composition",
+        "top1_disp_vs_norm_agree": false,
+        "final_displacements": {
+          "L1_CPTP": 5.053415748079715e-07,
+          "L2_Hopf": 1.2470411547838012e-07,
+          "L4_Composition": 0.45298051834106445,
+          "L6_Irreversibility": 0.22916817665100098
+        }
+      },
+      "pure_minus_z": {
+        "binding_by_displacement": "L4_Composition",
+        "binding_by_depth_norm_grad": "L6_Irreversibility",
+        "binding_by_raw_grad": "L6_Irreversibility",
+        "top1_disp_vs_norm_agree": false,
+        "final_displacements": {
+          "L1_CPTP": 2.2353529516294657e-07,
+          "L2_Hopf": 1.4678664683742682e-07,
+          "L4_Composition": 1.1015779972076416,
+          "L6_Irreversibility": 0.17458750307559967
+        }
+      },
+      "maximally_mixed": {
+        "binding_by_displacement": "L4_Composition",
+        "binding_by_depth_norm_grad": "L6_Irreversibility",
+        "binding_by_raw_grad": "L6_Irreversibility",
+        "top1_disp_vs_norm_agree": false,
+        "final_displacements": {
+          "L1_CPTP": 2.1337089606277004e-07,
+          "L2_Hopf": 1.0434643371581842e-07,
+          "L4_Composition": 0.5735976696014404,
+          "L6_Irreversibility": 0.22859947383403778
+        }
+      },
+      "werner_p0.7": {
+        "binding_by_displacement": "L4_Composition",
+        "binding_by_depth_norm_grad": "L6_Irreversibility",
+        "binding_by_raw_grad": "L4_Composition",
+        "top1_disp_vs_norm_agree": false,
+        "final_displacements": {
+          "L1_CPTP": 2.690623261969449e-07,
+          "L2_Hopf": 1.0110412773656208e-07,
+          "L4_Composition": 0.3447882831096649,
+          "L6_Irreversibility": 0.22841233015060425
+        }
+      }
+    },
+    "binding_shells_by_displacement": [
+      "L6_Irreversibility",
+      "L4_Composition",
+      "L4_Composition",
+      "L4_Composition",
+      "L4_Composition",
+      "L4_Composition"
+    ],
+    "binding_shells_by_depth_norm_grad": [
+      "L6_Irreversibility",
+      "L6_Irreversibility",
+      "L6_Irreversibility",
+      "L6_Irreversibility",
+      "L6_Irreversibility",
+      "L6_Irreversibility"
+    ],
+    "binding_shells_by_raw_grad": [
+      "L4_Composition",
+      "L6_Irreversibility",
+      "L4_Composition",
+      "L6_Irreversibility",
+      "L6_Irreversibility",
+      "L4_Composition"
+    ],
+    "n_states_top1_disp_norm_agree": 1,
+    "n_states_total": 6,
+    "top1_agreement_rate": 0.16666666666666666,
+    "mean_full_rank_agreement_disp_vs_norm": 0.6944444444444443,
+    "metrics_agree": false
+  },
+  "negative": {
+    "entropy_violating_plus": {
+      "result": {
+        "label": "entropy_violating_plus",
+        "loss": 0.3453786075115204,
+        "backward_ok": true,
+        "final_displacements": {
+          "L1_CPTP": 1.2017747508252796e-07,
+          "L2_Hopf": 1.2017025596833264e-07,
+          "L4_Composition": 0.9303236603736877,
+          "L6_Irreversibility": 0.22861601412296295
+        },
+        "mean_displacements": {
+          "L1_CPTP": 1.1614198029974432e-07,
+          "L2_Hopf": 1.230959028930556e-07,
+          "L4_Composition": 0.9205855290095012,
+          "L6_Irreversibility": 0.22424488067626952
+        },
+        "binding_by_displacement": "L4_Composition",
+        "binding_by_mean_displacement": "L4_Composition",
+        "raw_grad_mags": {
+          "L1_CPTP": 0.16928361356258392,
+          "L2_Hopf": 0.17082339525222778,
+          "L4_Composition": 0.9405285716056824,
+          "L6_Irreversibility": 1.0
+        },
+        "depth_norm_grads": {
+          "L1_CPTP": 0.16928361356258392,
+          "L2_Hopf": 0.17082339525222778,
+          "L4_Composition": 0.3135095238685608,
+          "L6_Irreversibility": 1.0
+        },
+        "binding_by_raw_grad": "L6_Irreversibility",
+        "binding_by_depth_norm_grad": "L6_Irreversibility",
+        "rank_displacement": [
+          "L4_Composition",
+          "L6_Irreversibility",
+          "L1_CPTP",
+          "L2_Hopf"
+        ],
+        "rank_depth_norm_grad": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "rank_raw_grad": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "top1_disp_vs_norm_agree": false,
+        "top1_disp_vs_raw_agree": false,
+        "full_rank_agree_disp_vs_norm": 0.6666666666666666,
+        "full_rank_agree_disp_vs_raw": 0.6666666666666666,
+        "input_grad_mag": 1.501963050459798e-12
+      },
+      "l6_binding_by_displacement": false,
+      "pass": false,
+      "note": "L6_Irreversibility must be binding for |+> by displacement metric"
+    },
+    "maximally_mixed_zero_displacement": {
+      "result": {
+        "label": "maximally_mixed_zero_displacement",
+        "loss": 0.3449981212615967,
+        "backward_ok": true,
+        "final_displacements": {
+          "L1_CPTP": 2.1337089606277004e-07,
+          "L2_Hopf": 1.0434643371581842e-07,
+          "L4_Composition": 0.5735976696014404,
+          "L6_Irreversibility": 0.22859947383403778
+        },
+        "mean_displacements": {
+          "L1_CPTP": 1.6295892824776577e-07,
+          "L2_Hopf": 1.0347714720637669e-07,
+          "L4_Composition": 0.5577338914076487,
+          "L6_Irreversibility": 0.2242164582014084
+        },
+        "binding_by_displacement": "L4_Composition",
+        "binding_by_mean_displacement": "L4_Composition",
+        "raw_grad_mags": {
+          "L1_CPTP": 0.1691889613866806,
+          "L2_Hopf": 0.17078262567520142,
+          "L4_Composition": 0.9387596249580383,
+          "L6_Irreversibility": 0.9999999403953552
+        },
+        "depth_norm_grads": {
+          "L1_CPTP": 0.1691889613866806,
+          "L2_Hopf": 0.17078262567520142,
+          "L4_Composition": 0.31291987498601276,
+          "L6_Irreversibility": 0.9999999403953552
+        },
+        "binding_by_raw_grad": "L6_Irreversibility",
+        "binding_by_depth_norm_grad": "L6_Irreversibility",
+        "rank_displacement": [
+          "L4_Composition",
+          "L6_Irreversibility",
+          "L1_CPTP",
+          "L2_Hopf"
+        ],
+        "rank_depth_norm_grad": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "rank_raw_grad": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "top1_disp_vs_norm_agree": false,
+        "top1_disp_vs_raw_agree": false,
+        "full_rank_agree_disp_vs_norm": 0.6666666666666666,
+        "full_rank_agree_disp_vs_raw": 0.6666666666666666,
+        "input_grad_mag": NaN
+      },
+      "all_displacements_small": false,
+      "pass": false,
+      "note": "I/2 already satisfies all shells -- displacement should be ~0 everywhere"
+    },
+    "phase8_depth_confound_check": {
+      "result": {
+        "label": "phase8_confound_check_north",
+        "loss": 0.48526254296302795,
+        "backward_ok": true,
+        "final_displacements": {
+          "L1_CPTP": 2.0703285485978995e-07,
+          "L2_Hopf": 1.1736591432054411e-07,
+          "L4_Composition": 0.01984086073935032,
+          "L6_Irreversibility": 0.20200324058532715
+        },
+        "mean_displacements": {
+          "L1_CPTP": 1.1286084315997868e-07,
+          "L2_Hopf": 1.0472160691203196e-07,
+          "L4_Composition": 0.030192378225425878,
+          "L6_Irreversibility": 0.2023042897383372
+        },
+        "binding_by_displacement": "L6_Irreversibility",
+        "binding_by_mean_displacement": "L6_Irreversibility",
+        "raw_grad_mags": {
+          "L1_CPTP": 0.3580436408519745,
+          "L2_Hopf": 0.37424376606941223,
+          "L4_Composition": 2.206096887588501,
+          "L6_Irreversibility": 1.0
+        },
+        "depth_norm_grads": {
+          "L1_CPTP": 0.3580436408519745,
+          "L2_Hopf": 0.37424376606941223,
+          "L4_Composition": 0.735365629196167,
+          "L6_Irreversibility": 1.0
+        },
+        "binding_by_raw_grad": "L4_Composition",
+        "binding_by_depth_norm_grad": "L6_Irreversibility",
+        "rank_displacement": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L1_CPTP",
+          "L2_Hopf"
+        ],
+        "rank_depth_norm_grad": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "rank_raw_grad": [
+          "L4_Composition",
+          "L6_Irreversibility",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "top1_disp_vs_norm_agree": true,
+        "top1_disp_vs_raw_agree": false,
+        "full_rank_agree_disp_vs_norm": 0.8333333333333334,
+        "full_rank_agree_disp_vs_raw": 0.6666666666666666,
+        "input_grad_mag": 7.09522442223485e-20
+      },
+      "l4_raw_grad_dominates": true,
+      "l4_depth_norm_still_dominates": false,
+      "depth_confound_removed_by_normalization": true,
+      "pass": true,
+      "note": "L4 should dominate raw gradient (Phase 8 confound); normalization should fix it"
+    },
+    "all_negative_pass": false
+  },
+  "boundary": {
+    "bloch_surface_pure": {
+      "label": "bloch_surface_r1",
+      "loss": 0.4133272171020508,
+      "backward_ok": true,
+      "final_displacements": {
+        "L1_CPTP": 0.4330127239227295,
+        "L2_Hopf": 1.4678664683742682e-07,
+        "L4_Composition": 0.5309235453605652,
+        "L6_Irreversibility": 0.2260880470275879
+      },
+      "mean_displacements": {
+        "L1_CPTP": 0.4330127239227295,
+        "L2_Hopf": 1.0789618253663017e-07,
+        "L4_Composition": 0.5250250120957692,
+        "L6_Irreversibility": 0.22443374494711557
+      },
+      "binding_by_displacement": "L4_Composition",
+      "binding_by_mean_displacement": "L4_Composition",
+      "raw_grad_mags": {
+        "L1_CPTP": 0.23788699507713318,
+        "L2_Hopf": 0.23859919607639313,
+        "L4_Composition": 1.3887864351272583,
+        "L6_Irreversibility": 1.0000001192092896
+      },
+      "depth_norm_grads": {
+        "L1_CPTP": 0.23788699507713318,
+        "L2_Hopf": 0.23859919607639313,
+        "L4_Composition": 0.4629288117090861,
+        "L6_Irreversibility": 1.0000001192092896
+      },
+      "binding_by_raw_grad": "L4_Composition",
+      "binding_by_depth_norm_grad": "L6_Irreversibility",
+      "rank_displacement": [
+        "L4_Composition",
+        "L1_CPTP",
+        "L6_Irreversibility",
+        "L2_Hopf"
+      ],
+      "rank_depth_norm_grad": [
+        "L6_Irreversibility",
+        "L4_Composition",
+        "L2_Hopf",
+        "L1_CPTP"
+      ],
+      "rank_raw_grad": [
+        "L4_Composition",
+        "L6_Irreversibility",
+        "L2_Hopf",
+        "L1_CPTP"
+      ],
+      "top1_disp_vs_norm_agree": false,
+      "top1_disp_vs_raw_agree": true,
+      "full_rank_agree_disp_vs_norm": 0.5,
+      "full_rank_agree_disp_vs_raw": 0.6666666666666666,
+      "input_grad_mag": 2.2811984246029482e-10
+    },
+    "near_maximally_mixed": {
+      "result": {
+        "label": "near_maximally_mixed_r0.01",
+        "loss": 0.34632015228271484,
+        "backward_ok": true,
+        "final_displacements": {
+          "L1_CPTP": 1.0000000116860974e-07,
+          "L2_Hopf": 1.0434643371581842e-07,
+          "L4_Composition": 0.568018913269043,
+          "L6_Irreversibility": 0.22876986861228943
+        },
+        "mean_displacements": {
+          "L1_CPTP": 1.0000000116860974e-07,
+          "L2_Hopf": 1.0289762286674886e-07,
+          "L4_Composition": 0.5521848917007446,
+          "L6_Irreversibility": 0.2244350105524063
+        },
+        "binding_by_displacement": "L4_Composition",
+        "binding_by_mean_displacement": "L4_Composition",
+        "raw_grad_mags": {
+          "L1_CPTP": 0.17021444439888,
+          "L2_Hopf": 0.17172285914421082,
+          "L4_Composition": 0.9453130960464478,
+          "L6_Irreversibility": 0.9999999403953552
+        },
+        "depth_norm_grads": {
+          "L1_CPTP": 0.17021444439888,
+          "L2_Hopf": 0.17172285914421082,
+          "L4_Composition": 0.3151043653488159,
+          "L6_Irreversibility": 0.9999999403953552
+        },
+        "binding_by_raw_grad": "L6_Irreversibility",
+        "binding_by_depth_norm_grad": "L6_Irreversibility",
+        "rank_displacement": [
+          "L4_Composition",
+          "L6_Irreversibility",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "rank_depth_norm_grad": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "rank_raw_grad": [
+          "L6_Irreversibility",
+          "L4_Composition",
+          "L2_Hopf",
+          "L1_CPTP"
+        ],
+        "top1_disp_vs_norm_agree": false,
+        "top1_disp_vs_raw_agree": false,
+        "full_rank_agree_disp_vs_norm": 0.8333333333333334,
+        "full_rank_agree_disp_vs_raw": 0.8333333333333334,
+        "input_grad_mag": 1.6167192367841365e-12
+      },
+      "max_displacement": 0.568018913269043,
+      "displacement_near_zero": false,
+      "pass": false
+    },
+    "werner_classical_boundary": {
+      "label": "werner_classical_boundary",
+      "loss": 0.3449981212615967,
+      "backward_ok": true,
+      "final_displacements": {
+        "L1_CPTP": 2.1337089606277004e-07,
+        "L2_Hopf": 1.0434643371581842e-07,
+        "L4_Composition": 0.5735976696014404,
+        "L6_Irreversibility": 0.22859947383403778
+      },
+      "mean_displacements": {
+        "L1_CPTP": 1.6295892824776577e-07,
+        "L2_Hopf": 1.0347714720637669e-07,
+        "L4_Composition": 0.5577338914076487,
+        "L6_Irreversibility": 0.2242164582014084
+      },
+      "binding_by_displacement": "L4_Composition",
+      "binding_by_mean_displacement": "L4_Composition",
+      "raw_grad_mags": {
+        "L1_CPTP": 0.1691889613866806,
+        "L2_Hopf": 0.17078262567520142,
+        "L4_Composition": 0.9387596249580383,
+        "L6_Irreversibility": 0.9999999403953552
+      },
+      "depth_norm_grads": {
+        "L1_CPTP": 0.1691889613866806,
+        "L2_Hopf": 0.17078262567520142,
+        "L4_Composition": 0.31291987498601276,
+        "L6_Irreversibility": 0.9999999403953552
+      },
+      "binding_by_raw_grad": "L6_Irreversibility",
+      "binding_by_depth_norm_grad": "L6_Irreversibility",
+      "rank_displacement": [
+        "L4_Composition",
+        "L6_Irreversibility",
+        "L1_CPTP",
+        "L2_Hopf"
+      ],
+      "rank_depth_norm_grad": [
+        "L6_Irreversibility",
+        "L4_Composition",
+        "L2_Hopf",
+        "L1_CPTP"
+      ],
+      "rank_raw_grad": [
+        "L6_Irreversibility",
+        "L4_Composition",
+        "L2_Hopf",
+        "L1_CPTP"
+      ],
+      "top1_disp_vs_norm_agree": false,
+      "top1_disp_vs_raw_agree": false,
+      "full_rank_agree_disp_vs_norm": 0.6666666666666666,
+      "full_rank_agree_disp_vs_raw": 0.6666666666666666,
+      "input_grad_mag": NaN
+    },
+    "z3_target_validity": {
+      "label": "target_validity",
+      "z3_result": "sat",
+      "eigenvalues": [
+        0.5,
+        0.5
+      ],
+      "trace": 1.0,
+      "bloch_norm": 0.0,
+      "psd_satisfied": true,
+      "trace_satisfied": true,
+      "bloch_satisfied": true
+    }
+  },
+  "classification": "supporting",
+  "summary": {
+    "all_pass": false,
+    "error_count": 0
+  },
+  "errors": []
+}

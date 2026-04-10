@@ -1,0 +1,121 @@
+{
+  "name": "persistence_geometry",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for persistence geometry on bounded sampled carriers using GUDHI as the load-bearing topology tool.",
+  "lego_ids": [
+    "persistence_geometry"
+  ],
+  "primary_lego_ids": [
+    "persistence_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": true,
+      "reason": "Rips complexes and persistence diagrams are load-bearing here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": "load_bearing"
+  },
+  "positive": {
+    "single_circle_has_strong_h1_signal": {
+      "h1_count": 1,
+      "max_h1_lifetime": Infinity,
+      "mean_h1_lifetime": 0.0,
+      "pass": true
+    },
+    "two_circles_have_more_h1_than_one_circle": {
+      "h1_count": 2,
+      "max_h1_lifetime": Infinity,
+      "mean_h1_lifetime": 0.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "disconnected_points_do_not_fake_circle_h1": {
+      "h1_count": 0,
+      "max_h1_lifetime": 0.0,
+      "mean_h1_lifetime": 0.0,
+      "pass": true
+    },
+    "disconnected_points_are_not_two_circles": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "two_circles_retain_nontrivial_h1_signal": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local persistence-geometry lego on bounded sampled carriers."
+  }
+}

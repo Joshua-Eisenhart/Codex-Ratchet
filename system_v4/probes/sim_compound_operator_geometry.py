@@ -717,6 +717,63 @@ def main():
         "cl3_exact_agreement_count": sum(1 for cr in cl3_results if cr["agreement_frac"] == 1.0),
         "cl3_partial_agreement_count": sum(1 for cr in cl3_results if 0 < cr["agreement_frac"] < 1.0),
     }
+    positive = {
+        "all_operator_pairs_covered": {
+            "count": len(pair_results),
+            "expected": len(OP_NAMES) * len(OP_NAMES),
+            "pass": len(pair_results) == len(OP_NAMES) * len(OP_NAMES),
+        },
+        "non_commutative_pairs_detected": {
+            "count": summary["non_commutative_pairs"],
+            "pass": summary["non_commutative_pairs"] > 0,
+        },
+        "engine_cycles_reach_named_attractors": {
+            "forward": summary["engine_forward_attractor"],
+            "reverse": summary["engine_reverse_attractor"],
+            "pass": bool(summary["engine_forward_attractor"]) and bool(summary["engine_reverse_attractor"]),
+        },
+        "cl3_exact_crosschecks_exist": {
+            "count": summary["cl3_exact_agreement_count"],
+            "pass": summary["cl3_exact_agreement_count"] > 0,
+        },
+    }
+    negative = {
+        "not_all_pairs_commute": {
+            "commutative_pairs": summary["commutative_pairs"],
+            "total_pairs": summary["total_pairs_tested"],
+            "pass": summary["commutative_pairs"] < summary["total_pairs_tested"],
+        },
+        "not_all_pairs_preserve_S2": {
+            "S2_preserving_pairs": summary["S2_preserving_pairs"],
+            "total_pairs": summary["total_pairs_tested"],
+            "pass": summary["S2_preserving_pairs"] < summary["total_pairs_tested"],
+        },
+        "order_dependence_exists": {
+            "non_commutative_pairs": summary["non_commutative_pairs"],
+            "pass": summary["non_commutative_pairs"] > 0,
+        },
+    }
+    boundary = {
+        "forward_reverse_relation_is_defined": {
+            "same_attractor": summary["forward_reverse_same"],
+            "pass": isinstance(summary["forward_reverse_same"], bool),
+        },
+        "attractor_distribution_nonempty": {
+            "distribution": attractor_dist,
+            "pass": bool(attractor_dist),
+        },
+    }
+    summary["positive_pass"] = all(item["pass"] for item in positive.values())
+    summary["negative_pass"] = all(item["pass"] for item in negative.values())
+    summary["boundary_pass"] = all(item["pass"] for item in boundary.values())
+    summary["contract_pass"] = (
+        summary["positive_pass"]
+        and summary["negative_pass"]
+        and summary["boundary_pass"]
+    )
+    results["positive"] = positive
+    results["negative"] = negative
+    results["boundary"] = boundary
     results["summary"] = summary
 
     print(f"\n--- SUMMARY ---")

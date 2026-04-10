@@ -1,7 +1,7 @@
 {
   "name": "compound_operator_geometry",
   "sim": "compound_operator_geometry",
-  "timestamp": "2026-04-08T21:30:45",
+  "timestamp": "2026-04-10T03:05:54",
   "classification": "supporting",
   "classification_note": "Supporting pairwise operator/geometry coupling map. Useful as a successor surface for local geometry/operator legos, but not a closure-grade proof.",
   "tool_manifest": {
@@ -1836,6 +1836,58 @@
       }
     ]
   },
+  "positive": {
+    "all_operator_pairs_covered": {
+      "count": 16,
+      "expected": 16,
+      "pass": true
+    },
+    "non_commutative_pairs_detected": {
+      "count": 6,
+      "pass": true
+    },
+    "engine_cycles_reach_named_attractors": {
+      "forward": "origin",
+      "reverse": "origin",
+      "pass": true
+    },
+    "cl3_exact_crosschecks_exist": {
+      "count": 16,
+      "pass": true
+    }
+  },
+  "negative": {
+    "not_all_pairs_commute": {
+      "commutative_pairs": 10,
+      "total_pairs": 16,
+      "pass": true
+    },
+    "not_all_pairs_preserve_S2": {
+      "S2_preserving_pairs": 4,
+      "total_pairs": 16,
+      "pass": true
+    },
+    "order_dependence_exists": {
+      "non_commutative_pairs": 6,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "forward_reverse_relation_is_defined": {
+      "same_attractor": true,
+      "pass": true
+    },
+    "attractor_distribution_nonempty": {
+      "distribution": {
+        "z-fiber": 3,
+        "origin": 2,
+        "torus": 4,
+        "S2": 4,
+        "x-fiber": 3
+      },
+      "pass": true
+    }
+  },
   "summary": {
     "total_pairs_tested": 16,
     "commutative_pairs": 10,
@@ -1852,7 +1904,11 @@
     "engine_reverse_attractor": "origin",
     "forward_reverse_same": true,
     "cl3_exact_agreement_count": 16,
-    "cl3_partial_agreement_count": 0
+    "cl3_partial_agreement_count": 0,
+    "positive_pass": true,
+    "negative_pass": true,
+    "boundary_pass": true,
+    "contract_pass": true
   },
-  "elapsed_seconds": 2.39
+  "elapsed_seconds": 2.09
 }

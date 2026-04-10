@@ -93,6 +93,16 @@ def Ent(rho_AB, s=0.3):
 
 OP_NAMES = ["Ti", "Fe", "Te", "Fi"]
 OPS = [Ti, Fe, Te, Fi]
+ALLOWED_GEOMETRIES = {"S2", "z-fiber", "x-fiber", "torus", "origin", "interior"}
+PAIR_ORDER_TOL = 0.001
+
+
+def finite_and_bounded(value, lower=0.0, upper=1.0):
+    return bool(np.isfinite(value) and lower <= value <= upper)
+
+
+def geometries_known(labels):
+    return all(label in ALLOWED_GEOMETRIES for label in labels)
 
 # ─── Geometry Checks ────────────────────────────────────────────────────────
 
@@ -378,6 +388,19 @@ def main():
                     "attractor": converge_counts.most_common(1)[0][0],
                 }
             }
+            entry["single_pass"]["pass"] = (
+                finite_and_bounded(entry["single_pass"]["AB_mean_purity"])
+                and finite_and_bounded(entry["single_pass"]["BA_mean_purity"])
+                and finite_and_bounded(entry["single_pass"]["mean_order_distance"], 0.0, float("inf"))
+                and geometries_known(entry["single_pass"]["AB_geometries"])
+                and geometries_known(entry["single_pass"]["BA_geometries"])
+            )
+            entry["after_5_cycles"]["pass"] = (
+                finite_and_bounded(entry["after_5_cycles"]["mean_purity"])
+                and entry["after_5_cycles"]["attractor"] in ALLOWED_GEOMETRIES
+                and geometries_known(entry["after_5_cycles"]["geometries"])
+            )
+            entry["pass"] = entry["single_pass"]["pass"] and entry["after_5_cycles"]["pass"]
             pair_results.append(entry)
             tag = "=" if not entry["single_pass"]["order_matters"] else "!="
             print(f"  {name_a}->{name_b}: purity={entry['single_pass']['AB_mean_purity']:.4f}  "
@@ -447,6 +470,16 @@ def main():
                 "attractor": converge_counts.most_common(1)[0][0],
             }
         }
+        entry["single_pass"]["pass"] = (
+            finite_and_bounded(entry["single_pass"]["mean_purity"])
+            and geometries_known(entry["single_pass"]["geometries"])
+        )
+        entry["after_5_rounds"]["pass"] = (
+            finite_and_bounded(entry["after_5_rounds"]["mean_purity"])
+            and entry["after_5_rounds"]["attractor"] in ALLOWED_GEOMETRIES
+            and geometries_known(entry["after_5_rounds"]["geometries"])
+        )
+        entry["pass"] = entry["single_pass"]["pass"] and entry["after_5_rounds"]["pass"]
         triple_results.append(entry)
         label = "->".join(triple)
         print(f"  {label:20s}: p1={entry['single_pass']['mean_purity']:.4f}  "
@@ -494,6 +527,10 @@ def main():
                 "bloch_norm": round(float(np.linalg.norm(mean_bv)), 6),
                 "geometries": dict(geo_counts),
                 "attractor": geo_counts.most_common(1)[0][0],
+                "pass": (
+                    finite_and_bounded(float(np.mean(purities_list)))
+                    and geo_counts.most_common(1)[0][0] in ALLOWED_GEOMETRIES
+                ),
             }
             print(f"  {label} x{n_cycles:2d}: purity={np.mean(purities_list):.6f}  "
                   f"|r|={np.linalg.norm(mean_bv):.4f}  "
@@ -510,6 +547,7 @@ def main():
         "bloch_distance": round(float(np.linalg.norm(
             np.array(fwd_20["mean_bloch_vector"]) -
             np.array(rev_20["mean_bloch_vector"]))), 6),
+        "pass": fwd_20["attractor"] == rev_20["attractor"],
     }
     print(f"\n  Forward vs Reverse: same_attractor={cycle_results['forward_vs_reverse']['same_attractor']}  "
           f"purity_diff={cycle_results['forward_vs_reverse']['purity_diff']:.6f}")
@@ -521,6 +559,8 @@ def main():
     # ═══════════════════════════════════════════════════════════════════════
     print("\n--- TEST 4: Cl(3) cross-check ---")
     cl3_results = run_cl3_crosscheck(pair_results)
+    for cr in cl3_results:
+        cr["pass"] = cr["agreement_frac"] == 1.0
     for cr in cl3_results:
         print(f"  {cr['pair']:10s}: agreement={cr['agreement_frac']:.0%}  {cr['note']}")
     results["tests"]["cl3_crosscheck"] = cl3_results
@@ -614,8 +654,15 @@ def main():
                     "mutual_info": round(mi5, 6),
                     "subsystem_purity": round(purity(rho_A5), 6),
                     "subsystem_geometry": classify_geometry(rho_A5),
+                    "pass": classify_geometry(rho_A5) in ALLOWED_GEOMETRIES,
                 }
             }
+            entry["pass"] = all(
+                np.isfinite(step["concurrence"])
+                and np.isfinite(step["mutual_info"])
+                and np.isfinite(step["subsystem_purity"])
+                for step in step_data
+            ) and entry["after_5_cycles"]["pass"]
             ent_results.append(entry)
             print(f"  [{init_label}] {seq_label}: "
                   f"C_final={step_data[-1]['concurrence']:.4f}  "
@@ -763,6 +810,9 @@ def main():
             "pass": bool(attractor_dist),
         },
     }
+    summary["discovery_table_pass"] = (
+        len(discovery_table) == len(pair_results) + 2 + sum(1 for er in ent_results if er["init_state"] == "00")
+    )
     summary["positive_pass"] = all(item["pass"] for item in positive.values())
     summary["negative_pass"] = all(item["pass"] for item in negative.values())
     summary["boundary_pass"] = all(item["pass"] for item in boundary.values())
@@ -770,7 +820,9 @@ def main():
         summary["positive_pass"]
         and summary["negative_pass"]
         and summary["boundary_pass"]
+        and summary["discovery_table_pass"]
     )
+    summary["all_pass"] = summary["contract_pass"]
     results["positive"] = positive
     results["negative"] = negative
     results["boundary"] = boundary

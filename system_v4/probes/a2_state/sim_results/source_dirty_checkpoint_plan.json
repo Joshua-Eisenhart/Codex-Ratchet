@@ -1,31 +1,31 @@
 {
-  "generated_at": "2026-04-10T04:14:09.015864+00:00",
+  "generated_at": "2026-04-10T04:30:18.916089+00:00",
   "strict": false,
   "source_surface": "repo_hygiene",
   "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
   "dirty_source_count": 145,
-  "plan_group_count": 75,
-  "checkpoint_candidate_count": 1,
+  "plan_group_count": 73,
+  "checkpoint_candidate_count": 2,
   "quarantine_candidate_count": 0,
-  "manual_only_count": 74,
-  "code_only_manual_count": 74,
+  "manual_only_count": 71,
+  "code_only_manual_count": 71,
   "largest_group_id": "probe_source__probe_misc",
-  "next_code_only_manual_group_id": "probe_source__sim_family_holevo",
+  "next_code_only_manual_group_id": "probe_source__sim_family_local",
   "next_code_only_manual_file_count": 1,
-  "next_code_only_manual_source_path": "system_v4/probes/sim_holevo_quantity.py",
-  "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/holevo_quantity_results.json",
+  "next_code_only_manual_source_path": "system_v4/probes/sim_local_operator_action.py",
+  "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/local_operator_action_results.json",
   "summary": {
     "dirty_source_count": 145,
-    "plan_group_count": 75,
-    "checkpoint_candidate_count": 1,
+    "plan_group_count": 73,
+    "checkpoint_candidate_count": 2,
     "quarantine_candidate_count": 0,
-    "manual_only_count": 74,
-    "code_only_manual_count": 74,
+    "manual_only_count": 71,
+    "code_only_manual_count": 71,
     "largest_group_id": "probe_source__probe_misc",
-    "next_code_only_manual_group_id": "probe_source__sim_family_holevo",
+    "next_code_only_manual_group_id": "probe_source__sim_family_local",
     "next_code_only_manual_file_count": 1,
-    "next_code_only_manual_source_path": "system_v4/probes/sim_holevo_quantity.py",
-    "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/holevo_quantity_results.json",
+    "next_code_only_manual_source_path": "system_v4/probes/sim_local_operator_action.py",
+    "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/local_operator_action_results.json",
     "ok": true
   },
   "rules": {
@@ -39,12 +39,17 @@
       "group_id": "docs_and_specs__docs_and_specs",
       "file_count": 3,
       "safe_next_action": "checkpoint"
+    },
+    {
+      "group_id": "build_contract__build_contract",
+      "file_count": 1,
+      "safe_next_action": "checkpoint"
     }
   ],
   "recommended_manual_split_order": [
     {
       "group_id": "probe_source__probe_misc",
-      "file_count": 14,
+      "file_count": 16,
       "safe_next_action": "manual_split_required"
     },
     {
@@ -104,33 +109,6 @@
     }
   ],
   "recommended_code_only_order": [
-    {
-      "group_id": "probe_source__sim_family_holevo",
-      "file_count": 1,
-      "untracked_count": 1,
-      "tracked_dirty_count": 0,
-      "safe_next_action": "manual_split_required",
-      "source_path": "system_v4/probes/sim_holevo_quantity.py",
-      "result_path": "system_v4/probes/a2_state/sim_results/holevo_quantity_results.json"
-    },
-    {
-      "group_id": "probe_source__sim_family_husimi",
-      "file_count": 1,
-      "untracked_count": 1,
-      "tracked_dirty_count": 0,
-      "safe_next_action": "manual_split_required",
-      "source_path": "system_v4/probes/sim_husimi_phase_space_representation.py",
-      "result_path": "system_v4/probes/a2_state/sim_results/husimi_phase_space_representation_results.json"
-    },
-    {
-      "group_id": "probe_source__sim_family_hypergraph",
-      "file_count": 1,
-      "untracked_count": 1,
-      "tracked_dirty_count": 0,
-      "safe_next_action": "manual_split_required",
-      "source_path": "system_v4/probes/sim_hypergraph_geometry.py",
-      "result_path": "system_v4/probes/a2_state/sim_results/hypergraph_geometry_results.json"
-    },
     {
       "group_id": "probe_source__sim_family_local",
       "file_count": 1,
@@ -211,18 +189,67 @@
       "safe_next_action": "manual_split_required",
       "source_path": "system_v4/probes/sim_positivity_constraint.py",
       "result_path": "system_v4/probes/a2_state/sim_results/positivity_constraint_results.json"
+    },
+    {
+      "group_id": "probe_source__sim_family_qpca",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_qpca_spectral_extraction.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/qpca_spectral_extraction_results.json"
+    },
+    {
+      "group_id": "probe_source__sim_family_real",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_real_only_geometry_rejection.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/real_only_geometry_rejection_results.json"
+    },
+    {
+      "group_id": "probe_source__sim_family_reduced",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_reduced_state_object.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/reduced_state_object_results.json"
     }
   ],
   "next_code_only_manual": {
-    "group_id": "probe_source__sim_family_holevo",
+    "group_id": "probe_source__sim_family_local",
     "file_count": 1,
     "untracked_count": 1,
     "tracked_dirty_count": 0,
     "safe_next_action": "manual_split_required",
-    "source_path": "system_v4/probes/sim_holevo_quantity.py",
-    "result_path": "system_v4/probes/a2_state/sim_results/holevo_quantity_results.json"
+    "source_path": "system_v4/probes/sim_local_operator_action.py",
+    "result_path": "system_v4/probes/a2_state/sim_results/local_operator_action_results.json"
   },
   "checkpoint_groups": [
+    {
+      "group_id": "build_contract__build_contract",
+      "bucket": "build_contract",
+      "label": "build_contract",
+      "display_name": "Build and dependency contract",
+      "path_prefixes": [
+        "Makefile"
+      ],
+      "file_count": 1,
+      "tracked_dirty_count": 1,
+      "untracked_count": 0,
+      "sample_paths": [
+        "Makefile"
+      ],
+      "dominant_kinds": [
+        "modified"
+      ],
+      "safe_next_action": "checkpoint",
+      "safe_auto": false,
+      "blocking_reason": "bounded_human_checkpoint",
+      "notes": "Core build/runtime contract files should be checkpointed together."
+    },
     {
       "group_id": "docs_and_specs__docs_and_specs",
       "bucket": "docs_and_specs",
@@ -356,25 +383,27 @@
         "system_v4/probes/lego_batch_queue.py",
         "system_v4/probes/lego_coupling_candidates.py",
         "system_v4/probes/lego_stack_audit.py",
+        "system_v4/probes/repo_hygiene_audit.py",
         "system_v4/probes/run_formal_geometry_packet.py",
         "system_v4/probes/run_root_emergence_packet.py",
         "system_v4/probes/run_with_numba_safety.sh",
         "system_v4/probes/runtime_hygiene_audit.py",
         "system_v4/probes/source_dirty_checkpoint_plan.py",
-        "system_v4/probes/system_hygiene_repair.py"
+        "system_v4/probes/system_hygiene_repair.py",
+        "system_v4/probes/system_hygiene_supervisor.py"
       ],
-      "file_count": 14,
-      "tracked_dirty_count": 5,
+      "file_count": 16,
+      "tracked_dirty_count": 7,
       "untracked_count": 9,
       "sample_paths": [
         "system_v4/probes/axis_orthogonality_suite.py",
         "system_v4/probes/heartbeat.sh",
+        "system_v4/probes/repo_hygiene_audit.py",
         "system_v4/probes/run_formal_geometry_packet.py",
         "system_v4/probes/run_root_emergence_packet.py",
         "system_v4/probes/source_dirty_checkpoint_plan.py",
-        "system_v4/probes/actual_lego_normalization_queue.py",
-        "system_v4/probes/audit_overclassification.py",
-        "system_v4/probes/extract_actual_lego_registry.py"
+        "system_v4/probes/system_hygiene_supervisor.py",
+        "system_v4/probes/actual_lego_normalization_queue.py"
       ],
       "dominant_kinds": [
         "untracked",
@@ -770,72 +799,6 @@
       "safe_auto": false,
       "blocking_reason": "active_source_pressure",
       "notes": "Active sim family 'history' should be checkpointed in a bounded family batch."
-    },
-    {
-      "group_id": "probe_source__sim_family_holevo",
-      "bucket": "probe_source",
-      "label": "sim_family_holevo",
-      "display_name": "Probe sim family: holevo",
-      "path_prefixes": [
-        "system_v4/probes/sim_holevo_quantity.py"
-      ],
-      "file_count": 1,
-      "tracked_dirty_count": 0,
-      "untracked_count": 1,
-      "sample_paths": [
-        "system_v4/probes/sim_holevo_quantity.py"
-      ],
-      "dominant_kinds": [
-        "untracked"
-      ],
-      "safe_next_action": "manual_split_required",
-      "safe_auto": false,
-      "blocking_reason": "active_source_pressure",
-      "notes": "Active sim family 'holevo' should be checkpointed in a bounded family batch."
-    },
-    {
-      "group_id": "probe_source__sim_family_husimi",
-      "bucket": "probe_source",
-      "label": "sim_family_husimi",
-      "display_name": "Probe sim family: husimi",
-      "path_prefixes": [
-        "system_v4/probes/sim_husimi_phase_space_representation.py"
-      ],
-      "file_count": 1,
-      "tracked_dirty_count": 0,
-      "untracked_count": 1,
-      "sample_paths": [
-        "system_v4/probes/sim_husimi_phase_space_representation.py"
-      ],
-      "dominant_kinds": [
-        "untracked"
-      ],
-      "safe_next_action": "manual_split_required",
-      "safe_auto": false,
-      "blocking_reason": "active_source_pressure",
-      "notes": "Active sim family 'husimi' should be checkpointed in a bounded family batch."
-    },
-    {
-      "group_id": "probe_source__sim_family_hypergraph",
-      "bucket": "probe_source",
-      "label": "sim_family_hypergraph",
-      "display_name": "Probe sim family: hypergraph",
-      "path_prefixes": [
-        "system_v4/probes/sim_hypergraph_geometry.py"
-      ],
-      "file_count": 1,
-      "tracked_dirty_count": 0,
-      "untracked_count": 1,
-      "sample_paths": [
-        "system_v4/probes/sim_hypergraph_geometry.py"
-      ],
-      "dominant_kinds": [
-        "untracked"
-      ],
-      "safe_next_action": "manual_split_required",
-      "safe_auto": false,
-      "blocking_reason": "active_source_pressure",
-      "notes": "Active sim family 'hypergraph' should be checkpointed in a bounded family batch."
     },
     {
       "group_id": "probe_source__sim_family_joint",

@@ -427,7 +427,10 @@ def main() -> int:
         print("REPO HYGIENE AUDIT FAILED")
         return 1
 
-    print("REPO HYGIENE AUDIT PASSED")
+    if blockers:
+        print("REPO HYGIENE AUDIT WARN")
+    else:
+        print("REPO HYGIENE AUDIT PASSED")
     return 0
 
 

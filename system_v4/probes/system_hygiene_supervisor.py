@@ -126,6 +126,16 @@ def main() -> int:
             "recommendation": "Fix extracted family metadata/module mismatches before expanding the migration lane.",
         })
 
+    overall_green = (
+        len(missing_surfaces) == 0
+        and truth_ok
+        and controller_ok
+        and migration_ok
+        and repo_ok
+        and runtime_ok
+        and lego_tool_reporting_ok
+    )
+
     summary = {
         "missing_surface_count": len(missing_surfaces),
         "repair_queue_count": len(repair_queue),
@@ -137,14 +147,7 @@ def main() -> int:
         "repo_hygiene_green": repo_ok,
         "runtime_hygiene_green": runtime_ok,
         "lego_tool_reporting_green": lego_tool_reporting_ok,
-        "overall_green": (
-            len(missing_surfaces) == 0
-            and truth_ok
-            and controller_ok
-            and migration_ok
-            and repo_ok
-            and runtime_ok
-        ),
+        "overall_green": overall_green,
     }
 
     maintenance_lanes = [
@@ -292,7 +295,10 @@ def main() -> int:
         print("SYSTEM HYGIENE SUPERVISOR FAILED")
         return 1
 
-    print("SYSTEM HYGIENE SUPERVISOR PASSED")
+    if not summary["overall_green"]:
+        print("SYSTEM HYGIENE SUPERVISOR WARN")
+    else:
+        print("SYSTEM HYGIENE SUPERVISOR PASSED")
     return 0
 
 

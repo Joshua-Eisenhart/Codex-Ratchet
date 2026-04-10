@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-10T04:00:22.344484+00:00",
+  "generated_at": "2026-04-10T04:30:19.066828+00:00",
   "lane_id": "source_dirty__build_contract__build_contract",
   "group_id": "build_contract__build_contract",
   "selected_group_id": "build_contract__build_contract",
@@ -22,7 +22,7 @@
     "system_v4/probes/source_dirty_stage_plan.py"
   ],
   "rationale": {
-    "include": "Stage lane-owned source files plus direct result companions refreshed by the active lane.",
-    "exclude": "Leave planner/manifest/packet maintenance artifacts out of the lane checkpoint because they are transient controller state."
+    "include": "Stage executable-lane source files plus direct result companions refreshed by that same lane.",
+    "exclude": "Leave planner/manifest/packet maintenance artifacts out of the lane checkpoint because they are transient controller state, not lane-owned work."
   }
 }

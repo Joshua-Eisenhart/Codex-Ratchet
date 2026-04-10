@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-04-10T04:14:09.091238+00:00",
-  "strict": false,
+  "generated_at": "2026-04-10T04:30:19.345748+00:00",
+  "strict": true,
   "overall_green": false,
   "repair_queue_count": 3,
   "safe_auto_repair_count": 0,
@@ -12,13 +12,12 @@
   "runtime_hygiene_green": true,
   "lego_tool_reporting_green": true,
   "active_actionable_lane": {
-    "group_id": "probe_source__sim_family_holevo",
+    "group_id": "build_contract__build_contract",
     "file_count": 1,
-    "untracked_count": 1,
-    "tracked_dirty_count": 0,
-    "safe_next_action": "manual_split_required",
-    "source_path": "system_v4/probes/sim_holevo_quantity.py",
-    "result_path": "system_v4/probes/a2_state/sim_results/holevo_quantity_results.json"
+    "safe_next_action": "checkpoint",
+    "selection_mode": "default_prefer_probe_source_skip_docs",
+    "source_path": "Makefile",
+    "result_path": null
   },
   "summary": {
     "missing_surface_count": 0,
@@ -66,11 +65,11 @@
   },
   "source_dirty_surface": {
     "source_dirty_count": 145,
-    "dirty_source_bucket_count": 4,
+    "dirty_source_bucket_count": 5,
     "dirty_source_buckets": [
       {
         "label": "probe_source",
-        "count": 137
+        "count": 136
       },
       {
         "label": "legacy_runtime",
@@ -81,6 +80,10 @@
         "count": 3
       },
       {
+        "label": "build_contract",
+        "count": 1
+      },
+      {
         "label": "other_source",
         "count": 1
       }
@@ -88,7 +91,7 @@
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 494
+        "count": 492
       },
       {
         "prefix": "obsidian_vault",
@@ -101,6 +104,10 @@
       {
         "prefix": "new docs",
         "count": 3
+      },
+      {
+        "prefix": "Makefile",
+        "count": 1
       },
       {
         "prefix": "results_axis0_traj_corr_suite.json",
@@ -118,45 +125,18 @@
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
     "status": "current",
     "dirty_source_checkpoint_required": true,
-    "plan_group_count": 75,
+    "plan_group_count": 73,
     "largest_group_id": "probe_source__probe_misc",
     "next_code_only_manual": {
-      "group_id": "probe_source__sim_family_holevo",
+      "group_id": "probe_source__sim_family_local",
       "file_count": 1,
       "untracked_count": 1,
       "tracked_dirty_count": 0,
       "safe_next_action": "manual_split_required",
-      "source_path": "system_v4/probes/sim_holevo_quantity.py",
-      "result_path": "system_v4/probes/a2_state/sim_results/holevo_quantity_results.json"
+      "source_path": "system_v4/probes/sim_local_operator_action.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/local_operator_action_results.json"
     },
     "recommended_code_only_order": [
-      {
-        "group_id": "probe_source__sim_family_holevo",
-        "file_count": 1,
-        "untracked_count": 1,
-        "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_holevo_quantity.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/holevo_quantity_results.json"
-      },
-      {
-        "group_id": "probe_source__sim_family_husimi",
-        "file_count": 1,
-        "untracked_count": 1,
-        "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_husimi_phase_space_representation.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/husimi_phase_space_representation_results.json"
-      },
-      {
-        "group_id": "probe_source__sim_family_hypergraph",
-        "file_count": 1,
-        "untracked_count": 1,
-        "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_hypergraph_geometry.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/hypergraph_geometry_results.json"
-      },
       {
         "group_id": "probe_source__sim_family_local",
         "file_count": 1,
@@ -174,6 +154,33 @@
         "safe_next_action": "manual_split_required",
         "source_path": "system_v4/probes/sim_low_rank_psd_approximation.py",
         "result_path": "system_v4/probes/a2_state/sim_results/low_rank_psd_approximation_results.json"
+      },
+      {
+        "group_id": "probe_source__sim_family_measurement",
+        "file_count": 1,
+        "untracked_count": 1,
+        "tracked_dirty_count": 0,
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_measurement_instrument.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/measurement_instrument_results.json"
+      },
+      {
+        "group_id": "probe_source__sim_family_mutual",
+        "file_count": 1,
+        "untracked_count": 1,
+        "tracked_dirty_count": 0,
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_mutual_information_measure.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/mutual_information_measure_results.json"
+      },
+      {
+        "group_id": "probe_source__sim_family_negativity",
+        "file_count": 1,
+        "untracked_count": 1,
+        "tracked_dirty_count": 0,
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_negativity_measure.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/negativity_measure_results.json"
       }
     ]
   },
@@ -182,11 +189,11 @@
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_lane_manifest.json",
     "status": "current",
     "required": true,
-    "selected_group_id": "docs_and_specs__docs_and_specs",
-    "file_count": 3,
-    "docs_opt_in_required": true,
-    "code_only_fallback_group_id": "probe_source__sim_family_holevo",
-    "active_actionable_lane_group_id": "probe_source__sim_family_holevo"
+    "selected_group_id": "build_contract__build_contract",
+    "file_count": 1,
+    "docs_opt_in_required": false,
+    "code_only_fallback_group_id": "probe_source__sim_family_local",
+    "active_actionable_lane_group_id": "build_contract__build_contract"
   },
   "maintenance_lanes": [
     {
@@ -220,7 +227,7 @@
       "dirty_source_buckets": [
         {
           "label": "probe_source",
-          "count": 137
+          "count": 136
         },
         {
           "label": "legacy_runtime",
@@ -229,6 +236,10 @@
         {
           "label": "docs_and_specs",
           "count": 3
+        },
+        {
+          "label": "build_contract",
+          "count": 1
         },
         {
           "label": "other_source",
@@ -262,7 +273,7 @@
       "dirty_source_buckets": [
         {
           "label": "probe_source",
-          "count": 137
+          "count": 136
         },
         {
           "label": "legacy_runtime",
@@ -271,6 +282,10 @@
         {
           "label": "docs_and_specs",
           "count": 3
+        },
+        {
+          "label": "build_contract",
+          "count": 1
         },
         {
           "label": "other_source",
@@ -329,9 +344,9 @@
       "root_result_orphan_count": 0,
       "duplicate_result_basename_count": 0,
       "source_dirty_count": 145,
-      "generated_dirty_count": 362,
-      "dirty_worktree_count": 507,
-      "dirty_source_bucket_count": 4,
+      "generated_dirty_count": 361,
+      "dirty_worktree_count": 506,
+      "dirty_source_bucket_count": 5,
       "ok": false
     },
     "runtime_hygiene": {
@@ -356,26 +371,26 @@
     },
     "source_dirty_checkpoint": {
       "dirty_source_count": 145,
-      "plan_group_count": 75,
-      "checkpoint_candidate_count": 1,
+      "plan_group_count": 73,
+      "checkpoint_candidate_count": 2,
       "quarantine_candidate_count": 0,
-      "manual_only_count": 74,
-      "code_only_manual_count": 74,
+      "manual_only_count": 71,
+      "code_only_manual_count": 71,
       "largest_group_id": "probe_source__probe_misc",
-      "next_code_only_manual_group_id": "probe_source__sim_family_holevo",
+      "next_code_only_manual_group_id": "probe_source__sim_family_local",
       "next_code_only_manual_file_count": 1,
-      "next_code_only_manual_source_path": "system_v4/probes/sim_holevo_quantity.py",
-      "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/holevo_quantity_results.json",
+      "next_code_only_manual_source_path": "system_v4/probes/sim_local_operator_action.py",
+      "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/local_operator_action_results.json",
       "ok": true
     },
     "source_dirty_lane_manifest": {
-      "selected_group_id": "docs_and_specs__docs_and_specs",
-      "file_count": 3,
+      "selected_group_id": "build_contract__build_contract",
+      "file_count": 1,
       "safe_next_action": "checkpoint",
-      "docs_opt_in_required": true,
-      "code_only_fallback_group_id": "probe_source__sim_family_holevo",
-      "active_actionable_lane_group_id": "probe_source__sim_family_holevo",
-      "executable_lane_group_id": "probe_source__sim_family_holevo",
+      "docs_opt_in_required": false,
+      "code_only_fallback_group_id": "probe_source__sim_family_local",
+      "active_actionable_lane_group_id": "build_contract__build_contract",
+      "executable_lane_group_id": "build_contract__build_contract",
       "ok": true
     }
   }

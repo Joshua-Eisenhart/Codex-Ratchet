@@ -1,0 +1,172 @@
+{
+  "name": "Bridge cvc5 Cross-Check of Z3 Kernel Ordering Proofs",
+  "schema_version": "1.0",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: reference implementation for comparison; same 4 proofs run in z3 to confirm cvc5 agreement"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: independent UNSAT proof solver; each of 4 kernel ordering proofs run through cvc5 QF_NRA"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "optional import unavailable: cannot cache function 'canonical_reordering_sign': no locator available for file '/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/clifford/_layout.py'"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": "load_bearing",
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "proof1_entangled_implies_MI_positive": {
+      "description": "Entangled state (off-diagonal > 0, joint entropy < marginal) must have I(A:B) > 0. Forbidden: I(A:B) <= 0.",
+      "verdict": "unsat",
+      "pass": true,
+      "agrees_with_z3": true,
+      "z3_reference_verdict": "unsat",
+      "note": "UNSAT: cvc5 confirms forbidden configuration is impossible \u2014 proof holds."
+    },
+    "proof2_coherent_info_strictly_weaker_than_MI": {
+      "description": "Coherent information I_c = S(B) - S(AB) < I(A:B) = S(A) + S(B) - S(AB). Forbidden: I_c > I(A:B).",
+      "verdict": "unsat",
+      "pass": true,
+      "agrees_with_z3": true,
+      "z3_reference_verdict": "unsat",
+      "note": "UNSAT: cvc5 confirms forbidden configuration is impossible \u2014 proof holds."
+    },
+    "proof3_separable_kernel_ordering_CE_ge_Ic": {
+      "description": "For separable states (S_AB >= S_B, i.e. CE >= 0): CE >= I_c. Forbidden: CE < I_c.",
+      "verdict": "unsat",
+      "pass": true,
+      "agrees_with_z3": true,
+      "z3_reference_verdict": "unsat",
+      "note": "UNSAT: cvc5 confirms forbidden configuration is impossible \u2014 proof holds."
+    },
+    "proof4_product_state_zero_MI": {
+      "description": "Product state (S_AB = S_A + S_B) must have I(A:B) = 0. Forbidden: I(A:B) > 0.",
+      "verdict": "unsat",
+      "pass": true,
+      "agrees_with_z3": true,
+      "z3_reference_verdict": "unsat",
+      "note": "UNSAT: cvc5 confirms forbidden configuration is impossible \u2014 proof holds."
+    },
+    "summary": {
+      "total_proofs": 4,
+      "unsat_count": 4,
+      "all_unsat": true,
+      "all_agree_with_z3": true,
+      "disagreements": [],
+      "z3_reference_verdicts": {
+        "proof1": "unsat",
+        "proof2": "unsat",
+        "proof3": "unsat",
+        "proof4": "unsat"
+      }
+    }
+  },
+  "negative": {
+    "sat_check_entangled_state_has_positive_MI": {
+      "description": "Entangled state with I(A:B) > 0 should be SAT (valid config exists)",
+      "verdict": "sat",
+      "pass": true,
+      "note": "SAT expected \u2014 confirms positive proof space is non-empty."
+    },
+    "sat_check_product_state_zero_MI_satisfiable": {
+      "description": "Product state with I(A:B) = 0 should be SAT",
+      "verdict": "sat",
+      "pass": true,
+      "note": "SAT expected \u2014 product states with zero MI do exist."
+    }
+  },
+  "boundary": {
+    "boundary_maximally_mixed_CE_ge_Ic": {
+      "description": "Maximally mixed state: CE=1, I_c=-1. CE < I_c should be UNSAT.",
+      "verdict": "unsat",
+      "pass": true,
+      "note": "UNSAT expected: CE=1 >= I_c=-1 at maximally mixed boundary."
+    },
+    "boundary_maximally_mixed_MI_lt_CE_is_SAT": {
+      "description": "Maximally mixed state: MI=0, CE=1. MI < CE should be SAT.",
+      "verdict": "sat",
+      "pass": true,
+      "note": "SAT expected: MI < CE is achievable at the maximally mixed boundary."
+    }
+  },
+  "summary": {
+    "total_proofs": 4,
+    "cvc5_unsat_count": 4,
+    "all_proofs_unsat": true,
+    "all_agree_with_z3": true,
+    "disagreements": [],
+    "z3_reference_verdicts": {
+      "proof1": "unsat",
+      "proof2": "unsat",
+      "proof3": "unsat",
+      "proof4": "unsat"
+    },
+    "negative_pass": true,
+    "boundary_pass": true,
+    "total_time_s": 0.08862614631652832
+  }
+}

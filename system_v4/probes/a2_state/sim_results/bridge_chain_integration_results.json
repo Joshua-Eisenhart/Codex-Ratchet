@@ -1,0 +1,408 @@
+{
+  "name": "Bridge Chain Integration Test",
+  "schema_version": "1.0",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: density matrix construction, partial trace, von Neumann entropy, autograd for \u2207I_c"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: z3 guard verification of kernel ordering invariants for each bridge packet family"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "unavailable (RuntimeError: cannot cache function 'canonical_reordering_sign': no locator available for file '/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/lib/python3.13/site-packages/clifford/_layout.py')"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "kernel_sweep": {
+      "product": {
+        "S_A": 3.986313713864835e-11,
+        "S_B": 3.986313713864835e-11,
+        "S_AB": 1.1958941141594506e-10,
+        "MI": -3.9863137138648357e-11,
+        "CE": 7.972627427729671e-11,
+        "I_c": -7.972627427729671e-11
+      },
+      "separable": {
+        "S_A": 0.9709505944546686,
+        "S_B": 0.9709505944546686,
+        "S_AB": 0.9709505945343948,
+        "MI": 0.9709505943749424,
+        "CE": 7.972622562135712e-11,
+        "I_c": -7.972622562135712e-11
+      },
+      "entangled_bell": {
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_AB": 1.1958973175859543e-10,
+        "MI": 1.9999999998804103,
+        "CE": -0.9999999998804102,
+        "I_c": 0.9999999998804102
+      },
+      "werner_p07": {
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_AB": 1.1258093916752743,
+        "MI": 0.8741906083247257,
+        "CE": 0.12580939167527427,
+        "I_c": -0.12580939167527427
+      },
+      "ghz_like": {
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_AB": 1.1958973175859543e-10,
+        "MI": 1.9999999998804103,
+        "CE": -0.9999999998804102,
+        "I_c": 0.9999999998804102
+      }
+    },
+    "grad_ic_analysis": {
+      "ic_sweep": [
+        {
+          "p": 0.3,
+          "I_c": -0.8303011919214174,
+          "grad_I_c": 1.0804294435394861
+        },
+        {
+          "p": 0.5,
+          "I_c": -0.5487949406953987,
+          "grad_I_c": 1.7414460711655217
+        },
+        {
+          "p": 0.7,
+          "I_c": -0.12580939167527427,
+          "grad_I_c": 2.5269253572492882
+        },
+        {
+          "p": 0.9,
+          "I_c": 0.4968162683194163,
+          "grad_I_c": 3.9070900242217124
+        },
+        {
+          "p": 1.0,
+          "I_c": 0.9999999998804102,
+          "grad_I_c": 1.082021280666722
+        }
+      ],
+      "I_c_monotone_increasing": true,
+      "grad_I_c_positive": true
+    },
+    "gradient_vs_kernel_ordering": {
+      "I_c_values_at_p_sweep": [
+        -0.8303011919214174,
+        -0.5487949406953987,
+        -0.12580939167527427,
+        0.4968162683194163,
+        0.9999999998804102
+      ],
+      "I_c_monotone_increasing_with_p": true,
+      "grad_I_c_positive": true,
+      "pass": true,
+      "note": "\u2207I_c > 0 and I_c monotone in p confirms gradient ordering matches kernel ordering"
+    },
+    "z3_guard_verification": {
+      "per_state": {
+        "product": {
+          "I_c_lt_MI": {
+            "pass": true,
+            "I_c": -7.972627427729671e-11,
+            "MI": -3.9863137138648357e-11,
+            "note": "I_c must be strictly less than MI"
+          },
+          "MI_nonneg": {
+            "pass": true,
+            "MI": -3.9863137138648357e-11
+          },
+          "separable_CE_ge_Ic": {
+            "pass": true,
+            "CE": 7.972627427729671e-11,
+            "I_c": -7.972627427729671e-11,
+            "note": "When CE >= 0, must have CE >= I_c"
+          },
+          "Ic_le_SB": {
+            "pass": true,
+            "I_c": -7.972627427729671e-11,
+            "S_B": 3.986313713864835e-11
+          },
+          "all_pass": true
+        },
+        "separable": {
+          "I_c_lt_MI": {
+            "pass": true,
+            "I_c": -7.972622562135712e-11,
+            "MI": 0.9709505943749424,
+            "note": "I_c must be strictly less than MI"
+          },
+          "MI_nonneg": {
+            "pass": true,
+            "MI": 0.9709505943749424
+          },
+          "separable_CE_ge_Ic": {
+            "pass": true,
+            "CE": 7.972622562135712e-11,
+            "I_c": -7.972622562135712e-11,
+            "note": "When CE >= 0, must have CE >= I_c"
+          },
+          "Ic_le_SB": {
+            "pass": true,
+            "I_c": -7.972622562135712e-11,
+            "S_B": 0.9709505944546686
+          },
+          "all_pass": true
+        },
+        "entangled_bell": {
+          "I_c_lt_MI": {
+            "pass": true,
+            "I_c": 0.9999999998804102,
+            "MI": 1.9999999998804103,
+            "note": "I_c must be strictly less than MI"
+          },
+          "MI_nonneg": {
+            "pass": true,
+            "MI": 1.9999999998804103
+          },
+          "Ic_le_SB": {
+            "pass": true,
+            "I_c": 0.9999999998804102,
+            "S_B": 1.0
+          },
+          "all_pass": true
+        },
+        "werner_p07": {
+          "I_c_lt_MI": {
+            "pass": true,
+            "I_c": -0.12580939167527427,
+            "MI": 0.8741906083247257,
+            "note": "I_c must be strictly less than MI"
+          },
+          "MI_nonneg": {
+            "pass": true,
+            "MI": 0.8741906083247257
+          },
+          "separable_CE_ge_Ic": {
+            "pass": true,
+            "CE": 0.12580939167527427,
+            "I_c": -0.12580939167527427,
+            "note": "When CE >= 0, must have CE >= I_c"
+          },
+          "Ic_le_SB": {
+            "pass": true,
+            "I_c": -0.12580939167527427,
+            "S_B": 1.0
+          },
+          "all_pass": true
+        },
+        "ghz_like": {
+          "I_c_lt_MI": {
+            "pass": true,
+            "I_c": 0.9999999998804102,
+            "MI": 1.9999999998804103,
+            "note": "I_c must be strictly less than MI"
+          },
+          "MI_nonneg": {
+            "pass": true,
+            "MI": 1.9999999998804103
+          },
+          "Ic_le_SB": {
+            "pass": true,
+            "I_c": 0.9999999998804102,
+            "S_B": 1.0
+          },
+          "all_pass": true
+        }
+      },
+      "all_pass": true
+    },
+    "ic_ordering_across_families": {
+      "I_c_values": {
+        "product": -7.972627427729671e-11,
+        "separable": -7.972622562135712e-11,
+        "entangled_bell": 0.9999999998804102,
+        "werner_p07": -0.12580939167527427,
+        "ghz_like": 0.9999999998804102
+      },
+      "MI_values": {
+        "product": -3.9863137138648357e-11,
+        "separable": 0.9709505943749424,
+        "entangled_bell": 1.9999999998804103,
+        "werner_p07": 0.8741906083247257,
+        "ghz_like": 1.9999999998804103
+      },
+      "product_has_zero_or_negative_IC": true,
+      "entangled_has_positive_MI": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "invalid_state_z3_guard": {
+      "psd": false,
+      "min_eigenvalue": -0.1,
+      "z3_guard_verdict": "unsat",
+      "z3_guard_triggered": true,
+      "note": "UNSAT means the z3 guard correctly rejects the non-PSD state.",
+      "pass": true
+    },
+    "product_state_zero_MI_negative_Ic": {
+      "MI": -3.9863137138648357e-11,
+      "I_c": -7.972627427729671e-11,
+      "MI_is_zero": true,
+      "Ic_nonpositive": true,
+      "pass": true
+    },
+    "entangled_state_not_product": {
+      "MI": 1.9999999998804103,
+      "I_c": 0.9999999998804102,
+      "MI_positive": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "werner_separability_boundary_p_third": {
+      "p": 0.3333333333333333,
+      "psd": true,
+      "kernels": {
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_AB": 1.792481250360578,
+        "MI": 0.20751874963942196,
+        "CE": 0.792481250360578,
+        "I_c": -0.792481250360578
+      },
+      "MI_nonneg": true,
+      "Ic_le_MI": true,
+      "z3_guard": {
+        "I_c_lt_MI": {
+          "pass": true,
+          "I_c": -0.792481250360578,
+          "MI": 0.20751874963942196,
+          "note": "I_c must be strictly less than MI"
+        },
+        "MI_nonneg": {
+          "pass": true,
+          "MI": 0.20751874963942196
+        },
+        "separable_CE_ge_Ic": {
+          "pass": true,
+          "CE": 0.792481250360578,
+          "I_c": -0.792481250360578,
+          "note": "When CE >= 0, must have CE >= I_c"
+        },
+        "Ic_le_SB": {
+          "pass": true,
+          "I_c": -0.792481250360578,
+          "S_B": 1.0
+        },
+        "all_pass": true
+      },
+      "pass": true
+    },
+    "werner_pure_bell_p_one": {
+      "p": 1.0,
+      "kernels": {
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "S_AB": 1.1958973175859543e-10,
+        "MI": 1.9999999998804103,
+        "CE": -0.9999999998804102,
+        "I_c": 0.9999999998804102
+      },
+      "MI_equals_2_bits": true,
+      "Ic_positive": true,
+      "z3_guard": {
+        "I_c_lt_MI": {
+          "pass": true,
+          "I_c": 0.9999999998804102,
+          "MI": 1.9999999998804103,
+          "note": "I_c must be strictly less than MI"
+        },
+        "MI_nonneg": {
+          "pass": true,
+          "MI": 1.9999999998804103
+        },
+        "Ic_le_SB": {
+          "pass": true,
+          "I_c": 0.9999999998804102,
+          "S_B": 1.0
+        },
+        "all_pass": true
+      },
+      "pass": true
+    }
+  },
+  "summary": {
+    "chain_gradient_vs_kernel_ordering": true,
+    "z3_guards_all_pass": true,
+    "ic_ordering_across_families": true,
+    "invalid_state_z3_guard_triggered": true,
+    "product_state_zero_MI": true,
+    "boundary_separability_pass": true,
+    "boundary_pure_bell_pass": true,
+    "all_pass": true,
+    "total_time_s": 0.0966482162475586
+  }
+}

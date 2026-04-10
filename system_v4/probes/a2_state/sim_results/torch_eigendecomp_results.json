@@ -1,6 +1,15 @@
 {
   "name": "torch_eigendecomp",
   "description": "EigenDecomp module: eigenvalues/eigenvectors via torch.linalg.eigh with autograd",
+  "lego_ids": [
+    "spectral_decomposition",
+    "principal_subspace",
+    "density_matrix_object"
+  ],
+  "primary_lego_ids": [
+    "spectral_decomposition",
+    "principal_subspace"
+  ],
   "tool_manifest": {
     "pytorch": {
       "tried": true,
@@ -10,17 +19,17 @@
     "pyg": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not attempted; not applicable to this sim family"
     },
     "z3": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not attempted; not applicable to this sim family"
     },
     "cvc5": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not attempted; not applicable to this sim family"
     },
     "sympy": {
       "tried": true,
@@ -30,38 +39,52 @@
     "clifford": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not attempted; not applicable to this sim family"
     },
     "geomstats": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not attempted; not applicable to this sim family"
     },
     "e3nn": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not attempted; not applicable to this sim family"
     },
     "rustworkx": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not attempted; not applicable to this sim family"
     },
     "xgi": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not attempted; not applicable to this sim family"
     },
     "toponetx": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not attempted; not applicable to this sim family"
     },
     "gudhi": {
       "tried": false,
       "used": false,
-      "reason": ""
+      "reason": "not attempted; not applicable to this sim family"
     }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "supporting",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
   },
   "positive": {
     "P1_eigenvalue_substrate_match": {
@@ -358,6 +381,7 @@
   "summary": {
     "total_tests": 34,
     "total_pass": 34,
-    "all_pass": true
+    "all_pass": true,
+    "scope_note": "Local spectral lego: differentiable eigendecomposition and principal-mode recovery on bounded density matrices."
   }
 }

@@ -1,0 +1,193 @@
+{
+  "name": "Bridge Extended Proofs: SSA + SyGuS Contraction + Classical-Correlation",
+  "schema_version": "1.0",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no autograd layer in this proof sim"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph layer in this proof sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Core proof engine for Proof A (SSA UNSAT) and Proof C (classical-correlation UNSAT). Each impossibility claim is encoded as a z3 Real-arithmetic formula; UNSAT confirms no counterexample survived the full constraint system."
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "SyGuS synthesis engine for Proof B: synthesizes the boundary function f(p, lambda) = lambda + p - 1 for the L4 depolarizing contraction manifold."
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic cross-checks: SSA derivation from concavity, and classical-correlation bound MI <= S_A verified symbolically."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra layer here"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold geometry here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant network layer here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency graph here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph layer here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": "load_bearing",
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "proofs": {
+    "proof_A_strong_subadditivity": {
+      "claim": "Strong Subadditivity violation S(ABC) + S(B) > S(AB) + S(BC) is impossible under the full entropy axiom system including SSA.",
+      "encoding_note": "SSA is encoded as axiom alongside non-negativity, subadditivity, Araki-Lieb, monotonicity, and upper bounds. The negated SSA is then asserted. Sanity SAT check drops SSA to confirm non-vacuity.",
+      "z3_verdict_main": "unsat",
+      "z3_verdict_sanity_sat_check": "sat",
+      "sympy_cross_check": {
+        "conditional_MI_expression": "I(A:C|B) = S(AB) + S(BC) - S(B) - S(ABC)",
+        "SSA_equivalent": "SSA <=> I(A:C|B) >= 0",
+        "conclusion": "SSA violation S(ABC)+S(B) > S(AB)+S(BC) is equivalent to I(A:C|B) < 0 -- impossible for quantum states (concavity of vN entropy)."
+      },
+      "pass": true,
+      "interpretation": "UNSAT main: no entropy assignment satisfying all quantum axioms (including SSA) can produce a SSA violation. SAT sanity: without SSA the violation is achievable, confirming the proof is non-trivial. Proof A survived."
+    },
+    "proof_B_sygus_contraction_boundary": {
+      "claim": "cvc5 SyGuS can synthesize the boundary function f(p, lambda) for the L4 depolarizing CPTP contraction manifold satisfying: f(p, 1-p) = 0 (boundary) and f(0, 0) < 0 (interior).",
+      "synthesis_result": "(SOLUTION)",
+      "has_solution": true,
+      "synthesized_function": "(lambda ((p Real) (lam Real)) (- (+ p lam) 1.0))",
+      "solution_interpretation": "Synthesized f(p, lam) = p + lam - 1, equivalently lam - (1-p). This is exactly the signed distance to the boundary lambda = 1-p: f = 0 on boundary, f < 0 in the admissible interior (lam < 1-p), f > 0 in the forbidden region (lam > 1-p).",
+      "pass": true,
+      "interpretation": "SyGuS found: (lambda ((p Real) (lam Real)) (- (+ p lam) 1.0)). This is the boundary polynomial lambda + p - 1 = 0 for the L4 contraction manifold. Proof B survived."
+    },
+    "proof_C_classical_correlation_no_pos_Ic": {
+      "claim": "A classically-correlated (zero-discord) state with MI > 0 cannot have I_c = S_B - S_AB > 0. Classical correlation bound MI <= S_A forces I_c <= 0.",
+      "encoding_note": "S_AB = S_A + S_B - MI (definition). MI > 0 (classical correlations present). MI <= S_A (zero-discord bound: classical correlation bounded by marginal). Negated claim: I_c = MI - S_A > 0. Sanity SAT: entangled states can have I_c > 0.",
+      "z3_verdict_main": "unsat",
+      "z3_verdict_sanity_sat_check": "sat",
+      "sympy_cross_check": {
+        "S_AB_classical": "S_A + S_B - MI",
+        "I_c_symbolic": "MI - S_A",
+        "bound": "MI <= S_A for zero-discord state",
+        "conclusion": "I_c = MI - S_A <= 0 for all valid zero-discord states"
+      },
+      "pass": true,
+      "interpretation": "UNSAT main: no zero-discord state with MI > 0 can achieve I_c > 0 -- the classical-correlation bound forecloses it. SAT sanity: entangled states with S_AB < S_B are achievable, confirming the UNSAT is caused specifically by the zero-discord constraint. Proof C survived."
+    }
+  },
+  "positive": {
+    "ghz_state_satisfies_ssa": {
+      "pass": true,
+      "z3_verdict": "sat",
+      "note": "GHZ entropy assignment (S_ABC=0, S_B=S_AB=S_BC=1) satisfies SSA."
+    },
+    "classical_state_Ic_leq_0_is_sat": {
+      "pass": true,
+      "z3_verdict": "sat",
+      "note": "Classical state MI=0.3, S_A=0.8, S_B=0.7 has I_c = MI - S_A = -0.5 <= 0."
+    },
+    "depolarizing_boundary_point": {
+      "pass": true,
+      "f_value": 0.0,
+      "note": "f(0.5, 0.5) = 0.0 == 0 (on boundary lambda=1-p)."
+    }
+  },
+  "negative": {
+    "ssa_satisfied_is_sat": {
+      "pass": true,
+      "z3_verdict": "sat",
+      "note": "SSA S(ABC)+S(B) <= S(AB)+S(BC) is satisfiable -- the allowed regime."
+    },
+    "entangled_state_Ic_positive_is_sat": {
+      "pass": true,
+      "z3_verdict": "sat",
+      "note": "Entangled state with S_AB < S_B (I_c > 0) is satisfiable -- allowed for entangled."
+    },
+    "depolarizing_forbidden_region_f_positive": {
+      "pass": true,
+      "f_value": 0.19999999999999996,
+      "note": "f(0.3, 0.9) = 0.2000 > 0: this (p, lambda) pair is in the forbidden region lambda > 1-p."
+    }
+  },
+  "boundary": {
+    "tight_ssa_markov_chain_is_sat": {
+      "pass": true,
+      "z3_verdict": "sat",
+      "note": "Tight SSA (Markov chain) equality is satisfiable -- achieved by Markov states."
+    },
+    "classical_tight_bound_Ic_zero_is_sat": {
+      "pass": true,
+      "z3_verdict": "sat",
+      "note": "MI = S_A (tight zero-discord) gives I_c = 0 exactly -- boundary case is SAT."
+    },
+    "depolarizing_identity_channel_boundary": {
+      "pass": true,
+      "f_value": 0.0,
+      "note": "Identity channel (p=0, lambda=1): f = 0.0 == 0 (boundary)."
+    },
+    "depolarizing_fully_depolarized_boundary": {
+      "pass": true,
+      "f_value": 0.0,
+      "note": "Fully depolarizing channel (p=1, lambda=0): f = 0.0 == 0 (boundary)."
+    }
+  },
+  "summary": {
+    "proofs": "3/3",
+    "positive": "3/3",
+    "negative": "3/3",
+    "boundary": "4/4",
+    "unsat_verdicts": {
+      "proof_A_strong_subadditivity": "unsat",
+      "proof_C_classical_correlation_no_pos_Ic": "unsat"
+    },
+    "sygus_result": {
+      "proof": "proof_B_sygus_contraction_boundary",
+      "synthesis_result": "(SOLUTION)",
+      "synthesized_function": "(lambda ((p Real) (lam Real)) (- (+ p lam) 1.0))",
+      "interpretation": "Synthesized f(p, lam) = p + lam - 1, equivalently lam - (1-p). This is exactly the signed distance to the boundary lambda = 1-p: f = 0 on boundary, f < 0 in the admissible interior (lam < 1-p), f > 0 in the forbidden region (lam > 1-p)."
+    },
+    "all_pass": true,
+    "total_time_s": 0.1953716278076172
+  }
+}

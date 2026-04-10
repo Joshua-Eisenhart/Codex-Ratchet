@@ -1,0 +1,176 @@
+{
+  "name": "Bridge / Cut-Kernel Seam -- z3 UNSAT Impossibility Proofs",
+  "schema_version": "1.0",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not attempted; not applicable to this sim family"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph layer in this proof sim"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Core proof engine: each impossibility claim is encoded as a z3 Real-arithmetic formula; UNSAT confirms no counterexample survived the constraint system."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 is the primary proof engine here"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic derivation of product-state entropy identity (S_AB = S_A + S_B) used as a cross-check on the z3 encoding in Proof 1."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra layer in this lego"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold geometry here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant network layer here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency graph here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph layer here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "proofs": {
+    "proof1_product_state_no_positive_Ic": {
+      "claim": "A product state (S_AB = S_A + S_B) cannot have I_c = S_B - S_AB > 0",
+      "z3_verdict": "unsat",
+      "pass": true,
+      "sympy_cross_check": {
+        "I_c_symbolic": "-S_A",
+        "sign_conclusion": "I_c = -S_A <= 0 for all valid S_A >= 0"
+      },
+      "interpretation": "UNSAT: no assignment of entropy values satisfying product structure and entropy axioms can produce I_c > 0. Proof survived."
+    },
+    "proof2_subadditivity_violation_impossible": {
+      "claim": "I(A:B) = S_A + S_B - S_AB < 0 is impossible under the full entropy axiom system (which includes subadditivity as a foundational axiom)",
+      "encoding_note": "Subadditivity is encoded as axiom A4. The UNSAT result shows that asserting A4 and its negation simultaneously is contradictory. The sanity SAT check confirms that dropping A4 makes I(A:B)<0 satisfiable, so the UNSAT is not a vacuous artifact.",
+      "z3_verdict_main": "unsat",
+      "z3_verdict_sanity_sat_check": "sat",
+      "pass": true,
+      "interpretation": "UNSAT main: no assignment consistent with the full entropy axiom system can produce I(A:B) < 0. SAT sanity: without subadditivity the violation is achievable -- confirms the proof is non-trivial. Proof survived."
+    },
+    "proof3_pure_state_Ic_equals_SB": {
+      "claim": "For a pure state (S_AB=0), I_c = S_B - S_AB cannot differ from S_B",
+      "z3_verdict": "unsat",
+      "pass": true,
+      "interpretation": "UNSAT: when S_AB = 0 the expression S_B - S_AB is algebraically identical to S_B. No counterexample survived. Proof confirmed."
+    }
+  },
+  "positive": {
+    "bell_state_entropy_assignment_is_sat": {
+      "pass": true,
+      "z3_verdict": "sat",
+      "note": "S_A=1, S_B=1, S_AB=0 is a valid entropy assignment (Bell state)."
+    },
+    "product_state_entropy_assignment_is_sat": {
+      "pass": true,
+      "z3_verdict": "sat",
+      "note": "S_AB = S_A + S_B with S_A=1, S_B=0.5 is a valid product state."
+    },
+    "mixed_entangled_entropy_assignment_is_sat": {
+      "pass": true,
+      "z3_verdict": "sat",
+      "note": "S_A=1, S_B=1, S_AB=0.5 represents a mixed entangled state."
+    }
+  },
+  "negative": {
+    "product_state_with_Ic_leq_0_is_sat": {
+      "pass": true,
+      "z3_verdict": "sat",
+      "note": "A product state with I_c <= 0 is satisfiable -- the allowed regime."
+    },
+    "subadditivity_holding_is_sat": {
+      "pass": true,
+      "z3_verdict": "sat",
+      "note": "I(A:B) >= 0 is satisfiable -- confirms the proof only rules out the negative side."
+    },
+    "pure_state_Ic_equals_SB_is_sat": {
+      "pass": true,
+      "z3_verdict": "sat",
+      "note": "I_c = S_B for pure states is satisfiable -- this is the allowed regime."
+    }
+  },
+  "boundary": {
+    "zero_entropy_boundary_is_sat": {
+      "pass": true,
+      "z3_verdict": "sat",
+      "note": "All entropies zero: consistent (pure product |00>)."
+    },
+    "max_entropy_boundary_is_sat": {
+      "pass": true,
+      "z3_verdict": "sat",
+      "note": "S_A=1, S_B=1, S_AB=2: maximally mixed product, I_c = -1, consistent."
+    },
+    "werner_boundary_entangled_Ic_positive_is_sat": {
+      "pass": true,
+      "z3_verdict": "sat",
+      "note": "Werner-like entangled state: S_A=S_B=1, S_AB in (0,2), I_c>0. This is SAT because the state is NOT product -- consistent with Proof 1 which only rules out product states with I_c>0."
+    },
+    "araki_lieb_tight_boundary_is_sat": {
+      "pass": true,
+      "z3_verdict": "sat",
+      "note": "S_AB = S_A - S_B at the Araki-Lieb lower bound is consistent."
+    }
+  },
+  "summary": {
+    "proofs": "3/3",
+    "positive": "3/3",
+    "negative": "3/3",
+    "boundary": "4/4",
+    "unsat_verdicts": {
+      "proof1_product_state_no_positive_Ic": "unsat",
+      "proof2_subadditivity_violation_impossible": "unsat",
+      "proof3_pure_state_Ic_equals_SB": "unsat"
+    },
+    "all_pass": true,
+    "total_time_s": 0.08291316032409668
+  }
+}

@@ -11,22 +11,22 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "attempted but not applicable; primary tools sufficient"
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "attempted but not applicable; primary tools sufficient"
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "attempted but not applicable; primary tools sufficient"
     },
     "sympy": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "attempted but not applicable; primary tools sufficient"
     },
     "clifford": {
       "tried": true,
@@ -40,29 +40,43 @@
     },
     "e3nn": {
       "tried": true,
-      "used": false,
-      "reason": ""
+      "used": true,
+      "reason": "Load-bearing: validates Hopf/Bloch carrier equivariance with e3nn l=1 irreps"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "attempted but not applicable; primary tools sufficient"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "attempted but not applicable; primary tools sufficient"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "attempted but not applicable; primary tools sufficient"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": ""
+      "reason": "attempted but not applicable; primary tools sufficient"
     }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": "load_bearing",
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
   },
   "positive": {
     "P1_s3_on_unit_sphere": {
@@ -346,6 +360,13 @@
         "diff": 7.771812193801964e-09,
         "pass": "True"
       }
+    },
+    "P6_e3nn_hopf_bloch_equivariance": {
+      "test": "e3nn Linear(1x1o->1x1o) is equivariant on Hopf/Bloch carrier states",
+      "n_states": 8,
+      "max_equivariance_error": 9.541398782175747e-08,
+      "tolerance": 1e-05,
+      "pass": true
     }
   },
   "negative": {
@@ -472,8 +493,8 @@
   },
   "classification": "canonical",
   "summary": {
-    "total_tests": 44,
-    "total_pass": 44,
+    "total_tests": 45,
+    "total_pass": 45,
     "all_pass": true
   }
 }

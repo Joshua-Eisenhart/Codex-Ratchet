@@ -1,0 +1,572 @@
+{
+  "name": "Bridge Fe-Relay Sweep \u2014 3q I_c(A->C) Sign Flip",
+  "schema_version": "1.0",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: 3-qubit density matrix construction via entanglement migration model, partial trace, von Neumann entropy, autograd for \u2207I_c w.r.t. relay strength at each point"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "attempted but not applicable; primary tools sufficient"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "relay_sweep": {
+      "n_steps": 20,
+      "sweep": [
+        {
+          "relay_strength": 0.0,
+          "I_c_A_to_C": -1.0000000000393054,
+          "I_c_A_to_B": 0.9999999998760825,
+          "S_C": 4.130596043592745e-11,
+          "S_AC": 1.0000000000806115,
+          "S_B": 1.0,
+          "S_AB": 1.2391756096489712e-10,
+          "grad_Ic_A_to_C": -1.893149526033255e-11,
+          "grad_Ic_A_to_B": -8.969208709075358e-11
+        },
+        {
+          "relay_strength": 0.05263157894736842,
+          "I_c_A_to_C": -0.9669173311706798,
+          "I_c_A_to_B": 0.7230113658521939,
+          "S_C": 0.17556502585750278,
+          "S_AC": 1.1424823570281826,
+          "S_B": 0.9980008838722996,
+          "S_AB": 0.2749895180201056,
+          "grad_Ic_A_to_C": 0.7246139954603886,
+          "grad_Ic_A_to_B": -4.179311718578141
+        },
+        {
+          "relay_strength": 0.10526315789473684,
+          "I_c_A_to_C": -0.9248319794509549,
+          "I_c_A_to_B": 0.5250197187205999,
+          "S_C": 0.2974722489192895,
+          "S_AC": 1.2223042283702443,
+          "S_B": 0.9919924034538556,
+          "S_AB": 0.4669726847332557,
+          "grad_Ic_A_to_C": 0.8694638227059629,
+          "grad_Ic_A_to_B": -3.4306416455142617
+        },
+        {
+          "relay_strength": 0.15789473684210525,
+          "I_c_A_to_C": -0.8757524221599873,
+          "I_c_A_to_B": 0.3567295858225139,
+          "S_C": 0.3984592740952357,
+          "S_AC": 1.274211696255223,
+          "S_B": 0.9819407868640977,
+          "S_AB": 0.6252112010415838,
+          "grad_Ic_A_to_C": 0.993287091876903,
+          "grad_Ic_A_to_B": -2.9939111982161046
+        },
+        {
+          "relay_strength": 0.21052631578947367,
+          "I_c_A_to_C": -0.8204454807892907,
+          "I_c_A_to_B": 0.2076999378068738,
+          "S_C": 0.4854607607459134,
+          "S_AC": 1.305906241535204,
+          "S_B": 0.9677884628267678,
+          "S_AB": 0.760088525019894,
+          "grad_Ic_A_to_C": 1.1072582657553323,
+          "grad_Ic_A_to_B": -2.683945621936548
+        },
+        {
+          "relay_strength": 0.2631578947368421,
+          "I_c_A_to_C": -0.7592795386753646,
+          "I_c_A_to_B": 0.07302219071599791,
+          "S_C": 0.5617526078313282,
+          "S_AC": 1.3210321465066928,
+          "S_B": 0.9494520153879484,
+          "S_AB": 0.8764298246719505,
+          "grad_Ic_A_to_C": 1.216575550371933,
+          "grad_Ic_A_to_B": -2.442533300796147
+        },
+        {
+          "relay_strength": 0.3157894736842105,
+          "I_c_A_to_C": -0.6924096845382045,
+          "I_c_A_to_B": -0.0501485577411761,
+          "S_C": 0.6292492238560344,
+          "S_AC": 1.321658908394239,
+          "S_B": 0.9268190639645772,
+          "S_AB": 0.9769676217057534,
+          "grad_Ic_A_to_C": 1.3244555030153193,
+          "grad_Ic_A_to_B": -2.243647910638125
+        },
+        {
+          "relay_strength": 0.3684210526315789,
+          "I_c_A_to_C": -0.6198457624944578,
+          "I_c_A_to_B": -0.16364928704399673,
+          "S_C": 0.6892019851173654,
+          "S_AC": 1.3090477476118232,
+          "S_B": 0.8997437586982626,
+          "S_AB": 1.0633930457422593,
+          "grad_Ic_A_to_C": 1.433318907694837,
+          "grad_Ic_A_to_B": -2.073321396122284
+        },
+        {
+          "relay_strength": 0.42105263157894735,
+          "I_c_A_to_C": -0.541479286699879,
+          "I_c_A_to_B": -0.26874445960262194,
+          "S_C": 0.7424875695421236,
+          "S_AC": 1.2839668562420026,
+          "S_B": 0.8680403986166404,
+          "S_AB": 1.1367848582192623,
+          "grad_Ic_A_to_C": 1.545302295916109,
+          "grad_Ic_A_to_B": -1.9231242390650076
+        },
+        {
+          "relay_strength": 0.47368421052631576,
+          "I_c_A_to_C": -0.45708999313253207,
+          "I_c_A_to_B": -0.3663383552310746,
+          "S_C": 0.7897492536625221,
+          "S_AC": 1.2468392467950542,
+          "S_B": 0.8314743880097293,
+          "S_AB": 1.197812743240804,
+          "grad_Ic_A_to_C": 1.6625595062088638,
+          "grad_Ic_A_to_B": -1.787510608092459
+        },
+        {
+          "relay_strength": 0.5263157894736842,
+          "I_c_A_to_C": -0.36633835523107483,
+          "I_c_A_to_B": -0.45708999313253196,
+          "S_C": 0.8314743880097293,
+          "S_AC": 1.1978127432408041,
+          "S_B": 0.7897492536625222,
+          "S_AB": 1.2468392467950542,
+          "grad_Ic_A_to_C": 1.7875106080924592,
+          "grad_Ic_A_to_B": -1.6625595062088643
+        },
+        {
+          "relay_strength": 0.5789473684210527,
+          "I_c_A_to_C": -0.26874445960262194,
+          "I_c_A_to_B": -0.541479286699879,
+          "S_C": 0.8680403986166404,
+          "S_AC": 1.1367848582192623,
+          "S_B": 0.7424875695421236,
+          "S_AB": 1.2839668562420026,
+          "grad_Ic_A_to_C": 1.9231242390650076,
+          "grad_Ic_A_to_B": -1.545302295916109
+        },
+        {
+          "relay_strength": 0.631578947368421,
+          "I_c_A_to_C": -0.16364928704399673,
+          "I_c_A_to_B": -0.6198457624944577,
+          "S_C": 0.8997437586982626,
+          "S_AC": 1.0633930457422593,
+          "S_B": 0.6892019851173655,
+          "S_AB": 1.3090477476118232,
+          "grad_Ic_A_to_C": 2.073321396122284,
+          "grad_Ic_A_to_B": -1.433318907694837
+        },
+        {
+          "relay_strength": 0.6842105263157895,
+          "I_c_A_to_C": -0.0501485577411761,
+          "I_c_A_to_B": -0.6924096845382045,
+          "S_C": 0.9268190639645772,
+          "S_AC": 0.9769676217057534,
+          "S_B": 0.6292492238560344,
+          "S_AB": 1.321658908394239,
+          "grad_Ic_A_to_C": 2.243647910638125,
+          "grad_Ic_A_to_B": -1.3244555030153193
+        },
+        {
+          "relay_strength": 0.7368421052631579,
+          "I_c_A_to_C": 0.0730221907159978,
+          "I_c_A_to_B": -0.7592795386753645,
+          "S_C": 0.9494520153879484,
+          "S_AC": 0.8764298246719506,
+          "S_B": 0.5617526078313283,
+          "S_AB": 1.3210321465066928,
+          "grad_Ic_A_to_C": 2.4425333007961476,
+          "grad_Ic_A_to_B": -1.216575550371933
+        },
+        {
+          "relay_strength": 0.7894736842105263,
+          "I_c_A_to_C": 0.2076999378068738,
+          "I_c_A_to_B": -0.8204454807892907,
+          "S_C": 0.9677884628267678,
+          "S_AC": 0.760088525019894,
+          "S_B": 0.4854607607459134,
+          "S_AB": 1.305906241535204,
+          "grad_Ic_A_to_C": 2.683945621936548,
+          "grad_Ic_A_to_B": -1.1072582657553323
+        },
+        {
+          "relay_strength": 0.8421052631578947,
+          "I_c_A_to_C": 0.3567295858225136,
+          "I_c_A_to_B": -0.8757524221599873,
+          "S_C": 0.9819407868640977,
+          "S_AC": 0.6252112010415841,
+          "S_B": 0.3984592740952357,
+          "S_AB": 1.274211696255223,
+          "grad_Ic_A_to_C": 2.9939111982161037,
+          "grad_Ic_A_to_B": -0.993287091876903
+        },
+        {
+          "relay_strength": 0.8947368421052632,
+          "I_c_A_to_C": 0.5250197187205999,
+          "I_c_A_to_B": -0.9248319794509549,
+          "S_C": 0.9919924034538556,
+          "S_AC": 0.4669726847332557,
+          "S_B": 0.2974722489192895,
+          "S_AB": 1.2223042283702443,
+          "grad_Ic_A_to_C": 3.4306416455142617,
+          "grad_Ic_A_to_B": -0.8694638227059629
+        },
+        {
+          "relay_strength": 0.9473684210526315,
+          "I_c_A_to_C": 0.7230113658521937,
+          "I_c_A_to_B": -0.9669173311706799,
+          "S_C": 0.9980008838722996,
+          "S_AC": 0.27498951802010585,
+          "S_B": 0.1755650258575029,
+          "S_AB": 1.1424823570281828,
+          "grad_Ic_A_to_C": 4.179311718578138,
+          "grad_Ic_A_to_B": -0.7246139954603884
+        },
+        {
+          "relay_strength": 1.0,
+          "I_c_A_to_C": 0.9999999998760825,
+          "I_c_A_to_B": -1.0000000000393054,
+          "S_C": 1.0,
+          "S_AC": 1.2391756096489712e-10,
+          "S_B": 4.130596043592745e-11,
+          "S_AB": 1.0000000000806115,
+          "grad_Ic_A_to_C": 8.969208709075358e-11,
+          "grad_Ic_A_to_B": 1.893149526033255e-11
+        }
+      ],
+      "sign_flip_relay_strength": 0.7368421052631579,
+      "sign_flip_step_idx": 14,
+      "sign_flip_detected": true,
+      "all_gradients_positive": true,
+      "I_c_AtoC_at_relay_0": -1.0000000000393054,
+      "I_c_AtoC_at_relay_1": 0.9999999998760825,
+      "I_c_AtoB_at_relay_0": 0.9999999998760825,
+      "I_c_AtoB_at_relay_1": -1.0000000000393054,
+      "pass": true,
+      "note": "Sign flip detected: I_c(A->C) crosses zero at relay=0.7368421052631579. This marks the relay strength where cut2 becomes load-bearing for coherent info transfer."
+    }
+  },
+  "negative": {
+    "relay_zero_ic_nonpositive": {
+      "relay_strength": 0.0,
+      "I_c_A_to_C": -1.0000000000393054,
+      "S_C": 4.130596043592745e-11,
+      "S_AC": 1.0000000000806115,
+      "pass": true,
+      "note": "At relay=0 (disconnected XX_23), I_c(A->C) must be \u2264 0. C is in |0> and carries no coherent information from A."
+    },
+    "relay_zero_gradient_positive": {
+      "relay_strength": 0.0,
+      "grad_Ic_A_to_C_at_zero": -1.893149526033255e-11,
+      "grad_Ic_A_to_C_at_eps_1e-4": 0.5012929095010651,
+      "pass": true,
+      "note": "Gradient at relay=0 is numerically ~0 due to pure-state boundary degeneracy. Confirmed at relay=1e-4: gradient is strictly positive. Any non-zero relay strength increases I_c(A->C)."
+    },
+    "partial_relay_less_than_full": {
+      "I_c_at_relay_0.3": -0.7130665401289593,
+      "I_c_at_relay_1.0": 0.9999999998760825,
+      "pass": true,
+      "note": "Partial relay must yield strictly less I_c(A->C) than full relay."
+    },
+    "endpoint_antisymmetry_relay_0.0": {
+      "relay_strength": 0.0,
+      "I_c_A_to_C": -1.0000000000393054,
+      "I_c_A_to_B": 0.9999999998760825,
+      "sum_equals_zero": true,
+      "pass": true,
+      "note": "At pure-state endpoints (relay=0 or 1): I_c(A->C) + I_c(A->B) = 0. At relay=0.5 (mixed midpoint), sum < 0 because intermediate state is mixed and entanglement is partially destroyed \u2014 this is expected, not a failure."
+    },
+    "endpoint_antisymmetry_relay_1.0": {
+      "relay_strength": 1.0,
+      "I_c_A_to_C": 0.9999999998760825,
+      "I_c_A_to_B": -1.0000000000393054,
+      "sum_equals_zero": true,
+      "pass": true,
+      "note": "At pure-state endpoints (relay=0 or 1): I_c(A->C) + I_c(A->B) = 0. At relay=0.5 (mixed midpoint), sum < 0 because intermediate state is mixed and entanglement is partially destroyed \u2014 this is expected, not a failure."
+    },
+    "midpoint_mixed_state_ic_degraded": {
+      "relay_strength": 0.5,
+      "I_c_A_to_C": -0.41253581972715003,
+      "I_c_A_to_B": -0.41253581972715003,
+      "sum": -0.8250716394543001,
+      "pass": true,
+      "note": "At relay=0.5 (mixed midpoint), I_c(A->C) + I_c(A->B) < 0. The linear interpolation creates a classically mixed state where both channels are degraded. This is the classical-to-quantum transition regime."
+    }
+  },
+  "boundary": {
+    "full_relay_maximum_ic": {
+      "relay_strength": 1.0,
+      "I_c_A_to_C": 0.9999999998760825,
+      "S_C": 1.0,
+      "S_AC": 1.2391756096489712e-10,
+      "grad_Ic_at_relay_1": 8.969208709075358e-11,
+      "pass": true,
+      "note": "At relay=1 (full XX_23 connection), I_c(A->C) should be positive. A-C Bell pair achieved: S(C)=1, S(AC)~0, I_c~+1."
+    },
+    "continuity_monotone_sweep": {
+      "n_samples": 41,
+      "samples": [
+        {
+          "relay": 0.0,
+          "I_c_A_to_C": -1.0000000000393054
+        },
+        {
+          "relay": 0.025,
+          "I_c_A_to_C": -0.9856751138749179
+        },
+        {
+          "relay": 0.05,
+          "I_c_A_to_C": -0.9688134111803295
+        },
+        {
+          "relay": 0.075,
+          "I_c_A_to_C": -0.949963567678106
+        },
+        {
+          "relay": 0.1,
+          "I_c_A_to_C": -0.9293733169973154
+        },
+        {
+          "relay": 0.125,
+          "I_c_A_to_C": -0.9071931599978257
+        },
+        {
+          "relay": 0.15,
+          "I_c_A_to_C": -0.8835241496220942
+        },
+        {
+          "relay": 0.175,
+          "I_c_A_to_C": -0.858437358726611
+        },
+        {
+          "relay": 0.2,
+          "I_c_A_to_C": -0.8319836566550468
+        },
+        {
+          "relay": 0.225,
+          "I_c_A_to_C": -0.8041992417786392
+        },
+        {
+          "relay": 0.25,
+          "I_c_A_to_C": -0.7751090187030184
+        },
+        {
+          "relay": 0.275,
+          "I_c_A_to_C": -0.7447287619688195
+        },
+        {
+          "relay": 0.3,
+          "I_c_A_to_C": -0.7130665401289593
+        },
+        {
+          "relay": 0.325,
+          "I_c_A_to_C": -0.6801236579520757
+        },
+        {
+          "relay": 0.35,
+          "I_c_A_to_C": -0.6458952648417297
+        },
+        {
+          "relay": 0.375,
+          "I_c_A_to_C": -0.6103707174760765
+        },
+        {
+          "relay": 0.4,
+          "I_c_A_to_C": -0.5735337493909698
+        },
+        {
+          "relay": 0.425,
+          "I_c_A_to_C": -0.5353624779960164
+        },
+        {
+          "relay": 0.45,
+          "I_c_A_to_C": -0.4958292643060698
+        },
+        {
+          "relay": 0.475,
+          "I_c_A_to_C": -0.45490042914936635
+        },
+        {
+          "relay": 0.5,
+          "I_c_A_to_C": -0.41253581972715003
+        },
+        {
+          "relay": 0.525,
+          "I_c_A_to_C": -0.3686882106904057
+        },
+        {
+          "relay": 0.55,
+          "I_c_A_to_C": -0.3233025131019944
+        },
+        {
+          "relay": 0.575,
+          "I_c_A_to_C": -0.27631475140377637
+        },
+        {
+          "relay": 0.6,
+          "I_c_A_to_C": -0.22765075105800725
+        },
+        {
+          "relay": 0.625,
+          "I_c_A_to_C": -0.177224455360395
+        },
+        {
+          "relay": 0.65,
+          "I_c_A_to_C": -0.12493575513563338
+        },
+        {
+          "relay": 0.675,
+          "I_c_A_to_C": -0.0706676633158001
+        },
+        {
+          "relay": 0.7,
+          "I_c_A_to_C": -0.014282587132302238
+        },
+        {
+          "relay": 0.725,
+          "I_c_A_to_C": 0.04438267479975655
+        },
+        {
+          "relay": 0.75,
+          "I_c_A_to_C": 0.1055237888237528
+        },
+        {
+          "relay": 0.775,
+          "I_c_A_to_C": 0.1693785249187466
+        },
+        {
+          "relay": 0.8,
+          "I_c_A_to_C": 0.2362407327601157
+        },
+        {
+          "relay": 0.825,
+          "I_c_A_to_C": 0.3064813918314844
+        },
+        {
+          "relay": 0.85,
+          "I_c_A_to_C": 0.38058185702429803
+        },
+        {
+          "relay": 0.875,
+          "I_c_A_to_C": 0.45918965615250074
+        },
+        {
+          "relay": 0.9,
+          "I_c_A_to_C": 0.5432200103109983
+        },
+        {
+          "relay": 0.925,
+          "I_c_A_to_C": 0.6340626349535223
+        },
+        {
+          "relay": 0.95,
+          "I_c_A_to_C": 0.734081960318548
+        },
+        {
+          "relay": 0.975,
+          "I_c_A_to_C": 0.8482600529914535
+        },
+        {
+          "relay": 1.0,
+          "I_c_A_to_C": 0.9999999998760825
+        }
+      ],
+      "is_monotone_increasing": true,
+      "precise_sign_flip_relay": 0.725,
+      "pass": true,
+      "note": "I_c(A->C) should be strictly monotone increasing in relay strength."
+    },
+    "exact_endpoints": {
+      "relay_0_I_c_A_to_C": -1.0000000000393054,
+      "relay_0_S_C": 4.130596043592745e-11,
+      "relay_0_S_AC": 1.0000000000806115,
+      "relay_1_I_c_A_to_C": 0.9999999998760825,
+      "relay_1_S_C": 1.0,
+      "relay_1_S_AC": 1.2391756096489712e-10,
+      "pass": true,
+      "note": "Exact: I_c(A->C) = -1 at relay=0, +1 at relay=1."
+    }
+  },
+  "summary": {
+    "sign_flip_relay_strength_coarse": 0.7368421052631579,
+    "sign_flip_relay_strength_precise": 0.725,
+    "I_c_AtoC_at_relay_0": -1.0000000000393054,
+    "I_c_AtoC_at_relay_1": 0.9999999998760825,
+    "all_gradients_positive": true,
+    "positive_pass": true,
+    "negative_pass": true,
+    "boundary_pass": true,
+    "all_pass": true,
+    "total_time_s": 0.05810284614562988,
+    "model": "Linear interpolation: rho(t) = (1-t)*Bell_AB + t*Bell_AC. I_c(A->C) = S(C) - S(AC). Sign flip marks XX_23 relay becoming load-bearing for coherent info transfer."
+  }
+}

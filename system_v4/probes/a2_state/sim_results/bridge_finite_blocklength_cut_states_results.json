@@ -1,0 +1,227 @@
+{
+  "name": "bridge_finite_blocklength_cut_states",
+  "probe": "bridge_finite_blocklength_cut_states",
+  "purpose": "Apply bounded one-shot / finite-blocklength cut quantities to bridge-built bipartite states before any final kernel closure claim",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core bipartite density-matrix construction, partial trace, support tests, one-shot divergence evaluation, and smoothing sweeps"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this lego"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "tools_used": [
+    "pytorch"
+  ],
+  "positive": {
+    "tests": [
+      {
+        "name": "product_bridge_zero_one_shot_correlation",
+        "d_max": 0.0,
+        "d_min": -0.0,
+        "d_h_eps_commuting_proxy": -0.0,
+        "pass": true
+      },
+      {
+        "name": "separable_bridge_positive_correlation_without_negativity",
+        "d_max": 0.9162907318741551,
+        "d_min": 0.6539264674066639,
+        "d_h_eps_commuting_proxy": 0.6539264674066639,
+        "negativity": 0.0,
+        "pass": true
+      },
+      {
+        "name": "bell_bridge_exceeds_separable_in_one_shot_correlation",
+        "bell_d_max": 1.3862943611198906,
+        "bell_d_min": 1.3862943611198908,
+        "sep_d_max": 0.9162907318741551,
+        "sep_d_min": 0.6539264674066639,
+        "pass": true
+      },
+      {
+        "name": "werner_like_strength_tracks_mixture_parameter",
+        "d_max_low": 0.47000362924573547,
+        "d_max_high": 1.2237754316221159,
+        "d_h_low": -0.0,
+        "d_h_high": 0.6931471805599453,
+        "pass": true
+      },
+      {
+        "name": "history_derived_bridges_are_finite_and_nontrivial",
+        "d_max_values": [
+          1.3862943611198906,
+          0.9555114450274363,
+          0.7965903435944591
+        ],
+        "d_min_values": [
+          1.3862943611198908,
+          0.6931471805599455,
+          0.2849857109040387
+        ],
+        "pass": true
+      },
+      {
+        "name": "smoothing_toward_product_reference_reduces_dmax",
+        "curve": [
+          {
+            "eps": 0.0,
+            "d_max": 1.3862943611198906
+          },
+          {
+            "eps": 0.1,
+            "d_max": 1.308332819650179
+          },
+          {
+            "eps": 0.25,
+            "d_max": 1.1786549963416462
+          },
+          {
+            "eps": 0.5,
+            "d_max": 0.9162907318741549
+          },
+          {
+            "eps": 1.0,
+            "d_max": 0.0
+          }
+        ],
+        "pass": true
+      }
+    ]
+  },
+  "negative": {
+    "tests": [
+      {
+        "name": "reject_invalid_bridge_state",
+        "message": "matrix must be positive semidefinite",
+        "pass": true
+      },
+      {
+        "name": "counterfeit_coupling_breaks_claimed_marginals",
+        "valid_after_normalization": false,
+        "pass": true
+      },
+      {
+        "name": "support_violation_gives_infinite_dmax_and_dmin",
+        "d_max_is_inf": true,
+        "d_min_is_inf": true,
+        "pass": true
+      },
+      {
+        "name": "reject_invalid_commuting_proxy_epsilon",
+        "pass": true
+      }
+    ]
+  },
+  "boundary": {
+    "tests": [
+      {
+        "name": "werner_zero_is_uncorrelated_against_product_reference",
+        "d_max": 0.0,
+        "d_min": -0.0,
+        "d_h_eps_commuting_proxy": -0.0,
+        "pass": true
+      },
+      {
+        "name": "werner_separability_boundary_keeps_correlation_without_entanglement_claim",
+        "d_max": 0.6931471805599452,
+        "d_min": -0.0,
+        "negativity": 0.0,
+        "pass": true
+      },
+      {
+        "name": "bell_against_product_reference_has_exact_log4_one_shot_values",
+        "d_max": 1.3862943611198906,
+        "d_min": 1.3862943611198908,
+        "expected": 1.3862943611198906,
+        "pass": true
+      }
+    ]
+  },
+  "summary": {
+    "positive": {
+      "passed": 6,
+      "failed": 0
+    },
+    "negative": {
+      "passed": 4,
+      "failed": 0
+    },
+    "boundary": {
+      "passed": 3,
+      "failed": 0
+    },
+    "total_passed": 13,
+    "total_failed": 0,
+    "all_pass": true,
+    "scope_note": "Uses D_max, D_min, and a commuting measurement hypothesis-testing proxy on bridge-built cut states. No final Axis-0 closure claim."
+  }
+}

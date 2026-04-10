@@ -1,0 +1,172 @@
+{
+  "name": "PURE LEGO: 2-Qubit vs 3-Qubit Bridge Kernel Advantage",
+  "probe": "bridge_2q_vs_3q_kernel_advantage",
+  "purpose": "Compare when a 3-qubit lift provides real extra discrimination beyond matched 2-qubit bridge kernels",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure-math numpy baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded comparison sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded comparison sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded comparison sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded comparison sim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded comparison sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded comparison sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded comparison sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded comparison sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded comparison sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded comparison sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded comparison sim"
+    }
+  },
+  "positive": {
+    "matched_cut_is_preserved_under_bell_ancilla_lift": {
+      "mi_delta": 0.0,
+      "cond_delta": 0.0,
+      "ic_delta": 0.0,
+      "neg_delta": 0.0,
+      "preserved": true,
+      "pass": true
+    },
+    "ghz_has_true_multi_cut_coverage_advantage_over_2q_bell": {
+      "ghz_active_cuts": 3,
+      "2q_max_active_cuts": 1,
+      "advantage": true,
+      "pass": true
+    },
+    "bell_lift_adds_localization_pattern_unavailable_in_2q": {
+      "A|BC_neg": 0.5,
+      "B|AC_neg": 0.5,
+      "C|AB_neg": 0.0,
+      "localized_pattern": true,
+      "pass": true
+    },
+    "bridge_mixture_exposes_tripartite_companion_absent_in_2q_werner": {
+      "werner_matched_cut_delta_max": 1.1102230246251565e-16,
+      "bridge_tripartite_mi": -0.23500552204553538,
+      "nonzero_tripartite_companion": true,
+      "pass": true
+    },
+    "3q_bridge_can_add_partition_coverage_even_when_signed_cut_is_not_positive": {
+      "bridge_active_cuts": 3,
+      "bridge_first_cut_negativity": 0.2187500000000001,
+      "bridge_first_cut_ic": -0.30338013598049196,
+      "extra_structure": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "product_ancilla_lift_adds_complexity_but_no_signal": {
+      "mi_delta": 0.0,
+      "cond_delta": 0.0,
+      "ic_delta": 0.0,
+      "neg_delta": 0.0,
+      "tripartite_mi": 0.0,
+      "no_signal": true,
+      "pass": true
+    },
+    "classical_ancilla_lift_adds_no_signed_or_tripartite_gain": {
+      "mi_delta": 0.0,
+      "cond_delta": 0.0,
+      "ic_delta": 0.0,
+      "neg_delta": 0.0,
+      "tripartite_mi": 0.0,
+      "matched_mi_preserved_no_extra_signed_signal": true,
+      "pass": true
+    },
+    "bell_lift_does_not_improve_the_matched_cut_itself": {
+      "mi_delta": 0.0,
+      "cond_delta": 0.0,
+      "ic_delta": 0.0,
+      "neg_delta": 0.0,
+      "matched_cut_only_no_advantage": true,
+      "pass": true
+    },
+    "werner_lift_does_not_create_tripartite_signal_by_adding_ancilla_only": {
+      "mi_delta": 0.0,
+      "cond_delta": 0.0,
+      "ic_delta": 0.0,
+      "neg_delta": 1.1102230246251565e-16,
+      "tripartite_mi": 0.0,
+      "no_tripartite_signal": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "matched_cut_choice_matters_for_lifted_bell": {
+      "A|BC_ic": 1.0,
+      "C|AB_ic": 0.0,
+      "matched_vs_unmatched_different": true,
+      "pass": true
+    },
+    "2q_bell_and_ghz_share_local_cut_strength_but_not_coverage": {
+      "2q_bell_ic": 1.0,
+      "ghz_A|BC_ic": 1.0,
+      "ghz_active_cuts": 3,
+      "same_local_strength_extra_coverage": true,
+      "pass": true
+    },
+    "ancilla_lift_preserves_base_kernels_before_any_advantage_metric": {
+      "bell_matched_delta_max": 0.0,
+      "preserved": true,
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "caveat": "Bounded comparison only. Extra 3-qubit discrimination is treated as coverage/localization/tripartite companion structure, not final canon.",
+  "summary": {
+    "positive_pass": 5,
+    "positive_fail": 0,
+    "negative_pass": 4,
+    "negative_fail": 0,
+    "boundary_pass": 3,
+    "boundary_fail": 0,
+    "total_fail": 0,
+    "all_pass": true
+  }
+}

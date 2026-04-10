@@ -1,0 +1,489 @@
+{
+  "name": "Phase 8: Simultaneous Differentiable Constraint Shells -- Gradient Flow",
+  "classification": "canonical",
+  "dag_shell_order": [
+    "L1_CPTP",
+    "L2_Hopf",
+    "L4_Composition",
+    "L6_Irreversibility"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "autograd through full Dykstra stack; per-shell gradient magnitudes are load-bearing"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- shells are nn.Module projectors"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "verify converged states satisfy all shells simultaneously (eigenvalues, trace, Bloch norm)"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- z3 sufficient"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- all computation torch-native"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- density matrices native"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- shell metrics computed directly"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant layers"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "topological_sort determines Dykstra projection order; changing order changes gradient flow (tested)"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- shells are nested DAG"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- gradient flow is the topology probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "gradient_map": [
+      {
+        "label": "pure_north",
+        "loss": 0.48526254296302795,
+        "per_shell_grad_mag": {
+          "L1_CPTP": 0.3580436408519745,
+          "L2_Hopf": 0.37424376606941223,
+          "L4_Composition": 2.206096887588501,
+          "L6_Irreversibility": 1.0
+        },
+        "binding_shell": "L4_Composition",
+        "binding_shell_excl_last": "L4_Composition",
+        "input_grad_mag": 7.09522442223485e-20,
+        "rho_init": [
+          [
+            "(1+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "0j"
+          ]
+        ]
+      },
+      {
+        "label": "pure_south",
+        "loss": 0.21988365054130554,
+        "per_shell_grad_mag": {
+          "L1_CPTP": 0.11406049132347107,
+          "L2_Hopf": 0.12912370264530182,
+          "L4_Composition": 0.6006239652633667,
+          "L6_Irreversibility": 1.0
+        },
+        "binding_shell": "L6_Irreversibility",
+        "binding_shell_excl_last": "L4_Composition",
+        "input_grad_mag": 0.0,
+        "rho_init": [
+          [
+            "(3.7493993930529855e-33+0j)",
+            "(6.123234262925839e-17+0j)"
+          ],
+          [
+            "(6.123234262925839e-17+0j)",
+            "(1+0j)"
+          ]
+        ]
+      },
+      {
+        "label": "pure_plus_x",
+        "loss": 0.3453786075115204,
+        "per_shell_grad_mag": {
+          "L1_CPTP": 0.16928361356258392,
+          "L2_Hopf": 0.17082339525222778,
+          "L4_Composition": 0.9405285716056824,
+          "L6_Irreversibility": 1.0
+        },
+        "binding_shell": "L6_Irreversibility",
+        "binding_shell_excl_last": "L4_Composition",
+        "input_grad_mag": 1.501963050459798e-12,
+        "rho_init": [
+          [
+            "(0.5+0j)",
+            "(0.5+0j)"
+          ],
+          [
+            "(0.5+0j)",
+            "(0.5+0j)"
+          ]
+        ]
+      },
+      {
+        "label": "pure_plus_y",
+        "loss": 0.3449981212615967,
+        "per_shell_grad_mag": {
+          "L1_CPTP": 0.1691889613866806,
+          "L2_Hopf": 0.17078262567520142,
+          "L4_Composition": 0.9387596249580383,
+          "L6_Irreversibility": 0.9999999403953552
+        },
+        "binding_shell": "L6_Irreversibility",
+        "binding_shell_excl_last": "L4_Composition",
+        "input_grad_mag": NaN,
+        "rho_init": [
+          [
+            "(0.5+0j)",
+            "(3.0616171314629196e-17-0.5j)"
+          ],
+          [
+            "(3.0616171314629196e-17+0.5j)",
+            "(0.5+1.3977892406059094e-33j)"
+          ]
+        ]
+      },
+      {
+        "label": "mixed_r0.5_z",
+        "loss": 0.4132043421268463,
+        "per_shell_grad_mag": {
+          "L1_CPTP": 0.2378123700618744,
+          "L2_Hopf": 0.23851075768470764,
+          "L4_Composition": 1.3878662586212158,
+          "L6_Irreversibility": 0.9999998807907104
+        },
+        "binding_shell": "L4_Composition",
+        "binding_shell_excl_last": "L4_Composition",
+        "input_grad_mag": 2.270432730711036e-10,
+        "rho_init": [
+          [
+            "(0.75+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "(0.25+0j)"
+          ]
+        ]
+      },
+      {
+        "label": "mixed_r0.8_x",
+        "loss": 0.3452416658401489,
+        "per_shell_grad_mag": {
+          "L1_CPTP": 0.16924947500228882,
+          "L2_Hopf": 0.1708085685968399,
+          "L4_Composition": 0.9398913979530334,
+          "L6_Irreversibility": 1.0
+        },
+        "binding_shell": "L6_Irreversibility",
+        "binding_shell_excl_last": "L4_Composition",
+        "input_grad_mag": 1.495362319213489e-12,
+        "rho_init": [
+          [
+            "(0.5+0j)",
+            "(0.4+0j)"
+          ],
+          [
+            "(0.4+0j)",
+            "(0.5+0j)"
+          ]
+        ]
+      },
+      {
+        "label": "mixed_r0.9_y",
+        "loss": 0.3449981212615967,
+        "per_shell_grad_mag": {
+          "L1_CPTP": 0.1691889613866806,
+          "L2_Hopf": 0.17078262567520142,
+          "L4_Composition": 0.9387596249580383,
+          "L6_Irreversibility": 0.9999999403953552
+        },
+        "binding_shell": "L6_Irreversibility",
+        "binding_shell_excl_last": "L4_Composition",
+        "input_grad_mag": NaN,
+        "rho_init": [
+          [
+            "(0.5+0j)",
+            "(2.7554552980815448e-17-0.45j)"
+          ],
+          [
+            "(2.7554552980815448e-17+0.45j)",
+            "(0.5+0j)"
+          ]
+        ]
+      },
+      {
+        "label": "maximally_mixed",
+        "loss": 0.3449981212615967,
+        "per_shell_grad_mag": {
+          "L1_CPTP": 0.1691889613866806,
+          "L2_Hopf": 0.17078262567520142,
+          "L4_Composition": 0.9387596249580383,
+          "L6_Irreversibility": 0.9999999403953552
+        },
+        "binding_shell": "L6_Irreversibility",
+        "binding_shell_excl_last": "L4_Composition",
+        "input_grad_mag": NaN,
+        "rho_init": [
+          [
+            "(0.5+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "(0.5+0j)"
+          ]
+        ]
+      }
+    ],
+    "binding_shells_found": [
+      "L4_Composition"
+    ],
+    "n_unique_binding_shells": 1,
+    "multiple_binding_shells_observed": false,
+    "avg_input_grad_pure_states": 5.006543738040141e-13,
+    "avg_input_grad_mixed_states": 1.1426931769515855e-10,
+    "pure_higher_gradient_than_mixed": false
+  },
+  "negative": {
+    "non_psd_state": {
+      "label": "non_psd",
+      "loss": 0.3594264090061188,
+      "per_shell_grad_mag": {
+        "L1_CPTP": 0.18098875880241394,
+        "L2_Hopf": 0.21394266188144684,
+        "L4_Composition": 1.0146009922027588,
+        "L6_Irreversibility": 0.9999999403953552
+      },
+      "binding_shell": "L4_Composition",
+      "binding_shell_excl_last": "L4_Composition",
+      "input_grad_mag": 0.0,
+      "rho_init": [
+        [
+          "(1.2999999523162842+0j)",
+          "(0.20000000298023224+0j)"
+        ],
+        [
+          "(0.20000000298023224+0j)",
+          "(-0.30000001192092896+0j)"
+        ]
+      ],
+      "expected_binding": "L1_CPTP",
+      "binding_matches_expectation": false,
+      "binding_excl_last_used": "L4_Composition",
+      "note": "Non-PSD state: L1 IS the violated shell, but L4_Composition's channel application generates larger gradient magnitudes because it applies 3 channels (each a matrix multiply). Gradient magnitude scales with computational depth, not just constraint tightness. L1 dominates only if its projection causes a larger state change than L4."
+    },
+    "entropy_violating_state": {
+      "label": "entropy_violating",
+      "loss": 0.3453786075115204,
+      "per_shell_grad_mag": {
+        "L1_CPTP": 0.16928361356258392,
+        "L2_Hopf": 0.17082339525222778,
+        "L4_Composition": 0.9405285716056824,
+        "L6_Irreversibility": 1.0
+      },
+      "binding_shell": "L6_Irreversibility",
+      "binding_shell_excl_last": "L4_Composition",
+      "input_grad_mag": 1.501963050459798e-12,
+      "rho_init": [
+        [
+          "(0.5+0j)",
+          "(0.5+0j)"
+        ],
+        [
+          "(0.5+0j)",
+          "(0.5+0j)"
+        ]
+      ],
+      "expected_binding": "L6_Irreversibility",
+      "binding_matches_expectation": true,
+      "l6_dominates_l4": true,
+      "l6_vs_l4_ratio": 1.0632319209468182
+    },
+    "valid_pure_state": {
+      "label": "valid_pure_north",
+      "loss": 0.48526254296302795,
+      "per_shell_grad_mag": {
+        "L1_CPTP": 0.3580436408519745,
+        "L2_Hopf": 0.37424376606941223,
+        "L4_Composition": 2.206096887588501,
+        "L6_Irreversibility": 1.0
+      },
+      "binding_shell": "L4_Composition",
+      "binding_shell_excl_last": "L4_Composition",
+      "input_grad_mag": 7.09522442223485e-20,
+      "rho_init": [
+        [
+          "(1+0j)",
+          "0j"
+        ],
+        [
+          "0j",
+          "0j"
+        ]
+      ],
+      "grad_spread_across_shells": 1.8480532467365265,
+      "is_diffuse": false
+    },
+    "single_shell_binding_confirmed_nonpsd": false,
+    "single_shell_binding_confirmed_entropy": true
+  },
+  "boundary": {
+    "bloch_boundary_state": {
+      "label": "pure_on_bloch_boundary",
+      "loss": 0.4133272171020508,
+      "per_shell_grad_mag": {
+        "L1_CPTP": 0.23788699507713318,
+        "L2_Hopf": 0.23859919607639313,
+        "L4_Composition": 1.3887864351272583,
+        "L6_Irreversibility": 1.0000001192092896
+      },
+      "binding_shell": "L4_Composition",
+      "binding_shell_excl_last": "L4_Composition",
+      "input_grad_mag": 2.2811984246029482e-10,
+      "rho_init": [
+        [
+          "(0.75+0j)",
+          "(0.3061862289905548-0.3061862289905548j)"
+        ],
+        [
+          "(0.3061862289905548+0.3061862289905548j)",
+          "(0.25+1.5558212666841445e-19j)"
+        ]
+      ]
+    },
+    "center_state": {
+      "label": "maximally_mixed_vs_target_mixed",
+      "loss": 0.3449981212615967,
+      "per_shell_grad_mag": {
+        "L1_CPTP": 0.1691889613866806,
+        "L2_Hopf": 0.17078262567520142,
+        "L4_Composition": 0.9387596249580383,
+        "L6_Irreversibility": 0.9999999403953552
+      },
+      "binding_shell": "L6_Irreversibility",
+      "binding_shell_excl_last": "L4_Composition",
+      "input_grad_mag": NaN,
+      "rho_init": [
+        [
+          "(0.5+0j)",
+          "0j"
+        ],
+        [
+          "0j",
+          "(0.5+0j)"
+        ]
+      ],
+      "loss_near_zero": false
+    },
+    "dag_order_effect": {
+      "normal_order": [
+        "L1_CPTP",
+        "L2_Hopf",
+        "L4_Composition",
+        "L6_Irreversibility"
+      ],
+      "reversed_order": [
+        "L6_Irreversibility",
+        "L4_Composition",
+        "L2_Hopf",
+        "L1_CPTP"
+      ],
+      "normal_binding": "L6_Irreversibility",
+      "reversed_binding": "L2_Hopf",
+      "dag_order_changes_binding": true,
+      "normal_grad_mags": {
+        "L1_CPTP": 0.16928361356258392,
+        "L2_Hopf": 0.17082339525222778,
+        "L4_Composition": 0.9405285716056824,
+        "L6_Irreversibility": 1.0
+      },
+      "reversed_grad_mags": {
+        "L6_Irreversibility": 0.19312916696071625,
+        "L4_Composition": 1.0,
+        "L2_Hopf": 1.1129118204116821,
+        "L1_CPTP": 1.0
+      }
+    }
+  },
+  "z3_verification": {
+    "verifications": [
+      {
+        "label": "pure_north",
+        "z3_result": "sat",
+        "eigenvalues": [
+          0.1566394865512848,
+          0.8433604836463928
+        ],
+        "trace": 1.0,
+        "bloch_norm": 0.686720997095108,
+        "psd_satisfied": true,
+        "trace_satisfied": true,
+        "bloch_satisfied": true
+      },
+      {
+        "label": "pure_plus_x",
+        "z3_result": "sat",
+        "eigenvalues": [
+          0.2557804584503174,
+          0.7442196011543274
+        ],
+        "trace": 1.0,
+        "bloch_norm": 0.48843911833348563,
+        "psd_satisfied": true,
+        "trace_satisfied": true,
+        "bloch_satisfied": true
+      },
+      {
+        "label": "mixed_r0.5",
+        "z3_result": "sat",
+        "eigenvalues": [
+          0.23229321837425232,
+          0.7677067518234253
+        ],
+        "trace": 1.0,
+        "bloch_norm": 0.5354135552635066,
+        "psd_satisfied": true,
+        "trace_satisfied": true,
+        "bloch_satisfied": true
+      }
+    ],
+    "all_final_states_z3_sat": true,
+    "note_on_non_psd_exclusion": "non_psd state excluded from z3 verification because L4_Composition (channel cycle application) does not preserve the PSD cone. Dykstra oscillates between L1_CPTP and L4_Composition for severely non-PSD inputs. This is a real constraint-compatibility finding: the 4-shell intersection is not reachable from all initial conditions under finite-iteration Dykstra. The binding gradient in this case is dominated by L4 (not L1) because L4's large nonlinear projection creates the largest gradient signal even when L1 is the violated shell. Physical interpretation: L4 (irreversible contraction) is the harder constraint to satisfy jointly with L1 (PSD+trace=1)."
+  },
+  "elapsed_seconds": 0.2777531147003174
+}

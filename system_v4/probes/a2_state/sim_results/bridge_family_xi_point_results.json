@@ -1,0 +1,123 @@
+{
+  "name": "bridge_family_xi_point",
+  "classification": "canonical",
+  "classification_note": "Canonical late-layer lego for the point bridge Xi_point on one bounded packet family, kept separate from Axis-0 selector logic, shell-weighted entropy fields, and broad bridge searches.",
+  "lego_ids": [
+    "bridge_family_xi_point"
+  ],
+  "primary_lego_ids": [
+    "bridge_family_xi_point"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "point_bridge_produces_valid_bipartite_state": {
+      "trace": 1.0000000000000002,
+      "pass": "True"
+    },
+    "point_bridge_changes_when_current_point_changes": {
+      "fro_shift": 0.28735702285054077,
+      "pass": "True"
+    },
+    "point_bridge_is_distinct_from_shell_weighted_bridge_on_same_packet": {
+      "fro_difference": 0.23247814838315434,
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "point_bridge_row_does_not_claim_final_axis0_winner": {
+      "pass": true
+    },
+    "point_bridge_row_does_not_collapse_into_unsigned_entropy_surface": {
+      "mi_point": 0.43758983500783677,
+      "mi_shell": 0.08172965369315882,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "same_reference_same_current_gives_stable_reference_case": {
+      "pass": true
+    },
+    "bounded_packet_scope_stays_pointwise_not_searchwise": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local point-bridge row on one bounded packet family, without selector or search claims."
+  }
+}

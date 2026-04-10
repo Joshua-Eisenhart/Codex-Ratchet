@@ -29,9 +29,9 @@
       "reason": "Symbolic verification of dephasing purity formula"
     },
     "clifford": {
-      "tried": true,
+      "tried": false,
       "used": false,
-      "reason": "not relevant to this integration sim"
+      "reason": "optional import unavailable: cannot cache function 'canonical_reordering_sign': no locator available for file '/opt/homebrew/lib/python3.13/site-packages/clifford/_layout.py'"
     },
     "geomstats": {
       "tried": true,
@@ -63,6 +63,20 @@
       "used": true,
       "reason": "Rips persistence tracks topological features at each pipeline step"
     }
+  },
+  "tool_integration_depth": {
+    "pytorch": "supportive",
+    "pyg": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "supportive",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "supportive"
   },
   "positive": {
     "P1_pipeline_valid_output": {
@@ -129,9 +143,28 @@
     },
     "P3_xgi_constraints_satisfied": {
       "pair_checks": {
-        "density_matrix->z_dephasing": true,
-        "z_dephasing->CNOT": true,
-        "CNOT->mutual_information": true
+        "density_matrix->z_dephasing": {
+          "observed": true,
+          "expected": true,
+          "match": true
+        },
+        "z_dephasing->CNOT": {
+          "observed": true,
+          "expected": true,
+          "match": true
+        },
+        "CNOT->mutual_information": {
+          "observed": true,
+          "expected": true,
+          "match": true
+        }
+      },
+      "negative_control_checks": {
+        "z_dephasing->mutual_information": {
+          "observed": false,
+          "expected": false,
+          "match": true
+        }
       },
       "incidence_matrix_shape": [
         4,
@@ -139,6 +172,8 @@
       ],
       "incidence_rank": 4,
       "num_hyperedges": 4,
+      "all_pairs_allowed": true,
+      "negative_controls_allowed": true,
       "pass": true
     },
     "P4_gudhi_persistence_tracked": {
@@ -163,7 +198,22 @@
         0
       ],
       "CNOT_total_features": 3,
-      "topology_changes_after_cnot": false,
+      "transition_checks": [
+        {
+          "from": "density_matrix",
+          "to": "z_dephasing",
+          "betti_changed": false,
+          "feature_count_changed": true
+        },
+        {
+          "from": "z_dephasing",
+          "to": "CNOT",
+          "betti_changed": false,
+          "feature_count_changed": false
+        }
+      ],
+      "topology_changes_detected": true,
+      "nontrivial_persistence_detected": true,
       "pass": true
     },
     "P5_toponetx_cell_complex": {

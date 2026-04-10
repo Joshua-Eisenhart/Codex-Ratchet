@@ -20,17 +20,17 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+      "reason": "imported but not used -- 3-qubit gradient needs no graph layer"
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+      "reason": "imported but not used -- no SMT verification in this sim"
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+      "reason": "imported but not used"
     },
     "sympy": {
       "tried": true,
@@ -40,38 +40,52 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+      "reason": "attempted but not applicable; primary tools sufficient"
     },
     "geomstats": {
       "tried": true,
       "used": false,
-      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+      "reason": "attempted but not applicable; primary tools sufficient"
     },
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+      "reason": "attempted but not applicable; primary tools sufficient"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+      "reason": "imported but not used -- no DAG ordering needed for 3-qubit gradient sim"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+      "reason": "attempted but not applicable; primary tools sufficient"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+      "reason": "attempted but not applicable; primary tools sufficient"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "3-qubit Axis 0 probe \u2014 focused on autograd coherent information gradient, not tool integration"
+      "reason": "attempted but not applicable; primary tools sufficient"
     }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "not_applicable",
+    "z3": "not_applicable",
+    "cvc5": "not_applicable",
+    "sympy": "supportive",
+    "clifford": "not_applicable",
+    "geomstats": "not_applicable",
+    "e3nn": "not_applicable",
+    "rustworkx": "not_applicable",
+    "xgi": "not_applicable",
+    "toponetx": "not_applicable",
+    "gudhi": "not_applicable"
   },
   "positive": {
     "P1_gradient_exists_7d_nonzero": {
@@ -451,7 +465,7 @@
     "pass": true
   },
   "classification": "canonical",
-  "elapsed_seconds": 0.16,
+  "elapsed_seconds": 0.18,
   "summary": {
     "total_tests": 28,
     "total_pass": 28,

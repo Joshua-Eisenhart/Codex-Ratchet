@@ -62,6 +62,20 @@
       "reason": "not relevant to this sim"
     }
   },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "z3": "supportive",
+    "cvc5": "not_applicable",
+    "sympy": "not_applicable",
+    "clifford": "not_applicable",
+    "geomstats": "not_applicable",
+    "e3nn": "not_applicable",
+    "rustworkx": "supportive",
+    "xgi": "not_applicable",
+    "toponetx": "not_applicable",
+    "gudhi": "not_applicable"
+  },
   "classification": "canonical",
   "z3_verification": {
     "constrained_satisfiable": true,
@@ -88,7 +102,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": 0.16889378428459167,
+          "min_eigenvalue": 0.10402427613735199,
           "psd_ok": true,
           "valid": true
         },
@@ -97,7 +111,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": 3.266920600708545e-08,
+          "min_eigenvalue": 0.24250639975070953,
           "psd_ok": true,
           "valid": true
         },
@@ -106,7 +120,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": 0.1459086835384369,
+          "min_eigenvalue": 0.170527383685112,
           "psd_ok": true,
           "valid": true
         },
@@ -115,7 +129,7 @@
           "trace_ok": true,
           "hermitian_error": 0.0,
           "hermitian_ok": true,
-          "min_eigenvalue": -2.047048752729097e-09,
+          "min_eigenvalue": 0.3030332922935486,
           "psd_ok": true,
           "valid": true
         }
@@ -125,33 +139,33 @@
       "passed": true,
       "has_grad": true,
       "grad_nonzero": true,
-      "grad_norm": 0.1719401776790619,
-      "ic_mean": -0.23369693756103516
+      "grad_norm": 0.012222496792674065,
+      "ic_mean": -0.23795294761657715
     },
     "optimization_increases_ic": {
       "passed": "True",
-      "ic_start_avg": -0.1278376292437315,
-      "ic_end_avg": 0.24620572924613954,
-      "ic_delta": 0.374043358489871,
+      "ic_start_avg": -0.3242579996585846,
+      "ic_end_avg": 0.25955404043197633,
+      "ic_delta": 0.5838120400905609,
       "ic_history_sample": [
-        -0.2557227909564972,
-        0.07542464882135391,
-        0.1740039438009262,
-        0.2517877519130707
+        -0.6205254793167114,
+        0.16639457643032074,
+        0.2014751434326172,
+        0.2641993463039398
       ],
       "n_steps": 50
     },
     "shell_constrains_params": {
       "passed": true,
       "raw_param_value": 5.0,
-      "max_gated_param": 0.52809739112854,
-      "reduction_ratio": 0.10561947822570801
+      "max_gated_param": 0.8559026122093201,
+      "reduction_ratio": 0.17118052244186402
     }
   },
   "negative": {
     "no_shell_allows_unphysical": {
       "passed": true,
-      "max_operator_param": 5.065632343292236,
+      "max_operator_param": 5.034246921539307,
       "exceeds_physical_range": true
     },
     "disconnected_no_flow": {
@@ -167,14 +181,14 @@
         "trace_ok": true,
         "hermitian_error": 0.0,
         "hermitian_ok": true,
-        "min_eigenvalue": 0.13204185664653778,
+        "min_eigenvalue": 0.19505184888839722,
         "psd_ok": true,
         "valid": true
       },
       "terrain_out": [
-        -0.05383098125457764,
-        0.4228595793247223,
-        0.5998873710632324
+        0.11575110256671906,
+        -0.18545600771903992,
+        0.5693691968917847
       ]
     },
     "fully_connected_max_flow": {
@@ -183,21 +197,21 @@
       "n_operator": 6,
       "n_shell": 4,
       "terrain_norms": [
+        0.9737780690193176,
+        0.9999999403953552,
         0.9999999403953552,
         1.0,
+        0.6994249224662781,
+        0.6547808051109314,
         1.0,
-        0.8314718008041382,
-        1.0,
-        1.0,
-        1.0,
-        0.9999999403953552
+        0.4610497057437897
       ]
     },
     "bloch_ball_containment": {
       "passed": true,
       "norms": [
-        0.7825717926025391,
-        1.0
+        0.9999999403953552,
+        0.7610145211219788
       ]
     }
   },

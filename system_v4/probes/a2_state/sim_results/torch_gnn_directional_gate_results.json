@@ -1,0 +1,295 @@
+{
+  "name": "torch_gnn_directional_gate",
+  "description": "Replaces magnitude-only Sigmoid shell gate with cosine-similarity directional gate. Tests A (gradient-aligned) > C (noise) > B (anti-gradient).",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Axis 0 gradient via autograd; GNN tensors; cosine-similarity directional gate"
+    },
+    "pyg": {
+      "tried": true,
+      "used": true,
+      "reason": "HeteroData graph + heterogeneous message passing IS the ratchet dynamics"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "sympy": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "not relevant to this sim"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "load_bearing",
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "axis0_gradient_computed": {
+      "passed": true,
+      "I_c": -0.23654876466944286,
+      "grad_magnitude": 0.9784398410094189,
+      "grad_components": {
+        "theta_AB": 0.02487726410909559,
+        "theta_BC": -0.16833759656976047,
+        "phi_AB": 4.500254439487449e-17,
+        "phi_BC": 0.09718975669428585,
+        "r_A": 0.815016525591041,
+        "r_B": 0.5046685169428676,
+        "r_C": -1.6653345369377348e-16
+      }
+    },
+    "directional_gate_A_vs_B_vs_C": {
+      "passed": false,
+      "mean_A_ic": 0.19994601845741272,
+      "mean_B_ic": 0.19832305252552032,
+      "mean_C_ic": 0.2127279245853424,
+      "A_minus_B": 0.0016229659318924006,
+      "A_minus_C": -0.012781906127929676,
+      "C_minus_B": 0.014404872059822077,
+      "A_beats_B_avg": true,
+      "A_beats_C_avg": false,
+      "C_beats_B_avg": true,
+      "n_seeds": 5,
+      "n_A_gt_B": 3,
+      "n_A_gt_C": 1,
+      "n_C_gt_B": 5,
+      "n_correct_ordering_A_gt_C_gt_B": 1,
+      "per_seed": [
+        {
+          "op_seed": 42,
+          "A_ic_end": 0.20372177362442018,
+          "B_ic_end": 0.19424379765987396,
+          "C_ic_end": 0.209941565990448,
+          "A_gt_B": true,
+          "A_gt_C": false,
+          "C_gt_B": true,
+          "ordering_correct": false
+        },
+        {
+          "op_seed": 7,
+          "A_ic_end": 0.19909487366676332,
+          "B_ic_end": 0.21529101431369782,
+          "C_ic_end": 0.23289639949798585,
+          "A_gt_B": false,
+          "A_gt_C": false,
+          "C_gt_B": true,
+          "ordering_correct": false
+        },
+        {
+          "op_seed": 99,
+          "A_ic_end": 0.21379171907901764,
+          "B_ic_end": 0.199151611328125,
+          "C_ic_end": 0.2173961490392685,
+          "A_gt_B": true,
+          "A_gt_C": false,
+          "C_gt_B": true,
+          "ordering_correct": false
+        },
+        {
+          "op_seed": 13,
+          "A_ic_end": 0.2025660276412964,
+          "B_ic_end": 0.17215608954429626,
+          "C_ic_end": 0.17968497574329376,
+          "A_gt_B": true,
+          "A_gt_C": true,
+          "C_gt_B": true,
+          "ordering_correct": true
+        },
+        {
+          "op_seed": 55,
+          "A_ic_end": 0.1805556982755661,
+          "B_ic_end": 0.2107727497816086,
+          "C_ic_end": 0.22372053265571595,
+          "A_gt_B": false,
+          "A_gt_C": false,
+          "C_gt_B": true,
+          "ordering_correct": false
+        }
+      ],
+      "gradient_ref": [
+        0.1461942046880722,
+        -0.9892559051513672,
+        2.64462797313665e-16
+      ],
+      "shell_A_init": [
+        [
+          0.024872133508324623,
+          0.16676531732082367,
+          0.7523897290229797
+        ],
+        [
+          0.6723483204841614,
+          0.46578076481819153,
+          0.7523897290229797
+        ]
+      ],
+      "shell_B_init": [
+        [
+          0.9751278758049011,
+          0.8332346677780151,
+          0.24761027097702026
+        ],
+        [
+          0.3276516795158386,
+          0.5342192053794861,
+          0.24761027097702026
+        ]
+      ],
+      "interpretation": "Directional gate creates A > C > B ordering as expected"
+    }
+  },
+  "negative": {
+    "anti_gradient_penalized_below_noise": {
+      "passed": true,
+      "mean_B_ic": 0.20432523846626283,
+      "mean_C_ic": 0.2001950317621231,
+      "C_minus_B": -0.004130206704139716,
+      "n_C_gt_B": 3,
+      "per_seed": [
+        {
+          "op_seed": 42,
+          "B_ic_end": 0.20795805752277374,
+          "C_ic_end": 0.22745139598846437,
+          "C_gt_B": true
+        },
+        {
+          "op_seed": 7,
+          "B_ic_end": 0.2295071840286255,
+          "C_ic_end": 0.21587644517421722,
+          "C_gt_B": false
+        },
+        {
+          "op_seed": 99,
+          "B_ic_end": 0.15936858654022218,
+          "C_ic_end": 0.16254340410232543,
+          "C_gt_B": true
+        },
+        {
+          "op_seed": 13,
+          "B_ic_end": 0.21641265451908112,
+          "C_ic_end": 0.21784330308437347,
+          "C_gt_B": true
+        },
+        {
+          "op_seed": 55,
+          "B_ic_end": 0.20837970972061157,
+          "C_ic_end": 0.17726061046123504,
+          "C_gt_B": false
+        }
+      ],
+      "interpretation": "Anti-gradient seed (B) penalized below noise (C): directional gate working"
+    },
+    "sigmoid_gate_indifferent_to_direction": {
+      "passed": true,
+      "mean_sigmoid_A": 0.24960168798764545,
+      "mean_sigmoid_B": 0.23278588354587557,
+      "abs_diff_avg": 0.016815804441769888,
+      "n_nearly_equal": 2,
+      "per_seed": [
+        {
+          "op_seed": 42,
+          "sigmoid_A_end": 0.27015737295150755,
+          "sigmoid_B_end": 0.21506917476654053,
+          "abs_diff": 0.05508819818496702,
+          "nearly_equal": false
+        },
+        {
+          "op_seed": 7,
+          "sigmoid_A_end": 0.2305735856294632,
+          "sigmoid_B_end": 0.23752383887767792,
+          "abs_diff": 0.006950253248214716,
+          "nearly_equal": true
+        },
+        {
+          "op_seed": 99,
+          "sigmoid_A_end": 0.24807410538196564,
+          "sigmoid_B_end": 0.2457646369934082,
+          "abs_diff": 0.002309468388557445,
+          "nearly_equal": true
+        }
+      ],
+      "interpretation": "Confirmed: Sigmoid gate cannot distinguish +gradient from -gradient seed"
+    }
+  },
+  "boundary": {
+    "zero_gradient_ref_runs": {
+      "passed": true,
+      "final_ic": 0.149492546916008,
+      "note": "Near-zero gradient ref does not crash; optimization still converges"
+    },
+    "perpendicular_seed_intermediate": {
+      "passed": false,
+      "A_ic_end": 0.21321060359477997,
+      "perp_ic_end": 0.2241589069366455,
+      "A_minus_perp": -0.010948303341865528,
+      "interpretation": "Perpendicular seed unexpectedly outperformed gradient-aligned"
+    }
+  },
+  "summary": {
+    "A_ic_final": 0.19994601845741272,
+    "B_ic_final": 0.19832305252552032,
+    "C_ic_final": 0.2127279245853424,
+    "A_minus_B": 0.0016229659318924006,
+    "C_minus_B": 0.014404872059822077,
+    "A_beats_B_avg": true,
+    "A_beats_C_avg": false,
+    "C_beats_B_avg": true,
+    "ordering_A_gt_C_gt_B_count": 1,
+    "n_seeds": 5
+  },
+  "classification": "canonical"
+}

@@ -57,6 +57,21 @@ TOOL_MANIFEST["pytorch"]["reason"] = (
     "Core numeric substrate: density matrices, partial traces, and eigenvalue checks"
 )
 
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 # =====================================================================
 # CONSTANTS
 # =====================================================================
@@ -431,6 +446,7 @@ if __name__ == "__main__":
         "schema_version": "1.0",
         "classification": "canonical",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

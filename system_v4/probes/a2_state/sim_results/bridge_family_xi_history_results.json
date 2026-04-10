@@ -1,0 +1,118 @@
+{
+  "name": "bridge_family_xi_history",
+  "classification": "canonical",
+  "classification_note": "Canonical local Xi history bridge row on one bounded packet history, kept separate from point and shell bridge rows.",
+  "lego_ids": [
+    "bridge_family_xi_history"
+  ],
+  "primary_lego_ids": [
+    "bridge_family_xi_history"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "history_bridge_outputs_valid_bipartite_state": {
+      "pass": "True"
+    },
+    "history_weights_change_history_bridge": {
+      "pass": "True"
+    },
+    "history_length_changes_bridge": {
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "row_does_not_collapse_into_point_or_shell_bridge": {
+      "pass": "True"
+    },
+    "row_does_not_claim_selector_promotion": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bounded_to_one_local_history_family": {
+      "pass": true
+    },
+    "same_history_same_weights_reproduce_result": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local Xi history bridge row on one bounded packet history."
+  }
+}

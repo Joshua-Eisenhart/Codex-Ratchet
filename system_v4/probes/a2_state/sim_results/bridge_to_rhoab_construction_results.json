@@ -1,0 +1,390 @@
+{
+  "name": "Bridge to rho_AB Construction",
+  "schema_version": "1.0",
+  "classification": "canonical",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Core numeric substrate: density matrices, partial traces, and eigenvalue checks"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph layer in this bridge constructor"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- this sim uses exact matrix checks, not satisfiability search"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no synthesis or SMT constraints are required"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no symbolic derivation beyond exact matrix formulas"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra layer in this lego"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold geometry or statistics here"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant neural network layer here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency graph or lattice graph computation here"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph or simplicial complex layer here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell complex or filtration layer here"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology or filtration computation here"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "product_bridge_constructs_product_state": {
+      "pass": true,
+      "details": {
+        "hermitian_error": 0.0,
+        "trace": 1.0,
+        "trace_error": 0.0,
+        "psd": true,
+        "min_eigenvalue": 0.0,
+        "valid": true,
+        "rho_a_max_error": 0.0,
+        "rho_b_max_error": 0.0,
+        "consistent": true,
+        "rho_ab": "tensor([[0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j],\n        [0.+0.j, 1.+0.j, 0.+0.j, 0.+0.j],\n        [0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j],\n        [0.+0.j, 0.+0.j, 0.+0.j, 0.+0.j]], dtype=torch.complex128)",
+        "rho_a": "tensor([[1.+0.j, 0.+0.j],\n        [0.+0.j, 0.+0.j]], dtype=torch.complex128)",
+        "rho_b": "tensor([[0.+0.j, 0.+0.j],\n        [0.+0.j, 1.+0.j]], dtype=torch.complex128)",
+        "S_AB": -0.0,
+        "S_A": -0.0,
+        "S_B": -0.0,
+        "I_AB": 0.0,
+        "concurrence": 0.0
+      }
+    },
+    "correlated_separable_bridge_constructs_separable_state": {
+      "pass": true,
+      "details": {
+        "hermitian_error": 0.0,
+        "trace": 1.0,
+        "trace_error": 0.0,
+        "psd": true,
+        "min_eigenvalue": 0.0,
+        "valid": true,
+        "rho_a_max_error": 0.0,
+        "rho_b_max_error": 0.0,
+        "consistent": true,
+        "rho_ab": "tensor([[0.6000+0.j, 0.0000+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.0000+0.j, 0.4000+0.j]],\n       dtype=torch.complex128)",
+        "rho_a": "tensor([[0.6000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.4000+0.j]], dtype=torch.complex128)",
+        "rho_b": "tensor([[0.6000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.4000+0.j]], dtype=torch.complex128)",
+        "S_AB": 0.9709505944546686,
+        "S_A": 0.9709505944546686,
+        "S_B": 0.9709505944546686,
+        "I_AB": 0.9709505944546686,
+        "concurrence": 0.0
+      }
+    },
+    "bell_bridge_constructs_entangled_state": {
+      "pass": true,
+      "details": {
+        "hermitian_error": 0.0,
+        "trace": 0.9999999999999998,
+        "trace_error": 2.220446049250313e-16,
+        "psd": true,
+        "min_eigenvalue": 0.0,
+        "valid": true,
+        "rho_a_max_error": 1.1102230246251565e-16,
+        "rho_b_max_error": 1.1102230246251565e-16,
+        "consistent": true,
+        "rho_ab": "tensor([[0.5000+0.j, 0.0000+0.j, 0.0000+0.j, 0.5000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.5000+0.j, 0.0000+0.j, 0.0000+0.j, 0.5000+0.j]],\n       dtype=torch.complex128)",
+        "rho_a": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+        "rho_b": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+        "S_AB": -0.0,
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "I_AB": 2.0,
+        "concurrence": 0.9999999999999994
+      }
+    },
+    "werner_sweep_has_expected_endpoints": {
+      "pass": true,
+      "details": [
+        {
+          "hermitian_error": 0.0,
+          "trace": 1.0,
+          "trace_error": 0.0,
+          "psd": true,
+          "min_eigenvalue": 0.25,
+          "valid": true,
+          "rho_a_max_error": 0.0,
+          "rho_b_max_error": 0.0,
+          "consistent": true,
+          "rho_ab": "tensor([[0.2500+0.j, 0.0000+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.2500+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.2500+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.0000+0.j, 0.2500+0.j]],\n       dtype=torch.complex128)",
+          "rho_a": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+          "rho_b": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+          "S_AB": 2.0,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "I_AB": 0.0,
+          "concurrence": 0.0
+        },
+        {
+          "hermitian_error": 0.0,
+          "trace": 1.0,
+          "trace_error": 0.0,
+          "psd": true,
+          "min_eigenvalue": 0.1875,
+          "valid": true,
+          "rho_a_max_error": 0.0,
+          "rho_b_max_error": 0.0,
+          "consistent": true,
+          "rho_ab": "tensor([[0.3125+0.j, 0.0000+0.j, 0.0000+0.j, 0.1250+0.j],\n        [0.0000+0.j, 0.1875+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.1875+0.j, 0.0000+0.j],\n        [0.1250+0.j, 0.0000+0.j, 0.0000+0.j, 0.3125+0.j]],\n       dtype=torch.complex128)",
+          "rho_a": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+          "rho_b": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+          "S_AB": 1.8802408149441479,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "I_AB": 0.11975918505585215,
+          "concurrence": 0.0
+        },
+        {
+          "hermitian_error": 0.0,
+          "trace": 1.0,
+          "trace_error": 0.0,
+          "psd": true,
+          "min_eigenvalue": 0.16666666666666669,
+          "valid": true,
+          "rho_a_max_error": 0.0,
+          "rho_b_max_error": 0.0,
+          "consistent": true,
+          "rho_ab": "tensor([[0.3333+0.j, 0.0000+0.j, 0.0000+0.j, 0.1667+0.j],\n        [0.0000+0.j, 0.1667+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.1667+0.j, 0.0000+0.j],\n        [0.1667+0.j, 0.0000+0.j, 0.0000+0.j, 0.3333+0.j]],\n       dtype=torch.complex128)",
+          "rho_a": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+          "rho_b": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+          "S_AB": 1.792481250360578,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "I_AB": 0.20751874963942196,
+          "concurrence": 0.0
+        },
+        {
+          "hermitian_error": 0.0,
+          "trace": 0.9999999999999998,
+          "trace_error": 2.220446049250313e-16,
+          "psd": true,
+          "min_eigenvalue": 0.09999999999999996,
+          "valid": true,
+          "rho_a_max_error": 1.1102230246251565e-16,
+          "rho_b_max_error": 1.1102230246251565e-16,
+          "consistent": true,
+          "rho_ab": "tensor([[0.4000+0.j, 0.0000+0.j, 0.0000+0.j, 0.3000+0.j],\n        [0.0000+0.j, 0.1000+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.1000+0.j, 0.0000+0.j],\n        [0.3000+0.j, 0.0000+0.j, 0.0000+0.j, 0.4000+0.j]],\n       dtype=torch.complex128)",
+          "rho_a": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+          "rho_b": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+          "S_AB": 1.3567796494470394,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "I_AB": 0.6432203505529606,
+          "concurrence": 0.39999999999999947
+        },
+        {
+          "hermitian_error": 0.0,
+          "trace": 0.9999999999999998,
+          "trace_error": 2.220446049250313e-16,
+          "psd": true,
+          "min_eigenvalue": 0.0,
+          "valid": true,
+          "rho_a_max_error": 1.1102230246251565e-16,
+          "rho_b_max_error": 1.1102230246251565e-16,
+          "consistent": true,
+          "rho_ab": "tensor([[0.5000+0.j, 0.0000+0.j, 0.0000+0.j, 0.5000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.5000+0.j, 0.0000+0.j, 0.0000+0.j, 0.5000+0.j]],\n       dtype=torch.complex128)",
+          "rho_a": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+          "rho_b": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+          "S_AB": -0.0,
+          "S_A": 1.0,
+          "S_B": 1.0,
+          "I_AB": 2.0,
+          "concurrence": 0.9999999999999994
+        }
+      ]
+    },
+    "werner_mutual_information_monotone_in_p": {
+      "pass": true,
+      "I_AB_trace": [
+        0.0,
+        0.11975918505585215,
+        0.20751874963942196,
+        0.6432203505529606,
+        2.0
+      ]
+    }
+  },
+  "negative": {
+    "invalid_bridge_packet_rejected": {
+      "pass": true,
+      "details": {
+        "hermitian_error": 0.0,
+        "trace": 1.0,
+        "trace_error": 0.0,
+        "psd": false,
+        "min_eigenvalue": -0.1,
+        "valid": false,
+        "rho_a_max_error": 0.6000000000000001,
+        "rho_b_max_error": 0.3,
+        "consistent": false,
+        "rho_ab": "tensor([[ 0.7000+0.j,  0.3000+0.j,  0.0000+0.j,  0.0000+0.j],\n        [ 0.3000+0.j,  0.4000+0.j,  0.0000+0.j,  0.0000+0.j],\n        [ 0.0000+0.j,  0.0000+0.j, -0.1000+0.j,  0.0000+0.j],\n        [ 0.0000+0.j,  0.0000+0.j,  0.0000+0.j,  0.0000+0.j]],\n       dtype=torch.complex128)",
+        "rho_a": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+        "rho_b": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+        "S_AB": null,
+        "S_A": null,
+        "S_B": null,
+        "I_AB": null,
+        "concurrence": null
+      },
+      "note": "Invalid packet has negative eigenvalue and broken trace consistency."
+    },
+    "counterfeit_coupling_rejected": {
+      "pass": true,
+      "details": {
+        "hermitian_error": 0.0,
+        "trace": 1.0,
+        "trace_error": 0.0,
+        "psd": false,
+        "min_eigenvalue": -0.12355339059327378,
+        "valid": false,
+        "rho_a_max_error": 0.0,
+        "rho_b_max_error": 5.551115123125783e-17,
+        "consistent": true,
+        "rho_ab": "tensor([[0.2800+0.j, 0.0000+0.j, 0.0000+0.j, 0.3500+0.j],\n        [0.0000+0.j, 0.4200+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.1200+0.j, 0.0000+0.j],\n        [0.3500+0.j, 0.0000+0.j, 0.0000+0.j, 0.1800+0.j]],\n       dtype=torch.complex128)",
+        "rho_a": "tensor([[0.7000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.3000+0.j]], dtype=torch.complex128)",
+        "rho_b": "tensor([[0.4000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.6000+0.j]], dtype=torch.complex128)",
+        "S_AB": null,
+        "S_A": null,
+        "S_B": null,
+        "I_AB": null,
+        "concurrence": null
+      },
+      "note": "Counterfeit coupling should fail PSD or reduced-state consistency."
+    },
+    "product_bridge_not_entangled": {
+      "pass": true,
+      "note": "Product bridge must not produce entanglement."
+    },
+    "separable_bridge_not_pure": {
+      "pass": true,
+      "note": "Classically correlated separable bridge has nonzero joint entropy."
+    }
+  },
+  "boundary": {
+    "werner_p_zero_boundary": {
+      "pass": true,
+      "details": {
+        "hermitian_error": 0.0,
+        "trace": 1.0,
+        "trace_error": 0.0,
+        "psd": true,
+        "min_eigenvalue": 0.25,
+        "valid": true,
+        "rho_a_max_error": 0.0,
+        "rho_b_max_error": 0.0,
+        "consistent": true,
+        "rho_ab": "tensor([[0.2500+0.j, 0.0000+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.2500+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.2500+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.0000+0.j, 0.2500+0.j]],\n       dtype=torch.complex128)",
+        "rho_a": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+        "rho_b": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+        "S_AB": 2.0,
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "I_AB": 0.0,
+        "concurrence": 0.0
+      }
+    },
+    "werner_p_third_boundary": {
+      "pass": true,
+      "details": {
+        "hermitian_error": 0.0,
+        "trace": 1.0,
+        "trace_error": 0.0,
+        "psd": true,
+        "min_eigenvalue": 0.16666666666666669,
+        "valid": true,
+        "rho_a_max_error": 0.0,
+        "rho_b_max_error": 0.0,
+        "consistent": true,
+        "rho_ab": "tensor([[0.3333+0.j, 0.0000+0.j, 0.0000+0.j, 0.1667+0.j],\n        [0.0000+0.j, 0.1667+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.1667+0.j, 0.0000+0.j],\n        [0.1667+0.j, 0.0000+0.j, 0.0000+0.j, 0.3333+0.j]],\n       dtype=torch.complex128)",
+        "rho_a": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+        "rho_b": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+        "S_AB": 1.792481250360578,
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "I_AB": 0.20751874963942196,
+        "concurrence": 0.0
+      }
+    },
+    "werner_p_one_boundary": {
+      "pass": true,
+      "details": {
+        "hermitian_error": 0.0,
+        "trace": 0.9999999999999998,
+        "trace_error": 2.220446049250313e-16,
+        "psd": true,
+        "min_eigenvalue": 0.0,
+        "valid": true,
+        "rho_a_max_error": 1.1102230246251565e-16,
+        "rho_b_max_error": 1.1102230246251565e-16,
+        "consistent": true,
+        "rho_ab": "tensor([[0.5000+0.j, 0.0000+0.j, 0.0000+0.j, 0.5000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.0000+0.j, 0.0000+0.j, 0.0000+0.j],\n        [0.5000+0.j, 0.0000+0.j, 0.0000+0.j, 0.5000+0.j]],\n       dtype=torch.complex128)",
+        "rho_a": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+        "rho_b": "tensor([[0.5000+0.j, 0.0000+0.j],\n        [0.0000+0.j, 0.5000+0.j]], dtype=torch.complex128)",
+        "S_AB": -0.0,
+        "S_A": 1.0,
+        "S_B": 1.0,
+        "I_AB": 2.0,
+        "concurrence": 0.9999999999999994
+      }
+    }
+  },
+  "summary": {
+    "positive": "5/5",
+    "negative": "4/4",
+    "boundary": "3/3",
+    "all_pass": true,
+    "total_time_s": 0.03258919715881348
+  }
+}

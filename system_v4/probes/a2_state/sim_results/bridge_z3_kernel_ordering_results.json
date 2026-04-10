@@ -1,0 +1,238 @@
+{
+  "name": "bridge_z3_kernel_ordering",
+  "description": "Closes the z3 ordering cross-check gap from sim_rustworkx_bridge_dag.py. Three formal z3 UNSAT proofs: (1) dominance transitivity, (2) product state floor, (3) cycle impossibility. All proofs bound to concrete MI/I_c values from the rustworkx DAG.",
+  "metrics_source": {
+    "loaded_from_json": true,
+    "dag_json_path": "/Users/joshuaeisenhart/Desktop/Codex Ratchet/system_v4/probes/a2_state/sim_results/rustworkx_bridge_dag_results.json"
+  },
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": false,
+      "reason": "Not needed: metrics loaded from DAG JSON."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Three UNSAT proofs encoding dominance transitivity (P1), product floor (P2), and cycle impossibility (P3). z3 Solver().check() == unsat IS the proof result."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "Loads rustworkx_bridge_dag_results.json to bind concrete MI/I_c values to z3 Real variables; directly closes the cross-check gap flagged by the bridge DAG sim."
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "state_metrics_used": {
+    "product": {
+      "MI": -0.0,
+      "I_c": -0.0
+    },
+    "separable": {
+      "MI": 1.0,
+      "I_c": -0.0
+    },
+    "Bell": {
+      "MI": 1.0,
+      "I_c": -0.0
+    },
+    "Werner-0.3": {
+      "MI": 0.10376686,
+      "I_c": -0.89623314
+    },
+    "Werner-0.7": {
+      "MI": 0.48403091,
+      "I_c": -0.51596909
+    },
+    "GHZ": {
+      "MI": 1.0,
+      "I_c": -0.0
+    },
+    "mixed-entangled": {
+      "MI": 0.26248318,
+      "I_c": -0.73751682
+    }
+  },
+  "positive": {
+    "P1_transitivity": {
+      "proof": "transitivity_of_dominance",
+      "states": {
+        "A": "Bell",
+        "B": "Werner-0.7",
+        "C": "Werner-0.3"
+      },
+      "values": {
+        "Bell": {
+          "MI": 1.0,
+          "I_c": -0.0
+        },
+        "Werner-0.7": {
+          "MI": 0.48403091,
+          "I_c": -0.51596909
+        },
+        "Werner-0.3": {
+          "MI": 0.10376686,
+          "I_c": -0.89623314
+        }
+      },
+      "encoding": "A_dom_B AND B_dom_C AND NOT(A_dom_C) -> UNSAT",
+      "z3_result": "unsat",
+      "sanity_A_dom_B_is_SAT": "sat",
+      "pass": true,
+      "note": "UNSAT proves: given A dom B and B dom C, the claim NOT(A dom C) is impossible. Dominance transitivity holds for these concrete values."
+    },
+    "P2_product_floor": {
+      "proof": "product_floor",
+      "encoding_symbolic": "prod_MI=0 AND target_MI>0 AND prod_MI>target_MI -> UNSAT",
+      "encoding_concrete": "product dom Bell on both MI+Ic axes -> UNSAT",
+      "z3_result_symbolic": "unsat",
+      "concrete": {
+        "product_MI": -0.0,
+        "product_Ic": -0.0,
+        "Bell_MI": 1.0,
+        "Bell_Ic": -0.0,
+        "z3_result": "unsat",
+        "pass": true
+      },
+      "pass": true,
+      "note": "UNSAT proves product (MI=0) cannot have strictly greater MI than any state with MI>0. Product state is a true floor of the dominance partial order."
+    },
+    "P3_no_cycle": {
+      "proof": "no_cycle",
+      "encoding_MI": "mi_a>mi_b AND mi_b>mi_a -> UNSAT",
+      "encoding_Ic": "ic_a>ic_b AND ic_b>ic_a -> UNSAT",
+      "encoding_full_cycle": "Bell_dom_W7 AND W7_dom_Bell -> UNSAT",
+      "z3_result_MI_cycle": "unsat",
+      "z3_result_Ic_cycle": "unsat",
+      "concrete_Bell_Werner07_cycle": {
+        "Bell_MI": 1.0,
+        "Werner-0.7_MI": 0.48403091,
+        "Bell_Ic": -0.0,
+        "Werner-0.7_Ic": -0.51596909,
+        "z3_result": "unsat",
+        "pass": true
+      },
+      "pass": true,
+      "note": "Strict inequality > is irreflexive and asymmetric on the reals. z3 proves directly: no cycle in the MI or I_c ordering is possible."
+    }
+  },
+  "negative": {
+    "N1_Bell_dom_Werner07_is_SAT": {
+      "test": "Bell dom Werner-0.7 should be SAT (valid DAG edge)",
+      "z3_result": "sat",
+      "pass": true,
+      "note": "z3 witnesses a true dominance relation \u2014 confirms encoding is not trivially UNSAT."
+    },
+    "N2_product_cannot_dom_Bell": {
+      "test": "product dom Bell is UNSAT",
+      "product_MI": -0.0,
+      "product_Ic": -0.0,
+      "Bell_MI": 1.0,
+      "Bell_Ic": -0.0,
+      "z3_result": "unsat",
+      "pass": true,
+      "note": "Confirms dominance encoding correctly rejects inverted ordering."
+    },
+    "N3_Werner07_dom_Werner03_is_SAT": {
+      "test": "Werner-0.7 dom Werner-0.3 should be SAT",
+      "z3_result": "sat",
+      "pass": true,
+      "note": "Higher-p Werner state strictly dominates lower-p Werner state on both axes."
+    }
+  },
+  "boundary": {
+    "B1_Werner03_cannot_dom_Werner07": {
+      "Werner-0.3": {
+        "MI": 0.10376686,
+        "I_c": -0.89623314
+      },
+      "Werner-0.7": {
+        "MI": 0.48403091,
+        "I_c": -0.51596909
+      },
+      "z3_result": "unsat",
+      "pass": true,
+      "note": "Lower-p Werner cannot dominate higher-p Werner. UNSAT expected."
+    },
+    "B2_equal_MI_strict_dom_UNSAT": {
+      "encoding": "mi_x==mi_y AND ic_x>ic_y AND mi_x>mi_y -> UNSAT",
+      "z3_result": "unsat",
+      "pass": true,
+      "note": "States with equal MI cannot strict-dominate on the MI axis."
+    },
+    "B3_GHZ_Bell_tie_check": {
+      "GHZ_MI": 1.0,
+      "Bell_MI": 1.0,
+      "GHZ_Ic": -0.0,
+      "Bell_Ic": -0.0,
+      "MI_tied": true,
+      "Ic_tied": true,
+      "tied_on_both_axes": true,
+      "z3_GHZ_dom_Bell": "unsat",
+      "z3_Bell_dom_GHZ": "unsat",
+      "pass": true,
+      "note": "GHZ reduced to 2-qubit (tracing out C) collapses to Bell-like structure. If tied, both dominance directions are UNSAT \u2014 DAG correctly makes them incomparable. This documents the GHZ/Bell tie that Sim C (3-qubit DAG) is designed to break."
+    }
+  },
+  "all_tests_passed": true,
+  "elapsed_s": 0.0114,
+  "classification": "canonical"
+}

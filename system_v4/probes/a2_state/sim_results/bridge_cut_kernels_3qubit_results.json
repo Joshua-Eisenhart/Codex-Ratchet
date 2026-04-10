@@ -1,0 +1,165 @@
+{
+  "name": "PURE LEGO: Bridge-Built Cut Kernels on 3-Qubit States",
+  "probe": "bridge_cut_kernels_3qubit",
+  "purpose": "Extend cut-kernel comparisons from bipartite bridge-built states to bounded 3-qubit partitions",
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "pure-math numpy baseline"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded multipartite cut sim"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded multipartite cut sim"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded multipartite cut sim"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded multipartite cut sim"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded multipartite cut sim"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded multipartite cut sim"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded multipartite cut sim"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded multipartite cut sim"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded multipartite cut sim"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded multipartite cut sim"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this bounded multipartite cut sim"
+    }
+  },
+  "positive": {
+    "ghz_has_positive_signed_cut_signal_on_all_1v2_partitions": {
+      "A|BC": 1.0,
+      "B|AC": 1.0,
+      "C|AB": 1.0,
+      "all_positive": true,
+      "pass": true
+    },
+    "product_state_kills_all_cut_kernels_except_trivial_zero": {
+      "A|BC_mi": 0.0,
+      "A|BC_ic": 0.0,
+      "tripartite_mi": 0.0,
+      "all_zero": true,
+      "pass": true
+    },
+    "bell_pair_tensor_product_is_asymmetric_across_partitions": {
+      "AB|C_ic": 0.0,
+      "A|BC_ic": 1.0,
+      "C|AB_ic": 0.0,
+      "asymmetric": true,
+      "pass": true
+    },
+    "bridge_mixture_retains_signal_but_weaker_than_ghz": {
+      "ghz_A|BC_ic": 1.0,
+      "bridge_A|BC_ic": -0.30338013598049196,
+      "bridge_A|BC_mi": 0.696619864019508,
+      "bridge_A|BC_neg": 0.2187500000000001,
+      "signal_present_but_weaker": true,
+      "pass": true
+    },
+    "multipartite_companion_negativity_tracks_nonproduct_cases": {
+      "ghz_neg": 0.5,
+      "product_neg": 0.0,
+      "bridge_neg": 0.2187500000000001,
+      "ordered": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "classically_correlated_counterfeit_has_mi_without_signed_cut_gain": {
+      "A|BC_mi": 0.8112781244591329,
+      "A|BC_ic": 0.0,
+      "mi_positive_ic_nonpositive": true,
+      "pass": true
+    },
+    "local_proxy_counterfeit_fails_to_generate_tripartite_signal": {
+      "tripartite_mi": 0.0,
+      "A|BC_ic": -1.0,
+      "no_signed_gain": true,
+      "pass": true
+    },
+    "w_state_does_not_fake_ghz_symmetry_strength": {
+      "w_A|BC_ic": 0.9182958340544896,
+      "w_A|BC_neg": 0.4714045207910318,
+      "weaker_than_ghz_like_unity": true,
+      "pass": true
+    },
+    "two_vs_one_partition_quantities_are_not_interchangeable_labels": {
+      "A|BC_mi": 2.0,
+      "C|AB_mi": 0.0,
+      "A|BC_cond": -1.0,
+      "C|AB_cond": 0.0,
+      "conditional_differs_across_non_equivalent_cuts": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "pure_state_cut_identity_holds_for_ghz": {
+      "A_entropy": 1.0,
+      "A|BC_ic": 1.0,
+      "equal": true,
+      "pass": true
+    },
+    "pure_state_cut_identity_holds_for_w": {
+      "A_entropy": 0.9182958340544896,
+      "A|BC_ic": 0.9182958340544896,
+      "equal": true,
+      "pass": true
+    },
+    "mixed_bridge_breaks_pure_cut_identity_but_keeps_measure_defined": {
+      "A_entropy": 1.0,
+      "A|BC_ic": -0.30338013598049196,
+      "different_but_defined": true,
+      "pass": true
+    }
+  },
+  "classification": "classical_baseline",
+  "caveat": "Bounded multipartite cut-kernel comparison only. No final bridge canon or preferred kernel is promoted here.",
+  "summary": {
+    "positive_pass": 5,
+    "positive_fail": 0,
+    "negative_pass": 4,
+    "negative_fail": 0,
+    "boundary_pass": 3,
+    "boundary_fail": 0,
+    "total_fail": 0,
+    "all_pass": true
+  }
+}

@@ -17,17 +17,17 @@
     "pyg": {
       "tried": true,
       "used": false,
-      "reason": "Axis 0 is a gradient field computation, no graph dynamics needed"
+      "reason": "imported but not used -- gradient field needs no graph layer"
     },
     "z3": {
       "tried": true,
       "used": false,
-      "reason": "Gradient computation is numerical, no constraint proofs needed here"
+      "reason": "imported but not used -- no SMT verification in this sim"
     },
     "cvc5": {
       "tried": true,
       "used": false,
-      "reason": "No SMT checking needed for gradient field"
+      "reason": "imported but not used"
     },
     "sympy": {
       "tried": true,
@@ -37,7 +37,7 @@
     "clifford": {
       "tried": true,
       "used": false,
-      "reason": "Using direct matrix algebra, not geometric algebra"
+      "reason": "attempted but not applicable; primary tools sufficient"
     },
     "geomstats": {
       "tried": true,
@@ -47,28 +47,42 @@
     "e3nn": {
       "tried": true,
       "used": false,
-      "reason": "No equivariance computation in gradient field"
+      "reason": "attempted but not applicable; primary tools sufficient"
     },
     "rustworkx": {
       "tried": true,
       "used": false,
-      "reason": "No graph algorithms needed for gradient computation"
+      "reason": "imported but not used -- no DAG ordering needed for gradient sim"
     },
     "xgi": {
       "tried": true,
       "used": false,
-      "reason": "No hypergraph structure in gradient field"
+      "reason": "attempted but not applicable; primary tools sufficient"
     },
     "toponetx": {
       "tried": true,
       "used": false,
-      "reason": "No cell complex in gradient computation"
+      "reason": "attempted but not applicable; primary tools sufficient"
     },
     "gudhi": {
       "tried": true,
       "used": false,
-      "reason": "No persistent homology in gradient field (future: track persistence along gradient flow)"
+      "reason": "attempted but not applicable; primary tools sufficient"
     }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": "not_applicable",
+    "z3": "not_applicable",
+    "cvc5": "not_applicable",
+    "sympy": "supportive",
+    "clifford": "not_applicable",
+    "geomstats": "supportive",
+    "e3nn": "not_applicable",
+    "rustworkx": "not_applicable",
+    "xgi": "not_applicable",
+    "toponetx": "not_applicable",
+    "gudhi": "not_applicable"
   },
   "positive": {
     "P1_gradient_exists_nonzero": {

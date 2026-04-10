@@ -47,7 +47,7 @@ Seven structural tests:
      Confirm geodesic speed is monotone on [0.5, 0.7] with no interior anomaly.
 
 Classification: canonical
-Interpreter: /opt/homebrew/bin/python3
+Interpreter: see Makefile PYTHON variable (codex-ratchet env)
 """
 
 import json

@@ -1,52 +1,49 @@
 {
-  "generated_at": "2026-04-10T09:12:32.333905+00:00",
+  "generated_at": "2026-04-10T09:38:35.453967+00:00",
   "strict": false,
-  "blocker_count": 2,
+  "blocker_count": 1,
   "advisory_count": 5,
-  "repair_candidate_count": 2,
-  "source_dirty_count": 21,
-  "generated_dirty_count": 31,
-  "dirty_worktree_count": 52,
+  "repair_candidate_count": 1,
+  "source_dirty_count": 1,
+  "generated_dirty_count": 9,
+  "dirty_worktree_count": 10,
   "git": {
     "ok": true,
-    "tracked_dirty_count": 11,
-    "untracked_count": 41,
-    "source_dirty_count": 21,
-    "generated_dirty_count": 31,
-    "total_dirty_count": 52,
+    "tracked_dirty_count": 8,
+    "untracked_count": 2,
+    "source_dirty_count": 1,
+    "generated_dirty_count": 9,
+    "total_dirty_count": 10,
     "status_class_counts": {
-      "modified": 11,
-      "untracked": 41
+      "modified": 8,
+      "untracked": 2
     },
     "dirty_source_buckets": [
       {
         "label": "probe_source",
-        "count": 21
+        "count": 1
       }
     ],
     "dirty_generated_buckets": [
       {
         "label": "generated_artifacts",
-        "count": 31
+        "count": 9
       }
     ],
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 52
+        "count": 10
       }
     ]
   },
   "branch_divergence": {
     "behind_count": 0,
-    "ahead_count": 5
+    "ahead_count": 16
   },
   "recent_checkpoint_scope_findings": [],
   "root_result_files": [],
-  "secondary_unique_results": [
-    "SA12_wilczek_zee_curvature_sympy_results.json",
-    "sa5_curvature_commutator_results.json"
-  ],
+  "secondary_unique_results": [],
   "duplicate_result_basenames": [],
   "primary_result_dir": "system_v4/probes/a2_state/sim_results",
   "secondary_result_dir": "system_v4/probes/sim_results",
@@ -69,28 +66,28 @@
     },
     "primary_sim_results": {
       "path": "system_v4/probes/a2_state/sim_results",
-      "file_count": 945,
+      "file_count": 948,
       "threshold": 500
     },
     "secondary_sim_results": {
       "path": "system_v4/probes/sim_results",
-      "file_count": 2,
+      "file_count": 0,
       "threshold": 1
     }
   },
   "summary": {
-    "blocker_count": 2,
+    "blocker_count": 1,
     "advisory_count": 5,
-    "repair_candidate_count": 2,
-    "primary_result_count": 792,
-    "secondary_result_count": 2,
-    "secondary_unique_result_count": 2,
+    "repair_candidate_count": 1,
+    "primary_result_count": 795,
+    "secondary_result_count": 0,
+    "secondary_unique_result_count": 0,
     "secondary_duplicate_result_count": 0,
     "root_result_orphan_count": 0,
     "duplicate_result_basename_count": 0,
-    "source_dirty_count": 21,
-    "generated_dirty_count": 31,
-    "dirty_worktree_count": 52,
+    "source_dirty_count": 1,
+    "generated_dirty_count": 9,
+    "dirty_worktree_count": 10,
     "dirty_source_bucket_count": 1,
     "ok": false
   },
@@ -98,30 +95,28 @@
     {
       "kind": "dirty_source_pressure",
       "severity": "medium",
-      "source_dirty_count": 21,
+      "source_dirty_count": 1,
       "dirty_source_buckets": [
         {
           "label": "probe_source",
-          "count": 21
+          "count": 1
         }
       ],
       "top_dirty_prefixes": [
         {
           "prefix": "system_v4",
-          "count": 52
+          "count": 10
         }
       ]
-    },
-    {
-      "kind": "secondary_result_directory_populated",
-      "severity": "high",
-      "path": "system_v4/probes/sim_results",
-      "json_file_count": 2,
-      "unique_json_file_count": 2,
-      "duplicate_json_file_count": 0
     }
   ],
   "advisories": [
+    {
+      "kind": "local_commit_stack_depth",
+      "severity": "advisory",
+      "ahead_count": 16,
+      "recommended_push_threshold": 5
+    },
     {
       "kind": "repo_root_autoresearch_state_present",
       "severity": "advisory",
@@ -148,16 +143,8 @@
       "severity": "advisory",
       "label": "primary_sim_results",
       "path": "system_v4/probes/a2_state/sim_results",
-      "file_count": 945,
+      "file_count": 948,
       "threshold": 500
-    },
-    {
-      "kind": "bulky_path_class",
-      "severity": "advisory",
-      "label": "secondary_sim_results",
-      "path": "system_v4/probes/sim_results",
-      "file_count": 2,
-      "threshold": 1
     }
   ],
   "repair_candidates": [
@@ -169,24 +156,9 @@
       "dirty_source_buckets": [
         {
           "label": "probe_source",
-          "count": 21
+          "count": 1
         }
       ]
-    },
-    {
-      "kind": "secondary_result_directory_populated",
-      "action_class": "quarantine_secondary_unique_results",
-      "safe_auto": true,
-      "opt_in_only": true,
-      "recommendation": "Only the unique legacy results are candidates for bounded quarantine; duplicate basenames still require manual routing.",
-      "path": "system_v4/probes/sim_results",
-      "safe_unique_files": [
-        "SA12_wilczek_zee_curvature_sympy_results.json",
-        "sa5_curvature_commutator_results.json"
-      ],
-      "blocked_duplicate_files": [],
-      "suggested_quarantine_root": "work/hygiene_quarantine/secondary_unique_results"
     }
-  ],
-  "classification": "supporting"
+  ]
 }

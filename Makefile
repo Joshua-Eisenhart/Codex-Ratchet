@@ -11,10 +11,12 @@ imessage:
 
 # Run a single sim by name (e.g. make sim NAME=sim_layer_triple_catalog)
 sim:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/cleanup_first_guard.py --context sim
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/$(NAME).py
 
 # Run the tools load-bearing check
 tools:
+	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/cleanup_first_guard.py --context tools
 	MPLCONFIGDIR=$(MPLCONFIGDIR) NUMBA_CACHE_DIR=$(NUMBA_CACHE_DIR) $(PYTHON) $(PROBES)/sim_tools_load_bearing.py
 
 # Show untracked / modified sim files

@@ -1,34 +1,27 @@
 {
-  "generated_at": "2026-04-10T05:13:16.868330+00:00",
+  "generated_at": "2026-04-10T05:16:55.775048+00:00",
   "strict": false,
   "overall_green": false,
-  "repair_queue_count": 2,
+  "repair_queue_count": 3,
   "safe_auto_repair_count": 0,
-  "manual_repair_count": 2,
+  "manual_repair_count": 3,
   "truth_green": true,
   "controller_green": true,
   "migration_green": true,
-  "repo_hygiene_green": true,
+  "repo_hygiene_green": false,
   "runtime_hygiene_green": true,
   "state_dir_ownership_green": false,
   "lego_tool_reporting_green": true,
-  "active_actionable_lane": {
-    "group_id": "build_contract__build_contract",
-    "file_count": 1,
-    "safe_next_action": "checkpoint",
-    "selection_mode": "default_prefer_probe_source_skip_docs",
-    "source_path": "Makefile",
-    "result_path": null
-  },
+  "active_actionable_lane": null,
   "summary": {
     "missing_surface_count": 0,
-    "repair_queue_count": 2,
+    "repair_queue_count": 3,
     "safe_auto_repair_count": 0,
-    "manual_repair_count": 2,
+    "manual_repair_count": 3,
     "truth_green": true,
     "controller_green": true,
     "migration_green": true,
-    "repo_hygiene_green": true,
+    "repo_hygiene_green": false,
     "runtime_hygiene_green": true,
     "state_dir_ownership_green": false,
     "lego_tool_reporting_green": true,
@@ -73,41 +66,21 @@
     "ok": false
   },
   "source_dirty_surface": {
-    "source_dirty_count": 8,
-    "dirty_source_bucket_count": 4,
+    "source_dirty_count": 1,
+    "dirty_source_bucket_count": 1,
     "dirty_source_buckets": [
       {
-        "label": "legacy_runtime",
-        "count": 4
-      },
-      {
         "label": "probe_source",
-        "count": 2
-      },
-      {
-        "label": "build_contract",
-        "count": 1
-      },
-      {
-        "label": "other_source",
         "count": 1
       }
     ],
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 17
+        "count": 15
       },
       {
         "prefix": "obsidian_vault",
-        "count": 4
-      },
-      {
-        "prefix": "system_v5",
-        "count": 4
-      },
-      {
-        "prefix": "Makefile",
         "count": 1
       }
     ],
@@ -118,43 +91,34 @@
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
     "status": "current",
     "dirty_source_checkpoint_required": true,
-    "plan_group_count": 4,
+    "plan_group_count": 2,
     "largest_group_id": "other_source__other_source",
     "next_code_only_manual": {
-      "group_id": "probe_source__probe_misc",
-      "file_count": 2,
-      "untracked_count": 1,
+      "group_id": "other_source__other_source",
+      "file_count": 1,
+      "untracked_count": 0,
       "tracked_dirty_count": 1,
       "safe_next_action": "manual_split_required",
-      "source_path": null,
+      "source_path": "obsidian_vault/.obsidian/workspace.json",
       "result_path": null
     },
     "recommended_code_only_order": [
       {
-        "group_id": "probe_source__probe_misc",
-        "file_count": 2,
-        "untracked_count": 1,
-        "tracked_dirty_count": 1,
-        "safe_next_action": "manual_split_required",
-        "source_path": null,
-        "result_path": null
-      },
-      {
-        "group_id": "legacy_runtime__legacy_runtime",
-        "file_count": 4,
-        "untracked_count": 4,
-        "tracked_dirty_count": 0,
-        "safe_next_action": "archive_review",
-        "source_path": null,
-        "result_path": null
-      },
-      {
         "group_id": "other_source__other_source",
-        "file_count": 5,
-        "untracked_count": 4,
+        "file_count": 1,
+        "untracked_count": 0,
         "tracked_dirty_count": 1,
         "safe_next_action": "manual_split_required",
-        "source_path": null,
+        "source_path": "obsidian_vault/.obsidian/workspace.json",
+        "result_path": null
+      },
+      {
+        "group_id": "probe_source__probe_misc",
+        "file_count": 1,
+        "untracked_count": 0,
+        "tracked_dirty_count": 1,
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/repo_hygiene_audit.py",
         "result_path": null
       }
     ]
@@ -164,11 +128,11 @@
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_lane_manifest.json",
     "status": "current",
     "required": true,
-    "selected_group_id": "build_contract__build_contract",
-    "file_count": 1,
+    "selected_group_id": null,
+    "file_count": 0,
     "docs_opt_in_required": false,
-    "code_only_fallback_group_id": "probe_source__probe_misc",
-    "active_actionable_lane_group_id": "build_contract__build_contract"
+    "code_only_fallback_group_id": "other_source__other_source",
+    "active_actionable_lane_group_id": null
   },
   "maintenance_lanes": [
     {
@@ -194,6 +158,19 @@
   ],
   "missing_surfaces": [],
   "repair_queue": [
+    {
+      "kind": "dirty_source_pressure",
+      "action_class": "human_scoped_checkpoint",
+      "safe_auto": false,
+      "recommendation": "Source/config residue must be checkpointed, archived, or quarantined before the repo is considered clean enough for new sim execution.",
+      "dirty_source_buckets": [
+        {
+          "label": "probe_source",
+          "count": 1
+        }
+      ],
+      "source_surface": "repo_hygiene"
+    },
     {
       "kind": "duplicate_agent_state_dirs",
       "action_class": "manual_state_audit",
@@ -224,6 +201,19 @@
   "safe_auto_queue": [],
   "manual_queue": [
     {
+      "kind": "dirty_source_pressure",
+      "action_class": "human_scoped_checkpoint",
+      "safe_auto": false,
+      "recommendation": "Source/config residue must be checkpointed, archived, or quarantined before the repo is considered clean enough for new sim execution.",
+      "dirty_source_buckets": [
+        {
+          "label": "probe_source",
+          "count": 1
+        }
+      ],
+      "source_surface": "repo_hygiene"
+    },
+    {
       "kind": "duplicate_agent_state_dirs",
       "action_class": "manual_state_audit",
       "safe_auto": false,
@@ -253,7 +243,7 @@
   "surface_status": {
     "truth": {
       "hard_finding_count": 0,
-      "warning_finding_count": 1,
+      "warning_finding_count": 0,
       "ok": true
     },
     "controller": {
@@ -275,20 +265,20 @@
       "ok": true
     },
     "repo_hygiene": {
-      "blocker_count": 0,
+      "blocker_count": 1,
       "advisory_count": 8,
-      "repair_candidate_count": 2,
+      "repair_candidate_count": 3,
       "primary_result_count": 765,
       "secondary_result_count": 0,
       "secondary_unique_result_count": 0,
       "secondary_duplicate_result_count": 0,
       "root_result_orphan_count": 0,
       "duplicate_result_basename_count": 0,
-      "source_dirty_count": 8,
-      "generated_dirty_count": 18,
-      "dirty_worktree_count": 26,
-      "dirty_source_bucket_count": 4,
-      "ok": true
+      "source_dirty_count": 1,
+      "generated_dirty_count": 15,
+      "dirty_worktree_count": 16,
+      "dirty_source_bucket_count": 1,
+      "ok": false
     },
     "runtime_hygiene": {
       "blocker_count": 0,
@@ -315,28 +305,30 @@
       "ok": true
     },
     "source_dirty_checkpoint": {
-      "dirty_source_count": 8,
-      "plan_group_count": 4,
-      "checkpoint_candidate_count": 1,
+      "dirty_source_count": 1,
+      "plan_group_count": 2,
+      "checkpoint_candidate_count": 0,
       "quarantine_candidate_count": 0,
-      "manual_only_count": 3,
-      "code_only_manual_count": 3,
+      "manual_only_count": 2,
+      "code_only_manual_count": 2,
       "largest_group_id": "other_source__other_source",
-      "next_code_only_manual_group_id": "probe_source__probe_misc",
-      "next_code_only_manual_file_count": 2,
-      "next_code_only_manual_source_path": null,
+      "next_code_only_manual_group_id": "other_source__other_source",
+      "next_code_only_manual_file_count": 1,
+      "next_code_only_manual_source_path": "obsidian_vault/.obsidian/workspace.json",
       "next_code_only_manual_result_path": null,
       "ok": true
     },
     "source_dirty_lane_manifest": {
-      "selected_group_id": "build_contract__build_contract",
-      "file_count": 1,
-      "safe_next_action": "checkpoint",
+      "selected_group_id": null,
+      "file_count": 0,
+      "safe_next_action": null,
       "docs_opt_in_required": false,
-      "code_only_fallback_group_id": "probe_source__probe_misc",
-      "active_actionable_lane_group_id": "build_contract__build_contract",
-      "executable_lane_group_id": "build_contract__build_contract",
-      "ok": true
+      "code_only_fallback_group_id": "other_source__other_source",
+      "active_actionable_lane_group_id": null,
+      "executable_lane_group_id": null,
+      "ok": true,
+      "status": "no_actionable_lanes",
+      "note": "No checkpoint-ready groups; all remaining source pressure is manual-only or clean."
     }
   }
 }

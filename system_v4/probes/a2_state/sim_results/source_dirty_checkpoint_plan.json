@@ -1,30 +1,30 @@
 {
-  "generated_at": "2026-04-10T05:13:16.712458+00:00",
+  "generated_at": "2026-04-10T05:16:55.641809+00:00",
   "strict": false,
   "source_surface": "repo_hygiene",
   "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
-  "dirty_source_count": 8,
-  "plan_group_count": 4,
-  "checkpoint_candidate_count": 1,
+  "dirty_source_count": 1,
+  "plan_group_count": 2,
+  "checkpoint_candidate_count": 0,
   "quarantine_candidate_count": 0,
-  "manual_only_count": 3,
-  "code_only_manual_count": 3,
+  "manual_only_count": 2,
+  "code_only_manual_count": 2,
   "largest_group_id": "other_source__other_source",
-  "next_code_only_manual_group_id": "probe_source__probe_misc",
-  "next_code_only_manual_file_count": 2,
-  "next_code_only_manual_source_path": null,
+  "next_code_only_manual_group_id": "other_source__other_source",
+  "next_code_only_manual_file_count": 1,
+  "next_code_only_manual_source_path": "obsidian_vault/.obsidian/workspace.json",
   "next_code_only_manual_result_path": null,
   "summary": {
-    "dirty_source_count": 8,
-    "plan_group_count": 4,
-    "checkpoint_candidate_count": 1,
+    "dirty_source_count": 1,
+    "plan_group_count": 2,
+    "checkpoint_candidate_count": 0,
     "quarantine_candidate_count": 0,
-    "manual_only_count": 3,
-    "code_only_manual_count": 3,
+    "manual_only_count": 2,
+    "code_only_manual_count": 2,
     "largest_group_id": "other_source__other_source",
-    "next_code_only_manual_group_id": "probe_source__probe_misc",
-    "next_code_only_manual_file_count": 2,
-    "next_code_only_manual_source_path": null,
+    "next_code_only_manual_group_id": "other_source__other_source",
+    "next_code_only_manual_file_count": 1,
+    "next_code_only_manual_source_path": "obsidian_vault/.obsidian/workspace.json",
     "next_code_only_manual_result_path": null,
     "ok": true
   },
@@ -34,140 +34,64 @@
     "archive_review": "Legacy or reference cluster requiring separate ownership review.",
     "manual_split_required": "Active cluster too broad for one safe checkpoint and should be split further."
   },
-  "recommended_checkpoint_order": [
-    {
-      "group_id": "build_contract__build_contract",
-      "file_count": 1,
-      "safe_next_action": "checkpoint"
-    }
-  ],
+  "recommended_checkpoint_order": [],
   "recommended_manual_split_order": [
     {
       "group_id": "other_source__other_source",
-      "file_count": 5,
+      "file_count": 1,
       "safe_next_action": "manual_split_required"
     },
     {
-      "group_id": "legacy_runtime__legacy_runtime",
-      "file_count": 4,
-      "safe_next_action": "archive_review"
-    },
-    {
       "group_id": "probe_source__probe_misc",
-      "file_count": 2,
+      "file_count": 1,
       "safe_next_action": "manual_split_required"
     }
   ],
   "recommended_code_only_order": [
     {
-      "group_id": "probe_source__probe_misc",
-      "file_count": 2,
-      "untracked_count": 1,
-      "tracked_dirty_count": 1,
-      "safe_next_action": "manual_split_required",
-      "source_path": null,
-      "result_path": null
-    },
-    {
-      "group_id": "legacy_runtime__legacy_runtime",
-      "file_count": 4,
-      "untracked_count": 4,
-      "tracked_dirty_count": 0,
-      "safe_next_action": "archive_review",
-      "source_path": null,
-      "result_path": null
-    },
-    {
       "group_id": "other_source__other_source",
-      "file_count": 5,
-      "untracked_count": 4,
+      "file_count": 1,
+      "untracked_count": 0,
       "tracked_dirty_count": 1,
       "safe_next_action": "manual_split_required",
-      "source_path": null,
+      "source_path": "obsidian_vault/.obsidian/workspace.json",
+      "result_path": null
+    },
+    {
+      "group_id": "probe_source__probe_misc",
+      "file_count": 1,
+      "untracked_count": 0,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/repo_hygiene_audit.py",
       "result_path": null
     }
   ],
   "next_code_only_manual": {
-    "group_id": "probe_source__probe_misc",
-    "file_count": 2,
-    "untracked_count": 1,
+    "group_id": "other_source__other_source",
+    "file_count": 1,
+    "untracked_count": 0,
     "tracked_dirty_count": 1,
     "safe_next_action": "manual_split_required",
-    "source_path": null,
+    "source_path": "obsidian_vault/.obsidian/workspace.json",
     "result_path": null
   },
   "checkpoint_groups": [
-    {
-      "group_id": "build_contract__build_contract",
-      "bucket": "build_contract",
-      "label": "build_contract",
-      "display_name": "Build and dependency contract",
-      "path_prefixes": [
-        "Makefile"
-      ],
-      "file_count": 1,
-      "tracked_dirty_count": 1,
-      "untracked_count": 0,
-      "sample_paths": [
-        "Makefile"
-      ],
-      "dominant_kinds": [
-        "modified"
-      ],
-      "safe_next_action": "checkpoint",
-      "safe_auto": false,
-      "blocking_reason": "bounded_human_checkpoint",
-      "notes": "Core build/runtime contract files should be checkpointed together."
-    },
-    {
-      "group_id": "legacy_runtime__legacy_runtime",
-      "bucket": "legacy_runtime",
-      "label": "legacy_runtime",
-      "display_name": "Legacy/reference runtime surfaces",
-      "path_prefixes": [
-        "system_v5/READ ONLY Reference Docs/Older Legacy"
-      ],
-      "file_count": 4,
-      "tracked_dirty_count": 0,
-      "untracked_count": 4,
-      "sample_paths": [
-        "system_v5/READ ONLY Reference Docs/Older Legacy/Joshua Personality Model v1.1 copy.pdf",
-        "system_v5/READ ONLY Reference Docs/Older Legacy/Personality theory._ copy.xlsx",
-        "system_v5/READ ONLY Reference Docs/Older Legacy/The Dark Empress-A Practical Guide to Universal Dominion V6.1 copy.md",
-        "system_v5/READ ONLY Reference Docs/Older Legacy/The Grandmaster of the Universe.txt"
-      ],
-      "dominant_kinds": [
-        "untracked"
-      ],
-      "safe_next_action": "archive_review",
-      "safe_auto": false,
-      "blocking_reason": "bounded_human_checkpoint",
-      "notes": "Legacy/reference surfaces should be reviewed separately from active work."
-    },
     {
       "group_id": "other_source__other_source",
       "bucket": "other_source",
       "label": "other_source",
       "display_name": "Other source surfaces",
       "path_prefixes": [
-        "obsidian_vault/.obsidian/workspace.json",
-        "obsidian_vault/2026-04-08.md",
-        "obsidian_vault/Untitled 1.md",
-        "obsidian_vault/Untitled.canvas",
-        "system_v4/a2_state/graphs"
+        "obsidian_vault/.obsidian/workspace.json"
       ],
-      "file_count": 5,
+      "file_count": 1,
       "tracked_dirty_count": 1,
-      "untracked_count": 4,
+      "untracked_count": 0,
       "sample_paths": [
-        "obsidian_vault/.obsidian/workspace.json",
-        "obsidian_vault/2026-04-08.md",
-        "obsidian_vault/Untitled 1.md",
-        "obsidian_vault/Untitled.canvas",
-        "system_v4/a2_state/graphs/system_graph_a2_refinery 2.json"
+        "obsidian_vault/.obsidian/workspace.json"
       ],
       "dominant_kinds": [
-        "untracked",
         "modified"
       ],
       "safe_next_action": "manual_split_required",
@@ -181,19 +105,16 @@
       "label": "probe_misc",
       "display_name": "Misc active probes",
       "path_prefixes": [
-        "system_v4/probes/state_dir_ownership_audit.py",
-        "system_v4/probes/system_hygiene_supervisor.py"
+        "system_v4/probes/repo_hygiene_audit.py"
       ],
-      "file_count": 2,
+      "file_count": 1,
       "tracked_dirty_count": 1,
-      "untracked_count": 1,
+      "untracked_count": 0,
       "sample_paths": [
-        "system_v4/probes/system_hygiene_supervisor.py",
-        "system_v4/probes/state_dir_ownership_audit.py"
+        "system_v4/probes/repo_hygiene_audit.py"
       ],
       "dominant_kinds": [
-        "modified",
-        "untracked"
+        "modified"
       ],
       "safe_next_action": "manual_split_required",
       "safe_auto": false,

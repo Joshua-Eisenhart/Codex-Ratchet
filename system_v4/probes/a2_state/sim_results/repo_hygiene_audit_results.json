@@ -1,69 +1,48 @@
 {
-  "generated_at": "2026-04-10T05:13:12.569738+00:00",
+  "generated_at": "2026-04-10T05:16:51.350432+00:00",
   "strict": false,
-  "blocker_count": 0,
+  "blocker_count": 1,
   "advisory_count": 8,
-  "repair_candidate_count": 2,
-  "source_dirty_count": 8,
-  "generated_dirty_count": 18,
-  "dirty_worktree_count": 26,
+  "repair_candidate_count": 3,
+  "source_dirty_count": 1,
+  "generated_dirty_count": 15,
+  "dirty_worktree_count": 16,
   "git": {
     "ok": true,
     "tracked_dirty_count": 16,
-    "untracked_count": 10,
-    "source_dirty_count": 8,
-    "generated_dirty_count": 18,
-    "total_dirty_count": 26,
+    "untracked_count": 0,
+    "source_dirty_count": 1,
+    "generated_dirty_count": 15,
+    "total_dirty_count": 16,
     "status_class_counts": {
-      "modified": 16,
-      "untracked": 10
+      "modified": 16
     },
     "dirty_source_buckets": [
       {
-        "label": "legacy_runtime",
-        "count": 4
-      },
-      {
         "label": "probe_source",
-        "count": 2
-      },
-      {
-        "label": "build_contract",
-        "count": 1
-      },
-      {
-        "label": "other_source",
         "count": 1
       }
     ],
     "dirty_generated_buckets": [
       {
         "label": "generated_artifacts",
-        "count": 18
+        "count": 15
       }
     ],
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 17
+        "count": 15
       },
       {
         "prefix": "obsidian_vault",
-        "count": 4
-      },
-      {
-        "prefix": "system_v5",
-        "count": 4
-      },
-      {
-        "prefix": "Makefile",
         "count": 1
       }
     ]
   },
   "branch_divergence": {
     "behind_count": 0,
-    "ahead_count": 15
+    "ahead_count": 16
   },
   "recent_checkpoint_scope_findings": [
     {
@@ -105,7 +84,7 @@
   "path_class_counts": {
     "obsidian_vault": {
       "path": "obsidian_vault",
-      "file_count": 13692,
+      "file_count": 13689,
       "threshold": 5000
     },
     "work_zip_dropins": {
@@ -125,27 +104,49 @@
     }
   },
   "summary": {
-    "blocker_count": 0,
+    "blocker_count": 1,
     "advisory_count": 8,
-    "repair_candidate_count": 2,
+    "repair_candidate_count": 3,
     "primary_result_count": 765,
     "secondary_result_count": 0,
     "secondary_unique_result_count": 0,
     "secondary_duplicate_result_count": 0,
     "root_result_orphan_count": 0,
     "duplicate_result_basename_count": 0,
-    "source_dirty_count": 8,
-    "generated_dirty_count": 18,
-    "dirty_worktree_count": 26,
-    "dirty_source_bucket_count": 4,
-    "ok": true
+    "source_dirty_count": 1,
+    "generated_dirty_count": 15,
+    "dirty_worktree_count": 16,
+    "dirty_source_bucket_count": 1,
+    "ok": false
   },
-  "blockers": [],
+  "blockers": [
+    {
+      "kind": "dirty_source_pressure",
+      "severity": "medium",
+      "source_dirty_count": 1,
+      "dirty_source_buckets": [
+        {
+          "label": "probe_source",
+          "count": 1
+        }
+      ],
+      "top_dirty_prefixes": [
+        {
+          "prefix": "system_v4",
+          "count": 15
+        },
+        {
+          "prefix": "obsidian_vault",
+          "count": 1
+        }
+      ]
+    }
+  ],
   "advisories": [
     {
       "kind": "local_commit_stack_depth",
       "severity": "advisory",
-      "ahead_count": 15,
+      "ahead_count": 16,
       "recommended_push_threshold": 5
     },
     {
@@ -196,7 +197,7 @@
       "severity": "advisory",
       "label": "obsidian_vault",
       "path": "obsidian_vault",
-      "file_count": 13692,
+      "file_count": 13689,
       "threshold": 5000
     },
     {
@@ -217,6 +218,18 @@
     }
   ],
   "repair_candidates": [
+    {
+      "kind": "dirty_source_pressure",
+      "action_class": "human_scoped_checkpoint",
+      "safe_auto": false,
+      "recommendation": "Source/config residue must be checkpointed, archived, or quarantined before the repo is considered clean enough for new sim execution.",
+      "dirty_source_buckets": [
+        {
+          "label": "probe_source",
+          "count": 1
+        }
+      ]
+    },
     {
       "kind": "duplicate_agent_state_dirs",
       "action_class": "manual_state_audit",

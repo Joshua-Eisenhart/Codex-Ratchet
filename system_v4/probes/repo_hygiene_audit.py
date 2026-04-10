@@ -291,10 +291,10 @@ def build_findings(
     generated_dirty = git_summary.get("generated_dirty_count", 0)
     total_dirty = git_summary.get("total_dirty_count", 0)
 
-    if source_dirty >= 25:
+    if source_dirty > 0:
         blockers.append({
             "kind": "dirty_source_pressure",
-            "severity": "high",
+            "severity": "high" if source_dirty >= 25 else "medium",
             "source_dirty_count": source_dirty,
             "dirty_source_buckets": git_summary.get("dirty_source_buckets", []),
             "top_dirty_prefixes": git_summary.get("top_dirty_prefixes", []),
@@ -303,7 +303,7 @@ def build_findings(
             "kind": "dirty_source_pressure",
             "action_class": "human_scoped_checkpoint",
             "safe_auto": False,
-            "recommendation": "Checkpoint or quarantine bounded source/config work instead of letting active surfaces drift.",
+            "recommendation": "Source/config residue must be checkpointed, archived, or quarantined before the repo is considered clean enough for new sim execution.",
             "dirty_source_buckets": git_summary.get("dirty_source_buckets", []),
         })
 

@@ -1,0 +1,123 @@
+{
+  "name": "shell_indexed_tensor_network",
+  "classification": "canonical",
+  "classification_note": "Canonical local shell-indexed tensor-network support row on one bounded shell chain.",
+  "lego_ids": [
+    "shell_indexed_tensor_network"
+  ],
+  "primary_lego_ids": [
+    "shell_indexed_tensor_network"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "shell_indexed_chain_contracts_to_finite_output": {
+      "shape": [
+        2,
+        2,
+        2
+      ],
+      "pass": "True"
+    },
+    "changing_one_shell_tensor_changes_network_output": {
+      "pass": "True"
+    },
+    "shell_order_is_load_bearing_for_contract_values": {
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "row_does_not_claim_full_tensor_network_dynamics": {
+      "pass": true
+    },
+    "row_does_not_collapse_to_ring_or_checkerboard_support": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bounded_to_one_local_shell_chain": {
+      "pass": true
+    },
+    "all_tensor_entries_are_finite": {
+      "pass": "True"
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local shell-indexed tensor-network support row on one bounded shell chain."
+  }
+}

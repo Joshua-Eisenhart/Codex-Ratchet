@@ -1,0 +1,158 @@
+{
+  "name": "reduced_state_object",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for reduced density states obtained by partial tracing small bounded bipartite joint states.",
+  "lego_ids": [
+    "reduced_state_object",
+    "partial_trace_operator",
+    "joint_density_matrix"
+  ],
+  "primary_lego_ids": [
+    "reduced_state_object"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure numpy reduction lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "product_state_reductions": {
+      "rho_A": [
+        [
+          "(1+0j)",
+          "0j"
+        ],
+        [
+          "0j",
+          "0j"
+        ]
+      ],
+      "rho_B": [
+        [
+          "0j",
+          "0j"
+        ],
+        [
+          "0j",
+          "(1+0j)"
+        ]
+      ],
+      "rho_A_valid": true,
+      "rho_B_valid": true,
+      "pass": true
+    },
+    "bell_state_reductions": {
+      "rho_A": [
+        [
+          "(0.4999999999999999+0j)",
+          "0j"
+        ],
+        [
+          "0j",
+          "(0.4999999999999999+0j)"
+        ]
+      ],
+      "rho_B": [
+        [
+          "(0.4999999999999999+0j)",
+          "0j"
+        ],
+        [
+          "0j",
+          "(0.4999999999999999+0j)"
+        ]
+      ],
+      "rho_A_valid": true,
+      "rho_B_valid": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "wrong_expected_product_marginal": {
+      "pass": true
+    },
+    "bell_not_pure_after_reduction": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "trace_preserved_under_reduction": {
+      "pass": "True"
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local reduced-state lego on small bipartite joint states."
+  }
+}

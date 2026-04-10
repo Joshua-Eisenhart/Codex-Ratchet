@@ -1,12 +1,12 @@
 {
-  "name": "viability_vs_attractor",
+  "name": "relative_entropy_nonmetric_boundary",
   "classification": "canonical",
-  "classification_note": "Canonical local trajectory row contrasting a viability-preserving update against an attractor update on the same bounded admitted carrier, without controller or selector claims.",
+  "classification_note": "Canonical local falsifier showing that relative entropy fails metric-style behavior on a bounded state family, contrasted against trace distance on the same family.",
   "lego_ids": [
-    "viability_vs_attractor"
+    "relative_entropy_nonmetric_boundary"
   ],
   "primary_lego_ids": [
-    "viability_vs_attractor"
+    "relative_entropy_nonmetric_boundary"
   ],
   "tool_manifest": {
     "pytorch": {
@@ -85,68 +85,65 @@
     "gudhi": null
   },
   "positive": {
-    "both_updates_stay_inside_admitted_carrier": {
-      "attractor_a": [
-        0.7,
-        0.27999999999999997,
-        0.11199999999999999,
-        0.0448,
-        0.017920000000000002
-      ],
-      "attractor_b": [
-        0.25,
-        0.1,
-        0.04000000000000001,
-        0.016000000000000004,
-        0.006400000000000002
-      ],
-      "viability_a": [
-        0.7,
-        0.82,
-        0.85,
-        0.85,
-        0.85
-      ],
-      "viability_b": [
-        0.25,
-        0.37,
-        0.49,
-        0.61,
-        0.73
+    "relative_entropy_is_nonnegative": {
+      "values": [
+        0.0,
+        0.1875362370557861,
+        0.516456085464572,
+        0.7524889303246544,
+        0.3250053209934291,
+        0.0,
+        0.10898554388914519,
+        0.2445838202302575,
+        0.9915824551183667,
+        0.12388607266106261,
+        0.0,
+        0.029255792026908672,
+        1.4522739754960614,
+        0.28308255889216044,
+        0.029823365925426698,
+        0.0
       ],
       "pass": true
     },
-    "attractor_rule_collapses_distinct_initial_states": {
-      "initial_separation": 0.22499999999999998,
-      "final_separation": 0.005760000000000015,
+    "relative_entropy_is_asymmetric": {
+      "d_rho_sigma": 0.1875362370557861,
+      "d_sigma_rho": 0.3250053209934291,
       "pass": true
     },
-    "viability_rule_preserves_nontrivial_admissible_separation": {
-      "initial_separation": 0.22499999999999998,
-      "final_separation": 0.060000000000000026,
+    "trace_distance_stays_symmetric_on_same_pair": {
+      "td_rho_sigma": 0.16999999999999998,
+      "td_sigma_rho": 0.16999999999999998,
       "pass": true
     }
   },
   "negative": {
-    "counterfeit_viability_collapses_to_attractor_behavior": {
-      "counterfeit_final_separation": 0.005760000000000015,
-      "true_viability_final_separation": 0.060000000000000026,
+    "relative_entropy_fails_metric_triangle_behavior": {
+      "witness": {
+        "indices": [
+          0,
+          1,
+          2
+        ],
+        "lhs": 0.516456085464572,
+        "rhs": 0.2965217809449313
+      },
       "pass": true
     },
-    "row_does_not_make_controller_or_selector_claims": {
+    "row_is_not_collapsed_to_js_or_trace_metric": {
       "pass": true
     }
   },
   "boundary": {
-    "all_terminal_states_remain_valid_density_operators": {
+    "bounded_family_is_classically_well_defined": {
       "pass": true
     },
-    "comparison_uses_one_bounded_local_carrier_only": {
+    "comparison_uses_same_local_state_family_for_metric_and_nonmetric": {
       "pass": true
     }
   },
   "summary": {
     "all_pass": true,
-    "scope_note": "Direct local trajectory row contrasting attractor collapse with viability-preserving admissible evolution on one bounded carrier."
+    "scope_note": "Direct local falsifier showing that relative entropy is not a metric on a bounded diagonal state family, contrasted against trace distance."
   }
 }

@@ -1,0 +1,258 @@
+{
+  "name": "spectral_truncation",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for spectral truncation on bounded density operators with explicit fidelity and trace-distance improvement as k increases.",
+  "lego_ids": [
+    "spectral_truncation",
+    "qpca_spectral_extraction",
+    "low_rank_psd_approximation",
+    "principal_subspace"
+  ],
+  "primary_lego_ids": [
+    "spectral_truncation",
+    "qpca_spectral_extraction"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure numpy/scipy spectral lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no graph-native computation"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no SMT proof layer here"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no second-solver layer here"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no symbolic derivation here"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no geometric algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no manifold-statistics layer"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no equivariant network layer"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no dependency DAG"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no cell-complex topology"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "rank_2_mixed": {
+      "truncations": [
+        {
+          "k": 1,
+          "top_eigenvalues": [
+            0.6502580845776997
+          ],
+          "fidelity": 0.6502581017245762,
+          "trace_distance": 0.3497419154223002,
+          "entropy_ratio": -2.372951195046919e-16
+        },
+        {
+          "k": 2,
+          "top_eigenvalues": [
+            0.6502580845776997,
+            0.2314888594195621
+          ],
+          "fidelity": 0.8817469606368967,
+          "trace_distance": 0.11825305600273811,
+          "entropy_ratio": 0.6152308479708543
+        },
+        {
+          "k": 3,
+          "top_eigenvalues": [
+            0.6502580845776997,
+            0.2314888594195621,
+            0.0902842036124016
+          ],
+          "fidelity": 0.9720311602476088,
+          "trace_distance": 0.0279688523903365,
+          "entropy_ratio": 0.8884759627831977
+        },
+        {
+          "k": 4,
+          "top_eigenvalues": [
+            0.6502580845776997,
+            0.2314888594195621,
+            0.0902842036124016,
+            0.027968852390336484
+          ],
+          "fidelity": 0.9999999999999993,
+          "trace_distance": 3.703918013741298e-16,
+          "entropy_ratio": 1.0000000000000002
+        }
+      ],
+      "fidelity_monotone_in_k": true,
+      "trace_distance_nonincreasing_in_k": true,
+      "exact_recovery_at_full_rank": true,
+      "pass": true
+    },
+    "rank_3_mixed": {
+      "truncations": [
+        {
+          "k": 1,
+          "top_eigenvalues": [
+            0.4947580978833068
+          ],
+          "fidelity": 0.49475811166950123,
+          "trace_distance": 0.505241902116694,
+          "entropy_ratio": -0.0
+        },
+        {
+          "k": 2,
+          "top_eigenvalues": [
+            0.4947580978833068,
+            0.34408761368453383
+          ],
+          "fidelity": 0.8388457123770278,
+          "trace_distance": 0.16115428843215934,
+          "entropy_ratio": 0.6504824767497971
+        },
+        {
+          "k": 3,
+          "top_eigenvalues": [
+            0.4947580978833068,
+            0.34408761368453383,
+            0.15335096405088858
+          ],
+          "fidelity": 0.9921966842830483,
+          "trace_distance": 0.007803324381270734,
+          "entropy_ratio": 0.9636589961549075
+        },
+        {
+          "k": 4,
+          "top_eigenvalues": [
+            0.4947580978833068,
+            0.34408761368453383,
+            0.15335096405088858,
+            0.00780332438127078
+          ],
+          "fidelity": 1.0000000000000009,
+          "trace_distance": 2.0688262987566176e-16,
+          "entropy_ratio": 0.9999999999999994
+        }
+      ],
+      "fidelity_monotone_in_k": true,
+      "trace_distance_nonincreasing_in_k": true,
+      "exact_recovery_at_full_rank": true,
+      "pass": true
+    },
+    "rank_4_mixed": {
+      "truncations": [
+        {
+          "k": 1,
+          "top_eigenvalues": [
+            0.6713349640217997
+          ],
+          "fidelity": 0.6713350135542033,
+          "trace_distance": 0.32866503597820046,
+          "entropy_ratio": -2.410633517796932e-16
+        },
+        {
+          "k": 2,
+          "top_eigenvalues": [
+            0.6713349640217997,
+            0.21454568487342843
+          ],
+          "fidelity": 0.8858806658697237,
+          "trace_distance": 0.11411935110477195,
+          "entropy_ratio": 0.600999784687616
+        },
+        {
+          "k": 3,
+          "top_eigenvalues": [
+            0.6713349640217997,
+            0.21454568487342843,
+            0.07101499919312328
+          ],
+          "fidelity": 0.9568956602421264,
+          "trace_distance": 0.0431043519116487,
+          "entropy_ratio": 0.8434494510519561
+        },
+        {
+          "k": 4,
+          "top_eigenvalues": [
+            0.6713349640217997,
+            0.21454568487342843,
+            0.07101499919312328,
+            0.04310435191164879
+          ],
+          "fidelity": 1.0000000000000018,
+          "trace_distance": 2.66762119234469e-16,
+          "entropy_ratio": 1.0000000000000002
+        }
+      ],
+      "fidelity_monotone_in_k": true,
+      "trace_distance_nonincreasing_in_k": true,
+      "exact_recovery_at_full_rank": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "rank_1_truncation_not_exact_for_mixed_states": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "full_rank_truncation_is_exact": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "state_count": 3,
+    "scope_note": "Direct local spectral truncation lego on bounded density operators."
+  }
+}

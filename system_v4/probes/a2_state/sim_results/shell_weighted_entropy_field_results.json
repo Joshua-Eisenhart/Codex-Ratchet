@@ -1,0 +1,152 @@
+{
+  "name": "shell_weighted_entropy_field",
+  "classification": "canonical",
+  "classification_note": "Canonical late-layer lego for a shell-weighted entropy field on one bounded shell family, kept separate from history-transport bundles and selector claims.",
+  "lego_ids": [
+    "shell_weighted_entropy_field"
+  ],
+  "primary_lego_ids": [
+    "shell_weighted_entropy_field"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "field_sum_stays_within_shell_entropy_bounds": {
+      "front_loaded_sum": 0.3856963869913452,
+      "uniform_sum": 0.5464219325356328,
+      "min_entropy": 0.08079313589591124,
+      "max_entropy": 0.8028586923179915,
+      "pass": true
+    },
+    "changing_shell_weights_changes_field_profile": {
+      "front_loaded_field": [
+        0.03141955284840993,
+        0.11194939334332119,
+        0.11135920086974208,
+        0.08636497924553917,
+        0.04460326068433285
+      ],
+      "back_loaded_field": [
+        0.004488507549772846,
+        0.044779757337328474,
+        0.11135920086974208,
+        0.21591244811384794,
+        0.31222282479033003
+      ],
+      "front_loaded_sum": 0.3856963869913452,
+      "back_loaded_sum": 0.6887627386610213,
+      "pass": true
+    },
+    "field_is_not_uniform_when_shell_entropies_and_weights_differ": {
+      "uniform_field": [
+        0.016158627179182247,
+        0.08060356320719125,
+        0.1336310410436905,
+        0.1554569626419705,
+        0.1605717384635983
+      ],
+      "front_loaded_field": [
+        0.03141955284840993,
+        0.11194939334332119,
+        0.11135920086974208,
+        0.08636497924553917,
+        0.04460326068433285
+      ],
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "shell_field_does_not_claim_history_transport_law": {
+      "pass": true
+    },
+    "shell_field_does_not_promote_bridge_selector": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_shell_states_remain_valid_density_operators": {
+      "pass": true
+    },
+    "field_is_bounded_to_one_local_shell_family": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct late-layer shell-weighted entropy field on one bounded shell family only."
+  }
+}

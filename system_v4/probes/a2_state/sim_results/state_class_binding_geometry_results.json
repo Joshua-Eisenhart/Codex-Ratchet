@@ -1,0 +1,144 @@
+{
+  "name": "state_class_binding_geometry",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for topology-to-state-class binding on a bounded one-parameter Werner family, using direct local TopoNetX cell complexes rather than a broad integrated surface.",
+  "lego_ids": [
+    "state_class_binding_geometry"
+  ],
+  "primary_lego_ids": [
+    "state_class_binding_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "saved for later hypergraph successor surfaces"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": true,
+      "reason": "local class-specific cell-complex construction and Betti checks are load-bearing"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": "load_bearing",
+    "gudhi": null
+  },
+  "positive": {
+    "l4_interior_is_contractible_chain": {
+      "samples": [
+        0.08,
+        0.12,
+        0.16
+      ],
+      "beta0": 1,
+      "beta1": 0,
+      "beta2": 0,
+      "pass": true
+    },
+    "l6_interior_has_one_local_cycle": {
+      "samples": [
+        0.18,
+        0.25,
+        0.33
+      ],
+      "beta0": 1,
+      "beta1": 1,
+      "beta2": 0,
+      "pass": true
+    },
+    "topology_class_changes_with_state_class": {
+      "l4_beta1": 0,
+      "l6_beta1": 1,
+      "pass": true
+    }
+  },
+  "negative": {
+    "threshold_is_not_strict_l4_or_l6_interior": {
+      "threshold_sample": 0.17,
+      "pass": true
+    },
+    "strict_class_interiors_are_not_identical_carriers": {
+      "l4_num_edges": 2,
+      "l6_num_edges": 3,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "threshold_bridge_keeps_combined_carrier_connected": {
+      "beta0": 1,
+      "beta1": 1,
+      "beta2": 0,
+      "pass": true
+    },
+    "threshold_bridge_does_not_create_extra_loop": {
+      "combined_beta1": 1,
+      "l6_beta1": 1,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local class-binding topology lego on bounded Werner parameter samples around the 0.17 threshold."
+  }
+}

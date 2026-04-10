@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-10T05:44:22.787193+00:00",
+  "generated_at": "2026-04-10T09:03:39.037195+00:00",
   "strict": false,
-  "current_interpreter": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
+  "current_interpreter": "/opt/homebrew/opt/python@3.13/bin/python3.13",
   "makefile_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
   "bot_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
   "makefile_cache_dirs": {
@@ -44,8 +44,8 @@
       "floor": "1.5.1",
       "installed": "1.5.1",
       "meets_floor": true,
-      "import_ok": true,
-      "import_error": ""
+      "import_ok": false,
+      "import_error": "RuntimeError: cannot cache function 'canonical_reordering_sign': no locator available for file '/opt/homebrew/lib/python3.13/site-packages/clifford/_layout.py'"
     },
     "cvc5": {
       "import_name": "cvc5",
@@ -96,8 +96,8 @@
       "import_name": "networkx",
       "distribution_name": "networkx",
       "floor": "3.6",
-      "installed": "3.6.1",
-      "meets_floor": true,
+      "installed": "3.5",
+      "meets_floor": false,
       "import_ok": true,
       "import_error": ""
     },
@@ -105,7 +105,7 @@
       "import_name": "numpy",
       "distribution_name": "numpy",
       "floor": "1.24.0",
-      "installed": "2.3.4",
+      "installed": "2.2.6",
       "meets_floor": true,
       "import_ok": true,
       "import_error": ""
@@ -114,8 +114,8 @@
       "import_name": "pandas",
       "distribution_name": "pandas",
       "floor": "3.0.0",
-      "installed": "3.0.2",
-      "meets_floor": true,
+      "installed": "2.2.3",
+      "meets_floor": false,
       "import_ok": true,
       "import_error": ""
     },
@@ -123,7 +123,7 @@
       "import_name": "pydantic",
       "distribution_name": "pydantic",
       "floor": "2.4.0",
-      "installed": "2.12.5",
+      "installed": "2.11.7",
       "meets_floor": true,
       "import_ok": true,
       "import_error": ""
@@ -150,7 +150,7 @@
       "import_name": "scipy",
       "distribution_name": "scipy",
       "floor": "1.10.0",
-      "installed": "1.17.1",
+      "installed": "1.16.1",
       "meets_floor": true,
       "import_ok": true,
       "import_error": ""
@@ -168,8 +168,8 @@
       "import_name": "torch",
       "distribution_name": "torch",
       "floor": "2.11.0",
-      "installed": "2.11.0",
-      "meets_floor": true,
+      "installed": "2.8.0",
+      "meets_floor": false,
       "import_ok": true,
       "import_error": ""
     },
@@ -195,20 +195,58 @@
       "import_name": "z3",
       "distribution_name": "z3-solver",
       "floor": "4.16.0.0",
-      "installed": "4.16.0.0",
-      "meets_floor": true,
+      "installed": "",
+      "meets_floor": null,
       "import_ok": true,
       "import_error": ""
     }
   },
   "summary": {
-    "blocker_count": 0,
+    "blocker_count": 5,
     "advisory_count": 0,
-    "repair_candidate_count": 0,
+    "repair_candidate_count": 1,
     "requirements_package_count": 19,
-    "ok": true
+    "ok": false
   },
-  "blockers": [],
+  "blockers": [
+    {
+      "kind": "required_package_import_broken",
+      "package": "clifford",
+      "installed": "1.5.1",
+      "import_error": "RuntimeError: cannot cache function 'canonical_reordering_sign': no locator available for file '/opt/homebrew/lib/python3.13/site-packages/clifford/_layout.py'"
+    },
+    {
+      "kind": "package_below_floor",
+      "package": "networkx",
+      "installed": "3.5",
+      "floor": "3.6"
+    },
+    {
+      "kind": "package_below_floor",
+      "package": "pandas",
+      "installed": "2.2.3",
+      "floor": "3.0.0"
+    },
+    {
+      "kind": "package_below_floor",
+      "package": "torch",
+      "installed": "2.8.0",
+      "floor": "2.11.0"
+    },
+    {
+      "kind": "required_package_missing",
+      "package": "z3-solver",
+      "floor": "4.16.0.0"
+    }
+  ],
   "advisories": [],
-  "repair_candidates": []
+  "repair_candidates": [
+    {
+      "kind": "runtime_alignment_required",
+      "action_class": "manual_env_repair",
+      "safe_auto": false,
+      "recommendation": "Repair interpreter or dependency floors before relying on unattended hygiene automation."
+    }
+  ],
+  "classification": "supporting"
 }

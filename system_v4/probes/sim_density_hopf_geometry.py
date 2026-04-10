@@ -22,6 +22,7 @@ Output: system_v4/probes/a2_state/sim_results/density_hopf_geometry_results.json
 import json
 import os
 import time
+from datetime import UTC, datetime
 import numpy as np
 
 # =====================================================================
@@ -57,6 +58,24 @@ TOOL_INTEGRATION_DEPTH = {
     "toponetx": None,
     "gudhi": None,
 }
+
+CLASSIFICATION_NOTE = (
+    "Supporting manifold-coupling anchor for density states on a Hopf-parameterized "
+    "family: verifies finite-carrier density validity and Hopf projection structure "
+    "on one bounded local state family without claiming full entropy, channel, or "
+    "metric taxonomy coverage."
+)
+LEGO_IDS = [
+    "finite_carrier_candidate",
+    "trace_constraint",
+    "normalization_constraint",
+    "finite_carrier_c2",
+    "hopf_map_s3_to_s2",
+]
+PRIMARY_LEGO_IDS = [
+    "finite_carrier_candidate",
+    "hopf_map_s3_to_s2",
+]
 
 try:
     import torch
@@ -933,12 +952,16 @@ if __name__ == "__main__":
     results = {
         "name": "density_hopf_geometry",
         "description": "Density matrices ON the Hopf torus: Bures metric, QFI, channels, I_c, Frechet mean",
+        "classification_note": CLASSIFICATION_NOTE,
+        "lego_ids": LEGO_IDS,
+        "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
         "clifford_cross_check": clifford_check,
+        "timestamp": datetime.now(UTC).isoformat(),
     }
 
     # Count passes

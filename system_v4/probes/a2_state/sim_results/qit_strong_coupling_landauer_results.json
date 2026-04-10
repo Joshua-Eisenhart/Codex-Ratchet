@@ -1,0 +1,151 @@
+{
+  "name": "qit_strong_coupling_landauer",
+  "classification": "canonical",
+  "classification_note": "Canonical finite strong-coupling bookkeeping row: reduced-system Clausius/Landauer accounting can look violated once a subsystem is strongly correlated with a finite bath, while the full joint system-bath bookkeeping restores the bound on the same finite carrier.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "channel_cptp_map",
+    "strong_coupling_landauer"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics",
+    "strong_coupling_landauer"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "strong_coupling_creates_correlation_and_non_gibbs_reduced_states": {
+      "initial_system_bath_mutual_information": 0.602864723653471,
+      "reduced_state_vs_local_gibbs_gap_before_parameter_change": 0.229108745139891,
+      "reduced_state_vs_local_gibbs_gap_after_parameter_change": 0.1907717048286964,
+      "pass": true
+    },
+    "naive_reduced_system_bookkeeping_shows_an_apparent_clausius_violation_at_strong_coupling": {
+      "local_heat_strong": 0.10991920124016843,
+      "temperature_times_local_entropy_change_strong": 0.04942719984727051,
+      "local_clausius_gap_strong": 0.060492001392897926,
+      "pass": true
+    },
+    "joint_system_bath_bookkeeping_restores_the_bound_for_the_complete_process": {
+      "complete_process_heat": -0.1997127964576153,
+      "complete_process_temperature_times_entropy_change": -0.19971279645761664,
+      "complete_process_clausius_gap": 1.3322676295501878e-15,
+      "pass": true
+    }
+  },
+  "negative": {
+    "weak_coupling_control_does_not_show_the_same_positive_local_violation_gap": {
+      "local_heat_weak": 0.16551793423603822,
+      "temperature_times_local_entropy_change_weak": 0.21750085013589238,
+      "local_clausius_gap_weak": -0.051982915899854154,
+      "pass": true
+    },
+    "parameter_change_alone_does_not_fix_the_bookkeeping_without_joint_terms": {
+      "parameter_change_joint_gap_strong": 5.551115123125783e-16,
+      "apparent_local_gap_strong": 0.060492001392897926,
+      "pass": true
+    },
+    "row_does_not_claim_a_continuum_reservoir_or_universal_open_system_theorem": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_global_and_reduced_states_remain_valid_density_operators": {
+      "pass": true
+    },
+    "comparison_uses_one_finite_two_qubit_carrier_with_explicit_interaction_only": {
+      "carrier_dimension": 4,
+      "hamiltonian_terms": [
+        "system_sigma_z_gap",
+        "bath_sigma_z_gap",
+        "sigma_x_tensor_sigma_x_interaction"
+      ],
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "beta": 1.0,
+    "temperature": 1.0,
+    "lambda_0": 2.5,
+    "lambda_1": 1.45,
+    "bath_gap": 0.35,
+    "strong_coupling": 3.0,
+    "weak_coupling": 0.05,
+    "scope_note": "Finite two-qubit system+bath row inspired by arXiv:1006.1420. The earned claim is about bookkeeping: reduced-state accounting can look wrong at strong coupling, while explicit joint bookkeeping closes."
+  }
+}

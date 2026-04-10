@@ -96,15 +96,39 @@ def main() -> int:
             selected = checkpoint_groups[chosen["group_id"]]
             selection_mode = "default_docs_blocked_requires_opt_in"
             docs_opt_in_required = True
+    files = list(selected["sample_paths"])
+    result_companions = [p for p in (result_companion_for(f) for f in files) if p]
+    required_git_paths_clean = files + result_companions
     active_actionable_lane = code_only_fallback if docs_opt_in_required else {
         "group_id": selected["group_id"],
         "file_count": selected["file_count"],
         "safe_next_action": selected["safe_next_action"],
         "selection_mode": selection_mode,
     }
-    files = list(selected["sample_paths"])
-    result_companions = [p for p in (result_companion_for(f) for f in files) if p]
-    required_git_paths_clean = files + result_companions
+    if active_actionable_lane and code_only_fallback and docs_opt_in_required:
+        active_actionable_lane = {
+            **active_actionable_lane,
+            "source_path": code_only_fallback.get("source_path"),
+            "result_path": code_only_fallback.get("result_path"),
+        }
+    elif active_actionable_lane:
+        active_actionable_lane = {
+            **active_actionable_lane,
+            "source_path": files[0] if len(files) == 1 else None,
+            "result_path": result_companions[0] if len(result_companions) == 1 else None,
+        }
+    executable_lane = {
+        "group_id": active_actionable_lane["group_id"] if active_actionable_lane else selected["group_id"],
+        "files": [active_actionable_lane["source_path"]] if active_actionable_lane and active_actionable_lane.get("source_path") else files,
+        "result_companions": [active_actionable_lane["result_path"]] if active_actionable_lane and active_actionable_lane.get("result_path") else result_companions,
+        "required_git_paths_clean": (
+            [active_actionable_lane["source_path"], active_actionable_lane["result_path"]]
+            if active_actionable_lane and active_actionable_lane.get("source_path") and active_actionable_lane.get("result_path")
+            else required_git_paths_clean
+        ),
+        "goal": "Execute the currently actionable bounded lane without widening scope.",
+        "stop_condition": "All files in this executable lane are either checkpointed together or intentionally reclassified in the checkpoint plan.",
+    }
 
     report = {
         "generated_at": datetime.now(UTC).isoformat(),
@@ -127,6 +151,7 @@ def main() -> int:
             "docs_opt_in_required": docs_opt_in_required,
             "code_only_fallback_group_id": code_only_fallback["group_id"] if code_only_fallback else None,
             "active_actionable_lane_group_id": active_actionable_lane["group_id"] if active_actionable_lane else None,
+            "executable_lane_group_id": executable_lane["group_id"],
             "ok": True,
         },
         "lane": {
@@ -145,6 +170,7 @@ def main() -> int:
             "active_actionable_lane": active_actionable_lane,
             "files": files,
         },
+        "executable_lane": executable_lane,
     }
 
     OUT_PATH.write_text(json.dumps(report, indent=2), encoding="utf-8")

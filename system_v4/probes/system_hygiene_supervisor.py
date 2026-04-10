@@ -25,6 +25,7 @@ CONTROLLER_AUDIT_PATH = RESULTS_DIR / "controller_alignment_audit_results.json"
 MIGRATION_AUDIT_PATH = RESULTS_DIR / "migration_contract_audit_results.json"
 REPO_HYGIENE_PATH = RESULTS_DIR / "repo_hygiene_audit_results.json"
 RUNTIME_HYGIENE_PATH = RESULTS_DIR / "runtime_hygiene_audit_results.json"
+LEGO_TOOL_REPORTING_AUDIT_PATH = RESULTS_DIR / "lego_tool_reporting_audit_results.json"
 SOURCE_DIRTY_PLAN_PATH = RESULTS_DIR / "source_dirty_checkpoint_plan.json"
 SOURCE_DIRTY_LANE_MANIFEST_PATH = RESULTS_DIR / "source_dirty_lane_manifest.json"
 
@@ -55,6 +56,7 @@ def main() -> int:
         "migration": MIGRATION_AUDIT_PATH,
         "repo_hygiene": REPO_HYGIENE_PATH,
         "runtime_hygiene": RUNTIME_HYGIENE_PATH,
+        "lego_tool_reporting": LEGO_TOOL_REPORTING_AUDIT_PATH,
         "source_dirty_checkpoint": SOURCE_DIRTY_PLAN_PATH,
         "source_dirty_lane_manifest": SOURCE_DIRTY_LANE_MANIFEST_PATH,
     }
@@ -74,6 +76,7 @@ def main() -> int:
     migration_summary = (payloads["migration"] or {}).get("summary", {})
     repo_summary = (payloads["repo_hygiene"] or {}).get("summary", {})
     runtime_summary = (payloads["runtime_hygiene"] or {}).get("summary", {})
+    lego_tool_reporting_summary = (payloads["lego_tool_reporting"] or {}).get("summary", {})
     repo_git = (payloads["repo_hygiene"] or {}).get("git", {})
     source_dirty_plan = payloads["source_dirty_checkpoint"] or {}
     source_dirty_plan_summary = (payloads["source_dirty_checkpoint"] or {}).get("summary", {})
@@ -84,6 +87,7 @@ def main() -> int:
     migration_ok = bool(migration_summary.get("ok"))
     repo_ok = bool(repo_summary.get("ok"))
     runtime_ok = bool(runtime_summary.get("ok"))
+    lego_tool_reporting_ok = bool(lego_tool_reporting_summary.get("ok"))
 
     repair_queue: list[dict[str, Any]] = []
     for surface_name in ("repo_hygiene", "runtime_hygiene"):
@@ -132,6 +136,7 @@ def main() -> int:
         "migration_green": migration_ok,
         "repo_hygiene_green": repo_ok,
         "runtime_hygiene_green": runtime_ok,
+        "lego_tool_reporting_green": lego_tool_reporting_ok,
         "overall_green": (
             len(missing_surfaces) == 0
             and truth_ok
@@ -183,6 +188,7 @@ def main() -> int:
         "migration": "migration_compliance",
         "repo_hygiene": "repository_hygiene",
         "runtime_hygiene": "runtime_environment",
+        "lego_tool_reporting": "tool_reporting_compliance",
     }
 
     source_dirty_surface = {
@@ -224,6 +230,20 @@ def main() -> int:
         "active_actionable_lane_group_id": source_dirty_lane_manifest_summary.get("active_actionable_lane_group_id"),
     }
     active_actionable_lane = (payloads["source_dirty_lane_manifest"] or {}).get("active_actionable_lane")
+    lego_tool_reporting_surface = {
+        "present": payloads["lego_tool_reporting"] is not None,
+        "path": str(LEGO_TOOL_REPORTING_AUDIT_PATH.relative_to(PROJECT_DIR)),
+        "status": (
+            "current"
+            if payloads["lego_tool_reporting"] is not None
+            else "missing"
+        ),
+        "blocker_count": lego_tool_reporting_summary.get("blocker_count", 0),
+        "advisory_count": lego_tool_reporting_summary.get("advisory_count", 0),
+        "registry_linked_result_count": lego_tool_reporting_summary.get("registry_linked_result_count", 0),
+        "issue_kind_counts": lego_tool_reporting_summary.get("issue_kind_counts", {}),
+        "ok": lego_tool_reporting_ok,
+    }
 
     report = {
         "generated_at": datetime.now(UTC).isoformat(),
@@ -237,10 +257,12 @@ def main() -> int:
         "migration_green": summary["migration_green"],
         "repo_hygiene_green": summary["repo_hygiene_green"],
         "runtime_hygiene_green": summary["runtime_hygiene_green"],
+        "lego_tool_reporting_green": summary["lego_tool_reporting_green"],
         "active_actionable_lane": active_actionable_lane,
         "summary": summary,
         "process_model": process_model,
         "surface_catalog": surface_catalog,
+        "lego_tool_reporting_surface": lego_tool_reporting_surface,
         "source_dirty_surface": source_dirty_surface,
         "source_dirty_checkpoint": source_dirty_checkpoint,
         "source_dirty_lane_manifest": source_dirty_lane_manifest,
@@ -255,6 +277,7 @@ def main() -> int:
             "migration": migration_summary,
             "repo_hygiene": repo_summary,
             "runtime_hygiene": runtime_summary,
+            "lego_tool_reporting": lego_tool_reporting_summary,
             "source_dirty_checkpoint": source_dirty_plan_summary,
             "source_dirty_lane_manifest": source_dirty_lane_manifest_summary,
         },

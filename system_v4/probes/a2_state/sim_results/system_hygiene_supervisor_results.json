@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-09T23:38:29.030430+00:00",
+  "generated_at": "2026-04-10T03:59:50.074444+00:00",
   "strict": false,
   "overall_green": false,
   "repair_queue_count": 3,
@@ -10,12 +10,14 @@
   "migration_green": true,
   "repo_hygiene_green": false,
   "runtime_hygiene_green": true,
+  "lego_tool_reporting_green": false,
   "active_actionable_lane": {
-    "group_id": "probe_source__sim_family_coherent",
+    "group_id": "build_contract__build_contract",
     "file_count": 1,
-    "untracked_count": 1,
-    "tracked_dirty_count": 0,
-    "safe_next_action": "manual_split_required"
+    "safe_next_action": "checkpoint",
+    "selection_mode": "default_prefer_probe_source_skip_docs",
+    "source_path": "Makefile",
+    "result_path": null
   },
   "summary": {
     "missing_surface_count": 0,
@@ -27,6 +29,7 @@
     "migration_green": true,
     "repo_hygiene_green": false,
     "runtime_hygiene_green": true,
+    "lego_tool_reporting_green": false,
     "overall_green": false
   },
   "process_model": {
@@ -45,15 +48,29 @@
     "controller": "contract_compliance",
     "migration": "migration_compliance",
     "repo_hygiene": "repository_hygiene",
-    "runtime_hygiene": "runtime_environment"
+    "runtime_hygiene": "runtime_environment",
+    "lego_tool_reporting": "tool_reporting_compliance"
+  },
+  "lego_tool_reporting_surface": {
+    "present": true,
+    "path": "system_v4/probes/a2_state/sim_results/lego_tool_reporting_audit_results.json",
+    "status": "current",
+    "blocker_count": 1,
+    "advisory_count": 10,
+    "registry_linked_result_count": 117,
+    "issue_kind_counts": {
+      "blank_unused_reason": 10,
+      "missing_tool_integration_depth": 1
+    },
+    "ok": false
   },
   "source_dirty_surface": {
-    "source_dirty_count": 164,
-    "dirty_source_bucket_count": 4,
+    "source_dirty_count": 155,
+    "dirty_source_bucket_count": 5,
     "dirty_source_buckets": [
       {
         "label": "probe_source",
-        "count": 156
+        "count": 146
       },
       {
         "label": "legacy_runtime",
@@ -64,6 +81,10 @@
         "count": 3
       },
       {
+        "label": "build_contract",
+        "count": 1
+      },
+      {
         "label": "other_source",
         "count": 1
       }
@@ -71,7 +92,7 @@
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 528
+        "count": 509
       },
       {
         "prefix": "obsidian_vault",
@@ -84,6 +105,10 @@
       {
         "prefix": "new docs",
         "count": 3
+      },
+      {
+        "prefix": "Makefile",
+        "count": 1
       },
       {
         "prefix": "results_axis0_traj_corr_suite.json",
@@ -101,50 +126,62 @@
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
     "status": "current",
     "dirty_source_checkpoint_required": true,
-    "plan_group_count": 89,
+    "plan_group_count": 80,
     "largest_group_id": "probe_source__probe_misc",
     "next_code_only_manual": {
-      "group_id": "probe_source__sim_family_coherent",
+      "group_id": "probe_source__sim_family_fubini",
       "file_count": 1,
       "untracked_count": 1,
       "tracked_dirty_count": 0,
-      "safe_next_action": "manual_split_required"
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_fubini_study_geometry.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/fubini_study_geometry_results.json"
     },
     "recommended_code_only_order": [
       {
-        "group_id": "probe_source__sim_family_coherent",
+        "group_id": "probe_source__sim_family_fubini",
         "file_count": 1,
         "untracked_count": 1,
         "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required"
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_fubini_study_geometry.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/fubini_study_geometry_results.json"
       },
       {
-        "group_id": "probe_source__sim_family_commutative",
+        "group_id": "probe_source__sim_family_gauge",
         "file_count": 1,
         "untracked_count": 1,
         "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required"
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_gauge_group_correspondence.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/gauge_group_correspondence_results.json"
       },
       {
-        "group_id": "probe_source__sim_family_commutator",
+        "group_id": "probe_source__sim_family_helstrom",
         "file_count": 1,
         "untracked_count": 1,
         "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required"
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_helstrom_guess_bound.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/helstrom_guess_bound_results.json"
       },
       {
-        "group_id": "probe_source__sim_family_concurrence",
+        "group_id": "probe_source__sim_family_hilbert",
         "file_count": 1,
         "untracked_count": 1,
         "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required"
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_hilbert_schmidt_flatness_rejection.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/hilbert_schmidt_flatness_rejection_results.json"
       },
       {
-        "group_id": "probe_source__sim_family_conditional",
+        "group_id": "probe_source__sim_family_holevo",
         "file_count": 1,
         "untracked_count": 1,
         "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required"
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_holevo_quantity.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/holevo_quantity_results.json"
       }
     ]
   },
@@ -153,11 +190,11 @@
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_lane_manifest.json",
     "status": "current",
     "required": true,
-    "selected_group_id": "docs_and_specs__docs_and_specs",
-    "file_count": 3,
-    "docs_opt_in_required": true,
-    "code_only_fallback_group_id": "probe_source__sim_family_coherent",
-    "active_actionable_lane_group_id": "probe_source__sim_family_coherent"
+    "selected_group_id": "build_contract__build_contract",
+    "file_count": 1,
+    "docs_opt_in_required": false,
+    "code_only_fallback_group_id": "probe_source__sim_family_fubini",
+    "active_actionable_lane_group_id": "build_contract__build_contract"
   },
   "maintenance_lanes": [
     {
@@ -191,7 +228,7 @@
       "dirty_source_buckets": [
         {
           "label": "probe_source",
-          "count": 156
+          "count": 146
         },
         {
           "label": "legacy_runtime",
@@ -200,6 +237,10 @@
         {
           "label": "docs_and_specs",
           "count": 3
+        },
+        {
+          "label": "build_contract",
+          "count": 1
         },
         {
           "label": "other_source",
@@ -233,7 +274,7 @@
       "dirty_source_buckets": [
         {
           "label": "probe_source",
-          "count": 156
+          "count": 146
         },
         {
           "label": "legacy_runtime",
@@ -242,6 +283,10 @@
         {
           "label": "docs_and_specs",
           "count": 3
+        },
+        {
+          "label": "build_contract",
+          "count": 1
         },
         {
           "label": "other_source",
@@ -293,16 +338,16 @@
       "blocker_count": 1,
       "advisory_count": 7,
       "repair_candidate_count": 3,
-      "primary_result_count": 763,
+      "primary_result_count": 764,
       "secondary_result_count": 0,
       "secondary_unique_result_count": 0,
       "secondary_duplicate_result_count": 0,
       "root_result_orphan_count": 0,
       "duplicate_result_basename_count": 0,
-      "source_dirty_count": 164,
-      "generated_dirty_count": 377,
-      "dirty_worktree_count": 541,
-      "dirty_source_bucket_count": 4,
+      "source_dirty_count": 155,
+      "generated_dirty_count": 368,
+      "dirty_worktree_count": 523,
+      "dirty_source_bucket_count": 5,
       "ok": false
     },
     "runtime_hygiene": {
@@ -312,25 +357,42 @@
       "requirements_package_count": 19,
       "ok": true
     },
+    "lego_tool_reporting": {
+      "registry_row_count": 150,
+      "registry_linked_result_count": 117,
+      "registry_linked_lego_count": 148,
+      "blocker_count": 1,
+      "advisory_count": 10,
+      "blocker_result_count": 1,
+      "advisory_result_count": 10,
+      "issue_kind_counts": {
+        "blank_unused_reason": 10,
+        "missing_tool_integration_depth": 1
+      },
+      "ok": false
+    },
     "source_dirty_checkpoint": {
-      "dirty_source_count": 164,
-      "plan_group_count": 89,
-      "checkpoint_candidate_count": 1,
+      "dirty_source_count": 155,
+      "plan_group_count": 80,
+      "checkpoint_candidate_count": 2,
       "quarantine_candidate_count": 0,
-      "manual_only_count": 88,
-      "code_only_manual_count": 88,
+      "manual_only_count": 78,
+      "code_only_manual_count": 78,
       "largest_group_id": "probe_source__probe_misc",
-      "next_code_only_manual_group_id": "probe_source__sim_family_coherent",
+      "next_code_only_manual_group_id": "probe_source__sim_family_fubini",
       "next_code_only_manual_file_count": 1,
+      "next_code_only_manual_source_path": "system_v4/probes/sim_fubini_study_geometry.py",
+      "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/fubini_study_geometry_results.json",
       "ok": true
     },
     "source_dirty_lane_manifest": {
-      "selected_group_id": "docs_and_specs__docs_and_specs",
-      "file_count": 3,
+      "selected_group_id": "build_contract__build_contract",
+      "file_count": 1,
       "safe_next_action": "checkpoint",
-      "docs_opt_in_required": true,
-      "code_only_fallback_group_id": "probe_source__sim_family_coherent",
-      "active_actionable_lane_group_id": "probe_source__sim_family_coherent",
+      "docs_opt_in_required": false,
+      "code_only_fallback_group_id": "probe_source__sim_family_fubini",
+      "active_actionable_lane_group_id": "build_contract__build_contract",
+      "executable_lane_group_id": "build_contract__build_contract",
       "ok": true
     }
   }

@@ -9,6 +9,7 @@ Build bounded graph carriers and verify graph-geometric structure directly.
 
 import json
 import pathlib
+from datetime import datetime, timezone
 
 import numpy as np
 import rustworkx as rx
@@ -147,6 +148,7 @@ def main():
         "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
         "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "timestamp": datetime.now(timezone.utc).isoformat(),
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

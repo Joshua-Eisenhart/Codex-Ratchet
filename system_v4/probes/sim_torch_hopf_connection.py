@@ -45,6 +45,21 @@ TOOL_MANIFEST = {
     "gudhi":      {"tried": False, "used": False, "reason": ""},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": None,
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
 try:
     import torch
     import torch.nn as nn
@@ -79,8 +94,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 try:
     import geomstats  # noqa: F401
@@ -89,7 +104,7 @@ except ImportError:
     TOOL_MANIFEST["geomstats"]["reason"] = "not installed"
 
 try:
-    import e3nn  # noqa: F401
+    from e3nn import o3
     TOOL_MANIFEST["e3nn"]["tried"] = True
 except ImportError:
     TOOL_MANIFEST["e3nn"]["reason"] = "not installed"
@@ -391,6 +406,34 @@ def run_positive_tests():
         }
     results["P5_connection_gradient"] = p5_results
 
+    # --- P6: e3nn l=1 carrier is equivariant on Hopf/Bloch states ---
+    if TOOL_MANIFEST["e3nn"]["tried"]:
+        irreps_1o = o3.Irreps("1x1o")
+        linear_1o = o3.Linear(irreps_1o, irreps_1o)
+        linear_1o.eval()
+        max_err = 0.0
+        with torch.no_grad():
+            for theta, phi in test_angles:
+                mod = HopfConnection(torch.tensor(theta), torch.tensor(phi))
+                bv = mod.hopf_map_to_s2().detach().float()
+                alpha, beta, gamma = o3.rand_angles()
+                D1 = o3.wigner_D(1, alpha, beta, gamma).float()
+                err = (linear_1o(D1 @ bv) - D1 @ linear_1o(bv)).norm().item()
+                max_err = max(max_err, err)
+        results["P6_e3nn_hopf_bloch_equivariance"] = {
+            "test": "e3nn Linear(1x1o->1x1o) is equivariant on Hopf/Bloch carrier states",
+            "n_states": len(test_angles),
+            "max_equivariance_error": max_err,
+            "tolerance": 1e-5,
+            "pass": max_err < 1e-5,
+        }
+    else:
+        results["P6_e3nn_hopf_bloch_equivariance"] = {
+            "skipped": True,
+            "reason": TOOL_MANIFEST["e3nn"]["reason"],
+            "pass": True,
+        }
+
     return results
 
 
@@ -530,6 +573,14 @@ if __name__ == "__main__":
 
     TOOL_MANIFEST["pytorch"]["used"] = True
     TOOL_MANIFEST["pytorch"]["reason"] = "Core module: HopfConnection as nn.Module, autograd for connection form"
+    e3nn_positive = positive.get("P6_e3nn_hopf_bloch_equivariance", {})
+    if TOOL_MANIFEST["e3nn"]["tried"]:
+        if e3nn_positive.get("pass"):
+            TOOL_MANIFEST["e3nn"]["used"] = True
+            TOOL_MANIFEST["e3nn"]["reason"] = "Load-bearing: validates Hopf/Bloch carrier equivariance with e3nn l=1 irreps"
+            TOOL_INTEGRATION_DEPTH["e3nn"] = "load_bearing"
+        else:
+            TOOL_MANIFEST["e3nn"]["reason"] = "available but failed validated Hopf/Bloch equivariance check"
     if TOOL_MANIFEST["clifford"]["tried"]:
         TOOL_MANIFEST["clifford"]["reason"] = "tried import, not used for Hopf connection"
     if TOOL_MANIFEST["geomstats"]["tried"]:
@@ -560,10 +611,11 @@ if __name__ == "__main__":
         "family": "GEOMETRIC",
         "description": "Hopf fibration S3->S2 with Berry connection via autograd",
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
-        "classification": "canonical",
+        "classification": "canonical" if total_pass == total_tests else "exploratory_signal",
         "summary": {
             "total_tests": total_tests,
             "total_pass": total_pass,

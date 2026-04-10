@@ -1007,6 +1007,12 @@ if __name__ == "__main__":
         "A_growth_rate":           pos_r.get("A_growth_rate", {}).get("mean"),
         "C_growth_rate":           pos_r.get("C_growth_rate", {}).get("mean"),
     }
+    overall_pass = bool(
+        positive.get("pass", True)
+        and negative.get("pass", True)
+        and boundary.get("pass", True)
+    )
+    summary["all_pass"] = overall_pass
 
     # Mark tool integration depth
     TOOL_INTEGRATION_DEPTH["pytorch"] = "load_bearing"
@@ -1022,7 +1028,7 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "summary": summary,
-        "classification": "canonical",
+        "classification": "canonical" if overall_pass else "exploratory_signal",
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")

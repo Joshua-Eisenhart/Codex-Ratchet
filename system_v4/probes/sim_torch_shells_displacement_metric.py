@@ -825,6 +825,19 @@ if __name__ == "__main__":
     print("Phase 8 Fixed: Projection Displacement Metric")
     print("=" * 60)
 
+    def has_false_pass(obj):
+        if isinstance(obj, dict):
+            for key, value in obj.items():
+                if key == "pass" and value is False:
+                    return True
+                if has_false_pass(value):
+                    return True
+        elif isinstance(obj, list):
+            for value in obj:
+                if has_false_pass(value):
+                    return True
+        return False
+
     errors = []
 
     # Build channels
@@ -872,9 +885,12 @@ if __name__ == "__main__":
         print(f"  ERROR: {e}")
 
     # ── Classification ────────────────────────────────────────────────
-    classification = "canonical"  # pytorch + rustworkx load_bearing
-    if errors:
-        classification = "canonical_with_errors"
+    overall_pass = (not errors) and (not has_false_pass({
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+    }))
+    classification = "canonical" if overall_pass else "exploratory_signal"
 
     results = {
         "name": "Phase 8 Fixed: Projection Displacement Metric",
@@ -887,6 +903,10 @@ if __name__ == "__main__":
         "negative": negative,
         "boundary": boundary,
         "classification": classification,
+        "summary": {
+            "all_pass": overall_pass,
+            "error_count": len(errors),
+        },
         "errors": errors,
     }
 

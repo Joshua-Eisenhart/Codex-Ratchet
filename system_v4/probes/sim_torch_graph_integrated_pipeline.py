@@ -44,6 +44,21 @@ TOOL_MANIFEST = {
     "gudhi":     {"tried": False, "used": False, "reason": ""},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "supportive",
+    "pyg": "load_bearing",
+    "z3": "load_bearing",
+    "cvc5": None,
+    "sympy": "supportive",
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": "supportive",
+    "xgi": "load_bearing",
+    "toponetx": "load_bearing",
+    "gudhi": "supportive",
+}
+
 # ── Import all tools ────────────────────────────────────────────────
 
 try:
@@ -106,8 +121,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 try:
     import geomstats  # noqa: F401
@@ -126,7 +141,7 @@ except ImportError:
 
 sys.path.insert(0, os.path.dirname(__file__))
 from sim_torch_density_matrix_pilot import DensityMatrix  # noqa: E402
-from sim_torch_z_dephasing import ZDephasing  # noqa: E402
+from torch_modules.z_dephasing import ZDephasing  # noqa: E402
 from sim_torch_cnot import CNOT  # noqa: E402
 from sim_torch_mutual_info import MutualInformation  # noqa: E402
 
@@ -1062,6 +1077,7 @@ if __name__ == "__main__":
             "Autograd flows through the entire pipeline."
         ),
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,

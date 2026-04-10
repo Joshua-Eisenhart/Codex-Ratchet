@@ -29,6 +29,32 @@ TOOL_MANIFEST = {
     "gudhi": {"tried": False, "used": False, "reason": ""},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    "pytorch": "load_bearing",
+    "pyg": None,
+    "z3": None,
+    "cvc5": None,
+    "sympy": "supporting",
+    "clifford": None,
+    "geomstats": None,
+    "e3nn": None,
+    "rustworkx": None,
+    "xgi": None,
+    "toponetx": None,
+    "gudhi": None,
+}
+
+LEGO_IDS = [
+    "spectral_decomposition",
+    "principal_subspace",
+    "density_matrix_object",
+]
+
+PRIMARY_LEGO_IDS = [
+    "spectral_decomposition",
+    "principal_subspace",
+]
+
 try:
     import torch
     import torch.nn as nn
@@ -360,7 +386,10 @@ if __name__ == "__main__":
     results = {
         "name": "torch_eigendecomp",
         "description": "EigenDecomp module: eigenvalues/eigenvectors via torch.linalg.eigh with autograd",
+        "lego_ids": LEGO_IDS,
+        "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "positive": positive,
         "negative": negative,
         "boundary": boundary,
@@ -370,6 +399,10 @@ if __name__ == "__main__":
             "total_tests": total_tests,
             "total_pass": total_pass,
             "all_pass": total_pass == total_tests,
+            "scope_note": (
+                "Local spectral lego: differentiable eigendecomposition and principal-mode "
+                "recovery on bounded density matrices."
+            ),
         },
     }
 

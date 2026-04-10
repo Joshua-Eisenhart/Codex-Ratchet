@@ -82,8 +82,8 @@ except ImportError:
 try:
     from clifford import Cl  # noqa: F401
     TOOL_MANIFEST["clifford"]["tried"] = True
-except ImportError:
-    TOOL_MANIFEST["clifford"]["reason"] = "not installed"
+except Exception as exc:
+    TOOL_MANIFEST["clifford"]["reason"] = f"optional import unavailable: {exc}"
 
 try:
     import geomstats  # noqa: F401
@@ -123,7 +123,7 @@ except ImportError:
 
 # Import ZDephasing from sibling module for equivalence proof
 sys.path.insert(0, os.path.dirname(__file__))
-from sim_torch_z_dephasing import ZDephasing  # noqa: E402
+from torch_modules.z_dephasing import ZDephasing  # noqa: E402
 
 
 # =====================================================================

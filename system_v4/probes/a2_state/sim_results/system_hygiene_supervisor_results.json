@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-10T04:05:38.253122+00:00",
+  "generated_at": "2026-04-10T04:07:49.750342+00:00",
   "strict": false,
   "overall_green": false,
   "repair_queue_count": 3,
@@ -12,13 +12,13 @@
   "runtime_hygiene_green": true,
   "lego_tool_reporting_green": true,
   "active_actionable_lane": {
-    "group_id": "probe_source__sim_family_fubini",
+    "group_id": "probe_source__sim_family_gauge",
     "file_count": 1,
     "untracked_count": 1,
     "tracked_dirty_count": 0,
     "safe_next_action": "manual_split_required",
-    "source_path": "system_v4/probes/sim_fubini_study_geometry.py",
-    "result_path": "system_v4/probes/a2_state/sim_results/fubini_study_geometry_results.json"
+    "source_path": "system_v4/probes/sim_gauge_group_correspondence.py",
+    "result_path": "system_v4/probes/a2_state/sim_results/gauge_group_correspondence_results.json"
   },
   "summary": {
     "missing_surface_count": 0,
@@ -65,12 +65,12 @@
     "ok": true
   },
   "source_dirty_surface": {
-    "source_dirty_count": 149,
+    "source_dirty_count": 148,
     "dirty_source_bucket_count": 4,
     "dirty_source_buckets": [
       {
         "label": "probe_source",
-        "count": 141
+        "count": 140
       },
       {
         "label": "legacy_runtime",
@@ -88,7 +88,7 @@
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 497
+        "count": 500
       },
       {
         "prefix": "obsidian_vault",
@@ -118,27 +118,18 @@
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
     "status": "current",
     "dirty_source_checkpoint_required": true,
-    "plan_group_count": 79,
+    "plan_group_count": 78,
     "largest_group_id": "probe_source__probe_misc",
     "next_code_only_manual": {
-      "group_id": "probe_source__sim_family_fubini",
+      "group_id": "probe_source__sim_family_gauge",
       "file_count": 1,
       "untracked_count": 1,
       "tracked_dirty_count": 0,
       "safe_next_action": "manual_split_required",
-      "source_path": "system_v4/probes/sim_fubini_study_geometry.py",
-      "result_path": "system_v4/probes/a2_state/sim_results/fubini_study_geometry_results.json"
+      "source_path": "system_v4/probes/sim_gauge_group_correspondence.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/gauge_group_correspondence_results.json"
     },
     "recommended_code_only_order": [
-      {
-        "group_id": "probe_source__sim_family_fubini",
-        "file_count": 1,
-        "untracked_count": 1,
-        "tracked_dirty_count": 0,
-        "safe_next_action": "manual_split_required",
-        "source_path": "system_v4/probes/sim_fubini_study_geometry.py",
-        "result_path": "system_v4/probes/a2_state/sim_results/fubini_study_geometry_results.json"
-      },
       {
         "group_id": "probe_source__sim_family_gauge",
         "file_count": 1,
@@ -174,6 +165,15 @@
         "safe_next_action": "manual_split_required",
         "source_path": "system_v4/probes/sim_holevo_quantity.py",
         "result_path": "system_v4/probes/a2_state/sim_results/holevo_quantity_results.json"
+      },
+      {
+        "group_id": "probe_source__sim_family_husimi",
+        "file_count": 1,
+        "untracked_count": 1,
+        "tracked_dirty_count": 0,
+        "safe_next_action": "manual_split_required",
+        "source_path": "system_v4/probes/sim_husimi_phase_space_representation.py",
+        "result_path": "system_v4/probes/a2_state/sim_results/husimi_phase_space_representation_results.json"
       }
     ]
   },
@@ -185,8 +185,8 @@
     "selected_group_id": "docs_and_specs__docs_and_specs",
     "file_count": 3,
     "docs_opt_in_required": true,
-    "code_only_fallback_group_id": "probe_source__sim_family_fubini",
-    "active_actionable_lane_group_id": "probe_source__sim_family_fubini"
+    "code_only_fallback_group_id": "probe_source__sim_family_gauge",
+    "active_actionable_lane_group_id": "probe_source__sim_family_gauge"
   },
   "maintenance_lanes": [
     {
@@ -220,7 +220,7 @@
       "dirty_source_buckets": [
         {
           "label": "probe_source",
-          "count": 141
+          "count": 140
         },
         {
           "label": "legacy_runtime",
@@ -262,7 +262,7 @@
       "dirty_source_buckets": [
         {
           "label": "probe_source",
-          "count": 141
+          "count": 140
         },
         {
           "label": "legacy_runtime",
@@ -328,9 +328,9 @@
       "secondary_duplicate_result_count": 0,
       "root_result_orphan_count": 0,
       "duplicate_result_basename_count": 0,
-      "source_dirty_count": 149,
-      "generated_dirty_count": 361,
-      "dirty_worktree_count": 510,
+      "source_dirty_count": 148,
+      "generated_dirty_count": 365,
+      "dirty_worktree_count": 513,
       "dirty_source_bucket_count": 4,
       "ok": false
     },
@@ -355,17 +355,17 @@
       "ok": true
     },
     "source_dirty_checkpoint": {
-      "dirty_source_count": 149,
-      "plan_group_count": 79,
+      "dirty_source_count": 148,
+      "plan_group_count": 78,
       "checkpoint_candidate_count": 1,
       "quarantine_candidate_count": 0,
-      "manual_only_count": 78,
-      "code_only_manual_count": 78,
+      "manual_only_count": 77,
+      "code_only_manual_count": 77,
       "largest_group_id": "probe_source__probe_misc",
-      "next_code_only_manual_group_id": "probe_source__sim_family_fubini",
+      "next_code_only_manual_group_id": "probe_source__sim_family_gauge",
       "next_code_only_manual_file_count": 1,
-      "next_code_only_manual_source_path": "system_v4/probes/sim_fubini_study_geometry.py",
-      "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/fubini_study_geometry_results.json",
+      "next_code_only_manual_source_path": "system_v4/probes/sim_gauge_group_correspondence.py",
+      "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/gauge_group_correspondence_results.json",
       "ok": true
     },
     "source_dirty_lane_manifest": {
@@ -373,9 +373,9 @@
       "file_count": 3,
       "safe_next_action": "checkpoint",
       "docs_opt_in_required": true,
-      "code_only_fallback_group_id": "probe_source__sim_family_fubini",
-      "active_actionable_lane_group_id": "probe_source__sim_family_fubini",
-      "executable_lane_group_id": "probe_source__sim_family_fubini",
+      "code_only_fallback_group_id": "probe_source__sim_family_gauge",
+      "active_actionable_lane_group_id": "probe_source__sim_family_gauge",
+      "executable_lane_group_id": "probe_source__sim_family_gauge",
       "ok": true
     }
   }

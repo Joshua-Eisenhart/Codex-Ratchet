@@ -1,20 +1,146 @@
 {
-  "sim": "gauge_group_correspondence",
-  "timestamp": "2026-04-05",
-  "generators": [
-    "sigma_x",
-    "sigma_y",
-    "sigma_z"
+  "name": "gauge_group_correspondence",
+  "classification": "canonical",
+  "classification_note": "Canonical local correspondence row showing that a bounded Pauli commutator set closes with the expected su(2)-like structure pattern, without promoting a broader physics identification claim.",
+  "lego_ids": [
+    "gauge_group_correspondence"
   ],
-  "algebra_generated": "su(2)",
-  "dimension": 3,
-  "closure": true,
-  "standard_model_match": {
-    "su2_weak": "MATCH \u2014 engine operators generate su(2)",
-    "u1_em": "PARTIAL \u2014 chiral L/R split provides U(1) factor",
-    "su3_color": "NO MATCH \u2014 requires 3-level system or additional generators"
+  "primary_lego_ids": [
+    "gauge_group_correspondence"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
   },
-  "combined": "su(2) x u(1) \u2014 electroweak subalgebra",
-  "verdict": "PARTIAL \u2014 matches electroweak, not full Standard Model",
-  "kill_status": "NOT KILLED at electroweak level. OPEN at color level."
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "bounded_generator_set_closes_under_commutator": {
+      "residuals": {
+        "[X,Y]": 0.0,
+        "[Y,Z]": 0.0,
+        "[Z,X]": 0.0
+      },
+      "pass": true
+    },
+    "structure_constants_match_expected_generator_pattern": {
+      "coefficients": {
+        "[X,Y]": [
+          0.0,
+          0.0,
+          1.0
+        ],
+        "[Y,Z]": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "[Z,X]": [
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      "pass": true
+    },
+    "closure_pattern_survives_basis_change": {
+      "rotated_residuals": {
+        "[X,Y]": 3.1637574077875325e-17,
+        "[Y,Z]": 0.0,
+        "[Z,X]": 0.0
+      },
+      "pass": true
+    }
+  },
+  "negative": {
+    "generic_counterfeit_subset_does_not_show_same_closure_pattern": {
+      "counterfeit_residual": 1.4142135623730951,
+      "pass": true
+    },
+    "row_does_not_promote_full_physics_identification": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_generators_are_traceless_hermitian": {
+      "pass": true
+    },
+    "comparison_is_bounded_to_one_local_carrier": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local correspondence row on one bounded commutator generator set with no broader gauge-physics promotion."
+  }
 }

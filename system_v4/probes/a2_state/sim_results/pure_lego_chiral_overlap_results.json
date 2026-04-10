@@ -1,0 +1,336 @@
+{
+  "name": "pure_lego_chiral_overlap",
+  "description": "Chiral overlap <L|R> for Weyl spinors: orthogonality, completeness, Cl(3) projectors",
+  "classification": "classical_baseline",
+  "classification_note": "Classical baseline for fixed-reference chiral overlap on Weyl spinors, including orthogonality, completeness, and Cl(3) projector cross-checks.",
+  "lego_ids": [
+    "chiral_overlap"
+  ],
+  "primary_lego_ids": [
+    "chiral_overlap"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline -- numpy + clifford only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline -- numpy + clifford only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Cl(3) chiral projector cross-validation"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "LR_always_orthogonal": {
+      "detail": {
+        "t=0.000_p=0.000": {
+          "overlap": 0.0,
+          "pass": true
+        },
+        "t=0.785_p=0.000": {
+          "overlap": 4.6807310756201345e-34,
+          "pass": true
+        },
+        "t=1.571_p=0.000": {
+          "overlap": 1.0295220005548027e-34,
+          "pass": true
+        },
+        "t=1.571_p=0.785": {
+          "overlap": 0.0,
+          "pass": true
+        },
+        "t=3.142_p=0.000": {
+          "overlap": 0.0,
+          "pass": true
+        },
+        "t=1.047_p=0.524": {
+          "overlap": 1.925929944387236e-34,
+          "pass": true
+        },
+        "t=2.100_p=0.700": {
+          "overlap": 1.540743955509789e-33,
+          "pass": true
+        },
+        "t=0.100_p=3.000": {
+          "overlap": 2.3039689276116835e-36,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "LR_completeness": {
+      "detail": {
+        "t=0.000_p=0.000": {
+          "pass": true
+        },
+        "t=0.785_p=0.000": {
+          "pass": true
+        },
+        "t=1.571_p=0.000": {
+          "pass": true
+        },
+        "t=1.571_p=0.785": {
+          "pass": true
+        },
+        "t=3.142_p=0.000": {
+          "pass": true
+        },
+        "t=1.047_p=0.524": {
+          "pass": true
+        },
+        "t=2.100_p=0.700": {
+          "pass": true
+        },
+        "t=0.100_p=3.000": {
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "LR_symmetry": {
+      "detail": {
+        "t=0.000": {
+          "overlap": 0.0,
+          "overlap_swapped": 3.749399456654644e-33,
+          "pass": true
+        },
+        "t=0.785": {
+          "overlap": 0.125,
+          "overlap_swapped": 0.12500000000000006,
+          "pass": true
+        },
+        "t=1.571": {
+          "overlap": 0.25,
+          "overlap_swapped": 0.25,
+          "pass": true
+        },
+        "t=3.142": {
+          "overlap": 3.749399456654644e-33,
+          "overlap_swapped": 0.0,
+          "pass": true
+        },
+        "t=1.047": {
+          "overlap": 0.18749999999999997,
+          "overlap_swapped": 0.18749999999999994,
+          "pass": true
+        },
+        "t=2.100": {
+          "overlap": 0.18628260266758748,
+          "overlap_swapped": 0.18628260266758742,
+          "pass": true
+        },
+        "t=0.100": {
+          "overlap": 0.0024916777698447963,
+          "overlap_swapped": 0.0024916777698448067,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "analytic_sin2_over_4": {
+      "detail": {
+        "t=0.000": {
+          "computed": 0.0,
+          "analytic": 0.0,
+          "pass": true
+        },
+        "t=0.785": {
+          "computed": 0.125,
+          "analytic": 0.12499999999999997,
+          "pass": true
+        },
+        "t=1.571": {
+          "computed": 0.25,
+          "analytic": 0.25,
+          "pass": true
+        },
+        "t=3.142": {
+          "computed": 3.749399456654644e-33,
+          "analytic": 3.749399456654644e-33,
+          "pass": true
+        },
+        "t=1.047": {
+          "computed": 0.18749999999999997,
+          "analytic": 0.18749999999999997,
+          "pass": true
+        },
+        "t=2.100": {
+          "computed": 0.18628260266758748,
+          "analytic": 0.18628260266758742,
+          "pass": true
+        },
+        "t=0.100": {
+          "computed": 0.0024916777698447963,
+          "analytic": 0.0024916777698447963,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "pL_plus_pR_equals_1": {
+      "pass": true
+    },
+    "cl3_chirality": {
+      "I3_sq_is_minus1": true,
+      "I3_commutes_with_even": true,
+      "e3_projector_idempotent_plus": true,
+      "e3_projector_idempotent_minus": true,
+      "e3_projectors_orthogonal": true,
+      "e3_projectors_complete": true,
+      "pass": true
+    },
+    "LR_normalized": {
+      "pass": true
+    },
+    "elapsed_s": 1.601059913635254
+  },
+  "negative": {
+    "non_normalized_spinors": {
+      "norm_L": 4.0,
+      "norm_R": 9.000000000000002,
+      "L_is_unit": false,
+      "R_is_unit": false,
+      "pass": true
+    },
+    "non_normalized_fixed_ref": {
+      "p_L": 4.0,
+      "p_R": 1.0,
+      "sum": 5.0,
+      "sums_to_1": false,
+      "pass": true
+    },
+    "non_orthogonal_chiral_pair": {
+      "overlap": 0.4999999999999999,
+      "is_orthogonal": false,
+      "completeness": false,
+      "pass": true
+    },
+    "cl3_non_projector": {
+      "is_idempotent": false,
+      "pass": true
+    },
+    "elapsed_s": 0.1626758575439453
+  },
+  "boundary": {
+    "north_pole": {
+      "theta": 0,
+      "overlap": 0.0,
+      "pass": true
+    },
+    "south_pole": {
+      "theta": 3.141592653589793,
+      "overlap": 3.749399456654644e-33,
+      "pass": true
+    },
+    "equator_maximal": {
+      "expected": 0.25,
+      "detail": {
+        "phi=0.000": {
+          "overlap": 0.25,
+          "pass": true
+        },
+        "phi=0.785": {
+          "overlap": 0.25,
+          "pass": true
+        },
+        "phi=1.571": {
+          "overlap": 0.25,
+          "pass": true
+        },
+        "phi=3.142": {
+          "overlap": 0.25,
+          "pass": true
+        },
+        "phi=4.712": {
+          "overlap": 0.25,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "theta_sweep": {
+      "n_points": 37,
+      "max_overlap": 0.25,
+      "max_theta": 1.5707963267948966,
+      "max_at_equator": true,
+      "analytic_match": true,
+      "pass": true
+    },
+    "phi_independence": {
+      "theta": 1.0471975511965976,
+      "expected_overlap": 0.18749999999999997,
+      "all_phi_match": true,
+      "pass": true
+    },
+    "elapsed_s": 0.0007750988006591797
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local chiral-overlap baseline on one Weyl-spinor family with Cl(3) cross-validation."
+  }
+}

@@ -44,6 +44,19 @@ TOOL_MANIFEST = {
     "gudhi":      {"tried": False, "used": False, "reason": "not needed for this baseline"},
 }
 
+TOOL_INTEGRATION_DEPTH = {
+    **{k: None for k in TOOL_MANIFEST},
+    "clifford": "load_bearing",
+}
+
+CLASSIFICATION = "classical_baseline"
+CLASSIFICATION_NOTE = (
+    "Classical baseline for fixed-reference chiral overlap on Weyl spinors, including "
+    "orthogonality, completeness, and Cl(3) projector cross-checks."
+)
+LEGO_IDS = ["chiral_overlap"]
+PRIMARY_LEGO_IDS = ["chiral_overlap"]
+
 # ──────────────────────────────────────────────────────────────────────
 # Helpers
 # ──────────────────────────────────────────────────────────────────────
@@ -439,25 +452,41 @@ def run_boundary_tests():
 # =====================================================================
 
 if __name__ == "__main__":
+    positive = run_positive_tests()
+    negative = run_negative_tests()
+    boundary = run_boundary_tests()
+    all_pass = True
+    for section in [positive, negative, boundary]:
+        for v in section.values():
+            if isinstance(v, dict) and "pass" in v and not v["pass"]:
+                all_pass = False
+
     results = {
         "name": "pure_lego_chiral_overlap",
         "description": "Chiral overlap <L|R> for Weyl spinors: orthogonality, completeness, Cl(3) projectors",
+        "classification": CLASSIFICATION if all_pass else "exploratory_signal",
+        "classification_note": CLASSIFICATION_NOTE,
+        "lego_ids": LEGO_IDS,
+        "primary_lego_ids": PRIMARY_LEGO_IDS,
         "tool_manifest": TOOL_MANIFEST,
-        "positive": run_positive_tests(),
-        "negative": run_negative_tests(),
-        "boundary": run_boundary_tests(),
-        "classification": "classical_baseline",
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
+        "positive": positive,
+        "negative": negative,
+        "boundary": boundary,
+        "summary": {
+            "all_pass": all_pass,
+            "scope_note": "Direct local chiral-overlap baseline on one Weyl-spinor family with Cl(3) cross-validation.",
+        },
     }
 
     out_dir = os.path.join(os.path.dirname(__file__), "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "chiral_overlap_results.json")
+    out_path = os.path.join(out_dir, "pure_lego_chiral_overlap_results.json")
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2, default=str)
     print(f"Results written to {out_path}")
 
     # Summary
-    all_pass = True
     for section in ["positive", "negative", "boundary"]:
         for k, v in results[section].items():
             if isinstance(v, dict) and "pass" in v:

@@ -1,0 +1,151 @@
+{
+  "name": "pure_lego_dfs_noiseless",
+  "classification": "classical_baseline",
+  "classification_note": "Classical baseline for decoherence-free subspaces and noiseless subsystems under collective dephasing and collective SU(2) noise.",
+  "lego_ids": [
+    "dfs_noiseless"
+  ],
+  "primary_lego_ids": [
+    "dfs_noiseless"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline -- numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline -- numpy only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "probe": "sim_pure_lego_dfs_noiseless",
+  "timestamp": "2026-04-10T05:43:11.469330+00:00",
+  "description": "Decoherence-free subspaces and noiseless subsystems. Pure numpy, no engine.",
+  "tests": {
+    "t1_zz_dephasing": {
+      "singlet_fidelities": [
+        0.9999999999999993,
+        0.9999999999999996,
+        0.9999999999999996,
+        0.9999999999999996,
+        0.9999999999999996,
+        0.9999999999999996,
+        0.9999999999999996
+      ],
+      "phi_plus_fidelities": [
+        0.6811788772383365,
+        0.028888829665670974,
+        0.17317818956819386,
+        3.217732397183137e-32,
+        0.24999999999999967,
+        0.9800851433251827,
+        0.4272499830956931
+      ],
+      "singlet_in_DFS": true,
+      "phi_plus_in_DFS": false
+    },
+    "t2_collective_rotation": {
+      "n_trials": 100,
+      "singlet_min_fidelity": 0.9999999999999987,
+      "singlet_max_fidelity": 1.0000000000000009,
+      "singlet_all_unity": true,
+      "phi_plus_min_fidelity": 0.00019224795030965838,
+      "phi_plus_mean_fidelity": 0.31473313863166086,
+      "phi_plus_all_unity": false
+    },
+    "t3_3qubit_dephasing": {
+      "even_parity_fidelity": 1.0,
+      "odd_parity_fidelity": 1.0,
+      "mixed_parity_fidelity": 0.0,
+      "even_in_DFS": true,
+      "odd_in_DFS": true,
+      "mixed_NOT_in_DFS": true,
+      "DFS_dimension_per_sector": 4,
+      "note": "Each parity eigenspace of Z^{otimes 3} is a 4-d DFS for collective Z-dephasing."
+    },
+    "t4_4qubit_noiseless_subsystem": {
+      "j0_subspace_dimension": 2,
+      "noiseless_qubit_dimension": 2,
+      "n_trials": 200,
+      "encoded_alpha": "(0.6+0j)",
+      "encoded_beta": "(0.6118737498275908+0.5153741497901528j)",
+      "physical_fidelity_min": 0.9999999999999969,
+      "physical_fidelity_max": 1.0000000000000022,
+      "physical_fidelity_all_unity": true,
+      "logical_fidelity_min": 0.9999999999999964,
+      "logical_fidelity_max": 1.0000000000000018,
+      "logical_fidelity_all_unity": true,
+      "noiseless_subsystem_confirmed": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local baseline for decoherence-free subspaces and noiseless subsystem protection on bounded few-qubit families."
+  }
+}

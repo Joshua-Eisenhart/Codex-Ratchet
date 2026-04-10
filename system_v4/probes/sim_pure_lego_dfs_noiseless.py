@@ -36,6 +36,31 @@ import numpy as np
 
 np.random.seed(42)
 
+TOOL_MANIFEST = {
+    "pytorch": {"tried": False, "used": False, "reason": "classical baseline -- numpy only"},
+    "pyg": {"tried": False, "used": False, "reason": "classical baseline -- numpy only"},
+    "z3": {"tried": False, "used": False, "reason": "not needed for this baseline"},
+    "cvc5": {"tried": False, "used": False, "reason": "not needed for this baseline"},
+    "sympy": {"tried": False, "used": False, "reason": "not needed for this baseline"},
+    "clifford": {"tried": False, "used": False, "reason": "not needed for this baseline"},
+    "geomstats": {"tried": False, "used": False, "reason": "not needed for this baseline"},
+    "e3nn": {"tried": False, "used": False, "reason": "not needed for this baseline"},
+    "rustworkx": {"tried": False, "used": False, "reason": "not needed for this baseline"},
+    "xgi": {"tried": False, "used": False, "reason": "not needed for this baseline"},
+    "toponetx": {"tried": False, "used": False, "reason": "not needed for this baseline"},
+    "gudhi": {"tried": False, "used": False, "reason": "not needed for this baseline"},
+}
+
+TOOL_INTEGRATION_DEPTH = {k: None for k in TOOL_MANIFEST}
+
+CLASSIFICATION = "classical_baseline"
+CLASSIFICATION_NOTE = (
+    "Classical baseline for decoherence-free subspaces and noiseless subsystems under "
+    "collective dephasing and collective SU(2) noise."
+)
+LEGO_IDS = ["dfs_noiseless"]
+PRIMARY_LEGO_IDS = ["dfs_noiseless"]
+
 # ═══════════════════════════════════════════════════════════════════════
 # HELPERS
 # ═══════════════════════════════════════════════════════════════════════
@@ -339,6 +364,13 @@ def test_4qubit_noiseless_subsystem(n_trials=200):
 
 def main():
     results = {
+        "name": "pure_lego_dfs_noiseless",
+        "classification": CLASSIFICATION,
+        "classification_note": CLASSIFICATION_NOTE,
+        "lego_ids": LEGO_IDS,
+        "primary_lego_ids": PRIMARY_LEGO_IDS,
+        "tool_manifest": TOOL_MANIFEST,
+        "tool_integration_depth": TOOL_INTEGRATION_DEPTH,
         "probe": "sim_pure_lego_dfs_noiseless",
         "timestamp": datetime.now(UTC).isoformat(),
         "description": (
@@ -407,7 +439,10 @@ def main():
         and r4.get("noiseless_subsystem_confirmed", False)
     )
 
-    results["all_pass"] = all_pass
+    results["summary"] = {
+        "all_pass": all_pass,
+        "scope_note": "Direct local baseline for decoherence-free subspaces and noiseless subsystem protection on bounded few-qubit families.",
+    }
     verdict = "PASS" if all_pass else "FAIL"
     print(f"\n{'=' * 70}")
     print(f"VERDICT: {verdict}")
@@ -417,7 +452,7 @@ def main():
     out_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                            "a2_state", "sim_results")
     os.makedirs(out_dir, exist_ok=True)
-    out_path = os.path.join(out_dir, "dfs_noiseless_subsystem_results.json")
+    out_path = os.path.join(out_dir, "pure_lego_dfs_noiseless_results.json")
     with open(out_path, "w") as f:
         json.dump(results, f, indent=2)
     print(f"\nResults written to {out_path}")

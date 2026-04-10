@@ -1,31 +1,31 @@
 {
-  "generated_at": "2026-04-10T04:07:49.674570+00:00",
+  "generated_at": "2026-04-10T04:10:15.376123+00:00",
   "strict": false,
   "source_surface": "repo_hygiene",
   "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
-  "dirty_source_count": 148,
-  "plan_group_count": 78,
+  "dirty_source_count": 147,
+  "plan_group_count": 77,
   "checkpoint_candidate_count": 1,
   "quarantine_candidate_count": 0,
-  "manual_only_count": 77,
-  "code_only_manual_count": 77,
+  "manual_only_count": 76,
+  "code_only_manual_count": 76,
   "largest_group_id": "probe_source__probe_misc",
-  "next_code_only_manual_group_id": "probe_source__sim_family_gauge",
+  "next_code_only_manual_group_id": "probe_source__sim_family_helstrom",
   "next_code_only_manual_file_count": 1,
-  "next_code_only_manual_source_path": "system_v4/probes/sim_gauge_group_correspondence.py",
-  "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/gauge_group_correspondence_results.json",
+  "next_code_only_manual_source_path": "system_v4/probes/sim_helstrom_guess_bound.py",
+  "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/helstrom_guess_bound_results.json",
   "summary": {
-    "dirty_source_count": 148,
-    "plan_group_count": 78,
+    "dirty_source_count": 147,
+    "plan_group_count": 77,
     "checkpoint_candidate_count": 1,
     "quarantine_candidate_count": 0,
-    "manual_only_count": 77,
-    "code_only_manual_count": 77,
+    "manual_only_count": 76,
+    "code_only_manual_count": 76,
     "largest_group_id": "probe_source__probe_misc",
-    "next_code_only_manual_group_id": "probe_source__sim_family_gauge",
+    "next_code_only_manual_group_id": "probe_source__sim_family_helstrom",
     "next_code_only_manual_file_count": 1,
-    "next_code_only_manual_source_path": "system_v4/probes/sim_gauge_group_correspondence.py",
-    "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/gauge_group_correspondence_results.json",
+    "next_code_only_manual_source_path": "system_v4/probes/sim_helstrom_guess_bound.py",
+    "next_code_only_manual_result_path": "system_v4/probes/a2_state/sim_results/helstrom_guess_bound_results.json",
     "ok": true
   },
   "rules": {
@@ -104,15 +104,6 @@
     }
   ],
   "recommended_code_only_order": [
-    {
-      "group_id": "probe_source__sim_family_gauge",
-      "file_count": 1,
-      "untracked_count": 1,
-      "tracked_dirty_count": 0,
-      "safe_next_action": "manual_split_required",
-      "source_path": "system_v4/probes/sim_gauge_group_correspondence.py",
-      "result_path": "system_v4/probes/a2_state/sim_results/gauge_group_correspondence_results.json"
-    },
     {
       "group_id": "probe_source__sim_family_helstrom",
       "file_count": 1,
@@ -211,16 +202,25 @@
       "safe_next_action": "manual_split_required",
       "source_path": "system_v4/probes/sim_nested_torus_geometry.py",
       "result_path": "system_v4/probes/a2_state/sim_results/nested_torus_geometry_results.json"
+    },
+    {
+      "group_id": "probe_source__sim_family_path",
+      "file_count": 1,
+      "untracked_count": 1,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "manual_split_required",
+      "source_path": "system_v4/probes/sim_path_entropy.py",
+      "result_path": "system_v4/probes/a2_state/sim_results/path_entropy_results.json"
     }
   ],
   "next_code_only_manual": {
-    "group_id": "probe_source__sim_family_gauge",
+    "group_id": "probe_source__sim_family_helstrom",
     "file_count": 1,
     "untracked_count": 1,
     "tracked_dirty_count": 0,
     "safe_next_action": "manual_split_required",
-    "source_path": "system_v4/probes/sim_gauge_group_correspondence.py",
-    "result_path": "system_v4/probes/a2_state/sim_results/gauge_group_correspondence_results.json"
+    "source_path": "system_v4/probes/sim_helstrom_guess_bound.py",
+    "result_path": "system_v4/probes/a2_state/sim_results/helstrom_guess_bound_results.json"
   },
   "checkpoint_groups": [
     {
@@ -653,28 +653,6 @@
       "safe_auto": false,
       "blocking_reason": "active_source_pressure",
       "notes": "Active sim family 'foundation' should be checkpointed in a bounded family batch."
-    },
-    {
-      "group_id": "probe_source__sim_family_gauge",
-      "bucket": "probe_source",
-      "label": "sim_family_gauge",
-      "display_name": "Probe sim family: gauge",
-      "path_prefixes": [
-        "system_v4/probes/sim_gauge_group_correspondence.py"
-      ],
-      "file_count": 1,
-      "tracked_dirty_count": 0,
-      "untracked_count": 1,
-      "sample_paths": [
-        "system_v4/probes/sim_gauge_group_correspondence.py"
-      ],
-      "dominant_kinds": [
-        "untracked"
-      ],
-      "safe_next_action": "manual_split_required",
-      "safe_auto": false,
-      "blocking_reason": "active_source_pressure",
-      "notes": "Active sim family 'gauge' should be checkpointed in a bounded family batch."
     },
     {
       "group_id": "probe_source__sim_family_geometry",

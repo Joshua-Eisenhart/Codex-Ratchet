@@ -1,0 +1,135 @@
+{
+  "name": "helstrom_guess_bound",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for the Helstrom optimal-guess bound on bounded qubit state pairs, tying trace distance to operational discrimination.",
+  "lego_ids": [
+    "helstrom_guess_bound"
+  ],
+  "primary_lego_ids": [
+    "helstrom_guess_bound"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "identical_states_give_random_guessing": {
+      "value": 0.5,
+      "pass": true
+    },
+    "orthogonal_states_give_perfect_guessing": {
+      "value": 1.0,
+      "pass": true
+    },
+    "formula_matches_trace_distance_identity": {
+      "lhs": 0.8535533905932737,
+      "rhs": 0.8535533905932737,
+      "pass": true
+    }
+  },
+  "negative": {
+    "nonorthogonal_pair_is_not_perfectly_guessable": {
+      "value": 0.8535533905932737,
+      "pass": true
+    },
+    "mixed_pair_is_not_below_random": {
+      "value": 0.75,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "guess_probability_is_monotone_with_distance": {
+      "same": 0.5,
+      "mid": 0.575,
+      "mix": 0.75,
+      "orth": 1.0,
+      "pass": true
+    },
+    "all_values_stay_in_operational_range": {
+      "values": [
+        0.5,
+        1.0,
+        0.8535533905932737,
+        0.75,
+        0.575
+      ],
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local Helstrom guessing lego on bounded qubit state pairs."
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "name": "correlation_tensor_principal_directions",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for principal directions of bounded two-qubit correlation tensors, kept separate from graph proxies and later coupling surfaces.",
+  "lego_ids": [
+    "correlation_tensor_principal_directions"
+  ],
+  "primary_lego_ids": [
+    "correlation_tensor_principal_directions"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- direct tensor object, no graph proxy"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "product_and_classical_rows_have_single_dominant_principal_direction": {
+      "product_rank": 1,
+      "classical_rank": 1,
+      "pass": true
+    },
+    "bell_state_has_three_nonzero_principal_directions": {
+      "bell_rank": 3,
+      "bell_singular_values": [
+        0.9999999999999998,
+        0.9999999999999998,
+        0.9999999999999998
+      ],
+      "pass": true
+    },
+    "werner_state_retains_isotropic_principal_structure": {
+      "werner_singular_values": [
+        0.5999999999999999,
+        0.5999999999999999,
+        0.5999999999999999
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "bell_and_classical_principal_spectra_are_not_same": {
+      "pass": true
+    },
+    "product_and_werner_do_not_share_same_rank": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "product_and_classical_align_with_z_axis": {
+      "product_axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "classical_axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "pass": true
+    },
+    "singular_values_stay_in_physical_range": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local principal-direction lego on bounded two-qubit correlation tensors."
+  }
+}

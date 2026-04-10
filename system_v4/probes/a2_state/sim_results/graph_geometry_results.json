@@ -1,0 +1,165 @@
+{
+  "name": "graph_geometry",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for graph carrier geometry using bounded rustworkx graphs and direct connectivity/Laplacian checks.",
+  "lego_ids": [
+    "graph_geometry"
+  ],
+  "primary_lego_ids": [
+    "graph_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "saved for later graph-learning row"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": true,
+      "reason": "graph construction, connected components, cycle basis, and Laplacian are load-bearing"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "saved for hypergraph row"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "already used on cell-complex row"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "saved for persistence row"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": "load_bearing",
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "path_graph_is_connected_and_acyclic": {
+      "num_nodes": 4,
+      "num_edges": 3,
+      "num_components": 1,
+      "cycle_rank": 0,
+      "laplacian_zero_modes": 1,
+      "laplacian_eigenvalues": [
+        5.022205648990508e-17,
+        0.585786437626905,
+        1.9999999999999996,
+        3.4142135623730945
+      ],
+      "degree_sequence": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "pass": true
+    },
+    "cycle_graph_has_one_independent_loop": {
+      "num_nodes": 4,
+      "num_edges": 4,
+      "num_components": 1,
+      "cycle_rank": 1,
+      "laplacian_zero_modes": 1,
+      "laplacian_eigenvalues": [
+        -4.2232089472179614e-16,
+        2.0,
+        2.0,
+        3.9999999999999996
+      ],
+      "degree_sequence": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "disconnected_graph_is_not_single_component": {
+      "num_nodes": 4,
+      "num_edges": 2,
+      "num_components": 2,
+      "cycle_rank": 0,
+      "laplacian_zero_modes": 2,
+      "laplacian_eigenvalues": [
+        0.0,
+        0.0,
+        2.0,
+        2.0
+      ],
+      "degree_sequence": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "pass": true
+    },
+    "path_graph_is_not_cycle_graph": {
+      "path_cycle_rank": 0,
+      "cycle_cycle_rank": 1,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "laplacian_nullity_matches_component_count_for_all_cases": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local graph carrier lego on bounded path, cycle, and disconnected examples."
+  }
+}

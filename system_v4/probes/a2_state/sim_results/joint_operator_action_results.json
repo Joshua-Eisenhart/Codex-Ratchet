@@ -1,0 +1,119 @@
+{
+  "name": "joint_operator_action",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for primitive two-qubit operator action on admitted joint states, kept separate from local operator action, composition-order rows, and channel-capacity rows.",
+  "lego_ids": [
+    "joint_operator_action"
+  ],
+  "primary_lego_ids": [
+    "joint_operator_action"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "joint_unitary_action_preserves_density_validity": {
+      "pass": true
+    },
+    "entangling_joint_action_example_exists": {
+      "concurrence_after_cnot_plus0": 0.9999999999999998,
+      "pass": true
+    },
+    "swap_gives_structure_preserving_relabeling": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "nontrivial_joint_action_does_not_fix_all_joint_states": {
+      "pass": true
+    },
+    "counterfeit_nonunitary_joint_map_is_rejected": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "maximally_mixed_joint_state_is_fixed_by_joint_unitaries": {
+      "pass": true
+    },
+    "entangling_example_changes_reduced_state_purity": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local two-qubit operator-action lego on a tiny admitted state set with one-step joint unitaries only."
+  }
+}

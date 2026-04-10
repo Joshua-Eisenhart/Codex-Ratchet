@@ -1,0 +1,149 @@
+{
+  "name": "probe_identity_preservation",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for repeatable probe-relative identity preservation on bounded qubit states.",
+  "lego_ids": [
+    "probe_identity_preservation",
+    "probe_object",
+    "carrier_probe_support"
+  ],
+  "primary_lego_ids": [
+    "probe_identity_preservation"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for smallest repeatability row"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for smallest repeatability row"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "same_state_same_probe_is_repeatable": {
+      "first_probs": [
+        1.0,
+        0.0
+      ],
+      "second_probs": [
+        1.0,
+        0.0
+      ],
+      "pass": true
+    },
+    "same_state_same_noisy_probe_is_repeatable": {
+      "first_probs": [
+        0.4999999999999999,
+        0.4999999999999999
+      ],
+      "second_probs": [
+        0.4999999999999999,
+        0.4999999999999999
+      ],
+      "pass": true
+    },
+    "different_states_can_still_be_separated": {
+      "rho0_probs": [
+        1.0,
+        0.0
+      ],
+      "rho1_probs": [
+        0.0,
+        1.0
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "flat_probe_does_not_preserve_nontrivial_identity_relation": {
+      "rho0_probs": [
+        0.5,
+        0.5
+      ],
+      "rho1_probs": [
+        0.5,
+        0.5
+      ],
+      "pass": true
+    },
+    "different_states_are_not_falsely_identical_under_projective_probe": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "repeatability_holds_under_basis_change_state": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local repeatability lego for probe-relative identity on bounded qubit states."
+  }
+}

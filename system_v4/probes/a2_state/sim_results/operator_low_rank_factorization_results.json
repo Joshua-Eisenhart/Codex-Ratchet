@@ -1,0 +1,293 @@
+{
+  "name": "operator_low_rank_factorization",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for low-rank factorization of bounded Hermitian PSD operators and comparison of their induced action on a fixed state family.",
+  "lego_ids": [
+    "operator_low_rank_factorization",
+    "low_rank_psd_approximation",
+    "principal_subspace"
+  ],
+  "primary_lego_ids": [
+    "operator_low_rank_factorization"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- pure numpy factorization lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "op_0": {
+      "truncations": [
+        {
+          "k": 1,
+          "retained_eigenvalues": [
+            18.43175948609027
+          ],
+          "factor_shape": [
+            4,
+            1
+          ],
+          "frobenius_error": 7.0874915617312295,
+          "min_output_fidelity": 0.2430815413143603
+        },
+        {
+          "k": 2,
+          "retained_eigenvalues": [
+            18.43175948609027,
+            6.5616208113763035
+          ],
+          "factor_shape": [
+            4,
+            2
+          ],
+          "frobenius_error": 2.6791171988781524,
+          "min_output_fidelity": 0.841433074095186
+        },
+        {
+          "k": 3,
+          "retained_eigenvalues": [
+            18.43175948609027,
+            6.5616208113763035,
+            2.559132697992842
+          ],
+          "factor_shape": [
+            4,
+            3
+          ],
+          "frobenius_error": 0.792785468704225,
+          "min_output_fidelity": 0.9864472624973797
+        },
+        {
+          "k": 4,
+          "retained_eigenvalues": [
+            18.43175948609027,
+            6.5616208113763035,
+            2.559132697992842,
+            0.7927854687042243
+          ],
+          "factor_shape": [
+            4,
+            4
+          ],
+          "frobenius_error": 7.236171869711233e-15,
+          "min_output_fidelity": 1.0
+        }
+      ],
+      "frobenius_error_nonincreasing": true,
+      "output_fidelity_nondecreasing": true,
+      "exact_recovery_at_full_rank": true,
+      "pass": true
+    },
+    "op_1": {
+      "truncations": [
+        {
+          "k": 1,
+          "retained_eigenvalues": [
+            12.224471878911961
+          ],
+          "factor_shape": [
+            4,
+            1
+          ],
+          "frobenius_error": 9.30981688200916,
+          "min_output_fidelity": 0.6515614358466149
+        },
+        {
+          "k": 2,
+          "retained_eigenvalues": [
+            12.224471878911961,
+            8.50170896719835
+          ],
+          "factor_shape": [
+            4,
+            2
+          ],
+          "frobenius_error": 3.793894438911281,
+          "min_output_fidelity": 0.8605832686691189
+        },
+        {
+          "k": 3,
+          "retained_eigenvalues": [
+            12.224471878911961,
+            8.50170896719835,
+            3.7889921472013537
+          ],
+          "factor_shape": [
+            4,
+            3
+          ],
+          "frobenius_error": 0.19280436210944354,
+          "min_output_fidelity": 0.9997176858894414
+        },
+        {
+          "k": 4,
+          "retained_eigenvalues": [
+            12.224471878911961,
+            8.50170896719835,
+            3.7889921472013537,
+            0.19280436210944363
+          ],
+          "factor_shape": [
+            4,
+            4
+          ],
+          "frobenius_error": 1.1568865528879752e-14,
+          "min_output_fidelity": 0.9999999999999996
+        }
+      ],
+      "frobenius_error_nonincreasing": true,
+      "output_fidelity_nondecreasing": true,
+      "exact_recovery_at_full_rank": true,
+      "pass": true
+    },
+    "op_2": {
+      "truncations": [
+        {
+          "k": 1,
+          "retained_eigenvalues": [
+            19.781864342378615
+          ],
+          "factor_shape": [
+            4,
+            1
+          ],
+          "frobenius_error": 6.779268946644829,
+          "min_output_fidelity": 0.7970920961813706
+        },
+        {
+          "k": 2,
+          "retained_eigenvalues": [
+            19.781864342378615,
+            6.321901674811413
+          ],
+          "factor_shape": [
+            4,
+            2
+          ],
+          "frobenius_error": 2.44786573671016,
+          "min_output_fidelity": 0.9593631305524982
+        },
+        {
+          "k": 3,
+          "retained_eigenvalues": [
+            19.781864342378615,
+            6.321901674811413,
+            2.0925605779514727
+          ],
+          "factor_shape": [
+            4,
+            3
+          ],
+          "frobenius_error": 1.2701326279420408,
+          "min_output_fidelity": 0.9919352056397813
+        },
+        {
+          "k": 4,
+          "retained_eigenvalues": [
+            19.781864342378615,
+            6.321901674811413,
+            2.0925605779514727,
+            1.2701326279420388
+          ],
+          "factor_shape": [
+            4,
+            4
+          ],
+          "frobenius_error": 1.8461777131740418e-14,
+          "min_output_fidelity": 1.0
+        }
+      ],
+      "frobenius_error_nonincreasing": true,
+      "output_fidelity_nondecreasing": true,
+      "exact_recovery_at_full_rank": true,
+      "pass": true
+    }
+  },
+  "negative": {
+    "rank_one_not_exact_for_generic_operator": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "full_rank_factorization_exact": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "operator_count": 3,
+    "state_count": 3,
+    "scope_note": "Direct local operator factorization lego on bounded PSD operators."
+  }
+}

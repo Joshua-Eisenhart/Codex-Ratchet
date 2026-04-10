@@ -1,0 +1,142 @@
+{
+  "name": "operator_coordinate_representation",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for operator-coordinate state representation on bounded qubit states, kept separate from Bloch-vector, Stokes, and generic density-object rows.",
+  "lego_ids": [
+    "operator_coordinate_representation"
+  ],
+  "primary_lego_ids": [
+    "operator_coordinate_representation"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "coordinates_reconstruct_density_exactly": {
+      "pass": true
+    },
+    "computational_basis_states_have_expected_z_coordinate": {
+      "rho_0_coords": [
+        0.5,
+        0.0,
+        0.0,
+        0.5
+      ],
+      "rho_1_coords": [
+        0.5,
+        0.0,
+        0.0,
+        -0.5
+      ],
+      "pass": "True"
+    },
+    "plus_state_has_expected_x_coordinate": {
+      "rho_plus_coords": [
+        0.4999999999999999,
+        0.4999999999999999,
+        0.0,
+        0.0
+      ],
+      "pass": "True"
+    }
+  },
+  "negative": {
+    "distinct_states_do_not_share_same_coordinates": {
+      "pass": true
+    },
+    "mixed_diagonal_state_is_not_pure_state_coordinate_pattern": {
+      "pass": "True"
+    }
+  },
+  "boundary": {
+    "identity_coordinate_is_fixed_at_one_half_for_trace_one_states": {
+      "pass": true
+    },
+    "generic_state_needs_y_coordinate_for_phase_information": {
+      "coords": [
+        0.5,
+        0.4220831724689487,
+        0.17845390306336154,
+        0.20000000000000007
+      ],
+      "pass": "True"
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local operator-coordinate lego on bounded qubit pure and mixed states using the Pauli operator basis."
+  }
+}

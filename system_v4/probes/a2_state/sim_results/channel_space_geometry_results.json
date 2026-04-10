@@ -1,0 +1,128 @@
+{
+  "name": "channel_space_geometry",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for channel-space geometry on a bounded qubit channel family, kept separate from CPTP legality, measurement instruments, and channel-capacity rows.",
+  "lego_ids": [
+    "channel_space_geometry"
+  ],
+  "primary_lego_ids": [
+    "channel_space_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "distinct_channels_have_nonzero_choi_separation": {
+      "id_vs_dephasing": 0.5656854249492379,
+      "id_vs_bit_flip": 0.49497474683058307,
+      "dephasing_vs_bit_flip": 0.5338539126015655,
+      "pass": true
+    },
+    "output_family_signature_separates_channel_actions": {
+      "id_vs_dephasing": 0.5656854249492379,
+      "id_vs_bit_flip": 0.6999999999999998,
+      "bit_flip_vs_amplitude_damping": 0.6598509913294943,
+      "pass": true
+    },
+    "identity_preserves_zero_state_but_amplitude_damping_moves_excited_state": {
+      "id_on_zero_error": 0.0,
+      "amp_on_one_distance_to_one": 0.565685424949238,
+      "pass": true
+    }
+  },
+  "negative": {
+    "dephasing_and_bit_flip_are_not_same_geometry_row": {
+      "choi_distance": 0.5338539126015655,
+      "signature_distance": 0.8999999999999998,
+      "pass": true
+    },
+    "identity_and_amplitude_damping_do_not_share_same_output_signature": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "choi_and_output_geometries_agree_on_identity_as_distinct_from_nontrivial_channels": {
+      "pass": true
+    },
+    "channel_distances_are_symmetric_under_pair_order": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local channel-space geometry lego on identity, dephasing, bit-flip, and amplitude-damping channels over a fixed qubit state family."
+  }
+}

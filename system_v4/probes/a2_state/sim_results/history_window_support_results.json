@@ -1,0 +1,118 @@
+{
+  "name": "history_window_support",
+  "classification": "canonical",
+  "classification_note": "Canonical local support row for contiguous history-window selection on one bounded history path.",
+  "lego_ids": [
+    "history_window_support"
+  ],
+  "primary_lego_ids": [
+    "history_window_support"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "window_selects_contiguous_history_support": {
+      "pass": true
+    },
+    "boundary_windows_are_well_defined": {
+      "pass": true
+    },
+    "window_shift_changes_history_support": {
+      "pass": true
+    }
+  },
+  "negative": {
+    "invalid_history_windows_are_rejected": {
+      "pass": true
+    },
+    "row_does_not_promote_entropy_or_selector_claim": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "bounded_to_one_local_history_path": {
+      "pass": true
+    },
+    "window_indexing_is_stable": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local contiguous history-window support object on one bounded path."
+  }
+}

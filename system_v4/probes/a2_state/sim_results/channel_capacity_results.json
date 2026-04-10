@@ -1,0 +1,124 @@
+{
+  "name": "channel_capacity",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for a bounded one-shot channel-capacity proxy on a tiny fixed qubit ensemble, kept separate from coherent information, degradability, and broad channel theory.",
+  "lego_ids": [
+    "channel_capacity"
+  ],
+  "primary_lego_ids": [
+    "channel_capacity"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "identity_preserves_full_binary_distinguishability": {
+      "chi_identity_z": 1.0,
+      "chi_identity_x": 0.9999999999999998,
+      "pass": true
+    },
+    "z_dephasing_preserves_z_basis_but_not_x_basis_capacity_proxy": {
+      "chi_dephase_z": 1.0,
+      "chi_dephase_x": 0.029049405545331197,
+      "pass": true
+    },
+    "depolarizing_and_amplitude_damping_reduce_binary_capacity_proxy": {
+      "chi_depol_z": 0.2780719051126377,
+      "chi_amp_z": 0.3958156020033584,
+      "pass": true
+    }
+  },
+  "negative": {
+    "different_channels_do_not_collapse_to_same_proxy_value": {
+      "pass": true
+    },
+    "no_asymptotic_theorem_claim_is_needed": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "holevo_proxy_stays_between_zero_and_one_bit_on_bounded_binary_ensemble": {
+      "pass": true
+    },
+    "same_channel_can_score_differently_on_different_input_bases": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local one-shot channel-capacity proxy lego on a tiny fixed binary ensemble."
+  }
+}

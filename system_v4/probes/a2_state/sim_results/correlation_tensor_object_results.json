@@ -1,0 +1,169 @@
+{
+  "name": "correlation_tensor_object",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for bipartite Pauli correlation tensors on bounded two-qubit state families.",
+  "lego_ids": [
+    "correlation_tensor_object",
+    "joint_density_matrix"
+  ],
+  "primary_lego_ids": [
+    "correlation_tensor_object"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- direct numpy tensor lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "product_state_tensor_matches_expected_axis_alignment": {
+      "tensor": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "pass": true
+    },
+    "bell_state_tensor_matches_phi_plus_signature": {
+      "tensor": [
+        [
+          0.9999999999999998,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.9999999999999998,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.9999999999999998
+        ]
+      ],
+      "pass": true
+    },
+    "classical_correlation_keeps_only_zz_component": {
+      "tensor": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "bell_tensor_differs_from_classical_tensor": {
+      "fro_norm_difference": 1.4142135623730947,
+      "pass": true
+    },
+    "product_tensor_is_not_bell_tensor": {
+      "fro_norm_difference": 1.4142135623730947,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "tensor_entries_stay_in_physical_range": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local bipartite correlation-tensor lego on bounded two-qubit states."
+  }
+}

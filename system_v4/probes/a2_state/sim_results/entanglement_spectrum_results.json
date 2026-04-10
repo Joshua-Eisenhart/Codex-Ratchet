@@ -1,0 +1,130 @@
+{
+  "name": "entanglement_spectrum",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for entanglement spectrum on a tiny bipartite family, kept separate from entropy scalars, negativity, and truncation workflows.",
+  "lego_ids": [
+    "entanglement_spectrum"
+  ],
+  "primary_lego_ids": [
+    "entanglement_spectrum"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "product_state_has_rank_one_reduced_spectrum": {
+      "spectrum": [
+        1.0,
+        0.0
+      ],
+      "pass": true
+    },
+    "bell_state_has_flat_reduced_spectrum": {
+      "spectrum": [
+        0.4999999999999999,
+        0.4999999999999999
+      ],
+      "pass": true
+    },
+    "partially_entangled_state_has_nonflat_nonntrivial_reduced_spectrum": {
+      "spectrum": [
+        0.8824210936422442,
+        0.11757890635775578
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "entanglement_spectrum_is_not_collapsed_to_single_entropy_scalar": {
+      "pass": true
+    },
+    "spectrum_row_does_not_require_partial_transpose_witness_logic": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_reduced_spectra_are_probability_vectors": {
+      "pass": true
+    },
+    "reduced_spectrum_ordering_is_descending": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local reduced-spectrum lego on a tiny bipartite family."
+  }
+}

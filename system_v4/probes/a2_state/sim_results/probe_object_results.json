@@ -1,0 +1,230 @@
+{
+  "name": "probe_object",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for a finite admissible probe object represented by a bounded family of effect operators on a qubit carrier.",
+  "lego_ids": [
+    "probe_object",
+    "probe_identity_preservation",
+    "distinguishability_relation"
+  ],
+  "primary_lego_ids": [
+    "probe_object"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed -- bounded linear-algebra probe lego"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "bounded scalar witness for nontrivial two-outcome probe separation"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this smallest local probe admission lego"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "exact symbolic identity-resolution check"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "projective_probe_family_is_admissible": {
+      "all_hermitian": true,
+      "all_psd": true,
+      "eigenvalues": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "resolves_identity": true,
+      "identity_sum": [
+        [
+          "(1+0j)",
+          "0j"
+        ],
+        [
+          "0j",
+          "(1+0j)"
+        ]
+      ],
+      "basis_probabilities": {
+        "rho0": [
+          1.0,
+          0.0
+        ],
+        "rho1": [
+          0.0,
+          1.0
+        ]
+      },
+      "pass": true
+    },
+    "noisy_probe_family_is_still_admissible": {
+      "all_hermitian": true,
+      "all_psd": true,
+      "eigenvalues": [
+        [
+          0.25,
+          0.75
+        ],
+        [
+          0.25,
+          0.75
+        ]
+      ],
+      "resolves_identity": true,
+      "identity_sum": [
+        [
+          "(1+0j)",
+          "0j"
+        ],
+        [
+          "0j",
+          "(1+0j)"
+        ]
+      ],
+      "plus_state_probabilities": [
+        0.5,
+        0.5
+      ],
+      "pass": true
+    }
+  },
+  "negative": {
+    "non_psd_effect_family_is_rejected": {
+      "all_hermitian": true,
+      "all_psd": false,
+      "eigenvalues": [
+        [
+          -0.2,
+          1.2
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ],
+      "resolves_identity": false,
+      "identity_sum": [
+        [
+          "(1.2+0j)",
+          "0j"
+        ],
+        [
+          "0j",
+          "(0.8+0j)"
+        ]
+      ],
+      "pass": true
+    },
+    "non_resolving_family_is_rejected": {
+      "all_hermitian": true,
+      "all_psd": true,
+      "eigenvalues": [
+        [
+          0.1,
+          0.6
+        ],
+        [
+          0.1,
+          0.1
+        ]
+      ],
+      "resolves_identity": false,
+      "identity_sum": [
+        [
+          "(0.7+0j)",
+          "0j"
+        ],
+        [
+          "0j",
+          "(0.2+0j)"
+        ]
+      ],
+      "pass": true
+    }
+  },
+  "boundary": {
+    "sympy_exact_identity_resolution": {
+      "pass": true,
+      "skipped": false
+    },
+    "z3_nontrivial_two_outcome_probe_exists": {
+      "pass": true,
+      "skipped": false,
+      "witness": {
+        "sat": true,
+        "witness_lambda": 0.0,
+        "distinguishes_basis_pair": true
+      }
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local admissible-probe lego on bounded qubit effect families."
+  }
+}

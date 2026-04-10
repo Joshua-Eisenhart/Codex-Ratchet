@@ -1,0 +1,213 @@
+{
+  "name": "riemannian_curvature_flat_vs_curved",
+  "classification": "canonical",
+  "classification_note": "Canonical lego for Gaussian curvature comparison: Fubini-Study (K=4) vs flat R^2 (K=0). PyTorch float64 tensors carry the Liouville-formula finite-difference curvature computation. Sympy provides analytic ground truth (K=4 symbolic derivation) that the numerical results are validated against. Both tools are load-bearing: removing either breaks the verification chain.",
+  "lego_ids": [
+    "riemannian_curvature_flat_vs_curved"
+  ],
+  "primary_lego_ids": [
+    "riemannian_curvature_flat_vs_curved"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: all metric component functions return torch.float64 tensors; Liouville formula finite differences run entirely on torch scalar arithmetic."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for curvature computation"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no logical branching in Liouville formula"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for curvature computation"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: symbolic derivation of K=4 (Fubini-Study) and K=0 (flat) provides the analytic ground truth that the numerical tolerance checks are calibrated against."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; 2D diagonal metric uses no Clifford algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; Fubini-Study and flat computed directly without geomstats machinery"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for curvature computation"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for curvature computation"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for curvature computation"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for curvature computation"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for curvature computation"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "fubini_study_K_equals_4": {
+      "description": "Fubini-Study metric on CP^1 has constant Gaussian curvature K=4 (S^2 radius 1/2)",
+      "test_points": {
+        "theta_pi6": {
+          "theta": 0.5235987755982988,
+          "K_numerical": 3.9999993365569257,
+          "K_expected": 4.0,
+          "residual": 6.634430742558095e-07,
+          "pass": true
+        },
+        "theta_pi4": {
+          "theta": 0.7853981633974483,
+          "K_numerical": 3.999998334304126,
+          "K_expected": 4.0,
+          "residual": 1.6656958741201322e-06,
+          "pass": true
+        },
+        "theta_pi3": {
+          "theta": 1.0471975511965976,
+          "K_numerical": 4.000000960838324,
+          "K_expected": 4.0,
+          "residual": 9.608383235715223e-07,
+          "pass": true
+        },
+        "theta_pi2": {
+          "theta": 1.5707963267948966,
+          "K_numerical": 4.000000331161484,
+          "K_expected": 4.0,
+          "residual": 3.3116148401290957e-07,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "flat_euclidean_K_equals_0": {
+      "description": "Flat R^2 metric has Gaussian curvature K=0",
+      "K_numerical": -0.0,
+      "K_expected": 0.0,
+      "residual": 0.0,
+      "pass": true
+    },
+    "sympy_K_fubini_study_exact_4": {
+      "description": "Sympy symbolic derivation confirms K=4 for Fubini-Study metric",
+      "K_symbolic": "4",
+      "pass": true
+    },
+    "sympy_K_flat_exact_0": {
+      "description": "Sympy symbolic derivation confirms K=0 for flat Euclidean metric",
+      "K_symbolic": "0",
+      "pass": true
+    }
+  },
+  "negative": {
+    "fubini_study_K_is_not_zero": {
+      "description": "Fubini-Study K must be clearly nonzero (> 1.0)",
+      "K_FS": 4.000000331161484,
+      "pass": true
+    },
+    "curved_vs_flat_K_differ_by_at_least_1": {
+      "description": "Flat and curved manifolds differ by |K_FS - K_flat| > 1.0",
+      "K_FS": 4.000000331161484,
+      "K_flat": -0.0,
+      "difference": 4.000000331161484,
+      "pass": true
+    },
+    "fubini_study_K_is_positive": {
+      "description": "S^2 has positive curvature; K_FS > 0",
+      "K_FS": 4.000000331161484,
+      "pass": true
+    },
+    "flat_K_is_strictly_zero": {
+      "description": "Constant metric has all-zero Christoffel symbols -> K = 0 to machine precision",
+      "K_flat": -0.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "fubini_study_near_pole_finite_and_correct": {
+      "description": "K_FS remains finite and close to 4 near the north pole (theta=0.05)",
+      "theta": 0.05,
+      "K_numerical": 3.9999997151541735,
+      "K_expected": 4.0,
+      "residual": 2.848458264814724e-07,
+      "is_finite": true,
+      "pass": true
+    },
+    "fubini_study_phi_independence": {
+      "description": "K_FS is constant in phi (metric is axially symmetric)",
+      "theta": 1.0471975511965976,
+      "K_by_phi": {
+        "phi_0": 4.000000960838324,
+        "phi_pi4": 4.000000960838324,
+        "phi_pi2": 4.000000960838324
+      },
+      "max_phi_variation": 0.0,
+      "pass": true
+    },
+    "flat_K_zero_at_off_origin_point": {
+      "description": "Flat R^2 has K=0 everywhere, not just at origin",
+      "point": [
+        3.7,
+        -2.1
+      ],
+      "K_numerical": -0.0,
+      "pass": true
+    },
+    "fubini_study_metric_nondegenerate": {
+      "description": "Metric determinant det(g) = E*G > 0 at theta=pi/4",
+      "theta": 0.7853981633974483,
+      "E": 0.25,
+      "G": 0.12499999999999997,
+      "det_g": 0.031249999999999993,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "manifolds": {
+      "curved": "CP^1 / S^2 with Fubini-Study metric, K=4",
+      "flat": "R^2 with Euclidean metric, K=0"
+    },
+    "formula": "Liouville diagonal metric: K = -(1/2*sqrt(EG))*[d/du(G_u/sqrt(EG)) + d/dv(E_v/sqrt(EG))]",
+    "scope_note": "Gaussian curvature lego: Fubini-Study (K=4) vs flat Euclidean (K=0). Numerical: Liouville formula with centered finite differences on torch.float64. Analytic: sympy symbolic derivation confirms both K values. Out of scope: Levi-Civita connection in full, Berry-phase holonomy, Ricci flow, Einstein equations, sectional curvature tensor, higher dimensions."
+  },
+  "timestamp": "2026-04-10T07:20:21.594787+00:00"
+}

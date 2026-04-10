@@ -1,0 +1,387 @@
+{
+  "name": "sim_pure_lego_clifford_weyl_transport",
+  "classification": "canonical",
+  "lego_ids": [
+    "clifford_weyl_transport"
+  ],
+  "primary_lego_ids": [
+    "clifford_weyl_transport"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; clifford+numpy sufficient for transport"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "graph structure not relevant to rotor transport"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "rational check: rotor norm at \u03b8=\u03c0/2 is exactly 1"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for rational check"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic proof of transport formula R\u00b7e1\u00b7~R = cos(\u03b8)e1+sin(\u03b8)e2"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "PRIMARY: Cl(3) rotors, sandwich product, double-cover, non-commutativity"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "Riemannian metric not relevant to algebraic transport"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant networks not relevant here"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph structure not relevant"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex structure not relevant"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "persistent homology not relevant"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "load_bearing",
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sweep": [
+      {
+        "theta_pi": 0.0,
+        "clifford": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "su2": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "expected": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "clifford_err": 0.0,
+        "su2_err": 0.0,
+        "bridge_err": 0.0,
+        "pass": true
+      },
+      {
+        "theta_pi": 0.25,
+        "clifford": [
+          0.707106781187,
+          0.707106781187,
+          0.0
+        ],
+        "su2": [
+          0.707106781187,
+          0.707106781187,
+          0.0
+        ],
+        "expected": [
+          0.707106781187,
+          0.707106781187,
+          0.0
+        ],
+        "clifford_err": 0.0,
+        "su2_err": 0.0,
+        "bridge_err": 0.0,
+        "pass": true
+      },
+      {
+        "theta_pi": 0.5,
+        "clifford": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "su2": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "expected": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "clifford_err": 0.0,
+        "su2_err": 0.0,
+        "bridge_err": 0.0,
+        "pass": true
+      },
+      {
+        "theta_pi": 1.0,
+        "clifford": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "su2": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "expected": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "clifford_err": 0.0,
+        "su2_err": 0.0,
+        "bridge_err": 0.0,
+        "pass": true
+      },
+      {
+        "theta_pi": 1.5,
+        "clifford": [
+          -0.0,
+          -1.0,
+          0.0
+        ],
+        "su2": [
+          -0.0,
+          -1.0,
+          0.0
+        ],
+        "expected": [
+          -0.0,
+          -1.0,
+          0.0
+        ],
+        "clifford_err": 0.0,
+        "su2_err": 0.0,
+        "bridge_err": 0.0,
+        "pass": true
+      },
+      {
+        "theta_pi": 2.0,
+        "clifford": [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        "su2": [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        "expected": [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        "clifford_err": 0.0,
+        "su2_err": 0.0,
+        "bridge_err": 0.0,
+        "pass": true
+      },
+      {
+        "theta_pi": 3.0,
+        "clifford": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "su2": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "expected": [
+          -1.0,
+          0.0,
+          0.0
+        ],
+        "clifford_err": 0.0,
+        "su2_err": 0.0,
+        "bridge_err": 0.0,
+        "pass": true
+      },
+      {
+        "theta_pi": 4.0,
+        "clifford": [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        "su2": [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        "expected": [
+          1.0,
+          -0.0,
+          0.0
+        ],
+        "clifford_err": 0.0,
+        "su2_err": 0.0,
+        "bridge_err": 0.0,
+        "pass": true
+      }
+    ],
+    "all_transport_match": true,
+    "double_cover": {
+      "R_2pi_scalar_part": -1.0,
+      "R_4pi_scalar_part": 1.0,
+      "expected_2pi": -1.0,
+      "expected_4pi": 1.0,
+      "pass": true
+    },
+    "rotor_norms": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "rotor_norms_pass": true,
+    "diagnosis": "transport_agrees_double_cover_confirmed",
+    "pass": true
+  },
+  "negative": {
+    "theta_degrees": 90.0,
+    "clifford_order_A_RzRx": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "clifford_order_B_RxRz": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "su2_order_A_UzUx": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "su2_order_B_UxUz": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "orders_differ_clifford": true,
+    "orders_differ_su2": true,
+    "bridge_A_err": 0.0,
+    "bridge_B_err": 0.0,
+    "rotor_commutator_norm": 1.0,
+    "commutator_nonzero": true,
+    "diagnosis": "non_commutativity_confirmed_bridge_consistent",
+    "pass": true
+  },
+  "boundary": {
+    "theta_zero": {
+      "result": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "err": 0.0,
+      "pass": true
+    },
+    "theta_pi": {
+      "result": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "expected": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "err": 0.0,
+      "pass": true
+    },
+    "theta_4pi": {
+      "rotor_scalar_part": 1.0,
+      "transport_result": [
+        1.0,
+        -0.0,
+        0.0
+      ],
+      "expected_rotor_scalar": 1.0,
+      "expected_transport": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "rotor_pass": true,
+      "transport_pass": true,
+      "pass": true
+    },
+    "sympy_symbolic": {
+      "e1_coeff_simplified": "cos(theta)",
+      "e2_coeff_simplified": "sin(theta)",
+      "e1_equals_cos_theta": true,
+      "e2_equals_sin_theta": true,
+      "pass": true
+    },
+    "z3_rotor_norm": {
+      "check": "cos\u00b2(\u03c0/4) + sin\u00b2(\u03c0/4) = 1",
+      "z3_result": "unsat",
+      "pass": true
+    },
+    "pass": true
+  },
+  "summary": {
+    "all_pass": true,
+    "positive_pass": true,
+    "negative_pass": true,
+    "boundary_pass": true,
+    "claim": "Cl(3) rotor transport R\u00b7e1\u00b7~R matches SU(2) adjoint U\u00b7\u03c3_x\u00b7U\u2020; double-cover R(2\u03c0)=-1 confirmed; non-commutativity confirmed",
+    "diagnosis": "clifford_weyl_bridge_consistent"
+  },
+  "timestamp": "2026-04-10T09:10:04.781750Z"
+}

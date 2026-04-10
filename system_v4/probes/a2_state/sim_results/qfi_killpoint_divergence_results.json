@@ -1,0 +1,692 @@
+{
+  "name": "pure_lego_qfi_killpoint_divergence",
+  "classification": "canonical",
+  "classification_note": "Canonical probe: QFI behavior at the I_c kill point gamma*=(1-p)/p for the amplitude-damping rho_AR family. SLD-QFI F_Q=p^2/(1-p*gamma)+p/gamma. torch autograd (load_bearing) for gradient sweeps and continuity checks; sympy (load_bearing) for symbolic F_Q(gamma*)=p/(1-p) and C^2 verification; z3 (supportive) rational-arithmetic check F_Q_A(3/4,1/3)=9/4 (UNSAT). Diagnosis: QFI smooth at gamma*; divergence only at gamma=0 (rank-change artifact).",
+  "lego_ids": [
+    "qfi_killpoint_continuity"
+  ],
+  "primary_lego_ids": [
+    "qfi_killpoint_continuity"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: torch.autograd for d_gamma F_Q gradient sweeps \u2014 positive sweep (p=0.75, 91 steps gamma in [0.05,0.95]), gradient-continuity check at gamma*=1/3 (left/right eps=5e-4), first-derivative verification against analytic -6.0"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "supportive: SMT check that F_Q_A(3/4,1/3)=9/4 in rational arithmetic (negation is UNSAT in QF_LIRA)"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "load_bearing: symbolic proof that F_Q_AR(p,gamma*)=p/(1-p), d_gamma F_Q|_{g*}=p(1-2p)/(1-p)^2 (finite), d2_gamma F_Q|_{g*}=2p(1-3p+3p^2)/(1-p)^3 (finite) \u2014 confirming C^2 smooth passage through kill point"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "tried; not used \u2014 no graph/spinor/topology structure in this probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "qfi_smooth_at_kill_p075": {
+      "pass": true,
+      "p": 0.75,
+      "gamma_star": 0.33333333,
+      "expected_fq_at_star": 3.0,
+      "n_steps": 91,
+      "gamma_range": [
+        0.05,
+        0.95
+      ],
+      "all_finite": true,
+      "all_positive": true,
+      "qfi_at_gamma_star_from_sweep": 3.02023558,
+      "star_value_correct": true,
+      "grad_left_at_star": -6.021045,
+      "grad_right_at_star": -5.979045,
+      "grad_jump_at_star": 0.04200018,
+      "gradient_continuous_at_star": true,
+      "analytic_first_deriv_at_star": -6.0,
+      "grad_center_near_expected": true,
+      "diagnosis": "smooth",
+      "qfi_range": [
+        2.2501,
+        15.5844
+      ],
+      "sweep": [
+        {
+          "gamma": 0.05,
+          "qfi": 15.584416,
+          "grad_qfi": -299.544611
+        },
+        {
+          "gamma": 0.06,
+          "qfi": 13.089005,
+          "grad_qfi": -207.870764
+        },
+        {
+          "gamma": 0.07,
+          "qfi": 11.307953,
+          "grad_qfi": -152.591303
+        },
+        {
+          "gamma": 0.08,
+          "qfi": 9.973404,
+          "grad_qfi": -116.71005
+        },
+        {
+          "gamma": 0.09,
+          "qfi": 8.93655,
+          "grad_qfi": -92.107431
+        },
+        {
+          "gamma": 0.1,
+          "qfi": 8.108108,
+          "grad_qfi": -74.506939
+        },
+        {
+          "gamma": 0.11,
+          "qfi": 7.431261,
+          "grad_qfi": -61.482317
+        },
+        {
+          "gamma": 0.12,
+          "qfi": 6.868132,
+          "grad_qfi": -51.573884
+        },
+        {
+          "gamma": 0.13,
+          "qfi": 6.392499,
+          "grad_qfi": -43.860746
+        },
+        {
+          "gamma": 0.14,
+          "qfi": 5.985634,
+          "grad_qfi": -37.738637
+        },
+        {
+          "gamma": 0.15,
+          "qfi": 5.633803,
+          "grad_qfi": -32.797725
+        },
+        {
+          "gamma": 0.16,
+          "qfi": 5.326705,
+          "grad_qfi": -28.752098
+        },
+        {
+          "gamma": 0.17,
+          "qfi": 5.056464,
+          "grad_qfi": -25.397374
+        },
+        {
+          "gamma": 0.18,
+          "qfi": 4.816956,
+          "grad_qfi": -22.584314
+        },
+        {
+          "gamma": 0.19,
+          "qfi": 4.603345,
+          "grad_qfi": -20.201883
+        },
+        {
+          "gamma": 0.2,
+          "qfi": 4.411765,
+          "grad_qfi": -18.16609
+        },
+        {
+          "gamma": 0.21,
+          "qfi": 4.239084,
+          "grad_qfi": -16.41245
+        },
+        {
+          "gamma": 0.22,
+          "qfi": 4.082744,
+          "grad_qfi": -14.89079
+        },
+        {
+          "gamma": 0.23,
+          "qfi": 3.940628,
+          "grad_qfi": -13.561599
+        },
+        {
+          "gamma": 0.24,
+          "qfi": 3.810976,
+          "grad_qfi": -12.393417
+        },
+        {
+          "gamma": 0.25,
+          "qfi": 3.692308,
+          "grad_qfi": -11.360947
+        },
+        {
+          "gamma": 0.26,
+          "qfi": 3.583373,
+          "grad_qfi": -10.443658
+        },
+        {
+          "gamma": 0.27,
+          "qfi": 3.483107,
+          "grad_qfi": -9.624747
+        },
+        {
+          "gamma": 0.28,
+          "qfi": 3.390597,
+          "grad_qfi": -8.890353
+        },
+        {
+          "gamma": 0.29,
+          "qfi": 3.305057,
+          "grad_qfi": -8.228961
+        },
+        {
+          "gamma": 0.3,
+          "qfi": 3.225806,
+          "grad_qfi": -7.63094
+        },
+        {
+          "gamma": 0.31,
+          "qfi": 3.152254,
+          "grad_qfi": -7.088182
+        },
+        {
+          "gamma": 0.32,
+          "qfi": 3.083882,
+          "grad_qfi": -6.593826
+        },
+        {
+          "gamma": 0.33,
+          "qfi": 3.020236,
+          "grad_qfi": -6.142027
+        },
+        {
+          "gamma": 0.34,
+          "qfi": 2.960916,
+          "grad_qfi": -5.727788
+        },
+        {
+          "gamma": 0.35,
+          "qfi": 2.905569,
+          "grad_qfi": -5.34681
+        },
+        {
+          "gamma": 0.36,
+          "qfi": 2.853881,
+          "grad_qfi": -4.995378
+        },
+        {
+          "gamma": 0.37,
+          "qfi": 2.805574,
+          "grad_qfi": -4.670271
+        },
+        {
+          "gamma": 0.38,
+          "qfi": 2.760397,
+          "grad_qfi": -4.368682
+        },
+        {
+          "gamma": 0.39,
+          "qfi": 2.71813,
+          "grad_qfi": -4.088154
+        },
+        {
+          "gamma": 0.4,
+          "qfi": 2.678571,
+          "grad_qfi": -3.826531
+        },
+        {
+          "gamma": 0.41,
+          "qfi": 2.641543,
+          "grad_qfi": -3.58191
+        },
+        {
+          "gamma": 0.42,
+          "qfi": 2.606882,
+          "grad_qfi": -3.352612
+        },
+        {
+          "gamma": 0.43,
+          "qfi": 2.574444,
+          "grad_qfi": -3.137141
+        },
+        {
+          "gamma": 0.44,
+          "qfi": 2.544098,
+          "grad_qfi": -2.93417
+        },
+        {
+          "gamma": 0.45,
+          "qfi": 2.515723,
+          "grad_qfi": -2.742508
+        },
+        {
+          "gamma": 0.46,
+          "qfi": 2.489213,
+          "grad_qfi": -2.561089
+        },
+        {
+          "gamma": 0.47,
+          "qfi": 2.464471,
+          "grad_qfi": -2.388955
+        },
+        {
+          "gamma": 0.48,
+          "qfi": 2.441406,
+          "grad_qfi": -2.22524
+        },
+        {
+          "gamma": 0.49,
+          "qfi": 2.41994,
+          "grad_qfi": -2.069159
+        },
+        {
+          "gamma": 0.5,
+          "qfi": 2.4,
+          "grad_qfi": -1.92
+        },
+        {
+          "gamma": 0.51,
+          "qfi": 2.381519,
+          "grad_qfi": -1.777112
+        },
+        {
+          "gamma": 0.52,
+          "qfi": 2.364439,
+          "grad_qfi": -1.639901
+        },
+        {
+          "gamma": 0.53,
+          "qfi": 2.348704,
+          "grad_qfi": -1.507819
+        },
+        {
+          "gamma": 0.54,
+          "qfi": 2.334267,
+          "grad_qfi": -1.380363
+        },
+        {
+          "gamma": 0.55,
+          "qfi": 2.321083,
+          "grad_qfi": -1.257066
+        },
+        {
+          "gamma": 0.56,
+          "qfi": 2.309113,
+          "grad_qfi": -1.137494
+        },
+        {
+          "gamma": 0.57,
+          "qfi": 2.298322,
+          "grad_qfi": -1.021242
+        },
+        {
+          "gamma": 0.58,
+          "qfi": 2.288679,
+          "grad_qfi": -0.907929
+        },
+        {
+          "gamma": 0.59,
+          "qfi": 2.280155,
+          "grad_qfi": -0.797196
+        },
+        {
+          "gamma": 0.6,
+          "qfi": 2.272727,
+          "grad_qfi": -0.688705
+        },
+        {
+          "gamma": 0.61,
+          "qfi": 2.266375,
+          "grad_qfi": -0.582131
+        },
+        {
+          "gamma": 0.62,
+          "qfi": 2.261079,
+          "grad_qfi": -0.477165
+        },
+        {
+          "gamma": 0.63,
+          "qfi": 2.256827,
+          "grad_qfi": -0.373506
+        },
+        {
+          "gamma": 0.64,
+          "qfi": 2.253606,
+          "grad_qfi": -0.270866
+        },
+        {
+          "gamma": 0.65,
+          "qfi": 2.251407,
+          "grad_qfi": -0.168961
+        },
+        {
+          "gamma": 0.66,
+          "qfi": 2.250225,
+          "grad_qfi": -0.067514
+        },
+        {
+          "gamma": 0.67,
+          "qfi": 2.250056,
+          "grad_qfi": 0.033752
+        },
+        {
+          "gamma": 0.68,
+          "qfi": 2.2509,
+          "grad_qfi": 0.135108
+        },
+        {
+          "gamma": 0.69,
+          "qfi": 2.25276,
+          "grad_qfi": 0.23683
+        },
+        {
+          "gamma": 0.7,
+          "qfi": 2.255639,
+          "grad_qfi": 0.339194
+        },
+        {
+          "gamma": 0.71,
+          "qfi": 2.259547,
+          "grad_qfi": 0.442481
+        },
+        {
+          "gamma": 0.72,
+          "qfi": 2.264493,
+          "grad_qfi": 0.546979
+        },
+        {
+          "gamma": 0.73,
+          "qfi": 2.270491,
+          "grad_qfi": 0.652983
+        },
+        {
+          "gamma": 0.74,
+          "qfi": 2.277558,
+          "grad_qfi": 0.7608
+        },
+        {
+          "gamma": 0.75,
+          "qfi": 2.285714,
+          "grad_qfi": 0.870748
+        },
+        {
+          "gamma": 0.76,
+          "qfi": 2.294982,
+          "grad_qfi": 0.983162
+        },
+        {
+          "gamma": 0.77,
+          "qfi": 2.305387,
+          "grad_qfi": 1.098394
+        },
+        {
+          "gamma": 0.78,
+          "qfi": 2.31696,
+          "grad_qfi": 1.216816
+        },
+        {
+          "gamma": 0.79,
+          "qfi": 2.329735,
+          "grad_qfi": 1.338824
+        },
+        {
+          "gamma": 0.8,
+          "qfi": 2.34375,
+          "grad_qfi": 1.464844
+        },
+        {
+          "gamma": 0.81,
+          "qfi": 2.359047,
+          "grad_qfi": 1.595329
+        },
+        {
+          "gamma": 0.82,
+          "qfi": 2.375673,
+          "grad_qfi": 1.730772
+        },
+        {
+          "gamma": 0.83,
+          "qfi": 2.393681,
+          "grad_qfi": 1.871704
+        },
+        {
+          "gamma": 0.84,
+          "qfi": 2.413127,
+          "grad_qfi": 2.018704
+        },
+        {
+          "gamma": 0.85,
+          "qfi": 2.434077,
+          "grad_qfi": 2.172401
+        },
+        {
+          "gamma": 0.86,
+          "qfi": 2.4566,
+          "grad_qfi": 2.333488
+        },
+        {
+          "gamma": 0.87,
+          "qfi": 2.480774,
+          "grad_qfi": 2.502724
+        },
+        {
+          "gamma": 0.88,
+          "qfi": 2.506684,
+          "grad_qfi": 2.680946
+        },
+        {
+          "gamma": 0.89,
+          "qfi": 2.534426,
+          "grad_qfi": 2.869081
+        },
+        {
+          "gamma": 0.9,
+          "qfi": 2.564103,
+          "grad_qfi": 3.068157
+        },
+        {
+          "gamma": 0.91,
+          "qfi": 2.595829,
+          "grad_qfi": 3.279321
+        },
+        {
+          "gamma": 0.92,
+          "qfi": 2.629734,
+          "grad_qfi": 3.503853
+        },
+        {
+          "gamma": 0.93,
+          "qfi": 2.665956,
+          "grad_qfi": 3.743189
+        },
+        {
+          "gamma": 0.94,
+          "qfi": 2.704652,
+          "grad_qfi": 3.998945
+        },
+        {
+          "gamma": 0.95,
+          "qfi": 2.745995,
+          "grad_qfi": 4.272945
+        }
+      ]
+    }
+  },
+  "negative": {
+    "qfi_diverges_at_rank_change_not_kill_point": {
+      "pass": true,
+      "p": 0.75,
+      "gamma_star": 0.333333,
+      "fq_at_kill_point": 3.0,
+      "expected_fq_at_star": 3.0,
+      "star_finite": true,
+      "fq_at_gamma_0001": 750.5629,
+      "ratio_fq_low_vs_star": 250.19,
+      "large_near_zero": true,
+      "rank_change_eigenvalue_mu2_at_0001": 0.00075,
+      "rank_change_confirmed": true,
+      "leading_term": {
+        "expected_p": 0.75,
+        "fq_times_gamma_at_0001": 0.750563,
+        "converges_to_p": true
+      },
+      "asymptotic_ratio": 1.000751,
+      "asymptotic_correct": true,
+      "near_zero_sweep": [
+        {
+          "gamma": 0.001,
+          "qfi": 750.5629,
+          "qfi_times_gamma": 0.750563
+        },
+        {
+          "gamma": 0.002,
+          "qfi": 375.5633,
+          "qfi_times_gamma": 0.751127
+        },
+        {
+          "gamma": 0.005,
+          "qfi": 150.5646,
+          "qfi_times_gamma": 0.752823
+        },
+        {
+          "gamma": 0.01,
+          "qfi": 75.5668,
+          "qfi_times_gamma": 0.755668
+        },
+        {
+          "gamma": 0.02,
+          "qfi": 38.0711,
+          "qfi_times_gamma": 0.761421
+        },
+        {
+          "gamma": 0.05,
+          "qfi": 15.5844,
+          "qfi_times_gamma": 0.779221
+        },
+        {
+          "gamma": 0.1,
+          "qfi": 8.1081,
+          "qfi_times_gamma": 0.810811
+        }
+      ],
+      "diagnosis": "rank_change_at_gamma_zero_not_at_kill_point"
+    }
+  },
+  "boundary": {
+    "exact_value_at_kill_point": {
+      "pass": true,
+      "p": 0.75,
+      "gamma_star": 0.3333333333,
+      "expected": 3.0,
+      "computed": 3.0,
+      "discrepancy": 0.0
+    },
+    "autograd_vs_fd_at_star": {
+      "pass": true,
+      "p": 0.75,
+      "gamma_star": 0.33333333,
+      "grad_autograd": -6.0,
+      "grad_fd": -6.0,
+      "discrepancy": 6e-09
+    },
+    "sympy_symbolic": {
+      "pass": true,
+      "F_Q_at_star_equals_p_over_1mp": true,
+      "first_derivative_finite": true,
+      "second_derivative_finite": true,
+      "F_Q_star_p075": 3.0,
+      "d1_at_star_p075": -6.0,
+      "d2_at_star_p075": 42.0,
+      "F_Q_star_symbolic": "-p/(p - 1)",
+      "d1_star_symbolic": "-p**3/(p - 1)**2 + p"
+    },
+    "z3_rational_check": {
+      "pass": true,
+      "p_rational": "3/4",
+      "gamma_star_rational": "1/3",
+      "expected_F_Q_A_rational": "9/4",
+      "z3_negation_result": "unsat",
+      "z3_tautology_confirmed": true,
+      "interpretation": "F_Q_A(3/4,1/3)=9/4 is provably exact in rational arithmetic"
+    },
+    "alt_kill_point_p_two_thirds": {
+      "pass": true,
+      "p": 0.66666667,
+      "gamma_star": 0.5,
+      "expected_fq_at_star": 2.0,
+      "computed_fq_at_star": 2.0,
+      "discrepancy": 2.220446049250313e-16,
+      "interpretation": "F_Q(gamma*)=p/(1-p) holds universally; p=2/3 confirms"
+    },
+    "all_pass": true
+  },
+  "summary": {
+    "all_pass": true,
+    "positive_pass": true,
+    "negative_pass": true,
+    "boundary_pass": true,
+    "open_question": "Does QFI diverge at the I_c kill point gamma*=(1-p)/p? (companion to ENFORCEMENT_AND_PROCESS_RULES.md open question)",
+    "answer": "QFI is SMOOTH at the kill point \u2014 no divergence, no kink, C^2-continuous. F_Q(gamma*)=p/(1-p) is finite. True divergence is at gamma->0 (rank-change artifact: eigenvalue p*gamma->0). The I_c shell boundary and QFI singularity are structurally independent.",
+    "kill_point_diagnosis": "smooth",
+    "divergence_location": "gamma_zero_rank_change",
+    "scope_note": "Amplitude damping, rho_AR rank-2 family, F_Q=p^2/(1-p*gamma)+p/gamma. p=3/4 primary (gamma*=1/3), p=2/3 crosscheck (gamma*=1/2)."
+  },
+  "timestamp": "2026-04-10T08:22:04.576369+00:00"
+}

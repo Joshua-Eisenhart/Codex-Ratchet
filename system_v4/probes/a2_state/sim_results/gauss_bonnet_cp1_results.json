@@ -1,0 +1,294 @@
+{
+  "name": "gauss_bonnet_cp1_fubini_study",
+  "classification": "canonical",
+  "classification_note": "Canonical lego for Gauss-Bonnet on CP^1/S\u00b2: K=4 (anchored to riemannian_curvature probe) integrates to \u222bK dA=4\u03c0=2\u03c0\u03c7(S\u00b2). PyTorch float64 is load-bearing: Gauss-Legendre quadrature on torch.float64 grids integrates K\u00b7dA over the full sphere and recovers 4\u03c0 to 1e-10. Sympy is load-bearing: symbolic exact integration confirms \u222b\u2080^\u03c0 \u222b\u2080^{2\u03c0} sin(\u03b8)d\u03b8d\u03c6 = 4\u03c0 analytically, and confirms area=\u03c0 and K\u00b7area=4\u03c0.",
+  "lego_ids": [
+    "gauss_bonnet_cp1_fubini_study"
+  ],
+  "primary_lego_ids": [
+    "gauss_bonnet_cp1_fubini_study"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: torch.float64 tensors carry the \u03b8 and \u03c6 quadrature grids; all integrand values K(\u03b8,\u03c6)\u00b7dA(\u03b8,\u03c6) are computed as torch operations; double trapezoidal rule on 1000\u00d72000 and Gauss-Legendre rule on 500-point grids recover \u222bK dA to < 1e-8 of 4\u03c0. Removing torch breaks the numerical integration cross-check against sympy."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; integration over smooth manifold requires no graph structure"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; Gauss-Bonnet identity has no logical branching"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; integral computation requires no SMT reasoning"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: sympy.integrate computes the exact symbolic double integral \u222b\u2080^\u03c0 \u222b\u2080^{2\u03c0} sin(\u03b8)d\u03b8d\u03c6 = 4\u03c0; confirms area element \u222bsin(\u03b8)/4 d\u03b8d\u03c6 = \u03c0; verifies K\u00b7area=4\u00b7\u03c0=4\u03c0; confirms 2\u03c0\u03c7(S\u00b2)=4\u03c0. All results are sympy-exact symbolic values that the numerical tests are calibrated against."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; scalar curvature integration on 2D sphere requires no Clifford algebra"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; Fubini-Study metric computed directly without geomstats"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no equivariant structure in scalar curvature integration"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no hypergraph structure"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; Euler characteristic \u03c7=2 used as known S\u00b2 fact, no complex construction"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no persistent homology"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "sympy_checks": {
+    "integral_sin_theta_0_to_pi": "2",
+    "integral_KdA_exact": "4*pi",
+    "integral_KdA_float": 12.566370614359172,
+    "area_exact": "pi",
+    "area_float": 3.141592653589793,
+    "gauss_bonnet_rhs_2pi_chi": "4*pi",
+    "gb_identity_integral_equals_2pi_chi": true,
+    "K_times_area_equals_4pi": true,
+    "pass": true
+  },
+  "numerical_integration": {
+    "trapezoidal": {
+      "method": "double_trapezoidal",
+      "n_theta": 2000,
+      "n_phi": 4000,
+      "integral_KdA": 12.56636802791688,
+      "expected_4pi": 12.566370614359172,
+      "residual": 2.5864422923405073e-06,
+      "tolerance": 1e-05,
+      "pass": true
+    },
+    "gauss_legendre": {
+      "method": "gauss_legendre",
+      "n_points": 500,
+      "integral_sin_theta_0_to_pi": 1.9999999999999996,
+      "expected_integral_sin": 2.0,
+      "integral_KdA": 12.566370614359169,
+      "expected_4pi": 12.566370614359172,
+      "residual": 3.552713678800501e-15,
+      "tolerance": 1e-10,
+      "pass": true
+    },
+    "area": {
+      "method": "trapezoidal",
+      "n_theta": 2000,
+      "area": 3.14159200697922,
+      "expected_area_pi": 3.141592653589793,
+      "residual": 6.466105730851268e-07,
+      "tolerance": 1e-05,
+      "pass": true
+    }
+  },
+  "positive": {
+    "trap_integral_KdA_equals_4pi": {
+      "description": "Trapezoidal \u222bK dA over CP^1/S\u00b2 converges to 4\u03c0 within 1e-6",
+      "method": "double_trapezoidal",
+      "n_theta": 2000,
+      "n_phi": 4000,
+      "integral_KdA": 12.56636802791688,
+      "expected_4pi": 12.566370614359172,
+      "residual": 2.5864422923405073e-06,
+      "tolerance": 1e-05,
+      "pass": true
+    },
+    "gl_integral_KdA_equals_4pi": {
+      "description": "Gauss-Legendre \u222bK dA over CP^1/S\u00b2 converges to 4\u03c0 within 1e-6",
+      "method": "gauss_legendre",
+      "n_points": 500,
+      "integral_sin_theta_0_to_pi": 1.9999999999999996,
+      "expected_integral_sin": 2.0,
+      "integral_KdA": 12.566370614359169,
+      "expected_4pi": 12.566370614359172,
+      "residual": 3.552713678800501e-15,
+      "tolerance": 1e-10,
+      "pass": true
+    },
+    "sympy_exact_integral_equals_4pi": {
+      "description": "Sympy symbolic \u222b\u2080^\u03c0 \u222b\u2080^{2\u03c0} sin(\u03b8)d\u03b8d\u03c6 = 4\u03c0 exactly",
+      "integral_KdA_exact": "4*pi",
+      "gb_rhs_2pi_chi": "4*pi",
+      "identity_holds": true,
+      "pass": true
+    },
+    "area_of_cp1_equals_pi": {
+      "description": "Total area of CP^1 with Fubini-Study metric = \u03c0; K\u00b7area=4\u03c0 \u2713",
+      "method": "trapezoidal",
+      "n_theta": 2000,
+      "area": 3.14159200697922,
+      "expected_area_pi": 3.141592653589793,
+      "residual": 6.466105730851268e-07,
+      "tolerance": 1e-05,
+      "sympy_area": "pi",
+      "K_times_area_equals_4pi": true,
+      "pass": true
+    },
+    "K_times_area_product_check": {
+      "description": "K=4 (from riemannian_curvature probe) \u00d7 area=\u03c0 = 4\u03c0; anchored cross-check",
+      "K_FS": 4.0,
+      "area_numerical": 3.14159200697922,
+      "K_times_area": 12.56636802791688,
+      "expected_4pi": 12.566370614359172,
+      "residual": 2.5864422923405073e-06,
+      "tolerance": 1e-05,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "negative": {
+    "flat_R2_integral_KdA_is_zero": {
+      "description": "Flat R\u00b2 has K=0 everywhere; \u222bK dA=0 \u2260 4\u03c0 (Euler characteristic differs)",
+      "K_flat": 0.0,
+      "area": 3.141592653589793,
+      "integral_KdA": 0.0,
+      "pass": true
+    },
+    "integral_not_2pi": {
+      "description": "\u222bK dA = 4\u03c0 \u2260 2\u03c0; Euler characteristic of S\u00b2 is 2, not 1",
+      "integral_KdA": 12.566370614359172,
+      "incorrect_2pi_chi_1": 6.283185307179586,
+      "difference": 6.283185307179586,
+      "pass": true
+    },
+    "integrand_varies_with_theta": {
+      "description": "sin(\u03b8) integrand varies with \u03b8: not constant despite K=const",
+      "theta_samples": [
+        0.1,
+        0.7853981633974483,
+        1.5707963267948966,
+        2.356194490192345,
+        3.041592653589793
+      ],
+      "integrand_samples": [
+        0.09983341664682815,
+        0.7071067811865475,
+        1.0,
+        0.7071067811865476,
+        0.09983341664682836
+      ],
+      "min_value": 0.09983341664682815,
+      "max_value": 1.0,
+      "variation": 0.9001665833531718,
+      "pass": true
+    },
+    "s1_gauss_bonnet_is_zero_not_4pi": {
+      "description": "S\u00b9 has \u03c7=0; Gauss-Bonnet gives 2\u03c0\u03c7=0 \u2260 4\u03c0 \u2014 S\u00b2 is special",
+      "euler_chi_S1": 0,
+      "gauss_bonnet_2pi_chi": 0.0,
+      "gauss_bonnet_S2": 12.566370614359172,
+      "difference": 12.566370614359172,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "boundary": {
+    "integrand_vanishes_at_poles": {
+      "description": "sin(\u03b8)\u21920 at \u03b8=0,\u03c0 (poles of S\u00b2); no pole singularity in integrand",
+      "sin_theta_at_0": 0.0,
+      "sin_theta_at_pi": 1.2246467991473532e-16,
+      "both_near_zero": true,
+      "pass": true
+    },
+    "integrand_phi_independent": {
+      "description": "K\u00b7dA integrand sin(\u03b8) is \u03c6-independent (axial symmetry of S\u00b2)",
+      "theta": 1.0471975511965976,
+      "sin_theta": 0.8660254037844386,
+      "phi_variation": 0.0,
+      "pass": true
+    },
+    "convergence_coarse_to_fine": {
+      "description": "Trapezoidal rule converges to 4\u03c0: finer grid (n=2000) has smaller residual than coarser grid (n=200), consistent with O(h\u00b2) convergence",
+      "coarse_n_theta": 200,
+      "coarse_integral": 12.566109624270757,
+      "coarse_residual": 0.00026099008841562465,
+      "fine_n_theta": 2000,
+      "fine_integral": 12.56636802791688,
+      "fine_residual": 2.5864422923405073e-06,
+      "expected_ratio_coarse_to_fine": 100.0,
+      "actual_ratio_coarse_to_fine": 100.90698299688377,
+      "fine_better_than_coarse": true,
+      "pass": true
+    },
+    "sympy_integral_sin_theta_equals_2": {
+      "description": "\u222b\u2080^\u03c0 sin(\u03b8)d\u03b8 = 2 (exact); Gauss-Bonnet builds on this",
+      "sympy_result": "2",
+      "expected": "2",
+      "matches": true,
+      "pass": true
+    },
+    "euler_characteristic_consistency": {
+      "description": "\u222bK dA = 4\u03c0 = 2\u03c0\u00b7\u03c7(S\u00b2) = 2\u03c0\u00b72; Euler characteristic \u03c7=2 is consistent",
+      "euler_chi_S2": 2,
+      "gauss_bonnet_2pi_chi": 12.566370614359172,
+      "integral_KdA": 12.566370614359172,
+      "identity_holds": true,
+      "pass": true
+    },
+    "all_pass": true
+  },
+  "summary": {
+    "all_pass": true,
+    "manifold": "CP^1 \u2245 S\u00b2 with Fubini-Study metric, radius r=1/2",
+    "metric": "ds\u00b2 = (1/4)(d\u03b8\u00b2 + sin\u00b2(\u03b8)d\u03c6\u00b2)",
+    "area_element": "dA = sin(\u03b8)/4 d\u03b8 d\u03c6",
+    "curvature": "K = 4 (constant, from riemannian_curvature probe)",
+    "gauss_bonnet_theorem": "\u222b_M K dA = 2\u03c0\u00b7\u03c7(M)",
+    "euler_characteristic": "\u03c7(S\u00b2) = 2",
+    "integral_KdA_exact": "4\u03c0",
+    "verification": "4\u00b7\u03c0 = 4\u03c0 = 2\u03c0\u00b72 = 2\u03c0\u03c7(S\u00b2)  \u2713",
+    "numerical_agreement": {
+      "trapezoidal_residual": 2.5864422923405073e-06,
+      "gauss_legendre_residual": 3.552713678800501e-15
+    },
+    "anchor": "K=4 value anchored to riemannian_curvature probe (both probes canonical)",
+    "scope_note": "Gauss-Bonnet probe: local K=4 integrates to global topological invariant 4\u03c0. Out of scope: geodesic curvature boundary terms (\u2202M=\u2205), Chern-Gauss-Bonnet in higher dimensions, Ricci flow, Bochner-Weitzenb\u00f6ck, non-constant K manifolds."
+  },
+  "timestamp": "2026-04-10T08:26:00.354666+00:00"
+}

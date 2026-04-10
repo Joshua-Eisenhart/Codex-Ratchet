@@ -1,0 +1,359 @@
+{
+  "name": "geodesic_deviation_jacobi_curved_vs_flat",
+  "classification": "canonical",
+  "classification_note": "Canonical lego for geodesic deviation: Jacobi field J_curved(s)=sin(2s)/2 on K=4 (Fubini-Study / S^2 radius 1/2) vs J_flat(s)=s on K=0 (flat R^2). PyTorch float64 RK4 ODE integrator is load-bearing for numerical cross-check. Sympy is load-bearing for symbolic ODE residual and initial-condition verification. Anchored to riemannian_curvature probe (K=4 established there).",
+  "lego_ids": [
+    "geodesic_deviation_jacobi_curved_vs_flat"
+  ],
+  "primary_lego_ids": [
+    "geodesic_deviation_jacobi_curved_vs_flat"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: RK4 ODE integration of Jacobi equation d\u00b2J/ds\u00b2+KJ=0 runs on torch.float64 tensors; all RK4 arithmetic (k1..k4, state update) is torch operations."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Jacobi ODE"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; Jacobi equation has no logical branching"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Jacobi ODE"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: symbolic ODE residual check (d\u00b2J/ds\u00b2+4J=0 simplifies to 0), initial condition verification, and conjugate-point confirmation (J_curved(\u03c0/2)=0) are sympy-computed analytic ground truths that the numerical tests are calibrated against."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; Jacobi equation is scalar on 2D manifold"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; analytic Jacobi solutions computed directly"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Jacobi ODE"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Jacobi ODE"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Jacobi ODE"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Jacobi ODE"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for Jacobi ODE"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "jacobi_curved_K4_value_checks": {
+      "description": "J_curved(s)=sin(2s)/2 matches exact analytic values at four test points",
+      "K": 4.0,
+      "test_points": {
+        "s_pi6": {
+          "s": 0.5235987755982988,
+          "J_numerical": 0.4330127018922193,
+          "J_exact": 0.4330127018922193,
+          "residual": 0.0,
+          "pass": true
+        },
+        "s_pi4": {
+          "s": 0.7853981633974483,
+          "J_numerical": 0.5,
+          "J_exact": 0.5,
+          "residual": 0.0,
+          "pass": true
+        },
+        "s_pi3": {
+          "s": 1.0471975511965976,
+          "J_numerical": 0.43301270189221935,
+          "J_exact": 0.4330127018922193,
+          "residual": 5.551115123125783e-17,
+          "pass": true
+        },
+        "s_pi2": {
+          "s": 1.5707963267948966,
+          "J_numerical": 6.123233995736766e-17,
+          "J_exact": 0.0,
+          "residual": 6.123233995736766e-17,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "jacobi_flat_K0_value_checks": {
+      "description": "J_flat(s)=s matches s exactly at four test points",
+      "K": 0.0,
+      "test_points": {
+        "s_pi6": {
+          "s": 0.5235987755982988,
+          "J_numerical": 0.5235987755982988,
+          "J_exact": 0.5235987755982988,
+          "residual": 0.0,
+          "pass": true
+        },
+        "s_pi4": {
+          "s": 0.7853981633974483,
+          "J_numerical": 0.7853981633974483,
+          "J_exact": 0.7853981633974483,
+          "residual": 0.0,
+          "pass": true
+        },
+        "s_pi3": {
+          "s": 1.0471975511965976,
+          "J_numerical": 1.0471975511965976,
+          "J_exact": 1.0471975511965976,
+          "residual": 0.0,
+          "pass": true
+        },
+        "s_pi2": {
+          "s": 1.5707963267948966,
+          "J_numerical": 1.5707963267948966,
+          "J_exact": 1.5707963267948966,
+          "residual": 0.0,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "sympy_ode_residual_and_ic": {
+      "description": "Sympy confirms: d\u00b2J_curved/ds\u00b2+4*J_curved=0 and d\u00b2J_flat/ds\u00b2=0; both satisfy J(0)=0,J'(0)=1; J_curved(\u03c0/2)=0",
+      "sympy_available": true,
+      "checks": {
+        "curved_ode_residual_zero": true,
+        "flat_ode_residual_zero": true,
+        "curved_ic0_ok": true,
+        "curved_ic1_ok": true,
+        "flat_ic0_ok": true,
+        "flat_ic1_ok": true,
+        "conjugate_point_pi_half": true,
+        "curved_residual_str": "0",
+        "flat_residual_str": "0"
+      },
+      "pass": true
+    },
+    "rk4_curved_cross_check": {
+      "description": "Torch float64 RK4 integration of d\u00b2J/ds\u00b2+4J=0 matches sin(2s)/2 within 1e-8 at four test points",
+      "n_steps_per_target": 1000,
+      "test_points": {
+        "s_pi6": {
+          "s": 0.5235987755982988,
+          "J_rk4": 0.4330127018922172,
+          "J_analytic": 0.4330127018922193,
+          "residual": 2.1094237467877974e-15,
+          "pass": true
+        },
+        "s_pi4": {
+          "s": 0.7853981633974483,
+          "J_rk4": 0.4999999999999999,
+          "J_analytic": 0.5,
+          "residual": 1.1102230246251565e-16,
+          "pass": true
+        },
+        "s_pi3": {
+          "s": 1.0471975511965976,
+          "J_rk4": 0.4330127018923033,
+          "J_analytic": 0.43301270189221935,
+          "residual": 8.393286066166183e-14,
+          "pass": true
+        },
+        "s_pi2": {
+          "s": 1.5707963267948966,
+          "J_rk4": 1.275074013387667e-12,
+          "J_analytic": 6.123233995736766e-17,
+          "residual": 1.2750127810477097e-12,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "rk4_flat_cross_check": {
+      "description": "Torch float64 RK4 integration of d\u00b2J/ds\u00b2=0 recovers J(s)=s exactly (O(N*eps) floating-point rounding from irrational h=s/n_steps; tolerance 1e-12)",
+      "n_steps_per_target": 1000,
+      "test_points": {
+        "s_pi6": {
+          "s": 0.5235987755982988,
+          "J_rk4": 0.5235987755983067,
+          "J_analytic": 0.5235987755982988,
+          "residual": 7.882583474838611e-15,
+          "pass": true
+        },
+        "s_pi4": {
+          "s": 0.7853981633974483,
+          "J_rk4": 0.7853981633974342,
+          "J_analytic": 0.7853981633974483,
+          "residual": 1.4099832412739488e-14,
+          "pass": true
+        },
+        "s_pi3": {
+          "s": 1.0471975511965976,
+          "J_rk4": 1.0471975511966134,
+          "J_analytic": 1.0471975511965976,
+          "residual": 1.5765166949677223e-14,
+          "pass": true
+        },
+        "s_pi2": {
+          "s": 1.5707963267948966,
+          "J_rk4": 1.5707963267948684,
+          "J_analytic": 1.5707963267948966,
+          "residual": 2.8199664825478976e-14,
+          "pass": true
+        }
+      },
+      "pass": true
+    }
+  },
+  "negative": {
+    "curved_vanishes_at_conjugate_point": {
+      "description": "J_curved(\u03c0/2) \u2248 0 \u2014 curved geodesics reconverge",
+      "s": 1.5707963267948966,
+      "J_curved": 6.123233995736766e-17,
+      "pass": true
+    },
+    "flat_nonzero_at_curved_conjugate_point": {
+      "description": "J_flat(\u03c0/2) \u2248 \u03c0/2 > 1.0 \u2014 flat geodesics still diverging",
+      "s": 1.5707963267948966,
+      "J_flat": 1.5707963267948966,
+      "pass": true
+    },
+    "curved_and_flat_differ_at_peak": {
+      "description": "J_curved(\u03c0/4)=0.5 \u2260 J_flat(\u03c0/4)=\u03c0/4; differ by > 0.2",
+      "s": 0.7853981633974483,
+      "J_curved": 0.5,
+      "J_flat": 0.7853981633974483,
+      "difference": 0.2853981633974483,
+      "pass": true
+    },
+    "flat_unbounded_curved_bounded": {
+      "description": "J_flat(10)=10 >> J_curved(10) \u2264 0.5; curved is bounded",
+      "s": 10.0,
+      "J_curved": 0.45647262536381383,
+      "J_flat": 10.0,
+      "pass": true
+    },
+    "K_curved_is_positive_K_flat_is_zero": {
+      "description": "K_curved=4.0 > 0 and K_flat=0.0 \u2014 distinct curvature classes",
+      "K_curved": 4.0,
+      "K_flat": 0.0,
+      "pass": true
+    },
+    "curved_non_monotone_flat_monotone": {
+      "description": "J_curved is non-monotone (oscillates); J_flat is strictly increasing",
+      "J_curved_seq": [
+        0.0,
+        0.5,
+        6.123233995736766e-17
+      ],
+      "J_flat_seq": [
+        0.0,
+        0.7853981633974483,
+        1.5707963267948966
+      ],
+      "curved_non_monotone": true,
+      "flat_monotone": true,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "initial_conditions_both_fields": {
+      "description": "J_curved(0)=0, J_flat(0)=0; J'_curved(0)=1, J'_flat(0)=1",
+      "J_curved_0": 0.0,
+      "J_flat_0": 0.0,
+      "dJ_curved_0": 1.0,
+      "dJ_flat_0": 1.0,
+      "pass": true
+    },
+    "first_conjugate_point_at_pi_half": {
+      "description": "J_curved(\u03c0/2) = sin(\u03c0)/2 \u2248 0 to floating-point precision",
+      "s": 1.5707963267948966,
+      "J_curved": 6.123233995736766e-17,
+      "pass": true
+    },
+    "second_conjugate_point_at_pi": {
+      "description": "J_curved(\u03c0) = sin(2\u03c0)/2 \u2248 0 (second conjugate point)",
+      "s": 3.141592653589793,
+      "J_curved": -1.2246467991473532e-16,
+      "pass": true
+    },
+    "jacobi_curved_maximum": {
+      "description": "J_curved achieves maximum 0.5 at s=\u03c0/4 where J'=0",
+      "s": 0.7853981633974483,
+      "J_curved": 0.5,
+      "dJ_curved": 6.123233995736766e-17,
+      "pass": true
+    },
+    "jacobi_curved_derivative_at_conjugate": {
+      "description": "J'_curved(\u03c0/2) = cos(\u03c0) = -1 (geodesics reconverging at rate 1)",
+      "s": 1.5707963267948966,
+      "dJ_curved": -1.0,
+      "pass": true
+    },
+    "small_s_flat_approximation": {
+      "description": "Near origin, J_curved \u2248 J_flat (sin(2s)/2 \u2248 s for small s)",
+      "s": 0.02,
+      "J_curved": 0.01999466709331708,
+      "J_flat": 0.02,
+      "relative_difference": 0.00026664533414599845,
+      "pass": true
+    },
+    "rk4_curved_at_conjugate_point": {
+      "description": "RK4 integration also recovers J\u22480 at conjugate point s=\u03c0/2",
+      "s": 1.5707963267948966,
+      "J_rk4": 1.275074013387667e-12,
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "manifolds": {
+      "curved": "CP^1 / S^2 with Fubini-Study metric, K=4 (from riemannian_curvature probe)",
+      "flat": "R^2 with Euclidean metric, K=0"
+    },
+    "jacobi_solutions": {
+      "curved": "J(s) = sin(2s)/2,  first conjugate at s=\u03c0/2",
+      "flat": "J(s) = s,           no conjugate point"
+    },
+    "key_distinction": "Curved geodesics reconverge at s=\u03c0/2 (J=0); flat geodesics diverge linearly forever.",
+    "scope_note": "Geodesic deviation probe: scalar Jacobi equation on 2D constant-K manifolds. Anchored to riemannian_curvature probe (K=4). Out of scope: Levi-Civita connection tensor, Berry phase, Ricci flow, sectional curvature tensor, higher-dimensional Jacobi fields."
+  },
+  "timestamp": "2026-04-10T07:33:54.318987+00:00"
+}

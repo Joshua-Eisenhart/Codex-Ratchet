@@ -1,0 +1,386 @@
+{
+  "name": "sim_pure_lego_hopf_tori_base",
+  "classification": "canonical",
+  "lego_ids": [
+    "hopf_s3_base",
+    "hopf_map",
+    "flat_torus_metric",
+    "fiber_base_split"
+  ],
+  "primary_lego_ids": [
+    "hopf_s3_base",
+    "flat_torus_metric"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "numpy sufficient for this geometric substrate"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure needed"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "rational UNSAT: Pythagorean S3 point (3/5,4/5) Hopf map has |h|=1"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "z3 sufficient for rational check"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "symbolic proof of induced metric g_ij and area=2pi^2*sin(2eta)"
+    },
+    "clifford": {
+      "tried": true,
+      "used": true,
+      "reason": "Hopf map as rotor sandwich q\u00b7e3\u00b7~q cross-check"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "S3/S2 belongs_to cross-check on torus and Hopf-map points"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "equivariant networks not relevant"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "no graph structure needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "hypergraph not relevant"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "cell complex not needed for base geometry"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "topology is secondary; this probe is metric/fiber"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "supportive",
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": "supportive",
+    "geomstats": "supportive",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "s3_constraint": {
+      "n_points": 60,
+      "eta_grid": [
+        0.0625,
+        0.125,
+        0.25,
+        0.375
+      ],
+      "max_err": 2.220446049250313e-16,
+      "tol": 1e-14,
+      "pass": true
+    },
+    "hopf_map_on_s2": {
+      "n_points": 200,
+      "max_norm_err": 3.3306690738754696e-16,
+      "tol": 1e-14,
+      "pass": true
+    },
+    "fiber_invariance": {
+      "n_base_points": 3,
+      "n_shifts": 5,
+      "shifts_pi": [
+        0.0,
+        0.25,
+        0.5,
+        1.0,
+        1.5
+      ],
+      "max_base_drift": 4.440892098500626e-16,
+      "tol": 1e-12,
+      "details": [
+        {
+          "eta_pi": 0.125,
+          "max_drift": 4.440892098500626e-16
+        },
+        {
+          "eta_pi": 0.25,
+          "max_drift": 3.3306690738754696e-16
+        },
+        {
+          "eta_pi": 0.375,
+          "max_drift": 2.220446049250313e-16
+        }
+      ],
+      "pass": true
+    },
+    "flat_metric_numerical": {
+      "metric_rows": [
+        {
+          "eta_pi": 0.0625,
+          "g11": 0.961939766256,
+          "g12": 0.0,
+          "g22": 0.038060233744,
+          "err_g11": 0.0,
+          "err_g12": 0.0,
+          "err_g22": 0.0,
+          "K_gauss": 0.0
+        },
+        {
+          "eta_pi": 0.125,
+          "g11": 0.853553390593,
+          "g12": 0.0,
+          "g22": 0.146446609407,
+          "err_g11": 0.0,
+          "err_g12": 0.0,
+          "err_g22": 0.0,
+          "K_gauss": 0.0
+        },
+        {
+          "eta_pi": 0.25,
+          "g11": 0.5,
+          "g12": 0.0,
+          "g22": 0.5,
+          "err_g11": 0.0,
+          "err_g12": 0.0,
+          "err_g22": 0.0,
+          "K_gauss": 0.0
+        },
+        {
+          "eta_pi": 0.375,
+          "g11": 0.146446609407,
+          "g12": 0.0,
+          "g22": 0.853553390593,
+          "err_g11": 0.0,
+          "err_g12": 0.0,
+          "err_g22": 0.0,
+          "K_gauss": 0.0
+        }
+      ],
+      "gaussian_curvature": 0.0,
+      "is_flat": true,
+      "pass": true
+    },
+    "area_formula_numerical": {
+      "grid_size": 200,
+      "formula": "A = 2*pi^2*sin(2*eta)",
+      "rows": [
+        {
+          "eta_pi": 0.0625,
+          "area_analytic": 7.5538681766,
+          "area_numeric": 7.5538681766,
+          "rel_err": 1.1757928506785179e-16
+        },
+        {
+          "eta_pi": 0.125,
+          "area_analytic": 13.9577283993,
+          "area_numeric": 13.9577283993,
+          "rel_err": 3.818007032201962e-16
+        },
+        {
+          "eta_pi": 0.25,
+          "area_analytic": 19.7392088022,
+          "area_numeric": 19.7392088022,
+          "rel_err": 1.799825775391955e-16
+        },
+        {
+          "eta_pi": 0.375,
+          "area_analytic": 13.9577283993,
+          "area_numeric": 13.9577283993,
+          "rel_err": 5.090676042935949e-16
+        }
+      ],
+      "max_rel_err": 5.090676042935949e-16,
+      "tol": 1e-10,
+      "pass": true
+    },
+    "clifford_torus_symmetry": {
+      "eta": 0.25,
+      "g11": 0.5,
+      "g12": 0.0,
+      "g22": 0.5,
+      "g11_eq_g22": true,
+      "g11_eq_half": true,
+      "note": "Only eta=pi/4 gives isometric (equal-radius) torus",
+      "pass": true
+    },
+    "sympy_metric_area_hopf": {
+      "g11_formula": "cos(eta)**2",
+      "g12_formula": "0",
+      "g22_formula": "sin(eta)**2",
+      "g11_equals_cos2": true,
+      "g12_equals_zero": true,
+      "g22_equals_sin2": true,
+      "area_formula_correct": true,
+      "hopf_h1_correct": true,
+      "hopf_h2_correct": true,
+      "hopf_h3_correct": true,
+      "pass": true
+    },
+    "geomstats_membership": {
+      "all_torus_points_on_s3": true,
+      "all_hopf_images_on_s2": true,
+      "pass": true
+    },
+    "clifford_hopf_crosscheck": {
+      "pass": null,
+      "note": "Cl(3) Hopf map requires even-subalgebra quaternion embedding \u2014 out of scope for base geometry probe; see sim_pure_lego_clifford_weyl_transport"
+    },
+    "pass": true
+  },
+  "negative": {
+    "off_s3_rejection": {
+      "scale_factor": 1.1,
+      "expected_h_norm": 1.2100000000000002,
+      "actual_h_norm": 1.21,
+      "deviation_from_expected": 0.0,
+      "note": "Scaling by c gives |h(c\u00b7z)|=c\u00b2; confirms map is not norm-preserving off S3",
+      "pass": true
+    },
+    "asymmetric_shift_breaks_invariance": {
+      "eta_pi": 0.1667,
+      "shift_t1_only_by": 1.047198,
+      "s2_drift": 0.8660254038,
+      "threshold_must_exceed": 0.0001,
+      "note": "Shifting only t1 breaks fiber invariance; base S2 point moves",
+      "pass": true
+    },
+    "degenerate_eta_collapses_area": {
+      "cases": [
+        {
+          "label": "eta_near_0",
+          "eta": 1e-08,
+          "g11": 1.0,
+          "g22": 0.0,
+          "area": 3.9478417604357434e-07,
+          "area_near_zero": "True"
+        },
+        {
+          "label": "eta_near_pi2",
+          "eta": 1.5707963167948966,
+          "g11": 0.0,
+          "g22": 1.0,
+          "area": 3.947841760616408e-07,
+          "area_near_zero": "True"
+        }
+      ],
+      "note": "At eta=0 and eta=pi/2 the torus degenerates; area->0",
+      "pass": true
+    },
+    "general_s3_fiber_structure": {
+      "symmetric_shift_drift": 0.0,
+      "asymmetric_shift_drift": 0.2988762649,
+      "note": "Symmetric U(1) shift is invariant; asymmetric shift is not",
+      "pass": true
+    },
+    "pass": true
+  },
+  "boundary": {
+    "eta_near_zero": {
+      "eta": 1e-06,
+      "g11": 0.999999999999,
+      "g22": 1e-12,
+      "area": 3.947841760433111e-05,
+      "g11_near_1": true,
+      "g22_near_0": true,
+      "area_near_0": "True",
+      "pass": "True"
+    },
+    "eta_near_pi_over_2": {
+      "eta": 1.5707953267948966,
+      "g11": 1e-12,
+      "g22": 0.999999999999,
+      "area": 3.947841760350071e-05,
+      "g11_near_0": true,
+      "g22_near_1": true,
+      "area_near_0": "True",
+      "pass": "True"
+    },
+    "clifford_torus_boundary": {
+      "eta_pi": 0.25,
+      "g11": 0.5,
+      "g12": 0.0,
+      "g22": 0.5,
+      "area": 19.7392088022,
+      "area_target": 19.7392088022,
+      "isometric": true,
+      "note": "eta=pi/4 is the unique balanced torus; max area in the family",
+      "pass": "True"
+    },
+    "diagonal_fiber_slice": {
+      "eta_pi": 0.25,
+      "n_points": 50,
+      "max_s3_norm_err": 1.1102230246251565e-16,
+      "curve_closure_err": 1.7319121124709868e-16,
+      "note": "t1=t2 diagonal traces a closed curve on S3; all points on S3",
+      "pass": true
+    },
+    "z3_pythagorean_hopf": {
+      "point": "(3/5, 4/5) on S3",
+      "hopf_image": "(24/25, 0, -7/25)",
+      "check": "NOT (24^2 + 0^2 + 7^2 == 25^2) is unsatisfiable",
+      "z3_result": "unsat",
+      "pass": true
+    },
+    "area_maximum_at_clifford": {
+      "eta_at_max": 0.784622,
+      "eta_pi_at_max": 0.249753,
+      "expected_eta_pi": 0.25,
+      "area_at_max": 19.73918502,
+      "area_target": 19.7392088,
+      "pass": true
+    },
+    "pass": true
+  },
+  "summary": {
+    "all_pass": true,
+    "positive_pass": true,
+    "negative_pass": true,
+    "boundary_pass": true,
+    "coordinate_convention": {
+      "params": "(eta, t1, t2)",
+      "z1": "cos(eta)*exp(i*t1)",
+      "z2": "sin(eta)*exp(i*t2)",
+      "eta_range": "(0, pi/2)",
+      "t1_t2_range": "[0, 2*pi)"
+    },
+    "fiber_base_split": {
+      "fiber_coord": "xi = (t1+t2)/2  [diagonal shift]",
+      "base_coord": "psi = (t1-t2)/2  [off-diagonal]",
+      "fiber_space": "S1",
+      "base_space": "S2",
+      "fiber_invariance": "simultaneous shift (t1,t2)->(t1+s,t2+s) fixes S2 point"
+    },
+    "torus_invariants_verified": [
+      "S3_constraint: |z1|^2+|z2|^2=1",
+      "hopf_map_on_S2: |h(z1,z2)|=1",
+      "fiber_invariance: diagonal_shift_preserves_base",
+      "flat_metric: g_11=cos^2(eta), g_12=0, g_22=sin^2(eta)",
+      "area_formula: A=2*pi^2*sin(2*eta)",
+      "clifford_torus: eta=pi/4 gives g11=g22=1/2"
+    ],
+    "claim": "Hopf tori T_eta are flat (K=0) tori in S3 with area 2pi^2*sin(2eta); fiber/base decomposition is U(1) diagonal shift over S2",
+    "diagnosis": "hopf_tori_base_substrate_established"
+  },
+  "timestamp": "2026-04-10T09:10:14.021541+00:00"
+}

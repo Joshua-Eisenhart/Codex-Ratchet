@@ -1,0 +1,238 @@
+{
+  "name": "cross_shell_coupling_cp1_bures",
+  "classification": "canonical",
+  "classification_note": "Canonical cross-shell pairwise coupling probe: CP^1 Fubini-Study geometry shell \u00d7 Bures geometry shell. PyTorch float64 carries all coupling residuals. Sympy is load-bearing for the convention-map identity D_B=2sin(d_FS/2) and fidelity formula F(diag(p,1-p),|0\u27e9)=p. Anchored to sim_fubini_study_geometry, sim_bures_geometry, and sim_pure_lego_riemannian_curvature canonicals.",
+  "lego_ids": [
+    "cross_shell_coupling_cp1_bures"
+  ],
+  "primary_lego_ids": [
+    "cross_shell_coupling_cp1_bures"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: all coupling residuals (C_conv, C_domain, C_pair) are computed as torch.float64 scalar tensors; all pass/fail threshold comparisons run on torch.float64 arithmetic."
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for scalar coupling residuals"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; no discrete logical branching in metric coupling"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for metric coupling"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: symbolic proof that D_B = 2\u00b7sin(d_FS/2) for all pure states via the half-angle identity; also verifies the Bures fidelity formula and the mixed-state domain gap identity F(diag(p,1-p),|0\u27e9)=p symbolically. These analytic ground truths calibrate every numerical tolerance in the probe."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; metric coupling is scalar"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed; distances computed directly"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for metric coupling"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for metric coupling"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for metric coupling"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for metric coupling"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for metric coupling"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "coupling_program_step": "cross_shell_pairwise",
+  "shells": {
+    "shell_A": "CP^1 Fubini-Study geometry (d_FS = arccos(|<\u03c8|\u03c6>|), pure states only)",
+    "shell_B": "Bures geometry (D_B = sqrt(2-2sqrt(F)), all density matrices)"
+  },
+  "coupling_functionals": {
+    "C_conv": "Convention-map residual: |D_B(\u03c8,\u03c6) - 2sin(d_FS(\u03c8,\u03c6)/2)|. Zero on shared pure-state boundary.",
+    "C_domain": "Domain-gap: |D_B(\u03c1,ref) - D_B(proj(\u03c1),ref)|. Nonzero for mixed states outside CP^1 domain.",
+    "C_pair": "Pair compression: |D_B(\u03c11,\u03c12) - D_B(proj(\u03c11),proj(\u03c12))|. Nonzero when mixed-state interior shortens distance."
+  },
+  "positive": {
+    "convention_map_theta_pi3": {
+      "description": "D_B(|0\u27e9,|\u03b8=\u03c0/3\u27e9) = 2sin(d_FS/2): convention-map identity holds at \u03b8=\u03c0/3",
+      "theta": 1.0471975511965976,
+      "D_B": 0.5176380902050414,
+      "d_FS": 0.5235987755982988,
+      "two_sin_dFS_half": 0.5176380902050415,
+      "C_conv": 1.1102230246251565e-16,
+      "threshold": 1e-13,
+      "pass": true
+    },
+    "convention_map_sweep": {
+      "description": "C_conv < 1e-13 at four test angles; CP^1 and Bures are equivalent on pure-state boundary",
+      "test_points": {
+        "theta_pi6": {
+          "theta": 0.5235987755982988,
+          "C_conv": 0.0,
+          "pass": true
+        },
+        "theta_pi4": {
+          "theta": 0.7853981633974483,
+          "C_conv": 5.551115123125783e-17,
+          "pass": true
+        },
+        "theta_pi3": {
+          "theta": 1.0471975511965976,
+          "C_conv": 1.1102230246251565e-16,
+          "pass": true
+        },
+        "theta_pi2": {
+          "theta": 1.5707963267948966,
+          "C_conv": 1.1102230246251565e-16,
+          "pass": true
+        }
+      },
+      "threshold": 1e-13,
+      "pass": true
+    },
+    "same_state_both_shells_zero": {
+      "description": "D_B=0 and d_FS=0 for identical pure state; C_conv=0",
+      "D_B": 0.0,
+      "d_FS": 0.0,
+      "C_conv": 0.0,
+      "pass": true
+    }
+  },
+  "negative": {
+    "mixed_state_domain_gap": {
+      "description": "\u03c1=diag(3/4,1/4) is inside Bloch ball; Bures distance to |0\u27e9 is D_B\u22480.518 but CP^1 proj distance D_B(|0\u27e9,|0\u27e9)=0. Gap > 0.3 \u2192 cross-shell incompatible (Bures interior inaccessible to CP^1 shell).",
+      "rho": "diag(3/4, 1/4)",
+      "D_B_mixed_to_zero": 0.5176380902050416,
+      "D_B_proj_to_zero": 0.0,
+      "C_domain": 0.5176380902050416,
+      "incompat_threshold": 0.3,
+      "pass": true
+    },
+    "mixed_pair_vs_pure_antipodal": {
+      "description": "D_B(diag(3/4,1/4), diag(1/4,3/4)) < D_B(|0\u27e9,|1\u27e9): mixed-state Bures pair compresses distance vs pure antipodes. Gap > 0.5 \u2192 Bures interior structure has no CP^1 counterpart (incompatible).",
+      "rho1": "diag(3/4, 1/4)",
+      "rho2": "diag(1/4, 3/4)",
+      "D_B_mixed_pair": 0.5176380902050416,
+      "D_B_pure_antipodal": 1.4142135623730951,
+      "C_pair": 0.8965754721680536,
+      "incompat_threshold": 0.5,
+      "pass": true
+    },
+    "maximally_mixed_domain_gap": {
+      "description": "I/2 is the Bloch-ball center; D_B(I/2,|0\u27e9)\u22481.0, proj D_B=0. Maximum domain gap \u2014 CP^1 shell cannot represent center state.",
+      "D_B_maximally_mixed_to_zero": 0.7653668647301795,
+      "C_domain": 0.7653668647301795,
+      "incompat_threshold": 0.3,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "near_pure_limit_domain_gap_shrinks": {
+      "description": "As \u03b5\u21920, \u03c1_\u03b5 = (1-\u03b5)|0\u27e9\u27e80|+\u03b5\u00b7I/2 \u2192 pure state; C_domain(\u03c1_\u03b5) \u2192 0 monotonically (Bures/CP^1 agree at boundary).",
+      "eps_sweep": {
+        "eps_0.5": {
+          "eps": 0.5,
+          "C_domain": 0.5176380902050416
+        },
+        "eps_0.2": {
+          "eps": 0.2,
+          "C_domain": 0.3203644860139345
+        },
+        "eps_0.1": {
+          "eps": 0.1,
+          "C_domain": 0.22503584389649375
+        },
+        "eps_0.01": {
+          "eps": 0.01,
+          "C_domain": 0.0707549692530479
+        },
+        "eps_0.001": {
+          "eps": 0.001,
+          "C_domain": 0.022362077623287846
+        }
+      },
+      "monotone_decreasing": true,
+      "C_domain_at_smallest_eps": 0.022362077623287846,
+      "pass": true
+    },
+    "antipodal_pure_convention_map": {
+      "description": "Orthogonal pure states |0\u27e9,|1\u27e9: d_FS=\u03c0/2, D_B=\u221a2, 2sin(\u03c0/4)=\u221a2; convention-map residual C_conv < 1e-13.",
+      "d_FS": 1.5707963267948966,
+      "D_B": 1.4142135623730951,
+      "two_sin_dFS_half": 1.414213562373095,
+      "C_conv": 2.220446049250313e-16,
+      "pass": true
+    },
+    "sympy_convention_map_and_fidelity_proof": {
+      "description": "Sympy confirms: D_B=2sin(d_FS/2) via half-angle identity; F(diag(p,1-p),|0\u27e9)=p analytically; D_B(|0\u27e9,|0\u27e9)=0.",
+      "sympy_available": true,
+      "convention_map_identity_D_B_eq_2sin_dFS_half": {
+        "D_B_sym": "sqrt(2 - 2*cos(d))",
+        "two_sin_half_sym": "2*sin(d/2)",
+        "difference_simplified": "sqrt(2 - 2*cos(d)) - 2*sin(d/2)",
+        "squares_differ_trigsimp": "0",
+        "identity_holds": true,
+        "pass": true
+      },
+      "fidelity_diag_state_with_zero": {
+        "F_symbolic": "p",
+        "D_B_symbolic": "sqrt(2 - 2*sqrt(p))",
+        "D_B_at_p_3_4_numerical": 0.5176380902050415,
+        "pass": true
+      },
+      "pure_state_self_distance_zero": {
+        "D_B_same_simplified": "0",
+        "pass": true
+      },
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "finding": "CP^1 (Fubini-Study) and Bures geometry shells are COMPATIBLE on the shared pure-state boundary (C_conv=0 to machine precision via the identity D_B=2sin(d_FS/2)). They are INCOMPATIBLE on the interior: Bures extends to mixed states (Bloch-ball interior) that CP^1 cannot reach, producing C_domain>0.3 and C_pair>0.5 for representative mixed-state test cases.",
+    "scope_note": "Cross-shell pairwise coupling only. In scope: pure-state boundary convention map, mixed-state domain gap, mixed-pair distance compression. Out of scope: holonomy, Ricci flow, multi-shell coexistence, Bures metric tensor, QFI coupling, graph geometry."
+  },
+  "timestamp": "2026-04-10T09:15:34.550663+00:00"
+}

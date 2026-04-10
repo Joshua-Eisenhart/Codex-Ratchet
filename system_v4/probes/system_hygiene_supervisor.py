@@ -25,6 +25,7 @@ CONTROLLER_AUDIT_PATH = RESULTS_DIR / "controller_alignment_audit_results.json"
 MIGRATION_AUDIT_PATH = RESULTS_DIR / "migration_contract_audit_results.json"
 REPO_HYGIENE_PATH = RESULTS_DIR / "repo_hygiene_audit_results.json"
 RUNTIME_HYGIENE_PATH = RESULTS_DIR / "runtime_hygiene_audit_results.json"
+STATE_DIR_OWNERSHIP_AUDIT_PATH = RESULTS_DIR / "state_dir_ownership_audit_results.json"
 LEGO_TOOL_REPORTING_AUDIT_PATH = RESULTS_DIR / "lego_tool_reporting_audit_results.json"
 SOURCE_DIRTY_PLAN_PATH = RESULTS_DIR / "source_dirty_checkpoint_plan.json"
 SOURCE_DIRTY_LANE_MANIFEST_PATH = RESULTS_DIR / "source_dirty_lane_manifest.json"
@@ -46,6 +47,23 @@ def surface_missing(path: Path, label: str) -> dict[str, Any]:
     }
 
 
+def dedupe_repair_queue(items: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    deduped: list[dict[str, Any]] = []
+    seen: dict[tuple[str, str], int] = {}
+    for item in items:
+        key = (str(item.get("kind")), str(item.get("action_class")))
+        existing_idx = seen.get(key)
+        if existing_idx is None:
+            seen[key] = len(deduped)
+            deduped.append(item)
+            continue
+        existing = deduped[existing_idx]
+        # Prefer richer ownership-aware entries over generic repo-hygiene duplicates.
+        if len(item.keys()) > len(existing.keys()):
+            deduped[existing_idx] = item
+    return deduped
+
+
 def main() -> int:
     strict = "--strict" in sys.argv[1:]
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -56,6 +74,7 @@ def main() -> int:
         "migration": MIGRATION_AUDIT_PATH,
         "repo_hygiene": REPO_HYGIENE_PATH,
         "runtime_hygiene": RUNTIME_HYGIENE_PATH,
+        "state_dir_ownership": STATE_DIR_OWNERSHIP_AUDIT_PATH,
         "lego_tool_reporting": LEGO_TOOL_REPORTING_AUDIT_PATH,
         "source_dirty_checkpoint": SOURCE_DIRTY_PLAN_PATH,
         "source_dirty_lane_manifest": SOURCE_DIRTY_LANE_MANIFEST_PATH,
@@ -76,6 +95,7 @@ def main() -> int:
     migration_summary = (payloads["migration"] or {}).get("summary", {})
     repo_summary = (payloads["repo_hygiene"] or {}).get("summary", {})
     runtime_summary = (payloads["runtime_hygiene"] or {}).get("summary", {})
+    state_dir_summary = (payloads["state_dir_ownership"] or {}).get("summary", {})
     lego_tool_reporting_summary = (payloads["lego_tool_reporting"] or {}).get("summary", {})
     repo_git = (payloads["repo_hygiene"] or {}).get("git", {})
     source_dirty_plan = payloads["source_dirty_checkpoint"] or {}
@@ -87,16 +107,18 @@ def main() -> int:
     migration_ok = bool(migration_summary.get("ok"))
     repo_ok = bool(repo_summary.get("ok"))
     runtime_ok = bool(runtime_summary.get("ok"))
+    state_dir_ok = bool(state_dir_summary.get("ok"))
     lego_tool_reporting_ok = bool(lego_tool_reporting_summary.get("ok"))
 
     repair_queue: list[dict[str, Any]] = []
-    for surface_name in ("repo_hygiene", "runtime_hygiene"):
+    for surface_name in ("repo_hygiene", "runtime_hygiene", "state_dir_ownership"):
         payload = payloads.get(surface_name) or {}
         for candidate in payload.get("repair_candidates", []):
             if isinstance(candidate, dict):
                 enriched = dict(candidate)
                 enriched["source_surface"] = surface_name
                 repair_queue.append(enriched)
+    repair_queue = dedupe_repair_queue(repair_queue)
 
     safe_auto_queue = [item for item in repair_queue if item.get("safe_auto") is True]
     manual_queue = [item for item in repair_queue if item.get("safe_auto") is not True]
@@ -126,12 +148,6 @@ def main() -> int:
             "recommendation": "Fix extracted family metadata/module mismatches before expanding the migration lane.",
         })
 
-    # Items that are purely manual audits (safe_auto=False, action_class=manual_state_audit)
-    # are advisory — they should not block overall_green once all automated surfaces pass.
-    blocking_repair_items = [
-        item for item in repair_queue
-        if item.get("action_class") != "manual_state_audit"
-    ]
     overall_green = (
         len(missing_surfaces) == 0
         and truth_ok
@@ -139,8 +155,9 @@ def main() -> int:
         and migration_ok
         and repo_ok
         and runtime_ok
+        and state_dir_ok
         and lego_tool_reporting_ok
-        and len(blocking_repair_items) == 0
+        and len(repair_queue) == 0
     )
 
     summary = {
@@ -153,6 +170,7 @@ def main() -> int:
         "migration_green": migration_ok,
         "repo_hygiene_green": repo_ok,
         "runtime_hygiene_green": runtime_ok,
+        "state_dir_ownership_green": state_dir_ok,
         "lego_tool_reporting_green": lego_tool_reporting_ok,
         "overall_green": overall_green,
     }
@@ -198,6 +216,7 @@ def main() -> int:
         "migration": "migration_compliance",
         "repo_hygiene": "repository_hygiene",
         "runtime_hygiene": "runtime_environment",
+        "state_dir_ownership": "state_dir_governance",
         "lego_tool_reporting": "tool_reporting_compliance",
     }
 
@@ -254,6 +273,18 @@ def main() -> int:
         "issue_kind_counts": lego_tool_reporting_summary.get("issue_kind_counts", {}),
         "ok": lego_tool_reporting_ok,
     }
+    state_dir_ownership_surface = {
+        "present": payloads["state_dir_ownership"] is not None,
+        "path": str(STATE_DIR_OWNERSHIP_AUDIT_PATH.relative_to(PROJECT_DIR)),
+        "status": (
+            "current"
+            if payloads["state_dir_ownership"] is not None
+            else "missing"
+        ),
+        "blocker_count": state_dir_summary.get("blocker_count", 0),
+        "advisory_count": state_dir_summary.get("advisory_count", 0),
+        "ok": state_dir_ok,
+    }
 
     report = {
         "generated_at": datetime.now(UTC).isoformat(),
@@ -267,12 +298,14 @@ def main() -> int:
         "migration_green": summary["migration_green"],
         "repo_hygiene_green": summary["repo_hygiene_green"],
         "runtime_hygiene_green": summary["runtime_hygiene_green"],
+        "state_dir_ownership_green": summary["state_dir_ownership_green"],
         "lego_tool_reporting_green": summary["lego_tool_reporting_green"],
         "active_actionable_lane": active_actionable_lane,
         "summary": summary,
         "process_model": process_model,
         "surface_catalog": surface_catalog,
         "lego_tool_reporting_surface": lego_tool_reporting_surface,
+        "state_dir_ownership_surface": state_dir_ownership_surface,
         "source_dirty_surface": source_dirty_surface,
         "source_dirty_checkpoint": source_dirty_checkpoint,
         "source_dirty_lane_manifest": source_dirty_lane_manifest,
@@ -287,6 +320,7 @@ def main() -> int:
             "migration": migration_summary,
             "repo_hygiene": repo_summary,
             "runtime_hygiene": runtime_summary,
+            "state_dir_ownership": state_dir_summary,
             "lego_tool_reporting": lego_tool_reporting_summary,
             "source_dirty_checkpoint": source_dirty_plan_summary,
             "source_dirty_lane_manifest": source_dirty_lane_manifest_summary,

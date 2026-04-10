@@ -1,38 +1,90 @@
 {
-  "generated_at": "2026-04-10T05:10:44.979757+00:00",
-  "lane_id": "source_dirty__no_actionable_lanes",
+  "generated_at": "2026-04-10T05:13:16.744497+00:00",
+  "lane_id": "source_dirty__build_contract__build_contract",
   "source_plan_path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
-  "selection_mode": "no_checkpoint_ready_groups",
+  "selection_mode": "default_prefer_probe_source_skip_docs",
   "allow_docs": false,
   "docs_opt_in_required": false,
   "code_only_fallback": {
     "group_id": "probe_source__probe_misc",
-    "file_count": 1,
-    "untracked_count": 0,
+    "file_count": 2,
+    "untracked_count": 1,
     "tracked_dirty_count": 1,
     "safe_next_action": "manual_split_required",
-    "source_path": "system_v4/probes/system_hygiene_supervisor.py",
+    "source_path": null,
     "result_path": null
   },
-  "active_actionable_lane": null,
-  "selected_group_id": null,
-  "file_count": 0,
-  "safe_next_action": null,
-  "stop_condition": "No checkpoint-ready lanes remain; manual-only residue must be audited separately.",
   "code_only_fallback_group_id": "probe_source__probe_misc",
-  "active_actionable_lane_group_id": null,
+  "active_actionable_lane": {
+    "group_id": "build_contract__build_contract",
+    "file_count": 1,
+    "safe_next_action": "checkpoint",
+    "selection_mode": "default_prefer_probe_source_skip_docs",
+    "source_path": "Makefile",
+    "result_path": null
+  },
+  "selected_group_id": "build_contract__build_contract",
+  "file_count": 1,
+  "safe_next_action": "checkpoint",
+  "stop_condition": "All files in this lane are either checkpointed together or intentionally reclassified in the checkpoint plan.",
   "summary": {
-    "selected_group_id": null,
-    "file_count": 0,
-    "safe_next_action": null,
+    "selected_group_id": "build_contract__build_contract",
+    "file_count": 1,
+    "safe_next_action": "checkpoint",
     "docs_opt_in_required": false,
     "code_only_fallback_group_id": "probe_source__probe_misc",
-    "active_actionable_lane_group_id": null,
-    "executable_lane_group_id": null,
-    "ok": true,
-    "status": "no_actionable_lanes",
-    "note": "No checkpoint-ready groups; all remaining source pressure is manual-only or clean."
+    "active_actionable_lane_group_id": "build_contract__build_contract",
+    "executable_lane_group_id": "build_contract__build_contract",
+    "ok": true
   },
-  "lane": null,
-  "executable_lane": null
+  "lane": {
+    "group_id": "build_contract__build_contract",
+    "display_name": "Build and dependency contract",
+    "bucket": "build_contract",
+    "notes": "Core build/runtime contract files should be checkpointed together.",
+    "blocking_reason": "bounded_human_checkpoint",
+    "goal": "Reduce dirty source pressure by resolving one bounded checkpoint-ready lane without widening scope.",
+    "stop_condition": "All files in this lane are either checkpointed together or intentionally reclassified in the checkpoint plan.",
+    "verification_commands": [
+      "make source-dirty-checkpoint-plan",
+      "make maintenance-report"
+    ],
+    "result_companions": [],
+    "required_git_paths_clean": [
+      "Makefile"
+    ],
+    "docs_opt_in_required": false,
+    "code_only_fallback": {
+      "group_id": "probe_source__probe_misc",
+      "file_count": 2,
+      "untracked_count": 1,
+      "tracked_dirty_count": 1,
+      "safe_next_action": "manual_split_required",
+      "source_path": null,
+      "result_path": null
+    },
+    "active_actionable_lane": {
+      "group_id": "build_contract__build_contract",
+      "file_count": 1,
+      "safe_next_action": "checkpoint",
+      "selection_mode": "default_prefer_probe_source_skip_docs",
+      "source_path": "Makefile",
+      "result_path": null
+    },
+    "files": [
+      "Makefile"
+    ]
+  },
+  "executable_lane": {
+    "group_id": "build_contract__build_contract",
+    "files": [
+      "Makefile"
+    ],
+    "result_companions": [],
+    "required_git_paths_clean": [
+      "Makefile"
+    ],
+    "goal": "Execute the currently actionable bounded lane without widening scope.",
+    "stop_condition": "All files in this executable lane are either checkpointed together or intentionally reclassified in the checkpoint plan."
+  }
 }

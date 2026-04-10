@@ -1,0 +1,233 @@
+{
+  "name": "pure_lego_z_measurement",
+  "description": "Projective Z-measurement: POVM, Born rule, collapse, idempotency, dephasing link",
+  "classification": "classical_baseline",
+  "classification_note": "Classical baseline for projective Z-measurement on a qubit: POVM validity, Born rule, collapse, idempotency, and dephasing equivalence.",
+  "lego_ids": [
+    "z_measurement"
+  ],
+  "primary_lego_ids": [
+    "z_measurement"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline -- numpy only"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "classical baseline -- numpy only"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed for this baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "povm_valid": {
+      "hermitian": true,
+      "psd": true,
+      "complete": true,
+      "pass": true
+    },
+    "born_rule_plus": {
+      "p0": 0.4999999999999999,
+      "p1": 0.4999999999999999,
+      "p0_expected": 0.5,
+      "p1_expected": 0.5,
+      "sum": 0.9999999999999998,
+      "pass": true
+    },
+    "born_rule_zero": {
+      "p0": 1.0,
+      "p1": 0.0,
+      "pass": true
+    },
+    "collapse_plus": {
+      "post_0_is_ket0": true,
+      "post_1_is_ket1": true,
+      "trace_dist_0": 0.0,
+      "trace_dist_1": 0.0,
+      "pass": true
+    },
+    "idempotency": {
+      "post_measure_unchanged": true,
+      "p0_after_outcome0": 1.0,
+      "p1_after_outcome0": 0.0,
+      "pass": true
+    },
+    "z_measurement_is_dephasing": {
+      "detail": {
+        "plus": {
+          "off_diag_killed": true,
+          "diag_preserved": true,
+          "pass": true
+        },
+        "minus": {
+          "off_diag_killed": true,
+          "diag_preserved": true,
+          "pass": true
+        },
+        "zero": {
+          "off_diag_killed": true,
+          "diag_preserved": true,
+          "pass": true
+        },
+        "one": {
+          "off_diag_killed": true,
+          "diag_preserved": true,
+          "pass": true
+        },
+        "mixed": {
+          "off_diag_killed": true,
+          "diag_preserved": true,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "born_rule_one": {
+      "p0": 0.0,
+      "p1": 1.0,
+      "pass": true
+    },
+    "born_rule_minus": {
+      "p0": 0.4999999999999999,
+      "p1": 0.4999999999999999,
+      "pass": true
+    },
+    "elapsed_s": 0.0004010200500488281
+  },
+  "negative": {
+    "non_hermitian_povm": {
+      "M0_hermitian": false,
+      "M1_hermitian": false,
+      "pass": true
+    },
+    "incomplete_povm": {
+      "sums_to_identity": false,
+      "total_probability": 0.4999999999999999,
+      "total_prob_expected": 0.5,
+      "pass": true
+    },
+    "non_psd_povm": {
+      "is_psd": false,
+      "min_eigenvalue": -0.5,
+      "pass": true
+    },
+    "zero_prob_collapse": {
+      "returns_none": true,
+      "pass": true
+    },
+    "elapsed_s": 9.393692016601562e-05
+  },
+  "boundary": {
+    "maximally_mixed": {
+      "p0": 0.5,
+      "p1": 0.5,
+      "equal_probs": true,
+      "post0_is_ket0": true,
+      "post1_is_ket1": true,
+      "pass": true
+    },
+    "pure_eigenstate_0": {
+      "p0": 1.0,
+      "unchanged_after_measurement": true,
+      "pass": true
+    },
+    "pure_eigenstate_1": {
+      "p1": 1.0,
+      "unchanged_after_measurement": true,
+      "pass": true
+    },
+    "approaching_eigenstate": {
+      "data": [
+        {
+          "theta": 0.001,
+          "p0": 0.999999750000021
+        },
+        {
+          "theta": 0.01,
+          "p0": 0.9999750002083326
+        },
+        {
+          "theta": 0.1,
+          "p0": 0.997502082639013
+        }
+      ],
+      "monotonic_toward_1": true,
+      "pass": true
+    },
+    "dephasing_idempotent": {
+      "trace_dist": 0.0,
+      "pass": true
+    },
+    "elapsed_s": 0.00017309188842773438
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local projective Z-measurement baseline on one qubit with collapse and dephasing checks."
+  }
+}

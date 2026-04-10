@@ -1,0 +1,419 @@
+{
+  "name": "kraus_choi_roundtrip",
+  "description": "Independent cross-check of Kraus<->Choi roundtrip for amplitude damping channel (gamma=0.4). Verifies F-order reshape convention for Kraus recovery from Choi matrix eigendecomposition.",
+  "classification": "classical_baseline",
+  "classification_note": "Baseline 1-qubit channel-identity probe for the Kraus<->Choi roundtrip. Confirms the F-order reshape convention, trace-preserving partial-trace check, negative controls for wrong reshape / non-CP / non-TP matrices, and boundary behavior across amplitude-damping extremes.",
+  "lego_ids": [
+    "kraus_choi_roundtrip"
+  ],
+  "primary_lego_ids": [
+    "kraus_choi_roundtrip"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "torch.linalg.eigh cross-check of Choi eigendecomposition vs numpy"
+    },
+    "pyg": {
+      "tried": true,
+      "used": false,
+      "reason": "Availability check only; graph tooling is not used in the Kraus/Choi algebra path"
+    },
+    "z3": {
+      "tried": true,
+      "used": false,
+      "reason": "Availability check only; this probe uses direct linear algebra rather than SMT constraints"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": false,
+      "reason": "Availability check only; no satisfiability proof surface is needed for this roundtrip"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic cross-check of Choi matrix trace and determinant for gamma=2/5"
+    },
+    "clifford": {
+      "tried": true,
+      "used": false,
+      "reason": "Availability check only; Clifford algebra is not part of the channel/Choi calculation"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": false,
+      "reason": "Availability check only; no manifold package is required for the 2x2 Choi construction"
+    },
+    "e3nn": {
+      "tried": true,
+      "used": false,
+      "reason": "Availability check only; equivariant neural components are not used in this baseline"
+    },
+    "rustworkx": {
+      "tried": true,
+      "used": false,
+      "reason": "Availability check only; no graph rewrites or graph search are used here"
+    },
+    "xgi": {
+      "tried": true,
+      "used": false,
+      "reason": "Availability check only; hypergraph tooling is outside the scope of this channel probe"
+    },
+    "toponetx": {
+      "tried": true,
+      "used": false,
+      "reason": "Availability check only; cell-complex structure is not used in the roundtrip check"
+    },
+    "gudhi": {
+      "tried": true,
+      "used": false,
+      "reason": "Availability check only; persistent-homology tooling is not used in this baseline"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "choi_numeric_vs_analytic": {
+      "J_numeric": [
+        [
+          "(1+0j)",
+          "0j",
+          "0j",
+          "(0.7745966692414834+0j)"
+        ],
+        [
+          "0j",
+          "0j",
+          "0j",
+          "0j"
+        ],
+        [
+          "0j",
+          "0j",
+          "(0.4+0j)",
+          "0j"
+        ],
+        [
+          "(0.7745966692414834+0j)",
+          "0j",
+          "0j",
+          "(0.6000000000000001+0j)"
+        ]
+      ],
+      "J_analytic": [
+        [
+          "(1+0j)",
+          "0j",
+          "0j",
+          "(0.7745966692414834+0j)"
+        ],
+        [
+          "0j",
+          "0j",
+          "0j",
+          "0j"
+        ],
+        [
+          "0j",
+          "0j",
+          "(0.4+0j)",
+          "0j"
+        ],
+        [
+          "(0.7745966692414834+0j)",
+          "0j",
+          "0j",
+          "(0.6+0j)"
+        ]
+      ],
+      "match": true,
+      "max_diff": 1.1102230246251565e-16
+    },
+    "choi_eigenvalues": {
+      "eigenvalues": [
+        -1.3877787807814457e-17,
+        0.0,
+        0.4,
+        1.6
+      ],
+      "all_nonneg": true,
+      "min_eigenvalue": -1.3877787807814457e-17
+    },
+    "partial_trace_check": {
+      "Tr_output_J": [
+        [
+          "(1+0j)",
+          "0j"
+        ],
+        [
+          "0j",
+          "(1+0j)"
+        ]
+      ],
+      "equals_I2": true,
+      "max_diff_from_I": 0.0
+    },
+    "kraus_recovery": {
+      "num_recovered_ops": 2,
+      "completeness_sum": [
+        [
+          "(1+0j)",
+          "0j"
+        ],
+        [
+          "0j",
+          "(0.9999999999999999+0j)"
+        ]
+      ],
+      "trace_preserving": true,
+      "eigenvalues_used": [
+        -1.3877787807814457e-17,
+        0.0,
+        0.4,
+        1.6
+      ]
+    },
+    "roundtrip_test_states": {
+      "ket_0": {
+        "max_entry_error": 0.0,
+        "pass": true,
+        "output_original": [
+          [
+            "(1+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "0j"
+          ]
+        ],
+        "output_recovered": [
+          [
+            "(1+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "0j"
+          ]
+        ]
+      },
+      "ket_1": {
+        "max_entry_error": 2.220446049250313e-16,
+        "pass": true,
+        "output_original": [
+          [
+            "(0.4+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "(0.6000000000000001+0j)"
+          ]
+        ],
+        "output_recovered": [
+          [
+            "(0.4+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "(0.5999999999999999+0j)"
+          ]
+        ]
+      },
+      "ket_plus": {
+        "max_entry_error": 1.1102230246251565e-16,
+        "pass": true,
+        "output_original": [
+          [
+            "(0.6999999999999998+0j)",
+            "(0.3872983346207416+0j)"
+          ],
+          [
+            "(0.3872983346207416+0j)",
+            "(0.29999999999999993+0j)"
+          ]
+        ],
+        "output_recovered": [
+          [
+            "(0.6999999999999998+0j)",
+            "(0.38729833462074154+0j)"
+          ],
+          [
+            "(0.38729833462074154+0j)",
+            "(0.2999999999999998+0j)"
+          ]
+        ]
+      },
+      "mixed_I_over_2": {
+        "max_entry_error": 1.1102230246251565e-16,
+        "pass": true,
+        "output_original": [
+          [
+            "(0.7+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "(0.30000000000000004+0j)"
+          ]
+        ],
+        "output_recovered": [
+          [
+            "(0.7+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "(0.29999999999999993+0j)"
+          ]
+        ]
+      },
+      "partial_mix": {
+        "max_entry_error": 5.551115123125783e-17,
+        "pass": true,
+        "output_original": [
+          [
+            "(0.82+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "(0.18+0j)"
+          ]
+        ],
+        "output_recovered": [
+          [
+            "(0.82+0j)",
+            "0j"
+          ],
+          [
+            "0j",
+            "(0.17999999999999994+0j)"
+          ]
+        ]
+      }
+    },
+    "roundtrip_max_global_error": 2.220446049250313e-16,
+    "roundtrip_pass": true
+  },
+  "negative": {
+    "wrong_reshape_order_C": {
+      "description": "C-order (row-major) reshape should give DIFFERENT result from correct channel",
+      "max_entry_error_from_correct": 0.19999999999999996,
+      "is_different_from_correct": true,
+      "pass": true
+    },
+    "non_cp_detection": {
+      "description": "Perturbed J with J[1,1]=-0.1 should have negative eigenvalue",
+      "eigenvalues": [
+        -0.09999999999999998,
+        -1.3877787807814457e-17,
+        0.4,
+        1.6
+      ],
+      "has_negative_eigenvalue": true,
+      "pass": true
+    },
+    "non_tp_detection": {
+      "description": "0.9*J_E should NOT be trace-preserving",
+      "Tr_output_of_scaled_J": [
+        [
+          "(0.9+0j)",
+          "0j"
+        ],
+        [
+          "0j",
+          "(0.9000000000000001+0j)"
+        ]
+      ],
+      "equals_I2": false,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "gamma_0_identity": {
+      "gamma": 0.0,
+      "choi_eigenvalues": [
+        0.0,
+        0.0,
+        0.0,
+        2.0
+      ],
+      "all_nonneg": true,
+      "num_kraus_recovered": 1,
+      "trace_preserving_after_recovery": true,
+      "roundtrip_max_error_ket_plus": 0.0,
+      "roundtrip_pass": true
+    },
+    "gamma_1_full_damp": {
+      "gamma": 1.0,
+      "choi_eigenvalues": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "all_nonneg": true,
+      "num_kraus_recovered": 2,
+      "trace_preserving_after_recovery": true,
+      "roundtrip_max_error_ket_plus": 0.0,
+      "roundtrip_pass": true
+    },
+    "gamma_0p5": {
+      "gamma": 0.5,
+      "choi_eigenvalues": [
+        0.0,
+        1.8503717077085938e-17,
+        0.5000000000000001,
+        1.5
+      ],
+      "all_nonneg": true,
+      "num_kraus_recovered": 2,
+      "trace_preserving_after_recovery": true,
+      "roundtrip_max_error_ket_plus": 0.0,
+      "roundtrip_pass": true
+    },
+    "sympy_crosscheck_gamma_0p4": {
+      "trace_J_sym": "2",
+      "det_J_sym": "0",
+      "trace_equals_2": true
+    }
+  },
+  "pytorch_crosscheck": {
+    "eigs_torch": [
+      -1.3877787807814457e-17,
+      0.0,
+      0.4,
+      1.6
+    ],
+    "eigs_numpy": [
+      -1.3877787807814457e-17,
+      0.0,
+      0.4,
+      1.6
+    ],
+    "max_diff": 0.0,
+    "pass": true
+  },
+  "summary": {
+    "roundtrip_pass": true,
+    "negative_controls_pass": true,
+    "boundary_controls_pass": false,
+    "scope_note": "Baseline-only identity check for a single qubit amplitude-damping family; not a broader channel taxonomy or canonical promotion claim."
+  }
+}

@@ -500,6 +500,7 @@ def run_boundary_tests():
             "trace_J_sym": str(trace_sym),
             "det_J_sym": str(det_sym),
             "trace_equals_2": bool(trace_sym == 2),
+            "pass": bool(trace_sym == 2 and det_sym == 0),
         }
 
     return results

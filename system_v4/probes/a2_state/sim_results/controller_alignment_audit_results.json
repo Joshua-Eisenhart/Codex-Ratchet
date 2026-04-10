@@ -1,9 +1,9 @@
 {
   "name": "controller_alignment_audit",
-  "generated_at": "2026-04-10T06:12:41.038865+00:00",
+  "generated_at": "2026-04-10T10:00:27.585596+00:00",
   "classification": "audit",
   "interpreter_authority": {
-    "sys_executable": "/opt/homebrew/opt/python@3.13/bin/python3.13",
+    "sys_executable": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "makefile_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "imessage_bot_python": "/Users/joshuaeisenhart/.local/share/codex-ratchet/envs/main/bin/python3",
     "makefile_and_bot_agree": true
@@ -12,11 +12,11 @@
     "torch": {
       "distribution": "torch",
       "import_name": "torch",
-      "installed_version": "2.8.0",
+      "installed_version": "2.11.0",
       "import_ok": true,
       "import_error": null,
       "required_floor": "2.11.0",
-      "meets_floor": false
+      "meets_floor": true
     },
     "sympy": {
       "distribution": "sympy",
@@ -30,11 +30,11 @@
     "z3-solver": {
       "distribution": "z3-solver",
       "import_name": "z3",
-      "installed_version": null,
+      "installed_version": "4.16.0.0",
       "import_ok": true,
       "import_error": null,
       "required_floor": "4.16.0.0",
-      "meets_floor": null
+      "meets_floor": true
     },
     "cvc5": {
       "distribution": "cvc5",
@@ -129,20 +129,20 @@
     "pandas": {
       "distribution": "pandas",
       "import_name": "pandas",
-      "installed_version": "2.2.3",
+      "installed_version": "3.0.2",
       "import_ok": true,
       "import_error": null,
       "required_floor": "3.0.0",
-      "meets_floor": false
+      "meets_floor": true
     },
     "networkx": {
       "distribution": "networkx",
       "import_name": "networkx",
-      "installed_version": "3.5",
+      "installed_version": "3.6.1",
       "import_ok": true,
       "import_error": null,
       "required_floor": "3.6",
-      "meets_floor": false
+      "meets_floor": true
     }
   },
   "known_env_risks": {
@@ -153,7 +153,7 @@
     "available": true,
     "ok": true,
     "hard_finding_count": 0,
-    "warning_finding_count": 1,
+    "warning_finding_count": 0,
     "blocked_results": {}
   },
   "stale_doc_hits": [],
@@ -228,13 +228,13 @@
     ]
   },
   "tool_stack_summary": {
-    "files_with_manifest_or_depth": 326,
+    "files_with_manifest_or_depth": 353,
     "per_tool": {
       "pytorch": {
-        "tried_count": 182,
-        "used_count": 168,
-        "load_bearing_count": 132,
-        "depth_present_count": 160,
+        "tried_count": 203,
+        "used_count": 189,
+        "load_bearing_count": 148,
+        "depth_present_count": 177,
         "anchor_stage_coverage": [
           "lego",
           "topology",
@@ -246,6 +246,7 @@
           "3qubit_dag_formal_ordering_v2_results.json",
           "3qubit_full_cascade_results.json",
           "4qubit_cascade_results.json",
+          "adiabatic_berry_dynamics_results.json",
           "adversarial_ratchet_results.json",
           "axis0_through_shells_results.json",
           "axis6_canonical_results.json",
@@ -254,6 +255,8 @@
           "axis6_rank_coherence_results.json",
           "axis7_12_gs_residual_axes_results.json",
           "axis7_12_orthogonal_closure_results.json",
+          "berry_curvature_stokes_results.json",
+          "berry_phase_u1_abelian_results.json",
           "berry_qfi_entangled_path_results.json",
           "berry_qfi_shell_paths_results.json",
           "bridge_chain_integration_results.json",
@@ -265,6 +268,10 @@
           "c2_topology_expansion_results.json",
           "c2_topology_remaining_results.json",
           "constraint_shells_binding_crosscheck_results.json",
+          "contact_structure_s3_results.json",
+          "contact_symplectic_coupling_results.json",
+          "contact_symplectic_kahler_coexistence_results.json",
+          "cross_shell_coupling_cp1_bures_results.json",
           "density_hopf_geometry_results.json",
           "dissipative_kraus_shell_compatibility_results.json",
           "e3nn_equivariant_qubits_results.json",
@@ -277,7 +284,8 @@
           "engine_8_terrains_results.json",
           "foundation_pauli_bloch_backprop_results.json",
           "full_ratchet_cascade_results.json",
-          "geom_cp1_u1_projective_results.json",
+          "gauss_bonnet_cp1_results.json",
+          "geodesic_deviation_results.json",
           "geom_layer_1_2_3_results.json",
           "geom_layer_4_5_results.json",
           "geom_layer_6_7_results.json",
@@ -290,9 +298,11 @@
           "gudhi_bipartite_entangled_results.json",
           "gudhi_phase_sensitive_kernel_results.json",
           "gudhi_s2_topology_recovery_results.json",
+          "hopf_contact_symplectic_bridge_results.json",
           "hopf_torus_lego_results.json",
           "information_geometry_results.json",
           "integrated_dependency_chain_results.json",
+          "kraus_choi_roundtrip_results.json",
           "l6_binding_radius_sweep_results.json",
           "layer_coupling_matrix_results.json",
           "layer_coupling_matrix_v2_results.json",
@@ -312,16 +322,23 @@
           "lego_uhlmann_phase_results.json",
           "lego_weyl_wigner_phase_space_results.json",
           "lego_zeno_speed_limits_results.json",
+          "levi_civita_connection_results.json",
           "lorentzian_geometry_results.json",
+          "pairwise_shell_coupling_cp1_results.json",
           "phase7_baseline_validation_results.json",
           "phase_damping_fixed_point_geometry_results.json",
           "phase_transition_sweep_results.json",
           "phi0_ic_vs_mi_regime_map_results.json",
           "phi0_matched_packet_head_to_head_results.json",
+          "pure_lego_ic_shell_boundary_continuity_results.json",
           "pyg_dynamic_edge_werner_results.json",
           "q3_bipartite_analysis_results.json",
+          "qfi_killpoint_divergence_results.json",
           "quantum_discord_depolarizing_c2_results.json",
           "ratchet_optimizer_results.json",
+          "riemannian_curvature_results.json",
+          "sa10_wilczek_zee_curvature_boundary_results.json",
+          "sa5_curvature_commutator_results.json",
           "substrate_divergence_resolution_results.json",
           "substrate_insensitive_analysis_results.json",
           "temporal_cascade_results.json",
@@ -347,7 +364,6 @@
           "torch_gnn_gradient_ref_ablation_results.json",
           "torch_gnn_loss_regularized_results.json",
           "torch_hopf_connection_results.json",
-          "torch_husimi_q_results.json",
           "torch_iswap_results.json",
           "torch_l1_coherence_results.json",
           "torch_mutual_info_results.json",
@@ -359,7 +375,6 @@
           "torch_shells_displacement_metric_results.json",
           "torch_shells_gradient_flow_results.json",
           "torch_swap_results.json",
-          "torch_wigner_results.json",
           "torch_z_dephasing_results.json",
           "tripartite_mi_bug_fix_results.json",
           "twilight_zone_results.json",
@@ -367,10 +382,11 @@
           "w_ghz_bipartition_audit_results.json",
           "werner_manifold_scan_results.json",
           "werner_qwci_gap_results.json",
-          "weyl_hopf_tori_results.json",
           "weyl_nested_shell_results.json",
           "weyl_spinor_hopf_results.json",
           "weyl_two_model_crosscheck_results.json",
+          "wilczek_zee_curvature_results.json",
+          "wilczek_zee_holonomy_results.json",
           "xgi_gradient_ascent_results.json",
           "xgi_indirect_pathway_results.json",
           "xgi_torch_autograd_results.json",
@@ -378,7 +394,7 @@
         ]
       },
       "pyg": {
-        "tried_count": 86,
+        "tried_count": 95,
         "used_count": 11,
         "load_bearing_count": 10,
         "depth_present_count": 21,
@@ -399,10 +415,10 @@
         ]
       },
       "z3": {
-        "tried_count": 141,
-        "used_count": 100,
-        "load_bearing_count": 62,
-        "depth_present_count": 101,
+        "tried_count": 161,
+        "used_count": 113,
+        "load_bearing_count": 72,
+        "depth_present_count": 114,
         "anchor_stage_coverage": [
           "boundary",
           "lego",
@@ -427,11 +443,18 @@
           "bridge_z3_kernel_ordering_results.json",
           "constraint_manifold_L0_L1_results.json",
           "constraint_manifold_L2_L3_results.json",
+          "contact_structure_s3_results.json",
+          "contact_symplectic_coupling_results.json",
+          "contact_symplectic_kahler_coexistence_results.json",
+          "cptp_axioms_hardway_results.json",
+          "cross_shell_coupling_cp1_bures_results.json",
           "cvc5_shells_crosscheck_results.json",
           "dissipative_kraus_shell_compatibility_results.json",
           "distinguishability_relation_results.json",
           "foundation_channel_constraints_hardway_results.json",
           "foundation_pauli_bloch_backprop_results.json",
+          "geodesic_exponential_map_results.json",
+          "hopf_contact_symplectic_bridge_results.json",
           "hopf_torus_lego_results.json",
           "layer_coupling_matrix_results.json",
           "layer_coupling_matrix_v2_results.json",
@@ -441,9 +464,12 @@
           "layer_triple_catalog_results.json",
           "lego_choi_state_duality_results.json",
           "lego_coherent_info_advanced_results.json",
+          "levi_civita_connection_results.json",
+          "multiqubit_cp_admissibility_results.json",
           "phase_damping_fixed_point_geometry_results.json",
           "probe_object_results.json",
           "pyg_dynamic_edge_werner_results.json",
+          "stinespring_dilation_results.json",
           "toponetx_hopf_crosscheck_results.json",
           "toponetx_state_class_binding_results.json",
           "torch_amplitude_damping_results.json",
@@ -477,10 +503,10 @@
         ]
       },
       "cvc5": {
-        "tried_count": 96,
-        "used_count": 18,
+        "tried_count": 106,
+        "used_count": 20,
         "load_bearing_count": 10,
-        "depth_present_count": 32,
+        "depth_present_count": 34,
         "anchor_stage_coverage": [
           "boundary"
         ],
@@ -498,10 +524,10 @@
         ]
       },
       "sympy": {
-        "tried_count": 139,
-        "used_count": 91,
-        "load_bearing_count": 41,
-        "depth_present_count": 94,
+        "tried_count": 166,
+        "used_count": 118,
+        "load_bearing_count": 56,
+        "depth_present_count": 118,
         "anchor_stage_coverage": [
           "lego",
           "coupling",
@@ -510,6 +536,7 @@
         ],
         "anchor_result_files": [
           "3qubit_dag_formal_ordering_v2_results.json",
+          "SA12_wilczek_zee_curvature_sympy_results.json",
           "axis6_canonical_results.json",
           "axis6_entropy_decomposition_results.json",
           "axis6_rank_coherence_results.json",
@@ -518,11 +545,18 @@
           "berry_qfi_entangled_path_results.json",
           "berry_qfi_shell_paths_results.json",
           "bridge_phi0_proof_integration_results.json",
+          "clifford_weyl_transport_results.json",
           "constraint_manifold_L0_L1_results.json",
+          "cptp_axioms_hardway_results.json",
           "dissipative_kraus_shell_compatibility_results.json",
           "foundation_channel_constraints_hardway_results.json",
           "foundation_pauli_bloch_backprop_results.json",
           "frozen_kernel_classification_results.json",
+          "gauss_bonnet_cp1_results.json",
+          "geodesic_deviation_results.json",
+          "geodesic_exponential_map_results.json",
+          "hopf_tori_base_results.json",
+          "kraus_choi_roundtrip_results.json",
           "layer_coupling_matrix_results.json",
           "layer_coupling_matrix_v2_results.json",
           "layer_coupling_matrix_v3_results.json",
@@ -530,9 +564,16 @@
           "lego_lindblad_dissipator_results.json",
           "lego_povm_measurement_results.json",
           "lego_uhlmann_phase_results.json",
+          "levi_civita_connection_results.json",
+          "multiqubit_cp_admissibility_results.json",
+          "pairwise_shell_coupling_cp1_results.json",
           "phase_damping_fixed_point_geometry_results.json",
+          "pure_lego_ic_shell_boundary_continuity_results.json",
           "pure_lego_qfi_wy_qgt_results.json",
           "q3_bipartite_analysis_results.json",
+          "qfi_killpoint_divergence_results.json",
+          "riemannian_curvature_results.json",
+          "stinespring_dilation_results.json",
           "substrate_divergence_resolution_results.json",
           "substrate_insensitive_analysis_results.json",
           "toponetx_hopf_crosscheck_results.json",
@@ -553,16 +594,18 @@
         ]
       },
       "clifford": {
-        "tried_count": 84,
-        "used_count": 25,
-        "load_bearing_count": 16,
-        "depth_present_count": 33,
+        "tried_count": 95,
+        "used_count": 27,
+        "load_bearing_count": 18,
+        "depth_present_count": 35,
         "anchor_stage_coverage": [
           "coexistence"
         ],
         "anchor_result_files": [
           "axis6_entropy_decomposition_results.json",
           "axis6_rank_coherence_results.json",
+          "chiral_overlap_results.json",
+          "clifford_weyl_transport_results.json",
           "compound_operator_geometry_results.json",
           "constraint_manifold_L2_L3_results.json",
           "geom_su2_so3_quaternions_results.json",
@@ -580,10 +623,10 @@
         ]
       },
       "geomstats": {
-        "tried_count": 99,
-        "used_count": 27,
+        "tried_count": 110,
+        "used_count": 30,
         "load_bearing_count": 20,
-        "depth_present_count": 37,
+        "depth_present_count": 40,
         "anchor_stage_coverage": [
           "coexistence"
         ],
@@ -611,7 +654,7 @@
         ]
       },
       "e3nn": {
-        "tried_count": 88,
+        "tried_count": 97,
         "used_count": 10,
         "load_bearing_count": 10,
         "depth_present_count": 23,
@@ -632,7 +675,7 @@
         ]
       },
       "rustworkx": {
-        "tried_count": 111,
+        "tried_count": 120,
         "used_count": 37,
         "load_bearing_count": 26,
         "depth_present_count": 42,
@@ -673,7 +716,7 @@
         ]
       },
       "xgi": {
-        "tried_count": 89,
+        "tried_count": 98,
         "used_count": 19,
         "load_bearing_count": 15,
         "depth_present_count": 28,
@@ -702,7 +745,7 @@
         ]
       },
       "toponetx": {
-        "tried_count": 89,
+        "tried_count": 98,
         "used_count": 11,
         "load_bearing_count": 11,
         "depth_present_count": 24,
@@ -725,7 +768,7 @@
         ]
       },
       "gudhi": {
-        "tried_count": 93,
+        "tried_count": 102,
         "used_count": 23,
         "load_bearing_count": 16,
         "depth_present_count": 33,

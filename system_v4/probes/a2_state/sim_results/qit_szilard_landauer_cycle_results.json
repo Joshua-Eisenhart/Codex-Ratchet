@@ -1,0 +1,149 @@
+{
+  "name": "qit_szilard_landauer_cycle",
+  "classification": "canonical",
+  "classification_note": "Canonical finite QIT information-engine row: a one-bit measurement on a bounded system-memory carrier creates correlation, ordered conditional feedback converts that correlation into a one-bit free-energy gain for the system in a degenerate model, and memory erasure closes the bookkeeping at the same kT ln 2 scale.",
+  "lego_ids": [
+    "quantum_thermodynamics",
+    "channel_cptp_map"
+  ],
+  "primary_lego_ids": [
+    "quantum_thermodynamics"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "measurement_creates_one_bit_of_system_memory_correlation": {
+      "system_entropy_after_measurement": 0.6931471805599453,
+      "memory_entropy_after_measurement": 0.6931471805599453,
+      "mutual_information": 0.6931471805599453,
+      "pass": true
+    },
+    "conditional_feedback_converts_information_into_one_bit_of_system_free_energy": {
+      "system_entropy_before_feedback": 0.6931471805599453,
+      "system_entropy_after_feedback": -0.0,
+      "system_free_energy_gain": 0.6931471805599453,
+      "pass": true
+    },
+    "memory_erasure_closes_the_cycle_at_the_same_kT_ln2_scale": {
+      "memory_entropy_before_erasure": 0.6931471805599453,
+      "memory_entropy_after_erasure": -0.0,
+      "erasure_cost": 0.6931471805599453,
+      "pass": true
+    }
+  },
+  "negative": {
+    "feedback_before_measurement_does_not_extract_the_same_ordered_gain": {
+      "system_entropy_after_wrong_order": 0.6931471805599453,
+      "wrong_order_free_energy_gain": 0.0,
+      "pass": true
+    },
+    "reset_without_feedback_destroys_memory_record_without_purifying_the_system": {
+      "system_entropy_after_blind_reset": 0.6931471805599453,
+      "memory_entropy_after_blind_reset": -0.0,
+      "pass": true
+    },
+    "cycle_does_not_claim_free_work_beyond_landauer_balance": {
+      "information_gain": 0.6931471805599453,
+      "system_free_energy_gain": 0.6931471805599453,
+      "erasure_cost": 0.6931471805599453,
+      "net_after_erasure": 0.0,
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_cycle_states_remain_valid_density_operators": {
+      "pass": true
+    },
+    "cycle_uses_only_finite_two_qubit_carrier_and_admissible_maps": {
+      "carrier_dimension": 4,
+      "ordered_steps": [
+        "system_to_memory_measurement_unitary",
+        "memory_conditioned_feedback_unitary",
+        "memory_reset_cptp_map"
+      ],
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "temperature": 1.0,
+    "information_gain": 0.6931471805599453,
+    "system_free_energy_gain": 0.6931471805599453,
+    "erasure_cost": 0.6931471805599453,
+    "scope_note": "Finite two-qubit bookkeeping row for a Szilard/Landauer cycle; no engine-runtime, reservoir, or universal demon claims."
+  }
+}

@@ -41,6 +41,8 @@ GENERATED_DIR_HINTS = (
 GENERATED_ROOT_FILES = {
     "autoresearch-state.json",
 }
+RECENT_COMMIT_WINDOW = 12
+LANE_SCOPE_MAX_FILES = 6
 SOURCE_BUCKET_RULES = (
     ("build_contract", ("Makefile", "requirements-runtime.txt", "requirements-sim-stack.txt", "pyproject.toml")),
     ("root_runtime", ("imessage_bot.py",)),
@@ -105,6 +107,70 @@ def sample_counter(counter: Counter[str], limit: int = 8) -> list[dict[str, int]
         {"label": label, "count": count}
         for label, count in counter.most_common(limit)
     ]
+
+
+def git_stdout(*args: str) -> str:
+    completed = subprocess.run(
+        ["git", *args],
+        cwd=PROJECT_DIR,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if completed.returncode != 0:
+        return ""
+    return completed.stdout
+
+
+def branch_divergence_summary() -> dict[str, int | None]:
+    raw = git_stdout("rev-list", "--left-right", "--count", "origin/main...HEAD").strip()
+    if not raw:
+        return {"behind_count": None, "ahead_count": None}
+    parts = raw.split()
+    if len(parts) != 2:
+        return {"behind_count": None, "ahead_count": None}
+    try:
+        behind_count = int(parts[0])
+        ahead_count = int(parts[1])
+    except ValueError:
+        return {"behind_count": None, "ahead_count": None}
+    return {"behind_count": behind_count, "ahead_count": ahead_count}
+
+
+def recent_checkpoint_scope_findings(limit: int = RECENT_COMMIT_WINDOW) -> list[dict]:
+    findings: list[dict] = []
+    raw = git_stdout("log", f"-n{limit}", "--format=%H%x09%s")
+    if not raw:
+        return findings
+
+    for line in raw.splitlines():
+        if not line.strip():
+            continue
+        try:
+            commit_sha, subject = line.split("\t", 1)
+        except ValueError:
+            continue
+        subject_lower = subject.lower()
+        if "checkpoint" not in subject_lower or "lane" not in subject_lower:
+            continue
+        changed_paths = [
+            item
+            for item in git_stdout("diff-tree", "--no-commit-id", "--name-only", "-r", commit_sha).splitlines()
+            if item.strip()
+        ]
+        if len(changed_paths) <= LANE_SCOPE_MAX_FILES:
+            continue
+        findings.append({
+            "kind": "checkpoint_scope_drift",
+            "severity": "advisory",
+            "commit": commit_sha[:8],
+            "subject": subject,
+            "changed_path_count": len(changed_paths),
+            "max_expected_for_lane": LANE_SCOPE_MAX_FILES,
+            "sample_paths": changed_paths[:12],
+        })
+
+    return findings
 
 
 def git_status_summary() -> dict:
@@ -208,6 +274,8 @@ def directory_presence(names: tuple[str, ...]) -> list[str]:
 
 def build_findings(
     git_summary: dict,
+    branch_divergence: dict,
+    recent_checkpoint_findings: list[dict],
     root_results: list[str],
     secondary_unique_results: list[str],
     secondary_duplicate_results: list[str],
@@ -246,6 +314,17 @@ def build_findings(
             "generated_dirty_count": generated_dirty,
             "total_dirty_count": total_dirty,
         })
+
+    ahead_count = branch_divergence.get("ahead_count")
+    if isinstance(ahead_count, int) and ahead_count >= 6:
+        advisories.append({
+            "kind": "local_commit_stack_depth",
+            "severity": "advisory",
+            "ahead_count": ahead_count,
+            "recommended_push_threshold": 5,
+        })
+
+    advisories.extend(recent_checkpoint_findings)
 
     if root_results:
         blockers.append({
@@ -351,6 +430,8 @@ def main() -> int:
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
     git_summary = git_status_summary()
+    branch_divergence = branch_divergence_summary()
+    recent_checkpoint_findings = recent_checkpoint_scope_findings()
     root_results = root_result_files()
     secondary_unique_results, secondary_duplicate_results = split_secondary_results()
     secondary_result_count = len(secondary_unique_results) + len(secondary_duplicate_results)
@@ -368,6 +449,8 @@ def main() -> int:
 
     blockers, advisories, repair_candidates = build_findings(
         git_summary=git_summary,
+        branch_divergence=branch_divergence,
+        recent_checkpoint_findings=recent_checkpoint_findings,
         root_results=root_results,
         secondary_unique_results=secondary_unique_results,
         secondary_duplicate_results=secondary_duplicate_results,
@@ -403,6 +486,8 @@ def main() -> int:
         "generated_dirty_count": git_summary.get("generated_dirty_count", 0),
         "dirty_worktree_count": git_summary.get("total_dirty_count", 0),
         "git": git_summary,
+        "branch_divergence": branch_divergence,
+        "recent_checkpoint_scope_findings": recent_checkpoint_findings,
         "root_result_files": root_results,
         "secondary_unique_results": secondary_unique_results,
         "duplicate_result_basenames": secondary_duplicate_results,

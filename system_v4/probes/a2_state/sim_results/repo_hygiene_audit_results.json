@@ -1,31 +1,31 @@
 {
-  "generated_at": "2026-04-10T05:04:26.628292+00:00",
+  "generated_at": "2026-04-10T05:08:14.465148+00:00",
   "strict": false,
   "blocker_count": 0,
-  "advisory_count": 6,
+  "advisory_count": 8,
   "repair_candidate_count": 2,
-  "source_dirty_count": 6,
+  "source_dirty_count": 11,
   "generated_dirty_count": 17,
-  "dirty_worktree_count": 23,
+  "dirty_worktree_count": 28,
   "git": {
     "ok": true,
-    "tracked_dirty_count": 15,
+    "tracked_dirty_count": 20,
     "untracked_count": 8,
-    "source_dirty_count": 6,
+    "source_dirty_count": 11,
     "generated_dirty_count": 17,
-    "total_dirty_count": 23,
+    "total_dirty_count": 28,
     "status_class_counts": {
-      "modified": 15,
+      "modified": 20,
       "untracked": 8
     },
     "dirty_source_buckets": [
       {
-        "label": "legacy_runtime",
-        "count": 4
+        "label": "probe_source",
+        "count": 6
       },
       {
-        "label": "probe_source",
-        "count": 1
+        "label": "legacy_runtime",
+        "count": 4
       },
       {
         "label": "other_source",
@@ -41,7 +41,7 @@
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 15
+        "count": 20
       },
       {
         "prefix": "obsidian_vault",
@@ -53,6 +53,34 @@
       }
     ]
   },
+  "branch_divergence": {
+    "behind_count": 0,
+    "ahead_count": 12
+  },
+  "recent_checkpoint_scope_findings": [
+    {
+      "kind": "checkpoint_scope_drift",
+      "severity": "advisory",
+      "commit": "581dc675",
+      "subject": "Checkpoint positivity constraint lane",
+      "changed_path_count": 42,
+      "max_expected_for_lane": 6,
+      "sample_paths": [
+        "system_v4/probes/a2_state/sim_results/L2_eight_stages_results.json",
+        "system_v4/probes/a2_state/sim_results/axis_orthogonality_suite_results.json",
+        "system_v4/probes/a2_state/sim_results/c2_topology_remaining_results.json",
+        "system_v4/probes/a2_state/sim_results/compound_operator_geometry_results.json",
+        "system_v4/probes/a2_state/sim_results/constraint_manifold_L0_L1_results.json",
+        "system_v4/probes/a2_state/sim_results/constraint_shells_binding_crosscheck_results.json",
+        "system_v4/probes/a2_state/sim_results/density_hopf_geometry_results.json",
+        "system_v4/probes/a2_state/sim_results/edge_state_writeback_results.json",
+        "system_v4/probes/a2_state/sim_results/foundation_equivariant_graph_backprop_results.json",
+        "system_v4/probes/a2_state/sim_results/foundation_pauli_bloch_backprop_results.json",
+        "system_v4/probes/a2_state/sim_results/gnn_cascade_integrated_results.json",
+        "system_v4/probes/a2_state/sim_results/layer_stacking_coexistence_results.json"
+      ]
+    }
+  ],
   "root_result_files": [],
   "secondary_unique_results": [],
   "duplicate_result_basenames": [],
@@ -90,7 +118,7 @@
   },
   "summary": {
     "blocker_count": 0,
-    "advisory_count": 6,
+    "advisory_count": 8,
     "repair_candidate_count": 2,
     "primary_result_count": 764,
     "secondary_result_count": 0,
@@ -98,14 +126,42 @@
     "secondary_duplicate_result_count": 0,
     "root_result_orphan_count": 0,
     "duplicate_result_basename_count": 0,
-    "source_dirty_count": 6,
+    "source_dirty_count": 11,
     "generated_dirty_count": 17,
-    "dirty_worktree_count": 23,
+    "dirty_worktree_count": 28,
     "dirty_source_bucket_count": 3,
     "ok": true
   },
   "blockers": [],
   "advisories": [
+    {
+      "kind": "local_commit_stack_depth",
+      "severity": "advisory",
+      "ahead_count": 12,
+      "recommended_push_threshold": 5
+    },
+    {
+      "kind": "checkpoint_scope_drift",
+      "severity": "advisory",
+      "commit": "581dc675",
+      "subject": "Checkpoint positivity constraint lane",
+      "changed_path_count": 42,
+      "max_expected_for_lane": 6,
+      "sample_paths": [
+        "system_v4/probes/a2_state/sim_results/L2_eight_stages_results.json",
+        "system_v4/probes/a2_state/sim_results/axis_orthogonality_suite_results.json",
+        "system_v4/probes/a2_state/sim_results/c2_topology_remaining_results.json",
+        "system_v4/probes/a2_state/sim_results/compound_operator_geometry_results.json",
+        "system_v4/probes/a2_state/sim_results/constraint_manifold_L0_L1_results.json",
+        "system_v4/probes/a2_state/sim_results/constraint_shells_binding_crosscheck_results.json",
+        "system_v4/probes/a2_state/sim_results/density_hopf_geometry_results.json",
+        "system_v4/probes/a2_state/sim_results/edge_state_writeback_results.json",
+        "system_v4/probes/a2_state/sim_results/foundation_equivariant_graph_backprop_results.json",
+        "system_v4/probes/a2_state/sim_results/foundation_pauli_bloch_backprop_results.json",
+        "system_v4/probes/a2_state/sim_results/gnn_cascade_integrated_results.json",
+        "system_v4/probes/a2_state/sim_results/layer_stacking_coexistence_results.json"
+      ]
+    },
     {
       "kind": "duplicate_agent_state_dirs",
       "severity": "advisory",

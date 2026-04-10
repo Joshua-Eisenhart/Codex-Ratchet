@@ -54,14 +54,19 @@ def main() -> int:
 
     supervisor = read_json(SUPERVISOR_PATH)
     repo_hygiene_green = bool(supervisor.get("repo_hygiene_green"))
+    overall_green = bool(supervisor.get("overall_green"))
+    repair_queue_count = int(supervisor.get("repair_queue_count", 0) or 0)
     active_actionable_lane = supervisor.get("active_actionable_lane") or {}
 
-    if repo_hygiene_green:
+    if repo_hygiene_green and overall_green and repair_queue_count == 0:
         print(f"CLEANUP FIRST GUARD PASSED context={context}")
         return 0
 
     print(f"CLEANUP FIRST GUARD FAILED context={context}")
-    print("repo hygiene is red; cleanup/checkpoint work must happen before new sim execution")
+    print("cleanup-first policy is still active; cleanup/checkpoint work must happen before new sim execution")
+    print(f"repo_hygiene_green={repo_hygiene_green}")
+    print(f"overall_green={overall_green}")
+    print(f"repair_queue_count={repair_queue_count}")
     if active_actionable_lane.get("group_id"):
         print(f"active_actionable_lane={active_actionable_lane['group_id']}")
     print(f"supervisor={SUPERVISOR_PATH.relative_to(PROJECT_DIR)}")

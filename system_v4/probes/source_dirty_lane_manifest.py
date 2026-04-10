@@ -77,7 +77,43 @@ def main() -> int:
         docs_opt_in_required = False
     else:
         if not recommended:
-            raise SystemExit("no checkpoint-ready groups available")
+            # No checkpoint-ready groups — all remaining source pressure is manual-only.
+            # This is the success state after a cleanup pass. Write a no-op result and exit 0.
+            OUT_PATH.write_text(json.dumps({
+                "generated_at": datetime.now(UTC).isoformat(),
+                "lane_id": "source_dirty__no_actionable_lanes",
+                "source_plan_path": str(PLAN_PATH.relative_to(PROJECT_DIR)),
+                "selection_mode": "no_checkpoint_ready_groups",
+                "allow_docs": allow_docs,
+                "docs_opt_in_required": False,
+                "code_only_fallback": code_only_fallback,
+                "active_actionable_lane": None,
+                "selected_group_id": None,
+                "file_count": 0,
+                "safe_next_action": None,
+                "stop_condition": "No checkpoint-ready lanes remain; manual-only residue must be audited separately.",
+                "code_only_fallback_group_id": code_only_fallback["group_id"] if code_only_fallback else None,
+                "active_actionable_lane_group_id": None,
+                "summary": {
+                    "selected_group_id": None,
+                    "file_count": 0,
+                    "safe_next_action": None,
+                    "docs_opt_in_required": False,
+                    "code_only_fallback_group_id": code_only_fallback["group_id"] if code_only_fallback else None,
+                    "active_actionable_lane_group_id": None,
+                    "executable_lane_group_id": None,
+                    "ok": True,
+                    "status": "no_actionable_lanes",
+                    "note": "No checkpoint-ready groups; all remaining source pressure is manual-only or clean.",
+                },
+                "lane": None,
+                "executable_lane": None,
+            }, indent=2), encoding="utf-8")
+            print(f"Wrote {OUT_PATH}")
+            print("selected_group_id=None (no checkpoint-ready groups)")
+            print("file_count=0")
+            print("SOURCE DIRTY LANE MANIFEST PASSED (no actionable lanes — clean state)")
+            return 0
         filtered_recommended = [
             item for item in recommended
             if allow_docs or checkpoint_groups[item["group_id"]].get("bucket") != "docs_and_specs"

@@ -50,13 +50,14 @@ def main() -> int:
     report = {
         "generated_at": datetime.now(UTC).isoformat(),
         "lane_id": manifest["lane_id"],
-        "group_id": packet["group_id"],
-        "selected_group_id": manifest["selected_group_id"],
+        "group_id": packet.get("group_id"),
+        "selected_group_id": manifest.get("selected_group_id"),
         "summary": {
             "stage_path_count": len(stage_paths),
             "excluded_path_count": len(excluded_paths),
-            "ready_for_staging": bool(packet.get("ready_for_checkpoint")),
+            "ready_for_staging": bool(packet.get("ready_for_checkpoint")) and bool(stage_paths),
             "ok": True,
+            "status": "no_actionable_lane" if not packet.get("group_id") else "actionable_lane",
         },
         "stage_paths": stage_paths,
         "excluded_paths": excluded_paths,

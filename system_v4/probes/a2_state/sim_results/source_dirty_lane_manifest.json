@@ -1,100 +1,38 @@
 {
-  "generated_at": "2026-04-10T05:03:47.377407+00:00",
-  "lane_id": "source_dirty__docs_and_specs__docs_and_specs",
+  "generated_at": "2026-04-10T05:08:19.101587+00:00",
+  "lane_id": "source_dirty__no_actionable_lanes",
   "source_plan_path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
-  "selection_mode": "default_docs_blocked_requires_opt_in",
+  "selection_mode": "no_checkpoint_ready_groups",
   "allow_docs": false,
-  "docs_opt_in_required": true,
+  "docs_opt_in_required": false,
   "code_only_fallback": {
-    "group_id": "probe_source__probe_misc",
-    "file_count": 2,
-    "untracked_count": 1,
-    "tracked_dirty_count": 1,
-    "safe_next_action": "manual_split_required",
+    "group_id": "legacy_runtime__legacy_runtime",
+    "file_count": 4,
+    "untracked_count": 4,
+    "tracked_dirty_count": 0,
+    "safe_next_action": "archive_review",
     "source_path": null,
     "result_path": null
   },
-  "code_only_fallback_group_id": "probe_source__probe_misc",
-  "active_actionable_lane": {
-    "group_id": "probe_source__probe_misc",
-    "file_count": 2,
-    "untracked_count": 1,
-    "tracked_dirty_count": 1,
-    "safe_next_action": "manual_split_required",
-    "source_path": null,
-    "result_path": null
-  },
-  "selected_group_id": "docs_and_specs__docs_and_specs",
-  "file_count": 3,
-  "safe_next_action": "checkpoint",
-  "stop_condition": "All files in this lane are either checkpointed together or intentionally reclassified in the checkpoint plan.",
+  "active_actionable_lane": null,
+  "selected_group_id": null,
+  "file_count": 0,
+  "safe_next_action": null,
+  "stop_condition": "No checkpoint-ready lanes remain; manual-only residue must be audited separately.",
+  "code_only_fallback_group_id": "legacy_runtime__legacy_runtime",
+  "active_actionable_lane_group_id": null,
   "summary": {
-    "selected_group_id": "docs_and_specs__docs_and_specs",
-    "file_count": 3,
-    "safe_next_action": "checkpoint",
-    "docs_opt_in_required": true,
-    "code_only_fallback_group_id": "probe_source__probe_misc",
-    "active_actionable_lane_group_id": "probe_source__probe_misc",
-    "executable_lane_group_id": "probe_source__probe_misc",
-    "ok": true
+    "selected_group_id": null,
+    "file_count": 0,
+    "safe_next_action": null,
+    "docs_opt_in_required": false,
+    "code_only_fallback_group_id": "legacy_runtime__legacy_runtime",
+    "active_actionable_lane_group_id": null,
+    "executable_lane_group_id": null,
+    "ok": true,
+    "status": "no_actionable_lanes",
+    "note": "No checkpoint-ready groups; all remaining source pressure is manual-only or clean."
   },
-  "lane": {
-    "group_id": "docs_and_specs__docs_and_specs",
-    "display_name": "Docs and specs",
-    "bucket": "docs_and_specs",
-    "notes": "Docs/specs are bounded and can be checkpointed separately.",
-    "blocking_reason": "bounded_human_checkpoint",
-    "goal": "Reduce dirty source pressure by resolving one bounded checkpoint-ready lane without widening scope.",
-    "stop_condition": "All files in this lane are either checkpointed together or intentionally reclassified in the checkpoint plan.",
-    "verification_commands": [
-      "make source-dirty-checkpoint-plan",
-      "make maintenance-report"
-    ],
-    "result_companions": [],
-    "required_git_paths_clean": [
-      "new docs/16_lego_build_catalog 2.md",
-      "new docs/16_lego_build_catalog.md",
-      "new docs/17_actual_lego_registry.md"
-    ],
-    "docs_opt_in_required": true,
-    "code_only_fallback": {
-      "group_id": "probe_source__probe_misc",
-      "file_count": 2,
-      "untracked_count": 1,
-      "tracked_dirty_count": 1,
-      "safe_next_action": "manual_split_required",
-      "source_path": null,
-      "result_path": null
-    },
-    "active_actionable_lane": {
-      "group_id": "probe_source__probe_misc",
-      "file_count": 2,
-      "untracked_count": 1,
-      "tracked_dirty_count": 1,
-      "safe_next_action": "manual_split_required",
-      "source_path": null,
-      "result_path": null
-    },
-    "files": [
-      "new docs/16_lego_build_catalog 2.md",
-      "new docs/16_lego_build_catalog.md",
-      "new docs/17_actual_lego_registry.md"
-    ]
-  },
-  "executable_lane": {
-    "group_id": "probe_source__probe_misc",
-    "files": [
-      "new docs/16_lego_build_catalog 2.md",
-      "new docs/16_lego_build_catalog.md",
-      "new docs/17_actual_lego_registry.md"
-    ],
-    "result_companions": [],
-    "required_git_paths_clean": [
-      "new docs/16_lego_build_catalog 2.md",
-      "new docs/16_lego_build_catalog.md",
-      "new docs/17_actual_lego_registry.md"
-    ],
-    "goal": "Execute the currently actionable bounded lane without widening scope.",
-    "stop_condition": "All files in this executable lane are either checkpointed together or intentionally reclassified in the checkpoint plan."
-  }
+  "lane": null,
+  "executable_lane": null
 }

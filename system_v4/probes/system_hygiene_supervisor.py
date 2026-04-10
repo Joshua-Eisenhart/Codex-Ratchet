@@ -134,6 +134,7 @@ def main() -> int:
         and repo_ok
         and runtime_ok
         and lego_tool_reporting_ok
+        and len(repair_queue) == 0
     )
 
     summary = {

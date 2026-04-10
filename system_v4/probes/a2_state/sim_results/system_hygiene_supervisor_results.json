@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-10T05:04:29.915682+00:00",
-  "strict": true,
-  "overall_green": true,
+  "generated_at": "2026-04-10T05:08:19.222887+00:00",
+  "strict": false,
+  "overall_green": false,
   "repair_queue_count": 2,
   "safe_auto_repair_count": 0,
   "manual_repair_count": 2,
@@ -11,15 +11,7 @@
   "repo_hygiene_green": true,
   "runtime_hygiene_green": true,
   "lego_tool_reporting_green": true,
-  "active_actionable_lane": {
-    "group_id": "probe_source__probe_misc",
-    "file_count": 2,
-    "untracked_count": 1,
-    "tracked_dirty_count": 1,
-    "safe_next_action": "manual_split_required",
-    "source_path": null,
-    "result_path": null
-  },
+  "active_actionable_lane": null,
   "summary": {
     "missing_surface_count": 0,
     "repair_queue_count": 2,
@@ -31,7 +23,7 @@
     "repo_hygiene_green": true,
     "runtime_hygiene_green": true,
     "lego_tool_reporting_green": true,
-    "overall_green": true
+    "overall_green": false
   },
   "process_model": {
     "name": "closed_loop_maintenance",
@@ -63,16 +55,16 @@
     "ok": true
   },
   "source_dirty_surface": {
-    "source_dirty_count": 6,
+    "source_dirty_count": 11,
     "dirty_source_bucket_count": 3,
     "dirty_source_buckets": [
       {
-        "label": "legacy_runtime",
-        "count": 4
+        "label": "probe_source",
+        "count": 6
       },
       {
-        "label": "probe_source",
-        "count": 1
+        "label": "legacy_runtime",
+        "count": 4
       },
       {
         "label": "other_source",
@@ -82,7 +74,7 @@
     "top_dirty_prefixes": [
       {
         "prefix": "system_v4",
-        "count": 15
+        "count": 20
       },
       {
         "prefix": "obsidian_vault",
@@ -100,27 +92,18 @@
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_checkpoint_plan.json",
     "status": "current",
     "dirty_source_checkpoint_required": true,
-    "plan_group_count": 4,
-    "largest_group_id": "other_source__other_source",
+    "plan_group_count": 3,
+    "largest_group_id": "probe_source__probe_misc",
     "next_code_only_manual": {
-      "group_id": "probe_source__probe_misc",
-      "file_count": 2,
-      "untracked_count": 1,
-      "tracked_dirty_count": 1,
-      "safe_next_action": "manual_split_required",
+      "group_id": "legacy_runtime__legacy_runtime",
+      "file_count": 4,
+      "untracked_count": 4,
+      "tracked_dirty_count": 0,
+      "safe_next_action": "archive_review",
       "source_path": null,
       "result_path": null
     },
     "recommended_code_only_order": [
-      {
-        "group_id": "probe_source__probe_misc",
-        "file_count": 2,
-        "untracked_count": 1,
-        "tracked_dirty_count": 1,
-        "safe_next_action": "manual_split_required",
-        "source_path": null,
-        "result_path": null
-      },
       {
         "group_id": "legacy_runtime__legacy_runtime",
         "file_count": 4,
@@ -138,6 +121,15 @@
         "safe_next_action": "manual_split_required",
         "source_path": null,
         "result_path": null
+      },
+      {
+        "group_id": "probe_source__probe_misc",
+        "file_count": 6,
+        "untracked_count": 0,
+        "tracked_dirty_count": 6,
+        "safe_next_action": "manual_split_required",
+        "source_path": null,
+        "result_path": null
       }
     ]
   },
@@ -146,11 +138,11 @@
     "path": "system_v4/probes/a2_state/sim_results/source_dirty_lane_manifest.json",
     "status": "current",
     "required": true,
-    "selected_group_id": "docs_and_specs__docs_and_specs",
-    "file_count": 3,
-    "docs_opt_in_required": true,
-    "code_only_fallback_group_id": "probe_source__probe_misc",
-    "active_actionable_lane_group_id": "probe_source__probe_misc"
+    "selected_group_id": null,
+    "file_count": 0,
+    "docs_opt_in_required": false,
+    "code_only_fallback_group_id": "legacy_runtime__legacy_runtime",
+    "active_actionable_lane_group_id": null
   },
   "maintenance_lanes": [
     {
@@ -234,7 +226,7 @@
     },
     "repo_hygiene": {
       "blocker_count": 0,
-      "advisory_count": 6,
+      "advisory_count": 8,
       "repair_candidate_count": 2,
       "primary_result_count": 764,
       "secondary_result_count": 0,
@@ -242,9 +234,9 @@
       "secondary_duplicate_result_count": 0,
       "root_result_orphan_count": 0,
       "duplicate_result_basename_count": 0,
-      "source_dirty_count": 6,
+      "source_dirty_count": 11,
       "generated_dirty_count": 17,
-      "dirty_worktree_count": 23,
+      "dirty_worktree_count": 28,
       "dirty_source_bucket_count": 3,
       "ok": true
     },
@@ -267,28 +259,30 @@
       "ok": true
     },
     "source_dirty_checkpoint": {
-      "dirty_source_count": 10,
-      "plan_group_count": 4,
-      "checkpoint_candidate_count": 1,
+      "dirty_source_count": 11,
+      "plan_group_count": 3,
+      "checkpoint_candidate_count": 0,
       "quarantine_candidate_count": 0,
       "manual_only_count": 3,
       "code_only_manual_count": 3,
-      "largest_group_id": "other_source__other_source",
-      "next_code_only_manual_group_id": "probe_source__probe_misc",
-      "next_code_only_manual_file_count": 2,
+      "largest_group_id": "probe_source__probe_misc",
+      "next_code_only_manual_group_id": "legacy_runtime__legacy_runtime",
+      "next_code_only_manual_file_count": 4,
       "next_code_only_manual_source_path": null,
       "next_code_only_manual_result_path": null,
       "ok": true
     },
     "source_dirty_lane_manifest": {
-      "selected_group_id": "docs_and_specs__docs_and_specs",
-      "file_count": 3,
-      "safe_next_action": "checkpoint",
-      "docs_opt_in_required": true,
-      "code_only_fallback_group_id": "probe_source__probe_misc",
-      "active_actionable_lane_group_id": "probe_source__probe_misc",
-      "executable_lane_group_id": "probe_source__probe_misc",
-      "ok": true
+      "selected_group_id": null,
+      "file_count": 0,
+      "safe_next_action": null,
+      "docs_opt_in_required": false,
+      "code_only_fallback_group_id": "legacy_runtime__legacy_runtime",
+      "active_actionable_lane_group_id": null,
+      "executable_lane_group_id": null,
+      "ok": true,
+      "status": "no_actionable_lanes",
+      "note": "No checkpoint-ready groups; all remaining source pressure is manual-only or clean."
     }
   }
 }

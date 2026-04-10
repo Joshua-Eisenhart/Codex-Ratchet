@@ -1,29 +1,29 @@
 {
-  "generated_at": "2026-04-10T05:03:47.339978+00:00",
+  "generated_at": "2026-04-10T05:08:19.062198+00:00",
   "strict": false,
   "source_surface": "repo_hygiene",
   "repo_hygiene_path": "system_v4/probes/a2_state/sim_results/repo_hygiene_audit_results.json",
-  "dirty_source_count": 10,
-  "plan_group_count": 4,
-  "checkpoint_candidate_count": 1,
+  "dirty_source_count": 11,
+  "plan_group_count": 3,
+  "checkpoint_candidate_count": 0,
   "quarantine_candidate_count": 0,
   "manual_only_count": 3,
   "code_only_manual_count": 3,
-  "largest_group_id": "other_source__other_source",
-  "next_code_only_manual_group_id": "probe_source__probe_misc",
-  "next_code_only_manual_file_count": 2,
+  "largest_group_id": "probe_source__probe_misc",
+  "next_code_only_manual_group_id": "legacy_runtime__legacy_runtime",
+  "next_code_only_manual_file_count": 4,
   "next_code_only_manual_source_path": null,
   "next_code_only_manual_result_path": null,
   "summary": {
-    "dirty_source_count": 10,
-    "plan_group_count": 4,
-    "checkpoint_candidate_count": 1,
+    "dirty_source_count": 11,
+    "plan_group_count": 3,
+    "checkpoint_candidate_count": 0,
     "quarantine_candidate_count": 0,
     "manual_only_count": 3,
     "code_only_manual_count": 3,
-    "largest_group_id": "other_source__other_source",
-    "next_code_only_manual_group_id": "probe_source__probe_misc",
-    "next_code_only_manual_file_count": 2,
+    "largest_group_id": "probe_source__probe_misc",
+    "next_code_only_manual_group_id": "legacy_runtime__legacy_runtime",
+    "next_code_only_manual_file_count": 4,
     "next_code_only_manual_source_path": null,
     "next_code_only_manual_result_path": null,
     "ok": true
@@ -34,14 +34,13 @@
     "archive_review": "Legacy or reference cluster requiring separate ownership review.",
     "manual_split_required": "Active cluster too broad for one safe checkpoint and should be split further."
   },
-  "recommended_checkpoint_order": [
-    {
-      "group_id": "docs_and_specs__docs_and_specs",
-      "file_count": 3,
-      "safe_next_action": "checkpoint"
-    }
-  ],
+  "recommended_checkpoint_order": [],
   "recommended_manual_split_order": [
+    {
+      "group_id": "probe_source__probe_misc",
+      "file_count": 6,
+      "safe_next_action": "manual_split_required"
+    },
     {
       "group_id": "other_source__other_source",
       "file_count": 5,
@@ -51,23 +50,9 @@
       "group_id": "legacy_runtime__legacy_runtime",
       "file_count": 4,
       "safe_next_action": "archive_review"
-    },
-    {
-      "group_id": "probe_source__probe_misc",
-      "file_count": 2,
-      "safe_next_action": "manual_split_required"
     }
   ],
   "recommended_code_only_order": [
-    {
-      "group_id": "probe_source__probe_misc",
-      "file_count": 2,
-      "untracked_count": 1,
-      "tracked_dirty_count": 1,
-      "safe_next_action": "manual_split_required",
-      "source_path": null,
-      "result_path": null
-    },
     {
       "group_id": "legacy_runtime__legacy_runtime",
       "file_count": 4,
@@ -85,44 +70,27 @@
       "safe_next_action": "manual_split_required",
       "source_path": null,
       "result_path": null
+    },
+    {
+      "group_id": "probe_source__probe_misc",
+      "file_count": 6,
+      "untracked_count": 0,
+      "tracked_dirty_count": 6,
+      "safe_next_action": "manual_split_required",
+      "source_path": null,
+      "result_path": null
     }
   ],
   "next_code_only_manual": {
-    "group_id": "probe_source__probe_misc",
-    "file_count": 2,
-    "untracked_count": 1,
-    "tracked_dirty_count": 1,
-    "safe_next_action": "manual_split_required",
+    "group_id": "legacy_runtime__legacy_runtime",
+    "file_count": 4,
+    "untracked_count": 4,
+    "tracked_dirty_count": 0,
+    "safe_next_action": "archive_review",
     "source_path": null,
     "result_path": null
   },
   "checkpoint_groups": [
-    {
-      "group_id": "docs_and_specs__docs_and_specs",
-      "bucket": "docs_and_specs",
-      "label": "docs_and_specs",
-      "display_name": "Docs and specs",
-      "path_prefixes": [
-        "new docs/16_lego_build_catalog 2.md",
-        "new docs/16_lego_build_catalog.md",
-        "new docs/17_actual_lego_registry.md"
-      ],
-      "file_count": 3,
-      "tracked_dirty_count": 0,
-      "untracked_count": 3,
-      "sample_paths": [
-        "new docs/16_lego_build_catalog 2.md",
-        "new docs/16_lego_build_catalog.md",
-        "new docs/17_actual_lego_registry.md"
-      ],
-      "dominant_kinds": [
-        "untracked"
-      ],
-      "safe_next_action": "checkpoint",
-      "safe_auto": false,
-      "blocking_reason": "bounded_human_checkpoint",
-      "notes": "Docs/specs are bounded and can be checkpointed separately."
-    },
     {
       "group_id": "legacy_runtime__legacy_runtime",
       "bucket": "legacy_runtime",
@@ -185,19 +153,26 @@
       "label": "probe_misc",
       "display_name": "Misc active probes",
       "path_prefixes": [
-        "system_v4/probes/heartbeat.sh",
-        "system_v4/probes/run_with_numba_safety.sh"
+        "system_v4/probes/cleanup_first_guard.py",
+        "system_v4/probes/repo_hygiene_audit.py",
+        "system_v4/probes/source_dirty_checkpoint_packet.py",
+        "system_v4/probes/source_dirty_lane_manifest.py",
+        "system_v4/probes/source_dirty_stage_plan.py",
+        "system_v4/probes/system_hygiene_supervisor.py"
       ],
-      "file_count": 2,
-      "tracked_dirty_count": 1,
-      "untracked_count": 1,
+      "file_count": 6,
+      "tracked_dirty_count": 6,
+      "untracked_count": 0,
       "sample_paths": [
-        "system_v4/probes/heartbeat.sh",
-        "system_v4/probes/run_with_numba_safety.sh"
+        "system_v4/probes/cleanup_first_guard.py",
+        "system_v4/probes/repo_hygiene_audit.py",
+        "system_v4/probes/source_dirty_checkpoint_packet.py",
+        "system_v4/probes/source_dirty_lane_manifest.py",
+        "system_v4/probes/source_dirty_stage_plan.py",
+        "system_v4/probes/system_hygiene_supervisor.py"
       ],
       "dominant_kinds": [
-        "modified",
-        "untracked"
+        "modified"
       ],
       "safe_next_action": "manual_split_required",
       "safe_auto": false,

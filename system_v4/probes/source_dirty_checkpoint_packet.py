@@ -59,7 +59,34 @@ def main() -> int:
     truth = read_json(TRUTH_AUDIT_PATH)
     repo = read_json(REPO_HYGIENE_PATH)
 
-    executable_lane = manifest.get("executable_lane") or manifest["lane"]
+    executable_lane = manifest.get("executable_lane") or manifest.get("lane")
+    if not executable_lane:
+        report = {
+            "generated_at": datetime.now(UTC).isoformat(),
+            "lane_id": manifest["lane_id"],
+            "group_id": None,
+            "selected_group_id": manifest.get("selected_group_id"),
+            "owned_files": [],
+            "result_companions": [],
+            "verification_snapshot": {
+                "checks_run": ["lane_manifest_present", "no_actionable_lane_state"],
+                "checks_passed": ["lane_manifest_present", "no_actionable_lane_state"],
+                "checks_failed": [],
+                "notes": [
+                    "No checkpoint-ready lane is available; manual-only residue remains outside packetized cleanup."
+                ],
+                "git_status": [],
+            },
+            "required_git_paths_clean": [],
+            "ready_for_checkpoint": False,
+            "status": "no_actionable_lane",
+        }
+        OUT_PATH.write_text(json.dumps(report, indent=2), encoding="utf-8")
+        print(f"Wrote {OUT_PATH}")
+        print("group_id=None")
+        print("ready_for_checkpoint=False")
+        print("SOURCE DIRTY CHECKPOINT PACKET PASSED (no actionable lane)")
+        return 0
     executable_group_id = executable_lane.get("group_id", manifest.get("selected_group_id"))
 
     if requested_group_id and executable_group_id != requested_group_id:

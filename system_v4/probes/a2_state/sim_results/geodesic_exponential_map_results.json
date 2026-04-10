@@ -1,0 +1,299 @@
+{
+  "name": "sim_pure_lego_geodesic_exponential_map",
+  "lego_ids": [
+    "geodesic_exponential_map"
+  ],
+  "classification": "canonical",
+  "overall_pass": true,
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "No gradient/autograd needed; geodesic ODE integration is closed-form and custom RK4 is sufficient; numpy suffices for numerical integration"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "No graph structure required; geodesic ODE operates on a continuous manifold, not a graph"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: R\u00b2 energy conservation dE/dt=2vx\u00b7ax+2vy\u00b7ay=0 encoded as SMT; SAT confirms zero-acceleration geodesic conserves energy; negation (dE/dt\u22600 with ax=ay=0) gives UNSAT \u2014 proves conservation"
+    },
+    "cvc5": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: R\u00b2 exp-log round-trip exp_p(log_p(q))=q verified via QF_LRA; round-trip holds \u2192 SAT; negation (round-trip fails) \u2192 UNSAT; proves algebraic correctness of flat exp/log definitions"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Load-bearing: derives geodesic ODE symbolically from S\u00b2 Christoffel symbols; verifies d\u00b2\u03b8/dt\u00b2=sin\u03b8cos\u03b8(d\u03c6/dt)\u00b2 and d\u00b2\u03c6/dt\u00b2=-2cot\u03b8(d\u03b8/dt)(d\u03c6/dt)"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "Clifford algebra encodes spinors and rotors, not needed for geodesic ODE or exp/log map on S\u00b2"
+    },
+    "geomstats": {
+      "tried": true,
+      "used": true,
+      "reason": "Supportive: Hypersphere(dim=2).metric.dist cross-validates our geodesic distance formula at test points; agreement within 1e-6 confirms S\u00b2 arc-length computation"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "e3nn targets equivariant neural networks; not applicable to standalone geodesic/exp-map integration"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "rustworkx is a graph library; geodesic ODE on S\u00b2 has no graph structure"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "xgi targets hypergraph structures; not applicable here"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "toponetx is a topological combinatorics library; geodesic ODE does not require cell complex machinery"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "gudhi targets persistent homology / TDA; not applicable to geodesic integration"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": "supportive",
+    "sympy": "load_bearing",
+    "clifford": null,
+    "geomstats": "supportive",
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "sympy_geodesic_ode_derivation": {
+      "ok": true,
+      "accel_theta": "vp**2*sin(2*theta)/2",
+      "accel_phi": "-2*vp*vt/tan(theta)",
+      "expected_theta": "vp**2*sin(theta)*cos(theta)",
+      "expected_phi": "-2*vp*vt*cos(theta)/sin(theta)",
+      "diff_theta_zero": "0",
+      "diff_phi_zero": "0",
+      "nonzero_christoffels": {
+        "Gamma^0_{11}": "-sin(2*theta)/2",
+        "Gamma^1_{01}": "1/tan(theta)",
+        "Gamma^1_{10}": "1/tan(theta)"
+      }
+    },
+    "meridian_geodesic": {
+      "ok": true,
+      "theta_0": 0.1,
+      "phi_0": 0.5,
+      "v_theta": 0.8,
+      "v_phi": 0.0,
+      "theta_f": 0.9000000000000177,
+      "phi_f": 0.5,
+      "theta_expected": 0.9,
+      "theta_err": 1.765254609153999e-14,
+      "phi_err": 0.0,
+      "note": "Meridian geodesic: d\u03c6/dt=0 \u2192 \u0393 terms vanish \u2192 \u03b8(t)=\u03b8\u2080+v_\u03b8\u00b7t exactly"
+    },
+    "equatorial_geodesic": {
+      "ok": true,
+      "theta": 1.5707963267948966,
+      "phi_0": 0.0,
+      "v_phi": 1.5707963267948966,
+      "theta_f": 1.5707963267948966,
+      "phi_f": 1.5707963267948684,
+      "phi_expected": 1.5707963267948966,
+      "theta_err": 0.0,
+      "phi_err": 2.8199664825478976e-14,
+      "note": "Equatorial geodesic: all Christoffels zero at \u03b8=\u03c0/2 \u2192 trivial ODE"
+    },
+    "s2_exp_log_round_trip": {
+      "ok": true,
+      "theta_p": 0.4,
+      "phi_p": 0.3,
+      "theta_q": 0.9,
+      "phi_q": 1.2,
+      "v_theta_log": 0.22451980294982252,
+      "v_phi_log": 1.7138473024777119,
+      "theta_rt": 0.9000000000000026,
+      "phi_rt": 1.200000000000001,
+      "round_trip_ambient_err": 2.762760495518114e-15
+    },
+    "r2_exp_log_round_trip": {
+      "ok": true,
+      "p": [
+        1.5,
+        2.3
+      ],
+      "q": [
+        4.0,
+        -1.0
+      ],
+      "v_log": [
+        2.5,
+        -3.3
+      ],
+      "recovered": [
+        4.0,
+        -1.0
+      ],
+      "error": 0.0
+    },
+    "conservation_laws": {
+      "ok": true,
+      "E0": 0.31984884706593014,
+      "h0": 0.22984884706593015,
+      "E_max_drift": 4.62729854433519e-12,
+      "h_max_drift": 5.830613769575166e-13,
+      "n_steps": 500,
+      "t_end": 2.0,
+      "note": "E=\u03b8\u0307\u00b2+sin\u00b2\u03b8\u00b7\u03c6\u0307\u00b2 and h=sin\u00b2\u03b8\u00b7\u03c6\u0307 both conserved along geodesic"
+    },
+    "geomstats_distance_cross_validate": {
+      "ok": true,
+      "dist_ours": 0.7041567116119656,
+      "dist_geomstats": 0.7041567116119656,
+      "error": 0.0,
+      "theta_p": 0.4,
+      "phi_p": 0.3,
+      "theta_q": 0.9,
+      "phi_q": 1.2
+    },
+    "z3_r2_energy_conservation": {
+      "ok": true,
+      "sat_result": "sat",
+      "sat_ok": true,
+      "unsat_result": "unsat",
+      "unsat_ok": true
+    },
+    "cvc5_r2_round_trip": {
+      "ok": true,
+      "sat_result": "sat",
+      "sat_ok": true,
+      "unsat_result": "unsat",
+      "unsat_ok": true
+    }
+  },
+  "negative": {
+    "r2_flat_trivial": {
+      "ok": true,
+      "correct_endpoint": [
+        3.0,
+        4.0
+      ],
+      "expected_endpoint": [
+        3.0,
+        4.0
+      ],
+      "flat_geodesic_correct": true,
+      "wrong_map_detectable": true,
+      "note": "R\u00b2 geodesic must be linear; any curvature correction is detectable"
+    },
+    "wrong_metric_geodesic_drift": {
+      "ok": true,
+      "theta_correct": 1.33199456354322,
+      "theta_wrong": 1.3000000000000007,
+      "theta_diff": 0.03199456354321928,
+      "E_initial": 0.2718330481362902,
+      "E_correct_drift": 4.399980380043189e-12,
+      "E_wrong_drift": 0.2102780460348283,
+      "note": "Zero-Christoffel (flat) ODE fails on S\u00b2: energy drifts; correct ODE conserves energy"
+    },
+    "cut_locus_log_undefined": {
+      "ok": true,
+      "theta_p": 0.6,
+      "phi_p": 0.0,
+      "theta_antipodal": 2.541592653589793,
+      "phi_antipodal": 3.141592653589793,
+      "v_theta_log": NaN,
+      "v_phi_log": NaN,
+      "both_nan": true,
+      "note": "log_p(\u2212p) is undefined (multivalued) at antipodal point \u2014 cut locus"
+    },
+    "z3_nonflat_geodesic_negative": {
+      "ok": true,
+      "result": "sat",
+      "note": "With ax=1\u22600, dE/dt=2\u22600: non-flat geodesic breaks energy conservation \u2014 SAT"
+    }
+  },
+  "boundary": {
+    "near_pole_geodesic": {
+      "ok": true,
+      "theta_0": 0.05,
+      "v_theta": 0.3,
+      "theta_f": 0.34999999999999704,
+      "theta_expected": 0.35,
+      "error": 2.942091015256665e-15,
+      "note": "Near-pole (\u03b8=0.05) meridian geodesic; pole-guard prevents cot singularity"
+    },
+    "cut_locus_approach": {
+      "ok": true,
+      "sequence": [
+        {
+          "eps": 0.3,
+          "phi_q": 2.8415926535897933,
+          "log_norm": 2.8415926535897933
+        },
+        {
+          "eps": 0.2,
+          "phi_q": 2.941592653589793,
+          "log_norm": 2.9415926535898
+        },
+        {
+          "eps": 0.1,
+          "phi_q": 3.041592653589793,
+          "log_norm": 3.0415926535897793
+        },
+        {
+          "eps": 0.05,
+          "phi_q": 3.0915926535897933,
+          "log_norm": 3.0915926535898213
+        },
+        {
+          "eps": 0.02,
+          "phi_q": 3.121592653589793,
+          "log_norm": 3.1215926535896537
+        },
+        {
+          "eps": 0.01,
+          "phi_q": 3.1315926535897933,
+          "log_norm": 3.1315926535893746
+        }
+      ],
+      "finite_norm_count": 6,
+      "monotone_increasing": true,
+      "note": "|log_p(q)| \u2192 \u03c0 monotonically as q \u2192 antipodal; undefined at cut locus"
+    },
+    "rk4_convergence": {
+      "ok": true,
+      "err_n500": 6.534133667430091e-13,
+      "err_n2000": 2.762760495518114e-15,
+      "ratio": 236.5074235725494,
+      "note": "Higher n_steps gives smaller round-trip error; RK4 global error O(dt\u2074)"
+    },
+    "phi_reflection_symmetry": {
+      "ok": true,
+      "theta_f1": 0.7069153787914981,
+      "phi_f1": 0.14693176632064092,
+      "theta_f2": 0.7069153787914981,
+      "phi_f2": -0.14693176632064092,
+      "theta_diff": 0.0,
+      "phi_sum": 0.0,
+      "note": "S\u00b2 geodesics from (\u03b8\u2080,0) with \u00b1v_\u03c6 are \u03c6-reflections: same \u03b8_f, opposite \u03c6_f"
+    }
+  }
+}

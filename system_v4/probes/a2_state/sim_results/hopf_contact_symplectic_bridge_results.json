@@ -1,0 +1,212 @@
+{
+  "name": "pure_lego_hopf_contact_symplectic_bridge",
+  "timestamp": "2026-04-10T08:24:43.579032Z",
+  "classification": "canonical",
+  "classification_note": "Standalone pure-geometry lego for the Hopf-contact-symplectic bridge identity. Establishes that ker(\u03b1) on S\u00b3 is compatible with the symplectic area form on S\u00b2 under Hopf projection: \u03c9_S\u00b2(d\u03c0(h\u2081),d\u03c0(h\u2082)) = \u22122\u00b7d\u03b1(h\u2081,h\u2082). Distinct from sim_torch_hopf_connection.py (Berry phase/connection) and sim_hopf_pointwise_pullback.py (density matrix pullback). Uses pytorch (load_bearing) + z3 UNSAT + sympy polynomial identity.",
+  "lego_ids": [
+    "hopf_contact_symplectic_bridge"
+  ],
+  "primary_lego_ids": [
+    "hopf_contact_symplectic_bridge"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": true,
+      "used": true,
+      "reason": "Primary engine: Hopf map, Jacobian (d\u03c0), horizontal basis via \u03b1-projection, omega_s2 area form, pullback ratio verification at 100 random S\u00b3 points, Reeb verticality J\u00b7R=0, pushforward surjectivity check, antipodal cover"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Hopf bridge probe"
+    },
+    "z3": {
+      "tried": true,
+      "used": true,
+      "reason": "UNSAT proof: assuming Reeb field is NOT vertical (J\u00b7R \u2260 0) at any point contradicts the algebraic identity derived from the Jacobian and Reeb definitions. Structural impossibility of non-verticality."
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Hopf bridge probe"
+    },
+    "sympy": {
+      "tried": true,
+      "used": true,
+      "reason": "Symbolic verification that J\u00b7R = 0 as a polynomial identity in (x\u2080,x\u2081,x\u2082,x\u2083), and that the pullback ratio is exactly \u22122 at the reference point p=(1,0,0,0) via symbolic matrix computation."
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Hopf bridge probe"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Hopf bridge probe"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Hopf bridge probe"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Hopf bridge probe"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Hopf bridge probe"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Hopf bridge probe"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not relevant to Hopf bridge probe"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": "load_bearing",
+    "pyg": null,
+    "z3": "load_bearing",
+    "cvc5": null,
+    "sympy": "supportive",
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "P1_reeb_vertical": {
+      "pass": true,
+      "max_JR_norm": 8.396407497242612e-17,
+      "threshold": 1e-12,
+      "description": "J\u00b7R = 0 at 100 random S\u00b3 points"
+    },
+    "P2_pushforward_nonzero": {
+      "pass": true,
+      "min_norm_Jh1": 1.9999999999999993,
+      "min_norm_Jh2": 1.9999999999999996,
+      "threshold": 0.1,
+      "description": "d\u03c0(h) \u2260 0 for h \u2208 ker(\u03b1) at 50 random S\u00b3 points"
+    },
+    "P3_pullback_ratio_minus2": {
+      "pass": true,
+      "max_deviation_from_minus2": 2.220446049250313e-15,
+      "threshold": 1e-10,
+      "n_valid_points": 100,
+      "description": "\u03c9_S\u00b2(d\u03c0(h\u2081),d\u03c0(h\u2082)) = \u22122\u00b7d\u03b1(h\u2081,h\u2082) at 100 random S\u00b3 points"
+    },
+    "P4_ground_truth_north_pole": {
+      "pass": true,
+      "lhs_omega_s2": -4.0,
+      "rhs_dalpha": 2.0,
+      "ratio": -2.0,
+      "expected_lhs": -4.0,
+      "expected_rhs": 2.0,
+      "expected_ratio": -2.0,
+      "description": "Explicit verify at p=(1,0,0,0): lhs=\u22124, rhs=2, ratio=\u22122"
+    },
+    "P5_ground_truth_equidistant": {
+      "pass": true,
+      "lhs": -3.999999999999999,
+      "rhs": 1.9999999999999996,
+      "ratio": -2.0,
+      "expected_ratio": -2.0,
+      "description": "Explicit verify at p=(1/2,1/2,1/2,1/2): ratio=\u22122"
+    },
+    "P6_pushforward_rank2": {
+      "pass": true,
+      "min_rank": "2",
+      "max_rank": "2",
+      "expected_rank": 2,
+      "description": "d\u03c0|_{T_pS\u00b3} has rank 2 everywhere (ker = span{R}, image = T_{\u03c0(p)}S\u00b2)"
+    }
+  },
+  "negative": {
+    "N1_vertical_annihilated": {
+      "pass": true,
+      "max_JR_norm": 8.200801787488927e-17,
+      "threshold": 1e-12,
+      "description": "Reeb field R maps to zero under d\u03c0 (vertical = annihilated)"
+    },
+    "N2_wrong_coupling_rejected": {
+      "pass": true,
+      "max_residual_c_equals_minus1": 2.0000000000000027,
+      "threshold": 0.1,
+      "description": "c=\u22121 is wrong: residual |lhs \u2212 (\u22121)\u00b7rhs| is large"
+    },
+    "N3_z3_reeb_verticality_unsat": {
+      "pass": true,
+      "z3_result": "unsat",
+      "claim": "J\u00b7R[0] \u2260 0 on unit S\u00b3 is UNSAT (algebraic identity forces J\u00b7R=0)",
+      "description": "z3 UNSAT proof: non-verticality of Reeb under d\u03c0 is structurally impossible"
+    },
+    "N4_sympy_JR_zero_polynomial": {
+      "pass": true,
+      "Jr0": "0",
+      "Jr1": "0",
+      "Jr2": "0",
+      "description": "Sympy confirms J\u00b7R = 0 as polynomial identity (all three rows)"
+    }
+  },
+  "boundary": {
+    "B1_near_pole": {
+      "pass": true,
+      "ratio": -2.0000000000000004,
+      "lhs": -4.0,
+      "rhs": 1.9999999999999998,
+      "point": [
+        0.9999999849969999,
+        0.00010000999949964995,
+        0.00010000999949964995,
+        0.00010000999949964995
+      ],
+      "description": "Bridge identity holds at near-pole point (x\u2080\u22481)"
+    },
+    "B2_equatorial_fiber": {
+      "pass": true,
+      "ratio": -1.9999999999999991,
+      "lhs": -3.9999999999999982,
+      "rhs": 2.0,
+      "point": [
+        0.0,
+        0.0,
+        0.7071067811865475,
+        0.7071067811865475
+      ],
+      "description": "Bridge identity holds at equatorial fiber point (x\u2080=x\u2081=0)"
+    },
+    "B3_antipodal_cover": {
+      "pass": true,
+      "max_base_point_diff": 0.0,
+      "threshold": 1e-12,
+      "description": "\u03c0(p) = \u03c0(\u2212p): antipodal S\u00b3 pair covers same S\u00b2 point (double cover)"
+    },
+    "B4_large_batch_stability": {
+      "pass": true,
+      "max_deviation": 1.7763568394002505e-15,
+      "n_valid": 100,
+      "threshold": 1e-08,
+      "description": "Bridge identity stable across 100 random points, no numerical blowup"
+    }
+  },
+  "tests_passed": 14,
+  "tests_total": 14,
+  "summary": {
+    "bridge_identity": "omega_S2(d_pi(h1), d_pi(h2)) = -2 * dalpha(h1, h2)",
+    "coupling_constant": -2,
+    "reeb_vertical": "J * R = 0 algebraically and confirmed by z3 UNSAT",
+    "horizontal_basis_method": "alpha-projection (v - alpha(v)*R), numerically stable",
+    "hopf_map_convention": "X=2(x0x2+x1x3), Y=2(x1x2-x0x3), Z=x0^2+x1^2-x2^2-x3^2"
+  }
+}

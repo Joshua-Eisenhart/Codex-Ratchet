@@ -1,0 +1,125 @@
+{
+  "name": "nested_torus_geometry",
+  "classification": "canonical",
+  "classification_note": "Canonical local lego for nested torus geometry with fixed major/minor radii and inclusion ordering, kept separate from sphere rows, Hopf fiber laws, and torus transport.",
+  "lego_ids": [
+    "nested_torus_geometry"
+  ],
+  "primary_lego_ids": [
+    "nested_torus_geometry"
+  ],
+  "tool_manifest": {
+    "pytorch": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "pyg": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "z3": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "cvc5": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "sympy": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "clifford": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "geomstats": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "e3nn": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "rustworkx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "xgi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "toponetx": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    },
+    "gudhi": {
+      "tried": false,
+      "used": false,
+      "reason": "not needed"
+    }
+  },
+  "tool_integration_depth": {
+    "pytorch": null,
+    "pyg": null,
+    "z3": null,
+    "cvc5": null,
+    "sympy": null,
+    "clifford": null,
+    "geomstats": null,
+    "e3nn": null,
+    "rustworkx": null,
+    "xgi": null,
+    "toponetx": null,
+    "gudhi": null
+  },
+  "positive": {
+    "nested_tori_have_strict_radial_separation": {
+      "outer_xy_min": 2.5,
+      "inner_xy_max": 2.4,
+      "pass": true
+    },
+    "nested_tori_keep_distinct_major_minor_radii": {
+      "pass": true
+    },
+    "torus_surface_area_matches_major_minor_formula": {
+      "outer_area": 59.21762640653615,
+      "inner_area": 31.582734083485946,
+      "single_area": 63.16546816697189,
+      "pass": true
+    }
+  },
+  "negative": {
+    "single_torus_is_not_a_nested_pair": {
+      "single_xy_min": 1.2,
+      "single_xy_max": 2.8,
+      "pass": true
+    },
+    "nested_row_does_not_require_hopf_fiber_data": {
+      "pass": true
+    }
+  },
+  "boundary": {
+    "all_major_radii_exceed_minor_radii": {
+      "pass": true
+    },
+    "vertical_extent_is_bounded_by_minor_radius": {
+      "pass": true
+    }
+  },
+  "summary": {
+    "all_pass": true,
+    "scope_note": "Direct local nested-torus geometry lego using fixed radii, radial separation, and area bounds only."
+  }
+}
